@@ -1,0 +1,37 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:JMMClient"
+                    xmlns:usercontrols="clr-namespace:JMMClient.UserControls">
+
+    <!-- groupFilterDetailTemplate-->
+    <DataTemplate x:Key="groupFilterDetailTemplate">
+        <DataTemplate.Resources>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        </DataTemplate.Resources>
+        <StackPanel Orientation="Vertical">
+            <usercontrols:GroupFilterAdmin Content="{Binding}"/>
+
+        </StackPanel>
+
+        
+
+    </DataTemplate >
+
+    <!-- groupDetailTemplate-->
+    <DataTemplate x:Key="groupDetailTemplate">
+        <usercontrols:AnimeGroupControl DataContext="{Binding}" />
+    </DataTemplate>
+
+    <!-- animeEpisodeTypeComboTemplate -->
+    <DataTemplate x:Key="animeEpisodeTypeComboTemplate">
+        <TextBlock Text="{Binding Path=EpisodeTypeDescription}" />
+    </DataTemplate>
+
+    <!-- seriesDetailTemplate-->
+    <DataTemplate x:Key="seriesDetailTemplate">
+        <usercontrols:AnimeSeries DataContext="{Binding}" />
+    </DataTemplate>
+
+
+
+</ResourceDictionary>

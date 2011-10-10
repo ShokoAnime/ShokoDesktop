@@ -1,0 +1,2279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="JMMServiceImplementation" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="BinaryBinding_IJMMServer_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsam:Addressing>
+          <wsp:Policy>
+            <wsam:AnonymousResponses />
+          </wsp:Policy>
+        </wsam:Addressing>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:8111/JMMServerBinary?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:8111/JMMServerBinary?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:8111/JMMServerBinary?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/JMMContracts" />
+      <xsd:import schemaLocation="http://localhost:8111/JMMServerBinary?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IJMMServer_GetGroupFilterExtended_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroupFilterExtended" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetGroupFilterExtended_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroupFilterExtendedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAnimeGroupsForFilter_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAnimeGroupsForFilter" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAnimeGroupsForFilter_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAnimeGroupsForFilterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllGroupFiltersExtended_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllGroupFiltersExtended" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllGroupFiltersExtended_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllGroupFiltersExtendedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetSubGroupsForGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubGroupsForGroup" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetSubGroupsForGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubGroupsForGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetSeriesForGroupRecursive_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSeriesForGroupRecursive" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetSeriesForGroupRecursive_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSeriesForGroupRecursiveResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetSeriesExistingForAnime_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSeriesExistingForAnime" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetSeriesExistingForAnime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSeriesExistingForAnimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_LinkAniDBOther_InputMessage">
+    <wsdl:part name="parameters" element="tns:LinkAniDBOther" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_LinkAniDBOther_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LinkAniDBOtherResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RemoveLinkAniDBOther_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveLinkAniDBOther" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RemoveLinkAniDBOther_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveLinkAniDBOtherResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllMovieDBPosters_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllMovieDBPosters" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllMovieDBPosters_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllMovieDBPostersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllMovieDBFanart_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllMovieDBFanart" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllMovieDBFanart_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllMovieDBFanartResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAnime_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAnime" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAnime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAnimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SetDefaultImage_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetDefaultImage" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SetDefaultImage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetDefaultImageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetNextUnwatchedEpisode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNextUnwatchedEpisode" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetNextUnwatchedEpisode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNextUnwatchedEpisodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetNextUnwatchedEpisodeForGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNextUnwatchedEpisodeForGroup" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetNextUnwatchedEpisodeForGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNextUnwatchedEpisodeForGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetEpisodesToWatch_RecentlyWatched_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEpisodesToWatch_RecentlyWatched" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetEpisodesToWatch_RecentlyWatched_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEpisodesToWatch_RecentlyWatchedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_DeleteAnimeSeries_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAnimeSeries" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_DeleteAnimeSeries_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAnimeSeriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_DeleteAnimeGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAnimeGroup" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_DeleteAnimeGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAnimeGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetSeriesWithMissingEpisodes_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSeriesWithMissingEpisodes" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetSeriesWithMissingEpisodes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSeriesWithMissingEpisodesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetMiniCalendar_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMiniCalendar" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetMiniCalendar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMiniCalendarResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUsers" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_AuthenticateUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:AuthenticateUser" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_AuthenticateUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AuthenticateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SaveUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveUser" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SaveUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_DeleteUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUser" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_DeleteUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_TestTraktLogin_InputMessage">
+    <wsdl:part name="parameters" element="tns:TestTraktLogin" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_TestTraktLogin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TestTraktLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllTraktFanart_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllTraktFanart" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllTraktFanart_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllTraktFanartResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllTraktPosters_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllTraktPosters" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllTraktPosters_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllTraktPostersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllTraktEpisodes_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllTraktEpisodes" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllTraktEpisodes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllTraktEpisodesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetTraktCrossRefWebCache_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTraktCrossRefWebCache" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetTraktCrossRefWebCache_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTraktCrossRefWebCacheResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetTraktCrossRef_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTraktCrossRef" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetTraktCrossRef_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTraktCrossRefResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SearchTrakt_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchTrakt" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SearchTrakt_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchTraktResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_LinkAniDBTrakt_InputMessage">
+    <wsdl:part name="parameters" element="tns:LinkAniDBTrakt" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_LinkAniDBTrakt_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LinkAniDBTraktResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RemoveLinkAniDBTrakt_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveLinkAniDBTrakt" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RemoveLinkAniDBTrakt_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveLinkAniDBTraktResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetSeasonNumbersForTrakt_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSeasonNumbersForTrakt" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetSeasonNumbersForTrakt_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSeasonNumbersForTraktResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_UpdateTraktData_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTraktData" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_UpdateTraktData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTraktDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllUniqueVideoQuality_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUniqueVideoQuality" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllUniqueVideoQuality_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUniqueVideoQualityResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllUniqueAudioLanguages_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUniqueAudioLanguages" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllUniqueAudioLanguages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUniqueAudioLanguagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllUniqueSubtitleLanguages_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUniqueSubtitleLanguages" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllUniqueSubtitleLanguages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUniqueSubtitleLanguagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllDuplicateFiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllDuplicateFiles" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllDuplicateFiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllDuplicateFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_DeleteDuplicateFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDuplicateFile" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_DeleteDuplicateFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDuplicateFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllManuallyLinkedFiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllManuallyLinkedFiles" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllManuallyLinkedFiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllManuallyLinkedFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllEpisodesWithMultipleFiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllEpisodesWithMultipleFiles" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllEpisodesWithMultipleFiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllEpisodesWithMultipleFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_ReevaluateDuplicateFiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReevaluateDuplicateFiles" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_ReevaluateDuplicateFiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReevaluateDuplicateFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetGroupVideoQualitySummary_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroupVideoQualitySummary" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetGroupVideoQualitySummary_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroupVideoQualitySummaryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_DeleteVideoLocalAndFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteVideoLocalAndFile" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_DeleteVideoLocalAndFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteVideoLocalAndFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RescanUnlinkedFiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:RescanUnlinkedFiles" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RescanUnlinkedFiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RescanUnlinkedFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetFilesByGroupAndResolution_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFilesByGroupAndResolution" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetFilesByGroupAndResolution_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFilesByGroupAndResolutionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetCrossRefDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCrossRefDetails" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetCrossRefDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCrossRefDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetTVDBCrossRefWebCache_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTVDBCrossRefWebCache" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetTVDBCrossRefWebCache_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTVDBCrossRefWebCacheResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetTVDBCrossRef_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTVDBCrossRef" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetTVDBCrossRef_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTVDBCrossRefResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SearchTheTvDB_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchTheTvDB" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SearchTheTvDB_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchTheTvDBResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetSeasonNumbersForSeries_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSeasonNumbersForSeries" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetSeasonNumbersForSeries_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSeasonNumbersForSeriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_LinkAniDBTvDB_InputMessage">
+    <wsdl:part name="parameters" element="tns:LinkAniDBTvDB" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_LinkAniDBTvDB_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LinkAniDBTvDBResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RemoveLinkAniDBTvDB_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveLinkAniDBTvDB" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RemoveLinkAniDBTvDB_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveLinkAniDBTvDBResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllTvDBPosters_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllTvDBPosters" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllTvDBPosters_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllTvDBPostersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllTvDBWideBanners_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllTvDBWideBanners" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllTvDBWideBanners_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllTvDBWideBannersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllTvDBFanart_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllTvDBFanart" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllTvDBFanart_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllTvDBFanartResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllTvDBEpisodes_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllTvDBEpisodes" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllTvDBEpisodes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllTvDBEpisodesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_UpdateTvDBData_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTvDBData" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_UpdateTvDBData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTvDBDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_EnableDisableImage_InputMessage">
+    <wsdl:part name="parameters" element="tns:EnableDisableImage" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_EnableDisableImage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EnableDisableImageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetOtherAnimeCrossRefWebCache_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOtherAnimeCrossRefWebCache" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetOtherAnimeCrossRefWebCache_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOtherAnimeCrossRefWebCacheResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetOtherAnimeCrossRef_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOtherAnimeCrossRef" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetOtherAnimeCrossRef_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOtherAnimeCrossRefResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SearchTheMovieDB_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchTheMovieDB" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SearchTheMovieDB_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchTheMovieDBResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SaveServerSettings_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveServerSettings" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SaveServerSettings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveServerSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_ToggleWatchedStatusOnVideo_InputMessage">
+    <wsdl:part name="parameters" element="tns:ToggleWatchedStatusOnVideo" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_ToggleWatchedStatusOnVideo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ToggleWatchedStatusOnVideoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_ToggleWatchedStatusOnEpisode_InputMessage">
+    <wsdl:part name="parameters" element="tns:ToggleWatchedStatusOnEpisode" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_ToggleWatchedStatusOnEpisode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ToggleWatchedStatusOnEpisodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetVideoDetailed_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVideoDetailed" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetVideoDetailed_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVideoDetailedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SaveImportFolder_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveImportFolder" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SaveImportFolder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveImportFolderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_DeleteImportFolder_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteImportFolder" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_DeleteImportFolder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteImportFolderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetSeries_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSeries" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetSeries_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSeriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RunImport_InputMessage">
+    <wsdl:part name="parameters" element="tns:RunImport" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RunImport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RunImportResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RemoveMissingFiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveMissingFiles" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RemoveMissingFiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveMissingFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SyncMyList_InputMessage">
+    <wsdl:part name="parameters" element="tns:SyncMyList" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SyncMyList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SyncMyListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RehashFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:RehashFile" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RehashFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RehashFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SetCommandProcessorHasherPaused_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetCommandProcessorHasherPaused" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SetCommandProcessorHasherPaused_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetCommandProcessorHasherPausedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SetCommandProcessorGeneralPaused_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetCommandProcessorGeneralPaused" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SetCommandProcessorGeneralPaused_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetCommandProcessorGeneralPausedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SetCommandProcessorImagesPaused_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetCommandProcessorImagesPaused" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SetCommandProcessorImagesPaused_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetCommandProcessorImagesPausedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetUnrecognisedFiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUnrecognisedFiles" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetUnrecognisedFiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUnrecognisedFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetManuallyLinkedFiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetManuallyLinkedFiles" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetManuallyLinkedFiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetManuallyLinkedFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetIgnoredFiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetIgnoredFiles" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetIgnoredFiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetIgnoredFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_TestAniDBConnection_InputMessage">
+    <wsdl:part name="parameters" element="tns:TestAniDBConnection" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_TestAniDBConnection_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TestAniDBConnectionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RenameAllGroups_InputMessage">
+    <wsdl:part name="parameters" element="tns:RenameAllGroups" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RenameAllGroups_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RenameAllGroupsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllGroupFilters_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllGroupFilters" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllGroupFilters_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllGroupFiltersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SaveGroupFilter_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveGroupFilter" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SaveGroupFilter_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveGroupFilterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_DeleteGroupFilter_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteGroupFilter" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_DeleteGroupFilter_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteGroupFilterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllCategoryNames_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCategoryNames" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllCategoryNames_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCategoryNamesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_ScanFolder_InputMessage">
+    <wsdl:part name="parameters" element="tns:ScanFolder" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_ScanFolder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ScanFolderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SyncVotes_InputMessage">
+    <wsdl:part name="parameters" element="tns:SyncVotes" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SyncVotes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SyncVotesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_VoteAnime_InputMessage">
+    <wsdl:part name="parameters" element="tns:VoteAnime" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_VoteAnime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VoteAnimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_VoteAnimeRevoke_InputMessage">
+    <wsdl:part name="parameters" element="tns:VoteAnimeRevoke" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_VoteAnimeRevoke_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VoteAnimeRevokeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SetWatchedStatusOnSeries_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetWatchedStatusOnSeries" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SetWatchedStatusOnSeries_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetWatchedStatusOnSeriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetEpisodesForSeriesOld_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEpisodesForSeriesOld" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetEpisodesForSeriesOld_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEpisodesForSeriesOldResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetEpisode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEpisode" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetEpisode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEpisodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RemoveAssociationOnFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveAssociationOnFile" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RemoveAssociationOnFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveAssociationOnFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SetIgnoreStatusOnFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetIgnoreStatusOnFile" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SetIgnoreStatusOnFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetIgnoreStatusOnFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_CreateSeriesFromAnime_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateSeriesFromAnime" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_CreateSeriesFromAnime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateSeriesFromAnimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_UpdateAnimeData_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAnimeData" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_UpdateAnimeData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAnimeDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_AssociateSingleFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:AssociateSingleFile" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_AssociateSingleFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AssociateSingleFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_AssociateSingleFileWithMultipleEpisodes_InputMessage">
+    <wsdl:part name="parameters" element="tns:AssociateSingleFileWithMultipleEpisodes" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_AssociateSingleFileWithMultipleEpisodes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AssociateSingleFileWithMultipleEpisodesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_AssociateMultipleFiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:AssociateMultipleFiles" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_AssociateMultipleFiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AssociateMultipleFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllGroups_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllGroups" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllGroups_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllGroupsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SaveGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveGroup" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SaveGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroup" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllGroupsAboveSeries_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllGroupsAboveSeries" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllGroupsAboveSeries_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllGroupsAboveSeriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllGroupsAboveGroupInclusive_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllGroupsAboveGroupInclusive" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllGroupsAboveGroupInclusive_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllGroupsAboveGroupInclusiveResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllSeries_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllSeries" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllSeries_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllSeriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SaveSeries_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveSeries" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SaveSeries_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveSeriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_MoveSeries_InputMessage">
+    <wsdl:part name="parameters" element="tns:MoveSeries" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_MoveSeries_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MoveSeriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllAnime_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllAnime" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllAnime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllAnimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllAnimeDetailed_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllAnimeDetailed" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllAnimeDetailed_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllAnimeDetailedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAnimeDetailed_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAnimeDetailed" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAnimeDetailed_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAnimeDetailedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetSeriesForGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSeriesForGroup" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetSeriesForGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSeriesForGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetEpisodesForSeries_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEpisodesForSeries" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetEpisodesForSeries_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEpisodesForSeriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetEpisodesForFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEpisodesForFile" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetEpisodesForFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEpisodesForFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetFilesForEpisode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFilesForEpisode" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetFilesForEpisode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFilesForEpisodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetMyReleaseGroupsForAniDBEpisode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyReleaseGroupsForAniDBEpisode" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetMyReleaseGroupsForAniDBEpisode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyReleaseGroupsForAniDBEpisodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetImportFolders_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetImportFolders" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetImportFolders_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetImportFoldersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetServerStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetServerStatus" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetServerStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetServerStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetServerSettings_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetServerSettings" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetServerSettings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetServerSettingsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IJMMServer">
+    <wsdl:operation name="GetGroupFilterExtended">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilterExtended" message="tns:IJMMServer_GetGroupFilterExtended_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilterExtendedResponse" message="tns:IJMMServer_GetGroupFilterExtended_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAnimeGroupsForFilter">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAnimeGroupsForFilter" message="tns:IJMMServer_GetAnimeGroupsForFilter_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAnimeGroupsForFilterResponse" message="tns:IJMMServer_GetAnimeGroupsForFilter_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllGroupFiltersExtended">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllGroupFiltersExtended" message="tns:IJMMServer_GetAllGroupFiltersExtended_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllGroupFiltersExtendedResponse" message="tns:IJMMServer_GetAllGroupFiltersExtended_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSubGroupsForGroup">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetSubGroupsForGroup" message="tns:IJMMServer_GetSubGroupsForGroup_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetSubGroupsForGroupResponse" message="tns:IJMMServer_GetSubGroupsForGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSeriesForGroupRecursive">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetSeriesForGroupRecursive" message="tns:IJMMServer_GetSeriesForGroupRecursive_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetSeriesForGroupRecursiveResponse" message="tns:IJMMServer_GetSeriesForGroupRecursive_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSeriesExistingForAnime">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetSeriesExistingForAnime" message="tns:IJMMServer_GetSeriesExistingForAnime_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetSeriesExistingForAnimeResponse" message="tns:IJMMServer_GetSeriesExistingForAnime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LinkAniDBOther">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/LinkAniDBOther" message="tns:IJMMServer_LinkAniDBOther_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/LinkAniDBOtherResponse" message="tns:IJMMServer_LinkAniDBOther_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveLinkAniDBOther">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RemoveLinkAniDBOther" message="tns:IJMMServer_RemoveLinkAniDBOther_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RemoveLinkAniDBOtherResponse" message="tns:IJMMServer_RemoveLinkAniDBOther_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllMovieDBPosters">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllMovieDBPosters" message="tns:IJMMServer_GetAllMovieDBPosters_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllMovieDBPostersResponse" message="tns:IJMMServer_GetAllMovieDBPosters_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllMovieDBFanart">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllMovieDBFanart" message="tns:IJMMServer_GetAllMovieDBFanart_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllMovieDBFanartResponse" message="tns:IJMMServer_GetAllMovieDBFanart_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAnime">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAnime" message="tns:IJMMServer_GetAnime_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAnimeResponse" message="tns:IJMMServer_GetAnime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDefaultImage">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SetDefaultImage" message="tns:IJMMServer_SetDefaultImage_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SetDefaultImageResponse" message="tns:IJMMServer_SetDefaultImage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNextUnwatchedEpisode">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetNextUnwatchedEpisode" message="tns:IJMMServer_GetNextUnwatchedEpisode_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetNextUnwatchedEpisodeResponse" message="tns:IJMMServer_GetNextUnwatchedEpisode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNextUnwatchedEpisodeForGroup">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetNextUnwatchedEpisodeForGroup" message="tns:IJMMServer_GetNextUnwatchedEpisodeForGroup_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetNextUnwatchedEpisodeForGroupResponse" message="tns:IJMMServer_GetNextUnwatchedEpisodeForGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEpisodesToWatch_RecentlyWatched">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetEpisodesToWatch_RecentlyWatched" message="tns:IJMMServer_GetEpisodesToWatch_RecentlyWatched_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetEpisodesToWatch_RecentlyWatchedResponse" message="tns:IJMMServer_GetEpisodesToWatch_RecentlyWatched_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAnimeSeries">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/DeleteAnimeSeries" message="tns:IJMMServer_DeleteAnimeSeries_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/DeleteAnimeSeriesResponse" message="tns:IJMMServer_DeleteAnimeSeries_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAnimeGroup">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/DeleteAnimeGroup" message="tns:IJMMServer_DeleteAnimeGroup_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/DeleteAnimeGroupResponse" message="tns:IJMMServer_DeleteAnimeGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSeriesWithMissingEpisodes">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetSeriesWithMissingEpisodes" message="tns:IJMMServer_GetSeriesWithMissingEpisodes_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetSeriesWithMissingEpisodesResponse" message="tns:IJMMServer_GetSeriesWithMissingEpisodes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMiniCalendar">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetMiniCalendar" message="tns:IJMMServer_GetMiniCalendar_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetMiniCalendarResponse" message="tns:IJMMServer_GetMiniCalendar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUsers">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllUsers" message="tns:IJMMServer_GetAllUsers_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllUsersResponse" message="tns:IJMMServer_GetAllUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateUser">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/AuthenticateUser" message="tns:IJMMServer_AuthenticateUser_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/AuthenticateUserResponse" message="tns:IJMMServer_AuthenticateUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveUser">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SaveUser" message="tns:IJMMServer_SaveUser_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SaveUserResponse" message="tns:IJMMServer_SaveUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/DeleteUser" message="tns:IJMMServer_DeleteUser_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/DeleteUserResponse" message="tns:IJMMServer_DeleteUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TestTraktLogin">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/TestTraktLogin" message="tns:IJMMServer_TestTraktLogin_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/TestTraktLoginResponse" message="tns:IJMMServer_TestTraktLogin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTraktFanart">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllTraktFanart" message="tns:IJMMServer_GetAllTraktFanart_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllTraktFanartResponse" message="tns:IJMMServer_GetAllTraktFanart_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTraktPosters">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllTraktPosters" message="tns:IJMMServer_GetAllTraktPosters_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllTraktPostersResponse" message="tns:IJMMServer_GetAllTraktPosters_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTraktEpisodes">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllTraktEpisodes" message="tns:IJMMServer_GetAllTraktEpisodes_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllTraktEpisodesResponse" message="tns:IJMMServer_GetAllTraktEpisodes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTraktCrossRefWebCache">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetTraktCrossRefWebCache" message="tns:IJMMServer_GetTraktCrossRefWebCache_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetTraktCrossRefWebCacheResponse" message="tns:IJMMServer_GetTraktCrossRefWebCache_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTraktCrossRef">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetTraktCrossRef" message="tns:IJMMServer_GetTraktCrossRef_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetTraktCrossRefResponse" message="tns:IJMMServer_GetTraktCrossRef_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchTrakt">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SearchTrakt" message="tns:IJMMServer_SearchTrakt_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SearchTraktResponse" message="tns:IJMMServer_SearchTrakt_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LinkAniDBTrakt">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/LinkAniDBTrakt" message="tns:IJMMServer_LinkAniDBTrakt_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/LinkAniDBTraktResponse" message="tns:IJMMServer_LinkAniDBTrakt_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveLinkAniDBTrakt">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RemoveLinkAniDBTrakt" message="tns:IJMMServer_RemoveLinkAniDBTrakt_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RemoveLinkAniDBTraktResponse" message="tns:IJMMServer_RemoveLinkAniDBTrakt_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSeasonNumbersForTrakt">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetSeasonNumbersForTrakt" message="tns:IJMMServer_GetSeasonNumbersForTrakt_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetSeasonNumbersForTraktResponse" message="tns:IJMMServer_GetSeasonNumbersForTrakt_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTraktData">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/UpdateTraktData" message="tns:IJMMServer_UpdateTraktData_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/UpdateTraktDataResponse" message="tns:IJMMServer_UpdateTraktData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUniqueVideoQuality">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllUniqueVideoQuality" message="tns:IJMMServer_GetAllUniqueVideoQuality_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllUniqueVideoQualityResponse" message="tns:IJMMServer_GetAllUniqueVideoQuality_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUniqueAudioLanguages">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllUniqueAudioLanguages" message="tns:IJMMServer_GetAllUniqueAudioLanguages_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllUniqueAudioLanguagesResponse" message="tns:IJMMServer_GetAllUniqueAudioLanguages_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUniqueSubtitleLanguages">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllUniqueSubtitleLanguages" message="tns:IJMMServer_GetAllUniqueSubtitleLanguages_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllUniqueSubtitleLanguagesResponse" message="tns:IJMMServer_GetAllUniqueSubtitleLanguages_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDuplicateFiles">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllDuplicateFiles" message="tns:IJMMServer_GetAllDuplicateFiles_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllDuplicateFilesResponse" message="tns:IJMMServer_GetAllDuplicateFiles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDuplicateFile">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/DeleteDuplicateFile" message="tns:IJMMServer_DeleteDuplicateFile_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/DeleteDuplicateFileResponse" message="tns:IJMMServer_DeleteDuplicateFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllManuallyLinkedFiles">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllManuallyLinkedFiles" message="tns:IJMMServer_GetAllManuallyLinkedFiles_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllManuallyLinkedFilesResponse" message="tns:IJMMServer_GetAllManuallyLinkedFiles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllEpisodesWithMultipleFiles">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllEpisodesWithMultipleFiles" message="tns:IJMMServer_GetAllEpisodesWithMultipleFiles_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllEpisodesWithMultipleFilesResponse" message="tns:IJMMServer_GetAllEpisodesWithMultipleFiles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReevaluateDuplicateFiles">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/ReevaluateDuplicateFiles" message="tns:IJMMServer_ReevaluateDuplicateFiles_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/ReevaluateDuplicateFilesResponse" message="tns:IJMMServer_ReevaluateDuplicateFiles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupVideoQualitySummary">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetGroupVideoQualitySummary" message="tns:IJMMServer_GetGroupVideoQualitySummary_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetGroupVideoQualitySummaryResponse" message="tns:IJMMServer_GetGroupVideoQualitySummary_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteVideoLocalAndFile">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/DeleteVideoLocalAndFile" message="tns:IJMMServer_DeleteVideoLocalAndFile_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/DeleteVideoLocalAndFileResponse" message="tns:IJMMServer_DeleteVideoLocalAndFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RescanUnlinkedFiles">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RescanUnlinkedFiles" message="tns:IJMMServer_RescanUnlinkedFiles_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RescanUnlinkedFilesResponse" message="tns:IJMMServer_RescanUnlinkedFiles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFilesByGroupAndResolution">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetFilesByGroupAndResolution" message="tns:IJMMServer_GetFilesByGroupAndResolution_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetFilesByGroupAndResolutionResponse" message="tns:IJMMServer_GetFilesByGroupAndResolution_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCrossRefDetails">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetCrossRefDetails" message="tns:IJMMServer_GetCrossRefDetails_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetCrossRefDetailsResponse" message="tns:IJMMServer_GetCrossRefDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTVDBCrossRefWebCache">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetTVDBCrossRefWebCache" message="tns:IJMMServer_GetTVDBCrossRefWebCache_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetTVDBCrossRefWebCacheResponse" message="tns:IJMMServer_GetTVDBCrossRefWebCache_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTVDBCrossRef">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetTVDBCrossRef" message="tns:IJMMServer_GetTVDBCrossRef_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetTVDBCrossRefResponse" message="tns:IJMMServer_GetTVDBCrossRef_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchTheTvDB">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SearchTheTvDB" message="tns:IJMMServer_SearchTheTvDB_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SearchTheTvDBResponse" message="tns:IJMMServer_SearchTheTvDB_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSeasonNumbersForSeries">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetSeasonNumbersForSeries" message="tns:IJMMServer_GetSeasonNumbersForSeries_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetSeasonNumbersForSeriesResponse" message="tns:IJMMServer_GetSeasonNumbersForSeries_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LinkAniDBTvDB">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/LinkAniDBTvDB" message="tns:IJMMServer_LinkAniDBTvDB_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/LinkAniDBTvDBResponse" message="tns:IJMMServer_LinkAniDBTvDB_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveLinkAniDBTvDB">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RemoveLinkAniDBTvDB" message="tns:IJMMServer_RemoveLinkAniDBTvDB_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RemoveLinkAniDBTvDBResponse" message="tns:IJMMServer_RemoveLinkAniDBTvDB_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTvDBPosters">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllTvDBPosters" message="tns:IJMMServer_GetAllTvDBPosters_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllTvDBPostersResponse" message="tns:IJMMServer_GetAllTvDBPosters_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTvDBWideBanners">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllTvDBWideBanners" message="tns:IJMMServer_GetAllTvDBWideBanners_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllTvDBWideBannersResponse" message="tns:IJMMServer_GetAllTvDBWideBanners_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTvDBFanart">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllTvDBFanart" message="tns:IJMMServer_GetAllTvDBFanart_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllTvDBFanartResponse" message="tns:IJMMServer_GetAllTvDBFanart_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTvDBEpisodes">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllTvDBEpisodes" message="tns:IJMMServer_GetAllTvDBEpisodes_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllTvDBEpisodesResponse" message="tns:IJMMServer_GetAllTvDBEpisodes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTvDBData">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/UpdateTvDBData" message="tns:IJMMServer_UpdateTvDBData_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/UpdateTvDBDataResponse" message="tns:IJMMServer_UpdateTvDBData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EnableDisableImage">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/EnableDisableImage" message="tns:IJMMServer_EnableDisableImage_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/EnableDisableImageResponse" message="tns:IJMMServer_EnableDisableImage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOtherAnimeCrossRefWebCache">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetOtherAnimeCrossRefWebCache" message="tns:IJMMServer_GetOtherAnimeCrossRefWebCache_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetOtherAnimeCrossRefWebCacheResponse" message="tns:IJMMServer_GetOtherAnimeCrossRefWebCache_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOtherAnimeCrossRef">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetOtherAnimeCrossRef" message="tns:IJMMServer_GetOtherAnimeCrossRef_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetOtherAnimeCrossRefResponse" message="tns:IJMMServer_GetOtherAnimeCrossRef_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchTheMovieDB">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SearchTheMovieDB" message="tns:IJMMServer_SearchTheMovieDB_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SearchTheMovieDBResponse" message="tns:IJMMServer_SearchTheMovieDB_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveServerSettings">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SaveServerSettings" message="tns:IJMMServer_SaveServerSettings_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SaveServerSettingsResponse" message="tns:IJMMServer_SaveServerSettings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ToggleWatchedStatusOnVideo">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/ToggleWatchedStatusOnVideo" message="tns:IJMMServer_ToggleWatchedStatusOnVideo_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/ToggleWatchedStatusOnVideoResponse" message="tns:IJMMServer_ToggleWatchedStatusOnVideo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ToggleWatchedStatusOnEpisode">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/ToggleWatchedStatusOnEpisode" message="tns:IJMMServer_ToggleWatchedStatusOnEpisode_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/ToggleWatchedStatusOnEpisodeResponse" message="tns:IJMMServer_ToggleWatchedStatusOnEpisode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVideoDetailed">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetVideoDetailed" message="tns:IJMMServer_GetVideoDetailed_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetVideoDetailedResponse" message="tns:IJMMServer_GetVideoDetailed_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveImportFolder">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SaveImportFolder" message="tns:IJMMServer_SaveImportFolder_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SaveImportFolderResponse" message="tns:IJMMServer_SaveImportFolder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteImportFolder">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/DeleteImportFolder" message="tns:IJMMServer_DeleteImportFolder_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/DeleteImportFolderResponse" message="tns:IJMMServer_DeleteImportFolder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSeries">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetSeries" message="tns:IJMMServer_GetSeries_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetSeriesResponse" message="tns:IJMMServer_GetSeries_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RunImport">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RunImport" message="tns:IJMMServer_RunImport_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RunImportResponse" message="tns:IJMMServer_RunImport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveMissingFiles">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RemoveMissingFiles" message="tns:IJMMServer_RemoveMissingFiles_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RemoveMissingFilesResponse" message="tns:IJMMServer_RemoveMissingFiles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SyncMyList">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SyncMyList" message="tns:IJMMServer_SyncMyList_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SyncMyListResponse" message="tns:IJMMServer_SyncMyList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RehashFile">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RehashFile" message="tns:IJMMServer_RehashFile_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RehashFileResponse" message="tns:IJMMServer_RehashFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetCommandProcessorHasherPaused">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SetCommandProcessorHasherPaused" message="tns:IJMMServer_SetCommandProcessorHasherPaused_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SetCommandProcessorHasherPausedResponse" message="tns:IJMMServer_SetCommandProcessorHasherPaused_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetCommandProcessorGeneralPaused">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SetCommandProcessorGeneralPaused" message="tns:IJMMServer_SetCommandProcessorGeneralPaused_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SetCommandProcessorGeneralPausedResponse" message="tns:IJMMServer_SetCommandProcessorGeneralPaused_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetCommandProcessorImagesPaused">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SetCommandProcessorImagesPaused" message="tns:IJMMServer_SetCommandProcessorImagesPaused_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SetCommandProcessorImagesPausedResponse" message="tns:IJMMServer_SetCommandProcessorImagesPaused_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUnrecognisedFiles">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetUnrecognisedFiles" message="tns:IJMMServer_GetUnrecognisedFiles_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetUnrecognisedFilesResponse" message="tns:IJMMServer_GetUnrecognisedFiles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetManuallyLinkedFiles">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetManuallyLinkedFiles" message="tns:IJMMServer_GetManuallyLinkedFiles_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetManuallyLinkedFilesResponse" message="tns:IJMMServer_GetManuallyLinkedFiles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetIgnoredFiles">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetIgnoredFiles" message="tns:IJMMServer_GetIgnoredFiles_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetIgnoredFilesResponse" message="tns:IJMMServer_GetIgnoredFiles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TestAniDBConnection">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/TestAniDBConnection" message="tns:IJMMServer_TestAniDBConnection_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/TestAniDBConnectionResponse" message="tns:IJMMServer_TestAniDBConnection_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RenameAllGroups">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RenameAllGroups" message="tns:IJMMServer_RenameAllGroups_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RenameAllGroupsResponse" message="tns:IJMMServer_RenameAllGroups_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllGroupFilters">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllGroupFilters" message="tns:IJMMServer_GetAllGroupFilters_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllGroupFiltersResponse" message="tns:IJMMServer_GetAllGroupFilters_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveGroupFilter">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SaveGroupFilter" message="tns:IJMMServer_SaveGroupFilter_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SaveGroupFilterResponse" message="tns:IJMMServer_SaveGroupFilter_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteGroupFilter">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/DeleteGroupFilter" message="tns:IJMMServer_DeleteGroupFilter_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/DeleteGroupFilterResponse" message="tns:IJMMServer_DeleteGroupFilter_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCategoryNames">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllCategoryNames" message="tns:IJMMServer_GetAllCategoryNames_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllCategoryNamesResponse" message="tns:IJMMServer_GetAllCategoryNames_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ScanFolder">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/ScanFolder" message="tns:IJMMServer_ScanFolder_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/ScanFolderResponse" message="tns:IJMMServer_ScanFolder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SyncVotes">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SyncVotes" message="tns:IJMMServer_SyncVotes_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SyncVotesResponse" message="tns:IJMMServer_SyncVotes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VoteAnime">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/VoteAnime" message="tns:IJMMServer_VoteAnime_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/VoteAnimeResponse" message="tns:IJMMServer_VoteAnime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VoteAnimeRevoke">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/VoteAnimeRevoke" message="tns:IJMMServer_VoteAnimeRevoke_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/VoteAnimeRevokeResponse" message="tns:IJMMServer_VoteAnimeRevoke_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetWatchedStatusOnSeries">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SetWatchedStatusOnSeries" message="tns:IJMMServer_SetWatchedStatusOnSeries_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SetWatchedStatusOnSeriesResponse" message="tns:IJMMServer_SetWatchedStatusOnSeries_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEpisodesForSeriesOld">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetEpisodesForSeriesOld" message="tns:IJMMServer_GetEpisodesForSeriesOld_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetEpisodesForSeriesOldResponse" message="tns:IJMMServer_GetEpisodesForSeriesOld_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEpisode">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetEpisode" message="tns:IJMMServer_GetEpisode_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetEpisodeResponse" message="tns:IJMMServer_GetEpisode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAssociationOnFile">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RemoveAssociationOnFile" message="tns:IJMMServer_RemoveAssociationOnFile_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RemoveAssociationOnFileResponse" message="tns:IJMMServer_RemoveAssociationOnFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetIgnoreStatusOnFile">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SetIgnoreStatusOnFile" message="tns:IJMMServer_SetIgnoreStatusOnFile_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SetIgnoreStatusOnFileResponse" message="tns:IJMMServer_SetIgnoreStatusOnFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateSeriesFromAnime">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/CreateSeriesFromAnime" message="tns:IJMMServer_CreateSeriesFromAnime_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/CreateSeriesFromAnimeResponse" message="tns:IJMMServer_CreateSeriesFromAnime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAnimeData">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/UpdateAnimeData" message="tns:IJMMServer_UpdateAnimeData_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/UpdateAnimeDataResponse" message="tns:IJMMServer_UpdateAnimeData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AssociateSingleFile">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/AssociateSingleFile" message="tns:IJMMServer_AssociateSingleFile_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/AssociateSingleFileResponse" message="tns:IJMMServer_AssociateSingleFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AssociateSingleFileWithMultipleEpisodes">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/AssociateSingleFileWithMultipleEpisodes" message="tns:IJMMServer_AssociateSingleFileWithMultipleEpisodes_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/AssociateSingleFileWithMultipleEpisodesResponse" message="tns:IJMMServer_AssociateSingleFileWithMultipleEpisodes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AssociateMultipleFiles">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/AssociateMultipleFiles" message="tns:IJMMServer_AssociateMultipleFiles_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/AssociateMultipleFilesResponse" message="tns:IJMMServer_AssociateMultipleFiles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllGroups">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllGroups" message="tns:IJMMServer_GetAllGroups_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllGroupsResponse" message="tns:IJMMServer_GetAllGroups_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveGroup">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SaveGroup" message="tns:IJMMServer_SaveGroup_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SaveGroupResponse" message="tns:IJMMServer_SaveGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGroup">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetGroup" message="tns:IJMMServer_GetGroup_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetGroupResponse" message="tns:IJMMServer_GetGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllGroupsAboveSeries">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllGroupsAboveSeries" message="tns:IJMMServer_GetAllGroupsAboveSeries_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllGroupsAboveSeriesResponse" message="tns:IJMMServer_GetAllGroupsAboveSeries_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllGroupsAboveGroupInclusive">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllGroupsAboveGroupInclusive" message="tns:IJMMServer_GetAllGroupsAboveGroupInclusive_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllGroupsAboveGroupInclusiveResponse" message="tns:IJMMServer_GetAllGroupsAboveGroupInclusive_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSeries">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllSeries" message="tns:IJMMServer_GetAllSeries_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllSeriesResponse" message="tns:IJMMServer_GetAllSeries_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveSeries">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SaveSeries" message="tns:IJMMServer_SaveSeries_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SaveSeriesResponse" message="tns:IJMMServer_SaveSeries_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MoveSeries">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/MoveSeries" message="tns:IJMMServer_MoveSeries_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/MoveSeriesResponse" message="tns:IJMMServer_MoveSeries_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAnime">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllAnime" message="tns:IJMMServer_GetAllAnime_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllAnimeResponse" message="tns:IJMMServer_GetAllAnime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAnimeDetailed">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllAnimeDetailed" message="tns:IJMMServer_GetAllAnimeDetailed_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllAnimeDetailedResponse" message="tns:IJMMServer_GetAllAnimeDetailed_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAnimeDetailed">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAnimeDetailed" message="tns:IJMMServer_GetAnimeDetailed_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAnimeDetailedResponse" message="tns:IJMMServer_GetAnimeDetailed_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSeriesForGroup">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetSeriesForGroup" message="tns:IJMMServer_GetSeriesForGroup_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetSeriesForGroupResponse" message="tns:IJMMServer_GetSeriesForGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEpisodesForSeries">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetEpisodesForSeries" message="tns:IJMMServer_GetEpisodesForSeries_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetEpisodesForSeriesResponse" message="tns:IJMMServer_GetEpisodesForSeries_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEpisodesForFile">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetEpisodesForFile" message="tns:IJMMServer_GetEpisodesForFile_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetEpisodesForFileResponse" message="tns:IJMMServer_GetEpisodesForFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFilesForEpisode">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetFilesForEpisode" message="tns:IJMMServer_GetFilesForEpisode_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetFilesForEpisodeResponse" message="tns:IJMMServer_GetFilesForEpisode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMyReleaseGroupsForAniDBEpisode">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetMyReleaseGroupsForAniDBEpisode" message="tns:IJMMServer_GetMyReleaseGroupsForAniDBEpisode_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetMyReleaseGroupsForAniDBEpisodeResponse" message="tns:IJMMServer_GetMyReleaseGroupsForAniDBEpisode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetImportFolders">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetImportFolders" message="tns:IJMMServer_GetImportFolders_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetImportFoldersResponse" message="tns:IJMMServer_GetImportFolders_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServerStatus">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetServerStatus" message="tns:IJMMServer_GetServerStatus_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetServerStatusResponse" message="tns:IJMMServer_GetServerStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServerSettings">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetServerSettings" message="tns:IJMMServer_GetServerSettings_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetServerSettingsResponse" message="tns:IJMMServer_GetServerSettings_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BinaryBinding_IJMMServer" type="tns:IJMMServer">
+    <wsp:PolicyReference URI="#BinaryBinding_IJMMServer_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetGroupFilterExtended">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetGroupFilterExtended" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAnimeGroupsForFilter">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAnimeGroupsForFilter" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllGroupFiltersExtended">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllGroupFiltersExtended" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubGroupsForGroup">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetSubGroupsForGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSeriesForGroupRecursive">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetSeriesForGroupRecursive" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSeriesExistingForAnime">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetSeriesExistingForAnime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LinkAniDBOther">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/LinkAniDBOther" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveLinkAniDBOther">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/RemoveLinkAniDBOther" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllMovieDBPosters">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllMovieDBPosters" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllMovieDBFanart">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllMovieDBFanart" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAnime">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAnime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDefaultImage">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/SetDefaultImage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNextUnwatchedEpisode">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetNextUnwatchedEpisode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNextUnwatchedEpisodeForGroup">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetNextUnwatchedEpisodeForGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEpisodesToWatch_RecentlyWatched">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetEpisodesToWatch_RecentlyWatched" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAnimeSeries">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/DeleteAnimeSeries" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAnimeGroup">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/DeleteAnimeGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSeriesWithMissingEpisodes">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetSeriesWithMissingEpisodes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMiniCalendar">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetMiniCalendar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUsers">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllUsers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateUser">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/AuthenticateUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveUser">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/SaveUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/DeleteUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestTraktLogin">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/TestTraktLogin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTraktFanart">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllTraktFanart" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTraktPosters">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllTraktPosters" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTraktEpisodes">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllTraktEpisodes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTraktCrossRefWebCache">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetTraktCrossRefWebCache" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTraktCrossRef">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetTraktCrossRef" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchTrakt">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/SearchTrakt" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LinkAniDBTrakt">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/LinkAniDBTrakt" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveLinkAniDBTrakt">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/RemoveLinkAniDBTrakt" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSeasonNumbersForTrakt">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetSeasonNumbersForTrakt" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTraktData">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/UpdateTraktData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUniqueVideoQuality">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllUniqueVideoQuality" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUniqueAudioLanguages">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllUniqueAudioLanguages" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUniqueSubtitleLanguages">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllUniqueSubtitleLanguages" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDuplicateFiles">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllDuplicateFiles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDuplicateFile">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/DeleteDuplicateFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllManuallyLinkedFiles">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllManuallyLinkedFiles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllEpisodesWithMultipleFiles">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllEpisodesWithMultipleFiles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReevaluateDuplicateFiles">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/ReevaluateDuplicateFiles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupVideoQualitySummary">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetGroupVideoQualitySummary" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteVideoLocalAndFile">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/DeleteVideoLocalAndFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RescanUnlinkedFiles">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/RescanUnlinkedFiles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFilesByGroupAndResolution">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetFilesByGroupAndResolution" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCrossRefDetails">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetCrossRefDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTVDBCrossRefWebCache">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetTVDBCrossRefWebCache" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTVDBCrossRef">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetTVDBCrossRef" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchTheTvDB">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/SearchTheTvDB" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSeasonNumbersForSeries">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetSeasonNumbersForSeries" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LinkAniDBTvDB">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/LinkAniDBTvDB" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveLinkAniDBTvDB">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/RemoveLinkAniDBTvDB" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTvDBPosters">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllTvDBPosters" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTvDBWideBanners">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllTvDBWideBanners" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTvDBFanart">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllTvDBFanart" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTvDBEpisodes">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllTvDBEpisodes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTvDBData">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/UpdateTvDBData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnableDisableImage">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/EnableDisableImage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOtherAnimeCrossRefWebCache">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetOtherAnimeCrossRefWebCache" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOtherAnimeCrossRef">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetOtherAnimeCrossRef" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchTheMovieDB">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/SearchTheMovieDB" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveServerSettings">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/SaveServerSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ToggleWatchedStatusOnVideo">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/ToggleWatchedStatusOnVideo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ToggleWatchedStatusOnEpisode">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/ToggleWatchedStatusOnEpisode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVideoDetailed">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetVideoDetailed" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveImportFolder">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/SaveImportFolder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteImportFolder">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/DeleteImportFolder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSeries">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetSeries" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RunImport">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/RunImport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveMissingFiles">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/RemoveMissingFiles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SyncMyList">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/SyncMyList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RehashFile">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/RehashFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetCommandProcessorHasherPaused">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/SetCommandProcessorHasherPaused" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetCommandProcessorGeneralPaused">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/SetCommandProcessorGeneralPaused" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetCommandProcessorImagesPaused">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/SetCommandProcessorImagesPaused" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnrecognisedFiles">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetUnrecognisedFiles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetManuallyLinkedFiles">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetManuallyLinkedFiles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetIgnoredFiles">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetIgnoredFiles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestAniDBConnection">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/TestAniDBConnection" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RenameAllGroups">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/RenameAllGroups" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllGroupFilters">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllGroupFilters" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveGroupFilter">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/SaveGroupFilter" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteGroupFilter">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/DeleteGroupFilter" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCategoryNames">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllCategoryNames" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ScanFolder">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/ScanFolder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SyncVotes">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/SyncVotes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VoteAnime">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/VoteAnime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VoteAnimeRevoke">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/VoteAnimeRevoke" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetWatchedStatusOnSeries">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/SetWatchedStatusOnSeries" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEpisodesForSeriesOld">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetEpisodesForSeriesOld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEpisode">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetEpisode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAssociationOnFile">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/RemoveAssociationOnFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetIgnoreStatusOnFile">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/SetIgnoreStatusOnFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateSeriesFromAnime">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/CreateSeriesFromAnime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAnimeData">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/UpdateAnimeData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AssociateSingleFile">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/AssociateSingleFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AssociateSingleFileWithMultipleEpisodes">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/AssociateSingleFileWithMultipleEpisodes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AssociateMultipleFiles">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/AssociateMultipleFiles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllGroups">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllGroups" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveGroup">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/SaveGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGroup">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllGroupsAboveSeries">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllGroupsAboveSeries" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllGroupsAboveGroupInclusive">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllGroupsAboveGroupInclusive" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSeries">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllSeries" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveSeries">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/SaveSeries" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MoveSeries">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/MoveSeries" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAnime">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllAnime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAnimeDetailed">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllAnimeDetailed" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAnimeDetailed">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAnimeDetailed" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSeriesForGroup">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetSeriesForGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEpisodesForSeries">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetEpisodesForSeries" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEpisodesForFile">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetEpisodesForFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFilesForEpisode">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetFilesForEpisode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMyReleaseGroupsForAniDBEpisode">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetMyReleaseGroupsForAniDBEpisode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImportFolders">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetImportFolders" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServerStatus">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetServerStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServerSettings">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetServerSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="JMMServiceImplementation">
+    <wsdl:port name="BinaryBinding_IJMMServer" binding="tns:BinaryBinding_IJMMServer">
+      <soap12:address location="http://localhost:8111/JMMServerBinary" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>http://localhost:8111/JMMServerBinary</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

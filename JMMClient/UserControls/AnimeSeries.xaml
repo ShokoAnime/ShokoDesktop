@@ -1,0 +1,1074 @@
+﻿<UserControl x:Class="JMMClient.UserControls.AnimeSeries"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
+             xmlns:forms="clr-namespace:JMMClient.Forms"
+             xmlns:local="clr-namespace:JMMClient"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+
+        <ResourceDictionary>
+
+            <RoutedUICommand x:Key="ViewImageCommand" Text="ViewImageCommand" />
+            <RoutedUICommand x:Key="DisableImageCommand" Text="DisableImageCommand" />
+            <RoutedUICommand x:Key="EnableImageCommand" Text="EnableImageCommand" />
+            <RoutedUICommand x:Key="SetDefaultImageONCommand" Text="SetDefaultImageONCommand" />
+            <RoutedUICommand x:Key="SetDefaultImageOFFCommand" Text="SetDefaultImageOFFCommand" />
+            <RoutedUICommand x:Key="ToggleWatchedStatusCommand" Text="ToggleWatchedStatusCommand" />
+
+            <RoutedUICommand x:Key="MoveUpWidgetCommand" Text="MoveUpWidgetCommand" />
+            <RoutedUICommand x:Key="MoveDownWidgetCommand" Text="MoveDownWidgetCommand" />
+
+
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+
+            <!-- PosterTemplate-->
+            <DataTemplate x:Key="PosterTemplate">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Vertical" Margin="0,0,10,0">
+                        <TextBlock Margin="0,0,0,5" Text="{Binding Path=PosterSource}" VerticalAlignment="Center"/>
+                        <Border BorderBrush="Black" BorderThickness="2">
+                            <Image Height="190" Margin="0" Source="{Binding Path=FullImagePath}">
+                                <Image.ToolTip>
+                                    <Image Stretch="Fill" HorizontalAlignment="Center" Height="400" Source="{Binding FullImagePath}">
+                                    </Image>
+                                </Image.ToolTip>
+                            </Image>
+                        </Border>
+
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                        <!-- View Image -->
+                        <Button Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource ViewImageCommand}" 
+                             CommandParameter="{Binding}" >
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/MagnifyingGlass4.png" Margin="2,0,2,0"/>
+                            </StackPanel>
+                            <Button.ToolTip>
+                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Image_View}"/>
+                            </Button.ToolTip>
+                        </Button>
+
+                        <!-- Disable Image     shown when image is enabled -->
+                        <Button Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource DisableImageCommand}" 
+                            Visibility="{Binding Path=IsImageEnabled, Converter={StaticResource BooleanToVisibilityConverter}}" CommandParameter="{Binding}" >
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="2,0,2,0"/>
+                            </StackPanel>
+                            <Button.ToolTip>
+                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Image_Enabled}"/>
+                            </Button.ToolTip>
+                        </Button>
+
+                        <!-- Enable Image    shown when image is disabled -->
+                        <Button Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource EnableImageCommand}" 
+                            Visibility="{Binding Path=IsImageDisabled, Converter={StaticResource BooleanToVisibilityConverter}}" CommandParameter="{Binding}" >
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/32_cancel.png" Margin="2,0,2,0"/>
+                            </StackPanel>
+                            <Button.ToolTip>
+                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Image_Disabled}"/>
+                            </Button.ToolTip>
+                        </Button>
+
+                        <!-- Set Default    shown when image is NOT default -->
+                        <Button Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource SetDefaultImageONCommand}" 
+                            Visibility="{Binding Path=IsImageNotDefault, Converter={StaticResource BooleanToVisibilityConverter}}" CommandParameter="{Binding}" >
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/16_heart_empty.png" Margin="2,0,2,0"/>
+                            </StackPanel>
+                            <Button.ToolTip>
+                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Image_NotDefault}"/>
+                            </Button.ToolTip>
+                        </Button>
+
+                        <!-- Remove Default    shown when image is default -->
+                        <Button Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource SetDefaultImageOFFCommand}" 
+                            Visibility="{Binding Path=IsImageDefault, Converter={StaticResource BooleanToVisibilityConverter}}" CommandParameter="{Binding}" >
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/16_heart.png" Margin="2,0,2,0"/>
+                            </StackPanel>
+                            <Button.ToolTip>
+                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Image_Default}"/>
+                            </Button.ToolTip>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+
+            </DataTemplate>
+
+            <!-- FanartTemplate-->
+            <DataTemplate x:Key="FanartTemplate">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Vertical" Margin="0,0,10,0">
+                        <TextBlock Margin="0,0,0,5" Text="{Binding Path=FanartSource}" VerticalAlignment="Center"/>
+                        <Border BorderBrush="Black" BorderThickness="2">
+                            <Image Height="100" Margin="0" Source="{Binding Path=FullThumbnailPath}">
+                                <Image.ToolTip>
+                                    <Image Stretch="Fill" HorizontalAlignment="Center" Height="400" Source="{Binding FullImagePath}">
+                                    </Image>
+                                </Image.ToolTip>
+                            </Image>
+                        </Border>
+
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                        <!-- View Image -->
+                        <Button Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource ViewImageCommand}" 
+                             CommandParameter="{Binding}" >
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/MagnifyingGlass4.png" Margin="2,0,2,0"/>
+                            </StackPanel>
+                            <Button.ToolTip>
+                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Image_View}"/>
+                            </Button.ToolTip>
+                        </Button>
+
+                        <!-- Disable Image     shown when image is enabled -->
+                        <Button Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource DisableImageCommand}" 
+                            Visibility="{Binding Path=IsImageEnabled, Converter={StaticResource BooleanToVisibilityConverter}}" CommandParameter="{Binding}" >
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="2,0,2,0"/>
+                            </StackPanel>
+                            <Button.ToolTip>
+                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Image_Enabled}"/>
+                            </Button.ToolTip>
+                        </Button>
+
+                        <!-- Enable Image    shown when image is disabled -->
+                        <Button Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource EnableImageCommand}" 
+                            Visibility="{Binding Path=IsImageDisabled, Converter={StaticResource BooleanToVisibilityConverter}}" CommandParameter="{Binding}" >
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/32_cancel.png" Margin="2,0,2,0"/>
+                            </StackPanel>
+                            <Button.ToolTip>
+                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Image_Disabled}"/>
+                            </Button.ToolTip>
+                        </Button>
+
+                        <!-- Set Default    shown when image is NOT default -->
+                        <Button Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource SetDefaultImageONCommand}" 
+                            Visibility="{Binding Path=IsImageNotDefault, Converter={StaticResource BooleanToVisibilityConverter}}" CommandParameter="{Binding}" >
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/16_heart_empty.png" Margin="2,0,2,0"/>
+                            </StackPanel>
+                            <Button.ToolTip>
+                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Image_NotDefault}"/>
+                            </Button.ToolTip>
+                        </Button>
+
+                        <!-- Remove Default    shown when image is default -->
+                        <Button Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource SetDefaultImageOFFCommand}" 
+                            Visibility="{Binding Path=IsImageDefault, Converter={StaticResource BooleanToVisibilityConverter}}" CommandParameter="{Binding}" >
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/16_heart.png" Margin="2,0,2,0"/>
+                            </StackPanel>
+                            <Button.ToolTip>
+                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Image_Default}"/>
+                            </Button.ToolTip>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+
+            </DataTemplate>
+
+            <!-- tvDBWideBannerTemplate-->
+            <DataTemplate x:Key="tvDBWideBannerTemplate">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" Margin="0,0,10,0">
+                        <Border BorderBrush="Black" BorderThickness="2">
+                            <Image Height="40" Margin="0" Source="{Binding Path=FullImagePath}">
+                                <Image.ToolTip>
+                                    <Image Stretch="Fill" HorizontalAlignment="Center" Height="100" Source="{Binding FullImagePath}">
+                                    </Image>
+                                </Image.ToolTip>
+                            </Image>
+                        </Border>
+
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,10">
+                        <!-- View Image -->
+                        <Button Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource ViewImageCommand}" 
+                             CommandParameter="{Binding}" >
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/MagnifyingGlass4.png" Margin="2,0,2,0"/>
+                            </StackPanel>
+                            <Button.ToolTip>
+                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Image_View}"/>
+                            </Button.ToolTip>
+                        </Button>
+
+                        <!-- Disable Image     shown when image is enabled -->
+                        <Button Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource DisableImageCommand}" 
+                            Visibility="{Binding Path=IsImageEnabled, Converter={StaticResource BooleanToVisibilityConverter}}" CommandParameter="{Binding}" >
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="2,0,2,0"/>
+                            </StackPanel>
+                            <Button.ToolTip>
+                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Image_Enabled}"/>
+                            </Button.ToolTip>
+                        </Button>
+
+                        <!-- Enable Image    shown when image is disabled -->
+                        <Button Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource EnableImageCommand}" 
+                            Visibility="{Binding Path=IsImageDisabled, Converter={StaticResource BooleanToVisibilityConverter}}" CommandParameter="{Binding}" >
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/32_cancel.png" Margin="2,0,2,0"/>
+                            </StackPanel>
+                            <Button.ToolTip>
+                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Image_Disabled}"/>
+                            </Button.ToolTip>
+                        </Button>
+
+                        <!-- Set Default    shown when image is NOT default -->
+                        <Button Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource SetDefaultImageONCommand}" 
+                            Visibility="{Binding Path=IsImageNotDefault, Converter={StaticResource BooleanToVisibilityConverter}}" CommandParameter="{Binding}" >
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/16_heart_empty.png" Margin="2,0,2,0"/>
+                            </StackPanel>
+                            <Button.ToolTip>
+                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Image_NotDefault}"/>
+                            </Button.ToolTip>
+                        </Button>
+
+                        <!-- Remove Default    shown when image is default -->
+                        <Button Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource SetDefaultImageOFFCommand}" 
+                            Visibility="{Binding Path=IsImageDefault, Converter={StaticResource BooleanToVisibilityConverter}}" CommandParameter="{Binding}" >
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/16_heart.png" Margin="2,0,2,0"/>
+                            </StackPanel>
+                            <Button.ToolTip>
+                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Image_Default}"/>
+                            </Button.ToolTip>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+
+            </DataTemplate>
+
+            <!-- animeTitleTemplate-->
+            <DataTemplate x:Key="animeTitleTemplate">
+                <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
+                    <Image Height="16" Width="16" Source="{Binding Path=FlagImage}" Margin="0,0,5,0">
+                        <Image.ToolTip>
+                            <TextBlock Text="{Binding Path=LanguageDescription}"></TextBlock>
+                        </Image.ToolTip>
+                    </Image>
+
+                    <TextBlock Margin="2,0,10,0" Text="{Binding Path=Title}" />
+                </StackPanel>
+            </DataTemplate>
+
+            <!-- animeTagTemplate-->
+            <DataTemplate x:Key="animeTagTemplate">
+                <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
+
+                    <Button Margin="5,2,2,2" Style="{DynamicResource LinkButton}" Command="{DynamicResource SearchCommand}" CommandParameter="{Binding}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding Path=TagName}">
+                        <TextBlock.ToolTip>
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                            
+                                    <TextBlock FontWeight="Bold" Text="{Binding Path=TagName}"></TextBlock>
+                                    <TextBlock Margin="10,0,0,0" Text="("></TextBlock>
+                                    <TextBlock Text="{Binding Path=Approval}"></TextBlock>
+                                    <TextBlock Margin="4,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TagApproval}"></TextBlock>
+                                    <TextBlock Text=")"></TextBlock>
+                                </StackPanel>
+                                <TextBlock Text="{Binding Path=TagDescription}"></TextBlock>
+                            </StackPanel>
+                        </TextBlock.ToolTip>
+                    </TextBlock>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </DataTemplate>
+
+            <!-- animeCategoryTemplate-->
+            <DataTemplate x:Key="animeCategoryTemplate">
+
+                <StackPanel Orientation="Horizontal" Margin="5,0,0,0" >
+
+                    <Button Margin="5,2,2,2" Style="{DynamicResource LinkButton}" Command="{DynamicResource SearchCommand}" CommandParameter="{Binding}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding Path=CategoryName}">
+                        <TextBlock.ToolTip>
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                            
+                                    <TextBlock FontWeight="Bold" Text="{Binding Path=CategoryName}"></TextBlock>
+                                    <TextBlock Margin="10,0,0,0" Text="("></TextBlock>
+                                    <TextBlock Text="{Binding Path=Weighting}"></TextBlock>
+                                    <TextBlock Margin="4,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CategoryWeighting}"></TextBlock>
+                                    <TextBlock Text=")"></TextBlock>
+                                </StackPanel>
+                                <TextBlock Text="{Binding Path=CategoryDescription}"></TextBlock>
+                            </StackPanel>
+                        </TextBlock.ToolTip>
+                    </TextBlock>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </DataTemplate>
+
+        </ResourceDictionary>
+
+
+
+    </UserControl.Resources>
+
+    <UserControl.CommandBindings>
+        <CommandBinding Command="{StaticResource ViewImageCommand}" Executed="CommandBinding_ViewImage" />
+        <CommandBinding Command="{StaticResource DisableImageCommand}" Executed="CommandBinding_DisableImage" />
+        <CommandBinding Command="{StaticResource EnableImageCommand}" Executed="CommandBinding_EnableImage" />
+        <CommandBinding Command="{StaticResource SetDefaultImageONCommand}" Executed="CommandBinding_SetDefaultImageON" />
+        <CommandBinding Command="{StaticResource SetDefaultImageOFFCommand}" Executed="CommandBinding_SetDefaultImageOFF" />
+        <CommandBinding Command="{StaticResource ToggleWatchedStatusCommand}" Executed="CommandBinding_ToggleWatchedStatus" />
+        <CommandBinding Command="{StaticResource MoveUpWidgetCommand}" Executed="CommandBinding_MoveUpWidget" />
+        <CommandBinding Command="{StaticResource MoveDownWidgetCommand}" Executed="CommandBinding_MoveDownWidget" />
+    </UserControl.CommandBindings>
+
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Name="Scroller2" Grid.Column="0" Grid.Row="0" Margin="0,0,0,0" >
+
+        <TabControl Grid.Column="0" Grid.Row="1" Name="tabContainer" Padding="0"
+                      Width="{Binding ElementName=Scroller2, Path=ViewportWidth}">
+
+            <TabItem Header="Series Info" Name="tabSeries">
+                <!-- Series Info -->
+                <StackPanel Orientation="Vertical">
+
+                    <Grid>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition MaxHeight="30" Height="Auto"/>
+                            <!-- tool bar-->
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition MaxHeight="40" Height="Auto"/>
+                            <!-- series name -->
+                            <RowDefinition MaxHeight="30" Height="Auto"/>
+                            <!-- air date -->
+                            <RowDefinition MaxHeight="30" Height="Auto"/>
+                            <!-- rating -->
+                            <RowDefinition MaxHeight="30" Height="Auto"/>
+                            <!-- episode counts -->
+                            <RowDefinition MaxHeight="30" Height="Auto"/>
+                            <!-- Unwatched Episode Counts -->
+                            <RowDefinition MaxHeight="30" Height="Auto"/>
+                            <!-- missing episodes -->
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Toolbar -->
+                        <Border Name="panelGroupReadOnlyToolbar" Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+                            <StackPanel Orientation="Horizontal"  VerticalAlignment="Center" Margin="0,0,0,0" Background="#F1F1F1">
+
+                                <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="{Binding Path=AniDB_Anime.AnimeID_Friendly}" URL="{Binding Path=AniDB_Anime.AniDB_SiteURL}" Margin="20,0,0,0"/>
+
+                                <!-- show pinned series button -->
+                                <Button Margin="10,2,2,2" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center"
+                                        Command="{DynamicResource ShowPinnedSeriesCommand}" CommandParameter="{Binding}">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                        <Image Height="16" Width="16" Source="/Images/16_windows.png" Margin="2,0,2,0">
+                                            <Image.ToolTip>
+                                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_ViewSeries}"/>
+                                            </Image.ToolTip>
+                                        </Image>
+
+                                    </StackPanel>
+                                </Button>
+
+                                <!-- Edit Series -->
+                                <Button Name="btnEditSeries" Margin="10,2,2,2" Style="{DynamicResource FlatButtonStyle}"
+                                         Visibility="{Binding Path=IsReadOnly, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                        <Image Height="16" Width="16" Source="/Images/32_folder_edit.png" Margin="0,0,3,0"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Edit}" Margin="0,0,0,0"/>
+                                    </StackPanel>
+                                </Button>
+
+                                <!-- Finish Editing Series -->
+                                <Button Name="btnEditSeriesFinish" Margin="10,2,2,2" Style="{DynamicResource FlatButtonStyle}"
+                                         Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                        <Image Height="16" Width="16" Source="/Images/32_folder_edit.png" Margin="0,0,3,0"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=FinishEditing}" Margin="0,0,0,0"/>
+                                    </StackPanel>
+                                </Button>
+
+                                <!-- Move Series -->
+                                <Button Name="btnMoveSeries" Margin="10,2,2,2" Style="{DynamicResource FlatButtonStyle}" Command="{DynamicResource MoveSeriesCommand}" CommandParameter="{Binding}">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                        <Image Height="16" Width="16" Source="/Images/32_cut.png" Margin="0,0,3,0"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=MoveSeries}" Margin="0,0,0,0"/>
+                                    </StackPanel>
+                                </Button>
+
+                                <!-- Group -->
+                                <Button Name="btnAnimeGroupShow" Margin="10,2,2,2" Style="{DynamicResource FlatButtonStyle}">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+
+                                        <Image Height="16" Width="16" Source="/Images/64_navdown.png" Margin="2,0,2,0"
+                                            Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=SeriesGroupCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        </Image>
+                                        <Image Height="16" Width="16" Source="/Images/64_navup.png" Margin="2,0,2,0"
+                                            Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=SeriesGroupExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Group}" Margin="0,0,0,0"/>
+                                    </StackPanel>
+                                </Button>
+
+                                <!-- Update Series Info -->
+                                <Button Name="btnUpdateAniDBInfo" Margin="10,2,2,2" Style="{DynamicResource FlatButtonStyle}">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                        <Image Height="16" Width="16" Source="/Images/anidb.ico" Margin="0,0,3,0"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=UpdateAniDBInfo}" Margin="0,0,0,0"/>
+                                    </StackPanel>
+                                </Button>
+
+                                <!-- Delete Series -->
+                                <Button Name="btnDeleteSeries" Margin="10,2,2,2" Style="{DynamicResource FlatButtonStyle}" Command="{DynamicResource DeleteSeriesCommand}" CommandParameter="{Binding}">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                        <Image Height="16" Width="16" Source="/Images/32_trash.png" Margin="0,0,3,0"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=DeleteSeries}" Margin="0,0,0,0"/>
+                                    </StackPanel>
+                                </Button>
+
+                            </StackPanel>
+                        </Border>
+
+                        <!-- breadcrumb toolbar container -->
+                        <Border Style="{DynamicResource BreadCrumbBorderStyle}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
+                                Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=SeriesGroupExpanded, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <StackPanel Orientation="Horizontal" Background="AliceBlue">
+
+                                <!-- Bread crumb toolbar -->
+                                <ListBox x:Name="lbBreadCrumbsSeries" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="Transparent" Padding="0"
+                                    BorderThickness="0" VerticalAlignment="Center"
+                                    ItemTemplate="{DynamicResource BreadCrumb_GroupTemplateForSeries}"
+                                    ItemsSource="{Binding Path=Heirarchy}">
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Orientation="Horizontal" />
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+
+                                </ListBox>
+
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Poster Image -->
+                        <Border Margin="10,10,10,0" Name="bdrSmart" Grid.Row="2" Grid.Column="0" Grid.RowSpan="6" BorderBrush="Black" BorderThickness="3">
+                            <Image Height="190" Margin="0" Source="{Binding Path=PosterPath}">
+                                <Image.ToolTip>
+                                    <Image Stretch="Fill" HorizontalAlignment="Center" Height="400" Source="{Binding PosterPath}">
+                                    </Image>
+                                </Image.ToolTip>
+                            </Image>
+                        </Border>
+
+                        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,10,0,0">
+
+                            <TextBlock VerticalAlignment="Top" Text="{Binding Path=SeriesName}" FontWeight="Bold" FontSize="18" />
+                            <TextBlock VerticalAlignment="Top" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Series}" Foreground="LightGray" FontSize="18" Margin="8,0,0,0" />
+
+                        </StackPanel>
+
+                        <!-- Air Date -->
+                        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2">
+                            <Image Height="16" Width="16" Source="/Images/32_calendar.png" Margin="0,0,5,0" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Row="1" Grid.Column="2" Padding="5" Text="{Binding Path=AniDB_Anime.AirDateAndEndDate}" VerticalAlignment="Center"/>
+                        </StackPanel>
+
+                        <!-- Rating -->
+                        <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2">
+                            <usercontrols:VisualRating Rating="{Binding Path=AniDB_Anime.AniDBRating}" VerticalAlignment="Center">
+                            </usercontrols:VisualRating>
+                            <TextBlock Padding="5" Text="{Binding Path=AniDB_Anime.AniDBRatingFormatted}" VerticalAlignment="Center">
+                            <TextBlock.ToolTip>
+                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AniDBRating}"></TextBlock>
+                            </TextBlock.ToolTip>
+                        </TextBlock>
+                            <!-- User rating if the user has voted -->
+                            <StackPanel Orientation="Horizontal" Visibility="{Binding Path=AniDB_Anime.Detail.UserHasVoted, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <usercontrols:VisualRating Margin="20,0,0,0" Rating="{Binding Path=AniDB_Anime.Detail.UserRating}" VerticalAlignment="Center">
+                                </usercontrols:VisualRating>
+                                <TextBlock Padding="5" Text="{Binding Path=AniDB_Anime.Detail.UserRatingFormatted}" VerticalAlignment="Center">
+                                <TextBlock.ToolTip>
+                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=UserVote}"></TextBlock>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                                <Button Name="btnRevokeVote" Margin="5,2,2,2" Style="{DynamicResource FlatButtonStyle}" Command="{DynamicResource RevokeVoteCommand}" CommandParameter="{Binding}">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                        <Image Height="16" Width="16" Source="/Images/32_delete.png" Margin="0,0,3,0"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VoteRevoke}" Margin="0,0,0,0"/>
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
+
+                            <!-- User rating if the user has NOT voted -->
+                            <StackPanel Orientation="Horizontal" Visibility="{Binding Path=AniDB_Anime.Detail.UserHasNotVoted, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                                <TextBlock Padding="5" FontWeight="Heavy" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VoteNow}" VerticalAlignment="Center"/>
+
+                                <usercontrols:RatingControl x:Name="cRating" Width="175" Height="16" RatingValue="7.5" />
+
+                                <ComboBox Grid.Row="0" Name="cboVoteType" VerticalAlignment="Center"></ComboBox>
+
+                            </StackPanel>
+                        </StackPanel>
+
+                        <!-- Episode Counts -->
+                        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2">
+                            <Image Name="imgAnimeType" Height="16" Width="16" Margin="0,0,5,0" Source="/Images/16_television.png" VerticalAlignment="Center">
+                                <Image.ToolTip>
+                                    <TextBlock Text="{Binding Path=AniDB_Anime.AnimeTypeDescription}"></TextBlock>
+                                </Image.ToolTip>
+                            </Image>
+
+                            <TextBlock Grid.Row="1" Grid.Column="2" Padding="5" Text="{Binding Path=EpisodeCountFormatted}" VerticalAlignment="Center"/>
+                        </StackPanel>
+
+                        <!-- Unwatched Episode Counts , has unwatched files  -->
+                        <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Visibility="{Binding Path=HasUnwatchedFiles, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Image Height="16" Width="16" Source="/Images/16_eye2.png" Margin="0,0,0,0" VerticalAlignment="Center"/>
+                            <TextBlock Margin="5,0,0,0" Text="{Binding Path=UnwatchedEpisodeCount}"  VerticalAlignment="Center"/>
+                            <TextBlock Margin="5,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Unwatched}" VerticalAlignment="Center" />
+                            <StackPanel Orientation="Horizontal" Margin="15,0,0,0" Visibility="{Binding Path=AnyFilesWatched, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <Image Height="16" Width="16" Source="../Images/32_calendar.png" Margin="0,0,5,0" VerticalAlignment="Center"/>
+                                <TextBlock Margin="0,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=LastWatched}" VerticalAlignment="Center" />
+                                <TextBlock Margin="5,0,0,0" Text="{Binding Path=LastWatchedDescription}" FontWeight="Bold" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <!-- Unwatched Episode Counts , all files watched  -->
+                        <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Visibility="{Binding Path=AllFilesWatched, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,0,0" VerticalAlignment="Center"/>
+                            <TextBlock Margin="5,0,0,0" Text="{Binding Path=UnwatchedEpisodeCount}"  VerticalAlignment="Center"/>
+                            <TextBlock Margin="5,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Unwatched}" VerticalAlignment="Center" />
+                            <StackPanel Orientation="Horizontal" Margin="15,0,0,0" Visibility="{Binding Path=AnyFilesWatched, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <Image Height="16" Width="16" Source="../Images/32_calendar.png" Margin="0,0,5,0" VerticalAlignment="Center"/>
+                                <TextBlock Margin="5,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=LastWatched}" VerticalAlignment="Center" />
+                                <TextBlock Margin="5,0,0,0" Text="{Binding Path=LastWatchedDescription}" FontWeight="Bold" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <!-- Missing Episodes  -->
+                        <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" 
+                                Visibility="{Binding Path=HasMissingEpisodesAny, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <StackPanel Orientation="Horizontal" Margin="0,0,10,0"
+                                    Visibility="{Binding Path=HasMissingEpisodesGroups, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <Image Height="16" Width="16" Source="../Images/16_exclamation.png" Margin="0,0,0,0" VerticalAlignment="Center">
+                                    <Image.ToolTip>
+                                        <TextBlock Margin="5,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_MissingEpsGroups}" VerticalAlignment="Center" />
+                                    </Image.ToolTip>
+                                </Image>
+                                <TextBlock Margin="5,0,0,0" Text="{Binding Path=MissingEpisodeCountGroups}"  VerticalAlignment="Center"/>
+                                <TextBlock Margin="5,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Missing}" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,10,0"
+                                    Visibility="{Binding Path=HasMissingEpisodesAllDifferentToGroups, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <Image Height="16" Width="16" Source="../Images/32_warning.png" Margin="0,0,0,0" VerticalAlignment="Center">
+                                    <Image.ToolTip>
+                                        <TextBlock Margin="5,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_MissingEps}" VerticalAlignment="Center" />
+                                    </Image.ToolTip>
+                                </Image>
+                                <TextBlock Margin="5,0,0,0" Text="{Binding Path=MissingEpisodeCount}"  VerticalAlignment="Center"/>
+                                <TextBlock Margin="5,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Missing}" VerticalAlignment="Center" />
+                            </StackPanel>
+
+                        </StackPanel>
+
+                    </Grid>
+
+
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+
+                        <usercontrols:TruncatedTextBlock DisplayText="{Binding Path=Description}" MaxLength="350" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" 
+                            VerticalAlignment="Stretch" MinWidth="100" Padding="5">
+
+                        </usercontrols:TruncatedTextBlock>
+                        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MinWidth="100" Visibility="Collapsed"
+                    TextWrapping="Wrap" Text="{Binding Path=Description}" Padding="5" />
+
+
+
+
+
+
+
+
+
+
+                        <!-- Categories -->
+                        <StackPanel Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2"
+                                    Grid.Row="{Binding Path=SeriesPos_Categories, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeSeries}}}">
+                            <!-- Buttons -->
+                            <StackPanel Orientation="Horizontal">
+
+                                <!-- Expand Collapse -->
+                                <Button Name="btnAnimeCategories" Margin="6,2,2,2" Style="{DynamicResource FlatButtonStyle}">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+
+                                        <Image Height="16" Width="16" Source="/Images/16_toggle2.png" Margin="0,0,2,0"
+                                                Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=CategoriesCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        </Image>
+                                        <Image Height="16" Width="16" Source="/Images/16_collapse2.png" Margin="0,0,2,0"
+                                                Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=CategoriesExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                                    </StackPanel>
+
+                                </Button>
+
+                                <!-- Buttons for moving the widget up and down -->
+                                <StackPanel Orientation="Horizontal" Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}" >
+                                    <Button HorizontalAlignment="Left" Margin="5,0,0,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto"
+                                        Command="{DynamicResource MoveUpWidgetCommand}" CommandParameter="1">
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                            <Image Height="16" Width="16" Source="/Images/16_up.png" Margin="0,0,0,0"/>
+
+                                        </StackPanel>
+                                    </Button>
+
+                                    <Button HorizontalAlignment="Left" Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto"
+                                        Command="{DynamicResource MoveDownWidgetCommand}" CommandParameter="1">
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                            <Image Height="16" Width="16" Source="/Images/16_down.png" Margin="0,0,0,0"/>
+
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Categories}" FontWeight="Bold" Margin="8,0,0,0"/>
+
+                                <ListBox Grid.Column="2" Grid.Row="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Name="lbCats"
+                                    Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=CategoriesCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                    Background="Transparent" Padding="0" BorderThickness="0" VerticalAlignment="Center"
+                                    ItemTemplate="{DynamicResource animeCategoryTemplate}" ItemsSource="{Binding Path=AniDB_Anime.Detail.AnimeCategoriesSummary}">
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel  Focusable="False"  Orientation="Horizontal" />
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+
+                                </ListBox>
+                            </StackPanel>
+
+                            <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="5,5,5,5"
+                                Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=CategoriesExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                Background="Transparent" Padding="0" BorderThickness="0" VerticalAlignment="Center"
+                                ItemTemplate="{DynamicResource animeCategoryTemplate}" ItemsSource="{Binding Path=AniDB_Anime.Detail.AnimeCategories}">
+                                <ListBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel  Focusable="False"  Orientation="Horizontal" />
+                                    </ItemsPanelTemplate>
+                                </ListBox.ItemsPanel>
+
+                            </ListBox>
+
+
+                        </StackPanel>
+
+
+
+                        <!-- Tags -->
+                        <StackPanel Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2"
+                                    Grid.Row="{Binding Path=SeriesPos_Tags, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeSeries}}}">
+                            <!-- Buttons -->
+                            <StackPanel Orientation="Horizontal">
+
+                                <!-- Expand Collapse -->
+                                <Button Name="btnAnimeTags" Margin="6,2,2,2" Style="{DynamicResource FlatButtonStyle}">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+
+                                        <Image Height="16" Width="16" Source="/Images/16_toggle2.png" Margin="0,0,2,0"
+                                                Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=TagsCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        </Image>
+                                        <Image Height="16" Width="16" Source="/Images/16_collapse2.png" Margin="0,0,2,0"
+                                                Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=TagsExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                                    </StackPanel>
+
+                                </Button>
+
+                                <!-- Buttons for moving the widget up and down -->
+                                <StackPanel Orientation="Horizontal" Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}" >
+                                    <Button HorizontalAlignment="Left" Margin="5,0,0,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto"
+                                        Command="{DynamicResource MoveUpWidgetCommand}" CommandParameter="6">
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                            <Image Height="16" Width="16" Source="/Images/16_up.png" Margin="0,0,0,0"/>
+
+                                        </StackPanel>
+                                    </Button>
+
+                                    <Button HorizontalAlignment="Left" Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto"
+                                        Command="{DynamicResource MoveDownWidgetCommand}" CommandParameter="6">
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                            <Image Height="16" Width="16" Source="/Images/16_down.png" Margin="0,0,0,0"/>
+
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tags}" FontWeight="Bold" Margin="8,0,0,0"/>
+
+                                <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled"  VerticalAlignment="Top"
+                                    Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=TagsCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                    Background="Transparent" Padding="0" BorderThickness="0" 
+                                    ItemTemplate="{DynamicResource animeTagTemplate}" ItemsSource="{Binding Path=AniDB_Anime.Detail.AnimeTagsSummary}">
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel  Focusable="False"  Orientation="Horizontal" />
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+
+                                </ListBox>
+                            </StackPanel>
+
+                            <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="5,5,5,5"
+                                Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=TagsExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                Background="Transparent" Padding="0" BorderThickness="0" VerticalAlignment="Center"
+                                ItemTemplate="{DynamicResource animeTagTemplate}" ItemsSource="{Binding Path=AniDB_Anime.Detail.AnimeTags}">
+                                <ListBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel  Focusable="False"  Orientation="Horizontal" />
+                                    </ItemsPanelTemplate>
+                                </ListBox.ItemsPanel>
+
+                            </ListBox>
+
+
+                        </StackPanel>
+
+                        <!-- Titles -->
+                        <StackPanel Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2"
+                                    Grid.Row="{Binding Path=SeriesPos_Titles, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeSeries}}}">
+                            <!-- Buttons -->
+                            <StackPanel Orientation="Horizontal">
+
+                                <!-- Expand Collapse -->
+                                <Button Name="btnAnimeTitles" Margin="6,2,2,2" Style="{DynamicResource FlatButtonStyle}">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+
+                                        <Image Height="16" Width="16" Source="/Images/16_toggle2.png" Margin="0,0,2,0"
+                                                Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=TitlesCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        </Image>
+                                        <Image Height="16" Width="16" Source="/Images/16_collapse2.png" Margin="0,0,2,0"
+                                                Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=TitlesExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                                    </StackPanel>
+
+                                </Button>
+
+                                <!-- Buttons for moving the widget up and down -->
+                                <StackPanel Orientation="Horizontal" Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}" >
+                                    <Button HorizontalAlignment="Left" Margin="5,0,0,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto"
+                                        Command="{DynamicResource MoveUpWidgetCommand}" CommandParameter="2">
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                            <Image Height="16" Width="16" Source="/Images/16_up.png" Margin="0,0,0,0"/>
+
+                                        </StackPanel>
+                                    </Button>
+
+                                    <Button HorizontalAlignment="Left" Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto"
+                                        Command="{DynamicResource MoveDownWidgetCommand}" CommandParameter="2">
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                            <Image Height="16" Width="16" Source="/Images/16_down.png" Margin="0,0,0,0"/>
+
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AnimeTitles}" FontWeight="Bold" Margin="8,0,0,0"/>
+
+                                <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled"  VerticalAlignment="Center"
+                                    Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=TitlesCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                    Background="Transparent" Padding="0" BorderThickness="0" 
+                                    ItemTemplate="{DynamicResource animeTitleTemplate}" ItemsSource="{Binding Path=AniDB_Anime.Detail.AnimeTitlesSummary}">
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel  Focusable="False"  Orientation="Horizontal" />
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+
+                                </ListBox>
+                            </StackPanel>
+
+                            <usercontrols:Titles DataContext="{Binding Path=AniDB_Anime.Detail}" Margin="0,0,0,0"
+                                                 Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=TitlesExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        </StackPanel>
+
+                        <!-- File Summary -->
+                        <StackPanel Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2"
+                                    Grid.Row="{Binding Path=SeriesPos_FileSummary, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeSeries}}}">
+                            <!-- Buttons -->
+                            <StackPanel Orientation="Horizontal">
+                                <Button Name="btnFileSummary" Margin="6,2,2,2" Style="{DynamicResource FlatButtonStyle}">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+
+                                        <Image Height="16" Width="16" Source="/Images/16_toggle2.png" Margin="0,0,2,0"
+                                                Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=SeriesFileSummaryCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        </Image>
+                                        <Image Height="16" Width="16" Source="/Images/16_collapse2.png" Margin="0,0,2,0"
+                                                Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=SeriesFileSummaryExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                                    </StackPanel>
+
+                                </Button>
+
+                                <!-- Buttons for moving the widget up and down -->
+                                <StackPanel Orientation="Horizontal" Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}" >
+                                    <Button HorizontalAlignment="Left" Margin="5,0,0,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto"
+                                        Command="{DynamicResource MoveUpWidgetCommand}" CommandParameter="3">
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                            <Image Height="16" Width="16" Source="/Images/16_up.png" Margin="0,0,0,0"/>
+
+                                        </StackPanel>
+                                    </Button>
+
+                                    <Button HorizontalAlignment="Left" Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto"
+                                        Command="{DynamicResource MoveDownWidgetCommand}" CommandParameter="3">
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                            <Image Height="16" Width="16" Source="/Images/16_down.png" Margin="0,0,0,0"/>
+
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=FileSummary}" FontWeight="Bold" Margin="8,0,0,0"/>
+                            </StackPanel>
+                            <Border  Background="FloralWhite" BorderBrush="DarkGray" BorderThickness="1" Padding="5" Margin="40,5,10,5"
+                                      Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=SeriesFileSummaryExpanded, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <usercontrols:AnimeFileSummaryControl x:Name="ucFileSummary" Margin="0,0,0,0" />
+                            </Border>
+                        </StackPanel>
+
+                        <!-- TvDB and Other Links -->
+                        <StackPanel Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2"
+                                    Grid.Row="{Binding Path=SeriesPos_TvDBLinks, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeSeries}}}">
+                            <!-- Group -->
+                            <StackPanel Orientation="Horizontal">
+                                <Button Name="btnTvDBLinks" Margin="6,2,2,2" Style="{DynamicResource FlatButtonStyle}">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+
+                                        <Image Height="16" Width="16" Source="/Images/16_toggle2.png" Margin="0,0,2,0"
+                                                Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=SeriesTvDBLinksCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        </Image>
+                                        <Image Height="16" Width="16" Source="/Images/16_collapse2.png" Margin="0,0,2,0"
+                                                Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=SeriesTvDBLinksExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                                    </StackPanel>
+
+                                </Button>
+
+                                <!-- Buttons for moving the widget up and down -->
+                                <StackPanel Orientation="Horizontal" Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}" >
+                                    <Button HorizontalAlignment="Left" Margin="5,0,0,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto"
+                                        Command="{DynamicResource MoveUpWidgetCommand}" CommandParameter="4">
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                            <Image Height="16" Width="16" Source="/Images/16_up.png" Margin="0,0,0,0"/>
+
+                                        </StackPanel>
+                                    </Button>
+
+                                    <Button HorizontalAlignment="Left" Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto"
+                                        Command="{DynamicResource MoveDownWidgetCommand}" CommandParameter="4">
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                            <Image Height="16" Width="16" Source="/Images/16_down.png" Margin="0,0,0,0"/>
+
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CrossRefSummary}" FontWeight="Bold" Margin="8,0,0,0"/>
+                            </StackPanel>
+                            <Border  Background="FloralWhite" BorderBrush="DarkGray" BorderThickness="1" Padding="5" Margin="40,5,10,5"
+                                      Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=SeriesTvDBLinksExpanded, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <usercontrols:TvDBAndOtherLinks x:Name="ucTvDBLinks" Margin="0,0,0,0" />
+                            </Border>
+                        </StackPanel>
+
+                        <!-- Play Next Episode -->
+                        <StackPanel Orientation="Vertical" Grid.Column="0"  Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                    Grid.Row="{Binding Path=SeriesPos_PlayNextEpisode, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeSeries}}}">
+                            <!-- Group -->
+                            <StackPanel Orientation="Horizontal">
+                                <Button Name="btnPlayNextEpisode" Margin="6,2,2,2" Style="{DynamicResource FlatButtonStyle}">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+
+                                        <Image Height="16" Width="16" Source="/Images/16_toggle2.png" Margin="0,0,2,0"
+                                                Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=SeriesNextEpisodeCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        </Image>
+                                        <Image Height="16" Width="16" Source="/Images/16_collapse2.png" Margin="0,0,2,0"
+                                                Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=SeriesNextEpisodeExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                                    </StackPanel>
+
+                                </Button>
+
+                                <!-- Buttons for moving the widget up and down -->
+                                <StackPanel Orientation="Horizontal" Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}" >
+                                    <Button HorizontalAlignment="Left" Name="btnMoveUpSorting" Margin="5,0,0,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto"
+                                        Command="{DynamicResource MoveUpWidgetCommand}" CommandParameter="5">
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                            <Image Height="16" Width="16" Source="/Images/16_up.png" Margin="0,0,0,0"/>
+
+                                        </StackPanel>
+                                    </Button>
+
+                                    <Button HorizontalAlignment="Left" Name="btnMoveDownSorting" Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto"
+                                        Command="{DynamicResource MoveDownWidgetCommand}" CommandParameter="5">
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                            <Image Height="16" Width="16" Source="/Images/16_down.png" Margin="0,0,0,0"/>
+
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=PlayNextEpisode}" FontWeight="Bold" Margin="8,0,0,0"/>
+
+
+                            </StackPanel>
+                            <Border  Background="FloralWhite" BorderBrush="DarkGray" BorderThickness="1" Padding="5" Margin="40,5,10,5"
+                                      Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=SeriesNextEpisodeExpanded, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <usercontrols:PlayNextEpisodeControl x:Name="ucNextEpisode" Margin="0,0,0,0" />
+                            </Border>
+                        </StackPanel>
+
+                    </Grid>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Episodes}" Name="tabEpidoes">
+                <usercontrols:EpisodeList x:Name="epListMain"/>
+            </TabItem>
+
+            <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Images}" Name="tabImages" >
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+
+                        <!-- Posters -->
+                        <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Background="#FFE9ECEF" Margin="0,0,0,5">
+                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Posters}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                        </Border>
+
+
+                        <Border Margin="5,5,15,5"  BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Background="FloralWhite">
+                            <StackPanel>
+
+                                <ListBox Grid.Row="2" Grid.Column="1" BorderThickness="0" HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Visible" Margin="10,10,10,0"
+                                    Width="{Binding Path=ImageListBoxWidthFull, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeSeries}}}"   
+                                    VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
+                                    ItemTemplate="{DynamicResource PosterTemplate}"
+                                    ItemsSource="{Binding Path=AllPosters, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeSeries}}}" 
+                                    Background="Transparent"  VerticalAlignment="Stretch" >
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel/>
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+                                </ListBox>
+
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Fanart -->
+                        <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Background="#FFE9ECEF" Margin="0,10,0,5">
+                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Fanart}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                        </Border>
+
+
+                        <Border Margin="5,5,15,5"  BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" Background="FloralWhite">
+                            <StackPanel>
+
+                                <ListBox BorderThickness="0" HorizontalAlignment="Left" ScrollViewer.HorizontalScrollBarVisibility="Visible" Margin="10,10,10,0"
+                                    Width="{Binding Path=ImageListBoxWidthFull, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeSeries}}}"     
+                                    VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
+                                    ItemTemplate="{DynamicResource FanartTemplate}"
+                                    ItemsSource="{Binding Path=AllFanarts, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeSeries}}}" 
+                                    Background="Transparent"  VerticalAlignment="Stretch" >
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel/>
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+                                </ListBox>
+
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Wide Banners -->
+                        <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3" Background="#FFE9ECEF" Margin="0,10,0,5">
+                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=WideBanners}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                        </Border>
+
+
+                        <Border Margin="5,5,15,5"  BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3" Background="FloralWhite">
+
+                            <ListBox BorderThickness="0" HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="10,10,10,0"
+                                    Width="{Binding Path=ImageListBoxWidthFull, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeSeries}}}"     
+                                    VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
+                                    ItemTemplate="{DynamicResource tvDBWideBannerTemplate}"
+                                    ItemsSource="{Binding Path=SeriesTvDBWideBanners, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeSeries}}}" 
+                                    Background="Transparent"  VerticalAlignment="Stretch" >
+                                <ListBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel/>
+                                    </ItemsPanelTemplate>
+                                </ListBox.ItemsPanel>
+                            </ListBox>
+
+                        </Border>
+
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+    </ScrollViewer>
+</UserControl>

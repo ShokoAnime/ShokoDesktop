@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="c9f6f136-430e-4af1-9b74-679f0510ecf3" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8111/JMMServerBinary" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="JMMServerBinary.xsd" MetadataType="Schema" ID="0c2c4bf8-1295-4096-8f7b-191bbadc78cd" SourceId="1" SourceUrl="http://localhost:8111/JMMServerBinary?xsd=xsd1" />
+    <MetadataFile FileName="JMMServiceImplementation.wsdl" MetadataType="Wsdl" ID="c160e8c1-ed19-469d-8c46-e714a608f234" SourceId="1" SourceUrl="http://localhost:8111/JMMServerBinary?wsdl" />
+    <MetadataFile FileName="JMMServerBinary.disco" MetadataType="Disco" ID="18e62798-9d67-43f8-8fa7-9f8e07fc29f8" SourceId="1" SourceUrl="http://localhost:8111/JMMServerBinary?disco" />
+    <MetadataFile FileName="JMMServerBinary1.xsd" MetadataType="Schema" ID="3f7babed-e0d0-4c1a-ae80-e46e7035d6c1" SourceId="1" SourceUrl="http://localhost:8111/JMMServerBinary?xsd=xsd2" />
+    <MetadataFile FileName="JMMServerBinary2.xsd" MetadataType="Schema" ID="17bd9df1-4970-468f-a08e-3ae65c6ff5c7" SourceId="1" SourceUrl="http://localhost:8111/JMMServerBinary?xsd=xsd3" />
+    <MetadataFile FileName="JMMServerBinary3.xsd" MetadataType="Schema" ID="c87a8c50-de1e-43f9-81eb-6b325f00c1fd" SourceId="1" SourceUrl="http://localhost:8111/JMMServerBinary?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

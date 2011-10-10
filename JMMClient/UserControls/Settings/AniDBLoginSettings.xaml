@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="JMMClient.UserControls.AniDBLoginSettings"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:JMMClient"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="600">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0">
+            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Server}" Margin="0,5,5,0" VerticalAlignment="Center"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0">
+            <TextBox Name="txtServer" Width="300" Margin="0,5,5,0" VerticalAlignment="Center" Text="{Binding Source={x:Static local:JMMServerVM.Instance},Path=AniDB_ServerAddress}"/>
+            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Port}" Margin="10,5,5,0" VerticalAlignment="Center"></TextBlock>
+            <TextBox Name="txtPort" Width="50" Margin="0,5,5,0" VerticalAlignment="Center" Text="{Binding Source={x:Static local:JMMServerVM.Instance},Path=AniDB_ServerPort}"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1">
+            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Client}" Margin="0,5,3,0" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Port}" Margin="1,5,5,0" VerticalAlignment="Center"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+            <TextBox Name="txtClientPort" Width="50" Margin="0,5,5,0" VerticalAlignment="Center" Text="{Binding Source={x:Static local:JMMServerVM.Instance},Path=AniDB_ClientPort}"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2">
+            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Username}" Margin="0,5,3,0" VerticalAlignment="Center"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2">
+            <TextBox Name="txtUsername" Width="150" Margin="0,5,5,0" VerticalAlignment="Center" Text="{Binding Source={x:Static local:JMMServerVM.Instance},Path=AniDB_Username}"/>
+        </StackPanel>
+
+
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="3">
+            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Password}" Margin="0,5,3,0" VerticalAlignment="Center"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3">
+            <PasswordBox Width="150" Margin="0,5,5,0" VerticalAlignment="Center" x:Name="txtPassword" local:PasswordBoxAssistant.BindPassword="true"  local:PasswordBoxAssistant.BoundPassword="{Binding Source={x:Static local:JMMServerVM.Instance},Path=AniDB_Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        </StackPanel>
+        
+        <Button Name="btnTest" Margin="0,8,2,2" Grid.Column="0" Grid.Row="4"  HorizontalAlignment="Left" >
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                <Image Height="16" Width="16" Source="/Images/32_save.png" Margin="0,0,5,0"/>
+                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TestAndSave}" Margin="0,0,5,0"/>
+            </StackPanel>
+        </Button>
+
+    </Grid>
+</UserControl>

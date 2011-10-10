@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JMMForWindows", "JMMClient\JMMForWindows.csproj", "{B44B8402-A60B-4462-94FE-388DAB208360}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B44B8402-A60B-4462-94FE-388DAB208360}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B44B8402-A60B-4462-94FE-388DAB208360}.Debug|x86.Build.0 = Debug|Any CPU
+		{B44B8402-A60B-4462-94FE-388DAB208360}.Release|x86.ActiveCfg = Release|x86
+		{B44B8402-A60B-4462-94FE-388DAB208360}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
