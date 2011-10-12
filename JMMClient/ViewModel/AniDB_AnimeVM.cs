@@ -208,6 +208,9 @@ namespace JMMClient
 
 				if (!File.Exists(fileName))
 				{
+					if (!string.IsNullOrEmpty(Picname))
+						return string.Format(Constants.URLS.AniDB_Images, Picname);
+					
 					string packUriBlank = string.Format("pack://application:,,,/{0};component/Images/blankposter.png", Constants.AssemblyName);
 					return packUriBlank;
 				}

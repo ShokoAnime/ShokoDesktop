@@ -307,6 +307,9 @@
     <Compile Include="UserControls\Settings\WebCacheBasicSettings.xaml.cs">
       <DependentUpon>WebCacheBasicSettings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\SimilarAnimeControl.xaml.cs">
+      <DependentUpon>SimilarAnimeControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\SmartImage.xaml.cs">
       <DependentUpon>SmartImage.xaml</DependentUpon>
     </Compile>
@@ -342,6 +345,7 @@
     <Compile Include="ViewModel\AniDB_AnimeCrossRefsVM.cs" />
     <Compile Include="ViewModel\AniDB_AnimeVM.cs" />
     <Compile Include="ViewModel\AniDB_Anime_DefaultImageVM.cs" />
+    <Compile Include="ViewModel\AniDB_Anime_SimilarVM.cs" />
     <Compile Include="ViewModel\AniDB_VoteVM.cs" />
     <Compile Include="ViewModel\AnimeCategoryVM.cs" />
     <Compile Include="ViewModel\AnimeEpisodeTypeVM.cs">
@@ -626,6 +630,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\SimilarAnimeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\SmartImage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -719,6 +727,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AniDB_AnimeDetailed.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AniDB_Anime_Similar.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AnimeEpisode.datasource">

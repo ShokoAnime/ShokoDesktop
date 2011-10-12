@@ -943,6 +943,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Get Missing Data Now.
+        /// </summary>
+        public static string GetMissingData {
+            get {
+                return ResourceManager.GetString("GetMissingData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Group.
         /// </summary>
         public static string Group {
@@ -2248,6 +2257,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No similar anime could be found.
+        /// </summary>
+        public static string NoSimilarAnime {
+            get {
+                return ResourceManager.GetString("NoSimilarAnime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nothing Selected.
         /// </summary>
         public static string NothingSelected {
@@ -2406,6 +2424,15 @@ namespace JMMClient.Properties {
         public static string Rehash {
             get {
                 return ResourceManager.GetString("Rehash", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Related And Similar.
+        /// </summary>
+        public static string RelatedAndSimilar {
+            get {
+                return ResourceManager.GetString("RelatedAndSimilar", resourceCulture);
             }
         }
         
@@ -2604,6 +2631,15 @@ namespace JMMClient.Properties {
         public static string Settings {
             get {
                 return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Similar Anime.
+        /// </summary>
+        public static string SimilarAnime {
+            get {
+                return ResourceManager.GetString("SimilarAnime", resourceCulture);
             }
         }
         

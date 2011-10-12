@@ -84,6 +84,12 @@ namespace JMMClient
 
 		}
 
+		public static string FormatPercentage(double val)
+		{
+			return String.Format("{0:0.0}%", val);
+
+		}
+
 		public static string FormatSecondsToDisplayTime(int secs)
 		{
 			TimeSpan t = TimeSpan.FromSeconds(secs);

@@ -1418,4 +1418,16 @@
   <data name="Tooltip_CreateSeries" xml:space="preserve">
     <value>Create series for this anime</value>
   </data>
+  <data name="SimilarAnime" xml:space="preserve">
+    <value>Similar Anime</value>
+  </data>
+  <data name="RelatedAndSimilar" xml:space="preserve">
+    <value>Related And Similar</value>
+  </data>
+  <data name="GetMissingData" xml:space="preserve">
+    <value>Get Missing Data Now</value>
+  </data>
+  <data name="NoSimilarAnime" xml:space="preserve">
+    <value>No similar anime could be found</value>
+  </data>
 </root>

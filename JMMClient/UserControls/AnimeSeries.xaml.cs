@@ -134,6 +134,7 @@ namespace JMMClient.UserControls
 			btnFileSummary.Click += new RoutedEventHandler(btnFileSummary_Click);
 			btnTvDBLinks.Click += new RoutedEventHandler(btnTvDBLinks_Click);
 			btnPlayNextEpisode.Click += new RoutedEventHandler(btnPlayNextEpisode_Click);
+			btnGetRelMissingInfo.Click += new RoutedEventHandler(btnGetRelMissingInfo_Click);
 
 			this.DataContextChanged += new DependencyPropertyChangedEventHandler(AnimeSeries_DataContextChanged);
 
@@ -158,6 +159,13 @@ namespace JMMClient.UserControls
 
 			SetSeriesWidgetOrder();
 		}
+
+		void btnGetRelMissingInfo_Click(object sender, RoutedEventArgs e)
+		{
+			ucSimilarAnime.GetMissingSimilarData();
+		}
+
+		
 
 		
 
@@ -625,6 +633,12 @@ namespace JMMClient.UserControls
 				{
 					RefreshImagesData();
 				}
+				else if (tab.SelectedIndex == 3) // related and similar
+				{
+					this.Cursor = Cursors.Wait;
+					ucSimilarAnime.RefreshData();
+					this.Cursor = Cursors.Arrow;
+				}
 			}
 		}
 
@@ -706,6 +720,7 @@ namespace JMMClient.UserControls
 			AnimeSeriesVM ser = this.DataContext as AnimeSeriesVM;
 			if (ser == null) return;
 			epListMain.DataContext = ser;
+			ucSimilarAnime.DataContext = ser;
 
 			if (tabContainer.SelectedIndex == 1) // episodes
 			{
@@ -714,6 +729,12 @@ namespace JMMClient.UserControls
 			else if (tabContainer.SelectedIndex == 2) // images
 			{
 				RefreshImagesData();
+			}
+			else if (tabContainer.SelectedIndex == 3) // related and similar
+			{
+				this.Cursor = Cursors.Wait;
+				ucSimilarAnime.RefreshData();
+				this.Cursor = Cursors.Arrow;
 			}
 				
 			this.Cursor = Cursors.Arrow;
@@ -768,6 +789,18 @@ namespace JMMClient.UserControls
 					ucNextEpisode.DataContext = null;
 				}
 			}
+		}
+
+		private void ShowSimilarAnime()
+		{
+			
+			AnimeSeriesVM ser = this.DataContext as AnimeSeriesVM;
+			if (ser == null) return;
+
+			this.Cursor = Cursors.Wait;
+			ucSimilarAnime.DataContext = ser.AniDB_Anime;
+
+			this.Cursor = Cursors.Arrow;
 		}
 
 		void btnAnimeGroupShow_Click(object sender, RoutedEventArgs e)

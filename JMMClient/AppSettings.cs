@@ -372,6 +372,7 @@ namespace JMMClient
 			}
 		}
 
+
 		public static bool TitlesExpanded
 		{
 			get

@@ -854,9 +854,15 @@ namespace JMMClient
 
 			try
 			{
-				if (obj.GetType() == typeof(AniDB_AnimeVM))
+				if (obj.GetType() == typeof(AniDB_AnimeVM) || obj.GetType() == typeof(AniDB_Anime_SimilarVM))
 				{
-					AniDB_AnimeVM anime = (AniDB_AnimeVM)obj;
+					AniDB_AnimeVM anime = null;
+
+					if (obj.GetType() == typeof(AniDB_AnimeVM))
+						anime = (AniDB_AnimeVM)obj;
+
+					if (obj.GetType() == typeof(AniDB_Anime_SimilarVM))
+						anime = ((AniDB_Anime_SimilarVM)obj).AniDB_Anime;
 
 					// check if a series already exists
 					bool seriesExists = JMMServerVM.Instance.clientBinaryHTTP.GetSeriesExistingForAnime(anime.AnimeID);
@@ -916,6 +922,12 @@ namespace JMMClient
 				{
 					AnimeSeriesVM ser = (AnimeSeriesVM)obj;
 					ShowPinnedSeries(ser);
+				}
+
+				if (obj.GetType() == typeof(AniDB_Anime_SimilarVM))
+				{
+					AniDB_Anime_SimilarVM sim = (AniDB_Anime_SimilarVM)obj;
+					ShowPinnedSeries(sim.AnimeSeries);
 				}
 			}
 			catch (Exception ex)

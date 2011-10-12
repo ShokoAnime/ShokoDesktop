@@ -56,6 +56,12 @@
   <wsdl:message name="IJMMServer_GetSeriesExistingForAnime_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetSeriesExistingForAnimeResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_GetSimilarAnimeLinks_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSimilarAnimeLinks" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetSimilarAnimeLinks_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSimilarAnimeLinksResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_LinkAniDBOther_InputMessage">
     <wsdl:part name="parameters" element="tns:LinkAniDBOther" />
   </wsdl:message>
@@ -753,6 +759,10 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetSeriesExistingForAnime" message="tns:IJMMServer_GetSeriesExistingForAnime_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetSeriesExistingForAnimeResponse" message="tns:IJMMServer_GetSeriesExistingForAnime_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetSimilarAnimeLinks">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetSimilarAnimeLinks" message="tns:IJMMServer_GetSimilarAnimeLinks_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetSimilarAnimeLinksResponse" message="tns:IJMMServer_GetSimilarAnimeLinks_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="LinkAniDBOther">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/LinkAniDBOther" message="tns:IJMMServer_LinkAniDBOther_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/LinkAniDBOtherResponse" message="tns:IJMMServer_LinkAniDBOther_OutputMessage" />
@@ -1252,6 +1262,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetSeriesExistingForAnime">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetSeriesExistingForAnime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSimilarAnimeLinks">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetSimilarAnimeLinks" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
