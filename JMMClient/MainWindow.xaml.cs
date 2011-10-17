@@ -294,7 +294,9 @@ namespace JMMClient
 			{
 				if (tabIndex == TAB_MAIN_Dashboard)
 				{
-					if (DashboardVM.Instance.EpsWatchNext_Recent.Count == 0)
+					if (DashboardVM.Instance.EpsWatchNext_Recent.Count == 0 && DashboardVM.Instance.SeriesMissingEps.Count == 0
+						&& DashboardVM.Instance.MiniCalendar.Count == 0 && DashboardVM.Instance.RecommendationsWatch.Count == 0
+						&& DashboardVM.Instance.RecommendationsDownload.Count == 0)
 					{
 						tabControl1.IsEnabled = false;
 						this.Cursor = Cursors.Wait;
@@ -928,6 +930,12 @@ namespace JMMClient
 				{
 					AniDB_Anime_SimilarVM sim = (AniDB_Anime_SimilarVM)obj;
 					ShowPinnedSeries(sim.AnimeSeries);
+				}
+
+				if (obj.GetType() == typeof(RecommendationVM))
+				{
+					RecommendationVM rec = (RecommendationVM)obj;
+					ShowPinnedSeries(rec.Recommended_AnimeSeries);
 				}
 			}
 			catch (Exception ex)

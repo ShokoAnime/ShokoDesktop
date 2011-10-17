@@ -3612,6 +3612,304 @@ namespace JMMClient.JMMServerBinary {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_AniDB_Anime_Relation", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
+    [System.SerializableAttribute()]
+    public partial class Contract_AniDB_Anime_Relation : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private JMMClient.JMMServerBinary.Contract_AniDBAnime AniDB_AnimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AniDB_Anime_RelationIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AnimeIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private JMMClient.JMMServerBinary.Contract_AnimeSeries AnimeSeriesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RelatedAnimeIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RelationTypeField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public JMMClient.JMMServerBinary.Contract_AniDBAnime AniDB_Anime {
+            get {
+                return this.AniDB_AnimeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AniDB_AnimeField, value) != true)) {
+                    this.AniDB_AnimeField = value;
+                    this.RaisePropertyChanged("AniDB_Anime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AniDB_Anime_RelationID {
+            get {
+                return this.AniDB_Anime_RelationIDField;
+            }
+            set {
+                if ((this.AniDB_Anime_RelationIDField.Equals(value) != true)) {
+                    this.AniDB_Anime_RelationIDField = value;
+                    this.RaisePropertyChanged("AniDB_Anime_RelationID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AnimeID {
+            get {
+                return this.AnimeIDField;
+            }
+            set {
+                if ((this.AnimeIDField.Equals(value) != true)) {
+                    this.AnimeIDField = value;
+                    this.RaisePropertyChanged("AnimeID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public JMMClient.JMMServerBinary.Contract_AnimeSeries AnimeSeries {
+            get {
+                return this.AnimeSeriesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AnimeSeriesField, value) != true)) {
+                    this.AnimeSeriesField = value;
+                    this.RaisePropertyChanged("AnimeSeries");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RelatedAnimeID {
+            get {
+                return this.RelatedAnimeIDField;
+            }
+            set {
+                if ((this.RelatedAnimeIDField.Equals(value) != true)) {
+                    this.RelatedAnimeIDField = value;
+                    this.RaisePropertyChanged("RelatedAnimeID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string RelationType {
+            get {
+                return this.RelationTypeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RelationTypeField, value) != true)) {
+                    this.RelationTypeField = value;
+                    this.RaisePropertyChanged("RelationType");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_Recommendation", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
+    [System.SerializableAttribute()]
+    public partial class Contract_Recommendation : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int BasedOnAnimeIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int BasedOnVoteValueField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private JMMClient.JMMServerBinary.Contract_AniDBAnime BasedOn_AniDB_AnimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private JMMClient.JMMServerBinary.Contract_AnimeSeries BasedOn_AnimeSeriesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RecommendedAnimeIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double RecommendedApprovalField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private JMMClient.JMMServerBinary.Contract_AniDBAnime Recommended_AniDB_AnimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private JMMClient.JMMServerBinary.Contract_AnimeSeries Recommended_AnimeSeriesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double ScoreField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int BasedOnAnimeID {
+            get {
+                return this.BasedOnAnimeIDField;
+            }
+            set {
+                if ((this.BasedOnAnimeIDField.Equals(value) != true)) {
+                    this.BasedOnAnimeIDField = value;
+                    this.RaisePropertyChanged("BasedOnAnimeID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int BasedOnVoteValue {
+            get {
+                return this.BasedOnVoteValueField;
+            }
+            set {
+                if ((this.BasedOnVoteValueField.Equals(value) != true)) {
+                    this.BasedOnVoteValueField = value;
+                    this.RaisePropertyChanged("BasedOnVoteValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public JMMClient.JMMServerBinary.Contract_AniDBAnime BasedOn_AniDB_Anime {
+            get {
+                return this.BasedOn_AniDB_AnimeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BasedOn_AniDB_AnimeField, value) != true)) {
+                    this.BasedOn_AniDB_AnimeField = value;
+                    this.RaisePropertyChanged("BasedOn_AniDB_Anime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public JMMClient.JMMServerBinary.Contract_AnimeSeries BasedOn_AnimeSeries {
+            get {
+                return this.BasedOn_AnimeSeriesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BasedOn_AnimeSeriesField, value) != true)) {
+                    this.BasedOn_AnimeSeriesField = value;
+                    this.RaisePropertyChanged("BasedOn_AnimeSeries");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RecommendedAnimeID {
+            get {
+                return this.RecommendedAnimeIDField;
+            }
+            set {
+                if ((this.RecommendedAnimeIDField.Equals(value) != true)) {
+                    this.RecommendedAnimeIDField = value;
+                    this.RaisePropertyChanged("RecommendedAnimeID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double RecommendedApproval {
+            get {
+                return this.RecommendedApprovalField;
+            }
+            set {
+                if ((this.RecommendedApprovalField.Equals(value) != true)) {
+                    this.RecommendedApprovalField = value;
+                    this.RaisePropertyChanged("RecommendedApproval");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public JMMClient.JMMServerBinary.Contract_AniDBAnime Recommended_AniDB_Anime {
+            get {
+                return this.Recommended_AniDB_AnimeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.Recommended_AniDB_AnimeField, value) != true)) {
+                    this.Recommended_AniDB_AnimeField = value;
+                    this.RaisePropertyChanged("Recommended_AniDB_Anime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public JMMClient.JMMServerBinary.Contract_AnimeSeries Recommended_AnimeSeries {
+            get {
+                return this.Recommended_AnimeSeriesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.Recommended_AnimeSeriesField, value) != true)) {
+                    this.Recommended_AnimeSeriesField = value;
+                    this.RaisePropertyChanged("Recommended_AnimeSeries");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double Score {
+            get {
+                return this.ScoreField;
+            }
+            set {
+                if ((this.ScoreField.Equals(value) != true)) {
+                    this.ScoreField = value;
+                    this.RaisePropertyChanged("Score");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Contract_AnimeEpisode", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
     [System.SerializableAttribute()]
     public partial class Contract_AnimeEpisode : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -10081,6 +10379,12 @@ namespace JMMClient.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetSimilarAnimeLinks", ReplyAction="http://tempuri.org/IJMMServer/GetSimilarAnimeLinksResponse")]
         System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDB_Anime_Similar> GetSimilarAnimeLinks(int animeID, int userID);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetRelatedAnimeLinks", ReplyAction="http://tempuri.org/IJMMServer/GetRelatedAnimeLinksResponse")]
+        System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDB_Anime_Relation> GetRelatedAnimeLinks(int animeID, int userID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetRecommendations", ReplyAction="http://tempuri.org/IJMMServer/GetRecommendationsResponse")]
+        System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_Recommendation> GetRecommendations(int maxResults, int userID, int recommendationType);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/LinkAniDBOther", ReplyAction="http://tempuri.org/IJMMServer/LinkAniDBOtherResponse")]
         string LinkAniDBOther(int animeID, int movieID, int crossRefType);
         
@@ -10471,6 +10775,14 @@ namespace JMMClient.JMMServerBinary {
         
         public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDB_Anime_Similar> GetSimilarAnimeLinks(int animeID, int userID) {
             return base.Channel.GetSimilarAnimeLinks(animeID, userID);
+        }
+        
+        public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDB_Anime_Relation> GetRelatedAnimeLinks(int animeID, int userID) {
+            return base.Channel.GetRelatedAnimeLinks(animeID, userID);
+        }
+        
+        public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_Recommendation> GetRecommendations(int maxResults, int userID, int recommendationType) {
+            return base.Channel.GetRecommendations(maxResults, userID, recommendationType);
         }
         
         public string LinkAniDBOther(int animeID, int movieID, int crossRefType) {

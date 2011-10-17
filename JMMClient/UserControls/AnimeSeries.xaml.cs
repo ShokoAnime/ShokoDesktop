@@ -135,6 +135,7 @@ namespace JMMClient.UserControls
 			btnTvDBLinks.Click += new RoutedEventHandler(btnTvDBLinks_Click);
 			btnPlayNextEpisode.Click += new RoutedEventHandler(btnPlayNextEpisode_Click);
 			btnGetRelMissingInfo.Click += new RoutedEventHandler(btnGetRelMissingInfo_Click);
+			btnGetSimMissingInfo.Click += new RoutedEventHandler(btnGetSimMissingInfo_Click);
 
 			this.DataContextChanged += new DependencyPropertyChangedEventHandler(AnimeSeries_DataContextChanged);
 
@@ -160,9 +161,15 @@ namespace JMMClient.UserControls
 			SetSeriesWidgetOrder();
 		}
 
-		void btnGetRelMissingInfo_Click(object sender, RoutedEventArgs e)
+		void btnGetSimMissingInfo_Click(object sender, RoutedEventArgs e)
 		{
 			ucSimilarAnime.GetMissingSimilarData();
+		}
+
+		void btnGetRelMissingInfo_Click(object sender, RoutedEventArgs e)
+		{
+			
+			ucRelatedAnime.GetMissingSimilarData();
 		}
 
 		
@@ -637,8 +644,10 @@ namespace JMMClient.UserControls
 				{
 					this.Cursor = Cursors.Wait;
 					ucSimilarAnime.RefreshData();
+					ucRelatedAnime.RefreshData();
 					this.Cursor = Cursors.Arrow;
 				}
+
 			}
 		}
 
@@ -721,6 +730,7 @@ namespace JMMClient.UserControls
 			if (ser == null) return;
 			epListMain.DataContext = ser;
 			ucSimilarAnime.DataContext = ser;
+			ucRelatedAnime.DataContext = ser;
 
 			if (tabContainer.SelectedIndex == 1) // episodes
 			{
@@ -734,6 +744,7 @@ namespace JMMClient.UserControls
 			{
 				this.Cursor = Cursors.Wait;
 				ucSimilarAnime.RefreshData();
+				ucRelatedAnime.RefreshData();
 				this.Cursor = Cursors.Arrow;
 			}
 				
@@ -789,18 +800,6 @@ namespace JMMClient.UserControls
 					ucNextEpisode.DataContext = null;
 				}
 			}
-		}
-
-		private void ShowSimilarAnime()
-		{
-			
-			AnimeSeriesVM ser = this.DataContext as AnimeSeriesVM;
-			if (ser == null) return;
-
-			this.Cursor = Cursors.Wait;
-			ucSimilarAnime.DataContext = ser.AniDB_Anime;
-
-			this.Cursor = Cursors.Arrow;
 		}
 
 		void btnAnimeGroupShow_Click(object sender, RoutedEventArgs e)

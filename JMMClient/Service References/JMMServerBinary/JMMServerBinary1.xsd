@@ -309,6 +309,43 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_AniDB_Anime_Similar" nillable="true" type="tns:Contract_AniDB_Anime_Similar" />
+  <xs:complexType name="ArrayOfContract_AniDB_Anime_Relation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_AniDB_Anime_Relation" nillable="true" type="tns:Contract_AniDB_Anime_Relation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_AniDB_Anime_Relation" nillable="true" type="tns:ArrayOfContract_AniDB_Anime_Relation" />
+  <xs:complexType name="Contract_AniDB_Anime_Relation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AniDB_Anime" nillable="true" type="tns:Contract_AniDBAnime" />
+      <xs:element minOccurs="0" name="AniDB_Anime_RelationID" type="xs:int" />
+      <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
+      <xs:element minOccurs="0" name="AnimeSeries" nillable="true" type="tns:Contract_AnimeSeries" />
+      <xs:element minOccurs="0" name="RelatedAnimeID" type="xs:int" />
+      <xs:element minOccurs="0" name="RelationType" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_AniDB_Anime_Relation" nillable="true" type="tns:Contract_AniDB_Anime_Relation" />
+  <xs:complexType name="ArrayOfContract_Recommendation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_Recommendation" nillable="true" type="tns:Contract_Recommendation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_Recommendation" nillable="true" type="tns:ArrayOfContract_Recommendation" />
+  <xs:complexType name="Contract_Recommendation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BasedOnAnimeID" type="xs:int" />
+      <xs:element minOccurs="0" name="BasedOnVoteValue" type="xs:int" />
+      <xs:element minOccurs="0" name="BasedOn_AniDB_Anime" nillable="true" type="tns:Contract_AniDBAnime" />
+      <xs:element minOccurs="0" name="BasedOn_AnimeSeries" nillable="true" type="tns:Contract_AnimeSeries" />
+      <xs:element minOccurs="0" name="RecommendedAnimeID" type="xs:int" />
+      <xs:element minOccurs="0" name="RecommendedApproval" type="xs:double" />
+      <xs:element minOccurs="0" name="Recommended_AniDB_Anime" nillable="true" type="tns:Contract_AniDBAnime" />
+      <xs:element minOccurs="0" name="Recommended_AnimeSeries" nillable="true" type="tns:Contract_AnimeSeries" />
+      <xs:element minOccurs="0" name="Score" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_Recommendation" nillable="true" type="tns:Contract_Recommendation" />
   <xs:complexType name="ArrayOfContract_MovieDB_Poster">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_MovieDB_Poster" nillable="true" type="tns:Contract_MovieDB_Poster" />

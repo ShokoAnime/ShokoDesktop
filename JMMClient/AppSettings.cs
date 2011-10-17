@@ -329,14 +329,14 @@ namespace JMMClient
 				if (string.IsNullOrEmpty(val))
 				{
 					// default value
-					val = "1;2;3";
+					val = "1;2;3;4;5";
 					UpdateSetting("DashboardWidgetsOrder", val);
 				}
 
 				// make sure the setting contains all the widgets
 				// just in case the user has manually edited the config, or is using an old config
 				string[] widgets = val.Split(';');
-				int maxEnum = 3;
+				int maxEnum = 5;
 				for (int i = 1; i <= maxEnum; i++)
 				{
 					if (!widgets.Contains(i.ToString()))
@@ -535,6 +535,42 @@ namespace JMMClient
 			}
 		}
 
+		public static bool DashRecommendationsWatchExpanded
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["DashRecommendationsWatchExpanded"];
+				bool bval = true;
+				if (bool.TryParse(val, out bval))
+					return bval;
+				else
+					return true; // default value
+			}
+			set
+			{
+				UpdateSetting("DashRecommendationsWatchExpanded", value.ToString());
+			}
+		}
+
+		public static bool DashRecommendationsDownloadExpanded
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["DashRecommendationsDownloadExpanded"];
+				bool bval = true;
+				if (bool.TryParse(val, out bval))
+					return bval;
+				else
+					return true; // default value
+			}
+			set
+			{
+				UpdateSetting("DashRecommendationsDownloadExpanded", value.ToString());
+			}
+		}
+
 		public static int Dash_WatchNext_Items
 		{
 			get
@@ -702,6 +738,108 @@ namespace JMMClient
 			set
 			{
 				UpdateSetting("Dash_MiniCalendar_Height", value.ToString());
+			}
+		}
+
+		public static int Dash_RecWatch_Height
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["Dash_RecWatch_Height"];
+				int ival = 0;
+				if (int.TryParse(val, out ival))
+				{
+					if (ival < 30)
+						return 30;
+
+					if (ival > 300)
+						return 300;
+
+					return ival;
+				}
+				else
+				{
+					return 150; // default value
+				}
+			}
+			set
+			{
+				UpdateSetting("Dash_RecWatch_Height", value.ToString());
+			}
+		}
+
+		public static int Dash_RecWatch_Items
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["Dash_RecWatch_Items"];
+				int ival = 0;
+				if (int.TryParse(val, out ival))
+				{
+					if (ival >= 0 && ival <= 100)
+						return ival;
+					else
+						return 10;
+				}
+				else
+					return 10; // default value
+			}
+			set
+			{
+				UpdateSetting("Dash_RecWatch_Items", value.ToString());
+			}
+		}
+
+		public static int Dash_RecDownload_Height
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["Dash_RecDownload_Height"];
+				int ival = 0;
+				if (int.TryParse(val, out ival))
+				{
+					if (ival < 30)
+						return 30;
+
+					if (ival > 300)
+						return 300;
+
+					return ival;
+				}
+				else
+				{
+					return 150; // default value
+				}
+			}
+			set
+			{
+				UpdateSetting("Dash_RecDownload_Height", value.ToString());
+			}
+		}
+
+		public static int Dash_RecDownload_Items
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["Dash_RecDownload_Items"];
+				int ival = 0;
+				if (int.TryParse(val, out ival))
+				{
+					if (ival >= 0 && ival <= 100)
+						return ival;
+					else
+						return 10;
+				}
+				else
+					return 10; // default value
+			}
+			set
+			{
+				UpdateSetting("Dash_RecDownload_Items", value.ToString());
 			}
 		}
 

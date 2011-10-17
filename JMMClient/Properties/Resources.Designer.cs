@@ -511,6 +511,24 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Recommendations to Download.
+        /// </summary>
+        public static string Dash_RecDownload {
+            get {
+                return ResourceManager.GetString("Dash_RecDownload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recommendations To Watch.
+        /// </summary>
+        public static string Dash_RecWatch {
+            get {
+                return ResourceManager.GetString("Dash_RecWatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Missing Episodes (By Recently Watched).
         /// </summary>
         public static string Dash_SeriesMissingEps {
@@ -2257,6 +2275,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No related anime could be found.
+        /// </summary>
+        public static string NoRelatedAnime {
+            get {
+                return ResourceManager.GetString("NoRelatedAnime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No similar anime could be found.
         /// </summary>
         public static string NoSimilarAnime {
@@ -2433,6 +2460,15 @@ namespace JMMClient.Properties {
         public static string RelatedAndSimilar {
             get {
                 return ResourceManager.GetString("RelatedAndSimilar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Related Anime.
+        /// </summary>
+        public static string RelatedAnime {
+            get {
+                return ResourceManager.GetString("RelatedAnime", resourceCulture);
             }
         }
         

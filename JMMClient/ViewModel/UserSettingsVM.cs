@@ -188,6 +188,38 @@ namespace JMMClient
 			}
 		}
 
+		public bool DashRecommendationsWatchCollapsed
+		{
+			get { return !AppSettings.DashRecommendationsWatchExpanded; }
+		}
+
+		public bool DashRecommendationsWatchExpanded
+		{
+			get { return AppSettings.DashRecommendationsWatchExpanded; }
+			set
+			{
+				AppSettings.DashRecommendationsWatchExpanded = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("DashRecommendationsWatchExpanded"));
+				OnPropertyChanged(new PropertyChangedEventArgs("DashRecommendationsWatchCollapsed"));
+			}
+		}
+
+		public bool DashRecommendationsDownloadCollapsed
+		{
+			get { return !AppSettings.DashRecommendationsDownloadExpanded; }
+		}
+
+		public bool DashRecommendationsDownloadExpanded
+		{
+			get { return AppSettings.DashRecommendationsDownloadExpanded; }
+			set
+			{
+				AppSettings.DashRecommendationsDownloadExpanded = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("DashRecommendationsDownloadExpanded"));
+				OnPropertyChanged(new PropertyChangedEventArgs("DashRecommendationsDownloadCollapsed"));
+			}
+		}
+
 		public bool DashMiniCalendarCollapsed
 		{
 			get { return !AppSettings.DashMiniCalendarExpanded; }
@@ -310,6 +342,46 @@ namespace JMMClient
 			{
 				AppSettings.Dash_MiniCalendar_Height = value;
 				OnPropertyChanged(new PropertyChangedEventArgs("Dash_MiniCalendar_Height"));
+			}
+		}
+
+		public int Dash_RecWatch_Height
+		{
+			get { return AppSettings.Dash_RecWatch_Height; }
+			set
+			{
+				AppSettings.Dash_RecWatch_Height = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("Dash_RecWatch_Height"));
+			}
+		}
+
+		public int Dash_RecWatch_Items
+		{
+			get { return AppSettings.Dash_RecWatch_Items; }
+			set
+			{
+				AppSettings.Dash_RecWatch_Items = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("Dash_RecWatch_Items"));
+			}
+		}
+
+		public int Dash_RecDownload_Height
+		{
+			get { return AppSettings.Dash_RecDownload_Height; }
+			set
+			{
+				AppSettings.Dash_RecDownload_Height = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("Dash_RecDownload_Height"));
+			}
+		}
+
+		public int Dash_RecDownload_Items
+		{
+			get { return AppSettings.Dash_RecDownload_Items; }
+			set
+			{
+				AppSettings.Dash_RecDownload_Items = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("Dash_RecDownload_Items"));
 			}
 		}
 

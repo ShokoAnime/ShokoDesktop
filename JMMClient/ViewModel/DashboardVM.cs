@@ -28,7 +28,11 @@ namespace JMMClient
 		public ObservableCollection<AniDB_AnimeVM> MiniCalendar { get; set; }
 		public ICollectionView ViewMiniCalendar { get; set; }
 
-		
+		public ObservableCollection<RecommendationVM> RecommendationsWatch { get; set; }
+		public ICollectionView ViewRecommendationsWatch { get; set; }
+
+		public ObservableCollection<RecommendationVM> RecommendationsDownload { get; set; }
+		public ICollectionView ViewRecommendationsDownload { get; set; }
 
 		public event PropertyChangedEventHandler PropertyChanged;
 		private void NotifyPropertyChanged(String propertyName)
@@ -97,6 +101,12 @@ namespace JMMClient
 
 			MiniCalendar = new ObservableCollection<AniDB_AnimeVM>();
 			ViewMiniCalendar = CollectionViewSource.GetDefaultView(MiniCalendar);
+
+			RecommendationsWatch = new ObservableCollection<RecommendationVM>();
+			ViewRecommendationsWatch = CollectionViewSource.GetDefaultView(RecommendationsWatch);
+
+			RecommendationsDownload = new ObservableCollection<RecommendationVM>();
+			ViewRecommendationsDownload = CollectionViewSource.GetDefaultView(RecommendationsDownload);
 		}
 
 		
@@ -113,10 +123,14 @@ namespace JMMClient
 					SeriesMissingEps.Clear();
 					EpsWatchNext_Recent.Clear();
 					MiniCalendar.Clear();
+					RecommendationsWatch.Clear();
+					RecommendationsDownload.Clear();
 
 					ViewEpsWatchNext_Recent.Refresh();
 					ViewSeriesMissingEps.Refresh();
 					ViewMiniCalendar.Refresh();
+					ViewRecommendationsWatch.Refresh();
+					ViewRecommendationsDownload.Refresh();
 				});
 
 				MainListHelperVM.Instance.RefreshGroupsSeriesData();
@@ -131,8 +145,112 @@ namespace JMMClient
 				if (UserSettingsVM.Instance.DashMiniCalendarExpanded)
 					RefreshMiniCalendar();
 
+				if (UserSettingsVM.Instance.DashRecommendationsWatchExpanded)
+					RefreshRecommendationsWatch();
+
+				if (UserSettingsVM.Instance.DashRecommendationsDownloadExpanded)
+					RefreshRecommendationsDownload();
+
 				IsLoadingData = false;
 				
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+			finally
+			{
+			}
+		}
+
+		public void RefreshRecommendationsWatch()
+		{
+			try
+			{
+				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
+				{
+					RecommendationsWatch.Clear();
+				});
+
+				List<JMMServerBinary.Contract_Recommendation> contracts =
+					JMMServerVM.Instance.clientBinaryHTTP.GetRecommendations(UserSettingsVM.Instance.Dash_RecWatch_Items, JMMServerVM.Instance.CurrentUser.JMMUserID.Value, 1);
+
+				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
+				{
+					foreach (JMMServerBinary.Contract_Recommendation contract in contracts)
+					{
+						RecommendationVM rec = new RecommendationVM();
+						rec.Populate(contract);
+						RecommendationsWatch.Add(rec);
+					}
+					ViewRecommendationsWatch.Refresh();
+				});
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+			finally
+			{
+			}
+		}
+
+		public void RefreshRecommendationsDownload()
+		{
+			try
+			{
+				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
+				{
+					RecommendationsDownload.Clear();
+				});
+
+				List<JMMServerBinary.Contract_Recommendation> contracts =
+					JMMServerVM.Instance.clientBinaryHTTP.GetRecommendations(UserSettingsVM.Instance.Dash_RecDownload_Items, JMMServerVM.Instance.CurrentUser.JMMUserID.Value, 2);
+
+				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
+				{
+					foreach (JMMServerBinary.Contract_Recommendation contract in contracts)
+					{
+						RecommendationVM rec = new RecommendationVM();
+						rec.Populate(contract);
+						RecommendationsDownload.Add(rec);
+					}
+					ViewRecommendationsDownload.Refresh();
+				});
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+			finally
+			{
+			}
+		}
+
+		public void GetMissingRecommendationsDownload()
+		{
+			try
+			{
+				IsLoadingData = true;
+
+				foreach (RecommendationVM rec in RecommendationsDownload)
+				{
+					if (rec.Recommended_AnimeInfoNotExists)
+					{
+						string result = JMMServerVM.Instance.clientBinaryHTTP.UpdateAnimeData(rec.RecommendedAnimeID);
+						if (string.IsNullOrEmpty(result))
+						{
+							JMMServerBinary.Contract_AniDBAnime animeContract = JMMServerVM.Instance.clientBinaryHTTP.GetAnime(rec.RecommendedAnimeID);
+							System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Send, (Action)delegate()
+							{
+								rec.PopulateRecommendedAnime(animeContract);
+								ViewRecommendationsDownload.Refresh();
+							});
+						}
+					}
+				}
+
+				IsLoadingData = false;
 			}
 			catch (Exception ex)
 			{

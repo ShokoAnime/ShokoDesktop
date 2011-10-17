@@ -54,12 +54,7 @@ namespace JMMClient.Forms
 				else
 					importFldr.LocalPathTemp = txtLocalPath.Text.Trim();
 
-
-				if (string.IsNullOrEmpty(txtImportFolderName.Text))
-					importFldr.ImportFolderName = "NA";
-				else
-					importFldr.ImportFolderName = txtImportFolderName.Text.Trim();
-
+				importFldr.ImportFolderName = "NA";
 				importFldr.ImportFolderLocation = txtImportFolderLocation.Text.Trim();
 				importFldr.IsDropDestination = chkDropDestination.IsChecked.Value ? 1 : 0;
 				importFldr.IsDropSource = chkDropSource.IsChecked.Value ? 1 : 0;
@@ -89,12 +84,11 @@ namespace JMMClient.Forms
 				importFldr = ifldr;
 
 				txtImportFolderLocation.Text = importFldr.ImportFolderLocation;
-				txtImportFolderName.Text = importFldr.ImportFolderName;
 				txtLocalPath.Text = importFldr.LocalPath;
 				chkDropDestination.IsChecked = importFldr.IsDropDestination == 1;
 				chkDropSource.IsChecked = importFldr.IsDropSource == 1;
 
-				txtImportFolderName.Focus();
+				txtImportFolderLocation.Focus();
 			}
 			catch (Exception ex)
 			{

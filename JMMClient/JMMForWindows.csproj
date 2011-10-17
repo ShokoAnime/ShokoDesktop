@@ -262,6 +262,9 @@
     <Compile Include="UserControls\RatingControl.xaml.cs">
       <DependentUpon>RatingControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\RelatedAnimeControl.xaml.cs">
+      <DependentUpon>RelatedAnimeControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\SeriesPosterView.xaml.cs">
       <DependentUpon>SeriesPosterView.xaml</DependentUpon>
     </Compile>
@@ -345,6 +348,7 @@
     <Compile Include="ViewModel\AniDB_AnimeCrossRefsVM.cs" />
     <Compile Include="ViewModel\AniDB_AnimeVM.cs" />
     <Compile Include="ViewModel\AniDB_Anime_DefaultImageVM.cs" />
+    <Compile Include="ViewModel\AniDB_Anime_RelationVM.cs" />
     <Compile Include="ViewModel\AniDB_Anime_SimilarVM.cs" />
     <Compile Include="ViewModel\AniDB_VoteVM.cs" />
     <Compile Include="ViewModel\AnimeCategoryVM.cs" />
@@ -382,6 +386,7 @@
     <Compile Include="ViewModel\MovieDB_FanartVM.cs" />
     <Compile Include="ViewModel\MovieDB_MovieVM.cs" />
     <Compile Include="ViewModel\MovieDB_PosterVM.cs" />
+    <Compile Include="ViewModel\RecommendationVM.cs" />
     <Compile Include="ViewModel\ReleaseGroupVM.cs" />
     <Compile Include="ViewModel\TraktTVShowResponseVM.cs" />
     <Compile Include="ViewModel\Trakt_EpisodeVM.cs" />
@@ -570,6 +575,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\RelatedAnimeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\SeriesPosterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -729,6 +738,9 @@
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AniDB_AnimeDetailed.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AniDB_Anime_Relation.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AniDB_Anime_Similar.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -796,6 +808,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_MovieDB_Poster.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_Recommendation.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_ServerSettings.datasource">

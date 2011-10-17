@@ -1430,4 +1430,16 @@
   <data name="NoSimilarAnime" xml:space="preserve">
     <value>No similar anime could be found</value>
   </data>
+  <data name="NoRelatedAnime" xml:space="preserve">
+    <value>No related anime could be found</value>
+  </data>
+  <data name="RelatedAnime" xml:space="preserve">
+    <value>Related Anime</value>
+  </data>
+  <data name="Dash_RecWatch" xml:space="preserve">
+    <value>Recommendations To Watch</value>
+  </data>
+  <data name="Dash_RecDownload" xml:space="preserve">
+    <value>Recommendations to Download</value>
+  </data>
 </root>

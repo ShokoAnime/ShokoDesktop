@@ -250,7 +250,9 @@ namespace JMMClient
 	{
 		WatchNextEpisode = 1,
 		SeriesMissingEpisodes = 2,
-		MiniCalendar = 3
+		MiniCalendar = 3,
+		RecommendationsWatch = 4,
+		RecommendationsDownload = 5
 	}
 
 	public enum DashWatchNextStyle
