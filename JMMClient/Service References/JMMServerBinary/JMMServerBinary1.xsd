@@ -346,6 +346,21 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_Recommendation" nillable="true" type="tns:Contract_Recommendation" />
+  <xs:complexType name="ArrayOfContract_AniDBReleaseGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_AniDBReleaseGroup" nillable="true" type="tns:Contract_AniDBReleaseGroup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_AniDBReleaseGroup" nillable="true" type="tns:ArrayOfContract_AniDBReleaseGroup" />
+  <xs:complexType name="Contract_AniDBReleaseGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FileCount" type="xs:int" />
+      <xs:element minOccurs="0" name="GroupID" type="xs:int" />
+      <xs:element minOccurs="0" name="GroupName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserCollecting" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_AniDBReleaseGroup" nillable="true" type="tns:Contract_AniDBReleaseGroup" />
   <xs:complexType name="ArrayOfContract_MovieDB_Poster">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_MovieDB_Poster" nillable="true" type="tns:Contract_MovieDB_Poster" />
@@ -384,19 +399,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_AnimeEpisode" nillable="true" type="tns:Contract_AnimeEpisode" />
-  <xs:complexType name="ArrayOfContract_AniDBReleaseGroup">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_AniDBReleaseGroup" nillable="true" type="tns:Contract_AniDBReleaseGroup" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_AniDBReleaseGroup" nillable="true" type="tns:ArrayOfContract_AniDBReleaseGroup" />
-  <xs:complexType name="Contract_AniDBReleaseGroup">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="GroupID" type="xs:int" />
-      <xs:element minOccurs="0" name="GroupName" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_AniDBReleaseGroup" nillable="true" type="tns:Contract_AniDBReleaseGroup" />
   <xs:complexType name="ArrayOfContract_AnimeEpisode">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_AnimeEpisode" nillable="true" type="tns:Contract_AnimeEpisode" />

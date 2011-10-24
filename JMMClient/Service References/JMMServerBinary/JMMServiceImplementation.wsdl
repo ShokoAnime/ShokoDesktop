@@ -74,6 +74,12 @@
   <wsdl:message name="IJMMServer_GetRecommendations_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetRecommendationsResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_GetReleaseGroupsForAnime_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReleaseGroupsForAnime" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetReleaseGroupsForAnime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReleaseGroupsForAnimeResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_LinkAniDBOther_InputMessage">
     <wsdl:part name="parameters" element="tns:LinkAniDBOther" />
   </wsdl:message>
@@ -783,6 +789,10 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetRecommendations" message="tns:IJMMServer_GetRecommendations_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetRecommendationsResponse" message="tns:IJMMServer_GetRecommendations_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetReleaseGroupsForAnime">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetReleaseGroupsForAnime" message="tns:IJMMServer_GetReleaseGroupsForAnime_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetReleaseGroupsForAnimeResponse" message="tns:IJMMServer_GetReleaseGroupsForAnime_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="LinkAniDBOther">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/LinkAniDBOther" message="tns:IJMMServer_LinkAniDBOther_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/LinkAniDBOtherResponse" message="tns:IJMMServer_LinkAniDBOther_OutputMessage" />
@@ -1309,6 +1319,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetRecommendations">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetRecommendations" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReleaseGroupsForAnime">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetReleaseGroupsForAnime" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
