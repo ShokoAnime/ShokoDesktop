@@ -25,7 +25,7 @@ namespace JMMClient
 		public string Description { get; set; }
 		public DateTime DateTimeUpdated { get; set; }
 		//public int IsWatched { get; set; }
-		public DateTime? WatchedDate { get; set; }
+		//public DateTime? WatchedDate { get; set; }
 		public int PlayedCount { get; set; }
 		public int WatchedCount { get; set; }
 		public int StoppedCount { get; set; }
@@ -62,6 +62,18 @@ namespace JMMClient
 				NotifyPropertyChanged("IsWatched");
 				Watched = IsWatched == 1;
 				Unwatched = IsWatched == 0;
+			}
+		}
+
+		private DateTime? watchedDate = null;
+		public DateTime? WatchedDate
+		{
+			get { return watchedDate; }
+			set
+			{
+				watchedDate = value;
+				NotifyPropertyChanged("WatchedDate");
+				SetLastWatchedDescription();
 			}
 		}
 
@@ -302,7 +314,43 @@ namespace JMMClient
 			}
 		}
 
+		private string lastWatchedDescription = "";
+		public string LastWatchedDescription
+		{
+			get { return lastWatchedDescription; }
+			set
+			{
+				lastWatchedDescription = value;
+				NotifyPropertyChanged("LastWatchedDescription");
+			}
+		}
+
 		#endregion
+
+		public void SetLastWatchedDescription()
+		{
+			if (WatchedDate.HasValue)
+			{
+				DateTime today = DateTime.Now;
+				DateTime yesterday = today.AddDays(-1);
+
+				if (WatchedDate.Value.Day == today.Day && WatchedDate.Value.Month == today.Month && WatchedDate.Value.Year == today.Year)
+				{
+					LastWatchedDescription = JMMClient.Properties.Resources.Today;
+					return;
+				}
+
+				if (WatchedDate.Value.Day == yesterday.Day && WatchedDate.Value.Month == yesterday.Month && WatchedDate.Value.Year == yesterday.Year)
+				{
+					LastWatchedDescription = JMMClient.Properties.Resources.Yesterday;
+					return;
+				}
+
+				LastWatchedDescription = WatchedDate.Value.ToString("dd MMM yyyy", Globals.Culture);
+			}
+			else
+				LastWatchedDescription = "";
+		}
 
 		public void SetTvDBImageAndOverview()
 		{

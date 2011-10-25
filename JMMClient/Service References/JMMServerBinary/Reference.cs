@@ -3918,6 +3918,9 @@ namespace JMMClient.JMMServerBinary {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EpisodeRangeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int FileCountField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -3936,6 +3939,19 @@ namespace JMMClient.JMMServerBinary {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string EpisodeRange {
+            get {
+                return this.EpisodeRangeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EpisodeRangeField, value) != true)) {
+                    this.EpisodeRangeField = value;
+                    this.RaisePropertyChanged("EpisodeRange");
+                }
             }
         }
         
@@ -5962,6 +5978,9 @@ namespace JMMClient.JMMServerBinary {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int VideoLocal_IsWatchedField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> VideoLocal_WatchedDateField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -6514,6 +6533,19 @@ namespace JMMClient.JMMServerBinary {
                 if ((this.VideoLocal_IsWatchedField.Equals(value) != true)) {
                     this.VideoLocal_IsWatchedField = value;
                     this.RaisePropertyChanged("VideoLocal_IsWatched");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> VideoLocal_WatchedDate {
+            get {
+                return this.VideoLocal_WatchedDateField;
+            }
+            set {
+                if ((this.VideoLocal_WatchedDateField.Equals(value) != true)) {
+                    this.VideoLocal_WatchedDateField = value;
+                    this.RaisePropertyChanged("VideoLocal_WatchedDate");
                 }
             }
         }
@@ -8258,6 +8290,9 @@ namespace JMMClient.JMMServerBinary {
         private string AniDB_UsernameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool AutoGroupSeriesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool Hash_CRC32Field;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -8597,6 +8632,19 @@ namespace JMMClient.JMMServerBinary {
                 if ((object.ReferenceEquals(this.AniDB_UsernameField, value) != true)) {
                     this.AniDB_UsernameField = value;
                     this.RaisePropertyChanged("AniDB_Username");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool AutoGroupSeries {
+            get {
+                return this.AutoGroupSeriesField;
+            }
+            set {
+                if ((this.AutoGroupSeriesField.Equals(value) != true)) {
+                    this.AutoGroupSeriesField = value;
+                    this.RaisePropertyChanged("AutoGroupSeries");
                 }
             }
         }

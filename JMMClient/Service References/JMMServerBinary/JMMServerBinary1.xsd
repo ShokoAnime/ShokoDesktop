@@ -354,6 +354,7 @@
   <xs:element name="ArrayOfContract_AniDBReleaseGroup" nillable="true" type="tns:ArrayOfContract_AniDBReleaseGroup" />
   <xs:complexType name="Contract_AniDBReleaseGroup">
     <xs:sequence>
+      <xs:element minOccurs="0" name="EpisodeRange" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="FileCount" type="xs:int" />
       <xs:element minOccurs="0" name="GroupID" type="xs:int" />
       <xs:element minOccurs="0" name="GroupName" nillable="true" type="xs:string" />
@@ -629,6 +630,7 @@
       <xs:element minOccurs="0" name="VideoLocal_Hash" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="VideoLocal_IsIgnored" type="xs:int" />
       <xs:element minOccurs="0" name="VideoLocal_IsWatched" type="xs:int" />
+      <xs:element minOccurs="0" name="VideoLocal_WatchedDate" nillable="true" type="xs:dateTime" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_VideoDetailed" nillable="true" type="tns:Contract_VideoDetailed" />
@@ -834,6 +836,7 @@
       <xs:element minOccurs="0" name="AniDB_ServerAddress" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="AniDB_ServerPort" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="AniDB_Username" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AutoGroupSeries" type="xs:boolean" />
       <xs:element minOccurs="0" name="Hash_CRC32" type="xs:boolean" />
       <xs:element minOccurs="0" name="Hash_MD5" type="xs:boolean" />
       <xs:element minOccurs="0" name="Hash_SHA1" type="xs:boolean" />

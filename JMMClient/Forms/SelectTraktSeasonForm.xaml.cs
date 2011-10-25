@@ -31,7 +31,7 @@ namespace JMMClient.Forms
 		}
 
 		public static readonly DependencyProperty AnimeNameProperty = DependencyProperty.Register("AnimeName",
-			typeof(string), typeof(SearchTvDBForm), new UIPropertyMetadata("", null));
+			typeof(string), typeof(SelectTraktSeasonForm), new UIPropertyMetadata("", null));
 
 		public string AnimeName
 		{
@@ -40,7 +40,7 @@ namespace JMMClient.Forms
 		}
 
 		public static readonly DependencyProperty AnimeURLProperty = DependencyProperty.Register("AnimeURL",
-			typeof(string), typeof(SearchTvDBForm), new UIPropertyMetadata("", null));
+			typeof(string), typeof(SelectTraktSeasonForm), new UIPropertyMetadata("", null));
 
 		public string AnimeURL
 		{
@@ -49,7 +49,7 @@ namespace JMMClient.Forms
 		}
 
 		public static readonly DependencyProperty TraktIDProperty = DependencyProperty.Register("TraktID",
-			typeof(string), typeof(SearchTvDBForm), new UIPropertyMetadata("", null));
+			typeof(string), typeof(SelectTraktSeasonForm), new UIPropertyMetadata("", null));
 
 		public string TraktID
 		{
@@ -58,7 +58,7 @@ namespace JMMClient.Forms
 		}
 
 		public static readonly DependencyProperty TraktSeasonProperty = DependencyProperty.Register("TraktSeason",
-			typeof(int), typeof(SearchTvDBForm), new UIPropertyMetadata(0, null));
+			typeof(int), typeof(SelectTraktSeasonForm), new UIPropertyMetadata(0, null));
 
 		public int TraktSeason
 		{
@@ -67,7 +67,7 @@ namespace JMMClient.Forms
 		}
 
 		public static readonly DependencyProperty TraktSeriesNameProperty = DependencyProperty.Register("TraktSeriesName",
-			typeof(string), typeof(SearchTvDBForm), new UIPropertyMetadata("", null));
+			typeof(string), typeof(SelectTraktSeasonForm), new UIPropertyMetadata("", null));
 
 		public string TraktSeriesName
 		{
@@ -76,7 +76,7 @@ namespace JMMClient.Forms
 		}
 
 		public static readonly DependencyProperty TraktURLProperty = DependencyProperty.Register("TraktURL",
-			typeof(string), typeof(SearchTvDBForm), new UIPropertyMetadata("", null));
+			typeof(string), typeof(SelectTraktSeasonForm), new UIPropertyMetadata("", null));
 
 		public string TraktURL
 		{

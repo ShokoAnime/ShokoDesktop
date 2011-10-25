@@ -29,6 +29,7 @@ namespace JMMClient
 		public string VideoLocal_FilePath { get; set; }
 		public string VideoLocal_Hash { get; set; }
 		public long VideoLocal_FileSize { get; set; }
+		public DateTime? VideoLocal_WatchedDate { get; set; }
 		//public long VideoLocal_IsWatched { get; set; }
 
 		// VideoInfo
@@ -201,7 +202,55 @@ namespace JMMClient
 			}
 		}
 
+		private DateTime? watchedDate = null;
+		public DateTime? WatchedDate
+		{
+			get { return watchedDate; }
+			set
+			{
+				watchedDate = value;
+				NotifyPropertyChanged("WatchedDate");
+				SetLastWatchedDescription();
+			}
+		}
+
+		private string lastWatchedDescription = "";
+		public string LastWatchedDescription
+		{
+			get { return lastWatchedDescription; }
+			set
+			{
+				lastWatchedDescription = value;
+				NotifyPropertyChanged("LastWatchedDescription");
+			}
+		}
+
 		#endregion
+
+		public void SetLastWatchedDescription()
+		{
+			if (WatchedDate.HasValue)
+			{
+				DateTime today = DateTime.Now;
+				DateTime yesterday = today.AddDays(-1);
+
+				if (WatchedDate.Value.Day == today.Day && WatchedDate.Value.Month == today.Month && WatchedDate.Value.Year == today.Year)
+				{
+					LastWatchedDescription = JMMClient.Properties.Resources.Today;
+					return;
+				}
+
+				if (WatchedDate.Value.Day == yesterday.Day && WatchedDate.Value.Month == yesterday.Month && WatchedDate.Value.Year == yesterday.Year)
+				{
+					LastWatchedDescription = JMMClient.Properties.Resources.Yesterday;
+					return;
+				}
+
+				LastWatchedDescription = WatchedDate.Value.ToString("dd MMM yyyy", Globals.Culture);
+			}
+			else
+				LastWatchedDescription = "";
+		}
 
 		public string FileName
 		{
@@ -386,6 +435,8 @@ namespace JMMClient
 			this.VideoLocal_Hash = contract.VideoLocal_Hash;
 			this.VideoLocal_FileSize = contract.VideoLocal_FileSize;
 			this.VideoLocal_IsWatched = contract.VideoLocal_IsWatched;
+			this.VideoLocal_WatchedDate = contract.VideoLocal_WatchedDate;
+			this.WatchedDate = contract.VideoLocal_WatchedDate;
 			this.VideoLocal_IsIgnored = contract.VideoLocal_IsIgnored;
 
 			this.VideoInfo_VideoInfoID = contract.VideoInfo_VideoInfoID;

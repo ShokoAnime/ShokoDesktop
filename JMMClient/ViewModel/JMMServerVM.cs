@@ -370,6 +370,7 @@ namespace JMMClient
 			// Import settings
 			this.VideoExtensions = contract.VideoExtensions;
 			this.WatchForNewFiles = contract.WatchForNewFiles;
+			this.AutoGroupSeries = contract.AutoGroupSeries;
 			this.UseEpisodeStatus = contract.Import_UseExistingFileWatchedStatus;
 			this.RunImportOnStart = contract.RunImportOnStart;
 			this.Hash_CRC32 = contract.Hash_CRC32;
@@ -461,6 +462,7 @@ namespace JMMClient
 				contract.VideoExtensions = this.VideoExtensions;
 				contract.Import_UseExistingFileWatchedStatus = this.UseEpisodeStatus;
 				contract.WatchForNewFiles = this.WatchForNewFiles;
+				contract.AutoGroupSeries = this.AutoGroupSeries;
 				contract.RunImportOnStart = this.RunImportOnStart;
 				contract.Hash_CRC32 = this.Hash_CRC32;
 				contract.Hash_MD5 = this.Hash_MD5;
@@ -1079,6 +1081,17 @@ namespace JMMClient
 			{
 				videoExtensions = value;
 				OnPropertyChanged(new PropertyChangedEventArgs("VideoExtensions"));
+			}
+		}
+
+		private bool autoGroupSeries = false;
+		public bool AutoGroupSeries
+		{
+			get { return autoGroupSeries; }
+			set
+			{
+				autoGroupSeries = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("AutoGroupSeries"));
 			}
 		}
 

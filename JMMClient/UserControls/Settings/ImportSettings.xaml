@@ -21,6 +21,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <!-- Video Extensions -->
@@ -46,48 +47,57 @@
             <CheckBox Name="chkImportSettings_WatchFiles" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=WatchForNewFiles}" VerticalAlignment="Center"/>
         </StackPanel>
 
-        <!-- Use status from existing files -->
+        <!-- Auto Group Series -->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ImportSettings_UseEpisodeStatus}" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ImportSettings_AutoGroupSeries}" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Margin="0,5,5,0" Grid.ColumnSpan="1">
+            <CheckBox Name="chkImportSettings_AutoGroupSeries" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=AutoGroupSeries}" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <!-- Use status from existing files -->
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="3" Margin="0,5,15,0">
+            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ImportSettings_UseEpisodeStatus}" VerticalAlignment="Center"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3" Margin="0,5,5,0" Grid.ColumnSpan="1">
             <CheckBox Name="chkImportSettings_UseEpisodeStatus" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=UseEpisodeStatus}" VerticalAlignment="Center"/>
         </StackPanel>
 
         <!-- ImportOnStart -->
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="3" Margin="0,5,15,0">
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="4" Margin="0,5,15,0">
             <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ImportSettings_ImportOnStart}" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3" Margin="0,5,5,0" Grid.ColumnSpan="1">
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="4" Margin="0,5,5,0" Grid.ColumnSpan="1">
             <CheckBox Name="chkImportSettings_ImportOnStart" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=RunImportOnStart}" VerticalAlignment="Center"/>
         </StackPanel>
 
         <!-- Hash_CRC32 -->
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="4" Margin="0,5,15,0">
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="5" Margin="0,5,15,0">
             <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ImportSettings_HashCRC32}" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="4" Margin="0,5,5,0" Grid.ColumnSpan="1">
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="5" Margin="0,5,5,0" Grid.ColumnSpan="1">
             <CheckBox Name="chkImportSettings_HashCRC32" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=Hash_CRC32}" VerticalAlignment="Center"/>
         </StackPanel>
 
         <!-- Hash_MD5 -->
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="5" Margin="0,5,15,0">
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="6" Margin="0,5,15,0">
             <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ImportSettings_HashMD5}" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="5" Margin="0,5,5,0" Grid.ColumnSpan="1">
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="6" Margin="0,5,5,0" Grid.ColumnSpan="1">
             <CheckBox Name="chkImportSettings_HashMD5" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=Hash_MD5}" VerticalAlignment="Center"/>
         </StackPanel>
 
         <!-- Hash_SHA1 -->
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="6" Margin="0,5,15,0">
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="7" Margin="0,5,15,0">
             <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ImportSettings_SHA1}" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="6" Margin="0,5,5,0" Grid.ColumnSpan="1">
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="7" Margin="0,5,5,0" Grid.ColumnSpan="1">
             <CheckBox Name="chkImportSettings_SHA1" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=Hash_SHA1}" VerticalAlignment="Center"/>
         </StackPanel>
 

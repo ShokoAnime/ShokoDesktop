@@ -31,6 +31,7 @@ namespace JMMClient.UserControls
 			chkImportSettings_SHA1.Click += new RoutedEventHandler(settingChanged);
 			chkImportSettings_WatchFiles.Click += new RoutedEventHandler(settingChanged);
 			chkImportSettings_UseEpisodeStatus.Click += new RoutedEventHandler(settingChanged);
+			chkImportSettings_AutoGroupSeries.Click += new RoutedEventHandler(settingChanged);
 		}
 
 		void btnSave_Click(object sender, RoutedEventArgs e)

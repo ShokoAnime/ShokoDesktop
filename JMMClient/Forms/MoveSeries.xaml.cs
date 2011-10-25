@@ -26,6 +26,24 @@ namespace JMMClient.Forms
 		public static readonly DependencyProperty SelectedGroupProperty = DependencyProperty.Register("SelectedGroup",
 			typeof(AnimeGroupVM), typeof(MoveSeries), new UIPropertyMetadata(null, groupCallback));
 
+		public static readonly DependencyProperty IsNewGroupProperty = DependencyProperty.Register("IsNewGroup",
+			typeof(bool), typeof(MoveSeries), new UIPropertyMetadata(false, null));
+
+		public static readonly DependencyProperty IsExistingGroupProperty = DependencyProperty.Register("IsExistingGroup",
+			typeof(bool), typeof(MoveSeries), new UIPropertyMetadata(true, null));
+
+		public bool IsNewGroup
+		{
+			get { return (bool)GetValue(IsNewGroupProperty); }
+			set { SetValue(IsNewGroupProperty, value); }
+		}
+
+		public bool IsExistingGroup
+		{
+			get { return (bool)GetValue(IsExistingGroupProperty); }
+			set { SetValue(IsExistingGroupProperty, value); }
+		}
+
 		//private AnimeSeriesVM animeSeries = null;
 
 		public MoveSeries()
@@ -36,7 +54,27 @@ namespace JMMClient.Forms
 			btnClearSearch.Click += new RoutedEventHandler(btnClearSearch_Click);
 			btnOK.Click += new RoutedEventHandler(btnOK_Click);
 
+			rbGroupExisting.Checked += new RoutedEventHandler(rbGroupExisting_Checked);
+			rbGroupNew.Checked += new RoutedEventHandler(rbGroupNew_Checked);
+
 			lbGroups.MouseDoubleClick += new MouseButtonEventHandler(lbGroups_MouseDoubleClick);
+		}
+
+		void rbGroupNew_Checked(object sender, RoutedEventArgs e)
+		{
+			EvaluateRadioButtons();
+			txtGroupName.Focus();
+		}
+
+		void rbGroupExisting_Checked(object sender, RoutedEventArgs e)
+		{
+			EvaluateRadioButtons();
+		}
+
+		private void EvaluateRadioButtons()
+		{
+			IsNewGroup = rbGroupNew.IsChecked.Value;
+			IsExistingGroup = rbGroupExisting.IsChecked.Value;
 		}
 
 		
@@ -72,15 +110,65 @@ namespace JMMClient.Forms
 
 		void btnOK_Click(object sender, RoutedEventArgs e)
 		{
-			if (lbGroups.SelectedItem == null)
+			int? groupID = null;
+
+			if (IsExistingGroup)
 			{
-				MessageBox.Show("Select a group first", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
-				return;
+				if (lbGroups.SelectedItem == null)
+				{
+					MessageBox.Show(Properties.Resources.MSG_ERR_GroupSelectionRequired, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					lbGroups.Focus();
+					return;
+				}
+				else
+				{
+					SelectedGroup = lbGroups.SelectedItem as AnimeGroupVM;
+					this.DialogResult = true;
+					this.Close();
+				}
+
 			}
 
-			SelectedGroup = lbGroups.SelectedItem as AnimeGroupVM;
-			this.DialogResult = true;
-			this.Close();
+			if (IsNewGroup)
+			{
+				if (txtGroupName.Text.Trim().Length == 0)
+				{
+					MessageBox.Show(Properties.Resources.MSG_ERR_GroupNameRequired, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					txtGroupName.Focus();
+					return;
+				}
+
+				AnimeGroupVM grp = new AnimeGroupVM();
+				grp.GroupName = txtGroupName.Text.Trim();
+				grp.SortName = txtGroupName.Text.Trim();
+				grp.AnimeGroupParentID = null;
+				grp.Description = "";
+				grp.IsFave = 0;
+				grp.IsManuallyNamed = 0;
+				grp.OverrideDescription = 0;
+
+
+				if (grp.Validate())
+				{
+					grp.IsReadOnly = true;
+					grp.IsBeingEdited = false;
+					if (grp.Save())
+					{
+						MainListHelperVM.Instance.AllGroups.Add(grp);
+						MainListHelperVM.Instance.AllGroupsDictionary[grp.AnimeGroupID.Value] = grp;
+						MainListHelperVM.Instance.ViewGroups.Refresh();
+						groupID = grp.AnimeGroupID;
+					}
+
+				}
+				SelectedGroup = grp;
+				this.DialogResult = true;
+				this.Close();
+			}
+
+
+
+			
 		}
 
 		void btnClearSearch_Click(object sender, RoutedEventArgs e)
@@ -95,6 +183,9 @@ namespace JMMClient.Forms
 			Series = series;
 			MainListHelperVM.Instance.ViewGroupsForms.Filter = GroupSearchFilter;
 			MainListHelperVM.Instance.SetGroupFilterSortingOnForms(null);
+
+			txtGroupName.Text = Series.SeriesName;
+			txtGroupSortName.Text = Series.SeriesName;
 		}
 
 		void txtGroupSearch_TextChanged(object sender, TextChangedEventArgs e)

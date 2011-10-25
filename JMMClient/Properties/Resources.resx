@@ -1442,4 +1442,7 @@
   <data name="Dash_RecDownload" xml:space="preserve">
     <value>Recommendations to Download</value>
   </data>
+  <data name="ImportSettings_AutoGroupSeries" xml:space="preserve">
+    <value>Automatically place related series into the same group</value>
+  </data>
 </root>

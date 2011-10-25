@@ -26,6 +26,7 @@ namespace JMMClient
 		public int PlayedCount { get; set; }
 		public int StoppedCount { get; set; }
 		public int OverrideDescription { get; set; }
+		public int IsManuallyNamed { get; set; }
 
 		public int MissingEpisodeCount { get; set; }
 		public int MissingEpisodeCountGroups { get; set; }
@@ -596,6 +597,7 @@ namespace JMMClient
 			this.AnimeGroupID = contract.AnimeGroupID;
 			this.AnimeGroupParentID = contract.AnimeGroupParentID;
 			this.DateTimeUpdated = contract.DateTimeUpdated;
+			this.IsManuallyNamed = contract.IsManuallyNamed;
 			this.MissingEpisodeCount = contract.MissingEpisodeCount;
 			this.MissingEpisodeCountGroups = contract.MissingEpisodeCountGroups;
 			this.PlayedCount = contract.PlayedCount;
@@ -647,6 +649,7 @@ namespace JMMClient
 			JMMServerBinary.Contract_AnimeGroup_Save contract = new JMMServerBinary.Contract_AnimeGroup_Save();
 			contract.AnimeGroupID = this.AnimeGroupID;
 			contract.AnimeGroupParentID = this.AnimeGroupParentID;
+			contract.IsManuallyNamed = this.IsManuallyNamed;
 			//contract.DateTimeUpdated = this.DateTimeUpdated;
 			//contract.MissingEpisodesCount = this.MissingEpisodesCount;
 			//contract.PlayedCount = this.PlayedCount;

@@ -46,6 +46,14 @@ namespace JMMClient.UserControls
 				AnimeGroupVM grp = this.DataContext as AnimeGroupVM;
 				if (grp == null) return;
 
+				if (!grp.AnimeGroupID.HasValue)
+				{
+					ucNextEpisode.EpisodeExists = false;
+					ucNextEpisode.EpisodeMissing = true;
+					ucNextEpisode.DataContext = null;
+					return;
+				}
+
 				JMMServerBinary.Contract_AnimeEpisode ep = JMMServerVM.Instance.clientBinaryHTTP.GetNextUnwatchedEpisodeForGroup(grp.AnimeGroupID.Value, 
 					JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
 				if (ep != null)

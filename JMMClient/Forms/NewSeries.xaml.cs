@@ -195,6 +195,34 @@ namespace JMMClient.Forms
 					animeID = SelectedAnime.AnimeID;
 
 
+				if (IsNewGroup)
+				{
+					AnimeGroupVM grp = new AnimeGroupVM();
+					grp.GroupName = txtGroupName.Text.Trim();
+					grp.SortName = txtGroupName.Text.Trim();
+					grp.AnimeGroupParentID = null;
+					grp.Description = "";
+					grp.IsFave = 0;
+					grp.IsManuallyNamed = 0;
+					grp.OverrideDescription = 0;
+
+
+					if (grp.Validate())
+					{
+						grp.IsReadOnly = true;
+						grp.IsBeingEdited = false;
+						if (grp.Save())
+						{
+							MainListHelperVM.Instance.AllGroups.Add(grp);
+							MainListHelperVM.Instance.AllGroupsDictionary[grp.AnimeGroupID.Value] = grp;
+							MainListHelperVM.Instance.ViewGroups.Refresh();
+							groupID = grp.AnimeGroupID;
+						}
+
+					}
+				}
+
+
 				JMMServerBinary.Contract_AnimeSeries_SaveResponse response = JMMServerVM.Instance.clientBinaryHTTP.CreateSeriesFromAnime(animeID, groupID,
 					JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
 				if (response.ErrorMessage.Length > 0)
@@ -204,6 +232,9 @@ namespace JMMClient.Forms
 				}
 
 				AnimeSeries = new AnimeSeriesVM(response.AnimeSeries);
+				MainListHelperVM.Instance.AllSeries.Add(AnimeSeries);
+				MainListHelperVM.Instance.AllSeriesDictionary[AnimeSeries.AnimeSeriesID.Value] = AnimeSeries;
+
 			}
 			catch (Exception ex)
 			{

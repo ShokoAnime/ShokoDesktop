@@ -1771,6 +1771,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Automatically place related series into the same group.
+        /// </summary>
+        public static string ImportSettings_AutoGroupSeries {
+            get {
+                return ResourceManager.GetString("ImportSettings_AutoGroupSeries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Calculate CRC32.
         /// </summary>
         public static string ImportSettings_HashCRC32 {

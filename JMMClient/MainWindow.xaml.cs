@@ -1086,6 +1086,7 @@ namespace JMMClient
 						if (grp.Save() && isnew)
 						{
 							MainListHelperVM.Instance.AllGroups.Add(grp);
+							MainListHelperVM.Instance.AllGroupsDictionary[grp.AnimeGroupID.Value] = grp;
 							MainListHelperVM.Instance.ViewGroups.Refresh();
 							MainListHelperVM.Instance.LastAnimeGroupID = grp.AnimeGroupID.Value;
 
@@ -1666,6 +1667,9 @@ namespace JMMClient
 				if (grp == null) return;
 
 				SetDetailBinding(grp);
+
+				//DisplayMainTab(TAB_MAIN_Collection);
+				tabControl1.SelectedIndex = TAB_MAIN_Collection;
 
 			}
 			catch (Exception ex)
