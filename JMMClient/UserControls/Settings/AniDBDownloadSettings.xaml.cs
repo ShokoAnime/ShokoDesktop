@@ -23,7 +23,6 @@ namespace JMMClient.UserControls
 		{
 			InitializeComponent();
 
-			chkDownloadChar.Click += new RoutedEventHandler(settingChanged);
 			chkDownloadGroups.Click += new RoutedEventHandler(settingChanged);
 			chkDownloadRelated.Click += new RoutedEventHandler(settingChanged);
 			chkDownloadReviews.Click += new RoutedEventHandler(settingChanged);

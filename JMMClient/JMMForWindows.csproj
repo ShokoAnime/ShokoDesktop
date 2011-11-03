@@ -744,6 +744,9 @@
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AniDB_Anime_Similar.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AniDB_Character.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AnimeEpisode.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

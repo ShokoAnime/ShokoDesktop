@@ -330,7 +330,6 @@ namespace JMMClient
 
 			this.AniDB_DownloadRelatedAnime = contract.AniDB_DownloadRelatedAnime;
 			this.AniDB_DownloadSimilarAnime = contract.AniDB_DownloadSimilarAnime;
-			this.AniDB_DownloadCharactersCreators = contract.AniDB_DownloadCharactersCreators;
 			this.AniDB_DownloadReviews = contract.AniDB_DownloadReviews;
 			this.AniDB_DownloadReleaseGroups = contract.AniDB_DownloadReleaseGroups;
 
@@ -421,7 +420,6 @@ namespace JMMClient
 
 				contract.AniDB_DownloadRelatedAnime = this.AniDB_DownloadRelatedAnime;
 				contract.AniDB_DownloadSimilarAnime = this.AniDB_DownloadSimilarAnime;
-				contract.AniDB_DownloadCharactersCreators = this.AniDB_DownloadCharactersCreators;
 				contract.AniDB_DownloadReviews = this.AniDB_DownloadReviews;
 				contract.AniDB_DownloadReleaseGroups = this.AniDB_DownloadReleaseGroups;
 
@@ -758,17 +756,6 @@ namespace JMMClient
 			{
 				aniDB_DownloadSimilarAnime = value;
 				OnPropertyChanged(new PropertyChangedEventArgs("AniDB_DownloadSimilarAnime"));
-			}
-		}
-
-		private bool aniDB_DownloadCharactersCreators = false;
-		public bool AniDB_DownloadCharactersCreators
-		{
-			get { return aniDB_DownloadCharactersCreators; }
-			set
-			{
-				aniDB_DownloadCharactersCreators = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("AniDB_DownloadCharactersCreators"));
 			}
 		}
 

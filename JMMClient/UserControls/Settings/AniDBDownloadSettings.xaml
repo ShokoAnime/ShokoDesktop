@@ -41,30 +41,20 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AniDBDownloadChar}" VerticalAlignment="Center"></TextBlock>
-        </StackPanel>
-
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Margin="0,5,5,0">
-            <CheckBox Name="chkDownloadChar" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=AniDB_DownloadCharactersCreators}" VerticalAlignment="Center"
-                      ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=AniDBDownloadChar}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AniDBDownloadChar}}"/>
-        </StackPanel>
-
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="3" Margin="0,5,15,0">
             <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AniDBDownloadReviews}" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3" Margin="0,5,5,0">
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Margin="0,5,5,0">
             <CheckBox Name="chkDownloadReviews" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=AniDB_DownloadReviews}" VerticalAlignment="Center"
                       ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=AniDBDownloadReviews}, 
                                                 Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AniDBDownloadReviews}}"/>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="4" Margin="0,5,15,0">
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="3" Margin="0,5,15,0">
             <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AniDBDownloadReleaseGroups}" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="4" Margin="0,5,5,0">
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3" Margin="0,5,5,0">
             <CheckBox Name="chkDownloadGroups" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=AniDB_DownloadReleaseGroups}" VerticalAlignment="Center"
                       ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=AniDBDownloadReleaseGroups}, 
                                                 Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AniDBDownloadReleaseGroups}}"/>
