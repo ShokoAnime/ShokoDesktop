@@ -1037,6 +1037,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="videoLocalID" type="xs:int" />
+        <xs:element minOccurs="0" name="userID" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

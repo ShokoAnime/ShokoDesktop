@@ -10905,7 +10905,7 @@ namespace JMMClient.JMMServerBinary {
         JMMClient.JMMServerBinary.Contract_ToggleWatchedStatusOnEpisode_Response ToggleWatchedStatusOnEpisode(int animeEpisodeID, bool watchedStatus, int userID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetVideoDetailed", ReplyAction="http://tempuri.org/IJMMServer/GetVideoDetailedResponse")]
-        JMMClient.JMMServerBinary.Contract_VideoDetailed GetVideoDetailed(int videoLocalID);
+        JMMClient.JMMServerBinary.Contract_VideoDetailed GetVideoDetailed(int videoLocalID, int userID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/SaveImportFolder", ReplyAction="http://tempuri.org/IJMMServer/SaveImportFolderResponse")]
         JMMClient.JMMServerBinary.Contract_ImportFolder_SaveResponse SaveImportFolder(JMMClient.JMMServerBinary.Contract_ImportFolder contract);
@@ -11379,8 +11379,8 @@ namespace JMMClient.JMMServerBinary {
             return base.Channel.ToggleWatchedStatusOnEpisode(animeEpisodeID, watchedStatus, userID);
         }
         
-        public JMMClient.JMMServerBinary.Contract_VideoDetailed GetVideoDetailed(int videoLocalID) {
-            return base.Channel.GetVideoDetailed(videoLocalID);
+        public JMMClient.JMMServerBinary.Contract_VideoDetailed GetVideoDetailed(int videoLocalID, int userID) {
+            return base.Channel.GetVideoDetailed(videoLocalID, userID);
         }
         
         public JMMClient.JMMServerBinary.Contract_ImportFolder_SaveResponse SaveImportFolder(JMMClient.JMMServerBinary.Contract_ImportFolder contract) {
