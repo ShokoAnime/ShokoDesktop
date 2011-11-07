@@ -5961,6 +5961,12 @@ namespace JMMClient.JMMServerBinary {
         private bool NormalCompleteField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NormalEpisodeNumberSummaryField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<int> NormalEpisodeNumbersField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int RankingField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -6043,6 +6049,32 @@ namespace JMMClient.JMMServerBinary {
                 if ((this.NormalCompleteField.Equals(value) != true)) {
                     this.NormalCompleteField = value;
                     this.RaisePropertyChanged("NormalComplete");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string NormalEpisodeNumberSummary {
+            get {
+                return this.NormalEpisodeNumberSummaryField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NormalEpisodeNumberSummaryField, value) != true)) {
+                    this.NormalEpisodeNumberSummaryField = value;
+                    this.RaisePropertyChanged("NormalEpisodeNumberSummary");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<int> NormalEpisodeNumbers {
+            get {
+                return this.NormalEpisodeNumbersField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NormalEpisodeNumbersField, value) != true)) {
+                    this.NormalEpisodeNumbersField = value;
+                    this.RaisePropertyChanged("NormalEpisodeNumbers");
                 }
             }
         }
