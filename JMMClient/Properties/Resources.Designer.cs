@@ -1222,6 +1222,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Has Watched Episodes.
+        /// </summary>
+        public static string GroupFilterConditionType_HasWatchedEpisodes {
+            get {
+                return ResourceManager.GetString("GroupFilterConditionType_HasWatchedEpisodes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Missing Episodes.
         /// </summary>
         public static string GroupFilterConditionType_MissingEpisodes {
@@ -2226,6 +2235,15 @@ namespace JMMClient.Properties {
         public static string MultiTypeSingle {
             get {
                 return ResourceManager.GetString("MultiTypeSingle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MyList.
+        /// </summary>
+        public static string MyList {
+            get {
+                return ResourceManager.GetString("MyList", resourceCulture);
             }
         }
         
@@ -3423,6 +3441,15 @@ namespace JMMClient.Properties {
         public static string Tooltip_MovieDB_PosterAutoDownload {
             get {
                 return ResourceManager.GetString("Tooltip_MovieDB_PosterAutoDownload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forcefully add this file to your List on AniDB.
+        /// </summary>
+        public static string Tooltip_MyList {
+            get {
+                return ResourceManager.GetString("Tooltip_MyList", resourceCulture);
             }
         }
         

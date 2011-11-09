@@ -139,7 +139,8 @@ namespace JMMClient
 		SubtitleLanguage = 24,
 		AssignedTvDBOrMovieDBInfo = 25,
 		AssignedMovieDBInfo = 26,
-		UserVotedAny = 27
+		UserVotedAny = 27,
+		HasWatchedEpisodes = 28
 	}
 
 	public enum GroupFilterOperator

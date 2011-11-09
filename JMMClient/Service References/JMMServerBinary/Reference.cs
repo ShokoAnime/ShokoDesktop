@@ -10759,6 +10759,9 @@ namespace JMMClient.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetCharactersForAnime", ReplyAction="http://tempuri.org/IJMMServer/GetCharactersForAnimeResponse")]
         System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDB_Character> GetCharactersForAnime(int animeID);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/ForceAddFileToMyList", ReplyAction="http://tempuri.org/IJMMServer/ForceAddFileToMyListResponse")]
+        void ForceAddFileToMyList(string hash);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/LinkAniDBOther", ReplyAction="http://tempuri.org/IJMMServer/LinkAniDBOtherResponse")]
         string LinkAniDBOther(int animeID, int movieID, int crossRefType);
         
@@ -11173,6 +11176,10 @@ namespace JMMClient.JMMServerBinary {
         
         public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDB_Character> GetCharactersForAnime(int animeID) {
             return base.Channel.GetCharactersForAnime(animeID);
+        }
+        
+        public void ForceAddFileToMyList(string hash) {
+            base.Channel.ForceAddFileToMyList(hash);
         }
         
         public string LinkAniDBOther(int animeID, int movieID, int crossRefType) {

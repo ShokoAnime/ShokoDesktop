@@ -184,6 +184,11 @@ namespace JMMClient
 						if (gfc.ConditionOperatorEnum == GroupFilterOperator.Exclude && grp.HasMissingEpisodesGroups == true) return false;
 						break;
 
+					case GroupFilterConditionType.HasWatchedEpisodes:
+						if (gfc.ConditionOperatorEnum == GroupFilterOperator.Include && grp.AnyFilesWatched == false) return false;
+						if (gfc.ConditionOperatorEnum == GroupFilterOperator.Exclude && grp.AnyFilesWatched == true) return false;
+						break;
+
 					case GroupFilterConditionType.HasUnwatchedEpisodes:
 						if (gfc.ConditionOperatorEnum == GroupFilterOperator.Include && grp.HasUnwatchedFiles == false) return false;
 						if (gfc.ConditionOperatorEnum == GroupFilterOperator.Exclude && grp.HasUnwatchedFiles == true) return false;

@@ -292,6 +292,36 @@ namespace JMMClient.UserControls
 			}
 		}
 
+		private void CommandBinding_ForceAddMyList(object sender, ExecutedRoutedEventArgs e)
+		{
+			Window parentWindow = Window.GetWindow(this);
+
+			object obj = e.Parameter;
+			if (obj == null) return;
+
+			try
+			{
+				if (obj.GetType() == typeof(VideoDetailedVM))
+				{
+					VideoDetailedVM vid = obj as VideoDetailedVM;
+
+					JMMServerVM.Instance.clientBinaryHTTP.ForceAddFileToMyList(vid.VideoLocal_Hash);
+					
+					MessageBox.Show("Command has been queued for processing on the server", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+					
+				}
+
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+			finally
+			{
+				this.Cursor = Cursors.Arrow;
+			}
+		}
+
 		public void DisplayFiles()
 		{
 			try

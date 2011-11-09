@@ -199,6 +199,7 @@ namespace JMMClient.ViewModel
 				case GroupFilterConditionType.FinishedAiring: return Properties.Resources.GroupFilterConditionType_FinishedAiring;
 				case GroupFilterConditionType.AudioLanguage: return Properties.Resources.GroupFilterConditionType_AudioLanguage;
 				case GroupFilterConditionType.SubtitleLanguage: return Properties.Resources.GroupFilterConditionType_SubtitleLanguage;
+				case GroupFilterConditionType.HasWatchedEpisodes: return Properties.Resources.GroupFilterConditionType_HasWatchedEpisodes;
 				default: return Properties.Resources.GroupFilterConditionType_AirDate;
 			}
 		}
@@ -231,6 +232,7 @@ namespace JMMClient.ViewModel
 			if (enumDesc == Properties.Resources.GroupFilterConditionType_FinishedAiring) return GroupFilterConditionType.FinishedAiring;
 			if (enumDesc == Properties.Resources.GroupFilterConditionType_AudioLanguage) return GroupFilterConditionType.AudioLanguage;
 			if (enumDesc == Properties.Resources.GroupFilterConditionType_SubtitleLanguage) return GroupFilterConditionType.SubtitleLanguage;
+			if (enumDesc == Properties.Resources.GroupFilterConditionType_HasWatchedEpisodes) return GroupFilterConditionType.HasWatchedEpisodes;
 
 			return GroupFilterConditionType.AirDate;
 		}
@@ -243,6 +245,7 @@ namespace JMMClient.ViewModel
 			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.AnimeType));
 			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.AnimeGroup));
 			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.HasUnwatchedEpisodes));
+			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.HasWatchedEpisodes));
 			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.MissingEpisodes));
 			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.MissingEpisodesCollecting));
 			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.CompletedSeries));
@@ -367,6 +370,10 @@ namespace JMMClient.ViewModel
 					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Exclude));
 					break;
 				case GroupFilterConditionType.HasUnwatchedEpisodes:
+					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Include));
+					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Exclude));
+					break;
+				case GroupFilterConditionType.HasWatchedEpisodes:
 					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Include));
 					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Exclude));
 					break;

@@ -1445,4 +1445,13 @@
   <data name="ImportSettings_AutoGroupSeries" xml:space="preserve">
     <value>Automatically place related series into the same group</value>
   </data>
+  <data name="GroupFilterConditionType_HasWatchedEpisodes" xml:space="preserve">
+    <value>Has Watched Episodes</value>
+  </data>
+  <data name="MyList" xml:space="preserve">
+    <value>MyList</value>
+  </data>
+  <data name="Tooltip_MyList" xml:space="preserve">
+    <value>Forcefully add this file to your List on AniDB</value>
+  </data>
 </root>

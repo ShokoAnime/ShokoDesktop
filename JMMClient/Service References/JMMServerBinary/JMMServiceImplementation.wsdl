@@ -98,6 +98,12 @@
   <wsdl:message name="IJMMServer_GetCharactersForAnime_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetCharactersForAnimeResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_ForceAddFileToMyList_InputMessage">
+    <wsdl:part name="parameters" element="tns:ForceAddFileToMyList" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_ForceAddFileToMyList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ForceAddFileToMyListResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_LinkAniDBOther_InputMessage">
     <wsdl:part name="parameters" element="tns:LinkAniDBOther" />
   </wsdl:message>
@@ -823,6 +829,10 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetCharactersForAnime" message="tns:IJMMServer_GetCharactersForAnime_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetCharactersForAnimeResponse" message="tns:IJMMServer_GetCharactersForAnime_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="ForceAddFileToMyList">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/ForceAddFileToMyList" message="tns:IJMMServer_ForceAddFileToMyList_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/ForceAddFileToMyListResponse" message="tns:IJMMServer_ForceAddFileToMyList_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="LinkAniDBOther">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/LinkAniDBOther" message="tns:IJMMServer_LinkAniDBOther_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/LinkAniDBOtherResponse" message="tns:IJMMServer_LinkAniDBOther_OutputMessage" />
@@ -1385,6 +1395,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetCharactersForAnime">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetCharactersForAnime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ForceAddFileToMyList">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/ForceAddFileToMyList" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

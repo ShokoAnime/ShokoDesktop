@@ -195,6 +195,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="ForceAddFileToMyList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="hash" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ForceAddFileToMyListResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="LinkAniDBOther">
     <xs:complexType>
       <xs:sequence>
