@@ -82,6 +82,7 @@ namespace JMMClient
 			try
 			{
 
+				//AppSettings.CreateDefaultConfig();
 				//listBox1.IsSynchronizedWithCurrentItem = true;
 				//treeGroupsSeries.iss
 				
@@ -148,6 +149,7 @@ namespace JMMClient
 			}
 		}
 
+		
 
 		private void CloseTab(object source, RoutedEventArgs args)
 		{

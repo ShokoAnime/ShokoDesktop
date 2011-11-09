@@ -4,7 +4,7 @@
         xmlns:local="clr-namespace:JMMClient"
         xmlns:forms="clr-namespace:JMMClient.Forms"
         xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
-        Title="Move Series" Height="450" Width="700" ShowInTaskbar="True" WindowStyle="ToolWindow" Icon="/JMMClient;component/Images/16_television.png"
+        Title="Move Series" Height="450" Width="700" ShowInTaskbar="True" WindowStyle="ToolWindow" Icon="/JMMDesktop;component/Images/16_television.png"
         WindowStartupLocation="CenterOwner" Topmost="False">
     
 

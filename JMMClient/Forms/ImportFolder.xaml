@@ -1,7 +1,7 @@
 ﻿<Window x:Class="JMMClient.Forms.ImportFolder"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="ImportFolder" Height="Auto" Width="Auto" Icon="/JMMClient;component/Images/32_folder_edit.png" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" SizeToContent="WidthAndHeight">
+        Title="ImportFolder" Height="Auto" Width="Auto" Icon="/JMMDesktop;component/Images/32_folder_edit.png" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" SizeToContent="WidthAndHeight">
 
 
     <StackPanel Orientation="Vertical">

@@ -4,7 +4,7 @@
         xmlns:local="clr-namespace:JMMClient"
         xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
         WindowStartupLocation="CenterScreen"
-        Title="JMM Client" Height="647" Width="994" Name="mainWindow" Icon="/JMMClient;component/Web%20Database.ico">
+        Title="JMM Desktop" Height="647" Width="994" Name="mainWindow" Icon="/JMMDesktop;component/Web%20Database.ico">
 
 
 

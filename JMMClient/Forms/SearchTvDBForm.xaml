@@ -4,7 +4,7 @@
         xmlns:local="clr-namespace:JMMClient"
         xmlns:forms="clr-namespace:JMMClient.Forms"
         xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
-        Title="Search The TvDB" Height="450" Width="700" ShowInTaskbar="False" WindowStyle="ToolWindow" Icon="/JMMClient;component/Images/tvdb.ico"
+        Title="Search The TvDB" Height="450" Width="700" ShowInTaskbar="False" WindowStyle="ToolWindow" Icon="/JMMDesktop;component/Images/tvdb.ico"
         WindowStartupLocation="CenterOwner" Topmost="False">
     <Grid>
         <Grid.Resources>

@@ -4,7 +4,7 @@
         xmlns:local="clr-namespace:JMMClient"
         xmlns:forms="clr-namespace:JMMClient.Forms"
         xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
-        Title="Delete Series/Group" Height="300" Width="700" ShowInTaskbar="False" WindowStyle="SingleBorderWindow" Icon="/JMMClient;component/Images/32_trash.png"
+        Title="Delete Series/Group" Height="300" Width="700" ShowInTaskbar="False" WindowStyle="SingleBorderWindow" Icon="/JMMDesktop;component/Images/32_trash.png"
         WindowStartupLocation="CenterOwner" Topmost="False" SizeToContent="WidthAndHeight">
     
     <Grid Margin="10">

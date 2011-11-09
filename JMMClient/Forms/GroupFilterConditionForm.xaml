@@ -4,7 +4,7 @@
         xmlns:local="clr-namespace:JMMClient"
         xmlns:forms="clr-namespace:JMMClient.Forms"
         xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
-        Title="Group Filter Condition" Height="400" Width="500" Icon="/JMMClient;component/Images/16_filter.png" MinWidth="400" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner">
+        Title="Group Filter Condition" Height="400" Width="500" Icon="/JMMDesktop;component/Images/16_filter.png" MinWidth="400" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner">
 
     <Grid>
 

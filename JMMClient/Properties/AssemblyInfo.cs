@@ -7,12 +7,12 @@ using System.Windows;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("JMM For Windows")]
+[assembly: AssemblyTitle("JMM Desktop")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("JMM For Windows")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2010")]
+[assembly: AssemblyCompany("JMM")]
+[assembly: AssemblyProduct("JMM Desktop")]
+[assembly: AssemblyCopyright("JMM")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

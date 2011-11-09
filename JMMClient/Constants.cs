@@ -7,7 +7,7 @@ namespace JMMClient
 {
 	public static class Constants
 	{
-		public static readonly string AssemblyName = @"JMMClient";
+		public static readonly string AssemblyName = @"JMMDesktop";
 
 		public struct URLS
 		{

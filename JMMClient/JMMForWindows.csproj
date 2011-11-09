@@ -9,7 +9,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>JMMClient</RootNamespace>
-    <AssemblyName>JMMClient</AssemblyName>
+    <AssemblyName>JMMDesktop</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -705,6 +705,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="app.manifest" />
+    <None Include="default.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1247,7 +1250,8 @@
     <PostBuildEvent>xcopy "$(TargetDir)*.dll" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\Client\" /S /R /I /Y	
 xcopy "$(TargetDir)*.exe" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\Client\" /S /R /I /Y
 xcopy "$(TargetDir)*.pdb" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\Client\" /S /R /I /Y
-xcopy "$(TargetDir)*.manifest" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\Client\" /S /R /I /Y</PostBuildEvent>
+xcopy "$(TargetDir)*.manifest" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\Client\" /S /R /I /Y
+xcopy "$(TargetDir)default.config" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\Client\" /S /R /I /Y</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
