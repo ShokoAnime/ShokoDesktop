@@ -104,6 +104,24 @@
   <wsdl:message name="IJMMServer_ForceAddFileToMyList_OutputMessage">
     <wsdl:part name="parameters" element="tns:ForceAddFileToMyListResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_GetMyListFilesForRemoval_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyListFilesForRemoval" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetMyListFilesForRemoval_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyListFilesForRemovalResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RemoveMissingMyListFiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveMissingMyListFiles" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RemoveMissingMyListFiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveMissingMyListFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetSeriesWithoutAnyFiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSeriesWithoutAnyFiles" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetSeriesWithoutAnyFiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSeriesWithoutAnyFilesResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_LinkAniDBOther_InputMessage">
     <wsdl:part name="parameters" element="tns:LinkAniDBOther" />
   </wsdl:message>
@@ -833,6 +851,18 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/ForceAddFileToMyList" message="tns:IJMMServer_ForceAddFileToMyList_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/ForceAddFileToMyListResponse" message="tns:IJMMServer_ForceAddFileToMyList_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetMyListFilesForRemoval">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetMyListFilesForRemoval" message="tns:IJMMServer_GetMyListFilesForRemoval_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetMyListFilesForRemovalResponse" message="tns:IJMMServer_GetMyListFilesForRemoval_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveMissingMyListFiles">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RemoveMissingMyListFiles" message="tns:IJMMServer_RemoveMissingMyListFiles_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RemoveMissingMyListFilesResponse" message="tns:IJMMServer_RemoveMissingMyListFiles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSeriesWithoutAnyFiles">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetSeriesWithoutAnyFiles" message="tns:IJMMServer_GetSeriesWithoutAnyFiles_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetSeriesWithoutAnyFilesResponse" message="tns:IJMMServer_GetSeriesWithoutAnyFiles_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="LinkAniDBOther">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/LinkAniDBOther" message="tns:IJMMServer_LinkAniDBOther_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/LinkAniDBOtherResponse" message="tns:IJMMServer_LinkAniDBOther_OutputMessage" />
@@ -1404,6 +1434,33 @@
     </wsdl:operation>
     <wsdl:operation name="ForceAddFileToMyList">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/ForceAddFileToMyList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMyListFilesForRemoval">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetMyListFilesForRemoval" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveMissingMyListFiles">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/RemoveMissingMyListFiles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSeriesWithoutAnyFiles">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetSeriesWithoutAnyFiles" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

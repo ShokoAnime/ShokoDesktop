@@ -461,7 +461,7 @@
 
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_FileManager}" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_Utilities}" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
                     </StackPanel>
                 </TabItem.Header>
                 
@@ -497,6 +497,16 @@
                     <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_MultipleFiles}" Name="tabMultipleFiles">
 
                         <usercontrols:MultipleFilesControl x:Name="multipleFiles"/>
+                    </TabItem>
+
+                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_MissingFiles}" Name="tabMissingFiles">
+
+                        <usercontrols:MissingMyListFilesControl x:Name="missingFiles"/>
+                    </TabItem>
+
+                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_SeriesWithoutFiles}" Name="tabSeriesWithoutFiles">
+
+                        <usercontrols:SeriesWithoutFilesControl x:Name="SeriesWithoutFiles"/>
                     </TabItem>
 
                 </TabControl>

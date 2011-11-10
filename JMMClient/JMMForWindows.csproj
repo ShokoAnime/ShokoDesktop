@@ -248,6 +248,9 @@
     <Compile Include="UserControls\ManuallyLinkedFilesDetailControl.xaml.cs">
       <DependentUpon>ManuallyLinkedFilesDetailControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\MissingMyListFilesControl.xaml.cs">
+      <DependentUpon>MissingMyListFilesControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\MultipleFilesControl.xaml.cs">
       <DependentUpon>MultipleFilesControl.xaml</DependentUpon>
     </Compile>
@@ -270,6 +273,9 @@
     </Compile>
     <Compile Include="UserControls\SeriesSearchControl.xaml.cs">
       <DependentUpon>SeriesSearchControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SeriesWithoutFilesControl.xaml.cs">
+      <DependentUpon>SeriesWithoutFilesControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Settings\AniDBDownloadSettings.xaml.cs">
       <DependentUpon>AniDBDownloadSettings.xaml</DependentUpon>
@@ -382,6 +388,7 @@
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="ViewModel\ImportFolderVM.cs" />
     <Compile Include="ViewModel\JMMServerVM.cs" />
+    <Compile Include="ViewModel\MissingFileVM.cs" />
     <Compile Include="ViewModel\MovieDBMovieSearchResultVM.cs" />
     <Compile Include="ViewModel\MovieDB_FanartVM.cs" />
     <Compile Include="ViewModel\MovieDB_MovieVM.cs" />
@@ -559,6 +566,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\MissingMyListFilesControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\MultipleFilesControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -584,6 +595,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\SeriesSearchControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\SeriesWithoutFilesControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -805,6 +820,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_JMMUser.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_MissingFile.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_MovieDBMovieSearchResult.datasource">

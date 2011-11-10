@@ -1454,4 +1454,16 @@
   <data name="Tooltip_MyList" xml:space="preserve">
     <value>Forcefully add this file to your List on AniDB</value>
   </data>
+  <data name="TAB_MissingFiles" xml:space="preserve">
+    <value>Missing MyList Files</value>
+  </data>
+  <data name="TAB_Utilities" xml:space="preserve">
+    <value>Utilities</value>
+  </data>
+  <data name="TAB_SeriesWithoutFiles" xml:space="preserve">
+    <value>Series Without Files</value>
+  </data>
+  <data name="DeleteSeriesConfirm_Groups" xml:space="preserve">
+    <value>Delete any parent groups if they are empty</value>
+  </data>
 </root>

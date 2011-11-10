@@ -4285,6 +4285,131 @@ namespace JMMClient.JMMServerBinary {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_MissingFile", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
+    [System.SerializableAttribute()]
+    public partial class Contract_MissingFile : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AnimeIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private JMMClient.JMMServerBinary.Contract_AnimeSeries AnimeSeriesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AnimeTitleField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int EpisodeIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int EpisodeNumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int FileIDField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AnimeID {
+            get {
+                return this.AnimeIDField;
+            }
+            set {
+                if ((this.AnimeIDField.Equals(value) != true)) {
+                    this.AnimeIDField = value;
+                    this.RaisePropertyChanged("AnimeID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public JMMClient.JMMServerBinary.Contract_AnimeSeries AnimeSeries {
+            get {
+                return this.AnimeSeriesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AnimeSeriesField, value) != true)) {
+                    this.AnimeSeriesField = value;
+                    this.RaisePropertyChanged("AnimeSeries");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string AnimeTitle {
+            get {
+                return this.AnimeTitleField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AnimeTitleField, value) != true)) {
+                    this.AnimeTitleField = value;
+                    this.RaisePropertyChanged("AnimeTitle");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int EpisodeID {
+            get {
+                return this.EpisodeIDField;
+            }
+            set {
+                if ((this.EpisodeIDField.Equals(value) != true)) {
+                    this.EpisodeIDField = value;
+                    this.RaisePropertyChanged("EpisodeID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int EpisodeNumber {
+            get {
+                return this.EpisodeNumberField;
+            }
+            set {
+                if ((this.EpisodeNumberField.Equals(value) != true)) {
+                    this.EpisodeNumberField = value;
+                    this.RaisePropertyChanged("EpisodeNumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int FileID {
+            get {
+                return this.FileIDField;
+            }
+            set {
+                if ((this.FileIDField.Equals(value) != true)) {
+                    this.FileIDField = value;
+                    this.RaisePropertyChanged("FileID");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Contract_AnimeEpisode", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
     [System.SerializableAttribute()]
     public partial class Contract_AnimeEpisode : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -10762,6 +10887,15 @@ namespace JMMClient.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/ForceAddFileToMyList", ReplyAction="http://tempuri.org/IJMMServer/ForceAddFileToMyListResponse")]
         void ForceAddFileToMyList(string hash);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetMyListFilesForRemoval", ReplyAction="http://tempuri.org/IJMMServer/GetMyListFilesForRemovalResponse")]
+        System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_MissingFile> GetMyListFilesForRemoval(int userID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/RemoveMissingMyListFiles", ReplyAction="http://tempuri.org/IJMMServer/RemoveMissingMyListFilesResponse")]
+        void RemoveMissingMyListFiles(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_MissingFile> myListFiles);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetSeriesWithoutAnyFiles", ReplyAction="http://tempuri.org/IJMMServer/GetSeriesWithoutAnyFilesResponse")]
+        System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AnimeSeries> GetSeriesWithoutAnyFiles(int userID);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/LinkAniDBOther", ReplyAction="http://tempuri.org/IJMMServer/LinkAniDBOtherResponse")]
         string LinkAniDBOther(int animeID, int movieID, int crossRefType);
         
@@ -10790,7 +10924,7 @@ namespace JMMClient.JMMServerBinary {
         System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AnimeEpisode> GetEpisodesToWatch_RecentlyWatched(int maxRecords, int jmmuserID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/DeleteAnimeSeries", ReplyAction="http://tempuri.org/IJMMServer/DeleteAnimeSeriesResponse")]
-        string DeleteAnimeSeries(int animeSeriesID, bool deleteFiles);
+        string DeleteAnimeSeries(int animeSeriesID, bool deleteFiles, bool deleteParentGroup);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/DeleteAnimeGroup", ReplyAction="http://tempuri.org/IJMMServer/DeleteAnimeGroupResponse")]
         string DeleteAnimeGroup(int animeGroupID, bool deleteFiles);
@@ -11182,6 +11316,18 @@ namespace JMMClient.JMMServerBinary {
             base.Channel.ForceAddFileToMyList(hash);
         }
         
+        public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_MissingFile> GetMyListFilesForRemoval(int userID) {
+            return base.Channel.GetMyListFilesForRemoval(userID);
+        }
+        
+        public void RemoveMissingMyListFiles(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_MissingFile> myListFiles) {
+            base.Channel.RemoveMissingMyListFiles(myListFiles);
+        }
+        
+        public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AnimeSeries> GetSeriesWithoutAnyFiles(int userID) {
+            return base.Channel.GetSeriesWithoutAnyFiles(userID);
+        }
+        
         public string LinkAniDBOther(int animeID, int movieID, int crossRefType) {
             return base.Channel.LinkAniDBOther(animeID, movieID, crossRefType);
         }
@@ -11218,8 +11364,8 @@ namespace JMMClient.JMMServerBinary {
             return base.Channel.GetEpisodesToWatch_RecentlyWatched(maxRecords, jmmuserID);
         }
         
-        public string DeleteAnimeSeries(int animeSeriesID, bool deleteFiles) {
-            return base.Channel.DeleteAnimeSeries(animeSeriesID, deleteFiles);
+        public string DeleteAnimeSeries(int animeSeriesID, bool deleteFiles, bool deleteParentGroup) {
+            return base.Channel.DeleteAnimeSeries(animeSeriesID, deleteFiles, deleteParentGroup);
         }
         
         public string DeleteAnimeGroup(int animeGroupID, bool deleteFiles) {

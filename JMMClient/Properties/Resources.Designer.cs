@@ -628,6 +628,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete any parent groups if they are empty.
+        /// </summary>
+        public static string DeleteSeriesConfirm_Groups {
+            get {
+                return ResourceManager.GetString("DeleteSeriesConfirm_Groups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Follow this link for an in depth explanation.
         /// </summary>
         public static string DetailedInformationLink {
@@ -2878,6 +2887,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Missing MyList Files.
+        /// </summary>
+        public static string TAB_MissingFiles {
+            get {
+                return ResourceManager.GetString("TAB_MissingFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Multiple Files.
         /// </summary>
         public static string TAB_MultipleFiles {
@@ -2910,6 +2928,15 @@ namespace JMMClient.Properties {
         public static string TAB_SeriesEpisodes {
             get {
                 return ResourceManager.GetString("TAB_SeriesEpisodes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Series Without Files.
+        /// </summary>
+        public static string TAB_SeriesWithoutFiles {
+            get {
+                return ResourceManager.GetString("TAB_SeriesWithoutFiles", resourceCulture);
             }
         }
         
@@ -3054,6 +3081,15 @@ namespace JMMClient.Properties {
         public static string TAB_UnrecognisedFiles {
             get {
                 return ResourceManager.GetString("TAB_UnrecognisedFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Utilities.
+        /// </summary>
+        public static string TAB_Utilities {
+            get {
+                return ResourceManager.GetString("TAB_Utilities", resourceCulture);
             }
         }
         

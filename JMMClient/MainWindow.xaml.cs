@@ -939,6 +939,12 @@ namespace JMMClient
 					RecommendationVM rec = (RecommendationVM)obj;
 					ShowPinnedSeries(rec.Recommended_AnimeSeries);
 				}
+
+				if (obj.GetType() == typeof(MissingFileVM))
+				{
+					MissingFileVM mis = (MissingFileVM)obj;
+					ShowPinnedSeries(mis.AnimeSeries);
+				}
 			}
 			catch (Exception ex)
 			{
@@ -1719,10 +1725,9 @@ namespace JMMClient
 
 				if (result.HasValue && result.Value == true)
 				{
-					bool deleteFiles = frm.DeleteFiles;
 
 					this.Cursor = Cursors.Wait;
-					JMMServerVM.Instance.clientBinaryHTTP.DeleteAnimeSeries(ser.AnimeSeriesID.Value, deleteFiles);
+					JMMServerVM.Instance.clientBinaryHTTP.DeleteAnimeSeries(ser.AnimeSeriesID.Value, frm.DeleteFiles, frm.DeleteGroups);
 
 					MainListHelperVM.Instance.RefreshGroupsSeriesData();
 					MainListHelperVM.Instance.ShowChildWrappers(MainListHelperVM.Instance.CurrentWrapper);
