@@ -411,10 +411,29 @@
       <xs:element minOccurs="0" name="AnimeTitle" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="EpisodeID" type="xs:int" />
       <xs:element minOccurs="0" name="EpisodeNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="EpisodeType" type="xs:int" />
       <xs:element minOccurs="0" name="FileID" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_MissingFile" nillable="true" type="tns:Contract_MissingFile" />
+  <xs:complexType name="ArrayOfContract_MissingEpisode">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_MissingEpisode" nillable="true" type="tns:Contract_MissingEpisode" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_MissingEpisode" nillable="true" type="tns:ArrayOfContract_MissingEpisode" />
+  <xs:complexType name="Contract_MissingEpisode">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
+      <xs:element minOccurs="0" name="AnimeSeries" nillable="true" type="tns:Contract_AnimeSeries" />
+      <xs:element minOccurs="0" name="AnimeTitle" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EpisodeID" type="xs:int" />
+      <xs:element minOccurs="0" name="EpisodeNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="EpisodeType" type="xs:int" />
+      <xs:element minOccurs="0" name="GroupFileSummary" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_MissingEpisode" nillable="true" type="tns:Contract_MissingEpisode" />
   <xs:complexType name="ArrayOfContract_MovieDB_Poster">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_MovieDB_Poster" nillable="true" type="tns:Contract_MovieDB_Poster" />

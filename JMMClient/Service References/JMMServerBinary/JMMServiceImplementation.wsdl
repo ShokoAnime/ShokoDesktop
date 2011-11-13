@@ -122,6 +122,18 @@
   <wsdl:message name="IJMMServer_GetSeriesWithoutAnyFiles_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetSeriesWithoutAnyFilesResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_DeleteFileFromMyList_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteFileFromMyList" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_DeleteFileFromMyList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteFileFromMyListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetMissingEpisodes_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMissingEpisodes" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetMissingEpisodes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMissingEpisodesResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_LinkAniDBOther_InputMessage">
     <wsdl:part name="parameters" element="tns:LinkAniDBOther" />
   </wsdl:message>
@@ -863,6 +875,14 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetSeriesWithoutAnyFiles" message="tns:IJMMServer_GetSeriesWithoutAnyFiles_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetSeriesWithoutAnyFilesResponse" message="tns:IJMMServer_GetSeriesWithoutAnyFiles_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="DeleteFileFromMyList">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/DeleteFileFromMyList" message="tns:IJMMServer_DeleteFileFromMyList_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/DeleteFileFromMyListResponse" message="tns:IJMMServer_DeleteFileFromMyList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMissingEpisodes">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetMissingEpisodes" message="tns:IJMMServer_GetMissingEpisodes_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetMissingEpisodesResponse" message="tns:IJMMServer_GetMissingEpisodes_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="LinkAniDBOther">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/LinkAniDBOther" message="tns:IJMMServer_LinkAniDBOther_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/LinkAniDBOtherResponse" message="tns:IJMMServer_LinkAniDBOther_OutputMessage" />
@@ -1461,6 +1481,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetSeriesWithoutAnyFiles">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetSeriesWithoutAnyFiles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFileFromMyList">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/DeleteFileFromMyList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMissingEpisodes">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetMissingEpisodes" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
