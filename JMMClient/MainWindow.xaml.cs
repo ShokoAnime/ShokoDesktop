@@ -945,6 +945,12 @@ namespace JMMClient
 					MissingFileVM mis = (MissingFileVM)obj;
 					ShowPinnedSeries(mis.AnimeSeries);
 				}
+
+				if (obj.GetType() == typeof(MissingEpisodeVM))
+				{
+					MissingEpisodeVM misEp = (MissingEpisodeVM)obj;
+					ShowPinnedSeries(misEp.AnimeSeries);
+				}
 			}
 			catch (Exception ex)
 			{

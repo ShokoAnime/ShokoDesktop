@@ -1466,4 +1466,16 @@
   <data name="DeleteSeriesConfirm_Groups" xml:space="preserve">
     <value>Delete any parent groups if they are empty</value>
   </data>
+  <data name="Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="TAB_MissingEpisodes" xml:space="preserve">
+    <value>Missing Episodes</value>
+  </data>
+  <data name="MyGroupsOnly" xml:space="preserve">
+    <value>Only Release Goups I Am Collecting</value>
+  </data>
+  <data name="RegularEpisodesOnly" xml:space="preserve">
+    <value>Regular Episodes Only</value>
+  </data>
 </root>

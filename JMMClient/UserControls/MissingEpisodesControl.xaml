@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="JMMClient.UserControls.MissingMyListFilesControl"
+﻿<UserControl x:Class="JMMClient.UserControls.MissingEpisodesControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -13,8 +13,8 @@
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
-            <!-- FileDetailsTemplate -->
-            <DataTemplate x:Key="FileDetailsTemplate">
+            <!-- EpisodeDetailsTemplate -->
+            <DataTemplate x:Key="EpisodeDetailsTemplate">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -30,10 +30,7 @@
 
 
                     <usercontrols:HyperLinkStandard Grid.Column="0" VerticalAlignment="Center" DisplayText="{Binding Path=AnimeTitleAndID}" URL="{Binding Path=AniDB_SiteURL}" Margin="20,0,0,0"/>
-                    
-                    
 
-                    
 
                     <!-- show pinned series button -->
                     <Button Grid.Column="1" Margin="10,0,2,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center"
@@ -50,7 +47,7 @@
                     </Button>
 
                     <usercontrols:HyperLinkStandard Grid.Column="2" VerticalAlignment="Center" DisplayText="{Binding Path=EpisodeNumberAndID}" URL="{Binding Path=Episode_SiteURL}" Margin="20,0,0,0"/>
-                    <usercontrols:HyperLinkStandard Grid.Column="3" VerticalAlignment="Center" DisplayText="{Binding Path=FileDescAndID}" URL="{Binding Path=File_SiteURL}" Margin="20,0,0,0"/>
+                    
 
 
 
@@ -77,36 +74,42 @@
 
 
 
-        <!-- file list -->
+        <!-- episode list -->
         <Border Grid.Row="1" Grid.Column="0" Margin="0,0,10,5" Background="White" BorderBrush="LightGray" BorderThickness="1">
 
             <DockPanel>
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Background="#F1F1F1">
                     <!-- Refresh -->
                     <Button Name="btnRefresh" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}"
-                            Visibility="{Binding Path=IsNotLoading, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MissingMyListFilesControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            Visibility="{Binding Path=IsNotLoading, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MissingEpisodesControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                             <Image Height="16" Width="16" Source="/Images/16_Refresh.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="View Missing Files" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Refresh}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center"
-                                    Visibility="{Binding Path=IsLoading, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MissingMyListFilesControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
-                        <TextBlock VerticalAlignment="Center" Text="{Binding Path=StatusMessage, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MissingMyListFilesControl}}}" Margin="10,5,0,5" FontWeight="Bold"/>
+                                    Visibility="{Binding Path=IsLoading, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MissingEpisodesControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <TextBlock VerticalAlignment="Center" Text="{Binding Path=StatusMessage, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MissingEpisodesControl}}}" Margin="10,5,0,5" FontWeight="Bold"/>
                     </StackPanel>
 
-                    <!-- Reevaluate -->
-                    <Button Name="btnDelete" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}"
-                            Visibility="{Binding Path=ReadyToRemoveFiles, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MissingMyListFilesControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <!-- Export -->
+                    <Button Name="btnExport" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}"
+                            Visibility="{Binding Path=ReadyToExport, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MissingEpisodesControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                            <Image Height="16" Width="16" Source="/Images/32_trash.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="Remove All Entries From AniDB" Margin="0,0,5,0"/>
+                            <Image Height="16" Width="16" Source="/Images/24_export.png" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Export}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
-                    <TextBlock VerticalAlignment="Center" Text="{Binding Path=FileCount, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MissingMyListFilesControl}}}" Margin="10,0,0,0" Foreground="DarkGray" />
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Files}" Margin="5,0,0,0" Foreground="DarkGray"/>
+                    <CheckBox Name="chkMyGroupsOnly" IsChecked="True" VerticalAlignment="Center" Margin="12,0,2,0"/>
+                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=MyGroupsOnly}" VerticalAlignment="Center"></TextBlock>
+
+                    <CheckBox Name="chkRegularEpisodesOnly" IsChecked="True" VerticalAlignment="Center" Margin="12,0,2,0"/>
+                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=RegularEpisodesOnly}" VerticalAlignment="Center"></TextBlock>
+
+                    <TextBlock VerticalAlignment="Center" Text="{Binding Path=EpisodeCount, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MissingEpisodesControl}}}" Margin="10,0,0,0" Foreground="DarkGray" />
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episodes}" Margin="5,0,0,0" Foreground="DarkGray"/>
                 </StackPanel>
 
                 <Border Style="{DynamicResource ToolbarBorderControlStyle}" Background="FloralWhite" Margin="0,0,0,5" Padding="5" DockPanel.Dock="Top" BorderThickness="0,1,0,1">
@@ -123,14 +126,14 @@
 
                         <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,5,0" Grid.Column="0" VerticalAlignment="Top"/>
                         <TextBlock VerticalAlignment="Center" Text="Pressing the refresh button can take several minutes, so please be patient" Margin="0,0,5,5" TextWrapping="Wrap" Grid.Column="1"/>
-                        <TextBlock VerticalAlignment="Center" Text="This utility will download your list of files from AniDB, and compare it to the files locally. You will then have the chance to remove those files from AniDB if they don't exist." Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1" Grid.Row="1"/>
+                        <TextBlock VerticalAlignment="Center" Text="This utility will show you a summary of all your missing episodes." Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1" Grid.Row="1"/>
                     </Grid>
                 </Border>
 
-                <ListBox Name="lbMissingFiles" BorderThickness="0" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch"  Margin="0" 
+                <ListBox Name="lbMissingEpisodes" BorderThickness="0" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch"  Margin="0" 
                     VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
-                    ItemTemplate="{DynamicResource FileDetailsTemplate}"
-                    ItemsSource="{Binding Path=ViewFiles, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MissingMyListFilesControl}}}" 
+                    ItemTemplate="{DynamicResource EpisodeDetailsTemplate}"
+                    ItemsSource="{Binding Path=ViewEpisodes, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MissingEpisodesControl}}}" 
                     Background="Transparent" ItemContainerStyle="{DynamicResource ListBoxItemStyle}"  VerticalAlignment="Stretch" >
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>

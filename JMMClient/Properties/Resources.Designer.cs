@@ -889,6 +889,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Export.
+        /// </summary>
+        public static string Export {
+            get {
+                return ResourceManager.GetString("Export", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fanart.
         /// </summary>
         public static string Fanart {
@@ -2248,6 +2257,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Only Release Goups I Am Collecting.
+        /// </summary>
+        public static string MyGroupsOnly {
+            get {
+                return ResourceManager.GetString("MyGroupsOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MyList.
         /// </summary>
         public static string MyList {
@@ -2478,6 +2496,15 @@ namespace JMMClient.Properties {
         public static string Refresh {
             get {
                 return ResourceManager.GetString("Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Regular Episodes Only.
+        /// </summary>
+        public static string RegularEpisodesOnly {
+            get {
+                return ResourceManager.GetString("RegularEpisodesOnly", resourceCulture);
             }
         }
         
@@ -2883,6 +2910,15 @@ namespace JMMClient.Properties {
         public static string TAB_ManuallyLinked {
             get {
                 return ResourceManager.GetString("TAB_ManuallyLinked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Missing Episodes.
+        /// </summary>
+        public static string TAB_MissingEpisodes {
+            get {
+                return ResourceManager.GetString("TAB_MissingEpisodes", resourceCulture);
             }
         }
         

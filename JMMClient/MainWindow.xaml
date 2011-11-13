@@ -509,6 +509,11 @@
                         <usercontrols:SeriesWithoutFilesControl x:Name="SeriesWithoutFiles"/>
                     </TabItem>
 
+                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_MissingEpisodes}" Name="tabMissingEpisodes">
+
+                        <usercontrols:MissingEpisodesControl x:Name="missingEpisodes"/>
+                    </TabItem>
+
                 </TabControl>
 
 
