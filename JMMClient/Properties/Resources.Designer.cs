@@ -538,6 +538,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Friends Activity (Trakt TV).
+        /// </summary>
+        public static string Dash_TraktFriends {
+            get {
+                return ResourceManager.GetString("Dash_TraktFriends", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Watch the Next Episode (Recently Watched).
         /// </summary>
         public static string Dash_WatchNextEp_Recent {
@@ -3423,6 +3432,24 @@ namespace JMMClient.Properties {
         public static string Tooltip_HideEpisodeOverviewWhenUnwatched {
             get {
                 return ResourceManager.GetString("Tooltip_HideEpisodeOverviewWhenUnwatched", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ignore this Anime for Download Recommendations.
+        /// </summary>
+        public static string Tooltip_IgnoreAnimeDownload {
+            get {
+                return ResourceManager.GetString("Tooltip_IgnoreAnimeDownload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ignore this Anime for Watch Recommendations.
+        /// </summary>
+        public static string Tooltip_IgnoreAnimeWatch {
+            get {
+                return ResourceManager.GetString("Tooltip_IgnoreAnimeWatch", resourceCulture);
             }
         }
         

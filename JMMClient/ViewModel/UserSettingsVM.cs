@@ -220,6 +220,23 @@ namespace JMMClient
 			}
 		}
 
+
+		public bool DashTraktFriendsCollapsed
+		{
+			get { return !AppSettings.DashTraktFriendsExpanded; }
+		}
+
+		public bool DashTraktFriendsExpanded
+		{
+			get { return AppSettings.DashTraktFriendsExpanded; }
+			set
+			{
+				AppSettings.DashTraktFriendsExpanded = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("DashTraktFriendsExpanded"));
+				OnPropertyChanged(new PropertyChangedEventArgs("DashTraktFriendsCollapsed"));
+			}
+		}
+
 		public bool DashMiniCalendarCollapsed
 		{
 			get { return !AppSettings.DashMiniCalendarExpanded; }
@@ -382,6 +399,16 @@ namespace JMMClient
 			{
 				AppSettings.Dash_RecDownload_Items = value;
 				OnPropertyChanged(new PropertyChangedEventArgs("Dash_RecDownload_Items"));
+			}
+		}
+
+		public int Dash_TraktFriends_Height
+		{
+			get { return AppSettings.Dash_TraktFriends_Height; }
+			set
+			{
+				AppSettings.Dash_TraktFriends_Height = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("Dash_TraktFriends_Height"));
 			}
 		}
 

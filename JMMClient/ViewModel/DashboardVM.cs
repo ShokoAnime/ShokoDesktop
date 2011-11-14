@@ -34,6 +34,9 @@ namespace JMMClient
 		public ObservableCollection<RecommendationVM> RecommendationsDownload { get; set; }
 		public ICollectionView ViewRecommendationsDownload { get; set; }
 
+		public ObservableCollection<Trakt_FriendVM> TraktFriends { get; set; }
+		public ICollectionView ViewTraktFriends { get; set; }
+
 		public event PropertyChangedEventHandler PropertyChanged;
 		private void NotifyPropertyChanged(String propertyName)
 		{
@@ -107,6 +110,10 @@ namespace JMMClient
 
 			RecommendationsDownload = new ObservableCollection<RecommendationVM>();
 			ViewRecommendationsDownload = CollectionViewSource.GetDefaultView(RecommendationsDownload);
+
+			TraktFriends = new ObservableCollection<Trakt_FriendVM>();
+			ViewTraktFriends = CollectionViewSource.GetDefaultView(TraktFriends);
+			ViewTraktFriends.SortDescriptions.Add(new SortDescription("LastEpisodeWatchedDate", ListSortDirection.Descending));
 		}
 
 		
@@ -125,12 +132,14 @@ namespace JMMClient
 					MiniCalendar.Clear();
 					RecommendationsWatch.Clear();
 					RecommendationsDownload.Clear();
+					TraktFriends.Clear();
 
 					ViewEpsWatchNext_Recent.Refresh();
 					ViewSeriesMissingEps.Refresh();
 					ViewMiniCalendar.Refresh();
 					ViewRecommendationsWatch.Refresh();
 					ViewRecommendationsDownload.Refresh();
+					ViewTraktFriends.Refresh();
 				});
 
 				MainListHelperVM.Instance.RefreshGroupsSeriesData();
@@ -151,8 +160,44 @@ namespace JMMClient
 				if (UserSettingsVM.Instance.DashRecommendationsDownloadExpanded)
 					RefreshRecommendationsDownload();
 
+				if (UserSettingsVM.Instance.DashTraktFriendsExpanded)
+					RefreshTraktFriends();
+
 				IsLoadingData = false;
 				
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+			finally
+			{
+			}
+		}
+
+		public void RefreshTraktFriends()
+		{
+			try
+			{
+				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
+				{
+					TraktFriends.Clear();
+				});
+
+				List<JMMServerBinary.Contract_Trakt_Friend> contracts = JMMServerVM.Instance.clientBinaryHTTP.GetTraktFriendInfo();
+
+				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
+				{
+					foreach (JMMServerBinary.Contract_Trakt_Friend contract in contracts)
+					{
+						if (contract.WatchedEpisodes != null && contract.WatchedEpisodes.Count > 0)
+						{
+							Trakt_FriendVM friend = new Trakt_FriendVM(contract);
+							TraktFriends.Add(friend);
+						}
+					}
+					ViewTraktFriends.Refresh();
+				});
 			}
 			catch (Exception ex)
 			{
@@ -173,7 +218,8 @@ namespace JMMClient
 				});
 
 				List<JMMServerBinary.Contract_Recommendation> contracts =
-					JMMServerVM.Instance.clientBinaryHTTP.GetRecommendations(UserSettingsVM.Instance.Dash_RecWatch_Items, JMMServerVM.Instance.CurrentUser.JMMUserID.Value, 1);
+					JMMServerVM.Instance.clientBinaryHTTP.GetRecommendations(UserSettingsVM.Instance.Dash_RecWatch_Items, JMMServerVM.Instance.CurrentUser.JMMUserID.Value,
+					(int)RecommendationType.Watch);
 
 				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
 				{
@@ -205,7 +251,8 @@ namespace JMMClient
 				});
 
 				List<JMMServerBinary.Contract_Recommendation> contracts =
-					JMMServerVM.Instance.clientBinaryHTTP.GetRecommendations(UserSettingsVM.Instance.Dash_RecDownload_Items, JMMServerVM.Instance.CurrentUser.JMMUserID.Value, 2);
+					JMMServerVM.Instance.clientBinaryHTTP.GetRecommendations(UserSettingsVM.Instance.Dash_RecDownload_Items, JMMServerVM.Instance.CurrentUser.JMMUserID.Value,
+					(int)RecommendationType.Download);
 
 				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
 				{

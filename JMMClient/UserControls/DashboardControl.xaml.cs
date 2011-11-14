@@ -13,6 +13,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using JMMClient.Forms;
 using System.ComponentModel;
+using JMMClient.ViewModel;
 
 namespace JMMClient.UserControls
 {
@@ -117,6 +118,25 @@ namespace JMMClient.UserControls
 			set { SetValue(DashPos_RecDownload_HeaderProperty, value); }
 		}
 
+		// Trakt Friends Download position
+		public static readonly DependencyProperty DashPos_TraktFriendsProperty = DependencyProperty.Register("DashPos_TraktFriends",
+			typeof(int), typeof(DashboardControl), new UIPropertyMetadata((int)1, null));
+
+		public int DashPos_TraktFriends
+		{
+			get { return (int)GetValue(DashPos_TraktFriendsProperty); }
+			set { SetValue(DashPos_TraktFriendsProperty, value); }
+		}
+
+		public static readonly DependencyProperty DashPos_TraktFriends_HeaderProperty = DependencyProperty.Register("DashPos_TraktFriends_Header",
+			typeof(int), typeof(DashboardControl), new UIPropertyMetadata((int)1, null));
+
+		public int DashPos_TraktFriends_Header
+		{
+			get { return (int)GetValue(DashPos_TraktFriends_HeaderProperty); }
+			set { SetValue(DashPos_TraktFriends_HeaderProperty, value); }
+		}
+
 
 
 		public static readonly DependencyProperty IsLoadingDataProperty = DependencyProperty.Register("IsLoadingData",
@@ -156,6 +176,7 @@ namespace JMMClient.UserControls
 			btnExpandDashMiniCalendar.Click += new RoutedEventHandler(btnExpandDashMiniCalendar_Click);
 			btnExpandRecWatch.Click += new RoutedEventHandler(btnExpandRecWatch_Click);
 			btnExpandRecDownload.Click += new RoutedEventHandler(btnExpandRecDownload_Click);
+			btnExpandTraktFriends.Click += new RoutedEventHandler(btnExpandTraktFriends_Click);
 
 			btnEditDashboard.Click += new RoutedEventHandler(btnEditDashboard_Click);
 			btnEditDashboardFinish.Click += new RoutedEventHandler(btnEditDashboardFinish_Click);
@@ -175,6 +196,9 @@ namespace JMMClient.UserControls
 			btnRecDownloadIncrease.Click += new RoutedEventHandler(btnRecDownloadIncrease_Click);
 			btnRecDownloadReduce.Click += new RoutedEventHandler(btnRecDownloadReduce_Click);
 
+			btnTraktFriendsIncrease.Click += new RoutedEventHandler(btnTraktFriendsIncrease_Click);
+			btnTraktFriendsReduce.Click += new RoutedEventHandler(btnTraktFriendsReduce_Click);
+
 			udItemsWatchNext.ValueChanged += new RoutedPropertyChangedEventHandler<object>(udItemsWatchNext_ValueChanged);
 			udDaysMiniCalendar.ValueChanged += new RoutedPropertyChangedEventHandler<object>(udDaysMiniCalendar_ValueChanged);
 			udItemsMissingEps.ValueChanged += new RoutedPropertyChangedEventHandler<object>(udItemsMissingEps_ValueChanged);
@@ -187,6 +211,10 @@ namespace JMMClient.UserControls
 
 			
 		}
+
+		
+
+		
 
 		
 
@@ -276,6 +304,20 @@ namespace JMMClient.UserControls
 			UserSettingsVM.Instance.Dash_RecDownload_Height = UserSettingsVM.Instance.Dash_RecDownload_Height + 10;
 		}
 
+
+
+		void btnTraktFriendsReduce_Click(object sender, RoutedEventArgs e)
+		{
+			UserSettingsVM.Instance.Dash_TraktFriends_Height = UserSettingsVM.Instance.Dash_TraktFriends_Height - 10;
+		}
+
+		void btnTraktFriendsIncrease_Click(object sender, RoutedEventArgs e)
+		{
+			UserSettingsVM.Instance.Dash_TraktFriends_Height = UserSettingsVM.Instance.Dash_TraktFriends_Height + 10;
+		}
+
+
+
 		void btnEditDashboardFinish_Click(object sender, RoutedEventArgs e)
 		{
 			DashboardVM.Instance.IsBeingEdited = !DashboardVM.Instance.IsBeingEdited;
@@ -318,6 +360,14 @@ namespace JMMClient.UserControls
 				DashboardVM.Instance.RefreshRecommendationsDownload();
 
 			UserSettingsVM.Instance.DashRecommendationsDownloadExpanded = !UserSettingsVM.Instance.DashRecommendationsDownloadExpanded;
+		}
+
+		void btnExpandTraktFriends_Click(object sender, RoutedEventArgs e)
+		{
+			if (UserSettingsVM.Instance.DashTraktFriendsCollapsed && DashboardVM.Instance.TraktFriends.Count == 0)
+				DashboardVM.Instance.RefreshTraktFriends();
+
+			UserSettingsVM.Instance.DashTraktFriendsExpanded = !UserSettingsVM.Instance.DashTraktFriendsExpanded;
 		}
 
 		void btnExpandDashWatchNext_Click(object sender, RoutedEventArgs e)
@@ -436,7 +486,57 @@ namespace JMMClient.UserControls
 			}
 		}
 
-		
+		private void CommandBinding_IgnoreAnimeWatch(object sender, ExecutedRoutedEventArgs e)
+		{
+			Window parentWindow = Window.GetWindow(this);
+
+			object obj = e.Parameter;
+			if (obj == null) return;
+
+			try
+			{
+				if (obj.GetType() == typeof(RecommendationVM))
+				{
+					RecommendationVM rec = obj as RecommendationVM;
+					if (rec == null) return;
+
+					JMMServerVM.Instance.clientBinaryHTTP.IgnoreAnime(rec.RecommendedAnimeID, (int)RecommendationType.Watch,
+						JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+
+					DashboardVM.Instance.RefreshRecommendationsWatch();
+				}
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+		}
+
+		private void CommandBinding_IgnoreAnimeDownload(object sender, ExecutedRoutedEventArgs e)
+		{
+			Window parentWindow = Window.GetWindow(this);
+
+			object obj = e.Parameter;
+			if (obj == null) return;
+
+			try
+			{
+				if (obj.GetType() == typeof(RecommendationVM))
+				{
+					RecommendationVM rec = obj as RecommendationVM;
+					if (rec == null) return;
+
+					JMMServerVM.Instance.clientBinaryHTTP.IgnoreAnime(rec.RecommendedAnimeID, (int)RecommendationType.Download,
+						JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+
+					DashboardVM.Instance.RefreshRecommendationsDownload();
+				}
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+		}
 
 		private void CommandBinding_PlayEpisode(object sender, ExecutedRoutedEventArgs e)
 		{
@@ -501,18 +601,21 @@ namespace JMMClient.UserControls
 			DashPos_MiniCalendar = UserSettingsVM.Instance.GetDashboardWidgetPosition(DashboardWidgets.MiniCalendar);
 			DashPos_RecWatch = UserSettingsVM.Instance.GetDashboardWidgetPosition(DashboardWidgets.RecommendationsWatch);
 			DashPos_RecDownload = UserSettingsVM.Instance.GetDashboardWidgetPosition(DashboardWidgets.RecommendationsDownload);
+			DashPos_TraktFriends = UserSettingsVM.Instance.GetDashboardWidgetPosition(DashboardWidgets.TraktFriends);
 
 			DashPos_WatchNextEpisode = DashPos_WatchNextEpisode * 2;
 			DashPos_SeriesMissingEpisodes = DashPos_SeriesMissingEpisodes * 2;
 			DashPos_MiniCalendar = DashPos_MiniCalendar * 2;
 			DashPos_RecWatch = DashPos_RecWatch * 2;
 			DashPos_RecDownload = DashPos_RecDownload * 2;
+			DashPos_TraktFriends = DashPos_TraktFriends * 2;
 
 			DashPos_WatchNextEpisode_Header = DashPos_WatchNextEpisode - 1;
 			DashPos_SeriesMissingEpisodes_Header = DashPos_SeriesMissingEpisodes - 1;
 			DashPos_MiniCalendar_Header = DashPos_MiniCalendar - 1;
 			DashPos_RecWatch_Header = DashPos_RecWatch - 1;
 			DashPos_RecDownload_Header = DashPos_RecDownload - 1;
+			DashPos_TraktFriends_Header = DashPos_TraktFriends - 1;
 		}
 	}
 }

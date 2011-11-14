@@ -253,7 +253,8 @@ namespace JMMClient
 		SeriesMissingEpisodes = 2,
 		MiniCalendar = 3,
 		RecommendationsWatch = 4,
-		RecommendationsDownload = 5
+		RecommendationsDownload = 5,
+		TraktFriends = 6
 	}
 
 	public enum DashWatchNextStyle
@@ -268,5 +269,17 @@ namespace JMMClient
 		HoursSix = 2,
 		HoursTwelve = 3,
 		Daily = 4
+	}
+
+	public enum RecommendationType
+	{
+		Watch = 1,
+		Download = 2
+	}
+
+	public enum IgnoreAnimeType
+	{
+		RecWatch = 1,
+		RecDownload = 2
 	}
 }

@@ -350,7 +350,7 @@ namespace JMMClient
 				// make sure the setting contains all the widgets
 				// just in case the user has manually edited the config, or is using an old config
 				string[] widgets = val.Split(';');
-				int maxEnum = 5;
+				int maxEnum = 6;
 				for (int i = 1; i <= maxEnum; i++)
 				{
 					if (!widgets.Contains(i.ToString()))
@@ -582,6 +582,24 @@ namespace JMMClient
 			set
 			{
 				UpdateSetting("DashRecommendationsDownloadExpanded", value.ToString());
+			}
+		}
+
+		public static bool DashTraktFriendsExpanded
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["DashTraktFriendsExpanded"];
+				bool bval = true;
+				if (bool.TryParse(val, out bval))
+					return bval;
+				else
+					return true; // default value
+			}
+			set
+			{
+				UpdateSetting("DashTraktFriendsExpanded", value.ToString());
 			}
 		}
 
@@ -854,6 +872,34 @@ namespace JMMClient
 			set
 			{
 				UpdateSetting("Dash_RecDownload_Items", value.ToString());
+			}
+		}
+
+		public static int Dash_TraktFriends_Height
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["Dash_TraktFriends_Height"];
+				int ival = 0;
+				if (int.TryParse(val, out ival))
+				{
+					if (ival < 30)
+						return 30;
+
+					if (ival > 300)
+						return 300;
+
+					return ival;
+				}
+				else
+				{
+					return 150; // default value
+				}
+			}
+			set
+			{
+				UpdateSetting("Dash_TraktFriends_Height", value.ToString());
 			}
 		}
 

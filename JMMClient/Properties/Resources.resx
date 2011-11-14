@@ -1478,4 +1478,13 @@
   <data name="RegularEpisodesOnly" xml:space="preserve">
     <value>Regular Episodes Only</value>
   </data>
+  <data name="Dash_TraktFriends" xml:space="preserve">
+    <value>Friends Activity (Trakt TV)</value>
+  </data>
+  <data name="Tooltip_IgnoreAnimeDownload" xml:space="preserve">
+    <value>Ignore this Anime for Download Recommendations</value>
+  </data>
+  <data name="Tooltip_IgnoreAnimeWatch" xml:space="preserve">
+    <value>Ignore this Anime for Watch Recommendations</value>
+  </data>
 </root>
