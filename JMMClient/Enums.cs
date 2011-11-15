@@ -18,7 +18,8 @@ namespace JMMClient
 		MovieDB_Poster = 9,
 		Trakt_Poster = 10,
 		Trakt_Fanart = 11,
-		Trakt_Episode = 12
+		Trakt_Episode = 12,
+		Trakt_Friend = 13
 	}
 
 	public enum ImageDownloadEventType

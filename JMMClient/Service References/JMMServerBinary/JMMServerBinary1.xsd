@@ -450,6 +450,7 @@
       <xs:element minOccurs="0" name="Joined" type="xs:int" />
       <xs:element minOccurs="0" name="JoinedDate" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Location" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Trakt_FriendID" type="xs:int" />
       <xs:element minOccurs="0" name="Url" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="WatchedEpisodes" nillable="true" type="tns:ArrayOfContract_Trakt_WatchedEpisode" />

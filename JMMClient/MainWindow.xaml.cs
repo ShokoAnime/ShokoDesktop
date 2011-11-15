@@ -141,6 +141,8 @@ namespace JMMClient
 				this.Loaded += new RoutedEventHandler(MainWindow_Loaded);
 				this.StateChanged += new EventHandler(MainWindow_StateChanged);
 
+				DeleteAvatarImages();
+
 				this.AddHandler(CloseableTabItem.CloseTabEvent, new RoutedEventHandler(this.CloseTab));
 			}
 			catch (Exception ex)
@@ -149,7 +151,19 @@ namespace JMMClient
 			}
 		}
 
-		
+		private void DeleteAvatarImages()
+		{
+			try
+			{
+				string path = Utils.GetTraktImagePath_Avatars();
+				if (!Directory.Exists(path)) return;
+
+				string[] imageFiles = Directory.GetFiles(path, "*.jpg");
+				foreach (string filename in imageFiles)
+					File.Delete(filename);
+			}
+			catch { }
+		}
 
 		private void CloseTab(object source, RoutedEventArgs args)
 		{

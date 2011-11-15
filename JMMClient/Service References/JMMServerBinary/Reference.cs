@@ -4702,6 +4702,9 @@ namespace JMMClient.JMMServerBinary {
         private string LocationField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int Trakt_FriendIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string UrlField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -4820,6 +4823,19 @@ namespace JMMClient.JMMServerBinary {
                 if ((object.ReferenceEquals(this.LocationField, value) != true)) {
                     this.LocationField = value;
                     this.RaisePropertyChanged("Location");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Trakt_FriendID {
+            get {
+                return this.Trakt_FriendIDField;
+            }
+            set {
+                if ((this.Trakt_FriendIDField.Equals(value) != true)) {
+                    this.Trakt_FriendIDField = value;
+                    this.RaisePropertyChanged("Trakt_FriendID");
                 }
             }
         }

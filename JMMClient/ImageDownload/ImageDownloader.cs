@@ -461,6 +461,11 @@ namespace JMMClient.ImageDownload
 					Trakt_ImageFanartVM trakFanart = req.ImageData as Trakt_ImageFanartVM;
 					return trakFanart.FullImagePath;
 
+				case ImageEntityType.Trakt_Friend:
+
+					Trakt_FriendVM trakFriend = req.ImageData as Trakt_FriendVM;
+					return trakFriend.FullImagePath;
+
 				case ImageEntityType.Trakt_Episode:
 
 					Trakt_EpisodeVM trakEp = req.ImageData as Trakt_EpisodeVM;
@@ -521,6 +526,11 @@ namespace JMMClient.ImageDownload
 					Trakt_ImageFanartVM trakFanart = req.ImageData as Trakt_ImageFanartVM;
 					return trakFanart.Trakt_ImageFanartID.ToString();
 
+				case ImageEntityType.Trakt_Friend:
+
+					Trakt_FriendVM trakFriend = req.ImageData as Trakt_FriendVM;
+					return trakFriend.Trakt_FriendID.ToString();
+
 				case ImageEntityType.Trakt_Episode:
 
 					Trakt_EpisodeVM trakEp = req.ImageData as Trakt_EpisodeVM;
@@ -532,6 +542,106 @@ namespace JMMClient.ImageDownload
 
 		}
 
+		public void DownloadImage(ImageDownloadRequest req)
+		{
+			string fileName = GetFileName(req, false);
+			string entityID = GetEntityID(req);
+			bool downloadImage = true;
+			bool fileExists = File.Exists(fileName);
+
+			if (fileExists)
+			{
+				if (!req.ForceDownload)
+					downloadImage = false;
+				else
+					downloadImage = true;
+			}
+			else
+				downloadImage = true;
+
+			if (downloadImage)
+			{
+				string tempName = Path.Combine(Utils.GetImagesTempFolder(), Path.GetFileName(fileName));
+				if (File.Exists(tempName)) File.Delete(tempName);
+
+
+				OnImageDownloadEvent(new ImageDownloadEventArgs("", req, ImageDownloadEventType.Started));
+				if (fileExists) File.Delete(fileName);
+
+				byte[] imageArray = null;
+				try
+				{
+					imageArray = JMMServerVM.Instance.imageClient.GetImage(entityID, (int)req.ImageType, false);
+				}
+				catch { }
+
+				if (imageArray == null) return;
+
+				File.WriteAllBytes(tempName, imageArray);
+
+				// move the file to it's final location
+				string fullPath = Path.GetDirectoryName(fileName);
+				if (!Directory.Exists(fullPath))
+					Directory.CreateDirectory(fullPath);
+
+				// move the file to it's final location
+				File.Move(tempName, fileName);
+
+
+
+			}
+
+
+			// if the file is a tvdb fanart also get the thumbnail
+			if (req.ImageType == ImageEntityType.TvDB_FanArt)
+			{
+				fileName = GetFileName(req, true);
+				entityID = GetEntityID(req);
+				downloadImage = true;
+				fileExists = File.Exists(fileName);
+
+				if (fileExists)
+				{
+					if (!req.ForceDownload)
+						downloadImage = false;
+					else
+						downloadImage = true;
+				}
+				else
+					downloadImage = true;
+
+				if (downloadImage)
+				{
+					string tempName = Path.Combine(Utils.GetImagesTempFolder(), Path.GetFileName(fileName));
+					if (File.Exists(tempName)) File.Delete(tempName);
+
+					OnImageDownloadEvent(new ImageDownloadEventArgs("", req, ImageDownloadEventType.Started));
+					if (fileExists) File.Delete(fileName);
+
+					byte[] imageArray = null;
+					try
+					{
+						imageArray = JMMServerVM.Instance.imageClient.GetImage(entityID, (int)req.ImageType, true);
+					}
+					catch { }
+
+					if (imageArray == null) return;
+
+					File.WriteAllBytes(tempName, imageArray);
+
+					// move the file to it's final location
+					string fullPath = Path.GetDirectoryName(fileName);
+					if (!Directory.Exists(fullPath))
+						Directory.CreateDirectory(fullPath);
+
+					// move the file to it's final location
+					File.Move(tempName, fileName);
+				}
+			}
+
+			
+		}
+
 		private void ProcessImages(object sender, DoWorkEventArgs args)
 		{
 
@@ -540,117 +650,9 @@ namespace JMMClient.ImageDownload
 			{
 				try
 				{
-					string fileName = GetFileName(req, false);
-					string entityID = GetEntityID(req);
-					bool downloadImage = true;
-					bool fileExists = File.Exists(fileName);
-
-					if (fileExists)
-					{
-						if (!req.ForceDownload)
-							downloadImage = false;
-						else
-							downloadImage = true;
-					}
-					else
-						downloadImage = true;
-
-					if (downloadImage)
-					{
-						string tempName = Path.Combine(Utils.GetImagesTempFolder(), Path.GetFileName(fileName));
-						if (File.Exists(tempName)) File.Delete(tempName);
-
-
-						OnImageDownloadEvent(new ImageDownloadEventArgs("", req, ImageDownloadEventType.Started));
-						if (fileExists) File.Delete(fileName);
-
-						byte[] imageArray = null;
-						try
-						{
-							imageArray = JMMServerVM.Instance.imageClient.GetImage(entityID, (int)req.ImageType, false);
-						}
-						catch { }
-
-						if (imageArray == null)
-						{
-							imagesToDownload.Remove(req);
-							OnQueueUpdateEvent(new QueueUpdateEventArgs(this.QueueCount));
-							continue;
-						}
-
-						File.WriteAllBytes(tempName, imageArray);
-
-						// move the file to it's final location
-						string fullPath = Path.GetDirectoryName(fileName);
-						if (!Directory.Exists(fullPath))
-							Directory.CreateDirectory(fullPath);
-
-						// move the file to it's final location
-						File.Move(tempName, fileName);
-
-						
-
-					}
-
-					OnImageDownloadEvent(new ImageDownloadEventArgs("", req, ImageDownloadEventType.Complete));
-
-
-					// if the file is a tvdb fanart also get the thumbnail
-					if (req.ImageType == ImageEntityType.TvDB_FanArt)
-					{
-						fileName = GetFileName(req, true);
-						entityID = GetEntityID(req);
-						downloadImage = true;
-						fileExists = File.Exists(fileName);
-
-						if (fileExists)
-						{
-							if (!req.ForceDownload)
-								downloadImage = false;
-							else
-								downloadImage = true;
-						}
-						else
-							downloadImage = true;
-
-						if (downloadImage)
-						{
-							string tempName = Path.Combine(Utils.GetImagesTempFolder(), Path.GetFileName(fileName));
-							if (File.Exists(tempName)) File.Delete(tempName);
-
-							OnImageDownloadEvent(new ImageDownloadEventArgs("", req, ImageDownloadEventType.Started));
-							if (fileExists) File.Delete(fileName);
-
-							byte[] imageArray = null;
-							try
-							{
-								imageArray = JMMServerVM.Instance.imageClient.GetImage(entityID, (int)req.ImageType, true);
-							}
-							catch { }
-
-							if (imageArray == null)
-							{
-								imagesToDownload.Remove(req);
-								OnQueueUpdateEvent(new QueueUpdateEventArgs(this.QueueCount));
-								continue;
-							}
-
-							File.WriteAllBytes(tempName, imageArray);
-
-							// move the file to it's final location
-							string fullPath = Path.GetDirectoryName(fileName);
-							if (!Directory.Exists(fullPath))
-								Directory.CreateDirectory(fullPath);
-
-							// move the file to it's final location
-							File.Move(tempName, fileName);
-						}
-					}
-
+					DownloadImage(req);
 					imagesToDownload.Remove(req);
 					OnQueueUpdateEvent(new QueueUpdateEventArgs(this.QueueCount));
-
-					//OnGotShowInfoEvent(new GotShowInfoEventArgs(req.animeID));
 				}
 				catch (Exception ex)
 				{
@@ -658,7 +660,6 @@ namespace JMMClient.ImageDownload
 					OnQueueUpdateEvent(new QueueUpdateEventArgs(this.QueueCount));
 					logger.ErrorException(ex.ToString(), ex);
 				}
-				
 			}
 
 		}

@@ -200,6 +200,16 @@ namespace JMMClient
 			return filePath;
 		}
 
+		public static string GetTraktImagePath_Avatars()
+		{
+			string filePath = Path.Combine(GetTraktImagePath(), "Avatars");
+
+			if (!Directory.Exists(filePath))
+				Directory.CreateDirectory(filePath);
+
+			return filePath;
+		}
+
 		public static string GetBaseTvDBImagesPath()
 		{
 			string filePath = Path.Combine(GetBaseImagesPath(), "TvDB");
