@@ -471,6 +471,39 @@ namespace JMMClient.UserControls
 			EnableDisableControls(true);
 		}
 
+		private void CommandBinding_DeleteFile(object sender, ExecutedRoutedEventArgs e)
+		{
+			try
+			{
+				Window parentWindow = Window.GetWindow(this);
+
+				object obj = e.Parameter;
+				if (obj == null) return;
+
+				if (obj.GetType() == typeof(VideoLocalVM))
+				{
+					VideoLocalVM vid = obj as VideoLocalVM;
+
+					MessageBoxResult res = MessageBox.Show(string.Format("Are you sure you want to delete this file: {0}", vid.FullPath),
+					"Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
+					if (res == MessageBoxResult.Yes)
+					{
+						string result = JMMServerVM.Instance.clientBinaryHTTP.DeleteVideoLocalAndFile(vid.VideoLocalID);
+						if (result.Length > 0)
+							MessageBox.Show(result, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+						else
+							RefreshUnrecognisedFiles();
+					}
+
+				}
+				
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+		}
+
 		private void CommandBinding_RehashFile(object sender, ExecutedRoutedEventArgs e)
 		{
 			try

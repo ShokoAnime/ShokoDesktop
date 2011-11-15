@@ -787,6 +787,8 @@ namespace JMMClient
 				int pos = traktEp.EpisodeImage.IndexOf(@"episodes/");
 				if (pos <= 0) continue;
 
+				//logger.Trace("Episode image: {0} - {1}/{2}", traktEp.Trakt_ShowID, traktEp.Season, traktEp.EpisodeNumber);
+
 				imageHelper.DownloadTraktEpisode(new Trakt_EpisodeVM(traktEp), false);
 			}
 		}

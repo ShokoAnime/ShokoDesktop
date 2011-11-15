@@ -1487,4 +1487,7 @@
   <data name="Tooltip_IgnoreAnimeWatch" xml:space="preserve">
     <value>Ignore this Anime for Watch Recommendations</value>
   </data>
+  <data name="VisitWebsite" xml:space="preserve">
+    <value>Visit Website</value>
+  </data>
 </root>

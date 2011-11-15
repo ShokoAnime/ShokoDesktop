@@ -4057,6 +4057,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Visit Website.
+        /// </summary>
+        public static string VisitWebsite {
+            get {
+                return ResourceManager.GetString("VisitWebsite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Vote Now.
         /// </summary>
         public static string VoteNow {

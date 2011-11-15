@@ -77,7 +77,10 @@
             <ComboBox Grid.Row="0" Name="cboUpdateFrequency" VerticalAlignment="Center"></ComboBox>
         </StackPanel>
 
-
+        <!-- Visit Website -->
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="5" Margin="0,10,15,0">
+            <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=VisitWebsite}" URL="http://thetvdb.com" Margin="0,0,0,0"/>
+        </StackPanel>
 
     </Grid>
 </UserControl>
