@@ -1490,4 +1490,37 @@
   <data name="VisitWebsite" xml:space="preserve">
     <value>Visit Website</value>
   </data>
+  <data name="AniDBSignup" xml:space="preserve">
+    <value>Signup for AniDB Now</value>
+  </data>
+  <data name="AvdumpHeader" xml:space="preserve">
+    <value>AVDump2 (Optional)</value>
+  </data>
+  <data name="AvdumpInfoLink" xml:space="preserve">
+    <value>More Info on AVDump2</value>
+  </data>
+  <data name="AvdumpKey" xml:space="preserve">
+    <value>API Key</value>
+  </data>
+  <data name="AvdumpKeyEditLink" xml:space="preserve">
+    <value>Edit your AVDump2 UDP API Key here</value>
+  </data>
+  <data name="Avdump" xml:space="preserve">
+    <value>Avdump2</value>
+  </data>
+  <data name="AvdumpRequiredFilesLink" xml:space="preserve">
+    <value>Make sure you have all the required files in the same folder as JMM Desktop</value>
+  </data>
+  <data name="AvdumpSettingsError" xml:space="preserve">
+    <value>You haven't specified your API Key and/or Client Port</value>
+  </data>
+  <data name="AvdumpAddRelease" xml:space="preserve">
+    <value>Add New Release</value>
+  </data>
+  <data name="CopyED2KClipboard" xml:space="preserve">
+    <value>Copy ED2K Dump</value>
+  </data>
+  <data name="Tooltip_CopyED2KClipboard" xml:space="preserve">
+    <value>Copy the ED2K Dump to the Clipboard</value>
+  </data>
 </root>

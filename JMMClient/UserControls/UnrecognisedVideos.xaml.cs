@@ -539,6 +539,8 @@ namespace JMMClient.UserControls
 			EnableDisableControls(true);
 		}
 
+		
+
 
 		void lbVideos_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{

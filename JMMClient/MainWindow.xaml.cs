@@ -847,6 +847,26 @@ namespace JMMClient
 
 		#region Command Bindings
 
+		private void ShowPinnedFileAvDump(VideoLocalVM vid)
+		{
+			this.Cursor = Cursors.Wait;
+
+			CloseableTabItem cti = new CloseableTabItem();
+			//TabItem cti = new TabItem();
+			cti.Header = vid.FileName;
+
+			AvdumpFileControl ctrl = new AvdumpFileControl();
+			ctrl.DataContext = vid;
+			cti.Content = ctrl;
+
+			tabPinned.Items.Add(cti);
+
+			tabControl1.SelectedIndex = TAB_MAIN_Pinned;
+			tabPinned.SelectedIndex = tabPinned.Items.Count - 1;
+
+			this.Cursor = Cursors.Arrow;
+		}
+
 		private void ShowPinnedSeries(AnimeSeriesVM series)
 		{
 			this.Cursor = Cursors.Wait;
@@ -919,6 +939,29 @@ namespace JMMClient
 			{
 				Utils.ShowErrorMessage(ex);
 			}
+		}
+
+		private void CommandBinding_AvdumpFile(object sender, ExecutedRoutedEventArgs e)
+		{
+			try
+			{
+				Window parentWindow = Window.GetWindow(this);
+
+				object obj = e.Parameter;
+				if (obj == null) return;
+
+				if (obj.GetType() == typeof(VideoLocalVM))
+				{
+					VideoLocalVM vid = obj as VideoLocalVM;
+					ShowPinnedFileAvDump(vid);
+				}
+
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+
 		}
 
 		private void CommandBinding_ShowPinnedSeries(object sender, ExecutedRoutedEventArgs e)

@@ -18,6 +18,7 @@ namespace JMMClient
 			public static readonly string AniDB_Series = @"http://anidb.net/perl-bin/animedb.pl?show=anime&aid={0}";
 			public static readonly string AniDB_ReleaseGroup = @"http://anidb.net/perl-bin/animedb.pl?show=group&gid={0}";
 			public static readonly string AniDB_Images = @"http://img7.anidb.net/pics/anime/{0}";
+			public static readonly string AniDB_Series_NewRelease = @"http://anidb.net/perl-bin/animedb.pl?show=addfilem&aid={0}";
 
 			public static readonly string TvDB_Series = @"http://thetvdb.com/?tab=series&id={0}";
 			//public static readonly string tvDBEpisodeURLPrefix = @"http://anidb.net/perl-bin/animedb.pl?show=ep&eid={0}";

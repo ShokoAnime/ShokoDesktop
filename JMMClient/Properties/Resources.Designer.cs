@@ -304,6 +304,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Signup for AniDB Now.
+        /// </summary>
+        public static string AniDBSignup {
+            get {
+                return ResourceManager.GetString("AniDBSignup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AniDB Vote Count.
         /// </summary>
         public static string AniDBVoteCount {
@@ -421,6 +430,78 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Avdump2.
+        /// </summary>
+        public static string Avdump {
+            get {
+                return ResourceManager.GetString("Avdump", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add New Release.
+        /// </summary>
+        public static string AvdumpAddRelease {
+            get {
+                return ResourceManager.GetString("AvdumpAddRelease", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AVDump2 (Optional).
+        /// </summary>
+        public static string AvdumpHeader {
+            get {
+                return ResourceManager.GetString("AvdumpHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to More Info on AVDump2.
+        /// </summary>
+        public static string AvdumpInfoLink {
+            get {
+                return ResourceManager.GetString("AvdumpInfoLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to API Key.
+        /// </summary>
+        public static string AvdumpKey {
+            get {
+                return ResourceManager.GetString("AvdumpKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit your AVDump2 UDP API Key here.
+        /// </summary>
+        public static string AvdumpKeyEditLink {
+            get {
+                return ResourceManager.GetString("AvdumpKeyEditLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Make sure you have all the required files in the same folder as JMM Desktop.
+        /// </summary>
+        public static string AvdumpRequiredFilesLink {
+            get {
+                return ResourceManager.GetString("AvdumpRequiredFilesLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You haven&apos;t specified your API Key and/or Client Port.
+        /// </summary>
+        public static string AvdumpSettingsError {
+            get {
+                return ResourceManager.GetString("AvdumpSettingsError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Back.
         /// </summary>
         public static string Back {
@@ -489,6 +570,15 @@ namespace JMMClient.Properties {
         public static string Confirm {
             get {
                 return ResourceManager.GetString("Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy ED2K Dump.
+        /// </summary>
+        public static string CopyED2KClipboard {
+            get {
+                return ResourceManager.GetString("CopyED2KClipboard", resourceCulture);
             }
         }
         
@@ -3333,6 +3423,15 @@ namespace JMMClient.Properties {
         public static string Tooltip_AniDBScheduleMyList {
             get {
                 return ResourceManager.GetString("Tooltip_AniDBScheduleMyList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy the ED2K Dump to the Clipboard.
+        /// </summary>
+        public static string Tooltip_CopyED2KClipboard {
+            get {
+                return ResourceManager.GetString("Tooltip_CopyED2KClipboard", resourceCulture);
             }
         }
         

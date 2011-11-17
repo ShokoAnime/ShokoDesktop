@@ -327,6 +327,8 @@ namespace JMMClient
 			this.AniDB_ServerAddress = contract.AniDB_ServerAddress;
 			this.AniDB_ServerPort = contract.AniDB_ServerPort;
 			this.AniDB_ClientPort = contract.AniDB_ClientPort;
+			this.AniDB_AVDumpClientPort = contract.AniDB_AVDumpClientPort;
+			this.AniDB_AVDumpKey = contract.AniDB_AVDumpKey;
 
 			this.AniDB_DownloadRelatedAnime = contract.AniDB_DownloadRelatedAnime;
 			this.AniDB_DownloadSimilarAnime = contract.AniDB_DownloadSimilarAnime;
@@ -417,6 +419,8 @@ namespace JMMClient
 				contract.AniDB_ServerAddress = this.AniDB_ServerAddress;
 				contract.AniDB_ServerPort = this.AniDB_ServerPort;
 				contract.AniDB_ClientPort = this.AniDB_ClientPort;
+				contract.AniDB_AVDumpClientPort = this.AniDB_AVDumpClientPort;
+				contract.AniDB_AVDumpKey = this.AniDB_AVDumpKey;
 
 				contract.AniDB_DownloadRelatedAnime = this.AniDB_DownloadRelatedAnime;
 				contract.AniDB_DownloadSimilarAnime = this.AniDB_DownloadSimilarAnime;
@@ -734,6 +738,28 @@ namespace JMMClient
 			{
 				aniDB_ClientPort = value;
 				OnPropertyChanged(new PropertyChangedEventArgs("AniDB_ClientPort"));
+			}
+		}
+
+		private string aniDB_AVDumpClientPort = "";
+		public string AniDB_AVDumpClientPort
+		{
+			get { return aniDB_AVDumpClientPort; }
+			set
+			{
+				aniDB_AVDumpClientPort = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("AniDB_AVDumpClientPort"));
+			}
+		}
+
+		private string aniDB_AVDumpKey = "";
+		public string AniDB_AVDumpKey
+		{
+			get { return aniDB_AVDumpKey; }
+			set
+			{
+				aniDB_AVDumpKey = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("AniDB_AVDumpKey"));
 			}
 		}
 

@@ -146,6 +146,12 @@
   <wsdl:message name="IJMMServer_GetTraktFriendInfo_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetTraktFriendInfoResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_GetUserVote_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserVote" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetUserVote_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserVoteResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_LinkAniDBOther_InputMessage">
     <wsdl:part name="parameters" element="tns:LinkAniDBOther" />
   </wsdl:message>
@@ -903,6 +909,10 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetTraktFriendInfo" message="tns:IJMMServer_GetTraktFriendInfo_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetTraktFriendInfoResponse" message="tns:IJMMServer_GetTraktFriendInfo_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetUserVote">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetUserVote" message="tns:IJMMServer_GetUserVote_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetUserVoteResponse" message="tns:IJMMServer_GetUserVote_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="LinkAniDBOther">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/LinkAniDBOther" message="tns:IJMMServer_LinkAniDBOther_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/LinkAniDBOtherResponse" message="tns:IJMMServer_LinkAniDBOther_OutputMessage" />
@@ -1537,6 +1547,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetTraktFriendInfo">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetTraktFriendInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserVote">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetUserVote" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

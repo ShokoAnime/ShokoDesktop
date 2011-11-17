@@ -491,6 +491,14 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_TraktTVShowResponse" nillable="true" type="tns:Contract_TraktTVShowResponse" />
+  <xs:complexType name="Contract_AniDBVote">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EntityID" type="xs:int" />
+      <xs:element minOccurs="0" name="VoteType" type="xs:int" />
+      <xs:element minOccurs="0" name="VoteValue" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_AniDBVote" nillable="true" type="tns:Contract_AniDBVote" />
   <xs:complexType name="ArrayOfContract_MovieDB_Poster">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_MovieDB_Poster" nillable="true" type="tns:Contract_MovieDB_Poster" />
@@ -930,6 +938,8 @@
   <xs:element name="Contract_MovieDBMovieSearchResult" nillable="true" type="tns:Contract_MovieDBMovieSearchResult" />
   <xs:complexType name="Contract_ServerSettings">
     <xs:sequence>
+      <xs:element minOccurs="0" name="AniDB_AVDumpClientPort" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AniDB_AVDumpKey" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="AniDB_Anime_UpdateFrequency" type="xs:int" />
       <xs:element minOccurs="0" name="AniDB_Calendar_UpdateFrequency" type="xs:int" />
       <xs:element minOccurs="0" name="AniDB_ClientPort" nillable="true" type="xs:string" />
@@ -1122,14 +1132,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_AnimeTag" nillable="true" type="tns:Contract_AnimeTag" />
-  <xs:complexType name="Contract_AniDBVote">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="EntityID" type="xs:int" />
-      <xs:element minOccurs="0" name="VoteType" type="xs:int" />
-      <xs:element minOccurs="0" name="VoteValue" type="xs:decimal" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_AniDBVote" nillable="true" type="tns:Contract_AniDBVote" />
   <xs:complexType name="ArrayOfContract_ImportFolder">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_ImportFolder" nillable="true" type="tns:Contract_ImportFolder" />
