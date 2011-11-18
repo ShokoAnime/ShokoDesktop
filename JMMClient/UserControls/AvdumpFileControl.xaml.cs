@@ -98,19 +98,23 @@ namespace JMMClient.UserControls
 			workerAvdump.DoWork += new DoWorkEventHandler(workerAvdump_DoWork);
 			workerAvdump.RunWorkerCompleted += new RunWorkerCompletedEventHandler(workerAvdump_RunWorkerCompleted);
 
+			this.DataContextChanged += new DependencyPropertyChangedEventHandler(AvdumpFileControl_DataContextChanged);
+
 			AvdumpDetailsNotValid = string.IsNullOrEmpty(JMMServerVM.Instance.AniDB_AVDumpClientPort) || string.IsNullOrEmpty(JMMServerVM.Instance.AniDB_AVDumpKey);
 
 			try
 			{
 				ViewAnime = CollectionViewSource.GetDefaultView(AllAnime);
-				ViewAnime.SortDescriptions.Add(new SortDescription("MainTitle", ListSortDirection.Ascending));
+				//ViewAnime.SortDescriptions.Add(new SortDescription("MainTitle", ListSortDirection.Ascending));
 
-				List<JMMServerBinary.Contract_AniDBAnime> animeRaw = JMMServerVM.Instance.clientBinaryHTTP.GetAllAnime();
+				/*List<JMMServerBinary.Contract_AniDBAnime> animeRaw = JMMServerVM.Instance.clientBinaryHTTP.GetAllAnime();
 				foreach (JMMServerBinary.Contract_AniDBAnime anime in animeRaw)
 				{
 					AniDB_AnimeVM animeNew = new AniDB_AnimeVM(anime);
 					AllAnime.Add(animeNew);
-				}
+				}*/
+
+				
 
 				ViewAnime.Filter = AnimeSearchFilter;
 
@@ -118,6 +122,31 @@ namespace JMMClient.UserControls
 			catch (Exception ex)
 			{
 				Utils.ShowErrorMessage(ex);
+			}
+		}
+
+		void AvdumpFileControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+		{
+
+			VideoLocalVM vid = this.DataContext as VideoLocalVM;
+			if (vid != null)
+			{
+				AllAnime.Clear();
+				foreach (AniDB_AnimeVM anime in AniDB_AnimeVM.BestLevenshteinDistanceMatches(vid.ClosestAnimeMatchString, 10))
+				{
+					AllAnime.Add(anime);
+				}
+				if (AllAnime.Count > 0)
+					lbAnime.SelectedIndex = 0;
+
+				string ed2kDump = "Pre-calculated ED2K Dump string" + Environment.NewLine;
+				ed2kDump += "---------------------------" + Environment.NewLine;
+				ed2kDump += "This does not mean the data has been uploaded to AniDB yet" + Environment.NewLine;
+				ed2kDump += "---------------------------" + Environment.NewLine;
+				ed2kDump += string.Format(@"ed2k://|file|{0}|{1}|{2}|/", vid.FileName, vid.FileSize, vid.Hash) + Environment.NewLine;
+
+				txtOutput.Text = ed2kDump;
+				GetED2KDump(ed2kDump);
 			}
 		}
 
@@ -197,12 +226,13 @@ namespace JMMClient.UserControls
 			string fileName = (char)34 + vid.FullPath + (char)34;
 
 			pProcess.StartInfo.Arguments =
-				string.Format(@" --Auth={0}:{1} --LPort={2} --PrintEd2kLink {3}", JMMServerVM.Instance.AniDB_Username, JMMServerVM.Instance.AniDB_AVDumpKey, 
+				string.Format(@" --Auth={0}:{1} --LPort={2} --PrintEd2kLink -t {3}", JMMServerVM.Instance.AniDB_Username, JMMServerVM.Instance.AniDB_AVDumpKey, 
 				JMMServerVM.Instance.AniDB_AVDumpClientPort, fileName);
 
 			pProcess.StartInfo.UseShellExecute = false;
-			pProcess.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Minimized;
+			pProcess.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
 			pProcess.StartInfo.RedirectStandardOutput = true;
+			pProcess.StartInfo.CreateNoWindow = true;
 			pProcess.Start();
 			string strOutput = pProcess.StandardOutput.ReadToEnd();
 

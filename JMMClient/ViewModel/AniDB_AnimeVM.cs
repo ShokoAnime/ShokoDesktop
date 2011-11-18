@@ -713,6 +713,86 @@ namespace JMMClient
 			dictTvDBEpisodes = null;
 		}
 
-		
+		public int LowestLevenshteinDistance(string input)
+		{
+			int lowestLD = int.MaxValue;
+
+			foreach (string nm in this.AllTitles.Split('|'))
+			{
+				int ld = Utils.LevenshteinDistance(input, nm);
+				if (ld < lowestLD) lowestLD = ld;
+			}
+
+			return lowestLD;
+		}
+
+		/// <summary>
+		/// Gets all anime records, but puts the best X matches at the top
+		/// with the rest sorted by the main title
+		/// </summary>
+		/// <param name="input"></param>
+		/// <param name="maxResults"></param>
+		/// <returns></returns>
+		public static List<AniDB_AnimeVM> BestLevenshteinDistanceMatches(string input, int maxResults)
+		{
+			List<LDContainer> allLDs = new List<LDContainer>();
+
+			List<AniDB_AnimeVM> AllAnime = new List<AniDB_AnimeVM>();
+			List<JMMServerBinary.Contract_AniDBAnime> animeRaw = JMMServerVM.Instance.clientBinaryHTTP.GetAllAnime();
+			foreach (JMMServerBinary.Contract_AniDBAnime anime in animeRaw)
+			{
+				AniDB_AnimeVM animeNew = new AniDB_AnimeVM(anime);
+				AllAnime.Add(animeNew);
+			}
+
+			// now sort the groups by name
+			List<SortPropOrFieldAndDirection> sortCriteria = new List<SortPropOrFieldAndDirection>();
+			sortCriteria.Add(new SortPropOrFieldAndDirection("MainTitle", false, SortType.eString));
+			AllAnime = Sorting.MultiSort<AniDB_AnimeVM>(AllAnime, sortCriteria);
+
+			
+			foreach (AniDB_AnimeVM anime in AllAnime)
+			{
+				LDContainer ldc = new LDContainer();
+				ldc.AnimeID = anime.AnimeID;
+				ldc.LD = anime.LowestLevenshteinDistance(input);
+				ldc.Anime = anime;
+				allLDs.Add(ldc);
+			}
+
+			// now sort the groups by best score
+			sortCriteria = new List<SortPropOrFieldAndDirection>();
+			sortCriteria.Add(new SortPropOrFieldAndDirection("LD", false, SortType.eInteger));
+			allLDs = Sorting.MultiSort<LDContainer>(allLDs, sortCriteria);
+
+			List<AniDB_AnimeVM> retAnime = new List<AniDB_AnimeVM>();
+			for (int i = 0; i < allLDs.Count; i++)
+			{
+				AniDB_AnimeVM anime = allLDs[i].Anime;
+				retAnime.Add(anime);
+				if (i == maxResults - 1) break;
+			}
+
+			foreach (AniDB_AnimeVM anime in AllAnime)
+			{
+				retAnime.Add(anime);
+			}
+
+			return retAnime;
+		}
+
+		public override string ToString()
+		{
+			return string.Format("{0} ({1})", this.MainTitle, this.AnimeID);
+		}
+
+
+	}
+
+	public class LDContainer
+	{
+		public int LD { get; set; }
+		public int AnimeID { get; set; }
+		public AniDB_AnimeVM Anime { get; set; }
 	}
 }

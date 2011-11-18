@@ -63,6 +63,67 @@ namespace JMMClient.ViewModel
 		{
 		}
 
+		public string ClosestAnimeMatchString
+		{
+			get
+			{
+				// if this file is manually linked to a series already
+				// then use that main title
+				List<JMMServerBinary.Contract_AnimeEpisode> eps = JMMServerVM.Instance.clientBinaryHTTP.GetEpisodesForFile(
+					this.VideoLocalID, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+
+				if (eps.Count > 0)
+				{
+					AnimeEpisodeVM ep = new AnimeEpisodeVM(eps[0]);
+					ep.RefreshAnime();
+					return ep.AniDB_Anime.MainTitle;
+				}
+
+				string match = Path.GetFileNameWithoutExtension(this.FileName);
+
+				//remove any group names or CRC's
+				while (true)
+				{
+					int pos = match.IndexOf('[');
+					if (pos >= 0)
+					{
+						int endPos = match.IndexOf(']', pos);
+						if (endPos >= 0)
+						{
+							string rubbish = match.Substring(pos, endPos - pos + 1);
+							match = match.Replace(rubbish, "");
+						}
+						else break;
+					}
+					else break;
+				}
+
+				//remove any video information
+				while (true)
+				{
+					int pos = match.IndexOf('(');
+					if (pos >= 0)
+					{
+						int endPos = match.IndexOf(')', pos);
+						if (endPos >= 0)
+						{
+							string rubbish = match.Substring(pos, endPos - pos + 1);
+							match = match.Replace(rubbish, "");
+						}
+						else break;
+					}
+					else break;
+				}
+
+				//if (match.Length < 16)
+				//	return match;
+				//else
+				//	return match.Substring(0, 16);
+
+				return match;
+			}
+		}
+
 		public VideoLocalVM(JMMServerBinary.Contract_VideoLocal contract)
 		{
 			this.CRC32 = contract.CRC32;

@@ -847,7 +847,7 @@ namespace JMMClient
 
 		#region Command Bindings
 
-		private void ShowPinnedFileAvDump(VideoLocalVM vid)
+		public void ShowPinnedFileAvDump(VideoLocalVM vid)
 		{
 			this.Cursor = Cursors.Wait;
 

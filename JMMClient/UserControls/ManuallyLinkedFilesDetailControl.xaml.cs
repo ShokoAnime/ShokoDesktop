@@ -84,6 +84,30 @@ namespace JMMClient.UserControls
 			}
 		}
 
+		private void CommandBinding_AvdumpFile(object sender, ExecutedRoutedEventArgs e)
+		{
+			try
+			{
+				MainWindow MainWindow = (MainWindow)Window.GetWindow(this);
+
+				object obj = e.Parameter;
+				if (obj == null) return;
+
+				if (obj.GetType() == typeof(AnimeEpisodeVM))
+				{
+					AnimeEpisodeVM ep = obj as AnimeEpisodeVM;
+					VideoLocalVM vid = this.DataContext as VideoLocalVM;
+					MainWindow.ShowPinnedFileAvDump(vid);
+				}
+
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+
+		}
+
 		private void CommandBinding_DeleteLink(object sender, ExecutedRoutedEventArgs e)
 		{
 			Window parentWindow = Window.GetWindow(this);
