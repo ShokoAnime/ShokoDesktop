@@ -516,6 +516,11 @@
                         <usercontrols:MissingEpisodesControl x:Name="missingEpisodes"/>
                     </TabItem>
 
+                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_IgnoredAnime}" Name="tabIgnoredAnime">
+
+                        <usercontrols:IgnoredAnimeControl x:Name="ignoredAnime"/>
+                    </TabItem>
+
                 </TabControl>
 
 

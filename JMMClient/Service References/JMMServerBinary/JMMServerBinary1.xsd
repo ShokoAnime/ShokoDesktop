@@ -499,6 +499,22 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_AniDBVote" nillable="true" type="tns:Contract_AniDBVote" />
+  <xs:complexType name="ArrayOfContract_IgnoreAnime">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_IgnoreAnime" nillable="true" type="tns:Contract_IgnoreAnime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_IgnoreAnime" nillable="true" type="tns:ArrayOfContract_IgnoreAnime" />
+  <xs:complexType name="Contract_IgnoreAnime">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Anime" nillable="true" type="tns:Contract_AniDBAnime" />
+      <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
+      <xs:element minOccurs="0" name="IgnoreAnimeID" type="xs:int" />
+      <xs:element minOccurs="0" name="IgnoreType" type="xs:int" />
+      <xs:element minOccurs="0" name="JMMUserID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_IgnoreAnime" nillable="true" type="tns:Contract_IgnoreAnime" />
   <xs:complexType name="ArrayOfContract_MovieDB_Poster">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_MovieDB_Poster" nillable="true" type="tns:Contract_MovieDB_Poster" />

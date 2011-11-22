@@ -4610,6 +4610,8 @@ namespace JMMClient.JMMServerBinary {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_Trakt_WatchedEpisode))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_TraktTVShowResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AniDBVote))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_IgnoreAnime>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_IgnoreAnime))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_MovieDB_Poster>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_MovieDB_Fanart>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AnimeEpisode))]
@@ -5298,6 +5300,115 @@ namespace JMMClient.JMMServerBinary {
                 if ((this.VoteValueField.Equals(value) != true)) {
                     this.VoteValueField = value;
                     this.RaisePropertyChanged("VoteValue");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_IgnoreAnime", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
+    [System.SerializableAttribute()]
+    public partial class Contract_IgnoreAnime : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private JMMClient.JMMServerBinary.Contract_AniDBAnime AnimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AnimeIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IgnoreAnimeIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IgnoreTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int JMMUserIDField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public JMMClient.JMMServerBinary.Contract_AniDBAnime Anime {
+            get {
+                return this.AnimeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AnimeField, value) != true)) {
+                    this.AnimeField = value;
+                    this.RaisePropertyChanged("Anime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AnimeID {
+            get {
+                return this.AnimeIDField;
+            }
+            set {
+                if ((this.AnimeIDField.Equals(value) != true)) {
+                    this.AnimeIDField = value;
+                    this.RaisePropertyChanged("AnimeID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IgnoreAnimeID {
+            get {
+                return this.IgnoreAnimeIDField;
+            }
+            set {
+                if ((this.IgnoreAnimeIDField.Equals(value) != true)) {
+                    this.IgnoreAnimeIDField = value;
+                    this.RaisePropertyChanged("IgnoreAnimeID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IgnoreType {
+            get {
+                return this.IgnoreTypeField;
+            }
+            set {
+                if ((this.IgnoreTypeField.Equals(value) != true)) {
+                    this.IgnoreTypeField = value;
+                    this.RaisePropertyChanged("IgnoreType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int JMMUserID {
+            get {
+                return this.JMMUserIDField;
+            }
+            set {
+                if ((this.JMMUserIDField.Equals(value) != true)) {
+                    this.JMMUserIDField = value;
+                    this.RaisePropertyChanged("JMMUserID");
                 }
             }
         }
@@ -11629,6 +11740,15 @@ namespace JMMClient.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetUserVote", ReplyAction="http://tempuri.org/IJMMServer/GetUserVoteResponse")]
         JMMClient.JMMServerBinary.Contract_AniDBVote GetUserVote(int animeID);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/IncrementEpisodeStats", ReplyAction="http://tempuri.org/IJMMServer/IncrementEpisodeStatsResponse")]
+        void IncrementEpisodeStats(int animeEpisodeID, int userID, int statCountType);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetIgnoredAnime", ReplyAction="http://tempuri.org/IJMMServer/GetIgnoredAnimeResponse")]
+        System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_IgnoreAnime> GetIgnoredAnime(int userID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/RemoveIgnoreAnime", ReplyAction="http://tempuri.org/IJMMServer/RemoveIgnoreAnimeResponse")]
+        void RemoveIgnoreAnime(int ignoreAnimeID);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/LinkAniDBOther", ReplyAction="http://tempuri.org/IJMMServer/LinkAniDBOtherResponse")]
         string LinkAniDBOther(int animeID, int movieID, int crossRefType);
         
@@ -12079,6 +12199,18 @@ namespace JMMClient.JMMServerBinary {
         
         public JMMClient.JMMServerBinary.Contract_AniDBVote GetUserVote(int animeID) {
             return base.Channel.GetUserVote(animeID);
+        }
+        
+        public void IncrementEpisodeStats(int animeEpisodeID, int userID, int statCountType) {
+            base.Channel.IncrementEpisodeStats(animeEpisodeID, userID, statCountType);
+        }
+        
+        public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_IgnoreAnime> GetIgnoredAnime(int userID) {
+            return base.Channel.GetIgnoredAnime(userID);
+        }
+        
+        public void RemoveIgnoreAnime(int ignoreAnimeID) {
+            base.Channel.RemoveIgnoreAnime(ignoreAnimeID);
         }
         
         public string LinkAniDBOther(int animeID, int movieID, int crossRefType) {

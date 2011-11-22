@@ -1523,4 +1523,10 @@
   <data name="Tooltip_CopyED2KClipboard" xml:space="preserve">
     <value>Copy the ED2K Dump to the Clipboard</value>
   </data>
+  <data name="TAB_IgnoredAnime" xml:space="preserve">
+    <value>Ignored Anime</value>
+  </data>
+  <data name="Anime" xml:space="preserve">
+    <value>Anime</value>
+  </data>
 </root>

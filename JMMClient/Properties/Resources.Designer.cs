@@ -322,6 +322,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Anime.
+        /// </summary>
+        public static string Anime {
+            get {
+                return ResourceManager.GetString("Anime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Titles.
         /// </summary>
         public static string AnimeTitles {
@@ -2982,6 +2991,15 @@ namespace JMMClient.Properties {
         public static string TAB_FileManager {
             get {
                 return ResourceManager.GetString("TAB_FileManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ignored Anime.
+        /// </summary>
+        public static string TAB_IgnoredAnime {
+            get {
+                return ResourceManager.GetString("TAB_IgnoredAnime", resourceCulture);
             }
         }
         

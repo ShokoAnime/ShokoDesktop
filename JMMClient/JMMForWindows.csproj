@@ -235,6 +235,9 @@
     <Compile Include="UserControls\HyperLinkStandard.xaml.cs">
       <DependentUpon>HyperLinkStandard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\IgnoredAnimeControl.xaml.cs">
+      <DependentUpon>IgnoredAnimeControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\IgnoredFiles.xaml.cs">
       <DependentUpon>IgnoredFiles.xaml</DependentUpon>
     </Compile>
@@ -385,6 +388,7 @@
     <Compile Include="ViewModel\GroupFilterHelper.cs" />
     <Compile Include="ViewModel\GroupFilterSortingCriteria.cs" />
     <Compile Include="ViewModel\GroupVideoQualityVM.cs" />
+    <Compile Include="ViewModel\IgnoreAnimeVM.cs" />
     <Compile Include="ViewModel\JMMUserVM.cs" />
     <Compile Include="ViewModel\MainListHelperVM.cs" />
     <Compile Include="ViewModel\AnimeSeriesVM.cs" />
@@ -556,6 +560,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\HyperLinkStandard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\IgnoredAnimeControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -831,6 +839,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_GroupVideoQuality.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_IgnoreAnime.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_ImportFolder.datasource">
