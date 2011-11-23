@@ -105,7 +105,7 @@ namespace JMMClient.UserControls
 			cboStyleSeriesName.Items.Clear();
 			cboStyleSeriesName.Items.Add("AniDB");
 			cboStyleSeriesName.Items.Add("The TvDB");
-			switch (JMMServerVM.Instance.SeriesDescriptionSource)
+			switch (JMMServerVM.Instance.SeriesNameSource)
 			{
 				case DataSourceType.AniDB:
 					cboStyleSeriesName.SelectedIndex = 0;
