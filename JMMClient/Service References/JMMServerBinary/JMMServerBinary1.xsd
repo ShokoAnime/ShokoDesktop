@@ -47,6 +47,7 @@
       <xs:element minOccurs="0" name="AnimeGroupID" type="xs:int" />
       <xs:element minOccurs="0" name="AnimeGroupParentID" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="DateTimeUpdated" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DefaultAnimeSeriesID" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="EpisodeAddedDate" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="GroupName" nillable="true" type="xs:string" />

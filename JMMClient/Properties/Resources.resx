@@ -1529,4 +1529,19 @@
   <data name="Anime" xml:space="preserve">
     <value>Anime</value>
   </data>
+  <data name="RemoveDefaultSeries" xml:space="preserve">
+    <value>Remove Default Series</value>
+  </data>
+  <data name="SetDefaultSeries" xml:space="preserve">
+    <value>Add Default Series</value>
+  </data>
+  <data name="DefSeries1" xml:space="preserve">
+    <value>Select the default series for</value>
+  </data>
+  <data name="DefSeries2" xml:space="preserve">
+    <value>Selecting a default series means that all images that are dsiplayed for a group will use that </value>
+  </data>
+  <data name="DefSeries3" xml:space="preserve">
+    <value>default series instead of a random series within the group</value>
+  </data>
 </root>

@@ -96,6 +96,29 @@ namespace JMMClient
 			}
 		}
 
+		private int? defaultAnimeSeriesID;
+		public int? DefaultAnimeSeriesID
+		{
+			get { return defaultAnimeSeriesID; }
+			set
+			{
+				defaultAnimeSeriesID = value;
+				NotifyPropertyChanged("DefaultAnimeSeriesID");
+				HasDefaultSeries = defaultAnimeSeriesID.HasValue;
+			}
+		}
+
+		private Boolean hasDefaultSeries = false;
+		public Boolean HasDefaultSeries
+		{
+			get { return hasDefaultSeries; }
+			set
+			{
+				hasDefaultSeries = value;
+				NotifyPropertyChanged("HasDefaultSeries");
+			}
+		}
+
 		private Boolean isReadOnly = true;
 		public Boolean IsReadOnly
 		{
@@ -634,6 +657,9 @@ namespace JMMClient
 			this.GroupName = contract.GroupName;
 			this.IsFave = contract.IsFave;
 			this.SortName = contract.SortName;
+			this.DefaultAnimeSeriesID = contract.DefaultAnimeSeriesID;
+			if (contract.DefaultAnimeSeriesID.HasValue)
+				this.HasDefaultSeries = contract.DefaultAnimeSeriesID.HasValue;
 			this.Description = contract.Description;
 			this.UserHasVoted = this.Stat_UserVotePermanent.HasValue;
 			this.UserHasVotedAny = this.Stat_UserVotePermanent.HasValue || this.Stat_UserVoteTemporary.HasValue;

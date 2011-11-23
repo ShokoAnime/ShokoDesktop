@@ -169,6 +169,9 @@
     <Compile Include="Forms\SearchTvDBForm.xaml.cs">
       <DependentUpon>SearchTvDBForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SelectDefaultSeriesForm.xaml.cs">
+      <DependentUpon>SelectDefaultSeriesForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SelectTraktSeasonForm.xaml.cs">
       <DependentUpon>SelectTraktSeasonForm.xaml</DependentUpon>
     </Compile>
@@ -476,6 +479,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\SearchTvDBForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\SelectDefaultSeriesForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1309,13 +1316,16 @@
   <ItemGroup>
     <Resource Include="Images\16_clipboard.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16_heart_break.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(TargetDir)*.dll" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\Client\" /S /R /I /Y	
-xcopy "$(TargetDir)*.exe" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\Client\" /S /R /I /Y
-xcopy "$(TargetDir)*.pdb" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\Client\" /S /R /I /Y
-xcopy "$(TargetDir)*.manifest" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\Client\" /S /R /I /Y
-xcopy "$(TargetDir)default.config" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\Client\" /S /R /I /Y</PostBuildEvent>
+    <PostBuildEvent>xcopy "$(TargetDir)*.dll" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y	
+xcopy "$(TargetDir)*.exe" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y
+xcopy "$(TargetDir)*.pdb" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y
+xcopy "$(TargetDir)*.manifest" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y
+xcopy "$(TargetDir)default.config" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

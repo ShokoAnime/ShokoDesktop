@@ -170,6 +170,18 @@
   <wsdl:message name="IJMMServer_RemoveIgnoreAnime_OutputMessage">
     <wsdl:part name="parameters" element="tns:RemoveIgnoreAnimeResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_SetDefaultSeriesForGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetDefaultSeriesForGroup" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SetDefaultSeriesForGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetDefaultSeriesForGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RemoveDefaultSeriesForGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveDefaultSeriesForGroup" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RemoveDefaultSeriesForGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveDefaultSeriesForGroupResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_LinkAniDBOther_InputMessage">
     <wsdl:part name="parameters" element="tns:LinkAniDBOther" />
   </wsdl:message>
@@ -943,6 +955,14 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RemoveIgnoreAnime" message="tns:IJMMServer_RemoveIgnoreAnime_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RemoveIgnoreAnimeResponse" message="tns:IJMMServer_RemoveIgnoreAnime_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="SetDefaultSeriesForGroup">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SetDefaultSeriesForGroup" message="tns:IJMMServer_SetDefaultSeriesForGroup_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SetDefaultSeriesForGroupResponse" message="tns:IJMMServer_SetDefaultSeriesForGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveDefaultSeriesForGroup">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RemoveDefaultSeriesForGroup" message="tns:IJMMServer_RemoveDefaultSeriesForGroup_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RemoveDefaultSeriesForGroupResponse" message="tns:IJMMServer_RemoveDefaultSeriesForGroup_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="LinkAniDBOther">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/LinkAniDBOther" message="tns:IJMMServer_LinkAniDBOther_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/LinkAniDBOtherResponse" message="tns:IJMMServer_LinkAniDBOther_OutputMessage" />
@@ -1613,6 +1633,24 @@
     </wsdl:operation>
     <wsdl:operation name="RemoveIgnoreAnime">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/RemoveIgnoreAnime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDefaultSeriesForGroup">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/SetDefaultSeriesForGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveDefaultSeriesForGroup">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/RemoveDefaultSeriesForGroup" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

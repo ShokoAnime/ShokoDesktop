@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using JMMClient.Forms;
 
 namespace JMMClient.UserControls
 {
@@ -25,6 +26,39 @@ namespace JMMClient.UserControls
 
 			this.DataContextChanged += new DependencyPropertyChangedEventHandler(AnimeGroupControl_DataContextChanged);
 			btnPlayNextEpisode.Click += new RoutedEventHandler(btnPlayNextEpisode_Click);
+
+			btnSelectDefaultSeries.Click += new RoutedEventHandler(btnSelectDefaultSeries_Click);
+			btnRemoveDefaultSeries.Click += new RoutedEventHandler(btnRemoveDefaultSeries_Click);
+		}
+
+		void btnRemoveDefaultSeries_Click(object sender, RoutedEventArgs e)
+		{
+			AnimeGroupVM grp = this.DataContext as AnimeGroupVM;
+			if (grp == null) return;
+
+			if (!grp.AnimeGroupID.HasValue) return;
+
+			JMMServerVM.Instance.clientBinaryHTTP.RemoveDefaultSeriesForGroup(grp.AnimeGroupID.Value);
+			grp.DefaultAnimeSeriesID = null;
+		}
+
+		void btnSelectDefaultSeries_Click(object sender, RoutedEventArgs e)
+		{
+			AnimeGroupVM grp = this.DataContext as AnimeGroupVM;
+			if (grp == null) return;
+
+			Window wdw = Window.GetWindow(this);
+
+			SelectDefaultSeriesForm frm = new SelectDefaultSeriesForm();
+			frm.Owner = wdw;
+			frm.Init(grp);
+			bool? result = frm.ShowDialog();
+			if (result.Value)
+			{
+				// update info
+				grp.DefaultAnimeSeriesID = frm.SelectedSeriesID.Value;
+				JMMServerVM.Instance.clientBinaryHTTP.SetDefaultSeriesForGroup(grp.AnimeGroupID.Value, frm.SelectedSeriesID.Value);
+			}
 		}
 
 		void btnPlayNextEpisode_Click(object sender, RoutedEventArgs e)
@@ -120,5 +154,7 @@ namespace JMMClient.UserControls
 				this.Cursor = Cursors.Arrow;
 			}
 		}
+
+		
 	}
 }

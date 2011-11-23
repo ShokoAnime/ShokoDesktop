@@ -355,6 +355,31 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="SetDefaultSeriesForGroup">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="animeGroupID" type="xs:int" />
+        <xs:element minOccurs="0" name="animeSeriesID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetDefaultSeriesForGroupResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveDefaultSeriesForGroup">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="animeGroupID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveDefaultSeriesForGroupResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="LinkAniDBOther">
     <xs:complexType>
       <xs:sequence>

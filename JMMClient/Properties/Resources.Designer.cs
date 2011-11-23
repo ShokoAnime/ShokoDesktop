@@ -682,6 +682,33 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select the default series for.
+        /// </summary>
+        public static string DefSeries1 {
+            get {
+                return ResourceManager.GetString("DefSeries1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selecting a default series means that all images that are dsiplayed for a group will use that .
+        /// </summary>
+        public static string DefSeries2 {
+            get {
+                return ResourceManager.GetString("DefSeries2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to default series instead of a random series within the group.
+        /// </summary>
+        public static string DefSeries3 {
+            get {
+                return ResourceManager.GetString("DefSeries3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string Delete {
@@ -2644,6 +2671,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove Default Series.
+        /// </summary>
+        public static string RemoveDefaultSeries {
+            get {
+                return ResourceManager.GetString("RemoveDefaultSeries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove Missing Files.
         /// </summary>
         public static string RemoveMissingFiles {
@@ -2829,6 +2865,15 @@ namespace JMMClient.Properties {
         public static string ServerPath {
             get {
                 return ResourceManager.GetString("ServerPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Default Series.
+        /// </summary>
+        public static string SetDefaultSeries {
+            get {
+                return ResourceManager.GetString("SetDefaultSeries", resourceCulture);
             }
         }
         

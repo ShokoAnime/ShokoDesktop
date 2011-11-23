@@ -50,11 +50,27 @@
                             <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AddSubGroup}" Margin="0,0,0,0"/>
                         </StackPanel>
                     </Button>
+                    <!-- select default series -->
+                    <Button  Name="btnSelectDefaultSeries" Margin="3,2,2,2" Style="{DynamicResource FlatButtonStyle}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                            <Image Height="16" Width="16" Source="/Images/16_heart.png" Margin="0,0,3,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SetDefaultSeries}" Margin="0,0,0,0"/>
+                        </StackPanel>
+                    </Button>
+                    <!-- remove default series -->
+                    <Button  Name="btnRemoveDefaultSeries" Margin="3,2,2,2" Style="{DynamicResource FlatButtonStyle}" 
+                             Visibility="{Binding Path=HasDefaultSeries, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                            <Image Height="16" Width="16" Source="/Images/16_heart_break.png" Margin="0,0,3,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=RemoveDefaultSeries}" Margin="0,0,0,0"/>
+                        </StackPanel>
+                    </Button>
                     <!-- Pin Group To Group Filter -->
-                    <Button Name="btnPinGroup" Margin="10,2,2,2" Style="{DynamicResource FlatButtonStyle}" Command="{DynamicResource DeleteGroupCommand}" CommandParameter="{Binding}">
+                    <Button Name="btnPinGroup" Margin="10,2,2,2" Style="{DynamicResource FlatButtonStyle}" Command="{DynamicResource DeleteGroupCommand}" CommandParameter="{Binding}"
+                            Visibility="Hidden">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                             <Image Height="16" Width="16" Source="/Images/32_pin.png" Margin="0,0,3,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Delete}" Margin="0,0,0,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="Pin" Margin="0,0,0,0"/>
                         </StackPanel>
                     </Button>
 
