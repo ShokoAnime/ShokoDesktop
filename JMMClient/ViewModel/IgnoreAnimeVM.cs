@@ -46,7 +46,7 @@ namespace JMMClient.ViewModel
 			get
 			{
 				if (Anime != null)
-					return Anime.MainTitle;
+					return Anime.FormattedTitle;
 				else
 					return string.Format("Anime ID: {0}", AnimeID);
 			}

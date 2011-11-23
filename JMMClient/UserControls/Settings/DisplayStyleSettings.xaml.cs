@@ -69,6 +69,86 @@ namespace JMMClient.UserControls
 			}
 
 			cboStyleEpisodeDetail.SelectionChanged += new SelectionChangedEventHandler(cboStyleEpisodeDetail_SelectionChanged);
+
+
+			cboStyleEpisodeTitle.Items.Clear();
+			cboStyleEpisodeTitle.Items.Add("AniDB");
+			cboStyleEpisodeTitle.Items.Add("The TvDB");
+			switch (JMMServerVM.Instance.EpisodeTitleSource)
+			{
+				case DataSourceType.AniDB:
+					cboStyleEpisodeTitle.SelectedIndex = 0;
+					break;
+
+				case DataSourceType.TheTvDB:
+					cboStyleEpisodeTitle.SelectedIndex = 1;
+					break;
+			}
+			cboStyleEpisodeTitle.SelectionChanged += new SelectionChangedEventHandler(cboStyleEpisodeTitle_SelectionChanged);
+
+
+			cboStyleSeriesOverview.Items.Clear();
+			cboStyleSeriesOverview.Items.Add("AniDB");
+			cboStyleSeriesOverview.Items.Add("The TvDB");
+			switch (JMMServerVM.Instance.SeriesDescriptionSource)
+			{
+				case DataSourceType.AniDB:
+					cboStyleSeriesOverview.SelectedIndex = 0;
+					break;
+
+				case DataSourceType.TheTvDB:
+					cboStyleSeriesOverview.SelectedIndex = 1;
+					break;
+			}
+			cboStyleSeriesOverview.SelectionChanged += new SelectionChangedEventHandler(cboStyleSeriesOverview_SelectionChanged);
+
+			cboStyleSeriesName.Items.Clear();
+			cboStyleSeriesName.Items.Add("AniDB");
+			cboStyleSeriesName.Items.Add("The TvDB");
+			switch (JMMServerVM.Instance.SeriesDescriptionSource)
+			{
+				case DataSourceType.AniDB:
+					cboStyleSeriesName.SelectedIndex = 0;
+					break;
+
+				case DataSourceType.TheTvDB:
+					cboStyleSeriesName.SelectedIndex = 1;
+					break;
+			}
+			cboStyleSeriesName.SelectionChanged += new SelectionChangedEventHandler(cboStyleSeriesName_SelectionChanged);
+		}
+
+		void cboStyleSeriesName_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			switch (cboStyleSeriesName.SelectedIndex)
+			{
+				case 0: JMMServerVM.Instance.SeriesNameSource = DataSourceType.AniDB; break;
+				case 1: JMMServerVM.Instance.SeriesNameSource = DataSourceType.TheTvDB; break;
+				default: JMMServerVM.Instance.SeriesNameSource = DataSourceType.AniDB; break;
+			}
+			JMMServerVM.Instance.SaveServerSettingsAsync();
+		}
+
+		void cboStyleSeriesOverview_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			switch (cboStyleSeriesOverview.SelectedIndex)
+			{
+				case 0: JMMServerVM.Instance.SeriesDescriptionSource = DataSourceType.AniDB; break;
+				case 1: JMMServerVM.Instance.SeriesDescriptionSource = DataSourceType.TheTvDB; break;
+				default: JMMServerVM.Instance.SeriesDescriptionSource = DataSourceType.AniDB; break;
+			}
+			JMMServerVM.Instance.SaveServerSettingsAsync();
+		}
+
+		void cboStyleEpisodeTitle_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			switch (cboStyleEpisodeTitle.SelectedIndex)
+			{
+				case 0: JMMServerVM.Instance.EpisodeTitleSource = DataSourceType.AniDB; break;
+				case 1: JMMServerVM.Instance.EpisodeTitleSource = DataSourceType.TheTvDB; break;
+				default: JMMServerVM.Instance.EpisodeTitleSource = DataSourceType.AniDB; break;
+			}
+			JMMServerVM.Instance.SaveServerSettingsAsync();
 		}
 
 		void cboStyleEpisodeDetail_SelectionChanged(object sender, SelectionChangedEventArgs e)

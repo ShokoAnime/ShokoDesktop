@@ -376,7 +376,7 @@ namespace JMMClient
 						ep.RefreshAnime();
 						if (ep.AniDB_Anime != null && JMMServerVM.Instance.CurrentUser.EvaluateAnime(ep.AniDB_Anime))
 						{
-							ep.SetTvDBImageAndOverview();
+							ep.SetTvDBInfo();
 							EpsWatchNext_Recent.Add(ep);
 						}
 					}

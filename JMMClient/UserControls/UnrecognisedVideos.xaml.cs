@@ -205,7 +205,7 @@ namespace JMMClient.UserControls
 					RefreshSeries();
 
 					AnimeSeriesVM ser = frm.AnimeSeries;
-					txtSeriesSearch.Text = ser.AniDB_Anime.MainTitle;
+					txtSeriesSearch.Text = ser.AniDB_Anime.FormattedTitle;
 				}
 			}
 			catch (Exception ex)

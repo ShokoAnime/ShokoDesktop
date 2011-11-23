@@ -283,4 +283,10 @@ namespace JMMClient
 		RecWatch = 1,
 		RecDownload = 2
 	}
+
+	public enum DataSourceType
+	{
+		AniDB = 1,
+		TheTvDB = 2
+	}
 }

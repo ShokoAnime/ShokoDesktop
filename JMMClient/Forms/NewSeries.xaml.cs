@@ -356,7 +356,7 @@ namespace JMMClient.Forms
 				ViewGroups.SortDescriptions.Add(new SortDescription("SortName", ListSortDirection.Ascending));
 
 				ViewAnime = CollectionViewSource.GetDefaultView(AllAnime);
-				ViewAnime.SortDescriptions.Add(new SortDescription("MainTitle", ListSortDirection.Ascending));
+				ViewAnime.SortDescriptions.Add(new SortDescription("FormattedTitle", ListSortDirection.Ascending));
 
 				List<JMMServerBinary.Contract_AnimeGroup> grpsRaw = JMMServerVM.Instance.clientBinaryHTTP.GetAllGroups(JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
 

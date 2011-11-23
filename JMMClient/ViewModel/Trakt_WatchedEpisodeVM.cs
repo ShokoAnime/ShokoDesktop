@@ -86,7 +86,7 @@ namespace JMMClient.ViewModel
 			get
 			{
 				if (Anime != null)
-					return Anime.MainTitle;
+					return Anime.FormattedTitle;
 
 				return TraktShow.title;
 			}

@@ -914,7 +914,7 @@ namespace JMMClient
 
 					NewSeries frmNewSeries = new NewSeries();
 					frmNewSeries.Owner = this;
-					frmNewSeries.Init(anime, anime.MainTitle);
+					frmNewSeries.Init(anime, anime.FormattedTitle);
 
 					bool? result = frmNewSeries.ShowDialog();
 					if (result.HasValue && result.Value == true)

@@ -77,6 +77,19 @@ namespace JMMClient
 			}
 		}
 
+		private string episodeName = "";
+		public string EpisodeName
+		{
+			get { return episodeName; }
+			set
+			{
+				episodeName = value;
+				NotifyPropertyChanged("EpisodeName");
+
+				SetEpisodeNameVariants();
+			}
+		}
+
 		private string episodeNumberAndName = "";
 		public string EpisodeNumberAndName
 		{
@@ -352,7 +365,7 @@ namespace JMMClient
 				LastWatchedDescription = "";
 		}
 
-		public void SetTvDBImageAndOverview()
+		public void SetTvDBInfo()
 		{
 			this.RefreshAnime();
 
@@ -361,10 +374,17 @@ namespace JMMClient
 			Dictionary<int, int> dictTvDBSeasonsSpecials = AniDB_Anime.DictTvDBSeasonsSpecials;
 			CrossRef_AniDB_TvDBVM tvDBCrossRef = AniDB_Anime.CrossRefTvDB;
 
-			SetTvDBImageAndOverview(dictTvDBEpisodes, dictTvDBSeasons, dictTvDBSeasonsSpecials, tvDBCrossRef);
+			SetTvDBInfo(dictTvDBEpisodes, dictTvDBSeasons, dictTvDBSeasonsSpecials, tvDBCrossRef);
 		}
 
-		public void SetTvDBImageAndOverview(Dictionary<int, TvDB_EpisodeVM> dictTvDBEpisodes, Dictionary<int, int> dictTvDBSeasons, 
+		/// <summary>
+		/// Set the Episode image and overview, also over-write the episode name if user has selected this
+		/// </summary>
+		/// <param name="dictTvDBEpisodes"></param>
+		/// <param name="dictTvDBSeasons"></param>
+		/// <param name="dictTvDBSeasonsSpecials"></param>
+		/// <param name="tvDBCrossRef"></param>
+		public void SetTvDBInfo(Dictionary<int, TvDB_EpisodeVM> dictTvDBEpisodes, Dictionary<int, int> dictTvDBSeasons, 
 			Dictionary<int, int> dictTvDBSeasonsSpecials, CrossRef_AniDB_TvDBVM tvDBCrossRef)
 		{
 			// now do stuff to improve performance
@@ -397,6 +417,9 @@ namespace JMMClient
 							}
 							else
 								this.EpisodeImageLoading = tvep.FullImagePath;
+
+							if (JMMServerVM.Instance.EpisodeTitleSource == DataSourceType.TheTvDB && !string.IsNullOrEmpty(tvep.EpisodeName))
+								EpisodeName = tvep.EpisodeName;
 						}
 					}
 				}
@@ -427,10 +450,15 @@ namespace JMMClient
 							}
 							else
 								this.EpisodeImageLoading = tvep.FullImagePath;
+
+							if (JMMServerVM.Instance.EpisodeTitleSource == DataSourceType.TheTvDB && !string.IsNullOrEmpty(tvep.EpisodeName))
+								EpisodeName = tvep.EpisodeName;
 						}
 					}
 				}
 			}
+
+			
 		}
 
 		public bool FutureDated
@@ -533,17 +561,6 @@ namespace JMMClient
 			}
 		}
 
-		public string EpisodeName
-		{
-			get
-			{
-				if (AniDB_EnglishName.Trim().Length > 0)
-					return AniDB_EnglishName;
-				else
-					return AniDB_RomajiName;
-			}
-		}
-
 		public EpisodeType EpisodeTypeEnum
 		{
 			get
@@ -559,6 +576,24 @@ namespace JMMClient
 		public AnimeEpisodeVM(JMMServerBinary.Contract_AnimeEpisode contract)
 		{
 			Populate(contract);
+		}
+
+		private void SetEpisodeNameVariants()
+		{
+			EpisodeNumberAndName = string.Format("{0} - {1}", EpisodeNumber, EpisodeName);
+			string shortType = "";
+			switch (EpisodeTypeEnum)
+			{
+				case JMMClient.EpisodeType.Credits: shortType = "C"; break;
+				case JMMClient.EpisodeType.Episode: shortType = ""; break;
+				case JMMClient.EpisodeType.Other: shortType = "O"; break;
+				case JMMClient.EpisodeType.Parody: shortType = "P"; break;
+				case JMMClient.EpisodeType.Special: shortType = "S"; break;
+				case JMMClient.EpisodeType.Trailer: shortType = "T"; break;
+			}
+			EpisodeNumberAndNameWithType = string.Format("{0}{1} - {2}", shortType, EpisodeNumber, EpisodeName);
+			EpisodeTypeAndNumber = string.Format("{0}{1}", shortType, EpisodeNumber);
+			EpisodeTypeAndNumberAbsolute = string.Format("{0}{1}", shortType, EpisodeNumber.ToString().PadLeft(5, '0'));
 		}
 
 		public void Populate(JMMServerBinary.Contract_AnimeEpisode contract)
@@ -587,22 +622,7 @@ namespace JMMClient
 				this.AniDB_EnglishName = contract.AniDB_EnglishName;
 				this.AniDB_AirDate = contract.AniDB_AirDate;
 
-				EpisodeNumberAndName = string.Format("{0} - {1}", EpisodeNumber, EpisodeName);
-				string shortType = "";
-				switch (EpisodeTypeEnum)
-				{
-					case JMMClient.EpisodeType.Credits: shortType = "C"; break;
-					case JMMClient.EpisodeType.Episode: shortType = ""; break;
-					case JMMClient.EpisodeType.Other: shortType = "O"; break;
-					case JMMClient.EpisodeType.Parody: shortType = "P"; break;
-					case JMMClient.EpisodeType.Special: shortType = "S"; break;
-					case JMMClient.EpisodeType.Trailer: shortType = "T"; break;
-				}
-				EpisodeNumberAndNameWithType = string.Format("{0}{1} - {2}", shortType, EpisodeNumber, EpisodeName);
-				EpisodeTypeAndNumber = string.Format("{0}{1}", shortType, EpisodeNumber);
-				EpisodeTypeAndNumberAbsolute = string.Format("{0}{1}", shortType, EpisodeNumber.ToString().PadLeft(5, '0'));
-
-				
+			
 
 				if (AniDB_AirDate.HasValue)
 					AirDateAsString = AniDB_AirDate.Value.ToString("dd MMM yyyy", Globals.Culture);
@@ -656,6 +676,11 @@ namespace JMMClient
 				}
 
 				ShowEpisodeImageInDashboard = ShowEpisodeImageInExpanded;
+
+				if (AniDB_EnglishName.Trim().Length > 0)
+					EpisodeName = AniDB_EnglishName;
+				else
+					EpisodeName = AniDB_RomajiName;
 
 
 			}

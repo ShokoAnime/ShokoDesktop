@@ -172,7 +172,7 @@ namespace JMMClient
 		public AniDB_AnimeVM AniDB_Anime { get; set; }
 		public CrossRef_AniDB_TvDBVM CrossRef_AniDB_TvDB { get; set; }
 		public CrossRef_AniDB_OtherVM CrossRef_AniDB_MovieDB { get; set; }
-		
+		public TvDB_SeriesVM TvDBSeries { get; set; }
 
 		
 
@@ -348,7 +348,14 @@ namespace JMMClient
 		{
 			get
 			{
-				return AniDB_Anime.FormattedTitle;
+				if (JMMServerVM.Instance.SeriesDescriptionSource == DataSourceType.AniDB)
+					return AniDB_Anime.FormattedTitle;
+
+				if (TvDBSeries != null && !string.IsNullOrEmpty(TvDBSeries.SeriesName))
+					return TvDBSeries.SeriesName;
+				else
+					return AniDB_Anime.FormattedTitle;
+
 			}
 		}
 
@@ -407,7 +414,13 @@ namespace JMMClient
 		{
 			get
 			{
-				return AniDB_Anime.Description;
+				if (JMMServerVM.Instance.SeriesDescriptionSource == DataSourceType.AniDB)
+					return AniDB_Anime.Description;
+
+				if (TvDBSeries != null && !string.IsNullOrEmpty(TvDBSeries.Overview))
+					return TvDBSeries.Overview;
+				else
+					return AniDB_Anime.Description;
 			}
 		}
 
@@ -456,7 +469,7 @@ namespace JMMClient
 			get
 			{
 				StringBuilder sb = new StringBuilder();
-				sb.Append(AniDB_Anime.MainTitle);
+				sb.Append(AniDB_Anime.FormattedTitle);
 
 				return sb.ToString();
 			}
@@ -487,7 +500,7 @@ namespace JMMClient
 				List<JMMServerBinary.Contract_AnimeEpisode> eps = JMMServerVM.Instance.clientBinaryHTTP.GetEpisodesForSeries(AnimeSeriesID.Value, 
 					JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
 				TimeSpan ts = DateTime.Now - start;
-				logger.Info("Got episode data from service: {0} in {1} ms", AniDB_Anime.MainTitle, ts.TotalMilliseconds);
+				logger.Info("Got episode data from service: {0} in {1} ms", AniDB_Anime.FormattedTitle, ts.TotalMilliseconds);
 
 				start = DateTime.Now;
 				Dictionary<int, TvDB_EpisodeVM> dictTvDBEpisodes = this.AniDB_Anime.DictTvDBEpisodes;
@@ -501,7 +514,7 @@ namespace JMMClient
 				{
 					AnimeEpisodeVM epvm = new AnimeEpisodeVM(ep);
 
-					epvm.SetTvDBImageAndOverview(dictTvDBEpisodes, dictTvDBSeasons, dictTvDBSeasonsSpecials, tvDBCrossRef);
+					epvm.SetTvDBInfo(dictTvDBEpisodes, dictTvDBSeasons, dictTvDBSeasonsSpecials, tvDBCrossRef);
 
 					// now do stuff to improve performance
 					/*if (epvm.EpisodeTypeEnum == EpisodeType.Episode)
@@ -563,12 +576,12 @@ namespace JMMClient
 				}
 
 				ts = DateTime.Now - start;
-				logger.Info("Got episode contracts: {0} in {1} ms", AniDB_Anime.MainTitle, ts.TotalMilliseconds);
+				logger.Info("Got episode contracts: {0} in {1} ms", AniDB_Anime.FormattedTitle, ts.TotalMilliseconds);
 
 				start = DateTime.Now;
 				allEpisodes.Sort();
 				ts = DateTime.Now - start;
-				logger.Info("Sorted episode contracts: {0} in {1} ms", AniDB_Anime.MainTitle, ts.TotalMilliseconds);
+				logger.Info("Sorted episode contracts: {0} in {1} ms", AniDB_Anime.FormattedTitle, ts.TotalMilliseconds);
 			}
 			catch (Exception ex)
 			{
@@ -656,6 +669,11 @@ namespace JMMClient
 				CrossRef_AniDB_TvDB = new CrossRef_AniDB_TvDBVM(contract.CrossRefAniDBTvDB);
 			else
 				CrossRef_AniDB_TvDB = null;
+
+			if (contract.TvDB_Series != null)
+				TvDBSeries = new TvDB_SeriesVM(contract.TvDB_Series);
+			else
+				TvDBSeries = null;
 
 			if (contract.CrossRefAniDBMovieDB != null)
 				CrossRef_AniDB_MovieDB = new CrossRef_AniDB_OtherVM(contract.CrossRefAniDBMovieDB);

@@ -102,7 +102,7 @@ namespace JMMClient.UserControls
 				this.Cursor = Cursors.Wait;
 				SelectTraktSeasonForm frm = new SelectTraktSeasonForm();
 				frm.Owner = wdw;
-				frm.Init(anime.AnimeID, anime.MainTitle, AniDB_AnimeCrossRefs.CrossRef_AniDB_Trakt.TraktID,
+				frm.Init(anime.AnimeID, anime.FormattedTitle, AniDB_AnimeCrossRefs.CrossRef_AniDB_Trakt.TraktID,
 					AniDB_AnimeCrossRefs.CrossRef_AniDB_Trakt.TraktSeasonNumber, AniDB_AnimeCrossRefs.TraktShow.Title);
 				bool? result = frm.ShowDialog();
 				if (result.Value)
@@ -174,7 +174,7 @@ namespace JMMClient.UserControls
 				this.Cursor = Cursors.Wait;
 				SearchTraktForm frm = new SearchTraktForm();
 				frm.Owner = wdw;
-				frm.Init(anime.AnimeID, anime.MainTitle, ExistingTraktID);
+				frm.Init(anime.AnimeID, anime.FormattedTitle, ExistingTraktID);
 				bool? result = frm.ShowDialog();
 				if (result.Value)
 				{
@@ -238,7 +238,7 @@ namespace JMMClient.UserControls
 				this.Cursor = Cursors.Wait;
 				SelectTvDBSeasonForm frm = new SelectTvDBSeasonForm();
 				frm.Owner = wdw;
-				frm.Init(anime.AnimeID, anime.MainTitle, AniDB_AnimeCrossRefs.CrossRef_AniDB_TvDB.TvDBID, 
+				frm.Init(anime.AnimeID, anime.FormattedTitle, AniDB_AnimeCrossRefs.CrossRef_AniDB_TvDB.TvDBID, 
 					AniDB_AnimeCrossRefs.CrossRef_AniDB_TvDB.TvDBSeasonNumber, AniDB_AnimeCrossRefs.TvDBSeries.SeriesName);
 				bool? result = frm.ShowDialog();
 				if (result.Value)
@@ -310,7 +310,7 @@ namespace JMMClient.UserControls
 				this.Cursor = Cursors.Wait;
 				SearchTvDBForm frm = new SearchTvDBForm();
 				frm.Owner = wdw;
-				frm.Init(anime.AnimeID, anime.MainTitle, ExistingSeriesID);
+				frm.Init(anime.AnimeID, anime.FormattedTitle, ExistingSeriesID);
 				bool? result = frm.ShowDialog();
 				if (result.Value)
 				{
@@ -360,7 +360,7 @@ namespace JMMClient.UserControls
 				this.Cursor = Cursors.Wait;
 				SearchMovieDBForm frm = new SearchMovieDBForm();
 				frm.Owner = wdw;
-				frm.Init(anime.AnimeID, anime.MainTitle);
+				frm.Init(anime.AnimeID, anime.FormattedTitle);
 				bool? result = frm.ShowDialog();
 				if (result.Value)
 				{

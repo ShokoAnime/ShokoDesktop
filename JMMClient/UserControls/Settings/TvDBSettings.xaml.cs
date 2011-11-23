@@ -12,6 +12,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Windows.Controls;
+using JMMClient.Forms;
+using JMMClient.ViewModel;
 
 namespace JMMClient.UserControls
 {
@@ -44,6 +46,38 @@ namespace JMMClient.UserControls
 			}
 
 			cboUpdateFrequency.SelectionChanged += new SelectionChangedEventHandler(cboUpdateFrequency_SelectionChanged);
+
+			btnChangeLanguage.Click += new RoutedEventHandler(btnChangeLanguage_Click);
+		}
+
+		void btnChangeLanguage_Click(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				Window wdw = Window.GetWindow(this);
+
+				wdw.Cursor = Cursors.Wait;
+				List<JMMServerBinary.Contract_TvDBLanguage> lans = JMMServerVM.Instance.clientBinaryHTTP.GetTvDBLanguages();
+				List<TvDB_LanguageVM> languages = new List<TvDB_LanguageVM>();
+				foreach (JMMServerBinary.Contract_TvDBLanguage lan in lans)
+					languages.Add(new TvDB_LanguageVM(lan));
+				wdw.Cursor = Cursors.Arrow;
+
+				SelectTvDBLanguage frm = new SelectTvDBLanguage();
+				frm.Owner = wdw;
+				frm.Init(languages);
+				bool? result = frm.ShowDialog();
+				if (result.Value)
+				{
+					// update info
+					JMMServerVM.Instance.TvDB_Language = frm.SelectedLanguage;
+					JMMServerVM.Instance.SaveServerSettingsAsync();
+				}
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
 		}
 
 		void cboUpdateFrequency_SelectionChanged(object sender, SelectionChangedEventArgs e)

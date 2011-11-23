@@ -547,6 +547,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Change Language.
+        /// </summary>
+        public static string ChangeLanguage {
+            get {
+                return ResourceManager.GetString("ChangeLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Client.
         /// </summary>
         public static string Client {
@@ -939,6 +948,15 @@ namespace JMMClient.Properties {
         public static string Episodes_Watched_Watched {
             get {
                 return ResourceManager.GetString("Episodes_Watched_Watched", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Episode Title Source.
+        /// </summary>
+        public static string EpisodeTitleSourceStyle {
+            get {
+                return ResourceManager.GetString("EpisodeTitleSourceStyle", resourceCulture);
             }
         }
         
@@ -2833,6 +2851,24 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Series Name Source.
+        /// </summary>
+        public static string SeriesNameSourceStyle {
+            get {
+                return ResourceManager.GetString("SeriesNameSourceStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Series Overview Source.
+        /// </summary>
+        public static string SeriesOverviewSourceStyle {
+            get {
+                return ResourceManager.GetString("SeriesOverviewSourceStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Server.
         /// </summary>
         public static string Server {
@@ -3535,6 +3571,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Preferred source of information when displaying the title of an episode.
+        /// </summary>
+        public static string Tooltip_EpisodeTitleSourceStyle {
+            get {
+                return ResourceManager.GetString("Tooltip_EpisodeTitleSourceStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This file is available.
         /// </summary>
         public static string Tooltip_FileFound {
@@ -3747,6 +3792,24 @@ namespace JMMClient.Properties {
         public static string Tooltip_ReevaluateDuplicateFiles {
             get {
                 return ResourceManager.GetString("Tooltip_ReevaluateDuplicateFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preferred source of information when displaying the series name for an anime.
+        /// </summary>
+        public static string Tooltip_SeriesNameSourceStyle {
+            get {
+                return ResourceManager.GetString("Tooltip_SeriesNameSourceStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preferred source of information when displaying the overview (description) for an anime series.
+        /// </summary>
+        public static string Tooltip_SeriesOverviewSourceStyle {
+            get {
+                return ResourceManager.GetString("Tooltip_SeriesOverviewSourceStyle", resourceCulture);
             }
         }
         

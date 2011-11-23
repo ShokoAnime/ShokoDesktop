@@ -93,7 +93,7 @@ namespace JMMClient.UserControls
 				if (ep != null)
 				{
 					AnimeEpisodeVM aniep = new AnimeEpisodeVM(ep);
-					aniep.SetTvDBImageAndOverview();
+					aniep.SetTvDBInfo();
 					ucNextEpisode.DataContext = aniep;
 				}
 				else

@@ -182,6 +182,12 @@
   <wsdl:message name="IJMMServer_RemoveDefaultSeriesForGroup_OutputMessage">
     <wsdl:part name="parameters" element="tns:RemoveDefaultSeriesForGroupResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_GetTvDBLanguages_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTvDBLanguages" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetTvDBLanguages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTvDBLanguagesResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_LinkAniDBOther_InputMessage">
     <wsdl:part name="parameters" element="tns:LinkAniDBOther" />
   </wsdl:message>
@@ -963,6 +969,10 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RemoveDefaultSeriesForGroup" message="tns:IJMMServer_RemoveDefaultSeriesForGroup_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RemoveDefaultSeriesForGroupResponse" message="tns:IJMMServer_RemoveDefaultSeriesForGroup_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetTvDBLanguages">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetTvDBLanguages" message="tns:IJMMServer_GetTvDBLanguages_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetTvDBLanguagesResponse" message="tns:IJMMServer_GetTvDBLanguages_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="LinkAniDBOther">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/LinkAniDBOther" message="tns:IJMMServer_LinkAniDBOther_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/LinkAniDBOtherResponse" message="tns:IJMMServer_LinkAniDBOther_OutputMessage" />
@@ -1651,6 +1661,15 @@
     </wsdl:operation>
     <wsdl:operation name="RemoveDefaultSeriesForGroup">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/RemoveDefaultSeriesForGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTvDBLanguages">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetTvDBLanguages" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

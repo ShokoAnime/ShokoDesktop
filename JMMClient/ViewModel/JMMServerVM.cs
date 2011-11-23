@@ -362,6 +362,7 @@ namespace JMMClient
 			this.TvDB_AutoWideBanners = contract.TvDB_AutoWideBanners;
 			this.TvDB_AutoPosters = contract.TvDB_AutoPosters;
 			this.TvDB_UpdateFrequency = (ScheduledUpdateFrequency)contract.TvDB_UpdateFrequency;
+			this.TvDB_Language = contract.TvDB_Language;
 
 			// MovieDB
 			this.MovieDB_AutoFanart = contract.MovieDB_AutoFanart;
@@ -381,6 +382,9 @@ namespace JMMClient
 			// Language
 			this.LanguagePreference = contract.LanguagePreference;
 			this.LanguageUseSynonyms = contract.LanguageUseSynonyms;
+			this.EpisodeTitleSource = (DataSourceType)contract.EpisodeTitleSource;
+			this.SeriesDescriptionSource = (DataSourceType)contract.SeriesDescriptionSource;
+			this.SeriesNameSource = (DataSourceType)contract.SeriesNameSource;
 
 			// trakt
 			this.Trakt_Username = contract.Trakt_Username;
@@ -454,6 +458,7 @@ namespace JMMClient
 				contract.TvDB_AutoWideBanners = this.TvDB_AutoWideBanners;
 				contract.TvDB_AutoPosters = this.TvDB_AutoPosters;
 				contract.TvDB_UpdateFrequency = (int)this.TvDB_UpdateFrequency;
+				contract.TvDB_Language = this.TvDB_Language;
 
 				// MovieDB
 				contract.MovieDB_AutoFanart = this.MovieDB_AutoFanart;
@@ -473,6 +478,9 @@ namespace JMMClient
 				// Language
 				contract.LanguagePreference = this.LanguagePreference;
 				contract.LanguageUseSynonyms = this.LanguageUseSynonyms;
+				contract.EpisodeTitleSource = (int)this.EpisodeTitleSource;
+				contract.SeriesDescriptionSource = (int)this.SeriesDescriptionSource;
+				contract.SeriesNameSource = (int)this.SeriesNameSource;
 
 				// trakt
 				contract.Trakt_Username = this.Trakt_Username;
@@ -1039,6 +1047,17 @@ namespace JMMClient
 			}
 		}
 
+		private string tvDB_Language = "";
+		public string TvDB_Language
+		{
+			get { return tvDB_Language; }
+			set
+			{
+				tvDB_Language = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("TvDB_Language"));
+			}
+		}
+
 		private ScheduledUpdateFrequency tvDB_UpdateFrequency = ScheduledUpdateFrequency.HoursTwelve;
 		public ScheduledUpdateFrequency TvDB_UpdateFrequency
 		{
@@ -1194,6 +1213,39 @@ namespace JMMClient
 			{
 				languageUseSynonyms = value;
 				OnPropertyChanged(new PropertyChangedEventArgs("LanguageUseSynonyms"));
+			}
+		}
+
+		private DataSourceType episodeTitleSource = DataSourceType.AniDB;
+		public DataSourceType EpisodeTitleSource
+		{
+			get { return episodeTitleSource; }
+			set
+			{
+				episodeTitleSource = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("EpisodeTitleSource"));
+			}
+		}
+
+		private DataSourceType seriesDescriptionSource = DataSourceType.AniDB;
+		public DataSourceType SeriesDescriptionSource
+		{
+			get { return seriesDescriptionSource; }
+			set
+			{
+				seriesDescriptionSource = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("SeriesDescriptionSource"));
+			}
+		}
+
+		private DataSourceType seriesNameSource = DataSourceType.AniDB;
+		public DataSourceType SeriesNameSource
+		{
+			get { return seriesNameSource; }
+			set
+			{
+				seriesNameSource = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("SeriesNameSource"));
 			}
 		}
 

@@ -175,6 +175,9 @@
     <Compile Include="Forms\SelectTraktSeasonForm.xaml.cs">
       <DependentUpon>SelectTraktSeasonForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SelectTvDBLanguage.xaml.cs">
+      <DependentUpon>SelectTvDBLanguage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SelectTvDBSeasonForm.xaml.cs">
       <DependentUpon>SelectTvDBSeasonForm.xaml</DependentUpon>
     </Compile>
@@ -422,6 +425,7 @@
     <Compile Include="ViewModel\TvDB_ImageFanartVM.cs" />
     <Compile Include="ViewModel\TvDB_ImagePosterVM.cs" />
     <Compile Include="ViewModel\TvDB_ImageWideBannerVM.cs" />
+    <Compile Include="ViewModel\TvDB_LanguageVM.cs" />
     <Compile Include="ViewModel\TvDB_SeriesVM.cs" />
     <Compile Include="ViewModel\UserSettingsVM.cs" />
     <Compile Include="ViewModel\VideoDetailedVM.cs" />
@@ -487,6 +491,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\SelectTraktSeasonForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\SelectTvDBLanguage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -903,6 +911,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_Trakt_ImagePoster.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_TvDBLanguage.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_TVDBSeriesSearchResult.datasource">
