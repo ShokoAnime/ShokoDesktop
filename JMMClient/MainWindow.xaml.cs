@@ -77,7 +77,14 @@ namespace JMMClient
 
 		public MainWindow()
 		{
-			InitializeComponent();
+			try
+			{
+				InitializeComponent();
+			}
+            catch(Exception ex)
+            {
+                File.WriteAllText(@"C:\jmmerror.txt", ex.ToString());
+            }
 
 			try
 			{
