@@ -32,7 +32,7 @@
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" Margin="0,5,5,0">
             <ComboBox Grid.Row="0" Name="cboStyleGroupList" VerticalAlignment="Center"
                               ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Style_GroupList}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_Style_GroupList}}"></ComboBox>
+                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_Style_GroupList}}" IsEnabled="False"></ComboBox>
         </StackPanel>
 
         <!-- Episode Image - Spoiler hide -->
