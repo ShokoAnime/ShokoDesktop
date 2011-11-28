@@ -7,12 +7,15 @@ using System.Windows;
 using System.Resources;
 using System.Globalization;
 using System.Threading;
+using System.Security;
 
 namespace JMMClient
 {
 	/// <summary>
 	/// Interaction logic for App.xaml
 	/// </summary>
+	/// 
+	
 	public partial class App : Application
 	{
 		public static ResourceManager ResGlobal = null;
