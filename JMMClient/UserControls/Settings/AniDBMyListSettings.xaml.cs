@@ -47,24 +47,14 @@ namespace JMMClient.UserControls
 
 		void cboStorageState_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			switch (cboStorageState.SelectedIndex)
-			{
-				case 0: JMMServerVM.Instance.AniDB_MyList_StorageState = 1; break;
-				case 1: JMMServerVM.Instance.AniDB_MyList_StorageState = 2; break;
-				case 2: JMMServerVM.Instance.AniDB_MyList_StorageState = 3; break;
-			}
-
+			JMMServerVM.Instance.AniDB_MyList_StorageState = cboStorageState.SelectedIndex;
+			
 			JMMServerVM.Instance.SaveServerSettingsAsync();
 		}
 
 		void AniDBMyListSettings_Loaded(object sender, RoutedEventArgs e)
 		{
-			switch (JMMServerVM.Instance.AniDB_MyList_StorageState)
-			{
-				case 1: cboStorageState.SelectedIndex = 0; break;
-				case 2: cboStorageState.SelectedIndex = 1; break;
-				case 3: cboStorageState.SelectedIndex = 2; break;
-			}
+			cboStorageState.SelectedIndex = JMMServerVM.Instance.AniDB_MyList_StorageState;
 		}
 	}
 }
