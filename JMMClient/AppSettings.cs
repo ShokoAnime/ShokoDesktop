@@ -523,7 +523,7 @@ namespace JMMClient
 				if (bool.TryParse(val, out bval))
 					return bval;
 				else
-					return true; // default value
+					return false; // default value
 			}
 			set
 			{
@@ -541,7 +541,7 @@ namespace JMMClient
 				if (bool.TryParse(val, out bval))
 					return bval;
 				else
-					return true; // default value
+					return false; // default value
 			}
 			set
 			{
@@ -559,7 +559,7 @@ namespace JMMClient
 				if (bool.TryParse(val, out bval))
 					return bval;
 				else
-					return true; // default value
+					return false; // default value
 			}
 			set
 			{
@@ -577,7 +577,7 @@ namespace JMMClient
 				if (bool.TryParse(val, out bval))
 					return bval;
 				else
-					return true; // default value
+					return false; // default value
 			}
 			set
 			{
@@ -663,7 +663,7 @@ namespace JMMClient
 				if (int.TryParse(appSettings["Dash_WatchNext_Style"], out val))
 					return (DashWatchNextStyle)val;
 				else
-					return DashWatchNextStyle.Simple; // default value
+					return DashWatchNextStyle.Detailed; // default value
 			}
 			set
 			{
