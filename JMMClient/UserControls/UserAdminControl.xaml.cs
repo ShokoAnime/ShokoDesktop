@@ -70,6 +70,7 @@ namespace JMMClient.UserControls
 			SelectedUser.IsAdmin = chkIsAdmin.IsChecked.Value ? 1 : 0;
 			SelectedUser.IsAniDBUser = chkIsAniDB.IsChecked.Value ? 1 : 0;
 			SelectedUser.IsTraktUser = chkIsTrakt.IsChecked.Value ? 1 : 0;
+			SelectedUser.CanEditServerSettings = chkEditSettings.IsChecked.Value ? 1 : 0;
 			
 
 			try
@@ -200,6 +201,7 @@ namespace JMMClient.UserControls
 			chkIsAdmin.IsChecked = false;
 			chkIsAniDB.IsChecked = false;
 			chkIsTrakt.IsChecked = false;
+			chkEditSettings.IsChecked = false;
 
 			txtUsername.Focus();
 
@@ -211,6 +213,7 @@ namespace JMMClient.UserControls
 			chkIsAdmin.IsChecked = SelectedUser.IsAdminUser;
 			chkIsAniDB.IsChecked = SelectedUser.IsAniDBUserBool;
 			chkIsTrakt.IsChecked = SelectedUser.IsTraktUserBool;
+			chkEditSettings.IsChecked = SelectedUser.CanEditSettings;
 		}
 
 		void UserAdminControl_Loaded(object sender, RoutedEventArgs e)

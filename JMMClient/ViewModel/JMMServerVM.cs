@@ -294,6 +294,17 @@ namespace JMMClient
 
 		}
 
+		private void SetShowServerSettings()
+		{
+			if (CurrentUser == null) 
+			{
+				ShowServerSettings = false;
+				return;
+			}
+
+			ShowServerSettings = ServerOnline && CurrentUser.CanEditSettings;
+		}
+
 		public bool AuthenticateUser()
 		{
 			CurrentUser = null;
@@ -314,6 +325,8 @@ namespace JMMClient
 			}
 			else
 				UserAuthenticated = false;
+
+			SetShowServerSettings();
 
 			return UserAuthenticated;
 		}
@@ -685,6 +698,18 @@ namespace JMMClient
 			{
 				serverOnline = value;
 				OnPropertyChanged(new PropertyChangedEventArgs("ServerOnline"));
+				SetShowServerSettings();
+			}
+		}
+
+		private bool showServerSettings = false;
+		public bool ShowServerSettings
+		{
+			get { return showServerSettings; }
+			set
+			{
+				showServerSettings = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("ShowServerSettings"));
 			}
 		}
 
@@ -1601,7 +1626,15 @@ namespace JMMClient
 				{
 					List<JMMServerBinary.Contract_JMMUser> users = JMMServerVM.Instance.clientBinaryHTTP.GetAllUsers();
 					foreach (JMMServerBinary.Contract_JMMUser user in users)
+					{
+						JMMUserVM jmmUser = new JMMUserVM(user);
+						if (CurrentUser != null && CurrentUser.JMMUserID.Value == jmmUser.JMMUserID.Value)
+						{
+							CurrentUser = jmmUser;
+							SetShowServerSettings();
+						}
 						AllUsers.Add(new JMMUserVM(user));
+					}
 				}
 				catch (Exception ex)
 				{

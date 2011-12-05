@@ -14,6 +14,7 @@ namespace JMMClient.ViewModel
 		public int IsAniDBUser { get; set; }
 		public int IsTraktUser { get; set; }
 		public string HideCategories { get; set; }
+		public int? CanEditServerSettings { get; set; }
 
 		public bool IsAdminUser
 		{
@@ -23,6 +24,11 @@ namespace JMMClient.ViewModel
 		public bool IsAniDBUserBool
 		{
 			get { return IsAniDBUser == 1; }
+		}
+
+		public bool CanEditSettings
+		{
+			get { return CanEditServerSettings.HasValue ? CanEditServerSettings.Value == 1 : false; }
 		}
 
 		public bool IsTraktUserBool
@@ -43,6 +49,7 @@ namespace JMMClient.ViewModel
 			this.IsAniDBUser = contract.IsAniDBUser;
 			this.IsTraktUser = contract.IsTraktUser;
 			this.HideCategories = contract.HideCategories;
+			this.CanEditServerSettings = contract.CanEditServerSettings;
 		}
 
 		public JMMServerBinary.Contract_JMMUser ToContract()
@@ -55,6 +62,7 @@ namespace JMMClient.ViewModel
 			contract.IsAniDBUser = this.IsAniDBUser;
 			contract.IsTraktUser = this.IsTraktUser;
 			contract.HideCategories = this.HideCategories;
+			contract.CanEditServerSettings = this.CanEditServerSettings;
 			return contract;
 		}
 

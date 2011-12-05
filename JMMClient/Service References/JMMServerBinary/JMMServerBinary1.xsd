@@ -596,6 +596,7 @@
   <xs:element name="ArrayOfContract_JMMUser" nillable="true" type="tns:ArrayOfContract_JMMUser" />
   <xs:complexType name="Contract_JMMUser">
     <xs:sequence>
+      <xs:element minOccurs="0" name="CanEditServerSettings" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="HideCategories" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="IsAdmin" type="xs:int" />
       <xs:element minOccurs="0" name="IsAniDBUser" type="xs:int" />

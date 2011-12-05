@@ -354,7 +354,7 @@
 
             <!-- Server tab-->
             <TabItem Name="tabServer" Style="{DynamicResource tabMainItem}"
-                     Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}">
+                     Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
 
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
@@ -459,7 +459,7 @@
 
             <!-- File Manager tab -->
             <TabItem Name="tabFiles" Style="{DynamicResource tabMainItem}"
-                     Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}">
+                     Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
 
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
@@ -590,15 +590,15 @@
                                 <usercontrols:JMMServerSettings Grid.Column="0" Grid.Row="2" Margin="5,0,0,10"/>
 
                                 <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="3" Background="#FFE9ECEF" Margin="0,0,0,5"
-                                        Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
                                     <TextBlock  Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AniDBLogin}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                                 </Border>
 
                                 <usercontrols:AniDBLoginSettings Grid.Column="0" Grid.Row="4" Margin="5,0,0,10"
-                                        Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                        Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                                 <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="5"  Background="#F1F1F1" Margin="0,0,0,5" Padding="5"
-                                        Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto"></RowDefinition>
@@ -630,20 +630,20 @@
                                 </Border>
                                 
                                 <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="6" Background="#FFE9ECEF" Margin="0,0,0,5"
-                                        Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
                                     <TextBlock  Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ImportFolders}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                                 </Border>
 
                                 <usercontrols:ImportFolderAdmin Grid.Column="0" Grid.Row="7" Margin="0,0,0,10"
-                                        Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                        Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                                 <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="8" Background="#FFE9ECEF" Margin="0,0,0,5"
-                                        Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
                                     <TextBlock  Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_Settings_ImportSettings}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                                 </Border>
 
                                 <usercontrols:ImportSettings Grid.Column="0" Grid.Row="9" Margin="0,0,0,10"
-                                        Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                        Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                             </Grid>
                         </ScrollViewer>
@@ -652,7 +652,7 @@
 
                     <!-- AniDB Settings tab -->
                     <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_SettingsAniDB}" Name="tabSettingsAniDB"
-                             Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}">
+                             Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
 
                         <ScrollViewer>
                             <Grid>
@@ -678,12 +678,12 @@
 
 
                                 <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="0" Background="#FFE9ECEF" Margin="0,0,0,5"
-                                        Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
                                     <TextBlock  Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AniDBLogin}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                                 </Border>
 
                                 <usercontrols:AniDBLoginSettings Grid.Column="0" Grid.Row="1" Margin="5,0,0,10"
-                                        Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                        Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                                 <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="2"  Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
                                     <Grid>
@@ -717,20 +717,20 @@
                                 </Border>
 
                                 <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="3" Background="#FFE9ECEF" Margin="0,0,0,5"
-                                        Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
                                     <TextBlock  Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AniDBDownloadOptions}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                                 </Border>
 
                                 <usercontrols:AniDBDownloadSettings Grid.Column="0" Grid.Row="4" Margin="5,0,0,10"
-                                        Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                        Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                                 <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="5" Background="#FFE9ECEF" Margin="0,0,0,5"
-                                        Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
                                     <TextBlock  Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AniDBMylistOptions}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                                 </Border>
 
                                 <usercontrols:AniDBMyListSettings Grid.Column="0" Grid.Row="6" Margin="5,0,0,10"
-                                        Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                        Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                                 <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="7"  Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
                                     <Grid>
@@ -750,12 +750,12 @@
                                 </Border>
 
                                 <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="8" Background="#FFE9ECEF" Margin="0,0,0,5"
-                                        Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
                                     <TextBlock  Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AniDBScheduleOptions}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                                 </Border>
 
                                 <usercontrols:AniDBScheduledUpdates Grid.Column="0" Grid.Row="9" Margin="5,0,0,10"
-                                        Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                        Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                                 <!-- Languages -->
                                 <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="10" Background="#FFE9ECEF" Margin="0,0,0,5">
@@ -787,7 +787,7 @@
 
                     <!-- TvDB / MovieDB Settings tab -->
                     <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_SettingsOnlineDB}" Name="tabSettingsOnlineDB"
-                             Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}">
+                             Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
 
                         <ScrollViewer>
                             <Grid>
@@ -831,7 +831,7 @@
 
                     <!-- Web Cache Settings tab -->
                     <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_SettingsWebCache}" Name="tabSettingsWebCache"
-                             Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}">
+                             Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
 
                         <ScrollViewer>
                             <Grid>

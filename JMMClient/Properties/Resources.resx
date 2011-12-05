@@ -1565,4 +1565,7 @@
   <data name="Tooltip_SeriesOverviewSourceStyle" xml:space="preserve">
     <value>Preferred source of information when displaying the overview (description) for an anime series</value>
   </data>
+  <data name="User_EditSettings" xml:space="preserve">
+    <value>Edit Server Settings</value>
+  </data>
 </root>
