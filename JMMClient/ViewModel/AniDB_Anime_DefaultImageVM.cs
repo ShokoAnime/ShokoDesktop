@@ -119,6 +119,59 @@ namespace JMMClient.ViewModel
 			}
 		}
 
+		public string FullImagePathOnlyExisting
+		{
+			get
+			{
+				ImageEntityType itype = (ImageEntityType)ImageParentType;
+				string fileName = "";
+
+				switch (itype)
+				{
+					case ImageEntityType.AniDB_Cover:
+						if (MainListHelperVM.Instance.AllAnimeDictionary.ContainsKey(AnimeID))
+						{
+							fileName = MainListHelperVM.Instance.AllAnimeDictionary[AnimeID].PosterPath;
+						}
+						break;
+
+					case ImageEntityType.TvDB_Cover:
+						fileName = TVPoster.FullImagePath;
+						break;
+
+					case ImageEntityType.MovieDB_Poster:
+						fileName = MoviePoster.FullImagePath;
+						break;
+
+					case ImageEntityType.MovieDB_FanArt:
+						fileName = MovieFanart.FullImagePath;
+						break;
+
+					case ImageEntityType.TvDB_FanArt:
+						fileName = TVFanart.FullImagePath;
+						break;
+
+					case ImageEntityType.TvDB_Banner:
+						fileName = TVWideBanner.FullImagePath;
+						break;
+
+					case ImageEntityType.Trakt_Poster:
+						fileName = TraktPoster.FullImagePath;
+						break;
+
+					case ImageEntityType.Trakt_Fanart:
+						fileName = TraktFanart.FullImagePath;
+						break;
+				}
+
+				if (!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
+					return fileName;
+				else
+					return "";
+
+			}
+		}
+
 		public string FullThumbnailPath
 		{
 			get

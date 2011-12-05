@@ -104,6 +104,11 @@ namespace JMMClient
 			IsImageEnabled = ImageEnabled == 1;
 			IsImageDisabled = ImageEnabled != 1;
 
+			if (AnimeID == 8150)
+			{
+				Console.Write("");
+			}
+
 			if (contract.DefaultImagePoster != null)
 				DefaultPoster = new AniDB_Anime_DefaultImageVM(contract.DefaultImagePoster);
 			else
@@ -331,6 +336,27 @@ namespace JMMClient
 					return AniDB_AnimeCrossRefs.AllFanarts[0].FullImagePath;
 
 				return packUriBlank;
+			}
+		}
+
+		public string FanartPathOnlyExisting
+		{
+			get
+			{
+				// this should be randomised or use the default 
+				if (DefaultFanart != null && !string.IsNullOrEmpty(DefaultFanart.FullImagePathOnlyExisting))
+					return DefaultFanart.FullImagePathOnlyExisting;
+
+				if (AniDB_AnimeCrossRefs == null)
+					return "";
+
+				if (AniDB_AnimeCrossRefs.AllFanarts.Count == 0)
+					return "";
+
+				if (File.Exists(AniDB_AnimeCrossRefs.AllFanarts[0].FullImagePath))
+					return AniDB_AnimeCrossRefs.AllFanarts[0].FullImagePath;
+
+				return "";
 			}
 		}
 

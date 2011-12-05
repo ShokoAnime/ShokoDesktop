@@ -29,7 +29,7 @@ namespace JMMClient.ViewModel
 			get
 			{
 				if (!string.IsNullOrEmpty(FullImagePath) && File.Exists(FullImagePath)) return FullImagePath;
-				//if (!string.IsNullOrEmpty(OnlineImagePath)) return OnlineImagePath;
+
 				return @"/Images/EpisodeThumb_NotFound.png";
 			}
 		}

@@ -28,7 +28,11 @@ namespace JMMClient.ViewModel
 			get
 			{
 				if (!string.IsNullOrEmpty(FullImagePath) && File.Exists(FullImagePath)) return FullImagePath;
-				//if (!string.IsNullOrEmpty(OnlineImagePath)) return OnlineImagePath;
+
+				// use fanart instead
+				if (Anime != null && !string.IsNullOrEmpty(Anime.FanartPathOnlyExisting))
+					return Anime.FanartPathOnlyExisting;
+
 				return @"/Images/EpisodeThumb_NotFound.png";
 			}
 		}
