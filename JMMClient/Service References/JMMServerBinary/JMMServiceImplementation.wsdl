@@ -20,6 +20,12 @@
       <xsd:import schemaLocation="http://localhost:8111/JMMServerBinary?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IJMMServer_ScanDropFolders_InputMessage">
+    <wsdl:part name="parameters" element="tns:ScanDropFolders" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_ScanDropFolders_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ScanDropFoldersResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_GetGroupFilterExtended_InputMessage">
     <wsdl:part name="parameters" element="tns:GetGroupFilterExtended" />
   </wsdl:message>
@@ -861,6 +867,10 @@
     <wsdl:part name="parameters" element="tns:GetServerSettingsResponse" />
   </wsdl:message>
   <wsdl:portType name="IJMMServer">
+    <wsdl:operation name="ScanDropFolders">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/ScanDropFolders" message="tns:IJMMServer_ScanDropFolders_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/ScanDropFoldersResponse" message="tns:IJMMServer_ScanDropFolders_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetGroupFilterExtended">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilterExtended" message="tns:IJMMServer_GetGroupFilterExtended_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilterExtendedResponse" message="tns:IJMMServer_GetGroupFilterExtended_OutputMessage" />
@@ -1425,6 +1435,15 @@
   <wsdl:binding name="BinaryBinding_IJMMServer" type="tns:IJMMServer">
     <wsp:PolicyReference URI="#BinaryBinding_IJMMServer_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ScanDropFolders">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/ScanDropFolders" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetGroupFilterExtended">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetGroupFilterExtended" style="document" />
       <wsdl:input>

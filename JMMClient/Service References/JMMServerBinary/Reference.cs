@@ -7527,6 +7527,9 @@ namespace JMMClient.JMMServerBinary {
         private long VideoInfo_DurationField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string VideoInfo_VideoBitDepthField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string VideoInfo_VideoBitrateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -7971,6 +7974,19 @@ namespace JMMClient.JMMServerBinary {
                 if ((this.VideoInfo_DurationField.Equals(value) != true)) {
                     this.VideoInfo_DurationField = value;
                     this.RaisePropertyChanged("VideoInfo_Duration");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string VideoInfo_VideoBitDepth {
+            get {
+                return this.VideoInfo_VideoBitDepthField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.VideoInfo_VideoBitDepthField, value) != true)) {
+                    this.VideoInfo_VideoBitDepthField = value;
+                    this.RaisePropertyChanged("VideoInfo_VideoBitDepth");
                 }
             }
         }
@@ -11849,6 +11865,9 @@ namespace JMMClient.JMMServerBinary {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="JMMServerBinary.IJMMServer")]
     public interface IJMMServer {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/ScanDropFolders", ReplyAction="http://tempuri.org/IJMMServer/ScanDropFoldersResponse")]
+        void ScanDropFolders();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetGroupFilterExtended", ReplyAction="http://tempuri.org/IJMMServer/GetGroupFilterExtendedResponse")]
         JMMClient.JMMServerBinary.Contract_GroupFilterExtended GetGroupFilterExtended(int groupFilterID, int userID);
         
@@ -12295,6 +12314,10 @@ namespace JMMClient.JMMServerBinary {
         
         public JMMServerClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public void ScanDropFolders() {
+            base.Channel.ScanDropFolders();
         }
         
         public JMMClient.JMMServerBinary.Contract_GroupFilterExtended GetGroupFilterExtended(int groupFilterID, int userID) {

@@ -786,6 +786,7 @@
       <xs:element minOccurs="0" name="VideoInfo_AudioBitrate" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="VideoInfo_AudioCodec" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="VideoInfo_Duration" type="xs:long" />
+      <xs:element minOccurs="0" name="VideoInfo_VideoBitDepth" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="VideoInfo_VideoBitrate" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="VideoInfo_VideoCodec" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="VideoInfo_VideoFrameRate" nillable="true" type="xs:string" />
