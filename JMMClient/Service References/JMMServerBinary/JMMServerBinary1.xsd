@@ -743,6 +743,7 @@
       <xs:element minOccurs="0" name="Ranking" type="xs:int" />
       <xs:element minOccurs="0" name="Resolution" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="SpecialsComplete" type="xs:boolean" />
+      <xs:element minOccurs="0" name="VideoBitDepth" type="xs:int" />
       <xs:element minOccurs="0" name="VideoSource" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>

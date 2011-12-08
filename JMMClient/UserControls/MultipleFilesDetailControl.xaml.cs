@@ -115,6 +115,7 @@ namespace JMMClient.UserControls
 					ep.RefreshAnime();
 					fileSummary.DataContext = null;
 					fileSummary.DataContext = ep.AniDB_Anime;
+
 					lbFiles.ItemsSource = ep.FilesForEpisode;
 				}
 			}

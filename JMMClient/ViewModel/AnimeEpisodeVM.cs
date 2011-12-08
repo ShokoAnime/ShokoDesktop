@@ -736,6 +736,10 @@ namespace JMMClient
 				{
 					filesForEpisode.Add(new VideoDetailedVM(fi));
 				}
+
+				List<SortPropOrFieldAndDirection> sortCriteria = new List<SortPropOrFieldAndDirection>();
+				sortCriteria.Add(new SortPropOrFieldAndDirection("OverallVideoSourceRanking", true, JMMClient.SortType.eInteger));
+				filesForEpisode = Sorting.MultiSort<VideoDetailedVM>(filesForEpisode, sortCriteria);
 			}
 			catch (Exception ex)
 			{

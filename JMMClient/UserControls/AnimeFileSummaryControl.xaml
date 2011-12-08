@@ -24,7 +24,19 @@
             <DataTemplate x:Key="groupVidQualityTemplate">
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Orientation="Horizontal" Margin="5,0,0,0" VerticalAlignment="Center">
-                        <TextBlock Margin="0,0,0,0" FontWeight="DemiBold" Text="{Binding Path=GroupNameShort}" VerticalAlignment="Center"/>
+                        <TextBlock Margin="0,0,10,0" FontWeight="DemiBold" Text="{Binding Path=GroupNameShort}" VerticalAlignment="Center" MinWidth="70"/>
+
+                        <Label Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Video_HD}" Style="{DynamicResource VideoDefStyle}" VerticalAlignment="Center" Margin="0,0,10,0"
+                               Visibility="{Binding Path=IsHD, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <Label Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Video_FullHD}" Style="{DynamicResource VideoDefStyle}" VerticalAlignment="Center" Margin="0,0,10,0"
+                               Visibility="{Binding Path=IsFullHD, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <Label Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Video_Bluray}" Style="{DynamicResource VideoDefStyle_Source}" VerticalAlignment="Center" Margin="0,0,10,0"
+                               Visibility="{Binding Path=IsBluRay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <Label Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Video_DVD}" Style="{DynamicResource VideoDefStyle_Source}" VerticalAlignment="Center" Margin="0,0,10,0"
+                               Visibility="{Binding Path=IsDVD, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <Label Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Video_Hi10P}" Style="{DynamicResource VideoDefStyle_Hi10P}" VerticalAlignment="Center" Margin="0,0,10,0"
+                               Visibility="{Binding Path=IsHi10P, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
                         <TextBlock Margin="10,0,0,0" Text="{Binding Path=VideoSource}" VerticalAlignment="Center"/>
                         <TextBlock Margin="10,0,10,0" Text="{Binding Path=Resolution}" VerticalAlignment="Center"/>
                         <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,0,2" VerticalAlignment="Center"

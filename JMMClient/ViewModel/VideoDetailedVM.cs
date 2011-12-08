@@ -36,6 +36,7 @@ namespace JMMClient
 		public int VideoInfo_VideoInfoID { get; set; }
 		public string VideoInfo_VideoCodec { get; set; }
 		public string VideoInfo_VideoBitrate { get; set; }
+		public string VideoInfo_VideoBitDepth { get; set; }
 		public string VideoInfo_VideoFrameRate { get; set; }
 		public string VideoInfo_VideoResolution { get; set; }
 		public string VideoInfo_AudioCodec { get; set; }
@@ -225,6 +226,17 @@ namespace JMMClient
 			}
 		}
 
+		private int overallVideoSourceRanking = 0;
+		public int OverallVideoSourceRanking
+		{
+			get { return overallVideoSourceRanking; }
+			set
+			{
+				overallVideoSourceRanking = value;
+				NotifyPropertyChanged("OverallVideoSourceRanking");
+			}
+		}
+
 		#endregion
 
 		public void SetLastWatchedDescription()
@@ -337,6 +349,17 @@ namespace JMMClient
 			}
 		}
 
+		public bool IsHi10P
+		{
+			get
+			{
+				if (string.IsNullOrEmpty(VideoInfo_VideoBitDepth)) return false;
+				int bitDepth = 0;
+				int.TryParse(VideoInfo_VideoBitDepth, out bitDepth);
+				return bitDepth == 10;
+			}
+		}
+
 		private int GetVideoWidth()
 		{
 			int videoWidth = 0;
@@ -360,6 +383,51 @@ namespace JMMClient
 		}
 
 		#endregion
+
+		public int BitDepth
+		{
+			get
+			{
+				int bitDepth = 8;
+				if (!int.TryParse(VideoInfo_VideoBitDepth, out bitDepth))
+					bitDepth = 8;
+
+				return bitDepth;
+			}
+		}
+
+		public int GetOverallVideoSourceRanking()
+		{
+			
+			int vidWidth = GetVideoWidth();
+			int score = 0;
+			score += GetVideoSourceRanking();
+			score += BitDepth;
+
+			if (vidWidth > 1900) score += 100;
+			else if (vidWidth > 1300) score += 50;
+			else if (vidWidth > 1100) score += 25;
+			else if (vidWidth > 800) score += 10;
+			else if (vidWidth > 700) score += 8;
+			else if (vidWidth > 500) score += 7;
+			else if (vidWidth > 400) score += 6;
+			else if (vidWidth > 1300) score += 5;
+			else score += 2;
+
+			return score;
+		}
+
+		public int GetVideoSourceRanking()
+		{
+			if (AniDB_File_Source.ToUpper().Contains("BLU")) return 100;
+			if (AniDB_File_Source.ToUpper().Contains("DVD")) return 75;
+			if (AniDB_File_Source.ToUpper().Contains("HDTV")) return 50;
+			if (AniDB_File_Source.ToUpper().Contains("DTV")) return 40;
+			if (AniDB_File_Source.ToUpper().Trim() == "TV") return 30;
+			if (AniDB_File_Source.ToUpper().Contains("VHS")) return 20;
+
+			return 0;
+		}
 
 		public bool HasReleaseGroup
 		{
@@ -442,6 +510,7 @@ namespace JMMClient
 			this.VideoInfo_VideoInfoID = contract.VideoInfo_VideoInfoID;
 			this.VideoInfo_VideoCodec = contract.VideoInfo_VideoCodec;
 			this.VideoInfo_VideoBitrate = contract.VideoInfo_VideoBitrate;
+			this.VideoInfo_VideoBitDepth = contract.VideoInfo_VideoBitDepth;
 			this.VideoInfo_VideoFrameRate = contract.VideoInfo_VideoFrameRate;
 			this.VideoInfo_VideoResolution = contract.VideoInfo_VideoResolution;
 			this.VideoInfo_AudioCodec = contract.VideoInfo_AudioCodec;
@@ -472,6 +541,8 @@ namespace JMMClient
 
 			if (contract.ReleaseGroup != null)
 				this.ReleaseGroup = new ReleaseGroupVM(contract.ReleaseGroup);
+
+			OverallVideoSourceRanking = GetVideoSourceRanking();
 		}
 
 		public VideoDetailedVM(JMMServerBinary.Contract_VideoDetailed contract)

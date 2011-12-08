@@ -82,10 +82,12 @@
                                Visibility="{Binding Path=IsHD, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         <Label Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Video_FullHD}" Style="{DynamicResource VideoDefStyle}" VerticalAlignment="Center" Margin="0,0,10,0"
                                Visibility="{Binding Path=IsFullHD, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <Label Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Video_Bluray}" Style="{DynamicResource VideoDefStyle}" VerticalAlignment="Center" Margin="0,0,10,0"
+                        <Label Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Video_Bluray}" Style="{DynamicResource VideoDefStyle_Source}" VerticalAlignment="Center" Margin="0,0,10,0"
                                Visibility="{Binding Path=IsBluRay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <Label Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Video_DVD}" Style="{DynamicResource VideoDefStyle}" VerticalAlignment="Center" Margin="0,0,10,0"
+                        <Label Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Video_DVD}" Style="{DynamicResource VideoDefStyle_Source}" VerticalAlignment="Center" Margin="0,0,10,0"
                                Visibility="{Binding Path=IsDVD, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <Label Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Video_Hi10P}" Style="{DynamicResource VideoDefStyle_Hi10P}" VerticalAlignment="Center" Margin="0,0,10,0"
+                               Visibility="{Binding Path=IsHi10P, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                         <usercontrols:HyperLinkStandard Margin="0,0,10,0" VerticalAlignment="Center" DisplayText="{Binding Path=ReleaseGroupName}" URL="{Binding Path=ReleaseGroupAniDBURL}" 
                                 Visibility="{Binding Path=HasReleaseGroup, Converter={StaticResource BooleanToVisibilityConverter}}"/>

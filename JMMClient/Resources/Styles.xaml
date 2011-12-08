@@ -188,10 +188,47 @@
         </Style.Triggers>
     </Style>
 
+    <LinearGradientBrush x:Key="BlueGradientBrush" EndPoint="0,1" StartPoint="0,0">
+        <GradientStop Color="SteelBlue" Offset="0.0"/>
+        <GradientStop Color="SteelBlue" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="GreenGradientBrush" EndPoint="0,1" StartPoint="0,0">
+        <GradientStop Color="SeaGreen" Offset="0.0"/>
+        <GradientStop Color="SeaGreen" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="TenbitGradientBrush" EndPoint="0,1" StartPoint="0,0">
+        <GradientStop Color="DarkGoldenrod" Offset="0.0"/>
+        <GradientStop Color="DarkGoldenrod" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <!-- VideoDefStyle_Hi10P -->
+    <Style TargetType="Label" x:Key="VideoDefStyle_Hi10P">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Background" Value="{StaticResource TenbitGradientBrush}" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Padding" Value="3,3,3,3" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Label">
+                    <Border BorderThickness="1"
+                    BorderBrush="DarkGoldenrod"
+                    Background="{StaticResource TenbitGradientBrush}"
+                    Padding="{TemplateBinding Padding}"
+                    CornerRadius="4">
+                        <ContentControl Content="{TemplateBinding Content}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <!-- VideoDefStyle -->
     <Style TargetType="Label" x:Key="VideoDefStyle">
         <Setter Property="OverridesDefaultStyle" Value="True" />
-        <Setter Property="Background" Value="SteelBlue" />
+        <Setter Property="Background" Value="{StaticResource BlueGradientBrush}" />
         <Setter Property="Foreground" Value="White" />
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="Padding" Value="3,3,3,3" />
@@ -200,7 +237,29 @@
                 <ControlTemplate TargetType="Label">
                     <Border BorderThickness="1"
                     BorderBrush="Navy"
-                    Background="SteelBlue"
+                    Background="{StaticResource BlueGradientBrush}"
+                    Padding="{TemplateBinding Padding}"
+                    CornerRadius="4">
+                        <ContentControl Content="{TemplateBinding Content}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- VideoDefStyle_Source -->
+    <Style TargetType="Label" x:Key="VideoDefStyle_Source">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Background" Value="{StaticResource GreenGradientBrush}" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Padding" Value="3,3,3,3" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Label">
+                    <Border BorderThickness="1"
+                    BorderBrush="Black"
+                    Background="{StaticResource GreenGradientBrush}"
                     Padding="{TemplateBinding Padding}"
                     CornerRadius="4">
                         <ContentControl Content="{TemplateBinding Content}" />

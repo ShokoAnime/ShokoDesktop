@@ -4309,6 +4309,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 10bit.
+        /// </summary>
+        public static string Video_Hi10P {
+            get {
+                return ResourceManager.GetString("Video_Hi10P", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to View: .
         /// </summary>
         public static string ViewLabel {

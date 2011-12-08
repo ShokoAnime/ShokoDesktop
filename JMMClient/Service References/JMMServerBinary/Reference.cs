@@ -7259,6 +7259,9 @@ namespace JMMClient.JMMServerBinary {
         private bool SpecialsCompleteField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int VideoBitDepthField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string VideoSourceField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -7397,6 +7400,19 @@ namespace JMMClient.JMMServerBinary {
                 if ((this.SpecialsCompleteField.Equals(value) != true)) {
                     this.SpecialsCompleteField = value;
                     this.RaisePropertyChanged("SpecialsComplete");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int VideoBitDepth {
+            get {
+                return this.VideoBitDepthField;
+            }
+            set {
+                if ((this.VideoBitDepthField.Equals(value) != true)) {
+                    this.VideoBitDepthField = value;
+                    this.RaisePropertyChanged("VideoBitDepth");
                 }
             }
         }
