@@ -26,6 +26,12 @@
   <wsdl:message name="IJMMServer_ScanDropFolders_OutputMessage">
     <wsdl:part name="parameters" element="tns:ScanDropFoldersResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_RefreshAllMediaInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:RefreshAllMediaInfo" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RefreshAllMediaInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RefreshAllMediaInfoResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_GetGroupFilterExtended_InputMessage">
     <wsdl:part name="parameters" element="tns:GetGroupFilterExtended" />
   </wsdl:message>
@@ -871,6 +877,10 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/ScanDropFolders" message="tns:IJMMServer_ScanDropFolders_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/ScanDropFoldersResponse" message="tns:IJMMServer_ScanDropFolders_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="RefreshAllMediaInfo">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RefreshAllMediaInfo" message="tns:IJMMServer_RefreshAllMediaInfo_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RefreshAllMediaInfoResponse" message="tns:IJMMServer_RefreshAllMediaInfo_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetGroupFilterExtended">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilterExtended" message="tns:IJMMServer_GetGroupFilterExtended_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilterExtendedResponse" message="tns:IJMMServer_GetGroupFilterExtended_OutputMessage" />
@@ -1437,6 +1447,15 @@
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="ScanDropFolders">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/ScanDropFolders" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RefreshAllMediaInfo">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/RefreshAllMediaInfo" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

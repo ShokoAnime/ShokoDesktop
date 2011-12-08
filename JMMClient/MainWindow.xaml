@@ -381,10 +381,23 @@
                     </Button>
 
                     <!-- Remove Missing Files -->
-                    <Button HorizontalAlignment="Left" Name="btnRemoveMissingFiles" Margin="10,0,0,0" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource RemoveMissingFilesCommand}" Width="Auto">
+                    <Button HorizontalAlignment="Left" Name="btnRemoveMissingFiles" Margin="10,0,0,0" Style="{DynamicResource FlatButtonStyle}" 
+                            Command="{StaticResource RemoveMissingFilesCommand}" Width="Auto"
+                            ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=RemoveMissingFiles}, 
+                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_RemoveMissingFiles}}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                             <Image Height="16" Width="16" Source="/Images/32_import.png" Margin="0,0,5,0"/>
                             <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=RemoveMissingFiles}" Margin="0,0,5,0"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- Update Media Info -->
+                    <Button HorizontalAlignment="Left" Name="btnUpdateMediaInfo" Margin="10,0,0,0" Style="{DynamicResource FlatButtonStyle}" 
+                            Width="Auto" ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=UpdateMediaInfo}, 
+                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_UpdateMediaInfo}}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                            <Image Height="16" Width="16" Source="/Images/32_import.png" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=UpdateMediaInfo}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 

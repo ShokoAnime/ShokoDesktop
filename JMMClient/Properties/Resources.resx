@@ -1568,4 +1568,13 @@
   <data name="User_EditSettings" xml:space="preserve">
     <value>Edit Server Settings</value>
   </data>
+  <data name="Tooltip_RemoveMissingFiles" xml:space="preserve">
+    <value>This will remove any video files entries from your database, where the file cannot be physically found. Make sure all your network shares are available or USB drives plugged before you run this.</value>
+  </data>
+  <data name="Tooltip_UpdateMediaInfo" xml:space="preserve">
+    <value>The Media Info is the information about your files such as bit rate, resolution codecs etc which is read and stored the first time you import a file</value>
+  </data>
+  <data name="UpdateMediaInfo" xml:space="preserve">
+    <value>Update All Media Info</value>
+  </data>
 </root>

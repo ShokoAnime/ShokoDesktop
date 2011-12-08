@@ -12,6 +12,16 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="RefreshAllMediaInfo">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RefreshAllMediaInfoResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetGroupFilterExtended">
     <xs:complexType>
       <xs:sequence>

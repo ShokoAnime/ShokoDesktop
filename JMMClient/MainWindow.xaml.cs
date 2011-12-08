@@ -151,10 +151,25 @@ namespace JMMClient
 				DeleteAvatarImages();
 
 				this.AddHandler(CloseableTabItem.CloseTabEvent, new RoutedEventHandler(this.CloseTab));
+
+				btnUpdateMediaInfo.Click += new RoutedEventHandler(btnUpdateMediaInfo_Click);
 			}
 			catch (Exception ex)
 			{
 				logger.ErrorException(ex.ToString(), ex);
+			}
+		}
+
+		void btnUpdateMediaInfo_Click(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				JMMServerVM.Instance.clientBinaryHTTP.RefreshAllMediaInfo();
+				MessageBox.Show("Process is Running", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
 			}
 		}
 

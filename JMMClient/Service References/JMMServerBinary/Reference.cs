@@ -11868,6 +11868,9 @@ namespace JMMClient.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/ScanDropFolders", ReplyAction="http://tempuri.org/IJMMServer/ScanDropFoldersResponse")]
         void ScanDropFolders();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/RefreshAllMediaInfo", ReplyAction="http://tempuri.org/IJMMServer/RefreshAllMediaInfoResponse")]
+        void RefreshAllMediaInfo();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetGroupFilterExtended", ReplyAction="http://tempuri.org/IJMMServer/GetGroupFilterExtendedResponse")]
         JMMClient.JMMServerBinary.Contract_GroupFilterExtended GetGroupFilterExtended(int groupFilterID, int userID);
         
@@ -12318,6 +12321,10 @@ namespace JMMClient.JMMServerBinary {
         
         public void ScanDropFolders() {
             base.Channel.ScanDropFolders();
+        }
+        
+        public void RefreshAllMediaInfo() {
+            base.Channel.RefreshAllMediaInfo();
         }
         
         public JMMClient.JMMServerBinary.Contract_GroupFilterExtended GetGroupFilterExtended(int groupFilterID, int userID) {

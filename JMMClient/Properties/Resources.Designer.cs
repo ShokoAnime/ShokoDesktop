@@ -3796,6 +3796,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This will remove any video files entries from your database, where the file cannot be physically found. Make sure all your network shares are available or USB drives plugged before you run this..
+        /// </summary>
+        public static string Tooltip_RemoveMissingFiles {
+            get {
+                return ResourceManager.GetString("Tooltip_RemoveMissingFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Preferred source of information when displaying the series name for an anime.
         /// </summary>
         public static string Tooltip_SeriesNameSourceStyle {
@@ -3873,6 +3882,15 @@ namespace JMMClient.Properties {
         public static string Tooltip_Unwatched {
             get {
                 return ResourceManager.GetString("Tooltip_Unwatched", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Media Info is the information about your files such as bit rate, resolution codecs etc which is read and stored the first time you import a file.
+        /// </summary>
+        public static string Tooltip_UpdateMediaInfo {
+            get {
+                return ResourceManager.GetString("Tooltip_UpdateMediaInfo", resourceCulture);
             }
         }
         
@@ -4152,6 +4170,15 @@ namespace JMMClient.Properties {
         public static string UpdateInfo {
             get {
                 return ResourceManager.GetString("UpdateInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update All Media Info.
+        /// </summary>
+        public static string UpdateMediaInfo {
+            get {
+                return ResourceManager.GetString("UpdateMediaInfo", resourceCulture);
             }
         }
         
