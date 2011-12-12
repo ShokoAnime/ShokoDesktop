@@ -413,6 +413,7 @@
     <Compile Include="ViewModel\ReleaseGroupVM.cs" />
     <Compile Include="ViewModel\TraktTVShowResponseVM.cs" />
     <Compile Include="ViewModel\Trakt_EpisodeVM.cs" />
+    <Compile Include="ViewModel\Trakt_FriendRequestVM.cs" />
     <Compile Include="ViewModel\Trakt_FriendVM.cs" />
     <Compile Include="ViewModel\Trakt_ImageFanartVM.cs" />
     <Compile Include="ViewModel\Trakt_ImagePosterVM.cs" />

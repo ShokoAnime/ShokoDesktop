@@ -32,7 +32,10 @@
             <RoutedUICommand x:Key="MoveDownWidgetCommand" Text="MoveDownWidgetCommand" />
 
             <RoutedUICommand x:Key="JoinTraktCommand" Text="JoinTraktCommand" />
+            <RoutedUICommand x:Key="FriendRequestApproveCommand" Text="FriendRequestApproveCommand" />
+            <RoutedUICommand x:Key="FriendRequestDenyCommand" Text="FriendRequestDenyCommand" />
 
+            
 
             <!-- WatchNextTemplate -->
             <DataTemplate x:Key="WatchNextTemplate">
@@ -882,6 +885,83 @@
                 </Grid>
             </DataTemplate>
 
+            <!-- TraktFriendRequestTemplate -->
+            <DataTemplate x:Key="TraktFriendRequestTemplate">
+                <Grid Margin="0,0,5,5" VerticalAlignment="Top">
+
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <!-- user name and details -->
+                    <Border BorderThickness="3,3,3,0" BorderBrush="DarkGray" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"  Background="Gainsboro">
+
+                        <StackPanel Orientation="Vertical"  HorizontalAlignment="Left" Margin="5,3,5,5">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Path=Username}" FontWeight="Bold" FontSize="14" Foreground="DarkBlue" VerticalAlignment="Center">
+                                    <TextBlock.ToolTip>
+                                        <TextBlock Text="{Binding Path=Username}" Foreground="Black" FontWeight="DemiBold"/>
+                                    </TextBlock.ToolTip>
+                                </TextBlock>
+                                <TextBlock Text="has requested to add you as a friend" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                            </StackPanel>
+                            
+                            <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="View User on Trakt" URL="{Binding Path=Url}" Margin="0,0,0,0"/>
+                            <TextBlock Text="{Binding Path=Full_name}" Foreground="Black" VerticalAlignment="Center" Margin="0,3,0,0">
+                                <TextBlock.ToolTip>
+                                    <TextBlock Text="{Binding Path=Full_name}" Foreground="Black" FontWeight="DemiBold"/>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+
+                        </StackPanel>
+                    </Border>
+
+                    <!-- avatar image  -->
+                    <Border BorderThickness="3,0,0,3" BorderBrush="DarkGray" Grid.Column="0" Grid.Row="1" Grid.RowSpan="1" Background="Gainsboro">
+                        <Border Margin="5,3,10,10" BorderThickness="0" BorderBrush="DarkGray">
+                            <Image  Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_TraktFriends_Height}"  
+                                   HorizontalAlignment="Left" 
+                                   Source="{Binding ImagePathForDisplay}">
+                            </Image>
+                        </Border>
+                    </Border>
+
+                    <!-- approve / deny -->
+                    <Border BorderThickness="0,0,3,3" BorderBrush="DarkGray" Grid.Column="1" Grid.Row="1" Background="Gainsboro">
+
+                        
+                        <StackPanel Orientation="Vertical"  HorizontalAlignment="Left" Margin="0,3,5,10">
+                            <Button Name="btnFriendRequestApprove" Margin="0,5,10,10" Style="{DynamicResource RoundButtonStyle}" Foreground="Black"
+                                Command="{DynamicResource FriendRequestApproveCommand}" CommandParameter="{Binding}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,5,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="Approve" Margin="0,0,5,0" Width="Auto"/>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Name="btnFriendRequestDeny" Margin="0,5,10,10" Style="{DynamicResource RoundButtonStyle}" Foreground="Black"
+                                Command="{DynamicResource FriendRequestDenyCommand}" CommandParameter="{Binding}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="16" Width="16" Source="/Images/32_cancel.png" Margin="0,0,5,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="Deny" Margin="0,0,5,0" Width="Auto"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                        
+                    </Border>
+
+                    
+
+
+                </Grid>
+            </DataTemplate>
+
             <!-- TraktSignupTemplate -->
             <DataTemplate x:Key="TraktSignupTemplate">
                 <Grid Margin="0,0,5,5" VerticalAlignment="Top">
@@ -906,7 +986,7 @@
 
                         <StackPanel Orientation="Horizontal" Margin="10,10,10,5">
                             <Image Height="16" Width="16" Source="/Images/32_Info.png" Margin="0,0,5,0"/>
-                            <TextBlock Text="You haven't specified any " FontWeight="Bold" VerticalAlignment="Center"/>
+                            <TextBlock Text="You haven't specified any " FontWeight="Bold" VerticalAlignment="Center" Foreground="Black"/>
                             <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="Trakt" URL="http://trakt.tv" Margin="5,0,0,0"/>
                             <TextBlock Text="credentials" FontWeight="Bold" Margin="5,0,0,0" VerticalAlignment="Center"/>
                         </StackPanel>
@@ -916,13 +996,13 @@
                             Background="FloralWhite">
 
                         <StackPanel Orientation="Horizontal" Margin="10,10,10,5">
-                            <TextBlock Text="Signup below, or enter your " VerticalAlignment="Center"/>
+                            <TextBlock Text="Signup below, or enter your " VerticalAlignment="Center" Foreground="Black"/>
                             <Button Name="btnTraktCredentials" Margin="5,2,2,2" Style="{DynamicResource RoundButtonStyle}"  Command="{DynamicResource EditTraktCredentialsCommand}">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <TextBlock VerticalAlignment="Center" Text="existing credentials" Margin="5,0,5,0"/>
                                 </StackPanel>
                             </Button>
-                            <TextBlock Text="now" Margin="5,0,0,0" VerticalAlignment="Center"/>
+                            <TextBlock Text="now" Margin="5,0,0,0" VerticalAlignment="Center" Foreground="Black"/>
                         </StackPanel>
                     </Border>
 
@@ -930,7 +1010,7 @@
                     <Border BorderThickness="1,0,0,0" BorderBrush="DarkGray" Grid.Column="0" Grid.Row="2" 
                             Background="FloralWhite">
 
-                        <TextBlock Text="Username" VerticalAlignment="Center" Margin="10,5,10,5"/>
+                        <TextBlock Text="Username" VerticalAlignment="Center" Margin="10,5,10,5" Foreground="Black"/>
                     </Border>
 
                     <!-- username entry -->
@@ -938,7 +1018,7 @@
                             Background="FloralWhite">
 
                         <TextBox Name="txtUsername" Width="150" Margin="0,5,5,0" VerticalAlignment="Center" HorizontalAlignment="Left" 
-                                 Text="{Binding Path=Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                 Text="{Binding Path=Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="Black"/>
                     </Border>
 
                     
@@ -946,14 +1026,14 @@
                     <Border BorderThickness="1,0,0,0" BorderBrush="DarkGray" Grid.Column="0" Grid.Row="3"
                             Background="FloralWhite">
 
-                        <TextBlock Text="Password" VerticalAlignment="Center" Margin="10,5,10,5"/>
+                        <TextBlock Text="Password" VerticalAlignment="Center" Margin="10,5,10,5" Foreground="Black"/>
                     </Border>
 
                     <!-- password entry -->
                     <Border BorderThickness="0,0,1,0" BorderBrush="DarkGray" Grid.Column="1" Grid.Row="3"
                             Background="FloralWhite">
 
-                        <PasswordBox Width="150" Margin="0,5,5,0" VerticalAlignment="Center" HorizontalAlignment="Left" x:Name="txtPassword"
+                        <PasswordBox Width="150" Margin="0,5,5,0" VerticalAlignment="Center" HorizontalAlignment="Left" x:Name="txtPassword" Foreground="Black"
                                      local:PasswordBoxAssistant.BindPassword="true"
                                      local:PasswordBoxAssistant.BoundPassword="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </Border>
@@ -962,7 +1042,7 @@
                     <Border BorderThickness="1,0,0,0" BorderBrush="DarkGray" Grid.Column="0" Grid.Row="4" 
                             Background="FloralWhite">
 
-                        <TextBlock Text="Email Address" VerticalAlignment="Center" Margin="10,5,10,5"/>
+                        <TextBlock Text="Email Address" VerticalAlignment="Center" Margin="10,5,10,5" Foreground="Black"/>
                     </Border>
 
                     <!-- email entry -->
@@ -970,7 +1050,7 @@
                             Background="FloralWhite">
 
                         <TextBox Name="txtEmail" Width="250" Margin="0,5,10,0" VerticalAlignment="Center" HorizontalAlignment="Left"
-                                 Text="{Binding Path=Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                 Text="{Binding Path=Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="Black"/>
                     </Border>
 
                     <!-- join trakt button -->
@@ -978,7 +1058,7 @@
                     </Border>
                     
                     <Border BorderThickness="0,0,1,1" BorderBrush="DarkGray" Grid.Column="1" Grid.Row="5" Background="FloralWhite" Grid.ColumnSpan="1">
-                        <Button Name="btnJoinTrakt" Margin="0,5,10,10" Style="{DynamicResource RoundButtonStyle}"
+                        <Button Name="btnJoinTrakt" Margin="0,5,10,10" Style="{DynamicResource RoundButtonStyle}" Foreground="Black"
                                 Command="{DynamicResource JoinTraktCommand}" CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                 <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,5,0"/>
@@ -1004,6 +1084,10 @@
         <CommandBinding Command="{StaticResource MoveDownWidgetCommand}" Executed="CommandBinding_MoveDownWidget" />
 
         <CommandBinding Command="{StaticResource JoinTraktCommand}" Executed="CommandBinding_JoinTrakt" />
+        <CommandBinding Command="{StaticResource FriendRequestApproveCommand}" Executed="CommandBinding_FriendRequestApprove" />
+        <CommandBinding Command="{StaticResource FriendRequestDenyCommand}" Executed="CommandBinding_FriendRequestDeny" />
+
+        
     </UserControl.CommandBindings>
 
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Name="ScrollerDash" Grid.Column="0" Grid.Row="0" Margin="0,0,0,0" >

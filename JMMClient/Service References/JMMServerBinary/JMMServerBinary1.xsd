@@ -453,10 +453,34 @@
   <xs:complexType name="Contract_Trakt_Activity">
     <xs:sequence>
       <xs:element minOccurs="0" name="HasTraktAccount" type="xs:boolean" />
+      <xs:element minOccurs="0" name="TraktFriendRequests" nillable="true" type="tns:ArrayOfContract_Trakt_FriendFrequest" />
       <xs:element minOccurs="0" name="TraktFriends" nillable="true" type="tns:ArrayOfContract_Trakt_Friend" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_Trakt_Activity" nillable="true" type="tns:Contract_Trakt_Activity" />
+  <xs:complexType name="ArrayOfContract_Trakt_FriendFrequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_Trakt_FriendFrequest" nillable="true" type="tns:Contract_Trakt_FriendFrequest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_Trakt_FriendFrequest" nillable="true" type="tns:ArrayOfContract_Trakt_FriendFrequest" />
+  <xs:complexType name="Contract_Trakt_FriendFrequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="About" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Age" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="Avatar" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Full_name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Gender" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Joined" type="xs:int" />
+      <xs:element minOccurs="0" name="JoinedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Location" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Requested" type="xs:int" />
+      <xs:element minOccurs="0" name="RequestedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Url" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_Trakt_FriendFrequest" nillable="true" type="tns:Contract_Trakt_FriendFrequest" />
   <xs:complexType name="ArrayOfContract_Trakt_Friend">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_Trakt_Friend" nillable="true" type="tns:Contract_Trakt_Friend" />
@@ -472,6 +496,7 @@
       <xs:element minOccurs="0" name="Gender" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Joined" type="xs:int" />
       <xs:element minOccurs="0" name="JoinedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LastEpisodeWatched" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Location" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Trakt_FriendID" type="xs:int" />
       <xs:element minOccurs="0" name="Url" nillable="true" type="xs:string" />

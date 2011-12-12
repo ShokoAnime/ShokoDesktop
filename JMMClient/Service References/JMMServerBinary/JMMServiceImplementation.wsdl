@@ -32,6 +32,24 @@
   <wsdl:message name="IJMMServer_RefreshAllMediaInfo_OutputMessage">
     <wsdl:part name="parameters" element="tns:RefreshAllMediaInfoResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_CreateTraktAccount_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateTraktAccount" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_CreateTraktAccount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateTraktAccountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_TraktFriendRequestDeny_InputMessage">
+    <wsdl:part name="parameters" element="tns:TraktFriendRequestDeny" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_TraktFriendRequestDeny_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TraktFriendRequestDenyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_TraktFriendRequestApprove_InputMessage">
+    <wsdl:part name="parameters" element="tns:TraktFriendRequestApprove" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_TraktFriendRequestApprove_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TraktFriendRequestApproveResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_GetGroupFilterExtended_InputMessage">
     <wsdl:part name="parameters" element="tns:GetGroupFilterExtended" />
   </wsdl:message>
@@ -881,6 +899,18 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RefreshAllMediaInfo" message="tns:IJMMServer_RefreshAllMediaInfo_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RefreshAllMediaInfoResponse" message="tns:IJMMServer_RefreshAllMediaInfo_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="CreateTraktAccount">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/CreateTraktAccount" message="tns:IJMMServer_CreateTraktAccount_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/CreateTraktAccountResponse" message="tns:IJMMServer_CreateTraktAccount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TraktFriendRequestDeny">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/TraktFriendRequestDeny" message="tns:IJMMServer_TraktFriendRequestDeny_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/TraktFriendRequestDenyResponse" message="tns:IJMMServer_TraktFriendRequestDeny_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TraktFriendRequestApprove">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/TraktFriendRequestApprove" message="tns:IJMMServer_TraktFriendRequestApprove_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/TraktFriendRequestApproveResponse" message="tns:IJMMServer_TraktFriendRequestApprove_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetGroupFilterExtended">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilterExtended" message="tns:IJMMServer_GetGroupFilterExtended_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilterExtendedResponse" message="tns:IJMMServer_GetGroupFilterExtended_OutputMessage" />
@@ -1456,6 +1486,33 @@
     </wsdl:operation>
     <wsdl:operation name="RefreshAllMediaInfo">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/RefreshAllMediaInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateTraktAccount">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/CreateTraktAccount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TraktFriendRequestDeny">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/TraktFriendRequestDeny" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TraktFriendRequestApprove">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/TraktFriendRequestApprove" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

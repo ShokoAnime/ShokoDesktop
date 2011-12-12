@@ -22,6 +22,56 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="CreateTraktAccount">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="returnMessage" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateTraktAccountResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CreateTraktAccountResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="returnMessage" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TraktFriendRequestDeny">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="friendUsername" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="returnMessage" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TraktFriendRequestDenyResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="TraktFriendRequestDenyResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="returnMessage" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TraktFriendRequestApprove">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="friendUsername" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="returnMessage" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TraktFriendRequestApproveResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="TraktFriendRequestApproveResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="returnMessage" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetGroupFilterExtended">
     <xs:complexType>
       <xs:sequence>

@@ -191,6 +191,11 @@ namespace JMMClient
 				{
 					if (traktActivity.HasTraktAccount)
 					{
+						foreach (JMMServerBinary.Contract_Trakt_FriendFrequest contractFriend in traktActivity.TraktFriendRequests)
+						{
+							Trakt_FriendRequestVM req = new Trakt_FriendRequestVM(contractFriend);
+							TraktActivity.Add(req);
+						}
 						foreach (JMMServerBinary.Contract_Trakt_Friend contract in traktActivity.TraktFriends)
 						{
 							if (contract.WatchedEpisodes != null && contract.WatchedEpisodes.Count > 0)

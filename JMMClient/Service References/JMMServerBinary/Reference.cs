@@ -4783,6 +4783,9 @@ namespace JMMClient.JMMServerBinary {
         private bool HasTraktAccountField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_Trakt_FriendFrequest> TraktFriendRequestsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_Trakt_Friend> TraktFriendsField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -4809,6 +4812,19 @@ namespace JMMClient.JMMServerBinary {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_Trakt_FriendFrequest> TraktFriendRequests {
+            get {
+                return this.TraktFriendRequestsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TraktFriendRequestsField, value) != true)) {
+                    this.TraktFriendRequestsField = value;
+                    this.RaisePropertyChanged("TraktFriendRequests");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_Trakt_Friend> TraktFriends {
             get {
                 return this.TraktFriendsField;
@@ -4817,6 +4833,337 @@ namespace JMMClient.JMMServerBinary {
                 if ((object.ReferenceEquals(this.TraktFriendsField, value) != true)) {
                     this.TraktFriendsField = value;
                     this.RaisePropertyChanged("TraktFriends");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_Trakt_FriendFrequest", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_GroupFilterExtended))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_GroupFilter))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_GroupFilterCondition>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_GroupFilterCondition))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AnimeGroup>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AnimeGroup))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_GroupFilterExtended>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AnimeSeries>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AnimeSeries))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AniDBAnime))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AniDB_Anime_DefaultImage))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_MovieDB_Fanart))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_MovieDB_Poster))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_TvDB_ImageFanart))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_TvDB_ImagePoster))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_TvDB_ImageWideBanner))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_Trakt_ImageFanart))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_Trakt_ImagePoster))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_Other))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_TvDB))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_TvDB_Series))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDB_Anime_Similar>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AniDB_Anime_Similar))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDB_Anime_Relation>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AniDB_Anime_Relation))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_Recommendation>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_Recommendation))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDBReleaseGroup>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AniDBReleaseGroup))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDBAnime>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDB_Character>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AniDB_Character))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AniDB_Seiyuu))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_MissingFile>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_MissingFile))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_MissingEpisode>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_MissingEpisode))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_Trakt_Activity))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_Trakt_FriendFrequest>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_Trakt_Friend>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_Trakt_Friend))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_Trakt_WatchedEpisode>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_Trakt_WatchedEpisode))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_TraktTVShowResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AniDBVote))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_IgnoreAnime>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_IgnoreAnime))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_TvDBLanguage>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_TvDBLanguage))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_MovieDB_Poster>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_MovieDB_Fanart>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AnimeEpisode))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AnimeEpisode>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_JMMUser>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_JMMUser))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_Trakt_ImageFanart>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_Trakt_ImagePoster>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_Trakt_Episode>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_Trakt_Episode))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_TraktResult))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_Trakt))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_TraktTVShowResponse>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_DuplicateFile>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_DuplicateFile))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_ImportFolder))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_VideoLocal>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_VideoLocal))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_GroupVideoQuality>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_GroupVideoQuality))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_VideoDetailed>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_VideoDetailed))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_ReleaseGroup))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AniDB_AnimeCrossRefs))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_MovieDB_Movie))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_Trakt_Show))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_Trakt_Season>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_Trakt_Season))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_TvDB_Episode>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_TvDB_Episode))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_TvDB_ImageFanart>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_TvDB_ImagePoster>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_TvDB_ImageWideBanner>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_TvDBResult))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_TVDBSeriesSearchResult>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_TVDBSeriesSearchResult))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_OtherResult))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_MovieDBMovieSearchResult>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_MovieDBMovieSearchResult))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_ServerSettings))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_ServerSettings_SaveResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_ToggleWatchedStatusOnEpisode_Response))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_ImportFolder_SaveResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_GroupFilter>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_GroupFilter_SaveResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AnimeSeries_SaveResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AnimeGroup_Save))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AnimeGroup_SaveResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AnimeSeries_Save))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDB_AnimeDetailed>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AniDB_AnimeDetailed))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AnimeTitle>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AnimeTitle))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AnimeCategory>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AnimeCategory))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AnimeTag>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AnimeTag))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_ImportFolder>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_ServerStatus))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<int>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<string>))]
+    public partial class Contract_Trakt_FriendFrequest : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AboutField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private object AgeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AvatarField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string Full_nameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string GenderField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int JoinedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> JoinedDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string LocationField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RequestedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> RequestedDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UrlField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UsernameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string About {
+            get {
+                return this.AboutField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AboutField, value) != true)) {
+                    this.AboutField = value;
+                    this.RaisePropertyChanged("About");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public object Age {
+            get {
+                return this.AgeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AgeField, value) != true)) {
+                    this.AgeField = value;
+                    this.RaisePropertyChanged("Age");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Avatar {
+            get {
+                return this.AvatarField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AvatarField, value) != true)) {
+                    this.AvatarField = value;
+                    this.RaisePropertyChanged("Avatar");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Full_name {
+            get {
+                return this.Full_nameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.Full_nameField, value) != true)) {
+                    this.Full_nameField = value;
+                    this.RaisePropertyChanged("Full_name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Gender {
+            get {
+                return this.GenderField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GenderField, value) != true)) {
+                    this.GenderField = value;
+                    this.RaisePropertyChanged("Gender");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Joined {
+            get {
+                return this.JoinedField;
+            }
+            set {
+                if ((this.JoinedField.Equals(value) != true)) {
+                    this.JoinedField = value;
+                    this.RaisePropertyChanged("Joined");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> JoinedDate {
+            get {
+                return this.JoinedDateField;
+            }
+            set {
+                if ((this.JoinedDateField.Equals(value) != true)) {
+                    this.JoinedDateField = value;
+                    this.RaisePropertyChanged("JoinedDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Location {
+            get {
+                return this.LocationField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LocationField, value) != true)) {
+                    this.LocationField = value;
+                    this.RaisePropertyChanged("Location");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Requested {
+            get {
+                return this.RequestedField;
+            }
+            set {
+                if ((this.RequestedField.Equals(value) != true)) {
+                    this.RequestedField = value;
+                    this.RaisePropertyChanged("Requested");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> RequestedDate {
+            get {
+                return this.RequestedDateField;
+            }
+            set {
+                if ((this.RequestedDateField.Equals(value) != true)) {
+                    this.RequestedDateField = value;
+                    this.RaisePropertyChanged("RequestedDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Url {
+            get {
+                return this.UrlField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UrlField, value) != true)) {
+                    this.UrlField = value;
+                    this.RaisePropertyChanged("Url");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Username {
+            get {
+                return this.UsernameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
+                    this.UsernameField = value;
+                    this.RaisePropertyChanged("Username");
                 }
             }
         }
@@ -4873,6 +5220,8 @@ namespace JMMClient.JMMServerBinary {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_MissingEpisode>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_MissingEpisode))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_Trakt_Activity))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_Trakt_FriendFrequest>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_Trakt_FriendFrequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_Trakt_Friend>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_Trakt_WatchedEpisode>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_Trakt_WatchedEpisode))]
@@ -4968,6 +5317,9 @@ namespace JMMClient.JMMServerBinary {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<System.DateTime> JoinedDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> LastEpisodeWatchedField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string LocationField;
@@ -5081,6 +5433,19 @@ namespace JMMClient.JMMServerBinary {
                 if ((this.JoinedDateField.Equals(value) != true)) {
                     this.JoinedDateField = value;
                     this.RaisePropertyChanged("JoinedDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> LastEpisodeWatched {
+            get {
+                return this.LastEpisodeWatchedField;
+            }
+            set {
+                if ((this.LastEpisodeWatchedField.Equals(value) != true)) {
+                    this.LastEpisodeWatchedField = value;
+                    this.RaisePropertyChanged("LastEpisodeWatched");
                 }
             }
         }
@@ -11949,6 +12314,15 @@ namespace JMMClient.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/RefreshAllMediaInfo", ReplyAction="http://tempuri.org/IJMMServer/RefreshAllMediaInfoResponse")]
         void RefreshAllMediaInfo();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/CreateTraktAccount", ReplyAction="http://tempuri.org/IJMMServer/CreateTraktAccountResponse")]
+        bool CreateTraktAccount(string username, string password, string email, ref string returnMessage);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/TraktFriendRequestDeny", ReplyAction="http://tempuri.org/IJMMServer/TraktFriendRequestDenyResponse")]
+        bool TraktFriendRequestDeny(string friendUsername, ref string returnMessage);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/TraktFriendRequestApprove", ReplyAction="http://tempuri.org/IJMMServer/TraktFriendRequestApproveResponse")]
+        bool TraktFriendRequestApprove(string friendUsername, ref string returnMessage);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetGroupFilterExtended", ReplyAction="http://tempuri.org/IJMMServer/GetGroupFilterExtendedResponse")]
         JMMClient.JMMServerBinary.Contract_GroupFilterExtended GetGroupFilterExtended(int groupFilterID, int userID);
         
@@ -12403,6 +12777,18 @@ namespace JMMClient.JMMServerBinary {
         
         public void RefreshAllMediaInfo() {
             base.Channel.RefreshAllMediaInfo();
+        }
+        
+        public bool CreateTraktAccount(string username, string password, string email, ref string returnMessage) {
+            return base.Channel.CreateTraktAccount(username, password, email, ref returnMessage);
+        }
+        
+        public bool TraktFriendRequestDeny(string friendUsername, ref string returnMessage) {
+            return base.Channel.TraktFriendRequestDeny(friendUsername, ref returnMessage);
+        }
+        
+        public bool TraktFriendRequestApprove(string friendUsername, ref string returnMessage) {
+            return base.Channel.TraktFriendRequestApprove(friendUsername, ref returnMessage);
         }
         
         public JMMClient.JMMServerBinary.Contract_GroupFilterExtended GetGroupFilterExtended(int groupFilterID, int userID) {

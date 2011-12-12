@@ -585,7 +585,99 @@ namespace JMMClient.UserControls
 					Trakt_SignupVM signup = obj as Trakt_SignupVM;
 					if (signup == null) return;
 
+					parentWindow.Cursor = Cursors.Wait;
+					string retMessage = "";
+					bool success = JMMServerVM.Instance.clientBinaryHTTP.CreateTraktAccount(signup.Username, signup.Password, signup.Email, ref retMessage);
+					parentWindow.Cursor = Cursors.Arrow;
+
+					if (success)
+					{
+						MessageBox.Show(retMessage, "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+						DashboardVM.Instance.RefreshTraktFriends();
+					}
+					else
+						MessageBox.Show(retMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					
 				}
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+		}
+
+		private void CommandBinding_FriendRequestDeny(object sender, ExecutedRoutedEventArgs e)
+		{
+			Window parentWindow = Window.GetWindow(this);
+
+			object obj = e.Parameter;
+			if (obj == null) return;
+
+			try
+			{
+				if (obj.GetType() == typeof(Trakt_FriendRequestVM))
+				{
+					Trakt_FriendRequestVM req = obj as Trakt_FriendRequestVM;
+					if (req == null) return;
+
+					TraktFriendApproveDeny(req, false);
+
+				}
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+		}
+
+		private void CommandBinding_FriendRequestApprove(object sender, ExecutedRoutedEventArgs e)
+		{
+			Window parentWindow = Window.GetWindow(this);
+
+			object obj = e.Parameter;
+			if (obj == null) return;
+
+			try
+			{
+				if (obj.GetType() == typeof(Trakt_FriendRequestVM))
+				{
+					Trakt_FriendRequestVM req = obj as Trakt_FriendRequestVM;
+					if (req == null) return;
+
+					TraktFriendApproveDeny(req, true);
+
+				}
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+		}
+
+		private void TraktFriendApproveDeny(Trakt_FriendRequestVM req, bool isApprove)
+		{
+			try
+			{
+				Window parentWindow = Window.GetWindow(this);
+				parentWindow.Cursor = Cursors.Wait;
+				string retMessage = "";
+
+				bool success = false;
+				if (isApprove)
+					success = JMMServerVM.Instance.clientBinaryHTTP.TraktFriendRequestApprove(req.Username, ref retMessage);
+				else
+					success = JMMServerVM.Instance.clientBinaryHTTP.TraktFriendRequestDeny(req.Username, ref retMessage);
+				parentWindow.Cursor = Cursors.Arrow;
+
+				if (success)
+				{
+					MessageBox.Show(retMessage, "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+					DashboardVM.Instance.RefreshTraktFriends();
+				}
+				else
+					MessageBox.Show(retMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+				
 			}
 			catch (Exception ex)
 			{
