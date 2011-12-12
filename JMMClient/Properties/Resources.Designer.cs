@@ -655,7 +655,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Watch the Next Episode (Recently Watched).
+        ///   Looks up a localized string similar to Continue Watching... (Recently Watched).
         /// </summary>
         public static string Dash_WatchNextEp_Recent {
             get {

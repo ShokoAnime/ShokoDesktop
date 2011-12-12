@@ -317,7 +317,7 @@
   <xs:element name="GetTraktFriendInfoResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetTraktFriendInfoResult" nillable="true" type="q17:ArrayOfContract_Trakt_Friend" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetTraktFriendInfoResult" nillable="true" type="q17:Contract_Trakt_Activity" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -130,6 +130,7 @@
     </ApplicationDefinition>
     <Compile Include="DataTemplateSelectors\BreadCrumbTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\DashWatchNextTemplateSelector.cs" />
+    <Compile Include="DataTemplateSelectors\TraktActivityTemplateSelector.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Forms\DeleteFilesForm.xaml.cs">
       <DependentUpon>DeleteFilesForm.xaml</DependentUpon>
@@ -417,6 +418,7 @@
     <Compile Include="ViewModel\Trakt_ImagePosterVM.cs" />
     <Compile Include="ViewModel\Trakt_SeasonVM.cs" />
     <Compile Include="ViewModel\Trakt_ShowVM.cs" />
+    <Compile Include="ViewModel\Trakt_SignupVM.cs" />
     <Compile Include="ViewModel\Trakt_WatchedEpisodeVM.cs" />
     <Compile Include="ViewModel\TVDBSeriesSearchResultVM.cs" />
     <Compile Include="ViewModel\TvDB_EpisodeVM.cs" />
@@ -899,10 +901,10 @@
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_TraktTVShowResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_Trakt_Episode.datasource">
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_Trakt_Activity.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_Trakt_Friend.datasource">
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_Trakt_Episode.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_Trakt_ImageFanart.datasource">

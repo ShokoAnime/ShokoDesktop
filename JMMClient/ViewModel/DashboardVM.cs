@@ -35,8 +35,8 @@ namespace JMMClient
 		public ObservableCollection<RecommendationVM> RecommendationsDownload { get; set; }
 		public ICollectionView ViewRecommendationsDownload { get; set; }
 
-		public ObservableCollection<Trakt_FriendVM> TraktFriends { get; set; }
-		public ICollectionView ViewTraktFriends { get; set; }
+		public ObservableCollection<object> TraktActivity { get; set; }
+		public ICollectionView ViewTraktActivity { get; set; }
 
 		public event PropertyChangedEventHandler PropertyChanged;
 		private void NotifyPropertyChanged(String propertyName)
@@ -112,9 +112,9 @@ namespace JMMClient
 			RecommendationsDownload = new ObservableCollection<RecommendationVM>();
 			ViewRecommendationsDownload = CollectionViewSource.GetDefaultView(RecommendationsDownload);
 
-			TraktFriends = new ObservableCollection<Trakt_FriendVM>();
-			ViewTraktFriends = CollectionViewSource.GetDefaultView(TraktFriends);
-			ViewTraktFriends.SortDescriptions.Add(new SortDescription("LastEpisodeWatchedDate", ListSortDirection.Descending));
+			TraktActivity = new ObservableCollection<object>();
+			ViewTraktActivity = CollectionViewSource.GetDefaultView(TraktActivity);
+			//ViewTraktFriends.SortDescriptions.Add(new SortDescription("LastEpisodeWatchedDate", ListSortDirection.Descending));
 		}
 
 		
@@ -133,14 +133,14 @@ namespace JMMClient
 					MiniCalendar.Clear();
 					RecommendationsWatch.Clear();
 					RecommendationsDownload.Clear();
-					TraktFriends.Clear();
+					TraktActivity.Clear();
 
 					ViewEpsWatchNext_Recent.Refresh();
 					ViewSeriesMissingEps.Refresh();
 					ViewMiniCalendar.Refresh();
 					ViewRecommendationsWatch.Refresh();
 					ViewRecommendationsDownload.Refresh();
-					ViewTraktFriends.Refresh();
+					ViewTraktActivity.Refresh();
 				});
 
 				MainListHelperVM.Instance.RefreshGroupsSeriesData();
@@ -182,36 +182,44 @@ namespace JMMClient
 			{
 				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
 				{
-					TraktFriends.Clear();
+					TraktActivity.Clear();
 				});
 
-				List<JMMServerBinary.Contract_Trakt_Friend> contracts = JMMServerVM.Instance.clientBinaryHTTP.GetTraktFriendInfo();
+				JMMServerBinary.Contract_Trakt_Activity traktActivity = JMMServerVM.Instance.clientBinaryHTTP.GetTraktFriendInfo();
 
 				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
 				{
-					foreach (JMMServerBinary.Contract_Trakt_Friend contract in contracts)
+					if (traktActivity.HasTraktAccount)
 					{
-						if (contract.WatchedEpisodes != null && contract.WatchedEpisodes.Count > 0)
+						foreach (JMMServerBinary.Contract_Trakt_Friend contract in traktActivity.TraktFriends)
 						{
-							Trakt_FriendVM friend = new Trakt_FriendVM(contract);
-
-							if (!string.IsNullOrEmpty(friend.FullImagePath) && !File.Exists(friend.FullImagePath))
+							if (contract.WatchedEpisodes != null && contract.WatchedEpisodes.Count > 0)
 							{
-								// re-download the friends avatar image
-								try
+								Trakt_FriendVM friend = new Trakt_FriendVM(contract);
+
+								if (!string.IsNullOrEmpty(friend.FullImagePath) && !File.Exists(friend.FullImagePath))
 								{
-									ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.Trakt_Friend, friend, true);
-									MainWindow.imageHelper.DownloadImage(req);
+									// re-download the friends avatar image
+									try
+									{
+										ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.Trakt_Friend, friend, true);
+										MainWindow.imageHelper.DownloadImage(req);
+									}
+									catch (Exception ex)
+									{
+										Console.WriteLine(ex.ToString());
+									}
 								}
-								catch (Exception ex)
-								{
-									Console.WriteLine(ex.ToString());
-								}
+								TraktActivity.Add(friend);
 							}
-							TraktFriends.Add(friend);
 						}
 					}
-					ViewTraktFriends.Refresh();
+					else
+					{
+						Trakt_SignupVM signup = new Trakt_SignupVM();
+						TraktActivity.Add(signup);
+					}
+					ViewTraktActivity.Refresh();
 				});
 			}
 			catch (Exception ex)

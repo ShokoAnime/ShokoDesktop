@@ -4772,6 +4772,67 @@ namespace JMMClient.JMMServerBinary {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_Trakt_Activity", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
+    [System.SerializableAttribute()]
+    public partial class Contract_Trakt_Activity : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool HasTraktAccountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_Trakt_Friend> TraktFriendsField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool HasTraktAccount {
+            get {
+                return this.HasTraktAccountField;
+            }
+            set {
+                if ((this.HasTraktAccountField.Equals(value) != true)) {
+                    this.HasTraktAccountField = value;
+                    this.RaisePropertyChanged("HasTraktAccount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_Trakt_Friend> TraktFriends {
+            get {
+                return this.TraktFriendsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TraktFriendsField, value) != true)) {
+                    this.TraktFriendsField = value;
+                    this.RaisePropertyChanged("TraktFriends");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Contract_Trakt_Friend", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
     [System.SerializableAttribute()]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_GroupFilterExtended))]
@@ -4811,6 +4872,7 @@ namespace JMMClient.JMMServerBinary {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_MissingFile))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_MissingEpisode>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_MissingEpisode))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_Trakt_Activity))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_Trakt_Friend>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_Trakt_WatchedEpisode>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_Trakt_WatchedEpisode))]
@@ -11948,7 +12010,7 @@ namespace JMMClient.JMMServerBinary {
         void IgnoreAnime(int animeID, int ignoreType, int userID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetTraktFriendInfo", ReplyAction="http://tempuri.org/IJMMServer/GetTraktFriendInfoResponse")]
-        System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_Trakt_Friend> GetTraktFriendInfo();
+        JMMClient.JMMServerBinary.Contract_Trakt_Activity GetTraktFriendInfo();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetUserVote", ReplyAction="http://tempuri.org/IJMMServer/GetUserVoteResponse")]
         JMMClient.JMMServerBinary.Contract_AniDBVote GetUserVote(int animeID);
@@ -12423,7 +12485,7 @@ namespace JMMClient.JMMServerBinary {
             base.Channel.IgnoreAnime(animeID, ignoreType, userID);
         }
         
-        public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_Trakt_Friend> GetTraktFriendInfo() {
+        public JMMClient.JMMServerBinary.Contract_Trakt_Activity GetTraktFriendInfo() {
             return base.Channel.GetTraktFriendInfo();
         }
         

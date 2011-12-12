@@ -364,7 +364,7 @@ namespace JMMClient.UserControls
 
 		void btnExpandTraktFriends_Click(object sender, RoutedEventArgs e)
 		{
-			if (UserSettingsVM.Instance.DashTraktFriendsCollapsed && DashboardVM.Instance.TraktFriends.Count == 0)
+			if (UserSettingsVM.Instance.DashTraktFriendsCollapsed && DashboardVM.Instance.TraktActivity.Count == 0)
 				DashboardVM.Instance.RefreshTraktFriends();
 
 			UserSettingsVM.Instance.DashTraktFriendsExpanded = !UserSettingsVM.Instance.DashTraktFriendsExpanded;
@@ -571,6 +571,29 @@ namespace JMMClient.UserControls
 			}
 		}
 
+		private void CommandBinding_JoinTrakt(object sender, ExecutedRoutedEventArgs e)
+		{
+			Window parentWindow = Window.GetWindow(this);
+
+			object obj = e.Parameter;
+			if (obj == null) return;
+
+			try
+			{
+				if (obj.GetType() == typeof(Trakt_SignupVM))
+				{
+					Trakt_SignupVM signup = obj as Trakt_SignupVM;
+					if (signup == null) return;
+
+				}
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+		}
+
+		
 		private void CommandBinding_MoveUpWidget(object sender, ExecutedRoutedEventArgs e)
 		{
 			object obj = e.Parameter;

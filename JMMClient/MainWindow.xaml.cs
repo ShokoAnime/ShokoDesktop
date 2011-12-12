@@ -869,6 +869,12 @@ namespace JMMClient
 
 		#region Command Bindings
 
+		private void CommandBinding_EditTraktCredentials(object sender, ExecutedRoutedEventArgs e)
+		{
+			tabControl1.SelectedIndex = TAB_MAIN_Settings;
+			tabSettingsChild.SelectedIndex = 2;
+		}
+
 		public void ShowPinnedFileAvDump(VideoLocalVM vid)
 		{
 			this.Cursor = Cursors.Wait;

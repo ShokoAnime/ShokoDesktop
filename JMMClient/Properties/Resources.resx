@@ -1299,7 +1299,7 @@
     <value>Dashboard</value>
   </data>
   <data name="Dash_WatchNextEp_Recent" xml:space="preserve">
-    <value>Watch the Next Episode (Recently Watched)</value>
+    <value>Continue Watching... (Recently Watched)</value>
   </data>
   <data name="DeleteSeries" xml:space="preserve">
     <value>Delete Series</value>

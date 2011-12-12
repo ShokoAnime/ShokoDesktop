@@ -22,7 +22,7 @@ namespace JMMClient.Forms
 		private static Logger logger = LogManager.GetCurrentClassLogger();
 
 		public static readonly DependencyProperty AnimeIDProperty = DependencyProperty.Register("AnimeID",
-			typeof(int), typeof(SearchTvDBForm), new UIPropertyMetadata(0, null));
+			typeof(int), typeof(SelectTraktSeasonForm), new UIPropertyMetadata(0, null));
 
 		public int AnimeID
 		{

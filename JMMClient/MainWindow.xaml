@@ -22,6 +22,7 @@
 
             <RoutedUICommand x:Key="RevokeVoteCommand" Text="RevokeVoteCommand" />
             <RoutedUICommand x:Key="ShowPinnedSeriesCommand" Text="ShowPinnedSeriesCommand" />
+            <RoutedUICommand x:Key="EditTraktCredentialsCommand" Text="EditTraktCredentialsCommand" />
             <RoutedUICommand x:Key="AvdumpFileCommand" Text="AvdumpFileCommand" />
             <RoutedUICommand x:Key="CreateSeriesFromAnimeCommand" Text="CreateSeriesFromAnimeCommand" />
             
@@ -112,6 +113,7 @@
         
         <CommandBinding Command="{StaticResource RevokeVoteCommand}" Executed="CommandBinding_RevokeVote" />
         <CommandBinding Command="{StaticResource ShowPinnedSeriesCommand}" Executed="CommandBinding_ShowPinnedSeries" />
+        <CommandBinding Command="{StaticResource EditTraktCredentialsCommand}" Executed="CommandBinding_EditTraktCredentials" />
         <CommandBinding Command="{StaticResource AvdumpFileCommand}" Executed="CommandBinding_AvdumpFile" />
         <CommandBinding Command="{StaticResource CreateSeriesFromAnimeCommand}" Executed="CommandBinding_CreateSeriesFromAnime" />
 

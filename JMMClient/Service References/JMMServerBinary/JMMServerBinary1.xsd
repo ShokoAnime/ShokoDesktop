@@ -450,6 +450,13 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_MissingEpisode" nillable="true" type="tns:Contract_MissingEpisode" />
+  <xs:complexType name="Contract_Trakt_Activity">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="HasTraktAccount" type="xs:boolean" />
+      <xs:element minOccurs="0" name="TraktFriends" nillable="true" type="tns:ArrayOfContract_Trakt_Friend" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_Trakt_Activity" nillable="true" type="tns:Contract_Trakt_Activity" />
   <xs:complexType name="ArrayOfContract_Trakt_Friend">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_Trakt_Friend" nillable="true" type="tns:Contract_Trakt_Friend" />
