@@ -331,7 +331,7 @@ namespace JMMClient
 			return UserAuthenticated;
 		}
 
-		private void GetServerSettings()
+		public void GetServerSettings()
 		{
 			JMMServerBinary.Contract_ServerSettings contract = _clientBinaryHTTP.GetServerSettings();
 

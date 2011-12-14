@@ -593,6 +593,7 @@ namespace JMMClient.UserControls
 					if (success)
 					{
 						MessageBox.Show(retMessage, "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+						JMMServerVM.Instance.GetServerSettings();
 						DashboardVM.Instance.RefreshTraktFriends();
 					}
 					else
