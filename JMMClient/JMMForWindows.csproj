@@ -132,6 +132,9 @@
     <Compile Include="DataTemplateSelectors\DashWatchNextTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\TraktActivityTemplateSelector.cs" />
     <Compile Include="Enums.cs" />
+    <Compile Include="Forms\ChangePasswordForm.xaml.cs">
+      <DependentUpon>ChangePasswordForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\DeleteFilesForm.xaml.cs">
       <DependentUpon>DeleteFilesForm.xaml</DependentUpon>
     </Compile>
@@ -439,6 +442,10 @@
     </Compile>
     <Compile Include="Utils.cs" />
     <Compile Include="ViewModel\VideoLocalVM.cs" />
+    <Page Include="Forms\ChangePasswordForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Forms\DeleteFilesForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

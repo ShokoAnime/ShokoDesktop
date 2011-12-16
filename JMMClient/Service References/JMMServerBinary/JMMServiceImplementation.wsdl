@@ -50,6 +50,12 @@
   <wsdl:message name="IJMMServer_TraktFriendRequestApprove_OutputMessage">
     <wsdl:part name="parameters" element="tns:TraktFriendRequestApproveResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_ChangePassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangePassword" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_ChangePassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangePasswordResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_GetGroupFilterExtended_InputMessage">
     <wsdl:part name="parameters" element="tns:GetGroupFilterExtended" />
   </wsdl:message>
@@ -911,6 +917,10 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/TraktFriendRequestApprove" message="tns:IJMMServer_TraktFriendRequestApprove_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/TraktFriendRequestApproveResponse" message="tns:IJMMServer_TraktFriendRequestApprove_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="ChangePassword">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/ChangePassword" message="tns:IJMMServer_ChangePassword_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/ChangePasswordResponse" message="tns:IJMMServer_ChangePassword_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetGroupFilterExtended">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilterExtended" message="tns:IJMMServer_GetGroupFilterExtended_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilterExtendedResponse" message="tns:IJMMServer_GetGroupFilterExtended_OutputMessage" />
@@ -1513,6 +1523,15 @@
     </wsdl:operation>
     <wsdl:operation name="TraktFriendRequestApprove">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/TraktFriendRequestApprove" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangePassword">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/ChangePassword" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

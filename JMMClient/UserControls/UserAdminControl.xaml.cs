@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using JMMClient.ViewModel;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
+using JMMClient.Forms;
 
 namespace JMMClient.UserControls
 {
@@ -54,6 +55,24 @@ namespace JMMClient.UserControls
 
 			btnNewUser.Click += new RoutedEventHandler(btnNewUser_Click);
 			btnSave.Click += new RoutedEventHandler(btnSave_Click);
+			btnChangePassword.Click += new RoutedEventHandler(btnChangePassword_Click);
+		}
+
+		void btnChangePassword_Click(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				Window parentWindow = Window.GetWindow(this);
+
+				ChangePasswordForm frm = new ChangePasswordForm();
+				frm.Owner = parentWindow;
+				frm.Init(SelectedUser);
+				frm.ShowDialog();
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
 		}
 
 		void btnSave_Click(object sender, RoutedEventArgs e)
@@ -62,10 +81,10 @@ namespace JMMClient.UserControls
 			{
 				MessageBox.Show("Please enter a username", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 				txtUsername.Focus();
+				return;
 			}
 
 			SelectedUser.Username = txtUsername.Text.Trim();
-			SelectedUser.Password = txtPassword.Text.Trim();
 			SelectedUser.HideCategories = txtCategories.Text.Trim();
 			SelectedUser.IsAdmin = chkIsAdmin.IsChecked.Value ? 1 : 0;
 			SelectedUser.IsAniDBUser = chkIsAniDB.IsChecked.Value ? 1 : 0;
@@ -195,8 +214,8 @@ namespace JMMClient.UserControls
 
 		private void DisplayUser()
 		{
+			btnChangePassword.Visibility = System.Windows.Visibility.Hidden;
 			txtUsername.Text = "";
-			txtPassword.Text = "";
 			txtCategories.Text = "";
 			chkIsAdmin.IsChecked = false;
 			chkIsAniDB.IsChecked = false;
@@ -207,8 +226,8 @@ namespace JMMClient.UserControls
 
 			if (SelectedUser == null || !SelectedUser.JMMUserID.HasValue) return;
 
+			btnChangePassword.Visibility = System.Windows.Visibility.Visible;
 			txtUsername.Text = SelectedUser.Username;
-			txtPassword.Text = SelectedUser.Password;
 			txtCategories.Text = SelectedUser.HideCategories;
 			chkIsAdmin.IsChecked = SelectedUser.IsAdminUser;
 			chkIsAniDB.IsChecked = SelectedUser.IsAniDBUserBool;

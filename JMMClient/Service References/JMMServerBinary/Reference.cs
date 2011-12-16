@@ -12323,6 +12323,9 @@ namespace JMMClient.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/TraktFriendRequestApprove", ReplyAction="http://tempuri.org/IJMMServer/TraktFriendRequestApproveResponse")]
         bool TraktFriendRequestApprove(string friendUsername, ref string returnMessage);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/ChangePassword", ReplyAction="http://tempuri.org/IJMMServer/ChangePasswordResponse")]
+        string ChangePassword(int userID, string newPassword);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetGroupFilterExtended", ReplyAction="http://tempuri.org/IJMMServer/GetGroupFilterExtendedResponse")]
         JMMClient.JMMServerBinary.Contract_GroupFilterExtended GetGroupFilterExtended(int groupFilterID, int userID);
         
@@ -12789,6 +12792,10 @@ namespace JMMClient.JMMServerBinary {
         
         public bool TraktFriendRequestApprove(string friendUsername, ref string returnMessage) {
             return base.Channel.TraktFriendRequestApprove(friendUsername, ref returnMessage);
+        }
+        
+        public string ChangePassword(int userID, string newPassword) {
+            return base.Channel.ChangePassword(userID, newPassword);
         }
         
         public JMMClient.JMMServerBinary.Contract_GroupFilterExtended GetGroupFilterExtended(int groupFilterID, int userID) {
