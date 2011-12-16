@@ -38,7 +38,7 @@
 
 
         <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Password}" Margin="0,10,5,0"/>
-        <TextBox Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Name="txtPassword" Width="200" Margin="5,10,2,0" BorderThickness="1" />
+        <PasswordBox Grid.Row="1" Grid.Column="2" Width="200" Margin="5,10,2,0" VerticalAlignment="Center" BorderThickness="1" x:Name="txtPassword" local:PasswordBoxAssistant.BindPassword="true" />
 
         <!-- login button -->
         <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="2">

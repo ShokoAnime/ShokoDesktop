@@ -38,18 +38,18 @@ namespace JMMClient.Forms
 			if (cboUsers.Items.Count > 0)
 				cboUsers.SelectedIndex = 0;
 
-			txtPassword.TextChanged += new TextChangedEventHandler(txtPassword_TextChanged);
+			txtPassword.PasswordChanged += new RoutedEventHandler(txtPassword_PasswordChanged);
 			this.Loaded += new RoutedEventHandler(LoginForm_Loaded);
+		}
+
+		void txtPassword_PasswordChanged(object sender, RoutedEventArgs e)
+		{
+			txtStatus.Text = "";
 		}
 
 		void LoginForm_Loaded(object sender, RoutedEventArgs e)
 		{
 			txtPassword.Focus();
-		}
-
-		void txtPassword_TextChanged(object sender, TextChangedEventArgs e)
-		{
-			txtStatus.Text = "";
 		}
 
 		void btnLogin_Click(object sender, RoutedEventArgs e)
@@ -59,7 +59,7 @@ namespace JMMClient.Forms
 			JMMUserVM user = cboUsers.SelectedItem as JMMUserVM;
 			if (user != null)
 			{
-				JMMServerBinary.Contract_JMMUser retUser = JMMServerVM.Instance.clientBinaryHTTP.AuthenticateUser(user.Username, txtPassword.Text.Trim());
+				JMMServerBinary.Contract_JMMUser retUser = JMMServerVM.Instance.clientBinaryHTTP.AuthenticateUser(user.Username, txtPassword.Password.Trim());
 				if (retUser != null)
 				{
 					ThisUser = user;
