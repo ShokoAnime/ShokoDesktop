@@ -22,6 +22,8 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <!-- Video Extensions -->
@@ -99,6 +101,27 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="7" Margin="0,5,5,0" Grid.ColumnSpan="1">
             <CheckBox Name="chkImportSettings_SHA1" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=Hash_SHA1}" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="0,15,5,0" Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="3">
+            <TextBlock Text="Images Path"  VerticalAlignment="Center"/>
+
+            <ComboBox Name="cboImagesPath" MinWidth="100" Margin="10,0,0,0" VerticalAlignment="Center"/>
+
+            <Button Name="btnChooseImagesFolder" Style="{DynamicResource RoundButtonStyle}" Margin="10,0,0,0">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                    <Image Height="16" Width="16" Source="/Images/32_Folder.png" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="Select Folder" Margin="0,0,5,0"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="5,0,5,5" Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="3">
+            <TextBlock Text="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=BaseImagePath}" Name="txtImagesPath"  VerticalAlignment="Center" Margin="20,0,5,0" Foreground="DarkGray">
+                                <TextBlock.ToolTip>
+                                    <TextBlock Text="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=BaseImagePath}" Foreground="Black" FontWeight="DemiBold"/>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
         </StackPanel>
 
     </Grid>

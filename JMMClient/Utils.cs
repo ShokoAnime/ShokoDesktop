@@ -134,8 +134,24 @@ namespace JMMClient
 
 		public static string GetBaseImagesPath()
 		{
-			string appPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-			string filePath = Path.Combine(appPath, "Images");
+			bool overrideFolder = false;
+			if (!AppSettings.BaseImagesPathIsDefault)
+			{
+				if (!string.IsNullOrEmpty(AppSettings.BaseImagesPath))
+				{
+					if (Directory.Exists(AppSettings.BaseImagesPath)) overrideFolder = true;
+				}
+			}
+
+			string filePath = "";
+			if (overrideFolder)
+				filePath = AppSettings.BaseImagesPath;
+			else
+			{
+				string appPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+				filePath = Path.Combine(appPath, "Images");
+			}
+
 
 			if (!Directory.Exists(filePath))
 				Directory.CreateDirectory(filePath);

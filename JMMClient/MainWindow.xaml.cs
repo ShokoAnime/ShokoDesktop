@@ -153,6 +153,8 @@ namespace JMMClient
 				this.AddHandler(CloseableTabItem.CloseTabEvent, new RoutedEventHandler(this.CloseTab));
 
 				btnUpdateMediaInfo.Click += new RoutedEventHandler(btnUpdateMediaInfo_Click);
+
+				JMMServerVM.Instance.BaseImagePath = Utils.GetBaseImagesPath();
 			}
 			catch (Exception ex)
 			{

@@ -32,6 +32,41 @@ namespace JMMClient.UserControls
 			chkImportSettings_WatchFiles.Click += new RoutedEventHandler(settingChanged);
 			chkImportSettings_UseEpisodeStatus.Click += new RoutedEventHandler(settingChanged);
 			chkImportSettings_AutoGroupSeries.Click += new RoutedEventHandler(settingChanged);
+
+			cboImagesPath.Items.Clear();
+			cboImagesPath.Items.Add("Default");
+			cboImagesPath.Items.Add("Custom");
+			cboImagesPath.SelectionChanged += new System.Windows.Controls.SelectionChangedEventHandler(cboImagesPath_SelectionChanged);
+			btnChooseImagesFolder.Click += new RoutedEventHandler(btnChooseImagesFolder_Click);
+
+			if (AppSettings.BaseImagesPathIsDefault)
+				cboImagesPath.SelectedIndex = 0;
+			else
+				cboImagesPath.SelectedIndex = 1;
+		}
+
+		void btnChooseImagesFolder_Click(object sender, RoutedEventArgs e)
+		{
+			System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
+			if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+			{
+				AppSettings.BaseImagesPath = dialog.SelectedPath;
+			}
+		}
+
+		void cboImagesPath_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+		{
+			if (cboImagesPath.SelectedIndex == 0)
+			{
+				AppSettings.BaseImagesPathIsDefault = true;
+				btnChooseImagesFolder.Visibility = System.Windows.Visibility.Hidden;
+			}
+			else
+			{
+				AppSettings.BaseImagesPathIsDefault = false;
+				btnChooseImagesFolder.Visibility = System.Windows.Visibility.Visible;
+			}
+
 		}
 
 		void btnSave_Click(object sender, RoutedEventArgs e)

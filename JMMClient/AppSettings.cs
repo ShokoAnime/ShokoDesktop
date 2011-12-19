@@ -45,6 +45,7 @@ namespace JMMClient
 			}
 		}
 
+
 		public static AvailableEpisodeType Episodes_Availability
 		{
 			get
@@ -76,6 +77,42 @@ namespace JMMClient
 			set
 			{
 				UpdateSetting("Episodes_WatchedStatus", ((int)value).ToString());
+			}
+		}
+
+		public static string BaseImagesPath
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				return appSettings["BaseImagesPath"];
+			}
+			set
+			{
+				UpdateSetting("BaseImagesPath", value);
+				JMMServerVM.Instance.BaseImagePath = Utils.GetBaseImagesPath();
+			}
+		}
+
+		public static bool BaseImagesPathIsDefault
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string basePath = appSettings["BaseImagesPathIsDefault"];
+				if (!string.IsNullOrEmpty(basePath))
+				{
+					bool val = true;
+					bool.TryParse(basePath, out val);
+					return val;
+				}
+				else return true;
+
+			}
+			set
+			{
+				UpdateSetting("BaseImagesPathIsDefault", value.ToString());
+				JMMServerVM.Instance.BaseImagePath = Utils.GetBaseImagesPath();
 			}
 		}
 

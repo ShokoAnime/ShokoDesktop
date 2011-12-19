@@ -591,6 +591,28 @@ namespace JMMClient
 			}
 		}
 
+		private string baseImagePath = "";
+		public string BaseImagePath
+		{
+			get { return baseImagePath; }
+			set
+			{
+				baseImagePath = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("BaseImagePath"));
+			}
+		}
+
+		private bool baseImagesPathIsDefault = true;
+		public bool BaseImagesPathIsDefault
+		{
+			get { return baseImagesPathIsDefault; }
+			set
+			{
+				baseImagesPathIsDefault = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("BaseImagesPathIsDefault"));
+			}
+		}
+
 		private string username = "";
 		public string Username
 		{
