@@ -148,7 +148,9 @@ namespace JMMClient
 				this.Loaded += new RoutedEventHandler(MainWindow_Loaded);
 				this.StateChanged += new EventHandler(MainWindow_StateChanged);
 
-				DeleteAvatarImages();
+				// Have commented this out because it is no good when Desktop and Server are sharing
+				// the same base image path
+				//DeleteAvatarImages();
 
 				this.AddHandler(CloseableTabItem.CloseTabEvent, new RoutedEventHandler(this.CloseTab));
 
