@@ -376,7 +376,10 @@
   </xs:element>
   <xs:element name="GetTraktFriendInfo">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="maxResults" type="xs:int" />
+        <xs:element minOccurs="0" name="animeOnly" type="xs:boolean" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetTraktFriendInfoResponse">

@@ -19,7 +19,8 @@ namespace JMMClient
 		Trakt_Poster = 10,
 		Trakt_Fanart = 11,
 		Trakt_Episode = 12,
-		Trakt_Friend = 13
+		Trakt_Friend = 13,
+		Trakt_ActivityScrobble = 14
 	}
 
 	public enum ImageDownloadEventType
@@ -288,5 +289,17 @@ namespace JMMClient
 	{
 		AniDB = 1,
 		TheTvDB = 2
+	}
+
+	public enum TraktActivityAction
+	{
+		Scrobble = 1,
+		Shout = 2
+	}
+
+	public enum TraktActivityType
+	{
+		Episode = 1,
+		Show = 2
 	}
 }

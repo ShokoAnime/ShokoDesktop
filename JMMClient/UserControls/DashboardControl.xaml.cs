@@ -204,17 +204,21 @@ namespace JMMClient.UserControls
 			udItemsMissingEps.ValueChanged += new RoutedPropertyChangedEventHandler<object>(udItemsMissingEps_ValueChanged);
 			udItemsRecWatch.ValueChanged += new RoutedPropertyChangedEventHandler<object>(udItemsRecWatch_ValueChanged);
 			udItemsRecDownload.ValueChanged += new RoutedPropertyChangedEventHandler<object>(udItemsRecDownload_ValueChanged);
+			udItemsTraktFriends.ValueChanged += new RoutedPropertyChangedEventHandler<object>(udItemsTraktFriends_ValueChanged);
 
 			btnGetRecDownloadMissingInfo.Click += new RoutedEventHandler(btnGetRecDownloadMissingInfo_Click);
+
+			chkTraktAnimeOnly.Click += new RoutedEventHandler(chkTraktAnimeOnly_Click);
 
 			SetWidgetOrder();
 
 			
 		}
 
-		
-
-		
+		void chkTraktAnimeOnly_Click(object sender, RoutedEventArgs e)
+		{
+			JMMServerVM.Instance.SaveServerSettingsAsync();
+		}
 
 		
 
@@ -252,6 +256,11 @@ namespace JMMClient.UserControls
 		void udItemsRecDownload_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
 		{
 			UserSettingsVM.Instance.Dash_RecDownload_Items = udItemsRecDownload.Value.Value;
+		}
+
+		void udItemsTraktFriends_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+		{
+			UserSettingsVM.Instance.Dash_TraktFriends_Items = udItemsTraktFriends.Value.Value;
 		}
 		
 		void btnWatchNextReduce_Click(object sender, RoutedEventArgs e)

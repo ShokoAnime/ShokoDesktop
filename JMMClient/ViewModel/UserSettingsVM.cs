@@ -412,6 +412,26 @@ namespace JMMClient
 			}
 		}
 
+		public int Dash_TraktFriends_Items
+		{
+			get { return AppSettings.Dash_TraktFriends_Items; }
+			set
+			{
+				AppSettings.Dash_TraktFriends_Items = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("Dash_TraktFriends_Items"));
+			}
+		}
+
+		public bool Dash_TraktFriends_AnimeOnly
+		{
+			get { return AppSettings.Dash_TraktFriends_AnimeOnly; }
+			set
+			{
+				AppSettings.Dash_TraktFriends_AnimeOnly = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("Dash_TraktFriends_AnimeOnly"));
+			}
+		}
+
 		public int EpisodeImageOverviewStyle
 		{
 			get { return AppSettings.EpisodeImageOverviewStyle; }

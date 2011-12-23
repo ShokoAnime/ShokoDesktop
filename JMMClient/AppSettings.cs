@@ -940,6 +940,47 @@ namespace JMMClient
 			}
 		}
 
+		public static int Dash_TraktFriends_Items
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["Dash_TraktFriends_Items"];
+				int ival = 0;
+				if (int.TryParse(val, out ival))
+				{
+					if (ival >= 0 && ival <= 100)
+						return ival;
+					else
+						return 10;
+				}
+				else
+					return 10; // default value
+			}
+			set
+			{
+				UpdateSetting("Dash_TraktFriends_Items", value.ToString());
+			}
+		}
+
+		public static bool Dash_TraktFriends_AnimeOnly
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["Dash_TraktFriends_AnimeOnly"];
+				bool bval = false;
+				if (bool.TryParse(val, out bval))
+					return bval;
+				else
+					return false; // default value
+			}
+			set
+			{
+				UpdateSetting("Dash_TraktFriends_AnimeOnly", value.ToString());
+			}
+		}
+
 		public static System.Windows.WindowState DefaultWindowState
 		{
 			get

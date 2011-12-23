@@ -185,7 +185,8 @@ namespace JMMClient
 					TraktActivity.Clear();
 				});
 
-				JMMServerBinary.Contract_Trakt_Activity traktActivity = JMMServerVM.Instance.clientBinaryHTTP.GetTraktFriendInfo();
+				JMMServerBinary.Contract_Trakt_Activity traktActivity = JMMServerVM.Instance.clientBinaryHTTP.GetTraktFriendInfo(AppSettings.Dash_TraktFriends_Items, 
+					AppSettings.Dash_TraktFriends_AnimeOnly);
 
 				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
 				{
@@ -196,6 +197,54 @@ namespace JMMClient
 							Trakt_FriendRequestVM req = new Trakt_FriendRequestVM(contractFriend);
 							TraktActivity.Add(req);
 						}
+
+						foreach (JMMServerBinary.Contract_Trakt_FriendActivity contractAct in traktActivity.TraktFriendActivity)
+						{
+							if (contractAct.ActivityAction == (int)TraktActivityAction.Scrobble)
+							{
+								Trakt_ActivityScrobbleVM scrobble = new Trakt_ActivityScrobbleVM(contractAct);
+
+								if (!string.IsNullOrEmpty(scrobble.UserFullImagePath) && !File.Exists(scrobble.UserFullImagePath))
+								{
+									// re-download the friends avatar image
+									try
+									{
+										ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.Trakt_ActivityScrobble, scrobble, true);
+										MainWindow.imageHelper.DownloadImage(req);
+									}
+									catch (Exception ex)
+									{
+										Console.WriteLine(ex.ToString());
+									}
+								}
+
+								TraktActivity.Add(scrobble);
+							}
+							else if (contractAct.ActivityAction == (int)TraktActivityAction.Shout)
+							{
+								if (contractAct.ActivityType == (int)TraktActivityType.Episode)
+								{
+									Trakt_ActivityShoutEpisodeVM shoutEp = new Trakt_ActivityShoutEpisodeVM(contractAct);
+
+									if (!string.IsNullOrEmpty(shoutEp.UserFullImagePath) && !File.Exists(shoutEp.UserFullImagePath))
+									{
+										// re-download the friends avatar image
+										try
+										{
+											//ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.Trakt_ActivityScrobble, scrobble, true);
+											//MainWindow.imageHelper.DownloadImage(req);
+										}
+										catch (Exception ex)
+										{
+											Console.WriteLine(ex.ToString());
+										}
+									}
+
+									TraktActivity.Add(shoutEp);
+								}
+							}
+						}
+
 						foreach (JMMServerBinary.Contract_Trakt_Friend contract in traktActivity.TraktFriends)
 						{
 							if (contract.WatchedEpisodes != null && contract.WatchedEpisodes.Count > 0)

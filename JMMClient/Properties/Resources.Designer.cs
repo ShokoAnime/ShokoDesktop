@@ -3832,6 +3832,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Only show activity is related to anime (ie exclude other tv series).
+        /// </summary>
+        public static string Tooltip_TraktAnimeOnly {
+            get {
+                return ResourceManager.GetString("Tooltip_TraktAnimeOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Automatically download new fanart whenever a import is performed..
         /// </summary>
         public static string Tooltip_TvDB_FanartAutoDownload {
@@ -3990,6 +3999,15 @@ namespace JMMClient.Properties {
         public static string Trakt_Username {
             get {
                 return ResourceManager.GetString("Trakt_Username", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anime Only.
+        /// </summary>
+        public static string TraktAnimeOnly {
+            get {
+                return ResourceManager.GetString("TraktAnimeOnly", resourceCulture);
             }
         }
         

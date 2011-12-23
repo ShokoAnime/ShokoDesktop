@@ -415,12 +415,16 @@
     <Compile Include="ViewModel\RecommendationVM.cs" />
     <Compile Include="ViewModel\ReleaseGroupVM.cs" />
     <Compile Include="ViewModel\TraktTVShowResponseVM.cs" />
+    <Compile Include="ViewModel\Trakt_ActivityScrobbleVM.cs" />
+    <Compile Include="ViewModel\Trakt_ActivityShoutEpisodeVM.cs" />
+    <Compile Include="ViewModel\Trakt_ActivityShoutShowVM.cs" />
     <Compile Include="ViewModel\Trakt_EpisodeVM.cs" />
     <Compile Include="ViewModel\Trakt_FriendRequestVM.cs" />
     <Compile Include="ViewModel\Trakt_FriendVM.cs" />
     <Compile Include="ViewModel\Trakt_ImageFanartVM.cs" />
     <Compile Include="ViewModel\Trakt_ImagePosterVM.cs" />
     <Compile Include="ViewModel\Trakt_SeasonVM.cs" />
+    <Compile Include="ViewModel\Trakt_ShoutVM.cs" />
     <Compile Include="ViewModel\Trakt_ShowVM.cs" />
     <Compile Include="ViewModel\Trakt_SignupVM.cs" />
     <Compile Include="ViewModel\Trakt_WatchedEpisodeVM.cs" />
@@ -1337,6 +1341,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\16_heart_break.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\trakt-icon-scrobble.png" />
+    <Resource Include="Images\trakt-icon-shouts.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
