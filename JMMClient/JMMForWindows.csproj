@@ -345,6 +345,12 @@
     <Compile Include="UserControls\Titles.xaml.cs">
       <DependentUpon>Titles.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\TraktShoutControl.xaml.cs">
+      <DependentUpon>TraktShoutControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TraktShoutsShowControl.xaml.cs">
+      <DependentUpon>TraktShoutsShowControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\TruncatedTextBlock.xaml.cs">
       <DependentUpon>TruncatedTextBlock.xaml</DependentUpon>
     </Compile>
@@ -424,9 +430,11 @@
     <Compile Include="ViewModel\Trakt_ImageFanartVM.cs" />
     <Compile Include="ViewModel\Trakt_ImagePosterVM.cs" />
     <Compile Include="ViewModel\Trakt_SeasonVM.cs" />
+    <Compile Include="ViewModel\Trakt_ShoutUserVM.cs" />
     <Compile Include="ViewModel\Trakt_ShoutVM.cs" />
     <Compile Include="ViewModel\Trakt_ShowVM.cs" />
     <Compile Include="ViewModel\Trakt_SignupVM.cs" />
+    <Compile Include="ViewModel\Trakt_UserVM.cs" />
     <Compile Include="ViewModel\Trakt_WatchedEpisodeVM.cs" />
     <Compile Include="ViewModel\TVDBSeriesSearchResultVM.cs" />
     <Compile Include="ViewModel\TvDB_EpisodeVM.cs" />
@@ -722,6 +730,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\TraktShoutControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\TraktShoutsShowControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\TruncatedTextBlock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -923,6 +939,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_Trakt_ImagePoster.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_Trakt_ShoutUser.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_TvDBLanguage.datasource">

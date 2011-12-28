@@ -56,6 +56,12 @@
   <wsdl:message name="IJMMServer_ChangePassword_OutputMessage">
     <wsdl:part name="parameters" element="tns:ChangePasswordResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_GetTraktShoutsForAnime_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTraktShoutsForAnime" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetTraktShoutsForAnime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTraktShoutsForAnimeResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_GetGroupFilterExtended_InputMessage">
     <wsdl:part name="parameters" element="tns:GetGroupFilterExtended" />
   </wsdl:message>
@@ -921,6 +927,10 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/ChangePassword" message="tns:IJMMServer_ChangePassword_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/ChangePasswordResponse" message="tns:IJMMServer_ChangePassword_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetTraktShoutsForAnime">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetTraktShoutsForAnime" message="tns:IJMMServer_GetTraktShoutsForAnime_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetTraktShoutsForAnimeResponse" message="tns:IJMMServer_GetTraktShoutsForAnime_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetGroupFilterExtended">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilterExtended" message="tns:IJMMServer_GetGroupFilterExtended_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilterExtendedResponse" message="tns:IJMMServer_GetGroupFilterExtended_OutputMessage" />
@@ -1532,6 +1542,15 @@
     </wsdl:operation>
     <wsdl:operation name="ChangePassword">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/ChangePassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTraktShoutsForAnime">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetTraktShoutsForAnime" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

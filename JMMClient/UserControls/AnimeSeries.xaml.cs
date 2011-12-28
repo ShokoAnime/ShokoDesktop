@@ -647,6 +647,12 @@ namespace JMMClient.UserControls
 					ucRelatedAnime.RefreshData();
 					this.Cursor = Cursors.Arrow;
 				}
+				else if (tab.SelectedIndex == 4) // trakt shouts
+				{
+					this.Cursor = Cursors.Wait;
+					ucTraktShouts.RefreshShouts();
+					this.Cursor = Cursors.Arrow;
+				}
 
 			}
 		}
@@ -745,6 +751,12 @@ namespace JMMClient.UserControls
 				this.Cursor = Cursors.Wait;
 				ucSimilarAnime.RefreshData();
 				ucRelatedAnime.RefreshData();
+				this.Cursor = Cursors.Arrow;
+			}
+			else if (tabContainer.SelectedIndex == 4) // trakt shouts
+			{
+				this.Cursor = Cursors.Wait;
+				ucTraktShouts.RefreshShouts();
 				this.Cursor = Cursors.Arrow;
 			}
 				

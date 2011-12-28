@@ -539,7 +539,7 @@ namespace JMMClient.ImageDownload
 				case ImageEntityType.Trakt_ActivityScrobble:
 
 					Trakt_ActivityScrobbleVM trakScrobble = req.ImageData as Trakt_ActivityScrobbleVM;
-					return trakScrobble.Trakt_FriendID.ToString();
+					return trakScrobble.User.Trakt_FriendID.ToString();
 
 				case ImageEntityType.Trakt_Episode:
 

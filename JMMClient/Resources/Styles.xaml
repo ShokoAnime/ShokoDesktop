@@ -383,6 +383,16 @@
         <Setter Property="BorderThickness" Value="0,0,0,1" />
     </Style>
 
+    <!-- ListBoxItemStyleShouts -->
+    <Style x:Key="ListBoxItemStyleShouts" TargetType="ListBoxItem">
+        <Setter Property="Background" Value="FloralWhite" />
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Margin" Value="10" />
+        <Setter Property="BorderBrush" Value="DarkGray" />
+        <Setter Property="BorderThickness" Value="2" />
+    </Style>
+
     <ControlTemplate x:Key="OfficeTabControl" TargetType="{x:Type TabControl}">
         <ControlTemplate.Resources>
             <Style TargetType="{x:Type TabItem}">

@@ -11,6 +11,7 @@ namespace JMMClient.ViewModel
 		public int ShoutType { get; set; } // episode, show
 		public string Text { get; set; }
 		public bool Spoiler { get; set; }
+		public DateTime? Inserted { get; set; }
 
 		public string Episode_Season { get; set; }
 		public string Episode_Number { get; set; }
@@ -87,11 +88,24 @@ namespace JMMClient.ViewModel
 			}
 		}
 
+		public string ShoutDateString
+		{
+			get
+			{
+				if (Inserted.HasValue)
+					//return Inserted.Value.ToString("dd MMM yyyy", Globals.Culture);
+					return Inserted.Value.ToString("dd MMM yyyy", Globals.Culture) + ", " + Inserted.Value.ToShortTimeString();
+				else
+					return "";
+			}
+		}
+
 		public Trakt_ShoutVM(JMMServerBinary.Contract_Trakt_Shout contract)
 		{
 			this.ShoutType = contract.ShoutType;
 			this.Text = contract.Text;
 			this.Spoiler = contract.Spoiler;
+			this.Inserted = contract.Inserted;
 
 			this.Episode_Season = contract.Episode_Season;
 			this.Episode_Number = contract.Episode_Number;
@@ -110,6 +124,8 @@ namespace JMMClient.ViewModel
 			Console.Write(this.FullImagePath);
 			Console.Write(this.OnlineImagePath);
 			Console.Write(this.ImagePathForDisplay);
+
+			//this.Text = "Sora asks Haru to take her measurements so she can have a uniform made. The next day Nao comes over to bring Haruka some mosquito repellent, since Sora is scared of mosquitoes, and then leaves almost immediately. The next day Ryouhei invites Haruka to the school rooftop to take a peek at the girls cleaning the pool. Haruka warns Ryouhei, though, not to peek at Nao, and leaves. Much later Ryouhei tells Nao that Haruka, “the prince she has been waiting for,” has a crush on her; but she thinks he does not like her. The truth is that something happened between the two many summers ago: Nao, trying to escape the noise of her arguing parents, ran to Haruka's house. At that time Haruka was sleeping at their veranda, and was surprised to see Nao on top of him with her clothes undone. Until now Nao feels guilty for what she did. However, Ryouhei, even Akira and Kazuha, is into the act of bringing Haruka and Nao together. They did so by making the two meet at school pool on a Sunday. When they were changing after the swimming lesson, Haruka rushes into the girls' locker room when Nao was scared by a black cat inside a box. The school supervisor hears their chatter, but the two were able to hide inside a box before he catches them. Thinking it was just the cat, he leaves. There, Nao gets to know that Haruka does not hate her, only that he was just surprised at the events of that summer day, dispelling her assumptions. Meanwhile, Sora shows her hatred of Nao, whom she thinks is the reason why Haruka has been preoccupied the past couple of days, at home on her laptop.";
 		}
 	}
 }

@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="JMMClient.UserControls.TraktShoutsShowControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:debug="clr-namespace:System.Diagnostics;assembly=System"
+             xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
+             xmlns:local="clr-namespace:JMMClient"
+             mc:Ignorable="d" 
+             x:Name="traktShowShoutsControl"
+             d:DesignHeight="300" d:DesignWidth="600">
+    <UserControl.Resources>
+
+        <ResourceDictionary>
+
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Styles.xaml" />
+                <ResourceDictionary Source="/Resources/MainListStyles.xaml" />
+                <ResourceDictionary Source="/Resources/MainListContent.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+
+        </ResourceDictionary>
+
+
+
+    </UserControl.Resources>
+
+    <UserControl.CommandBindings>
+
+
+    </UserControl.CommandBindings>
+
+    <Grid Margin="0,0,0,0" Name="grdTraktShouts">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ListBox Name="lbShouts" BorderThickness="0" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch"  Margin="0" 
+                 VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 ItemsSource="{Binding Path=CurrentShouts, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TraktShoutsShowControl}}}" 
+                 Background="Transparent" ItemContainerStyle="{DynamicResource ListBoxItemStyleShouts}"  VerticalAlignment="Stretch" >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <usercontrols:TraktShoutControl/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+        </ListBox>
+    </Grid>
+</UserControl>

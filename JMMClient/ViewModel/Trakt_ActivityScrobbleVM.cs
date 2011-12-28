@@ -9,7 +9,9 @@ namespace JMMClient.ViewModel
 	public class Trakt_ActivityScrobbleVM
 	{
 		// user details
-		public int Trakt_FriendID { get; private set; }
+		public Trakt_UserVM User { get; set; }
+		
+		/*public int Trakt_FriendID { get;  set; }
 		public string Username { get; set; }
 		public string Full_name { get; set; }
 		public string Gender { get; set; }
@@ -19,7 +21,7 @@ namespace JMMClient.ViewModel
 		public int Joined { get; set; }
 		public DateTime? JoinedDate { get; set; }
 		public string Avatar { get; set; }
-		public string Url { get; set; }
+		public string Url { get; set; }*/
 
 		// activity details
 		public int ActivityAction { get; set; } // scrobble, shout
@@ -45,8 +47,8 @@ namespace JMMClient.ViewModel
 		{
 			get
 			{
-				if (string.IsNullOrEmpty(Avatar)) return "";
-				return Avatar;
+				if (string.IsNullOrEmpty(User.Avatar)) return "";
+				return User.Avatar;
 			}
 		}
 
@@ -58,10 +60,10 @@ namespace JMMClient.ViewModel
 				// http://vicmackey.trakt.tv/images/avatars/837.jpg
 				// http://gravatar.com/avatar/f894a4cbd5e8bcbb1a79010699af1183.jpg?s=140&r=pg&d=http%3A%2F%2Fvicmackey.trakt.tv%2Fimages%2Favatar-large.jpg
 
-				if (string.IsNullOrEmpty(Avatar)) return "";
+				if (string.IsNullOrEmpty(User.Avatar)) return "";
 
 				string path = Utils.GetTraktImagePath_Avatars();
-				return Path.Combine(path, string.Format("{0}.jpg", Username));
+				return Path.Combine(path, string.Format("{0}.jpg", User.Username));
 			}
 		}
 
@@ -89,17 +91,7 @@ namespace JMMClient.ViewModel
 
 		public Trakt_ActivityScrobbleVM(JMMServerBinary.Contract_Trakt_FriendActivity contract)
 		{
-			this.Trakt_FriendID = contract.Trakt_FriendID;
-			this.Username = contract.Username;
-			this.Full_name = contract.Full_name;
-			this.Gender = contract.Gender;
-			this.Age = contract.Age;
-			this.Location = contract.Location;
-			this.About = contract.About;
-			this.Joined = contract.Joined;
-			this.JoinedDate = contract.JoinedDate;
-			this.Avatar = contract.Avatar;
-			this.Url = contract.Url;
+			this.User = new Trakt_UserVM(contract.User);
 
 			this.ActivityAction = contract.ActivityAction;
 			this.ActivityType = contract.ActivityType;
@@ -113,7 +105,7 @@ namespace JMMClient.ViewModel
 
 		public override string ToString()
 		{
-			return string.Format("{0} - {1}", Username, Avatar);
+			return string.Format("{0} - {1}", User.Username, User.Avatar);
 		}
 	}
 }

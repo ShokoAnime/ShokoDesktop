@@ -1123,15 +1123,15 @@
 
                                 <!-- user name, link -->
                                 <StackPanel Orientation="Horizontal" Margin="0,0,5,5">
-                                    <TextBlock Text="{Binding Path=Username}" FontWeight="Bold" FontSize="14" Foreground="DarkBlue" VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding Path=User.Username}" FontWeight="Bold" FontSize="14" Foreground="DarkBlue" VerticalAlignment="Center">
                                         <TextBlock.ToolTip>
-                                            <TextBlock Text="{Binding Path=Username}" Foreground="Black" FontWeight="DemiBold"/>
+                                            <TextBlock Text="{Binding Path=User.Username}" Foreground="Black" FontWeight="DemiBold"/>
                                         </TextBlock.ToolTip>
                                     </TextBlock>
-                                    <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="View User on Trakt" URL="{Binding Path=Url}" Margin="10,0,0,0"/>
-                                    <TextBlock Text="{Binding Path=Full_name}" Foreground="Black" VerticalAlignment="Center" Margin="10,0,0,0">
+                                    <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="View User on Trakt" URL="{Binding Path=User.Url}" Margin="10,0,0,0"/>
+                                    <TextBlock Text="{Binding Path=User.Full_name}" Foreground="Black" VerticalAlignment="Center" Margin="10,0,0,0">
                                     <TextBlock.ToolTip>
-                                        <TextBlock Text="{Binding Path=Full_name}" Foreground="Black" FontWeight="DemiBold"/>
+                                        <TextBlock Text="{Binding Path=User.Full_name}" Foreground="Black" FontWeight="DemiBold"/>
                                     </TextBlock.ToolTip>
                                     </TextBlock>
                                 </StackPanel>
@@ -1293,15 +1293,15 @@
 
                                 <!-- user name, link -->
                                 <StackPanel Orientation="Horizontal" Margin="0,0,5,5">
-                                    <TextBlock Text="{Binding Path=Username}" FontWeight="Bold" FontSize="14" Foreground="DarkBlue" VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding Path=User.Username}" FontWeight="Bold" FontSize="14" Foreground="DarkBlue" VerticalAlignment="Center">
                                         <TextBlock.ToolTip>
-                                            <TextBlock Text="{Binding Path=Username}" Foreground="Black" FontWeight="DemiBold"/>
+                                            <TextBlock Text="{Binding Path=User.Username}" Foreground="Black" FontWeight="DemiBold"/>
                                         </TextBlock.ToolTip>
                                     </TextBlock>
-                                    <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="View User on Trakt" URL="{Binding Path=Url}" Margin="10,0,0,0"/>
-                                    <TextBlock Text="{Binding Path=Full_name}" Foreground="Black" VerticalAlignment="Center" Margin="10,0,0,0">
+                                    <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="View User on Trakt" URL="{Binding Path=User.Url}" Margin="10,0,0,0"/>
+                                    <TextBlock Text="{Binding Path=User.Full_name}" Foreground="Black" VerticalAlignment="Center" Margin="10,0,0,0">
                                     <TextBlock.ToolTip>
-                                        <TextBlock Text="{Binding Path=Full_name}" Foreground="Black" FontWeight="DemiBold"/>
+                                        <TextBlock Text="{Binding Path=User.Full_name}" Foreground="Black" FontWeight="DemiBold"/>
                                     </TextBlock.ToolTip>
                                     </TextBlock>
                                 </StackPanel>

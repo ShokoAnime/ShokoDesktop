@@ -971,6 +971,8 @@
                 <usercontrols:EpisodeList x:Name="epListMain"/>
             </TabItem>
 
+            
+
             <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Images}" Name="tabImages" >
                 <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                     <Grid>
@@ -1137,6 +1139,11 @@
                 </Grid>
                 
             </TabItem>
+
+            <TabItem Name="tabTraktShouts" Header="Trakt Shouts">
+                <usercontrols:TraktShoutsShowControl x:Name="ucTraktShouts"  />
+            </TabItem>
+
         </TabControl>
     </ScrollViewer>
 </UserControl>
