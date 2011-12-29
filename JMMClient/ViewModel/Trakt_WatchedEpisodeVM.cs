@@ -23,6 +23,14 @@ namespace JMMClient.ViewModel
 		public int? AnimeSeriesID { get; set; }
 		public AniDB_AnimeVM Anime { get; set; }
 
+		public bool HasAnimeSeries
+		{
+			get
+			{
+				return AnimeSeriesID.HasValue;
+			}
+		}
+
 		public string ImagePathForDisplay
 		{
 			get

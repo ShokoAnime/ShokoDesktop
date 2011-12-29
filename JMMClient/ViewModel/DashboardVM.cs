@@ -242,6 +242,26 @@ namespace JMMClient
 
 									TraktActivity.Add(shoutEp);
 								}
+								else
+								{
+									Trakt_ActivityShoutShowVM shoutShow = new Trakt_ActivityShoutShowVM(contractAct);
+
+									if (!string.IsNullOrEmpty(shoutShow.UserFullImagePath) && !File.Exists(shoutShow.UserFullImagePath))
+									{
+										// re-download the friends avatar image
+										try
+										{
+											//ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.Trakt_ActivityScrobble, scrobble, true);
+											//MainWindow.imageHelper.DownloadImage(req);
+										}
+										catch (Exception ex)
+										{
+											Console.WriteLine(ex.ToString());
+										}
+									}
+
+									TraktActivity.Add(shoutShow);
+								}
 							}
 						}
 

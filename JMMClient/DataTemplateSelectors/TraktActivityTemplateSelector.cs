@@ -28,6 +28,10 @@ namespace JMMClient
 				{
 					return element.FindResource("TraktActivityShoutEpisodeTemplate") as DataTemplate;
 				}
+				if (item.GetType() == typeof(Trakt_ActivityShoutShowVM))
+				{
+					return element.FindResource("TraktActivityShoutShowTemplate") as DataTemplate;
+				}
 				if (item.GetType() == typeof(Trakt_FriendRequestVM))
 				{
 					return element.FindResource("TraktFriendRequestTemplate") as DataTemplate;
