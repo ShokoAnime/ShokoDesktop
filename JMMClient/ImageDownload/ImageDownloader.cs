@@ -471,6 +471,11 @@ namespace JMMClient.ImageDownload
 					Trakt_ActivityScrobbleVM trakScrobble = req.ImageData as Trakt_ActivityScrobbleVM;
 					return trakScrobble.UserFullImagePath;
 
+				case ImageEntityType.Trakt_ShoutUser:
+
+					Trakt_ShoutUserVM trakShoutUser = req.ImageData as Trakt_ShoutUserVM;
+					return trakShoutUser.UserFullImagePath;
+
 				case ImageEntityType.Trakt_Episode:
 
 					Trakt_EpisodeVM trakEp = req.ImageData as Trakt_EpisodeVM;
@@ -540,6 +545,11 @@ namespace JMMClient.ImageDownload
 
 					Trakt_ActivityScrobbleVM trakScrobble = req.ImageData as Trakt_ActivityScrobbleVM;
 					return trakScrobble.User.Trakt_FriendID.ToString();
+
+				case ImageEntityType.Trakt_ShoutUser:
+
+					Trakt_ShoutUserVM traktShoutUser = req.ImageData as Trakt_ShoutUserVM;
+					return traktShoutUser.User.Trakt_FriendID.ToString();
 
 				case ImageEntityType.Trakt_Episode:
 

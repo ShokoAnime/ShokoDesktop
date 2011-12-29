@@ -430,6 +430,7 @@
     <Compile Include="ViewModel\Trakt_ImageFanartVM.cs" />
     <Compile Include="ViewModel\Trakt_ImagePosterVM.cs" />
     <Compile Include="ViewModel\Trakt_SeasonVM.cs" />
+    <Compile Include="ViewModel\Trakt_ShoutPost.cs" />
     <Compile Include="ViewModel\Trakt_ShoutUserVM.cs" />
     <Compile Include="ViewModel\Trakt_ShoutVM.cs" />
     <Compile Include="ViewModel\Trakt_ShowVM.cs" />

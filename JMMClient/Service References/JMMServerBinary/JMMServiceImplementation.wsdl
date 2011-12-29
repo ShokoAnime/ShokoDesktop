@@ -62,6 +62,12 @@
   <wsdl:message name="IJMMServer_GetTraktShoutsForAnime_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetTraktShoutsForAnimeResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_PostShoutShow_InputMessage">
+    <wsdl:part name="parameters" element="tns:PostShoutShow" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_PostShoutShow_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PostShoutShowResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_GetGroupFilterExtended_InputMessage">
     <wsdl:part name="parameters" element="tns:GetGroupFilterExtended" />
   </wsdl:message>
@@ -931,6 +937,10 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetTraktShoutsForAnime" message="tns:IJMMServer_GetTraktShoutsForAnime_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetTraktShoutsForAnimeResponse" message="tns:IJMMServer_GetTraktShoutsForAnime_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="PostShoutShow">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/PostShoutShow" message="tns:IJMMServer_PostShoutShow_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/PostShoutShowResponse" message="tns:IJMMServer_PostShoutShow_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetGroupFilterExtended">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilterExtended" message="tns:IJMMServer_GetGroupFilterExtended_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilterExtendedResponse" message="tns:IJMMServer_GetGroupFilterExtended_OutputMessage" />
@@ -1551,6 +1561,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetTraktShoutsForAnime">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetTraktShoutsForAnime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostShoutShow">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/PostShoutShow" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

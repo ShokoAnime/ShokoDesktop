@@ -41,8 +41,8 @@
 
 
 
-        <!-- episode image overview in summary -->
-        <Image Grid.Column="0" Grid.Row="0" Height="90" Grid.RowSpan="3" Source="{Binding UserImagePathForDisplay}" 
+        <!-- avatar -->
+        <Image Grid.Column="0" Grid.Row="0" Height="60" Grid.RowSpan="3" Source="{Binding UserImagePathForDisplay}" 
                     
                     Margin="10,5,0,5" VerticalAlignment="Top">
             <Image.ToolTip>

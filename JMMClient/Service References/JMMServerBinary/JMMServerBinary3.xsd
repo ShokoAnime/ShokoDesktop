@@ -101,6 +101,24 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="PostShoutShow">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="animeID" type="xs:int" />
+        <xs:element minOccurs="0" name="shoutText" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="isSpoiler" type="xs:boolean" />
+        <xs:element minOccurs="0" name="returnMessage" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PostShoutShowResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="PostShoutShowResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="returnMessage" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetGroupFilterExtended">
     <xs:complexType>
       <xs:sequence>

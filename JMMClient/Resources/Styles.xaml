@@ -391,6 +391,11 @@
         <Setter Property="Margin" Value="10" />
         <Setter Property="BorderBrush" Value="DarkGray" />
         <Setter Property="BorderThickness" Value="2" />
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="4"/>
+            </Style>
+        </Style.Resources>
     </Style>
 
     <ControlTemplate x:Key="OfficeTabControl" TargetType="{x:Type TabControl}">

@@ -13133,6 +13133,9 @@ namespace JMMClient.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetTraktShoutsForAnime", ReplyAction="http://tempuri.org/IJMMServer/GetTraktShoutsForAnimeResponse")]
         System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_Trakt_ShoutUser> GetTraktShoutsForAnime(int animeID);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/PostShoutShow", ReplyAction="http://tempuri.org/IJMMServer/PostShoutShowResponse")]
+        bool PostShoutShow(int animeID, string shoutText, bool isSpoiler, ref string returnMessage);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetGroupFilterExtended", ReplyAction="http://tempuri.org/IJMMServer/GetGroupFilterExtendedResponse")]
         JMMClient.JMMServerBinary.Contract_GroupFilterExtended GetGroupFilterExtended(int groupFilterID, int userID);
         
@@ -13607,6 +13610,10 @@ namespace JMMClient.JMMServerBinary {
         
         public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_Trakt_ShoutUser> GetTraktShoutsForAnime(int animeID) {
             return base.Channel.GetTraktShoutsForAnime(animeID);
+        }
+        
+        public bool PostShoutShow(int animeID, string shoutText, bool isSpoiler, ref string returnMessage) {
+            return base.Channel.PostShoutShow(animeID, shoutText, isSpoiler, ref returnMessage);
         }
         
         public JMMClient.JMMServerBinary.Contract_GroupFilterExtended GetGroupFilterExtended(int groupFilterID, int userID) {
