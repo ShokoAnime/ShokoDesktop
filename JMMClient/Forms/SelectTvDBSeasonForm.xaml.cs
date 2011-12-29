@@ -22,7 +22,7 @@ namespace JMMClient.Forms
 		private static Logger logger = LogManager.GetCurrentClassLogger();
 
 		public static readonly DependencyProperty AnimeIDProperty = DependencyProperty.Register("AnimeID",
-			typeof(int), typeof(SearchTvDBForm), new UIPropertyMetadata(0, null));
+			typeof(int), typeof(SelectTvDBSeasonForm), new UIPropertyMetadata(0, null));
 
 		public int AnimeID
 		{
@@ -31,7 +31,7 @@ namespace JMMClient.Forms
 		}
 
 		public static readonly DependencyProperty AnimeNameProperty = DependencyProperty.Register("AnimeName",
-			typeof(string), typeof(SearchTvDBForm), new UIPropertyMetadata("", null));
+			typeof(string), typeof(SelectTvDBSeasonForm), new UIPropertyMetadata("", null));
 
 		public string AnimeName
 		{
@@ -40,7 +40,7 @@ namespace JMMClient.Forms
 		}
 
 		public static readonly DependencyProperty AnimeURLProperty = DependencyProperty.Register("AnimeURL",
-			typeof(string), typeof(SearchTvDBForm), new UIPropertyMetadata("", null));
+			typeof(string), typeof(SelectTvDBSeasonForm), new UIPropertyMetadata("", null));
 
 		public string AnimeURL
 		{
@@ -49,7 +49,7 @@ namespace JMMClient.Forms
 		}
 
 		public static readonly DependencyProperty TvDBIDProperty = DependencyProperty.Register("TvDBID",
-			typeof(int), typeof(SearchTvDBForm), new UIPropertyMetadata(0, null));
+			typeof(int), typeof(SelectTvDBSeasonForm), new UIPropertyMetadata(0, null));
 
 		public int TvDBID
 		{
@@ -58,7 +58,7 @@ namespace JMMClient.Forms
 		}
 
 		public static readonly DependencyProperty TvDBSeasonProperty = DependencyProperty.Register("TvDBSeason",
-			typeof(int), typeof(SearchTvDBForm), new UIPropertyMetadata(0, null));
+			typeof(int), typeof(SelectTvDBSeasonForm), new UIPropertyMetadata(0, null));
 
 		public int TvDBSeason
 		{
@@ -67,7 +67,7 @@ namespace JMMClient.Forms
 		}
 
 		public static readonly DependencyProperty TvDBSeriesNameProperty = DependencyProperty.Register("TvDBSeriesName",
-			typeof(string), typeof(SearchTvDBForm), new UIPropertyMetadata("", null));
+			typeof(string), typeof(SelectTvDBSeasonForm), new UIPropertyMetadata("", null));
 
 		public string TvDBSeriesName
 		{
@@ -76,7 +76,7 @@ namespace JMMClient.Forms
 		}
 
 		public static readonly DependencyProperty TvDBURLProperty = DependencyProperty.Register("TvDBURL",
-			typeof(string), typeof(SearchTvDBForm), new UIPropertyMetadata("", null));
+			typeof(string), typeof(SelectTvDBSeasonForm), new UIPropertyMetadata("", null));
 
 		public string TvDBURL
 		{
@@ -96,6 +96,12 @@ namespace JMMClient.Forms
 		{
 			try
 			{
+				if (cboSeasonNumber.Items.Count == 0)
+				{
+					MessageBox.Show("No seasons available, check the TvDB ID again", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					return;
+				}
+
 				this.Cursor = Cursors.Wait;
 
 				TvDBSeason = int.Parse(cboSeasonNumber.SelectedItem.ToString());

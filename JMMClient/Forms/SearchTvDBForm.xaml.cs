@@ -69,6 +69,15 @@ namespace JMMClient.Forms
 			set { SetValue(TVDBSeriesSearchResultsProperty, value); }
 		}
 
+		public static readonly DependencyProperty AnimeNameProperty = DependencyProperty.Register("AnimeName",
+			typeof(string), typeof(SearchTvDBForm), new UIPropertyMetadata("", null));
+
+		public string AnimeName
+		{
+			get { return (string)GetValue(AnimeNameProperty); }
+			set { SetValue(AnimeNameProperty, value); }
+		}
+
 		private int AnimeID = 0;
 		private int? ExistingTVDBID = null;
 		public int? SelectedTvDBID = null;
@@ -106,7 +115,24 @@ namespace JMMClient.Forms
 				}
 
 				this.Cursor = Cursors.Wait;
-				LinkAniDBToTVDB(id, 1);
+
+				// prompt to select season
+				Window wdw = Window.GetWindow(this);
+
+				this.Cursor = Cursors.Wait;
+				SelectTvDBSeasonForm frm = new SelectTvDBSeasonForm();
+				frm.Owner = wdw;
+				frm.Init(AnimeID, AnimeName, id, 1, AnimeName);
+				bool? result = frm.ShowDialog();
+				if (result.Value)
+				{
+					SelectedTvDBID = id;
+					this.DialogResult = true;
+					this.Cursor = Cursors.Arrow;
+					this.Close();
+				}
+
+				//LinkAniDBToTVDB(id, 1);
 			}
 			catch (Exception ex)
 			{
@@ -168,7 +194,25 @@ namespace JMMClient.Forms
 				{
 					this.Cursor = Cursors.Wait;
 					TVDBSeriesSearchResultVM searchResult = obj as TVDBSeriesSearchResultVM;
-					LinkAniDBToTVDB(searchResult.SeriesID, 1);
+
+					// prompt to select season
+					Window wdw = Window.GetWindow(this);
+
+					this.Cursor = Cursors.Wait;
+					SelectTvDBSeasonForm frm = new SelectTvDBSeasonForm();
+					frm.Owner = wdw;
+					frm.Init(AnimeID, AnimeName, searchResult.SeriesID, 1, searchResult.SeriesName);
+					bool? result = frm.ShowDialog();
+					if (result.Value)
+					{
+						SelectedTvDBID = searchResult.SeriesID;
+						this.DialogResult = true;
+						this.Cursor = Cursors.Arrow;
+						this.Close();
+					}
+
+
+					//LinkAniDBToTVDB(searchResult.SeriesID, 1);
 				}
 			}
 			catch (Exception ex)
@@ -249,9 +293,10 @@ namespace JMMClient.Forms
 			HasWebCacheRec = IsSearch && CrossRef_AniDB_TvDBResult != null;
 		}
 
-		public void Init(int animeID, string searchCriteria, int? existingTVDBID)
+		public void Init(int animeID, string animeName, string searchCriteria, int? existingTVDBID)
 		{
 			AnimeID = animeID;
+			AnimeName = animeName;
 			ExistingTVDBID = existingTVDBID;
 			txtSearch.Text = searchCriteria;
 		}

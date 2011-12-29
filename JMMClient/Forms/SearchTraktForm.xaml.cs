@@ -69,6 +69,15 @@ namespace JMMClient.Forms
 			set { SetValue(TraktSeriesSearchResultsProperty, value); }
 		}
 
+		public static readonly DependencyProperty AnimeNameProperty = DependencyProperty.Register("AnimeName",
+			typeof(string), typeof(SearchTraktForm), new UIPropertyMetadata("", null));
+
+		public string AnimeName
+		{
+			get { return (string)GetValue(AnimeNameProperty); }
+			set { SetValue(AnimeNameProperty, value); }
+		}
+
 		private int AnimeID = 0;
 		private string ExistingTraktID = "";
 		public string SelectedTraktID = "";
@@ -96,8 +105,23 @@ namespace JMMClient.Forms
 		{
 			try
 			{
+				// prompt to select season
+				Window wdw = Window.GetWindow(this);
+
 				this.Cursor = Cursors.Wait;
-				LinkAniDBToTrakt(txtSeriesID.Text.Trim(), 1);
+				SelectTraktSeasonForm frm = new SelectTraktSeasonForm();
+				frm.Owner = wdw;
+				frm.Init(AnimeID, AnimeName, txtSeriesID.Text.Trim(), 1, "");
+				bool? result = frm.ShowDialog();
+				if (result.Value)
+				{
+					SelectedTraktID = txtSeriesID.Text.Trim();
+					this.DialogResult = true;
+					this.Cursor = Cursors.Arrow;
+					this.Close();
+				}
+
+				//LinkAniDBToTrakt(txtSeriesID.Text.Trim(), 1);
 			}
 			catch (Exception ex)
 			{
@@ -159,7 +183,25 @@ namespace JMMClient.Forms
 				{
 					this.Cursor = Cursors.Wait;
 					TraktTVShowResponseVM searchResult = obj as TraktTVShowResponseVM;
-					LinkAniDBToTrakt(searchResult.TraktID, 1);
+
+					// prompt to select season
+					Window wdw = Window.GetWindow(this);
+
+					this.Cursor = Cursors.Wait;
+					SelectTraktSeasonForm frm = new SelectTraktSeasonForm();
+					frm.Owner = wdw;
+					frm.Init(AnimeID, AnimeName, searchResult.TraktID,
+						1, searchResult.title);
+					bool? result = frm.ShowDialog();
+					if (result.Value)
+					{
+						SelectedTraktID = searchResult.TraktID;
+						this.DialogResult = true;
+						this.Cursor = Cursors.Arrow;
+						this.Close();
+					}
+
+					//LinkAniDBToTrakt(searchResult.TraktID, 1);
 				}
 			}
 			catch (Exception ex)
@@ -235,9 +277,10 @@ namespace JMMClient.Forms
 			HasWebCacheRec = IsSearch && CrossRef_AniDB_TraktResult != null;
 		}
 
-		public void Init(int animeID, string searchCriteria, string existingTraktID)
+		public void Init(int animeID, string animeName, string searchCriteria, string existingTraktID)
 		{
 			AnimeID = animeID;
+			AnimeName = animeName;
 			ExistingTraktID = existingTraktID;
 			txtSearch.Text = searchCriteria;
 		}

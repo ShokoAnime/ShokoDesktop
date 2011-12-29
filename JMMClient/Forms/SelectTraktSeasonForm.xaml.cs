@@ -96,6 +96,12 @@ namespace JMMClient.Forms
 		{
 			try
 			{
+				if (cboSeasonNumber.Items.Count == 0)
+				{
+					MessageBox.Show("No seasons available, check the Trakt ID again", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					return;
+				}
+
 				this.Cursor = Cursors.Wait;
 
 				TraktSeason = int.Parse(cboSeasonNumber.SelectedItem.ToString());

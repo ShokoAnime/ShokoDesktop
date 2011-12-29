@@ -174,7 +174,7 @@ namespace JMMClient.UserControls
 				this.Cursor = Cursors.Wait;
 				SearchTraktForm frm = new SearchTraktForm();
 				frm.Owner = wdw;
-				frm.Init(anime.AnimeID, anime.FormattedTitle, ExistingTraktID);
+				frm.Init(anime.AnimeID, anime.FormattedTitle, anime.FormattedTitle, ExistingTraktID);
 				bool? result = frm.ShowDialog();
 				if (result.Value)
 				{
@@ -310,7 +310,7 @@ namespace JMMClient.UserControls
 				this.Cursor = Cursors.Wait;
 				SearchTvDBForm frm = new SearchTvDBForm();
 				frm.Owner = wdw;
-				frm.Init(anime.AnimeID, anime.FormattedTitle, ExistingSeriesID);
+				frm.Init(anime.AnimeID, anime.FormattedTitle, anime.FormattedTitle, ExistingSeriesID);
 				bool? result = frm.ShowDialog();
 				if (result.Value)
 				{
