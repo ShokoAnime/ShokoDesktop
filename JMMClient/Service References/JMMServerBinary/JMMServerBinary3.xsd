@@ -1064,6 +1064,7 @@
         <xs:element minOccurs="0" name="relGroupName" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="resolution" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="videoSource" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="videoBitDepth" type="xs:int" />
         <xs:element minOccurs="0" name="userID" type="xs:int" />
       </xs:sequence>
     </xs:complexType>

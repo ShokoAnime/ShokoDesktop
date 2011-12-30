@@ -150,7 +150,7 @@ namespace JMMClient.Forms
 			try
 			{
 				List<JMMServerBinary.Contract_VideoDetailed> vidContracts = JMMServerVM.Instance.clientBinaryHTTP.GetFilesByGroupAndResolution(AnimeID,
-					GroupVideoQuality.GroupName, GroupVideoQuality.Resolution, GroupVideoQuality.VideoSource, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+					GroupVideoQuality.GroupName, GroupVideoQuality.Resolution, GroupVideoQuality.VideoSource, GroupVideoQuality.VideoBitDepth, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
 				vids = new List<VideoDetailedVM>();
 				foreach (JMMServerBinary.Contract_VideoDetailed contract in vidContracts)
 				{
