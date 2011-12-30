@@ -6,11 +6,15 @@ using System.Collections.Specialized;
 using System.Configuration;
 using System.Threading;
 using System.IO;
+using NLog;
+using System.Diagnostics;
 
 namespace JMMClient
 {
 	public class AppSettings
 	{
+		private static Logger logger = LogManager.GetCurrentClassLogger();
+
 		public static void CreateDefaultConfig()
 		{
 			System.Reflection.Assembly assm = System.Reflection.Assembly.GetExecutingAssembly();
@@ -1118,6 +1122,52 @@ namespace JMMClient
 
 			config.Save(ConfigurationSaveMode.Modified);
 			ConfigurationManager.RefreshSection("appSettings");
+		}
+
+		public static void DebugSettingsToLog()
+		{
+			#region System Info
+			logger.Info("-------------------- SYSTEM INFO -----------------------");
+
+			System.Reflection.Assembly a = System.Reflection.Assembly.GetExecutingAssembly();
+			try
+			{
+				if (a != null)
+				{
+					logger.Info(string.Format("JMM Desktop Version: v{0}", Utils.GetApplicationVersion(a)));
+				}
+			}
+			catch (Exception ex)
+			{
+				// oopps, can't create file
+				logger.Warn("Error in log: {0}", ex.ToString());
+			}
+
+			logger.Info(string.Format("Operating System: {0}", Utils.GetOSInfo()));
+
+			string screenSize = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width.ToString() + "x" +
+				System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height.ToString();
+			logger.Info(string.Format("Screen Size: {0}", screenSize));
+
+
+			logger.Info("-------------------------------------------------------");
+			#endregion
+
+			logger.Info("----------------- DESKTOP SETTINGS ----------------------");
+
+			logger.Info("Culture: {0}", Culture);
+			logger.Info("Episodes_Availability: {0}", Episodes_Availability);
+			logger.Info("Episodes_WatchedStatus: {0}", Episodes_WatchedStatus);
+			logger.Info("BaseImagesPath: {0}", BaseImagesPath);
+			logger.Info("BaseImagesPathIsDefault: {0}", BaseImagesPathIsDefault);
+			logger.Info("JMMServer_Address: {0}", JMMServer_Address);
+			logger.Info("JMMServer_Port: {0}", JMMServer_Port);
+			logger.Info("EpisodeImageOverviewStyle: {0}", EpisodeImageOverviewStyle);
+			logger.Info("HideEpisodeImageWhenUnwatched: {0}", HideEpisodeImageWhenUnwatched);
+			logger.Info("HideEpisodeOverviewWhenUnwatched: {0}", HideEpisodeOverviewWhenUnwatched);
+			logger.Info("Dash_WatchNext_Style: {0}", Dash_WatchNext_Style);
+
+			logger.Info("-------------------------------------------------------");
 		}
 	}
 }

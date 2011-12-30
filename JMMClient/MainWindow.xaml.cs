@@ -92,7 +92,8 @@ namespace JMMClient
 				//AppSettings.CreateDefaultConfig();
 				//listBox1.IsSynchronizedWithCurrentItem = true;
 				//treeGroupsSeries.iss
-				
+
+				AppSettings.DebugSettingsToLog();
 
 				lbGroupsSeries.MouseDoubleClick += new MouseButtonEventHandler(lbGroupsSeries_MouseDoubleClick);
 				lbGroupsSeries.SelectionChanged += new SelectionChangedEventHandler(lbGroupsSeries_SelectionChanged);

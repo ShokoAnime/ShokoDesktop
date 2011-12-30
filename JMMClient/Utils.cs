@@ -10,12 +10,25 @@ using NLog;
 using System.Net;
 using JMMClient.Utilities;
 using JMMClient.UserControls;
+using System.Reflection;
+using System.Runtime.InteropServices;
 
 namespace JMMClient
 {
 	public class Utils
 	{
 		private static Logger logger = LogManager.GetCurrentClassLogger();
+
+		[DllImport("kernel32.dll", SetLastError = true)]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		extern static bool IsWow64Process(IntPtr hProcess, [MarshalAs(UnmanagedType.Bool)] out bool isWow64);
+		[DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+		extern static IntPtr GetCurrentProcess();
+		[DllImport("kernel32.dll", CharSet = CharSet.Auto)]
+		extern static IntPtr GetModuleHandle(string moduleName);
+		[DllImport("kernel32.dll", CharSet = CharSet.Ansi, SetLastError = true)]
+		extern static IntPtr GetProcAddress(IntPtr hModule, string methodName);
+
 
 		public static string DownloadWebPage(string url)
 		{
@@ -385,6 +398,124 @@ namespace JMMClient
 
 			// Step 7
 			return d[n, m];
+		}
+
+		public static string GetApplicationVersion(Assembly a)
+		{
+			AssemblyName an = a.GetName();
+			return an.Version.ToString();
+		}
+
+		public static string GetOSInfo()
+		{
+			//Get Operating system information.
+			OperatingSystem os = Environment.OSVersion;
+			//Get version information about the os.
+			Version vs = os.Version;
+
+			//Variable to hold our return value
+			string operatingSystem = "";
+
+			if (os.Platform == PlatformID.Win32Windows)
+			{
+				//This is a pre-NT version of Windows
+				switch (vs.Minor)
+				{
+					case 0:
+						operatingSystem = "95";
+						break;
+					case 10:
+						if (vs.Revision.ToString() == "2222A")
+							operatingSystem = "98SE";
+						else
+							operatingSystem = "98";
+						break;
+					case 90:
+						operatingSystem = "Me";
+						break;
+					default:
+						break;
+				}
+			}
+			else if (os.Platform == PlatformID.Win32NT)
+			{
+				switch (vs.Major)
+				{
+					case 3:
+						operatingSystem = "NT 3.51";
+						break;
+					case 4:
+						operatingSystem = "NT 4.0";
+						break;
+					case 5:
+						if (vs.Minor == 0)
+							operatingSystem = "2000";
+						else
+							operatingSystem = "XP";
+						break;
+					case 6:
+						if (vs.Minor == 0)
+							operatingSystem = "Vista";
+						else
+							operatingSystem = "7";
+						break;
+					default:
+						break;
+				}
+			}
+			//Make sure we actually got something in our OS check
+			//We don't want to just return " Service Pack 2" or " 32-bit"
+			//That information is useless without the OS version.
+			if (operatingSystem != "")
+			{
+				//Got something.  Let's prepend "Windows" and get more info.
+				operatingSystem = "Windows " + operatingSystem;
+				//See if there's a service pack installed.
+				if (os.ServicePack != "")
+				{
+					//Append it to the OS name.  i.e. "Windows XP Service Pack 3"
+					operatingSystem += " " + os.ServicePack;
+				}
+				//Append the OS architecture.  i.e. "Windows XP Service Pack 3 32-bit"
+				operatingSystem += " " + getOSArchitecture().ToString() + "-bit";
+			}
+			//Return the information we've gathered.
+			return operatingSystem;
+		}
+
+		public static int getOSArchitecture()
+		{
+			if (Is64BitOperatingSystem)
+				return 64;
+			else
+				return 32;
+		}
+
+		public static bool Is64BitProcess
+		{
+			get { return IntPtr.Size == 8; }
+		}
+
+		public static bool Is64BitOperatingSystem
+		{
+			get
+			{
+				// Clearly if this is a 64-bit process we must be on a 64-bit OS.
+				if (Is64BitProcess)
+					return true;
+				// Ok, so we are a 32-bit process, but is the OS 64-bit?
+				// If we are running under Wow64 than the OS is 64-bit.
+				bool isWow64;
+				return ModuleContainsFunction("kernel32.dll", "IsWow64Process") && IsWow64Process(GetCurrentProcess(), out isWow64) && isWow64;
+			}
+		}
+
+		static bool ModuleContainsFunction(string moduleName, string methodName)
+		{
+			IntPtr hModule = GetModuleHandle(moduleName);
+			if (hModule != IntPtr.Zero)
+				return GetProcAddress(hModule, methodName) != IntPtr.Zero;
+			return false;
 		}
 	}
 }
