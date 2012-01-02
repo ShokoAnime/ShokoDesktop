@@ -251,11 +251,18 @@ namespace JMMClient
 				string url = string.Format(@"http://{0}:{1}/JMMServerBinary", AppSettings.JMMServer_Address, AppSettings.JMMServer_Port);
 
 				BinaryMessageEncodingBindingElement encoding = new BinaryMessageEncodingBindingElement();
+				encoding.ReaderQuotas.MaxArrayLength = int.MaxValue;
+				encoding.ReaderQuotas.MaxBytesPerRead = int.MaxValue;
+				encoding.ReaderQuotas.MaxDepth = int.MaxValue;
+				encoding.ReaderQuotas.MaxNameTableCharCount = int.MaxValue;
+				encoding.ReaderQuotas.MaxStringContentLength = int.MaxValue;
+
 				HttpTransportBindingElement transport = new HttpTransportBindingElement();
 				transport.MaxReceivedMessageSize = int.MaxValue;
 				transport.MaxBufferPoolSize = int.MaxValue;
 				transport.MaxBufferSize = int.MaxValue;
 				transport.MaxReceivedMessageSize = int.MaxValue;
+
 
 				Binding binding = new CustomBinding(encoding, transport);
 
