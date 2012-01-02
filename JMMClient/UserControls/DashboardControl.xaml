@@ -94,7 +94,7 @@
                                                 Margin="10,5,0,5" VerticalAlignment="Top" HorizontalAlignment="Left">
                                         </Image>
 
-                                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding EpisodeOverviewLoading}" HorizontalAlignment="Left" Margin="10,5,0,5" 
+                                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding EpisodeOverviewLoading}" HorizontalAlignment="Left" Margin="10,5,0,5"  Foreground="Black" 
                                                    VerticalAlignment="Top"  TextWrapping="Wrap">
                                         </TextBlock>
                                     </Grid>
@@ -135,7 +135,7 @@
                         VerticalAlignment="Center">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                 <Image Height="16" Width="16" Source="/Images/32_play.png" Margin="0,0,5,0"/>
-                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Play}" Margin="0,0,5,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Play}" Foreground="Black"  Margin="0,0,5,0"/>
                             </StackPanel>
                         </Button>
 
@@ -204,7 +204,7 @@
 
                     <!-- Episode Overview  -->
                     <Border BorderThickness="0,0,0,0" BorderBrush="DarkGray" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1" Background="FloralWhite">
-                        <TextBlock  MaxWidth="200"  Text="{Binding EpisodeOverviewLoading}" HorizontalAlignment="Left" Margin="0,0,5,0" 
+                        <TextBlock  MaxWidth="200"  Text="{Binding EpisodeOverviewLoading}" HorizontalAlignment="Left" Margin="0,0,5,0"  Foreground="Black" 
                                     Visibility="{Binding ShowEpisodeOverviewInExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
                                    Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_WatchNext_Height}"
                                                        VerticalAlignment="Top"  TextWrapping="Wrap">
@@ -233,7 +233,7 @@
                                                 Margin="10,5,0,5" VerticalAlignment="Top" HorizontalAlignment="Left">
                                         </Image>
 
-                                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding EpisodeOverviewLoading}" HorizontalAlignment="Left" Margin="10,5,0,5" 
+                                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding EpisodeOverviewLoading}" HorizontalAlignment="Left" Margin="10,5,0,5"  Foreground="Black" 
                                                    VerticalAlignment="Top"  TextWrapping="Wrap">
                                         </TextBlock>
                                     </Grid>
@@ -273,7 +273,7 @@
                         VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="16" Width="16" Source="/Images/32_play.png" Margin="0,0,5,0"/>
-                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Play}" Margin="0,0,5,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Play}" Foreground="Black"  Margin="0,0,5,0"/>
                                 </StackPanel>
                             </Button>
 
@@ -363,13 +363,13 @@
                             <StackPanel Orientation="Vertical"  HorizontalAlignment="Left" Margin="5,3,5,5">
 
                                 <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left">
-                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=LatestEp_Anime}" Margin="0,5,5,0" VerticalAlignment="Center"/>
-                                    <TextBlock Text="{Binding Path=AniDB_Anime.LatestEpisodeNumber}" Margin="0,5,5,0" FontWeight="Bold" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=LatestEp_Anime}" Foreground="Black"  Margin="0,5,5,0" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Path=AniDB_Anime.LatestEpisodeNumber}" Margin="0,5,5,0" Foreground="Black"  FontWeight="Bold" VerticalAlignment="Center"/>
                                 </StackPanel>
 
                                 <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left">
-                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=MissingEpisodeCount}" Margin="0,5,5,0" VerticalAlignment="Center"/>
-                                    <TextBlock Text="{Binding Path=MissingEpisodeCountGroups}" Margin="0,5,5,0" FontWeight="Bold" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=MissingEpisodeCount}" Foreground="Black"  Margin="0,5,5,0" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Path=MissingEpisodeCountGroups}" Margin="0,5,5,0" Foreground="Black"  FontWeight="Bold" VerticalAlignment="Center"/>
                                 </StackPanel>
 
                             </StackPanel>
@@ -433,7 +433,7 @@
                                                 Margin="10,5,0,5" VerticalAlignment="Top" HorizontalAlignment="Left">
                                         </Image>
 
-                                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Description}" HorizontalAlignment="Left" Margin="10,5,0,5" 
+                                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Description}" Foreground="Black"  HorizontalAlignment="Left" Margin="10,5,0,5" 
                                                    VerticalAlignment="Top"  TextWrapping="Wrap">
                                         </TextBlock>
                                     </Grid>
@@ -465,7 +465,7 @@
                                 </Button>
                                 
                                 <Image Height="16" Width="16" Source="/Images/32_calendar.png" Margin="5,0,5,0" VerticalAlignment="Center"/>
-                                <TextBlock Grid.Row="1" Grid.Column="2" Padding="5" Text="{Binding Path=AirDateAsString}" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Row="1" Grid.Column="2" Padding="5" Foreground="Black"  Text="{Binding Path=AirDateAsString}" VerticalAlignment="Center"/>
                             </StackPanel>
 
                             
@@ -560,7 +560,7 @@
                                                 Margin="10,5,0,5" VerticalAlignment="Top" HorizontalAlignment="Left">
                                         </Image>
 
-                                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Recommended_Description}" HorizontalAlignment="Left" Margin="10,5,0,5" 
+                                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Recommended_Description}" Foreground="Black"  HorizontalAlignment="Left" Margin="10,5,0,5" 
                                                    VerticalAlignment="Top"  TextWrapping="Wrap">
                                         </TextBlock>
                                     </Grid>
@@ -573,7 +573,7 @@
 
                     <!-- recommended anime description  -->
                     <Border BorderThickness="0,0,0,1" BorderBrush="DarkGray" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1" Background="FloralWhite">
-                        <TextBlock  MaxWidth="200"  Text="{Binding Recommended_Description}" HorizontalAlignment="Left" Margin="0,0,5,5" 
+                        <TextBlock  MaxWidth="200"  Text="{Binding Recommended_Description}" Foreground="Black"  HorizontalAlignment="Left" Margin="0,0,5,5" 
                                    Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_RecWatch_Height}"
                                                        VerticalAlignment="Top"  TextWrapping="Wrap">
                         </TextBlock>
@@ -702,7 +702,7 @@
                                                 Margin="10,5,0,5" VerticalAlignment="Top" HorizontalAlignment="Left">
                                         </Image>
 
-                                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Recommended_Description}" HorizontalAlignment="Left" Margin="10,5,0,5" 
+                                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Recommended_Description}" Foreground="Black"  HorizontalAlignment="Left" Margin="10,5,0,5" 
                                                    VerticalAlignment="Top"  TextWrapping="Wrap">
                                         </TextBlock>
                                     </Grid>
@@ -715,7 +715,7 @@
 
                     <!-- recommended anime description  -->
                     <Border BorderThickness="0,0,0,1" BorderBrush="DarkGray" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1" Background="FloralWhite">
-                        <TextBlock  MaxWidth="200"  Text="{Binding Recommended_Description}" HorizontalAlignment="Left" Margin="0,0,5,5" 
+                        <TextBlock  MaxWidth="200"  Text="{Binding Recommended_Description}" Foreground="Black"  HorizontalAlignment="Left" Margin="0,0,5,5" 
                                    Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_RecDownload_Height}"
                                                        VerticalAlignment="Top"  TextWrapping="Wrap">
                         </TextBlock>
@@ -843,7 +843,7 @@
 
                     <!-- Episode Overview  -->
                     <Border BorderThickness="0,0,0,1" BorderBrush="DarkGray" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1" Background="FloralWhite">
-                        <TextBlock  MaxWidth="200" Text="{Binding LastEpisodeWatched.Episode_Overview}" HorizontalAlignment="Left" Margin="0,0,5,0" 
+                        <TextBlock  MaxWidth="200" Text="{Binding LastEpisodeWatched.Episode_Overview}" Foreground="Black"  HorizontalAlignment="Left" Margin="0,0,5,0" 
                                     Visibility="{Binding ShowEpisodeOverviewInExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
                                    Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_TraktFriends_Height}"
                                                        VerticalAlignment="Top"  TextWrapping="Wrap">
@@ -872,7 +872,7 @@
                                                 Margin="10,5,0,5" VerticalAlignment="Top" HorizontalAlignment="Left">
                                         </Image>
 
-                                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding LastEpisodeWatched.Episode_Overview}" HorizontalAlignment="Left" Margin="10,5,0,5" 
+                                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding LastEpisodeWatched.Episode_Overview}" Foreground="Black"  HorizontalAlignment="Left" Margin="10,5,0,5" 
                                                    VerticalAlignment="Top"  TextWrapping="Wrap">
                                         </TextBlock>
                                     </Grid>
@@ -941,7 +941,7 @@
                                 Command="{DynamicResource FriendRequestApproveCommand}" CommandParameter="{Binding}">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,5,0"/>
-                                    <TextBlock VerticalAlignment="Center" Text="Approve" Margin="0,0,5,0" Width="Auto"/>
+                                    <TextBlock VerticalAlignment="Center" Text="Approve" Foreground="Black"  Margin="0,0,5,0" Width="Auto"/>
                                 </StackPanel>
                             </Button>
 
@@ -949,7 +949,7 @@
                                 Command="{DynamicResource FriendRequestDenyCommand}" CommandParameter="{Binding}">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="16" Width="16" Source="/Images/32_cancel.png" Margin="0,0,5,0"/>
-                                    <TextBlock VerticalAlignment="Center" Text="Deny" Margin="0,0,5,0" Width="Auto"/>
+                                    <TextBlock VerticalAlignment="Center" Text="Deny" Foreground="Black"  Margin="0,0,5,0" Width="Auto"/>
                                 </StackPanel>
                             </Button>
                         </StackPanel>
@@ -988,7 +988,7 @@
                             <Image Height="16" Width="16" Source="/Images/32_Info.png" Margin="0,0,5,0"/>
                             <TextBlock Text="You haven't specified any " FontWeight="Bold" VerticalAlignment="Center" Foreground="Black"/>
                             <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="Trakt" URL="http://trakt.tv" Margin="5,0,0,0"/>
-                            <TextBlock Text="credentials" FontWeight="Bold" Margin="5,0,0,0" VerticalAlignment="Center"/>
+                            <TextBlock Text="credentials" FontWeight="Bold" Foreground="Black"  Margin="5,0,0,0" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Border>
 
@@ -999,7 +999,7 @@
                             <TextBlock Text="Signup below, or enter your " VerticalAlignment="Center" Foreground="Black"/>
                             <Button Name="btnTraktCredentials" Margin="5,2,2,2" Style="{DynamicResource RoundButtonStyle}"  Command="{DynamicResource EditTraktCredentialsCommand}">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                    <TextBlock VerticalAlignment="Center" Text="existing credentials" Margin="5,0,5,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="existing credentials" Foreground="Black"  Margin="5,0,5,0"/>
                                 </StackPanel>
                             </Button>
                             <TextBlock Text="now" Margin="5,0,0,0" VerticalAlignment="Center" Foreground="Black"/>
@@ -1062,7 +1062,7 @@
                                 Command="{DynamicResource JoinTraktCommand}" CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                 <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,5,0"/>
-                                <TextBlock VerticalAlignment="Center" Text="Join Trakt" Margin="0,0,5,0" Width="Auto"/>
+                                <TextBlock VerticalAlignment="Center" Text="Join Trakt" Foreground="Black"  Margin="0,0,5,0" Width="Auto"/>
                             </StackPanel>
                         </Button>
                     </Border>
@@ -1212,7 +1212,7 @@
 
                     <!-- Episode Overview  -->
                     <Border BorderThickness="0,0,0,1" BorderBrush="DarkGray" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1" Background="FloralWhite">
-                        <TextBlock  MaxWidth="200" Text="{Binding Episode.Episode_Overview}" HorizontalAlignment="Left" Margin="0,0,5,0" 
+                        <TextBlock  MaxWidth="200" Text="{Binding Episode.Episode_Overview}" Foreground="Black"  HorizontalAlignment="Left" Margin="0,0,5,0" 
                                     Visibility="{Binding ShowEpisodeOverviewInExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
                                    Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_TraktFriends_Height}"
                                                        VerticalAlignment="Top"  TextWrapping="Wrap">
@@ -1407,7 +1407,7 @@
                                             <RowDefinition />
                                         </Grid.RowDefinitions>
 
-                                        <TextBlock Width="600" Text="{Binding Shout.Text}" HorizontalAlignment="Left" Margin="5,5,5,5" FontSize="12"
+                                        <TextBlock Width="600" Text="{Binding Shout.Text}" Foreground="Black"  HorizontalAlignment="Left" Margin="5,5,5,5" FontSize="12"
                                                        VerticalAlignment="Top" TextWrapping="Wrap"/>
                                     </Grid>
                                 </Border>
@@ -1552,7 +1552,7 @@
 
                     <!-- Shout text  -->
                     <Border BorderThickness="0,0,1,1" BorderBrush="DarkGray" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Background="FloralWhite">
-                        <TextBlock MinWidth="200" MaxWidth="400" Text="{Binding Shout.Text}" HorizontalAlignment="Left" Margin="5,5,5,5" FontSize="12"
+                        <TextBlock MinWidth="200" MaxWidth="400" Foreground="Black"  Text="{Binding Shout.Text}" HorizontalAlignment="Left" Margin="5,5,5,5" FontSize="12"
                                    Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_TraktFriends_Height}"
                                                        VerticalAlignment="Top" TextWrapping="Wrap">
                             <TextBlock.ToolTip>
