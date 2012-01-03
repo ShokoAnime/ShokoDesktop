@@ -211,47 +211,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_Trakt_User" nillable="true" type="tns:Contract_Trakt_User" />
-  <xs:complexType name="Contract_GroupFilterExtended">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="GroupCount" type="xs:int" />
-      <xs:element minOccurs="0" name="GroupFilter" nillable="true" type="tns:Contract_GroupFilter" />
-      <xs:element minOccurs="0" name="SeriesCount" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_GroupFilterExtended" nillable="true" type="tns:Contract_GroupFilterExtended" />
-  <xs:complexType name="Contract_GroupFilter">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="ApplyToSeries" type="xs:int" />
-      <xs:element minOccurs="0" name="BaseCondition" type="xs:int" />
-      <xs:element minOccurs="0" name="FilterConditions" nillable="true" type="tns:ArrayOfContract_GroupFilterCondition" />
-      <xs:element minOccurs="0" name="GroupFilterID" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="GroupFilterName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="SortingCriteria" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_GroupFilter" nillable="true" type="tns:Contract_GroupFilter" />
-  <xs:complexType name="ArrayOfContract_GroupFilterCondition">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_GroupFilterCondition" nillable="true" type="tns:Contract_GroupFilterCondition" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_GroupFilterCondition" nillable="true" type="tns:ArrayOfContract_GroupFilterCondition" />
-  <xs:complexType name="Contract_GroupFilterCondition">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="ConditionOperator" type="xs:int" />
-      <xs:element minOccurs="0" name="ConditionParameter" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ConditionType" type="xs:int" />
-      <xs:element minOccurs="0" name="GroupFilterConditionID" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="GroupFilterID" nillable="true" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_GroupFilterCondition" nillable="true" type="tns:Contract_GroupFilterCondition" />
-  <xs:complexType name="ArrayOfContract_AnimeGroup">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_AnimeGroup" nillable="true" type="tns:Contract_AnimeGroup" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_AnimeGroup" nillable="true" type="tns:ArrayOfContract_AnimeGroup" />
   <xs:complexType name="Contract_AnimeGroup">
     <xs:sequence>
       <xs:element minOccurs="0" name="AnimeGroupID" type="xs:int" />
@@ -295,6 +254,47 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_AnimeGroup" nillable="true" type="tns:Contract_AnimeGroup" />
+  <xs:complexType name="Contract_GroupFilterExtended">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GroupCount" type="xs:int" />
+      <xs:element minOccurs="0" name="GroupFilter" nillable="true" type="tns:Contract_GroupFilter" />
+      <xs:element minOccurs="0" name="SeriesCount" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_GroupFilterExtended" nillable="true" type="tns:Contract_GroupFilterExtended" />
+  <xs:complexType name="Contract_GroupFilter">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ApplyToSeries" type="xs:int" />
+      <xs:element minOccurs="0" name="BaseCondition" type="xs:int" />
+      <xs:element minOccurs="0" name="FilterConditions" nillable="true" type="tns:ArrayOfContract_GroupFilterCondition" />
+      <xs:element minOccurs="0" name="GroupFilterID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="GroupFilterName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SortingCriteria" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_GroupFilter" nillable="true" type="tns:Contract_GroupFilter" />
+  <xs:complexType name="ArrayOfContract_GroupFilterCondition">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_GroupFilterCondition" nillable="true" type="tns:Contract_GroupFilterCondition" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_GroupFilterCondition" nillable="true" type="tns:ArrayOfContract_GroupFilterCondition" />
+  <xs:complexType name="Contract_GroupFilterCondition">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ConditionOperator" type="xs:int" />
+      <xs:element minOccurs="0" name="ConditionParameter" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ConditionType" type="xs:int" />
+      <xs:element minOccurs="0" name="GroupFilterConditionID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="GroupFilterID" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_GroupFilterCondition" nillable="true" type="tns:Contract_GroupFilterCondition" />
+  <xs:complexType name="ArrayOfContract_AnimeGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_AnimeGroup" nillable="true" type="tns:Contract_AnimeGroup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_AnimeGroup" nillable="true" type="tns:ArrayOfContract_AnimeGroup" />
   <xs:complexType name="ArrayOfContract_GroupFilterExtended">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_GroupFilterExtended" nillable="true" type="tns:Contract_GroupFilterExtended" />
@@ -325,6 +325,7 @@
       <xs:element minOccurs="0" name="MissingEpisodeCountGroups" type="xs:int" />
       <xs:element minOccurs="0" name="PlayedCount" type="xs:int" />
       <xs:element minOccurs="0" name="StoppedCount" type="xs:int" />
+      <xs:element minOccurs="0" name="TopLevelGroup" nillable="true" type="tns:Contract_AnimeGroup" />
       <xs:element minOccurs="0" name="TvDB_Series" nillable="true" type="tns:Contract_TvDB_Series" />
       <xs:element minOccurs="0" name="UnwatchedEpisodeCount" type="xs:int" />
       <xs:element minOccurs="0" name="WatchedCount" type="xs:int" />

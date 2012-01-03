@@ -232,7 +232,27 @@ namespace JMMClient
 			}
 		}
 
-		
+		private Boolean isFave = false;
+		public Boolean IsFave
+		{
+			get { return isFave; }
+			set
+			{
+				isFave = value;
+				NotifyPropertyChanged("IsFave");
+			}
+		}
+
+		private Boolean isNotFave = true;
+		public Boolean IsNotFave
+		{
+			get { return isNotFave; }
+			set
+			{
+				isNotFave = value;
+				NotifyPropertyChanged("IsNotFave");
+			}
+		}
 
 		private bool hasMissingEpisodesAny = false;
 		public bool HasMissingEpisodesAny
@@ -790,6 +810,41 @@ namespace JMMClient
 			eps.AddRange(allEps);
 			return eps;
 		}*/
+
+		public AnimeGroupVM TopLevelAnimeGroup
+		{
+			get
+			{
+				try
+				{
+					JMMServerBinary.Contract_AnimeGroup contract = JMMServerVM.Instance.clientBinaryHTTP.GetTopLevelGroupForSeries(
+					this.AnimeSeriesID.Value, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+
+					if (contract == null) return null;
+					AnimeGroupVM grp = new AnimeGroupVM(contract);
+					return grp;
+				}
+				catch (Exception ex)
+				{
+					Utils.ShowErrorMessage(ex);
+					return null;
+				}
+			}
+
+		}
+
+		public void PopulateIsFave()
+		{
+			IsFave = false;
+			IsNotFave = true;
+
+			AnimeGroupVM grp = TopLevelAnimeGroup;
+			if (grp != null)
+			{
+				IsFave = grp.BIsFave;
+				IsNotFave = grp.BIsNotFave;
+			}
+		}
 
 		public override List<MainListWrapper> GetDirectChildren()
 		{

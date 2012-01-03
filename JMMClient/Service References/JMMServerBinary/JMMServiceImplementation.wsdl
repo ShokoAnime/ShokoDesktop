@@ -74,6 +74,12 @@
   <wsdl:message name="IJMMServer_RefreshTraktFriendInfo_OutputMessage">
     <wsdl:part name="parameters" element="tns:RefreshTraktFriendInfoResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_GetTopLevelGroupForSeries_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTopLevelGroupForSeries" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetTopLevelGroupForSeries_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTopLevelGroupForSeriesResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_GetGroupFilterExtended_InputMessage">
     <wsdl:part name="parameters" element="tns:GetGroupFilterExtended" />
   </wsdl:message>
@@ -951,6 +957,10 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RefreshTraktFriendInfo" message="tns:IJMMServer_RefreshTraktFriendInfo_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RefreshTraktFriendInfoResponse" message="tns:IJMMServer_RefreshTraktFriendInfo_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetTopLevelGroupForSeries">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetTopLevelGroupForSeries" message="tns:IJMMServer_GetTopLevelGroupForSeries_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetTopLevelGroupForSeriesResponse" message="tns:IJMMServer_GetTopLevelGroupForSeries_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetGroupFilterExtended">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilterExtended" message="tns:IJMMServer_GetGroupFilterExtended_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilterExtendedResponse" message="tns:IJMMServer_GetGroupFilterExtended_OutputMessage" />
@@ -1589,6 +1599,15 @@
     </wsdl:operation>
     <wsdl:operation name="RefreshTraktFriendInfo">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/RefreshTraktFriendInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTopLevelGroupForSeries">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetTopLevelGroupForSeries" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

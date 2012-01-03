@@ -328,12 +328,12 @@ namespace JMMClient.JMMServerBinary {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_Trakt_ImageFanart))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_Trakt_ImagePoster))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_TraktTVShowResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AnimeGroup))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_GroupFilterExtended))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_GroupFilter))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_GroupFilterCondition>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_GroupFilterCondition))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AnimeGroup>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AnimeGroup))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_GroupFilterExtended>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AnimeSeries>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AnimeSeries))]
@@ -2732,317 +2732,6 @@ namespace JMMClient.JMMServerBinary {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_GroupFilterExtended", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
-    [System.SerializableAttribute()]
-    public partial class Contract_GroupFilterExtended : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int GroupCountField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private JMMClient.JMMServerBinary.Contract_GroupFilter GroupFilterField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int SeriesCountField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int GroupCount {
-            get {
-                return this.GroupCountField;
-            }
-            set {
-                if ((this.GroupCountField.Equals(value) != true)) {
-                    this.GroupCountField = value;
-                    this.RaisePropertyChanged("GroupCount");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public JMMClient.JMMServerBinary.Contract_GroupFilter GroupFilter {
-            get {
-                return this.GroupFilterField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.GroupFilterField, value) != true)) {
-                    this.GroupFilterField = value;
-                    this.RaisePropertyChanged("GroupFilter");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int SeriesCount {
-            get {
-                return this.SeriesCountField;
-            }
-            set {
-                if ((this.SeriesCountField.Equals(value) != true)) {
-                    this.SeriesCountField = value;
-                    this.RaisePropertyChanged("SeriesCount");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_GroupFilter", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
-    [System.SerializableAttribute()]
-    public partial class Contract_GroupFilter : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ApplyToSeriesField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int BaseConditionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_GroupFilterCondition> FilterConditionsField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> GroupFilterIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string GroupFilterNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string SortingCriteriaField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ApplyToSeries {
-            get {
-                return this.ApplyToSeriesField;
-            }
-            set {
-                if ((this.ApplyToSeriesField.Equals(value) != true)) {
-                    this.ApplyToSeriesField = value;
-                    this.RaisePropertyChanged("ApplyToSeries");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int BaseCondition {
-            get {
-                return this.BaseConditionField;
-            }
-            set {
-                if ((this.BaseConditionField.Equals(value) != true)) {
-                    this.BaseConditionField = value;
-                    this.RaisePropertyChanged("BaseCondition");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_GroupFilterCondition> FilterConditions {
-            get {
-                return this.FilterConditionsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FilterConditionsField, value) != true)) {
-                    this.FilterConditionsField = value;
-                    this.RaisePropertyChanged("FilterConditions");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> GroupFilterID {
-            get {
-                return this.GroupFilterIDField;
-            }
-            set {
-                if ((this.GroupFilterIDField.Equals(value) != true)) {
-                    this.GroupFilterIDField = value;
-                    this.RaisePropertyChanged("GroupFilterID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string GroupFilterName {
-            get {
-                return this.GroupFilterNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.GroupFilterNameField, value) != true)) {
-                    this.GroupFilterNameField = value;
-                    this.RaisePropertyChanged("GroupFilterName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string SortingCriteria {
-            get {
-                return this.SortingCriteriaField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.SortingCriteriaField, value) != true)) {
-                    this.SortingCriteriaField = value;
-                    this.RaisePropertyChanged("SortingCriteria");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_GroupFilterCondition", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
-    [System.SerializableAttribute()]
-    public partial class Contract_GroupFilterCondition : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ConditionOperatorField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ConditionParameterField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ConditionTypeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> GroupFilterConditionIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> GroupFilterIDField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ConditionOperator {
-            get {
-                return this.ConditionOperatorField;
-            }
-            set {
-                if ((this.ConditionOperatorField.Equals(value) != true)) {
-                    this.ConditionOperatorField = value;
-                    this.RaisePropertyChanged("ConditionOperator");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ConditionParameter {
-            get {
-                return this.ConditionParameterField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ConditionParameterField, value) != true)) {
-                    this.ConditionParameterField = value;
-                    this.RaisePropertyChanged("ConditionParameter");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ConditionType {
-            get {
-                return this.ConditionTypeField;
-            }
-            set {
-                if ((this.ConditionTypeField.Equals(value) != true)) {
-                    this.ConditionTypeField = value;
-                    this.RaisePropertyChanged("ConditionType");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> GroupFilterConditionID {
-            get {
-                return this.GroupFilterConditionIDField;
-            }
-            set {
-                if ((this.GroupFilterConditionIDField.Equals(value) != true)) {
-                    this.GroupFilterConditionIDField = value;
-                    this.RaisePropertyChanged("GroupFilterConditionID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> GroupFilterID {
-            get {
-                return this.GroupFilterIDField;
-            }
-            set {
-                if ((this.GroupFilterIDField.Equals(value) != true)) {
-                    this.GroupFilterIDField = value;
-                    this.RaisePropertyChanged("GroupFilterID");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Contract_AnimeGroup", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
     [System.SerializableAttribute()]
     public partial class Contract_AnimeGroup : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -3680,6 +3369,317 @@ namespace JMMClient.JMMServerBinary {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_GroupFilterExtended", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
+    [System.SerializableAttribute()]
+    public partial class Contract_GroupFilterExtended : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int GroupCountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private JMMClient.JMMServerBinary.Contract_GroupFilter GroupFilterField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SeriesCountField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int GroupCount {
+            get {
+                return this.GroupCountField;
+            }
+            set {
+                if ((this.GroupCountField.Equals(value) != true)) {
+                    this.GroupCountField = value;
+                    this.RaisePropertyChanged("GroupCount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public JMMClient.JMMServerBinary.Contract_GroupFilter GroupFilter {
+            get {
+                return this.GroupFilterField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GroupFilterField, value) != true)) {
+                    this.GroupFilterField = value;
+                    this.RaisePropertyChanged("GroupFilter");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SeriesCount {
+            get {
+                return this.SeriesCountField;
+            }
+            set {
+                if ((this.SeriesCountField.Equals(value) != true)) {
+                    this.SeriesCountField = value;
+                    this.RaisePropertyChanged("SeriesCount");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_GroupFilter", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
+    [System.SerializableAttribute()]
+    public partial class Contract_GroupFilter : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ApplyToSeriesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int BaseConditionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_GroupFilterCondition> FilterConditionsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> GroupFilterIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string GroupFilterNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SortingCriteriaField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ApplyToSeries {
+            get {
+                return this.ApplyToSeriesField;
+            }
+            set {
+                if ((this.ApplyToSeriesField.Equals(value) != true)) {
+                    this.ApplyToSeriesField = value;
+                    this.RaisePropertyChanged("ApplyToSeries");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int BaseCondition {
+            get {
+                return this.BaseConditionField;
+            }
+            set {
+                if ((this.BaseConditionField.Equals(value) != true)) {
+                    this.BaseConditionField = value;
+                    this.RaisePropertyChanged("BaseCondition");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_GroupFilterCondition> FilterConditions {
+            get {
+                return this.FilterConditionsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FilterConditionsField, value) != true)) {
+                    this.FilterConditionsField = value;
+                    this.RaisePropertyChanged("FilterConditions");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> GroupFilterID {
+            get {
+                return this.GroupFilterIDField;
+            }
+            set {
+                if ((this.GroupFilterIDField.Equals(value) != true)) {
+                    this.GroupFilterIDField = value;
+                    this.RaisePropertyChanged("GroupFilterID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string GroupFilterName {
+            get {
+                return this.GroupFilterNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GroupFilterNameField, value) != true)) {
+                    this.GroupFilterNameField = value;
+                    this.RaisePropertyChanged("GroupFilterName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string SortingCriteria {
+            get {
+                return this.SortingCriteriaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SortingCriteriaField, value) != true)) {
+                    this.SortingCriteriaField = value;
+                    this.RaisePropertyChanged("SortingCriteria");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_GroupFilterCondition", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
+    [System.SerializableAttribute()]
+    public partial class Contract_GroupFilterCondition : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ConditionOperatorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ConditionParameterField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ConditionTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> GroupFilterConditionIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> GroupFilterIDField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ConditionOperator {
+            get {
+                return this.ConditionOperatorField;
+            }
+            set {
+                if ((this.ConditionOperatorField.Equals(value) != true)) {
+                    this.ConditionOperatorField = value;
+                    this.RaisePropertyChanged("ConditionOperator");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ConditionParameter {
+            get {
+                return this.ConditionParameterField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ConditionParameterField, value) != true)) {
+                    this.ConditionParameterField = value;
+                    this.RaisePropertyChanged("ConditionParameter");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ConditionType {
+            get {
+                return this.ConditionTypeField;
+            }
+            set {
+                if ((this.ConditionTypeField.Equals(value) != true)) {
+                    this.ConditionTypeField = value;
+                    this.RaisePropertyChanged("ConditionType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> GroupFilterConditionID {
+            get {
+                return this.GroupFilterConditionIDField;
+            }
+            set {
+                if ((this.GroupFilterConditionIDField.Equals(value) != true)) {
+                    this.GroupFilterConditionIDField = value;
+                    this.RaisePropertyChanged("GroupFilterConditionID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> GroupFilterID {
+            get {
+                return this.GroupFilterIDField;
+            }
+            set {
+                if ((this.GroupFilterIDField.Equals(value) != true)) {
+                    this.GroupFilterIDField = value;
+                    this.RaisePropertyChanged("GroupFilterID");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Contract_AnimeSeries", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
     [System.SerializableAttribute()]
     public partial class Contract_AnimeSeries : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -3734,6 +3734,9 @@ namespace JMMClient.JMMServerBinary {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int StoppedCountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private JMMClient.JMMServerBinary.Contract_AnimeGroup TopLevelGroupField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private JMMClient.JMMServerBinary.Contract_TvDB_Series TvDB_SeriesField;
@@ -3964,6 +3967,19 @@ namespace JMMClient.JMMServerBinary {
                 if ((this.StoppedCountField.Equals(value) != true)) {
                     this.StoppedCountField = value;
                     this.RaisePropertyChanged("StoppedCount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public JMMClient.JMMServerBinary.Contract_AnimeGroup TopLevelGroup {
+            get {
+                return this.TopLevelGroupField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TopLevelGroupField, value) != true)) {
+                    this.TopLevelGroupField = value;
+                    this.RaisePropertyChanged("TopLevelGroup");
                 }
             }
         }
@@ -6003,12 +6019,12 @@ namespace JMMClient.JMMServerBinary {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_Trakt_ImagePoster))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_TraktTVShowResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_Trakt_User))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AnimeGroup))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_GroupFilterExtended))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_GroupFilter))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_GroupFilterCondition>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_GroupFilterCondition))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AnimeGroup>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AnimeGroup))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_GroupFilterExtended>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AnimeSeries>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AnimeSeries))]
@@ -6340,12 +6356,12 @@ namespace JMMClient.JMMServerBinary {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_Trakt_ImagePoster))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_TraktTVShowResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_Trakt_User))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AnimeGroup))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_GroupFilterExtended))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_GroupFilter))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_GroupFilterCondition>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_GroupFilterCondition))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AnimeGroup>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AnimeGroup))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_GroupFilterExtended>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AnimeSeries>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AnimeSeries))]
@@ -13139,6 +13155,9 @@ namespace JMMClient.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/RefreshTraktFriendInfo", ReplyAction="http://tempuri.org/IJMMServer/RefreshTraktFriendInfoResponse")]
         void RefreshTraktFriendInfo();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetTopLevelGroupForSeries", ReplyAction="http://tempuri.org/IJMMServer/GetTopLevelGroupForSeriesResponse")]
+        JMMClient.JMMServerBinary.Contract_AnimeGroup GetTopLevelGroupForSeries(int animeSeriesID, int userID);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetGroupFilterExtended", ReplyAction="http://tempuri.org/IJMMServer/GetGroupFilterExtendedResponse")]
         JMMClient.JMMServerBinary.Contract_GroupFilterExtended GetGroupFilterExtended(int groupFilterID, int userID);
         
@@ -13621,6 +13640,10 @@ namespace JMMClient.JMMServerBinary {
         
         public void RefreshTraktFriendInfo() {
             base.Channel.RefreshTraktFriendInfo();
+        }
+        
+        public JMMClient.JMMServerBinary.Contract_AnimeGroup GetTopLevelGroupForSeries(int animeSeriesID, int userID) {
+            return base.Channel.GetTopLevelGroupForSeries(animeSeriesID, userID);
         }
         
         public JMMClient.JMMServerBinary.Contract_GroupFilterExtended GetGroupFilterExtended(int groupFilterID, int userID) {

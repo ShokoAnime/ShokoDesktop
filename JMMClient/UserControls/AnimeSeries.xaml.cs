@@ -734,6 +734,9 @@ namespace JMMClient.UserControls
 
 			AnimeSeriesVM ser = this.DataContext as AnimeSeriesVM;
 			if (ser == null) return;
+
+			ser.PopulateIsFave();
+
 			epListMain.DataContext = ser;
 			ucSimilarAnime.DataContext = ser;
 			ucRelatedAnime.DataContext = ser;

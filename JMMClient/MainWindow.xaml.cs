@@ -2055,6 +2055,20 @@ namespace JMMClient
 				//BindingExpression be = ccDetail.GetBindingExpression(ContentControl.ContentProperty);
 				//be.UpdateSource();
 			}
+
+			if (obj.GetType() == typeof(AnimeSeriesVM))
+			{
+				AnimeSeriesVM ser = (AnimeSeriesVM)obj;
+				AnimeGroupVM grp = ser.TopLevelAnimeGroup;
+				if (grp == null) return;
+
+				grp.IsFave = grp.IsFave == 1 ? 0 : 1;
+				grp.Save();
+
+				ser.PopulateIsFave();
+
+				MainListHelperVM.Instance.UpdateHeirarchy(ser);
+			}
 		}
 
 		private void CommandBinding_ToggleExpandTags(object sender, ExecutedRoutedEventArgs e)
