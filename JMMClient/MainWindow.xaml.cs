@@ -651,6 +651,9 @@ namespace JMMClient
 		void moveSeriesWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
 		{
 			EnableDisableGroupControls(true);
+			SetDetailBinding(null);
+			MainListHelperVM.Instance.RefreshGroupsSeriesData();
+			MainListHelperVM.Instance.ShowChildWrappers(MainListHelperVM.Instance.CurrentWrapper);
 			this.Cursor = Cursors.Arrow;
 
 			MainListHelperVM.Instance.ViewGroups.Refresh();
@@ -667,23 +670,27 @@ namespace JMMClient
 				MoveSeriesDetails request = obj as MoveSeriesDetails;
 				DateTime start = DateTime.Now;
 
-				
 				//request.UpdatedSeries.Save();
 				JMMServerBinary.Contract_AnimeSeries_SaveResponse response = 
 					JMMServerVM.Instance.clientBinaryHTTP.MoveSeries(request.UpdatedSeries.AnimeSeriesID.Value, request.UpdatedSeries.AnimeGroupID,
 					JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
 				if (!string.IsNullOrEmpty(response.ErrorMessage))
 				{
+					this.Cursor = Cursors.Arrow;
 					MessageBox.Show(response.ErrorMessage);
 					return;
 				}
 				else
+				{
 					request.UpdatedSeries.Populate(response.AnimeSeries);
+				}
 
+
+				
 
 				// update all the attached groups
 
-				Dictionary<int, JMMServerBinary.Contract_AnimeGroup> grpsDict = new Dictionary<int, JMMServerBinary.Contract_AnimeGroup>();
+				/*Dictionary<int, JMMServerBinary.Contract_AnimeGroup> grpsDict = new Dictionary<int, JMMServerBinary.Contract_AnimeGroup>();
 				List<JMMServerBinary.Contract_AnimeGroup> grps = JMMServerVM.Instance.clientBinaryHTTP.GetAllGroupsAboveGroupInclusive(request.UpdatedSeries.AnimeGroupID,
 					JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
 				List<JMMServerBinary.Contract_AnimeGroup> grpsOld = JMMServerVM.Instance.clientBinaryHTTP.GetAllGroupsAboveGroupInclusive(request.OldAnimeGroupID,
@@ -704,7 +711,7 @@ namespace JMMClient
 
 				}
 				TimeSpan ts = DateTime.Now - start;
-				Console.Write(ts.TotalMilliseconds);
+				Console.Write(ts.TotalMilliseconds);*/
 
 
 				

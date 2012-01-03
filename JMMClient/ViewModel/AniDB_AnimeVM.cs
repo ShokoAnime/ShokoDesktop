@@ -80,7 +80,7 @@ namespace JMMClient
 			this.AvgReviewRating = contract.AvgReviewRating;
 			this.AwardList = contract.AwardList;
 			this.BeginYear = contract.BeginYear;
-			this.Description = contract.Description;
+			this.Description = Utils.ReparseDescription(contract.Description);
 			this.DateTimeDescUpdated = contract.DateTimeDescUpdated;
 			this.DateTimeUpdated = contract.DateTimeUpdated;
 			this.EndDate = contract.EndDate;
