@@ -762,7 +762,17 @@ namespace JMMClient.UserControls
 				ucTraktShouts.RefreshShouts();
 				this.Cursor = Cursors.Arrow;
 			}
-				
+
+			cboVoteType.Items.Clear();
+			cboVoteType.Items.Add(Properties.Resources.VoteTypeAnimeTemporary);
+			if (ser.AniDB_Anime.FinishedAiring)
+				cboVoteType.Items.Add(Properties.Resources.VoteTypeAnimePermanent);
+
+			if (ser.AniDB_Anime.FinishedAiring && ser.AllFilesWatched)
+				cboVoteType.SelectedIndex = 1;
+			else
+				cboVoteType.SelectedIndex = 0;
+
 			this.Cursor = Cursors.Arrow;
 		}
 
@@ -827,16 +837,6 @@ namespace JMMClient.UserControls
 		void AnimeSeries_Loaded(object sender, RoutedEventArgs e)
 		{
 			
-			AnimeSeriesVM ser = this.DataContext as AnimeSeriesVM;
-			if (ser == null) return;
-
-			cboVoteType.Items.Clear();
-			cboVoteType.Items.Add(Properties.Resources.VoteTypeAnimeTemporary);
-			if (ser.AniDB_Anime.FinishedAiring)
-				cboVoteType.Items.Add(Properties.Resources.VoteTypeAnimePermanent);
-			cboVoteType.SelectedIndex = 0;
-
-
 		}
 
 		void cRating_OnRatingValueChangedEvent(RatingValueEventArgs ev)
