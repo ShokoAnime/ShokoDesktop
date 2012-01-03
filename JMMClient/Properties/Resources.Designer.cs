@@ -1123,6 +1123,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Force Refresh.
+        /// </summary>
+        public static string ForceRefresh {
+            get {
+                return ResourceManager.GetString("ForceRefresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Get.
         /// </summary>
         public static string Get {
@@ -4008,6 +4017,15 @@ namespace JMMClient.Properties {
         public static string TraktAnimeOnly {
             get {
                 return ResourceManager.GetString("TraktAnimeOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Information is updated on server every 20 minutes.
+        /// </summary>
+        public static string TraktFriendNotes {
+            get {
+                return ResourceManager.GetString("TraktFriendNotes", resourceCulture);
             }
         }
         

@@ -207,6 +207,7 @@ namespace JMMClient.UserControls
 			udItemsTraktFriends.ValueChanged += new RoutedPropertyChangedEventHandler<object>(udItemsTraktFriends_ValueChanged);
 
 			btnGetRecDownloadMissingInfo.Click += new RoutedEventHandler(btnGetRecDownloadMissingInfo_Click);
+			btnForceTraktRefresh.Click += new RoutedEventHandler(btnForceTraktRefresh_Click);
 
 			chkTraktAnimeOnly.Click += new RoutedEventHandler(chkTraktAnimeOnly_Click);
 
@@ -214,6 +215,8 @@ namespace JMMClient.UserControls
 
 			
 		}
+
+		
 
 		void chkTraktAnimeOnly_Click(object sender, RoutedEventArgs e)
 		{
@@ -449,6 +452,13 @@ namespace JMMClient.UserControls
 			getMissingDataWorker.RunWorkerAsync();
 		}
 
+
+		void btnForceTraktRefresh_Click(object sender, RoutedEventArgs e)
+		{
+			JMMServerVM.Instance.clientBinaryHTTP.RefreshTraktFriendInfo();
+
+			MessageBox.Show("Process is running on server, please try refreshing in a few seconds", "Running", MessageBoxButton.OK, MessageBoxImage.Information);
+		}
 
 		private void CommandBinding_ToggleWatchedStatus(object sender, ExecutedRoutedEventArgs e)
 		{

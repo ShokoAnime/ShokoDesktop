@@ -13136,6 +13136,9 @@ namespace JMMClient.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/PostShoutShow", ReplyAction="http://tempuri.org/IJMMServer/PostShoutShowResponse")]
         bool PostShoutShow(int animeID, string shoutText, bool isSpoiler, ref string returnMessage);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/RefreshTraktFriendInfo", ReplyAction="http://tempuri.org/IJMMServer/RefreshTraktFriendInfoResponse")]
+        void RefreshTraktFriendInfo();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetGroupFilterExtended", ReplyAction="http://tempuri.org/IJMMServer/GetGroupFilterExtendedResponse")]
         JMMClient.JMMServerBinary.Contract_GroupFilterExtended GetGroupFilterExtended(int groupFilterID, int userID);
         
@@ -13614,6 +13617,10 @@ namespace JMMClient.JMMServerBinary {
         
         public bool PostShoutShow(int animeID, string shoutText, bool isSpoiler, ref string returnMessage) {
             return base.Channel.PostShoutShow(animeID, shoutText, isSpoiler, ref returnMessage);
+        }
+        
+        public void RefreshTraktFriendInfo() {
+            base.Channel.RefreshTraktFriendInfo();
         }
         
         public JMMClient.JMMServerBinary.Contract_GroupFilterExtended GetGroupFilterExtended(int groupFilterID, int userID) {

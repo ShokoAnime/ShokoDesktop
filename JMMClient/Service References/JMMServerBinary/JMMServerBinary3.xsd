@@ -119,6 +119,16 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="RefreshTraktFriendInfo">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RefreshTraktFriendInfoResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetGroupFilterExtended">
     <xs:complexType>
       <xs:sequence>

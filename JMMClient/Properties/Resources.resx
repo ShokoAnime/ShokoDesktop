@@ -1586,4 +1586,10 @@
   <data name="TraktAnimeOnly" xml:space="preserve">
     <value>Anime Only</value>
   </data>
+  <data name="ForceRefresh" xml:space="preserve">
+    <value>Force Refresh</value>
+  </data>
+  <data name="TraktFriendNotes" xml:space="preserve">
+    <value>Information is updated on server every 20 minutes</value>
+  </data>
 </root>
