@@ -32,6 +32,14 @@ namespace JMMClient.ViewModel
 			}
 		}
 
+		public string EpisodeDescription
+		{
+			get
+			{
+				return string.Format("{0}x{1} - {2}", Episode_Season, Episode_Number, Episode_Title);
+			}
+		}
+
 		public string ImagePathForDisplay
 		{
 			get

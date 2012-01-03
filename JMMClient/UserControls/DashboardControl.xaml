@@ -1155,7 +1155,7 @@
                                 </StackPanel>
 
                                 <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" Margin="0,0,5,5">
-                                    <TextBlock Text="{Binding Path=Episode.ShowTitle}" Foreground="Black" FontWeight="DemiBold" FontSize="14" VerticalAlignment="Center"/>
+                                    <usercontrols:HyperLinkStandard VerticalAlignment="Center" FontSize="14" DisplayText="{Binding Path=Episode.ShowTitle}" URL="{Binding Path=Episode.TraktShow.url}" Margin="0,0,0,0"/>
 
                                     <!-- show pinned series button -->
                                     <Button Margin="5,0,0,0" Style="{DynamicResource RoundButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource ShowPinnedSeriesCommand}" 
@@ -1171,11 +1171,9 @@
                                         </StackPanel>
                                     </Button>
 
-                                    <TextBlock Text="{Binding Path=Episode.Episode_Season}" Foreground="DarkGreen" FontWeight="DemiBold" FontSize="14" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                                    <TextBlock Text="x" Foreground="DarkGreen" FontWeight="DemiBold" FontSize="14" VerticalAlignment="Center" Margin="0,0,0,0"/>
-                                    <TextBlock Text="{Binding Path=Episode.Episode_Number}" Foreground="DarkGreen" FontWeight="DemiBold" FontSize="14" VerticalAlignment="Center" Margin="0,0,0,0"/>
-
-                                    <TextBlock Text="{Binding Path=Episode.Episode_Title}" Foreground="DarkGreen" FontSize="14" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                                    <usercontrols:HyperLinkStandard VerticalAlignment="Center" Foreground="DarkGreen" FontSize="14" 
+                                        DisplayText="{Binding Path=Episode.EpisodeDescription}" URL="{Binding Path=Episode.Episode_Url}" Margin="10,0,0,0"/>
+                                    
 
                                 </StackPanel>
 
@@ -1337,7 +1335,9 @@
                                 </StackPanel>
 
                                 <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" Margin="0,0,5,5">
-                                    <TextBlock Text="{Binding Path=Shout.ShowTitle}" Foreground="Black" FontWeight="DemiBold" FontSize="14" VerticalAlignment="Center"/>
+                                    <usercontrols:HyperLinkStandard VerticalAlignment="Center" FontSize="14" DisplayText="{Binding Path=Shout.ShowTitle}" 
+                                        URL="{Binding Path=Shout.TraktShow.url}" Margin="0,0,0,0"/>
+                                   
 
                                     <!-- show pinned series button -->
                                     <Button Margin="5,0,0,0" Style="{DynamicResource RoundButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource ShowPinnedSeriesCommand}" 
@@ -1352,13 +1352,10 @@
 
                                         </StackPanel>
                                     </Button>
+
+                                    <usercontrols:HyperLinkStandard VerticalAlignment="Center" Foreground="DarkGreen" FontSize="14" 
+                                        DisplayText="{Binding Path=Shout.EpisodeDescription}" URL="{Binding Path=Shout.Episode_Url}" Margin="10,0,0,0"/>
                                     
-                                    <TextBlock Text="{Binding Path=Shout.Episode_Season}" Foreground="DarkGreen" FontWeight="DemiBold" FontSize="14" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                                    <TextBlock Text="x" Foreground="DarkGreen" FontWeight="DemiBold" FontSize="14" VerticalAlignment="Center" Margin="0,0,0,0"/>
-                                    <TextBlock Text="{Binding Path=Shout.Episode_Number}" Foreground="DarkGreen" FontWeight="DemiBold" FontSize="14" VerticalAlignment="Center" Margin="0,0,0,0"/>
-
-                                    <TextBlock Text="{Binding Path=Shout.Episode_Title}" Foreground="DarkGreen" FontSize="14" VerticalAlignment="Center" Margin="10,0,0,0"/>
-
                                 </StackPanel>
 
 
@@ -1394,7 +1391,7 @@
 
                     <!-- Shout text  -->
                     <Border BorderThickness="0,0,1,1" BorderBrush="DarkGray" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Background="FloralWhite">
-                        <TextBlock MinWidth="200" MaxWidth="400" Text="{Binding Shout.Text}" HorizontalAlignment="Left" Margin="5,5,5,5" FontSize="12"
+                        <TextBlock MinWidth="200" MaxWidth="400" Text="{Binding Shout.Text}" Foreground="Black" HorizontalAlignment="Left" Margin="5,5,5,5" FontSize="12"
                                    Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_TraktFriends_Height}"
                                                        VerticalAlignment="Top" TextWrapping="Wrap">
                             <TextBlock.ToolTip>
@@ -1502,7 +1499,8 @@
                                 </StackPanel>
 
                                 <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" Margin="0,0,5,5">
-                                    <TextBlock Text="{Binding Path=Shout.ShowTitle}" Foreground="Black" FontWeight="DemiBold" FontSize="14" VerticalAlignment="Center"/>
+                                    <usercontrols:HyperLinkStandard VerticalAlignment="Center" FontSize="14" DisplayText="{Binding Path=Shout.ShowTitle}" 
+                                        URL="{Binding Path=Shout.TraktShow.url}" Margin="0,0,0,0"/>
 
                                     <!-- show pinned series button -->
                                     <Button Margin="5,0,0,0" Style="{DynamicResource RoundButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource ShowPinnedSeriesCommand}" 

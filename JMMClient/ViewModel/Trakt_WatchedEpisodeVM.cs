@@ -104,6 +104,14 @@ namespace JMMClient.ViewModel
 			}
 		}
 
+		public string EpisodeDescription
+		{
+			get
+			{
+				return string.Format("{0}x{1} - {2}", Episode_Season, Episode_Number, Episode_Title);
+			}
+		}
+
 		public Trakt_WatchedEpisodeVM(JMMServerBinary.Contract_Trakt_WatchedEpisode contract)
 		{
 			this.Watched = contract.Watched;

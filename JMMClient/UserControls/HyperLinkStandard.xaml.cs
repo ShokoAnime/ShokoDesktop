@@ -26,6 +26,15 @@ namespace JMMClient.UserControls
 		public static readonly DependencyProperty URLProperty = DependencyProperty.Register("URL",
 			typeof(string), typeof(HyperLinkStandard), new UIPropertyMetadata("", urlChangedCallback));
 
+		public static readonly DependencyProperty ForegroundOverrideProperty = DependencyProperty.Register("ForegroundOverride",
+			typeof(string), typeof(HyperLinkStandard), new UIPropertyMetadata("", foregroundOverrideChangedCallback));
+
+		public string ForegroundOverride
+		{
+			get { return (string)GetValue(ForegroundOverrideProperty); }
+			set { SetValue(ForegroundOverrideProperty, value); }
+		}
+
 		public string DisplayText
 		{
 			get { return (string)GetValue(DisplayTextProperty); }
@@ -36,6 +45,14 @@ namespace JMMClient.UserControls
 		{
 			HyperLinkStandard input = (HyperLinkStandard)d;
 			input.txtLink.Text = e.NewValue as string;
+		}
+
+		private static void foregroundOverrideChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		{
+			var bc = new BrushConverter();
+			HyperLinkStandard input = (HyperLinkStandard)d;
+			input.txtLink.Foreground = (Brush)bc.ConvertFrom(e.NewValue as string);
+			input.Foreground = (Brush)bc.ConvertFrom(e.NewValue as string);
 		}
 
 		public string URL
@@ -59,8 +76,13 @@ namespace JMMClient.UserControls
 
 		void hlURL_Click(object sender, RoutedEventArgs e)
 		{
-			Uri uri = new Uri(URL);
-			Process.Start(new ProcessStartInfo(uri.AbsoluteUri));
+			try
+			{
+				Uri uri = new Uri(URL);
+				Process.Start(new ProcessStartInfo(uri.AbsoluteUri));
+			}
+			catch { }
+
 			e.Handled = true;
 		}
 	}
