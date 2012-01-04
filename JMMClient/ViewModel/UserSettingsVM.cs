@@ -161,6 +161,28 @@ namespace JMMClient
 			get { return !AppSettings.DashWatchNextEpExpanded; }
 		}
 
+
+
+
+		public bool DashRecentlyWatchEpsExpanded
+		{
+			get { return AppSettings.DashRecentlyWatchEpsExpanded; }
+			set
+			{
+				AppSettings.DashRecentlyWatchEpsExpanded = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("DashRecentlyWatchEpsExpanded"));
+				OnPropertyChanged(new PropertyChangedEventArgs("DashRecentlyWatchEpsCollapsed"));
+			}
+		}
+
+		public bool DashRecentlyWatchEpsCollapsed
+		{
+			get { return !AppSettings.DashRecentlyWatchEpsExpanded; }
+		}
+
+
+
+
 		public bool DashSeriesMissingEpisodesExpanded
 		{
 			get { return AppSettings.DashSeriesMissingEpisodesExpanded; }
@@ -311,6 +333,38 @@ namespace JMMClient
 				OnPropertyChanged(new PropertyChangedEventArgs("Dash_WatchNext_Height"));
 			}
 		}
+
+
+
+
+
+
+
+		public int Dash_RecentlyWatchedEp_Items
+		{
+			get { return AppSettings.Dash_RecentlyWatchedEp_Items; }
+			set
+			{
+				AppSettings.Dash_RecentlyWatchedEp_Items = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("Dash_RecentlyWatchedEp_Items"));
+			}
+		}
+
+		public int Dash_RecentlyWatchedEp_Height
+		{
+			get { return AppSettings.Dash_RecentlyWatchedEp_Height; }
+			set
+			{
+				AppSettings.Dash_RecentlyWatchedEp_Height = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("Dash_RecentlyWatchedEp_Height"));
+			}
+		}
+
+
+
+
+
+
 
 		public DashWatchNextStyle Dash_WatchNext_Style
 		{

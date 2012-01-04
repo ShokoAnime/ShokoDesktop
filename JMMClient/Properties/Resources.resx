@@ -1592,4 +1592,7 @@
   <data name="TraktFriendNotes" xml:space="preserve">
     <value>Information is updated on server every 20 minutes</value>
   </data>
+  <data name="Dash_RecentEpisodes" xml:space="preserve">
+    <value>Recently Watched Episodes</value>
+  </data>
 </root>

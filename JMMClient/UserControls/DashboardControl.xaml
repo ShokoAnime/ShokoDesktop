@@ -295,6 +295,148 @@
                 </Grid>
             </DataTemplate>
 
+            <!-- RecentlyWatchedEpisodeTemplate -->
+            <DataTemplate x:Key="RecentlyWatchedEpisodeTemplate">
+                <Grid Margin="0,0,5,5" VerticalAlignment="Top">
+
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <!-- anime name and episode details -->
+                    <Border BorderThickness="1,1,1,0" BorderBrush="DarkGray" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" 
+                            Background="FloralWhite">
+
+                        <StackPanel Orientation="Vertical"  HorizontalAlignment="Left" Margin="5,3,5,5">
+                            <TextBlock Text="{Binding Path=AnimeName}" Foreground="Black" FontWeight="DemiBold" FontSize="14" VerticalAlignment="Center">
+                                <TextBlock.ToolTip>
+                                    <TextBlock Text="{Binding Path=AnimeName}" Foreground="Black" FontWeight="DemiBold"/>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                            <TextBlock Text="{Binding Path=EpisodeNumberAndName}" Foreground="Black" VerticalAlignment="Center" Margin="0,3,0,0">
+                                <TextBlock.ToolTip>
+                                    <TextBlock Text="{Binding Path=EpisodeNumberAndName}" Foreground="Black" FontWeight="DemiBold"/>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+
+                        </StackPanel>
+                    </Border>
+
+                    <!-- anime image  -->
+                    <Border BorderThickness="1,0,0,0" BorderBrush="DarkGray" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="1" Background="FloralWhite">
+                        <Image  Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_RecentlyWatchedEp_Height}"  Margin="5,3,10,0"
+                               HorizontalAlignment="Left" 
+                               Source="{Binding Path=AniDB_Anime.DefaultPosterPath}">
+                        </Image>
+
+                    </Border>
+
+                    <!-- Episode Overview  -->
+                    <Border BorderThickness="0,0,0,0" BorderBrush="DarkGray" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1" Background="FloralWhite">
+                        <TextBlock  MaxWidth="200"  Text="{Binding EpisodeOverviewLoading}" HorizontalAlignment="Left" Margin="0,0,5,0"  Foreground="Black" 
+                                    Visibility="{Binding ShowEpisodeOverviewInExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                   Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_RecentlyWatchedEp_Height}"
+                                                       VerticalAlignment="Top"  TextWrapping="Wrap">
+                        </TextBlock>
+                    </Border>
+
+                    <!-- Episode Image  -->
+                    <Border BorderThickness="0,0,1,0" BorderBrush="DarkGray" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="1" Background="FloralWhite">
+                        <Image Source="{Binding EpisodeImageLoading}" 
+                                Visibility="{Binding ShowEpisodeImageInDashboard, Converter={StaticResource BooleanToVisibilityConverter}}"
+                               Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_RecentlyWatchedEp_Height}"
+                               Margin="5,5,5,5" VerticalAlignment="Top" HorizontalAlignment="Left">
+                            <Image.ToolTip>
+                                <Border Background="FloralWhite" BorderThickness="1" BorderBrush="DarkGray">
+                                    <Grid >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="300"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+
+                                        <Image Grid.Column="0" Grid.Row="0" Width="400" 
+                                               Source="{Binding EpisodeImageLoading}" 
+                                                Margin="10,5,0,5" VerticalAlignment="Top" HorizontalAlignment="Left">
+                                        </Image>
+
+                                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding EpisodeOverviewLoading}" HorizontalAlignment="Left" Margin="10,5,0,5"  Foreground="Black" 
+                                                   VerticalAlignment="Top"  TextWrapping="Wrap">
+                                        </TextBlock>
+                                    </Grid>
+                                </Border>
+                            </Image.ToolTip>
+                        </Image>
+                    </Border>
+
+                    <!-- buttons   -->
+                    <Border BorderThickness="1,0,1,1" BorderBrush="DarkGray" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" 
+                            Background="FloralWhite">
+                        <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" Margin="5,3,5,5">
+
+
+                            <!-- Toggle watched button -->
+                            <Button Name="btnToggleWatched" Margin="0,0,0,0" Style="{DynamicResource RoundButtonStyle}" VerticalAlignment="Center"
+                        Visibility="{Binding Path=HasFiles, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        Command="{DynamicResource ToggleWatchedStatusCommand}" CommandParameter="{Binding}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="16" Width="16" Source="/Images/16_eye.png" Margin="2,0,2,0"
+                           Visibility="{Binding Path=Watched, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        <Image.ToolTip>
+                                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_Watched}"/>
+                                        </Image.ToolTip>
+                                    </Image>
+                                    <Image Height="16" Width="16" Source="/Images/16_eye2.png" Margin="2,0,2,0"
+                           Visibility="{Binding Path=Unwatched, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        <Image.ToolTip>
+                                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_Unwatched}"/>
+                                        </Image.ToolTip>
+                                    </Image>
+                                </StackPanel>
+                            </Button>
+
+                            <!-- Play episode button -->
+                            <Button Name="btnPlay" Margin="5,0,0,0" Style="{DynamicResource RoundButtonStyle}" Command="{DynamicResource PlayEpisodeCommand}" CommandParameter="{Binding}"
+                        VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="16" Width="16" Source="/Images/32_play.png" Margin="0,0,5,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Play}" Foreground="Black"  Margin="0,0,5,0"/>
+                                </StackPanel>
+                            </Button>
+
+                            <!-- show pinned series button -->
+                            <Button Margin="5,0,0,0" Style="{DynamicResource RoundButtonStyle}" VerticalAlignment="Center"
+                                    Command="{DynamicResource ShowPinnedSeriesCommand}" CommandParameter="{Binding}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="16" Width="16" Source="/Images/16_windows.png" Margin="2,0,2,0">
+                                        <Image.ToolTip>
+                                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_ViewSeries}"/>
+                                        </Image.ToolTip>
+                                    </Image>
+
+                                </StackPanel>
+                            </Button>
+
+                            <TextBlock Text="Last Watched" Foreground="Black" FontWeight="Bold" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                            <TextBlock Text="{Binding Path=WatchedDateAsString}" Foreground="Black" FontWeight="Bold" VerticalAlignment="Center" Margin="5,0,0,0"/>
+
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </DataTemplate>
+
+
             <!-- SeriesMissingEpsTemplate -->
             <DataTemplate x:Key="SeriesMissingEpsTemplate">
                 <Grid Margin="0,0,5,5" VerticalAlignment="Top">
@@ -1670,6 +1812,8 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
                 <!-- watch next episode widget -->
@@ -2204,6 +2348,91 @@
                      VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
                      ItemTemplateSelector="{StaticResource TraktTemplateSelector}"
                      ItemsSource="{Binding Source={x:Static local:DashboardVM.Instance}, Path=ViewTraktActivity}" 
+                     Background="Transparent"  VerticalAlignment="Stretch" >
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                </ListBox>
+
+                <!-- recently watched episode widget -->
+                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Background="#FFE9ECEF" Margin="0,0,0,5" 
+                        Grid.Row="{Binding Path=DashPos_RecentlyWatchedEpisode_Header, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardControl}}}" >
+
+                    <StackPanel Orientation="Horizontal">
+
+                        <!-- Buttons for moving the widget up and down -->
+                        <StackPanel Orientation="Horizontal" Visibility="{Binding Source={x:Static local:DashboardVM.Instance}, Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}" >
+                            <Button HorizontalAlignment="Left" Margin="5,0,0,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto"
+                                        Command="{DynamicResource MoveUpWidgetCommand}" CommandParameter="7">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="16" Width="16" Source="/Images/16_up.png" Margin="0,0,0,0"/>
+
+                                </StackPanel>
+                            </Button>
+
+                            <Button HorizontalAlignment="Left" Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto"
+                                        Command="{DynamicResource MoveDownWidgetCommand}" CommandParameter="7">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="16" Width="16" Source="/Images/16_down.png" Margin="0,0,0,0"/>
+
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+
+                        
+                        <!-- Number of Items -->
+                        <StackPanel Orientation="Horizontal" Margin="10,2,2,2" Visibility="{Binding Source={x:Static local:DashboardVM.Instance}, Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}" >
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Items}" Margin="0,0,5,0"/>
+                            <extToolkit:IntegerUpDown Name="udItemsRecentEpisodes" Minimum="1" Maximum="100" DefaultValue="10" VerticalAlignment="Center" 
+                                      Value="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_RecentlyWatchedEp_Items}" />
+                        </StackPanel>
+
+                        <!-- Widget Height Buttons -->
+                        <StackPanel Orientation="Horizontal" Visibility="{Binding Source={x:Static local:DashboardVM.Instance}, Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}" >
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ImageSize}" Margin="15,0,3,0"/>
+
+                            <Button Name="btnRecentEpisodesIncrease" Margin="0,2,0,2" Style="{DynamicResource FlatButtonStyle}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="16" Width="16" Source="/Images/16_plus.png" Margin="0,0,0,0"/>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Name="btnRecentEpisodesReduce" Margin="0,2,0,2" Style="{DynamicResource FlatButtonStyle}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="16" Width="16" Source="/Images/16_minus.png" Margin="0,0,0,0"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+
+                        <!-- Expand / Collapse -->
+                        <Button Name="btnExpandDashRecentEpisodes" Margin="5,2,2,2" Style="{DynamicResource FlatButtonStyle}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+
+                                <Image Height="16" Width="16" Source="/Images/64_navdown.png" Margin="2,0,2,0"
+                                                Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=DashRecentlyWatchEpsCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                </Image>
+                                <Image Height="16" Width="16" Source="/Images/64_navup.png" Margin="2,0,2,0"
+                                                Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=DashRecentlyWatchEpsExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Dash_RecentEpisodes}" 
+                                          FontWeight="Bold" Margin="0,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+                        <StackPanel />
+                    </StackPanel> 
+
+
+
+                </Border>
+
+                <ListBox Grid.Column="0" Grid.ColumnSpan="1" BorderThickness="0" HorizontalAlignment="Stretch" Margin="5,0,5,10"
+                     Grid.Row="{Binding Path=DashPos_RecentlyWatchedEpisode, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardControl}}}"
+                     Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=DashRecentlyWatchEpsExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
+                     ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+                     VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
+                     ItemTemplate="{DynamicResource RecentlyWatchedEpisodeTemplate}"
+                     ItemsSource="{Binding Source={x:Static local:DashboardVM.Instance}, Path=ViewEpsWatchedRecently}" 
                      Background="Transparent"  VerticalAlignment="Stretch" >
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>

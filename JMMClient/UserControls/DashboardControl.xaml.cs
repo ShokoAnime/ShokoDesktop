@@ -43,6 +43,35 @@ namespace JMMClient.UserControls
 			set { SetValue(DashPos_WatchNextEpisode_HeaderProperty, value); }
 		}
 
+
+
+
+
+
+		public static readonly DependencyProperty DashPos_RecentlyWatchedEpisodeProperty = DependencyProperty.Register("DashPos_RecentlyWatchedEpisode",
+			typeof(int), typeof(DashboardControl), new UIPropertyMetadata((int)1, null));
+
+		public int DashPos_RecentlyWatchedEpisode
+		{
+			get { return (int)GetValue(DashPos_RecentlyWatchedEpisodeProperty); }
+			set { SetValue(DashPos_RecentlyWatchedEpisodeProperty, value); }
+		}
+
+		public static readonly DependencyProperty DashPos_RecentlyWatchedEpisode_HeaderProperty = DependencyProperty.Register("DashPos_RecentlyWatchedEpisode_Header",
+			typeof(int), typeof(DashboardControl), new UIPropertyMetadata((int)1, null));
+
+		public int DashPos_RecentlyWatchedEpisode_Header
+		{
+			get { return (int)GetValue(DashPos_RecentlyWatchedEpisode_HeaderProperty); }
+			set { SetValue(DashPos_RecentlyWatchedEpisode_HeaderProperty, value); }
+		}
+
+
+
+
+
+
+
 		public static readonly DependencyProperty DashPos_SeriesMissingEpisodesProperty = DependencyProperty.Register("DashPos_SeriesMissingEpisodes",
 			typeof(int), typeof(DashboardControl), new UIPropertyMetadata((int)1, null));
 
@@ -177,12 +206,16 @@ namespace JMMClient.UserControls
 			btnExpandRecWatch.Click += new RoutedEventHandler(btnExpandRecWatch_Click);
 			btnExpandRecDownload.Click += new RoutedEventHandler(btnExpandRecDownload_Click);
 			btnExpandTraktFriends.Click += new RoutedEventHandler(btnExpandTraktFriends_Click);
+			btnExpandDashRecentEpisodes.Click += new RoutedEventHandler(btnExpandDashRecentEpisodes_Click);
 
 			btnEditDashboard.Click += new RoutedEventHandler(btnEditDashboard_Click);
 			btnEditDashboardFinish.Click += new RoutedEventHandler(btnEditDashboardFinish_Click);
 
 			btnWatchNextIncrease.Click += new RoutedEventHandler(btnWatchNextIncrease_Click);
 			btnWatchNextReduce.Click += new RoutedEventHandler(btnWatchNextReduce_Click);
+
+			btnRecentEpisodesIncrease.Click += new RoutedEventHandler(btnRecentEpisodesIncrease_Click);
+			btnRecentEpisodesReduce.Click += new RoutedEventHandler(btnRecentEpisodesReduce_Click);
 
 			btnMissingEpsIncrease.Click += new RoutedEventHandler(btnMissingEpsIncrease_Click);
 			btnMissingEpsReduce.Click += new RoutedEventHandler(btnMissingEpsReduce_Click);
@@ -205,6 +238,7 @@ namespace JMMClient.UserControls
 			udItemsRecWatch.ValueChanged += new RoutedPropertyChangedEventHandler<object>(udItemsRecWatch_ValueChanged);
 			udItemsRecDownload.ValueChanged += new RoutedPropertyChangedEventHandler<object>(udItemsRecDownload_ValueChanged);
 			udItemsTraktFriends.ValueChanged += new RoutedPropertyChangedEventHandler<object>(udItemsTraktFriends_ValueChanged);
+			udItemsRecentEpisodes.ValueChanged += new RoutedPropertyChangedEventHandler<object>(udItemsRecentEpisodes_ValueChanged);
 
 			btnGetRecDownloadMissingInfo.Click += new RoutedEventHandler(btnGetRecDownloadMissingInfo_Click);
 			btnForceTraktRefresh.Click += new RoutedEventHandler(btnForceTraktRefresh_Click);
@@ -215,6 +249,12 @@ namespace JMMClient.UserControls
 
 			
 		}
+
+		
+
+		
+
+		
 
 		
 
@@ -251,6 +291,15 @@ namespace JMMClient.UserControls
 			UserSettingsVM.Instance.Dash_WatchNext_Items = udItemsWatchNext.Value.Value;
 		}
 
+
+
+		void udItemsRecentEpisodes_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+		{
+			UserSettingsVM.Instance.Dash_RecentlyWatchedEp_Items = udItemsRecentEpisodes.Value.Value;
+		}
+
+
+
 		void udItemsRecWatch_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
 		{
 			UserSettingsVM.Instance.Dash_RecWatch_Items = udItemsRecWatch.Value.Value;
@@ -275,6 +324,21 @@ namespace JMMClient.UserControls
 		{
 			UserSettingsVM.Instance.Dash_WatchNext_Height = UserSettingsVM.Instance.Dash_WatchNext_Height + 10;
 		}
+
+
+
+		void btnRecentEpisodesReduce_Click(object sender, RoutedEventArgs e)
+		{
+			UserSettingsVM.Instance.Dash_RecentlyWatchedEp_Height = UserSettingsVM.Instance.Dash_RecentlyWatchedEp_Height - 10;
+		}
+
+		void btnRecentEpisodesIncrease_Click(object sender, RoutedEventArgs e)
+		{
+			UserSettingsVM.Instance.Dash_RecentlyWatchedEp_Height = UserSettingsVM.Instance.Dash_RecentlyWatchedEp_Height + 10;
+		}
+
+
+
 
 		void btnMissingEpsReduce_Click(object sender, RoutedEventArgs e)
 		{
@@ -388,6 +452,14 @@ namespace JMMClient.UserControls
 				DashboardVM.Instance.RefreshEpsWatchNext_Recent();
 
 			UserSettingsVM.Instance.DashWatchNextEpExpanded = !UserSettingsVM.Instance.DashWatchNextEpExpanded;
+		}
+
+		void btnExpandDashRecentEpisodes_Click(object sender, RoutedEventArgs e)
+		{
+			if (UserSettingsVM.Instance.DashRecentlyWatchEpsCollapsed && DashboardVM.Instance.EpsWatchedRecently.Count == 0)
+				DashboardVM.Instance.RefreshRecentlyWatchedEps();
+
+			UserSettingsVM.Instance.DashRecentlyWatchEpsExpanded = !UserSettingsVM.Instance.DashRecentlyWatchEpsExpanded;
 		}
 
 		void refreshDataWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -737,6 +809,7 @@ namespace JMMClient.UserControls
 			DashPos_RecWatch = UserSettingsVM.Instance.GetDashboardWidgetPosition(DashboardWidgets.RecommendationsWatch);
 			DashPos_RecDownload = UserSettingsVM.Instance.GetDashboardWidgetPosition(DashboardWidgets.RecommendationsDownload);
 			DashPos_TraktFriends = UserSettingsVM.Instance.GetDashboardWidgetPosition(DashboardWidgets.TraktFriends);
+			DashPos_RecentlyWatchedEpisode = UserSettingsVM.Instance.GetDashboardWidgetPosition(DashboardWidgets.RecentlyWatchedEpisode);
 
 			DashPos_WatchNextEpisode = DashPos_WatchNextEpisode * 2;
 			DashPos_SeriesMissingEpisodes = DashPos_SeriesMissingEpisodes * 2;
@@ -744,6 +817,7 @@ namespace JMMClient.UserControls
 			DashPos_RecWatch = DashPos_RecWatch * 2;
 			DashPos_RecDownload = DashPos_RecDownload * 2;
 			DashPos_TraktFriends = DashPos_TraktFriends * 2;
+			DashPos_RecentlyWatchedEpisode = DashPos_RecentlyWatchedEpisode * 2;
 
 			DashPos_WatchNextEpisode_Header = DashPos_WatchNextEpisode - 1;
 			DashPos_SeriesMissingEpisodes_Header = DashPos_SeriesMissingEpisodes - 1;
@@ -751,6 +825,7 @@ namespace JMMClient.UserControls
 			DashPos_RecWatch_Header = DashPos_RecWatch - 1;
 			DashPos_RecDownload_Header = DashPos_RecDownload - 1;
 			DashPos_TraktFriends_Header = DashPos_TraktFriends - 1;
+			DashPos_RecentlyWatchedEpisode_Header = DashPos_RecentlyWatchedEpisode - 1;
 		}
 	}
 }

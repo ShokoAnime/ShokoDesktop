@@ -50,6 +50,15 @@ namespace JMMClient
 			}
 		}
 
+		public string WatchedDateAsString
+		{
+			get
+			{
+				if (!WatchedDate.HasValue) return "";
+				return WatchedDate.Value.ToString("dd MMM yyyy - HH:mm", Globals.Culture);
+			}
+		}
+
 		#region Editable members
 
 		private int isWatched = 0;

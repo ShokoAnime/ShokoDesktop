@@ -23,6 +23,9 @@ namespace JMMClient
 		public ObservableCollection<AnimeEpisodeVM> EpsWatchNext_Recent { get; set; }
 		public ICollectionView ViewEpsWatchNext_Recent { get; set; }
 
+		public ObservableCollection<AnimeEpisodeVM> EpsWatchedRecently { get; set; }
+		public ICollectionView ViewEpsWatchedRecently { get; set; }
+
 		public ObservableCollection<AnimeSeriesVM> SeriesMissingEps { get; set; }
 		public ICollectionView ViewSeriesMissingEps { get; set; }
 
@@ -100,6 +103,9 @@ namespace JMMClient
 			EpsWatchNext_Recent = new ObservableCollection<AnimeEpisodeVM>();
 			ViewEpsWatchNext_Recent = CollectionViewSource.GetDefaultView(EpsWatchNext_Recent);
 
+			EpsWatchedRecently = new ObservableCollection<AnimeEpisodeVM>();
+			ViewEpsWatchedRecently = CollectionViewSource.GetDefaultView(EpsWatchedRecently);
+
 			SeriesMissingEps = new ObservableCollection<AnimeSeriesVM>();
 			ViewSeriesMissingEps = CollectionViewSource.GetDefaultView(SeriesMissingEps);
 
@@ -130,12 +136,14 @@ namespace JMMClient
 				{
 					SeriesMissingEps.Clear();
 					EpsWatchNext_Recent.Clear();
+					EpsWatchedRecently.Clear();
 					MiniCalendar.Clear();
 					RecommendationsWatch.Clear();
 					RecommendationsDownload.Clear();
 					TraktActivity.Clear();
 
 					ViewEpsWatchNext_Recent.Refresh();
+					ViewEpsWatchedRecently.Refresh();
 					ViewSeriesMissingEps.Refresh();
 					ViewMiniCalendar.Refresh();
 					ViewRecommendationsWatch.Refresh();
@@ -148,6 +156,9 @@ namespace JMMClient
 				
 				if (UserSettingsVM.Instance.DashWatchNextEpExpanded)
 					RefreshEpsWatchNext_Recent();
+
+				if (UserSettingsVM.Instance.DashRecentlyWatchEpsExpanded)
+					RefreshRecentlyWatchedEps();
 
 				if (UserSettingsVM.Instance.DashSeriesMissingEpisodesExpanded)
 					RefreshSeriesMissingEps();
@@ -463,6 +474,42 @@ namespace JMMClient
 						}
 					}
 					ViewEpsWatchNext_Recent.Refresh();
+				});
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+			finally
+			{
+			}
+		}
+
+		public void RefreshRecentlyWatchedEps()
+		{
+			try
+			{
+				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
+				{
+					EpsWatchedRecently.Clear();
+				});
+
+				List<JMMServerBinary.Contract_AnimeEpisode> epContracts =
+					JMMServerVM.Instance.clientBinaryHTTP.GetEpisodesRecentlyWatched(UserSettingsVM.Instance.Dash_RecentlyWatchedEp_Items, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+
+				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
+				{
+					foreach (JMMServerBinary.Contract_AnimeEpisode contract in epContracts)
+					{
+						AnimeEpisodeVM ep = new AnimeEpisodeVM(contract);
+						ep.RefreshAnime();
+						if (ep.AniDB_Anime != null && JMMServerVM.Instance.CurrentUser.EvaluateAnime(ep.AniDB_Anime))
+						{
+							ep.SetTvDBInfo();
+							EpsWatchedRecently.Add(ep);
+						}
+					}
+					ViewEpsWatchedRecently.Refresh();
 				});
 			}
 			catch (Exception ex)

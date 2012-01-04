@@ -350,14 +350,14 @@ namespace JMMClient
 				if (string.IsNullOrEmpty(val))
 				{
 					// default value
-					val = "5;2;1;6;4;3";
+					val = "5;2;1;6;4;3;7";
 					UpdateSetting("SeriesWidgetsOrder", val);
 				}
 
 				// make sure the setting contains all the widgets
 				// just in case the user has manually edited the config, or is using an old config
 				string[] widgets = val.Split(';');
-				int maxEnum = 6;
+				int maxEnum = 7;
 				for (int i = 1; i <= maxEnum; i++)
 				{
 					if (!widgets.Contains(i.ToString()))
@@ -384,14 +384,14 @@ namespace JMMClient
 				if (string.IsNullOrEmpty(val))
 				{
 					// default value
-					val = "1;2;3;4;5";
+					val = "1;2;3;4;5;6;7";
 					UpdateSetting("DashboardWidgetsOrder", val);
 				}
 
 				// make sure the setting contains all the widgets
 				// just in case the user has manually edited the config, or is using an old config
 				string[] widgets = val.Split(';');
-				int maxEnum = 6;
+				int maxEnum = 7;
 				for (int i = 1; i <= maxEnum; i++)
 				{
 					if (!widgets.Contains(i.ToString()))
@@ -554,6 +554,24 @@ namespace JMMClient
 			}
 		}
 
+		public static bool DashRecentlyWatchEpsExpanded
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["DashRecentlyWatchEpsExpanded"];
+				bool bval = true;
+				if (bool.TryParse(val, out bval))
+					return bval;
+				else
+					return false; // default value
+			}
+			set
+			{
+				UpdateSetting("DashRecentlyWatchEpsExpanded", value.ToString());
+			}
+		}
+
 		public static bool DashSeriesMissingEpisodesExpanded
 		{
 			get
@@ -711,6 +729,60 @@ namespace JMMClient
 				UpdateSetting("Dash_WatchNext_Style", ((int)value).ToString());
 			}
 		}
+
+
+
+		public static int Dash_RecentlyWatchedEp_Items
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["Dash_RecentlyWatchedEp_Items"];
+				int ival = 0;
+				if (int.TryParse(val, out ival))
+				{
+					if (ival >= 0 && ival <= 100)
+						return ival;
+					else
+						return 10;
+				}
+				else
+					return 10; // default value
+			}
+			set
+			{
+				UpdateSetting("Dash_RecentlyWatchedEp_Items", value.ToString());
+			}
+		}
+
+		public static int Dash_RecentlyWatchedEp_Height
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["Dash_RecentlyWatchedEp_Height"];
+				int ival = 0;
+				if (int.TryParse(val, out ival))
+				{
+					if (ival < 30)
+						return 30;
+
+					if (ival > 300)
+						return 300;
+
+					return ival;
+				}
+				else
+				{
+					return 150; // default value
+				}
+			}
+			set
+			{
+				UpdateSetting("Dash_RecentlyWatchedEp_Height", value.ToString());
+			}
+		}
+
 
 		public static int Dash_MissingEps_Items
 		{

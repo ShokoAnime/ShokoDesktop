@@ -257,7 +257,8 @@ namespace JMMClient
 		MiniCalendar = 3,
 		RecommendationsWatch = 4,
 		RecommendationsDownload = 5,
-		TraktFriends = 6
+		TraktFriends = 6,
+		RecentlyWatchedEpisode = 7
 	}
 
 	public enum DashWatchNextStyle

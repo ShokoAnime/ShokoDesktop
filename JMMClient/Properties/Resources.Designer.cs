@@ -628,6 +628,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Recently Watched Episodes.
+        /// </summary>
+        public static string Dash_RecentEpisodes {
+            get {
+                return ResourceManager.GetString("Dash_RecentEpisodes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Recommendations To Watch.
         /// </summary>
         public static string Dash_RecWatch {
