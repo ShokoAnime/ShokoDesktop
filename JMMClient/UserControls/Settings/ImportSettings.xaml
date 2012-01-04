@@ -40,14 +40,7 @@
         
 
 
-        <!-- WatchForNewFiles -->
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ImportSettings_WatchFiles}" VerticalAlignment="Center"></TextBlock>
-        </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" Margin="0,5,5,0" Grid.ColumnSpan="1">
-            <CheckBox Name="chkImportSettings_WatchFiles" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=WatchForNewFiles}" VerticalAlignment="Center"/>
-        </StackPanel>
 
         <!-- Auto Group Series -->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2" Margin="0,5,15,0">

@@ -29,7 +29,6 @@ namespace JMMClient.UserControls
 			chkImportSettings_HashMD5.Click += new RoutedEventHandler(settingChanged);
 			chkImportSettings_ImportOnStart.Click += new RoutedEventHandler(settingChanged);
 			chkImportSettings_SHA1.Click += new RoutedEventHandler(settingChanged);
-			chkImportSettings_WatchFiles.Click += new RoutedEventHandler(settingChanged);
 			chkImportSettings_UseEpisodeStatus.Click += new RoutedEventHandler(settingChanged);
 			chkImportSettings_AutoGroupSeries.Click += new RoutedEventHandler(settingChanged);
 

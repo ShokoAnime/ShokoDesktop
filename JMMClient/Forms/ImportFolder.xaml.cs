@@ -58,6 +58,7 @@ namespace JMMClient.Forms
 				importFldr.ImportFolderLocation = txtImportFolderLocation.Text.Trim();
 				importFldr.IsDropDestination = chkDropDestination.IsChecked.Value ? 1 : 0;
 				importFldr.IsDropSource = chkDropSource.IsChecked.Value ? 1 : 0;
+				importFldr.IsWatched = chkIsWatched.IsChecked.Value ? 1 : 0;
 				importFldr.Save();
 
 				JMMServerVM.Instance.RefreshImportFolders();
@@ -87,6 +88,7 @@ namespace JMMClient.Forms
 				txtLocalPath.Text = importFldr.LocalPath;
 				chkDropDestination.IsChecked = importFldr.IsDropDestination == 1;
 				chkDropSource.IsChecked = importFldr.IsDropSource == 1;
+				chkIsWatched.IsChecked = importFldr.IsWatched == 1;
 
 				txtImportFolderLocation.Focus();
 			}

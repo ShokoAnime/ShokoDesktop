@@ -15,6 +15,7 @@ namespace JMMClient.ViewModel
 		public int IsDropSource { get; set; }
 		public int IsDropDestination { get; set; }
 		public string LocalPathTemp { get; set; }
+		public int IsWatched { get; set; }
 
 		public string LocalPath
 		{
@@ -57,6 +58,14 @@ namespace JMMClient.ViewModel
 			}
 		}
 
+		public bool FolderIsWatched
+		{
+			get
+			{
+				return IsWatched == 1;
+			}
+		}
+
 		public bool FolderIsDropSource
 		{
 			get
@@ -87,6 +96,7 @@ namespace JMMClient.ViewModel
 			this.ImportFolderLocation = contract.ImportFolderLocation;
 			this.IsDropSource = contract.IsDropSource;
 			this.IsDropDestination = contract.IsDropDestination;
+			this.IsWatched = contract.IsWatched;
 		}
 
 		public JMMServerBinary.Contract_ImportFolder ToContract()
@@ -97,6 +107,7 @@ namespace JMMClient.ViewModel
 			contract.ImportFolderLocation = this.ImportFolderLocation;
 			contract.IsDropSource = this.IsDropSource;
 			contract.IsDropDestination = this.IsDropDestination;
+			contract.IsWatched = this.IsWatched;
 
 			return contract;
 		}

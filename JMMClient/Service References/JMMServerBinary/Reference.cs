@@ -8115,6 +8115,9 @@ namespace JMMClient.JMMServerBinary {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IsDropSourceField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IsWatchedField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -8199,6 +8202,19 @@ namespace JMMClient.JMMServerBinary {
                 if ((this.IsDropSourceField.Equals(value) != true)) {
                     this.IsDropSourceField = value;
                     this.RaisePropertyChanged("IsDropSource");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IsWatched {
+            get {
+                return this.IsWatchedField;
+            }
+            set {
+                if ((this.IsWatchedField.Equals(value) != true)) {
+                    this.IsWatchedField = value;
+                    this.RaisePropertyChanged("IsWatched");
                 }
             }
         }
@@ -11055,9 +11071,6 @@ namespace JMMClient.JMMServerBinary {
         private string VideoExtensionsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool WatchForNewFilesField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string WebCache_AddressField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -11672,19 +11685,6 @@ namespace JMMClient.JMMServerBinary {
                 if ((object.ReferenceEquals(this.VideoExtensionsField, value) != true)) {
                     this.VideoExtensionsField = value;
                     this.RaisePropertyChanged("VideoExtensions");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool WatchForNewFiles {
-            get {
-                return this.WatchForNewFilesField;
-            }
-            set {
-                if ((this.WatchForNewFilesField.Equals(value) != true)) {
-                    this.WatchForNewFilesField = value;
-                    this.RaisePropertyChanged("WatchForNewFiles");
                 }
             }
         }

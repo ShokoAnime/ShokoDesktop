@@ -797,6 +797,7 @@
       <xs:element minOccurs="0" name="ImportFolderType" type="xs:int" />
       <xs:element minOccurs="0" name="IsDropDestination" type="xs:int" />
       <xs:element minOccurs="0" name="IsDropSource" type="xs:int" />
+      <xs:element minOccurs="0" name="IsWatched" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_ImportFolder" nillable="true" type="tns:Contract_ImportFolder" />
@@ -1117,7 +1118,6 @@
       <xs:element minOccurs="0" name="TvDB_Language" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TvDB_UpdateFrequency" type="xs:int" />
       <xs:element minOccurs="0" name="VideoExtensions" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="WatchForNewFiles" type="xs:boolean" />
       <xs:element minOccurs="0" name="WebCache_Address" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="WebCache_Anonymous" type="xs:boolean" />
       <xs:element minOccurs="0" name="WebCache_FileHashes_Get" type="xs:boolean" />
