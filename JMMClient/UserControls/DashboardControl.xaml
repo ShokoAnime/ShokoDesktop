@@ -21,6 +21,8 @@
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
             <local:DashWatchNextTemplateSelector x:Key="DashWatchNextTemplateSelector"/>
             <local:TraktActivityTemplateSelector x:Key="TraktTemplateSelector"/>
+            <local:RecWatchTemplateSelector x:Key="RecWatchTemplateSelector"/>
+            <local:RecDownloadTemplateSelector x:Key="RecDownloadTemplateSelector"/>
 
             <RoutedUICommand x:Key="PlayEpisodeCommand" Text="PlayEpisodeCommand" />
             <RoutedUICommand x:Key="ToggleWatchedStatusCommand" Text="ToggleWatchedStatusCommand" />
@@ -32,6 +34,7 @@
             <RoutedUICommand x:Key="MoveDownWidgetCommand" Text="MoveDownWidgetCommand" />
 
             <RoutedUICommand x:Key="JoinTraktCommand" Text="JoinTraktCommand" />
+            <RoutedUICommand x:Key="SyncVotesCommand" Text="SyncVotesCommand" />
             <RoutedUICommand x:Key="FriendRequestApproveCommand" Text="FriendRequestApproveCommand" />
             <RoutedUICommand x:Key="FriendRequestDenyCommand" Text="FriendRequestDenyCommand" />
 
@@ -1744,6 +1747,63 @@
                 </Grid>
             </DataTemplate>
 
+            <!-- MylistVotesDownloadTemplate -->
+            <DataTemplate x:Key="MylistVotesDownloadTemplate">
+                <Grid Margin="0,0,5,5" VerticalAlignment="Top">
+
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <!-- Prompt text -->
+                    <Border BorderThickness="1,1,1,0" BorderBrush="DarkGray" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" 
+                            Background="FloralWhite">
+
+                        <StackPanel Orientation="Horizontal" Margin="10,10,10,5">
+                            <Image Height="16" Width="16" Source="/Images/32_Info.png" Margin="0,0,5,0"/>
+                            <TextBlock Text="No recommendations could be found." FontWeight="Bold" VerticalAlignment="Center" Foreground="Black"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border BorderThickness="1,0,1,0" BorderBrush="DarkGray" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" 
+                            Background="FloralWhite">
+
+                        <StackPanel Orientation="Horizontal" Margin="10,10,10,5">
+                            <TextBlock Text="Download your votes now, or vote on an anime to start getting recommendations." VerticalAlignment="Center" Foreground="Black"/>
+                            
+                        </StackPanel>
+                    </Border>
+
+
+                    <!-- sync votes button -->
+                    <Border BorderThickness="1,0,0,1" BorderBrush="DarkGray" Grid.Column="0" Grid.Row="2" Background="FloralWhite" Grid.ColumnSpan="1">
+                        <Button Name="btnSyncVotes" Margin="10,5,10,10" Style="{DynamicResource RoundButtonStyle}" Foreground="Black"
+                                Command="{DynamicResource SyncVotesCommand}" CommandParameter="{Binding}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="0,0,5,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="Sync Votes" Foreground="Black"  Margin="0,0,5,0"/>
+                            </StackPanel>
+                        </Button>
+                    </Border>
+
+                    <Border BorderThickness="0,0,1,1" BorderBrush="DarkGray" Grid.Column="1" Grid.Row="2" Background="FloralWhite" Grid.ColumnSpan="2">
+                        
+                    </Border>
+
+                </Grid>
+            </DataTemplate>
+
         </ResourceDictionary>
     </UserControl.Resources>
 
@@ -1758,6 +1818,7 @@
         <CommandBinding Command="{StaticResource MoveDownWidgetCommand}" Executed="CommandBinding_MoveDownWidget" />
 
         <CommandBinding Command="{StaticResource JoinTraktCommand}" Executed="CommandBinding_JoinTrakt" />
+        <CommandBinding Command="{StaticResource SyncVotesCommand}" Executed="CommandBinding_SyncVotes" />
         <CommandBinding Command="{StaticResource FriendRequestApproveCommand}" Executed="CommandBinding_FriendRequestApprove" />
         <CommandBinding Command="{StaticResource FriendRequestDenyCommand}" Executed="CommandBinding_FriendRequestDeny" />
 
@@ -2170,7 +2231,7 @@
                      Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=DashRecommendationsWatchExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
                      ScrollViewer.HorizontalScrollBarVisibility="Auto"
                      VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
-                     ItemTemplate="{DynamicResource RecWatch_Detailed}"
+                     ItemTemplateSelector="{StaticResource RecWatchTemplateSelector}"
                      ItemsSource="{Binding Source={x:Static local:DashboardVM.Instance}, Path=ViewRecommendationsWatch}" 
                      Background="Transparent"  VerticalAlignment="Stretch" >
                     <ListBox.ItemsPanel>
@@ -2266,7 +2327,7 @@
                      Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=DashRecommendationsDownloadExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
                      ScrollViewer.HorizontalScrollBarVisibility="Auto"
                      VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
-                     ItemTemplate="{DynamicResource RecDownload_Detailed}"
+                     ItemTemplateSelector="{StaticResource RecDownloadTemplateSelector}"
                      ItemsSource="{Binding Source={x:Static local:DashboardVM.Instance}, Path=ViewRecommendationsDownload}" 
                      Background="Transparent"  VerticalAlignment="Stretch" >
                     <ListBox.ItemsPanel>

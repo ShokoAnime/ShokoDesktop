@@ -130,6 +130,8 @@
     </ApplicationDefinition>
     <Compile Include="DataTemplateSelectors\BreadCrumbTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\DashWatchNextTemplateSelector.cs" />
+    <Compile Include="DataTemplateSelectors\RecDownloadTemplateSelector.cs" />
+    <Compile Include="DataTemplateSelectors\RecWatchTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\TraktActivityTemplateSelector.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Forms\ChangePasswordForm.xaml.cs">

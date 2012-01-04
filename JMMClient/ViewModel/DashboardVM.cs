@@ -32,10 +32,10 @@ namespace JMMClient
 		public ObservableCollection<AniDB_AnimeVM> MiniCalendar { get; set; }
 		public ICollectionView ViewMiniCalendar { get; set; }
 
-		public ObservableCollection<RecommendationVM> RecommendationsWatch { get; set; }
+		public ObservableCollection<object> RecommendationsWatch { get; set; }
 		public ICollectionView ViewRecommendationsWatch { get; set; }
 
-		public ObservableCollection<RecommendationVM> RecommendationsDownload { get; set; }
+		public ObservableCollection<object> RecommendationsDownload { get; set; }
 		public ICollectionView ViewRecommendationsDownload { get; set; }
 
 		public ObservableCollection<object> TraktActivity { get; set; }
@@ -112,10 +112,10 @@ namespace JMMClient
 			MiniCalendar = new ObservableCollection<AniDB_AnimeVM>();
 			ViewMiniCalendar = CollectionViewSource.GetDefaultView(MiniCalendar);
 
-			RecommendationsWatch = new ObservableCollection<RecommendationVM>();
+			RecommendationsWatch = new ObservableCollection<object>();
 			ViewRecommendationsWatch = CollectionViewSource.GetDefaultView(RecommendationsWatch);
 
-			RecommendationsDownload = new ObservableCollection<RecommendationVM>();
+			RecommendationsDownload = new ObservableCollection<object>();
 			ViewRecommendationsDownload = CollectionViewSource.GetDefaultView(RecommendationsDownload);
 
 			TraktActivity = new ObservableCollection<object>();
@@ -337,6 +337,12 @@ namespace JMMClient
 						rec.Populate(contract);
 						RecommendationsWatch.Add(rec);
 					}
+
+					// add a dummy object so that we can display a prompt
+					// for the user to sync thier votes
+					if (RecommendationsWatch.Count == 0)
+						RecommendationsWatch.Add(new SyncVotesDummy());
+
 					ViewRecommendationsWatch.Refresh();
 				});
 			}
@@ -370,6 +376,12 @@ namespace JMMClient
 						rec.Populate(contract);
 						RecommendationsDownload.Add(rec);
 					}
+
+					// add a dummy object so that we can display a prompt
+					// for the user to sync thier votes
+					if (RecommendationsDownload.Count == 0)
+						RecommendationsDownload.Add(new SyncVotesDummy());
+
 					ViewRecommendationsDownload.Refresh();
 				});
 			}

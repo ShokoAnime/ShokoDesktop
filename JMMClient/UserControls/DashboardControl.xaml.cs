@@ -698,6 +698,28 @@ namespace JMMClient.UserControls
 			}
 		}
 
+		private void CommandBinding_SyncVotes(object sender, ExecutedRoutedEventArgs e)
+		{
+			Window parentWindow = Window.GetWindow(this);
+
+			object obj = e.Parameter;
+			if (obj == null) return;
+
+			try
+			{
+				if (obj.GetType() == typeof(SyncVotesDummy))
+				{
+
+					JMMServerVM.Instance.SyncVotes();
+					MessageBox.Show("Process is Running on server, please try refreshing when it has finished", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+				}
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+		}
+
 		private void CommandBinding_FriendRequestDeny(object sender, ExecutedRoutedEventArgs e)
 		{
 			Window parentWindow = Window.GetWindow(this);
@@ -827,5 +849,9 @@ namespace JMMClient.UserControls
 			DashPos_TraktFriends_Header = DashPos_TraktFriends - 1;
 			DashPos_RecentlyWatchedEpisode_Header = DashPos_RecentlyWatchedEpisode - 1;
 		}
+	}
+
+	public class SyncVotesDummy
+	{
 	}
 }
