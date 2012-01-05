@@ -341,6 +341,24 @@ namespace JMMClient
 			}
 		}
 
+		public static bool DisplayRatingDialogOnCompletion
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["DisplayRatingDialogOnCompletion"];
+				bool bval = true;
+				if (bool.TryParse(val, out bval))
+					return bval;
+				else
+					return true; // default value
+			}
+			set
+			{
+				UpdateSetting("DisplayRatingDialogOnCompletion", value.ToString());
+			}
+		}
+
 		public static string SeriesWidgetsOrder
 		{
 			get

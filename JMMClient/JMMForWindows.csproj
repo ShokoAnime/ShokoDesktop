@@ -164,6 +164,9 @@
     <Compile Include="Forms\PlayVideosForEpisodeForm.xaml.cs">
       <DependentUpon>PlayVideosForEpisodeForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\RateSeriesForm.xaml.cs">
+      <DependentUpon>RateSeriesForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SearchMovieDBForm.xaml.cs">
       <DependentUpon>SearchMovieDBForm.xaml</DependentUpon>
     </Compile>
@@ -238,6 +241,9 @@
     </Compile>
     <Compile Include="UserControls\EpisodeList.xaml.cs">
       <DependentUpon>EpisodeList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ExternalAnimeLinksControl.xaml.cs">
+      <DependentUpon>ExternalAnimeLinksControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\GroupFilterAdmin.xaml.cs">
       <DependentUpon>GroupFilterAdmin.xaml</DependentUpon>
@@ -400,6 +406,7 @@
     <Compile Include="ViewModel\CrossRef_AniDB_TvDBVM.cs" />
     <Compile Include="ViewModel\DashboardVM.cs" />
     <Compile Include="ViewModel\DuplicateFileVM.cs" />
+    <Compile Include="ViewModel\ExternalSiteLink.cs" />
     <Compile Include="ViewModel\GroupFilterConditionVM.cs" />
     <Compile Include="ViewModel\GroupFilterHelper.cs" />
     <Compile Include="ViewModel\GroupFilterSortingCriteria.cs" />
@@ -497,6 +504,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Forms\RateSeriesForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Forms\SearchMovieDBForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -590,6 +601,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\EpisodeList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ExternalAnimeLinksControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1370,6 +1385,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\16_folder_find.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\32_discussion.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

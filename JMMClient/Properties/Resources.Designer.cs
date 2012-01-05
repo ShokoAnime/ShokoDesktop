@@ -2617,6 +2617,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Prompt to rate series on completion.
+        /// </summary>
+        public static string PromptRateSeries {
+            get {
+                return ResourceManager.GetString("PromptRateSeries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AniDB Queue.
         /// </summary>
         public static string QueueGeneral {
@@ -3774,6 +3783,15 @@ namespace JMMClient.Properties {
         public static string Tooltip_MyList {
             get {
                 return ResourceManager.GetString("Tooltip_MyList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Whenever you watch the final episode in a series, a prompt will appear to ask you for a rating.
+        /// </summary>
+        public static string Tooltip_PromptRateSeries {
+            get {
+                return ResourceManager.GetString("Tooltip_PromptRateSeries", resourceCulture);
             }
         }
         

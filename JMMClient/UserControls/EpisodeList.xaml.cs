@@ -129,6 +129,9 @@ namespace JMMClient.UserControls
 				RefreshEpisodes();
 
 				this.Cursor = Cursors.Arrow;
+
+				Window parentWindow = Window.GetWindow(this);
+				Utils.PromptToRateSeries(animeSeries, parentWindow);
 			}
 			catch (Exception ex)
 			{

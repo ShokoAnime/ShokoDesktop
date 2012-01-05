@@ -1595,4 +1595,10 @@
   <data name="Dash_RecentEpisodes" xml:space="preserve">
     <value>Recently Watched Episodes</value>
   </data>
+  <data name="PromptRateSeries" xml:space="preserve">
+    <value>Prompt to rate series on completion</value>
+  </data>
+  <data name="Tooltip_PromptRateSeries" xml:space="preserve">
+    <value>Whenever you watch the final episode in a series, a prompt will appear to ask you for a rating</value>
+  </data>
 </root>

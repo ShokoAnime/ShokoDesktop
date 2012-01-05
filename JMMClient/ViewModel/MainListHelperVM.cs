@@ -686,6 +686,58 @@ namespace JMMClient
 
 		}
 
+		public AnimeSeriesVM GetSeriesForEpisode(AnimeEpisodeVM ep)
+		{
+			try
+			{
+				AnimeSeriesVM thisSeries = null;
+				foreach (AnimeSeriesVM ser in MainListHelperVM.Instance.AllSeries)
+				{
+					if (ser.AnimeSeriesID == ep.AnimeSeriesID)
+					{
+						thisSeries = ser;
+						break;
+					}
+				}
+				return thisSeries;
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+
+			return null;
+		}
+
+		public AnimeSeriesVM GetSeriesForVideo(int videoLocalID)
+		{
+			try
+			{
+				// get the episodes that this file applies to
+				List<JMMServerBinary.Contract_AnimeEpisode> eps = JMMServerVM.Instance.clientBinaryHTTP.GetEpisodesForFile(videoLocalID, 
+					JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+				foreach (JMMServerBinary.Contract_AnimeEpisode epcontract in eps)
+				{
+					AnimeSeriesVM thisSeries = null;
+					foreach (AnimeSeriesVM ser in MainListHelperVM.Instance.AllSeries)
+					{
+						if (ser.AnimeSeriesID == epcontract.AnimeSeriesID)
+						{
+							thisSeries = ser;
+							break;
+						}
+					}
+					return thisSeries;
+				}
+				
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+
+			return null;
+		}
 
 		public AnimeEpisodeVM GetEpisodeForVideo(VideoDetailedVM vid, EpisodeList epList)
 		{

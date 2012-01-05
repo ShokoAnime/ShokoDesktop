@@ -12,6 +12,8 @@ using JMMClient.Utilities;
 using JMMClient.UserControls;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using JMMClient.Forms;
+using System.Windows;
 
 namespace JMMClient
 {
@@ -81,13 +83,13 @@ namespace JMMClient
 
 		public static void ShowErrorMessage(Exception ex)
 		{
-			MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			System.Windows.Forms.MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			logger.ErrorException(ex.ToString(), ex);
 		}
 
 		public static void ShowErrorMessage(string msg)
 		{
-			MessageBox.Show(msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			System.Windows.Forms.MessageBox.Show(msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			logger.Error(msg);
 		}
 
@@ -643,6 +645,33 @@ namespace JMMClient
 				val = val.Substring(0, d);
 			}
 			return val.Trim();
+		}
+
+		public static void PromptToRateSeries(AnimeSeriesVM ser, Window parentWindow)
+		{
+			try
+			{
+				if (!AppSettings.DisplayRatingDialogOnCompletion) return;
+
+				// if the user doesn't have all the episodes return
+				if (ser.MissingEpisodeCount > 0) return;
+
+				// only prompt the user if the series has finished airing
+				// and the user has watched all the episodes
+				if (!ser.AniDB_Anime.FinishedAiring || !ser.AllFilesWatched) return;
+
+				if (ser.AniDB_Anime.Detail.UserHasVoted) return;
+
+				RateSeriesForm frm = new RateSeriesForm();
+				frm.Owner = parentWindow;
+				frm.Init(ser);
+				bool? result = frm.ShowDialog();
+
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
 		}
 	}
 }

@@ -145,11 +145,18 @@ namespace JMMClient
 
 		public void RefreshAnimeCrossRefs()
 		{
-			JMMServerBinary.Contract_AniDB_AnimeCrossRefs xrefDetails = JMMServerVM.Instance.clientBinaryHTTP.GetCrossRefDetails(this.AnimeID);
-			if (xrefDetails == null) return;
+			try
+			{
+				JMMServerBinary.Contract_AniDB_AnimeCrossRefs xrefDetails = JMMServerVM.Instance.clientBinaryHTTP.GetCrossRefDetails(this.AnimeID);
+				if (xrefDetails == null) return;
 
-			aniDB_AnimeCrossRefs = new AniDB_AnimeCrossRefsVM();
-			aniDB_AnimeCrossRefs.Populate(xrefDetails);
+				aniDB_AnimeCrossRefs = new AniDB_AnimeCrossRefsVM();
+				aniDB_AnimeCrossRefs.Populate(xrefDetails);
+			}
+			catch (Exception ex)
+			{
+				logger.ErrorException(ex.ToString(), ex);
+			}
 		}
 
 		private bool isImageEnabled = false;
@@ -417,6 +424,15 @@ namespace JMMClient
 			get
 			{
 				return string.Format(Constants.URLS.AniDB_Series, AnimeID);
+
+			}
+		}
+
+		public string AniDB_SiteURLDiscussion
+		{
+			get
+			{
+				return string.Format(Constants.URLS.AniDB_SeriesDiscussion, AnimeID);
 
 			}
 		}
@@ -737,6 +753,46 @@ namespace JMMClient
 			dictTvDBSeasonsSpecials = null;
 			dictTvDBSeasons = null;
 			dictTvDBEpisodes = null;
+		}
+
+		public List<ExternalSiteLink> ExternalSiteLinks
+		{
+			get
+			{
+				List<ExternalSiteLink> links = new List<ExternalSiteLink>();
+
+				ExternalSiteLink anidb = new ExternalSiteLink();
+				anidb.SiteName = "AniDB";
+				anidb.SiteLogo = @"/Images/anidb.ico";
+				anidb.SiteURL = AniDB_SiteURL;
+				anidb.SiteURLDiscussion = AniDB_SiteURLDiscussion;
+				links.Add(anidb);
+
+				//RefreshAnimeCrossRefs();
+
+				if (AniDB_AnimeCrossRefs != null && AniDB_AnimeCrossRefs.TvDBCrossRefExists && AniDB_AnimeCrossRefs.TvDBSeries != null)
+				{
+					ExternalSiteLink tvdb = new ExternalSiteLink();
+					tvdb.SiteName = "TvDB";
+					tvdb.SiteLogo = @"/Images/tvdb.ico";
+					tvdb.SiteURL = AniDB_AnimeCrossRefs.TvDBSeries.SeriesURL;
+					tvdb.SiteURLDiscussion = AniDB_AnimeCrossRefs.TvDBSeries.SeriesURL;
+					links.Add(tvdb);
+				}
+
+				if (AniDB_AnimeCrossRefs != null && AniDB_AnimeCrossRefs.TraktCrossRefExists && AniDB_AnimeCrossRefs.TraktShow != null)
+				{
+					ExternalSiteLink trakt = new ExternalSiteLink();
+					trakt.SiteName = "Trakt";
+					trakt.SiteLogo = @"/Images/trakttv.ico";
+					trakt.SiteURL = AniDB_AnimeCrossRefs.TraktShow.ShowURL;
+					trakt.SiteURLDiscussion = AniDB_AnimeCrossRefs.TraktShow.ShowURL;
+					links.Add(trakt);
+				}
+
+
+				return links;
+			}
 		}
 
 		public int LowestLevenshteinDistance(string input)

@@ -516,6 +516,16 @@ namespace JMMClient
 			}
 		}
 
+		public bool DisplayRatingDialogOnCompletion
+		{
+			get { return AppSettings.DisplayRatingDialogOnCompletion; }
+			set
+			{
+				AppSettings.DisplayRatingDialogOnCompletion = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("DisplayRatingDialogOnCompletion"));
+			}
+		}
+
 		public int GetSeriesWidgetPosition(SeriesWidgets swid)
 		{
 			// read the series widgets order

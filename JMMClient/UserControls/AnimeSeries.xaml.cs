@@ -879,19 +879,25 @@ namespace JMMClient.UserControls
 
 			try
 			{
+				Window parentWindow = Window.GetWindow(this);
+				AnimeSeriesVM serTemp = null;
+				bool newStatus = false;
+
 				if (obj.GetType() == typeof(VideoDetailedVM))
 				{
 					VideoDetailedVM vid = obj as VideoDetailedVM;
-					bool newStatus = !vid.Watched;
+					newStatus = !vid.Watched;
 					JMMServerVM.Instance.clientBinaryHTTP.ToggleWatchedStatusOnVideo(vid.VideoLocalID, newStatus, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
 
 					MainListHelperVM.Instance.UpdateHeirarchy(vid);
+
+					serTemp = MainListHelperVM.Instance.GetSeriesForVideo(vid.VideoLocalID);
 				}
 
 				if (obj.GetType() == typeof(AnimeEpisodeVM))
 				{
 					AnimeEpisodeVM ep = obj as AnimeEpisodeVM;
-					bool newStatus = !ep.Watched;
+					newStatus = !ep.Watched;
 					JMMServerBinary.Contract_ToggleWatchedStatusOnEpisode_Response response = JMMServerVM.Instance.clientBinaryHTTP.ToggleWatchedStatusOnEpisode(ep.AnimeEpisodeID,
 						newStatus, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
 					if (!string.IsNullOrEmpty(response.ErrorMessage))
@@ -901,9 +907,17 @@ namespace JMMClient.UserControls
 					}
 
 					MainListHelperVM.Instance.UpdateHeirarchy(response.AnimeEpisode);
+
+					serTemp = MainListHelperVM.Instance.GetSeriesForEpisode(ep);
 				}
 
 				ShowNextEpisode();
+
+				if (newStatus == true && serTemp != null)
+				{
+					Utils.PromptToRateSeries(serTemp, parentWindow);
+				}
+
 			}
 			catch (Exception ex)
 			{
