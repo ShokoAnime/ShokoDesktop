@@ -13,11 +13,14 @@ using System.Windows;
 using JMMClient.UserControls;
 using System.Threading;
 using JMMClient.ImageDownload;
+using NLog;
 
 namespace JMMClient
 {
 	public class DashboardVM : INotifyPropertyChanged
 	{
+		private static Logger logger = LogManager.GetCurrentClassLogger();
+
 		private static DashboardVM _instance;
 		//public ICollectionView ViewGroups { get; set; }
 		public ObservableCollection<AnimeEpisodeVM> EpsWatchNext_Recent { get; set; }
@@ -187,7 +190,7 @@ namespace JMMClient
 			}
 		}
 
-		public void RefreshTraktFriends()
+		public void RefreshTraktFriendsOld()
 		{
 			try
 			{
@@ -225,7 +228,7 @@ namespace JMMClient
 									}
 									catch (Exception ex)
 									{
-										Console.WriteLine(ex.ToString());
+										logger.ErrorException(ex.ToString(), ex);
 									}
 								}
 
@@ -236,41 +239,11 @@ namespace JMMClient
 								if (contractAct.ActivityType == (int)TraktActivityType.Episode)
 								{
 									Trakt_ActivityShoutEpisodeVM shoutEp = new Trakt_ActivityShoutEpisodeVM(contractAct);
-
-									if (!string.IsNullOrEmpty(shoutEp.UserFullImagePath) && !File.Exists(shoutEp.UserFullImagePath))
-									{
-										// re-download the friends avatar image
-										try
-										{
-											//ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.Trakt_ActivityScrobble, scrobble, true);
-											//MainWindow.imageHelper.DownloadImage(req);
-										}
-										catch (Exception ex)
-										{
-											Console.WriteLine(ex.ToString());
-										}
-									}
-
 									TraktActivity.Add(shoutEp);
 								}
 								else
 								{
 									Trakt_ActivityShoutShowVM shoutShow = new Trakt_ActivityShoutShowVM(contractAct);
-
-									if (!string.IsNullOrEmpty(shoutShow.UserFullImagePath) && !File.Exists(shoutShow.UserFullImagePath))
-									{
-										// re-download the friends avatar image
-										try
-										{
-											//ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.Trakt_ActivityScrobble, scrobble, true);
-											//MainWindow.imageHelper.DownloadImage(req);
-										}
-										catch (Exception ex)
-										{
-											Console.WriteLine(ex.ToString());
-										}
-									}
-
 									TraktActivity.Add(shoutShow);
 								}
 							}
@@ -292,7 +265,7 @@ namespace JMMClient
 									}
 									catch (Exception ex)
 									{
-										Console.WriteLine(ex.ToString());
+										logger.ErrorException(ex.ToString(), ex);
 									}
 								}
 								TraktActivity.Add(friend);
@@ -309,7 +282,116 @@ namespace JMMClient
 			}
 			catch (Exception ex)
 			{
-				Utils.ShowErrorMessage(ex);
+				logger.ErrorException(ex.ToString(), ex);
+			}
+			finally
+			{
+			}
+		}
+
+		public void RefreshTraktFriends()
+		{
+			try
+			{
+				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
+				{
+					TraktActivity.Clear();
+				});
+
+				JMMServerBinary.Contract_Trakt_Activity traktActivity = JMMServerVM.Instance.clientBinaryHTTP.GetTraktFriendInfo(AppSettings.Dash_TraktFriends_Items,
+					AppSettings.Dash_TraktFriends_AnimeOnly);
+
+				List<object> activity = new List<object>();
+
+				if (traktActivity.HasTraktAccount)
+				{
+					foreach (JMMServerBinary.Contract_Trakt_FriendFrequest contractFriend in traktActivity.TraktFriendRequests)
+					{
+						Trakt_FriendRequestVM req = new Trakt_FriendRequestVM(contractFriend);
+						activity.Add(req);
+					}
+
+					foreach (JMMServerBinary.Contract_Trakt_FriendActivity contractAct in traktActivity.TraktFriendActivity)
+					{
+						if (contractAct.ActivityAction == (int)TraktActivityAction.Scrobble)
+						{
+							Trakt_ActivityScrobbleVM scrobble = new Trakt_ActivityScrobbleVM(contractAct);
+
+							if (!string.IsNullOrEmpty(scrobble.UserFullImagePath) && !File.Exists(scrobble.UserFullImagePath))
+							{
+								// re-download the friends avatar image
+								try
+								{
+									System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
+									{
+										ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.Trakt_ActivityScrobble, scrobble, true);
+										MainWindow.imageHelper.DownloadImage(req);
+									});
+									
+								}
+								catch (Exception ex)
+								{
+									logger.ErrorException(ex.ToString(), ex);
+								}
+							}
+
+							activity.Add(scrobble);
+						}
+						else if (contractAct.ActivityAction == (int)TraktActivityAction.Shout)
+						{
+							if (contractAct.ActivityType == (int)TraktActivityType.Episode)
+							{
+								Trakt_ActivityShoutEpisodeVM shoutEp = new Trakt_ActivityShoutEpisodeVM(contractAct);
+								activity.Add(shoutEp);
+							}
+							else
+							{
+								Trakt_ActivityShoutShowVM shoutShow = new Trakt_ActivityShoutShowVM(contractAct);
+								activity.Add(shoutShow);
+							}
+						}
+					}
+
+					foreach (JMMServerBinary.Contract_Trakt_Friend contract in traktActivity.TraktFriends)
+					{
+						if (contract.WatchedEpisodes != null && contract.WatchedEpisodes.Count > 0)
+						{
+							Trakt_FriendVM friend = new Trakt_FriendVM(contract);
+
+							if (!string.IsNullOrEmpty(friend.FullImagePath) && !File.Exists(friend.FullImagePath))
+							{
+								// re-download the friends avatar image
+								try
+								{
+									ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.Trakt_Friend, friend, true);
+									MainWindow.imageHelper.DownloadImage(req);
+								}
+								catch (Exception ex)
+								{
+									logger.ErrorException(ex.ToString(), ex);
+								}
+							}
+							activity.Add(friend);
+						}
+					}
+				}
+				else
+				{
+					Trakt_SignupVM signup = new Trakt_SignupVM();
+					activity.Add(signup);
+				}
+
+				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
+				{
+					foreach (object act in activity)
+						TraktActivity.Add(act);
+					ViewTraktActivity.Refresh();
+				});
+				
+			}
+			catch (Exception ex)
+			{
+				logger.ErrorException(ex.ToString(), ex);
 			}
 			finally
 			{

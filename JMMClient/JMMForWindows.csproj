@@ -329,6 +329,9 @@
     <Compile Include="UserControls\Settings\LanguagePreferenceSettings.xaml.cs">
       <DependentUpon>LanguagePreferenceSettings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Settings\MALSettings.xaml.cs">
+      <DependentUpon>MALSettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Settings\MovieDBSettings.xaml.cs">
       <DependentUpon>MovieDBSettings.xaml</DependentUpon>
     </Compile>
@@ -398,6 +401,7 @@
     <Compile Include="ViewModel\AniDB_AnimeDetailedVM.cs" />
     <Compile Include="ViewModel\AnimeTagVM.cs" />
     <Compile Include="ViewModel\AnimeTitleVM.cs" />
+    <Compile Include="ViewModel\CrossRef_AniDB_MALVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_OtherResultVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_OtherVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_TraktResultVM.cs" />
@@ -716,6 +720,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\Settings\MALSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\Settings\MovieDBSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -912,6 +920,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_JMMUser.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_MALAnimeResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_MissingEpisode.datasource">

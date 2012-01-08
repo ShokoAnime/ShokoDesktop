@@ -410,6 +410,10 @@ namespace JMMClient
 			this.Trakt_Password = contract.Trakt_Password;
 			this.Trakt_UpdateFrequency = (ScheduledUpdateFrequency)contract.Trakt_UpdateFrequency;
 			this.Trakt_SyncFrequency = (ScheduledUpdateFrequency)contract.Trakt_SyncFrequency;
+
+			// MAL
+			this.MAL_Username = contract.MAL_Username;
+			this.MAL_Password = contract.MAL_Password;
 		}
 
 
@@ -506,6 +510,10 @@ namespace JMMClient
 				contract.Trakt_UpdateFrequency = (int)this.Trakt_UpdateFrequency;
 				contract.Trakt_SyncFrequency = (int)this.Trakt_SyncFrequency;
 
+				// MAL
+				contract.MAL_Username = this.MAL_Username;
+				contract.MAL_Password = this.MAL_Password;
+
 				JMMServerBinary.Contract_ServerSettings_SaveResponse response = _clientBinaryHTTP.SaveServerSettings(contract);
 				if (response.ErrorMessage.Length > 0)
 					return false;
@@ -543,6 +551,24 @@ namespace JMMClient
 				SaveServerSettings();
 
 				string response = _clientBinaryHTTP.TestTraktLogin();
+				if (string.IsNullOrEmpty(response))
+					MessageBox.Show("Success", "", MessageBoxButton.OK, MessageBoxImage.Information);
+				else
+					MessageBox.Show(response, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+		}
+
+		public void TestMALLogin()
+		{
+			try
+			{
+				SaveServerSettings();
+
+				string response = _clientBinaryHTTP.TestMALLogin();
 				if (string.IsNullOrEmpty(response))
 					MessageBox.Show("Success", "", MessageBoxButton.OK, MessageBoxImage.Information);
 				else
@@ -1309,6 +1335,28 @@ namespace JMMClient
 			{
 				trakt_Password = value;
 				OnPropertyChanged(new PropertyChangedEventArgs("Trakt_Password"));
+			}
+		}
+
+		private string mAL_Username = "";
+		public string MAL_Username
+		{
+			get { return mAL_Username; }
+			set
+			{
+				mAL_Username = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("MAL_Username"));
+			}
+		}
+
+		private string mAL_Password = "";
+		public string MAL_Password
+		{
+			get { return mAL_Password; }
+			set
+			{
+				mAL_Password = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("MAL_Password"));
 			}
 		}
 

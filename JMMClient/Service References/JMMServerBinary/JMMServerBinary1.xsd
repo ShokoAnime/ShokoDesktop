@@ -302,6 +302,29 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_AniDBReleaseGroup" nillable="true" type="tns:Contract_AniDBReleaseGroup" />
+  <xs:complexType name="ArrayOfContract_MALAnimeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_MALAnimeResponse" nillable="true" type="tns:Contract_MALAnimeResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_MALAnimeResponse" nillable="true" type="tns:ArrayOfContract_MALAnimeResponse" />
+  <xs:complexType name="Contract_MALAnimeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="animeType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="end_date" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="english" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="episodes" type="xs:int" />
+      <xs:element minOccurs="0" name="id" type="xs:int" />
+      <xs:element minOccurs="0" name="image" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="score" type="xs:decimal" />
+      <xs:element minOccurs="0" name="start_date" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="status" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="synonyms" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="synopsis" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="title" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_MALAnimeResponse" nillable="true" type="tns:Contract_MALAnimeResponse" />
   <xs:complexType name="Contract_GroupFilterExtended">
     <xs:sequence>
       <xs:element minOccurs="0" name="GroupCount" type="xs:int" />
@@ -923,6 +946,7 @@
   <xs:complexType name="Contract_AniDB_AnimeCrossRefs">
     <xs:sequence>
       <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
+      <xs:element minOccurs="0" name="CrossRef_AniDB_MAL" nillable="true" type="tns:Contract_CrossRef_AniDB_MAL" />
       <xs:element minOccurs="0" name="CrossRef_AniDB_MovieDB" nillable="true" type="tns:Contract_CrossRef_AniDB_Other" />
       <xs:element minOccurs="0" name="CrossRef_AniDB_Trakt" nillable="true" type="tns:Contract_CrossRef_AniDB_Trakt" />
       <xs:element minOccurs="0" name="CrossRef_AniDB_TvDB" nillable="true" type="tns:Contract_CrossRef_AniDB_TvDB" />
@@ -940,6 +964,16 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_AniDB_AnimeCrossRefs" nillable="true" type="tns:Contract_AniDB_AnimeCrossRefs" />
+  <xs:complexType name="Contract_CrossRef_AniDB_MAL">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
+      <xs:element minOccurs="0" name="CrossRefSource" type="xs:int" />
+      <xs:element minOccurs="0" name="CrossRef_AniDB_MALID" type="xs:int" />
+      <xs:element minOccurs="0" name="MALID" type="xs:int" />
+      <xs:element minOccurs="0" name="MALTitle" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_CrossRef_AniDB_MAL" nillable="true" type="tns:Contract_CrossRef_AniDB_MAL" />
   <xs:complexType name="Contract_MovieDB_Movie">
     <xs:sequence>
       <xs:element minOccurs="0" name="MovieDB_MovieID" type="xs:int" />
@@ -1101,6 +1135,8 @@
       <xs:element minOccurs="0" name="Import_UseExistingFileWatchedStatus" type="xs:boolean" />
       <xs:element minOccurs="0" name="LanguagePreference" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="LanguageUseSynonyms" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MAL_Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MAL_Username" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="MovieDB_AutoFanart" type="xs:boolean" />
       <xs:element minOccurs="0" name="MovieDB_AutoFanartAmount" type="xs:int" />
       <xs:element minOccurs="0" name="MovieDB_AutoPosters" type="xs:boolean" />

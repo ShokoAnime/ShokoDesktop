@@ -13,6 +13,14 @@ namespace JMMClient.ViewModel
 		public int TraktSeasonNumber { get; set; }
 		public int CrossRefSource { get; set; }
 
+		public string SiteURL
+		{
+			get
+			{
+				return string.Format(Constants.URLS.MAL_Series, TraktID);
+			}
+		}
+
 		public CrossRef_AniDB_TraktVM()
 		{
 		}

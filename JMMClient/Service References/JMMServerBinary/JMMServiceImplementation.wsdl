@@ -86,6 +86,18 @@
   <wsdl:message name="IJMMServer_GetEpisodesRecentlyWatched_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetEpisodesRecentlyWatchedResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_SearchMAL_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchMAL" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SearchMAL_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchMALResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_TestMALLogin_InputMessage">
+    <wsdl:part name="parameters" element="tns:TestMALLogin" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_TestMALLogin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TestMALLoginResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_GetGroupFilterExtended_InputMessage">
     <wsdl:part name="parameters" element="tns:GetGroupFilterExtended" />
   </wsdl:message>
@@ -971,6 +983,14 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetEpisodesRecentlyWatched" message="tns:IJMMServer_GetEpisodesRecentlyWatched_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetEpisodesRecentlyWatchedResponse" message="tns:IJMMServer_GetEpisodesRecentlyWatched_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="SearchMAL">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SearchMAL" message="tns:IJMMServer_SearchMAL_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SearchMALResponse" message="tns:IJMMServer_SearchMAL_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TestMALLogin">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/TestMALLogin" message="tns:IJMMServer_TestMALLogin_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/TestMALLoginResponse" message="tns:IJMMServer_TestMALLogin_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetGroupFilterExtended">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilterExtended" message="tns:IJMMServer_GetGroupFilterExtended_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilterExtendedResponse" message="tns:IJMMServer_GetGroupFilterExtended_OutputMessage" />
@@ -1627,6 +1647,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetEpisodesRecentlyWatched">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetEpisodesRecentlyWatched" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchMAL">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/SearchMAL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestMALLogin">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/TestMALLogin" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

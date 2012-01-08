@@ -58,6 +58,12 @@ namespace JMMClient.UserControls
 			btnUpdateTraktInfo.Click += new RoutedEventHandler(btnUpdateTraktInfo_Click);
 		}
 
+		#region MAL
+
+		#endregion
+
+		#region Trakt
+
 		void btnUpdateTraktInfo_Click(object sender, RoutedEventArgs e)
 		{
 			try
@@ -190,7 +196,9 @@ namespace JMMClient.UserControls
 			}
 		}
 
-		
+		#endregion
+
+		#region TvDB
 
 		void btnUpdateTvDBInfo_Click(object sender, RoutedEventArgs e)
 		{
@@ -326,27 +334,10 @@ namespace JMMClient.UserControls
 			}
 		}
 
-		
 
-		void TvDBAndOtherLinks_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-		{
-			try
-			{
-				if (this.DataContext == null)
-				{
-					AniDB_AnimeCrossRefs = null;
-					return;
-				}
+		#endregion
 
-				RefreshData();
-
-
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-		}
+		#region MovieDB
 
 		private void SearchMovieDB()
 		{
@@ -412,6 +403,28 @@ namespace JMMClient.UserControls
 
 					this.Cursor = Cursors.Arrow;
 				}
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+		}
+
+		#endregion
+
+		void TvDBAndOtherLinks_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+		{
+			try
+			{
+				if (this.DataContext == null)
+				{
+					AniDB_AnimeCrossRefs = null;
+					return;
+				}
+
+				RefreshData();
+
+
 			}
 			catch (Exception ex)
 			{

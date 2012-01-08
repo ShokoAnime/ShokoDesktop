@@ -268,6 +268,39 @@ namespace JMMClient.ViewModel
 			}
 		}
 
+		private CrossRef_AniDB_MALVM crossRef_AniDB_MAL = null;
+		public CrossRef_AniDB_MALVM CrossRef_AniDB_MAL
+		{
+			get { return crossRef_AniDB_MAL; }
+			set
+			{
+				crossRef_AniDB_MAL = value;
+				NotifyPropertyChanged("CrossRef_AniDB_MAL");
+			}
+		}
+
+		private bool mALCrossRefExists = false;
+		public bool MALCrossRefExists
+		{
+			get { return mALCrossRefExists; }
+			set
+			{
+				mALCrossRefExists = value;
+				NotifyPropertyChanged("MALCrossRefExists");
+			}
+		}
+
+		private bool mALCrossRefMissing = false;
+		public bool MALCrossRefMissing
+		{
+			get { return mALCrossRefMissing; }
+			set
+			{
+				mALCrossRefMissing = value;
+				NotifyPropertyChanged("MALCrossRefMissing");
+			}
+		}
+
 		public void Populate(JMMServerBinary.Contract_AniDB_AnimeCrossRefs details)
 		{
 			AnimeID = details.AnimeID;
@@ -293,8 +326,25 @@ namespace JMMClient.ViewModel
 			TraktImageFanart = null;
 			TraktImagePoster = null;
 
+			CrossRef_AniDB_MAL = null;
+
 			AllPosters = new List<PosterContainer>();
 			AllFanarts = new List<FanartContainer>();
+
+			// MAL
+			if (details.CrossRef_AniDB_MAL != null)
+				CrossRef_AniDB_MAL = new CrossRef_AniDB_MALVM(details.CrossRef_AniDB_MAL);
+
+			if (CrossRef_AniDB_MAL == null)
+			{
+				MALCrossRefExists = false;
+				MALCrossRefMissing = true;
+			}
+			else
+			{
+				MALCrossRefExists = true;
+				MALCrossRefMissing = false;
+			}
 
 			// Trakt
 			if (details.CrossRef_AniDB_Trakt != null)
