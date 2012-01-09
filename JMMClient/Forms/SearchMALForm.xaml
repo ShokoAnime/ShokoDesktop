@@ -32,12 +32,13 @@
                             <RowDefinition />
                             <RowDefinition />
                             <RowDefinition />
+                            <RowDefinition />
                         </Grid.RowDefinitions>
 
 
 
                         <Image Margin="5" Height="80" MaxWidth="50" HorizontalAlignment="Left" VerticalAlignment="Top"
-                            Source="{Binding Path=PosterPath}" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3">
+                            Source="{Binding Path=PosterPath}" Grid.Column="0" Grid.Row="0" Grid.RowSpan="4">
                             <Image.ToolTip>
                                 <Image Stretch="Fill" HorizontalAlignment="Center" Height="400" Source="{Binding PosterPath}">
                                 </Image>
@@ -50,11 +51,22 @@
                             <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=title}" Margin="5,0,0,0"/>
                             <usercontrols:HyperLinkStandard DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=MALShow}" VerticalAlignment="Center" URL="{Binding Path=SiteURL}" Margin="10,0,0,0"/>
 
-                            
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" Margin="0,0,0,5">
+
+                            <TextBlock VerticalAlignment="Center" Text="Episodes:" Margin="10,0,0,0"/>
+                            <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=episodes}" Margin="5,0,0,0"/>
+
+
+                            <TextBlock VerticalAlignment="Center" Text="{Binding Path=start_date}" Margin="15,0,0,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="to" Margin="5,0,0,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Binding Path=end_date}" Margin="5,0,0,0"/>
+
                         </StackPanel>
 
                         <!-- Use this button -->
-                        <Button Margin="10,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"
+                        <Button Margin="10,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"
                                     Command="{DynamicResource UseThisCommand}" CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,5,0"/>
