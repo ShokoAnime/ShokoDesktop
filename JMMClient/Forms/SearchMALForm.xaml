@@ -1,0 +1,199 @@
+﻿<Window x:Class="JMMClient.Forms.SearchMALForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:JMMClient"
+        xmlns:forms="clr-namespace:JMMClient.Forms"
+        xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
+        Title="Search MyAnimeList" Height="450" Width="700" ShowInTaskbar="False" WindowStyle="ToolWindow" Icon="/JMMDesktop;component/Images/myanimelist.ico"
+        WindowStartupLocation="CenterOwner" Topmost="False">
+    <Grid>
+        <Grid.Resources>
+
+            <ResourceDictionary>
+
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="/Resources/Styles.xaml" />
+                    <ResourceDictionary Source="/Resources/MainListStyles.xaml" />
+                    <ResourceDictionary Source="/Resources/MainListContent.xaml" />
+                </ResourceDictionary.MergedDictionaries>
+
+                <RoutedUICommand x:Key="UseThisCommand" Text="UseThisCommand" />
+
+                <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+
+                <!-- MALSearchResultTemplate -->
+                <DataTemplate x:Key="MALSearchResultTemplate">
+                    <Grid Margin="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+
+
+                        <Image Margin="5" Height="80" MaxWidth="50" HorizontalAlignment="Left" VerticalAlignment="Top"
+                            Source="{Binding Path=PosterPath}" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3">
+                            <Image.ToolTip>
+                                <Image Stretch="Fill" HorizontalAlignment="Center" Height="400" Source="{Binding PosterPath}">
+                                </Image>
+                            </Image.ToolTip>
+                        </Image>
+                        
+                        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" Margin="0,5,0,5">
+
+                            <TextBlock VerticalAlignment="Center" Text="{Binding Path=id}" Margin="10,0,0,0"/>
+                            <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=title}" Margin="5,0,0,0"/>
+                            <usercontrols:HyperLinkStandard DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=MALShow}" VerticalAlignment="Center" URL="{Binding Path=SiteURL}" Margin="10,0,0,0"/>
+
+                            
+                        </StackPanel>
+
+                        <!-- Use this button -->
+                        <Button Margin="10,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"
+                                    Command="{DynamicResource UseThisCommand}" CommandParameter="{Binding}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,5,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=UseThis}" Margin="0,0,5,0"/>
+                            </StackPanel>
+                        </Button>
+
+                    </Grid>
+                </DataTemplate>
+            </ResourceDictionary>
+
+
+
+        </Grid.Resources>
+
+        <Grid.CommandBindings>
+            <CommandBinding Command="{StaticResource UseThisCommand}" Executed="CommandBinding_UseThis" />
+        </Grid.CommandBindings>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+
+        <!-- Selected series details -->
+        <Border Grid.Row="0" Grid.Column="0" Margin="5,5,5,5" Padding="5" Background="#F1F1F1" BorderBrush="LightGray" BorderThickness="1">
+            <StackPanel Orientation="Horizontal"  Margin="0,0,0,5" DockPanel.Dock="Top">
+                <Image Height="16" Width="16" Source="/Images/myanimelist.ico" Margin="5,0,5,0"/>
+                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=MALSearchPrompt}" Margin="0,0,20,0"/>
+                <RadioButton Name="rbSearch" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Search}" Margin="5,0,0,0"/>
+                <RadioButton Name="rbExisting" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Existing}" Margin="5,0,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Search block -->
+        <Border Grid.Row="1" Grid.Column="0" Margin="5,5,5,5" Padding="5" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1"
+                Visibility="{Binding Path=IsSearch, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SearchMALForm}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <StackPanel Orientation="Horizontal"  Margin="0,0,0,0" DockPanel.Dock="Top">
+                <TextBox Name="txtSearch" Width="180" Margin="10,2,2,0" BorderThickness="1" />
+                <!-- search button -->
+                <Button Name="btnSearch" Margin="10,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                        <Image Height="16" Width="16" Source="/Images/MagnifyingGlass7.png" Margin="0,0,5,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </Border>
+
+        <!-- Existing ID block -->
+        <Border Grid.Row="1" Grid.Column="0" Margin="5,5,5,5" Padding="5" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1"
+                Visibility="{Binding Path=IsExisting, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SearchMALForm}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <StackPanel Orientation="Horizontal"  Margin="0,0,0,0" DockPanel.Dock="Top">
+                <TextBlock VerticalAlignment="Center" Text="ID" Margin="5,0,0,0"/>
+                <TextBox Name="txtMALID" Width="70" Margin="5,2,2,0" BorderThickness="1" />
+                <TextBlock VerticalAlignment="Center" Text="Title" Margin="5,0,0,0"/>
+                <TextBox Name="txtMALTitle" Width="200" Margin="5,2,2,0" BorderThickness="1" />
+                <StackPanel Orientation="Horizontal" Margin="5,0,5,0" VerticalAlignment="Center">
+                    <TextBlock VerticalAlignment="Center">
+                        <Hyperlink Name="hlURL">
+                            <TextBlock Name="txtLinkMALDB" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=MALShow}"/>
+                        </Hyperlink>
+                    </TextBlock>
+                    <Image Margin="5,0,0,0" Height="16" Width="16" Source="/Images/16_arrow45.png" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <!-- Use this button -->
+                <Button Name="btnUseThisExisting" Margin="10,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                        <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,5,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=UseThis}" Margin="0,0,5,0"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </Border>
+
+        <!-- Web Cache Recommendation -->
+        <Border Grid.Row="2" Grid.Column="0" Margin="5,5,5,5" Padding="5" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1"
+                Visibility="{Binding Path=HasWebCacheRec, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SearchMALForm}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal"  Margin="0,0,0,0" DockPanel.Dock="Top">
+                    <Image Margin="5,0,0,0" Height="16" Width="16" Source="/Images/16_star.png" VerticalAlignment="Center"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityRecommendation}" Margin="5,0,0,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="[" Margin="5,0,0,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Binding Path=CrossRef_AniDB_MALResult.MALID, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SearchMALForm}}}" Margin="10,0,0,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="-" Margin="5,0,0,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Binding Path=CrossRef_AniDB_MALResult.MALTitle, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SearchMALForm}}}" Margin="5,0,0,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="]" Margin="5,0,0,0"/>
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"  Margin="0,7,0,0" DockPanel.Dock="Top">
+                    <StackPanel Orientation="Horizontal" Margin="15,0,5,0" VerticalAlignment="Center">
+                        <TextBlock VerticalAlignment="Center">
+                        <Hyperlink Name="hlURLWebCache">
+                            <TextBlock Name="txtLink2" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=MALShow}"/>
+                        </Hyperlink>
+                    </TextBlock>
+                        <Image Margin="5,0,0,0" Height="16" Width="16" Source="/Images/16_arrow45.png" VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <!-- Use this button -->
+                    <Button Name="btnUseThis" Margin="10,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=UseThis}" Margin="0,0,5,0"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+
+
+            </StackPanel>
+        </Border>
+
+        <!-- Search results -->
+        <Border Grid.Row="3" Grid.Column="0" Margin="5,5,5,5" Background="White" BorderBrush="LightGray" BorderThickness="1">
+            <ListBox Name="lbFiles" BorderThickness="0" Background="Transparent" 
+                            ItemsSource="{Binding Path=MALSearchResults, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SearchMALForm}}}"
+                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                            ItemTemplate="{DynamicResource MALSearchResultTemplate}"
+                            ItemContainerStyle="{DynamicResource ListBoxItemStyle}" 
+                            />
+        </Border>
+
+        <DockPanel Grid.Row="4" Grid.Column="0"  Margin="5,5,5,5">
+
+            <Button Name="btnClose" Margin="2,2,2,2" Style="{DynamicResource RoundButtonStyle}" DockPanel.Dock="Right" HorizontalAlignment="Right">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Close}" Margin="0,0,5,0"/>
+                </StackPanel>
+            </Button>
+
+        </DockPanel>
+
+    </Grid>
+</Window>

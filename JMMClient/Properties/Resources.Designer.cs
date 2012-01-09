@@ -2203,6 +2203,24 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search on MyAnimelist or enter MAL ID.
+        /// </summary>
+        public static string MALSearchPrompt {
+            get {
+                return ResourceManager.GetString("MALSearchPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Go To MyAnimeList.
+        /// </summary>
+        public static string MALShow {
+            get {
+                return ResourceManager.GetString("MALShow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Missing.
         /// </summary>
         public static string Missing {
@@ -3733,6 +3751,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to How often data is updated, and how often an automatic search is performed to look for anime in your collection which doesn&apos;t have a MAL link.
+        /// </summary>
+        public static string Tooltip_MAL_UpdateFrequency {
+            get {
+                return ResourceManager.GetString("Tooltip_MAL_UpdateFrequency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Missing episodes from all release groups.
         /// </summary>
         public static string Tooltip_MissingEps {
@@ -3990,6 +4017,15 @@ namespace JMMClient.Properties {
         public static string Tooltip_WebCache_FileHashes {
             get {
                 return ResourceManager.GetString("Tooltip_WebCache_FileHashes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use the web cache to look up links between AniDB and MyAnimeList. If not selected you will need to manually search for all MAL links..
+        /// </summary>
+        public static string Tooltip_WebCache_MALAssociations {
+            get {
+                return ResourceManager.GetString("Tooltip_WebCache_MALAssociations", resourceCulture);
             }
         }
         
@@ -4476,6 +4512,15 @@ namespace JMMClient.Properties {
         public static string WebCache_FileHashes {
             get {
                 return ResourceManager.GetString("WebCache_FileHashes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MyAnimeList Links.
+        /// </summary>
+        public static string WebCache_MALAssociations {
+            get {
+                return ResourceManager.GetString("WebCache_MALAssociations", resourceCulture);
             }
         }
         

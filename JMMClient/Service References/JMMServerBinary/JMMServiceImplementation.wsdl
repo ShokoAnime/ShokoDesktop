@@ -98,6 +98,24 @@
   <wsdl:message name="IJMMServer_TestMALLogin_OutputMessage">
     <wsdl:part name="parameters" element="tns:TestMALLoginResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_GetMALCrossRefWebCache_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMALCrossRefWebCache" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetMALCrossRefWebCache_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMALCrossRefWebCacheResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_LinkAniDBMAL_InputMessage">
+    <wsdl:part name="parameters" element="tns:LinkAniDBMAL" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_LinkAniDBMAL_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LinkAniDBMALResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RemoveLinkAniDBMAL_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveLinkAniDBMAL" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RemoveLinkAniDBMAL_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveLinkAniDBMALResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_GetGroupFilterExtended_InputMessage">
     <wsdl:part name="parameters" element="tns:GetGroupFilterExtended" />
   </wsdl:message>
@@ -991,6 +1009,18 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/TestMALLogin" message="tns:IJMMServer_TestMALLogin_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/TestMALLoginResponse" message="tns:IJMMServer_TestMALLogin_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetMALCrossRefWebCache">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetMALCrossRefWebCache" message="tns:IJMMServer_GetMALCrossRefWebCache_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetMALCrossRefWebCacheResponse" message="tns:IJMMServer_GetMALCrossRefWebCache_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LinkAniDBMAL">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/LinkAniDBMAL" message="tns:IJMMServer_LinkAniDBMAL_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/LinkAniDBMALResponse" message="tns:IJMMServer_LinkAniDBMAL_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveLinkAniDBMAL">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RemoveLinkAniDBMAL" message="tns:IJMMServer_RemoveLinkAniDBMAL_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RemoveLinkAniDBMALResponse" message="tns:IJMMServer_RemoveLinkAniDBMAL_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetGroupFilterExtended">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilterExtended" message="tns:IJMMServer_GetGroupFilterExtended_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilterExtendedResponse" message="tns:IJMMServer_GetGroupFilterExtended_OutputMessage" />
@@ -1665,6 +1695,33 @@
     </wsdl:operation>
     <wsdl:operation name="TestMALLogin">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/TestMALLogin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMALCrossRefWebCache">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetMALCrossRefWebCache" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LinkAniDBMAL">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/LinkAniDBMAL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveLinkAniDBMAL">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/RemoveLinkAniDBMAL" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

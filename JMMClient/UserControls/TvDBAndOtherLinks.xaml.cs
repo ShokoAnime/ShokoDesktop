@@ -56,9 +56,88 @@ namespace JMMClient.UserControls
 			btnDeleteTraktLink.Click += new RoutedEventHandler(btnDeleteTraktLink_Click);
 			btnSwitchTraktSeason.Click += new RoutedEventHandler(btnSwitchTraktSeason_Click);
 			btnUpdateTraktInfo.Click += new RoutedEventHandler(btnUpdateTraktInfo_Click);
+
+			btnSearchExistingMAL.Click += new RoutedEventHandler(btnSearchExistingMAL_Click);
+			btnSearchMAL.Click += new RoutedEventHandler(btnSearchMAL_Click);
+			btnDeleteMALLink.Click += new RoutedEventHandler(btnDeleteMALLink_Click);
 		}
 
+		
+
+		
+
 		#region MAL
+
+		void btnSearchMAL_Click(object sender, RoutedEventArgs e)
+		{
+			SearchMAL();
+		}
+
+		void btnSearchExistingMAL_Click(object sender, RoutedEventArgs e)
+		{
+			SearchMAL();
+		}
+
+		private void SearchMAL()
+		{
+			try
+			{
+				AniDB_AnimeVM anime = this.DataContext as AniDB_AnimeVM;
+				if (anime == null) return;
+
+				Window wdw = Window.GetWindow(this);
+
+				this.Cursor = Cursors.Wait;
+				SearchMALForm frm = new SearchMALForm();
+				frm.Owner = wdw;
+				frm.Init(anime.AnimeID, anime.FormattedTitle);
+				bool? result = frm.ShowDialog();
+				if (result.Value)
+				{
+					// update info
+					RefreshData();
+				}
+
+				this.Cursor = Cursors.Arrow;
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+		}
+
+		void btnDeleteMALLink_Click(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				AniDB_AnimeVM anime = this.DataContext as AniDB_AnimeVM;
+				if (anime == null) return;
+
+				Window wdw = Window.GetWindow(this);
+
+				string msg = string.Format("Are you sure you want to delete this link?");
+				MessageBoxResult result = MessageBox.Show(msg, "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+				if (result == MessageBoxResult.Yes)
+				{
+					this.Cursor = Cursors.Wait;
+					string res = JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBMAL(anime.AnimeID);
+					if (res.Length > 0)
+						MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					else
+					{
+						// update info
+						RefreshData();
+					}
+
+					this.Cursor = Cursors.Arrow;
+				}
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+		}
 
 		#endregion
 

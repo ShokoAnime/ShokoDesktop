@@ -1601,4 +1601,19 @@
   <data name="Tooltip_PromptRateSeries" xml:space="preserve">
     <value>Whenever you watch the final episode in a series, a prompt will appear to ask you for a rating</value>
   </data>
+  <data name="MALSearchPrompt" xml:space="preserve">
+    <value>Search on MyAnimelist or enter MAL ID</value>
+  </data>
+  <data name="MALShow" xml:space="preserve">
+    <value>Go To MyAnimeList</value>
+  </data>
+  <data name="Tooltip_WebCache_MALAssociations" xml:space="preserve">
+    <value>Use the web cache to look up links between AniDB and MyAnimeList. If not selected you will need to manually search for all MAL links.</value>
+  </data>
+  <data name="WebCache_MALAssociations" xml:space="preserve">
+    <value>MyAnimeList Links</value>
+  </data>
+  <data name="Tooltip_MAL_UpdateFrequency" xml:space="preserve">
+    <value>How often data is updated, and how often an automatic search is performed to look for anime in your collection which doesn't have a MAL link</value>
+  </data>
 </root>

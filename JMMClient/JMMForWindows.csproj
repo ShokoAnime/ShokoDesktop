@@ -167,6 +167,9 @@
     <Compile Include="Forms\RateSeriesForm.xaml.cs">
       <DependentUpon>RateSeriesForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SearchMALForm.xaml.cs">
+      <DependentUpon>SearchMALForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SearchMovieDBForm.xaml.cs">
       <DependentUpon>SearchMovieDBForm.xaml</DependentUpon>
     </Compile>
@@ -401,6 +404,7 @@
     <Compile Include="ViewModel\AniDB_AnimeDetailedVM.cs" />
     <Compile Include="ViewModel\AnimeTagVM.cs" />
     <Compile Include="ViewModel\AnimeTitleVM.cs" />
+    <Compile Include="ViewModel\CrossRef_AniDB_MALResultVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_MALVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_OtherResultVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_OtherVM.cs" />
@@ -425,6 +429,7 @@
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="ViewModel\ImportFolderVM.cs" />
     <Compile Include="ViewModel\JMMServerVM.cs" />
+    <Compile Include="ViewModel\MALSearchResultVM.cs" />
     <Compile Include="ViewModel\MissingEpisodeVM.cs" />
     <Compile Include="ViewModel\MissingFileVM.cs" />
     <Compile Include="ViewModel\MovieDBMovieSearchResultVM.cs" />
@@ -509,6 +514,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\RateSeriesForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\SearchMALForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -875,6 +884,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AnimeSeries_SaveResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_MALResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_Other.datasource">

@@ -373,6 +373,8 @@ namespace JMMClient
 			this.WebCache_FileHashes_Send = contract.WebCache_FileHashes_Send;
 			this.WebCache_TvDB_Get = contract.WebCache_TvDB_Get;
 			this.WebCache_TvDB_Send = contract.WebCache_TvDB_Send;
+			this.WebCache_MAL_Get = contract.WebCache_MAL_Get;
+			this.WebCache_MAL_Send = contract.WebCache_MAL_Send;
 			this.WebCache_XRefFileEpisode_Get = contract.WebCache_XRefFileEpisode_Get;
 			this.WebCache_XRefFileEpisode_Send = contract.WebCache_XRefFileEpisode_Send;
 
@@ -414,6 +416,7 @@ namespace JMMClient
 			// MAL
 			this.MAL_Username = contract.MAL_Username;
 			this.MAL_Password = contract.MAL_Password;
+			this.MAL_UpdateFrequency = (ScheduledUpdateFrequency)contract.MAL_UpdateFrequency;
 		}
 
 
@@ -472,6 +475,8 @@ namespace JMMClient
 				contract.WebCache_FileHashes_Send = this.WebCache_FileHashes_Send;
 				contract.WebCache_TvDB_Get = this.WebCache_TvDB_Get;
 				contract.WebCache_TvDB_Send = this.WebCache_TvDB_Send;
+				contract.WebCache_MAL_Get = this.WebCache_MAL_Get;
+				contract.WebCache_MAL_Send = this.WebCache_MAL_Send;
 				contract.WebCache_XRefFileEpisode_Get = this.WebCache_XRefFileEpisode_Get;
 				contract.WebCache_XRefFileEpisode_Send = this.WebCache_XRefFileEpisode_Send;
 
@@ -513,6 +518,7 @@ namespace JMMClient
 				// MAL
 				contract.MAL_Username = this.MAL_Username;
 				contract.MAL_Password = this.MAL_Password;
+				contract.MAL_UpdateFrequency = (int)this.MAL_UpdateFrequency;
 
 				JMMServerBinary.Contract_ServerSettings_SaveResponse response = _clientBinaryHTTP.SaveServerSettings(contract);
 				if (response.ErrorMessage.Length > 0)
@@ -1081,6 +1087,30 @@ namespace JMMClient
 		}
 
 
+		private bool webCache_MAL_Get = false;
+		public bool WebCache_MAL_Get
+		{
+			get { return webCache_MAL_Get; }
+			set
+			{
+				webCache_MAL_Get = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("WebCache_MAL_Get"));
+			}
+		}
+
+		private bool webCache_MAL_Send = false;
+		public bool WebCache_MAL_Send
+		{
+			get { return webCache_MAL_Send; }
+			set
+			{
+				webCache_MAL_Send = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("WebCache_MAL_Send"));
+			}
+		}
+
+
+
 		private bool tvDB_AutoFanart = false;
 		public bool TvDB_AutoFanart
 		{
@@ -1357,6 +1387,17 @@ namespace JMMClient
 			{
 				mAL_Password = value;
 				OnPropertyChanged(new PropertyChangedEventArgs("MAL_Password"));
+			}
+		}
+
+		private ScheduledUpdateFrequency mAL_UpdateFrequency = ScheduledUpdateFrequency.Daily;
+		public ScheduledUpdateFrequency MAL_UpdateFrequency
+		{
+			get { return mAL_UpdateFrequency; }
+			set
+			{
+				mAL_UpdateFrequency = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("MAL_UpdateFrequency"));
 			}
 		}
 

@@ -325,6 +325,15 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_MALAnimeResponse" nillable="true" type="tns:Contract_MALAnimeResponse" />
+  <xs:complexType name="Contract_CrossRef_AniDB_MALResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
+      <xs:element minOccurs="0" name="CrossRefSource" type="xs:int" />
+      <xs:element minOccurs="0" name="MALID" type="xs:int" />
+      <xs:element minOccurs="0" name="MALTitle" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_CrossRef_AniDB_MALResult" nillable="true" type="tns:Contract_CrossRef_AniDB_MALResult" />
   <xs:complexType name="Contract_GroupFilterExtended">
     <xs:sequence>
       <xs:element minOccurs="0" name="GroupCount" type="xs:int" />
@@ -1136,6 +1145,7 @@
       <xs:element minOccurs="0" name="LanguagePreference" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="LanguageUseSynonyms" type="xs:boolean" />
       <xs:element minOccurs="0" name="MAL_Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MAL_UpdateFrequency" type="xs:int" />
       <xs:element minOccurs="0" name="MAL_Username" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="MovieDB_AutoFanart" type="xs:boolean" />
       <xs:element minOccurs="0" name="MovieDB_AutoFanartAmount" type="xs:int" />
@@ -1158,6 +1168,8 @@
       <xs:element minOccurs="0" name="WebCache_Anonymous" type="xs:boolean" />
       <xs:element minOccurs="0" name="WebCache_FileHashes_Get" type="xs:boolean" />
       <xs:element minOccurs="0" name="WebCache_FileHashes_Send" type="xs:boolean" />
+      <xs:element minOccurs="0" name="WebCache_MAL_Get" type="xs:boolean" />
+      <xs:element minOccurs="0" name="WebCache_MAL_Send" type="xs:boolean" />
       <xs:element minOccurs="0" name="WebCache_TvDB_Get" type="xs:boolean" />
       <xs:element minOccurs="0" name="WebCache_TvDB_Send" type="xs:boolean" />
       <xs:element minOccurs="0" name="WebCache_XRefFileEpisode_Get" type="xs:boolean" />

@@ -29,6 +29,8 @@ namespace JMMClient.UserControls
 			chkWebCache_FileHashes_Send.Click += new RoutedEventHandler(settingChanged);
 			chkWebCache_TvDBAssociations_Get.Click += new RoutedEventHandler(settingChanged);
 			chkWebCache_TvDBAssociations_Send.Click += new RoutedEventHandler(settingChanged);
+			chkWebCache_MALAssociations_Get.Click += new RoutedEventHandler(settingChanged);
+			chkWebCache_MALAssociations_Send.Click += new RoutedEventHandler(settingChanged);
 			btnSave.Click += new RoutedEventHandler(btnSave_Click);
 		}
 

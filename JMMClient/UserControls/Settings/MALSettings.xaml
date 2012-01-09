@@ -49,6 +49,17 @@
             </StackPanel>
         </Button>
 
+        <!-- Schedule Updates-->
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2" Margin="0,5,15,0">
+            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=UpdateFrequency}" VerticalAlignment="Center"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Margin="0,5,5,0">
+            <ComboBox Grid.Row="0" Name="cboUpdateFrequency" VerticalAlignment="Center"
+                      ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=UpdateFrequency}, 
+                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_MAL_UpdateFrequency}}"/>
+        </StackPanel>
+
 
         <!-- Visit Website -->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="4" Margin="0,10,15,0">
