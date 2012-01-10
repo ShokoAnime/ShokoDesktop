@@ -182,6 +182,9 @@
     <Compile Include="Forms\SelectDefaultSeriesForm.xaml.cs">
       <DependentUpon>SelectDefaultSeriesForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SelectMALStartForm.xaml.cs">
+      <DependentUpon>SelectMALStartForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SelectTraktSeasonForm.xaml.cs">
       <DependentUpon>SelectTraktSeasonForm.xaml</DependentUpon>
     </Compile>
@@ -534,6 +537,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\SelectDefaultSeriesForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\SelectMALStartForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

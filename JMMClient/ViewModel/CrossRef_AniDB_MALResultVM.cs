@@ -11,12 +11,22 @@ namespace JMMClient.ViewModel
 		public int MALID { get; set; }
 		public int CrossRefSource { get; set; }
 		public string MALTitle { get; set; }
+		public int StartEpisodeType { get; set; }
+		public int StartEpisodeNumber { get; set; }
 
 		public string SiteURL
 		{
 			get
 			{
 				return string.Format(Constants.URLS.MAL_Series, MALID);
+			}
+		}
+
+		public string StartEpisodeTypeString
+		{
+			get
+			{
+				return EnumTranslator.EpisodeTypeTranslated((EpisodeType)StartEpisodeType);
 			}
 		}
 
@@ -30,7 +40,8 @@ namespace JMMClient.ViewModel
 			this.MALID = contract.MALID;
 			this.CrossRefSource = contract.CrossRefSource;
 			this.MALTitle = contract.MALTitle;
-			
+			this.StartEpisodeType = contract.StartEpisodeType;
+			this.StartEpisodeNumber = contract.StartEpisodeNumber;
 		}
 
 		public override string ToString()

@@ -33,7 +33,7 @@ namespace JMMClient.Forms
 			typeof(bool), typeof(SearchMALForm), new UIPropertyMetadata(false, null));
 
 		public static readonly DependencyProperty CrossRef_AniDB_MALResultProperty = DependencyProperty.Register("CrossRef_AniDB_MALResult",
-			typeof(CrossRef_AniDB_MALResultVM), typeof(SearchMALForm), new UIPropertyMetadata(null, null));
+			typeof(List<CrossRef_AniDB_MALResultVM>), typeof(SearchMALForm), new UIPropertyMetadata(null, null));
 
 		public static readonly DependencyProperty MALSearchResultsProperty = DependencyProperty.Register("MALSearchResults",
 			typeof(List<MALSearchResultVM>), typeof(SearchMALForm), new UIPropertyMetadata(null, null));
@@ -56,9 +56,9 @@ namespace JMMClient.Forms
 			set { SetValue(HasWebCacheRecProperty, value); }
 		}
 
-		public CrossRef_AniDB_MALResultVM CrossRef_AniDB_MALResult
+		public List<CrossRef_AniDB_MALResultVM> CrossRef_AniDB_MALResult
 		{
-			get { return (CrossRef_AniDB_MALResultVM)GetValue(CrossRef_AniDB_MALResultProperty); }
+			get { return (List<CrossRef_AniDB_MALResultVM>)GetValue(CrossRef_AniDB_MALResultProperty); }
 			set { SetValue(CrossRef_AniDB_MALResultProperty, value); }
 		}
 
@@ -66,6 +66,15 @@ namespace JMMClient.Forms
 		{
 			get { return (List<MALSearchResultVM>)GetValue(MALSearchResultsProperty); }
 			set { SetValue(MALSearchResultsProperty, value); }
+		}
+
+		public static readonly DependencyProperty AnimeNameProperty = DependencyProperty.Register("AnimeName_MAL",
+			typeof(string), typeof(SearchTraktForm), new UIPropertyMetadata("", null));
+
+		public string AnimeName_MAL
+		{
+			get { return (string)GetValue(AnimeNameProperty); }
+			set { SetValue(AnimeNameProperty, value); }
 		}
 
 		private int AnimeID = 0;
@@ -79,7 +88,6 @@ namespace JMMClient.Forms
 			rbSearch.Checked += new RoutedEventHandler(rbSearch_Checked);
 
 			hlURL.Click += new RoutedEventHandler(hlURL_Click);
-			hlURLWebCache.Click += new RoutedEventHandler(hlURLWebCache_Click);
 
 			rbSearch.IsChecked = true;
 			rbExisting.IsChecked = false;
@@ -88,6 +96,8 @@ namespace JMMClient.Forms
 			btnClose.Click += new RoutedEventHandler(btnClose_Click);
 			btnUseThis.Click += new RoutedEventHandler(btnUseThis_Click);
 			btnUseThisExisting.Click += new RoutedEventHandler(btnUseThisExisting_Click);
+
+			CrossRef_AniDB_MALResult = new List<CrossRef_AniDB_MALResultVM>();
 		}
 
 		void btnUseThisExisting_Click(object sender, RoutedEventArgs e)
@@ -110,8 +120,21 @@ namespace JMMClient.Forms
 					return;
 				}
 
+				// prompt to select details
+				Window wdw = Window.GetWindow(this);
+
 				this.Cursor = Cursors.Wait;
-				LinkAniDBToMAL(id, txtMALTitle.Text.Trim());
+				SelectMALStartForm frm = new SelectMALStartForm();
+				frm.Owner = wdw;
+				frm.Init(AnimeID, AnimeName_MAL, txtMALTitle.Text.Trim(), id);
+				bool? result = frm.ShowDialog();
+				if (result.Value)
+				{
+					this.DialogResult = true;
+					this.Cursor = Cursors.Arrow;
+					this.Close();
+
+				}
 			}
 			catch (Exception ex)
 			{
@@ -128,7 +151,11 @@ namespace JMMClient.Forms
 			try
 			{
 				this.Cursor = Cursors.Wait;
-				LinkAniDBToMAL(CrossRef_AniDB_MALResult.MALID, CrossRef_AniDB_MALResult.MALTitle);
+
+				foreach (CrossRef_AniDB_MALResultVM xref in CrossRef_AniDB_MALResult)
+				{
+					LinkAniDBToMAL(xref.MALID, xref.MALTitle, xref.StartEpisodeType, xref.StartEpisodeNumber);
+				}
 			}
 			catch (Exception ex)
 			{
@@ -147,9 +174,9 @@ namespace JMMClient.Forms
 			this.Close();
 		}
 
-		private void LinkAniDBToMAL(int malID, string malTitle)
+		private void LinkAniDBToMAL(int malID, string malTitle, int epType, int epNumber)
 		{
-			string res = JMMServerVM.Instance.clientBinaryHTTP.LinkAniDBMAL(AnimeID, malID, malTitle);
+			string res = JMMServerVM.Instance.clientBinaryHTTP.LinkAniDBMAL(AnimeID, malID, malTitle, epType, epNumber);
 			if (res.Length > 0)
 				MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 			else
@@ -173,7 +200,22 @@ namespace JMMClient.Forms
 				{
 					this.Cursor = Cursors.Wait;
 					MALSearchResultVM searchResult = obj as MALSearchResultVM;
-					LinkAniDBToMAL(searchResult.id, searchResult.title);
+
+					// prompt to select details
+					Window wdw = Window.GetWindow(this);
+
+					this.Cursor = Cursors.Wait;
+					SelectMALStartForm frm = new SelectMALStartForm();
+					frm.Owner = wdw;
+					frm.Init(AnimeID, AnimeName_MAL, searchResult.title, searchResult.id);
+					bool? result = frm.ShowDialog();
+					if (result.Value)
+					{
+						this.DialogResult = true;
+						this.Cursor = Cursors.Arrow;
+						this.Close();
+
+					}
 				}
 			}
 			catch (Exception ex)
@@ -190,20 +232,26 @@ namespace JMMClient.Forms
 		void btnSearch_Click(object sender, RoutedEventArgs e)
 		{
 			HasWebCacheRec = false;
+			CrossRef_AniDB_MALResult.Clear();
+
 			if (!JMMServerVM.Instance.ServerOnline) return;
 
 			this.Cursor = Cursors.Wait;
 			try
 			{
 				// first find what the community recommends
-				JMMServerBinary.Contract_CrossRef_AniDB_MALResult xref = JMMServerVM.Instance.clientBinaryHTTP.GetMALCrossRefWebCache(AnimeID);
-				if (xref != null)
+				
+				List<JMMServerBinary.Contract_CrossRef_AniDB_MALResult> xrefs = JMMServerVM.Instance.clientBinaryHTTP.GetMALCrossRefWebCache(AnimeID);
+				if (xrefs != null)
 				{
-					CrossRef_AniDB_MALResult = new CrossRef_AniDB_MALResultVM(xref);
-					HasWebCacheRec = true;
+					foreach (JMMServerBinary.Contract_CrossRef_AniDB_MALResult xref in xrefs)
+					{
+						CrossRef_AniDB_MALResult.Add(new CrossRef_AniDB_MALResultVM(xref));
+						HasWebCacheRec = true;
+					}
 				}
 
-				// now search the TvDB
+				// now search MAL
 				MALSearchResults = new List<MALSearchResultVM>();
 				List<JMMServerBinary.Contract_MALAnimeResponse> malResults = JMMServerVM.Instance.clientBinaryHTTP.SearchMAL(txtSearch.Text.Trim());
 				foreach (JMMServerBinary.Contract_MALAnimeResponse malResult in malResults)
@@ -232,8 +280,9 @@ namespace JMMClient.Forms
 
 		void hlURLWebCache_Click(object sender, RoutedEventArgs e)
 		{
-			Uri uri = new Uri(string.Format(Constants.URLS.MAL_Series, CrossRef_AniDB_MALResult.MALID));
-			Process.Start(new ProcessStartInfo(uri.AbsoluteUri));
+			//TODO
+			//Uri uri = new Uri(string.Format(Constants.URLS.MAL_Series, CrossRef_AniDB_MALResult.MALID));
+			//Process.Start(new ProcessStartInfo(uri.AbsoluteUri));
 		}
 
 		void rbSearch_Checked(object sender, RoutedEventArgs e)
@@ -254,9 +303,10 @@ namespace JMMClient.Forms
 			HasWebCacheRec = IsSearch && CrossRef_AniDB_MALResult != null;
 		}
 
-		public void Init(int animeID, string searchCriteria)
+		public void Init(int animeID, string animeName, string searchCriteria)
 		{
 			AnimeID = animeID;
+			AnimeName_MAL = animeName;
 			txtSearch.Text = searchCriteria;
 		}
 	}

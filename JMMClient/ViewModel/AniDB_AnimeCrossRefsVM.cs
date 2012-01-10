@@ -268,8 +268,8 @@ namespace JMMClient.ViewModel
 			}
 		}
 
-		private CrossRef_AniDB_MALVM crossRef_AniDB_MAL = null;
-		public CrossRef_AniDB_MALVM CrossRef_AniDB_MAL
+		private List<CrossRef_AniDB_MALVM> crossRef_AniDB_MAL = null;
+		public List<CrossRef_AniDB_MALVM> CrossRef_AniDB_MAL
 		{
 			get { return crossRef_AniDB_MAL; }
 			set
@@ -333,9 +333,13 @@ namespace JMMClient.ViewModel
 
 			// MAL
 			if (details.CrossRef_AniDB_MAL != null)
-				CrossRef_AniDB_MAL = new CrossRef_AniDB_MALVM(details.CrossRef_AniDB_MAL);
+			{
+				CrossRef_AniDB_MAL = new List<CrossRef_AniDB_MALVM>();
+				foreach ( JMMServerBinary.Contract_CrossRef_AniDB_MAL contract in details.CrossRef_AniDB_MAL)
+					CrossRef_AniDB_MAL.Add(new CrossRef_AniDB_MALVM(contract));
+			}
 
-			if (CrossRef_AniDB_MAL == null)
+			if (CrossRef_AniDB_MAL == null || CrossRef_AniDB_MAL.Count == 0)
 			{
 				MALCrossRefExists = false;
 				MALCrossRefMissing = true;

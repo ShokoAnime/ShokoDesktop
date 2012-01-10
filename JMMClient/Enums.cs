@@ -143,7 +143,8 @@ namespace JMMClient
 		AssignedTvDBOrMovieDBInfo = 25,
 		AssignedMovieDBInfo = 26,
 		UserVotedAny = 27,
-		HasWatchedEpisodes = 28
+		HasWatchedEpisodes = 28,
+		AssignedMALInfo = 29,
 	}
 
 	public enum GroupFilterOperator
@@ -303,5 +304,42 @@ namespace JMMClient
 	{
 		Episode = 1,
 		Show = 2
+	}
+
+	public class EnumTranslator
+	{
+		public static string EpisodeTypeTranslated(EpisodeType epType)
+		{
+			switch (epType)
+			{
+				case EpisodeType.Credits:
+					return JMMClient.Properties.Resources.EpisodeType_Credits;
+				case EpisodeType.Episode:
+					return JMMClient.Properties.Resources.EpisodeType_Normal;
+				case EpisodeType.Other:
+					return JMMClient.Properties.Resources.EpisodeType_Other;
+				case EpisodeType.Parody:
+					return JMMClient.Properties.Resources.EpisodeType_Parody;
+				case EpisodeType.Special:
+					return JMMClient.Properties.Resources.EpisodeType_Specials;
+				case EpisodeType.Trailer:
+					return JMMClient.Properties.Resources.EpisodeType_Trailer;
+				default:
+					return JMMClient.Properties.Resources.EpisodeType_Normal;
+
+			}
+		}
+
+		public static EpisodeType EpisodeTypeTranslatedReverse(string epType)
+		{
+			if (epType == JMMClient.Properties.Resources.EpisodeType_Credits) return EpisodeType.Credits;
+			if (epType == JMMClient.Properties.Resources.EpisodeType_Normal) return EpisodeType.Episode;
+			if (epType == JMMClient.Properties.Resources.EpisodeType_Other) return EpisodeType.Other;
+			if (epType == JMMClient.Properties.Resources.EpisodeType_Parody) return EpisodeType.Parody;
+			if (epType == JMMClient.Properties.Resources.EpisodeType_Trailer) return EpisodeType.Trailer;
+			if (epType == JMMClient.Properties.Resources.EpisodeType_Specials) return EpisodeType.Special;
+
+			return EpisodeType.Episode;
+		}
 	}
 }

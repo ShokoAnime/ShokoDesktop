@@ -1312,6 +1312,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Has MAL Link.
+        /// </summary>
+        public static string GroupFilterConditionType_AssignedMALInfo {
+            get {
+                return ResourceManager.GetString("GroupFilterConditionType_AssignedMALInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Has MovieDB Link.
         /// </summary>
         public static string GroupFilterConditionType_AssignedMovieDBInfo {

@@ -199,6 +199,11 @@ namespace JMMClient
 						if (gfc.ConditionOperatorEnum == GroupFilterOperator.Exclude && grp.Stat_HasTvDBLink == true) return false;
 						break;
 
+
+					case GroupFilterConditionType.AssignedMALInfo:
+						if (gfc.ConditionOperatorEnum == GroupFilterOperator.Include && grp.Stat_HasMALLink == false) return false;
+						if (gfc.ConditionOperatorEnum == GroupFilterOperator.Exclude && grp.Stat_HasMALLink == true) return false;
+						break;
 					case GroupFilterConditionType.AssignedMovieDBInfo:
 						if (gfc.ConditionOperatorEnum == GroupFilterOperator.Include && grp.Stat_HasMovieDBLink == false) return false;
 						if (gfc.ConditionOperatorEnum == GroupFilterOperator.Exclude && grp.Stat_HasMovieDBLink == true) return false;
@@ -517,6 +522,12 @@ namespace JMMClient
 
 						if (gfc.ConditionOperatorEnum == GroupFilterOperator.Include && ser.CrossRef_AniDB_TvDB == null) return false;
 						if (gfc.ConditionOperatorEnum == GroupFilterOperator.Exclude && ser.CrossRef_AniDB_TvDB != null) return false;
+						break;
+
+					case GroupFilterConditionType.AssignedMALInfo:
+
+						if (gfc.ConditionOperatorEnum == GroupFilterOperator.Include && ser.CrossRef_AniDB_MAL == null) return false;
+						if (gfc.ConditionOperatorEnum == GroupFilterOperator.Exclude && ser.CrossRef_AniDB_MAL != null) return false;
 						break;
 
 					case GroupFilterConditionType.AssignedMovieDBInfo:

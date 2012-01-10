@@ -76,6 +76,32 @@
 
                     </Grid>
                 </DataTemplate>
+
+                <!-- MALWebCacheTemplate -->
+                <DataTemplate x:Key="MALWebCacheTemplate">
+                    <Grid Margin="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+
+                        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Margin="0,5,0,5">
+
+                            <TextBlock VerticalAlignment="Center" Text="{Binding Path=MALID}" Margin="10,0,0,0"/>
+                            <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=MALTitle}" Margin="5,0,0,0"/>
+                            <usercontrols:HyperLinkStandard DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=MALShow}" VerticalAlignment="Center" URL="{Binding Path=SiteURL}" Margin="10,0,0,0"/>
+
+                            <TextBlock VerticalAlignment="Center" Text="Starting at:" Margin="10,0,0,0"/>
+                            <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=StartEpisodeTypeString}" Margin="5,0,0,0"/>
+                            <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=StartEpisodeNumber}" Margin="5,0,0,0"/>
+
+                        </StackPanel>
+
+                    </Grid>
+                </DataTemplate>
             </ResourceDictionary>
 
 
@@ -157,31 +183,24 @@
                 <StackPanel Orientation="Horizontal"  Margin="0,0,0,0" DockPanel.Dock="Top">
                     <Image Margin="5,0,0,0" Height="16" Width="16" Source="/Images/16_star.png" VerticalAlignment="Center"/>
                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityRecommendation}" Margin="5,0,0,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="[" Margin="5,0,0,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Binding Path=CrossRef_AniDB_MALResult.MALID, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SearchMALForm}}}" Margin="10,0,0,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="-" Margin="5,0,0,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Binding Path=CrossRef_AniDB_MALResult.MALTitle, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SearchMALForm}}}" Margin="5,0,0,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="]" Margin="5,0,0,0"/>
-
-                </StackPanel>
-                <StackPanel Orientation="Horizontal"  Margin="0,7,0,0" DockPanel.Dock="Top">
-                    <StackPanel Orientation="Horizontal" Margin="15,0,5,0" VerticalAlignment="Center">
-                        <TextBlock VerticalAlignment="Center">
-                        <Hyperlink Name="hlURLWebCache">
-                            <TextBlock Name="txtLink2" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=MALShow}"/>
-                        </Hyperlink>
-                    </TextBlock>
-                        <Image Margin="5,0,0,0" Height="16" Width="16" Source="/Images/16_arrow45.png" VerticalAlignment="Center"/>
-                    </StackPanel>
 
                     <!-- Use this button -->
-                    <Button Name="btnUseThis" Margin="10,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Button Name="btnUseThis" Margin="10,0,2,0" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,5,0"/>
                             <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=UseThis}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
+
                 </StackPanel>
+
+
+                <ListBox Name="lbWebCache" BorderThickness="0" Background="Transparent" Margin="20,5,0,0"
+                            ItemsSource="{Binding Path=CrossRef_AniDB_MALResult, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SearchMALForm}}}"
+                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                            ItemTemplate="{DynamicResource MALWebCacheTemplate}"
+                            ItemContainerStyle="{DynamicResource ListBoxItemStylePlain}" 
+                            />
 
 
             </StackPanel>

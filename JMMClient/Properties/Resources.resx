@@ -1616,4 +1616,7 @@
   <data name="Tooltip_MAL_UpdateFrequency" xml:space="preserve">
     <value>How often data is updated, and how often an automatic search is performed to look for anime in your collection which doesn't have a MAL link</value>
   </data>
+  <data name="GroupFilterConditionType_AssignedMALInfo" xml:space="preserve">
+    <value>Has MAL Link</value>
+  </data>
 </root>

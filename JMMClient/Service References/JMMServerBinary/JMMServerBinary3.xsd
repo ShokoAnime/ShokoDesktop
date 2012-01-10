@@ -195,7 +195,7 @@
   <xs:element name="GetMALCrossRefWebCacheResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetMALCrossRefWebCacheResult" nillable="true" type="q5:Contract_CrossRef_AniDB_MALResult" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetMALCrossRefWebCacheResult" nillable="true" type="q5:ArrayOfContract_CrossRef_AniDB_MALResult" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -205,6 +205,8 @@
         <xs:element minOccurs="0" name="animeID" type="xs:int" />
         <xs:element minOccurs="0" name="malID" type="xs:int" />
         <xs:element minOccurs="0" name="malTitle" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="epType" type="xs:int" />
+        <xs:element minOccurs="0" name="epNumber" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -219,6 +221,8 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="animeID" type="xs:int" />
+        <xs:element minOccurs="0" name="epType" type="xs:int" />
+        <xs:element minOccurs="0" name="epNumber" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

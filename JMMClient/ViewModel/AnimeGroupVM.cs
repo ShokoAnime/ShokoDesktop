@@ -47,6 +47,7 @@ namespace JMMClient
 		public string Stat_AudioLanguages { get; set; }
 		public string Stat_SubtitleLanguages { get; set; }
 		public bool Stat_HasTvDBLink { get; set; }
+		public bool Stat_HasMALLink { get; set; }
 		public bool Stat_HasMovieDBLink { get; set; }
 		public bool Stat_HasMovieDBOrTvDBLink { get; set; }
 		public int Stat_SeriesCount { get; set; }
@@ -649,6 +650,7 @@ namespace JMMClient
 			this.Stat_AudioLanguages = contract.Stat_AudioLanguages;
 			this.Stat_SubtitleLanguages = contract.Stat_SubtitleLanguages;
 			this.Stat_HasTvDBLink = contract.Stat_HasTvDBLink;
+			this.Stat_HasMALLink = contract.Stat_HasMALLink;
 			this.Stat_HasMovieDBLink = contract.Stat_HasMovieDBLink;
 			this.Stat_HasMovieDBOrTvDBLink = contract.Stat_HasMovieDBOrTvDBLink;
 			this.Stat_SeriesCount = contract.Stat_SeriesCount;

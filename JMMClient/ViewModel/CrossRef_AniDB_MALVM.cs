@@ -12,9 +12,27 @@ namespace JMMClient.ViewModel
 		public int MALID { get; set; }
 		public string MALTitle { get; set; }
 		public int CrossRefSource { get; set; }
+		public int StartEpisodeType { get; set; }
+		public int StartEpisodeNumber { get; set; }
+
+		public string SiteURL
+		{
+			get
+			{
+				return string.Format(Constants.URLS.MAL_Series, MALID);
+			}
+		}
 
 		public CrossRef_AniDB_MALVM()
 		{
+		}
+
+		public string StartEpisodeTypeString
+		{
+			get
+			{
+				return EnumTranslator.EpisodeTypeTranslated((EpisodeType)StartEpisodeType);
+			}
 		}
 
 		public CrossRef_AniDB_MALVM(JMMServerBinary.Contract_CrossRef_AniDB_MAL contract)
@@ -24,6 +42,8 @@ namespace JMMClient.ViewModel
 			this.MALID = contract.MALID;
 			this.MALTitle = contract.MALTitle;
 			this.CrossRefSource = contract.CrossRefSource;
+			this.StartEpisodeType = contract.StartEpisodeType;
+			this.StartEpisodeNumber = contract.StartEpisodeNumber;
 		}
 
 		public override string ToString()

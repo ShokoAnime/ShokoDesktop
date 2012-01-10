@@ -178,6 +178,7 @@ namespace JMMClient.ViewModel
 				case GroupFilterConditionType.AnimeGroup: return Properties.Resources.GroupFilterConditionType_AnimeGroup;
 				case GroupFilterConditionType.AnimeType: return Properties.Resources.GroupFilterConditionType_AnimeType;
 				case GroupFilterConditionType.AssignedTvDBInfo: return Properties.Resources.GroupFilterConditionType_AssignedTvDBInfo;
+				case GroupFilterConditionType.AssignedMALInfo: return Properties.Resources.GroupFilterConditionType_AssignedMALInfo;
 				case GroupFilterConditionType.AssignedMovieDBInfo: return Properties.Resources.GroupFilterConditionType_AssignedMovieDBInfo;
 				case GroupFilterConditionType.AssignedTvDBOrMovieDBInfo: return Properties.Resources.GroupFilterConditionType_AssignedTvDBOrMovieDBInfo;
 				case GroupFilterConditionType.Category: return Properties.Resources.GroupFilterConditionType_Category;
@@ -211,6 +212,7 @@ namespace JMMClient.ViewModel
 			if (enumDesc == Properties.Resources.GroupFilterConditionType_AnimeGroup) return GroupFilterConditionType.AnimeGroup;
 			if (enumDesc == Properties.Resources.GroupFilterConditionType_AnimeType) return GroupFilterConditionType.AnimeType;
 			if (enumDesc == Properties.Resources.GroupFilterConditionType_AssignedTvDBInfo) return GroupFilterConditionType.AssignedTvDBInfo;
+			if (enumDesc == Properties.Resources.GroupFilterConditionType_AssignedMALInfo) return GroupFilterConditionType.AssignedMALInfo;
 			if (enumDesc == Properties.Resources.GroupFilterConditionType_AssignedMovieDBInfo) return GroupFilterConditionType.AssignedMovieDBInfo;
 			if (enumDesc == Properties.Resources.GroupFilterConditionType_AssignedTvDBOrMovieDBInfo) return GroupFilterConditionType.AssignedTvDBOrMovieDBInfo;
 			if (enumDesc == Properties.Resources.GroupFilterConditionType_Category) return GroupFilterConditionType.Category;
@@ -252,6 +254,7 @@ namespace JMMClient.ViewModel
 			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.Favourite));
 			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.VideoQuality));
 			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.AssignedTvDBInfo));
+			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.AssignedMALInfo));
 			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.AssignedMovieDBInfo));
 			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.AssignedTvDBOrMovieDBInfo));
 			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.Category));
@@ -334,6 +337,10 @@ namespace JMMClient.ViewModel
 					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.NotIn));
 					break;
 				case GroupFilterConditionType.AssignedTvDBInfo:
+					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Include));
+					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Exclude));
+					break;
+				case GroupFilterConditionType.AssignedMALInfo:
 					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Include));
 					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Exclude));
 					break;

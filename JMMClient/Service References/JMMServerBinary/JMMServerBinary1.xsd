@@ -236,6 +236,7 @@
       <xs:element minOccurs="0" name="Stat_AudioLanguages" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Stat_EndDate" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Stat_HasFinishedAiring" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Stat_HasMALLink" type="xs:boolean" />
       <xs:element minOccurs="0" name="Stat_HasMovieDBLink" type="xs:boolean" />
       <xs:element minOccurs="0" name="Stat_HasMovieDBOrTvDBLink" type="xs:boolean" />
       <xs:element minOccurs="0" name="Stat_HasTvDBLink" type="xs:boolean" />
@@ -325,12 +326,20 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_MALAnimeResponse" nillable="true" type="tns:Contract_MALAnimeResponse" />
+  <xs:complexType name="ArrayOfContract_CrossRef_AniDB_MALResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_CrossRef_AniDB_MALResult" nillable="true" type="tns:Contract_CrossRef_AniDB_MALResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_CrossRef_AniDB_MALResult" nillable="true" type="tns:ArrayOfContract_CrossRef_AniDB_MALResult" />
   <xs:complexType name="Contract_CrossRef_AniDB_MALResult">
     <xs:sequence>
       <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
       <xs:element minOccurs="0" name="CrossRefSource" type="xs:int" />
       <xs:element minOccurs="0" name="MALID" type="xs:int" />
       <xs:element minOccurs="0" name="MALTitle" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StartEpisodeNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="StartEpisodeType" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_CrossRef_AniDB_MALResult" nillable="true" type="tns:Contract_CrossRef_AniDB_MALResult" />
@@ -393,6 +402,7 @@
       <xs:element minOccurs="0" name="AniDB_ID" type="xs:int" />
       <xs:element minOccurs="0" name="AnimeGroupID" type="xs:int" />
       <xs:element minOccurs="0" name="AnimeSeriesID" type="xs:int" />
+      <xs:element minOccurs="0" name="CrossRefAniDBMAL" nillable="true" type="tns:ArrayOfContract_CrossRef_AniDB_MAL" />
       <xs:element minOccurs="0" name="CrossRefAniDBMovieDB" nillable="true" type="tns:Contract_CrossRef_AniDB_Other" />
       <xs:element minOccurs="0" name="CrossRefAniDBTvDB" nillable="true" type="tns:Contract_CrossRef_AniDB_TvDB" />
       <xs:element minOccurs="0" name="DateTimeCreated" type="xs:dateTime" />
@@ -414,6 +424,24 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_AnimeSeries" nillable="true" type="tns:Contract_AnimeSeries" />
+  <xs:complexType name="ArrayOfContract_CrossRef_AniDB_MAL">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_CrossRef_AniDB_MAL" nillable="true" type="tns:Contract_CrossRef_AniDB_MAL" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_CrossRef_AniDB_MAL" nillable="true" type="tns:ArrayOfContract_CrossRef_AniDB_MAL" />
+  <xs:complexType name="Contract_CrossRef_AniDB_MAL">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
+      <xs:element minOccurs="0" name="CrossRefSource" type="xs:int" />
+      <xs:element minOccurs="0" name="CrossRef_AniDB_MALID" type="xs:int" />
+      <xs:element minOccurs="0" name="MALID" type="xs:int" />
+      <xs:element minOccurs="0" name="MALTitle" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StartEpisodeNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="StartEpisodeType" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_CrossRef_AniDB_MAL" nillable="true" type="tns:Contract_CrossRef_AniDB_MAL" />
   <xs:complexType name="Contract_CrossRef_AniDB_Other">
     <xs:sequence>
       <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
@@ -955,7 +983,7 @@
   <xs:complexType name="Contract_AniDB_AnimeCrossRefs">
     <xs:sequence>
       <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
-      <xs:element minOccurs="0" name="CrossRef_AniDB_MAL" nillable="true" type="tns:Contract_CrossRef_AniDB_MAL" />
+      <xs:element minOccurs="0" name="CrossRef_AniDB_MAL" nillable="true" type="tns:ArrayOfContract_CrossRef_AniDB_MAL" />
       <xs:element minOccurs="0" name="CrossRef_AniDB_MovieDB" nillable="true" type="tns:Contract_CrossRef_AniDB_Other" />
       <xs:element minOccurs="0" name="CrossRef_AniDB_Trakt" nillable="true" type="tns:Contract_CrossRef_AniDB_Trakt" />
       <xs:element minOccurs="0" name="CrossRef_AniDB_TvDB" nillable="true" type="tns:Contract_CrossRef_AniDB_TvDB" />
@@ -973,16 +1001,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_AniDB_AnimeCrossRefs" nillable="true" type="tns:Contract_AniDB_AnimeCrossRefs" />
-  <xs:complexType name="Contract_CrossRef_AniDB_MAL">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
-      <xs:element minOccurs="0" name="CrossRefSource" type="xs:int" />
-      <xs:element minOccurs="0" name="CrossRef_AniDB_MALID" type="xs:int" />
-      <xs:element minOccurs="0" name="MALID" type="xs:int" />
-      <xs:element minOccurs="0" name="MALTitle" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_CrossRef_AniDB_MAL" nillable="true" type="tns:Contract_CrossRef_AniDB_MAL" />
   <xs:complexType name="Contract_MovieDB_Movie">
     <xs:sequence>
       <xs:element minOccurs="0" name="MovieDB_MovieID" type="xs:int" />

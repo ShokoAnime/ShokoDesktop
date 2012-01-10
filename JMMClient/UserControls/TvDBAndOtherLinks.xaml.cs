@@ -59,7 +59,6 @@ namespace JMMClient.UserControls
 
 			btnSearchExistingMAL.Click += new RoutedEventHandler(btnSearchExistingMAL_Click);
 			btnSearchMAL.Click += new RoutedEventHandler(btnSearchMAL_Click);
-			btnDeleteMALLink.Click += new RoutedEventHandler(btnDeleteMALLink_Click);
 		}
 
 		
@@ -90,7 +89,7 @@ namespace JMMClient.UserControls
 				this.Cursor = Cursors.Wait;
 				SearchMALForm frm = new SearchMALForm();
 				frm.Owner = wdw;
-				frm.Init(anime.AnimeID, anime.FormattedTitle);
+				frm.Init(anime.AnimeID, anime.FormattedTitle, anime.MainTitle);
 				bool? result = frm.ShowDialog();
 				if (result.Value)
 				{
@@ -106,38 +105,54 @@ namespace JMMClient.UserControls
 			}
 		}
 
-		void btnDeleteMALLink_Click(object sender, RoutedEventArgs e)
+		private void CommandBinding_DeleteMALLink(object sender, ExecutedRoutedEventArgs e)
 		{
+			object obj = e.Parameter;
+			if (obj == null) return;
+
 			try
 			{
 				AniDB_AnimeVM anime = this.DataContext as AniDB_AnimeVM;
 				if (anime == null) return;
 
-				Window wdw = Window.GetWindow(this);
-
-				string msg = string.Format("Are you sure you want to delete this link?");
-				MessageBoxResult result = MessageBox.Show(msg, "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-
-				if (result == MessageBoxResult.Yes)
+				if (obj.GetType() == typeof(CrossRef_AniDB_MALVM))
 				{
 					this.Cursor = Cursors.Wait;
-					string res = JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBMAL(anime.AnimeID);
-					if (res.Length > 0)
-						MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-					else
-					{
-						// update info
-						RefreshData();
-					}
+					CrossRef_AniDB_MALVM malLink = obj as CrossRef_AniDB_MALVM;
 
-					this.Cursor = Cursors.Arrow;
+					// prompt to select details
+					Window wdw = Window.GetWindow(this);
+
+					string msg = string.Format("Are you sure you want to delete this link?");
+					MessageBoxResult result = MessageBox.Show(msg, "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+					if (result == MessageBoxResult.Yes)
+					{
+						this.Cursor = Cursors.Wait;
+
+						string res = JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBMAL(anime.AnimeID, malLink.StartEpisodeType, malLink.StartEpisodeNumber);
+						if (res.Length > 0)
+							MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+						else
+						{
+							// update info
+							RefreshData();
+						}
+
+						this.Cursor = Cursors.Arrow;
+					}
 				}
 			}
 			catch (Exception ex)
 			{
 				Utils.ShowErrorMessage(ex);
 			}
+			finally
+			{
+				this.Cursor = Cursors.Arrow;
+			}
 		}
+
 
 		#endregion
 
