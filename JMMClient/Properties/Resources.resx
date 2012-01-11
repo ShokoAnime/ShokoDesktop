@@ -1619,4 +1619,10 @@
   <data name="GroupFilterConditionType_AssignedMALInfo" xml:space="preserve">
     <value>Has MAL Link</value>
   </data>
+  <data name="Tooltip_UseFanartOnSeries" xml:space="preserve">
+    <value>User Fanart instead of posters (where available) on Series Display</value>
+  </data>
+  <data name="UseFanartOnSeries" xml:space="preserve">
+    <value>User Fanart On Series Display</value>
+  </data>
 </root>

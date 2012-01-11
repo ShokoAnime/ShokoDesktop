@@ -226,6 +226,9 @@
     <Compile Include="UserControls\AnimeSeries.xaml.cs">
       <DependentUpon>AnimeSeries.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\AnimeSeries_Hulu.xaml.cs">
+      <DependentUpon>AnimeSeries_Hulu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\AvdumpFileControl.xaml.cs">
       <DependentUpon>AvdumpFileControl.xaml</DependentUpon>
     </Compile>
@@ -593,6 +596,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\AnimeSeries.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\AnimeSeries_Hulu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -71,47 +71,58 @@
                                                 Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_PromptRateSeries}}"/>
         </StackPanel>
 
-        
-        
-        <!-- Group List -->
+        <!-- User fanart on series -->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="4" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=EpisodeDetailStyle}" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=UseFanartOnSeries}"  VerticalAlignment="Top"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="4" Margin="0,5,5,0">
+            <CheckBox Name="chkSeriesFanart" IsChecked="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=UseFanartOnSeries}" VerticalAlignment="Center"
+                      ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=UseFanartOnSeries}, 
+                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_UseFanartOnSeries}}"/>
+        </StackPanel>
+
+
+
+        <!-- Group List -->
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="5" Margin="0,5,15,0">
+            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=EpisodeDetailStyle}" VerticalAlignment="Center"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="5" Margin="0,5,5,0">
             <ComboBox Grid.Row="0" Name="cboStyleEpisodeDetail" VerticalAlignment="Center"
                               ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=EpisodeDetailStyle}, 
                                                 Body={Resx ResxName=JMMClient.Properties.Resources, Key=EpisodeDetailStyle}}"></ComboBox>
         </StackPanel>
 
         <!-- Episode Title source -->
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="5" Margin="0,5,15,0">
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="6" Margin="0,5,15,0">
             <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=EpisodeTitleSourceStyle}" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="5" Margin="0,5,5,0">
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="6" Margin="0,5,5,0">
             <ComboBox Grid.Row="0" Name="cboStyleEpisodeTitle" VerticalAlignment="Center"
                               ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=EpisodeTitleSourceStyle}, 
                                                 Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_EpisodeTitleSourceStyle}}"></ComboBox>
         </StackPanel>
 
         <!-- Series Overview source -->
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="6" Margin="0,5,15,0">
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="7" Margin="0,5,15,0">
             <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesOverviewSourceStyle}" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="6" Margin="0,5,5,0">
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="7" Margin="0,5,5,0">
             <ComboBox Grid.Row="0" Name="cboStyleSeriesOverview" VerticalAlignment="Center"
                               ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=SeriesOverviewSourceStyle}, 
                                                 Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_SeriesOverviewSourceStyle}}"></ComboBox>
         </StackPanel>
 
         <!-- Series Name source -->
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="7" Margin="0,5,15,0">
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="8" Margin="0,5,15,0">
             <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesNameSourceStyle}" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="7" Margin="0,5,5,0">
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="8" Margin="0,5,5,0">
             <ComboBox Grid.Row="0" Name="cboStyleSeriesName" VerticalAlignment="Center"
                               ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=SeriesNameSourceStyle}, 
                                                 Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_SeriesNameSourceStyle}}"></ComboBox>

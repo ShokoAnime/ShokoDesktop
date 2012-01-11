@@ -37,18 +37,73 @@ namespace JMMClient.UserControls
 			set { SetValue(EpisodeMissingProperty, value); }
 		}
 
+		public static readonly DependencyProperty FullOverviewProperty = DependencyProperty.Register("FullOverview",
+			typeof(bool), typeof(PlayNextEpisodeControl), new UIPropertyMetadata(false, null));
+
+		public bool FullOverview
+		{
+			get { return (bool)GetValue(FullOverviewProperty); }
+			set { SetValue(FullOverviewProperty, value); }
+		}
+
+		public static readonly DependencyProperty TruncatedOverviewProperty = DependencyProperty.Register("TruncatedOverview",
+			typeof(bool), typeof(PlayNextEpisodeControl), new UIPropertyMetadata(true, null));
+
+		public bool TruncatedOverview
+		{
+			get { return (bool)GetValue(TruncatedOverviewProperty); }
+			set { SetValue(TruncatedOverviewProperty, value); }
+		}
+
+		public static readonly DependencyProperty HideOverviewProperty = DependencyProperty.Register("HideOverview",
+			typeof(bool), typeof(PlayNextEpisodeControl), new UIPropertyMetadata(false, null));
+
+		public bool HideOverview
+		{
+			get { return (bool)GetValue(HideOverviewProperty); }
+			set { SetValue(HideOverviewProperty, value); }
+		}
+
 		public PlayNextEpisodeControl()
 		{
 			InitializeComponent();
 
 			this.DataContextChanged += new DependencyPropertyChangedEventHandler(PlayNextEpisodeControl_DataContextChanged);
+			
+		}
+
+		private void Handle_Click(object sender, MouseButtonEventArgs e)
+		{
+			string tag = ((TextBlock)sender).Tag.ToString();
+
+			if (tag.Equals("txtOverview", StringComparison.InvariantCultureIgnoreCase))
+			{
+				AnimeEpisodeVM ep = this.DataContext as AnimeEpisodeVM;
+				if (ep != null)
+				{
+					if (ep.ShowEpisodeOverviewInSummary)
+					{
+						TruncatedOverview = false;
+						FullOverview = true;
+						HideOverview = false;
+					}
+					else
+					{
+						TruncatedOverview = false;
+						FullOverview = false;
+						HideOverview = true;
+					}
+				}
+			}
 		}
 
 		void PlayNextEpisodeControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
 		{
 			try
 			{
-				if (this.DataContext == null)
+				AnimeEpisodeVM ep = this.DataContext as AnimeEpisodeVM;
+
+				if (ep == null)
 				{
 					EpisodeExists = false;
 					EpisodeMissing = true;
@@ -57,6 +112,19 @@ namespace JMMClient.UserControls
 				{
 					EpisodeExists = true;
 					EpisodeMissing = false;
+
+					if (ep.ShowEpisodeOverviewInSummary)
+					{
+						TruncatedOverview = true;
+						FullOverview = false;
+						HideOverview = false;
+					}
+					else
+					{
+						TruncatedOverview = false;
+						FullOverview = false;
+						HideOverview = true;
+					}
 				}
 
 			}

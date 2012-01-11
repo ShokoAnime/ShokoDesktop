@@ -319,6 +319,11 @@
                 </StackPanel>
             </DataTemplate>
 
+            <Style TargetType="{x:Type TextBlock}" x:Key="ClickableTextBlockStyle">
+                <Setter Property="Cursor" Value="Hand" />
+                <EventSetter Event="MouseDown" Handler="Handle_Click"/>
+            </Style>
+
         </ResourceDictionary>
 
 
@@ -363,6 +368,7 @@
                             <!-- Unwatched Episode Counts -->
                             <RowDefinition MaxHeight="30" Height="Auto"/>
                             <!-- missing episodes -->
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
@@ -470,11 +476,11 @@
                             </StackPanel>
                         </Border>
 
-                        <!-- Poster Image -->
-                        <Border Margin="10,10,10,0" Name="bdrSmart" Grid.Row="2" Grid.Column="0" Grid.RowSpan="6" BorderBrush="Black" BorderThickness="3">
-                            <Image Height="190" Margin="0" Source="{Binding Path=PosterPath}">
+                        <!-- Poster/Fanart Image -->
+                        <Border Margin="10,10,10,0" Grid.Row="2" Grid.Column="0" Grid.RowSpan="8" BorderBrush="Black" BorderThickness="3" HorizontalAlignment="Center" VerticalAlignment="Top">
+                            <Image Height="250" Source="{Binding Path=AniDB_Anime.FanartPathThenPosterPath}">
                                 <Image.ToolTip>
-                                    <Image Stretch="Fill" HorizontalAlignment="Center" Height="400" Source="{Binding PosterPath}">
+                                    <Image Stretch="Fill" HorizontalAlignment="Center" Height="400" Source="{Binding AniDB_Anime.FanartPathThenPosterPath}">
                                     </Image>
                                 </Image.ToolTip>
                             </Image>
@@ -625,13 +631,15 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
+                        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding DescriptionTruncated}" HorizontalAlignment="Stretch" Margin="10,5,5,5" 
+                            VerticalAlignment="Top" TextWrapping="Wrap" Style="{DynamicResource ClickableTextBlockStyle}" Tag="txtDescription"
+                            Visibility="{Binding Path=TruncatedDescription, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeSeries}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        </TextBlock>
 
-                        <usercontrols:TruncatedTextBlock DisplayText="{Binding Path=Description}" MaxLength="350" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" 
-                            VerticalAlignment="Stretch" MinWidth="100" Padding="5">
-
-                        </usercontrols:TruncatedTextBlock>
-                        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MinWidth="100" Visibility="Collapsed"
-                    TextWrapping="Wrap" Text="{Binding Path=Description}" Padding="5" />
+                        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Description}" HorizontalAlignment="Stretch" Margin="10,5,5,5" 
+                            VerticalAlignment="Top" TextWrapping="Wrap" Style="{DynamicResource ClickableTextBlockStyle}" Tag="txtDescription"
+                            Visibility="{Binding Path=FullDescription, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeSeries}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        </TextBlock>
 
 
 

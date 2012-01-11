@@ -3976,6 +3976,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User Fanart instead of posters (where available) on Series Display.
+        /// </summary>
+        public static string Tooltip_UseFanartOnSeries {
+            get {
+                return ResourceManager.GetString("Tooltip_UseFanartOnSeries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Any user marked as an AniDB user will be kept in sync with other AniDB users. If the user is not an AniDB user watched episodes will not be reflected on the AniDB website..
         /// </summary>
         public static string Tooltip_User_IsAniDB {
@@ -4287,6 +4296,15 @@ namespace JMMClient.Properties {
         public static string UpdateMediaInfo {
             get {
                 return ResourceManager.GetString("UpdateMediaInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Fanart On Series Display.
+        /// </summary>
+        public static string UseFanartOnSeries {
+            get {
+                return ResourceManager.GetString("UseFanartOnSeries", resourceCulture);
             }
         }
         

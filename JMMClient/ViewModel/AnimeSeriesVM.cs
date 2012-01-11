@@ -446,6 +446,18 @@ namespace JMMClient
 			}
 		}
 
+		public string DescriptionTruncated
+		{
+			get
+			{
+				string trunc = Description;
+				if (!string.IsNullOrEmpty(trunc) && trunc.Length > 500)
+					trunc = trunc.Substring(0, 500) + "...";
+
+				return trunc;
+			}
+		}
+
 		public string LastWatchedDescription
 		{
 			get

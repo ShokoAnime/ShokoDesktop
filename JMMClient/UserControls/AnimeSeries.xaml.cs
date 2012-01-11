@@ -123,6 +123,24 @@ namespace JMMClient.UserControls
 			set { SetValue(SeriesPos_TagsProperty, value); }
 		}
 
+		public static readonly DependencyProperty TruncatedDescriptionProperty = DependencyProperty.Register("TruncatedDescription",
+			typeof(bool), typeof(AnimeSeries), new UIPropertyMetadata(true, null));
+
+		public bool TruncatedDescription
+		{
+			get { return (bool)GetValue(TruncatedDescriptionProperty); }
+			set { SetValue(TruncatedDescriptionProperty, value); }
+		}
+
+		public static readonly DependencyProperty FullDescriptionProperty = DependencyProperty.Register("FullDescription",
+			typeof(bool), typeof(AnimeSeries), new UIPropertyMetadata(false, null));
+
+		public bool FullDescription
+		{
+			get { return (bool)GetValue(FullDescriptionProperty); }
+			set { SetValue(FullDescriptionProperty, value); }
+		}
+
 		public AnimeSeries()
 		{
 			InitializeComponent();
@@ -159,6 +177,18 @@ namespace JMMClient.UserControls
 			SeriesPos_Tags = JMMServerVM.Instance.SeriesPos_Tags;*/
 
 			SetSeriesWidgetOrder();
+		}
+
+
+		private void Handle_Click(object sender, MouseButtonEventArgs e)
+		{
+			string tag = ((TextBlock)sender).Tag.ToString();
+
+			if (tag.Equals("txtDescription", StringComparison.InvariantCultureIgnoreCase))
+			{
+				TruncatedDescription = !TruncatedDescription;
+				FullDescription = !FullDescription;
+			}
 		}
 
 		void btnGetSimMissingInfo_Click(object sender, RoutedEventArgs e)
@@ -728,6 +758,10 @@ namespace JMMClient.UserControls
 		void AnimeSeries_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
 		{
 			this.Cursor = Cursors.Wait;
+
+			FullDescription = false;
+			TruncatedDescription = true;
+
 			ShowFileSummary();
 			ShowTvDBLinks();
 			ShowNextEpisode();

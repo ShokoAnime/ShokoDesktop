@@ -43,7 +43,7 @@ namespace JMMClient.UserControls
 		}
 
 		public static readonly DependencyProperty IsSiteLinkProperty = DependencyProperty.Register("IsSiteLink",
-			typeof(bool), typeof(ExternalAnimeLinksControl), new UIPropertyMetadata(false, null));
+			typeof(bool), typeof(ExternalAnimeLinksControl), new UIPropertyMetadata(true, null));
 
 		public bool IsSiteLink
 		{

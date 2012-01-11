@@ -526,6 +526,16 @@ namespace JMMClient
 			}
 		}
 
+		public bool UseFanartOnSeries
+		{
+			get { return AppSettings.UseFanartOnSeries; }
+			set
+			{
+				AppSettings.UseFanartOnSeries = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("UseFanartOnSeries"));
+			}
+		}
+
 		public int GetSeriesWidgetPosition(SeriesWidgets swid)
 		{
 			// read the series widgets order

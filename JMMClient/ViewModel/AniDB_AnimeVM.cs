@@ -12,6 +12,7 @@ namespace JMMClient
 	public class AniDB_AnimeVM :  INotifyPropertyChanged
 	{
 		private static Logger logger = LogManager.GetCurrentClassLogger();
+		private static Random fanartRandom = new Random();
 
 		public int AnimeID { get; set; }
 		public int EpisodeCount { get; set; }
@@ -28,6 +29,7 @@ namespace JMMClient
 		public string AllCategories { get; set; }
 		public string AllTags { get; set; }
 		public string Description { get; set; }
+		public string DescriptionTruncated { get; set; }
 		public int EpisodeCountNormal { get; set; }
 		public int EpisodeCountSpecial { get; set; }
 		public int Rating { get; set; }
@@ -81,6 +83,11 @@ namespace JMMClient
 			this.AwardList = contract.AwardList;
 			this.BeginYear = contract.BeginYear;
 			this.Description = Utils.ReparseDescription(contract.Description);
+
+			
+
+			//DescriptionTruncated = trunc;
+
 			this.DateTimeDescUpdated = contract.DateTimeDescUpdated;
 			this.DateTimeUpdated = contract.DateTimeUpdated;
 			this.EndDate = contract.EndDate;
@@ -203,6 +210,8 @@ namespace JMMClient
 			}
 		}
 
+		#region Posters
+
 		public string PosterPathNoDefault
 		{
 			get
@@ -277,6 +286,67 @@ namespace JMMClient
 			}
 		}
 
+		private List<string> GetFanartFilenames()
+		{
+			List<string> allFanart = new List<string>();
+
+			// check if user has specied a fanart to always be used
+			if (DefaultFanart != null)
+			{
+				if (!string.IsNullOrEmpty(DefaultFanart.FullImagePathOnlyExisting) && File.Exists(DefaultFanart.FullImagePathOnlyExisting))
+				{
+					allFanart.Add(DefaultFanart.FullImagePathOnlyExisting);
+					return allFanart;
+				}
+			}
+
+			//if (anime.AniDB_AnimeCrossRefs != nul
+			foreach (FanartContainer fanart in AniDB_AnimeCrossRefs.AllFanarts)
+			{
+				if (!fanart.IsImageEnabled) continue;
+				if (!File.Exists(fanart.FullImagePath)) continue;
+
+				allFanart.Add(fanart.FullImagePath);
+			}
+
+
+			return allFanart;
+		}
+
+		public string FanartPath
+		{
+			get
+			{
+				List<string> allFanarts = GetFanartFilenames();
+				string fanartName = "";
+				if (allFanarts.Count > 0)
+				{
+					fanartName = allFanarts[fanartRandom.Next(0, allFanarts.Count)];
+				}
+
+				if (!String.IsNullOrEmpty(fanartName))
+					return fanartName;
+
+
+				return "";
+			}
+		}
+
+		public string FanartPathThenPosterPath
+		{
+			get
+			{
+				if (!AppSettings.UseFanartOnSeries) return DefaultPosterPath;
+
+				if (string.IsNullOrEmpty(FanartPath))
+					return DefaultPosterPath;
+
+				return FanartPath;
+			}
+		}
+
+		#endregion
+
 		public string AirDateAsString
 		{
 			get
@@ -323,7 +393,7 @@ namespace JMMClient
 			}
 		}
 
-		public string FanartPath
+		/*public string FanartPath
 		{
 			get
 			{
@@ -344,7 +414,7 @@ namespace JMMClient
 
 				return packUriBlank;
 			}
-		}
+		}*/
 
 		public string FanartPathOnlyExisting
 		{

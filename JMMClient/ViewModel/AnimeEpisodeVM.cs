@@ -244,6 +244,23 @@ namespace JMMClient
 			{
 				episodeOverviewLoading = value;
 				NotifyPropertyChanged("EpisodeOverviewLoading");
+
+				string trunc = EpisodeOverviewLoading;
+				if (!string.IsNullOrEmpty(trunc) && EpisodeOverviewLoading.Length > 500)
+					trunc = EpisodeOverviewLoading.Substring(0, 500) + "...";
+
+				EpisodeOverviewTruncated = trunc;
+			}
+		}
+
+		private string episodeOverviewTruncated = "";
+		public string EpisodeOverviewTruncated
+		{
+			get { return episodeOverviewTruncated; }
+			set
+			{
+				episodeOverviewTruncated = value;
+				NotifyPropertyChanged("EpisodeOverviewTruncated");
 			}
 		}
 

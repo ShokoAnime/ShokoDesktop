@@ -359,6 +359,24 @@ namespace JMMClient
 			}
 		}
 
+		public static bool UseFanartOnSeries
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["UseFanartOnSeries"];
+				bool bval = true;
+				if (bool.TryParse(val, out bval))
+					return bval;
+				else
+					return true; // default value
+			}
+			set
+			{
+				UpdateSetting("UseFanartOnSeries", value.ToString());
+			}
+		}
+
 		public static string SeriesWidgetsOrder
 		{
 			get

@@ -108,6 +108,11 @@
                 </Grid>
             </DataTemplate>
 
+            <Style TargetType="{x:Type TextBlock}" x:Key="ClickableTextBlockStyle">
+                <Setter Property="Cursor" Value="Hand" />
+                <EventSetter Event="MouseDown" Handler="Handle_Click"/>
+            </Style>
+
         </ResourceDictionary>
 
     </UserControl.Resources>
@@ -205,14 +210,25 @@
             </Image.ToolTip>
         </Image>
 
-        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding EpisodeOverviewLoading}" HorizontalAlignment="Stretch" Margin="10,5,0,5" VerticalAlignment="Top"  TextWrapping="Wrap"
-                       Visibility="{Binding Path=ShowEpisodeOverviewInSummary, Converter={StaticResource BooleanToVisibilityConverter}}">
+        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding EpisodeOverviewTruncated}" HorizontalAlignment="Stretch" Margin="10,5,0,5" 
+                   VerticalAlignment="Top"  TextWrapping="Wrap" Style="{DynamicResource ClickableTextBlockStyle}" Tag="txtOverview"
+                   Visibility="{Binding Path=TruncatedOverview, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:PlayNextEpisodeControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+        </TextBlock>
+
+        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding EpisodeOverviewLoading}" HorizontalAlignment="Stretch" Margin="10,5,0,5" 
+                   VerticalAlignment="Top"  TextWrapping="Wrap"
+                   Visibility="{Binding Path=FullOverview, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:PlayNextEpisodeControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+        </TextBlock>
+
+        <TextBlock Grid.Column="1" Grid.Row="1" Text="Hidden to prevent spoilers" HorizontalAlignment="Stretch" Margin="10,5,0,5" 
+                   VerticalAlignment="Top"  TextWrapping="Wrap"
+                   Visibility="{Binding Path=HideOverview, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:PlayNextEpisodeControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
         </TextBlock>
 
 
         <ListBox Name="lbFiles" BorderThickness="0" BorderBrush="DarkGray" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch"  Margin="10,0,0,0" Padding="0"
                 ItemTemplate="{DynamicResource PlayVideoTemplate}"
-                 ItemsSource="{Binding Path=FilesForEpisode}"
+                ItemsSource="{Binding Path=FilesForEpisode}"
                 Background="Transparent" ItemContainerStyle="{DynamicResource ListBoxItemStylePlain}"  VerticalAlignment="Stretch" >
                 
         </ListBox>
