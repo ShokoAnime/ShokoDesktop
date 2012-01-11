@@ -131,14 +131,13 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
 
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="4" Margin="10,0,0,0" HorizontalAlignment="Left"
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Margin="10,0,0,0" HorizontalAlignment="Left"
                     Visibility="{Binding Path=EpisodeMissing, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:PlayNextEpisodeControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
 
             <Image Height="24" Width="24" Source="/Images/32_info.png" Margin="0,0,10,0" VerticalAlignment="Center"/>
@@ -146,12 +145,12 @@
         </StackPanel>
 
 
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Margin="10,0,0,0" HorizontalAlignment="Left"
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="1" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"
                     Visibility="{Binding Path=EpisodeExists, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:PlayNextEpisodeControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <TextBlock Name="tbEpisodeNumberAndName" Text="{Binding Path=EpisodeNumberAndName}" FontWeight="DemiBold" Foreground="Black" VerticalAlignment="Center" />
+            <TextBlock Name="tbEpisodeNumberAndName" Text="{Binding Path=EpisodeNumberAndName}" FontWeight="DemiBold" Foreground="Black" FontSize="14" VerticalAlignment="Center" />
 
             <!-- Toggle watched button -->
-            <Button Name="btnToggleWatched" Margin="5,0,0,0" Style="{DynamicResource RoundButtonStyle}" VerticalAlignment="Center"
+            <Button Name="btnToggleWatched" Margin="10,0,0,0" Style="{DynamicResource RoundButtonStyle}" VerticalAlignment="Center"
                         Visibility="{Binding Path=HasFiles, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Command="{DynamicResource ToggleWatchedStatusCommand}" CommandParameter="{Binding}">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
@@ -201,35 +200,37 @@
         </StackPanel>
 
         <!-- episode image overview in summary -->
-        <Image Grid.Column="0" Grid.Row="1" Width="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=DisplayWidth_EpisodeImage}" Source="{Binding EpisodeImageLoading}" 
-                   Visibility="{Binding Path=ShowEpisodeImageInSummary, Converter={StaticResource BooleanToVisibilityConverter}}"
-                        Margin="10,5,0,5" VerticalAlignment="Top" HorizontalAlignment="Left">
-            <Image.ToolTip>
-                <Image Stretch="Fill" HorizontalAlignment="Center" Width="400" Source="{Binding EpisodeImageLoading}">
-                </Image>
-            </Image.ToolTip>
-        </Image>
+        <Border Margin="10,0,0,0" Grid.Column="0" Grid.Row="0" Grid.RowSpan="4" BorderBrush="Black" BorderThickness="2" HorizontalAlignment="Center" VerticalAlignment="Top"
+                Visibility="{Binding Path=EpisodeExists, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:PlayNextEpisodeControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Image Width="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=DisplayWidth_EpisodeImage}" Source="{Binding EpisodeImageLoading}" 
+                   Visibility="{Binding Path=ShowEpisodeImageInSummary, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Image.ToolTip>
+                    <Image Stretch="Fill" HorizontalAlignment="Center" Width="400" Source="{Binding EpisodeImageLoading}">
+                    </Image>
+                </Image.ToolTip>
+            </Image>
+        </Border>
 
-        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding EpisodeOverviewTruncated}" HorizontalAlignment="Stretch" Margin="10,5,0,5" 
+        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding EpisodeOverviewTruncated}" HorizontalAlignment="Stretch" Margin="10,5,0,0" 
                    VerticalAlignment="Top"  TextWrapping="Wrap" Style="{DynamicResource ClickableTextBlockStyle}" Tag="txtOverview"
                    Visibility="{Binding Path=TruncatedOverview, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:PlayNextEpisodeControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
         </TextBlock>
 
-        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding EpisodeOverviewLoading}" HorizontalAlignment="Stretch" Margin="10,5,0,5" 
+        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding EpisodeOverviewLoading}" HorizontalAlignment="Stretch" Margin="10,5,0,0" 
                    VerticalAlignment="Top"  TextWrapping="Wrap"
                    Visibility="{Binding Path=FullOverview, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:PlayNextEpisodeControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
         </TextBlock>
 
-        <TextBlock Grid.Column="1" Grid.Row="1" Text="Hidden to prevent spoilers" HorizontalAlignment="Stretch" Margin="10,5,0,5" 
+        <TextBlock Grid.Column="1" Grid.Row="1" Text="Hidden to prevent spoilers" HorizontalAlignment="Stretch" Margin="10,5,0,0" 
                    VerticalAlignment="Top"  TextWrapping="Wrap"
                    Visibility="{Binding Path=HideOverview, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:PlayNextEpisodeControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
         </TextBlock>
 
 
-        <ListBox Name="lbFiles" BorderThickness="0" BorderBrush="DarkGray" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch"  Margin="10,0,0,0" Padding="0"
+        <ListBox Name="lbFiles" BorderThickness="0" BorderBrush="DarkGray" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Stretch"  Margin="10,0,0,0" Padding="0"
                 ItemTemplate="{DynamicResource PlayVideoTemplate}"
                 ItemsSource="{Binding Path=FilesForEpisode}"
-                Background="Transparent" ItemContainerStyle="{DynamicResource ListBoxItemStylePlain}"  VerticalAlignment="Stretch" >
+                Background="Transparent" ItemContainerStyle="{DynamicResource ListBoxItemStylePlain}"  VerticalAlignment="Top" >
                 
         </ListBox>
 
