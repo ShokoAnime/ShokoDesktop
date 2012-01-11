@@ -15,6 +15,8 @@ namespace JMMClient.ViewModel
 		public int StartEpisodeType { get; set; }
 		public int StartEpisodeNumber { get; set; }
 
+		
+
 		public string SiteURL
 		{
 			get

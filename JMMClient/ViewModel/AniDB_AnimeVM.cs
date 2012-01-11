@@ -860,6 +860,17 @@ namespace JMMClient
 					links.Add(trakt);
 				}
 
+				if (AniDB_AnimeCrossRefs != null && AniDB_AnimeCrossRefs.MALCrossRefExists && AniDB_AnimeCrossRefs.CrossRef_AniDB_MAL != null &&
+					AniDB_AnimeCrossRefs.CrossRef_AniDB_MAL.Count > 0)
+				{
+					ExternalSiteLink mal = new ExternalSiteLink();
+					mal.SiteName = "MAL";
+					mal.SiteLogo = @"/Images/myanimelist.ico";
+					mal.SiteURL = AniDB_AnimeCrossRefs.CrossRef_AniDB_MAL[0].SiteURL;
+					mal.SiteURLDiscussion = AniDB_AnimeCrossRefs.CrossRef_AniDB_MAL[0].SiteURL;
+					links.Add(mal);
+				}
+
 
 				return links;
 			}

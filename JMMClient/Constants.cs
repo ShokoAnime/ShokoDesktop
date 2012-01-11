@@ -12,6 +12,7 @@ namespace JMMClient
 		public struct URLS
 		{
 			public static readonly string MAL_Series = @"http://myanimelist.net/anime/{0}";
+			public static readonly string MAL_SeriesDiscussion = @"http://myanimelist.net/anime/{0}/{1}/forum";
 
 			public static readonly string AniDB_File = @"http://anidb.net/perl-bin/animedb.pl?show=file&fid={0}";
 			public static readonly string AniDB_Episode = @"http://anidb.net/perl-bin/animedb.pl?show=ep&eid={0}";
