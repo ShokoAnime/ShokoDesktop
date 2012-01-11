@@ -313,6 +313,30 @@ namespace JMMClient
 			return allFanart;
 		}
 
+		public bool UseFanartOnSeries
+		{
+			get
+			{
+				if (!AppSettings.UseFanartOnSeries) return false;
+				if (string.IsNullOrEmpty(FanartPath)) return false;
+
+				return true;
+
+			}
+		}
+
+		public bool UsePosterOnSeries
+		{
+			get
+			{
+				if (!AppSettings.UseFanartOnSeries) return true;
+				if (string.IsNullOrEmpty(FanartPath)) return true;
+
+				return false;
+
+			}
+		}
+
 		public string FanartPath
 		{
 			get

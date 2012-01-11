@@ -200,7 +200,7 @@
         </StackPanel>
 
         <!-- episode image overview in summary -->
-        <Border Margin="10,0,0,0" Grid.Column="0" Grid.Row="0" Grid.RowSpan="4" BorderBrush="Black" BorderThickness="2" HorizontalAlignment="Center" VerticalAlignment="Top"
+        <Border Margin="10,0,0,0" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" BorderBrush="White" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Top"
                 Visibility="{Binding Path=EpisodeExists, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:PlayNextEpisodeControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Image Width="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=DisplayWidth_EpisodeImage}" Source="{Binding EpisodeImageLoading}" 
                    Visibility="{Binding Path=ShowEpisodeImageInSummary, Converter={StaticResource BooleanToVisibilityConverter}}">
@@ -208,20 +208,23 @@
                     <Image Stretch="Fill" HorizontalAlignment="Center" Width="400" Source="{Binding EpisodeImageLoading}">
                     </Image>
                 </Image.ToolTip>
+                <Image.Effect>
+                    <DropShadowEffect Opacity="0.5"/>
+                </Image.Effect>
             </Image>
         </Border>
 
-        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding EpisodeOverviewTruncated}" HorizontalAlignment="Stretch" Margin="10,5,0,0" 
+        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding EpisodeOverviewTruncated}" HorizontalAlignment="Stretch" Margin="10,0,0,0" 
                    VerticalAlignment="Top"  TextWrapping="Wrap" Style="{DynamicResource ClickableTextBlockStyle}" Tag="txtOverview"
                    Visibility="{Binding Path=TruncatedOverview, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:PlayNextEpisodeControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
         </TextBlock>
 
-        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding EpisodeOverviewLoading}" HorizontalAlignment="Stretch" Margin="10,5,0,0" 
+        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding EpisodeOverviewLoading}" HorizontalAlignment="Stretch" Margin="10,0,0,0" 
                    VerticalAlignment="Top"  TextWrapping="Wrap"
                    Visibility="{Binding Path=FullOverview, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:PlayNextEpisodeControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
         </TextBlock>
 
-        <TextBlock Grid.Column="1" Grid.Row="1" Text="Hidden to prevent spoilers" HorizontalAlignment="Stretch" Margin="10,5,0,0" 
+        <TextBlock Grid.Column="1" Grid.Row="1" Text="Hidden to prevent spoilers" HorizontalAlignment="Stretch" Margin="10,0,0,0" 
                    VerticalAlignment="Top"  TextWrapping="Wrap"
                    Visibility="{Binding Path=HideOverview, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:PlayNextEpisodeControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
         </TextBlock>

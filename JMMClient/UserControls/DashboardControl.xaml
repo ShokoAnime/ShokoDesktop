@@ -83,6 +83,9 @@
                         <Image  Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_WatchNext_Height}"  Margin="5,3,5,0"
                                MaxWidth="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_WatchNext_Height}" HorizontalAlignment="Left" 
                                Source="{Binding Path=AniDB_Anime.DefaultPosterPath}" ToolTipService.ShowDuration="60000">
+                            <Image.Effect>
+                                <DropShadowEffect Opacity="0.5"/>
+                            </Image.Effect>
                             <Image.ToolTip>
                                 <Border Background="FloralWhite" BorderThickness="1" BorderBrush="DarkGray">
                                     <Grid >
@@ -203,8 +206,10 @@
                         <Image  Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_WatchNext_Height}"  Margin="5,3,10,0"
                                HorizontalAlignment="Left"  ToolTipService.ShowDuration="60000"
                                Source="{Binding Path=AniDB_Anime.DefaultPosterPath}">
-
-                                <Image.ToolTip>
+                            <Image.Effect>
+                                <DropShadowEffect Opacity="0.5"/>
+                            </Image.Effect>
+                            <Image.ToolTip>
                                     <Border Background="FloralWhite" BorderThickness="1" BorderBrush="DarkGray">
                                         <Grid >
                                             <Grid.ColumnDefinitions>
@@ -240,6 +245,9 @@
                                 Visibility="{Binding ShowEpisodeImageInDashboard, Converter={StaticResource BooleanToVisibilityConverter}}"
                                Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_WatchNext_Height}"
                                Margin="5,5,5,5" VerticalAlignment="Top" HorizontalAlignment="Left">
+                            <Image.Effect>
+                                <DropShadowEffect Opacity="0.5"/>
+                            </Image.Effect>
                             <Image.ToolTip>
                                 <Border Background="FloralWhite" BorderThickness="1" BorderBrush="DarkGray">
                                     <Grid >
@@ -361,6 +369,9 @@
                         <Image  Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_RecentlyWatchedEp_Height}"  Margin="5,3,10,0"
                                HorizontalAlignment="Left" 
                                Source="{Binding Path=AniDB_Anime.DefaultPosterPath}">
+                            <Image.Effect>
+                                <DropShadowEffect Opacity="0.5"/>
+                            </Image.Effect>
                         </Image>
 
                     </Border>
@@ -381,6 +392,9 @@
                                Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_RecentlyWatchedEp_Height}"
                                Margin="5,5,5,5" VerticalAlignment="Top" HorizontalAlignment="Left"
                                ToolTipService.ShowDuration="60000">
+                            <Image.Effect>
+                                <DropShadowEffect Opacity="0.5"/>
+                            </Image.Effect>
                             <Image.ToolTip>
                                 <Border Background="FloralWhite" BorderThickness="1" BorderBrush="DarkGray">
                                     <Grid >
@@ -500,6 +514,9 @@
                         <Image  Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_MissingEps_Height}"  Margin="5,3,5,0"
                                MaxWidth="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_MissingEps_Height}" HorizontalAlignment="Left" 
                                Source="{Binding Path=AniDB_Anime.DefaultPosterPath}" ToolTipService.ShowDuration="60000">
+                            <Image.Effect>
+                                <DropShadowEffect Opacity="0.5"/>
+                            </Image.Effect>
                             <Image.ToolTip>
                                 <Image Stretch="Fill" HorizontalAlignment="Center" Height="400" Source="{Binding AniDB_Anime.DefaultPosterPath}">
                                 </Image>
@@ -585,6 +602,9 @@
                         <Image  Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_MiniCalendar_Height}" Margin="5,3,5,0"
                                MaxWidth="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_MiniCalendar_Height}" HorizontalAlignment="Left" 
                                Source="{Binding Path=DefaultPosterPath}" ToolTipService.ShowDuration="60000">
+                            <Image.Effect>
+                                <DropShadowEffect Opacity="0.5"/>
+                            </Image.Effect>
                             <Image.ToolTip>
 
                                 <Border Background="FloralWhite" BorderThickness="1" BorderBrush="DarkGray">
@@ -712,6 +732,9 @@
                     <Border BorderThickness="1,0,0,1" BorderBrush="DarkGray" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="1" Background="FloralWhite">
                         <Image  Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_RecWatch_Height}"  Margin="5,3,10,5"
                                HorizontalAlignment="Left" Source="{Binding Path=Recommended_PosterPath}" ToolTipService.ShowDuration="60000">
+                            <Image.Effect>
+                                <DropShadowEffect Opacity="0.5"/>
+                            </Image.Effect>
                             <Image.ToolTip>
 
                                 <Border Background="FloralWhite" BorderThickness="1" BorderBrush="DarkGray">
@@ -772,6 +795,9 @@
                     <Border BorderThickness="0,0,1,1" BorderBrush="DarkGray" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="1" Background="FloralWhite">
                         <Image  Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_RecWatch_Height}"  Margin="5,3,10,5"
                                HorizontalAlignment="Left" Source="{Binding Path=BasedOn_PosterPath}" ToolTipService.ShowDuration="60000">
+                            <Image.Effect>
+                                <DropShadowEffect Opacity="0.5"/>
+                            </Image.Effect>
                             <Image.ToolTip>
 
                                 <Border Background="FloralWhite" BorderThickness="1" BorderBrush="DarkGray">
@@ -855,6 +881,9 @@
                     <Border BorderThickness="1,0,0,1" BorderBrush="DarkGray" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="1" Background="FloralWhite">
                         <Image  Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_RecDownload_Height}"  Margin="5,3,10,5"
                                HorizontalAlignment="Left" Source="{Binding Path=Recommended_PosterPath}" ToolTipService.ShowDuration="60000">
+                            <Image.Effect>
+                                <DropShadowEffect Opacity="0.5"/>
+                            </Image.Effect>
                             <Image.ToolTip>
 
                                 <Border Background="FloralWhite" BorderThickness="1" BorderBrush="DarkGray">
@@ -915,6 +944,9 @@
                     <Border BorderThickness="0,0,1,1" BorderBrush="DarkGray" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="1" Background="FloralWhite">
                         <Image  Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_RecDownload_Height}"  Margin="5,3,10,5"
                                HorizontalAlignment="Left" Source="{Binding Path=BasedOn_PosterPath}" ToolTipService.ShowDuration="60000">
+                            <Image.Effect>
+                                <DropShadowEffect Opacity="0.5"/>
+                            </Image.Effect>
                             <Image.ToolTip>
 
                                 <Border Background="FloralWhite" BorderThickness="1" BorderBrush="DarkGray">
@@ -1357,6 +1389,9 @@
                         <Image  Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_TraktFriends_Height}"  Margin="5,3,10,0"
                                HorizontalAlignment="Left" ToolTipService.ShowDuration="60000"
                                Source="{Binding AnimeImagePathForDisplay}">
+                            <Image.Effect>
+                                <DropShadowEffect Opacity="0.5"/>
+                            </Image.Effect>
                             <Image.ToolTip>
                                 <Border Background="FloralWhite" BorderThickness="1" BorderBrush="DarkGray">
                                     <Grid >
@@ -1393,6 +1428,9 @@
                                 Visibility="{Binding ShowEpisodeImageInDashboard, Converter={StaticResource BooleanToVisibilityConverter}}"
                                Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_TraktFriends_Height}"
                                Margin="5,5,5,5" VerticalAlignment="Top" HorizontalAlignment="Left">
+                            <Image.Effect>
+                                <DropShadowEffect Opacity="0.5"/>
+                            </Image.Effect>
                             <Image.ToolTip>
                                 <Border Background="FloralWhite" BorderThickness="1" BorderBrush="DarkGray">
                                     <Grid >
@@ -1539,6 +1577,9 @@
                         <Image  Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_TraktFriends_Height}"  Margin="5,3,5,0"
                                HorizontalAlignment="Left" ToolTipService.ShowDuration="60000"
                                Source="{Binding AnimeImagePathForDisplay}">
+                            <Image.Effect>
+                                <DropShadowEffect Opacity="0.5"/>
+                            </Image.Effect>
                             <Image.ToolTip>
                                 <Border Background="FloralWhite" BorderThickness="1" BorderBrush="DarkGray">
                                     <Grid >
@@ -1699,6 +1740,9 @@
                         <Image  Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_TraktFriends_Height}"  Margin="5,3,5,0"
                                HorizontalAlignment="Left" ToolTipService.ShowDuration="60000"
                                Source="{Binding AnimeImagePathForDisplay}">
+                            <Image.Effect>
+                                <DropShadowEffect Opacity="0.5"/>
+                            </Image.Effect>
                             <Image.ToolTip>
                                 <Border Background="FloralWhite" BorderThickness="1" BorderBrush="DarkGray">
                                     <Grid >
