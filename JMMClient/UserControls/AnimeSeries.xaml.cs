@@ -151,7 +151,7 @@ namespace JMMClient.UserControls
 			btnAnimeGroupShow.Click += new RoutedEventHandler(btnAnimeGroupShow_Click);
 			btnFileSummary.Click += new RoutedEventHandler(btnFileSummary_Click);
 			btnTvDBLinks.Click += new RoutedEventHandler(btnTvDBLinks_Click);
-			btnPlayNextEpisode.Click += new RoutedEventHandler(btnPlayNextEpisode_Click);
+			//btnPlayNextEpisode.Click += new RoutedEventHandler(btnPlayNextEpisode_Click);
 			btnGetRelMissingInfo.Click += new RoutedEventHandler(btnGetRelMissingInfo_Click);
 			btnGetSimMissingInfo.Click += new RoutedEventHandler(btnGetSimMissingInfo_Click);
 
@@ -229,12 +229,12 @@ namespace JMMClient.UserControls
 		private void SetSeriesWidgetOrder()
 		{
 
-			SeriesPos_PlayNextEpisode = UserSettingsVM.Instance.GetSeriesWidgetPosition(SeriesWidgets.PlayNextEpisode);
-			SeriesPos_TvDBLinks = UserSettingsVM.Instance.GetSeriesWidgetPosition(SeriesWidgets.TvDBLinks);
-			SeriesPos_FileSummary = UserSettingsVM.Instance.GetSeriesWidgetPosition(SeriesWidgets.FileSummary);
-			SeriesPos_Categories = UserSettingsVM.Instance.GetSeriesWidgetPosition(SeriesWidgets.Categories);
-			SeriesPos_Titles = UserSettingsVM.Instance.GetSeriesWidgetPosition(SeriesWidgets.Titles);
-			SeriesPos_Tags = UserSettingsVM.Instance.GetSeriesWidgetPosition(SeriesWidgets.Tags);
+			SeriesPos_PlayNextEpisode = UserSettingsVM.Instance.GetSeriesWidgetPosition(SeriesWidgets.PlayNextEpisode) + 4;
+			SeriesPos_TvDBLinks = UserSettingsVM.Instance.GetSeriesWidgetPosition(SeriesWidgets.TvDBLinks) + 4;
+			SeriesPos_FileSummary = UserSettingsVM.Instance.GetSeriesWidgetPosition(SeriesWidgets.FileSummary) + 4;
+			SeriesPos_Categories = UserSettingsVM.Instance.GetSeriesWidgetPosition(SeriesWidgets.Categories) + 4;
+			SeriesPos_Titles = UserSettingsVM.Instance.GetSeriesWidgetPosition(SeriesWidgets.Titles) + 4;
+			SeriesPos_Tags = UserSettingsVM.Instance.GetSeriesWidgetPosition(SeriesWidgets.Tags) + 4;
 		}
 
 		
@@ -748,12 +748,12 @@ namespace JMMClient.UserControls
 			UserSettingsVM.Instance.CategoriesExpanded = !UserSettingsVM.Instance.CategoriesExpanded;
 		}
 
-		void btnPlayNextEpisode_Click(object sender, RoutedEventArgs e)
+		/*void btnPlayNextEpisode_Click(object sender, RoutedEventArgs e)
 		{
 			UserSettingsVM.Instance.SeriesNextEpisodeExpanded = !UserSettingsVM.Instance.SeriesNextEpisodeExpanded;
 
 			ShowNextEpisode();
-		}
+		}*/
 
 		void AnimeSeries_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
 		{
@@ -774,6 +774,7 @@ namespace JMMClient.UserControls
 			epListMain.DataContext = ser;
 			ucSimilarAnime.DataContext = ser;
 			ucRelatedAnime.DataContext = ser;
+			ucTraktShouts.DataContext = ser;
 
 			if (tabContainer.SelectedIndex == 1) // episodes
 			{
@@ -839,8 +840,8 @@ namespace JMMClient.UserControls
 
 		private void ShowNextEpisode()
 		{
-			if (UserSettingsVM.Instance.SeriesNextEpisodeExpanded)
-			{
+			//if (UserSettingsVM.Instance.SeriesNextEpisodeExpanded)
+			//{
 				AnimeSeriesVM ser = this.DataContext as AnimeSeriesVM;
 				if (ser == null) return;
 
@@ -858,7 +859,7 @@ namespace JMMClient.UserControls
 					ucNextEpisode.EpisodeMissing = true;
 					ucNextEpisode.DataContext = null;
 				}
-			}
+			//}
 		}
 
 		void btnAnimeGroupShow_Click(object sender, RoutedEventArgs e)

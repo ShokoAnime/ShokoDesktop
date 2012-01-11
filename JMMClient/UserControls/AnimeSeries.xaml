@@ -477,7 +477,7 @@
                         </Border>
 
                         <!-- Poster/Fanart Image -->
-                        <Border Margin="10,10,10,0" Grid.Row="2" Grid.Column="0" Grid.RowSpan="8" BorderBrush="Black" BorderThickness="3" HorizontalAlignment="Center" VerticalAlignment="Top">
+                        <Border Margin="10,10,10,10" Grid.Row="2" Grid.Column="0" Grid.RowSpan="8" BorderBrush="Black" BorderThickness="3" HorizontalAlignment="Center" VerticalAlignment="Top">
                             <Image Height="250" Source="{Binding Path=AniDB_Anime.FanartPathThenPosterPath}">
                                 <Image.ToolTip>
                                     <Image Stretch="Fill" HorizontalAlignment="Center" Height="400" Source="{Binding AniDB_Anime.FanartPathThenPosterPath}">
@@ -625,28 +625,47 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding DescriptionTruncated}" HorizontalAlignment="Stretch" Margin="10,5,5,5" 
+                        <!-- Second Toolbar -->
+                        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Padding="6" Background="#F1F1F1">
+
+                            <usercontrols:ExternalAnimeLinksControl x:Name="ucExternalLinks" VerticalAlignment="Center" LinkType="1"  />
+                        </Border>
+
+                        <!-- Description -->
+                        <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding DescriptionTruncated}" HorizontalAlignment="Stretch" Margin="10,5,5,5" 
                             VerticalAlignment="Top" TextWrapping="Wrap" Style="{DynamicResource ClickableTextBlockStyle}" Tag="txtDescription"
                             Visibility="{Binding Path=TruncatedDescription, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeSeries}}, Converter={StaticResource BooleanToVisibilityConverter}}">
                         </TextBlock>
 
-                        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Description}" HorizontalAlignment="Stretch" Margin="10,5,5,5" 
+                        <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Description}" HorizontalAlignment="Stretch" Margin="10,5,5,5" 
                             VerticalAlignment="Top" TextWrapping="Wrap" Style="{DynamicResource ClickableTextBlockStyle}" Tag="txtDescription"
                             Visibility="{Binding Path=FullDescription, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeSeries}}, Converter={StaticResource BooleanToVisibilityConverter}}">
                         </TextBlock>
 
+                        <!-- Play Next Episode Header -->
+                        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Padding="6" Background="#F1F1F1">
+                            <TextBlock Text="Play Next Episode" FontSize="16" Foreground="DarkGray"/>
+                           
+                        </Border>
+
+                        <!-- Play Next Episode -->
+                        <usercontrols:PlayNextEpisodeControl x:Name="ucNextEpisode" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10,0,0" />
 
 
+                        <!-- More Info Header -->
+                        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Padding="6" Background="#F1F1F1">
+                            <TextBlock Text="More Information" FontSize="16" Foreground="DarkGray"/>
 
-
-
-
+                        </Border>
 
 
 
@@ -937,52 +956,7 @@
                             </Border>
                         </StackPanel>
 
-                        <!-- Play Next Episode -->
-                        <StackPanel Orientation="Vertical" Grid.Column="0"  Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                                    Grid.Row="{Binding Path=SeriesPos_PlayNextEpisode, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeSeries}}}">
-                            <!-- Group -->
-                            <StackPanel Orientation="Horizontal">
-                                <Button Name="btnPlayNextEpisode" Margin="6,2,2,2" Style="{DynamicResource FlatButtonStyle}">
-                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-
-                                        <Image Height="16" Width="16" Source="/Images/16_toggle2.png" Margin="0,0,2,0"
-                                                Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=SeriesNextEpisodeCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                        </Image>
-                                        <Image Height="16" Width="16" Source="/Images/16_collapse2.png" Margin="0,0,2,0"
-                                                Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=SeriesNextEpisodeExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-
-                                    </StackPanel>
-
-                                </Button>
-
-                                <!-- Buttons for moving the widget up and down -->
-                                <StackPanel Orientation="Horizontal" Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}" >
-                                    <Button HorizontalAlignment="Left" Name="btnMoveUpSorting" Margin="5,0,0,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto"
-                                        Command="{DynamicResource MoveUpWidgetCommand}" CommandParameter="5">
-                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                            <Image Height="16" Width="16" Source="/Images/16_up.png" Margin="0,0,0,0"/>
-
-                                        </StackPanel>
-                                    </Button>
-
-                                    <Button HorizontalAlignment="Left" Name="btnMoveDownSorting" Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto"
-                                        Command="{DynamicResource MoveDownWidgetCommand}" CommandParameter="5">
-                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                            <Image Height="16" Width="16" Source="/Images/16_down.png" Margin="0,0,0,0"/>
-
-                                        </StackPanel>
-                                    </Button>
-                                </StackPanel>
-
-                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=PlayNextEpisode}" FontWeight="Bold" Margin="8,0,0,0"/>
-
-
-                            </StackPanel>
-                            <Border  Background="FloralWhite" BorderBrush="DarkGray" BorderThickness="1" Padding="5" Margin="40,5,10,5"
-                                      Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=SeriesNextEpisodeExpanded, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                <usercontrols:PlayNextEpisodeControl x:Name="ucNextEpisode" Margin="0,0,0,0" />
-                            </Border>
-                        </StackPanel>
+                        
 
                     </Grid>
                 </StackPanel>
