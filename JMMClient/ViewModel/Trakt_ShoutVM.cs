@@ -126,6 +126,10 @@ namespace JMMClient.ViewModel
 			this.Episode_Season = contract.Episode_Season;
 			this.Episode_Number = contract.Episode_Number;
 			this.Episode_Title = contract.Episode_Title;
+
+			if (!string.IsNullOrEmpty(Episode_Title) && Episode_Title.Length > 30)
+				Episode_Title = Episode_Title.Substring(0, 30) + "...";
+
 			this.Episode_Overview = contract.Episode_Overview;
 			this.Episode_Url = contract.Episode_Url;
 			this.Episode_Screenshot = contract.Episode_Screenshot;
