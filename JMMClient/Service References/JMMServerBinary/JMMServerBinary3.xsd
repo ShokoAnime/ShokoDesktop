@@ -233,6 +233,26 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="LinkAniDBMALUpdated">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="animeID" type="xs:int" />
+        <xs:element minOccurs="0" name="malID" type="xs:int" />
+        <xs:element minOccurs="0" name="malTitle" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="oldEpType" type="xs:int" />
+        <xs:element minOccurs="0" name="oldEpNumber" type="xs:int" />
+        <xs:element minOccurs="0" name="newEpType" type="xs:int" />
+        <xs:element minOccurs="0" name="newEpNumber" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LinkAniDBMALUpdatedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="LinkAniDBMALUpdatedResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetGroupFilterExtended">
     <xs:complexType>
       <xs:sequence>

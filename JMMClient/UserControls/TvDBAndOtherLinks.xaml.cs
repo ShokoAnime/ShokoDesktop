@@ -65,6 +65,8 @@ namespace JMMClient.UserControls
 
 		
 
+		
+
 		#region MAL
 
 		void btnSearchMAL_Click(object sender, RoutedEventArgs e)
@@ -102,6 +104,61 @@ namespace JMMClient.UserControls
 			catch (Exception ex)
 			{
 				Utils.ShowErrorMessage(ex);
+			}
+		}
+
+		void btnEditMALDetails_Click(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				// prompt to select details
+				Window wdw = Window.GetWindow(this);
+
+				this.Cursor = Cursors.Wait;
+				
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+		}
+
+		private void CommandBinding_EditMALLink(object sender, ExecutedRoutedEventArgs e)
+		{
+			object obj = e.Parameter;
+			if (obj == null) return;
+
+			try
+			{
+				AniDB_AnimeVM anime = this.DataContext as AniDB_AnimeVM;
+				if (anime == null) return;
+
+				if (obj.GetType() == typeof(CrossRef_AniDB_MALVM))
+				{
+					this.Cursor = Cursors.Wait;
+					CrossRef_AniDB_MALVM malLink = obj as CrossRef_AniDB_MALVM;
+
+					// prompt to select details
+					Window wdw = Window.GetWindow(this);
+
+					SelectMALStartForm frm = new SelectMALStartForm();
+					frm.Owner = wdw;
+					frm.Init(malLink.AnimeID, anime.FormattedTitle, malLink.MALTitle, malLink.MALID, malLink.StartEpisodeType, malLink.StartEpisodeNumber);
+					bool? result = frm.ShowDialog();
+					if (result.Value)
+					{
+						// update info
+						RefreshData();
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+			finally
+			{
+				this.Cursor = Cursors.Arrow;
 			}
 		}
 

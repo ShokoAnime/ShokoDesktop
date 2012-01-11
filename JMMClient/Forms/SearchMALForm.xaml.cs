@@ -126,7 +126,7 @@ namespace JMMClient.Forms
 				this.Cursor = Cursors.Wait;
 				SelectMALStartForm frm = new SelectMALStartForm();
 				frm.Owner = wdw;
-				frm.Init(AnimeID, AnimeName_MAL, txtMALTitle.Text.Trim(), id);
+				frm.Init(AnimeID, AnimeName_MAL, txtMALTitle.Text.Trim(), id, null, null);
 				bool? result = frm.ShowDialog();
 				if (result.Value)
 				{
@@ -207,7 +207,7 @@ namespace JMMClient.Forms
 					this.Cursor = Cursors.Wait;
 					SelectMALStartForm frm = new SelectMALStartForm();
 					frm.Owner = wdw;
-					frm.Init(AnimeID, AnimeName_MAL, searchResult.title, searchResult.id);
+					frm.Init(AnimeID, AnimeName_MAL, searchResult.title, searchResult.id, null, null);
 					bool? result = frm.ShowDialog();
 					if (result.Value)
 					{

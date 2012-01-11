@@ -13809,6 +13809,9 @@ namespace JMMClient.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/RemoveLinkAniDBMAL", ReplyAction="http://tempuri.org/IJMMServer/RemoveLinkAniDBMALResponse")]
         string RemoveLinkAniDBMAL(int animeID, int epType, int epNumber);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/LinkAniDBMALUpdated", ReplyAction="http://tempuri.org/IJMMServer/LinkAniDBMALUpdatedResponse")]
+        string LinkAniDBMALUpdated(int animeID, int malID, string malTitle, int oldEpType, int oldEpNumber, int newEpType, int newEpNumber);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetGroupFilterExtended", ReplyAction="http://tempuri.org/IJMMServer/GetGroupFilterExtendedResponse")]
         JMMClient.JMMServerBinary.Contract_GroupFilterExtended GetGroupFilterExtended(int groupFilterID, int userID);
         
@@ -14319,6 +14322,10 @@ namespace JMMClient.JMMServerBinary {
         
         public string RemoveLinkAniDBMAL(int animeID, int epType, int epNumber) {
             return base.Channel.RemoveLinkAniDBMAL(animeID, epType, epNumber);
+        }
+        
+        public string LinkAniDBMALUpdated(int animeID, int malID, string malTitle, int oldEpType, int oldEpNumber, int newEpType, int newEpNumber) {
+            return base.Channel.LinkAniDBMALUpdated(animeID, malID, malTitle, oldEpType, oldEpNumber, newEpType, newEpNumber);
         }
         
         public JMMClient.JMMServerBinary.Contract_GroupFilterExtended GetGroupFilterExtended(int groupFilterID, int userID) {

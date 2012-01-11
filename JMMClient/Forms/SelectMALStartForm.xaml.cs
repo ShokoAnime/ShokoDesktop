@@ -84,6 +84,9 @@ namespace JMMClient.Forms
 			btnUpdate.Click += new RoutedEventHandler(btnUpdate_Click);
 		}
 
+		private int? OldEpType = null;
+		private int? OldEpNumber = null;
+
 		void btnUpdate_Click(object sender, RoutedEventArgs e)
 		{
 			try
@@ -101,8 +104,12 @@ namespace JMMClient.Forms
 					txtEpNumber.Focus();
 					return;
 				}
+				string res = "";
 
-				string res = JMMServerVM.Instance.clientBinaryHTTP.LinkAniDBMAL(AnimeID, MALID, MALTitle, epType, epNumber);
+				if (OldEpType.HasValue && OldEpNumber.HasValue)
+					res = JMMServerVM.Instance.clientBinaryHTTP.LinkAniDBMALUpdated(AnimeID, MALID, MALTitle, OldEpType.Value, OldEpNumber.Value, epType, epNumber);
+				else
+					res = JMMServerVM.Instance.clientBinaryHTTP.LinkAniDBMAL(AnimeID, MALID, MALTitle, epType, epNumber);
 				if (res.Length > 0)
 					MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 				else
@@ -127,12 +134,15 @@ namespace JMMClient.Forms
 			this.Close();
 		}
 
-		public void Init(int animeID, string animeName, string malTitle, int malID)
+		public void Init(int animeID, string animeName, string malTitle, int malID, int? oldEpType, int? oldEpNumber)
 		{
 			AnimeID = animeID;
 			AnimeName = animeName;
 			MALTitle = malTitle;
 			MALID = malID;
+
+			OldEpType = oldEpType;
+			OldEpNumber = oldEpNumber;
 
 			AnimeURL = string.Format(Constants.URLS.AniDB_Series, AnimeID);
 			MALURL = string.Format(Constants.URLS.MAL_Series, MALID);

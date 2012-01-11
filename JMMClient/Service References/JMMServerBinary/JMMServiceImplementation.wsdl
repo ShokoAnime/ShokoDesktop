@@ -116,6 +116,12 @@
   <wsdl:message name="IJMMServer_RemoveLinkAniDBMAL_OutputMessage">
     <wsdl:part name="parameters" element="tns:RemoveLinkAniDBMALResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_LinkAniDBMALUpdated_InputMessage">
+    <wsdl:part name="parameters" element="tns:LinkAniDBMALUpdated" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_LinkAniDBMALUpdated_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LinkAniDBMALUpdatedResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_GetGroupFilterExtended_InputMessage">
     <wsdl:part name="parameters" element="tns:GetGroupFilterExtended" />
   </wsdl:message>
@@ -1021,6 +1027,10 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RemoveLinkAniDBMAL" message="tns:IJMMServer_RemoveLinkAniDBMAL_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RemoveLinkAniDBMALResponse" message="tns:IJMMServer_RemoveLinkAniDBMAL_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="LinkAniDBMALUpdated">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/LinkAniDBMALUpdated" message="tns:IJMMServer_LinkAniDBMALUpdated_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/LinkAniDBMALUpdatedResponse" message="tns:IJMMServer_LinkAniDBMALUpdated_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetGroupFilterExtended">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilterExtended" message="tns:IJMMServer_GetGroupFilterExtended_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilterExtendedResponse" message="tns:IJMMServer_GetGroupFilterExtended_OutputMessage" />
@@ -1722,6 +1732,15 @@
     </wsdl:operation>
     <wsdl:operation name="RemoveLinkAniDBMAL">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/RemoveLinkAniDBMAL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LinkAniDBMALUpdated">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/LinkAniDBMALUpdated" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
