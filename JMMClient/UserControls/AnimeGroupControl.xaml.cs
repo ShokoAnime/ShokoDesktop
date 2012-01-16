@@ -25,7 +25,6 @@ namespace JMMClient.UserControls
 			InitializeComponent();
 
 			this.DataContextChanged += new DependencyPropertyChangedEventHandler(AnimeGroupControl_DataContextChanged);
-			btnPlayNextEpisode.Click += new RoutedEventHandler(btnPlayNextEpisode_Click);
 
 			btnSelectDefaultSeries.Click += new RoutedEventHandler(btnSelectDefaultSeries_Click);
 			btnRemoveDefaultSeries.Click += new RoutedEventHandler(btnRemoveDefaultSeries_Click);
@@ -61,13 +60,6 @@ namespace JMMClient.UserControls
 			}
 		}
 
-		void btnPlayNextEpisode_Click(object sender, RoutedEventArgs e)
-		{
-			UserSettingsVM.Instance.SeriesNextEpisodeExpanded = !UserSettingsVM.Instance.SeriesNextEpisodeExpanded;
-
-			ShowNextEpisode();
-		}
-
 		void AnimeGroupControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
 		{
 			ShowNextEpisode();
@@ -75,33 +67,30 @@ namespace JMMClient.UserControls
 
 		private void ShowNextEpisode()
 		{
-			if (UserSettingsVM.Instance.SeriesNextEpisodeExpanded)
+			AnimeGroupVM grp = this.DataContext as AnimeGroupVM;
+			if (grp == null) return;
+
+			if (!grp.AnimeGroupID.HasValue)
 			{
-				AnimeGroupVM grp = this.DataContext as AnimeGroupVM;
-				if (grp == null) return;
+				ucNextEpisode.EpisodeExists = false;
+				ucNextEpisode.EpisodeMissing = true;
+				ucNextEpisode.DataContext = null;
+				return;
+			}
 
-				if (!grp.AnimeGroupID.HasValue)
-				{
-					ucNextEpisode.EpisodeExists = false;
-					ucNextEpisode.EpisodeMissing = true;
-					ucNextEpisode.DataContext = null;
-					return;
-				}
-
-				JMMServerBinary.Contract_AnimeEpisode ep = JMMServerVM.Instance.clientBinaryHTTP.GetNextUnwatchedEpisodeForGroup(grp.AnimeGroupID.Value, 
-					JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
-				if (ep != null)
-				{
-					AnimeEpisodeVM aniep = new AnimeEpisodeVM(ep);
-					aniep.SetTvDBInfo();
-					ucNextEpisode.DataContext = aniep;
-				}
-				else
-				{
-					ucNextEpisode.EpisodeExists = false;
-					ucNextEpisode.EpisodeMissing = true;
-					ucNextEpisode.DataContext = null;
-				}
+			JMMServerBinary.Contract_AnimeEpisode ep = JMMServerVM.Instance.clientBinaryHTTP.GetNextUnwatchedEpisodeForGroup(grp.AnimeGroupID.Value, 
+				JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+			if (ep != null)
+			{
+				AnimeEpisodeVM aniep = new AnimeEpisodeVM(ep);
+				aniep.SetTvDBInfo();
+				ucNextEpisode.DataContext = aniep;
+			}
+			else
+			{
+				ucNextEpisode.EpisodeExists = false;
+				ucNextEpisode.EpisodeMissing = true;
+				ucNextEpisode.DataContext = null;
 			}
 		}
 

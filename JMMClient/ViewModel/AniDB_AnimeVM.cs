@@ -286,6 +286,45 @@ namespace JMMClient
 			}
 		}
 
+		public string DefaultPosterPathNoBlanks
+		{
+			get
+			{
+				if (DefaultPoster == null)
+					return PosterPathNoDefault;
+				else
+				{
+					ImageEntityType imageType = (ImageEntityType)DefaultPoster.ImageParentType;
+
+					switch (imageType)
+					{
+						case ImageEntityType.AniDB_Cover:
+							return this.PosterPath;
+
+						case ImageEntityType.TvDB_Cover:
+							if (DefaultPoster.TVPoster != null)
+								return DefaultPoster.TVPoster.FullImagePath;
+							else
+								return this.PosterPath;
+
+						case ImageEntityType.Trakt_Poster:
+							if (DefaultPoster.TraktPoster != null)
+								return DefaultPoster.TraktPoster.FullImagePath;
+							else
+								return this.PosterPath;
+
+						case ImageEntityType.MovieDB_Poster:
+							if (DefaultPoster.MoviePoster != null)
+								return DefaultPoster.MoviePoster.FullImagePath;
+							else
+								return this.PosterPath;
+					}
+				}
+
+				return PosterPath;
+			}
+		}
+
 		private List<string> GetFanartFilenames()
 		{
 			List<string> allFanart = new List<string>();

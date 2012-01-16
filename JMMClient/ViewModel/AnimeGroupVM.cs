@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.IO;
 using System.Diagnostics;
+using JMMClient.ViewModel;
 
 namespace JMMClient
 {
@@ -19,6 +20,8 @@ namespace JMMClient
 	/// </summary>
 	public class AnimeGroupVM : MainListWrapper, INotifyPropertyChanged, IComparable<AnimeGroupVM>
 	{
+		private static Random fanartRandom = new Random();
+		private static Random posterRandom = new Random();
 
 		#region Readonly members
 		public int? AnimeGroupID { get; set; }
@@ -458,29 +461,155 @@ namespace JMMClient
 			}
 		}*/
 
+		public AnimeSeriesVM DefaultSeries
+		{
+			get
+			{
+				if (!HasDefaultSeries) return null;
+
+				if (!MainListHelperVM.Instance.AllSeriesDictionary.ContainsKey(DefaultAnimeSeriesID.Value)) return null;
+
+				return MainListHelperVM.Instance.AllSeriesDictionary[DefaultAnimeSeriesID.Value];
+			}
+		}
+
+		private List<string> GetPosterFilenames()
+		{
+			List<string> allPosters = new List<string>();
+
+			// check if user has specied a fanart to always be used
+			if (DefaultSeries != null)
+			{
+				if (!string.IsNullOrEmpty(DefaultSeries.AniDB_Anime.DefaultPosterPathNoBlanks) && File.Exists(DefaultSeries.AniDB_Anime.DefaultPosterPathNoBlanks))
+				{
+					allPosters.Add(DefaultSeries.AniDB_Anime.DefaultPosterPathNoBlanks);
+					return allPosters;
+				}
+			}
+
+			foreach (AnimeSeriesVM ser in AllAnimeSeries)
+			{
+				if (!string.IsNullOrEmpty(ser.AniDB_Anime.DefaultPosterPathNoBlanks) && File.Exists(ser.AniDB_Anime.DefaultPosterPathNoBlanks))
+					allPosters.Add(ser.AniDB_Anime.DefaultPosterPathNoBlanks);
+			}
+
+			return allPosters;
+		}
+
 		public string PosterPath
 		{
 			get
 			{
-				// TODO check if the user has selected to manually specify a poster
-
 				string packUriBlank = string.Format("pack://application:,,,/{0};component/Images/blankposter.png", Constants.AssemblyName);
 
-				// TODO get a random poster from child series
-				List<AnimeSeriesVM> serList = AllAnimeSeries;
-				if (serList.Count > 0)
-				{
-					
+				List<string> allPosters = GetPosterFilenames();
+				string posterName = "";
+				if (allPosters.Count > 0)
+					posterName = allPosters[fanartRandom.Next(0, allPosters.Count)];
 
-					if (File.Exists(serList[0].PosterPath))
-						return serList[0].PosterPath;
-					else
-						return packUriBlank;
-				}
-				else
-					return packUriBlank;
+				if (!String.IsNullOrEmpty(posterName))
+					return posterName;
+
+				return packUriBlank;
 			}
 		}
+
+		public string FullImagePath
+		{
+			get
+			{
+				return PosterPath;
+			}
+		}
+
+		private List<string> GetFanartFilenames()
+		{
+			List<string> allFanart = new List<string>();
+
+			// check if user has specied a fanart to always be used
+			if (DefaultSeries != null)
+			{
+				if (DefaultSeries.AniDB_Anime.DefaultFanart != null && !string.IsNullOrEmpty(DefaultSeries.AniDB_Anime.DefaultFanart.FullImagePathOnlyExisting) 
+					&& File.Exists(DefaultSeries.AniDB_Anime.DefaultFanart.FullImagePathOnlyExisting))
+				{
+					allFanart.Add(DefaultSeries.AniDB_Anime.DefaultFanart.FullImagePathOnlyExisting);
+					return allFanart;
+				}
+			}
+
+
+			foreach (AnimeSeriesVM ser in AllAnimeSeries)
+			{
+				foreach (FanartContainer fanart in ser.AniDB_Anime.AniDB_AnimeCrossRefs.AllFanarts)
+				{
+					if (!fanart.IsImageEnabled) continue;
+					if (!File.Exists(fanart.FullImagePath)) continue;
+
+					allFanart.Add(fanart.FullImagePath);
+				}
+			}
+
+
+			return allFanart;
+		}
+
+		public bool UseFanartOnSeries
+		{
+			get
+			{
+				if (!AppSettings.UseFanartOnSeries) return false;
+				if (string.IsNullOrEmpty(FanartPath)) return false;
+
+				return true;
+
+			}
+		}
+
+		public bool UsePosterOnSeries
+		{
+			get
+			{
+				if (!AppSettings.UseFanartOnSeries) return true;
+				if (string.IsNullOrEmpty(FanartPath)) return true;
+
+				return false;
+
+			}
+		}
+
+		public string FanartPath
+		{
+			get
+			{
+				List<string> allFanarts = GetFanartFilenames();
+				string fanartName = "";
+				if (allFanarts.Count > 0)
+				{
+					fanartName = allFanarts[fanartRandom.Next(0, allFanarts.Count)];
+				}
+
+				if (!String.IsNullOrEmpty(fanartName))
+					return fanartName;
+
+
+				return "";
+			}
+		}
+
+		public string FanartPathThenPosterPath
+		{
+			get
+			{
+				if (!AppSettings.UseFanartOnSeries) return PosterPath;
+
+				if (string.IsNullOrEmpty(FanartPath))
+					return PosterPath;
+
+				return FanartPath;
+			}
+		}
+
+		
 
 		public string LastWatchedDescription
 		{

@@ -149,13 +149,16 @@
 
             <Grid Margin="10,0,0,10">
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
+                    <RowDefinition MaxHeight="30" Height="Auto"/>
+                    <RowDefinition MaxHeight="30" Height="Auto"/>
+                    <RowDefinition MaxHeight="30" Height="Auto"/>
+                    <RowDefinition MaxHeight="30" Height="Auto"/>
+                    <RowDefinition MaxHeight="30" Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -163,17 +166,42 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
+                <!-- Poster/Fanart Image -->
+
+                <Rectangle Margin="0,0,10,0" Grid.Row="0" Grid.Column="0" Grid.RowSpan="6" HorizontalAlignment="Center" VerticalAlignment="Top"
+                                    Visibility="{Binding Path=UseFanartOnSeries, Converter={StaticResource BooleanToVisibilityConverter}}"
+                           RadiusX="5" RadiusY="5" Width="444" Height="250">
+                    <Rectangle.Effect>
+                        <DropShadowEffect Opacity="0.5"/>
+                    </Rectangle.Effect>
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="{Binding Path=FanartPathThenPosterPath}"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+
+                <Image Height="250" Source="{Binding Path=FanartPathThenPosterPath}" x:Name="myImage"
+                               Margin="0,0,10,0" Grid.Row="0" Grid.Column="0" Grid.RowSpan="6" HorizontalAlignment="Center" VerticalAlignment="Top"
+                               Visibility="{Binding Path=UsePosterOnSeries, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Image.ToolTip>
+                        <Image Stretch="Fill" HorizontalAlignment="Center" Height="400" Source="{Binding FanartPathThenPosterPath}">
+                        </Image>
+                    </Image.ToolTip>
+                    <Image.Effect>
+                        <DropShadowEffect Opacity="0.5"/>
+                    </Image.Effect>
+                </Image>
+
                 <!-- Sort Name -->
-                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,5">
-                    <TextBlock Grid.Row="0" Grid.Column="0" FontWeight="Bold" Margin="0,0,5,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SortName}"/>
-                    <TextBlock Grid.Row="0" Grid.Column="1"  Text="{Binding Path=SortName}" Name="tbGroupSortName"
+                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,0,5">
+                    <TextBlock FontWeight="Bold" Margin="0,0,5,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SortName}"/>
+                    <TextBlock Text="{Binding Path=SortName}" Name="tbGroupSortName"
                                Visibility="{Binding Path=IsReadOnly, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                    <TextBox Grid.Row="0" Grid.Column="1"  MinWidth="200" Text="{Binding Path=SortName}" Name="txtGroupSortName"
+                    <TextBox  MinWidth="200" Text="{Binding Path=SortName}" Name="txtGroupSortName"
                              Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </StackPanel>
 
                 <!-- Rating -->
-                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,5">
+                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,0,5">
                     <usercontrols:VisualRating Rating="{Binding Path=AniDBRating}" VerticalAlignment="Center">
                     </usercontrols:VisualRating>
                     <TextBlock Text="{Binding Path=AniDBRatingFormatted}" Margin="5,0,0,0" VerticalAlignment="Center">
@@ -184,7 +212,7 @@
                 </StackPanel>
 
                 <!-- Episode Counts -->
-                <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,5">
+                <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,0,5">
                     <Image Name="imgAnimeType" Height="16" Width="16" Margin="0,0,5,0" Source="../Images/16_television.png" VerticalAlignment="Center">
                     </Image>
 
@@ -192,7 +220,7 @@
                 </StackPanel>
 
                 <!-- Unwatched Episode Counts , has unwatched files  -->
-                <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,5"
+                <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,0,5"
                             Visibility="{Binding Path=HasUnwatchedFiles, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Image Height="16" Width="16" Source="../Images/16_eye2.png" Margin="0,0,0,0" VerticalAlignment="Center"/>
                     <TextBlock Margin="5,0,0,0" Text="{Binding Path=UnwatchedEpisodeCount}"  VerticalAlignment="Center"/>
@@ -205,7 +233,7 @@
                 </StackPanel>
 
                 <!-- Unwatched Episode Counts , all files watched  -->
-                <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,5"
+                <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,0,5"
                             Visibility="{Binding Path=AllFilesWatched, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,0,0" VerticalAlignment="Center"/>
                     <TextBlock Margin="5,0,0,0" Text="{Binding Path=UnwatchedEpisodeCount}"  VerticalAlignment="Center"/>
@@ -218,7 +246,7 @@
                 </StackPanel>
 
                 <!-- Missing Episodes  -->
-                <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,5"
+                <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,0,5"
                                 Visibility="{Binding Path=HasMissingEpisodesAny, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <StackPanel Orientation="Horizontal" Margin="0,0,10,0"
                                     Visibility="{Binding Path=HasMissingEpisodesGroups, Converter={StaticResource BooleanToVisibilityConverter}}">
@@ -243,34 +271,20 @@
 
                 </StackPanel>
 
+                <!-- Play Next Episode Header -->
+                <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" Padding="6" Margin="0,10,0,0" Background="#F1F1F1">
+                    <TextBlock Text="Play Next Episode" FontSize="16" Foreground="DarkGray"/>
+                </Border>
+
                 <!-- Play Next Episode -->
-                <StackPanel Orientation="Vertical" Grid.Column="0"  Grid.ColumnSpan="3" Grid.Row="5" Margin="0,10,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <!-- Group -->
-                    <StackPanel Orientation="Horizontal">
-                        <Button Name="btnPlayNextEpisode" Margin="0,2,0,2" Style="{DynamicResource FlatButtonStyle}">
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                <usercontrols:PlayNextEpisodeControl x:Name="ucNextEpisode" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="7" Margin="0,10,0,0" />
 
-                                <Image Height="16" Width="16" Source="/Images/16_toggle2.png" Margin="0,0,0,0"
-                                                Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=SeriesNextEpisodeCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                </Image>
-                                <Image Height="16" Width="16" Source="/Images/16_collapse2.png" Margin="0,0,0,0"
-                                                Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=SeriesNextEpisodeExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                <!-- All Series Header -->
+                <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3" Padding="6" Background="#F1F1F1" Margin="0,10,0,0">
+                    <TextBlock Text="All Series" FontSize="16" Foreground="DarkGray"/>
+                </Border>
 
-                            </StackPanel>
-
-                        </Button>
-
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=PlayNextEpisode}" FontWeight="Bold" Margin="5,0,0,0"/>
-
-
-                    </StackPanel>
-                    <Border  Background="FloralWhite" BorderBrush="DarkGray" BorderThickness="1" Padding="5" Margin="0,5,10,5"
-                             Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=SeriesNextEpisodeExpanded, Converter={StaticResource BooleanToVisibilityConverter}}">
-                        <usercontrols:PlayNextEpisodeControl x:Name="ucNextEpisode" Margin="0,0,0,0" />
-                    </Border>
-                </StackPanel>
-
-                <ListBox Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="0" HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0,10,0,5"
+                <ListBox Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="0" HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0,10,0,5"
                  VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
                  ItemsSource="{Binding Path=AllAnimeSeriesFiltered}" 
                  Background="Transparent"  VerticalAlignment="Stretch" >
