@@ -201,6 +201,8 @@ namespace JMMClient.ViewModel
 				case GroupFilterConditionType.AudioLanguage: return Properties.Resources.GroupFilterConditionType_AudioLanguage;
 				case GroupFilterConditionType.SubtitleLanguage: return Properties.Resources.GroupFilterConditionType_SubtitleLanguage;
 				case GroupFilterConditionType.HasWatchedEpisodes: return Properties.Resources.GroupFilterConditionType_HasWatchedEpisodes;
+				case GroupFilterConditionType.EpisodeCount: return Properties.Resources.GroupFilterConditionType_EpisodeCount;
+					
 				default: return Properties.Resources.GroupFilterConditionType_AirDate;
 			}
 		}
@@ -235,6 +237,7 @@ namespace JMMClient.ViewModel
 			if (enumDesc == Properties.Resources.GroupFilterConditionType_AudioLanguage) return GroupFilterConditionType.AudioLanguage;
 			if (enumDesc == Properties.Resources.GroupFilterConditionType_SubtitleLanguage) return GroupFilterConditionType.SubtitleLanguage;
 			if (enumDesc == Properties.Resources.GroupFilterConditionType_HasWatchedEpisodes) return GroupFilterConditionType.HasWatchedEpisodes;
+			if (enumDesc == Properties.Resources.GroupFilterConditionType_EpisodeCount) return GroupFilterConditionType.EpisodeCount;
 
 			return GroupFilterConditionType.AirDate;
 		}
@@ -270,6 +273,7 @@ namespace JMMClient.ViewModel
 			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.FinishedAiring));
 			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.AudioLanguage));
 			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.SubtitleLanguage));
+			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.EpisodeCount));
 
 			cons.Sort();
 
@@ -419,6 +423,10 @@ namespace JMMClient.ViewModel
 					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.LessThan));
 					break;
 				case GroupFilterConditionType.UserRating:
+					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.GreaterThan));
+					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.LessThan));
+					break;
+				case GroupFilterConditionType.EpisodeCount:
 					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.GreaterThan));
 					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.LessThan));
 					break;

@@ -145,6 +145,7 @@ namespace JMMClient
 		UserVotedAny = 27,
 		HasWatchedEpisodes = 28,
 		AssignedMALInfo = 29,
+		EpisodeCount = 30
 	}
 
 	public enum GroupFilterOperator

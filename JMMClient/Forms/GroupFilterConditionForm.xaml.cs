@@ -125,6 +125,15 @@ namespace JMMClient.Forms
 			set { SetValue(IsParameterRatingProperty, value); }
 		}
 
+		public static readonly DependencyProperty IsParameterIntegerProperty = DependencyProperty.Register("IsParameterInteger",
+			typeof(bool), typeof(GroupFilterConditionForm), new UIPropertyMetadata(false, null));
+
+		public bool IsParameterInteger
+		{
+			get { return (bool)GetValue(IsParameterIntegerProperty); }
+			set { SetValue(IsParameterIntegerProperty, value); }
+		}
+
 		public static readonly DependencyProperty IsParameterLastXDaysProperty = DependencyProperty.Register("IsParameterLastXDays",
 			typeof(bool), typeof(GroupFilterConditionForm), new UIPropertyMetadata(false, null));
 
@@ -196,6 +205,29 @@ namespace JMMClient.Forms
 					}
 
 					groupFilterCondition.ConditionParameter = txtParameter.Text.Trim();
+				}
+
+			}
+
+			if (IsParameterInteger)
+			{
+				if (txtParameter.Text.Trim().Length == 0)
+				{
+					MessageBox.Show(Properties.Resources.MSG_ERR_EnterValue, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					txtParameter.Focus();
+					return;
+				}
+				else
+				{
+					int parmInt = -1;
+					if (!int.TryParse(txtParameter.Text, out parmInt))
+					{
+						MessageBox.Show("Please enter an integer value only", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+						txtParameter.Focus();
+						return;
+					}
+
+					groupFilterCondition.ConditionParameter = parmInt.ToString();
 				}
 
 			}
@@ -418,6 +450,7 @@ namespace JMMClient.Forms
 			IsParameterVideoQuality = false;
 			IsParameterAudioLanguage = false;
 			IsParameterSubtitleLanguage = false;
+			IsParameterInteger = false;
 
 			switch (conditionType)
 			{
@@ -469,6 +502,11 @@ namespace JMMClient.Forms
 				case GroupFilterConditionType.UserRating:
 					IsParameterText = true;
 					IsParameterRating = true;
+					break;
+
+				case GroupFilterConditionType.EpisodeCount:
+					IsParameterText = true;
+					IsParameterInteger = true;
 					break;
 
 			}

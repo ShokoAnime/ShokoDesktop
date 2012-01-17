@@ -360,6 +360,15 @@ namespace JMMClient
 						if (gfc.ConditionOperatorEnum == GroupFilterOperator.LessThan && grp.Stat_UserVoteOverall.Value > dUserRating) return false;
 						break;
 
+					case GroupFilterConditionType.EpisodeCount:
+
+						int epCount = -1;
+						int.TryParse(gfc.ConditionParameter, out epCount);
+
+						if (gfc.ConditionOperatorEnum == GroupFilterOperator.GreaterThan && grp.Stat_EpisodeCount < epCount) return false;
+						if (gfc.ConditionOperatorEnum == GroupFilterOperator.LessThan && grp.Stat_EpisodeCount > epCount) return false;
+						break;
+
 					case GroupFilterConditionType.Category:
 
 						string filterParm = gfc.ConditionParameter.Trim();
@@ -659,6 +668,15 @@ namespace JMMClient
 
 						if (gfc.ConditionOperatorEnum == GroupFilterOperator.GreaterThan && ser.AniDB_Anime.Detail.UserRating < dUserRating) return false;
 						if (gfc.ConditionOperatorEnum == GroupFilterOperator.LessThan && ser.AniDB_Anime.Detail.UserRating > dUserRating) return false;
+						break;
+
+					case GroupFilterConditionType.EpisodeCount:
+
+						int epCount = -1;
+						int.TryParse(gfc.ConditionParameter, out epCount);
+
+						if (gfc.ConditionOperatorEnum == GroupFilterOperator.GreaterThan && ser.AniDB_Anime.EpisodeCountNormal < epCount) return false;
+						if (gfc.ConditionOperatorEnum == GroupFilterOperator.LessThan && ser.AniDB_Anime.EpisodeCountNormal > epCount) return false;
 						break;
 					
 					case GroupFilterConditionType.Category:

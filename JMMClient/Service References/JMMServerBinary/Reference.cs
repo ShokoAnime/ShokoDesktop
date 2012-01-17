@@ -2812,6 +2812,9 @@ namespace JMMClient.JMMServerBinary {
         private System.Nullable<System.DateTime> Stat_EndDateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int Stat_EpisodeCountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool Stat_HasFinishedAiringField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -3154,6 +3157,19 @@ namespace JMMClient.JMMServerBinary {
                 if ((this.Stat_EndDateField.Equals(value) != true)) {
                     this.Stat_EndDateField = value;
                     this.RaisePropertyChanged("Stat_EndDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Stat_EpisodeCount {
+            get {
+                return this.Stat_EpisodeCountField;
+            }
+            set {
+                if ((this.Stat_EpisodeCountField.Equals(value) != true)) {
+                    this.Stat_EpisodeCountField = value;
+                    this.RaisePropertyChanged("Stat_EpisodeCount");
                 }
             }
         }

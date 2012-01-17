@@ -1384,6 +1384,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Episode Count.
+        /// </summary>
+        public static string GroupFilterConditionType_EpisodeCount {
+            get {
+                return ResourceManager.GetString("GroupFilterConditionType_EpisodeCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Episode Watched Date.
         /// </summary>
         public static string GroupFilterConditionType_EpisodeWatchedDate {

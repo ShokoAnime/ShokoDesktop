@@ -235,6 +235,7 @@
       <xs:element minOccurs="0" name="Stat_AllVideoQuality_Episodes" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Stat_AudioLanguages" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Stat_EndDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Stat_EpisodeCount" type="xs:int" />
       <xs:element minOccurs="0" name="Stat_HasFinishedAiring" type="xs:boolean" />
       <xs:element minOccurs="0" name="Stat_HasMALLink" type="xs:boolean" />
       <xs:element minOccurs="0" name="Stat_HasMovieDBLink" type="xs:boolean" />

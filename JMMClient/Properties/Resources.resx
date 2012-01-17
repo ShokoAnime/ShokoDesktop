@@ -1631,6 +1631,9 @@
   <data name="Tooltip_MAL_NeverDecrease" xml:space="preserve">
     <value>Make sure that watched counts are always kept. This requires downloading your full list each time you watch an episode, so may be time consuming</value>
   </data>
+  <data name="GroupFilterConditionType_EpisodeCount" xml:space="preserve">
+    <value>Episode Count</value>
+  </data>
   <data name="SyncMalDown" xml:space="preserve">
     <value>Download Watched States from MAL</value>
   </data>

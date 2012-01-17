@@ -54,6 +54,7 @@ namespace JMMClient
 		public bool Stat_HasMovieDBLink { get; set; }
 		public bool Stat_HasMovieDBOrTvDBLink { get; set; }
 		public int Stat_SeriesCount { get; set; }
+		public int Stat_EpisodeCount { get; set; }
 
 		private static AnimeGroupSortMethod sortMethod = AnimeGroupSortMethod.SortName;
 		public static AnimeGroupSortMethod SortMethod
@@ -783,6 +784,7 @@ namespace JMMClient
 			this.Stat_HasMovieDBLink = contract.Stat_HasMovieDBLink;
 			this.Stat_HasMovieDBOrTvDBLink = contract.Stat_HasMovieDBOrTvDBLink;
 			this.Stat_SeriesCount = contract.Stat_SeriesCount;
+			this.Stat_EpisodeCount = contract.Stat_EpisodeCount;
 
 			// editable members
 			this.GroupName = contract.GroupName;
