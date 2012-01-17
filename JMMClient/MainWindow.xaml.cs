@@ -2003,6 +2003,32 @@ namespace JMMClient
 			}
 		}
 
+		private void CommandBinding_SyncMALUp(object sender, ExecutedRoutedEventArgs e)
+		{
+			try
+			{
+				JMMServerVM.Instance.clientBinaryHTTP.SyncMALUpload();
+				MessageBox.Show("Process is Queued", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+		}
+
+		private void CommandBinding_SyncMALDown(object sender, ExecutedRoutedEventArgs e)
+		{
+			try
+			{
+				JMMServerVM.Instance.clientBinaryHTTP.SyncMALDownload();
+				MessageBox.Show("Process is Queued", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+		}
+
 		private void CommandBinding_RevokeVote(object sender, ExecutedRoutedEventArgs e)
 		{
 			AnimeSeriesVM ser = e.Parameter as AnimeSeriesVM;

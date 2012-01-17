@@ -3076,6 +3076,24 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Download Watched States from MAL.
+        /// </summary>
+        public static string SyncMalDown {
+            get {
+                return ResourceManager.GetString("SyncMalDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload Watched States to MAL.
+        /// </summary>
+        public static string SyncMalUp {
+            get {
+                return ResourceManager.GetString("SyncMalUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sync AniDB MyList.
         /// </summary>
         public static string SyncMyList {
@@ -3918,6 +3936,24 @@ namespace JMMClient.Properties {
         public static string Tooltip_Style_GroupList {
             get {
                 return ResourceManager.GetString("Tooltip_Style_GroupList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download watched states from MAL, and update your local collection and AniDB..
+        /// </summary>
+        public static string Tooltip_SyncMalDown {
+            get {
+                return ResourceManager.GetString("Tooltip_SyncMalDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update MAL using the watched stats from your local collection.
+        /// </summary>
+        public static string Tooltip_SyncMalUp {
+            get {
+                return ResourceManager.GetString("Tooltip_SyncMalUp", resourceCulture);
             }
         }
         

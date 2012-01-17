@@ -13828,6 +13828,12 @@ namespace JMMClient.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/LinkAniDBMALUpdated", ReplyAction="http://tempuri.org/IJMMServer/LinkAniDBMALUpdatedResponse")]
         string LinkAniDBMALUpdated(int animeID, int malID, string malTitle, int oldEpType, int oldEpNumber, int newEpType, int newEpNumber);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/SyncMALUpload", ReplyAction="http://tempuri.org/IJMMServer/SyncMALUploadResponse")]
+        void SyncMALUpload();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/SyncMALDownload", ReplyAction="http://tempuri.org/IJMMServer/SyncMALDownloadResponse")]
+        void SyncMALDownload();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetGroupFilterExtended", ReplyAction="http://tempuri.org/IJMMServer/GetGroupFilterExtendedResponse")]
         JMMClient.JMMServerBinary.Contract_GroupFilterExtended GetGroupFilterExtended(int groupFilterID, int userID);
         
@@ -14342,6 +14348,14 @@ namespace JMMClient.JMMServerBinary {
         
         public string LinkAniDBMALUpdated(int animeID, int malID, string malTitle, int oldEpType, int oldEpNumber, int newEpType, int newEpNumber) {
             return base.Channel.LinkAniDBMALUpdated(animeID, malID, malTitle, oldEpType, oldEpNumber, newEpType, newEpNumber);
+        }
+        
+        public void SyncMALUpload() {
+            base.Channel.SyncMALUpload();
+        }
+        
+        public void SyncMALDownload() {
+            base.Channel.SyncMALDownload();
         }
         
         public JMMClient.JMMServerBinary.Contract_GroupFilterExtended GetGroupFilterExtended(int groupFilterID, int userID) {
