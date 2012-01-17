@@ -408,6 +408,17 @@ namespace JMMClient
 			}
 		}
 
+		public string FanartPathFallbackPosterPath
+		{
+			get
+			{
+				if (string.IsNullOrEmpty(FanartPath))
+					return DefaultPosterPath;
+
+				return FanartPath;
+			}
+		}
+
 		#endregion
 
 		public string AirDateAsString

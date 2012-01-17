@@ -335,7 +335,30 @@ namespace JMMClient
 		}
 
 
+		public int SeriesGroup_Image_Height
+		{
+			get { return AppSettings.SeriesGroup_Image_Height; }
+			set
+			{
+				AppSettings.SeriesGroup_Image_Height = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("SeriesGroup_Image_Height"));
+				int width = (int)(SeriesGroup_Image_Height * 1.77777777);
+				SeriesGroup_Image_Width = width;
+			}
+		}
 
+		public int SeriesGroup_Image_Width
+		{
+			get 
+			{
+				int width = (int)(SeriesGroup_Image_Height * 1.77777777);
+				return width; 
+			}
+			set
+			{
+				OnPropertyChanged(new PropertyChangedEventArgs("SeriesGroup_Image_Width"));
+			}
+		}
 
 
 

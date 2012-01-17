@@ -11573,6 +11573,9 @@ namespace JMMClient.JMMServerBinary {
         private bool LanguageUseSynonymsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool MAL_NeverDecreaseWatchedNumsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string MAL_PasswordField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -12032,6 +12035,19 @@ namespace JMMClient.JMMServerBinary {
                 if ((this.LanguageUseSynonymsField.Equals(value) != true)) {
                     this.LanguageUseSynonymsField = value;
                     this.RaisePropertyChanged("LanguageUseSynonyms");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool MAL_NeverDecreaseWatchedNums {
+            get {
+                return this.MAL_NeverDecreaseWatchedNumsField;
+            }
+            set {
+                if ((this.MAL_NeverDecreaseWatchedNumsField.Equals(value) != true)) {
+                    this.MAL_NeverDecreaseWatchedNumsField = value;
+                    this.RaisePropertyChanged("MAL_NeverDecreaseWatchedNums");
                 }
             }
         }

@@ -1862,7 +1862,15 @@ namespace JMMClient
 			}
 		}
 
+		private void CommandBinding_IncrementSeriesImageSize(object sender, ExecutedRoutedEventArgs e)
+		{
+			UserSettingsVM.Instance.SeriesGroup_Image_Height = UserSettingsVM.Instance.SeriesGroup_Image_Height + 10;
+		}
 
+		private void CommandBinding_DecrementSeriesImageSize(object sender, ExecutedRoutedEventArgs e)
+		{
+			UserSettingsVM.Instance.SeriesGroup_Image_Height = UserSettingsVM.Instance.SeriesGroup_Image_Height - 10;
+		}
 
 		private void CommandBinding_NewSeries(object sender, ExecutedRoutedEventArgs e)
 		{

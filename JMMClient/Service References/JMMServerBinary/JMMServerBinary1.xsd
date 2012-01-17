@@ -1162,6 +1162,7 @@
       <xs:element minOccurs="0" name="Import_UseExistingFileWatchedStatus" type="xs:boolean" />
       <xs:element minOccurs="0" name="LanguagePreference" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="LanguageUseSynonyms" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MAL_NeverDecreaseWatchedNums" type="xs:boolean" />
       <xs:element minOccurs="0" name="MAL_Password" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="MAL_UpdateFrequency" type="xs:int" />
       <xs:element minOccurs="0" name="MAL_Username" nillable="true" type="xs:string" />

@@ -1093,6 +1093,34 @@ namespace JMMClient
 			}
 		}
 
+		public static int SeriesGroup_Image_Height
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["SeriesGroup_Image_Height"];
+				int ival = 0;
+				if (int.TryParse(val, out ival))
+				{
+					if (ival < 80)
+						return 80;
+
+					if (ival > 400)
+						return 400;
+
+					return ival;
+				}
+				else
+				{
+					return 150; // default value
+				}
+			}
+			set
+			{
+				UpdateSetting("SeriesGroup_Image_Height", value.ToString());
+			}
+		}
+
 		public static System.Windows.WindowState DefaultWindowState
 		{
 			get

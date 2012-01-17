@@ -187,11 +187,27 @@
                             Background="FloralWhite">
 
                         <StackPanel Orientation="Vertical"  HorizontalAlignment="Left" Margin="5,3,5,5">
-                            <TextBlock Text="{Binding Path=AnimeName}" Foreground="Black" FontWeight="DemiBold" FontSize="14" VerticalAlignment="Center" ToolTipService.ShowDuration="60000">
-                                <TextBlock.ToolTip>
-                                    <TextBlock Text="{Binding Path=AnimeName}" Foreground="Black" FontWeight="DemiBold"/>
-                                </TextBlock.ToolTip>
-                            </TextBlock>
+                            
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Path=AnimeName}" Foreground="Black" FontWeight="DemiBold" FontSize="14" VerticalAlignment="Center" ToolTipService.ShowDuration="60000">
+                                    <TextBlock.ToolTip>
+                                        <TextBlock Text="{Binding Path=AnimeName}" Foreground="Black" FontWeight="DemiBold"/>
+                                    </TextBlock.ToolTip>
+                                </TextBlock>
+
+                                <!-- show pinned series button -->
+                                <Button Margin="5,0,0,0" Style="{DynamicResource RoundButtonStyle}" VerticalAlignment="Center"
+                                        Command="{DynamicResource ShowPinnedSeriesCommand}" CommandParameter="{Binding}">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                        <Image Height="16" Width="16" Source="/Images/16_windows.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000">
+                                            <Image.ToolTip>
+                                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_ViewSeries}"/>
+                                            </Image.ToolTip>
+                                        </Image>
+
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
                             <TextBlock Text="{Binding Path=EpisodeNumberAndName}" Foreground="Black" VerticalAlignment="Center" Margin="0,3,0,0" ToolTipService.ShowDuration="60000">
                                 <TextBlock.ToolTip>
                                     <TextBlock Text="{Binding Path=EpisodeNumberAndName}" Foreground="Black" FontWeight="DemiBold"/>
@@ -206,9 +222,6 @@
                         <Image  Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_WatchNext_Height}"  Margin="5,3,10,0"
                                HorizontalAlignment="Left"  ToolTipService.ShowDuration="60000"
                                Source="{Binding Path=AniDB_Anime.DefaultPosterPath}">
-                            <Image.Effect>
-                                <DropShadowEffect Opacity="0.5"/>
-                            </Image.Effect>
                             <Image.ToolTip>
                                     <Border Background="FloralWhite" BorderThickness="1" BorderBrush="DarkGray">
                                         <Grid >
@@ -230,6 +243,38 @@
 
                     </Border>
 
+                    <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" Margin="5,3,5,3" Grid.Column="0" Grid.Row="1" VerticalAlignment="Bottom">
+
+                        <!-- Toggle watched button -->
+                        <Button Name="btnToggleWatched" Margin="0,0,0,0" Style="{DynamicResource RoundButtonStyle}" VerticalAlignment="Center"
+                        Command="{DynamicResource ToggleWatchedStatusCommand}" CommandParameter="{Binding}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/16_eye.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000"
+                           Visibility="{Binding Path=Watched, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <Image.ToolTip>
+                                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_Watched}"/>
+                                    </Image.ToolTip>
+                                </Image>
+                                <Image Height="16" Width="16" Source="/Images/16_eye2.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000"
+                           Visibility="{Binding Path=Unwatched, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <Image.ToolTip>
+                                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_Unwatched}"/>
+                                    </Image.ToolTip>
+                                </Image>
+                            </StackPanel>
+                        </Button>
+
+                        <!-- Play episode button -->
+                        <Button Name="btnPlay" Margin="5,0,0,0" Style="{DynamicResource RoundButtonStyle}" Command="{DynamicResource PlayEpisodeCommand}" CommandParameter="{Binding}"
+                        VerticalAlignment="Center">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/32_play.png" Margin="0,0,5,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Play}" Foreground="Black"  Margin="0,0,5,0"/>
+                            </StackPanel>
+                        </Button>
+
+                    </StackPanel>
+
                     <!-- Episode Overview  -->
                     <Border BorderThickness="0,0,0,0" BorderBrush="DarkGray" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1" Background="FloralWhite">
                         <TextBlock  MaxWidth="200"  Text="{Binding EpisodeOverviewLoading}" HorizontalAlignment="Left" Margin="0,0,5,0"  Foreground="Black" 
@@ -245,9 +290,6 @@
                                 Visibility="{Binding ShowEpisodeImageInDashboard, Converter={StaticResource BooleanToVisibilityConverter}}"
                                Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_WatchNext_Height}"
                                Margin="5,5,5,5" VerticalAlignment="Top" HorizontalAlignment="Left">
-                            <Image.Effect>
-                                <DropShadowEffect Opacity="0.5"/>
-                            </Image.Effect>
                             <Image.ToolTip>
                                 <Border Background="FloralWhite" BorderThickness="1" BorderBrush="DarkGray">
                                     <Grid >
@@ -276,52 +318,7 @@
                     <!-- buttons   -->
                     <Border BorderThickness="1,0,1,1" BorderBrush="DarkGray" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" 
                             Background="FloralWhite">
-                        <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" Margin="5,3,5,5">
-
-
-                            <!-- Toggle watched button -->
-                            <Button Name="btnToggleWatched" Margin="0,0,0,0" Style="{DynamicResource RoundButtonStyle}" VerticalAlignment="Center"
-                        Visibility="{Binding Path=HasFiles, Converter={StaticResource BooleanToVisibilityConverter}}"
-                        Command="{DynamicResource ToggleWatchedStatusCommand}" CommandParameter="{Binding}">
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                    <Image Height="16" Width="16" Source="/Images/16_eye.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000"
-                           Visibility="{Binding Path=Watched, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                        <Image.ToolTip>
-                                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_Watched}"/>
-                                        </Image.ToolTip>
-                                    </Image>
-                                    <Image Height="16" Width="16" Source="/Images/16_eye2.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000"
-                           Visibility="{Binding Path=Unwatched, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                        <Image.ToolTip>
-                                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_Unwatched}"/>
-                                        </Image.ToolTip>
-                                    </Image>
-                                </StackPanel>
-                            </Button>
-
-                            <!-- Play episode button -->
-                            <Button Name="btnPlay" Margin="5,0,0,0" Style="{DynamicResource RoundButtonStyle}" Command="{DynamicResource PlayEpisodeCommand}" CommandParameter="{Binding}"
-                        VerticalAlignment="Center">
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                    <Image Height="16" Width="16" Source="/Images/32_play.png" Margin="0,0,5,0"/>
-                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Play}" Foreground="Black"  Margin="0,0,5,0"/>
-                                </StackPanel>
-                            </Button>
-
-                            <!-- show pinned series button -->
-                            <Button Margin="5,0,0,0" Style="{DynamicResource RoundButtonStyle}" VerticalAlignment="Center"
-                                    Command="{DynamicResource ShowPinnedSeriesCommand}" CommandParameter="{Binding}">
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                    <Image Height="16" Width="16" Source="/Images/16_windows.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000">
-                                        <Image.ToolTip>
-                                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_ViewSeries}"/>
-                                        </Image.ToolTip>
-                                    </Image>
-                                    
-                                </StackPanel>
-                            </Button>
-
-                        </StackPanel>
+                        
                     </Border>
                 </Grid>
             </DataTemplate>
@@ -1357,7 +1354,7 @@
                                 </StackPanel>
 
                                 <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" Margin="0,0,5,5">
-                                    <usercontrols:HyperLinkStandard VerticalAlignment="Center" FontSize="14" DisplayText="{Binding Path=Episode.ShowTitle}" URL="{Binding Path=Episode.TraktShow.url}" Margin="0,0,0,0"/>
+                                    <usercontrols:HyperLinkStandard VerticalAlignment="Center" FontSize="14" DisplayText="{Binding Path=Episode.ShowTitleTruncated}" URL="{Binding Path=Episode.TraktShow.url}" Margin="0,0,0,0"/>
 
                                     <!-- show pinned series button -->
                                     <Button Margin="5,0,0,0" Style="{DynamicResource RoundButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource ShowPinnedSeriesCommand}" 

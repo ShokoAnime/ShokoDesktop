@@ -60,6 +60,16 @@
                                                 Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_MAL_UpdateFrequency}}"/>
         </StackPanel>
 
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="3" Margin="0,5,15,0">
+            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=MAL_NeverDecrease}" VerticalAlignment="Center"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3" Margin="0,5,5,0">
+            <CheckBox Name="chkNeverDecrease" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=MAL_NeverDecreaseWatchedNums}" VerticalAlignment="Center"
+                      ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=MAL_NeverDecrease}, 
+                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_MAL_NeverDecrease}}"/>
+        </StackPanel>
+
 
         <!-- Visit Website -->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="4" Margin="0,10,15,0">

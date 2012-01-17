@@ -1625,4 +1625,10 @@
   <data name="UseFanartOnSeries" xml:space="preserve">
     <value>User Fanart On Series Display</value>
   </data>
+  <data name="MAL_NeverDecrease" xml:space="preserve">
+    <value>Never Decrease Watched Counts</value>
+  </data>
+  <data name="Tooltip_MAL_NeverDecrease" xml:space="preserve">
+    <value>Make sure that watched counts are always kept. This requires downloading your full list each time you watch an episode, so may be time consuming</value>
+  </data>
 </root>

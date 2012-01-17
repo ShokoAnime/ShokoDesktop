@@ -104,6 +104,15 @@ namespace JMMClient.ViewModel
 			}
 		}
 
+		public string ShowTitleTruncated
+		{
+			get
+			{
+				if (ShowTitle.Length <= 30) return ShowTitle;
+				return ShowTitle.Substring(0, 30) + "...";
+			}
+		}
+
 		public string EpisodeDescription
 		{
 			get

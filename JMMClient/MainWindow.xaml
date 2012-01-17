@@ -71,6 +71,9 @@
             <RoutedUICommand x:Key="GeneralQueuePauseCommand" Text="GeneralQueuePauseCommand" />
             <RoutedUICommand x:Key="GeneralQueueResumeCommand" Text="GeneralQueueResumeCommand" />
 
+            <RoutedUICommand x:Key="IncrementSeriesImageSizeCommand" Text="IncrementSeriesImageSizeCommand" />
+            <RoutedUICommand x:Key="DecrementSeriesImageSizeCommand" Text="DecrementSeriesImageSizeCommand" />
+
             <!-- groupTemplate-->
             <DataTemplate x:Key="groupTemplate">
                 <Border BorderBrush="AliceBlue" BorderThickness="1">
@@ -110,6 +113,8 @@
 
     <Window.CommandBindings>
 
+        <CommandBinding Command="{StaticResource IncrementSeriesImageSizeCommand}" Executed="CommandBinding_IncrementSeriesImageSize" />
+        <CommandBinding Command="{StaticResource DecrementSeriesImageSizeCommand}" Executed="CommandBinding_DecrementSeriesImageSize" />
         
         <CommandBinding Command="{StaticResource RevokeVoteCommand}" Executed="CommandBinding_RevokeVote" />
         <CommandBinding Command="{StaticResource ShowPinnedSeriesCommand}" Executed="CommandBinding_ShowPinnedSeries" />

@@ -2212,6 +2212,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Never Decrease Watched Counts.
+        /// </summary>
+        public static string MAL_NeverDecrease {
+            get {
+                return ResourceManager.GetString("MAL_NeverDecrease", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search on MyAnimelist or enter MAL ID.
         /// </summary>
         public static string MALSearchPrompt {
@@ -3756,6 +3765,15 @@ namespace JMMClient.Properties {
         public static string Tooltip_LanguageUseSynonyms {
             get {
                 return ResourceManager.GetString("Tooltip_LanguageUseSynonyms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Make sure that watched counts are always kept. This requires downloading your full list each time you watch an episode, so may be time consuming.
+        /// </summary>
+        public static string Tooltip_MAL_NeverDecrease {
+            get {
+                return ResourceManager.GetString("Tooltip_MAL_NeverDecrease", resourceCulture);
             }
         }
         

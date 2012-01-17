@@ -39,7 +39,13 @@ namespace JMMClient.UserControls
 
 			cboUpdateFrequency.SelectionChanged += new SelectionChangedEventHandler(cboUpdateFrequency_SelectionChanged);
 
-			btnTest.Click += new RoutedEventHandler(btnTest_Click);		
+			btnTest.Click += new RoutedEventHandler(btnTest_Click);
+			chkNeverDecrease.Click += new RoutedEventHandler(chkNeverDecrease_Click);
+		}
+
+		void chkNeverDecrease_Click(object sender, RoutedEventArgs e)
+		{
+			JMMServerVM.Instance.SaveServerSettingsAsync();
 		}
 
 		void cboUpdateFrequency_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -417,6 +417,7 @@ namespace JMMClient
 			this.MAL_Username = contract.MAL_Username;
 			this.MAL_Password = contract.MAL_Password;
 			this.MAL_UpdateFrequency = (ScheduledUpdateFrequency)contract.MAL_UpdateFrequency;
+			this.MAL_NeverDecreaseWatchedNums = contract.MAL_NeverDecreaseWatchedNums;
 		}
 
 
@@ -519,6 +520,7 @@ namespace JMMClient
 				contract.MAL_Username = this.MAL_Username;
 				contract.MAL_Password = this.MAL_Password;
 				contract.MAL_UpdateFrequency = (int)this.MAL_UpdateFrequency;
+				contract.MAL_NeverDecreaseWatchedNums = this.MAL_NeverDecreaseWatchedNums;
 
 				JMMServerBinary.Contract_ServerSettings_SaveResponse response = _clientBinaryHTTP.SaveServerSettings(contract);
 				if (response.ErrorMessage.Length > 0)
@@ -1398,6 +1400,17 @@ namespace JMMClient
 			{
 				mAL_UpdateFrequency = value;
 				OnPropertyChanged(new PropertyChangedEventArgs("MAL_UpdateFrequency"));
+			}
+		}
+
+		private bool mAL_NeverDecreaseWatchedNums = false;
+		public bool MAL_NeverDecreaseWatchedNums
+		{
+			get { return mAL_NeverDecreaseWatchedNums; }
+			set
+			{
+				mAL_NeverDecreaseWatchedNums = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("MAL_NeverDecreaseWatchedNums"));
 			}
 		}
 
