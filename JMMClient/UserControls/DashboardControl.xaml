@@ -208,7 +208,7 @@
                                     </StackPanel>
                                 </Button>
                             </StackPanel>
-                            <TextBlock Text="{Binding Path=EpisodeNumberAndName}" Foreground="Black" VerticalAlignment="Center" Margin="0,3,0,0" ToolTipService.ShowDuration="60000">
+                            <TextBlock Text="{Binding Path=EpisodeNumberAndNameTruncated}" Foreground="Black" VerticalAlignment="Center" Margin="0,3,0,0" ToolTipService.ShowDuration="60000">
                                 <TextBlock.ToolTip>
                                     <TextBlock Text="{Binding Path=EpisodeNumberAndName}" Foreground="Black" FontWeight="DemiBold"/>
                                 </TextBlock.ToolTip>

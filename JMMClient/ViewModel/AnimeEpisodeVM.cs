@@ -110,6 +110,17 @@ namespace JMMClient
 			}
 		}
 
+		private string episodeNumberAndNameTruncated = "";
+		public string EpisodeNumberAndNameTruncated
+		{
+			get { return episodeNumberAndNameTruncated; }
+			set
+			{
+				episodeNumberAndNameTruncated = value;
+				NotifyPropertyChanged("EpisodeNumberAndNameTruncated");
+			}
+		}
+
 		private string episodeNumberAndNameWithType = "";
 		public string EpisodeNumberAndNameWithType
 		{
@@ -620,6 +631,10 @@ namespace JMMClient
 			EpisodeNumberAndNameWithType = string.Format("{0}{1} - {2}", shortType, EpisodeNumber, EpisodeName);
 			EpisodeTypeAndNumber = string.Format("{0}{1}", shortType, EpisodeNumber);
 			EpisodeTypeAndNumberAbsolute = string.Format("{0}{1}", shortType, EpisodeNumber.ToString().PadLeft(5, '0'));
+
+			EpisodeNumberAndNameTruncated = EpisodeNumberAndName;
+			if (EpisodeNumberAndName.Length > 60)
+				EpisodeNumberAndNameTruncated = EpisodeNumberAndName.Substring(0, 60) + "...";
 		}
 
 		public void Populate(JMMServerBinary.Contract_AnimeEpisode contract)
