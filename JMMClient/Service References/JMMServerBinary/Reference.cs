@@ -13946,7 +13946,7 @@ namespace JMMClient.JMMServerBinary {
         void IgnoreAnime(int animeID, int ignoreType, int userID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetTraktFriendInfo", ReplyAction="http://tempuri.org/IJMMServer/GetTraktFriendInfoResponse")]
-        JMMClient.JMMServerBinary.Contract_Trakt_Activity GetTraktFriendInfo(int maxResults, bool animeOnly);
+        JMMClient.JMMServerBinary.Contract_Trakt_Activity GetTraktFriendInfo(int maxResults, bool animeOnly, bool getShouts, bool getScrobbles);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetUserVote", ReplyAction="http://tempuri.org/IJMMServer/GetUserVoteResponse")]
         JMMClient.JMMServerBinary.Contract_AniDBVote GetUserVote(int animeID);
@@ -14493,8 +14493,8 @@ namespace JMMClient.JMMServerBinary {
             base.Channel.IgnoreAnime(animeID, ignoreType, userID);
         }
         
-        public JMMClient.JMMServerBinary.Contract_Trakt_Activity GetTraktFriendInfo(int maxResults, bool animeOnly) {
-            return base.Channel.GetTraktFriendInfo(maxResults, animeOnly);
+        public JMMClient.JMMServerBinary.Contract_Trakt_Activity GetTraktFriendInfo(int maxResults, bool animeOnly, bool getShouts, bool getScrobbles) {
+            return base.Channel.GetTraktFriendInfo(maxResults, animeOnly, getShouts, getScrobbles);
         }
         
         public JMMClient.JMMServerBinary.Contract_AniDBVote GetUserVote(int animeID) {

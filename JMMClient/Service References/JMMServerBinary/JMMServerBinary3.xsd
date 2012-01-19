@@ -575,6 +575,8 @@
       <xs:sequence>
         <xs:element minOccurs="0" name="maxResults" type="xs:int" />
         <xs:element minOccurs="0" name="animeOnly" type="xs:boolean" />
+        <xs:element minOccurs="0" name="getShouts" type="xs:boolean" />
+        <xs:element minOccurs="0" name="getScrobbles" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -247,7 +247,21 @@ namespace JMMClient.UserControls
 
 			SetWidgetOrder();
 
-			
+			togTraktScrobbles.Click += new RoutedEventHandler(togTraktScrobbles_Click);
+			togTraktShouts.Click += new RoutedEventHandler(togTraktShouts_Click);
+		}
+
+		void togTraktShouts_Click(object sender, RoutedEventArgs e)
+		{
+			//RefreshData();
+			if (UserSettingsVM.Instance.DashTraktFriendsExpanded)
+				DashboardVM.Instance.RefreshTraktFriends(togTraktScrobbles.IsChecked.Value, togTraktShouts.IsChecked.Value);
+		}
+
+		void togTraktScrobbles_Click(object sender, RoutedEventArgs e)
+		{
+			if (UserSettingsVM.Instance.DashTraktFriendsExpanded)
+				DashboardVM.Instance.RefreshTraktFriends(togTraktScrobbles.IsChecked.Value, togTraktShouts.IsChecked.Value);
 		}
 
 		
@@ -441,7 +455,7 @@ namespace JMMClient.UserControls
 		void btnExpandTraktFriends_Click(object sender, RoutedEventArgs e)
 		{
 			if (UserSettingsVM.Instance.DashTraktFriendsCollapsed && DashboardVM.Instance.TraktActivity.Count == 0)
-				DashboardVM.Instance.RefreshTraktFriends();
+				DashboardVM.Instance.RefreshTraktFriends(togTraktScrobbles.IsChecked.Value, togTraktShouts.IsChecked.Value);
 
 			UserSettingsVM.Instance.DashTraktFriendsExpanded = !UserSettingsVM.Instance.DashTraktFriendsExpanded;
 		}
@@ -474,7 +488,9 @@ namespace JMMClient.UserControls
 		{
 			try
 			{
-				DashboardVM.Instance.RefreshData();
+				RefreshOptions opt = e.Argument as RefreshOptions;
+
+				DashboardVM.Instance.RefreshData(opt.TraktScrobbles, opt.TraktShouts);
 			}
 			catch (Exception ex)
 			{
@@ -484,13 +500,22 @@ namespace JMMClient.UserControls
 
 		void btnToolbarRefresh_Click(object sender, RoutedEventArgs e)
 		{
+			RefreshData();
+			
+		}
+
+		private void RefreshData()
+		{
 			Window parentWindow = Window.GetWindow(this);
 
 			IsLoadingData = true;
 			this.IsEnabled = false;
 			parentWindow.Cursor = Cursors.Wait;
-			refreshDataWorker.RunWorkerAsync();
-			
+
+			RefreshOptions opt = new RefreshOptions();
+			opt.TraktScrobbles = togTraktScrobbles.IsChecked.Value;
+			opt.TraktShouts = togTraktShouts.IsChecked.Value;
+			refreshDataWorker.RunWorkerAsync(opt);
 		}
 
 
@@ -574,7 +599,7 @@ namespace JMMClient.UserControls
 					ser = MainListHelperVM.Instance.GetSeriesForEpisode(ep);
 				}
 
-				DashboardVM.Instance.RefreshData();
+				RefreshData();
 				if (newStatus == true && ser != null)
 				{
 					Utils.PromptToRateSeries(ser, parentWindow);
@@ -700,7 +725,7 @@ namespace JMMClient.UserControls
 					{
 						MessageBox.Show(retMessage, "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 						JMMServerVM.Instance.GetServerSettings();
-						DashboardVM.Instance.RefreshTraktFriends();
+						DashboardVM.Instance.RefreshTraktFriends(togTraktScrobbles.IsChecked.Value, togTraktShouts.IsChecked.Value);
 					}
 					else
 						MessageBox.Show(retMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -801,7 +826,7 @@ namespace JMMClient.UserControls
 				if (success)
 				{
 					MessageBox.Show(retMessage, "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-					DashboardVM.Instance.RefreshTraktFriends();
+					DashboardVM.Instance.RefreshTraktFriends(togTraktScrobbles.IsChecked.Value, togTraktShouts.IsChecked.Value);
 				}
 				else
 					MessageBox.Show(retMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -868,5 +893,11 @@ namespace JMMClient.UserControls
 
 	public class SyncVotesDummy
 	{
+	}
+
+	public class RefreshOptions
+	{
+		public bool TraktScrobbles { get; set; }
+		public bool TraktShouts { get; set; }
 	}
 }

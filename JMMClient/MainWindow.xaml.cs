@@ -322,7 +322,9 @@ namespace JMMClient
 
 		void showDashboardWorker_DoWork(object sender, DoWorkEventArgs e)
 		{
-			DashboardVM.Instance.RefreshData();
+			RefreshOptions opt = e.Argument as RefreshOptions;
+
+			DashboardVM.Instance.RefreshData(opt.TraktScrobbles, opt.TraktShouts);
 		}
 
 		void showDashboardWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -343,7 +345,11 @@ namespace JMMClient
 					{
 						tabControl1.IsEnabled = false;
 						this.Cursor = Cursors.Wait;
-						showDashboardWorker.RunWorkerAsync();
+
+						RefreshOptions opt = new RefreshOptions();
+						opt.TraktScrobbles = dash.togTraktScrobbles.IsChecked.Value;
+						opt.TraktShouts = dash.togTraktShouts.IsChecked.Value;
+						showDashboardWorker.RunWorkerAsync(opt);
 
 					}
 				}
@@ -2438,7 +2444,11 @@ namespace JMMClient
 		}
 	}
 
-	
+	public class RefreshOptions
+	{
+		public bool TraktScrobbles { get; set; }
+		public bool TraktShouts { get; set; }
+	}
 
 	
 }
