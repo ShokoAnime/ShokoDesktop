@@ -42,6 +42,27 @@ namespace JMMClient.UserControls
 				cboImagesPath.SelectedIndex = 0;
 			else
 				cboImagesPath.SelectedIndex = 1;
+
+			btnRecreateGroups.Click += new RoutedEventHandler(btnRecreateGroups_Click);
+		}
+
+		void btnRecreateGroups_Click(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				Window parentWindow = Window.GetWindow(this);
+				parentWindow.Cursor = Cursors.Wait;
+
+				JMMServerVM.Instance.clientBinaryHTTP.RecreateAllGroups();
+				MainListHelperVM.Instance.RefreshGroupsSeriesData();
+				MainListHelperVM.Instance.ShowChildWrappers(null);
+
+				parentWindow.Cursor = Cursors.Arrow;
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
 		}
 
 		void btnChooseImagesFolder_Click(object sender, RoutedEventArgs e)

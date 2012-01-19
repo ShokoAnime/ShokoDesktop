@@ -134,6 +134,12 @@
   <wsdl:message name="IJMMServer_SyncMALDownload_OutputMessage">
     <wsdl:part name="parameters" element="tns:SyncMALDownloadResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_RecreateAllGroups_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecreateAllGroups" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RecreateAllGroups_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecreateAllGroupsResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_GetGroupFilterExtended_InputMessage">
     <wsdl:part name="parameters" element="tns:GetGroupFilterExtended" />
   </wsdl:message>
@@ -1051,6 +1057,10 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SyncMALDownload" message="tns:IJMMServer_SyncMALDownload_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SyncMALDownloadResponse" message="tns:IJMMServer_SyncMALDownload_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="RecreateAllGroups">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RecreateAllGroups" message="tns:IJMMServer_RecreateAllGroups_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RecreateAllGroupsResponse" message="tns:IJMMServer_RecreateAllGroups_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetGroupFilterExtended">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilterExtended" message="tns:IJMMServer_GetGroupFilterExtended_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilterExtendedResponse" message="tns:IJMMServer_GetGroupFilterExtended_OutputMessage" />
@@ -1779,6 +1789,15 @@
     </wsdl:operation>
     <wsdl:operation name="SyncMALDownload">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/SyncMALDownload" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecreateAllGroups">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/RecreateAllGroups" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

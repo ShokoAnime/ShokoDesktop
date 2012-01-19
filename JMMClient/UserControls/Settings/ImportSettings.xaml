@@ -51,6 +51,15 @@
             <CheckBox Name="chkImportSettings_AutoGroupSeries" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=AutoGroupSeries}" VerticalAlignment="Center"/>
         </StackPanel>
 
+        <Button HorizontalAlignment="Left" Name="btnRecreateGroups" Margin="-5,5,0,0" Style="{DynamicResource RoundButtonStyle}" Width="Auto" Grid.Column="2" Grid.Row="2"
+                ToolTip="{usercontrols:Info Title=Recreate All Groups, 
+                Body=This will delete all your current groups and then re-organize all your series into new groups based on your import settings}">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="0,0,5,0"/>
+                <TextBlock VerticalAlignment="Center" Text="Recreate All Groups" Margin="0,0,5,0"/>
+            </StackPanel>
+        </Button>
+
         <!-- Use status from existing files -->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="3" Margin="0,5,15,0">
             <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ImportSettings_UseEpisodeStatus}" VerticalAlignment="Center"></TextBlock>

@@ -13882,6 +13882,9 @@ namespace JMMClient.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/SyncMALDownload", ReplyAction="http://tempuri.org/IJMMServer/SyncMALDownloadResponse")]
         void SyncMALDownload();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/RecreateAllGroups", ReplyAction="http://tempuri.org/IJMMServer/RecreateAllGroupsResponse")]
+        void RecreateAllGroups();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetGroupFilterExtended", ReplyAction="http://tempuri.org/IJMMServer/GetGroupFilterExtendedResponse")]
         JMMClient.JMMServerBinary.Contract_GroupFilterExtended GetGroupFilterExtended(int groupFilterID, int userID);
         
@@ -14404,6 +14407,10 @@ namespace JMMClient.JMMServerBinary {
         
         public void SyncMALDownload() {
             base.Channel.SyncMALDownload();
+        }
+        
+        public void RecreateAllGroups() {
+            base.Channel.RecreateAllGroups();
         }
         
         public JMMClient.JMMServerBinary.Contract_GroupFilterExtended GetGroupFilterExtended(int groupFilterID, int userID) {
