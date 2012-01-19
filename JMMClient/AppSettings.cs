@@ -197,10 +197,10 @@ namespace JMMClient
 					if (ival > 30 && ival < 300)
 						return ival;
 					else
-						return 150;
+						return 200;
 				}
 				else
-					return 150; // default value
+					return 200; // default value
 			}
 			set
 			{

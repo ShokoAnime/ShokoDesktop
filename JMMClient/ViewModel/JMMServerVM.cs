@@ -377,6 +377,8 @@ namespace JMMClient
 			this.WebCache_MAL_Send = contract.WebCache_MAL_Send;
 			this.WebCache_XRefFileEpisode_Get = contract.WebCache_XRefFileEpisode_Get;
 			this.WebCache_XRefFileEpisode_Send = contract.WebCache_XRefFileEpisode_Send;
+			this.WebCache_AniDB_File_Get = contract.WebCache_AniDB_File_Get;
+			this.WebCache_AniDB_File_Send = contract.WebCache_AniDB_File_Send;
 
 			// TvDB
 			this.TvDB_AutoFanart = contract.TvDB_AutoFanart;
@@ -480,6 +482,8 @@ namespace JMMClient
 				contract.WebCache_MAL_Send = this.WebCache_MAL_Send;
 				contract.WebCache_XRefFileEpisode_Get = this.WebCache_XRefFileEpisode_Get;
 				contract.WebCache_XRefFileEpisode_Send = this.WebCache_XRefFileEpisode_Send;
+				contract.WebCache_AniDB_File_Get = this.WebCache_AniDB_File_Get;
+				contract.WebCache_AniDB_File_Send = this.WebCache_AniDB_File_Send;
 
 				// TvDB
 				contract.TvDB_AutoFanart = this.TvDB_AutoFanart;
@@ -1041,6 +1045,28 @@ namespace JMMClient
 			{
 				webCache_FileHashes_Send = value;
 				OnPropertyChanged(new PropertyChangedEventArgs("WebCache_FileHashes_Send"));
+			}
+		}
+
+		private bool webCache_AniDB_File_Get = false;
+		public bool WebCache_AniDB_File_Get
+		{
+			get { return webCache_AniDB_File_Get; }
+			set
+			{
+				webCache_AniDB_File_Get = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("WebCache_AniDB_File_Get"));
+			}
+		}
+
+		private bool webCache_AniDB_File_Send = false;
+		public bool WebCache_AniDB_File_Send
+		{
+			get { return webCache_AniDB_File_Send; }
+			set
+			{
+				webCache_AniDB_File_Send = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("WebCache_AniDB_File_Send"));
 			}
 		}
 

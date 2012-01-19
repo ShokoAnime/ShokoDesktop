@@ -1185,6 +1185,8 @@
       <xs:element minOccurs="0" name="TvDB_UpdateFrequency" type="xs:int" />
       <xs:element minOccurs="0" name="VideoExtensions" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="WebCache_Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WebCache_AniDB_File_Get" type="xs:boolean" />
+      <xs:element minOccurs="0" name="WebCache_AniDB_File_Send" type="xs:boolean" />
       <xs:element minOccurs="0" name="WebCache_Anonymous" type="xs:boolean" />
       <xs:element minOccurs="0" name="WebCache_FileHashes_Get" type="xs:boolean" />
       <xs:element minOccurs="0" name="WebCache_FileHashes_Send" type="xs:boolean" />

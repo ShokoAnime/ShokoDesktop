@@ -20,6 +20,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Margin="0,0,0,10">
@@ -119,6 +120,25 @@
                       IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=WebCache_XRefFileEpisode_Send}" VerticalAlignment="Center"
                       ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=WebCache_FileEpisodes}, 
                                                 Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_WebCache_FileEpisodes}}"/>
+        </StackPanel>
+
+        <!-- AniDB File Data -->
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="6" Margin="0,5,15,0">
+            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=WebCache_AniDB_File}" VerticalAlignment="Center"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="6" Margin="0,5,5,0">
+            <CheckBox Name="chkWebCache_AniDB_File_Get" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Get}" 
+                      IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=WebCache_AniDB_File_Get}" VerticalAlignment="Center"
+                      ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=WebCache_AniDB_File}, 
+                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_WebCache_AniDB_File}}"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="6" Margin="0,5,5,0">
+            <CheckBox Name="chkWebCache_AniDB_File_Send" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Send}" 
+                      IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=WebCache_AniDB_File_Send}" VerticalAlignment="Center"
+                      ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=WebCache_AniDB_File}, 
+                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_WebCache_AniDB_File}}"/>
         </StackPanel>
 
     </Grid>

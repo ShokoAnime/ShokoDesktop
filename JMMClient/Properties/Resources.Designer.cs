@@ -4075,6 +4075,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This is the data associated with each individual file. Recommended for large collections.
+        /// </summary>
+        public static string Tooltip_WebCache_AniDB_File {
+            get {
+                return ResourceManager.GetString("Tooltip_WebCache_AniDB_File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to By selecting this option your AniDB username will not be sent to the web cache. However this means you will not get the benefit of remembering your own personal selections..
         /// </summary>
         public static string Tooltip_WebCache_Anonymous {
@@ -4575,6 +4584,15 @@ namespace JMMClient.Properties {
         public static string Watched {
             get {
                 return ResourceManager.GetString("Watched", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AniDB File Data.
+        /// </summary>
+        public static string WebCache_AniDB_File {
+            get {
+                return ResourceManager.GetString("WebCache_AniDB_File", resourceCulture);
             }
         }
         

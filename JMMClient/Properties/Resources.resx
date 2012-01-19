@@ -1646,4 +1646,10 @@
   <data name="Tooltip_SyncMalUp" xml:space="preserve">
     <value>Update MAL using the watched stats from your local collection</value>
   </data>
+  <data name="Tooltip_WebCache_AniDB_File" xml:space="preserve">
+    <value>This is the data associated with each individual file. Recommended for large collections</value>
+  </data>
+  <data name="WebCache_AniDB_File" xml:space="preserve">
+    <value>AniDB File Data</value>
+  </data>
 </root>

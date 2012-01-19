@@ -31,6 +31,8 @@ namespace JMMClient.UserControls
 			chkWebCache_TvDBAssociations_Send.Click += new RoutedEventHandler(settingChanged);
 			chkWebCache_MALAssociations_Get.Click += new RoutedEventHandler(settingChanged);
 			chkWebCache_MALAssociations_Send.Click += new RoutedEventHandler(settingChanged);
+			chkWebCache_AniDB_File_Get.Click += new RoutedEventHandler(settingChanged);
+			chkWebCache_AniDB_File_Send.Click += new RoutedEventHandler(settingChanged);
 			btnSave.Click += new RoutedEventHandler(btnSave_Click);
 		}
 
