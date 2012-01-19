@@ -21,7 +21,6 @@ namespace JMMClient.UserControls
 	/// </summary>
 	public partial class RatingControl : UserControl
 	{
-		CultureInfo _cultureInfo = new CultureInfo("en-US");
 
 		public static readonly DependencyProperty RatingValueProperty =
 		   DependencyProperty.Register("RatingValue", typeof(double), typeof(RatingControl),
@@ -96,7 +95,7 @@ namespace JMMClient.UserControls
 		{
 			ToggleButton button = sender as ToggleButton;
 
-			double newRating = double.Parse((String)button.Tag, _cultureInfo.NumberFormat);
+			double newRating = double.Parse((String)button.Tag);
 			if (RatingValue == newRating && newRating == 0.5)
 			{
 				RatingValue = 0.0;
@@ -113,7 +112,7 @@ namespace JMMClient.UserControls
 		private void RatingButtonMouseEnterEventHandler(object sender, System.Windows.Input.MouseEventArgs e)
 		{
 			ToggleButton button = sender as ToggleButton;
-			double hoverRating = double.Parse((String)button.Tag, _cultureInfo.NumberFormat);
+			double hoverRating = double.Parse((String)button.Tag);
 			int numberOfButtonsToHighlight = (int)(2 * hoverRating);
 
 			UIElementCollection children = RatingContentPanel.Children;
