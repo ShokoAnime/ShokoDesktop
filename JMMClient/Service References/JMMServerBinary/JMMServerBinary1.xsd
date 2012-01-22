@@ -233,6 +233,7 @@
       <xs:element minOccurs="0" name="Stat_AllTitles" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Stat_AllVideoQuality" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Stat_AllVideoQuality_Episodes" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Stat_AniDBRating" type="xs:decimal" />
       <xs:element minOccurs="0" name="Stat_AudioLanguages" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Stat_EndDate" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Stat_EpisodeCount" type="xs:int" />

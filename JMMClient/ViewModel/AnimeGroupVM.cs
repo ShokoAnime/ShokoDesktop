@@ -55,6 +55,7 @@ namespace JMMClient
 		public bool Stat_HasMovieDBOrTvDBLink { get; set; }
 		public int Stat_SeriesCount { get; set; }
 		public int Stat_EpisodeCount { get; set; }
+		public decimal Stat_AniDBRating { get; set; }
 
 		private static AnimeGroupSortMethod sortMethod = AnimeGroupSortMethod.SortName;
 		public static AnimeGroupSortMethod SortMethod
@@ -684,10 +685,12 @@ namespace JMMClient
 			{
 				try
 				{
-					if (AniDBTotalVotes == 0)
+					/*if (AniDBTotalVotes == 0)
 						return 0;
 					else
-						return AniDBTotalRating / (decimal)AniDBTotalVotes / (decimal)100;
+						return AniDBTotalRating / (decimal)AniDBTotalVotes / (decimal)100;*/
+
+					return Stat_AniDBRating / (decimal)100;
 
 				}
 				catch (Exception ex)
@@ -785,6 +788,7 @@ namespace JMMClient
 			this.Stat_HasMovieDBOrTvDBLink = contract.Stat_HasMovieDBOrTvDBLink;
 			this.Stat_SeriesCount = contract.Stat_SeriesCount;
 			this.Stat_EpisodeCount = contract.Stat_EpisodeCount;
+			this.Stat_AniDBRating = contract.Stat_AniDBRating;
 
 			// editable members
 			this.GroupName = contract.GroupName;

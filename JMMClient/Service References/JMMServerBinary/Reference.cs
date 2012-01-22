@@ -2806,6 +2806,9 @@ namespace JMMClient.JMMServerBinary {
         private string Stat_AllVideoQuality_EpisodesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal Stat_AniDBRatingField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string Stat_AudioLanguagesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -3131,6 +3134,19 @@ namespace JMMClient.JMMServerBinary {
                 if ((object.ReferenceEquals(this.Stat_AllVideoQuality_EpisodesField, value) != true)) {
                     this.Stat_AllVideoQuality_EpisodesField = value;
                     this.RaisePropertyChanged("Stat_AllVideoQuality_Episodes");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal Stat_AniDBRating {
+            get {
+                return this.Stat_AniDBRatingField;
+            }
+            set {
+                if ((this.Stat_AniDBRatingField.Equals(value) != true)) {
+                    this.Stat_AniDBRatingField = value;
+                    this.RaisePropertyChanged("Stat_AniDBRating");
                 }
             }
         }
