@@ -40,11 +40,12 @@ namespace JMMClient
 
 		private static readonly int TAB_MAIN_Dashboard = 0;
 		private static readonly int TAB_MAIN_Collection = 1;
-		private static readonly int TAB_MAIN_Server = 2;
-		private static readonly int TAB_MAIN_FileManger = 3;
-		private static readonly int TAB_MAIN_Settings = 4;
-		private static readonly int TAB_MAIN_Pinned = 5;
-		private static readonly int TAB_MAIN_Search = 6;
+		private static readonly int TAB_MAIN_Playlists = 2;
+		private static readonly int TAB_MAIN_Server = 3;
+		private static readonly int TAB_MAIN_FileManger = 4;
+		private static readonly int TAB_MAIN_Settings = 5;
+		private static readonly int TAB_MAIN_Pinned = 6;
+		private static readonly int TAB_MAIN_Search = 7;
 
 		private static readonly int TAB_FileManger_Unrecognised = 0;
 		private static readonly int TAB_FileManger_Ignored = 1;
@@ -99,6 +100,8 @@ namespace JMMClient
 				lbGroupsSeries.SelectionChanged += new SelectionChangedEventHandler(lbGroupsSeries_SelectionChanged);
 				this.grdMain.LayoutUpdated += new EventHandler(grdMain_LayoutUpdated);
 				this.LayoutUpdated += new EventHandler(MainWindow_LayoutUpdated);
+
+				lbPlaylists.SelectionChanged += new SelectionChangedEventHandler(lbPlaylists_SelectionChanged);
 
 
 
@@ -164,6 +167,8 @@ namespace JMMClient
 				logger.ErrorException(ex.ToString(), ex);
 			}
 		}
+
+		
 
 		void btnUpdateMediaInfo_Click(object sender, RoutedEventArgs e)
 		{
@@ -265,6 +270,13 @@ namespace JMMClient
 				//tempWidth = tabControl1.ActualWidth - 300;
 				if (tempWidth > 0)
 					MainListHelperVM.Instance.FullScrollerWidth = tempWidth;
+
+
+				tempWidth = ScrollerPlaylist.ViewportWidth - 8;
+				if (tempWidth > 0)
+					MainListHelperVM.Instance.PlaylistScrollerWidth = tempWidth;
+
+
 			}
 			catch (Exception ex)
 			{
@@ -373,6 +385,14 @@ namespace JMMClient
 				if (tabIndex == TAB_MAIN_FileManger)
 				{
 					if (unRecVids.UnrecognisedFiles.Count == 0) unRecVids.RefreshUnrecognisedFiles();
+
+				}
+
+				if (tabIndex == TAB_MAIN_Playlists)
+				{
+					if (PlaylistHelperVM.Instance.Playlists == null || PlaylistHelperVM.Instance.Playlists.Count == 0) PlaylistHelperVM.Instance.RefreshData();
+					if (lbPlaylists.Items.Count > 0)
+						lbPlaylists.SelectedIndex = 0;
 
 				}
 
@@ -1868,6 +1888,65 @@ namespace JMMClient
 			}
 		}
 
+		private void CommandBinding_AddPlaylist(object sender, ExecutedRoutedEventArgs e)
+		{
+			try
+			{
+				DialogText dlg = new DialogText();
+				dlg.Init("Enter playlist name: ", "");
+				dlg.Owner = this;
+				bool? res = dlg.ShowDialog();
+				if (res.HasValue && res.Value)
+				{
+					if (string.IsNullOrEmpty(dlg.EnteredText))
+					{
+						Utils.ShowErrorMessage("Please enter a playlist name");
+						return;
+					}
+
+					JMMServerBinary.Contract_Playlist pl = new JMMServerBinary.Contract_Playlist();
+					pl.DefaultPlayOrder = (int)PlaylistPlayOrder.Sequential;
+					pl.PlaylistItems = "";
+					pl.PlaylistName = dlg.EnteredText;
+					pl.PlayUnwatched = 1;
+					pl.PlayWatched = 0;
+					string result = JMMServerVM.Instance.clientBinaryHTTP.SavePlaylist(pl);
+
+					if (!string.IsNullOrEmpty(result))
+					{
+						Utils.ShowErrorMessage(result);
+						return;
+					}
+
+					// refresh data
+					PlaylistHelperVM.Instance.RefreshData();
+				}
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+		}
+
+		private void CommandBinding_DeletePlaylist(object sender, ExecutedRoutedEventArgs e)
+		{
+			PlaylistVM pl = e.Parameter as PlaylistVM;
+			if (pl == null) return;
+
+			try
+			{
+				MessageBoxResult res = MessageBox.Show(string.Format("Are you sure you want to delete the playlist: {0}", pl.PlaylistName),
+					"Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
+				if (res == MessageBoxResult.Yes)
+				{
+				}
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+		}
+
 		private void CommandBinding_IncrementSeriesImageSize(object sender, ExecutedRoutedEventArgs e)
 		{
 			UserSettingsVM.Instance.SeriesGroup_Image_Height = UserSettingsVM.Instance.SeriesGroup_Image_Height + 10;
@@ -2206,7 +2285,35 @@ namespace JMMClient
 			return GroupSearchFilterHelper.EvaluateGroupFilter(groupFilterVM, grpvm);
 		}
 
-		
+		void lbPlaylists_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			try
+			{
+				System.Windows.Controls.ListBox lb = (System.Windows.Controls.ListBox)sender;
+
+				object obj = lb.SelectedItem;
+				if (obj == null) return;
+
+				if (obj.GetType() == typeof(PlaylistVM))
+				{
+					this.Cursor = Cursors.Wait;
+					PlaylistVM pl = obj as PlaylistVM;
+					pl.PopulatePlaylistObjects();
+					//series.RefreshBase();
+					//MainListHelperVM.Instance.LastAnimeSeriesID = series.AnimeSeriesID.Value;
+					//MainListHelperVM.Instance.CurrentSeries = series;
+				}
+
+
+				SetDetailBindingPlaylist(obj);
+				this.Cursor = Cursors.Arrow;
+
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+		}
 
 		void lbGroupsSeries_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
@@ -2428,6 +2535,23 @@ namespace JMMClient
 				Utils.ShowErrorMessage(ex);
 			}
 			
+		}
+
+		private void SetDetailBindingPlaylist(object objToBind)
+		{
+			try
+			{
+				//BindingOperations.ClearBinding(ccDetail, ContentControl.ContentProperty);
+				Binding b = new Binding();
+				b.Source = objToBind;
+				b.UpdateSourceTrigger = UpdateSourceTrigger.Explicit;
+				ccPlaylist.SetBinding(ContentControl.ContentProperty, b);
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+
 		}
 
 

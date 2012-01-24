@@ -33,5 +33,17 @@
     </DataTemplate>
 
 
+    <!-- Playlist_PlaylistTemplate -->
+    <DataTemplate x:Key="Playlist_PlaylistTemplate">
+        <StackPanel Orientation="Horizontal">
+            
+            <TextBlock Text="{Binding Path=PlaylistName}" Margin="5" VerticalAlignment="Center"/>
+        </StackPanel>
+    </DataTemplate>
+
+    <!-- Playlist_DetailTemplate -->
+    <DataTemplate x:Key="Playlist_DetailTemplate">
+        <usercontrols:PlaylistControl DataContext="{Binding}" />
+    </DataTemplate>
 
 </ResourceDictionary>

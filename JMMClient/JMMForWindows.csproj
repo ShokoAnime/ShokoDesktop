@@ -88,6 +88,9 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GongSolutions.Wpf.DragDrop">
+      <HintPath>..\Dependencies\GongSolutions.Wpf.DragDrop.dll</HintPath>
+    </Reference>
     <Reference Include="Infralution.Localization.Wpf, Version=2.1.1.0, Culture=neutral, PublicKeyToken=547ccae517a004b5, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\Infralution.Localization.Wpf.dll</HintPath>
@@ -130,6 +133,7 @@
     </ApplicationDefinition>
     <Compile Include="DataTemplateSelectors\BreadCrumbTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\DashWatchNextTemplateSelector.cs" />
+    <Compile Include="DataTemplateSelectors\PlaylistTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\RecDownloadTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\RecWatchTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\TraktActivityTemplateSelector.cs" />
@@ -142,6 +146,9 @@
     </Compile>
     <Compile Include="Forms\DeleteSeriesGroupForm.xaml.cs">
       <DependentUpon>DeleteSeriesGroupForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DialogText.xaml.cs">
+      <DependentUpon>DialogText.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\GroupFilterConditionForm.xaml.cs">
       <DependentUpon>GroupFilterConditionForm.xaml</DependentUpon>
@@ -293,6 +300,9 @@
     </Compile>
     <Compile Include="UserControls\MultipleVideos.cs" />
     <Compile Include="UserControls\PasswordBoxAssistant.cs" />
+    <Compile Include="UserControls\PlaylistControl.xaml.cs">
+      <DependentUpon>PlaylistControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\PlayNextEpisodeControl.xaml.cs">
       <DependentUpon>PlayNextEpisodeControl.xaml</DependentUpon>
     </Compile>
@@ -442,6 +452,8 @@
     <Compile Include="ViewModel\MovieDB_FanartVM.cs" />
     <Compile Include="ViewModel\MovieDB_MovieVM.cs" />
     <Compile Include="ViewModel\MovieDB_PosterVM.cs" />
+    <Compile Include="ViewModel\PlaylistHelperVM.cs" />
+    <Compile Include="ViewModel\PlaylistVM.cs" />
     <Compile Include="ViewModel\RecommendationVM.cs" />
     <Compile Include="ViewModel\ReleaseGroupVM.cs" />
     <Compile Include="ViewModel\TraktTVShowResponseVM.cs" />
@@ -488,6 +500,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\DeleteSeriesGroupForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\DialogText.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -680,6 +696,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\MultipleFilesDetailControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\PlaylistControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -964,6 +984,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_MovieDB_Poster.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_Playlist.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_Recommendation.datasource">

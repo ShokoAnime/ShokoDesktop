@@ -274,6 +274,16 @@ namespace JMMClient
 			}
 		}
 
+		public int DisplayHeight_Playlist
+		{
+			get { return AppSettings.DisplayHeight_Playlist; }
+			set
+			{
+				AppSettings.DisplayHeight_Playlist = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("DisplayHeight_Playlist"));
+			}
+		}
+
 		public int DisplayHeight_SeriesInfo
 		{
 			get { return AppSettings.DisplayHeight_SeriesInfo; }

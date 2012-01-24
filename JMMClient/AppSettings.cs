@@ -185,6 +185,29 @@ namespace JMMClient
 			}
 		}
 
+		public static int DisplayHeight_Playlist
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["DisplayHeight_Playlist"];
+				int ival = 0;
+				if (int.TryParse(val, out ival))
+				{
+					if (ival > 30 && ival < 300)
+						return ival;
+					else
+						return 130;
+				}
+				else
+					return 130; // default value
+			}
+			set
+			{
+				UpdateSetting("DisplayHeight_Playlist", value.ToString());
+			}
+		}
+
 		public static int DisplayHeight_SeriesInfo
 		{
 			get

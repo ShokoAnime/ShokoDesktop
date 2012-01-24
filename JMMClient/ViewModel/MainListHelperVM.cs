@@ -144,6 +144,18 @@ namespace JMMClient
 			}
 		}
 
+		private double playlistScrollerWidth = 10;
+		public double PlaylistScrollerWidth
+		{
+			get { return playlistScrollerWidth; }
+			set
+			{
+				playlistScrollerWidth = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("PlaylistScrollerWidth"));
+
+			}
+		}
+
 		private double mainScrollerChildrenWidth = 10;
 		public double MainScrollerChildrenWidth
 		{

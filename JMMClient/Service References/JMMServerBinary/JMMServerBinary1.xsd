@@ -345,6 +345,23 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_CrossRef_AniDB_MALResult" nillable="true" type="tns:Contract_CrossRef_AniDB_MALResult" />
+  <xs:complexType name="ArrayOfContract_Playlist">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_Playlist" nillable="true" type="tns:Contract_Playlist" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_Playlist" nillable="true" type="tns:ArrayOfContract_Playlist" />
+  <xs:complexType name="Contract_Playlist">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DefaultPlayOrder" type="xs:int" />
+      <xs:element minOccurs="0" name="PlayUnwatched" type="xs:int" />
+      <xs:element minOccurs="0" name="PlayWatched" type="xs:int" />
+      <xs:element minOccurs="0" name="PlaylistID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="PlaylistItems" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PlaylistName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_Playlist" nillable="true" type="tns:Contract_Playlist" />
   <xs:complexType name="Contract_GroupFilterExtended">
     <xs:sequence>
       <xs:element minOccurs="0" name="GroupCount" type="xs:int" />

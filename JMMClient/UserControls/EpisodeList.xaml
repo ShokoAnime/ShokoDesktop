@@ -13,8 +13,8 @@
     <UserControl.Resources>
 
         <ResourceDictionary>
-            
-            
+
+
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Resources/Styles.xaml" />
                 <ResourceDictionary Source="/Resources/MainListStyles.xaml" />
@@ -40,7 +40,7 @@
     </UserControl.Resources>
 
     <UserControl.CommandBindings>
-        
+
 
     </UserControl.CommandBindings>
 
@@ -83,7 +83,7 @@
                     </StackPanel>
                 </Button>
 
-                
+
 
                 <!-- Mark all as un-watched -->
                 <Button Name="btnMarkAllUnwatched" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyleDark}">

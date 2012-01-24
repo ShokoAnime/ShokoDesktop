@@ -140,6 +140,18 @@
   <wsdl:message name="IJMMServer_RecreateAllGroups_OutputMessage">
     <wsdl:part name="parameters" element="tns:RecreateAllGroupsResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllPlaylists_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllPlaylists" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllPlaylists_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllPlaylistsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SavePlaylist_InputMessage">
+    <wsdl:part name="parameters" element="tns:SavePlaylist" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SavePlaylist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SavePlaylistResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_GetGroupFilterExtended_InputMessage">
     <wsdl:part name="parameters" element="tns:GetGroupFilterExtended" />
   </wsdl:message>
@@ -1061,6 +1073,14 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RecreateAllGroups" message="tns:IJMMServer_RecreateAllGroups_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RecreateAllGroupsResponse" message="tns:IJMMServer_RecreateAllGroups_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetAllPlaylists">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllPlaylists" message="tns:IJMMServer_GetAllPlaylists_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllPlaylistsResponse" message="tns:IJMMServer_GetAllPlaylists_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SavePlaylist">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SavePlaylist" message="tns:IJMMServer_SavePlaylist_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SavePlaylistResponse" message="tns:IJMMServer_SavePlaylist_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetGroupFilterExtended">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilterExtended" message="tns:IJMMServer_GetGroupFilterExtended_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilterExtendedResponse" message="tns:IJMMServer_GetGroupFilterExtended_OutputMessage" />
@@ -1798,6 +1818,24 @@
     </wsdl:operation>
     <wsdl:operation name="RecreateAllGroups">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/RecreateAllGroups" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllPlaylists">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllPlaylists" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SavePlaylist">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/SavePlaylist" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

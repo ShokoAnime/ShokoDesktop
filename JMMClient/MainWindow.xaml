@@ -13,10 +13,9 @@
 
 
             <local:MainListTemplateSelector x:Key="MainListTemplateSelector"/>
-
             <local:BreadCrumbTemplateSelector x:Key="BreadCrumbTemplateSelector"/>
-
             <local:GroupsSeriesDataTemplateSelector x:Key="myDataTemplateSelector"/>
+            <local:PlaylistTemplateSelector x:Key="PlaylistTemplateSelector"/>
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
@@ -25,7 +24,8 @@
             <RoutedUICommand x:Key="EditTraktCredentialsCommand" Text="EditTraktCredentialsCommand" />
             <RoutedUICommand x:Key="AvdumpFileCommand" Text="AvdumpFileCommand" />
             <RoutedUICommand x:Key="CreateSeriesFromAnimeCommand" Text="CreateSeriesFromAnimeCommand" />
-            
+            <RoutedUICommand x:Key="AddPlaylistCommand" Text="AddPlaylistCommand" />
+            <RoutedUICommand x:Key="DeletePlaylistCommand" Text="DeletePlaylistCommand" />
 
             <RoutedUICommand x:Key="RefreshCommand" Text="RefreshCommand" />
             <RoutedUICommand x:Key="SearchCommand" Text="SearchCommand" />
@@ -123,6 +123,8 @@
         <CommandBinding Command="{StaticResource EditTraktCredentialsCommand}" Executed="CommandBinding_EditTraktCredentials" />
         <CommandBinding Command="{StaticResource AvdumpFileCommand}" Executed="CommandBinding_AvdumpFile" />
         <CommandBinding Command="{StaticResource CreateSeriesFromAnimeCommand}" Executed="CommandBinding_CreateSeriesFromAnime" />
+        <CommandBinding Command="{StaticResource AddPlaylistCommand}" Executed="CommandBinding_AddPlaylist" />
+        <CommandBinding Command="{StaticResource DeletePlaylistCommand}" Executed="CommandBinding_DeletePlaylist" />
 
         <CommandBinding Command="{StaticResource RefreshCommand}" Executed="CommandBinding_Refresh" />
         <CommandBinding Command="{StaticResource SearchCommand}" Executed="CommandBinding_Search" />
@@ -361,6 +363,70 @@
 
 
                 </Grid>
+            </TabItem>
+
+            <!-- Playlists tab-->
+            <TabItem Name="tabPlaylists" Style="{DynamicResource tabMainItem}"
+                     Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Playlists" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
+                    </StackPanel>
+                </TabItem.Header>
+
+                <Grid Name="grdPlaylists">
+
+                    <Grid.Resources>
+
+
+                    </Grid.Resources>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="210*" />
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="551*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <GridSplitter HorizontalAlignment="Right" 
+                  VerticalAlignment="Stretch" Grid.Row="0"
+                  Grid.Column="1" ResizeBehavior="PreviousAndNext"
+                  Width="2" Background="#FFBCBCBC" Grid.RowSpan="1" />
+
+
+
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Name="ScrollerPlaylist" Grid.Column="2" Grid.Row="0" Padding="0,0,0,0" >
+                        <ContentControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Name="ccPlaylist" ContentTemplate="{DynamicResource Playlist_DetailTemplate}"
+                                        Width="{Binding Source={x:Static local:MainListHelperVM.Instance},Path=PlaylistScrollerWidth}" >
+
+                        </ContentControl>
+
+                    </ScrollViewer>
+
+                    <DockPanel Grid.Row="0" Grid.RowSpan="1">
+                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Background="#F1F1F1">
+                            <!-- add sub group -->
+                            <Button  Name="btnAddPlaylist" Margin="3,2,2,2" Style="{DynamicResource FlatButtonStyle}" Command="{DynamicResource AddPlaylistCommand}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="16" Width="16" Source="/Images/32_folder_add.png" Margin="0,0,3,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="New Playlist" Margin="0,0,0,0"/>
+                                </StackPanel>
+                            </Button>
+                            
+                        </StackPanel>
+                        <ListBox DockPanel.Dock="Top" Name="lbPlaylists" BorderThickness="0" Background="Transparent" 
+                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemTemplateSelector="{StaticResource PlaylistTemplateSelector}" 
+                         ItemContainerStyle="{DynamicResource ListBoxItemStyle}" ItemsSource="{Binding Source={x:Static local:PlaylistHelperVM.Instance},Path=ViewPlaylists}"
+                         >
+                        </ListBox>
+                    </DockPanel>
+
+
+
+
+                </Grid>
+
             </TabItem>
 
             <!-- Server tab-->
@@ -1084,6 +1150,8 @@
                              Margin="5,5,5,5"  />
 
             </TabItem>
+
+            
 
             <!-- Search tab-->
             <TabItem Name="tabSearch" Style="{DynamicResource tabMainItem}"

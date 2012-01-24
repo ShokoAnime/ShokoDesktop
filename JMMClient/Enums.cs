@@ -307,6 +307,18 @@ namespace JMMClient
 		Show = 2
 	}
 
+	public enum PlaylistItemType
+	{
+		Episode = 1,
+		AnimeSeries = 2
+	}
+
+	public enum PlaylistPlayOrder
+	{
+		Sequential = 1,
+		Random = 2
+	}
+
 	public class EnumTranslator
 	{
 		public static string EpisodeTypeTranslated(EpisodeType epType)
