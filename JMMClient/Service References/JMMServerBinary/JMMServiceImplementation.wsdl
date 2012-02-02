@@ -152,6 +152,18 @@
   <wsdl:message name="IJMMServer_SavePlaylist_OutputMessage">
     <wsdl:part name="parameters" element="tns:SavePlaylistResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_DeletePlaylist_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePlaylist" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_DeletePlaylist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePlaylistResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetPlaylist_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlaylist" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetPlaylist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlaylistResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_GetGroupFilterExtended_InputMessage">
     <wsdl:part name="parameters" element="tns:GetGroupFilterExtended" />
   </wsdl:message>
@@ -1081,6 +1093,14 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SavePlaylist" message="tns:IJMMServer_SavePlaylist_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SavePlaylistResponse" message="tns:IJMMServer_SavePlaylist_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="DeletePlaylist">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/DeletePlaylist" message="tns:IJMMServer_DeletePlaylist_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/DeletePlaylistResponse" message="tns:IJMMServer_DeletePlaylist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPlaylist">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetPlaylist" message="tns:IJMMServer_GetPlaylist_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetPlaylistResponse" message="tns:IJMMServer_GetPlaylist_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetGroupFilterExtended">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilterExtended" message="tns:IJMMServer_GetGroupFilterExtended_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilterExtendedResponse" message="tns:IJMMServer_GetGroupFilterExtended_OutputMessage" />
@@ -1836,6 +1856,24 @@
     </wsdl:operation>
     <wsdl:operation name="SavePlaylist">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/SavePlaylist" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePlaylist">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/DeletePlaylist" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlaylist">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetPlaylist" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

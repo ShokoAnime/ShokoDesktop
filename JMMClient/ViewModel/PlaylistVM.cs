@@ -5,19 +5,133 @@ using System.Text;
 using System.Collections.ObjectModel;
 using GongSolutions.Wpf.DragDrop;
 using System.Windows;
+using System.ComponentModel;
 
 namespace JMMClient.ViewModel
 {
-	public class PlaylistVM : GongSolutions.Wpf.DragDrop.IDropTarget
+	public class PlaylistVM : GongSolutions.Wpf.DragDrop.IDropTarget, INotifyPropertyChanged
 	{
 		public int? PlaylistID { get; set; }
-		public string PlaylistName { get; set; }
 		public string PlaylistItems { get; set; }
 		public int DefaultPlayOrder { get; set; }
 		public int PlayWatched { get; set; }
 		public int PlayUnwatched { get; set; }
 
-		public ObservableCollection<object> PlaylistObjects { get; set; }
+		public event PropertyChangedEventHandler PropertyChanged;
+		private void NotifyPropertyChanged(String propertyName)
+		{
+			if (PropertyChanged != null)
+			{
+				var args = new PropertyChangedEventArgs(propertyName);
+				PropertyChanged(this, args);
+			}
+		}
+
+		public ObservableCollection<PlaylistItemVM> PlaylistObjects { get; set; }
+
+		private AniDB_AnimeVM aniDB_Anime = null;
+		public AniDB_AnimeVM AniDB_Anime
+		{
+			get { return aniDB_Anime; }
+			set
+			{
+				aniDB_Anime = value;
+				NotifyPropertyChanged("AniDB_Anime");
+			}
+		}
+
+		private AnimeSeriesVM series = null;
+		public AnimeSeriesVM Series
+		{
+			get { return series; }
+			set
+			{
+				series = value;
+				NotifyPropertyChanged("Series");
+			}
+		}
+
+		private Boolean isReadOnly = true;
+		public Boolean IsReadOnly
+		{
+			get { return isReadOnly; }
+			set
+			{
+				isReadOnly = value;
+				NotifyPropertyChanged("IsReadOnly");
+			}
+		}
+
+		private Boolean isBeingEdited = false;
+		public Boolean IsBeingEdited
+		{
+			get { return isBeingEdited; }
+			set
+			{
+				isBeingEdited = value;
+				NotifyPropertyChanged("IsBeingEdited");
+			}
+		}
+
+		private string playlistName = "";
+		public string PlaylistName
+		{
+			get { return playlistName; }
+			set
+			{
+				playlistName = value;
+				NotifyPropertyChanged("PlaylistName");
+			}
+		}
+
+		private Boolean playWatchedBool = true;
+		public bool PlayWatchedBool
+		{
+			get { return playWatchedBool; }
+			set
+			{
+				playWatchedBool = value;
+				NotifyPropertyChanged("PlayWatchedBool");
+			}
+		}
+
+		private Boolean playUnwatchedBool = true;
+		public bool PlayUnwatchedBool
+		{
+			get { return playUnwatchedBool; }
+			set
+			{
+				playUnwatchedBool = value;
+				NotifyPropertyChanged("PlayUnwatchedBool");
+			}
+		}
+
+		public void SetDependendProperties()
+		{
+			AniDB_Anime = null;
+			Series = null;
+
+			if (PlaylistObjects.Count == 0) return;
+
+			PlaylistItemVM plItem = PlaylistObjects[0];
+
+
+			if (plItem.ItemType == PlaylistItemType.Episode)
+			{
+				AnimeEpisodeVM aniep = plItem.PlaylistItem as AnimeEpisodeVM;
+				aniep.RefreshAnime();
+				AniDB_Anime = aniep.AniDB_Anime;
+
+				if (MainListHelperVM.Instance.AllSeriesDictionary.ContainsKey(aniep.AnimeSeriesID))
+					Series = MainListHelperVM.Instance.AllSeriesDictionary[aniep.AnimeSeriesID];
+			}
+			if (plItem.ItemType == PlaylistItemType.AnimeSeries)
+			{
+				AnimeSeriesVM ser = plItem.PlaylistItem as AnimeSeriesVM;
+				AniDB_Anime = ser.AniDB_Anime;
+				Series = ser;
+			}
+		}
 
 		public PlaylistPlayOrder DefaultPlayOrderEnum
 		{
@@ -27,25 +141,11 @@ namespace JMMClient.ViewModel
 			}
 		}
 
-		public bool PlayWatchedBool
-		{
-			get
-			{
-				return PlayWatched == 1;
-			}
-		}
-
-		public bool PlayUnwatchedBool
-		{
-			get
-			{
-				return PlayUnwatched == 1;
-			}
-		}
+		
 
 		public PlaylistVM(JMMServerBinary.Contract_Playlist contract)
 		{
-			PlaylistObjects = new ObservableCollection<object>();
+			PlaylistObjects = new ObservableCollection<PlaylistItemVM>();
 
 			Populate(contract);
 			//PopulatePlaylistObjects();
@@ -53,12 +153,12 @@ namespace JMMClient.ViewModel
 
 		void GongSolutions.Wpf.DragDrop.IDropTarget.DragOver(DropInfo dropInfo)
 		{
-			AnimeSeriesVM sourceItem = dropInfo.Data as AnimeSeriesVM;
-			AnimeSeriesVM targetItem = dropInfo.TargetItem as AnimeSeriesVM;
+			PlaylistItemVM sourceItem = dropInfo.Data as PlaylistItemVM;
+			PlaylistItemVM targetItem = dropInfo.TargetItem as PlaylistItemVM;
 
 			if (sourceItem != null && targetItem != null)
 			{
-				dropInfo.DropTargetAdorner = DropTargetAdorners.Highlight;
+				dropInfo.DropTargetAdorner = DropTargetAdorners.Insert;
 				dropInfo.Effects = DragDropEffects.Copy;
 			}
 		}
@@ -68,15 +168,18 @@ namespace JMMClient.ViewModel
 			PlaylistItemType itemType = PlaylistItemType.AnimeSeries;
 			int objIDOld = -1;
 
-			if (dropInfo.Data is AnimeEpisodeVM)
+			PlaylistItemVM pli = dropInfo.Data as PlaylistItemVM;
+			if (pli == null) return;
+
+			if (pli.ItemType == PlaylistItemType.Episode)
 			{
-				AnimeEpisodeVM ep = (AnimeEpisodeVM)dropInfo.Data;
+				AnimeEpisodeVM ep = (AnimeEpisodeVM)pli.PlaylistItem;
 				itemType = PlaylistItemType.Episode;
 				objIDOld = ep.AnimeEpisodeID;
 			}
-			if (dropInfo.Data is AnimeSeriesVM)
+			if (pli.ItemType == PlaylistItemType.AnimeSeries)
 			{
-				AnimeSeriesVM ep = (AnimeSeriesVM)dropInfo.Data;
+				AnimeSeriesVM ep = (AnimeSeriesVM)pli.PlaylistItem;
 				itemType = PlaylistItemType.AnimeSeries;
 				objIDOld = ep.AnimeSeriesID.Value;
 			}
@@ -118,29 +221,38 @@ namespace JMMClient.ViewModel
 
 			this.PlaylistItems = "";
 			int curPos = 0;
-			foreach (string pitem in items)
+
+			if (string.IsNullOrEmpty(newItemList))
 			{
-				string[] parms = pitem.Split(';');
-				if (parms.Length != 2) continue;
-
-				int objType = -1;
-				int objID = -1;
-
-				int.TryParse(parms[0], out objType);
-				int.TryParse(parms[1], out objID);
-
-				if (curPos == dropInfo.InsertIndex)
+				// means there was only one item in list to begin with
+				PlaylistItems += string.Format("{0};{1}", iType, objIDOld);
+			}
+			else
+			{
+				foreach (string pitem in items)
 				{
-					// insert moved item
+					string[] parms = pitem.Split(';');
+					if (parms.Length != 2) continue;
+
+					int objType = -1;
+					int objID = -1;
+
+					int.TryParse(parms[0], out objType);
+					int.TryParse(parms[1], out objID);
+
+					if (curPos == dropInfo.InsertIndex)
+					{
+						// insert moved item
+						if (PlaylistItems.Length > 0) PlaylistItems += "|";
+						PlaylistItems += string.Format("{0};{1}", iType, objIDOld);
+					}
+
+
 					if (PlaylistItems.Length > 0) PlaylistItems += "|";
-					PlaylistItems += string.Format("{0};{1}", iType, objIDOld);
+					PlaylistItems += string.Format("{0};{1}", objType, objID);
+
+					curPos++;
 				}
-
-
-				if (PlaylistItems.Length > 0) PlaylistItems += "|";
-				PlaylistItems += string.Format("{0};{1}", objType, objID);
-
-				curPos++;
 			}
 
 			// moved to the end of the list
@@ -152,9 +264,11 @@ namespace JMMClient.ViewModel
 
 			Save();
 			PopulatePlaylistObjects();
+
+			PlaylistHelperVM.Instance.OnPlaylistModified(new PlaylistModifiedEventArgs(PlaylistID));
 		}
 
-		private void Save()
+		public void Save()
 		{
 			JMMServerBinary.Contract_Playlist pl = new JMMServerBinary.Contract_Playlist();
 			pl.PlaylistID = this.PlaylistID;
@@ -163,15 +277,122 @@ namespace JMMClient.ViewModel
 			pl.PlaylistName = this.PlaylistName;
 			pl.PlayUnwatched = this.PlayUnwatched;
 			pl.PlayWatched = this.PlayWatched;
-			string result = JMMServerVM.Instance.clientBinaryHTTP.SavePlaylist(pl);
+			JMMServerBinary.Contract_Playlist_SaveResponse resp = JMMServerVM.Instance.clientBinaryHTTP.SavePlaylist(pl);
 
-			if (!string.IsNullOrEmpty(result))
+			if (!string.IsNullOrEmpty(resp.ErrorMessage))
 			{
-				Utils.ShowErrorMessage(result);
+				Utils.ShowErrorMessage(resp.ErrorMessage);
 				return;
+			}
+
+			this.PlayWatchedBool = PlayWatched == 1;
+			this.PlayUnwatchedBool = PlayUnwatched == 1;
+		}
+
+		public void AddSeries(int animeSeriesID)
+		{
+			if (IsAlreadyInPlaylist(PlaylistItemType.AnimeSeries, animeSeriesID)) return;
+
+			if (!string.IsNullOrEmpty(PlaylistItems))
+				PlaylistItems += "|";
+
+			PlaylistItems += string.Format("{0};{1}", (int)PlaylistItemType.AnimeSeries, animeSeriesID);
+		}
+
+		public void RemoveSeries(int animeSeriesID)
+		{
+			if (string.IsNullOrEmpty(this.PlaylistItems)) return;
+
+			string[] items = this.PlaylistItems.Split('|');
+			this.PlaylistItems = "";
+
+			// create a new list without the moved item
+			foreach (string pitem in items)
+			{
+				string[] parms = pitem.Split(';');
+				if (parms.Length != 2) continue;
+
+				int objType = -1;
+				int objID = -1;
+
+				if (!int.TryParse(parms[0], out objType)) continue;
+				if (!int.TryParse(parms[1], out objID)) continue;
+
+				if (objType == (int)PlaylistItemType.AnimeSeries && objID == animeSeriesID)
+				{
+					// remove this old item
+				}
+				else
+				{
+					if (PlaylistItems.Length > 0) PlaylistItems += "|";
+					PlaylistItems += string.Format("{0};{1}", objType, objID);
+				}
 			}
 		}
 
+		public void AddEpisode(int animeEpisodeID)
+		{
+			if (IsAlreadyInPlaylist(PlaylistItemType.Episode, animeEpisodeID)) return;
+
+			if (!string.IsNullOrEmpty(PlaylistItems))
+				PlaylistItems += "|";
+
+			PlaylistItems += string.Format("{0};{1}", (int)PlaylistItemType.Episode, animeEpisodeID);
+		}
+
+		public void RemoveEpisode(int animeEpisodeID)
+		{
+			if (string.IsNullOrEmpty(this.PlaylistItems)) return;
+
+			string[] items = this.PlaylistItems.Split('|');
+			this.PlaylistItems = "";
+
+			// create a new list without the moved item
+			foreach (string pitem in items)
+			{
+				string[] parms = pitem.Split(';');
+				if (parms.Length != 2) continue;
+
+				int objType = -1;
+				int objID = -1;
+
+				if (!int.TryParse(parms[0], out objType)) continue;
+				if (!int.TryParse(parms[1], out objID)) continue;
+
+				if (objType == (int)PlaylistItemType.Episode && objID == animeEpisodeID)
+				{
+					// remove this old item
+				}
+				else
+				{
+					if (PlaylistItems.Length > 0) PlaylistItems += "|";
+					PlaylistItems += string.Format("{0};{1}", objType, objID);
+				}
+			}
+		}
+
+		public bool IsAlreadyInPlaylist(PlaylistItemType pType, int id)
+		{
+			string[] items = this.PlaylistItems.Split('|');
+
+			foreach (string pitem in items)
+			{
+				string[] parms = pitem.Split(';');
+				if (parms.Length != 2) continue;
+
+				int objType = -1;
+				int objID = -1;
+
+				if (!int.TryParse(parms[0], out objType)) continue;
+				if (!int.TryParse(parms[1], out objID)) continue;
+
+				if (objType == (int)pType && objID == id)
+					return true;
+				
+			}
+
+			return false;
+		}
 
 		public void PopulatePlaylistObjects()
 		{
@@ -199,7 +420,7 @@ namespace JMMClient.ViewModel
 					if (serContract != null)
 					{
 						AnimeSeriesVM ser = new AnimeSeriesVM(serContract);
-						PlaylistObjects.Add(ser);
+						PlaylistObjects.Add(new PlaylistItemVM(this.PlaylistID.Value, PlaylistItemType.AnimeSeries, ser));
 					}
 				}
 				else
@@ -210,10 +431,13 @@ namespace JMMClient.ViewModel
 					if (epContract != null)
 					{
 						AnimeEpisodeVM ep = new AnimeEpisodeVM(epContract);
-						PlaylistObjects.Add(ep);
+						//ep.SetTvDBInfo();
+						PlaylistObjects.Add(new PlaylistItemVM(this.PlaylistID.Value, PlaylistItemType.Episode, ep));
 					}
 				}
 			}
+
+			SetDependendProperties();
 		}
 
 		public void Populate(JMMServerBinary.Contract_Playlist contract)
@@ -224,6 +448,9 @@ namespace JMMClient.ViewModel
 			this.DefaultPlayOrder = contract.DefaultPlayOrder;
 			this.PlayWatched = contract.PlayWatched;
 			this.PlayUnwatched = contract.PlayUnwatched;
+
+			this.PlayWatchedBool = PlayWatched == 1;
+			this.PlayUnwatchedBool = PlayUnwatched == 1;
 		}
 	}
 }

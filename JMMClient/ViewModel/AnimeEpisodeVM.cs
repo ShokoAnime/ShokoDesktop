@@ -39,6 +39,7 @@ namespace JMMClient
 		public string AniDB_RomajiName { get; set; }
 		public string AniDB_EnglishName { get; set; }
 		public DateTime? AniDB_AirDate { get; set; }
+		public DateTime? AniDB_AirDateWithDefault { get; set; }
 
 		public event PropertyChangedEventHandler PropertyChanged;
 		private void NotifyPropertyChanged(String propertyName)
@@ -129,6 +130,17 @@ namespace JMMClient
 			{
 				episodeNumberAndNameWithType = value;
 				NotifyPropertyChanged("EpisodeNumberAndNameWithType");
+			}
+		}
+
+		private string episodeNumberAndNameWithTypeTruncated = "";
+		public string EpisodeNumberAndNameWithTypeTruncated
+		{
+			get { return episodeNumberAndNameWithTypeTruncated; }
+			set
+			{
+				episodeNumberAndNameWithTypeTruncated = value;
+				NotifyPropertyChanged("EpisodeNumberAndNameWithTypeTruncated");
 			}
 		}
 
@@ -635,6 +647,10 @@ namespace JMMClient
 			EpisodeNumberAndNameTruncated = EpisodeNumberAndName;
 			if (EpisodeNumberAndName.Length > 60)
 				EpisodeNumberAndNameTruncated = EpisodeNumberAndName.Substring(0, 60) + "...";
+
+			EpisodeNumberAndNameWithTypeTruncated = EpisodeNumberAndNameWithType;
+			if (EpisodeNumberAndNameWithTypeTruncated.Length > 60)
+				EpisodeNumberAndNameWithTypeTruncated = EpisodeNumberAndNameWithType.Substring(0, 60) + "...";
 		}
 
 		public void Populate(JMMServerBinary.Contract_AnimeEpisode contract)
@@ -662,7 +678,10 @@ namespace JMMClient
 				this.AniDB_RomajiName = contract.AniDB_RomajiName;
 				this.AniDB_EnglishName = contract.AniDB_EnglishName;
 				this.AniDB_AirDate = contract.AniDB_AirDate;
-
+				if (contract.AniDB_AirDate.HasValue)
+					this.AniDB_AirDateWithDefault = contract.AniDB_AirDate;
+				else
+					this.AniDB_AirDateWithDefault = DateTime.MaxValue;
 			
 
 				if (AniDB_AirDate.HasValue)

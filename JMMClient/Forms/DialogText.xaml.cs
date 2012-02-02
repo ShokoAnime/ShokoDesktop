@@ -25,6 +25,12 @@ namespace JMMClient.Forms
 			InitializeComponent();
 
 			btnOK.Click += new RoutedEventHandler(btnOK_Click);
+			this.Loaded += new RoutedEventHandler(DialogText_Loaded);
+		}
+
+		void DialogText_Loaded(object sender, RoutedEventArgs e)
+		{
+			txtData.Focus();
 		}
 
 		void btnOK_Click(object sender, RoutedEventArgs e)

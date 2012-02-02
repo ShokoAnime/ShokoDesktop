@@ -274,15 +274,7 @@ namespace JMMClient
 			}
 		}
 
-		public int DisplayHeight_Playlist
-		{
-			get { return AppSettings.DisplayHeight_Playlist; }
-			set
-			{
-				AppSettings.DisplayHeight_Playlist = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("DisplayHeight_Playlist"));
-			}
-		}
+		
 
 		public int DisplayHeight_SeriesInfo
 		{
@@ -370,7 +362,60 @@ namespace JMMClient
 			}
 		}
 
+		public int PlaylistHeader_Image_Height
+		{
+			get { return AppSettings.PlaylistHeader_Image_Height; }
+			set
+			{
+				AppSettings.PlaylistHeader_Image_Height = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("PlaylistHeader_Image_Height"));
+				int width = (int)(PlaylistHeader_Image_Height * 1.77777777);
+				PlaylistHeader_Image_Width = width;
+			}
+		}
 
+		public int PlaylistHeader_Image_Width
+		{
+			get
+			{
+				int width = (int)(PlaylistHeader_Image_Height * 1.77777777);
+				return width;
+			}
+			set
+			{
+				OnPropertyChanged(new PropertyChangedEventArgs("PlaylistHeader_Image_Width"));
+			}
+		}
+
+		public int PlaylistItems_Image_Height
+		{
+			get { return AppSettings.PlaylistItems_Image_Height; }
+			set
+			{
+				AppSettings.PlaylistItems_Image_Height = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("PlaylistItems_Image_Height"));
+			}
+		}
+
+		public int PlaylistEpisode_Image_Width
+		{
+			get { return AppSettings.PlaylistEpisode_Image_Width; }
+			set
+			{
+				AppSettings.PlaylistEpisode_Image_Width = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("PlaylistEpisode_Image_Width"));
+			}
+		}
+
+		public bool PlaylistItems_ShowDetails
+		{
+			get { return AppSettings.PlaylistItems_ShowDetails; }
+			set
+			{
+				AppSettings.PlaylistItems_ShowDetails = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("PlaylistItems_ShowDetails"));
+			}
+		}
 
 
 		public int Dash_RecentlyWatchedEp_Items
@@ -566,6 +611,26 @@ namespace JMMClient
 			{
 				AppSettings.UseFanartOnSeries = value;
 				OnPropertyChanged(new PropertyChangedEventArgs("UseFanartOnSeries"));
+			}
+		}
+
+		public bool UseFanartOnPlaylistHeader
+		{
+			get { return AppSettings.UseFanartOnPlaylistHeader; }
+			set
+			{
+				AppSettings.UseFanartOnPlaylistHeader = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("UseFanartOnPlaylistHeader"));
+			}
+		}
+
+		public bool UseFanartOnPlaylistItems
+		{
+			get { return AppSettings.UseFanartOnPlaylistItems; }
+			set
+			{
+				AppSettings.UseFanartOnPlaylistItems = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("UseFanartOnPlaylistItems"));
 			}
 		}
 

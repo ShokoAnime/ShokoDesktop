@@ -453,6 +453,8 @@
     <Compile Include="ViewModel\MovieDB_MovieVM.cs" />
     <Compile Include="ViewModel\MovieDB_PosterVM.cs" />
     <Compile Include="ViewModel\PlaylistHelperVM.cs" />
+    <Compile Include="ViewModel\PlaylistItemVM.cs" />
+    <Compile Include="ViewModel\PlaylistModifiedEventArgs.cs" />
     <Compile Include="ViewModel\PlaylistVM.cs" />
     <Compile Include="ViewModel\RecommendationVM.cs" />
     <Compile Include="ViewModel\ReleaseGroupVM.cs" />
@@ -989,6 +991,9 @@
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_Playlist.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_Playlist_SaveResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_Recommendation.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -1448,6 +1453,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\32_discussion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\32_playlist_accept.png" />
+    <Resource Include="Images\32_playlist_add.png" />
+    <Resource Include="Images\32_playlist_delete.png" />
+    <Resource Include="Images\32_playlist_edit.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

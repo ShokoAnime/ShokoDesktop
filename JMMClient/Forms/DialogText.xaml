@@ -14,7 +14,7 @@
         </Grid.RowDefinitions>
 
         <TextBlock Name="txtPrompt" Grid.Column="0" Grid.Row="0" Text="Prompt:" Margin="10"/>
-        <TextBox Name="txtData" Grid.Column="1" Grid.Row="0" Text="" Width="200" Margin="10" BorderThickness="1"/>
+        <TextBox Name="txtData" Grid.Column="1" Grid.Row="0" Text="" Width="200" Margin="10" BorderThickness="1" TabIndex="1" />
 
         <Button HorizontalAlignment="Right" Name="btnOK" Style="{DynamicResource RoundButtonStyle}" Width="Auto" Grid.Column="0" Grid.Row="1" Margin="5,5,10,10" Grid.ColumnSpan="2" IsDefault="True">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >

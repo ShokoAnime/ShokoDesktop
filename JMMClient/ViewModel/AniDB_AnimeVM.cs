@@ -376,6 +376,54 @@ namespace JMMClient
 			}
 		}
 
+		public bool UseFanartOnPlaylistHeader
+		{
+			get
+			{
+				if (!AppSettings.UseFanartOnPlaylistHeader) return false;
+				if (string.IsNullOrEmpty(FanartPath)) return false;
+
+				return true;
+
+			}
+		}
+
+		public bool UsePosterOnPlaylistHeader
+		{
+			get
+			{
+				if (!AppSettings.UseFanartOnPlaylistHeader) return true;
+				if (string.IsNullOrEmpty(FanartPath)) return true;
+
+				return false;
+
+			}
+		}
+
+		public bool UseFanartOnPlaylistItems
+		{
+			get
+			{
+				if (!AppSettings.UseFanartOnPlaylistItems) return false;
+				if (string.IsNullOrEmpty(FanartPath)) return false;
+
+				return true;
+
+			}
+		}
+
+		public bool UsePosterOnPlaylistItems
+		{
+			get
+			{
+				if (!AppSettings.UseFanartOnPlaylistItems) return true;
+				if (string.IsNullOrEmpty(FanartPath)) return true;
+
+				return false;
+
+			}
+		}
+
 		public string FanartPath
 		{
 			get
@@ -400,6 +448,32 @@ namespace JMMClient
 			get
 			{
 				if (!AppSettings.UseFanartOnSeries) return DefaultPosterPath;
+
+				if (string.IsNullOrEmpty(FanartPath))
+					return DefaultPosterPath;
+
+				return FanartPath;
+			}
+		}
+
+		public string FanartPathThenPosterPathForPlaylistHeader
+		{
+			get
+			{
+				if (!AppSettings.UseFanartOnPlaylistHeader) return DefaultPosterPath;
+
+				if (string.IsNullOrEmpty(FanartPath))
+					return DefaultPosterPath;
+
+				return FanartPath;
+			}
+		}
+
+		public string FanartPathThenPosterPathForPlaylistItems
+		{
+			get
+			{
+				if (!AppSettings.UseFanartOnPlaylistItems) return DefaultPosterPath;
 
 				if (string.IsNullOrEmpty(FanartPath))
 					return DefaultPosterPath;

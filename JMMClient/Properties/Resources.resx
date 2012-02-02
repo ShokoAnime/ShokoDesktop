@@ -1652,4 +1652,10 @@
   <data name="WebCache_AniDB_File" xml:space="preserve">
     <value>AniDB File Data</value>
   </data>
+  <data name="PlaylistPlayOrderRandom" xml:space="preserve">
+    <value>Random</value>
+  </data>
+  <data name="PlaylistPlayOrderSeq" xml:space="preserve">
+    <value>Sequential</value>
+  </data>
 </root>

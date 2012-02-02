@@ -185,16 +185,39 @@ namespace JMMClient
 			}
 		}
 
-		public static int DisplayHeight_Playlist
+		public static int PlaylistHeader_Image_Height
 		{
 			get
 			{
 				NameValueCollection appSettings = ConfigurationManager.AppSettings;
-				string val = appSettings["DisplayHeight_Playlist"];
+				string val = appSettings["PlaylistHeader_Image_Height"];
 				int ival = 0;
 				if (int.TryParse(val, out ival))
 				{
-					if (ival > 30 && ival < 300)
+					if (ival > 30 && ival < 400)
+						return ival;
+					else
+						return 200;
+				}
+				else
+					return 200; // default value
+			}
+			set
+			{
+				UpdateSetting("PlaylistHeader_Image_Height", value.ToString());
+			}
+		}
+
+		public static int PlaylistItems_Image_Height
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["PlaylistItems_Image_Height"];
+				int ival = 0;
+				if (int.TryParse(val, out ival))
+				{
+					if (ival > 30 && ival < 400)
 						return ival;
 					else
 						return 130;
@@ -204,7 +227,48 @@ namespace JMMClient
 			}
 			set
 			{
-				UpdateSetting("DisplayHeight_Playlist", value.ToString());
+				UpdateSetting("PlaylistItems_Image_Height", value.ToString());
+			}
+		}
+
+		public static int PlaylistEpisode_Image_Width
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["PlaylistEpisode_Image_Width"];
+				int ival = 0;
+				if (int.TryParse(val, out ival))
+				{
+					if (ival > 10 && ival < 400)
+						return ival;
+					else
+						return 120;
+				}
+				else
+					return 120; // default value
+			}
+			set
+			{
+				UpdateSetting("PlaylistEpisode_Image_Width", value.ToString());
+			}
+		}
+
+		public static bool PlaylistItems_ShowDetails
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["PlaylistItems_ShowDetails"];
+				bool bval = true;
+				if (bool.TryParse(val, out bval))
+					return bval;
+				else
+					return false; // default value
+			}
+			set
+			{
+				UpdateSetting("PlaylistItems_ShowDetails", value.ToString());
 			}
 		}
 
@@ -397,6 +461,42 @@ namespace JMMClient
 			set
 			{
 				UpdateSetting("UseFanartOnSeries", value.ToString());
+			}
+		}
+
+		public static bool UseFanartOnPlaylistHeader
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["UseFanartOnPlaylistHeader"];
+				bool bval = true;
+				if (bool.TryParse(val, out bval))
+					return bval;
+				else
+					return true; // default value
+			}
+			set
+			{
+				UpdateSetting("UseFanartOnPlaylistHeader", value.ToString());
+			}
+		}
+
+		public static bool UseFanartOnPlaylistItems
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["UseFanartOnPlaylistItems"];
+				bool bval = true;
+				if (bool.TryParse(val, out bval))
+					return bval;
+				else
+					return false; // default value
+			}
+			set
+			{
+				UpdateSetting("UseFanartOnPlaylistItems", value.ToString());
 			}
 		}
 

@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using System.ComponentModel;
 using NLog;
 using JMMClient.ViewModel;
+using System.Diagnostics;
 
 namespace JMMClient.UserControls
 {
@@ -23,6 +24,7 @@ namespace JMMClient.UserControls
 	public partial class AnimeSeries : UserControl
 	{
 		private static Logger logger = LogManager.GetCurrentClassLogger();
+		private ContextMenu playlistMenu;
 
 		public static readonly DependencyProperty AllPostersProperty = DependencyProperty.Register("AllPosters",
 			typeof(List<PosterContainer>), typeof(AnimeSeries), new UIPropertyMetadata(null, null));
@@ -145,6 +147,8 @@ namespace JMMClient.UserControls
 		{
 			InitializeComponent();
 
+			playlistMenu = new ContextMenu();
+
 			cRating.OnRatingValueChangedEvent += new RatingControl.RatingValueChangedHandler(cRating_OnRatingValueChangedEvent);
 
 			this.Loaded += new RoutedEventHandler(AnimeSeries_Loaded);
@@ -169,6 +173,11 @@ namespace JMMClient.UserControls
 			btnAnimeTags.Click += new RoutedEventHandler(btnAnimeTags_Click);
 			btnAnimeCategories.Click += new RoutedEventHandler(btnAnimeCategories_Click);
 
+
+			btnPlaylistAdd.ContextMenu = playlistMenu;
+			btnPlaylistAdd.Click += new RoutedEventHandler(btnPlaylistAdd_Click);
+			
+
 			/*SeriesPos_PlayNextEpisode = JMMServerVM.Instance.SeriesPos_PlayNextEpisode;
 			SeriesPos_TvDBLinks = JMMServerVM.Instance.SeriesPos_TvDBLinks;
 			SeriesPos_FileSummary = JMMServerVM.Instance.SeriesPos_FileSummary;
@@ -177,6 +186,188 @@ namespace JMMClient.UserControls
 			SeriesPos_Tags = JMMServerVM.Instance.SeriesPos_Tags;*/
 
 			SetSeriesWidgetOrder();
+		}
+
+		void btnPlaylistAdd_Click(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				List<JMMServerBinary.Contract_Playlist> rawPlaylists = JMMServerVM.Instance.clientBinaryHTTP.GetAllPlaylists();
+				PlaylistMenuCommand cmd = null;
+
+				// get all playlists
+				playlistMenu.Items.Clear();
+
+				MenuItem itemSeries = new MenuItem();
+				itemSeries.Header = "Add Series";
+				itemSeries.Click += new RoutedEventHandler(playlistMenuItem_Click);
+				playlistMenu.Items.Add(itemSeries);
+
+				Separator sep = new Separator();
+
+				MenuItem itemSeriesNew = new MenuItem();
+				itemSeriesNew.Header = "New Playlist";
+				itemSeriesNew.Click += new RoutedEventHandler(playlistMenuItem_Click);
+				cmd = new PlaylistMenuCommand(PlaylistItemType.Series, -1); // new playlist
+				itemSeriesNew.CommandParameter = cmd;
+				itemSeries.Items.Add(itemSeriesNew);
+				itemSeries.Items.Add(sep);
+
+				foreach (JMMServerBinary.Contract_Playlist contract in rawPlaylists)
+				{
+					MenuItem itemSeriesPL = new MenuItem();
+					itemSeriesPL.Header = contract.PlaylistName;
+					itemSeriesPL.Click += new RoutedEventHandler(playlistMenuItem_Click);
+					cmd = new PlaylistMenuCommand(PlaylistItemType.Series, contract.PlaylistID.Value);
+					itemSeriesPL.CommandParameter = cmd;
+					itemSeries.Items.Add(itemSeriesPL);
+				}
+
+				MenuItem itemAllEpisodes = new MenuItem();
+				itemAllEpisodes.Header = "Add All Episodes";
+				playlistMenu.Items.Add(itemAllEpisodes);
+
+				Separator sep2 = new Separator();
+
+				MenuItem itemAllEpisodesNew = new MenuItem();
+				itemAllEpisodesNew.Header = "New Playlist";
+				itemAllEpisodesNew.Click += new RoutedEventHandler(playlistMenuItem_Click);
+				cmd = new PlaylistMenuCommand(PlaylistItemType.AllEpisodes, -1); // new playlist
+				itemAllEpisodesNew.CommandParameter = cmd;
+				itemAllEpisodes.Items.Add(itemAllEpisodesNew);
+				itemAllEpisodes.Items.Add(sep2);
+
+				foreach (JMMServerBinary.Contract_Playlist contract in rawPlaylists)
+				{
+					MenuItem itemSeriesPL = new MenuItem();
+					itemSeriesPL.Header = contract.PlaylistName;
+					itemSeriesPL.Click += new RoutedEventHandler(playlistMenuItem_Click);
+					cmd = new PlaylistMenuCommand(PlaylistItemType.AllEpisodes, contract.PlaylistID.Value);
+					itemSeriesPL.CommandParameter = cmd;
+					itemAllEpisodes.Items.Add(itemSeriesPL);
+				}
+
+
+				MenuItem itemUnwatchedEpisodes = new MenuItem();
+				itemUnwatchedEpisodes.Header = "Add Unwatched Episodes";
+				playlistMenu.Items.Add(itemUnwatchedEpisodes);
+
+				Separator sep3 = new Separator();
+
+				MenuItem itemUnwatchedEpisodesNew = new MenuItem();
+				itemUnwatchedEpisodesNew.Header = "New Playlist";
+				itemUnwatchedEpisodesNew.Click += new RoutedEventHandler(playlistMenuItem_Click);
+				cmd = new PlaylistMenuCommand(PlaylistItemType.UnwatchedEpisodes, -1); // new playlist
+				itemUnwatchedEpisodesNew.CommandParameter = cmd;
+				itemUnwatchedEpisodes.Items.Add(itemUnwatchedEpisodesNew);
+				itemUnwatchedEpisodes.Items.Add(sep3);
+
+				foreach (JMMServerBinary.Contract_Playlist contract in rawPlaylists)
+				{
+					MenuItem itemSeriesPL = new MenuItem();
+					itemSeriesPL.Header = contract.PlaylistName;
+					itemSeriesPL.Click += new RoutedEventHandler(playlistMenuItem_Click);
+					cmd = new PlaylistMenuCommand(PlaylistItemType.UnwatchedEpisodes, contract.PlaylistID.Value);
+					itemSeriesPL.CommandParameter = cmd;
+					itemUnwatchedEpisodes.Items.Add(itemSeriesPL);
+				}
+
+
+
+				playlistMenu.PlacementTarget = this;
+				playlistMenu.IsOpen = true;
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+		}
+
+		void playlistMenuItem_Click(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				MenuItem item = e.Source as MenuItem;
+				MenuItem itemSender = sender as MenuItem;
+
+				if (item == null || itemSender == null) return;
+				if (!item.Header.ToString().Equals(itemSender.Header.ToString())) return;
+
+				if (item != null && item.CommandParameter != null)
+				{
+					PlaylistMenuCommand cmd = item.CommandParameter as PlaylistMenuCommand;
+					Debug.Write("Playlist Menu: " + cmd.ToString() + Environment.NewLine);
+
+					AnimeSeriesVM ser = this.DataContext as AnimeSeriesVM;
+					if (ser == null) return;
+
+					// get the playlist
+					PlaylistVM pl = null;
+					if (cmd.PlaylistID < 0)
+					{
+						pl = PlaylistHelperVM.CreatePlaylist(Window.GetWindow(this));
+						if (pl == null) return;
+					}
+					else
+					{
+						JMMServerBinary.Contract_Playlist plContract = JMMServerVM.Instance.clientBinaryHTTP.GetPlaylist(cmd.PlaylistID);
+						if (plContract == null)
+						{
+							MessageBox.Show("Could not find playlist", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+							return;
+						}
+						pl = new PlaylistVM(plContract);
+					}
+
+					this.Cursor = Cursors.Wait;
+
+					// get the items to add to the playlist
+					if (cmd.AddType == PlaylistItemType.Series)
+					{
+						pl.AddSeries(ser.AnimeSeriesID.Value);
+					}
+					else
+					{
+						List<AnimeEpisodeVM> eps = ser.AllEpisodes;
+
+						List<SortPropOrFieldAndDirection> sortCriteria = new List<SortPropOrFieldAndDirection>();
+						sortCriteria.Add(new SortPropOrFieldAndDirection("EpisodeType", false, JMMClient.SortType.eInteger));
+						sortCriteria.Add(new SortPropOrFieldAndDirection("EpisodeNumber", false, JMMClient.SortType.eInteger));
+						sortCriteria.Add(new SortPropOrFieldAndDirection("AniDB_AirDateWithDefault", false, JMMClient.SortType.eDateTime));
+						eps = Sorting.MultiSort<AnimeEpisodeVM>(eps, sortCriteria);
+
+						if (cmd.AddType == PlaylistItemType.AllEpisodes)
+						{
+
+							foreach (AnimeEpisodeVM ep in eps)
+							{
+								if (ep.EpisodeTypeEnum == EpisodeType.Episode || ep.EpisodeTypeEnum == EpisodeType.Special)
+									pl.AddEpisode(ep.AnimeEpisodeID);
+							}
+						}
+
+						if (cmd.AddType == PlaylistItemType.UnwatchedEpisodes)
+						{
+							foreach (AnimeEpisodeVM ep in eps)
+							{
+								if (!ep.Watched && (ep.EpisodeTypeEnum == EpisodeType.Episode || ep.EpisodeTypeEnum == EpisodeType.Special))
+									pl.AddEpisode(ep.AnimeEpisodeID);
+							}
+						}
+					}
+
+					pl.Save();
+
+					PlaylistHelperVM.Instance.RefreshData();
+
+					this.Cursor = Cursors.Arrow;
+					
+				}
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
 		}
 
 
@@ -808,8 +999,13 @@ namespace JMMClient.UserControls
 			else
 				cboVoteType.SelectedIndex = 0;
 
+
+			
+
 			this.Cursor = Cursors.Arrow;
 		}
+
+		
 
 		void btnFileSummary_Click(object sender, RoutedEventArgs e)
 		{
@@ -840,26 +1036,23 @@ namespace JMMClient.UserControls
 
 		private void ShowNextEpisode()
 		{
-			//if (UserSettingsVM.Instance.SeriesNextEpisodeExpanded)
-			//{
-				AnimeSeriesVM ser = this.DataContext as AnimeSeriesVM;
-				if (ser == null) return;
+			AnimeSeriesVM ser = this.DataContext as AnimeSeriesVM;
+			if (ser == null) return;
 
-				JMMServerBinary.Contract_AnimeEpisode ep = JMMServerVM.Instance.clientBinaryHTTP.GetNextUnwatchedEpisode(ser.AnimeSeriesID.Value, 
-					JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
-				if (ep != null)
-				{
-					AnimeEpisodeVM aniep = new AnimeEpisodeVM(ep);
-					aniep.SetTvDBInfo();
-					ucNextEpisode.DataContext = aniep;
-				}
-				else
-				{
-					ucNextEpisode.EpisodeExists = false;
-					ucNextEpisode.EpisodeMissing = true;
-					ucNextEpisode.DataContext = null;
-				}
-			//}
+			JMMServerBinary.Contract_AnimeEpisode ep = JMMServerVM.Instance.clientBinaryHTTP.GetNextUnwatchedEpisode(ser.AnimeSeriesID.Value, 
+				JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+			if (ep != null)
+			{
+				AnimeEpisodeVM aniep = new AnimeEpisodeVM(ep);
+				aniep.SetTvDBInfo();
+				ucNextEpisode.DataContext = aniep;
+			}
+			else
+			{
+				ucNextEpisode.EpisodeExists = false;
+				ucNextEpisode.EpisodeMissing = true;
+				ucNextEpisode.DataContext = null;
+			}
 		}
 
 		void btnAnimeGroupShow_Click(object sender, RoutedEventArgs e)
@@ -963,6 +1156,34 @@ namespace JMMClient.UserControls
 				this.Cursor = Cursors.Arrow;
 			}
 		}
+	}
+
+	public class PlaylistMenuCommand
+	{
+		public PlaylistItemType AddType { get; set; }
+		public int PlaylistID { get; set; }
+
+		public PlaylistMenuCommand()
+		{
+		}
+
+		public PlaylistMenuCommand(PlaylistItemType addType, int playlistID)
+		{
+			AddType = addType;
+			PlaylistID = playlistID;
+		}
+
+		public override string ToString()
+		{
+			return string.Format("{0} - {1}", AddType, PlaylistID);
+		}
+	}
+
+	public enum PlaylistItemType
+	{
+		Series = 1,
+		AllEpisodes = 2,
+		UnwatchedEpisodes = 3
 	}
 
 	

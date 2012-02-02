@@ -26,6 +26,10 @@
             <RoutedUICommand x:Key="CreateSeriesFromAnimeCommand" Text="CreateSeriesFromAnimeCommand" />
             <RoutedUICommand x:Key="AddPlaylistCommand" Text="AddPlaylistCommand" />
             <RoutedUICommand x:Key="DeletePlaylistCommand" Text="DeletePlaylistCommand" />
+            <RoutedUICommand x:Key="RefreshPlaylistCommand" Text="RefreshPlaylistCommand" />
+            <RoutedUICommand x:Key="DeletePlaylistItemCommand" Text="DeletePlaylistItemCommand" />
+
+            
 
             <RoutedUICommand x:Key="RefreshCommand" Text="RefreshCommand" />
             <RoutedUICommand x:Key="SearchCommand" Text="SearchCommand" />
@@ -117,7 +121,7 @@
 
         <CommandBinding Command="{StaticResource IncrementSeriesImageSizeCommand}" Executed="CommandBinding_IncrementSeriesImageSize" />
         <CommandBinding Command="{StaticResource DecrementSeriesImageSizeCommand}" Executed="CommandBinding_DecrementSeriesImageSize" />
-        
+
         <CommandBinding Command="{StaticResource RevokeVoteCommand}" Executed="CommandBinding_RevokeVote" />
         <CommandBinding Command="{StaticResource ShowPinnedSeriesCommand}" Executed="CommandBinding_ShowPinnedSeries" />
         <CommandBinding Command="{StaticResource EditTraktCredentialsCommand}" Executed="CommandBinding_EditTraktCredentials" />
@@ -125,6 +129,8 @@
         <CommandBinding Command="{StaticResource CreateSeriesFromAnimeCommand}" Executed="CommandBinding_CreateSeriesFromAnime" />
         <CommandBinding Command="{StaticResource AddPlaylistCommand}" Executed="CommandBinding_AddPlaylist" />
         <CommandBinding Command="{StaticResource DeletePlaylistCommand}" Executed="CommandBinding_DeletePlaylist" />
+        <CommandBinding Command="{StaticResource RefreshPlaylistCommand}" Executed="CommandBinding_RefreshPlaylist" />
+        <CommandBinding Command="{StaticResource DeletePlaylistItemCommand}" Executed="CommandBinding_DeletePlaylistItem" />
 
         <CommandBinding Command="{StaticResource RefreshCommand}" Executed="CommandBinding_Refresh" />
         <CommandBinding Command="{StaticResource SearchCommand}" Executed="CommandBinding_Search" />
@@ -382,7 +388,7 @@
                     </Grid.Resources>
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="210*" />
+                        <ColumnDefinition Width="130*" />
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="551*" />
                     </Grid.ColumnDefinitions>
@@ -406,7 +412,16 @@
 
                     <DockPanel Grid.Row="0" Grid.RowSpan="1">
                         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Background="#F1F1F1">
-                            <!-- add sub group -->
+
+                            <!-- Refresh -->
+                            <Button Name="btnRefreshPlaylists" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource RefreshPlaylistCommand}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="16" Width="16" Source="/Images/16_Refresh.png" Margin="0,0,5,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Refresh}" Margin="0,0,5,0"/>
+                                </StackPanel>
+                            </Button>
+                            
+                            <!-- new playlist -->
                             <Button  Name="btnAddPlaylist" Margin="3,2,2,2" Style="{DynamicResource FlatButtonStyle}" Command="{DynamicResource AddPlaylistCommand}">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="16" Width="16" Source="/Images/32_folder_add.png" Margin="0,0,3,0"/>

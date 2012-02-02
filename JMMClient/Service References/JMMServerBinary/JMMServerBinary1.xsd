@@ -362,6 +362,13 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_Playlist" nillable="true" type="tns:Contract_Playlist" />
+  <xs:complexType name="Contract_Playlist_SaveResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Playlist" nillable="true" type="tns:Contract_Playlist" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_Playlist_SaveResponse" nillable="true" type="tns:Contract_Playlist_SaveResponse" />
   <xs:complexType name="Contract_GroupFilterExtended">
     <xs:sequence>
       <xs:element minOccurs="0" name="GroupCount" type="xs:int" />

@@ -7,6 +7,8 @@ using NLog;
 using System.Collections.ObjectModel;
 using System.Windows.Data;
 using JMMClient.ViewModel;
+using JMMClient.Forms;
+using System.Windows;
 
 namespace JMMClient
 {
@@ -21,6 +23,16 @@ namespace JMMClient
 
 		public ObservableCollection<PlaylistVM> Playlists { get; set; }
 		public ICollectionView ViewPlaylists { get; set; }
+
+		public delegate void PlaylistModifiedHandler(PlaylistModifiedEventArgs ev);
+		public event PlaylistModifiedHandler OnPlaylistModifiedEvent;
+		public void OnPlaylistModified(PlaylistModifiedEventArgs ev)
+		{
+			if (OnPlaylistModifiedEvent != null)
+			{
+				OnPlaylistModifiedEvent(ev);
+			}
+		}
 
 		private Boolean isLoadingData = true;
 		public Boolean IsLoadingData
@@ -99,6 +111,52 @@ namespace JMMClient
 			}
 			finally
 			{
+			}
+		}
+
+		public static PlaylistVM CreatePlaylist(Window owner)
+		{
+			try
+			{
+				DialogText dlg = new DialogText();
+				dlg.Init("Enter playlist name: ", "");
+				dlg.Owner = owner;
+				bool? res = dlg.ShowDialog();
+				if (res.HasValue && res.Value)
+				{
+					if (string.IsNullOrEmpty(dlg.EnteredText))
+					{
+						Utils.ShowErrorMessage("Please enter a playlist name");
+						return null;
+					}
+
+					JMMServerBinary.Contract_Playlist pl = new JMMServerBinary.Contract_Playlist();
+					pl.DefaultPlayOrder = (int)PlaylistPlayOrder.Sequential;
+					pl.PlaylistItems = "";
+					pl.PlaylistName = dlg.EnteredText;
+					pl.PlayUnwatched = 1;
+					pl.PlayWatched = 0;
+					JMMServerBinary.Contract_Playlist_SaveResponse resp = JMMServerVM.Instance.clientBinaryHTTP.SavePlaylist(pl);
+
+					if (!string.IsNullOrEmpty(resp.ErrorMessage))
+					{
+						Utils.ShowErrorMessage(resp.ErrorMessage);
+						return null;
+					}
+
+					// refresh data
+					PlaylistHelperVM.Instance.RefreshData();
+
+					PlaylistVM plRet = new PlaylistVM(resp.Playlist);
+					return plRet;
+				}
+
+				return null;
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+				return null;
 			}
 		}
 	}

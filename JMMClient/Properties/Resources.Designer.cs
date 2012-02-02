@@ -2626,6 +2626,24 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Random.
+        /// </summary>
+        public static string PlaylistPlayOrderRandom {
+            get {
+                return ResourceManager.GetString("PlaylistPlayOrderRandom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sequential.
+        /// </summary>
+        public static string PlaylistPlayOrderSeq {
+            get {
+                return ResourceManager.GetString("PlaylistPlayOrderSeq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Play Next Episode.
         /// </summary>
         public static string PlayNextEpisode {

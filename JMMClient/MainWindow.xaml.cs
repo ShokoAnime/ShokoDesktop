@@ -1087,6 +1087,21 @@ namespace JMMClient
 					ShowPinnedSeries(misEp.AnimeSeries);
 				}
 
+				if (obj.GetType() == typeof(PlaylistItemVM))
+				{
+					PlaylistItemVM pli = (PlaylistItemVM)obj;
+					if (pli.ItemType == PlaylistItemType.AnimeSeries)
+						ShowPinnedSeries(pli.PlaylistItem as AnimeSeriesVM);
+
+					if (pli.ItemType == PlaylistItemType.Episode)
+					{
+						AnimeEpisodeVM ep = pli.PlaylistItem as AnimeEpisodeVM;
+						if (MainListHelperVM.Instance.AllSeriesDictionary.ContainsKey(ep.AnimeSeriesID))
+							ShowPinnedSeries(MainListHelperVM.Instance.AllSeriesDictionary[ep.AnimeSeriesID]);
+						
+					}
+				}
+
 				if (obj.GetType() == typeof(Trakt_ActivityScrobbleVM))
 				{
 					Trakt_ActivityScrobbleVM scrobble = (Trakt_ActivityScrobbleVM)obj;
@@ -1890,36 +1905,41 @@ namespace JMMClient
 
 		private void CommandBinding_AddPlaylist(object sender, ExecutedRoutedEventArgs e)
 		{
+			PlaylistHelperVM.CreatePlaylist(this);
+		}
+
+		private void CommandBinding_DeletePlaylist(object sender, ExecutedRoutedEventArgs e)
+		{
+			PlaylistVM pl = e.Parameter as PlaylistVM;
+			if (pl == null) return;
+
+			
+
 			try
 			{
-				DialogText dlg = new DialogText();
-				dlg.Init("Enter playlist name: ", "");
-				dlg.Owner = this;
-				bool? res = dlg.ShowDialog();
-				if (res.HasValue && res.Value)
+				MessageBoxResult res = MessageBox.Show(string.Format("Are you sure you want to delete the playlist: {0}", pl.PlaylistName),
+					"Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
+				if (res == MessageBoxResult.Yes)
 				{
-					if (string.IsNullOrEmpty(dlg.EnteredText))
+					this.Cursor = Cursors.Wait;
+
+					if (pl.PlaylistID.HasValue)
 					{
-						Utils.ShowErrorMessage("Please enter a playlist name");
-						return;
+						string msg = JMMServerVM.Instance.clientBinaryHTTP.DeletePlaylist(pl.PlaylistID.Value);
+						if (!string.IsNullOrEmpty(msg))
+							Utils.ShowErrorMessage(msg);
 					}
 
-					JMMServerBinary.Contract_Playlist pl = new JMMServerBinary.Contract_Playlist();
-					pl.DefaultPlayOrder = (int)PlaylistPlayOrder.Sequential;
-					pl.PlaylistItems = "";
-					pl.PlaylistName = dlg.EnteredText;
-					pl.PlayUnwatched = 1;
-					pl.PlayWatched = 0;
-					string result = JMMServerVM.Instance.clientBinaryHTTP.SavePlaylist(pl);
-
-					if (!string.IsNullOrEmpty(result))
-					{
-						Utils.ShowErrorMessage(result);
-						return;
-					}
+					SetDetailBindingPlaylist(null);
 
 					// refresh data
 					PlaylistHelperVM.Instance.RefreshData();
+					if (lbPlaylists.Items.Count > 0)
+						lbPlaylists.SelectedIndex = 0;
+
+					
+
+					this.Cursor = Cursors.Arrow;
 				}
 			}
 			catch (Exception ex)
@@ -1928,18 +1948,74 @@ namespace JMMClient
 			}
 		}
 
-		private void CommandBinding_DeletePlaylist(object sender, ExecutedRoutedEventArgs e)
+		private void CommandBinding_DeletePlaylistItem(object sender, ExecutedRoutedEventArgs e)
 		{
-			PlaylistVM pl = e.Parameter as PlaylistVM;
-			if (pl == null) return;
-
+			
 			try
 			{
-				MessageBoxResult res = MessageBox.Show(string.Format("Are you sure you want to delete the playlist: {0}", pl.PlaylistName),
-					"Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
-				if (res == MessageBoxResult.Yes)
+				PlaylistItemVM pli = e.Parameter as PlaylistItemVM;
+				if (pli == null) return;
+
+				this.Cursor = Cursors.Wait;
+
+				// get the playlist
+				JMMServerBinary.Contract_Playlist plContract = JMMServerVM.Instance.clientBinaryHTTP.GetPlaylist(pli.PlaylistID);
+				if (plContract == null)
 				{
+					this.Cursor = Cursors.Arrow;
+					MessageBox.Show("Could not find playlist", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					return;
 				}
+				PlaylistVM pl = new PlaylistVM(plContract);
+
+				if (pli.ItemType == PlaylistItemType.AnimeSeries)
+				{
+					AnimeSeriesVM ser = pli.PlaylistItem as AnimeSeriesVM;
+					pl.RemoveSeries(ser.AnimeSeriesID.Value);
+				}
+				if (pli.ItemType == PlaylistItemType.Episode)
+				{
+					AnimeEpisodeVM ep = pli.PlaylistItem as AnimeEpisodeVM;
+					pl.RemoveEpisode(ep.AnimeEpisodeID);
+				}
+
+				pl.Save();
+				plContract = JMMServerVM.Instance.clientBinaryHTTP.GetPlaylist(pli.PlaylistID);
+
+				// refresh data
+				if (lbPlaylists.Items.Count > 0)
+				{
+					// get the current playlist
+					PlaylistVM selPL = lbPlaylists.SelectedItem as PlaylistVM;
+					if (selPL != null && plContract != null && selPL.PlaylistID == plContract.PlaylistID)
+					{
+						selPL.Populate(plContract);
+						selPL.PopulatePlaylistObjects();
+						PlaylistHelperVM.Instance.OnPlaylistModified(new PlaylistModifiedEventArgs(plContract.PlaylistID.Value));
+					}
+					else
+					{
+						PlaylistHelperVM.Instance.RefreshData();
+					}
+				}
+
+				this.Cursor = Cursors.Arrow;
+			}
+			catch (Exception ex)
+			{
+				this.Cursor = Cursors.Arrow;
+				Utils.ShowErrorMessage(ex);
+			}
+		}
+
+		private void CommandBinding_RefreshPlaylist(object sender, ExecutedRoutedEventArgs e)
+		{
+			try
+			{
+				// refresh data
+				PlaylistHelperVM.Instance.RefreshData();
+				if (lbPlaylists.Items.Count > 0)
+					lbPlaylists.SelectedIndex = 0;
 			}
 			catch (Exception ex)
 			{
@@ -2289,6 +2365,8 @@ namespace JMMClient
 		{
 			try
 			{
+				SetDetailBindingPlaylist(null);
+
 				System.Windows.Controls.ListBox lb = (System.Windows.Controls.ListBox)sender;
 
 				object obj = lb.SelectedItem;
