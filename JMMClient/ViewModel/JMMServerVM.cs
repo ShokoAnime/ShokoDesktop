@@ -778,6 +778,39 @@ namespace JMMClient
 			}
 		}
 
+		private bool newVersionAvailable = false;
+		public bool NewVersionAvailable
+		{
+			get { return newVersionAvailable; }
+			set
+			{
+				newVersionAvailable = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("NewVersionAvailable"));
+			}
+		}
+
+		private string newVersionNumber = "";
+		public string NewVersionNumber
+		{
+			get { return newVersionNumber; }
+			set
+			{
+				newVersionNumber = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("NewVersionNumber"));
+			}
+		}
+
+		private string newVersionDownloadLink = "";
+		public string NewVersionDownloadLink
+		{
+			get { return newVersionDownloadLink; }
+			set
+			{
+				newVersionDownloadLink = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("NewVersionDownloadLink"));
+			}
+		}
+
 		
 
 		#endregion
@@ -1534,6 +1567,7 @@ namespace JMMClient
 				}
 
 				JMMServerBinary.Contract_ServerStatus status = JMMServerVM.Instance.clientBinaryHTTP.GetServerStatus();
+				JMMServerBinary.Contract_AppVersions appv = JMMServerVM.Instance.clientBinaryHTTP.GetAppVersions();
 
 				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
 				{
@@ -1551,6 +1585,40 @@ namespace JMMClient
 
 					GeneralQueuePaused = GeneralQueueState.ToLower().Contains("pause");
 					GeneralQueueRunning = !GeneralQueueState.ToLower().Contains("pause");
+
+					if (appv != null)
+					{
+						string curVersion = Utils.GetApplicationVersion(System.Reflection.Assembly.GetExecutingAssembly());
+
+						string[] latestNumbers = appv.JMMDesktopVersion.Split('.');
+						string[] curNumbers = curVersion.Split('.');
+
+						string latestMajor = string.Format("{0}.{1}", latestNumbers[0], latestNumbers[1]);
+						string curMajor = string.Format("{0}.{1}", curNumbers[0], curNumbers[1]);
+
+						decimal lmajor = decimal.Parse(latestMajor);
+						decimal cmajor = decimal.Parse(curMajor);
+
+						NewVersionAvailable = false;
+
+						if (lmajor > cmajor)
+						{
+							NewVersionAvailable = true;
+							NewVersionDownloadLink = appv.JMMDesktopDownload;
+							NewVersionNumber = appv.JMMDesktopVersion;
+						}
+						else if (lmajor == cmajor)
+						{
+							if (int.Parse(latestNumbers[2]) > int.Parse(curNumbers[2]))
+							{
+								NewVersionAvailable = true;
+								NewVersionDownloadLink = appv.JMMDesktopDownload;
+								NewVersionNumber = appv.JMMDesktopVersion;
+							}
+						}
+
+
+					}
 				});
 			}
 

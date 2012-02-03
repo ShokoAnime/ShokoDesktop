@@ -164,6 +164,12 @@
   <wsdl:message name="IJMMServer_GetPlaylist_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetPlaylistResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAppVersions_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAppVersions" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAppVersions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAppVersionsResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_GetGroupFilterExtended_InputMessage">
     <wsdl:part name="parameters" element="tns:GetGroupFilterExtended" />
   </wsdl:message>
@@ -1101,6 +1107,10 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetPlaylist" message="tns:IJMMServer_GetPlaylist_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetPlaylistResponse" message="tns:IJMMServer_GetPlaylist_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetAppVersions">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAppVersions" message="tns:IJMMServer_GetAppVersions_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAppVersionsResponse" message="tns:IJMMServer_GetAppVersions_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetGroupFilterExtended">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilterExtended" message="tns:IJMMServer_GetGroupFilterExtended_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilterExtendedResponse" message="tns:IJMMServer_GetGroupFilterExtended_OutputMessage" />
@@ -1874,6 +1884,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetPlaylist">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetPlaylist" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAppVersions">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAppVersions" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

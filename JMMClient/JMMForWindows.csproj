@@ -929,6 +929,9 @@
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AnimeSeries_SaveResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AppVersions.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_MALResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -1469,6 +1472,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\32_dice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\32_new.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

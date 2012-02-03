@@ -369,6 +369,17 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_Playlist_SaveResponse" nillable="true" type="tns:Contract_Playlist_SaveResponse" />
+  <xs:complexType name="Contract_AppVersions">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="JMMDesktopDownload" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="JMMDesktopVersion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="JMMServerDownload" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="JMMServerVersion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MyAnime3Download" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MyAnime3Version" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_AppVersions" nillable="true" type="tns:Contract_AppVersions" />
   <xs:complexType name="Contract_GroupFilterExtended">
     <xs:sequence>
       <xs:element minOccurs="0" name="GroupCount" type="xs:int" />
