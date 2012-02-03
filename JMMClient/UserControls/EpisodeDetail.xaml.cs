@@ -13,6 +13,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using JMMClient.ViewModel;
 using System.IO;
+using System.Diagnostics;
 
 namespace JMMClient.UserControls
 {
@@ -21,6 +22,8 @@ namespace JMMClient.UserControls
 	/// </summary>
 	public partial class EpisodeDetail : UserControl
 	{
+		private ContextMenu playlistMenu;
+
 		public static readonly DependencyProperty IsExpandedProperty = DependencyProperty.Register("IsExpanded",
 			typeof(bool), typeof(EpisodeDetail), new UIPropertyMetadata(false, isExpandedCallback));
 
@@ -116,9 +119,106 @@ namespace JMMClient.UserControls
 		{
 			InitializeComponent();
 
+			playlistMenu = new ContextMenu();
+
 			btnToggleExpander.Click += new RoutedEventHandler(btnToggleExpander_Click);
 			this.DataContextChanged += new DependencyPropertyChangedEventHandler(EpisodeDetail_DataContextChanged);
 			this.Loaded += new RoutedEventHandler(EpisodeDetail_Loaded);
+
+			btnPlaylistAdd.ContextMenu = playlistMenu;
+			btnPlaylistAdd.Click += new RoutedEventHandler(btnPlaylistAdd_Click);
+		}
+
+		void btnPlaylistAdd_Click(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				// get all playlists
+				List<JMMServerBinary.Contract_Playlist> rawPlaylists = JMMServerVM.Instance.clientBinaryHTTP.GetAllPlaylists();
+				PlaylistMenuCommand cmd = null;
+
+				playlistMenu.Items.Clear();
+
+				Separator sep = new Separator();
+
+				MenuItem itemNew = new MenuItem();
+				itemNew.Header = "New Playlist";
+				itemNew.Click += new RoutedEventHandler(playlistMenuItem_Click);
+				cmd = new PlaylistMenuCommand(PlaylistItemType.SingleEpisode, -1); // new playlist
+				itemNew.CommandParameter = cmd;
+				playlistMenu.Items.Add(itemNew);
+				playlistMenu.Items.Add(sep);
+
+				foreach (JMMServerBinary.Contract_Playlist contract in rawPlaylists)
+				{
+					MenuItem itemSeriesPL = new MenuItem();
+					itemSeriesPL.Header = contract.PlaylistName;
+					itemSeriesPL.Click += new RoutedEventHandler(playlistMenuItem_Click);
+					cmd = new PlaylistMenuCommand(PlaylistItemType.SingleEpisode, contract.PlaylistID.Value);
+					itemSeriesPL.CommandParameter = cmd;
+					playlistMenu.Items.Add(itemSeriesPL);
+				}
+
+				playlistMenu.PlacementTarget = this;
+				playlistMenu.IsOpen = true;
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+		}
+
+		void playlistMenuItem_Click(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				MenuItem item = e.Source as MenuItem;
+				MenuItem itemSender = sender as MenuItem;
+
+				if (item == null || itemSender == null) return;
+				if (!item.Header.ToString().Equals(itemSender.Header.ToString())) return;
+
+				if (item != null && item.CommandParameter != null)
+				{
+					PlaylistMenuCommand cmd = item.CommandParameter as PlaylistMenuCommand;
+					Debug.Write("Playlist Menu: " + cmd.ToString() + Environment.NewLine);
+
+					AnimeEpisodeVM ep = this.DataContext as AnimeEpisodeVM;
+					if (ep == null) return;
+
+					// get the playlist
+					PlaylistVM pl = null;
+					if (cmd.PlaylistID < 0)
+					{
+						pl = PlaylistHelperVM.CreatePlaylist(Window.GetWindow(this));
+						if (pl == null) return;
+					}
+					else
+					{
+						JMMServerBinary.Contract_Playlist plContract = JMMServerVM.Instance.clientBinaryHTTP.GetPlaylist(cmd.PlaylistID);
+						if (plContract == null)
+						{
+							MessageBox.Show("Could not find playlist", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+							return;
+						}
+						pl = new PlaylistVM(plContract);
+					}
+
+					this.Cursor = Cursors.Wait;
+
+					pl.AddEpisode(ep.AnimeEpisodeID);
+					pl.Save();
+
+					PlaylistHelperVM.Instance.RefreshData();
+
+					this.Cursor = Cursors.Arrow;
+
+				}
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
 		}
 
 		void EpisodeDetail_Loaded(object sender, RoutedEventArgs e)

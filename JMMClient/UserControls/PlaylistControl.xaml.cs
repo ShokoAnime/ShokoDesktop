@@ -59,7 +59,20 @@ namespace JMMClient.UserControls
 			cboPlayOrderLocked.Items.Add(Properties.Resources.PlaylistPlayOrderRandom);
 			cboPlayOrderLocked.SelectedIndex = 0;
 
+			btnRandomEpisode.Click += new RoutedEventHandler(btnRandomEpisode_Click);
+
 			this.DataContextChanged += new DependencyPropertyChangedEventHandler(PlaylistControl_DataContextChanged);
+		}
+
+		void btnRandomEpisode_Click(object sender, RoutedEventArgs e)
+		{
+			PlaylistVM pl = this.DataContext as PlaylistVM;
+			if (pl == null) return;
+
+			this.Cursor = Cursors.Wait;
+			pl.SetNextEpisode(true);
+			ShowNextEpisode();
+			this.Cursor = Cursors.Arrow;
 		}
 
 		void togFanart_Click(object sender, RoutedEventArgs e)
@@ -111,6 +124,8 @@ namespace JMMClient.UserControls
 				cboPlayOrderEdit.SelectedIndex = 1;
 				cboPlayOrderLocked.SelectedIndex = 1;
 			}
+
+			pl.SetDependendProperties();
 		}
 
 		void btnEditPlaylist_Click(object sender, RoutedEventArgs e)
@@ -152,6 +167,8 @@ namespace JMMClient.UserControls
 			HasPlaylists = true;
 		}
 
+		
+
 		private void ShowNextEpisode()
 		{
 			ucNextEpisodePlaylist.EpisodeExists = false;
@@ -161,29 +178,10 @@ namespace JMMClient.UserControls
 			PlaylistVM pl = this.DataContext as PlaylistVM;
 			if (pl == null) return;
 
-			if (pl.PlaylistObjects.Count == 0) return;
+			if (pl.NextEpisode == null) return;
 
-			object plItem = pl.PlaylistObjects[0];
-			AnimeEpisodeVM aniep = null;
-
-			PlaylistItemVM pli = plItem as PlaylistItemVM;
-			if (pli == null) return;
-
-			if (pli.ItemType == JMMClient.PlaylistItemType.Episode) 
-				aniep = pli.PlaylistItem as AnimeEpisodeVM;
-			if (pli.ItemType == JMMClient.PlaylistItemType.AnimeSeries)
-			{
-				AnimeSeriesVM ser = pli.PlaylistItem as AnimeSeriesVM;
-				JMMServerBinary.Contract_AnimeEpisode ep = JMMServerVM.Instance.clientBinaryHTTP.GetNextUnwatchedEpisode(ser.AnimeSeriesID.Value,
-					JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
-				if (ep != null) aniep = new AnimeEpisodeVM(ep);
-
-			}
-			if (aniep != null)
-			{
-				aniep.SetTvDBInfo();
-				ucNextEpisodePlaylist.DataContext = aniep;
-			}
+			if (pl.NextEpisode != null)
+				ucNextEpisodePlaylist.DataContext = pl.NextEpisode;
 
 		}
 
@@ -286,6 +284,29 @@ namespace JMMClient.UserControls
 					serTemp = MainListHelperVM.Instance.GetSeriesForEpisode(ep);
 				}
 
+				if (obj.GetType() == typeof(PlaylistItemVM))
+				{
+					PlaylistItemVM pli = obj as PlaylistItemVM;
+					AnimeEpisodeVM ep = pli.PlaylistItem as AnimeEpisodeVM;
+
+					newStatus = !ep.Watched;
+					JMMServerBinary.Contract_ToggleWatchedStatusOnEpisode_Response response = JMMServerVM.Instance.clientBinaryHTTP.ToggleWatchedStatusOnEpisode(ep.AnimeEpisodeID,
+						newStatus, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+					if (!string.IsNullOrEmpty(response.ErrorMessage))
+					{
+						MessageBox.Show(response.ErrorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+						return;
+					}
+
+					MainListHelperVM.Instance.UpdateHeirarchy(response.AnimeEpisode);
+
+					serTemp = MainListHelperVM.Instance.GetSeriesForEpisode(ep);
+				}
+
+				PlaylistVM pl = this.DataContext as PlaylistVM;
+				if (pl == null) return;
+
+				pl.PopulatePlaylistObjects();
 				ShowNextEpisode();
 
 				if (newStatus == true && serTemp != null)

@@ -17,6 +17,8 @@ namespace JMMClient.ViewModel
 		public int PlayWatched { get; set; }
 		public int PlayUnwatched { get; set; }
 
+		private static Random epRandom = new Random();
+
 		public event PropertyChangedEventHandler PropertyChanged;
 		private void NotifyPropertyChanged(String propertyName)
 		{
@@ -48,6 +50,17 @@ namespace JMMClient.ViewModel
 			{
 				series = value;
 				NotifyPropertyChanged("Series");
+			}
+		}
+
+		private AnimeEpisodeVM nextEpisode = null;
+		public AnimeEpisodeVM NextEpisode
+		{
+			get { return nextEpisode; }
+			set
+			{
+				nextEpisode = value;
+				NotifyPropertyChanged("NextEpisode");
 			}
 		}
 
@@ -111,26 +124,7 @@ namespace JMMClient.ViewModel
 			AniDB_Anime = null;
 			Series = null;
 
-			if (PlaylistObjects.Count == 0) return;
-
-			PlaylistItemVM plItem = PlaylistObjects[0];
-
-
-			if (plItem.ItemType == PlaylistItemType.Episode)
-			{
-				AnimeEpisodeVM aniep = plItem.PlaylistItem as AnimeEpisodeVM;
-				aniep.RefreshAnime();
-				AniDB_Anime = aniep.AniDB_Anime;
-
-				if (MainListHelperVM.Instance.AllSeriesDictionary.ContainsKey(aniep.AnimeSeriesID))
-					Series = MainListHelperVM.Instance.AllSeriesDictionary[aniep.AnimeSeriesID];
-			}
-			if (plItem.ItemType == PlaylistItemType.AnimeSeries)
-			{
-				AnimeSeriesVM ser = plItem.PlaylistItem as AnimeSeriesVM;
-				AniDB_Anime = ser.AniDB_Anime;
-				Series = ser;
-			}
+			SetNextEpisode();
 		}
 
 		public PlaylistPlayOrder DefaultPlayOrderEnum
@@ -392,6 +386,130 @@ namespace JMMClient.ViewModel
 			}
 
 			return false;
+		}
+
+		private bool CanUseEpisode(PlaylistVM pl, AnimeEpisodeVM ep)
+		{
+			if (ep.Watched && pl.PlayWatchedBool && ep.HasFiles)
+				return true;
+
+			if (!ep.Watched && pl.PlayUnwatchedBool && ep.HasFiles)
+				return true;
+
+			return false;
+		}
+
+		public void SetNextEpisode()
+		{
+			SetNextEpisode(false);
+		}
+
+		public void SetNextEpisode(bool onlyRandom)
+		{
+			if (PlaylistObjects.Count == 0) return;
+
+			// find the next episode to play
+			NextEpisode = null;
+			if (DefaultPlayOrderEnum == PlaylistPlayOrder.Sequential && !onlyRandom)
+			{
+				bool foundEp = false;
+				while (!foundEp)
+				{
+					foreach (PlaylistItemVM pli in PlaylistObjects)
+					{
+						if (pli.ItemType == JMMClient.PlaylistItemType.Episode)
+						{
+							AnimeEpisodeVM epTemp = pli.PlaylistItem as AnimeEpisodeVM;
+							if (CanUseEpisode(this, epTemp))
+							{
+								NextEpisode = epTemp;
+								foundEp = true;
+								break;
+							}
+						}
+
+						if (pli.ItemType == JMMClient.PlaylistItemType.AnimeSeries)
+						{
+							AnimeSeriesVM ser = pli.PlaylistItem as AnimeSeriesVM;
+							ser.RefreshBase();
+							ser.RefreshEpisodes();
+
+							List<AnimeEpisodeVM> eps = ser.AllEpisodes;
+
+							List<SortPropOrFieldAndDirection> sortCriteria = new List<SortPropOrFieldAndDirection>();
+							sortCriteria.Add(new SortPropOrFieldAndDirection("EpisodeType", false, JMMClient.SortType.eInteger));
+							sortCriteria.Add(new SortPropOrFieldAndDirection("EpisodeNumber", false, JMMClient.SortType.eInteger));
+							eps = Sorting.MultiSort<AnimeEpisodeVM>(eps, sortCriteria);
+
+							foreach (AnimeEpisodeVM epTemp in eps)
+							{
+								if (epTemp.EpisodeTypeEnum == EpisodeType.Episode || epTemp.EpisodeTypeEnum == EpisodeType.Special)
+								{
+									if (CanUseEpisode(this, epTemp))
+									{
+										NextEpisode = epTemp;
+										foundEp = true;
+										break;
+									}
+								}
+							}
+
+							if (foundEp) break;
+						}
+					}
+					break;
+				}
+			}
+			else // random
+			{
+				// get all the candidate episodes
+				List<AnimeEpisodeVM> canidateEps = new List<AnimeEpisodeVM>();
+
+				foreach (PlaylistItemVM pli in PlaylistObjects)
+				{
+					if (pli.ItemType == JMMClient.PlaylistItemType.Episode)
+					{
+						AnimeEpisodeVM epTemp = pli.PlaylistItem as AnimeEpisodeVM;
+						if (CanUseEpisode(this, epTemp)) canidateEps.Add(epTemp);
+					}
+
+					if (pli.ItemType == JMMClient.PlaylistItemType.AnimeSeries)
+					{
+						AnimeSeriesVM ser = pli.PlaylistItem as AnimeSeriesVM;
+						ser.RefreshBase();
+						ser.RefreshEpisodes();
+
+						List<AnimeEpisodeVM> eps = ser.AllEpisodes;
+
+						foreach (AnimeEpisodeVM epTemp in eps)
+						{
+							if (epTemp.EpisodeTypeEnum == EpisodeType.Episode || epTemp.EpisodeTypeEnum == EpisodeType.Special)
+							{
+								if (CanUseEpisode(this, epTemp)) canidateEps.Add(epTemp);
+							}
+						}
+
+					}
+				}
+
+				// pick a random object from the play list
+				if (canidateEps.Count > 0)
+				{
+					NextEpisode = canidateEps[epRandom.Next(0, canidateEps.Count)];
+				}
+				
+			}
+
+			if (NextEpisode != null)
+			{
+				NextEpisode.SetTvDBInfo();
+				NextEpisode.RefreshAnime();
+				AniDB_Anime = NextEpisode.AniDB_Anime;
+
+				if (MainListHelperVM.Instance.AllSeriesDictionary.ContainsKey(NextEpisode.AnimeSeriesID))
+					Series = MainListHelperVM.Instance.AllSeriesDictionary[NextEpisode.AnimeSeriesID];
+			}
+
 		}
 
 		public void PopulatePlaylistObjects()

@@ -1183,7 +1183,8 @@ namespace JMMClient.UserControls
 	{
 		Series = 1,
 		AllEpisodes = 2,
-		UnwatchedEpisodes = 3
+		UnwatchedEpisodes = 3,
+		SingleEpisode = 4
 	}
 
 	

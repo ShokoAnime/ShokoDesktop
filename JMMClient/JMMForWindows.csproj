@@ -1460,6 +1460,9 @@
     <Resource Include="Images\32_playlist_delete.png" />
     <Resource Include="Images\32_playlist_edit.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\32_dice.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(TargetDir)*.dll" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y	
