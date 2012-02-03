@@ -171,6 +171,9 @@
     <Compile Include="Forms\PlayVideosForEpisodeForm.xaml.cs">
       <DependentUpon>PlayVideosForEpisodeForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\RandomSeriesForm.xaml.cs">
+      <DependentUpon>RandomSeriesForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\RateSeriesForm.xaml.cs">
       <DependentUpon>RateSeriesForm.xaml</DependentUpon>
     </Compile>
@@ -534,6 +537,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\PlayVideosForEpisodeForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\RandomSeriesForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

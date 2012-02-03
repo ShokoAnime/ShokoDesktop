@@ -319,6 +319,14 @@ namespace JMMClient
 		Random = 2
 	}
 
+	public enum RandomSeriesEpisodeLevel
+	{
+		All = 1,
+		GroupFilter = 2,
+		Group = 3,
+		Series = 4
+	}
+
 	public class EnumTranslator
 	{
 		public static string EpisodeTypeTranslated(EpisodeType epType)

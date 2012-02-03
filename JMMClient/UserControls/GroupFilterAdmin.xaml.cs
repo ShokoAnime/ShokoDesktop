@@ -49,6 +49,19 @@ namespace JMMClient.UserControls
 
 			lbFilterConditions_Editing.MouseDoubleClick += new MouseButtonEventHandler(lbFilterConditions_Editing_MouseDoubleClick);
 
+			btnRandomSeries.Click += new RoutedEventHandler(btnRandomSeries_Click);
+
+		}
+
+		void btnRandomSeries_Click(object sender, RoutedEventArgs e)
+		{
+			GroupFilterVM gf = this.DataContext as GroupFilterVM;
+			if (gf == null) return;
+
+			RandomSeriesForm frm = new RandomSeriesForm();
+			frm.Owner = Window.GetWindow(this); ;
+			frm.Init(RandomSeriesEpisodeLevel.GroupFilter, gf);
+			bool? result = frm.ShowDialog();
 		}
 
 		void lbFilterConditions_Editing_MouseDoubleClick(object sender, MouseButtonEventArgs e)
