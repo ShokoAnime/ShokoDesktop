@@ -2344,6 +2344,30 @@ namespace JMMClient
 			}
 		}
 
+		private void CommandBinding_ServerImageQueuePause(object sender, ExecutedRoutedEventArgs e)
+		{
+			try
+			{
+				JMMServerVM.Instance.clientBinaryHTTP.SetCommandProcessorImagesPaused(true);
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+		}
+
+		private void CommandBinding_ServerImageQueueResume(object sender, ExecutedRoutedEventArgs e)
+		{
+			try
+			{
+				JMMServerVM.Instance.clientBinaryHTTP.SetCommandProcessorImagesPaused(false);
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+		}
+
 		#endregion
 
 		#endregion

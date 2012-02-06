@@ -76,6 +76,8 @@
             <RoutedUICommand x:Key="HasherQueueResumeCommand" Text="HasherQueueResumeCommand" />
             <RoutedUICommand x:Key="GeneralQueuePauseCommand" Text="GeneralQueuePauseCommand" />
             <RoutedUICommand x:Key="GeneralQueueResumeCommand" Text="GeneralQueueResumeCommand" />
+            <RoutedUICommand x:Key="ServerImageQueuePauseCommand" Text="ServerImageQueuePauseCommand" />
+            <RoutedUICommand x:Key="ServerImageQueueResumeCommand" Text="ServerImageQueueResumeCommand" />
 
             <RoutedUICommand x:Key="IncrementSeriesImageSizeCommand" Text="IncrementSeriesImageSizeCommand" />
             <RoutedUICommand x:Key="DecrementSeriesImageSizeCommand" Text="DecrementSeriesImageSizeCommand" />
@@ -177,6 +179,8 @@
         <CommandBinding Command="{StaticResource HasherQueueResumeCommand}" Executed="CommandBinding_HasherQueueResume" />
         <CommandBinding Command="{StaticResource GeneralQueuePauseCommand}" Executed="CommandBinding_GeneralQueuePause" />
         <CommandBinding Command="{StaticResource GeneralQueueResumeCommand}" Executed="CommandBinding_GeneralQueueResume" />
+        <CommandBinding Command="{StaticResource ServerImageQueuePauseCommand}" Executed="CommandBinding_ServerImageQueuePause" />
+        <CommandBinding Command="{StaticResource ServerImageQueueResumeCommand}" Executed="CommandBinding_ServerImageQueueResume" />
 
     </Window.CommandBindings>
 
@@ -453,86 +457,46 @@
                         <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_Server}" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
                     </StackPanel>
                 </TabItem.Header>
-                
-                <StackPanel Orientation="Vertical">
 
+                <ScrollViewer>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
 
-                    <usercontrols:ImportFolderAdmin/>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
 
+                        <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" Background="#FFE9ECEF" Margin="0,0,0,5">
+                            <TextBlock Text="Import Folders" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                        </Border>
 
+                        <usercontrols:ImportFolderAdmin Grid.Row="1" Grid.ColumnSpan="4"/>
 
+                        <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" Background="#FFE9ECEF" Margin="0,10,0,5">
+                            <TextBlock Text="Server Status" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                        </Border>
 
-                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ServerActions}" Margin="10,20,0,10" FontWeight="Bold"></TextBlock>
-
-                    <!-- Run Import -->
-                    <Button HorizontalAlignment="Left" Name="btnRunImport" Margin="10,0,0,0" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource RunImportCommand}" Width="Auto">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                            <Image Height="16" Width="16" Source="/Images/32_import.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=RunImport}" Margin="0,0,5,0"/>
-                        </StackPanel>
-                    </Button>
-
-                    <!-- Remove Missing Files -->
-                    <Button HorizontalAlignment="Left" Name="btnRemoveMissingFiles" Margin="10,0,0,0" Style="{DynamicResource FlatButtonStyle}" 
-                            Command="{StaticResource RemoveMissingFilesCommand}" Width="Auto"
-                            ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=RemoveMissingFiles}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_RemoveMissingFiles}}">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                            <Image Height="16" Width="16" Source="/Images/32_import.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=RemoveMissingFiles}" Margin="0,0,5,0"/>
-                        </StackPanel>
-                    </Button>
-
-                    <!-- Update Media Info -->
-                    <Button HorizontalAlignment="Left" Name="btnUpdateMediaInfo" Margin="10,0,0,0" Style="{DynamicResource FlatButtonStyle}" 
-                            Width="Auto" ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=UpdateMediaInfo}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_UpdateMediaInfo}}">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                            <Image Height="16" Width="16" Source="/Images/32_import.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=UpdateMediaInfo}" Margin="0,0,5,0"/>
-                        </StackPanel>
-                    </Button>
-
-                    <!-- My List Sync -->
-                    <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
-                        <Button HorizontalAlignment="Left" Name="btnSyncMyList" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource SyncMyListCommand}" Width="Auto">
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="0,0,5,0"/>
-                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SyncMyList}" Margin="0,0,5,0"/>
-                            </StackPanel>
-                        </Button>
-                        <Button HorizontalAlignment="Left" Name="btnSyncVotes" Margin="10,0,0,0" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource SyncVotesCommand}" Width="Auto">
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="0,0,5,0"/>
-                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SyncVotes}" Margin="0,0,5,0"/>
-                            </StackPanel>
-                        </Button>
-                    </StackPanel>
-
-                    <!-- MAL Sync -->
-                    <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
-                        <Button HorizontalAlignment="Left" Name="btnSyncMalUp" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource SyncMALUpCommand}" Width="Auto">
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" 
-                                        ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=SyncMalUp}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_SyncMalUp}}">
-                                <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="0,0,5,0"/>
-                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SyncMalUp}" Margin="0,0,5,0"/>
-                            </StackPanel>
-                        </Button>
-                        <Button HorizontalAlignment="Left" Name="btnSyncMalDown" Margin="10,0,0,0" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource SyncMALDownCommand}" Width="Auto">
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" 
-                                        ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=SyncMalDown}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_SyncMalDown}}">
-                                <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="0,0,5,0"/>
-                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SyncMalDown}" Margin="0,0,5,0"/>
-                            </StackPanel>
-                        </Button>
-                    </StackPanel>
-
-                    <!-- Pause and resume queues -->
-                    <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
                         <!-- Hasher resume -->
-                        <Button HorizontalAlignment="Left" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource HasherQueueResumeCommand}" Width="Auto"
+                        <Button Grid.Column="0" Grid.Row="3" Margin="10,0,0,0" HorizontalAlignment="Left" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource HasherQueueResumeCommand}" Width="Auto"
                                 Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=HasherQueuePaused, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                 <Image Height="16" Width="16" Source="Images/16_server_hash.png" Margin="0,0,5,0" VerticalAlignment="Center"/>
@@ -543,7 +507,7 @@
                             </StackPanel>
                         </Button>
                         <!-- Hasher pause -->
-                        <Button HorizontalAlignment="Left" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource HasherQueuePauseCommand}" Width="Auto"
+                        <Button Grid.Column="0" Grid.Row="3" Margin="10,0,0,0" HorizontalAlignment="Left" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource HasherQueuePauseCommand}" Width="Auto"
                                 Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=HasherQueueRunning, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                 <Image Height="16" Width="16" Source="Images/16_server_hash.png" Margin="0,0,5,0" VerticalAlignment="Center"/>
@@ -553,9 +517,11 @@
                                 <Image Height="16" Width="16" Source="Images/32_pause.png" Margin="0,0,5,0" VerticalAlignment="Center"/>
                             </StackPanel>
                         </Button>
+                        <TextBlock Grid.Column="1" Grid.Row="3" Margin="4,4,0,4" Text="{Binding Source={x:Static local:JMMServerVM.Instance},Path=HasherQueueCount}"  VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="2" Grid.Row="3" Margin="20,4,0,4" Text="{Binding Source={x:Static local:JMMServerVM.Instance},Path=HasherQueueState}"  VerticalAlignment="Center"/>
 
                         <!-- General resume -->
-                        <Button HorizontalAlignment="Left" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource GeneralQueueResumeCommand}" Width="Auto"
+                        <Button Grid.Column="0" Grid.Row="4" Margin="10,0,0,0" HorizontalAlignment="Left" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource GeneralQueueResumeCommand}" Width="Auto"
                                 Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=GeneralQueuePaused, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                 <Image Height="16" Width="16" Source="Images/16_server_connect.png" Margin="0,0,5,0" VerticalAlignment="Center"/>
@@ -566,7 +532,7 @@
                             </StackPanel>
                         </Button>
                         <!-- General pause -->
-                        <Button HorizontalAlignment="Left" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource GeneralQueuePauseCommand}" Width="Auto"
+                        <Button Grid.Column="0" Grid.Row="4" Margin="10,0,0,0" HorizontalAlignment="Left" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource GeneralQueuePauseCommand}" Width="Auto"
                                 Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=GeneralQueueRunning, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                 <Image Height="16" Width="16" Source="Images/16_server_connect.png" Margin="0,0,5,0" VerticalAlignment="Center"/>
@@ -576,9 +542,109 @@
                                 <Image Height="16" Width="16" Source="Images/32_pause.png" Margin="0,0,5,0" VerticalAlignment="Center"/>
                             </StackPanel>
                         </Button>
-                    </StackPanel>
 
-                </StackPanel>
+                        <TextBlock Grid.Column="1" Grid.Row="4" Margin="4,4,0,4" Text="{Binding Source={x:Static local:JMMServerVM.Instance},Path=GeneralQueueCount}"  VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="2" Grid.Row="4" Margin="20,4,0,4" Text="{Binding Source={x:Static local:JMMServerVM.Instance},Path=GeneralQueueState}"  VerticalAlignment="Center"/>
+
+                        <!-- Server Images resume -->
+                        <Button Grid.Column="0" Grid.Row="5" Margin="10,0,0,0" HorizontalAlignment="Left" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource ServerImageQueueResumeCommand}" Width="Auto"
+                                Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ServerImageQueuePaused, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="Images/16_server_connect.png" Margin="0,0,5,0" VerticalAlignment="Center"/>
+                                <TextBlock VerticalAlignment="Center" Text="Server Images Queue" Margin="0,0,0,0"/>
+                                <TextBlock VerticalAlignment="Center" Text=" - " Margin="0,0,0,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Resume}" Margin="0,0,5,0"/>
+                                <Image Height="16" Width="16" Source="Images/32_play.png" Margin="0,0,5,0" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                        <!-- Server Images pause -->
+                        <Button Grid.Column="0" Grid.Row="5" Margin="10,0,0,0" HorizontalAlignment="Left" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource ServerImageQueuePauseCommand}" Width="Auto"
+                                Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ServerImageQueueRunning, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="Images/16_server_connect.png" Margin="0,0,5,0" VerticalAlignment="Center"/>
+                                <TextBlock VerticalAlignment="Center" Text="Server Images Queue" Margin="0,0,0,0"/>
+                                <TextBlock VerticalAlignment="Center" Text=" - " Margin="0,0,0,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Pause}" Margin="0,0,5,0"/>
+                                <Image Height="16" Width="16" Source="Images/32_pause.png" Margin="0,0,5,0" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+
+                        <TextBlock Grid.Column="1" Grid.Row="5" Margin="4,4,0,4" Text="{Binding Source={x:Static local:JMMServerVM.Instance},Path=ServerImageQueueCount}"  VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="2" Grid.Row="5" Margin="20,4,0,4" Text="{Binding Source={x:Static local:JMMServerVM.Instance},Path=ServerImageQueueState}"  VerticalAlignment="Center"/>
+
+                        
+                        <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="4" Background="#FFE9ECEF" Margin="0,10,0,5">
+                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ServerActions}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                        </Border>
+
+                        <!-- Run Import -->
+                        <Button HorizontalAlignment="Left" Grid.Row="8" Grid.ColumnSpan="4" Name="btnRunImport" Margin="10,0,0,0" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource RunImportCommand}" Width="Auto">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/32_import.png" Margin="0,0,5,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=RunImport}" Margin="0,0,5,0"/>
+                            </StackPanel>
+                        </Button>
+
+                        <!-- Remove Missing Files -->
+                        <Button Grid.Row="9" Grid.ColumnSpan="4" HorizontalAlignment="Left" Name="btnRemoveMissingFiles" Margin="10,0,0,0" Style="{DynamicResource FlatButtonStyle}" 
+                            Command="{StaticResource RemoveMissingFilesCommand}" Width="Auto"
+                            ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=RemoveMissingFiles}, 
+                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_RemoveMissingFiles}}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/32_import.png" Margin="0,0,5,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=RemoveMissingFiles}" Margin="0,0,5,0"/>
+                            </StackPanel>
+                        </Button>
+
+                        <!-- Update Media Info -->
+                        <Button Grid.Row="10" Grid.ColumnSpan="4" HorizontalAlignment="Left" Name="btnUpdateMediaInfo" Margin="10,0,0,0" Style="{DynamicResource FlatButtonStyle}" 
+                            Width="Auto" ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=UpdateMediaInfo}, 
+                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_UpdateMediaInfo}}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/32_import.png" Margin="0,0,5,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=UpdateMediaInfo}" Margin="0,0,5,0"/>
+                            </StackPanel>
+                        </Button>
+
+                        <!-- My List Sync -->
+                        <StackPanel Grid.Row="11" Grid.ColumnSpan="4" Margin="10,0,0,0" Orientation="Horizontal">
+                            <Button HorizontalAlignment="Left" Name="btnSyncMyList" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource SyncMyListCommand}" Width="Auto">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="0,0,5,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SyncMyList}" Margin="0,0,5,0"/>
+                                </StackPanel>
+                            </Button>
+                            <Button HorizontalAlignment="Left" Name="btnSyncVotes" Margin="10,0,0,0" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource SyncVotesCommand}" Width="Auto">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="0,0,5,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SyncVotes}" Margin="0,0,5,0"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+
+                        <!-- MAL Sync -->
+                        <StackPanel Grid.Row="12" Grid.ColumnSpan="4" Margin="10,0,0,0" Orientation="Horizontal">
+                            <Button HorizontalAlignment="Left" Name="btnSyncMalUp" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource SyncMALUpCommand}" Width="Auto">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" 
+                                        ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=SyncMalUp}, 
+                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_SyncMalUp}}">
+                                    <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="0,0,5,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SyncMalUp}" Margin="0,0,5,0"/>
+                                </StackPanel>
+                            </Button>
+                            <Button HorizontalAlignment="Left" Name="btnSyncMalDown" Margin="10,0,0,0" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource SyncMALDownCommand}" Width="Auto">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" 
+                                        ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=SyncMalDown}, 
+                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_SyncMalDown}}">
+                                    <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="0,0,5,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SyncMalDown}" Margin="0,0,5,0"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+
+                    </Grid>
+                </ScrollViewer>
+
 
             </TabItem>
 

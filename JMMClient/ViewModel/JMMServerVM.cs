@@ -689,6 +689,28 @@ namespace JMMClient
 			}
 		}
 
+		private int serverImageQueueCount = 0;
+		public int ServerImageQueueCount
+		{
+			get { return serverImageQueueCount; }
+			set
+			{
+				serverImageQueueCount = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("ServerImageQueueCount"));
+			}
+		}
+
+		private string serverImageQueueState = "";
+		public string ServerImageQueueState
+		{
+			get { return serverImageQueueState; }
+			set
+			{
+				serverImageQueueState = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("ServerImageQueueState"));
+			}
+		}
+
 		private int generalQueueCount = 0;
 		public int GeneralQueueCount
 		{
@@ -730,6 +752,28 @@ namespace JMMClient
 			{
 				hasherQueueRunning = value;
 				OnPropertyChanged(new PropertyChangedEventArgs("HasherQueueRunning"));
+			}
+		}
+
+		private bool serverImageQueuePaused = false;
+		public bool ServerImageQueuePaused
+		{
+			get { return serverImageQueuePaused; }
+			set
+			{
+				serverImageQueuePaused = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("ServerImageQueuePaused"));
+			}
+		}
+
+		private bool serverImageQueueRunning = true;
+		public bool ServerImageQueueRunning
+		{
+			get { return serverImageQueueRunning; }
+			set
+			{
+				serverImageQueueRunning = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("ServerImageQueueRunning"));
 			}
 		}
 
@@ -1573,9 +1617,11 @@ namespace JMMClient
 				{
 					HasherQueueCount = status.HashQueueCount;
 					GeneralQueueCount = status.GeneralQueueCount;
+					ServerImageQueueCount = status.ImagesQueueCount;
 
 					HasherQueueState = status.HashQueueState;
 					GeneralQueueState = status.GeneralQueueState;
+					ServerImageQueueState = status.ImagesQueueState;
 
 					IsBanned = status.IsBanned;
 					BanReason = status.BanReason;
@@ -1585,6 +1631,9 @@ namespace JMMClient
 
 					GeneralQueuePaused = GeneralQueueState.ToLower().Contains("pause");
 					GeneralQueueRunning = !GeneralQueueState.ToLower().Contains("pause");
+
+					ServerImageQueuePaused = ServerImageQueueState.ToLower().Contains("pause");
+					ServerImageQueueRunning = !ServerImageQueueState.ToLower().Contains("pause");
 
 					if (appv != null)
 					{
