@@ -539,7 +539,32 @@ namespace JMMClient.UserControls
 			EnableDisableControls(true);
 		}
 
-		
+		private void CommandBinding_RescanFile(object sender, ExecutedRoutedEventArgs e)
+		{
+			try
+			{
+				Window parentWindow = Window.GetWindow(this);
+
+				object obj = e.Parameter;
+				if (obj == null) return;
+
+				if (obj.GetType() == typeof(VideoLocalVM))
+				{
+					VideoLocalVM vid = obj as VideoLocalVM;
+					EnableDisableControls(false);
+
+					JMMServerVM.Instance.clientBinaryHTTP.RescanFile(vid.VideoLocalID);
+				}
+
+				MessageBox.Show(Properties.Resources.MSG_INFO_AddedQueueCmds, "Done", MessageBoxButton.OK, MessageBoxImage.Information);
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+
+			EnableDisableControls(true);
+		}
 
 
 		void lbVideos_SelectionChanged(object sender, SelectionChangedEventArgs e)

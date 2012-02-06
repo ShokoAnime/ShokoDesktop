@@ -19,6 +19,7 @@ namespace JMMClient
 		private static JMMServerVM _instance;
 		private System.Timers.Timer serverStatusTimer = null;
 		private System.Timers.Timer saveTimer = null;
+		private static DateTime lastVersionCheck = DateTime.Now.AddDays(-5);
 
 		public object userLock = new object();
 		public bool UserAuthenticated { get; set; }
@@ -1610,8 +1611,13 @@ namespace JMMClient
 					return;
 				}
 
+				TimeSpan ts = DateTime.Now - lastVersionCheck;
+				lastVersionCheck = DateTime.Now;
+
 				JMMServerBinary.Contract_ServerStatus status = JMMServerVM.Instance.clientBinaryHTTP.GetServerStatus();
-				JMMServerBinary.Contract_AppVersions appv = JMMServerVM.Instance.clientBinaryHTTP.GetAppVersions();
+				JMMServerBinary.Contract_AppVersions appv = null;
+				if (ts.TotalMinutes > 180)
+					appv = JMMServerVM.Instance.clientBinaryHTTP.GetAppVersions();
 
 				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
 				{

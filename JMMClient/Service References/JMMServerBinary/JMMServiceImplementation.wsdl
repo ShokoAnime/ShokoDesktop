@@ -170,6 +170,18 @@
   <wsdl:message name="IJMMServer_GetAppVersions_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAppVersionsResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_UpdateFileData_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateFileData" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_UpdateFileData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateFileDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RescanFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:RescanFile" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RescanFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RescanFileResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_GetGroupFilterExtended_InputMessage">
     <wsdl:part name="parameters" element="tns:GetGroupFilterExtended" />
   </wsdl:message>
@@ -1111,6 +1123,14 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAppVersions" message="tns:IJMMServer_GetAppVersions_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAppVersionsResponse" message="tns:IJMMServer_GetAppVersions_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="UpdateFileData">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/UpdateFileData" message="tns:IJMMServer_UpdateFileData_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/UpdateFileDataResponse" message="tns:IJMMServer_UpdateFileData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RescanFile">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RescanFile" message="tns:IJMMServer_RescanFile_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RescanFileResponse" message="tns:IJMMServer_RescanFile_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetGroupFilterExtended">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilterExtended" message="tns:IJMMServer_GetGroupFilterExtended_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilterExtendedResponse" message="tns:IJMMServer_GetGroupFilterExtended_OutputMessage" />
@@ -1893,6 +1913,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetAppVersions">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAppVersions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFileData">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/UpdateFileData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RescanFile">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/RescanFile" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

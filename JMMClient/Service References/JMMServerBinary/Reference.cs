@@ -14239,6 +14239,12 @@ namespace JMMClient.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetAppVersions", ReplyAction="http://tempuri.org/IJMMServer/GetAppVersionsResponse")]
         JMMClient.JMMServerBinary.Contract_AppVersions GetAppVersions();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/UpdateFileData", ReplyAction="http://tempuri.org/IJMMServer/UpdateFileDataResponse")]
+        string UpdateFileData(int videoLocalID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/RescanFile", ReplyAction="http://tempuri.org/IJMMServer/RescanFileResponse")]
+        string RescanFile(int videoLocalID);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetGroupFilterExtended", ReplyAction="http://tempuri.org/IJMMServer/GetGroupFilterExtendedResponse")]
         JMMClient.JMMServerBinary.Contract_GroupFilterExtended GetGroupFilterExtended(int groupFilterID, int userID);
         
@@ -14785,6 +14791,14 @@ namespace JMMClient.JMMServerBinary {
         
         public JMMClient.JMMServerBinary.Contract_AppVersions GetAppVersions() {
             return base.Channel.GetAppVersions();
+        }
+        
+        public string UpdateFileData(int videoLocalID) {
+            return base.Channel.UpdateFileData(videoLocalID);
+        }
+        
+        public string RescanFile(int videoLocalID) {
+            return base.Channel.RescanFile(videoLocalID);
         }
         
         public JMMClient.JMMServerBinary.Contract_GroupFilterExtended GetGroupFilterExtended(int groupFilterID, int userID) {
