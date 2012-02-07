@@ -490,7 +490,7 @@ namespace JMMClient.UserControls
 			{
 				RefreshOptions opt = e.Argument as RefreshOptions;
 
-				DashboardVM.Instance.RefreshData(opt.TraktScrobbles, opt.TraktShouts);
+				DashboardVM.Instance.RefreshData(opt.TraktScrobbles, opt.TraktShouts, opt.OnlyContinueWatching);
 			}
 			catch (Exception ex)
 			{
@@ -500,11 +500,11 @@ namespace JMMClient.UserControls
 
 		void btnToolbarRefresh_Click(object sender, RoutedEventArgs e)
 		{
-			RefreshData();
+			RefreshData(false);
 			
 		}
 
-		private void RefreshData()
+		private void RefreshData(bool onlyContinueWatching)
 		{
 			Window parentWindow = Window.GetWindow(this);
 
@@ -515,6 +515,7 @@ namespace JMMClient.UserControls
 			RefreshOptions opt = new RefreshOptions();
 			opt.TraktScrobbles = togTraktScrobbles.IsChecked.Value;
 			opt.TraktShouts = togTraktShouts.IsChecked.Value;
+			opt.OnlyContinueWatching = onlyContinueWatching;
 			refreshDataWorker.RunWorkerAsync(opt);
 		}
 
@@ -599,7 +600,7 @@ namespace JMMClient.UserControls
 					ser = MainListHelperVM.Instance.GetSeriesForEpisode(ep);
 				}
 
-				RefreshData();
+				RefreshData(true);
 				if (newStatus == true && ser != null)
 				{
 					Utils.PromptToRateSeries(ser, parentWindow);
@@ -899,5 +900,6 @@ namespace JMMClient.UserControls
 	{
 		public bool TraktScrobbles { get; set; }
 		public bool TraktShouts { get; set; }
+		public bool OnlyContinueWatching { get; set; }
 	}
 }

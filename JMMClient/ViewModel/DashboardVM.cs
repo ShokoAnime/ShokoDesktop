@@ -128,7 +128,7 @@ namespace JMMClient
 
 
 
-		public void RefreshData(bool traktScrobbles, bool traktShouts)
+		public void RefreshData(bool traktScrobbles, bool traktShouts, bool onlyContinueWatching)
 		{
 			try
 			{
@@ -137,21 +137,27 @@ namespace JMMClient
 				// clear all displayed data
 				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
 				{
-					SeriesMissingEps.Clear();
+					if (!onlyContinueWatching)
+					{
+						SeriesMissingEps.Clear();
+						EpsWatchedRecently.Clear();
+						MiniCalendar.Clear();
+						RecommendationsWatch.Clear();
+						RecommendationsDownload.Clear();
+						TraktActivity.Clear();
+					}
 					EpsWatchNext_Recent.Clear();
-					EpsWatchedRecently.Clear();
-					MiniCalendar.Clear();
-					RecommendationsWatch.Clear();
-					RecommendationsDownload.Clear();
-					TraktActivity.Clear();
 
+					if (!onlyContinueWatching)
+					{
+						ViewEpsWatchedRecently.Refresh();
+						ViewSeriesMissingEps.Refresh();
+						ViewMiniCalendar.Refresh();
+						ViewRecommendationsWatch.Refresh();
+						ViewRecommendationsDownload.Refresh();
+						ViewTraktActivity.Refresh();
+					}
 					ViewEpsWatchNext_Recent.Refresh();
-					ViewEpsWatchedRecently.Refresh();
-					ViewSeriesMissingEps.Refresh();
-					ViewMiniCalendar.Refresh();
-					ViewRecommendationsWatch.Refresh();
-					ViewRecommendationsDownload.Refresh();
-					ViewTraktActivity.Refresh();
 				});
 
 				MainListHelperVM.Instance.RefreshGroupsSeriesData();
@@ -160,23 +166,26 @@ namespace JMMClient
 				if (UserSettingsVM.Instance.DashWatchNextEpExpanded)
 					RefreshEpsWatchNext_Recent();
 
-				if (UserSettingsVM.Instance.DashRecentlyWatchEpsExpanded)
-					RefreshRecentlyWatchedEps();
+				if (!onlyContinueWatching)
+				{
+					if (UserSettingsVM.Instance.DashRecentlyWatchEpsExpanded)
+						RefreshRecentlyWatchedEps();
 
-				if (UserSettingsVM.Instance.DashSeriesMissingEpisodesExpanded)
-					RefreshSeriesMissingEps();
+					if (UserSettingsVM.Instance.DashSeriesMissingEpisodesExpanded)
+						RefreshSeriesMissingEps();
 
-				if (UserSettingsVM.Instance.DashMiniCalendarExpanded)
-					RefreshMiniCalendar();
+					if (UserSettingsVM.Instance.DashMiniCalendarExpanded)
+						RefreshMiniCalendar();
 
-				if (UserSettingsVM.Instance.DashRecommendationsWatchExpanded)
-					RefreshRecommendationsWatch();
+					if (UserSettingsVM.Instance.DashRecommendationsWatchExpanded)
+						RefreshRecommendationsWatch();
 
-				if (UserSettingsVM.Instance.DashRecommendationsDownloadExpanded)
-					RefreshRecommendationsDownload();
+					if (UserSettingsVM.Instance.DashRecommendationsDownloadExpanded)
+						RefreshRecommendationsDownload();
 
-				if (UserSettingsVM.Instance.DashTraktFriendsExpanded)
-					RefreshTraktFriends(traktScrobbles, traktShouts);
+					if (UserSettingsVM.Instance.DashTraktFriendsExpanded)
+						RefreshTraktFriends(traktScrobbles, traktShouts);
+				}
 
 				IsLoadingData = false;
 				

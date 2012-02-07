@@ -336,7 +336,7 @@ namespace JMMClient
 		{
 			RefreshOptions opt = e.Argument as RefreshOptions;
 
-			DashboardVM.Instance.RefreshData(opt.TraktScrobbles, opt.TraktShouts);
+			DashboardVM.Instance.RefreshData(opt.TraktScrobbles, opt.TraktShouts, opt.OnlyContinueWatching);
 		}
 
 		void showDashboardWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -2670,11 +2670,11 @@ namespace JMMClient
 		}
 	}
 
-	public class RefreshOptions
+	/*public class RefreshOptions
 	{
 		public bool TraktScrobbles { get; set; }
 		public bool TraktShouts { get; set; }
-	}
+	}*/
 
 	
 }
