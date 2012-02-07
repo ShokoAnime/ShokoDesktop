@@ -58,10 +58,17 @@ namespace JMMClient.UserControls
 			GroupFilterVM gf = this.DataContext as GroupFilterVM;
 			if (gf == null) return;
 
+			MainWindow mainwdw = (MainWindow)Window.GetWindow(this);
+
 			RandomSeriesForm frm = new RandomSeriesForm();
 			frm.Owner = Window.GetWindow(this); ;
 			frm.Init(RandomSeriesEpisodeLevel.GroupFilter, gf);
 			bool? result = frm.ShowDialog();
+			if (result.HasValue && result.Value && frm.Series != null)
+			{
+				if (mainwdw == null) return;
+				mainwdw.ShowPinnedSeries(frm.Series);
+			}
 		}
 
 		void lbFilterConditions_Editing_MouseDoubleClick(object sender, MouseButtonEventArgs e)

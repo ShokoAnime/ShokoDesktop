@@ -943,7 +943,7 @@ namespace JMMClient
 			this.Cursor = Cursors.Arrow;
 		}
 
-		private void ShowPinnedSeries(AnimeSeriesVM series)
+		public void ShowPinnedSeries(AnimeSeriesVM series)
 		{
 			this.Cursor = Cursors.Wait;
 
