@@ -28,6 +28,20 @@ namespace JMMClient.UserControls
 
 			btnSelectDefaultSeries.Click += new RoutedEventHandler(btnSelectDefaultSeries_Click);
 			btnRemoveDefaultSeries.Click += new RoutedEventHandler(btnRemoveDefaultSeries_Click);
+			btnRandomEpisode.Click += new RoutedEventHandler(btnRandomEpisode_Click);
+		}
+
+		void btnRandomEpisode_Click(object sender, RoutedEventArgs e)
+		{
+			AnimeGroupVM grp = this.DataContext as AnimeGroupVM;
+			if (grp == null) return;
+
+			MainWindow mainwdw = (MainWindow)Window.GetWindow(this);
+
+			RandomEpisodeForm frm = new RandomEpisodeForm();
+			frm.Owner = Window.GetWindow(this); ;
+			frm.Init(RandomSeriesEpisodeLevel.Group, grp);
+			bool? result = frm.ShowDialog();
 		}
 
 		void btnRemoveDefaultSeries_Click(object sender, RoutedEventArgs e)

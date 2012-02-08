@@ -15,6 +15,7 @@ using System.ComponentModel;
 using NLog;
 using JMMClient.ViewModel;
 using System.Diagnostics;
+using JMMClient.Forms;
 
 namespace JMMClient.UserControls
 {
@@ -185,7 +186,22 @@ namespace JMMClient.UserControls
 			SeriesPos_Titles = JMMServerVM.Instance.SeriesPos_Titles;
 			SeriesPos_Tags = JMMServerVM.Instance.SeriesPos_Tags;*/
 
+			btnRandomEpisode.Click += new RoutedEventHandler(btnRandomEpisode_Click);
+
 			SetSeriesWidgetOrder();
+		}
+
+		void btnRandomEpisode_Click(object sender, RoutedEventArgs e)
+		{
+			AnimeSeriesVM ser = this.DataContext as AnimeSeriesVM;
+			if (ser == null) return;
+
+			MainWindow mainwdw = (MainWindow)Window.GetWindow(this);
+
+			RandomEpisodeForm frm = new RandomEpisodeForm();
+			frm.Owner = Window.GetWindow(this); ;
+			frm.Init(RandomSeriesEpisodeLevel.Series, ser);
+			bool? result = frm.ShowDialog();
 		}
 
 		void btnPlaylistAdd_Click(object sender, RoutedEventArgs e)

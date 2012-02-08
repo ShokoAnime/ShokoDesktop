@@ -131,7 +131,11 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="1" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"
                     Visibility="{Binding Path=EpisodeExists, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:PlayNextEpisodeControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <TextBlock Name="tbEpisodeNumberAndName" Text="{Binding Path=EpisodeNumberAndName}" FontWeight="DemiBold" Foreground="Black" FontSize="14" VerticalAlignment="Center" />
+            <TextBlock Name="tbEpisodeNumberAndName" Text="{Binding Path=EpisodeNumberAndNameWithTypeTruncated}" FontWeight="DemiBold" Foreground="Black" FontSize="14" VerticalAlignment="Center">
+                <TextBlock.ToolTip>
+                      <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=EpisodeNumberAndNameWithType}"/>
+                </TextBlock.ToolTip>
+            </TextBlock>
 
             <!-- Toggle watched button -->
             <Button Name="btnToggleWatched" Margin="10,0,0,0" Style="{DynamicResource RoundButtonStyle}" VerticalAlignment="Center"

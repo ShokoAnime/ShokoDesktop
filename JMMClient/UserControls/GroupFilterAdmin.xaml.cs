@@ -50,7 +50,22 @@ namespace JMMClient.UserControls
 			lbFilterConditions_Editing.MouseDoubleClick += new MouseButtonEventHandler(lbFilterConditions_Editing_MouseDoubleClick);
 
 			btnRandomSeries.Click += new RoutedEventHandler(btnRandomSeries_Click);
+			btnRandomEpisode.Click += new RoutedEventHandler(btnRandomEpisode_Click);
 
+		}
+
+		void btnRandomEpisode_Click(object sender, RoutedEventArgs e)
+		{
+			GroupFilterVM gf = this.DataContext as GroupFilterVM;
+			if (gf == null) return;
+
+			MainWindow mainwdw = (MainWindow)Window.GetWindow(this);
+
+			RandomEpisodeForm frm = new RandomEpisodeForm();
+			frm.Owner = Window.GetWindow(this); ;
+			frm.Init(RandomSeriesEpisodeLevel.GroupFilter, gf);
+			bool? result = frm.ShowDialog();
+			
 		}
 
 		void btnRandomSeries_Click(object sender, RoutedEventArgs e)
