@@ -109,7 +109,7 @@ namespace JMMClient
 		{
 			get
 			{
-				return AniDB_Anime.FormattedTitle;
+				return SeriesName;
 			}
 		}
 
@@ -117,7 +117,7 @@ namespace JMMClient
 		{
 			get
 			{
-				return AniDB_Anime.FormattedTitle;
+				return SeriesName;
 			}
 		}
 
@@ -208,6 +208,41 @@ namespace JMMClient
 			{
 				isBeingEdited = value;
 				NotifyPropertyChanged("IsBeingEdited");
+			}
+		}
+
+		private Boolean isSeriesNameOverridden = false;
+		public Boolean IsSeriesNameOverridden
+		{
+			get { return isSeriesNameOverridden; }
+			set
+			{
+				isSeriesNameOverridden = value;
+				NotifyPropertyChanged("IsSeriesNameOverridden");
+
+				SetSeriesNames();
+			}
+		}
+
+		private Boolean isSeriesNameNotOverridden = false;
+		public Boolean IsSeriesNameNotOverridden
+		{
+			get { return isSeriesNameNotOverridden; }
+			set
+			{
+				isSeriesNameNotOverridden = value;
+				NotifyPropertyChanged("IsSeriesNameNotOverridden");
+			}
+		}
+
+		private string seriesNameOverride = "";
+		public string SeriesNameOverride
+		{
+			get { return seriesNameOverride; }
+			set
+			{
+				seriesNameOverride = value;
+				NotifyPropertyChanged("SeriesNameOverride");
 			}
 		}
 
@@ -312,6 +347,54 @@ namespace JMMClient
 			}
 		}
 
+		private string seriesName = "";
+		public string SeriesName
+		{
+			get { return seriesName; }
+			set
+			{
+				seriesName = value;
+				NotifyPropertyChanged("SeriesName");
+			}
+		}
+
+		private string seriesNameTruncated = "";
+		public string SeriesNameTruncated
+		{
+			get { return seriesNameTruncated; }
+			set
+			{
+				seriesNameTruncated = value;
+				NotifyPropertyChanged("SeriesNameTruncated");
+			}
+		}
+
+		private void SetSeriesNames()
+		{
+			if (!string.IsNullOrEmpty(SeriesNameOverride))
+				SeriesName = SeriesNameOverride;
+			else
+			{
+				if (JMMServerVM.Instance.SeriesNameSource == DataSourceType.AniDB)
+					SeriesName = AniDB_Anime.FormattedTitle;
+				else
+				{
+
+					if (TvDBSeries != null && !string.IsNullOrEmpty(TvDBSeries.SeriesName) &&
+						!TvDBSeries.SeriesName.ToUpper().Contains("**DUPLICATE"))
+						SeriesName = TvDBSeries.SeriesName;
+					else
+						SeriesName = AniDB_Anime.FormattedTitle;
+				}
+			}
+
+			string ret = SeriesName;
+			if (ret.Length > 30)
+				ret = ret.Substring(0, 28) + "...";
+
+			SeriesNameTruncated = ret;
+		}
+
 		#endregion
 
 		public enum SortMethod { SortName = 0, AirDate = 1 };
@@ -365,35 +448,7 @@ namespace JMMClient
 			}
 		}
 
-		public string SeriesName
-		{
-			get
-			{
-				if (JMMServerVM.Instance.SeriesNameSource == DataSourceType.AniDB)
-					return AniDB_Anime.FormattedTitle;
-
-				if (TvDBSeries != null && !string.IsNullOrEmpty(TvDBSeries.SeriesName) && 
-					!TvDBSeries.SeriesName.ToUpper().Contains("**DUPLICATE"))
-					return TvDBSeries.SeriesName;
-				else
-					return AniDB_Anime.FormattedTitle;
-
-			}
-		}
-
-		public string SeriesNameTruncated
-		{
-			get
-			{
-				string ret = SeriesName;
-				if (ret.Length > 30)
-				{
-					ret = ret.Substring(0, 28) + "...";
-				}
-				return ret;
-				
-			}
-		}
+		
 
 		
 
@@ -503,7 +558,7 @@ namespace JMMClient
 			get
 			{
 				StringBuilder sb = new StringBuilder();
-				sb.Append(AniDB_Anime.FormattedTitle);
+				sb.Append(SeriesName);
 
 				return sb.ToString();
 			}
@@ -724,7 +779,6 @@ namespace JMMClient
 				CrossRef_AniDB_MAL = null;
 
 
-			// read only members
 			this.AniDB_ID = contract.AniDB_ID;
 			this.AnimeGroupID = contract.AnimeGroupID;
 			this.AnimeSeriesID = contract.AnimeSeriesID;
@@ -732,6 +786,10 @@ namespace JMMClient
 			this.DateTimeCreated = contract.DateTimeCreated;
 			this.DefaultAudioLanguage = contract.DefaultAudioLanguage;
 			this.DefaultSubtitleLanguage = contract.DefaultSubtitleLanguage;
+			this.SeriesNameOverride = contract.SeriesNameOverride;
+
+			IsSeriesNameOverridden = !string.IsNullOrEmpty(SeriesNameOverride);
+			IsSeriesNameNotOverridden = string.IsNullOrEmpty(SeriesNameOverride);
 
 			this.LatestLocalEpisodeNumber = contract.LatestLocalEpisodeNumber;
 			this.PlayedCount = contract.PlayedCount;
@@ -750,6 +808,8 @@ namespace JMMClient
 			HasMissingEpisodesGroups = MissingEpisodeCountGroups > 0;
 
 			PosterPath = AniDB_Anime.DefaultPosterPath;
+
+			SetSeriesNames();
 		}
 
 		public AnimeSeriesVM(JMMServerBinary.Contract_AnimeSeries contract)
@@ -817,6 +877,7 @@ namespace JMMClient
 			contract.AnimeSeriesID = this.AnimeSeriesID;
 			contract.DefaultAudioLanguage = this.DefaultAudioLanguage;
 			contract.DefaultSubtitleLanguage = this.DefaultSubtitleLanguage;
+			contract.SeriesNameOverride = this.SeriesNameOverride;
 
 			return contract;
 		}

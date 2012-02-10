@@ -192,6 +192,9 @@
     <Compile Include="Forms\SearchTvDBForm.xaml.cs">
       <DependentUpon>SearchTvDBForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SelectAniDBTitleForm.xaml.cs">
+      <DependentUpon>SelectAniDBTitleForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SelectDefaultSeriesForm.xaml.cs">
       <DependentUpon>SelectDefaultSeriesForm.xaml</DependentUpon>
     </Compile>
@@ -568,6 +571,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\SearchTvDBForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\SelectAniDBTitleForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

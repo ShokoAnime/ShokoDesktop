@@ -560,7 +560,30 @@
                                 </Canvas>
                             </Button>
 
-                            <TextBlock VerticalAlignment="Top" Text="{Binding Path=SeriesName}" FontWeight="Bold" FontSize="18" Margin="5,3,0,0" />
+                            <TextBlock VerticalAlignment="Top" Text="{Binding Path=SeriesName}" FontWeight="Bold" FontSize="18" Margin="5,3,0,0" 
+                                       Visibility="{Binding Path=IsReadOnly, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                            <StackPanel Orientation="Horizontal" Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBox Margin="6,0,0,0" FontSize="16" Padding="5" MinWidth="200" FontWeight="Bold" Name="txtSeriesName" 
+                                             VerticalAlignment="Center"/>
+                                    <CheckBox Name="chkSerNameOverride" VerticalAlignment="Center" Margin="5,0,0,0" />
+                                    <TextBlock VerticalAlignment="Center" Text="Override" Margin="5,0,0,0" />
+
+                                    <!-- Select Override Name -->
+                                    <Button Margin="5,0,2,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Name="btnSelectOverrideName" >
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                            <Image Height="16" Width="16" Source="/Images/16_switch.png" Margin="2,0,2,0">
+                                                <Image.ToolTip>
+                                                    <TextBlock Text="Select a name from the list of AniDB names"/>
+                                                </Image.ToolTip>
+                                            </Image>
+
+                                        </StackPanel>
+                                    </Button>
+                                    
+                                </StackPanel>
+                            </StackPanel>
                             <TextBlock VerticalAlignment="Top" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Series}" Foreground="LightGray" FontSize="18" Margin="8,3,0,0" />
 
                         </StackPanel>

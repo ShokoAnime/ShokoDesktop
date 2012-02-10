@@ -4925,6 +4925,9 @@ namespace JMMClient.JMMServerBinary {
         private int PlayedCountField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SeriesNameOverrideField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int StoppedCountField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -5159,6 +5162,19 @@ namespace JMMClient.JMMServerBinary {
                 if ((this.PlayedCountField.Equals(value) != true)) {
                     this.PlayedCountField = value;
                     this.RaisePropertyChanged("PlayedCount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string SeriesNameOverride {
+            get {
+                return this.SeriesNameOverrideField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SeriesNameOverrideField, value) != true)) {
+                    this.SeriesNameOverrideField = value;
+                    this.RaisePropertyChanged("SeriesNameOverride");
                 }
             }
         }
@@ -13370,6 +13386,9 @@ namespace JMMClient.JMMServerBinary {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string DefaultSubtitleLanguageField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SeriesNameOverrideField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -13441,6 +13460,19 @@ namespace JMMClient.JMMServerBinary {
                 if ((object.ReferenceEquals(this.DefaultSubtitleLanguageField, value) != true)) {
                     this.DefaultSubtitleLanguageField = value;
                     this.RaisePropertyChanged("DefaultSubtitleLanguage");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string SeriesNameOverride {
+            get {
+                return this.SeriesNameOverrideField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SeriesNameOverrideField, value) != true)) {
+                    this.SeriesNameOverrideField = value;
+                    this.RaisePropertyChanged("SeriesNameOverride");
                 }
             }
         }

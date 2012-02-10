@@ -144,6 +144,15 @@ namespace JMMClient.UserControls
 			set { SetValue(FullDescriptionProperty, value); }
 		}
 
+		public static readonly DependencyProperty PreviousOverrideNameProperty = DependencyProperty.Register("PreviousOverrideName",
+			typeof(string), typeof(AnimeSeries), new UIPropertyMetadata("", null));
+
+		public string PreviousOverrideName
+		{
+			get { return (string)GetValue(PreviousOverrideNameProperty); }
+			set { SetValue(PreviousOverrideNameProperty, value); }
+		}
+
 		public AnimeSeries()
 		{
 			InitializeComponent();
@@ -188,7 +197,72 @@ namespace JMMClient.UserControls
 
 			btnRandomEpisode.Click += new RoutedEventHandler(btnRandomEpisode_Click);
 
+			chkSerNameOverride.Click += new RoutedEventHandler(chkSerNameOverride_Click);
+			btnSelectOverrideName.Click += new RoutedEventHandler(btnSelectOverrideName_Click);
+
 			SetSeriesWidgetOrder();
+		}
+
+		void btnSelectOverrideName_Click(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				Window wdw = Window.GetWindow(this);
+
+				wdw.Cursor = Cursors.Wait;
+
+				AnimeSeriesVM ser = this.DataContext as AnimeSeriesVM;
+				if (ser == null) return;
+
+				SelectAniDBTitleForm frm = new SelectAniDBTitleForm();
+				frm.Owner = wdw;
+				frm.Init(ser.AniDB_Anime.Detail.AnimeTitles);
+				wdw.Cursor = Cursors.Arrow;
+				bool? result = frm.ShowDialog();
+				if (result.Value)
+				{
+					// update info
+					txtSeriesName.Text = frm.SelectedTitle;
+				}
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+		}
+
+
+		void chkSerNameOverride_Click(object sender, RoutedEventArgs e)
+		{
+			AnimeSeriesVM ser = this.DataContext as AnimeSeriesVM;
+			if (ser == null) return;
+
+			ser.IsSeriesNameOverridden = chkSerNameOverride.IsChecked.Value;
+			ser.IsSeriesNameNotOverridden = !chkSerNameOverride.IsChecked.Value;
+
+			EvaluateEditing();
+		}
+
+		private void EvaluateEditing()
+		{
+			AnimeSeriesVM ser = this.DataContext as AnimeSeriesVM;
+			if (ser == null) return;
+
+			if (ser.IsSeriesNameOverridden)
+			{
+				txtSeriesName.Text = ser.SeriesNameOverride;
+				txtSeriesName.IsEnabled = true;
+				chkSerNameOverride.IsChecked = true;
+				btnSelectOverrideName.IsEnabled = true;
+			}
+			else
+			{
+				txtSeriesName.Text = ser.SeriesName;
+				txtSeriesName.IsEnabled = false;
+				chkSerNameOverride.IsChecked = false;
+				btnSelectOverrideName.IsEnabled = false;
+			}
+
 		}
 
 		void btnRandomEpisode_Click(object sender, RoutedEventArgs e)
@@ -422,12 +496,40 @@ namespace JMMClient.UserControls
 
 			ser.IsBeingEdited = false;
 			ser.IsReadOnly = true;
+
+			if (ser.IsSeriesNameOverridden && string.IsNullOrEmpty(txtSeriesName.Text))
+			{
+				ser.IsSeriesNameOverridden = false;
+				ser.IsSeriesNameNotOverridden = true;
+			}
+
+			string oldName = "";
+			if (!string.IsNullOrEmpty(ser.SeriesNameOverride))
+				oldName = ser.SeriesNameOverride;
+
+			string newName = txtSeriesName.Text.Trim();
+			if (!ser.IsSeriesNameOverridden)
+				newName = "";
+
+			if (!oldName.Equals(newName))
+			{
+				// override name has changes so lets save to db
+				ser.SeriesNameOverride = newName;
+				ser.Save();
+			}
+
+			EvaluateEditing();
 		}
 
 		void btnEditSeries_Click(object sender, RoutedEventArgs e)
 		{
 			AnimeSeriesVM ser = this.DataContext as AnimeSeriesVM;
 			if (ser == null) return;
+
+			if (string.IsNullOrEmpty(ser.SeriesNameOverride))
+				PreviousOverrideName = "";
+			else
+				PreviousOverrideName = ser.SeriesNameOverride;
 
 			ser.IsBeingEdited = true;
 			ser.IsReadOnly = false;
@@ -1016,7 +1118,7 @@ namespace JMMClient.UserControls
 				cboVoteType.SelectedIndex = 0;
 
 
-			
+			EvaluateEditing();
 
 			this.Cursor = Cursors.Arrow;
 		}

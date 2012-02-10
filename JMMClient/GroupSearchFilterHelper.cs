@@ -26,11 +26,11 @@ namespace JMMClient
 			if (index > -1) return true;
 
 			// check the categories
-			if (grp.Stat_AllCategories != null)
+			/*if (grp.Stat_AllCategories != null)
 			{
 				index = grp.Stat_AllCategories.IndexOf(filterText, 0, StringComparison.InvariantCultureIgnoreCase);
 				if (index > -1) return true;
-			}
+			}*/
 
 			// search the titles (romaji name, english names) etc from anidb
 			if (grp.Stat_AllTitles != null)
@@ -47,6 +47,12 @@ namespace JMMClient
 			if (String.IsNullOrEmpty(filterText) || series == null)
 				return true;
 
+			if (!string.IsNullOrEmpty(series.SeriesNameOverride))
+			{
+				int index = series.SeriesNameOverride.IndexOf(filterText, 0, StringComparison.InvariantCultureIgnoreCase);
+				if (index > -1) return true;
+			}
+
 			return EvaluateAnimeTextSearch(series.AniDB_Anime, filterText);
 		}
 
@@ -60,12 +66,12 @@ namespace JMMClient
 			if (index > -1) return true;
 
 			// check the categories
-			index = anime.AllCategories.IndexOf(filterText, 0, StringComparison.InvariantCultureIgnoreCase);
-			if (index > -1) return true;
+			//index = anime.AllCategories.IndexOf(filterText, 0, StringComparison.InvariantCultureIgnoreCase);
+			//if (index > -1) return true;
 
 			// check the tags
-			index = anime.AllTags.IndexOf(filterText, 0, StringComparison.InvariantCultureIgnoreCase);
-			if (index > -1) return true;
+			//index = anime.AllTags.IndexOf(filterText, 0, StringComparison.InvariantCultureIgnoreCase);
+			//if (index > -1) return true;
 
 
 			return false;

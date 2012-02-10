@@ -451,6 +451,7 @@
       <xs:element minOccurs="0" name="MissingEpisodeCount" type="xs:int" />
       <xs:element minOccurs="0" name="MissingEpisodeCountGroups" type="xs:int" />
       <xs:element minOccurs="0" name="PlayedCount" type="xs:int" />
+      <xs:element minOccurs="0" name="SeriesNameOverride" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="StoppedCount" type="xs:int" />
       <xs:element minOccurs="0" name="TopLevelGroup" nillable="true" type="tns:Contract_AnimeGroup" />
       <xs:element minOccurs="0" name="TvDB_Series" nillable="true" type="tns:Contract_TvDB_Series" />
@@ -1302,6 +1303,7 @@
       <xs:element minOccurs="0" name="AnimeSeriesID" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="DefaultAudioLanguage" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="DefaultSubtitleLanguage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SeriesNameOverride" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_AnimeSeries_Save" nillable="true" type="tns:Contract_AnimeSeries_Save" />
