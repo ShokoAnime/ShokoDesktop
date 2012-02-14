@@ -117,7 +117,7 @@
 
                             <!-- force update anidb -->
                             <Button Margin="0,0,10,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource ForceUpdateCommand}" 
-                                CommandParameter="{Binding}" Visibility="{Binding Path=FileIsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}" >
+                                CommandParameter="{Binding}" >
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="2,0,2,0"/>
                                     <TextBlock VerticalAlignment="Center" Text="Update Info" Margin="5,0,5,0"/>
