@@ -1111,6 +1111,12 @@ namespace JMMClient
 					ShowPinnedSeries(sim.AnimeSeries);
 				}
 
+				if (obj.GetType() == typeof(AniDB_Anime_RelationVM))
+				{
+					AniDB_Anime_RelationVM rel = (AniDB_Anime_RelationVM)obj;
+					ShowPinnedSeries(rel.AnimeSeries);
+				}
+
 				if (obj.GetType() == typeof(RecommendationVM))
 				{
 					RecommendationVM rec = (RecommendationVM)obj;
@@ -2511,6 +2517,22 @@ namespace JMMClient
 			catch (Exception ex)
 			{
 				Utils.ShowErrorMessage(ex);
+			}
+		}
+
+		public void ShowChildrenForCurrentGroup(AnimeSeriesVM ser)
+		{
+			if (lbGroupsSeries.SelectedItem == null) return;
+
+			if (lbGroupsSeries.SelectedItem is MainListWrapper)
+			{
+				// this is the last supported drill down
+				if (lbGroupsSeries.SelectedItem.GetType() == typeof(AnimeSeriesVM)) return;
+
+				MainListHelperVM.Instance.LastAnimeSeriesID = ser.AnimeSeriesID.Value;
+
+				EnableDisableGroupControls(false);
+				showChildWrappersWorker.RunWorkerAsync(lbGroupsSeries.SelectedItem);
 			}
 		}
 

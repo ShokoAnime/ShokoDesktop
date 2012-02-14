@@ -300,11 +300,14 @@
 
                 <!-- All Series Header -->
                 <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3" Padding="6" Background="#F1F1F1" Margin="0,10,0,0">
-                    <TextBlock Text="All Series" FontSize="16" Foreground="DarkGray"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="All Series" FontSize="16" Foreground="DarkGray" VerticalAlignment="Bottom"/>
+                        <TextBlock Text="Double click on a series to view it directly" FontSize="10" Foreground="DarkGray" Margin="20,0,0,0" VerticalAlignment="Bottom"/>
+                    </StackPanel>
                 </Border>
 
                 <ListBox Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="0" HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0,10,0,5"
-                 VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
+                 VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True" Name="lbSeriesList"
                  ItemsSource="{Binding Path=AllAnimeSeriesFiltered}" 
                  Background="Transparent"  VerticalAlignment="Stretch" >
                     <ListBox.ItemTemplate>

@@ -29,6 +29,20 @@ namespace JMMClient.UserControls
 			btnSelectDefaultSeries.Click += new RoutedEventHandler(btnSelectDefaultSeries_Click);
 			btnRemoveDefaultSeries.Click += new RoutedEventHandler(btnRemoveDefaultSeries_Click);
 			btnRandomEpisode.Click += new RoutedEventHandler(btnRandomEpisode_Click);
+
+			lbSeriesList.MouseDoubleClick += new MouseButtonEventHandler(lbSeriesList_MouseDoubleClick);
+		}
+
+		void lbSeriesList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+		{
+			if (lbSeriesList.SelectedItem == null) return;
+
+			AnimeSeriesVM ser = lbSeriesList.SelectedItem as AnimeSeriesVM;
+			if (ser == null) return;
+
+			MainWindow mainwdw = (MainWindow)Window.GetWindow(this);
+
+			mainwdw.ShowChildrenForCurrentGroup(ser);
 		}
 
 		void btnRandomEpisode_Click(object sender, RoutedEventArgs e)
