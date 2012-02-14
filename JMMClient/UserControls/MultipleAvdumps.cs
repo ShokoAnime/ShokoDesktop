@@ -6,11 +6,9 @@ using JMMClient.ViewModel;
 
 namespace JMMClient.UserControls
 {
-	public class MultipleVideos
+	public class MultipleAvdumps
 	{
 		public int SelectedCount { get; set; }
-		public List<int> VideoLocalIDs { get; set; }
-		public List<VideoLocalVM> VideoLocals { get; set; }
-		
+		public List<AVDumpVM> AVDumps { get; set; }
 	}
 }

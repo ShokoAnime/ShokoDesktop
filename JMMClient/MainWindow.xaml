@@ -712,6 +712,11 @@
                         <usercontrols:IgnoredAnimeControl x:Name="ignoredAnime"/>
                     </TabItem>
 
+                    <TabItem Header="AniDB AV Dump" Name="tabAvdump">
+
+                        <usercontrols:AvdumpBatchControl x:Name="avdumpBatch"/>
+                    </TabItem>
+
                 </TabControl>
 
 

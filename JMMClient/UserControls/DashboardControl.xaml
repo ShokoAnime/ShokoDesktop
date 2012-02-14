@@ -82,7 +82,7 @@
                             Background="FloralWhite">
                         <Image  Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_WatchNext_Height}"  Margin="5,3,5,0"
                                MaxWidth="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_WatchNext_Height}" HorizontalAlignment="Left" 
-                               Source="{Binding Path=AniDB_Anime.DefaultPosterPath}" ToolTipService.ShowDuration="60000">
+                               ToolTipService.ShowDuration="60000">
                             <Image.Effect>
                                 <DropShadowEffect Opacity="0.5"/>
                             </Image.Effect>
@@ -100,6 +100,7 @@
                                         <Image Grid.Column="0" Grid.Row="0" Width="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=DisplayWidth_EpisodeImage}" 
                                                Source="{Binding EpisodeImageLoading}" 
                                                 Margin="10,5,0,5" VerticalAlignment="Top" HorizontalAlignment="Left">
+                                            
                                         </Image>
 
                                         <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding EpisodeOverviewLoading}" HorizontalAlignment="Left" Margin="10,5,0,5"  Foreground="Black" 
@@ -108,6 +109,10 @@
                                     </Grid>
                                 </Border>
                             </Image.ToolTip>
+
+                            <Image.Source>
+                                <BitmapImage UriSource="{Binding Path=AniDB_Anime.DefaultPosterPath}" DecodePixelWidth="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_WatchNext_Height}"/>
+                            </Image.Source>
                         </Image>
                     </Border>
 

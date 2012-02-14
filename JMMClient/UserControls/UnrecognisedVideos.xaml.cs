@@ -594,11 +594,13 @@ namespace JMMClient.UserControls
 					MultipleVideos mv = new MultipleVideos();
 					mv.SelectedCount = lbVideos.SelectedItems.Count;
 					mv.VideoLocalIDs = new List<int>();
+					mv.VideoLocals = new List<VideoLocalVM>();
 
 					foreach (object obj in lbVideos.SelectedItems)
 					{
 						VideoLocalVM vid = obj as VideoLocalVM;
 						mv.VideoLocalIDs.Add(vid.VideoLocalID);
+						mv.VideoLocals.Add(vid);
 					}
 
 					ccDetailMultiple.Content = mv;

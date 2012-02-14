@@ -245,6 +245,9 @@
     <Compile Include="UserControls\AnimeSeries_Hulu.xaml.cs">
       <DependentUpon>AnimeSeries_Hulu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\AvdumpBatchControl.xaml.cs">
+      <DependentUpon>AvdumpBatchControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\AvdumpFileControl.xaml.cs">
       <DependentUpon>AvdumpFileControl.xaml</DependentUpon>
     </Compile>
@@ -301,6 +304,7 @@
     <Compile Include="UserControls\MissingMyListFilesControl.xaml.cs">
       <DependentUpon>MissingMyListFilesControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\MultipleAvdumps.cs" />
     <Compile Include="UserControls\MultipleFilesControl.xaml.cs">
       <DependentUpon>MultipleFilesControl.xaml</DependentUpon>
     </Compile>
@@ -429,6 +433,7 @@
     <Compile Include="ViewModel\AniDB_AnimeDetailedVM.cs" />
     <Compile Include="ViewModel\AnimeTagVM.cs" />
     <Compile Include="ViewModel\AnimeTitleVM.cs" />
+    <Compile Include="ViewModel\AVDumpVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_MALResultVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_MALVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_OtherResultVM.cs" />
@@ -639,6 +644,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\AnimeSeries_Hulu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\AvdumpBatchControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

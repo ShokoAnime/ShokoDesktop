@@ -52,6 +52,11 @@ namespace JMMClient
 		private static readonly int TAB_FileManger_ManuallyLinked = 2;
 		private static readonly int TAB_FileManger_DuplicateFiles = 3;
 		private static readonly int TAB_FileManger_MultipleFiles = 4;
+		private static readonly int TAB_FileManger_MissingMyList = 5;
+		private static readonly int TAB_FileManger_SeriesNoFiles = 6;
+		private static readonly int TAB_FileManger_MissingEps = 7;
+		private static readonly int TAB_FileManger_IgnoredAnime = 8;
+		private static readonly int TAB_FileManger_Avdump = 9;
 
 		private static readonly int TAB_Settings_Essential = 0;
 		private static readonly int TAB_Settings_AniDB = 1;
@@ -378,6 +383,7 @@ namespace JMMClient
 						MainListHelperVM.Instance.SearchTextBox = txtGroupSearch;
 						MainListHelperVM.Instance.CurrentGroupFilter = MainListHelperVM.Instance.AllGroupFilter;
 						MainListHelperVM.Instance.ShowChildWrappers(MainListHelperVM.Instance.CurrentWrapper);
+						lbGroupsSeries.SelectedIndex = 0;
 					}
 				}
 
@@ -925,22 +931,24 @@ namespace JMMClient
 
 		public void ShowPinnedFileAvDump(VideoLocalVM vid)
 		{
-			this.Cursor = Cursors.Wait;
+			try
+			{
+				foreach (AVDumpVM dumpTemp in MainListHelperVM.Instance.AVDumpFiles)
+				{
+					if (dumpTemp.FullPath == vid.FullPath) return;
+				}
 
-			CloseableTabItem cti = new CloseableTabItem();
-			//TabItem cti = new TabItem();
-			cti.Header = vid.FileName;
+				AVDumpVM dump = new AVDumpVM(vid);
+				MainListHelperVM.Instance.AVDumpFiles.Add(dump);
 
-			AvdumpFileControl ctrl = new AvdumpFileControl();
-			ctrl.DataContext = vid;
-			cti.Content = ctrl;
+				tabControl1.SelectedIndex = TAB_MAIN_FileManger;
+				tabFileManager.SelectedIndex = TAB_FileManger_Avdump;
 
-			tabPinned.Items.Add(cti);
-
-			tabControl1.SelectedIndex = TAB_MAIN_Pinned;
-			tabPinned.SelectedIndex = tabPinned.Items.Count - 1;
-
-			this.Cursor = Cursors.Arrow;
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
 		}
 
 		public void ShowPinnedSeries(AnimeSeriesVM series)
@@ -1029,8 +1037,42 @@ namespace JMMClient
 				if (obj.GetType() == typeof(VideoLocalVM))
 				{
 					VideoLocalVM vid = obj as VideoLocalVM;
-					ShowPinnedFileAvDump(vid);
+
+					foreach (AVDumpVM dumpTemp in MainListHelperVM.Instance.AVDumpFiles)
+					{
+						if (dumpTemp.FullPath == vid.FullPath) return;
+					}
+
+					AVDumpVM dump = new AVDumpVM(vid);
+					MainListHelperVM.Instance.AVDumpFiles.Add(dump);
+					
 				}
+
+				if (obj.GetType() == typeof(MultipleVideos))
+				{
+					MultipleVideos mv = obj as MultipleVideos;
+					foreach (VideoLocalVM vid in mv.VideoLocals)
+					{
+						bool alreadyExists = false;
+						foreach (AVDumpVM dumpTemp in MainListHelperVM.Instance.AVDumpFiles)
+						{
+							if (dumpTemp.FullPath == vid.FullPath)
+							{
+								alreadyExists = true;
+								break;
+							}
+
+						}
+
+						if (alreadyExists) continue;
+
+						AVDumpVM dump = new AVDumpVM(vid);
+						MainListHelperVM.Instance.AVDumpFiles.Add(dump);
+					}
+				}
+
+				tabControl1.SelectedIndex = TAB_MAIN_FileManger;
+				tabFileManager.SelectedIndex = TAB_FileManger_Avdump;
 
 			}
 			catch (Exception ex)

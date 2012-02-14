@@ -31,6 +31,21 @@ namespace JMMClient
 		[DllImport("kernel32.dll", CharSet = CharSet.Ansi, SetLastError = true)]
 		extern static IntPtr GetProcAddress(IntPtr hModule, string methodName);
 
+		public static string GetED2KDump(string result)
+		{
+			// try and get the ed2k dump from the keyboard
+			string[] lines = result.Split('\r');
+			foreach (string line in lines)
+			{
+				string editedLine = line.Replace('\n', ' ');
+				editedLine = editedLine.Trim();
+
+				if (editedLine.StartsWith(@"ed2k://"))
+					return editedLine;
+			}
+
+			return "";
+		}
 
 		public static string DownloadWebPage(string url)
 		{

@@ -19,6 +19,7 @@ namespace JMMClient
 		private static MainListHelperVM _instance;
 		public ICollectionView ViewGroups { get; set; }
 		public ICollectionView ViewGroupsForms { get; set; }
+		public ICollectionView ViewAVDumpFiles { get; set; }
 
 		// contains a value for each AnimeSeries and the last highlighted episode for that series
 		public Dictionary<int, int> LastEpisodeForSeries { get; set; }
@@ -28,6 +29,7 @@ namespace JMMClient
 		public ObservableCollection<GroupFilterVM> AllGroupFilters { get; set; }
 		public ObservableCollection<AnimeGroupVM> AllGroups { get; set; }
 		public ObservableCollection<AnimeSeriesVM> AllSeries { get; set; }
+		public ObservableCollection<AVDumpVM> AVDumpFiles { get; set; }
 	
 
 		public Dictionary<int, AnimeGroupVM> AllGroupsDictionary { get; set; }
@@ -265,6 +267,7 @@ namespace JMMClient
 			AllGroups = new ObservableCollection<AnimeGroupVM>();
 			AllSeries = new ObservableCollection<AnimeSeriesVM>();
 			EpisodesForSeries = new ObservableCollection<AnimeEpisodeVM>();
+			AVDumpFiles = new ObservableCollection<AVDumpVM>();
 			
 
 			AllGroupsDictionary = new Dictionary<int, AnimeGroupVM>();
@@ -273,6 +276,7 @@ namespace JMMClient
 
 			ViewGroups = CollectionViewSource.GetDefaultView(CurrentWrapperList);
 			ViewGroupsForms = CollectionViewSource.GetDefaultView(AllGroups);
+			ViewAVDumpFiles = CollectionViewSource.GetDefaultView(AVDumpFiles);
 
 			ViewSeriesSearch = CollectionViewSource.GetDefaultView(AllSeries);
 			ViewSeriesSearch.SortDescriptions.Add(new SortDescription("SeriesName", ListSortDirection.Ascending));

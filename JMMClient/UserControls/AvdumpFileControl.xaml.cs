@@ -80,6 +80,36 @@ namespace JMMClient.UserControls
 			set { SetValue(ValidED2KDumpProperty, value); }
 		}
 
+		public static readonly DependencyProperty DumpSingleProperty = DependencyProperty.Register("DumpSingle",
+			typeof(bool), typeof(AvdumpFileControl), new UIPropertyMetadata(false, null));
+
+
+		public bool DumpSingle
+		{
+			get { return (bool)GetValue(DumpSingleProperty); }
+			set { SetValue(DumpSingleProperty, value); }
+		}
+
+		public static readonly DependencyProperty DumpMultipleProperty = DependencyProperty.Register("DumpMultiple",
+			typeof(bool), typeof(AvdumpFileControl), new UIPropertyMetadata(false, null));
+
+
+		public bool DumpMultiple
+		{
+			get { return (bool)GetValue(DumpMultipleProperty); }
+			set { SetValue(DumpMultipleProperty, value); }
+		}
+
+		public static readonly DependencyProperty AvDumpTextProperty = DependencyProperty.Register("AvDumpText",
+			typeof(string), typeof(AvdumpFileControl), new UIPropertyMetadata("", null));
+
+
+		public string AvDumpText
+		{
+			get { return (string)GetValue(AvDumpTextProperty); }
+			set { SetValue(AvDumpTextProperty, value); }
+		}
+
 		public AvdumpFileControl()
 		{
 			InitializeComponent();
@@ -92,7 +122,6 @@ namespace JMMClient.UserControls
 			txtAnimeSearch.TextChanged += new TextChangedEventHandler(txtAnimeSearch_TextChanged);
 			lbAnime.SelectionChanged += new SelectionChangedEventHandler(lbAnime_SelectionChanged);
 			hlURL.Click += new RoutedEventHandler(hlURL_Click);
-			btnAvdumpFile.Click += new RoutedEventHandler(btnAvdumpFile_Click);
 			btnClipboard.Click += new RoutedEventHandler(btnClipboard_Click);
 
 			workerAvdump.DoWork += new DoWorkEventHandler(workerAvdump_DoWork);
@@ -105,17 +134,6 @@ namespace JMMClient.UserControls
 			try
 			{
 				ViewAnime = CollectionViewSource.GetDefaultView(AllAnime);
-				//ViewAnime.SortDescriptions.Add(new SortDescription("MainTitle", ListSortDirection.Ascending));
-
-				/*List<JMMServerBinary.Contract_AniDBAnime> animeRaw = JMMServerVM.Instance.clientBinaryHTTP.GetAllAnime();
-				foreach (JMMServerBinary.Contract_AniDBAnime anime in animeRaw)
-				{
-					AniDB_AnimeVM animeNew = new AniDB_AnimeVM(anime);
-					AllAnime.Add(animeNew);
-				}*/
-
-				
-
 				ViewAnime.Filter = AnimeSearchFilter;
 
 			}
@@ -127,58 +145,109 @@ namespace JMMClient.UserControls
 
 		void AvdumpFileControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
 		{
-
-			VideoLocalVM vid = this.DataContext as VideoLocalVM;
-			if (vid != null)
+			try
 			{
-				AllAnime.Clear();
-				foreach (AniDB_AnimeVM anime in AniDB_AnimeVM.BestLevenshteinDistanceMatches(vid.ClosestAnimeMatchString, 10))
+				DumpSingle = false;
+				DumpMultiple = false;
+
+				if (this.DataContext == null) return;
+
+				if (this.DataContext.GetType() == typeof(AVDumpVM))
 				{
-					AllAnime.Add(anime);
+					AVDumpVM dump = this.DataContext as AVDumpVM;
+					if (dump != null)
+					{
+						AllAnime.Clear();
+						foreach (AniDB_AnimeVM anime in AniDB_AnimeVM.BestLevenshteinDistanceMatches(dump.VideoLocal.ClosestAnimeMatchString, 10))
+						{
+							AllAnime.Add(anime);
+						}
+						if (AllAnime.Count > 0)
+							lbAnime.SelectedIndex = 0;
+
+						if (string.IsNullOrEmpty(dump.AVDumpFullResult))
+						{
+							string ed2kDump = "Pre-calculated ED2K Dump string" + Environment.NewLine;
+							ed2kDump += "---------------------------" + Environment.NewLine;
+							ed2kDump += "This does not mean the data has been uploaded to AniDB yet" + Environment.NewLine;
+							ed2kDump += "---------------------------" + Environment.NewLine;
+							ed2kDump += string.Format(@"ed2k://|file|{0}|{1}|{2}|/", dump.FileName, dump.FileSize, dump.VideoLocal.Hash) + Environment.NewLine;
+
+							dump.AVDumpFullResult = ed2kDump;
+						}
+
+						dump.ED2KDump = Utils.GetED2KDump(dump.AVDumpFullResult);
+						SetED2KDump(dump.ED2KDump);
+					}
+					DumpSingle = true;
 				}
-				if (AllAnime.Count > 0)
-					lbAnime.SelectedIndex = 0;
 
-				string ed2kDump = "Pre-calculated ED2K Dump string" + Environment.NewLine;
-				ed2kDump += "---------------------------" + Environment.NewLine;
-				ed2kDump += "This does not mean the data has been uploaded to AniDB yet" + Environment.NewLine;
-				ed2kDump += "---------------------------" + Environment.NewLine;
-				ed2kDump += string.Format(@"ed2k://|file|{0}|{1}|{2}|/", vid.FileName, vid.FileSize, vid.Hash) + Environment.NewLine;
+				if (this.DataContext.GetType() == typeof(MultipleAvdumps))
+				{
+					MultipleAvdumps dumpList = this.DataContext as MultipleAvdumps;
+					AllAnime.Clear();
 
-				txtOutput.Text = ed2kDump;
-				GetED2KDump(ed2kDump);
+					foreach (AniDB_AnimeVM anime in AniDB_AnimeVM.BestLevenshteinDistanceMatches(dumpList.AVDumps[0].VideoLocal.ClosestAnimeMatchString, 10))
+						AllAnime.Add(anime);
+					
+					if (AllAnime.Count > 0)
+						lbAnime.SelectedIndex = 0;
+
+					string massAvDump = "";
+					if (dumpList != null)
+					{
+
+						foreach (AVDumpVM dump in dumpList.AVDumps)
+						{
+							if (string.IsNullOrEmpty(dump.AVDumpFullResult))
+							{
+								string ed2kDump = "Pre-calculated ED2K Dump string" + Environment.NewLine;
+								ed2kDump += "---------------------------" + Environment.NewLine;
+								ed2kDump += "This does not mean the data has been uploaded to AniDB yet" + Environment.NewLine;
+								ed2kDump += "---------------------------" + Environment.NewLine;
+								ed2kDump += string.Format(@"ed2k://|file|{0}|{1}|{2}|/", dump.FileName, dump.FileSize, dump.VideoLocal.Hash) + Environment.NewLine;
+
+								dump.AVDumpFullResult = ed2kDump;
+							}
+
+							dump.ED2KDump = Utils.GetED2KDump(dump.AVDumpFullResult);
+							massAvDump += dump.ED2KDump + Environment.NewLine;
+						}
+					}
+					SetED2KDump(massAvDump);
+					DumpMultiple = true;
+				}
 			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+
+			
+			
 		}
 
 		void btnClipboard_Click(object sender, RoutedEventArgs e)
 		{
-			GetED2KDump(txtOutput.Text);
+			SetED2KDump(AvDumpText);
 		}
 
-		private void GetED2KDump(string result)
+		private void SetED2KDump(string result)
 		{
-			// try and get the ed2k dump from the keyboard
-			string[] lines = result.Split('\r');
-			foreach (string line in lines)
-			{
-				string editedLine = line.Replace('\n', ' ');
-				editedLine = editedLine.Trim();
-
-				if (editedLine.StartsWith(@"ed2k://"))
-				{
-					Clipboard.Clear();
-					Clipboard.SetText(editedLine);
-					ValidED2KDump = true;
-					return;
-				}
-			}
-
 			ValidED2KDump = false;
+			Clipboard.Clear();
+			Clipboard.SetText("");
+			AvDumpText = "";
+
+			if (string.IsNullOrEmpty(result)) return;
+
+			Clipboard.SetText(result);
+			ValidED2KDump = true;
+			AvDumpText = result;
 		}
 
 		void btnAvdumpFile_Click(object sender, RoutedEventArgs e)
 		{
-			btnAvdumpFile.IsEnabled = false;
 			btnClipboard.IsEnabled = false;
 			ValidED2KDump = false;
 			txtOutput.Text = "Processing...";
@@ -188,13 +257,12 @@ namespace JMMClient.UserControls
 		void workerAvdump_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
 		{
 			
-			btnAvdumpFile.IsEnabled = true;
 			btnClipboard.IsEnabled = true;
 
 			string result = e.Result.ToString();
 			txtOutput.Text = result;
 
-			GetED2KDump(result);
+			SetED2KDump(Utils.GetED2KDump(result));
 		}
 
 		void workerAvdump_DoWork(object sender, DoWorkEventArgs e)
