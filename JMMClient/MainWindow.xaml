@@ -72,6 +72,10 @@
             <RoutedUICommand x:Key="DeleteSeriesCommand" Text="DeleteSeriesCommand" />
             <RoutedUICommand x:Key="MoveSeriesCommand" Text="MoveSeriesCommand" />
 
+            <RoutedUICommand x:Key="BookmarkAnimeCommand" Text="BookmarkAnimeCommand" />
+            <RoutedUICommand x:Key="RefreshBookmarksCommand" Text="RefreshBookmarksCommand" />
+            
+
             <RoutedUICommand x:Key="HasherQueuePauseCommand" Text="HasherQueuePauseCommand" />
             <RoutedUICommand x:Key="HasherQueueResumeCommand" Text="HasherQueueResumeCommand" />
             <RoutedUICommand x:Key="GeneralQueuePauseCommand" Text="GeneralQueuePauseCommand" />
@@ -174,6 +178,9 @@
         <CommandBinding Command="{StaticResource NewSeriesCommand}" Executed="CommandBinding_NewSeries" />
         <CommandBinding Command="{StaticResource DeleteSeriesCommand}" Executed="CommandBinding_DeleteSeries" />
         <CommandBinding Command="{StaticResource MoveSeriesCommand}" Executed="CommandBinding_MoveSeries" />
+
+        <CommandBinding Command="{StaticResource BookmarkAnimeCommand}" Executed="CommandBinding_BookmarkAnime" />
+        <CommandBinding Command="{StaticResource RefreshBookmarksCommand}" Executed="CommandBinding_RefreshBookmarks" />
 
         <CommandBinding Command="{StaticResource HasherQueuePauseCommand}" Executed="CommandBinding_HasherQueuePause" />
         <CommandBinding Command="{StaticResource HasherQueueResumeCommand}" Executed="CommandBinding_HasherQueueResume" />
@@ -445,6 +452,24 @@
 
 
                 </Grid>
+
+            </TabItem>
+
+            <!-- Bookmarks tab-->
+            <TabItem Name="tabBookmarks" Style="{DynamicResource tabMainItem}"
+                     Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Bookmarks" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
+                    </StackPanel>
+                </TabItem.Header>
+
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Name="ScrollerBookmarks" Padding="0,0,0,0" >
+                    <usercontrols:BookmarksControl x:Name="ucBookmarks"/>
+
+                </ScrollViewer>
+
+                
 
             </TabItem>
 

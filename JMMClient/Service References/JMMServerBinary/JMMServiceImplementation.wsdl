@@ -20,6 +20,24 @@
       <xsd:import schemaLocation="http://localhost:8111/JMMServerBinary?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IJMMServer_SaveBookmarkedAnime_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveBookmarkedAnime" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SaveBookmarkedAnime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveBookmarkedAnimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_DeleteBookmarkedAnime_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteBookmarkedAnime" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_DeleteBookmarkedAnime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteBookmarkedAnimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetBookmarkedAnime_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBookmarkedAnime" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetBookmarkedAnime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBookmarkedAnimeResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_ScanDropFolders_InputMessage">
     <wsdl:part name="parameters" element="tns:ScanDropFolders" />
   </wsdl:message>
@@ -181,6 +199,12 @@
   </wsdl:message>
   <wsdl:message name="IJMMServer_RescanFile_OutputMessage">
     <wsdl:part name="parameters" element="tns:RescanFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllBookmarkedAnime_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllBookmarkedAnime" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllBookmarkedAnime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllBookmarkedAnimeResponse" />
   </wsdl:message>
   <wsdl:message name="IJMMServer_GetGroupFilterExtended_InputMessage">
     <wsdl:part name="parameters" element="tns:GetGroupFilterExtended" />
@@ -1023,6 +1047,18 @@
     <wsdl:part name="parameters" element="tns:GetServerSettingsResponse" />
   </wsdl:message>
   <wsdl:portType name="IJMMServer">
+    <wsdl:operation name="SaveBookmarkedAnime">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SaveBookmarkedAnime" message="tns:IJMMServer_SaveBookmarkedAnime_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SaveBookmarkedAnimeResponse" message="tns:IJMMServer_SaveBookmarkedAnime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBookmarkedAnime">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/DeleteBookmarkedAnime" message="tns:IJMMServer_DeleteBookmarkedAnime_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/DeleteBookmarkedAnimeResponse" message="tns:IJMMServer_DeleteBookmarkedAnime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBookmarkedAnime">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetBookmarkedAnime" message="tns:IJMMServer_GetBookmarkedAnime_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetBookmarkedAnimeResponse" message="tns:IJMMServer_GetBookmarkedAnime_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="ScanDropFolders">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/ScanDropFolders" message="tns:IJMMServer_ScanDropFolders_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/ScanDropFoldersResponse" message="tns:IJMMServer_ScanDropFolders_OutputMessage" />
@@ -1130,6 +1166,10 @@
     <wsdl:operation name="RescanFile">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RescanFile" message="tns:IJMMServer_RescanFile_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RescanFileResponse" message="tns:IJMMServer_RescanFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllBookmarkedAnime">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllBookmarkedAnime" message="tns:IJMMServer_GetAllBookmarkedAnime_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllBookmarkedAnimeResponse" message="tns:IJMMServer_GetAllBookmarkedAnime_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetGroupFilterExtended">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilterExtended" message="tns:IJMMServer_GetGroupFilterExtended_InputMessage" />
@@ -1695,6 +1735,33 @@
   <wsdl:binding name="BinaryBinding_IJMMServer" type="tns:IJMMServer">
     <wsp:PolicyReference URI="#BinaryBinding_IJMMServer_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SaveBookmarkedAnime">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/SaveBookmarkedAnime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBookmarkedAnime">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/DeleteBookmarkedAnime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBookmarkedAnime">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetBookmarkedAnime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ScanDropFolders">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/ScanDropFolders" style="document" />
       <wsdl:input>
@@ -1931,6 +1998,15 @@
     </wsdl:operation>
     <wsdl:operation name="RescanFile">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/RescanFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllBookmarkedAnime">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllBookmarkedAnime" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

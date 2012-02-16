@@ -20,6 +20,7 @@ namespace JMMClient
 		public ICollectionView ViewGroups { get; set; }
 		public ICollectionView ViewGroupsForms { get; set; }
 		public ICollectionView ViewAVDumpFiles { get; set; }
+		public ICollectionView ViewBookmarkedAnime { get; set; }
 
 		// contains a value for each AnimeSeries and the last highlighted episode for that series
 		public Dictionary<int, int> LastEpisodeForSeries { get; set; }
@@ -30,6 +31,7 @@ namespace JMMClient
 		public ObservableCollection<AnimeGroupVM> AllGroups { get; set; }
 		public ObservableCollection<AnimeSeriesVM> AllSeries { get; set; }
 		public ObservableCollection<AVDumpVM> AVDumpFiles { get; set; }
+		public ObservableCollection<BookmarkedAnimeVM> BookmarkedAnime { get; set; }
 	
 
 		public Dictionary<int, AnimeGroupVM> AllGroupsDictionary { get; set; }
@@ -68,6 +70,9 @@ namespace JMMClient
 		private System.Timers.Timer searchTimer = null;
 
 		private int searchResultCount = 0;
+
+		public bool BookmarkFilter_Downloading = true;
+		public bool BookmarkFilter_NotDownloading = true;
 
 		private TextBox seriesSearchTextBox = null;
 		public TextBox SeriesSearchTextBox
@@ -268,6 +273,7 @@ namespace JMMClient
 			AllSeries = new ObservableCollection<AnimeSeriesVM>();
 			EpisodesForSeries = new ObservableCollection<AnimeEpisodeVM>();
 			AVDumpFiles = new ObservableCollection<AVDumpVM>();
+			BookmarkedAnime = new ObservableCollection<BookmarkedAnimeVM>();
 			
 
 			AllGroupsDictionary = new Dictionary<int, AnimeGroupVM>();
@@ -277,6 +283,7 @@ namespace JMMClient
 			ViewGroups = CollectionViewSource.GetDefaultView(CurrentWrapperList);
 			ViewGroupsForms = CollectionViewSource.GetDefaultView(AllGroups);
 			ViewAVDumpFiles = CollectionViewSource.GetDefaultView(AVDumpFiles);
+			ViewBookmarkedAnime = CollectionViewSource.GetDefaultView(BookmarkedAnime);
 
 			ViewSeriesSearch = CollectionViewSource.GetDefaultView(AllSeries);
 			ViewSeriesSearch.SortDescriptions.Add(new SortDescription("SeriesName", ListSortDirection.Ascending));
@@ -603,6 +610,42 @@ namespace JMMClient
 				grpNew.GroupName = grpNew.SortName = "Gundam";
 				AllGroups.Add(grpNew);
 			});
+		}
+
+		public void RefreshBookmarkedAnime()
+		{
+			try
+			{
+				// set this to null so that it will be refreshed the next time it is needed
+
+				List<JMMServerBinary.Contract_BookmarkedAnime> baRaw = JMMServerVM.Instance.clientBinaryHTTP.GetAllBookmarkedAnime();
+
+				//if (baRaw.Count == 0) return;
+
+				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
+				{
+					BookmarkedAnime.Clear();
+
+					// must series before groups the binding is based on the groups, and will refresh when that is changed
+					foreach (JMMServerBinary.Contract_BookmarkedAnime contract in baRaw)
+					{
+
+						BookmarkedAnimeVM ba = new BookmarkedAnimeVM(contract);
+
+						if (ba.DownloadingBool && BookmarkFilter_Downloading)
+							BookmarkedAnime.Add(ba);
+
+						if (ba.NotDownloadingBool && BookmarkFilter_NotDownloading)
+							BookmarkedAnime.Add(ba);
+					}
+					ViewBookmarkedAnime.Refresh();
+
+				});
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
 		}
 
 		public void RefreshGroupsSeriesData()

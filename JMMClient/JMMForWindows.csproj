@@ -147,8 +147,14 @@
     <Compile Include="Forms\DeleteSeriesGroupForm.xaml.cs">
       <DependentUpon>DeleteSeriesGroupForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\DialogInteger.xaml.cs">
+      <DependentUpon>DialogInteger.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\DialogText.xaml.cs">
       <DependentUpon>DialogText.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DialogTextMultiline.xaml.cs">
+      <DependentUpon>DialogTextMultiline.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\GroupFilterConditionForm.xaml.cs">
       <DependentUpon>GroupFilterConditionForm.xaml</DependentUpon>
@@ -250,6 +256,9 @@
     </Compile>
     <Compile Include="UserControls\AvdumpFileControl.xaml.cs">
       <DependentUpon>AvdumpFileControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\BookmarksControl.xaml.cs">
+      <DependentUpon>BookmarksControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Categories.xaml.cs">
       <DependentUpon>Categories.xaml</DependentUpon>
@@ -434,6 +443,7 @@
     <Compile Include="ViewModel\AnimeTagVM.cs" />
     <Compile Include="ViewModel\AnimeTitleVM.cs" />
     <Compile Include="ViewModel\AVDumpVM.cs" />
+    <Compile Include="ViewModel\BookmarkedAnimeVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_MALResultVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_MALVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_OtherResultVM.cs" />
@@ -519,7 +529,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Forms\DialogInteger.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Forms\DialogText.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\DialogTextMultiline.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -652,6 +670,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\AvdumpFileControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\BookmarksControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -953,6 +975,12 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AppVersions.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_BookmarkedAnime.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_BookmarkedAnime_SaveResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_MALResult.datasource">
@@ -1498,6 +1526,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\32_new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\32_bookmark_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\32_bookmark.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

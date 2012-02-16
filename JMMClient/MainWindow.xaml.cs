@@ -41,11 +41,12 @@ namespace JMMClient
 		private static readonly int TAB_MAIN_Dashboard = 0;
 		private static readonly int TAB_MAIN_Collection = 1;
 		private static readonly int TAB_MAIN_Playlists = 2;
-		private static readonly int TAB_MAIN_Server = 3;
-		private static readonly int TAB_MAIN_FileManger = 4;
-		private static readonly int TAB_MAIN_Settings = 5;
-		private static readonly int TAB_MAIN_Pinned = 6;
-		private static readonly int TAB_MAIN_Search = 7;
+		private static readonly int TAB_MAIN_Bookmarks = 3;
+		private static readonly int TAB_MAIN_Server = 4;
+		private static readonly int TAB_MAIN_FileManger = 5;
+		private static readonly int TAB_MAIN_Settings = 6;
+		private static readonly int TAB_MAIN_Pinned = 7;
+		private static readonly int TAB_MAIN_Search = 8;
 
 		private static readonly int TAB_FileManger_Unrecognised = 0;
 		private static readonly int TAB_FileManger_Ignored = 1;
@@ -399,6 +400,15 @@ namespace JMMClient
 					if (PlaylistHelperVM.Instance.Playlists == null || PlaylistHelperVM.Instance.Playlists.Count == 0) PlaylistHelperVM.Instance.RefreshData();
 					if (lbPlaylists.Items.Count > 0)
 						lbPlaylists.SelectedIndex = 0;
+
+				}
+
+				if (tabIndex == TAB_MAIN_Bookmarks)
+				{
+					if (MainListHelperVM.Instance.BookmarkedAnime == null || MainListHelperVM.Instance.BookmarkedAnime.Count == 0) MainListHelperVM.Instance.RefreshBookmarkedAnime();
+
+					if (ucBookmarks.lbBookmarks.Items.Count > 0)
+						ucBookmarks.lbBookmarks.SelectedIndex = 0;
 
 				}
 
@@ -1080,6 +1090,52 @@ namespace JMMClient
 				Utils.ShowErrorMessage(ex);
 			}
 
+		}
+
+		private void CommandBinding_BookmarkAnime(object sender, ExecutedRoutedEventArgs e)
+		{
+			Window parentWindow = Window.GetWindow(this);
+
+			object obj = e.Parameter;
+			if (obj == null) return;
+
+			try
+			{
+				if (obj.GetType() == typeof(RecommendationVM))
+				{
+					RecommendationVM rec = obj as RecommendationVM;
+					if (rec == null) return;
+
+					BookmarkedAnimeVM bookmark = new BookmarkedAnimeVM();
+					bookmark.AnimeID = rec.RecommendedAnimeID;
+					bookmark.Downloading = 0;
+					bookmark.Notes = "";
+					bookmark.Priority = 1;
+					if (bookmark.Save())
+						MainListHelperVM.Instance.RefreshBookmarkedAnime();
+					
+
+					
+				}
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+		}
+
+		private void CommandBinding_RefreshBookmarks(object sender, ExecutedRoutedEventArgs e)
+		{
+			Window parentWindow = Window.GetWindow(this);
+
+			try
+			{
+				MainListHelperVM.Instance.RefreshBookmarkedAnime();
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
 		}
 
 		private void CommandBinding_ShowPinnedSeries(object sender, ExecutedRoutedEventArgs e)
@@ -2070,6 +2126,8 @@ namespace JMMClient
 				Utils.ShowErrorMessage(ex);
 			}
 		}
+
+		
 
 		private void CommandBinding_IncrementSeriesImageSize(object sender, ExecutedRoutedEventArgs e)
 		{
