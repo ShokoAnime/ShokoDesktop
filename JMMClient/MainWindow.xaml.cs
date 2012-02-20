@@ -1278,7 +1278,10 @@ namespace JMMClient
 					txtGroupSearch.Text = obj.TagName;
 				}
 
+				tabControl1.SelectedIndex = TAB_MAIN_Collection;
 				HighlightMainListItem();
+
+
 			}
 			catch (Exception ex)
 			{
