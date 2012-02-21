@@ -410,6 +410,7 @@ namespace JMMClient
 			}
 		}
 
+
 		public void SetGroupFilterSortingOnMainList()
 		{
 			if (CurrentWrapper is GroupFilterVM)

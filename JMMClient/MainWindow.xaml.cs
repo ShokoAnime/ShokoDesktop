@@ -561,6 +561,13 @@ namespace JMMClient
 		{
 			try
 			{
+				SetDetailBinding(null);
+
+				// move to all groups
+				if (MainListHelperVM.Instance.CurrentWrapper == null)
+					MainListHelperVM.Instance.ShowAllGroups();
+				
+
 				MainListHelperVM.Instance.ViewGroups.Refresh();
 			}
 			catch (Exception ex)

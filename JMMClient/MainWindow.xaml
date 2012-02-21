@@ -303,7 +303,7 @@
                                 </Border>
 
                                 <!-- Search box for groups -->
-                                <Border Visibility="{Binding Source={x:Static local:MainListHelperVM.Instance}, Path=CurrentWrapperIsGroup, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <Border>
                                     <StackPanel Orientation="Horizontal" >
                                         <Image Source="Images/MagnifyingGlass7.png" Width="16" Height="16" Margin="5,0,0,0" ></Image>
 
