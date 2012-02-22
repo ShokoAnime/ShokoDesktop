@@ -260,7 +260,8 @@ namespace JMMClient
 		RecommendationsWatch = 4,
 		RecommendationsDownload = 5,
 		TraktFriends = 6,
-		RecentlyWatchedEpisode = 7
+		RecentlyWatchedEpisode = 7,
+		RecentAdditions = 8
 	}
 
 	public enum DashWatchNextStyle
@@ -325,6 +326,12 @@ namespace JMMClient
 		GroupFilter = 2,
 		Group = 3,
 		Series = 4
+	}
+
+	public enum RecentAdditionsType
+	{
+		Episode = 1,
+		Series = 2
 	}
 
 	public class EnumTranslator

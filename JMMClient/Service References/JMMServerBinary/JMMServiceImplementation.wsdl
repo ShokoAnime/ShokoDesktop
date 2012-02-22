@@ -38,6 +38,18 @@
   <wsdl:message name="IJMMServer_GetBookmarkedAnime_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetBookmarkedAnimeResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_GetEpisodesRecentlyAdded_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEpisodesRecentlyAdded" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetEpisodesRecentlyAdded_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEpisodesRecentlyAddedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetSeriesRecentlyAdded_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSeriesRecentlyAdded" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetSeriesRecentlyAdded_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSeriesRecentlyAddedResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_ScanDropFolders_InputMessage">
     <wsdl:part name="parameters" element="tns:ScanDropFolders" />
   </wsdl:message>
@@ -1059,6 +1071,14 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetBookmarkedAnime" message="tns:IJMMServer_GetBookmarkedAnime_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetBookmarkedAnimeResponse" message="tns:IJMMServer_GetBookmarkedAnime_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetEpisodesRecentlyAdded">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetEpisodesRecentlyAdded" message="tns:IJMMServer_GetEpisodesRecentlyAdded_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetEpisodesRecentlyAddedResponse" message="tns:IJMMServer_GetEpisodesRecentlyAdded_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSeriesRecentlyAdded">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetSeriesRecentlyAdded" message="tns:IJMMServer_GetSeriesRecentlyAdded_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetSeriesRecentlyAddedResponse" message="tns:IJMMServer_GetSeriesRecentlyAdded_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="ScanDropFolders">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/ScanDropFolders" message="tns:IJMMServer_ScanDropFolders_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/ScanDropFoldersResponse" message="tns:IJMMServer_ScanDropFolders_OutputMessage" />
@@ -1755,6 +1775,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetBookmarkedAnime">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetBookmarkedAnime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEpisodesRecentlyAdded">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetEpisodesRecentlyAdded" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSeriesRecentlyAdded">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetSeriesRecentlyAdded" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

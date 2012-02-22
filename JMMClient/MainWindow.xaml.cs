@@ -342,7 +342,8 @@ namespace JMMClient
 		{
 			RefreshOptions opt = e.Argument as RefreshOptions;
 
-			DashboardVM.Instance.RefreshData(opt.TraktScrobbles, opt.TraktShouts, opt.OnlyContinueWatching);
+			DashboardVM.Instance.RefreshData(opt.TraktScrobbles, opt.TraktShouts, opt.RefreshContinueWatching, opt.RefreshRecentAdditions, 
+				opt.RefreshOtherWidgets, opt.RecentAdditionType);
 		}
 
 		void showDashboardWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -364,9 +365,17 @@ namespace JMMClient
 						tabControl1.IsEnabled = false;
 						this.Cursor = Cursors.Wait;
 
+						RecentAdditionsType addType = RecentAdditionsType.Episode;
+						if (dash.cboDashRecentAdditionsType.SelectedIndex == 0) addType = RecentAdditionsType.Episode;
+						if (dash.cboDashRecentAdditionsType.SelectedIndex == 1) addType = RecentAdditionsType.Series;
+
 						RefreshOptions opt = new RefreshOptions();
 						opt.TraktScrobbles = dash.togTraktScrobbles.IsChecked.Value;
 						opt.TraktShouts = dash.togTraktShouts.IsChecked.Value;
+						opt.RecentAdditionType = addType;
+						opt.RefreshRecentAdditions = true;
+						opt.RefreshContinueWatching = true;
+						opt.RefreshOtherWidgets = true;
 						showDashboardWorker.RunWorkerAsync(opt);
 
 					}

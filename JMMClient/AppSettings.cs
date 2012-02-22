@@ -543,14 +543,14 @@ namespace JMMClient
 				if (string.IsNullOrEmpty(val))
 				{
 					// default value
-					val = "1;2;3;4;5;6;7";
+					val = "1;2;3;4;5;6;7;8";
 					UpdateSetting("DashboardWidgetsOrder", val);
 				}
 
 				// make sure the setting contains all the widgets
 				// just in case the user has manually edited the config, or is using an old config
 				string[] widgets = val.Split(';');
-				int maxEnum = 7;
+				int maxEnum = 8;
 				for (int i = 1; i <= maxEnum; i++)
 				{
 					if (!widgets.Contains(i.ToString()))
@@ -803,6 +803,24 @@ namespace JMMClient
 			}
 		}
 
+		public static bool DashRecentAdditionsExpanded
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["DashRecentAdditionsExpanded"];
+				bool bval = true;
+				if (bool.TryParse(val, out bval))
+					return bval;
+				else
+					return false; // default value
+			}
+			set
+			{
+				UpdateSetting("DashRecentAdditionsExpanded", value.ToString());
+			}
+		}
+
 		public static bool DashTraktFriendsExpanded
 		{
 			get
@@ -844,6 +862,29 @@ namespace JMMClient
 			}
 		}
 
+		public static int Dash_RecentAdditions_Items
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["Dash_RecentAdditions_Items"];
+				int ival = 0;
+				if (int.TryParse(val, out ival))
+				{
+					if (ival >= 0 && ival <= 100)
+						return ival;
+					else
+						return 10;
+				}
+				else
+					return 10; // default value
+			}
+			set
+			{
+				UpdateSetting("Dash_RecentAdditions_Items", value.ToString());
+			}
+		}
+
 		public static int Dash_WatchNext_Height
 		{
 			get
@@ -869,6 +910,34 @@ namespace JMMClient
 			set
 			{
 				UpdateSetting("Dash_WatchNext_Height", value.ToString());
+			}
+		}
+
+		public static int Dash_RecentAdditions_Height
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["Dash_RecentAdditions_Height"];
+				int ival = 0;
+				if (int.TryParse(val, out ival))
+				{
+					if (ival < 30)
+						return 30;
+
+					if (ival > 300)
+						return 300;
+
+					return ival;
+				}
+				else
+				{
+					return 150; // default value
+				}
+			}
+			set
+			{
+				UpdateSetting("Dash_RecentAdditions_Height", value.ToString());
 			}
 		}
 

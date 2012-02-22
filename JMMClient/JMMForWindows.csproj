@@ -132,6 +132,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DataTemplateSelectors\BreadCrumbTemplateSelector.cs" />
+    <Compile Include="DataTemplateSelectors\DashRecentAdditionsTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\DashWatchNextTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\PlaylistTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\RecDownloadTemplateSelector.cs" />

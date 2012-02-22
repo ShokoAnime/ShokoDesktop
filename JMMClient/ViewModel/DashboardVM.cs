@@ -44,6 +44,9 @@ namespace JMMClient
 		public ObservableCollection<object> TraktActivity { get; set; }
 		public ICollectionView ViewTraktActivity { get; set; }
 
+		public ObservableCollection<object> RecentAdditions { get; set; }
+		public ICollectionView ViewRecentAdditions { get; set; }
+
 		public event PropertyChangedEventHandler PropertyChanged;
 		private void NotifyPropertyChanged(String propertyName)
 		{
@@ -123,12 +126,15 @@ namespace JMMClient
 
 			TraktActivity = new ObservableCollection<object>();
 			ViewTraktActivity = CollectionViewSource.GetDefaultView(TraktActivity);
-			//ViewTraktFriends.SortDescriptions.Add(new SortDescription("LastEpisodeWatchedDate", ListSortDirection.Descending));
+
+			RecentAdditions = new ObservableCollection<object>();
+			ViewRecentAdditions = CollectionViewSource.GetDefaultView(RecentAdditions);
+			
 		}
 
 
 
-		public void RefreshData(bool traktScrobbles, bool traktShouts, bool onlyContinueWatching)
+		public void RefreshData(bool traktScrobbles, bool traktShouts, bool refreshContinueWatching, bool refreshRecentAdditions, bool refreshOtherWidgets, RecentAdditionsType addType)
 		{
 			try
 			{
@@ -137,7 +143,10 @@ namespace JMMClient
 				// clear all displayed data
 				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
 				{
-					if (!onlyContinueWatching)
+					if (refreshContinueWatching) EpsWatchNext_Recent.Clear();
+					if (refreshRecentAdditions) RecentAdditions.Clear();
+
+					if (refreshOtherWidgets)
 					{
 						SeriesMissingEps.Clear();
 						EpsWatchedRecently.Clear();
@@ -146,9 +155,8 @@ namespace JMMClient
 						RecommendationsDownload.Clear();
 						TraktActivity.Clear();
 					}
-					EpsWatchNext_Recent.Clear();
 
-					if (!onlyContinueWatching)
+					if (refreshOtherWidgets)
 					{
 						ViewEpsWatchedRecently.Refresh();
 						ViewSeriesMissingEps.Refresh();
@@ -156,17 +164,23 @@ namespace JMMClient
 						ViewRecommendationsWatch.Refresh();
 						ViewRecommendationsDownload.Refresh();
 						ViewTraktActivity.Refresh();
+						ViewRecentAdditions.Refresh();
 					}
-					ViewEpsWatchNext_Recent.Refresh();
+
+					if (refreshContinueWatching) ViewEpsWatchNext_Recent.Refresh();
+					if (refreshRecentAdditions) ViewRecentAdditions.Refresh();
 				});
 
 				MainListHelperVM.Instance.RefreshGroupsSeriesData();
 
-				
-				if (UserSettingsVM.Instance.DashWatchNextEpExpanded)
+
+				if (refreshContinueWatching && UserSettingsVM.Instance.DashWatchNextEpExpanded)
 					RefreshEpsWatchNext_Recent();
 
-				if (!onlyContinueWatching)
+				if (refreshRecentAdditions && UserSettingsVM.Instance.DashRecentAdditionsExpanded)
+					RefreshRecentAdditions(addType);
+
+				if (refreshOtherWidgets)
 				{
 					if (UserSettingsVM.Instance.DashRecentlyWatchEpsExpanded)
 						RefreshRecentlyWatchedEps();
@@ -199,6 +213,59 @@ namespace JMMClient
 			}
 		}
 
+		public void RefreshRecentAdditions(RecentAdditionsType addType)
+		{
+			try
+			{
+				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
+				{
+					RecentAdditions.Clear();
+				});
+
+				if (addType == RecentAdditionsType.Episode)
+				{
+					List<JMMServerBinary.Contract_AnimeEpisode> epContracts =
+						JMMServerVM.Instance.clientBinaryHTTP.GetEpisodesRecentlyAdded(UserSettingsVM.Instance.Dash_RecentAdditions_Items, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+
+					System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
+					{
+						foreach (JMMServerBinary.Contract_AnimeEpisode contract in epContracts)
+						{
+							AnimeEpisodeVM ep = new AnimeEpisodeVM(contract);
+							ep.RefreshAnime();
+							if (ep.AniDB_Anime != null)
+							{
+								ep.SetTvDBInfo();
+								RecentAdditions.Add(ep);
+							}
+						}
+						ViewRecentAdditions.Refresh();
+					});
+				}
+				else
+				{
+					List<JMMServerBinary.Contract_AnimeSeries> serContracts =
+						JMMServerVM.Instance.clientBinaryHTTP.GetSeriesRecentlyAdded(UserSettingsVM.Instance.Dash_RecentAdditions_Items, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+
+					System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
+					{
+						foreach (JMMServerBinary.Contract_AnimeSeries contract in serContracts)
+						{
+							AnimeSeriesVM ser = new AnimeSeriesVM(contract);
+							RecentAdditions.Add(ser);
+						}
+						ViewRecentAdditions.Refresh();
+					});
+				}
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+			finally
+			{
+			}
+		}
 		
 
 		public void RefreshTraktFriends(bool traktScrobbles, bool traktShouts)

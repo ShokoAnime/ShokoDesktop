@@ -242,6 +242,22 @@ namespace JMMClient
 			}
 		}
 
+		public bool DashRecentAdditionsCollapsed
+		{
+			get { return !AppSettings.DashRecentAdditionsExpanded; }
+		}
+
+		public bool DashRecentAdditionsExpanded
+		{
+			get { return AppSettings.DashRecentAdditionsExpanded; }
+			set
+			{
+				AppSettings.DashRecentAdditionsExpanded = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("DashRecentAdditionsExpanded"));
+				OnPropertyChanged(new PropertyChangedEventArgs("DashRecentAdditionsCollapsed"));
+			}
+		}
+
 
 		public bool DashTraktFriendsCollapsed
 		{
@@ -326,6 +342,16 @@ namespace JMMClient
 			}
 		}
 
+		public int Dash_RecentAdditions_Items
+		{
+			get { return AppSettings.Dash_RecentAdditions_Items; }
+			set
+			{
+				AppSettings.Dash_RecentAdditions_Items = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("Dash_RecentAdditions_Items"));
+			}
+		}
+
 		public int Dash_WatchNext_Height
 		{
 			get { return AppSettings.Dash_WatchNext_Height; }
@@ -333,6 +359,16 @@ namespace JMMClient
 			{
 				AppSettings.Dash_WatchNext_Height = value;
 				OnPropertyChanged(new PropertyChangedEventArgs("Dash_WatchNext_Height"));
+			}
+		}
+
+		public int Dash_RecentAdditions_Height
+		{
+			get { return AppSettings.Dash_RecentAdditions_Height; }
+			set
+			{
+				AppSettings.Dash_RecentAdditions_Height = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("Dash_RecentAdditions_Height"));
 			}
 		}
 

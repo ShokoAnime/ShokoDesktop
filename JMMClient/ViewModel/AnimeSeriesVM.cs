@@ -121,6 +121,14 @@ namespace JMMClient
 			}
 		}
 
+		public string DateTimeCreatedAsString
+		{
+			get
+			{
+				return DateTimeCreated.ToString("dd MMM yyyy - HH:mm", Globals.Culture);
+			}
+		}
+
 		private int missingEpisodeCount = 0;
 		public int MissingEpisodeCount
 		{
