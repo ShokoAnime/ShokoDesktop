@@ -568,6 +568,36 @@ namespace JMMClient
 			}
 		}
 
+		public static string MissingEpsExportColumns
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["MissingEpsExportColumns"];
+				if (string.IsNullOrEmpty(val))
+				{
+					// default value
+					val = "1;1;1;1;1;1;1";
+					UpdateSetting("MissingEpsExportColumns", val);
+				}
+
+				// make sure the setting contains all the columns
+				// just in case the user has manually edited the config, or is using an old config
+				string[] columns = val.Split(';');
+				if (columns.Length != 7)
+				{
+					val = "1;1;1;1;1;1;1";
+					UpdateSetting("MissingEpsExportColumns", val);
+				}
+
+				return val;
+			}
+			set
+			{
+				UpdateSetting("MissingEpsExportColumns", value);
+			}
+		}
+
 		public static bool SeriesTvDBLinksExpanded
 		{
 			get

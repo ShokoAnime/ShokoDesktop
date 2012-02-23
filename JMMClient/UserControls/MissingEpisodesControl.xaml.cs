@@ -16,6 +16,7 @@ using System.Collections.ObjectModel;
 using JMMClient.ViewModel;
 using System.IO;
 using System.Diagnostics;
+using JMMClient.Forms;
 
 namespace JMMClient.UserControls
 {
@@ -98,6 +99,15 @@ namespace JMMClient.UserControls
 
 			workerFiles.DoWork += new DoWorkEventHandler(workerFiles_DoWork);
 			workerFiles.RunWorkerCompleted += new RunWorkerCompletedEventHandler(workerFiles_RunWorkerCompleted);
+
+			btnSelectColumns.Click += new RoutedEventHandler(btnSelectColumns_Click);
+		}
+
+		void btnSelectColumns_Click(object sender, RoutedEventArgs e)
+		{
+			MissingEpsColumnsForm dlg = new MissingEpsColumnsForm();
+			dlg.Owner = Window.GetWindow(this);
+			dlg.ShowDialog();
 		}
 
 		void btnExport_Click(object sender, RoutedEventArgs e)
@@ -118,8 +128,18 @@ namespace JMMClient.UserControls
 				string export = "";
 				foreach (MissingEpisodeVM missingEp in MissingEpisodesCollection)
 				{
-					export += string.Format("{0}({1}) - {2} *** {3} *** {4}", missingEp.AnimeTitle, missingEp.AnimeID,
-						missingEp.EpisodeTypeAndNumber, missingEp.GroupFileSummary, missingEp.AniDB_SiteURL);
+					string[] columns = AppSettings.MissingEpsExportColumns.Split(';');
+					for (int i=0;i<columns.Length;i++)
+					{
+						if (i == 0 && columns[i] == "1") export += string.Format("{0} / ", missingEp.AnimeTitle);
+						if (i == 1 && columns[i] == "1") export += string.Format("{0} / ", missingEp.AnimeID);
+						if (i == 2 && columns[i] == "1") export += string.Format("{0} / ", missingEp.EpisodeTypeAndNumber);
+						if (i == 3 && columns[i] == "1") export += string.Format("{0} / ", missingEp.EpisodeID);
+						if (i == 4 && columns[i] == "1") export += string.Format("{0} / ", missingEp.GroupFileSummary);
+						if (i == 5 && columns[i] == "1") export += string.Format("{0} / ", missingEp.AniDB_SiteURL);
+						if (i == 6 && columns[i] == "1") export += string.Format("{0} / ", missingEp.Episode_SiteURL);
+					}
+
 					export += Environment.NewLine;
 				}
 

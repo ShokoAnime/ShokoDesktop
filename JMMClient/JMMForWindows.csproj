@@ -169,6 +169,9 @@
     <Compile Include="Forms\LoginForm.xaml.cs">
       <DependentUpon>LoginForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\MissingEpsColumnsForm.xaml.cs">
+      <DependentUpon>MissingEpsColumnsForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MoveSeries.xaml.cs">
       <DependentUpon>MoveSeries.xaml</DependentUpon>
     </Compile>
@@ -555,6 +558,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\LoginForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\MissingEpsColumnsForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1533,6 +1540,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\32_bookmark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16_columns.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
