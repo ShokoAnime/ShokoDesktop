@@ -803,6 +803,32 @@ namespace JMMClient
 			}
 		}
 
+		private List<CrossRef_AniDB_TvDBEpisodeVM> crossRefTvDBEpisodes = null;
+		public List<CrossRef_AniDB_TvDBEpisodeVM> CrossRefTvDBEpisodes
+		{
+			get
+			{
+				if (crossRefTvDBEpisodes == null)
+				{
+					try
+					{
+						crossRefTvDBEpisodes = new List<CrossRef_AniDB_TvDBEpisodeVM>();
+						List<JMMServerBinary.Contract_CrossRef_AniDB_TvDB_Episode> contracts = JMMServerVM.Instance.clientBinaryHTTP.GetTVDBCrossRefEpisode(this.AnimeID);
+						if (contracts != null)
+						{
+							foreach (JMMServerBinary.Contract_CrossRef_AniDB_TvDB_Episode contract in contracts)
+								crossRefTvDBEpisodes.Add(new CrossRef_AniDB_TvDBEpisodeVM(contract));
+						}
+					}
+					catch (Exception ex)
+					{
+						Utils.ShowErrorMessage(ex);
+					}
+				}
+				return crossRefTvDBEpisodes;
+			}
+		}
+
 		private Dictionary<int, TvDB_EpisodeVM> dictTvDBEpisodes = null;
 		public Dictionary<int, TvDB_EpisodeVM> DictTvDBEpisodes
 		{

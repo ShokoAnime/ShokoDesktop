@@ -605,59 +605,18 @@ namespace JMMClient
 				Dictionary<int, int> dictTvDBSeasonsSpecials = this.AniDB_Anime.DictTvDBSeasonsSpecials;
 				CrossRef_AniDB_TvDBVM tvDBCrossRef = this.AniDB_Anime.CrossRefTvDB;
 
+				List<CrossRef_AniDB_TvDBEpisodeVM> tvDBCrossRefEpisodes = AniDB_Anime.CrossRefTvDBEpisodes;
+				Dictionary<int, int> dictTvDBCrossRefEpisodes = new Dictionary<int, int>();
+				foreach (CrossRef_AniDB_TvDBEpisodeVM xrefEp in tvDBCrossRefEpisodes)
+					dictTvDBCrossRefEpisodes[xrefEp.AniDBEpisodeID] = xrefEp.TvDBEpisodeID;
+
 				// Normal episodes
 				List<AnimeEpisodeVM> specials = new List<AnimeEpisodeVM>();
 				foreach (JMMServerBinary.Contract_AnimeEpisode ep in eps)
 				{
 					AnimeEpisodeVM epvm = new AnimeEpisodeVM(ep);
 
-					epvm.SetTvDBInfo(dictTvDBEpisodes, dictTvDBSeasons, dictTvDBSeasonsSpecials, tvDBCrossRef);
-
-					// now do stuff to improve performance
-					/*if (epvm.EpisodeTypeEnum == EpisodeType.Episode)
-					{
-						if (dictTvDBEpisodes != null && dictTvDBSeasons != null && tvDBCrossRef != null)
-						{
-							if (dictTvDBSeasons.ContainsKey(tvDBCrossRef.TvDBSeasonNumber))
-							{
-								int episodeNumber = dictTvDBSeasons[tvDBCrossRef.TvDBSeasonNumber] + epvm.EpisodeNumber - 1;
-								if (dictTvDBEpisodes.ContainsKey(episodeNumber))
-								{
-
-									TvDB_EpisodeVM tvep = dictTvDBEpisodes[episodeNumber];
-									epvm.EpisodeOverviewLoading = tvep.Overview;
-
-									if (string.IsNullOrEmpty(tvep.FullImagePath))
-										epvm.EpisodeImageLoading = @"/Images/EpisodeThumb_NotFound.png";
-									else
-										epvm.EpisodeImageLoading = tvep.FullImagePath;
-								}
-							}
-						}
-					}
-
-					if (epvm.EpisodeTypeEnum == EpisodeType.Special)
-					{
-						if (dictTvDBEpisodes != null && dictTvDBSeasonsSpecials != null && tvDBCrossRef != null)
-						{
-							if (dictTvDBSeasonsSpecials.ContainsKey(tvDBCrossRef.TvDBSeasonNumber))
-							{
-								int episodeNumber = dictTvDBSeasonsSpecials[tvDBCrossRef.TvDBSeasonNumber] + epvm.EpisodeNumber - 1;
-								if (dictTvDBEpisodes.ContainsKey(episodeNumber))
-								{
-									TvDB_EpisodeVM tvep = dictTvDBEpisodes[episodeNumber];
-									epvm.EpisodeOverviewLoading = tvep.Overview;
-
-									if (string.IsNullOrEmpty(tvep.FullImagePath))
-										epvm.EpisodeImageLoading = @"/Images/EpisodeThumb_NotFound.png";
-									else
-										epvm.EpisodeImageLoading = tvep.FullImagePath;
-								}
-							}
-						}
-					}*/
-
-					
+					epvm.SetTvDBInfo(dictTvDBEpisodes, dictTvDBSeasons, dictTvDBSeasonsSpecials, tvDBCrossRef, dictTvDBCrossRefEpisodes);
 
 					allEpisodes.Add(epvm);
 				}

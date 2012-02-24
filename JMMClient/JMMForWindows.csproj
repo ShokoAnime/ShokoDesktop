@@ -214,6 +214,9 @@
     <Compile Include="Forms\SelectTraktSeasonForm.xaml.cs">
       <DependentUpon>SelectTraktSeasonForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SelectTvDBEpisodeForm.xaml.cs">
+      <DependentUpon>SelectTvDBEpisodeForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SelectTvDBLanguage.xaml.cs">
       <DependentUpon>SelectTvDBLanguage.xaml</DependentUpon>
     </Compile>
@@ -454,6 +457,7 @@
     <Compile Include="ViewModel\CrossRef_AniDB_OtherVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_TraktResultVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_TraktVM.cs" />
+    <Compile Include="ViewModel\CrossRef_AniDB_TvDBEpisodeVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_TvDBResultVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_TvDBVM.cs" />
     <Compile Include="ViewModel\DashboardVM.cs" />
@@ -618,6 +622,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\SelectTraktSeasonForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\SelectTvDBEpisodeForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1010,6 +1018,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_TvDBResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_TvDB_Episode.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_DuplicateFile.datasource">

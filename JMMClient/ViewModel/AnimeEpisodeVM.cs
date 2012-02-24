@@ -188,6 +188,28 @@ namespace JMMClient
 			}
 		}
 
+		private bool tvDBLinkExists = false;
+		public bool TvDBLinkExists
+		{
+			get { return tvDBLinkExists; }
+			set
+			{
+				tvDBLinkExists = value;
+				NotifyPropertyChanged("TvDBLinkExists");
+			}
+		}
+
+		private bool tvDBLinkMissing = true;
+		public bool TvDBLinkMissing
+		{
+			get { return tvDBLinkMissing; }
+			set
+			{
+				tvDBLinkMissing = value;
+				NotifyPropertyChanged("TvDBLinkMissing");
+			}
+		}
+
 		private int localFileCount = 0;
 		public int LocalFileCount
 		{
@@ -197,7 +219,7 @@ namespace JMMClient
 				localFileCount = value;
 				NotifyPropertyChanged("LocalFileCount");
 				OneFileOnly = localFileCount == 1;
-				NoFiles = localFileCount == 0;
+				NoFiles = localFileCount == 0 && !FutureDated;
 				MultipleFiles = LocalFileCount > 1;
 				HasFiles = localFileCount > 0;
 				FileDetails = string.Format("{0} Files", LocalFileCount);
@@ -422,8 +444,12 @@ namespace JMMClient
 			Dictionary<int, int> dictTvDBSeasons = AniDB_Anime.DictTvDBSeasons;
 			Dictionary<int, int> dictTvDBSeasonsSpecials = AniDB_Anime.DictTvDBSeasonsSpecials;
 			CrossRef_AniDB_TvDBVM tvDBCrossRef = AniDB_Anime.CrossRefTvDB;
+			List<CrossRef_AniDB_TvDBEpisodeVM> tvDBCrossRefEpisodes = AniDB_Anime.CrossRefTvDBEpisodes;
+			Dictionary<int, int> dictTvDBCrossRefEpisodes = new Dictionary<int,int>();
+			foreach (CrossRef_AniDB_TvDBEpisodeVM xrefEp in tvDBCrossRefEpisodes)
+				dictTvDBCrossRefEpisodes[xrefEp.AniDBEpisodeID] = xrefEp.TvDBEpisodeID;
 
-			SetTvDBInfo(dictTvDBEpisodes, dictTvDBSeasons, dictTvDBSeasonsSpecials, tvDBCrossRef);
+			SetTvDBInfo(dictTvDBEpisodes, dictTvDBSeasons, dictTvDBSeasonsSpecials, tvDBCrossRef, dictTvDBCrossRefEpisodes);
 		}
 
 		/// <summary>
@@ -433,9 +459,49 @@ namespace JMMClient
 		/// <param name="dictTvDBSeasons"></param>
 		/// <param name="dictTvDBSeasonsSpecials"></param>
 		/// <param name="tvDBCrossRef"></param>
-		public void SetTvDBInfo(Dictionary<int, TvDB_EpisodeVM> dictTvDBEpisodes, Dictionary<int, int> dictTvDBSeasons, 
-			Dictionary<int, int> dictTvDBSeasonsSpecials, CrossRef_AniDB_TvDBVM tvDBCrossRef)
+		public void SetTvDBInfo(Dictionary<int, TvDB_EpisodeVM> dictTvDBEpisodes, Dictionary<int, int> dictTvDBSeasons,
+			Dictionary<int, int> dictTvDBSeasonsSpecials, CrossRef_AniDB_TvDBVM tvDBCrossRef, Dictionary<int, int> dictTvDBCrossRefEpisodes)
 		{
+			TvDBLinkExists = false;
+			TvDBLinkMissing = true;
+
+			// check if this episode has a direct tvdb over-ride
+			if (dictTvDBCrossRefEpisodes.ContainsKey(AniDB_EpisodeID))
+			{
+				foreach (TvDB_EpisodeVM tvep in dictTvDBEpisodes.Values)
+				{
+					if (dictTvDBCrossRefEpisodes[AniDB_EpisodeID] == tvep.Id)
+					{
+						if (string.IsNullOrEmpty(tvep.Overview))
+							this.EpisodeOverviewLoading = "Episode Overview Not Available";
+						else
+							this.EpisodeOverviewLoading = tvep.Overview;
+
+						if (string.IsNullOrEmpty(tvep.FullImagePath) || !File.Exists(tvep.FullImagePath))
+						{
+							if (string.IsNullOrEmpty(tvep.OnlineImagePath))
+							{
+								this.EpisodeImageLoading = @"/Images/EpisodeThumb_NotFound.png";
+								// if there is no proper image to show, we will hide it on the dashboard
+								ShowEpisodeImageInDashboard = false;
+							}
+							else
+								this.EpisodeImageLoading = tvep.OnlineImagePath;
+						}
+						else
+							this.EpisodeImageLoading = tvep.FullImagePath;
+
+						if (JMMServerVM.Instance.EpisodeTitleSource == DataSourceType.TheTvDB && !string.IsNullOrEmpty(tvep.EpisodeName))
+							EpisodeName = tvep.EpisodeName;
+
+						TvDBLinkExists = true;
+						TvDBLinkMissing = false;
+
+						return;
+					}
+				}
+			}
+
 			// now do stuff to improve performance
 			if (this.EpisodeTypeEnum == JMMClient.EpisodeType.Episode)
 			{
@@ -666,11 +732,7 @@ namespace JMMClient
 				this.EpisodeNumber = contract.EpisodeNumber;
 				this.EpisodeType = contract.EpisodeType;
 				this.IsWatched = contract.IsWatched;
-				this.LocalFileCount = contract.LocalFileCount;
-				this.PlayedCount = contract.PlayedCount;
-				this.StoppedCount = contract.StoppedCount;
-				this.WatchedCount = contract.WatchedCount;
-				this.WatchedDate = contract.WatchedDate;
+				
 
 				this.AniDB_LengthSeconds = contract.AniDB_LengthSeconds;
 				this.AniDB_Rating = contract.AniDB_Rating;
@@ -688,6 +750,12 @@ namespace JMMClient
 					AirDateAsString = AniDB_AirDate.Value.ToString("dd MMM yyyy", Globals.Culture);
 				else
 					AirDateAsString = "";
+
+				this.LocalFileCount = contract.LocalFileCount;
+				this.PlayedCount = contract.PlayedCount;
+				this.StoppedCount = contract.StoppedCount;
+				this.WatchedCount = contract.WatchedCount;
+				this.WatchedDate = contract.WatchedDate;
 
 				//logger.Trace("Getting AniDBRatingFormatted for ep#: {0}", this.EpisodeNumber);
 

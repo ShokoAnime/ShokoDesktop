@@ -74,6 +74,36 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="LinkAniDBTvDBEpisode">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="aniDBID" type="xs:int" />
+        <xs:element minOccurs="0" name="tvDBID" type="xs:int" />
+        <xs:element minOccurs="0" name="animeID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LinkAniDBTvDBEpisodeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="LinkAniDBTvDBEpisodeResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTVDBCrossRefEpisode">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="animeID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTVDBCrossRefEpisodeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetTVDBCrossRefEpisodeResult" nillable="true" type="q6:ArrayOfContract_CrossRef_AniDB_TvDB_Episode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="ScanDropFolders">
     <xs:complexType>
       <xs:sequence />
@@ -169,7 +199,7 @@
   <xs:element name="GetTraktShoutsForAnimeResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetTraktShoutsForAnimeResult" nillable="true" type="q6:ArrayOfContract_Trakt_ShoutUser" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetTraktShoutsForAnimeResult" nillable="true" type="q7:ArrayOfContract_Trakt_ShoutUser" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -212,7 +242,7 @@
   <xs:element name="GetTopLevelGroupForSeriesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetTopLevelGroupForSeriesResult" nillable="true" type="q7:Contract_AnimeGroup" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetTopLevelGroupForSeriesResult" nillable="true" type="q8:Contract_AnimeGroup" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -227,7 +257,7 @@
   <xs:element name="GetEpisodesRecentlyWatchedResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetEpisodesRecentlyWatchedResult" nillable="true" type="q8:ArrayOfContract_AnimeEpisode" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetEpisodesRecentlyWatchedResult" nillable="true" type="q9:ArrayOfContract_AnimeEpisode" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -241,7 +271,7 @@
   <xs:element name="SearchMALResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="SearchMALResult" nillable="true" type="q9:ArrayOfContract_MALAnimeResponse" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="SearchMALResult" nillable="true" type="q10:ArrayOfContract_MALAnimeResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -267,7 +297,7 @@
   <xs:element name="GetMALCrossRefWebCacheResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetMALCrossRefWebCacheResult" nillable="true" type="q10:ArrayOfContract_CrossRef_AniDB_MALResult" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetMALCrossRefWebCacheResult" nillable="true" type="q11:ArrayOfContract_CrossRef_AniDB_MALResult" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -363,21 +393,21 @@
   <xs:element name="GetAllPlaylistsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllPlaylistsResult" nillable="true" type="q11:ArrayOfContract_Playlist" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllPlaylistsResult" nillable="true" type="q12:ArrayOfContract_Playlist" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SavePlaylist">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="contract" nillable="true" type="q12:Contract_Playlist" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="contract" nillable="true" type="q13:Contract_Playlist" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SavePlaylistResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="SavePlaylistResult" nillable="true" type="q13:Contract_Playlist_SaveResponse" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="SavePlaylistResult" nillable="true" type="q14:Contract_Playlist_SaveResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -405,7 +435,7 @@
   <xs:element name="GetPlaylistResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetPlaylistResult" nillable="true" type="q14:Contract_Playlist" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetPlaylistResult" nillable="true" type="q15:Contract_Playlist" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -417,7 +447,7 @@
   <xs:element name="GetAppVersionsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAppVersionsResult" nillable="true" type="q15:Contract_AppVersions" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAppVersionsResult" nillable="true" type="q16:Contract_AppVersions" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -457,7 +487,7 @@
   <xs:element name="GetAllBookmarkedAnimeResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllBookmarkedAnimeResult" nillable="true" type="q16:ArrayOfContract_BookmarkedAnime" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllBookmarkedAnimeResult" nillable="true" type="q17:ArrayOfContract_BookmarkedAnime" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -472,7 +502,7 @@
   <xs:element name="GetGroupFilterExtendedResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetGroupFilterExtendedResult" nillable="true" type="q17:Contract_GroupFilterExtended" />
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetGroupFilterExtendedResult" nillable="true" type="q18:Contract_GroupFilterExtended" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -487,7 +517,7 @@
   <xs:element name="GetAnimeGroupsForFilterResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAnimeGroupsForFilterResult" nillable="true" type="q18:ArrayOfContract_AnimeGroup" />
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAnimeGroupsForFilterResult" nillable="true" type="q19:ArrayOfContract_AnimeGroup" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -501,7 +531,7 @@
   <xs:element name="GetAllGroupFiltersExtendedResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllGroupFiltersExtendedResult" nillable="true" type="q19:ArrayOfContract_GroupFilterExtended" />
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllGroupFiltersExtendedResult" nillable="true" type="q20:ArrayOfContract_GroupFilterExtended" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -516,7 +546,7 @@
   <xs:element name="GetSubGroupsForGroupResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetSubGroupsForGroupResult" nillable="true" type="q20:ArrayOfContract_AnimeGroup" />
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetSubGroupsForGroupResult" nillable="true" type="q21:ArrayOfContract_AnimeGroup" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -531,7 +561,7 @@
   <xs:element name="GetSeriesForGroupRecursiveResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetSeriesForGroupRecursiveResult" nillable="true" type="q21:ArrayOfContract_AnimeSeries" />
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetSeriesForGroupRecursiveResult" nillable="true" type="q22:ArrayOfContract_AnimeSeries" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -560,7 +590,7 @@
   <xs:element name="GetSimilarAnimeLinksResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetSimilarAnimeLinksResult" nillable="true" type="q22:ArrayOfContract_AniDB_Anime_Similar" />
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetSimilarAnimeLinksResult" nillable="true" type="q23:ArrayOfContract_AniDB_Anime_Similar" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -575,7 +605,7 @@
   <xs:element name="GetRelatedAnimeLinksResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetRelatedAnimeLinksResult" nillable="true" type="q23:ArrayOfContract_AniDB_Anime_Relation" />
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetRelatedAnimeLinksResult" nillable="true" type="q24:ArrayOfContract_AniDB_Anime_Relation" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -591,7 +621,7 @@
   <xs:element name="GetRecommendationsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetRecommendationsResult" nillable="true" type="q24:ArrayOfContract_Recommendation" />
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetRecommendationsResult" nillable="true" type="q25:ArrayOfContract_Recommendation" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -605,7 +635,7 @@
   <xs:element name="GetReleaseGroupsForAnimeResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetReleaseGroupsForAnimeResult" nillable="true" type="q25:ArrayOfContract_AniDBReleaseGroup" />
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetReleaseGroupsForAnimeResult" nillable="true" type="q26:ArrayOfContract_AniDBReleaseGroup" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -621,7 +651,7 @@
   <xs:element name="GetAnimeForMonthResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAnimeForMonthResult" nillable="true" type="q26:ArrayOfContract_AniDBAnime" />
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAnimeForMonthResult" nillable="true" type="q27:ArrayOfContract_AniDBAnime" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -636,7 +666,7 @@
   <xs:element name="GetSeriesForAnimeResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetSeriesForAnimeResult" nillable="true" type="q27:Contract_AnimeSeries" />
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetSeriesForAnimeResult" nillable="true" type="q28:Contract_AnimeSeries" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -650,7 +680,7 @@
   <xs:element name="GetCharactersForAnimeResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetCharactersForAnimeResult" nillable="true" type="q28:ArrayOfContract_AniDB_Character" />
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetCharactersForAnimeResult" nillable="true" type="q29:ArrayOfContract_AniDB_Character" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -676,14 +706,14 @@
   <xs:element name="GetMyListFilesForRemovalResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetMyListFilesForRemovalResult" nillable="true" type="q29:ArrayOfContract_MissingFile" />
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetMyListFilesForRemovalResult" nillable="true" type="q30:ArrayOfContract_MissingFile" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="RemoveMissingMyListFiles">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="myListFiles" nillable="true" type="q30:ArrayOfContract_MissingFile" />
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="myListFiles" nillable="true" type="q31:ArrayOfContract_MissingFile" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -702,7 +732,7 @@
   <xs:element name="GetSeriesWithoutAnyFilesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetSeriesWithoutAnyFilesResult" nillable="true" type="q31:ArrayOfContract_AnimeSeries" />
+        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetSeriesWithoutAnyFilesResult" nillable="true" type="q32:ArrayOfContract_AnimeSeries" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -730,7 +760,7 @@
   <xs:element name="GetMissingEpisodesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetMissingEpisodesResult" nillable="true" type="q32:ArrayOfContract_MissingEpisode" />
+        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetMissingEpisodesResult" nillable="true" type="q33:ArrayOfContract_MissingEpisode" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -761,7 +791,7 @@
   <xs:element name="GetTraktFriendInfoResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetTraktFriendInfoResult" nillable="true" type="q33:Contract_Trakt_Activity" />
+        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetTraktFriendInfoResult" nillable="true" type="q34:Contract_Trakt_Activity" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -775,7 +805,7 @@
   <xs:element name="GetUserVoteResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetUserVoteResult" nillable="true" type="q34:Contract_AniDBVote" />
+        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetUserVoteResult" nillable="true" type="q35:Contract_AniDBVote" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -803,7 +833,7 @@
   <xs:element name="GetIgnoredAnimeResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetIgnoredAnimeResult" nillable="true" type="q35:ArrayOfContract_IgnoreAnime" />
+        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetIgnoredAnimeResult" nillable="true" type="q36:ArrayOfContract_IgnoreAnime" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -852,7 +882,7 @@
   <xs:element name="GetTvDBLanguagesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetTvDBLanguagesResult" nillable="true" type="q36:ArrayOfContract_TvDBLanguage" />
+        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetTvDBLanguagesResult" nillable="true" type="q37:ArrayOfContract_TvDBLanguage" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -897,7 +927,7 @@
   <xs:element name="GetAllMovieDBPostersResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllMovieDBPostersResult" nillable="true" type="q37:ArrayOfContract_MovieDB_Poster" />
+        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllMovieDBPostersResult" nillable="true" type="q38:ArrayOfContract_MovieDB_Poster" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -911,7 +941,7 @@
   <xs:element name="GetAllMovieDBFanartResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllMovieDBFanartResult" nillable="true" type="q38:ArrayOfContract_MovieDB_Fanart" />
+        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllMovieDBFanartResult" nillable="true" type="q39:ArrayOfContract_MovieDB_Fanart" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -925,7 +955,7 @@
   <xs:element name="GetAnimeResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAnimeResult" nillable="true" type="q39:Contract_AniDBAnime" />
+        <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAnimeResult" nillable="true" type="q40:Contract_AniDBAnime" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -958,7 +988,7 @@
   <xs:element name="GetNextUnwatchedEpisodeResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetNextUnwatchedEpisodeResult" nillable="true" type="q40:Contract_AnimeEpisode" />
+        <xs:element xmlns:q41="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetNextUnwatchedEpisodeResult" nillable="true" type="q41:Contract_AnimeEpisode" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -973,7 +1003,7 @@
   <xs:element name="GetNextUnwatchedEpisodeForGroupResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q41="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetNextUnwatchedEpisodeForGroupResult" nillable="true" type="q41:Contract_AnimeEpisode" />
+        <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetNextUnwatchedEpisodeForGroupResult" nillable="true" type="q42:Contract_AnimeEpisode" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -988,7 +1018,7 @@
   <xs:element name="GetEpisodesToWatch_RecentlyWatchedResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetEpisodesToWatch_RecentlyWatchedResult" nillable="true" type="q42:ArrayOfContract_AnimeEpisode" />
+        <xs:element xmlns:q43="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetEpisodesToWatch_RecentlyWatchedResult" nillable="true" type="q43:ArrayOfContract_AnimeEpisode" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1034,7 +1064,7 @@
   <xs:element name="GetSeriesWithMissingEpisodesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q43="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetSeriesWithMissingEpisodesResult" nillable="true" type="q43:ArrayOfContract_AnimeSeries" />
+        <xs:element xmlns:q44="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetSeriesWithMissingEpisodesResult" nillable="true" type="q44:ArrayOfContract_AnimeSeries" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1049,7 +1079,7 @@
   <xs:element name="GetMiniCalendarResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q44="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetMiniCalendarResult" nillable="true" type="q44:ArrayOfContract_AniDBAnime" />
+        <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetMiniCalendarResult" nillable="true" type="q45:ArrayOfContract_AniDBAnime" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1061,7 +1091,7 @@
   <xs:element name="GetAllUsersResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllUsersResult" nillable="true" type="q45:ArrayOfContract_JMMUser" />
+        <xs:element xmlns:q46="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllUsersResult" nillable="true" type="q46:ArrayOfContract_JMMUser" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1076,14 +1106,14 @@
   <xs:element name="AuthenticateUserResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q46="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="AuthenticateUserResult" nillable="true" type="q46:Contract_JMMUser" />
+        <xs:element xmlns:q47="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="AuthenticateUserResult" nillable="true" type="q47:Contract_JMMUser" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SaveUser">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q47="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="user" nillable="true" type="q47:Contract_JMMUser" />
+        <xs:element xmlns:q48="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="user" nillable="true" type="q48:Contract_JMMUser" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1130,7 +1160,7 @@
   <xs:element name="GetAllTraktFanartResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q48="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllTraktFanartResult" nillable="true" type="q48:ArrayOfContract_Trakt_ImageFanart" />
+        <xs:element xmlns:q49="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllTraktFanartResult" nillable="true" type="q49:ArrayOfContract_Trakt_ImageFanart" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1144,7 +1174,7 @@
   <xs:element name="GetAllTraktPostersResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q49="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllTraktPostersResult" nillable="true" type="q49:ArrayOfContract_Trakt_ImagePoster" />
+        <xs:element xmlns:q50="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllTraktPostersResult" nillable="true" type="q50:ArrayOfContract_Trakt_ImagePoster" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1158,7 +1188,7 @@
   <xs:element name="GetAllTraktEpisodesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q50="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllTraktEpisodesResult" nillable="true" type="q50:ArrayOfContract_Trakt_Episode" />
+        <xs:element xmlns:q51="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllTraktEpisodesResult" nillable="true" type="q51:ArrayOfContract_Trakt_Episode" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1172,7 +1202,7 @@
   <xs:element name="GetTraktCrossRefWebCacheResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q51="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetTraktCrossRefWebCacheResult" nillable="true" type="q51:Contract_CrossRef_AniDB_TraktResult" />
+        <xs:element xmlns:q52="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetTraktCrossRefWebCacheResult" nillable="true" type="q52:Contract_CrossRef_AniDB_TraktResult" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1186,7 +1216,7 @@
   <xs:element name="GetTraktCrossRefResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q52="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetTraktCrossRefResult" nillable="true" type="q52:Contract_CrossRef_AniDB_Trakt" />
+        <xs:element xmlns:q53="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetTraktCrossRefResult" nillable="true" type="q53:Contract_CrossRef_AniDB_Trakt" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1200,7 +1230,7 @@
   <xs:element name="SearchTraktResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q53="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="SearchTraktResult" nillable="true" type="q53:ArrayOfContract_TraktTVShowResponse" />
+        <xs:element xmlns:q54="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="SearchTraktResult" nillable="true" type="q54:ArrayOfContract_TraktTVShowResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1244,7 +1274,7 @@
   <xs:element name="GetSeasonNumbersForTraktResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q54="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetSeasonNumbersForTraktResult" nillable="true" type="q54:ArrayOfint" />
+        <xs:element xmlns:q55="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetSeasonNumbersForTraktResult" nillable="true" type="q55:ArrayOfint" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1270,7 +1300,7 @@
   <xs:element name="GetAllUniqueVideoQualityResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q55="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetAllUniqueVideoQualityResult" nillable="true" type="q55:ArrayOfstring" />
+        <xs:element xmlns:q56="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetAllUniqueVideoQualityResult" nillable="true" type="q56:ArrayOfstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1282,7 +1312,7 @@
   <xs:element name="GetAllUniqueAudioLanguagesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q56="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetAllUniqueAudioLanguagesResult" nillable="true" type="q56:ArrayOfstring" />
+        <xs:element xmlns:q57="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetAllUniqueAudioLanguagesResult" nillable="true" type="q57:ArrayOfstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1294,7 +1324,7 @@
   <xs:element name="GetAllUniqueSubtitleLanguagesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q57="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetAllUniqueSubtitleLanguagesResult" nillable="true" type="q57:ArrayOfstring" />
+        <xs:element xmlns:q58="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetAllUniqueSubtitleLanguagesResult" nillable="true" type="q58:ArrayOfstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1306,7 +1336,7 @@
   <xs:element name="GetAllDuplicateFilesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q58="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllDuplicateFilesResult" nillable="true" type="q58:ArrayOfContract_DuplicateFile" />
+        <xs:element xmlns:q59="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllDuplicateFilesResult" nillable="true" type="q59:ArrayOfContract_DuplicateFile" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1335,7 +1365,7 @@
   <xs:element name="GetAllManuallyLinkedFilesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q59="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllManuallyLinkedFilesResult" nillable="true" type="q59:ArrayOfContract_VideoLocal" />
+        <xs:element xmlns:q60="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllManuallyLinkedFilesResult" nillable="true" type="q60:ArrayOfContract_VideoLocal" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1349,7 +1379,7 @@
   <xs:element name="GetAllEpisodesWithMultipleFilesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q60="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllEpisodesWithMultipleFilesResult" nillable="true" type="q60:ArrayOfContract_AnimeEpisode" />
+        <xs:element xmlns:q61="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllEpisodesWithMultipleFilesResult" nillable="true" type="q61:ArrayOfContract_AnimeEpisode" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1373,7 +1403,7 @@
   <xs:element name="GetGroupVideoQualitySummaryResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q61="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetGroupVideoQualitySummaryResult" nillable="true" type="q61:ArrayOfContract_GroupVideoQuality" />
+        <xs:element xmlns:q62="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetGroupVideoQualitySummaryResult" nillable="true" type="q62:ArrayOfContract_GroupVideoQuality" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1416,7 +1446,7 @@
   <xs:element name="GetFilesByGroupAndResolutionResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q62="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetFilesByGroupAndResolutionResult" nillable="true" type="q62:ArrayOfContract_VideoDetailed" />
+        <xs:element xmlns:q63="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetFilesByGroupAndResolutionResult" nillable="true" type="q63:ArrayOfContract_VideoDetailed" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1430,7 +1460,7 @@
   <xs:element name="GetCrossRefDetailsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q63="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetCrossRefDetailsResult" nillable="true" type="q63:Contract_AniDB_AnimeCrossRefs" />
+        <xs:element xmlns:q64="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetCrossRefDetailsResult" nillable="true" type="q64:Contract_AniDB_AnimeCrossRefs" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1444,7 +1474,7 @@
   <xs:element name="GetTVDBCrossRefWebCacheResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q64="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetTVDBCrossRefWebCacheResult" nillable="true" type="q64:Contract_CrossRef_AniDB_TvDBResult" />
+        <xs:element xmlns:q65="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetTVDBCrossRefWebCacheResult" nillable="true" type="q65:Contract_CrossRef_AniDB_TvDBResult" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1458,7 +1488,7 @@
   <xs:element name="GetTVDBCrossRefResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q65="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetTVDBCrossRefResult" nillable="true" type="q65:Contract_CrossRef_AniDB_TvDB" />
+        <xs:element xmlns:q66="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetTVDBCrossRefResult" nillable="true" type="q66:Contract_CrossRef_AniDB_TvDB" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1472,7 +1502,7 @@
   <xs:element name="SearchTheTvDBResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q66="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="SearchTheTvDBResult" nillable="true" type="q66:ArrayOfContract_TVDBSeriesSearchResult" />
+        <xs:element xmlns:q67="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="SearchTheTvDBResult" nillable="true" type="q67:ArrayOfContract_TVDBSeriesSearchResult" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1486,7 +1516,7 @@
   <xs:element name="GetSeasonNumbersForSeriesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q67="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetSeasonNumbersForSeriesResult" nillable="true" type="q67:ArrayOfint" />
+        <xs:element xmlns:q68="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetSeasonNumbersForSeriesResult" nillable="true" type="q68:ArrayOfint" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1530,7 +1560,7 @@
   <xs:element name="GetAllTvDBPostersResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q68="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllTvDBPostersResult" nillable="true" type="q68:ArrayOfContract_TvDB_ImagePoster" />
+        <xs:element xmlns:q69="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllTvDBPostersResult" nillable="true" type="q69:ArrayOfContract_TvDB_ImagePoster" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1544,7 +1574,7 @@
   <xs:element name="GetAllTvDBWideBannersResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q69="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllTvDBWideBannersResult" nillable="true" type="q69:ArrayOfContract_TvDB_ImageWideBanner" />
+        <xs:element xmlns:q70="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllTvDBWideBannersResult" nillable="true" type="q70:ArrayOfContract_TvDB_ImageWideBanner" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1558,7 +1588,7 @@
   <xs:element name="GetAllTvDBFanartResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q70="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllTvDBFanartResult" nillable="true" type="q70:ArrayOfContract_TvDB_ImageFanart" />
+        <xs:element xmlns:q71="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllTvDBFanartResult" nillable="true" type="q71:ArrayOfContract_TvDB_ImageFanart" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1572,7 +1602,7 @@
   <xs:element name="GetAllTvDBEpisodesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q71="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllTvDBEpisodesResult" nillable="true" type="q71:ArrayOfContract_TvDB_Episode" />
+        <xs:element xmlns:q72="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllTvDBEpisodesResult" nillable="true" type="q72:ArrayOfContract_TvDB_Episode" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1617,7 +1647,7 @@
   <xs:element name="GetOtherAnimeCrossRefWebCacheResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q72="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetOtherAnimeCrossRefWebCacheResult" nillable="true" type="q72:Contract_CrossRef_AniDB_OtherResult" />
+        <xs:element xmlns:q73="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetOtherAnimeCrossRefWebCacheResult" nillable="true" type="q73:Contract_CrossRef_AniDB_OtherResult" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1632,7 +1662,7 @@
   <xs:element name="GetOtherAnimeCrossRefResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q73="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetOtherAnimeCrossRefResult" nillable="true" type="q73:Contract_CrossRef_AniDB_Other" />
+        <xs:element xmlns:q74="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetOtherAnimeCrossRefResult" nillable="true" type="q74:Contract_CrossRef_AniDB_Other" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1646,21 +1676,21 @@
   <xs:element name="SearchTheMovieDBResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q74="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="SearchTheMovieDBResult" nillable="true" type="q74:ArrayOfContract_MovieDBMovieSearchResult" />
+        <xs:element xmlns:q75="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="SearchTheMovieDBResult" nillable="true" type="q75:ArrayOfContract_MovieDBMovieSearchResult" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SaveServerSettings">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q75="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="contractIn" nillable="true" type="q75:Contract_ServerSettings" />
+        <xs:element xmlns:q76="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="contractIn" nillable="true" type="q76:Contract_ServerSettings" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SaveServerSettingsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q76="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="SaveServerSettingsResult" nillable="true" type="q76:Contract_ServerSettings_SaveResponse" />
+        <xs:element xmlns:q77="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="SaveServerSettingsResult" nillable="true" type="q77:Contract_ServerSettings_SaveResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1692,7 +1722,7 @@
   <xs:element name="ToggleWatchedStatusOnEpisodeResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q77="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="ToggleWatchedStatusOnEpisodeResult" nillable="true" type="q77:Contract_ToggleWatchedStatusOnEpisode_Response" />
+        <xs:element xmlns:q78="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="ToggleWatchedStatusOnEpisodeResult" nillable="true" type="q78:Contract_ToggleWatchedStatusOnEpisode_Response" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1707,21 +1737,21 @@
   <xs:element name="GetVideoDetailedResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q78="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetVideoDetailedResult" nillable="true" type="q78:Contract_VideoDetailed" />
+        <xs:element xmlns:q79="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetVideoDetailedResult" nillable="true" type="q79:Contract_VideoDetailed" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SaveImportFolder">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q79="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="contract" nillable="true" type="q79:Contract_ImportFolder" />
+        <xs:element xmlns:q80="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="contract" nillable="true" type="q80:Contract_ImportFolder" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SaveImportFolderResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q80="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="SaveImportFolderResult" nillable="true" type="q80:Contract_ImportFolder_SaveResponse" />
+        <xs:element xmlns:q81="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="SaveImportFolderResult" nillable="true" type="q81:Contract_ImportFolder_SaveResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1750,7 +1780,7 @@
   <xs:element name="GetSeriesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q81="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetSeriesResult" nillable="true" type="q81:Contract_AnimeSeries" />
+        <xs:element xmlns:q82="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetSeriesResult" nillable="true" type="q82:Contract_AnimeSeries" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1842,7 +1872,7 @@
   <xs:element name="GetUnrecognisedFilesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q82="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetUnrecognisedFilesResult" nillable="true" type="q82:ArrayOfContract_VideoLocal" />
+        <xs:element xmlns:q83="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetUnrecognisedFilesResult" nillable="true" type="q83:ArrayOfContract_VideoLocal" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1856,7 +1886,7 @@
   <xs:element name="GetManuallyLinkedFilesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q83="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetManuallyLinkedFilesResult" nillable="true" type="q83:ArrayOfContract_VideoLocal" />
+        <xs:element xmlns:q84="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetManuallyLinkedFilesResult" nillable="true" type="q84:ArrayOfContract_VideoLocal" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1870,7 +1900,7 @@
   <xs:element name="GetIgnoredFilesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q84="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetIgnoredFilesResult" nillable="true" type="q84:ArrayOfContract_VideoLocal" />
+        <xs:element xmlns:q85="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetIgnoredFilesResult" nillable="true" type="q85:ArrayOfContract_VideoLocal" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1906,21 +1936,21 @@
   <xs:element name="GetAllGroupFiltersResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q85="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllGroupFiltersResult" nillable="true" type="q85:ArrayOfContract_GroupFilter" />
+        <xs:element xmlns:q86="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllGroupFiltersResult" nillable="true" type="q86:ArrayOfContract_GroupFilter" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SaveGroupFilter">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q86="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="contract" nillable="true" type="q86:Contract_GroupFilter" />
+        <xs:element xmlns:q87="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="contract" nillable="true" type="q87:Contract_GroupFilter" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SaveGroupFilterResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q87="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="SaveGroupFilterResult" nillable="true" type="q87:Contract_GroupFilter_SaveResponse" />
+        <xs:element xmlns:q88="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="SaveGroupFilterResult" nillable="true" type="q88:Contract_GroupFilter_SaveResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1946,7 +1976,7 @@
   <xs:element name="GetAllCategoryNamesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q88="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetAllCategoryNamesResult" nillable="true" type="q88:ArrayOfstring" />
+        <xs:element xmlns:q89="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetAllCategoryNamesResult" nillable="true" type="q89:ArrayOfstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -2026,7 +2056,7 @@
   <xs:element name="GetEpisodesForSeriesOldResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q89="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetEpisodesForSeriesOldResult" nillable="true" type="q89:ArrayOfContract_AnimeEpisode" />
+        <xs:element xmlns:q90="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetEpisodesForSeriesOldResult" nillable="true" type="q90:ArrayOfContract_AnimeEpisode" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -2041,7 +2071,7 @@
   <xs:element name="GetEpisodeResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q90="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetEpisodeResult" nillable="true" type="q90:Contract_AnimeEpisode" />
+        <xs:element xmlns:q91="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetEpisodeResult" nillable="true" type="q91:Contract_AnimeEpisode" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -2087,7 +2117,7 @@
   <xs:element name="CreateSeriesFromAnimeResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q91="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="CreateSeriesFromAnimeResult" nillable="true" type="q91:Contract_AnimeSeries_SaveResponse" />
+        <xs:element xmlns:q92="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="CreateSeriesFromAnimeResult" nillable="true" type="q92:Contract_AnimeSeries_SaveResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -2140,7 +2170,7 @@
   <xs:element name="AssociateMultipleFiles">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q92="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="videoLocalIDs" nillable="true" type="q92:ArrayOfint" />
+        <xs:element xmlns:q93="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="videoLocalIDs" nillable="true" type="q93:ArrayOfint" />
         <xs:element minOccurs="0" name="animeSeriesID" type="xs:int" />
         <xs:element minOccurs="0" name="startingEpisodeNumber" type="xs:int" />
         <xs:element minOccurs="0" name="singleEpisode" type="xs:boolean" />
@@ -2164,14 +2194,14 @@
   <xs:element name="GetAllGroupsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q93="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllGroupsResult" nillable="true" type="q93:ArrayOfContract_AnimeGroup" />
+        <xs:element xmlns:q94="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllGroupsResult" nillable="true" type="q94:ArrayOfContract_AnimeGroup" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SaveGroup">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q94="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="grp" nillable="true" type="q94:Contract_AnimeGroup_Save" />
+        <xs:element xmlns:q95="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="grp" nillable="true" type="q95:Contract_AnimeGroup_Save" />
         <xs:element minOccurs="0" name="userID" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
@@ -2179,7 +2209,7 @@
   <xs:element name="SaveGroupResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q95="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="SaveGroupResult" nillable="true" type="q95:Contract_AnimeGroup_SaveResponse" />
+        <xs:element xmlns:q96="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="SaveGroupResult" nillable="true" type="q96:Contract_AnimeGroup_SaveResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -2194,7 +2224,7 @@
   <xs:element name="GetGroupResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q96="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetGroupResult" nillable="true" type="q96:Contract_AnimeGroup" />
+        <xs:element xmlns:q97="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetGroupResult" nillable="true" type="q97:Contract_AnimeGroup" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -2209,7 +2239,7 @@
   <xs:element name="GetAllGroupsAboveSeriesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q97="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllGroupsAboveSeriesResult" nillable="true" type="q97:ArrayOfContract_AnimeGroup" />
+        <xs:element xmlns:q98="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllGroupsAboveSeriesResult" nillable="true" type="q98:ArrayOfContract_AnimeGroup" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -2224,7 +2254,7 @@
   <xs:element name="GetAllGroupsAboveGroupInclusiveResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q98="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllGroupsAboveGroupInclusiveResult" nillable="true" type="q98:ArrayOfContract_AnimeGroup" />
+        <xs:element xmlns:q99="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllGroupsAboveGroupInclusiveResult" nillable="true" type="q99:ArrayOfContract_AnimeGroup" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -2238,14 +2268,14 @@
   <xs:element name="GetAllSeriesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q99="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllSeriesResult" nillable="true" type="q99:ArrayOfContract_AnimeSeries" />
+        <xs:element xmlns:q100="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllSeriesResult" nillable="true" type="q100:ArrayOfContract_AnimeSeries" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SaveSeries">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q100="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="contract" nillable="true" type="q100:Contract_AnimeSeries_Save" />
+        <xs:element xmlns:q101="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="contract" nillable="true" type="q101:Contract_AnimeSeries_Save" />
         <xs:element minOccurs="0" name="userID" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
@@ -2253,7 +2283,7 @@
   <xs:element name="SaveSeriesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q101="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="SaveSeriesResult" nillable="true" type="q101:Contract_AnimeSeries_SaveResponse" />
+        <xs:element xmlns:q102="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="SaveSeriesResult" nillable="true" type="q102:Contract_AnimeSeries_SaveResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -2269,7 +2299,7 @@
   <xs:element name="MoveSeriesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q102="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="MoveSeriesResult" nillable="true" type="q102:Contract_AnimeSeries_SaveResponse" />
+        <xs:element xmlns:q103="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="MoveSeriesResult" nillable="true" type="q103:Contract_AnimeSeries_SaveResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -2281,7 +2311,7 @@
   <xs:element name="GetAllAnimeResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q103="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllAnimeResult" nillable="true" type="q103:ArrayOfContract_AniDBAnime" />
+        <xs:element xmlns:q104="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllAnimeResult" nillable="true" type="q104:ArrayOfContract_AniDBAnime" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -2293,7 +2323,7 @@
   <xs:element name="GetAllAnimeDetailedResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q104="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllAnimeDetailedResult" nillable="true" type="q104:ArrayOfContract_AniDB_AnimeDetailed" />
+        <xs:element xmlns:q105="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAllAnimeDetailedResult" nillable="true" type="q105:ArrayOfContract_AniDB_AnimeDetailed" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -2307,7 +2337,7 @@
   <xs:element name="GetAnimeDetailedResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q105="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAnimeDetailedResult" nillable="true" type="q105:Contract_AniDB_AnimeDetailed" />
+        <xs:element xmlns:q106="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAnimeDetailedResult" nillable="true" type="q106:Contract_AniDB_AnimeDetailed" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -2322,7 +2352,7 @@
   <xs:element name="GetSeriesForGroupResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q106="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetSeriesForGroupResult" nillable="true" type="q106:ArrayOfContract_AnimeSeries" />
+        <xs:element xmlns:q107="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetSeriesForGroupResult" nillable="true" type="q107:ArrayOfContract_AnimeSeries" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -2337,7 +2367,7 @@
   <xs:element name="GetEpisodesForSeriesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q107="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetEpisodesForSeriesResult" nillable="true" type="q107:ArrayOfContract_AnimeEpisode" />
+        <xs:element xmlns:q108="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetEpisodesForSeriesResult" nillable="true" type="q108:ArrayOfContract_AnimeEpisode" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -2352,7 +2382,7 @@
   <xs:element name="GetEpisodesForFileResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q108="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetEpisodesForFileResult" nillable="true" type="q108:ArrayOfContract_AnimeEpisode" />
+        <xs:element xmlns:q109="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetEpisodesForFileResult" nillable="true" type="q109:ArrayOfContract_AnimeEpisode" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -2367,7 +2397,7 @@
   <xs:element name="GetFilesForEpisodeResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q109="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetFilesForEpisodeResult" nillable="true" type="q109:ArrayOfContract_VideoDetailed" />
+        <xs:element xmlns:q110="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetFilesForEpisodeResult" nillable="true" type="q110:ArrayOfContract_VideoDetailed" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -2381,7 +2411,7 @@
   <xs:element name="GetMyReleaseGroupsForAniDBEpisodeResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q110="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetMyReleaseGroupsForAniDBEpisodeResult" nillable="true" type="q110:ArrayOfContract_AniDBReleaseGroup" />
+        <xs:element xmlns:q111="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetMyReleaseGroupsForAniDBEpisodeResult" nillable="true" type="q111:ArrayOfContract_AniDBReleaseGroup" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -2393,7 +2423,7 @@
   <xs:element name="GetImportFoldersResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q111="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetImportFoldersResult" nillable="true" type="q111:ArrayOfContract_ImportFolder" />
+        <xs:element xmlns:q112="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetImportFoldersResult" nillable="true" type="q112:ArrayOfContract_ImportFolder" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -2405,7 +2435,7 @@
   <xs:element name="GetServerStatusResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q112="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetServerStatusResult" nillable="true" type="q112:Contract_ServerStatus" />
+        <xs:element xmlns:q113="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetServerStatusResult" nillable="true" type="q113:Contract_ServerStatus" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -2417,7 +2447,7 @@
   <xs:element name="GetServerSettingsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q113="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetServerSettingsResult" nillable="true" type="q113:Contract_ServerSettings" />
+        <xs:element xmlns:q114="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetServerSettingsResult" nillable="true" type="q114:Contract_ServerSettings" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

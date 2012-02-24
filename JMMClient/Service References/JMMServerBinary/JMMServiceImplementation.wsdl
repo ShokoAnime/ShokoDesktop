@@ -50,6 +50,18 @@
   <wsdl:message name="IJMMServer_GetSeriesRecentlyAdded_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetSeriesRecentlyAddedResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_LinkAniDBTvDBEpisode_InputMessage">
+    <wsdl:part name="parameters" element="tns:LinkAniDBTvDBEpisode" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_LinkAniDBTvDBEpisode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LinkAniDBTvDBEpisodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetTVDBCrossRefEpisode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTVDBCrossRefEpisode" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetTVDBCrossRefEpisode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTVDBCrossRefEpisodeResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_ScanDropFolders_InputMessage">
     <wsdl:part name="parameters" element="tns:ScanDropFolders" />
   </wsdl:message>
@@ -1079,6 +1091,14 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetSeriesRecentlyAdded" message="tns:IJMMServer_GetSeriesRecentlyAdded_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetSeriesRecentlyAddedResponse" message="tns:IJMMServer_GetSeriesRecentlyAdded_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="LinkAniDBTvDBEpisode">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/LinkAniDBTvDBEpisode" message="tns:IJMMServer_LinkAniDBTvDBEpisode_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/LinkAniDBTvDBEpisodeResponse" message="tns:IJMMServer_LinkAniDBTvDBEpisode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTVDBCrossRefEpisode">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetTVDBCrossRefEpisode" message="tns:IJMMServer_GetTVDBCrossRefEpisode_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetTVDBCrossRefEpisodeResponse" message="tns:IJMMServer_GetTVDBCrossRefEpisode_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="ScanDropFolders">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/ScanDropFolders" message="tns:IJMMServer_ScanDropFolders_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/ScanDropFoldersResponse" message="tns:IJMMServer_ScanDropFolders_OutputMessage" />
@@ -1793,6 +1813,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetSeriesRecentlyAdded">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetSeriesRecentlyAdded" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LinkAniDBTvDBEpisode">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/LinkAniDBTvDBEpisode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTVDBCrossRefEpisode">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetTVDBCrossRefEpisode" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

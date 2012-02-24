@@ -351,6 +351,21 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_TvDB_Series" nillable="true" type="tns:Contract_TvDB_Series" />
+  <xs:complexType name="ArrayOfContract_CrossRef_AniDB_TvDB_Episode">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_CrossRef_AniDB_TvDB_Episode" nillable="true" type="tns:Contract_CrossRef_AniDB_TvDB_Episode" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_CrossRef_AniDB_TvDB_Episode" nillable="true" type="tns:ArrayOfContract_CrossRef_AniDB_TvDB_Episode" />
+  <xs:complexType name="Contract_CrossRef_AniDB_TvDB_Episode">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AniDBEpisodeID" type="xs:int" />
+      <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
+      <xs:element minOccurs="0" name="CrossRef_AniDB_TvDB_EpisodeID" type="xs:int" />
+      <xs:element minOccurs="0" name="TvDBEpisodeID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_CrossRef_AniDB_TvDB_Episode" nillable="true" type="tns:Contract_CrossRef_AniDB_TvDB_Episode" />
   <xs:complexType name="ArrayOfContract_Trakt_ShoutUser">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_Trakt_ShoutUser" nillable="true" type="tns:Contract_Trakt_ShoutUser" />

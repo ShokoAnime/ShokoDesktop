@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using JMMClient.ViewModel;
 using System.IO;
 using System.Diagnostics;
+using JMMClient.Forms;
 
 namespace JMMClient.UserControls
 {
@@ -127,6 +128,45 @@ namespace JMMClient.UserControls
 
 			btnPlaylistAdd.ContextMenu = playlistMenu;
 			btnPlaylistAdd.Click += new RoutedEventHandler(btnPlaylistAdd_Click);
+
+			btnTvDBLinkAdd.Click += new RoutedEventHandler(btnTvDBLinkAdd_Click);
+		}
+
+		void btnTvDBLinkAdd_Click(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				// get the current tvdb link
+				AnimeEpisodeVM ep = this.DataContext as AnimeEpisodeVM;
+				ep.RefreshAnime();
+				if (ep.AniDB_Anime == null || ep.AniDB_Anime.CrossRefTvDB == null)
+				{
+					Utils.ShowErrorMessage("The series must be linked to a TvDB series first");
+					return;
+				}
+
+				Window wdw = Window.GetWindow(this);
+
+				this.Cursor = Cursors.Wait;
+				SelectTvDBEpisodeForm frm = new SelectTvDBEpisodeForm();
+				frm.Owner = wdw;
+				frm.Init(ep.AniDB_Anime);
+				bool? result = frm.ShowDialog();
+				if (result.Value)
+				{
+					// update info
+					//RefreshData();
+				}
+
+				this.Cursor = Cursors.Arrow;
+
+				//List<JMMServerBinary.Contract_Playlist> rawPlaylists = JMMServerVM.Instance.clientBinaryHTTP.GetAllPlaylists();
+	
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
 		}
 
 		void btnPlaylistAdd_Click(object sender, RoutedEventArgs e)

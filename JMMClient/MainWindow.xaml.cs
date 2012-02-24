@@ -2254,8 +2254,13 @@ namespace JMMClient
 		{
 			try
 			{
-				JMMServerVM.Instance.RemoveMissingFiles();
-				MessageBox.Show("Process is Running", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+				MessageBoxResult res = MessageBox.Show(string.Format("Are you sure you want run this process?"),
+					"Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
+				if (res == MessageBoxResult.Yes)
+				{
+					JMMServerVM.Instance.RemoveMissingFiles();
+					MessageBox.Show("Process is Running", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+				}
 			}
 			catch (Exception ex)
 			{
