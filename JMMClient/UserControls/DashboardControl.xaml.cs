@@ -585,6 +585,7 @@ namespace JMMClient.UserControls
 			opt.TraktShouts = togTraktShouts.IsChecked.Value;
 			opt.RefreshContinueWatching = refreshContinueWatching;
 			opt.RefreshRecentAdditions = refreshRecentAdditions;
+			opt.RefreshOtherWidgets = refreshOtherWidgets;
 			opt.RecentAdditionType = addType;
 			refreshDataWorker.RunWorkerAsync(opt);
 		}
