@@ -104,6 +104,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="RemoveLinkAniDBTvDBEpisode">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="aniDBEpisodeID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveLinkAniDBTvDBEpisodeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RemoveLinkAniDBTvDBEpisodeResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="ScanDropFolders">
     <xs:complexType>
       <xs:sequence />

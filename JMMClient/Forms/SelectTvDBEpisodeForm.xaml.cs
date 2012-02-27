@@ -23,6 +23,7 @@ namespace JMMClient.Forms
 		private static Logger logger = LogManager.GetCurrentClassLogger();
 		private int AnimeID = 0;
 		private AniDB_AnimeVM Anime = null;
+		private AnimeEpisodeVM AnimeEpisode = null;
 
 		public static readonly DependencyProperty CurrentEpisodesProperty = DependencyProperty.Register("CurrentEpisodes",
 			typeof(List<TvDB_EpisodeVM>), typeof(SelectTvDBEpisodeForm), new UIPropertyMetadata(null, null));
@@ -40,6 +41,7 @@ namespace JMMClient.Forms
 			btnClose.Click += new RoutedEventHandler(btnClose_Click);
 			cboSeason.SelectionChanged += new SelectionChangedEventHandler(cboSeason_SelectionChanged);
 		}
+
 
 		void cboSeason_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
@@ -82,12 +84,19 @@ namespace JMMClient.Forms
 				if (obj.GetType() == typeof(TvDB_EpisodeVM))
 				{
 					this.Cursor = Cursors.Wait;
-					TvDB_EpisodeVM searchResult = obj as TvDB_EpisodeVM;
+					TvDB_EpisodeVM tvEp = obj as TvDB_EpisodeVM;
 
-					// prompt to select season
-					Window wdw = Window.GetWindow(this);
+					string res = JMMServerVM.Instance.clientBinaryHTTP.LinkAniDBTvDBEpisode(AnimeEpisode.AniDB_EpisodeID, tvEp.Id, AnimeID);
+					this.Cursor = Cursors.Arrow;
 
-					
+					if (res.Length > 0)
+					{
+						Utils.ShowErrorMessage(res);
+						return;
+					}
+
+					this.DialogResult = true;
+					this.Close();
 				}
 			}
 			catch (Exception ex)
@@ -100,10 +109,11 @@ namespace JMMClient.Forms
 			}
 		}
 
-		public void Init(AniDB_AnimeVM anime)
+		public void Init(AnimeEpisodeVM ep, AniDB_AnimeVM anime)
 		{
 			AnimeID = anime.AnimeID;
 			Anime = anime;
+			AnimeEpisode = ep;
 
 			cboSeason.Items.Clear();
 			foreach (int season in Anime.DictTvDBSeasons.Keys)

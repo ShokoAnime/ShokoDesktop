@@ -14511,6 +14511,9 @@ namespace JMMClient.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetTVDBCrossRefEpisode", ReplyAction="http://tempuri.org/IJMMServer/GetTVDBCrossRefEpisodeResponse")]
         System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_TvDB_Episode> GetTVDBCrossRefEpisode(int animeID);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/RemoveLinkAniDBTvDBEpisode", ReplyAction="http://tempuri.org/IJMMServer/RemoveLinkAniDBTvDBEpisodeResponse")]
+        string RemoveLinkAniDBTvDBEpisode(int aniDBEpisodeID);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/ScanDropFolders", ReplyAction="http://tempuri.org/IJMMServer/ScanDropFoldersResponse")]
         void ScanDropFolders();
         
@@ -15069,6 +15072,10 @@ namespace JMMClient.JMMServerBinary {
         
         public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_TvDB_Episode> GetTVDBCrossRefEpisode(int animeID) {
             return base.Channel.GetTVDBCrossRefEpisode(animeID);
+        }
+        
+        public string RemoveLinkAniDBTvDBEpisode(int aniDBEpisodeID) {
+            return base.Channel.RemoveLinkAniDBTvDBEpisode(aniDBEpisodeID);
         }
         
         public void ScanDropFolders() {

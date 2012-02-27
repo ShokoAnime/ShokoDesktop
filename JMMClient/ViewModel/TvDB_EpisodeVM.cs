@@ -23,6 +23,17 @@ namespace JMMClient.ViewModel
 		public int? AirsBeforeEpisode { get; set; }
 		public int? AirsBeforeSeason { get; set; }
 
+		public string ImagePath
+		{
+			get
+			{
+				if (string.IsNullOrEmpty(Filename)) return @"/Images/EpisodeThumb_NotFound.png";
+
+				if (File.Exists(FullImagePath)) return FullImagePath;
+
+				return OnlineImagePath;
+			}
+		}
 
 		public string FullImagePath
 		{

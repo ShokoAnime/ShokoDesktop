@@ -656,13 +656,19 @@ namespace JMMClient
 
 		public void RefreshAnime()
 		{
-			aniDB_Anime = null;
+			RefreshAnime(false);
+		}
 
+		public void RefreshAnime(bool forced)
+		{
 			if (MainListHelperVM.Instance.AllSeriesDictionary.ContainsKey(this.AnimeSeriesID))
 			{
 				AnimeSeriesVM ser = MainListHelperVM.Instance.AllSeriesDictionary[this.AnimeSeriesID];
 				aniDB_Anime = ser.AniDB_Anime;
 			}
+
+			if (forced && aniDB_Anime != null)
+				MainListHelperVM.Instance.UpdateAnime(aniDB_Anime.AnimeID);
 		}
 
 

@@ -130,6 +130,46 @@ namespace JMMClient.UserControls
 			btnPlaylistAdd.Click += new RoutedEventHandler(btnPlaylistAdd_Click);
 
 			btnTvDBLinkAdd.Click += new RoutedEventHandler(btnTvDBLinkAdd_Click);
+			btnTvDBLinkRemove.Click += new RoutedEventHandler(btnTvDBLinkRemove_Click);
+		}
+
+		void btnTvDBLinkRemove_Click(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				// get the current tvdb link
+				AnimeEpisodeVM ep = this.DataContext as AnimeEpisodeVM;
+
+				Window wdw = Window.GetWindow(this);
+
+				this.Cursor = Cursors.Wait;
+
+				string res = JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBTvDBEpisode(ep.AniDB_EpisodeID);
+				if (res.Length > 0)
+				{
+					this.Cursor = Cursors.Arrow;
+					Utils.ShowErrorMessage(res);
+					return;
+				}
+				
+				// update info
+				JMMServerBinary.Contract_AnimeEpisode contract = JMMServerVM.Instance.clientBinaryHTTP.GetEpisode(
+					ep.AnimeEpisodeID, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+				if (contract != null)
+				{
+					ep.RefreshAnime(true);
+					ep.Populate(contract);
+					ep.SetTvDBInfo();
+				}
+
+
+				this.Cursor = Cursors.Arrow;
+
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
 		}
 
 		void btnTvDBLinkAdd_Click(object sender, RoutedEventArgs e)
@@ -150,17 +190,23 @@ namespace JMMClient.UserControls
 				this.Cursor = Cursors.Wait;
 				SelectTvDBEpisodeForm frm = new SelectTvDBEpisodeForm();
 				frm.Owner = wdw;
-				frm.Init(ep.AniDB_Anime);
+				frm.Init(ep, ep.AniDB_Anime);
 				bool? result = frm.ShowDialog();
 				if (result.Value)
 				{
 					// update info
-					//RefreshData();
+					JMMServerBinary.Contract_AnimeEpisode contract = JMMServerVM.Instance.clientBinaryHTTP.GetEpisode(
+						ep.AnimeEpisodeID, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+					if (contract != null)
+					{
+						ep.RefreshAnime(true);
+						ep.Populate(contract);
+						ep.SetTvDBInfo();
+					}
+					
 				}
 
 				this.Cursor = Cursors.Arrow;
-
-				//List<JMMServerBinary.Contract_Playlist> rawPlaylists = JMMServerVM.Instance.clientBinaryHTTP.GetAllPlaylists();
 	
 			}
 			catch (Exception ex)
