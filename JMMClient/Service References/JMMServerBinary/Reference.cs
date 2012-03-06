@@ -4355,6 +4355,288 @@ namespace JMMClient.JMMServerBinary {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_AniDB_Character", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
+    [System.SerializableAttribute()]
+    public partial class Contract_AniDB_Character : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AniDB_CharacterIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private JMMClient.JMMServerBinary.Contract_AniDBAnime AnimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CharDescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CharIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CharKanjiNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CharNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CharTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CreatorListRawField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PicNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private JMMClient.JMMServerBinary.Contract_AniDB_Seiyuu SeiyuuField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AniDB_CharacterID {
+            get {
+                return this.AniDB_CharacterIDField;
+            }
+            set {
+                if ((this.AniDB_CharacterIDField.Equals(value) != true)) {
+                    this.AniDB_CharacterIDField = value;
+                    this.RaisePropertyChanged("AniDB_CharacterID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public JMMClient.JMMServerBinary.Contract_AniDBAnime Anime {
+            get {
+                return this.AnimeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AnimeField, value) != true)) {
+                    this.AnimeField = value;
+                    this.RaisePropertyChanged("Anime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CharDescription {
+            get {
+                return this.CharDescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CharDescriptionField, value) != true)) {
+                    this.CharDescriptionField = value;
+                    this.RaisePropertyChanged("CharDescription");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CharID {
+            get {
+                return this.CharIDField;
+            }
+            set {
+                if ((this.CharIDField.Equals(value) != true)) {
+                    this.CharIDField = value;
+                    this.RaisePropertyChanged("CharID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CharKanjiName {
+            get {
+                return this.CharKanjiNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CharKanjiNameField, value) != true)) {
+                    this.CharKanjiNameField = value;
+                    this.RaisePropertyChanged("CharKanjiName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CharName {
+            get {
+                return this.CharNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CharNameField, value) != true)) {
+                    this.CharNameField = value;
+                    this.RaisePropertyChanged("CharName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CharType {
+            get {
+                return this.CharTypeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CharTypeField, value) != true)) {
+                    this.CharTypeField = value;
+                    this.RaisePropertyChanged("CharType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CreatorListRaw {
+            get {
+                return this.CreatorListRawField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CreatorListRawField, value) != true)) {
+                    this.CreatorListRawField = value;
+                    this.RaisePropertyChanged("CreatorListRaw");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PicName {
+            get {
+                return this.PicNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PicNameField, value) != true)) {
+                    this.PicNameField = value;
+                    this.RaisePropertyChanged("PicName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public JMMClient.JMMServerBinary.Contract_AniDB_Seiyuu Seiyuu {
+            get {
+                return this.SeiyuuField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SeiyuuField, value) != true)) {
+                    this.SeiyuuField = value;
+                    this.RaisePropertyChanged("Seiyuu");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_AniDB_Seiyuu", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
+    [System.SerializableAttribute()]
+    public partial class Contract_AniDB_Seiyuu : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AniDB_SeiyuuIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PicNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SeiyuuIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SeiyuuNameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AniDB_SeiyuuID {
+            get {
+                return this.AniDB_SeiyuuIDField;
+            }
+            set {
+                if ((this.AniDB_SeiyuuIDField.Equals(value) != true)) {
+                    this.AniDB_SeiyuuIDField = value;
+                    this.RaisePropertyChanged("AniDB_SeiyuuID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PicName {
+            get {
+                return this.PicNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PicNameField, value) != true)) {
+                    this.PicNameField = value;
+                    this.RaisePropertyChanged("PicName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SeiyuuID {
+            get {
+                return this.SeiyuuIDField;
+            }
+            set {
+                if ((this.SeiyuuIDField.Equals(value) != true)) {
+                    this.SeiyuuIDField = value;
+                    this.RaisePropertyChanged("SeiyuuID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string SeiyuuName {
+            get {
+                return this.SeiyuuNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SeiyuuNameField, value) != true)) {
+                    this.SeiyuuNameField = value;
+                    this.RaisePropertyChanged("SeiyuuName");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Contract_Trakt_ShoutUser", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
     [System.SerializableAttribute()]
     public partial class Contract_Trakt_ShoutUser : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -4680,6 +4962,9 @@ namespace JMMClient.JMMServerBinary {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_TvDB_Series))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_TvDB_Episode>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_TvDB_Episode))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDB_Character>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AniDB_Character))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AniDB_Seiyuu))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_Trakt_ShoutUser>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_Trakt_ShoutUser))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_Trakt_Shout))]
@@ -4706,9 +4991,6 @@ namespace JMMClient.JMMServerBinary {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_Recommendation>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_Recommendation))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDBAnime>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDB_Character>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AniDB_Character))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AniDB_Seiyuu))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_MissingFile>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_MissingFile))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_MissingEpisode>))]
@@ -6537,272 +6819,6 @@ namespace JMMClient.JMMServerBinary {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_AniDB_Character", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
-    [System.SerializableAttribute()]
-    public partial class Contract_AniDB_Character : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int AniDB_CharacterIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CharDescriptionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int CharIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CharKanjiNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CharNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CharTypeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CreatorListRawField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PicNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private JMMClient.JMMServerBinary.Contract_AniDB_Seiyuu SeiyuuField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int AniDB_CharacterID {
-            get {
-                return this.AniDB_CharacterIDField;
-            }
-            set {
-                if ((this.AniDB_CharacterIDField.Equals(value) != true)) {
-                    this.AniDB_CharacterIDField = value;
-                    this.RaisePropertyChanged("AniDB_CharacterID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string CharDescription {
-            get {
-                return this.CharDescriptionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CharDescriptionField, value) != true)) {
-                    this.CharDescriptionField = value;
-                    this.RaisePropertyChanged("CharDescription");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int CharID {
-            get {
-                return this.CharIDField;
-            }
-            set {
-                if ((this.CharIDField.Equals(value) != true)) {
-                    this.CharIDField = value;
-                    this.RaisePropertyChanged("CharID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string CharKanjiName {
-            get {
-                return this.CharKanjiNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CharKanjiNameField, value) != true)) {
-                    this.CharKanjiNameField = value;
-                    this.RaisePropertyChanged("CharKanjiName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string CharName {
-            get {
-                return this.CharNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CharNameField, value) != true)) {
-                    this.CharNameField = value;
-                    this.RaisePropertyChanged("CharName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string CharType {
-            get {
-                return this.CharTypeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CharTypeField, value) != true)) {
-                    this.CharTypeField = value;
-                    this.RaisePropertyChanged("CharType");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string CreatorListRaw {
-            get {
-                return this.CreatorListRawField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CreatorListRawField, value) != true)) {
-                    this.CreatorListRawField = value;
-                    this.RaisePropertyChanged("CreatorListRaw");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string PicName {
-            get {
-                return this.PicNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PicNameField, value) != true)) {
-                    this.PicNameField = value;
-                    this.RaisePropertyChanged("PicName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public JMMClient.JMMServerBinary.Contract_AniDB_Seiyuu Seiyuu {
-            get {
-                return this.SeiyuuField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.SeiyuuField, value) != true)) {
-                    this.SeiyuuField = value;
-                    this.RaisePropertyChanged("Seiyuu");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_AniDB_Seiyuu", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
-    [System.SerializableAttribute()]
-    public partial class Contract_AniDB_Seiyuu : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int AniDB_SeiyuuIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PicNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int SeiyuuIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string SeiyuuNameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int AniDB_SeiyuuID {
-            get {
-                return this.AniDB_SeiyuuIDField;
-            }
-            set {
-                if ((this.AniDB_SeiyuuIDField.Equals(value) != true)) {
-                    this.AniDB_SeiyuuIDField = value;
-                    this.RaisePropertyChanged("AniDB_SeiyuuID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string PicName {
-            get {
-                return this.PicNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PicNameField, value) != true)) {
-                    this.PicNameField = value;
-                    this.RaisePropertyChanged("PicName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int SeiyuuID {
-            get {
-                return this.SeiyuuIDField;
-            }
-            set {
-                if ((this.SeiyuuIDField.Equals(value) != true)) {
-                    this.SeiyuuIDField = value;
-                    this.RaisePropertyChanged("SeiyuuID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string SeiyuuName {
-            get {
-                return this.SeiyuuNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.SeiyuuNameField, value) != true)) {
-                    this.SeiyuuNameField = value;
-                    this.RaisePropertyChanged("SeiyuuName");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Contract_MissingFile", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
     [System.SerializableAttribute()]
     public partial class Contract_MissingFile : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -7567,6 +7583,9 @@ namespace JMMClient.JMMServerBinary {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_TvDB_Series))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_TvDB_Episode>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_TvDB_Episode))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDB_Character>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AniDB_Character))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AniDB_Seiyuu))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_Trakt_ShoutUser>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_Trakt_ShoutUser))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_Trakt_Shout))]
@@ -7594,9 +7613,6 @@ namespace JMMClient.JMMServerBinary {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_Recommendation>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_Recommendation))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDBAnime>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDB_Character>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AniDB_Character))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AniDB_Seiyuu))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_MissingFile>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_MissingFile))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_MissingEpisode>))]
@@ -7919,6 +7935,9 @@ namespace JMMClient.JMMServerBinary {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_TvDB_Series))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_TvDB_Episode>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_TvDB_Episode))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDB_Character>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AniDB_Character))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AniDB_Seiyuu))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_Trakt_ShoutUser>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_Trakt_ShoutUser))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_Trakt_Shout))]
@@ -7946,9 +7965,6 @@ namespace JMMClient.JMMServerBinary {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_Recommendation>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_Recommendation))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDBAnime>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDB_Character>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AniDB_Character))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AniDB_Seiyuu))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_MissingFile>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_MissingFile))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_MissingEpisode>))]
@@ -14514,6 +14530,9 @@ namespace JMMClient.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/RemoveLinkAniDBTvDBEpisode", ReplyAction="http://tempuri.org/IJMMServer/RemoveLinkAniDBTvDBEpisodeResponse")]
         string RemoveLinkAniDBTvDBEpisode(int aniDBEpisodeID);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetCharactersForSeiyuu", ReplyAction="http://tempuri.org/IJMMServer/GetCharactersForSeiyuuResponse")]
+        System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDB_Character> GetCharactersForSeiyuu(int seiyuuID);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/ScanDropFolders", ReplyAction="http://tempuri.org/IJMMServer/ScanDropFoldersResponse")]
         void ScanDropFolders();
         
@@ -15076,6 +15095,10 @@ namespace JMMClient.JMMServerBinary {
         
         public string RemoveLinkAniDBTvDBEpisode(int aniDBEpisodeID) {
             return base.Channel.RemoveLinkAniDBTvDBEpisode(aniDBEpisodeID);
+        }
+        
+        public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDB_Character> GetCharactersForSeiyuu(int seiyuuID) {
+            return base.Channel.GetCharactersForSeiyuu(seiyuuID);
         }
         
         public void ScanDropFolders() {

@@ -366,6 +366,36 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_CrossRef_AniDB_TvDB_Episode" nillable="true" type="tns:Contract_CrossRef_AniDB_TvDB_Episode" />
+  <xs:complexType name="ArrayOfContract_AniDB_Character">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_AniDB_Character" nillable="true" type="tns:Contract_AniDB_Character" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_AniDB_Character" nillable="true" type="tns:ArrayOfContract_AniDB_Character" />
+  <xs:complexType name="Contract_AniDB_Character">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AniDB_CharacterID" type="xs:int" />
+      <xs:element minOccurs="0" name="Anime" nillable="true" type="tns:Contract_AniDBAnime" />
+      <xs:element minOccurs="0" name="CharDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CharID" type="xs:int" />
+      <xs:element minOccurs="0" name="CharKanjiName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CharName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CharType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreatorListRaw" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PicName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Seiyuu" nillable="true" type="tns:Contract_AniDB_Seiyuu" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_AniDB_Character" nillable="true" type="tns:Contract_AniDB_Character" />
+  <xs:complexType name="Contract_AniDB_Seiyuu">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AniDB_SeiyuuID" type="xs:int" />
+      <xs:element minOccurs="0" name="PicName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SeiyuuID" type="xs:int" />
+      <xs:element minOccurs="0" name="SeiyuuName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_AniDB_Seiyuu" nillable="true" type="tns:Contract_AniDB_Seiyuu" />
   <xs:complexType name="ArrayOfContract_Trakt_ShoutUser">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_Trakt_ShoutUser" nillable="true" type="tns:Contract_Trakt_ShoutUser" />
@@ -614,35 +644,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfContract_AniDBAnime" nillable="true" type="tns:ArrayOfContract_AniDBAnime" />
-  <xs:complexType name="ArrayOfContract_AniDB_Character">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_AniDB_Character" nillable="true" type="tns:Contract_AniDB_Character" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_AniDB_Character" nillable="true" type="tns:ArrayOfContract_AniDB_Character" />
-  <xs:complexType name="Contract_AniDB_Character">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="AniDB_CharacterID" type="xs:int" />
-      <xs:element minOccurs="0" name="CharDescription" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CharID" type="xs:int" />
-      <xs:element minOccurs="0" name="CharKanjiName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CharName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CharType" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CreatorListRaw" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="PicName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Seiyuu" nillable="true" type="tns:Contract_AniDB_Seiyuu" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_AniDB_Character" nillable="true" type="tns:Contract_AniDB_Character" />
-  <xs:complexType name="Contract_AniDB_Seiyuu">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="AniDB_SeiyuuID" type="xs:int" />
-      <xs:element minOccurs="0" name="PicName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="SeiyuuID" type="xs:int" />
-      <xs:element minOccurs="0" name="SeiyuuName" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_AniDB_Seiyuu" nillable="true" type="tns:Contract_AniDB_Seiyuu" />
   <xs:complexType name="ArrayOfContract_MissingFile">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_MissingFile" nillable="true" type="tns:Contract_MissingFile" />

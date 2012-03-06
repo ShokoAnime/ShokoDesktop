@@ -211,7 +211,7 @@ namespace JMMClient.UserControls
 			cboDashRecentAdditionsType.Items.Clear();
 			cboDashRecentAdditionsType.Items.Add("Episodes");
 			cboDashRecentAdditionsType.Items.Add("Series");
-			cboDashRecentAdditionsType.SelectedIndex = 0;
+			cboDashRecentAdditionsType.SelectedIndex = AppSettings.DashRecentAdditionsType;
 			cboDashRecentAdditionsType.SelectionChanged += new SelectionChangedEventHandler(cboDashRecentAdditionsType_SelectionChanged);
 
 			btnToolbarRefresh.Click += new RoutedEventHandler(btnToolbarRefresh_Click);
@@ -325,6 +325,7 @@ namespace JMMClient.UserControls
 
 		void cboDashRecentAdditionsType_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
+			UserSettingsVM.Instance.DashRecentAdditionsType = cboDashRecentAdditionsType.SelectedIndex;
 			RefreshData(false, true, false);
 		}
 

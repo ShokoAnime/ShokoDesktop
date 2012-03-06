@@ -258,6 +258,17 @@ namespace JMMClient
 			}
 		}
 
+		public int DashRecentAdditionsType
+		{
+			get { return AppSettings.DashRecentAdditionsType; }
+			set
+			{
+				AppSettings.DashRecentAdditionsType = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("DashRecentAdditionsType"));
+			}
+		}
+
+
 
 		public bool DashTraktFriendsCollapsed
 		{

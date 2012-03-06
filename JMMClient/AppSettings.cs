@@ -851,6 +851,24 @@ namespace JMMClient
 			}
 		}
 
+		public static int DashRecentAdditionsType
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["DashRecentAdditionsType"];
+				int bval = 0;
+				if (int.TryParse(val, out bval))
+					return bval;
+				else
+					return 0; // default value
+			}
+			set
+			{
+				UpdateSetting("DashRecentAdditionsType", value.ToString());
+			}
+		}
+
 		public static bool DashTraktFriendsExpanded
 		{
 			get

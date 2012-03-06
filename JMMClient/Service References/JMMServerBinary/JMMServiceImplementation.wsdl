@@ -68,6 +68,12 @@
   <wsdl:message name="IJMMServer_RemoveLinkAniDBTvDBEpisode_OutputMessage">
     <wsdl:part name="parameters" element="tns:RemoveLinkAniDBTvDBEpisodeResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_GetCharactersForSeiyuu_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCharactersForSeiyuu" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetCharactersForSeiyuu_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCharactersForSeiyuuResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_ScanDropFolders_InputMessage">
     <wsdl:part name="parameters" element="tns:ScanDropFolders" />
   </wsdl:message>
@@ -1109,6 +1115,10 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RemoveLinkAniDBTvDBEpisode" message="tns:IJMMServer_RemoveLinkAniDBTvDBEpisode_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RemoveLinkAniDBTvDBEpisodeResponse" message="tns:IJMMServer_RemoveLinkAniDBTvDBEpisode_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetCharactersForSeiyuu">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetCharactersForSeiyuu" message="tns:IJMMServer_GetCharactersForSeiyuu_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetCharactersForSeiyuuResponse" message="tns:IJMMServer_GetCharactersForSeiyuu_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="ScanDropFolders">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/ScanDropFolders" message="tns:IJMMServer_ScanDropFolders_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/ScanDropFoldersResponse" message="tns:IJMMServer_ScanDropFolders_OutputMessage" />
@@ -1850,6 +1860,15 @@
     </wsdl:operation>
     <wsdl:operation name="RemoveLinkAniDBTvDBEpisode">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/RemoveLinkAniDBTvDBEpisode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCharactersForSeiyuu">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetCharactersForSeiyuu" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
