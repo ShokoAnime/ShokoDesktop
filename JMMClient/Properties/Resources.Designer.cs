@@ -295,6 +295,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Automatically Get MyList Stats From AniDB.
+        /// </summary>
+        public static string AniDBScheduleMyListStats {
+            get {
+                return ResourceManager.GetString("AniDBScheduleMyListStats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Scheduled Updates.
         /// </summary>
         public static string AniDBScheduleOptions {

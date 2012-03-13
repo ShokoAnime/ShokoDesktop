@@ -18,6 +18,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Margin="0,5,15,0">
@@ -44,6 +45,15 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Margin="0,5,5,0">
             <ComboBox Grid.Row="0" Name="cboUpdateFrequencyMyList" VerticalAlignment="Center"></ComboBox>
+        </StackPanel>
+
+        <!--AniDBScheduleMyListStats-->
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="3" Margin="0,5,15,0">
+            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AniDBScheduleMyListStats}" VerticalAlignment="Center"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3" Margin="0,5,5,0">
+            <ComboBox Grid.Row="0" Name="cboUpdateFrequencyMyListStats" VerticalAlignment="Center"></ComboBox>
         </StackPanel>
 
     </Grid>

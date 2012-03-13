@@ -1658,4 +1658,7 @@
   <data name="PlaylistPlayOrderSeq" xml:space="preserve">
     <value>Sequential</value>
   </data>
+  <data name="AniDBScheduleMyListStats" xml:space="preserve">
+    <value>Automatically Get MyList Stats From AniDB</value>
+  </data>
 </root>

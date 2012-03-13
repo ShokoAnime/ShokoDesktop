@@ -25,6 +25,7 @@ namespace JMMClient.UserControls
 	{
 		private static Logger logger = LogManager.GetCurrentClassLogger();
 
+		BackgroundWorker workerFiles = new BackgroundWorker();
 		public ICollectionView ViewEpisodes { get; set; }
 		public ObservableCollection<AnimeEpisodeVM> CurrentEpisodes { get; set; }
 
@@ -39,19 +40,88 @@ namespace JMMClient.UserControls
 			set { SetValue(EpisodeCountProperty, value); }
 		}
 
+		public static readonly DependencyProperty IsLoadingProperty = DependencyProperty.Register("IsLoading",
+			typeof(bool), typeof(MultipleFilesControl), new UIPropertyMetadata(false, null));
+
+		public bool IsLoading
+		{
+			get { return (bool)GetValue(IsLoadingProperty); }
+			set
+			{
+				SetValue(IsLoadingProperty, value);
+				IsNotLoading = !IsLoading;
+			}
+		}
+
+		public static readonly DependencyProperty IsNotLoadingProperty = DependencyProperty.Register("IsNotLoading",
+			typeof(bool), typeof(MultipleFilesControl), new UIPropertyMetadata(true, null));
+
+		public bool IsNotLoading
+		{
+			get { return (bool)GetValue(IsNotLoadingProperty); }
+			set { SetValue(IsNotLoadingProperty, value); }
+		}
+
+		public static readonly DependencyProperty StatusMessageProperty = DependencyProperty.Register("StatusMessage",
+			typeof(string), typeof(MultipleFilesControl), new UIPropertyMetadata("", null));
+
+		public string StatusMessage
+		{
+			get { return (string)GetValue(StatusMessageProperty); }
+			set { SetValue(StatusMessageProperty, value); }
+		}
+
+		private List<JMMServerBinary.Contract_AnimeEpisode> contracts = new List<JMMServerBinary.Contract_AnimeEpisode>();
+
 		public MultipleFilesControl()
 		{
 			InitializeComponent();
+
+			IsLoading = false;
 
 			CurrentEpisodes = new ObservableCollection<AnimeEpisodeVM>();
 			ViewEpisodes = CollectionViewSource.GetDefaultView(CurrentEpisodes);
 			ViewEpisodes.SortDescriptions.Add(new SortDescription("AnimeName", ListSortDirection.Ascending));
 			ViewEpisodes.SortDescriptions.Add(new SortDescription("EpisodeTypeAndNumberAbsolute", ListSortDirection.Ascending));
 
+			workerFiles.DoWork += new DoWorkEventHandler(workerFiles_DoWork);
+			workerFiles.RunWorkerCompleted += new RunWorkerCompletedEventHandler(workerFiles_RunWorkerCompleted);
 			
 			btnRefresh.Click += new RoutedEventHandler(btnRefresh_Click);
 			lbMultipleFiles.SelectionChanged += new SelectionChangedEventHandler(lbMultipleFiles_SelectionChanged);
 
+		}
+
+		void workerFiles_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+		{
+			try
+			{
+				contracts = e.Result as List<JMMServerBinary.Contract_AnimeEpisode>;
+				foreach (JMMServerBinary.Contract_AnimeEpisode ep in contracts)
+					CurrentEpisodes.Add(new AnimeEpisodeVM(ep));
+				EpisodeCount = contracts.Count;
+			
+				btnRefresh.IsEnabled = true;
+				IsLoading = false;
+				this.Cursor = Cursors.Arrow;
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+		}
+
+		void workerFiles_DoWork(object sender, DoWorkEventArgs e)
+		{
+			try
+			{
+				List<JMMServerBinary.Contract_AnimeEpisode> eps = JMMServerVM.Instance.clientBinaryHTTP.GetAllEpisodesWithMultipleFiles(JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+				e.Result = eps;
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
 		}
 
 		void lbMultipleFiles_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -60,50 +130,23 @@ namespace JMMClient.UserControls
 				lastSelIndex = lbMultipleFiles.SelectedIndex;
 		}
 
+		public void RefreshMultipleFiles()
+		{
+			if (workerFiles.IsBusy) return;
+
+			IsLoading = true;
+			btnRefresh.IsEnabled = false;
+			CurrentEpisodes.Clear();
+			EpisodeCount = 0;
+
+			StatusMessage = "Loading...";
+
+			workerFiles.RunWorkerAsync();
+		}
+
 		void btnRefresh_Click(object sender, RoutedEventArgs e)
 		{
 			RefreshMultipleFiles();
-		}
-
-		public void RefreshMultipleFiles()
-		{
-			try
-			{
-				this.Cursor = Cursors.Wait;
-				CurrentEpisodes.Clear();
-
-				List<JMMServerBinary.Contract_AnimeEpisode> eps = JMMServerVM.Instance.clientBinaryHTTP.GetAllEpisodesWithMultipleFiles(JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
-				EpisodeCount = eps.Count;
-
-				foreach (JMMServerBinary.Contract_AnimeEpisode ep in eps)
-					CurrentEpisodes.Add(new AnimeEpisodeVM(ep));
-
-				// move to the next item
-				/*if (lastSelIndex <= lbDuplicateFiles.Items.Count)
-				{
-					lbDuplicateFiles.SelectedIndex = lastSelIndex;
-					lbDuplicateFiles.Focus();
-					lbDuplicateFiles.ScrollIntoView(lbDuplicateFiles.SelectedItem);
-				}
-				else
-				{
-					// move to the previous item
-					if (lastSelIndex - 1 <= lbDuplicateFiles.Items.Count)
-					{
-						lbDuplicateFiles.SelectedIndex = lastSelIndex - 1;
-						lbDuplicateFiles.Focus();
-						lbDuplicateFiles.ScrollIntoView(lbDuplicateFiles.SelectedItem);
-					}
-				}*/
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-			finally
-			{
-				this.Cursor = Cursors.Arrow;
-			}
 		}
 
 		private void CommandBinding_OpenFolder(object sender, ExecutedRoutedEventArgs e)

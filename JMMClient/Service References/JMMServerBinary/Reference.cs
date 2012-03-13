@@ -12197,6 +12197,9 @@ namespace JMMClient.JMMServerBinary {
         private bool AniDB_DownloadSimilarAnimeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AniDB_MyListStats_UpdateFrequencyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool AniDB_MyList_AddFilesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -12475,6 +12478,19 @@ namespace JMMClient.JMMServerBinary {
                 if ((this.AniDB_DownloadSimilarAnimeField.Equals(value) != true)) {
                     this.AniDB_DownloadSimilarAnimeField = value;
                     this.RaisePropertyChanged("AniDB_DownloadSimilarAnime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AniDB_MyListStats_UpdateFrequency {
+            get {
+                return this.AniDB_MyListStats_UpdateFrequencyField;
+            }
+            set {
+                if ((this.AniDB_MyListStats_UpdateFrequencyField.Equals(value) != true)) {
+                    this.AniDB_MyListStats_UpdateFrequencyField = value;
+                    this.RaisePropertyChanged("AniDB_MyListStats_UpdateFrequency");
                 }
             }
         }
@@ -14533,6 +14549,9 @@ namespace JMMClient.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetCharactersForSeiyuu", ReplyAction="http://tempuri.org/IJMMServer/GetCharactersForSeiyuuResponse")]
         System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDB_Character> GetCharactersForSeiyuu(int seiyuuID);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetAniDBSeiyuu", ReplyAction="http://tempuri.org/IJMMServer/GetAniDBSeiyuuResponse")]
+        JMMClient.JMMServerBinary.Contract_AniDB_Seiyuu GetAniDBSeiyuu(int seiyuuID);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/ScanDropFolders", ReplyAction="http://tempuri.org/IJMMServer/ScanDropFoldersResponse")]
         void ScanDropFolders();
         
@@ -15099,6 +15118,10 @@ namespace JMMClient.JMMServerBinary {
         
         public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDB_Character> GetCharactersForSeiyuu(int seiyuuID) {
             return base.Channel.GetCharactersForSeiyuu(seiyuuID);
+        }
+        
+        public JMMClient.JMMServerBinary.Contract_AniDB_Seiyuu GetAniDBSeiyuu(int seiyuuID) {
+            return base.Channel.GetAniDBSeiyuu(seiyuuID);
         }
         
         public void ScanDropFolders() {
