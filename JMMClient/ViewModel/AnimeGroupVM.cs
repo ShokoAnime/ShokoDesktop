@@ -45,6 +45,7 @@ namespace JMMClient
 		public string Stat_AllTitles { get; set; }
 		public bool Stat_IsComplete { get; set; }
 		public bool Stat_HasFinishedAiring { get; set; }
+		public bool Stat_IsCurrentlyAiring { get; set; }
 		public string Stat_AllVideoQuality { get; set; }
 		public string Stat_AllVideoQualityEpisodes { get; set; }
 		public string Stat_AudioLanguages { get; set; }
@@ -778,6 +779,7 @@ namespace JMMClient
 			this.Stat_AllTitles = contract.Stat_AllTitles;
 			this.Stat_IsComplete = contract.Stat_IsComplete;
 			this.Stat_HasFinishedAiring = contract.Stat_HasFinishedAiring;
+			this.Stat_IsCurrentlyAiring = contract.Stat_IsCurrentlyAiring;
 			this.Stat_AllVideoQuality = contract.Stat_AllVideoQuality;
 			this.Stat_AllVideoQualityEpisodes = contract.Stat_AllVideoQuality_Episodes;
 			this.Stat_AudioLanguages = contract.Stat_AudioLanguages;

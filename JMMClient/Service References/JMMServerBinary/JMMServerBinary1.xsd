@@ -323,6 +323,7 @@
       <xs:element minOccurs="0" name="Stat_HasMovieDBOrTvDBLink" type="xs:boolean" />
       <xs:element minOccurs="0" name="Stat_HasTvDBLink" type="xs:boolean" />
       <xs:element minOccurs="0" name="Stat_IsComplete" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Stat_IsCurrentlyAiring" type="xs:boolean" />
       <xs:element minOccurs="0" name="Stat_SeriesCount" type="xs:int" />
       <xs:element minOccurs="0" name="Stat_SeriesCreatedDate" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Stat_SubtitleLanguages" nillable="true" type="xs:string" />

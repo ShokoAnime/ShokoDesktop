@@ -3361,6 +3361,9 @@ namespace JMMClient.JMMServerBinary {
         private bool Stat_IsCompleteField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool Stat_IsCurrentlyAiringField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int Stat_SeriesCountField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -3789,6 +3792,19 @@ namespace JMMClient.JMMServerBinary {
                 if ((this.Stat_IsCompleteField.Equals(value) != true)) {
                     this.Stat_IsCompleteField = value;
                     this.RaisePropertyChanged("Stat_IsComplete");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Stat_IsCurrentlyAiring {
+            get {
+                return this.Stat_IsCurrentlyAiringField;
+            }
+            set {
+                if ((this.Stat_IsCurrentlyAiringField.Equals(value) != true)) {
+                    this.Stat_IsCurrentlyAiringField = value;
+                    this.RaisePropertyChanged("Stat_IsCurrentlyAiring");
                 }
             }
         }

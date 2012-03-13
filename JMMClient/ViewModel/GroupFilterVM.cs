@@ -226,8 +226,12 @@ namespace JMMClient
 						break;
 
 					case GroupFilterConditionType.FinishedAiring:
+
+						if (grp.GroupName.Contains("Bleach"))
+							Debug.Write("Test");
+
 						if (gfc.ConditionOperatorEnum == GroupFilterOperator.Include && grp.Stat_HasFinishedAiring == false) return false;
-						if (gfc.ConditionOperatorEnum == GroupFilterOperator.Exclude && grp.Stat_HasFinishedAiring == true) return false;
+						if (gfc.ConditionOperatorEnum == GroupFilterOperator.Exclude && grp.Stat_IsCurrentlyAiring == false) return false;
 						break;
 
 					case GroupFilterConditionType.UserVoted:
