@@ -375,8 +375,22 @@ namespace JMMClient
 					summ = string.Format("{0} Groups", this.AllSubGroups.Count);
 
 
+
 				if (summ.Length > 0) summ += ", ";
-				summ = summ + string.Format("{0} Series", AllAnimeSeries.Count);
+
+				if (MainListHelperVM.Instance.CurrentGroupFilter != null && MainListHelperVM.Instance.CurrentGroupFilter.IsApplyToSeries)
+				{
+					List<AnimeSeriesVM> allSeries = AllAnimeSeries;
+					int serCount = 0;
+					foreach (AnimeSeriesVM ser in allSeries)
+					{
+						if (MainListHelperVM.Instance.CurrentGroupFilter.EvaluateGroupFilter(ser))
+							serCount++;
+					}
+					summ = summ + string.Format("{0} Series", serCount);
+				}
+				else
+					summ = summ + string.Format("{0} Series", AllAnimeSeries.Count);
 
 				return summ;
 			}
