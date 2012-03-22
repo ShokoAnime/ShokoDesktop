@@ -88,6 +88,9 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutomaticUpdaterWPF">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\wyBuild\AutomaticUpdater\Microsoft .NET 4.0\AutomaticUpdaterWPF.dll</HintPath>
+    </Reference>
     <Reference Include="GongSolutions.Wpf.DragDrop">
       <HintPath>..\Dependencies\GongSolutions.Wpf.DragDrop.dll</HintPath>
     </Reference>
@@ -121,6 +124,7 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
     <Reference Include="WPFToolkit.Extended, Version=1.4.0.2, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\WPFToolkit.Extended.dll</HintPath>

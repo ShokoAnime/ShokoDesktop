@@ -248,6 +248,7 @@ namespace JMMClient
 				tabControl1.SelectedIndex = TAB_MAIN_Settings;
 
 
+			automaticUpdater.ForceCheckForUpdate(true);
 
 		}
 

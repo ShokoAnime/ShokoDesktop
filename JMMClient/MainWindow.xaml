@@ -4,7 +4,7 @@
         xmlns:local="clr-namespace:JMMClient"
         xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
         WindowStartupLocation="CenterScreen"
-        Title="JMM Desktop" Height="647" Width="994" Name="mainWindow" Icon="/JMMDesktop;component/Web%20Database.ico">
+        Title="JMM Desktop" Height="647" Width="994" Name="mainWindow" Icon="/JMMDesktop;component/Web%20Database.ico" xmlns:my="clr-namespace:wyDay.Controls;assembly=AutomaticUpdaterWPF">
 
 
 
@@ -1323,16 +1323,9 @@
                     <TextBlock Name="tbGeneralQueueCount" Margin="4,4,0,4" Text="{Binding Source={x:Static local:JMMServerVM.Instance},Path=GeneralQueueCount}"  VerticalAlignment="Center">
                     </TextBlock>
 
-                    <!--new version message-->
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,4,0,4"
-                                Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=NewVersionAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
-                        <Image Height="24" Width="24" Source="/Images/32_new.png" Margin="20,0,5,0"/>
-                        <TextBlock VerticalAlignment="Center" Text="Version" Margin="0,0,5,0"/>
-                        <TextBlock VerticalAlignment="Center" Text="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=NewVersionNumber}" Margin="0,0,5,0"/>
-                        <TextBlock VerticalAlignment="Center" Text="Available" Margin="0,0,5,0"/>
-                        <usercontrols:HyperLinkStandard VerticalAlignment="Center" Margin="5,0,0,0" DisplayText="Download"
-                                                                            URL="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=NewVersionDownloadLink}"/>
-                    </StackPanel>
+                    <!-- automatic updater and new version message-->
+                    <my:AutomaticUpdater Margin="20,0,0,0" Height="100" Name="automaticUpdater" Width="200" GUID="JMM-JMMDesktop" DaysBetweenChecks="1" UpdateType="OnlyCheck"/>
+                   
 
                     <!--banned message-->
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,4,0,4"
