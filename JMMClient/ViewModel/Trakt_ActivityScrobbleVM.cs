@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.ComponentModel;
 
 namespace JMMClient.ViewModel
 {
-	public class Trakt_ActivityScrobbleVM
+	public class Trakt_ActivityScrobbleVM : INotifyPropertyChanged
 	{
 		// user details
 		public Trakt_UserVM User { get; set; }
@@ -32,6 +33,16 @@ namespace JMMClient.ViewModel
 
 		// if episode
 		public Trakt_WatchedEpisodeVM Episode { get; set; }
+
+		public event PropertyChangedEventHandler PropertyChanged;
+		private void NotifyPropertyChanged(String propertyName)
+		{
+			if (PropertyChanged != null)
+			{
+				var args = new PropertyChangedEventArgs(propertyName);
+				PropertyChanged(this, args);
+			}
+		}
 
 		public string UserImagePathForDisplay
 		{
@@ -77,6 +88,28 @@ namespace JMMClient.ViewModel
 			}
 		}
 
+		private bool showEpisodeImageInDashboard = true;
+		public bool ShowEpisodeImageInDashboard
+		{
+			get { return showEpisodeImageInDashboard; }
+			set
+			{
+				showEpisodeImageInDashboard = value;
+				NotifyPropertyChanged("ShowEpisodeImageInDashboard");
+			}
+		}
+
+		private bool showEpisodeOverviewInDashboard = true;
+		public bool ShowEpisodeOverviewInDashboard
+		{
+			get { return showEpisodeOverviewInDashboard; }
+			set
+			{
+				showEpisodeOverviewInDashboard = value;
+				NotifyPropertyChanged("ShowEpisodeOverviewInDashboard");
+			}
+		}
+
 		public string AnimeFullImagePath
 		{
 			get
@@ -101,6 +134,9 @@ namespace JMMClient.ViewModel
 
 			if (contract.Episode != null)
 				this.Episode = new Trakt_WatchedEpisodeVM(contract.Episode);
+
+			ShowEpisodeImageInDashboard = !UserSettingsVM.Instance.HideEpisodeImageWhenUnwatched;
+			ShowEpisodeOverviewInDashboard = !UserSettingsVM.Instance.HideEpisodeOverviewWhenUnwatched;
 		}
 
 		public override string ToString()

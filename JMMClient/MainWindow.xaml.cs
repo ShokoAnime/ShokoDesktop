@@ -165,6 +165,7 @@ namespace JMMClient
 				this.AddHandler(CloseableTabItem.CloseTabEvent, new RoutedEventHandler(this.CloseTab));
 
 				btnUpdateMediaInfo.Click += new RoutedEventHandler(btnUpdateMediaInfo_Click);
+				btnAbout.Click += new RoutedEventHandler(btnAbout_Click);
 
 				JMMServerVM.Instance.BaseImagePath = Utils.GetBaseImagesPath();
 			}
@@ -172,6 +173,13 @@ namespace JMMClient
 			{
 				logger.ErrorException(ex.ToString(), ex);
 			}
+		}
+
+		void btnAbout_Click(object sender, RoutedEventArgs e)
+		{
+			AboutForm frm = new AboutForm();
+			frm.Owner = this;
+			frm.ShowDialog();
 		}
 
 		
@@ -247,6 +255,13 @@ namespace JMMClient
 			else
 				tabControl1.SelectedIndex = TAB_MAIN_Settings;
 
+
+			System.Reflection.Assembly a = System.Reflection.Assembly.GetExecutingAssembly();
+			if (a != null)
+			{
+				JMMServerVM.Instance.ApplicationVersion = Utils.GetApplicationVersion(a);
+			}
+			
 
 			automaticUpdater.ForceCheckForUpdate(true);
 
