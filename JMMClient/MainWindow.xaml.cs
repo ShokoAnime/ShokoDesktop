@@ -1149,6 +1149,20 @@ namespace JMMClient
 
 					
 				}
+
+				if (obj.GetType() == typeof(MissingEpisodeVM))
+				{
+					MissingEpisodeVM rec = obj as MissingEpisodeVM;
+					if (rec == null) return;
+
+					BookmarkedAnimeVM bookmark = new BookmarkedAnimeVM();
+					bookmark.AnimeID = rec.AnimeID;
+					bookmark.Downloading = 0;
+					bookmark.Notes = "";
+					bookmark.Priority = 1;
+					if (bookmark.Save())
+						MainListHelperVM.Instance.RefreshBookmarkedAnime();
+				}
 			}
 			catch (Exception ex)
 			{
