@@ -14,12 +14,33 @@ namespace JMMClient.ViewModel
 			get
 			{
 				GroupFilterVM gf = new GroupFilterVM();
-				gf.GroupFilterID = -999;
+				gf.GroupFilterID = Constants.StaticGF.All;
 				gf.FilterConditions = new ObservableCollection<GroupFilterConditionVM>();
 				gf.AllowEditing = false;
 				gf.ApplyToSeries = 0;
 				gf.BaseCondition = 1;
 				gf.FilterName = JMMClient.Properties.Resources.GroupFilter_All;
+
+				GroupFilterSortingCriteria gfsc = new GroupFilterSortingCriteria();
+				gfsc.SortType = GroupFilterSorting.SortName;
+				gfsc.SortDirection = GroupFilterSortDirection.Asc;
+
+				gf.SortCriteriaList.Add(gfsc);
+				return gf;
+			}
+		}
+
+		public static GroupFilterVM PredefinedGroupsFilter
+		{
+			get
+			{
+				GroupFilterVM gf = new GroupFilterVM();
+				gf.GroupFilterID = Constants.StaticGF.Predefined;
+				gf.FilterConditions = new ObservableCollection<GroupFilterConditionVM>();
+				gf.AllowEditing = false;
+				gf.ApplyToSeries = 0;
+				gf.BaseCondition = 1;
+				gf.FilterName = JMMClient.Properties.Resources.GroupFilter_Predefined;
 
 				GroupFilterSortingCriteria gfsc = new GroupFilterSortingCriteria();
 				gfsc.SortType = GroupFilterSorting.SortName;
@@ -63,6 +84,7 @@ namespace JMMClient.ViewModel
 				#region All
 
 				gfilters.Add(AllGroupsFilter);
+				gfilters.Add(PredefinedGroupsFilter);
 
 				#endregion
 

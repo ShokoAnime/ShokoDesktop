@@ -2526,7 +2526,7 @@ namespace JMMClient
 		public bool GroupFilter_GroupSearch(object obj)
 		{
 			AnimeGroupVM grpvm = obj as AnimeGroupVM;
-			if (grpvm == null) return true;
+			if (grpvm == null) return false;
 
 			return GroupSearchFilterHelper.EvaluateGroupFilter(groupFilterVM, grpvm);
 		}

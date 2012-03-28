@@ -1249,6 +1249,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Predefined Filters.
+        /// </summary>
+        public static string GroupFilter_Predefined {
+            get {
+                return ResourceManager.GetString("GroupFilter_Predefined", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Double click on the entries to add them to the list.
         /// </summary>
         public static string GroupFilter_VideoQuality_Help {

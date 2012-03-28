@@ -1661,4 +1661,7 @@
   <data name="AniDBScheduleMyListStats" xml:space="preserve">
     <value>Automatically Get MyList Stats From AniDB</value>
   </data>
+  <data name="GroupFilter_Predefined" xml:space="preserve">
+    <value>Predefined Filters</value>
+  </data>
 </root>

@@ -108,6 +108,17 @@ namespace JMMClient
 			}
 		}
 
+		private string predefinedCriteria = "";
+		public string PredefinedCriteria
+		{
+			get { return predefinedCriteria; }
+			set
+			{
+				predefinedCriteria = value;
+				NotifyPropertyChanged("PredefinedCriteria");
+			}
+		}
+
 		public int GroupsCount
 		{
 			get
@@ -145,6 +156,45 @@ namespace JMMClient
 
 			// make sure the user has not filtered this out
 			if (!JMMServerVM.Instance.CurrentUser.EvaluateGroup(grp)) return false;
+
+			if (this.GroupFilterID.Value < 0)
+			{
+				if (this.GroupFilterID.Value == Constants.StaticGF.Predefined ||
+					this.GroupFilterID.Value == Constants.StaticGF.Predefined_Categories ||
+					this.GroupFilterID.Value == Constants.StaticGF.Predefined_Years) 
+					return false;
+
+				if (this.GroupFilterID.Value == Constants.StaticGF.Predefined_Categories_Child)
+				{
+					// find all the groups that qualify by this category
+					int index = grp.Stat_AllCategories.IndexOf(this.PredefinedCriteria, 0, StringComparison.InvariantCultureIgnoreCase);
+					if (index > -1)
+						return true;
+					else
+						return false;
+				}
+
+				if (this.GroupFilterID.Value == Constants.StaticGF.Predefined_Years_Child)
+				{
+					// find all the groups that qualify by this year
+					int startYear = 0;
+					if (!grp.Stat_AirDate_Min.HasValue)
+						return false;
+					else
+						startYear = grp.Stat_AirDate_Min.Value.Year;
+
+					int endYear = int.MaxValue;
+					if (grp.Stat_AirDate_Max.HasValue) endYear = grp.Stat_AirDate_Max.Value.Year;
+
+					int critYear = 0;
+					if (!int.TryParse(this.PredefinedCriteria, out critYear)) return false;
+
+					if (critYear >= startYear && critYear <= endYear) return true;
+					return false;
+
+					
+				}
+			}
 
 			// first check for anime groups which are included exluded every time
 			foreach (GroupFilterConditionVM gfc in FilterConditions)
@@ -827,21 +877,120 @@ namespace JMMClient
 			//if (MainListHelperVM.Instance.AllGroups.Count == 0)
 			//	MainListHelperVM.Instance.RefreshGroupsSeriesData();
 
-			AnimeGroupVM.SortMethod = AnimeGroupSortMethod.SortName;
-			List<AnimeGroupVM> grps = new List<AnimeGroupVM>(MainListHelperVM.Instance.AllGroups);
-			//grps.Sort();
-
-			foreach (AnimeGroupVM grp in grps)
+			if (this.GroupFilterID.Value == Constants.StaticGF.All ||
+				this.GroupFilterID.Value == Constants.StaticGF.Predefined_Categories_Child ||
+				this.GroupFilterID.Value == Constants.StaticGF.Predefined_Years_Child ||
+				this.GroupFilterID.Value >= 0)
 			{
-				// ignore sub groups
-				if (grp.AnimeGroupParentID.HasValue) continue;
+				AnimeGroupVM.SortMethod = AnimeGroupSortMethod.SortName;
+				List<AnimeGroupVM> grps = new List<AnimeGroupVM>(MainListHelperVM.Instance.AllGroups);
+				//grps.Sort();
 
-				if (EvaluateGroupFilter(grp))
+				foreach (AnimeGroupVM grp in grps)
 				{
-					if (grp.AllAnimeSeries.Count == 1)
-						wrappers.Add(grp.AllAnimeSeries[0]);
-					else
-						wrappers.Add(grp);
+					// ignore sub groups
+					if (grp.AnimeGroupParentID.HasValue) continue;
+
+					if (EvaluateGroupFilter(grp))
+					{
+						if (grp.AllAnimeSeries.Count == 1)
+							wrappers.Add(grp.AllAnimeSeries[0]);
+						else
+							wrappers.Add(grp);
+					}
+				}
+			}
+			else if (this.GroupFilterID.Value == Constants.StaticGF.Predefined) // top level pre-defined
+			{
+				GroupFilterVM gf = new GroupFilterVM();
+				gf.GroupFilterID = Constants.StaticGF.Predefined_Years;
+				gf.FilterConditions = new ObservableCollection<GroupFilterConditionVM>();
+				gf.AllowEditing = false;
+				gf.ApplyToSeries = 0;
+				gf.BaseCondition = 1;
+				gf.FilterName = "By Year";
+
+				wrappers.Add(gf);
+
+				GroupFilterVM gfGenres = new GroupFilterVM();
+				gfGenres.GroupFilterID = Constants.StaticGF.Predefined_Categories;
+				gfGenres.FilterConditions = new ObservableCollection<GroupFilterConditionVM>();
+				gfGenres.AllowEditing = false;
+				gfGenres.ApplyToSeries = 0;
+				gfGenres.BaseCondition = 1;
+				gfGenres.FilterName = "By Category";
+
+				wrappers.Add(gfGenres);
+			}
+			else if (this.GroupFilterID.Value == Constants.StaticGF.Predefined_Years)
+			{
+				List<int> years = new List<int>();
+
+				List<AnimeSeriesVM> series = new List<AnimeSeriesVM>(MainListHelperVM.Instance.AllSeries);
+				foreach (AnimeSeriesVM ser in series)
+				{
+					if (!JMMServerVM.Instance.CurrentUser.EvaluateSeries(ser)) continue;
+
+					int startYear = 0;
+					if (!ser.Stat_AirDate_Min.HasValue) continue;
+					startYear = ser.Stat_AirDate_Min.Value.Year;
+
+					int endYear = DateTime.Now.AddYears(1).Year;
+					if (ser.Stat_AirDate_Max.HasValue)
+						endYear = ser.Stat_AirDate_Max.Value.Year;
+
+					for (int i = startYear; i <= endYear; i++)
+					{
+						if (!years.Contains(i)) years.Add(i);
+					}
+				}
+
+				years.Sort();
+
+				foreach (int yr in years)
+				{
+					GroupFilterVM gf = new GroupFilterVM();
+					gf.GroupFilterID = Constants.StaticGF.Predefined_Years_Child;
+					gf.FilterConditions = new ObservableCollection<GroupFilterConditionVM>();
+					gf.AllowEditing = false;
+					gf.ApplyToSeries = 0;
+					gf.BaseCondition = 1;
+					gf.FilterName = yr.ToString();
+					gf.PredefinedCriteria = yr.ToString();
+
+					wrappers.Add(gf);
+				}
+			}
+			else if (this.GroupFilterID.Value == Constants.StaticGF.Predefined_Categories)
+			{
+				List<string> categories = new List<string>();
+
+				List<AnimeGroupVM> grps = new List<AnimeGroupVM>(MainListHelperVM.Instance.AllGroups);
+				foreach (AnimeGroupVM grp in grps)
+				{
+					if (!JMMServerVM.Instance.CurrentUser.EvaluateGroup(grp)) continue;
+
+					foreach (string cat in grp.CategoriesList)
+					{
+						if (!categories.Contains(cat) && !string.IsNullOrEmpty(cat))
+							categories.Add(cat);
+					}
+				}
+
+				categories.Sort();
+
+				foreach (string cat in categories)
+				{
+					GroupFilterVM gf = new GroupFilterVM();
+					gf.GroupFilterID = Constants.StaticGF.Predefined_Categories_Child;
+					gf.FilterConditions = new ObservableCollection<GroupFilterConditionVM>();
+					gf.AllowEditing = false;
+					gf.ApplyToSeries = 0;
+					gf.BaseCondition = 1;
+					gf.FilterName = cat;
+					gf.PredefinedCriteria = cat;
+
+					wrappers.Add(gf);
 				}
 			}
 
@@ -879,6 +1028,7 @@ namespace JMMClient
 			this.FilterName = contract.GroupFilterName;
 			this.ApplyToSeries = contract.ApplyToSeries;
 			this.BaseCondition = contract.BaseCondition;
+			this.PredefinedCriteria = "";
 			//this.FilterConditions = new ObservableCollection<GroupFilterConditionVM>();
 			this.FilterConditions.Clear();
 			if (contract.FilterConditions != null)
