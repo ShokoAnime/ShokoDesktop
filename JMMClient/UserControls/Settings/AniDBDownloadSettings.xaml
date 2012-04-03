@@ -20,26 +20,6 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AniDBDownloadRelated}"  VerticalAlignment="Center"></TextBlock>
-        </StackPanel>
-
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Margin="0,5,5,0">
-            <CheckBox Name="chkDownloadRelated" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=AniDB_DownloadRelatedAnime}" VerticalAlignment="Center"
-                      ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=AniDBDownloadRelated}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AniDBDownloadRelated}}"/>
-        </StackPanel>
-
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AniDBDownloadSimilar}" VerticalAlignment="Center"></TextBlock>
-        </StackPanel>
-
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" Margin="0,5,5,0">
-            <CheckBox Name="chkDownloadSimilar" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=AniDB_DownloadSimilarAnime}" VerticalAlignment="Center"
-                      ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=AniDBDownloadSimilar}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AniDBDownloadSimilar}}"/>
-        </StackPanel>
-
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2" Margin="0,5,15,0">
             <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AniDBDownloadReviews}" VerticalAlignment="Center"></TextBlock>
         </StackPanel>

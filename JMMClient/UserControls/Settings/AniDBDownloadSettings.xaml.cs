@@ -24,9 +24,7 @@ namespace JMMClient.UserControls
 			InitializeComponent();
 
 			chkDownloadGroups.Click += new RoutedEventHandler(settingChanged);
-			chkDownloadRelated.Click += new RoutedEventHandler(settingChanged);
 			chkDownloadReviews.Click += new RoutedEventHandler(settingChanged);
-			chkDownloadSimilar.Click += new RoutedEventHandler(settingChanged);
 		}
 
 		void settingChanged(object sender, RoutedEventArgs e)
