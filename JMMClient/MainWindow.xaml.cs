@@ -1145,14 +1145,26 @@ namespace JMMClient
 					bookmark.Priority = 1;
 					if (bookmark.Save())
 						MainListHelperVM.Instance.RefreshBookmarkedAnime();
-					
-
-					
+						
 				}
 
 				if (obj.GetType() == typeof(MissingEpisodeVM))
 				{
 					MissingEpisodeVM rec = obj as MissingEpisodeVM;
+					if (rec == null) return;
+
+					BookmarkedAnimeVM bookmark = new BookmarkedAnimeVM();
+					bookmark.AnimeID = rec.AnimeID;
+					bookmark.Downloading = 0;
+					bookmark.Notes = "";
+					bookmark.Priority = 1;
+					if (bookmark.Save())
+						MainListHelperVM.Instance.RefreshBookmarkedAnime();
+				}
+
+				if (obj.GetType() == typeof(AniDB_AnimeVM))
+				{
+					AniDB_AnimeVM rec = obj as AniDB_AnimeVM;
 					if (rec == null) return;
 
 					BookmarkedAnimeVM bookmark = new BookmarkedAnimeVM();

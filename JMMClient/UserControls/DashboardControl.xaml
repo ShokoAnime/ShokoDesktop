@@ -24,7 +24,7 @@
             <local:RecWatchTemplateSelector x:Key="RecWatchTemplateSelector"/>
             <local:RecDownloadTemplateSelector x:Key="RecDownloadTemplateSelector"/>
             <local:DashRecentAdditionsTemplateSelector x:Key="DashRecentAdditionsTemplateSelector"/>
-            
+
 
             <RoutedUICommand x:Key="PlayEpisodeCommand" Text="PlayEpisodeCommand" />
             <RoutedUICommand x:Key="ToggleWatchedStatusCommand" Text="ToggleWatchedStatusCommand" />
@@ -102,7 +102,7 @@
                                         <Image Grid.Column="0" Grid.Row="0" Width="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=DisplayWidth_EpisodeImage}" 
                                                Source="{Binding EpisodeImageLoading}" 
                                                 Margin="10,5,0,5" VerticalAlignment="Top" HorizontalAlignment="Left">
-                                            
+
                                         </Image>
 
                                         <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding EpisodeOverviewLoading}" HorizontalAlignment="Left" Margin="10,5,0,5"  Foreground="Black" 
@@ -650,6 +650,19 @@
                                         <Image Height="16" Width="16" Source="/Images/16_television.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000">
                                             <Image.ToolTip>
                                                 <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_CreateSeries}"/>
+                                            </Image.ToolTip>
+                                        </Image>
+
+                                    </StackPanel>
+                                </Button>
+
+                                <!-- bookmark anime button -->
+                                <Button Margin="5,0,0,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center"
+                                    Command="{DynamicResource BookmarkAnimeCommand}" CommandParameter="{Binding}">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                        <Image Height="16" Width="16" Source="/Images/32_bookmark.png" Margin="1,0,1,0" ToolTipService.ShowDuration="60000">
+                                            <Image.ToolTip>
+                                                <TextBlock Text="Bookmark this anime to download later"/>
                                             </Image.ToolTip>
                                         </Image>
 
@@ -2877,7 +2890,7 @@
                             </Button>
                         </StackPanel>
 
-                        
+
 
                         <!-- Number of Items -->
                         <StackPanel Orientation="Horizontal" Margin="10,2,2,2" Visibility="{Binding Source={x:Static local:DashboardVM.Instance}, Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}" >
@@ -2921,7 +2934,7 @@
                         <StackPanel Orientation="Horizontal" Margin="10,2,2,2" >
                             <ComboBox Name="cboDashRecentAdditionsType" VerticalAlignment="Center"></ComboBox>
                         </StackPanel>
-                        
+
                         <StackPanel />
                     </StackPanel>
 
