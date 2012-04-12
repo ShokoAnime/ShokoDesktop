@@ -46,7 +46,8 @@ namespace JMMClient
 		private static readonly int TAB_MAIN_FileManger = 5;
 		private static readonly int TAB_MAIN_Settings = 6;
 		private static readonly int TAB_MAIN_Pinned = 7;
-		private static readonly int TAB_MAIN_Search = 8;
+		private static readonly int TAB_MAIN_Downloads = 8;
+		private static readonly int TAB_MAIN_Search = 9;
 
 		private static readonly int TAB_FileManger_Unrecognised = 0;
 		private static readonly int TAB_FileManger_Ignored = 1;
@@ -64,6 +65,8 @@ namespace JMMClient
 		private static readonly int TAB_Settings_TvDB = 2;
 		private static readonly int TAB_Settings_WebCache = 3;
 		private static readonly int TAB_Settings_Display = 4;
+
+		private static System.Timers.Timer postStartTimer = null;
 
 		private int lastFileManagerTab = TAB_FileManger_Unrecognised;
 
@@ -168,12 +171,20 @@ namespace JMMClient
 				btnAbout.Click += new RoutedEventHandler(btnAbout_Click);
 
 				JMMServerVM.Instance.BaseImagePath = Utils.GetBaseImagesPath();
+
+				// timer for automatic updates
+				postStartTimer = new System.Timers.Timer();
+				postStartTimer.AutoReset = false;
+				postStartTimer.Interval = 5 * 1000; // 15 seconds
+				postStartTimer.Elapsed += new System.Timers.ElapsedEventHandler(postStartTimer_Elapsed);
 			}
 			catch (Exception ex)
 			{
 				logger.ErrorException(ex.ToString(), ex);
 			}
 		}
+
+		
 
 		void btnAbout_Click(object sender, RoutedEventArgs e)
 		{
@@ -261,13 +272,26 @@ namespace JMMClient
 			{
 				JMMServerVM.Instance.ApplicationVersion = Utils.GetApplicationVersion(a);
 			}
-			
 
-			automaticUpdater.ForceCheckForUpdate(true);
+			postStartTimer.Start();
+		
 
 		}
 
-		
+		void postStartTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+		{
+			postStartTimer.Stop();
+
+			UTorrentHelperVM.Instance.Init();
+
+			System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
+			{
+				automaticUpdater.ForceCheckForUpdate(true);
+			});
+
+			if (JMMServerVM.Instance.ServerOnline)
+				DownloadAllImages();
+		}
 		
 
 		void MainWindow_LayoutUpdated(object sender, EventArgs e)

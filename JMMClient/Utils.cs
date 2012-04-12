@@ -31,6 +31,19 @@ namespace JMMClient
 		[DllImport("kernel32.dll", CharSet = CharSet.Ansi, SetLastError = true)]
 		extern static IntPtr GetProcAddress(IntPtr hModule, string methodName);
 
+		#region PrettyFilesize
+		[DllImport("Shlwapi.dll", CharSet = CharSet.Auto)]
+		static extern long StrFormatByteSize(long fileSize,
+		[MarshalAs(UnmanagedType.LPTStr)] StringBuilder buffer, int bufferSize);
+
+		public static string FormatByteSize(long fileSize)
+		{
+			StringBuilder sbBuffer = new StringBuilder(20);
+			StrFormatByteSize(fileSize, sbBuffer, 20);
+			return sbBuffer.ToString();
+		}
+		#endregion
+
 		public static string GetED2KDump(string result)
 		{
 			// try and get the ed2k dump from the keyboard

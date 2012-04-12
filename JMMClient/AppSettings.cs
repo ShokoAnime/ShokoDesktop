@@ -1500,6 +1500,137 @@ namespace JMMClient
 			ConfigurationManager.RefreshSection("appSettings");
 		}
 
+		public static string UTorrentAddress
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+
+				string val = appSettings["UTorrentAddress"];
+				if (string.IsNullOrEmpty(val))
+				{
+					// default value
+					val = "";
+					UpdateSetting("UTorrentAddress", val);
+				}
+				return val;
+			}
+			set
+			{
+				UpdateSetting("UTorrentAddress", value);
+			}
+		}
+
+		public static string UTorrentPort
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+
+				string val = appSettings["UTorrentPort"];
+				if (string.IsNullOrEmpty(val))
+				{
+					// default value
+					val = "";
+					UpdateSetting("UTorrentPort", val);
+				}
+				return val;
+			}
+			set
+			{
+				UpdateSetting("UTorrentPort", value);
+			}
+		}
+
+		public static string UTorrentUsername
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+
+				string val = appSettings["UTorrentUsername"];
+				if (string.IsNullOrEmpty(val))
+				{
+					// default value
+					val = "";
+					UpdateSetting("UTorrentUsername", val);
+				}
+				return val;
+			}
+			set
+			{
+				UpdateSetting("UTorrentUsername", value);
+			}
+		}
+
+		public static string UTorrentPassword
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+
+				string val = appSettings["UTorrentPassword"];
+				if (string.IsNullOrEmpty(val))
+				{
+					// default value
+					val = "";
+					UpdateSetting("UTorrentPassword", val);
+				}
+				return val;
+			}
+			set
+			{
+				UpdateSetting("UTorrentPassword", value);
+			}
+		}
+
+		public static int UTorrentRefreshInterval
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+
+				string val = appSettings["UTorrentRefreshInterval"];
+				int ival = 0;
+				if (int.TryParse(val, out ival))
+				{
+					if (ival < 1)
+						return 5;
+
+					if (ival > 999)
+						return 5;
+
+					return ival;
+				}
+				else
+				{
+					return 5; // default value
+				}
+			}
+			set
+			{
+				UpdateSetting("UTorrentRefreshInterval", value.ToString());
+			}
+		}
+
+		public static bool UTorrentAutoRefresh
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["UTorrentAutoRefresh"];
+				bool bval = false;
+				if (bool.TryParse(val, out bval))
+					return bval;
+				else
+					return true; // default value
+			}
+			set
+			{
+				UpdateSetting("UTorrentAutoRefresh", value.ToString());
+			}
+		}
+
 		public static void DebugSettingsToLog()
 		{
 			#region System Info

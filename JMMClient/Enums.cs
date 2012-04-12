@@ -334,6 +334,27 @@ namespace JMMClient
 		Series = 2
 	}
 
+	public enum TorrentFilePriority
+	{
+		DontDownload = 0,
+		Low = 1,
+		Medium = 2,
+		High = 3
+	}
+
+	public enum TorrentOriginator
+	{
+		Manual = 0,
+		Series = 1,
+		Episode = 2
+	}
+
+	public enum TorrentDownloadStatus
+	{
+		Ongoing = 0,
+		Complete = 1
+	}
+
 	public class EnumTranslator
 	{
 		public static string EpisodeTypeTranslated(EpisodeType epType)

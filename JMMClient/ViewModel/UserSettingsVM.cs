@@ -681,6 +681,67 @@ namespace JMMClient
 			}
 		}
 
+		public string UTorrentAddress
+		{
+			get { return AppSettings.UTorrentAddress; }
+			set
+			{
+				AppSettings.UTorrentAddress = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("UTorrentAddress"));
+			}
+		}
+
+		public string UTorrentPort
+		{
+			get { return AppSettings.UTorrentPort; }
+			set
+			{
+				AppSettings.UTorrentPort = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("UTorrentPort"));
+			}
+		}
+
+		public string UTorrentUsername
+		{
+			get { return AppSettings.UTorrentUsername; }
+			set
+			{
+				AppSettings.UTorrentUsername = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("UTorrentUsername"));
+			}
+		}
+
+		public string UTorrentPassword
+		{
+			get { return AppSettings.UTorrentPassword; }
+			set
+			{
+				AppSettings.UTorrentPassword = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("UTorrentPassword"));
+			}
+		}
+
+		public int UTorrentRefreshInterval
+		{
+			get { return AppSettings.UTorrentRefreshInterval; }
+			set
+			{
+				AppSettings.UTorrentRefreshInterval = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("UTorrentRefreshInterval"));
+			}
+		}
+
+		public bool UTorrentAutoRefresh
+		{
+			get { return AppSettings.UTorrentAutoRefresh; }
+			set
+			{
+				AppSettings.UTorrentAutoRefresh = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("UTorrentAutoRefresh"));
+			}
+		}
+
+
 		public int GetSeriesWidgetPosition(SeriesWidgets swid)
 		{
 			// read the series widgets order

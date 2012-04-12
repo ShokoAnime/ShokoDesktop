@@ -11,7 +11,8 @@
     <RootNamespace>JMMClient</RootNamespace>
     <AssemblyName>JMMDesktop</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -111,6 +112,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -142,6 +144,15 @@
     <Compile Include="DataTemplateSelectors\RecDownloadTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\RecWatchTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\TraktActivityTemplateSelector.cs" />
+    <Compile Include="Downloads\CsvParser.cs" />
+    <Compile Include="Downloads\CsvStream.cs" />
+    <Compile Include="Downloads\JSONHelper.cs" />
+    <Compile Include="Downloads\ListRefreshedEventArgs.cs" />
+    <Compile Include="Downloads\Torrent.cs" />
+    <Compile Include="Downloads\TorrentFile.cs" />
+    <Compile Include="Downloads\TorrentFileList.cs" />
+    <Compile Include="Downloads\TorrentList.cs" />
+    <Compile Include="Downloads\UTorrentHelper.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Forms\AboutForm.xaml.cs">
       <DependentUpon>AboutForm.xaml</DependentUpon>
@@ -280,6 +291,12 @@
     <Compile Include="UserControls\CloseableTabItem.cs" />
     <Compile Include="UserControls\DashboardControl.xaml.cs">
       <DependentUpon>DashboardControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Downloads\DownloadsSettingsControl.xaml.cs">
+      <DependentUpon>DownloadsSettingsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Downloads\DownloadsTorrentMonitorControl.xaml.cs">
+      <DependentUpon>DownloadsTorrentMonitorControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\DuplicateFileDetailControl.xaml.cs">
       <DependentUpon>DuplicateFileDetailControl.xaml</DependentUpon>
@@ -522,6 +539,7 @@
     <Compile Include="ViewModel\TvDB_LanguageVM.cs" />
     <Compile Include="ViewModel\TvDB_SeriesVM.cs" />
     <Compile Include="ViewModel\UserSettingsVM.cs" />
+    <Compile Include="ViewModel\UTorrentHelperVM.cs" />
     <Compile Include="ViewModel\VideoDetailedVM.cs" />
     <Compile Include="ViewModel\GroupFilterVM.cs" />
     <Compile Include="DataTemplateSelectors\GroupsSeriesDataTemplateSelector.cs" />
@@ -709,6 +727,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\DashboardControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Downloads\DownloadsSettingsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Downloads\DownloadsTorrentMonitorControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -925,7 +951,6 @@
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.de.resx">
@@ -1566,6 +1591,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\16_columns.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Torrents\tor_downloading.png" />
+    <Resource Include="Images\Torrents\tor_queued.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Torrents\tor_paused.png" />
+    <Resource Include="Images\Torrents\tor_seeding.png" />
+    <Resource Include="Images\Torrents\tor_stopped.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Torrents\tor_finished.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Torrents\tor_queuedseed.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

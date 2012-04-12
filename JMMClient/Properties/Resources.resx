@@ -547,7 +547,7 @@
     <value>Import Folders</value>
   </data>
   <data name="JMMServer" xml:space="preserve">
-    <value>OMM Server</value>
+    <value>JMM Server</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
