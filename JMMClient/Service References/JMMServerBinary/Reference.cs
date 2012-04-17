@@ -14568,6 +14568,12 @@ namespace JMMClient.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetAniDBSeiyuu", ReplyAction="http://tempuri.org/IJMMServer/GetAniDBSeiyuuResponse")]
         JMMClient.JMMServerBinary.Contract_AniDB_Seiyuu GetAniDBSeiyuu(int seiyuuID);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetPreviousEpisodeForUnwatched", ReplyAction="http://tempuri.org/IJMMServer/GetPreviousEpisodeForUnwatchedResponse")]
+        JMMClient.JMMServerBinary.Contract_AnimeEpisode GetPreviousEpisodeForUnwatched(int animeSeriesID, int userID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetEpisodeByAniDBEpisodeID", ReplyAction="http://tempuri.org/IJMMServer/GetEpisodeByAniDBEpisodeIDResponse")]
+        JMMClient.JMMServerBinary.Contract_AnimeEpisode GetEpisodeByAniDBEpisodeID(int episodeID, int userID);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/ScanDropFolders", ReplyAction="http://tempuri.org/IJMMServer/ScanDropFoldersResponse")]
         void ScanDropFolders();
         
@@ -15138,6 +15144,14 @@ namespace JMMClient.JMMServerBinary {
         
         public JMMClient.JMMServerBinary.Contract_AniDB_Seiyuu GetAniDBSeiyuu(int seiyuuID) {
             return base.Channel.GetAniDBSeiyuu(seiyuuID);
+        }
+        
+        public JMMClient.JMMServerBinary.Contract_AnimeEpisode GetPreviousEpisodeForUnwatched(int animeSeriesID, int userID) {
+            return base.Channel.GetPreviousEpisodeForUnwatched(animeSeriesID, userID);
+        }
+        
+        public JMMClient.JMMServerBinary.Contract_AnimeEpisode GetEpisodeByAniDBEpisodeID(int episodeID, int userID) {
+            return base.Channel.GetEpisodeByAniDBEpisodeID(episodeID, userID);
         }
         
         public void ScanDropFolders() {

@@ -860,7 +860,7 @@ namespace JMMClient
 
 							}
 							TimeSpan ts = DateTime.Now - start;
-							logger.Trace("Got TvDB Episodes in {0} ms", ts.TotalMilliseconds);
+							//logger.Trace("Got TvDB Episodes in {0} ms", ts.TotalMilliseconds);
 						}
 					}
 					catch (Exception ex)
@@ -901,7 +901,7 @@ namespace JMMClient
 
 							}
 							TimeSpan ts = DateTime.Now - start;
-							logger.Trace("Got TvDB Seasons in {0} ms", ts.TotalMilliseconds);
+							//logger.Trace("Got TvDB Seasons in {0} ms", ts.TotalMilliseconds);
 						}
 					}
 					catch (Exception ex)
@@ -948,7 +948,7 @@ namespace JMMClient
 
 							}
 							TimeSpan ts = DateTime.Now - start;
-							logger.Trace("Got TvDB Seasons in {0} ms", ts.TotalMilliseconds);
+							//logger.Trace("Got TvDB Seasons in {0} ms", ts.TotalMilliseconds);
 						}
 					}
 					catch (Exception ex)
@@ -1088,6 +1088,54 @@ namespace JMMClient
 			AllAnime = Sorting.MultiSort<AniDB_AnimeVM>(AllAnime, sortCriteria);
 
 			
+			foreach (AniDB_AnimeVM anime in AllAnime)
+			{
+				LDContainer ldc = new LDContainer();
+				ldc.AnimeID = anime.AnimeID;
+				ldc.LD = anime.LowestLevenshteinDistance(input);
+				ldc.Anime = anime;
+				allLDs.Add(ldc);
+			}
+
+			// now sort the groups by best score
+			sortCriteria = new List<SortPropOrFieldAndDirection>();
+			sortCriteria.Add(new SortPropOrFieldAndDirection("LD", false, SortType.eInteger));
+			allLDs = Sorting.MultiSort<LDContainer>(allLDs, sortCriteria);
+
+			List<AniDB_AnimeVM> retAnime = new List<AniDB_AnimeVM>();
+			for (int i = 0; i < allLDs.Count; i++)
+			{
+				AniDB_AnimeVM anime = allLDs[i].Anime;
+				retAnime.Add(anime);
+				if (i == maxResults - 1) break;
+			}
+
+			foreach (AniDB_AnimeVM anime in AllAnime)
+			{
+				retAnime.Add(anime);
+			}
+
+			return retAnime;
+		}
+
+		public static List<AniDB_AnimeVM> BestLevenshteinDistanceMatchesCache(string input, int maxResults)
+		{
+			List<LDContainer> allLDs = new List<LDContainer>();
+
+			List<AniDB_AnimeVM> AllAnime = new List<AniDB_AnimeVM>(MainListHelperVM.Instance.AllAnimeDictionary.Values);
+			List<JMMServerBinary.Contract_AniDBAnime> animeRaw = JMMServerVM.Instance.clientBinaryHTTP.GetAllAnime();
+			foreach (JMMServerBinary.Contract_AniDBAnime anime in animeRaw)
+			{
+				AniDB_AnimeVM animeNew = new AniDB_AnimeVM(anime);
+				AllAnime.Add(animeNew);
+			}
+
+			// now sort the groups by name
+			List<SortPropOrFieldAndDirection> sortCriteria = new List<SortPropOrFieldAndDirection>();
+			sortCriteria.Add(new SortPropOrFieldAndDirection("MainTitle", false, SortType.eString));
+			AllAnime = Sorting.MultiSort<AniDB_AnimeVM>(AllAnime, sortCriteria);
+
+
 			foreach (AniDB_AnimeVM anime in AllAnime)
 			{
 				LDContainer ldc = new LDContainer();

@@ -88,7 +88,7 @@ namespace JMMClient
 				WebResponse.Close();
 				responseStream.Close();
 
-				logger.Trace("DownloadWebPage Response: {0}", output);
+				//logger.Trace("DownloadWebPage Response: {0}", output);
 
 				return output;
 			}

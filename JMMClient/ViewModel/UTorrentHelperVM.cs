@@ -109,6 +109,22 @@ namespace JMMClient
 			uTorrent.ListRefreshedEvent += new UTorrentHelper.ListRefreshedEventHandler(uTorrent_ListRefreshedEvent);
 		}
 
+		public bool ValidateCredentials()
+		{
+			try
+			{
+				CredentialsValid = uTorrent.ValidCredentials();
+				CredentialsInvalid = !CredentialsValid;
+			}
+			catch (Exception ex)
+			{
+				logger.ErrorException(ex.ToString(), ex);
+				return false;
+			}
+
+			return true;
+		}
+
 		public bool Init()
 		{
 			try
@@ -249,6 +265,11 @@ namespace JMMClient
 		public void PauseTorrent(string hash)
 		{
 			uTorrent.PauseTorrent(hash);
+		}
+
+		public void AddTorrentFromURL(string downloadURL)
+		{
+			uTorrent.AddTorrentFromURL(downloadURL);
 		}
 	}
 }

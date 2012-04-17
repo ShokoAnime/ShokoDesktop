@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="JMMClient.UserControls.DownloadsTorrentMonitorControl"
+﻿<UserControl x:Class="JMMClient.UserControls.DownloadsBrowseTorrentsControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -15,12 +15,29 @@
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
+            <RoutedUICommand x:Key="BrowseTorrentsCommand" Text="BrowseTorrentsCommand" />
+
+            <!-- torrentLoadTemplate -->
+            <DataTemplate x:Key="torrentLoadTemplate">
+                <StackPanel Orientation="Horizontal" Margin="0,0,10,0">
+                    <Button Margin="2,2,2,2" Style="{DynamicResource RoundButtonStyle}"
+                            Command="{StaticResource BrowseTorrentsCommand}" CommandParameter="{Binding}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                            <Image Height="16" Width="16" Source="/Images/16_Refresh.png" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Binding Path=TorrentSourceName}" Margin="0,0,5,0"/>
+                        </StackPanel>
+                    </Button>
+
+
+                </StackPanel>
+            </DataTemplate>
+
         </ResourceDictionary>
 
     </UserControl.Resources>
 
     <UserControl.CommandBindings>
-
+        <CommandBinding Command="{StaticResource BrowseTorrentsCommand}" Executed="CommandBinding_BrowseTorrents" />
 
     </UserControl.CommandBindings>
 
@@ -34,48 +51,51 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <DockPanel Grid.Column="0" Grid.Row="0" 
-                   Visibility="{Binding Source={x:Static local:UTorrentHelperVM.Instance}, Path=CredentialsValid, Converter={StaticResource BooleanToVisibilityConverter}}">
+        <DockPanel Grid.Column="0" Grid.Row="0" >
 
             <Border DockPanel.Dock="Top" Background="#F1F1F1" BorderBrush="DarkGray" BorderThickness="1" Padding="5">
-                <StackPanel Orientation="Horizontal">
-                    <!-- Refresh -->
-                    <Button Name="btnRefresh" Margin="2,2,2,2" Style="{DynamicResource RoundButtonStyle}">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                            <Image Height="16" Width="16" Source="/Images/16_Refresh.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Refresh}" Margin="0,0,5,0"/>
+
+                <StackPanel Orientation="Vertical">
+                    <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled"  VerticalAlignment="Center" Background="Transparent" Padding="0" BorderThickness="0" Margin="0,0,0,5"
+                     ItemTemplate="{StaticResource torrentLoadTemplate}" ItemsSource="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=AllTorrentSources}">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel  Focusable="False"  Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+
+                    </ListBox>
+
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Background="#F1F1F1">
+
+
+                        <!-- filter box -->
+                        <StackPanel Orientation="Horizontal" >
+                            <TextBlock VerticalAlignment="Center" Text="Filter" Margin="5,0,0,0" Foreground="DarkGray"/>
+                            <Image Source="/Images/MagnifyingGlass7.png" Width="16" Height="16" Margin="5,0,0,0" ></Image>
+
+                            <TextBox Name="txtFileSearch" Width="180" Margin="10,3,0,3" BorderThickness="1">
+
+                            </TextBox>
+                            <Button Name="btnClearSearch" Style="{DynamicResource FlatButtonStyle}">
+                                <Image Height="16" Width="16" Source="/Images/32_Delete.png" Margin="0,0,0,0"/>
+                            </Button>
                         </StackPanel>
-                    </Button>
 
-                    <!-- downloads -->
-                    <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
-                        <Image Source="/Images/16_down.png" Width="16" Height="16" Margin="5,0,0,0" ></Image>
-                        <TextBlock VerticalAlignment="Center" Text="{Binding Source={x:Static local:UTorrentHelperVM.Instance},Path=DownloadSpeedSummaryFormatted}" Margin="5,0,0,0" Foreground="DarkGray"/>
-
-                    </StackPanel>
-
-                    <!-- uploads -->
-                    <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
-                        <Image Source="/Images/16_up.png" Width="16" Height="16" Margin="5,0,0,0" ></Image>
-                        <TextBlock VerticalAlignment="Center" Text="{Binding Source={x:Static local:UTorrentHelperVM.Instance},Path=UploadSpeedSummaryFormatted}" Margin="5,0,0,0" Foreground="DarkGray"/>
-
-                    </StackPanel>
-
-                    <!-- connection status -->
-                    <StackPanel Orientation="Horizontal" Margin="30,0,0,0">
-
-                        <TextBlock VerticalAlignment="Center" Text="{Binding Source={x:Static local:UTorrentHelperVM.Instance},Path=ConnectionStatus}" Margin="5,0,0,0" Foreground="DarkGray"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Binding Path=TorrentCount, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DownloadsBrowseTorrentsControl}}}" Margin="10,0,0,0" Foreground="DarkGray" />
+                        <TextBlock VerticalAlignment="Center" Text="Torrents" Margin="5,0,0,0" Foreground="DarkGray"/>
 
                     </StackPanel>
 
 
                 </StackPanel>
+
             </Border >
 
 
             <!-- grid for torrents -->
-            <DataGrid Name="dgTorrents" ItemsSource="{Binding Source={x:Static local:UTorrentHelperVM.Instance},Path=ViewTorrents}" DockPanel.Dock="Top"
-                  AutoGenerateColumns="False" CanUserReorderColumns="True" CanUserResizeColumns="True" CanUserResizeRows="False" CanUserSortColumns="True" 
+            <DataGrid Name="dgTorrents" ItemsSource="{Binding Path=ViewTorrentLinks, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DownloadsBrowseTorrentsControl}}}"      
+                  AutoGenerateColumns="False" CanUserReorderColumns="True" CanUserResizeColumns="True" CanUserResizeRows="False" CanUserSortColumns="True" DockPanel.Dock="Top"
                                   AlternatingRowBackground="Cornsilk"  AlternationCount="2" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="LightGray" 
                                   AreRowDetailsFrozen="False" CanUserAddRows="False" CanUserDeleteRows="False">
                 <DataGrid.CellStyle>
@@ -93,24 +113,10 @@
                     </Style>
                 </DataGrid.CellStyle>
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn Header="" IsReadOnly="True">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Image Source="{Binding StatusImage}" Width="16" Height="16" />
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="Hash" Binding="{Binding Hash}" IsReadOnly="True" Visibility="Hidden" />
-                    <DataGridTextColumn Header="#" Binding="{Binding TorrentQueueOrder}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="Size" Binding="{Binding SizeFormatted}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="Done" Binding="{Binding PercentProgressFormatted}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="Status" Binding="{Binding StatusFormatted}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="Seeds" Binding="{Binding SeedsFormatted}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="Peers" Binding="{Binding PeersFormatted}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="Down Speed" Binding="{Binding DownloadSpeedFormatted}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="Up Speed" Binding="{Binding UploadSpeedFormatted}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="Ratio" Binding="{Binding RatioFormatted}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="Name" Binding="{Binding TorrentName}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="Size" Binding="{Binding Size}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="Seeders" Binding="{Binding Seeders}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="Leechers" Binding="{Binding Leechers}" IsReadOnly="True" />
 
                 </DataGrid.Columns>
             </DataGrid>
@@ -118,42 +124,7 @@
 
 
 
-        <!-- message when credentials not enetered -->
-        <Grid Margin="3" Grid.Column="0" Grid.Row="0" VerticalAlignment="Top"
-              Visibility="{Binding Source={x:Static local:UTorrentHelperVM.Instance}, Path=CredentialsInvalid, Converter={StaticResource BooleanToVisibilityConverter}}">
 
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-
-            <!-- Prompt text -->
-            <Border BorderThickness="1,1,1,0" BorderBrush="DarkGray" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" 
-                            Background="FloralWhite">
-
-                <StackPanel Orientation="Horizontal" Margin="10,10,10,5">
-                    <Image Height="16" Width="16" Source="/Images/32_Info.png" Margin="0,0,5,0"/>
-                    <TextBlock Text="You haven't specified valid uTorrent credentials" FontWeight="Bold" VerticalAlignment="Center" Foreground="Black"/>
-                </StackPanel>
-            </Border>
-
-            <Border BorderThickness="1,0,1,1" BorderBrush="DarkGray" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" 
-                            Background="FloralWhite">
-
-                <StackPanel Orientation="Horizontal" Margin="10,10,10,10">
-                    <TextBlock Text="Please enter your credentials on the setting tab and then return " VerticalAlignment="Center" Foreground="Black"/>
-
-                </StackPanel>
-            </Border>
-
-
-
-        </Grid>
 
         <GridSplitter HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="1"
                                 Grid.Column="0" ResizeBehavior="PreviousAndNext"
@@ -165,7 +136,7 @@
             <TabItem Header="Details">
 
                 <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                    <Grid Visibility="{Binding Path=HasAttachedSeries, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DownloadsTorrentMonitorControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Grid Visibility="{Binding Path=HasAttachedSeries, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DownloadsBrowseTorrentsControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
 
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -247,35 +218,6 @@
 
                     </Grid>
                 </ScrollViewer>
-            </TabItem>
-
-            <TabItem Header="Files">
-
-                <DataGrid Name="dgTorrentFiles" AutoGenerateColumns="False" CanUserReorderColumns="True" CanUserResizeColumns="True" CanUserResizeRows="False" CanUserSortColumns="True" 
-                                  AlternatingRowBackground="Cornsilk"  AlternationCount="2" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="LightGray" 
-                                  AreRowDetailsFrozen="False" CanUserAddRows="False" CanUserDeleteRows="False">
-                    <DataGrid.CellStyle>
-                        <Style TargetType="DataGridCell">
-                            <Setter Property="Padding" Value="3,3,6,3"/>
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type DataGridCell}">
-                                        <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
-                                            <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </DataGrid.CellStyle>
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Name" Binding="{Binding FileName}" IsReadOnly="True" />
-                        <DataGridTextColumn Header="Size" Binding="{Binding FileSizeFormatted}" IsReadOnly="True" />
-                        <DataGridTextColumn Header="Downloaded" Binding="{Binding DownloadedFormatted}" IsReadOnly="True" />
-                        <DataGridTextColumn Header="Priority" Binding="{Binding PriorityFormatted}" IsReadOnly="True" />
-
-                    </DataGrid.Columns>
-                </DataGrid>
             </TabItem>
 
         </TabControl>

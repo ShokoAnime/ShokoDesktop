@@ -28,6 +28,7 @@ using System.IO;
 using NLog;
 using System.Collections.ObjectModel;
 using JMMClient.UserControls;
+using JMMClient.Downloads;
 
 namespace JMMClient
 {
@@ -273,6 +274,8 @@ namespace JMMClient
 				JMMServerVM.Instance.ApplicationVersion = Utils.GetApplicationVersion(a);
 			}
 
+			UTorrentHelperVM.Instance.ValidateCredentials();
+
 			postStartTimer.Start();
 		
 
@@ -477,6 +480,12 @@ namespace JMMClient
 					if (JMMServerVM.Instance.SelectedLanguages.Count == 0) JMMServerVM.Instance.RefreshNamingLanguages();
 					if (JMMServerVM.Instance.AllUsers.Count == 0) JMMServerVM.Instance.RefreshAllUsers();
 					if (JMMServerVM.Instance.AllCategories.Count == 0) JMMServerVM.Instance.RefreshAllCategories();
+				}
+
+				if (tabIndex == TAB_MAIN_Downloads)
+				{
+					if (UserSettingsVM.Instance.SelectedTorrentSources.Count == 0 || UserSettingsVM.Instance.UnselectedTorrentSources.Count == 0)
+						UserSettingsVM.Instance.RefreshTorrentSources();
 				}
 			}
 			catch (Exception ex)
@@ -1199,6 +1208,32 @@ namespace JMMClient
 					if (bookmark.Save())
 						MainListHelperVM.Instance.RefreshBookmarkedAnime();
 				}
+
+				if (obj.GetType() == typeof(AniDB_Anime_SimilarVM))
+				{
+					AniDB_Anime_SimilarVM sim = (AniDB_Anime_SimilarVM)obj;
+
+					BookmarkedAnimeVM bookmark = new BookmarkedAnimeVM();
+					bookmark.AnimeID = sim.SimilarAnimeID;
+					bookmark.Downloading = 0;
+					bookmark.Notes = "";
+					bookmark.Priority = 1;
+					if (bookmark.Save())
+						MainListHelperVM.Instance.RefreshBookmarkedAnime();
+				}
+
+				if (obj.GetType() == typeof(AniDB_Anime_RelationVM))
+				{
+					AniDB_Anime_RelationVM rel = (AniDB_Anime_RelationVM)obj;
+
+					BookmarkedAnimeVM bookmark = new BookmarkedAnimeVM();
+					bookmark.AnimeID = rel.RelatedAnimeID;
+					bookmark.Downloading = 0;
+					bookmark.Notes = "";
+					bookmark.Priority = 1;
+					if (bookmark.Save())
+						MainListHelperVM.Instance.RefreshBookmarkedAnime();
+				}
 			}
 			catch (Exception ex)
 			{
@@ -1213,6 +1248,97 @@ namespace JMMClient
 			try
 			{
 				MainListHelperVM.Instance.RefreshBookmarkedAnime();
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+		}
+
+		public void ShowTorrentSearch(DownloadSearchCriteria crit)
+		{
+			this.Cursor = Cursors.Wait;
+
+			tabControl1.SelectedIndex  = TAB_MAIN_Downloads;
+			tabcDownloads.SelectedIndex = 1;
+			ucTorrentSearch.PerformSearch(crit);
+
+			this.Cursor = Cursors.Arrow;
+		}
+
+		private void CommandBinding_ShowTorrentSearch(object sender, ExecutedRoutedEventArgs e)
+		{
+			//object obj = lbGroupsSeries.SelectedItem;
+			object obj = e.Parameter;
+			if (obj == null) return;
+
+			try
+			{
+				if (obj.GetType() == typeof(AnimeEpisodeVM))
+				{
+					AnimeEpisodeVM ep = (AnimeEpisodeVM)obj;
+					DownloadSearchCriteria crit = new DownloadSearchCriteria(DownloadSearchType.Episode, ep);
+					ShowTorrentSearch(crit);
+				}
+
+				if (obj.GetType() == typeof(MissingEpisodeVM))
+				{
+					MissingEpisodeVM rec = obj as MissingEpisodeVM;
+					if (rec == null) return;
+
+					JMMServerBinary.Contract_AnimeEpisode contract = JMMServerVM.Instance.clientBinaryHTTP.GetEpisodeByAniDBEpisodeID(rec.EpisodeID, 
+						JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+					if (contract != null)
+					{
+						DownloadSearchCriteria crit = new DownloadSearchCriteria(DownloadSearchType.Episode, new AnimeEpisodeVM(contract));
+						ShowTorrentSearch(crit);
+					}
+				}
+
+				if (obj.GetType() == typeof(RecommendationVM))
+				{
+					RecommendationVM rec = obj as RecommendationVM;
+					if (rec == null) return;
+
+					DownloadSearchCriteria crit = new DownloadSearchCriteria(DownloadSearchType.Series, rec.Recommended_AniDB_Anime);
+					ShowTorrentSearch(crit);
+				}
+
+				if (obj.GetType() == typeof(AniDB_AnimeVM))
+				{
+					AniDB_AnimeVM anime = (AniDB_AnimeVM)obj;
+					DownloadSearchCriteria crit = new DownloadSearchCriteria(DownloadSearchType.Series, anime);
+					ShowTorrentSearch(crit);
+				}
+
+				if (obj.GetType() == typeof(AnimeSeriesVM))
+				{
+					AnimeSeriesVM ser = (AnimeSeriesVM)obj;
+					DownloadSearchCriteria crit = new DownloadSearchCriteria(DownloadSearchType.Series, ser.AniDB_Anime);
+					ShowTorrentSearch(crit);
+				}
+
+				if (obj.GetType() == typeof(AniDB_Anime_SimilarVM))
+				{
+					AniDB_Anime_SimilarVM sim = (AniDB_Anime_SimilarVM)obj;
+					DownloadSearchCriteria crit = new DownloadSearchCriteria(DownloadSearchType.Series, sim.AniDB_Anime);
+					ShowTorrentSearch(crit);
+				}
+
+				if (obj.GetType() == typeof(AniDB_Anime_RelationVM))
+				{
+					AniDB_Anime_RelationVM rel = (AniDB_Anime_RelationVM)obj;
+					DownloadSearchCriteria crit = new DownloadSearchCriteria(DownloadSearchType.Series, rel.AniDB_Anime);
+					ShowTorrentSearch(crit);
+				}
+
+				if (obj.GetType() == typeof(BookmarkedAnimeVM))
+				{
+					BookmarkedAnimeVM ba = (BookmarkedAnimeVM)obj;
+					DownloadSearchCriteria crit = new DownloadSearchCriteria(DownloadSearchType.Series, ba.AniDB_Anime);
+					ShowTorrentSearch(crit);
+				}
+
 			}
 			catch (Exception ex)
 			{

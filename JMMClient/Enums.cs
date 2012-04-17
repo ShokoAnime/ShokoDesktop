@@ -355,6 +355,22 @@ namespace JMMClient
 		Complete = 1
 	}
 
+	public enum TorrentSourceType
+	{
+		TokyoToshokanAnime = 1,
+		TokyoToshokanAll = 2,
+		BakaBT = 3,
+		Nyaa = 4,
+		AnimeSuki = 5
+	}
+
+	public enum DownloadSearchType
+	{
+		Episode = 1,
+		Series = 2,
+		Manual = 3
+	}
+
 	public class EnumTranslator
 	{
 		public static string EpisodeTypeTranslated(EpisodeType epType)
@@ -389,6 +405,43 @@ namespace JMMClient
 			if (epType == JMMClient.Properties.Resources.EpisodeType_Specials) return EpisodeType.Special;
 
 			return EpisodeType.Episode;
+		}
+
+		public static string TorrentSourceTranslated(TorrentSourceType tsType)
+		{
+			switch (tsType)
+			{
+				case TorrentSourceType.TokyoToshokanAnime: return "Tokyo Toshokan (Anime)";
+				case TorrentSourceType.TokyoToshokanAll: return "Tokyo Toshokan (All)";
+				case TorrentSourceType.BakaBT: return "BakaBT";
+				case TorrentSourceType.Nyaa: return "Nyaa";
+				case TorrentSourceType.AnimeSuki: return "Anime Suki";
+				default: return "Tokyo Toshokan (Anime)";
+			}
+		}
+
+		public static string TorrentSourceTranslatedShort(TorrentSourceType tsType)
+		{
+			switch (tsType)
+			{
+				case TorrentSourceType.TokyoToshokanAnime: return "TT";
+				case TorrentSourceType.TokyoToshokanAll: return "TT";
+				case TorrentSourceType.BakaBT: return "BakaBT";
+				case TorrentSourceType.Nyaa: return "Nyaa";
+				case TorrentSourceType.AnimeSuki: return "Suki";
+				default: return "TT";
+			}
+		}
+
+		public static TorrentSourceType TorrentSourceTranslatedReverse(string tsType)
+		{
+			if (tsType == "Tokyo Toshokan (Anime)") return TorrentSourceType.TokyoToshokanAnime;
+			if (tsType == "Tokyo Toshokan (All)") return TorrentSourceType.TokyoToshokanAll;
+			if (tsType == "BakaBT") return TorrentSourceType.BakaBT;
+			if (tsType == "Nyaa") return TorrentSourceType.Nyaa;
+			if (tsType == "Anime Suki") return TorrentSourceType.AnimeSuki;
+
+			return TorrentSourceType.TokyoToshokanAnime;
 		}
 	}
 }

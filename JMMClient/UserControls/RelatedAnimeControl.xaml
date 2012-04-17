@@ -51,7 +51,70 @@
                             <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
                                 <TextBlock Text="{Binding Path=RelationType}" Foreground="DarkGreen" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,0,0"/>
                             </StackPanel>
-                            <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="{Binding Path=RelatedAnimeID}" URL="{Binding Path=AniDB_SiteURL}" Margin="0,0,0,0"/>
+
+                            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left">
+
+                                <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="{Binding Path=RelatedAnimeID}" URL="{Binding Path=AniDB_SiteURL}" Margin="0,0,0,0"/>
+                                
+                                <!-- show create series from button -->
+                                <Button Margin="0,0,0,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center"
+                                        Visibility="{Binding Path=ShowCreateSeriesButton, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                        Command="{DynamicResource CreateSeriesFromAnimeCommand}" CommandParameter="{Binding}">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                        <Image Height="16" Width="16" Source="/Images/16_television.png" Margin="2,0,2,0">
+                                            <Image.ToolTip>
+                                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_CreateSeries}"/>
+                                            </Image.ToolTip>
+                                        </Image>
+
+                                    </StackPanel>
+                                </Button>
+
+                                <!-- show pinned series button -->
+                                <Button Margin="0,0,0,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center"
+                                        Visibility="{Binding Path=LocalSeriesExists, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                        Command="{DynamicResource ShowPinnedSeriesCommand}" CommandParameter="{Binding}">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                        <Image Height="16" Width="16" Source="/Images/16_windows.png" Margin="2,0,2,0">
+                                            <Image.ToolTip>
+                                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_ViewSeries}"/>
+                                            </Image.ToolTip>
+                                        </Image>
+
+                                    </StackPanel>
+                                </Button>
+
+                                <!-- bookmark anime button -->
+                                <Button Grid.Column="2" Margin="5,0,2,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center"
+                                        Visibility="{Binding Path=AnimeInfoExists, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                    Command="{DynamicResource BookmarkAnimeCommand}" CommandParameter="{Binding}">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                        <Image Height="16" Width="16" Source="/Images/32_bookmark.png" Margin="1,0,1,0" ToolTipService.ShowDuration="60000">
+                                            <Image.ToolTip>
+                                                <TextBlock Text="Bookmark this anime to download later"/>
+                                            </Image.ToolTip>
+                                        </Image>
+
+                                    </StackPanel>
+                                </Button>
+
+                                <!-- download button -->
+                                <Button Grid.Column="3"  Margin="5,0,2,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Name="btnSearchDownloads"
+                                        Visibility="{Binding Path=AnimeInfoExists, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                    Command="{DynamicResource ShowTorrentSearchCommand}" CommandParameter="{Binding}">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                        <Image Height="16" Width="16" Source="/Images/24_download3.png" Margin="2,0,2,0">
+                                            <Image.ToolTip>
+                                                <TextBlock Text="Search for downloads for this series"/>
+                                            </Image.ToolTip>
+                                        </Image>
+
+                                    </StackPanel>
+                                </Button>
+
+                            </StackPanel>
+                            
+                            
 
                         </StackPanel>
                     </Border>
@@ -96,34 +159,6 @@
                         <StackPanel Orientation="Vertical"  HorizontalAlignment="Left" Margin="5,3,5,5">
 
                             <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left">
-
-                                <!-- show create series from button -->
-                                <Button Margin="0,0,0,0" Style="{DynamicResource RoundButtonStyle}" VerticalAlignment="Center"
-                                        Visibility="{Binding Path=ShowCreateSeriesButton, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                        Command="{DynamicResource CreateSeriesFromAnimeCommand}" CommandParameter="{Binding}">
-                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                        <Image Height="16" Width="16" Source="/Images/16_television.png" Margin="2,0,2,0">
-                                            <Image.ToolTip>
-                                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_CreateSeries}"/>
-                                            </Image.ToolTip>
-                                        </Image>
-
-                                    </StackPanel>
-                                </Button>
-
-                                <!-- show pinned series button -->
-                                <Button Margin="0,0,0,0" Style="{DynamicResource RoundButtonStyle}" VerticalAlignment="Center"
-                                        Visibility="{Binding Path=LocalSeriesExists, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                        Command="{DynamicResource ShowPinnedSeriesCommand}" CommandParameter="{Binding}">
-                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                        <Image Height="16" Width="16" Source="/Images/16_windows.png" Margin="2,0,2,0">
-                                            <Image.ToolTip>
-                                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_ViewSeries}"/>
-                                            </Image.ToolTip>
-                                        </Image>
-
-                                    </StackPanel>
-                                </Button>
 
                                 <Image Height="16" Width="16" Source="/Images/32_calendar.png" Margin="5,0,5,0" VerticalAlignment="Center"
                                        Visibility="{Binding Path=AnimeInfoExists, Converter={StaticResource BooleanToVisibilityConverter}}"/>

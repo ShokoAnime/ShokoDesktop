@@ -171,8 +171,11 @@ namespace JMMClient
 					if (refreshRecentAdditions) ViewRecentAdditions.Refresh();
 				});
 
+				DateTime start = DateTime.Now;
 				MainListHelperVM.Instance.RefreshGroupsSeriesData();
+				TimeSpan ts = DateTime.Now - start;
 
+				logger.Trace("Dashboard Time: RefreshGroupsSeriesData: {0}", ts.TotalMilliseconds);
 
 				if (refreshContinueWatching && UserSettingsVM.Instance.DashWatchNextEpExpanded)
 					RefreshEpsWatchNext_Recent();
@@ -531,7 +534,56 @@ namespace JMMClient
 					EpsWatchNext_Recent.Clear();
 				});
 
+				DateTime start = DateTime.Now;
+
 				List<JMMServerBinary.Contract_AnimeEpisode> epContracts = 
+					JMMServerVM.Instance.clientBinaryHTTP.GetEpisodesToWatch_RecentlyWatched(UserSettingsVM.Instance.Dash_WatchNext_Items, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+
+				TimeSpan ts = DateTime.Now - start;
+				logger.Trace("Dashboard Time: RefreshEpsWatchNext_Recent: contracts: {0}", ts.TotalMilliseconds);
+
+				start = DateTime.Now;
+				List<AnimeEpisodeVM> epList = new List<AnimeEpisodeVM>();
+				foreach (JMMServerBinary.Contract_AnimeEpisode contract in epContracts)
+				{
+					AnimeEpisodeVM ep = new AnimeEpisodeVM(contract);
+					string animename = ep.AnimeName; // just do this to force anidb anime detail record to be loaded
+					ep.RefreshAnime();
+					ep.SetTvDBInfo();
+					epList.Add(ep);
+				}
+				ts = DateTime.Now - start;
+				logger.Trace("Dashboard Time: RefreshEpsWatchNext_Recent: episode details: {0}", ts.TotalMilliseconds);
+
+				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
+				{
+					foreach (AnimeEpisodeVM ep in epList)
+					{
+						EpsWatchNext_Recent.Add(ep);
+					}
+					
+					ViewEpsWatchNext_Recent.Refresh();
+				});
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+			finally
+			{
+			}
+		}
+
+		public void RefreshEpsWatchNext_Recent_Old()
+		{
+			try
+			{
+				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
+				{
+					EpsWatchNext_Recent.Clear();
+				});
+
+				List<JMMServerBinary.Contract_AnimeEpisode> epContracts =
 					JMMServerVM.Instance.clientBinaryHTTP.GetEpisodesToWatch_RecentlyWatched(UserSettingsVM.Instance.Dash_WatchNext_Items, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
 
 				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
@@ -540,6 +592,7 @@ namespace JMMClient
 					{
 						AnimeEpisodeVM ep = new AnimeEpisodeVM(contract);
 						ep.RefreshAnime();
+
 						if (ep.AniDB_Anime != null && JMMServerVM.Instance.CurrentUser.EvaluateAnime(ep.AniDB_Anime))
 						{
 							ep.SetTvDBInfo();

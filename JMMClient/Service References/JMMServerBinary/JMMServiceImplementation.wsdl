@@ -80,6 +80,18 @@
   <wsdl:message name="IJMMServer_GetAniDBSeiyuu_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAniDBSeiyuuResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_GetPreviousEpisodeForUnwatched_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPreviousEpisodeForUnwatched" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetPreviousEpisodeForUnwatched_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPreviousEpisodeForUnwatchedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetEpisodeByAniDBEpisodeID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEpisodeByAniDBEpisodeID" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetEpisodeByAniDBEpisodeID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEpisodeByAniDBEpisodeIDResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_ScanDropFolders_InputMessage">
     <wsdl:part name="parameters" element="tns:ScanDropFolders" />
   </wsdl:message>
@@ -1129,6 +1141,14 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAniDBSeiyuu" message="tns:IJMMServer_GetAniDBSeiyuu_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAniDBSeiyuuResponse" message="tns:IJMMServer_GetAniDBSeiyuu_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetPreviousEpisodeForUnwatched">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetPreviousEpisodeForUnwatched" message="tns:IJMMServer_GetPreviousEpisodeForUnwatched_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetPreviousEpisodeForUnwatchedResponse" message="tns:IJMMServer_GetPreviousEpisodeForUnwatched_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEpisodeByAniDBEpisodeID">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetEpisodeByAniDBEpisodeID" message="tns:IJMMServer_GetEpisodeByAniDBEpisodeID_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetEpisodeByAniDBEpisodeIDResponse" message="tns:IJMMServer_GetEpisodeByAniDBEpisodeID_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="ScanDropFolders">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/ScanDropFolders" message="tns:IJMMServer_ScanDropFolders_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/ScanDropFoldersResponse" message="tns:IJMMServer_ScanDropFolders_OutputMessage" />
@@ -1888,6 +1908,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetAniDBSeiyuu">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAniDBSeiyuu" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPreviousEpisodeForUnwatched">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetPreviousEpisodeForUnwatched" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEpisodeByAniDBEpisodeID">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetEpisodeByAniDBEpisodeID" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

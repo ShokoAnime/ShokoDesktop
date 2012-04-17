@@ -24,6 +24,15 @@ namespace JMMClient.UserControls
 	{
 		BackgroundWorker torrentDetailsWorker = new BackgroundWorker();
 
+		public static readonly DependencyProperty HasAttachedSeriesProperty = DependencyProperty.Register("HasAttachedSeries",
+			typeof(bool), typeof(DownloadsTorrentMonitorControl), new UIPropertyMetadata(false, null));
+
+		public bool HasAttachedSeries
+		{
+			get { return (bool)GetValue(HasAttachedSeriesProperty); }
+			set { SetValue(HasAttachedSeriesProperty, value); }
+		}
+
 		public DownloadsTorrentMonitorControl()
 		{
 			InitializeComponent();
@@ -38,6 +47,8 @@ namespace JMMClient.UserControls
 			torrentDetailsWorker.DoWork += new DoWorkEventHandler(torrentDetailsWorker_DoWork);
 			torrentDetailsWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(torrentDetailsWorker_RunWorkerCompleted);
 		}
+
+
 
 		void dgTorrents_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
 		{
@@ -57,7 +68,7 @@ namespace JMMClient.UserControls
 			dgTorrentFiles.ItemsSource = det.TorrentFiles;
 
 			// show details
-			// try and guess the series based on the file name
+			SetAttachedSeries(det.AnimeSeries);
 		}
 
 		void torrentDetailsWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -67,6 +78,19 @@ namespace JMMClient.UserControls
 
 			TorrentDetails det = new TorrentDetails();
 			det.TorrentFiles = files;
+
+			// try and find the series
+			foreach (AniDB_AnimeVM anime in AniDB_AnimeVM.BestLevenshteinDistanceMatchesCache(tor.ClosestAnimeMatchString, 10))
+			{
+				// get the series for the anime
+				AnimeSeriesVM ser = MainListHelperVM.Instance.GetSeriesForAnime(anime.AnimeID);
+				if (ser != null)
+				{
+					det.AnimeSeries = ser;
+					break;
+				}
+				
+			}
 
 			e.Result = det;
 		}
@@ -238,14 +262,39 @@ namespace JMMClient.UserControls
 
 		private void ShowTorrentDetails(Torrent tor)
 		{
+			SetAttachedSeries(null);
 			dgTorrentFiles.ItemsSource = null;
+
 			if (!torrentDetailsWorker.IsBusy)
 				torrentDetailsWorker.RunWorkerAsync(tor);
+		}
+
+		private void SetAttachedSeries(AnimeSeriesVM ser)
+		{
+			try
+			{
+				HasAttachedSeries = ser != null;
+
+				if (ser == null)
+				{
+					this.DataContext = null;
+					this.ucFileSummary.DataContext = null;
+					return;
+				}
+
+				this.DataContext = ser;
+				this.ucFileSummary.DataContext = ser.AniDB_Anime;
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
 		}
 	}
 
 	public class TorrentDetails
 	{
 		public List<TorrentFile> TorrentFiles { get; set; }
+		public AnimeSeriesVM AnimeSeries { get; set; }
 	}
 }

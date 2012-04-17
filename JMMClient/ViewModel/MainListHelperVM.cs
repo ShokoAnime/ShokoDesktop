@@ -769,6 +769,46 @@ namespace JMMClient
 			return null;
 		}
 
+		public AnimeSeriesVM GetSeriesForAnime(int animeID)
+		{
+			try
+			{
+				AnimeSeriesVM thisSeries = null;
+				foreach (AnimeSeriesVM ser in MainListHelperVM.Instance.AllSeries)
+				{
+					if (ser.AniDB_ID == animeID)
+					{
+						thisSeries = ser;
+						break;
+					}
+				}
+				return thisSeries;
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+
+			return null;
+		}
+
+		public AnimeSeriesVM GetSeries(int animeSeriesID)
+		{
+			try
+			{
+				if (AllSeriesDictionary.ContainsKey(animeSeriesID))
+					return AllSeriesDictionary[animeSeriesID];
+				else
+					return null;
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+
+			return null;
+		}
+
 		public AnimeSeriesVM GetSeriesForVideo(int videoLocalID)
 		{
 			try

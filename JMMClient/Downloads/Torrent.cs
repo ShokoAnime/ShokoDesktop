@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
+using NLog;
 
 namespace JMMClient.Downloads
 {
 	public class Torrent
 	{
+		private static Logger logger = LogManager.GetCurrentClassLogger();
+
 		private const int StatusStarted = 1;
 		private const int StatusChecking = 2;
 		private const int StatusStartAfterCheck = 4;
@@ -265,6 +269,67 @@ namespace JMMClient.Downloads
 					return string.Format("{0}: {1} - {2}", StatusFormatted.ToUpper(), Name, PercentProgressFormatted);
 				else
 					return string.Format("{0} - {1}", Name, PercentProgressFormatted);
+			}
+		}
+
+		public string ClosestAnimeMatchString
+		{
+			get
+			{
+
+				try
+				{
+					string match = Path.GetFileNameWithoutExtension(Name);
+
+					//remove any group names or CRC's
+					while (true)
+					{
+						int pos = match.IndexOf('[');
+						if (pos >= 0)
+						{
+							int endPos = match.IndexOf(']', pos);
+							if (endPos >= 0)
+							{
+								string rubbish = match.Substring(pos, endPos - pos + 1);
+								match = match.Replace(rubbish, "");
+							}
+							else break;
+						}
+						else break;
+					}
+
+					//remove any video information
+					while (true)
+					{
+						int pos = match.IndexOf('(');
+						if (pos >= 0)
+						{
+							int endPos = match.IndexOf(')', pos);
+							if (endPos >= 0)
+							{
+								string rubbish = match.Substring(pos, endPos - pos + 1);
+								match = match.Replace(rubbish, "");
+							}
+							else break;
+						}
+						else break;
+					}
+
+					match = match.Replace("_", " ");
+
+					int pos2 = match.IndexOf('-');
+					if (pos2 >= 1)
+					{
+						match = match.Substring(0, pos2).Trim();
+					}
+
+					return match;
+				}
+				catch (Exception ex)
+				{
+					logger.ErrorException(ex.ToString(), ex);
+					return "";
+				}
 			}
 		}
 

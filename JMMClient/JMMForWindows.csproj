@@ -146,12 +146,21 @@
     <Compile Include="DataTemplateSelectors\TraktActivityTemplateSelector.cs" />
     <Compile Include="Downloads\CsvParser.cs" />
     <Compile Include="Downloads\CsvStream.cs" />
+    <Compile Include="Downloads\DownloadHelper.cs" />
+    <Compile Include="Downloads\DownloadSearchCriteria.cs" />
+    <Compile Include="Downloads\ITorrentSource.cs" />
     <Compile Include="Downloads\JSONHelper.cs" />
     <Compile Include="Downloads\ListRefreshedEventArgs.cs" />
+    <Compile Include="Downloads\SubGroupSimple.cs" />
     <Compile Include="Downloads\Torrent.cs" />
     <Compile Include="Downloads\TorrentFile.cs" />
     <Compile Include="Downloads\TorrentFileList.cs" />
+    <Compile Include="Downloads\TorrentLink.cs" />
     <Compile Include="Downloads\TorrentList.cs" />
+    <Compile Include="Downloads\TorrentsAnimeSuki.cs" />
+    <Compile Include="Downloads\TorrentsNyaa.cs" />
+    <Compile Include="Downloads\TorrentSourceVM.cs" />
+    <Compile Include="Downloads\TorrentsTokyoToshokan.cs" />
     <Compile Include="Downloads\UTorrentHelper.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Forms\AboutForm.xaml.cs">
@@ -291,6 +300,15 @@
     <Compile Include="UserControls\CloseableTabItem.cs" />
     <Compile Include="UserControls\DashboardControl.xaml.cs">
       <DependentUpon>DashboardControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Downloads\DownloadsBrowseTorrentsControl.xaml.cs">
+      <DependentUpon>DownloadsBrowseTorrentsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Downloads\DownloadSettingsTorSources.xaml.cs">
+      <DependentUpon>DownloadSettingsTorSources.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Downloads\DownloadsSearchTorrentsControl.xaml.cs">
+      <DependentUpon>DownloadsSearchTorrentsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Downloads\DownloadsSettingsControl.xaml.cs">
       <DependentUpon>DownloadsSettingsControl.xaml</DependentUpon>
@@ -727,6 +745,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\DashboardControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Downloads\DownloadsBrowseTorrentsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Downloads\DownloadSettingsTorSources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Downloads\DownloadsSearchTorrentsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1606,6 +1636,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Torrents\tor_queuedseed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\128_download3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24_download3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

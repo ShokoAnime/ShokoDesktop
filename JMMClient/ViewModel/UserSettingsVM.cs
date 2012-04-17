@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
+using System.Collections.ObjectModel;
+using JMMClient.Downloads;
 
 namespace JMMClient
 {
@@ -32,6 +34,198 @@ namespace JMMClient
 			}
 		}
 
+		public ObservableCollection<TorrentSourceVM> UnselectedTorrentSources { get; set; }
+		public ObservableCollection<TorrentSourceVM> SelectedTorrentSources { get; set; }
+		public ObservableCollection<TorrentSourceVM> AllTorrentSources { get; set; }
+
+		public UserSettingsVM()
+		{
+			UnselectedTorrentSources = new ObservableCollection<TorrentSourceVM>();
+			SelectedTorrentSources = new ObservableCollection<TorrentSourceVM>();
+			AllTorrentSources = new ObservableCollection<TorrentSourceVM>(GetAllTorrentSources());
+		}
+
+		public List<TorrentSourceVM> GetAllTorrentSources()
+		{
+			List<TorrentSourceVM> sources = new List<TorrentSourceVM>();
+
+			sources.Add(new TorrentSourceVM(TorrentSourceType.TokyoToshokanAnime));
+			sources.Add(new TorrentSourceVM(TorrentSourceType.TokyoToshokanAll));
+			sources.Add(new TorrentSourceVM(TorrentSourceType.Nyaa));
+			sources.Add(new TorrentSourceVM(TorrentSourceType.AnimeSuki));
+			//sources.Add(new TorrentSourceVM(TorrentSourceType.BakaBT));
+
+			return sources;
+		}
+
+		public void RefreshTorrentSources()
+		{
+			UnselectedTorrentSources.Clear();
+			SelectedTorrentSources.Clear();
+
+			try
+			{
+
+				string[] sources = AppSettings.TorrentSources.Split(';');
+
+				foreach (string src in sources)
+				{
+					if (string.IsNullOrEmpty(src)) continue;
+					int iSrc = 0;
+					int.TryParse(src, out iSrc);
+
+
+					TorrentSourceVM selSource = new TorrentSourceVM((TorrentSourceType)iSrc);
+					SelectedTorrentSources.Add(selSource);
+				}
+
+				foreach (TorrentSourceVM src in GetAllTorrentSources())
+				{
+					bool inSelected = false;
+					foreach (TorrentSourceVM selSource in SelectedTorrentSources)
+					{
+						if (src.TorrentSource == selSource.TorrentSource)
+						{
+							inSelected = true;
+							break;
+						}
+					}
+					if (!inSelected)
+						UnselectedTorrentSources.Add(src);
+				}
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+		}
+
+		public void RemoveTorrentSource(TorrentSourceType tsType)
+		{
+			string[] sources = AppSettings.TorrentSources.Split(';');
+
+			string newSetting = string.Empty;
+			
+
+			string sType = ((int)tsType).ToString();
+
+			foreach (string src in sources)
+			{
+				if (string.IsNullOrEmpty(src)) continue;
+				if (src.Trim() == sType) continue;
+
+				if (!string.IsNullOrEmpty(newSetting))
+					newSetting += ";";
+
+				newSetting += src;
+			}
+
+			AppSettings.TorrentSources = newSetting;
+			RefreshTorrentSources();
+		}
+
+		public int MoveUpTorrentSource(TorrentSourceType tsType)
+		{
+			string[] sources = AppSettings.TorrentSources.Split(';');
+			string sType = ((int)tsType).ToString();
+
+			List<string> sourcesList = new List<string>();
+
+			// get a list of valid sources
+			foreach (string src in sources)
+			{
+				if (string.IsNullOrEmpty(src)) continue;
+				sourcesList.Add(src);
+			}
+
+			// find the position of the source to be moved
+			int pos = -1;
+			for (int i = 0; i < sourcesList.Count; i++)
+			{
+				if (sourcesList[i].Trim() == sType) pos = i;
+			}
+
+			if (pos == -1) return -1; // not found
+			if (pos == 0) return -1; // already at top
+
+			string lan1 = sourcesList[pos - 1];
+			sourcesList[pos - 1] = sType;
+			sourcesList[pos] = lan1;
+
+			string newSetting = string.Empty;
+			
+			foreach (string src in sourcesList)
+			{
+				if (!string.IsNullOrEmpty(newSetting))
+					newSetting += ";";
+
+				newSetting += src;
+			}
+
+			AppSettings.TorrentSources = newSetting;
+			RefreshTorrentSources();
+
+			return pos - 1;
+		}
+
+		public int MoveDownTorrentSource(TorrentSourceType tsType)
+		{
+			string[] sources = AppSettings.TorrentSources.Split(';');
+			string sType = ((int)tsType).ToString();
+
+			List<string> sourcesList = new List<string>();
+
+			// get a list of valid sources
+			foreach (string src in sources)
+			{
+				if (string.IsNullOrEmpty(src)) continue;
+				sourcesList.Add(src);
+			}
+
+			// find the position of the source to be moved
+			int pos = -1;
+			for (int i = 0; i < sourcesList.Count; i++)
+			{
+				if (sourcesList[i].Trim() == sType) pos = i;
+			}
+
+			if (pos == -1) return -1; // not found
+			if (pos == sourcesList.Count - 1) return -1; // already at bottom
+
+			string lan1 = sourcesList[pos + 1];
+			sourcesList[pos + 1] = sType;
+			sourcesList[pos] = lan1;
+
+			string newSetting = string.Empty;
+			
+			foreach (string lan in sourcesList)
+			{
+				if (!string.IsNullOrEmpty(newSetting))
+					newSetting += ";";
+
+				newSetting += lan;
+			}
+
+			AppSettings.TorrentSources = newSetting;
+			RefreshTorrentSources();
+
+			return pos + 1;
+		}
+
+		public void AddTorrentSource(TorrentSourceType tsType)
+		{
+			string sType = ((int)tsType).ToString();
+
+			string newSetting = AppSettings.TorrentSources;
+
+			if (!string.IsNullOrEmpty(newSetting))
+				newSetting += ";";
+
+			newSetting += sType;
+			AppSettings.TorrentSources = newSetting;
+
+			RefreshTorrentSources();
+		}
 
 		public bool CategoriesExpanded
 		{
@@ -738,6 +932,16 @@ namespace JMMClient
 			{
 				AppSettings.UTorrentAutoRefresh = value;
 				OnPropertyChanged(new PropertyChangedEventArgs("UTorrentAutoRefresh"));
+			}
+		}
+
+		public bool TorrentSearchPreferOwnGroups
+		{
+			get { return AppSettings.TorrentSearchPreferOwnGroups; }
+			set
+			{
+				AppSettings.TorrentSearchPreferOwnGroups = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("TorrentSearchPreferOwnGroups"));
 			}
 		}
 

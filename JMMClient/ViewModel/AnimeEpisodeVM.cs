@@ -600,7 +600,7 @@ namespace JMMClient
 		{
 			get
 			{
-				logger.Trace("Getting anime name for ep#: {0}", this.EpisodeNumber);
+				//logger.Trace("Getting anime name for ep#: {0}", this.EpisodeNumber);
 
 				string animeName = "";
 				if (MainListHelperVM.Instance.AllSeriesDictionary.ContainsKey(this.AnimeSeriesID))

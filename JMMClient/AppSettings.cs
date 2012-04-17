@@ -1631,6 +1631,74 @@ namespace JMMClient
 			}
 		}
 
+		public static bool TorrentSearchPreferOwnGroups
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["TorrentSearchPreferOwnGroups"];
+				bool bval = false;
+				if (bool.TryParse(val, out bval))
+					return bval;
+				else
+					return true; // default value
+			}
+			set
+			{
+				UpdateSetting("TorrentSearchPreferOwnGroups", value.ToString());
+			}
+		}
+
+		public static string TorrentSources
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["TorrentSources"];
+				if (string.IsNullOrEmpty(val))
+				{
+					// default value
+					val = "1;4;5";
+					UpdateSetting("TorrentSources", val);
+				}
+
+				// make sure the selected sources are valid
+				// just in case the user has manually edited the config, or is using an old config
+				string[] sources = val.Split(';');
+				bool invalidSource = false;
+				int maxEnum = 5;
+				foreach (string src in sources)
+				{
+					int iSrc = 0;
+					if (!int.TryParse(src, out iSrc))
+					{
+						invalidSource = true;
+						break;
+					}
+
+					if (iSrc <= 0 || iSrc > maxEnum)
+					{
+						invalidSource = true;
+						break;
+					}
+				}
+
+				if (invalidSource)
+				{
+					// default value
+					val = "1;4;5";
+					UpdateSetting("TorrentSources", val);
+				}
+			
+
+				return val;
+			}
+			set
+			{
+				UpdateSetting("TorrentSources", value);
+			}
+		}
+
 		public static void DebugSettingsToLog()
 		{
 			#region System Info
