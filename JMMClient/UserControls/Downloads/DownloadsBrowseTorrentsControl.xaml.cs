@@ -15,6 +15,7 @@ using JMMClient.Downloads;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using JMMClient.ViewModel;
+using System.Diagnostics;
 
 namespace JMMClient.UserControls
 {
@@ -186,10 +187,19 @@ namespace JMMClient.UserControls
 			itemStart.CommandParameter = torLink;
 			m.Items.Add(itemStart);
 
+			if (!string.IsNullOrEmpty(torLink.TorrentLink))
+			{
+				MenuItem itemLink = new MenuItem();
+				itemLink.Header = "Go to Website";
+				itemLink.Click += new RoutedEventHandler(torrentBrowseWebsite);
+				itemLink.CommandParameter = torLink;
+				m.Items.Add(itemLink);
+			}
+
 			m.IsOpen = true;
 		}
 
-		void torrentDownload(object sender, RoutedEventArgs e)
+		void torrentBrowseWebsite(object sender, RoutedEventArgs e)
 		{
 			try
 			{
@@ -206,6 +216,43 @@ namespace JMMClient.UserControls
 					this.IsEnabled = false;
 
 					TorrentLinkVM torLink = item.CommandParameter as TorrentLinkVM;
+
+					Uri uri = new Uri(torLink.TorrentLinkFull);
+					Process.Start(new ProcessStartInfo(uri.AbsoluteUri));
+
+
+					parentWindow.Cursor = Cursors.Arrow;
+					this.IsEnabled = true;
+
+				}
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+		}
+
+		void torrentDownload(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				this.Cursor = Cursors.Wait;
+				this.IsEnabled = false;
+
+				MenuItem item = e.Source as MenuItem;
+				MenuItem itemSender = sender as MenuItem;
+
+				if (item == null || itemSender == null) return;
+				if (!item.Header.ToString().Equals(itemSender.Header.ToString())) return;
+
+				if (item != null && item.CommandParameter != null)
+				{
+					Window parentWindow = Window.GetWindow(this);
+					parentWindow.Cursor = Cursors.Wait;
+					this.IsEnabled = false;
+
+					TorrentLinkVM torLink = item.CommandParameter as TorrentLinkVM;
+					torLink.Source.PopulateTorrentDownloadLink(ref torLink);
 					UTorrentHelperVM.Instance.AddTorrentFromURL(torLink.TorrentDownloadLink);
 
 					parentWindow.Cursor = Cursors.Arrow;
@@ -216,6 +263,11 @@ namespace JMMClient.UserControls
 			catch (Exception ex)
 			{
 				Utils.ShowErrorMessage(ex);
+			}
+			finally
+			{
+				this.Cursor = Cursors.Arrow;
+				this.IsEnabled = true;
 			}
 		}
 

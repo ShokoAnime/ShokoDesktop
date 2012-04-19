@@ -105,41 +105,158 @@ namespace JMMClient.UserControls
 			DataGridRow dgr = sender as DataGridRow;
 			if (dgr == null) return;
 
-			dgTorrents.SelectedItem = dgr.DataContext;
+			if (dgTorrents.Items == null || dgTorrents.Items.Count == 0) return;
+
+			if (dgTorrents.SelectedItems == null || dgTorrents.SelectedItems.Count == 0)
+				dgTorrents.SelectedItem = dgr.DataContext;
+
+			if (dgTorrents.SelectedItems.Count == 1)
+				dgTorrents.SelectedItem = dgr.DataContext;
 
 			ContextMenu m = new ContextMenu();
 
-			Torrent tor = dgTorrents.SelectedItem as Torrent;
-			if (tor == null) return;
-
-			if (tor.IsNotRunning || tor.IsPaused)
+			List<Torrent> selectedTorrents = new List<Torrent>();
+			foreach (object obj in dgTorrents.SelectedItems)
 			{
-				MenuItem itemStart = new MenuItem();
-				itemStart.Header = "Start";
-				itemStart.Click += new RoutedEventHandler(torrentStart);
-				itemStart.CommandParameter = tor;
+				Torrent tor = obj as Torrent;
+				selectedTorrents.Add(tor);
+			}
+
+			MenuItem itemStart = new MenuItem();
+			itemStart.Header = "Start";
+			itemStart.Click += new RoutedEventHandler(torrentStart);
+			itemStart.CommandParameter = selectedTorrents;
+
+			MenuItem itemStop = new MenuItem();
+			itemStop.Header = "Stop";
+			itemStop.Click += new RoutedEventHandler(torrentStop);
+			itemStop.CommandParameter = selectedTorrents;
+
+			MenuItem itemPause = new MenuItem();
+			itemPause.Header = "Pause";
+			itemPause.Click += new RoutedEventHandler(torrentPause);
+			itemPause.CommandParameter = selectedTorrents;
+
+			MenuItem itemRemove = new MenuItem();
+			itemRemove.Header = "Remove Torrent";
+			itemRemove.Click += new RoutedEventHandler(torrentRemove);
+			itemRemove.CommandParameter = selectedTorrents;
+
+			MenuItem itemRemoveData = new MenuItem();
+			itemRemoveData.Header = "Remove Torrent and Files";
+			itemRemoveData.Click += new RoutedEventHandler(torrentRemoveData);
+			itemRemoveData.CommandParameter = selectedTorrents;
+
+			if (selectedTorrents.Count == 1)
+			{
+				Torrent tor = selectedTorrents[0];
+
+				if (tor.IsNotRunning || tor.IsPaused)
+					m.Items.Add(itemStart);
+
+				if (tor.IsRunning || tor.IsPaused)
+					m.Items.Add(itemStop);
+
+				if (tor.IsRunning)
+					m.Items.Add(itemPause);
+			}
+			else
+			{
 				m.Items.Add(itemStart);
-			}
-
-			if (tor.IsRunning || tor.IsPaused)
-			{
-				MenuItem itemStop = new MenuItem();
-				itemStop.Header = "Stop";
-				itemStop.Click += new RoutedEventHandler(torrentStop);
-				itemStop.CommandParameter = tor;
 				m.Items.Add(itemStop);
-			}
-
-			if (tor.IsRunning)
-			{
-				MenuItem itemPause = new MenuItem();
-				itemPause.Header = "Pause";
-				itemPause.Click += new RoutedEventHandler(torrentPause);
-				itemPause.CommandParameter = tor;
 				m.Items.Add(itemPause);
 			}
 
+			m.Items.Add(itemRemove);
+			m.Items.Add(itemRemoveData);
+
 			m.IsOpen = true;
+		}
+
+		void torrentRemoveData(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				MenuItem item = e.Source as MenuItem;
+				MenuItem itemSender = sender as MenuItem;
+
+				if (item == null || itemSender == null) return;
+				if (!item.Header.ToString().Equals(itemSender.Header.ToString())) return;
+
+				if (item != null && item.CommandParameter != null)
+				{
+					List<Torrent> selectedTorrents = item.CommandParameter as List<Torrent>;
+
+					string msg = "";
+					if (selectedTorrents.Count == 1)
+						msg = string.Format("Are you sure you want to remove this torrent and delete associated files: {0}", selectedTorrents[0].Name);
+					else
+						msg = string.Format("Are you sure you want to remove these {0} torrents and delete associated files?", selectedTorrents.Count);
+
+					MessageBoxResult res = MessageBox.Show(msg, "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
+					if (res == MessageBoxResult.Yes)
+					{
+						Window parentWindow = Window.GetWindow(this);
+						parentWindow.Cursor = Cursors.Wait;
+						this.IsEnabled = false;
+
+
+						foreach (Torrent tor in selectedTorrents)
+							UTorrentHelperVM.Instance.RemoveTorrentAndData(tor.Hash);
+
+						parentWindow.Cursor = Cursors.Arrow;
+						this.IsEnabled = true;
+					}
+
+				}
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+		}
+
+		void torrentRemove(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				MenuItem item = e.Source as MenuItem;
+				MenuItem itemSender = sender as MenuItem;
+
+				if (item == null || itemSender == null) return;
+				if (!item.Header.ToString().Equals(itemSender.Header.ToString())) return;
+
+				if (item != null && item.CommandParameter != null)
+				{
+					List<Torrent> selectedTorrents = item.CommandParameter as List<Torrent>;
+
+					string msg = "";
+					if (selectedTorrents.Count == 1)
+						msg = string.Format("Are you sure you want to remove this torrent: {0}", selectedTorrents[0].Name);
+					else
+						msg = string.Format("Are you sure you want to remove these {0} torrents?", selectedTorrents.Count);
+
+					MessageBoxResult res = MessageBox.Show(msg,"Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
+					if (res == MessageBoxResult.Yes)
+					{
+						Window parentWindow = Window.GetWindow(this);
+						parentWindow.Cursor = Cursors.Wait;
+						this.IsEnabled = false;
+
+						
+						foreach (Torrent tor in selectedTorrents)
+							UTorrentHelperVM.Instance.RemoveTorrent(tor.Hash);
+
+						parentWindow.Cursor = Cursors.Arrow;
+						this.IsEnabled = true;
+					}
+
+				}
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
 		}
 
 		void torrentPause(object sender, RoutedEventArgs e)
@@ -158,8 +275,9 @@ namespace JMMClient.UserControls
 					parentWindow.Cursor = Cursors.Wait;
 					this.IsEnabled = false;
 
-					Torrent tor = item.CommandParameter as Torrent;
-					UTorrentHelperVM.Instance.PauseTorrent(tor.Hash);
+					List<Torrent> selectedTorrents = item.CommandParameter as List<Torrent>;
+					foreach (Torrent tor in selectedTorrents)
+						UTorrentHelperVM.Instance.PauseTorrent(tor.Hash);
 
 					parentWindow.Cursor = Cursors.Arrow;
 					this.IsEnabled = true;
@@ -188,8 +306,9 @@ namespace JMMClient.UserControls
 					parentWindow.Cursor = Cursors.Wait;
 					this.IsEnabled = false;
 
-					Torrent tor = item.CommandParameter as Torrent;
-					UTorrentHelperVM.Instance.StopTorrent(tor.Hash);
+					List<Torrent> selectedTorrents = item.CommandParameter as List<Torrent>;
+					foreach (Torrent tor in selectedTorrents)
+						UTorrentHelperVM.Instance.StopTorrent(tor.Hash);
 
 					parentWindow.Cursor = Cursors.Arrow;
 					this.IsEnabled = true;
@@ -218,8 +337,12 @@ namespace JMMClient.UserControls
 					parentWindow.Cursor = Cursors.Wait;
 					this.IsEnabled = false;
 
-					Torrent tor = item.CommandParameter as Torrent;
-					UTorrentHelperVM.Instance.StartTorrent(tor.Hash);
+					List<Torrent> selectedTorrents = item.CommandParameter as List<Torrent>;
+					foreach (Torrent tor in selectedTorrents)
+					{
+						//Debug.WriteLine(tor.ToString());
+						UTorrentHelperVM.Instance.StartTorrent(tor.Hash);
+					}
 
 					parentWindow.Cursor = Cursors.Arrow;
 					this.IsEnabled = true;

@@ -120,7 +120,7 @@ namespace JMMClient.Downloads
 
 		public override string ToString()
 		{
-			return string.Format("Torrent: {0} - {1} - {2}", Name, PercentProgressFormatted, Status);
+			return string.Format("Torrent: {0} - {1} - {2} - {3}", Name, PercentProgressFormatted, Status, Hash);
 		}
 
 		public string SeedsFormatted

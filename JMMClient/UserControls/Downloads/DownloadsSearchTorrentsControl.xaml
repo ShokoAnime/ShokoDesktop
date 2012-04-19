@@ -16,6 +16,7 @@
 
             <RoutedUICommand x:Key="AddSubGroupSearchCommand" Text="AddSubGroupSearchCommand" />
             <RoutedUICommand x:Key="AddSubGroupFilterCommand" Text="AddSubGroupFilterCommand" />
+            <RoutedUICommand x:Key="ToggleSourceCommand" Text="ToggleSourceCommand" />
 
             <!-- subGroupsTemplate -->
             <DataTemplate x:Key="subGroupsTemplate">
@@ -48,6 +49,31 @@
             </DataTemplate>
 
 
+            <!-- torrentSearchTemplate -->
+            <DataTemplate x:Key="torrentSearchTemplate">
+                <StackPanel Orientation="Horizontal" Margin="0,0,10,0">
+
+                    <Button Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}"
+                            Visibility="{Binding Path=IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            Command="{StaticResource ToggleSourceCommand}" CommandParameter="{Binding}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                            <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Binding Path=TorrentSourceName}" Margin="0,0,5,0"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}"
+                            Visibility="{Binding Path=IsDisabled, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            Command="{StaticResource ToggleSourceCommand}" CommandParameter="{Binding}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+
+                            <TextBlock VerticalAlignment="Center" Text="{Binding Path=TorrentSourceName}" Foreground="DarkGray" Margin="0,0,5,0"/>
+                        </StackPanel>
+                    </Button>
+
+                </StackPanel>
+            </DataTemplate>
+            
         </ResourceDictionary>
 
     </UserControl.Resources>
@@ -55,7 +81,7 @@
     <UserControl.CommandBindings>
         <CommandBinding Command="{StaticResource AddSubGroupSearchCommand}" Executed="CommandBinding_AddSubGroupSearch" />
         <CommandBinding Command="{StaticResource AddSubGroupFilterCommand}" Executed="CommandBinding_AddSubGroupFilter" />
-
+        <CommandBinding Command="{StaticResource ToggleSourceCommand}" Executed="CommandBinding_ToggleSource" />
     </UserControl.CommandBindings>
 
     <Grid>
@@ -73,6 +99,16 @@
             <Border DockPanel.Dock="Top" Background="#F1F1F1" BorderBrush="DarkGray" BorderThickness="1" Padding="5">
 
                 <StackPanel Orientation="Vertical">
+
+                    <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled"  VerticalAlignment="Center" Background="Transparent" Padding="0" BorderThickness="0" Margin="0,0,0,5"
+                     ItemTemplate="{StaticResource torrentSearchTemplate}" ItemsSource="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=CurrentSearchTorrentSources}">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel  Focusable="False"  Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+
+                    </ListBox>
 
                     <!-- search box -->
                     <StackPanel Orientation="Horizontal" >
@@ -167,7 +203,7 @@
                     <DataGridTextColumn Header="Size" Binding="{Binding Size}" IsReadOnly="True" />
                     <DataGridTextColumn Header="Seeders" Binding="{Binding Seeders}" IsReadOnly="True" />
                     <DataGridTextColumn Header="Leechers" Binding="{Binding Leechers}" IsReadOnly="True" />
-
+                    <DataGridTextColumn Header="Extra Info" Binding="{Binding ExtraInfo}" IsReadOnly="True" />
                 </DataGrid.Columns>
             </DataGrid>
         </DockPanel >

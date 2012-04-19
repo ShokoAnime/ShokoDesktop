@@ -157,7 +157,7 @@ namespace JMMClient
 			// make sure the user has not filtered this out
 			if (!JMMServerVM.Instance.CurrentUser.EvaluateGroup(grp)) return false;
 
-			if (this.GroupFilterID.Value < 0)
+			if (this.GroupFilterID.HasValue && this.GroupFilterID.Value < 0)
 			{
 				if (this.GroupFilterID.Value == Constants.StaticGF.Predefined ||
 					this.GroupFilterID.Value == Constants.StaticGF.Predefined_Categories ||

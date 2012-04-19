@@ -145,6 +145,53 @@ namespace JMMClient.Forms
 			cboCatFilter.SelectedIndex = 0;
 		}
 
+		private void CommandBinding_ToggleWatchedStatus(object sender, ExecutedRoutedEventArgs e)
+		{
+			object obj = e.Parameter;
+			if (obj == null) return;
+
+			this.Cursor = Cursors.Wait;
+			this.IsEnabled = false;
+
+			bool newStatus = false;
+
+			try
+			{
+				if (obj.GetType() == typeof(VideoDetailedVM))
+				{
+					VideoDetailedVM vid = obj as VideoDetailedVM;
+					newStatus = !vid.Watched;
+					JMMServerVM.Instance.clientBinaryHTTP.ToggleWatchedStatusOnVideo(vid.VideoLocalID, newStatus, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+
+					MainListHelperVM.Instance.UpdateHeirarchy(vid);
+				}
+
+				if (obj.GetType() == typeof(AnimeEpisodeVM))
+				{
+					AnimeEpisodeVM ep = obj as AnimeEpisodeVM;
+					newStatus = !ep.Watched;
+					JMMServerBinary.Contract_ToggleWatchedStatusOnEpisode_Response response = JMMServerVM.Instance.clientBinaryHTTP.ToggleWatchedStatusOnEpisode(ep.AnimeEpisodeID,
+						newStatus, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+					if (!string.IsNullOrEmpty(response.ErrorMessage))
+					{
+						MessageBox.Show(response.ErrorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+						return;
+					}
+
+					MainListHelperVM.Instance.UpdateHeirarchy(response.AnimeEpisode);
+				}
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+			finally
+			{
+				this.Cursor = Cursors.Arrow;
+				this.IsEnabled = true;
+			}
+		}
+
 		void lbCategories_MouseDoubleClick(object sender, MouseButtonEventArgs e)
 		{
 			object obj = lbCategories.SelectedItem;

@@ -37,23 +37,25 @@ namespace JMMClient
 		public ObservableCollection<TorrentSourceVM> UnselectedTorrentSources { get; set; }
 		public ObservableCollection<TorrentSourceVM> SelectedTorrentSources { get; set; }
 		public ObservableCollection<TorrentSourceVM> AllTorrentSources { get; set; }
+		public ObservableCollection<TorrentSourceVM> CurrentSearchTorrentSources { get; set; }
 
 		public UserSettingsVM()
 		{
 			UnselectedTorrentSources = new ObservableCollection<TorrentSourceVM>();
 			SelectedTorrentSources = new ObservableCollection<TorrentSourceVM>();
 			AllTorrentSources = new ObservableCollection<TorrentSourceVM>(GetAllTorrentSources());
+			CurrentSearchTorrentSources = new ObservableCollection<TorrentSourceVM>();
 		}
 
 		public List<TorrentSourceVM> GetAllTorrentSources()
 		{
 			List<TorrentSourceVM> sources = new List<TorrentSourceVM>();
 
-			sources.Add(new TorrentSourceVM(TorrentSourceType.TokyoToshokanAnime));
-			sources.Add(new TorrentSourceVM(TorrentSourceType.TokyoToshokanAll));
-			sources.Add(new TorrentSourceVM(TorrentSourceType.Nyaa));
-			sources.Add(new TorrentSourceVM(TorrentSourceType.AnimeSuki));
-			//sources.Add(new TorrentSourceVM(TorrentSourceType.BakaBT));
+			sources.Add(new TorrentSourceVM(TorrentSourceType.TokyoToshokanAnime, true));
+			sources.Add(new TorrentSourceVM(TorrentSourceType.TokyoToshokanAll, true));
+			sources.Add(new TorrentSourceVM(TorrentSourceType.Nyaa, true));
+			sources.Add(new TorrentSourceVM(TorrentSourceType.AnimeSuki, true));
+			sources.Add(new TorrentSourceVM(TorrentSourceType.BakaBT, true));
 
 			return sources;
 		}
@@ -75,7 +77,7 @@ namespace JMMClient
 					int.TryParse(src, out iSrc);
 
 
-					TorrentSourceVM selSource = new TorrentSourceVM((TorrentSourceType)iSrc);
+					TorrentSourceVM selSource = new TorrentSourceVM((TorrentSourceType)iSrc, true);
 					SelectedTorrentSources.Add(selSource);
 				}
 
@@ -92,6 +94,24 @@ namespace JMMClient
 					}
 					if (!inSelected)
 						UnselectedTorrentSources.Add(src);
+				}
+
+
+				CurrentSearchTorrentSources.Clear();
+				foreach (TorrentSourceVM src in GetAllTorrentSources())
+				{
+					bool inSelected = false;
+					foreach (TorrentSourceVM selSource in SelectedTorrentSources)
+					{
+						if (src.TorrentSource == selSource.TorrentSource)
+						{
+							inSelected = true;
+							break;
+						}
+					}
+
+					TorrentSourceVM newSource = new TorrentSourceVM(src.TorrentSource, inSelected);
+					CurrentSearchTorrentSources.Add(newSource);
 				}
 			}
 			catch (Exception ex)
@@ -945,6 +965,58 @@ namespace JMMClient
 			}
 		}
 
+		public string BakaBTUsername
+		{
+			get { return AppSettings.BakaBTUsername; }
+			set
+			{
+				AppSettings.BakaBTUsername = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("BakaBTUsername"));
+			}
+		}
+
+		public string BakaBTPassword
+		{
+			get { return AppSettings.BakaBTPassword; }
+			set
+			{
+				AppSettings.BakaBTPassword = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("BakaBTPassword"));
+			}
+		}
+
+		public bool BakaBTOnlyUseForSeriesSearches
+		{
+			get { return AppSettings.BakaBTOnlyUseForSeriesSearches; }
+			set
+			{
+				AppSettings.BakaBTOnlyUseForSeriesSearches = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("BakaBTOnlyUseForSeriesSearches"));
+			}
+		}
+
+		private string bakaBTCookieHeader = "";
+		public string BakaBTCookieHeader
+		{
+			get { return bakaBTCookieHeader; }
+			set
+			{
+				bakaBTCookieHeader = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("BakaBTCookieHeader"));
+				BakaBTCookieHeaderSet = !string.IsNullOrEmpty(value);
+			}
+		}
+
+		private bool bakaBTCookieHeaderSet = false;
+		public bool BakaBTCookieHeaderSet
+		{
+			get { return bakaBTCookieHeaderSet; }
+			set
+			{
+				bakaBTCookieHeaderSet = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("BakaBTCookieHeaderSet"));
+			}
+		}
 
 		public int GetSeriesWidgetPosition(SeriesWidgets swid)
 		{

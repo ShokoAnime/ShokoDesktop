@@ -271,5 +271,16 @@ namespace JMMClient
 		{
 			uTorrent.AddTorrentFromURL(downloadURL);
 		}
+
+		public void RemoveTorrent(string hash)
+		{
+			uTorrent.RemoveTorrent(hash);
+		}
+
+		public void RemoveTorrentAndData(string hash)
+		{
+			uTorrent.RemoveTorrentAndData(hash);
+		}
+
 	}
 }

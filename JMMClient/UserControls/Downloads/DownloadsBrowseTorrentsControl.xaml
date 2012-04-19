@@ -117,7 +117,7 @@
                     <DataGridTextColumn Header="Size" Binding="{Binding Size}" IsReadOnly="True" />
                     <DataGridTextColumn Header="Seeders" Binding="{Binding Seeders}" IsReadOnly="True" />
                     <DataGridTextColumn Header="Leechers" Binding="{Binding Leechers}" IsReadOnly="True" />
-
+                    <DataGridTextColumn Header="Extra Info" Binding="{Binding ExtraInfo}" IsReadOnly="True" />
                 </DataGrid.Columns>
             </DataGrid>
         </DockPanel >

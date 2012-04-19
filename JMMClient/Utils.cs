@@ -62,6 +62,11 @@ namespace JMMClient
 
 		public static string DownloadWebPage(string url)
 		{
+			return DownloadWebPage(url, null, false);
+		}
+
+		public static string DownloadWebPage(string url, string cookieHeader, bool setUserAgent)
+		{
 			try
 			{
 				logger.Trace("DownloadWebPage: {0}", url);
@@ -70,6 +75,12 @@ namespace JMMClient
 				webReq.Timeout = 30000; // 30 seconds
 				webReq.Proxy = null;
 				webReq.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip,deflate");
+
+				if (!string.IsNullOrEmpty(cookieHeader))
+					webReq.Headers.Add("Cookie", cookieHeader);
+				if (setUserAgent)
+					webReq.UserAgent = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)";
+
 				webReq.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
 
 				HttpWebResponse WebResponse = (HttpWebResponse)webReq.GetResponse();

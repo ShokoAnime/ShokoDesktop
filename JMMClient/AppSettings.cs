@@ -1510,7 +1510,7 @@ namespace JMMClient
 				if (string.IsNullOrEmpty(val))
 				{
 					// default value
-					val = "";
+					val = "leo5";
 					UpdateSetting("UTorrentAddress", val);
 				}
 				return val;
@@ -1531,7 +1531,7 @@ namespace JMMClient
 				if (string.IsNullOrEmpty(val))
 				{
 					// default value
-					val = "";
+					val = "8080";
 					UpdateSetting("UTorrentPort", val);
 				}
 				return val;
@@ -1552,7 +1552,7 @@ namespace JMMClient
 				if (string.IsNullOrEmpty(val))
 				{
 					// default value
-					val = "";
+					val = "lwerndly";
 					UpdateSetting("UTorrentUsername", val);
 				}
 				return val;
@@ -1573,7 +1573,7 @@ namespace JMMClient
 				if (string.IsNullOrEmpty(val))
 				{
 					// default value
-					val = "";
+					val = "gummi275";
 					UpdateSetting("UTorrentPassword", val);
 				}
 				return val;
@@ -1696,6 +1696,66 @@ namespace JMMClient
 			set
 			{
 				UpdateSetting("TorrentSources", value);
+			}
+		}
+
+		public static string BakaBTUsername
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+
+				string val = appSettings["BakaBTUsername"];
+				if (string.IsNullOrEmpty(val))
+				{
+					// default value
+					val = "jonbaby";
+					UpdateSetting("BakaBTUsername", val);
+				}
+				return val;
+			}
+			set
+			{
+				UpdateSetting("BakaBTUsername", value);
+			}
+		}
+
+		public static string BakaBTPassword
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+
+				string val = appSettings["BakaBTPassword"];
+				if (string.IsNullOrEmpty(val))
+				{
+					// default value
+					val = "gummi275";
+					UpdateSetting("BakaBTPassword", val);
+				}
+				return val;
+			}
+			set
+			{
+				UpdateSetting("BakaBTPassword", value);
+			}
+		}
+
+		public static bool BakaBTOnlyUseForSeriesSearches
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["BakaBTOnlyUseForSeriesSearches"];
+				bool bval = false;
+				if (bool.TryParse(val, out bval))
+					return bval;
+				else
+					return true; // default value
+			}
+			set
+			{
+				UpdateSetting("BakaBTOnlyUseForSeriesSearches", value.ToString());
 			}
 		}
 

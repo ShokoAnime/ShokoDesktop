@@ -88,6 +88,9 @@
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutomaticUpdaterWPF">
       <HintPath>..\..\..\..\..\..\Program Files (x86)\wyBuild\AutomaticUpdater\Microsoft .NET 4.0\AutomaticUpdaterWPF.dll</HintPath>
@@ -158,6 +161,7 @@
     <Compile Include="Downloads\TorrentLink.cs" />
     <Compile Include="Downloads\TorrentList.cs" />
     <Compile Include="Downloads\TorrentsAnimeSuki.cs" />
+    <Compile Include="Downloads\TorrentsBakaBT.cs" />
     <Compile Include="Downloads\TorrentsNyaa.cs" />
     <Compile Include="Downloads\TorrentSourceVM.cs" />
     <Compile Include="Downloads\TorrentsTokyoToshokan.cs" />
@@ -303,6 +307,9 @@
     </Compile>
     <Compile Include="UserControls\Downloads\DownloadsBrowseTorrentsControl.xaml.cs">
       <DependentUpon>DownloadsBrowseTorrentsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Downloads\DownloadSettingsBakaBT.xaml.cs">
+      <DependentUpon>DownloadSettingsBakaBT.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Downloads\DownloadSettingsTorSources.xaml.cs">
       <DependentUpon>DownloadSettingsTorSources.xaml</DependentUpon>
@@ -752,6 +759,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\Downloads\DownloadSettingsBakaBT.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\Downloads\DownloadSettingsTorSources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -982,6 +993,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.de.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -1643,12 +1655,13 @@
   <ItemGroup>
     <Resource Include="Images\24_download3.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="PostBuild.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(TargetDir)*.dll" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y	
-xcopy "$(TargetDir)*.exe" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y
-xcopy "$(TargetDir)*.pdb" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y
-xcopy "$(TargetDir)*.manifest" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

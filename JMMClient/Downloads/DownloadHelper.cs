@@ -23,53 +23,48 @@ namespace JMMClient.Downloads
 			List<string> parms = search.GetParms();
 			List<TorrentLinkVM> links = new List<TorrentLinkVM>();
 
-
-
-
-			TorrentsAnimeSuki suki = new TorrentsAnimeSuki();
-
 			List<string> episodeGroupParms = new List<string>();
 
-			// lets do something special for episodes
-			/*if (UserSettingsVM.Instance.TorrentSearchPreferOwnGroups && search.SearchType == DownloadSearchType.Episode)
+			// get the sources that are in both the selected sources and the default sources
+			// default sources have an order
+			List<TorrentSourceVM> orderedSources = new List<TorrentSourceVM>();
+
+			if (search.SearchType == DownloadSearchType.Series && UserSettingsVM.Instance.BakaBTOnlyUseForSeriesSearches &&
+				!string.IsNullOrEmpty(UserSettingsVM.Instance.BakaBTUsername) && !string.IsNullOrEmpty(UserSettingsVM.Instance.BakaBTPassword))
 			{
-				AnimeEpisodeVM ep = search.SearchParameter as AnimeEpisodeVM;
-
-				AnimeSeriesVM series = MainListHelperVM.Instance.GetSeries(ep.AnimeSeriesID);
-				if (series != null && series.AniDB_Anime != null)
+				TorrentSourceVM src = new TorrentSourceVM(TorrentSourceType.BakaBT, true);
+				orderedSources.Add(src);
+			}
+			else
+			{
+				foreach (TorrentSourceVM src in UserSettingsVM.Instance.SelectedTorrentSources)
 				{
-					List<GroupVideoQualityVM> videoQualityRecords = new List<GroupVideoQualityVM>();
-					List<JMMServerBinary.Contract_GroupVideoQuality> summ = JMMServerVM.Instance.clientBinaryHTTP.GetGroupVideoQualitySummary(series.AniDB_ID);
-					foreach (JMMServerBinary.Contract_GroupVideoQuality contract in summ)
+					foreach (TorrentSourceVM srcCur in UserSettingsVM.Instance.CurrentSearchTorrentSources)
 					{
-						GroupVideoQualityVM vidQual = new GroupVideoQualityVM(contract);
-						videoQualityRecords.Add(vidQual);
-					}
-
-					// apply sorting
-					if (videoQualityRecords.Count > 0)
-					{
-						List<SortPropOrFieldAndDirection> sortlist = new List<SortPropOrFieldAndDirection>();
-						sortlist.Add(new SortPropOrFieldAndDirection("FileCountNormal", true, SortType.eInteger));
-						videoQualityRecords = Sorting.MultiSort<GroupVideoQualityVM>(videoQualityRecords, sortlist);
-					}
-
-					//only use the first 2
-					int i = 0;
-					foreach (GroupVideoQualityVM gvq in videoQualityRecords)
-					{
-						if (i == 2) break;
-						if (!episodeGroupParms.Contains(gvq.GroupNameShort))
-						{
-							episodeGroupParms.Add(gvq.GroupNameShort);
-							i++;
-						}
+						if (srcCur.IsDisabled) continue;
+						if (src.TorrentSource == srcCur.TorrentSource)
+							orderedSources.Add(srcCur);
 					}
 				}
-			}*/
 
-			foreach (TorrentSourceVM src in UserSettingsVM.Instance.SelectedTorrentSources)
+				// now get any sources that we missed
+				foreach (TorrentSourceVM src in UserSettingsVM.Instance.CurrentSearchTorrentSources)
+				{
+					if (src.IsDisabled) continue;
+					bool foundSource = false;
+					foreach (TorrentSourceVM srcDone in orderedSources)
+					{
+						if (srcDone.TorrentSource == src.TorrentSource) foundSource = true;
+					}
+					if (!foundSource)
+						orderedSources.Add(src);
+				}
+			}
+
+			foreach (TorrentSourceVM src in orderedSources)
 			{
+				if (src.IsDisabled) continue;
+
 				if (src.TorrentSource == TorrentSourceType.Nyaa)
 				{
 					TorrentsNyaa nyaa = new TorrentsNyaa();
@@ -109,8 +104,16 @@ namespace JMMClient.Downloads
 
 				if (src.TorrentSource == TorrentSourceType.AnimeSuki)
 				{
+					TorrentsAnimeSuki suki = new TorrentsAnimeSuki();
 					List<TorrentLinkVM> sukiLinks = suki.GetTorrents(parms);
 					links.AddRange(sukiLinks);
+				}
+
+				if (src.TorrentSource == TorrentSourceType.BakaBT)
+				{
+					TorrentsBakaBT bakaBT = new TorrentsBakaBT();
+					List<TorrentLinkVM> bbLinks = bakaBT.GetTorrents(parms);
+					links.AddRange(bbLinks);
 				}
 
 				if (src.TorrentSource == TorrentSourceType.TokyoToshokanAll || src.TorrentSource == TorrentSourceType.TokyoToshokanAnime)

@@ -1664,4 +1664,16 @@
   <data name="GroupFilter_Predefined" xml:space="preserve">
     <value>Predefined Filters</value>
   </data>
+  <data name="BakaBTResetBody" xml:space="preserve">
+    <value>Reset the cookie if you are not getting any results from BakaBT when you should be. This will force a login to BakaBT again.</value>
+  </data>
+  <data name="BakaBTResetTitle" xml:space="preserve">
+    <value>Reset Cookie</value>
+  </data>
+  <data name="BakaBTSeriesBody" xml:space="preserve">
+    <value>When searching for a series, BakaBT will be the only torrent source used in the initial search</value>
+  </data>
+  <data name="BakaBTSeriesTitle" xml:space="preserve">
+    <value>BakaBT Only</value>
+  </data>
 </root>

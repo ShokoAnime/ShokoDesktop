@@ -63,6 +63,8 @@ namespace JMMClient.Downloads
 		}
 
 		public string TorrentDownloadLink { get; set; }
+		public string TorrentLink { get; set; }
+		public string AnimeType { get; set; }
 		public string Size { get; set; }
 		public string Seeders { get; set; }
 		public string Leechers { get; set; }
@@ -74,7 +76,7 @@ namespace JMMClient.Downloads
 
 		public TorrentLinkVM(TorrentSourceType tsType)
 		{
-			Source = new TorrentSourceVM(tsType);
+			Source = new TorrentSourceVM(tsType, true);
 		}
 
 		public override string ToString()
@@ -85,6 +87,22 @@ namespace JMMClient.Downloads
 		public string ToStringMatch()
 		{
 			return string.Format("Torrent Match:   {0} - {1} ", RawTorrentName, ClosestAnimeMatchString);
+		}
+
+		public string ExtraInfo
+		{
+			get
+			{
+				return string.Format("{0} ", AnimeType);
+			}
+		}
+
+		public string TorrentLinkFull
+		{
+			get
+			{
+				return string.Format("http://bakabt.me{0} ", TorrentLink);
+			}
 		}
 
 

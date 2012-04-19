@@ -18,11 +18,12 @@
             <local:UriToImageConverter x:Key="LocalUriToImageConverter"/>
 
             <RoutedUICommand x:Key="RevokeVoteCommand" Text="RevokeVoteCommand" />
+            <RoutedUICommand x:Key="ToggleWatchedStatusCommand" Text="ToggleWatchedStatusCommand" />
         </ResourceDictionary>
     </Window.Resources>
 
     <Window.CommandBindings>
-
+        <CommandBinding Command="{StaticResource ToggleWatchedStatusCommand}" Executed="CommandBinding_ToggleWatchedStatus" />
     </Window.CommandBindings>
 
     <Grid>
