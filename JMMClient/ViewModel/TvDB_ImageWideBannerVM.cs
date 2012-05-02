@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.ComponentModel;
+using JMMClient.ImageDownload;
 
 namespace JMMClient.ViewModel
 {
@@ -29,13 +30,30 @@ namespace JMMClient.ViewModel
 			}
 		}
 
-		public string FullImagePath
+		public string FullImagePathPlain
 		{
 			get
 			{
 				string fname = BannerPath;
 				fname = BannerPath.Replace("/", @"\");
-				return Path.Combine(Utils.GetTvDBImagePath(), fname);
+				string filename = Path.Combine(Utils.GetTvDBImagePath(), fname);
+
+				return filename;
+			}
+		}
+
+		public string FullImagePath
+		{
+			get
+			{
+				if (!File.Exists(FullImagePathPlain))
+				{
+					ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.TvDB_Banner, this, false);
+					MainWindow.imageHelper.DownloadImage(req);
+					if (File.Exists(FullImagePathPlain)) return FullImagePathPlain;
+				}
+
+				return FullImagePathPlain;
 			}
 		}
 

@@ -7402,6 +7402,9 @@ namespace JMMClient.JMMServerBinary {
         private JMMClient.JMMServerBinary.Contract_TraktTVShowResponse TraktShowField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int Trakt_EpisodeIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int WatchedField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -7530,6 +7533,19 @@ namespace JMMClient.JMMServerBinary {
                 if ((object.ReferenceEquals(this.TraktShowField, value) != true)) {
                     this.TraktShowField = value;
                     this.RaisePropertyChanged("TraktShow");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Trakt_EpisodeID {
+            get {
+                return this.Trakt_EpisodeIDField;
+            }
+            set {
+                if ((this.Trakt_EpisodeIDField.Equals(value) != true)) {
+                    this.Trakt_EpisodeIDField = value;
+                    this.RaisePropertyChanged("Trakt_EpisodeID");
                 }
             }
         }

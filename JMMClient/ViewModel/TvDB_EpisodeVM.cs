@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using JMMClient.ImageDownload;
 
 namespace JMMClient.ViewModel
 {
@@ -35,7 +36,7 @@ namespace JMMClient.ViewModel
 			}
 		}
 
-		public string FullImagePath
+		public string FullImagePathPlain
 		{
 			get
 			{
@@ -44,6 +45,21 @@ namespace JMMClient.ViewModel
 				string fname = Filename;
 				fname = Filename.Replace("/", @"\");
 				return Path.Combine(Utils.GetTvDBImagePath(), fname);
+			}
+		}
+
+		public string FullImagePath
+		{
+			get
+			{
+				if (!File.Exists(FullImagePathPlain))
+				{
+					ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.TvDB_Episode, this, false);
+					MainWindow.imageHelper.DownloadImage(req);
+					if (File.Exists(FullImagePathPlain)) return FullImagePathPlain;
+				}
+
+				return FullImagePathPlain;
 			}
 		}
 

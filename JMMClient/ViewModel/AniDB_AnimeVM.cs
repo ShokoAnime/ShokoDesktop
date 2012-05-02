@@ -6,6 +6,7 @@ using System.IO;
 using JMMClient.ViewModel;
 using System.ComponentModel;
 using NLog;
+using JMMClient.ImageDownload;
 
 namespace JMMClient
 {
@@ -212,11 +213,28 @@ namespace JMMClient
 
 		#region Posters
 
+		public string PosterPathNoDefaultPlain
+		{
+			get
+			{
+				string fileName = Path.Combine(Utils.GetAniDBImagePath(AnimeID), Picname);
+
+				return fileName;
+			}
+		}
+
 		public string PosterPathNoDefault
 		{
 			get
 			{
 				string fileName = Path.Combine(Utils.GetAniDBImagePath(AnimeID), Picname);
+
+				if (!File.Exists(fileName))
+				{
+					ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.AniDB_Cover, this, false);
+					MainWindow.imageHelper.DownloadImage(req);
+				}
+
 				return fileName;
 			}
 		}
@@ -229,6 +247,10 @@ namespace JMMClient
 
 				if (!File.Exists(fileName))
 				{
+					ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.AniDB_Cover, this, false);
+					MainWindow.imageHelper.DownloadImage(req);
+					if (File.Exists(fileName)) return fileName;
+
 					if (!string.IsNullOrEmpty(Picname))
 						return string.Format(Constants.URLS.AniDB_Images, Picname);
 					

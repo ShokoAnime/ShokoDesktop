@@ -7,6 +7,7 @@ using JMMClient.ViewModel;
 using System.ComponentModel;
 using NLog;
 using System.IO;
+using JMMClient.ImageDownload;
 
 namespace JMMClient
 {

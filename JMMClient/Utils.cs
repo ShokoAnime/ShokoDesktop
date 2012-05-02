@@ -17,7 +17,7 @@ using System.Windows;
 
 namespace JMMClient
 {
-	public class Utils
+	public static class Utils
 	{
 		private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -35,6 +35,17 @@ namespace JMMClient
 		[DllImport("Shlwapi.dll", CharSet = CharSet.Auto)]
 		static extern long StrFormatByteSize(long fileSize,
 		[MarshalAs(UnmanagedType.LPTStr)] StringBuilder buffer, int bufferSize);
+
+		private static object assemblyLock = new object();
+
+		private static string appPath = "";
+		public static string GetAppPath()
+		{
+			if (string.IsNullOrEmpty(appPath))
+				appPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+
+			return appPath;
+		}
 
 		public static string FormatByteSize(long fileSize)
 		{
@@ -188,29 +199,32 @@ namespace JMMClient
 
 		public static string GetBaseImagesPath()
 		{
-			bool overrideFolder = false;
-			if (!AppSettings.BaseImagesPathIsDefault)
+			lock (assemblyLock)
 			{
-				if (!string.IsNullOrEmpty(AppSettings.BaseImagesPath))
+				bool overrideFolder = false;
+				if (!AppSettings.BaseImagesPathIsDefault)
 				{
-					if (Directory.Exists(AppSettings.BaseImagesPath)) overrideFolder = true;
+					if (!string.IsNullOrEmpty(AppSettings.BaseImagesPath))
+					{
+						if (Directory.Exists(AppSettings.BaseImagesPath)) overrideFolder = true;
+					}
 				}
+
+				string filePath = "";
+				if (overrideFolder)
+					filePath = AppSettings.BaseImagesPath;
+				else
+				{
+					filePath = Path.Combine(Utils.GetAppPath(), "Images");
+				}
+
+
+				if (!Directory.Exists(filePath))
+					Directory.CreateDirectory(filePath);
+
+				return filePath;
 			}
-
-			string filePath = "";
-			if (overrideFolder)
-				filePath = AppSettings.BaseImagesPath;
-			else
-			{
-				string appPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-				filePath = Path.Combine(appPath, "Images");
-			}
-
-
-			if (!Directory.Exists(filePath))
-				Directory.CreateDirectory(filePath);
-
-			return filePath;
+			
 		}
 
 		public static string GetBaseAniDBImagesPath()

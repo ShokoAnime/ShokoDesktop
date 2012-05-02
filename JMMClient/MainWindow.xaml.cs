@@ -841,8 +841,8 @@ namespace JMMClient
 
 		private void DownloadAllImages()
 		{
-			if (!downloadImagesWorker.IsBusy)
-				downloadImagesWorker.RunWorkerAsync();
+			//if (!downloadImagesWorker.IsBusy)
+			//	downloadImagesWorker.RunWorkerAsync();
 		}
 
 		void downloadImagesWorker_DoWork(object sender, DoWorkEventArgs e)

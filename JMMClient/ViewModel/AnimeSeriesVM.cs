@@ -347,7 +347,7 @@ namespace JMMClient
 		private string posterPath = "";
 		public string PosterPath
 		{
-			get { return posterPath; }
+			get { return AniDB_Anime.DefaultPosterPath; }
 			set
 			{
 				posterPath = value;
@@ -774,7 +774,7 @@ namespace JMMClient
 			HasMissingEpisodesAllDifferentToGroups = (MissingEpisodeCount > 0 && MissingEpisodeCount != MissingEpisodeCountGroups);
 			HasMissingEpisodesGroups = MissingEpisodeCountGroups > 0;
 
-			PosterPath = AniDB_Anime.DefaultPosterPath;
+			//PosterPath = AniDB_Anime.DefaultPosterPath;
 
 			SetSeriesNames();
 		}

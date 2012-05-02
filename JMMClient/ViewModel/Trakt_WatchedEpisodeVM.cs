@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using JMMClient.ImageDownload;
 
 namespace JMMClient.ViewModel
 {
 	public class Trakt_WatchedEpisodeVM
 	{
+		public int Trakt_EpisodeID { get; set; }
+
 		public int Watched { get; set; }
 		public DateTime? WatchedDate { get; set; }
 
@@ -54,7 +57,7 @@ namespace JMMClient.ViewModel
 			}
 		}
 
-		public string FullImagePath
+		public string FullImagePathPlain
 		{
 			get
 			{
@@ -81,6 +84,21 @@ namespace JMMClient.ViewModel
 				relativePath = Path.Combine(relativePath, imageName);
 
 				return Path.Combine(Utils.GetTraktImagePath(), relativePath);
+			}
+		}
+
+		public string FullImagePath
+		{
+			get
+			{
+				if (!File.Exists(FullImagePathPlain))
+				{
+					ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.Trakt_WatchedEpisode, this, false);
+					MainWindow.imageHelper.DownloadImage(req);
+					if (File.Exists(FullImagePathPlain)) return FullImagePathPlain;
+				}
+
+				return FullImagePathPlain;
 			}
 		}
 
@@ -123,6 +141,8 @@ namespace JMMClient.ViewModel
 
 		public Trakt_WatchedEpisodeVM(JMMServerBinary.Contract_Trakt_WatchedEpisode contract)
 		{
+			this.Trakt_EpisodeID = contract.Trakt_EpisodeID;
+
 			this.Watched = contract.Watched;
 			this.WatchedDate = contract.WatchedDate;
 			this.Episode_Season = contract.Episode_Season;

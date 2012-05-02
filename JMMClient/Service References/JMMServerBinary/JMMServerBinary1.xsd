@@ -720,6 +720,7 @@
       <xs:element minOccurs="0" name="Episode_Title" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Episode_Url" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TraktShow" nillable="true" type="tns:Contract_TraktTVShowResponse" />
+      <xs:element minOccurs="0" name="Trakt_EpisodeID" type="xs:int" />
       <xs:element minOccurs="0" name="Watched" type="xs:int" />
       <xs:element minOccurs="0" name="WatchedDate" nillable="true" type="xs:dateTime" />
     </xs:sequence>

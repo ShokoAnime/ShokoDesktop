@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.ComponentModel;
+using JMMClient.ImageDownload;
 
 namespace JMMClient.ViewModel
 {
@@ -29,7 +30,7 @@ namespace JMMClient.ViewModel
 			}
 		}
 
-		public string FullImagePath
+		public string FullImagePathPlain
 		{
 			get
 			{
@@ -37,7 +38,24 @@ namespace JMMClient.ViewModel
 				int pos = URL.IndexOf('/', 10);
 				string fname = URL.Substring(pos + 1, URL.Length - pos - 1);
 				fname = fname.Replace("/", @"\");
-				return Path.Combine(Utils.GetMovieDBImagePath(), fname);
+				string filename = Path.Combine(Utils.GetMovieDBImagePath(), fname);
+
+				return filename;
+			}
+		}
+
+		public string FullImagePath
+		{
+			get
+			{
+				if (!File.Exists(FullImagePathPlain))
+				{
+					ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.MovieDB_FanArt, this, false);
+					MainWindow.imageHelper.DownloadImage(req);
+					if (File.Exists(FullImagePathPlain)) return FullImagePathPlain;
+				}
+
+				return FullImagePathPlain;
 			}
 		}
 

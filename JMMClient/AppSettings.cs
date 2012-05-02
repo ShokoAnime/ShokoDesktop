@@ -1510,7 +1510,7 @@ namespace JMMClient
 				if (string.IsNullOrEmpty(val))
 				{
 					// default value
-					val = "leo5";
+					val = "";
 					UpdateSetting("UTorrentAddress", val);
 				}
 				return val;
@@ -1531,7 +1531,7 @@ namespace JMMClient
 				if (string.IsNullOrEmpty(val))
 				{
 					// default value
-					val = "8080";
+					val = "";
 					UpdateSetting("UTorrentPort", val);
 				}
 				return val;
@@ -1552,7 +1552,7 @@ namespace JMMClient
 				if (string.IsNullOrEmpty(val))
 				{
 					// default value
-					val = "lwerndly";
+					val = "";
 					UpdateSetting("UTorrentUsername", val);
 				}
 				return val;
@@ -1573,7 +1573,7 @@ namespace JMMClient
 				if (string.IsNullOrEmpty(val))
 				{
 					// default value
-					val = "gummi275";
+					val = "";
 					UpdateSetting("UTorrentPassword", val);
 				}
 				return val;
@@ -1709,7 +1709,7 @@ namespace JMMClient
 				if (string.IsNullOrEmpty(val))
 				{
 					// default value
-					val = "jonbaby";
+					val = "";
 					UpdateSetting("BakaBTUsername", val);
 				}
 				return val;
@@ -1730,7 +1730,7 @@ namespace JMMClient
 				if (string.IsNullOrEmpty(val))
 				{
 					// default value
-					val = "gummi275";
+					val = "";
 					UpdateSetting("BakaBTPassword", val);
 				}
 				return val;

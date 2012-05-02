@@ -339,20 +339,6 @@ namespace JMMClient
 						if (contract.WatchedEpisodes != null && contract.WatchedEpisodes.Count > 0)
 						{
 							Trakt_FriendVM friend = new Trakt_FriendVM(contract);
-
-							if (!string.IsNullOrEmpty(friend.FullImagePath) && !File.Exists(friend.FullImagePath))
-							{
-								// re-download the friends avatar image
-								try
-								{
-									ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.Trakt_Friend, friend, true);
-									MainWindow.imageHelper.DownloadImage(req);
-								}
-								catch (Exception ex)
-								{
-									logger.ErrorException(ex.ToString(), ex);
-								}
-							}
 							activity.Add(friend);
 						}
 					}

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.ComponentModel;
+using JMMClient.ImageDownload;
 
 namespace JMMClient.ViewModel
 {
@@ -63,7 +64,7 @@ namespace JMMClient.ViewModel
 			}
 		}
 
-		public string UserFullImagePath
+		public string UserFullImagePathPlain
 		{
 			get
 			{
@@ -75,6 +76,21 @@ namespace JMMClient.ViewModel
 
 				string path = Utils.GetTraktImagePath_Avatars();
 				return Path.Combine(path, string.Format("{0}.jpg", User.Username));
+			}
+		}
+
+		public string UserFullImagePath
+		{
+			get
+			{
+				if (!File.Exists(UserFullImagePathPlain))
+				{
+					ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.Trakt_ActivityScrobble, this, false);
+					MainWindow.imageHelper.DownloadImage(req);
+					if (File.Exists(UserFullImagePathPlain)) return UserFullImagePathPlain;
+				}
+
+				return UserFullImagePathPlain;
 			}
 		}
 

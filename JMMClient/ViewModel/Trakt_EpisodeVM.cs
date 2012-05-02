@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using JMMClient.ImageDownload;
 
 namespace JMMClient.ViewModel
 {
@@ -29,7 +30,7 @@ namespace JMMClient.ViewModel
 			this.EpisodeImage = contract.EpisodeImage;
 		}
 
-		public string FullImagePath
+		public string FullImagePathPlain
 		{
 			get
 			{
@@ -62,7 +63,26 @@ namespace JMMClient.ViewModel
 				string relativePath = Path.Combine("episodes", traktID);
 				relativePath = Path.Combine(relativePath, imageName);
 
-				return Path.Combine(Utils.GetTraktImagePath(), relativePath);
+				string filename = Path.Combine(Utils.GetTraktImagePath(), relativePath);
+
+				return filename;
+			}
+		}
+
+		public string FullImagePath
+		{
+			get
+			{
+
+
+				if (!File.Exists(FullImagePathPlain))
+				{
+					ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.Trakt_Episode, this, false);
+					MainWindow.imageHelper.DownloadImage(req);
+					if (File.Exists(FullImagePathPlain)) return FullImagePathPlain;
+				}
+
+				return FullImagePathPlain;
 			}
 		}
 

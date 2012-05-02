@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.ComponentModel;
+using JMMClient.ImageDownload;
 
 namespace JMMClient.ViewModel
 {
@@ -25,7 +26,7 @@ namespace JMMClient.ViewModel
 			}
 		}
 
-		public string FullImagePath
+		public string FullImagePathPlain
 		{
 			get
 			{
@@ -40,7 +41,25 @@ namespace JMMClient.ViewModel
 				string relativePath = ImageURL.Substring(pos + 7, ImageURL.Length - pos - 7);
 				relativePath = relativePath.Replace("/", @"\");
 
-				return Path.Combine(Utils.GetTraktImagePath(), relativePath);
+				string filename = Path.Combine(Utils.GetTraktImagePath(), relativePath);
+
+				return filename;
+			}
+		}
+
+		public string FullImagePath
+		{
+			get
+			{
+
+				if (!File.Exists(FullImagePathPlain))
+				{
+					ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.Trakt_Fanart, this, false);
+					MainWindow.imageHelper.DownloadImage(req);
+					if (File.Exists(FullImagePathPlain)) return FullImagePathPlain;
+				}
+
+				return FullImagePathPlain;
 			}
 		}
 
