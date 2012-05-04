@@ -18,8 +18,9 @@
             <RoutedUICommand x:Key="DeleteFileCommand" Text="DeleteFileCommand" />
             <RoutedUICommand x:Key="ForceAddMyListCommand" Text="ForceAddMyListCommand" />
             <RoutedUICommand x:Key="ForceUpdateCommand" Text="ForceUpdateCommand" />
+            <RoutedUICommand x:Key="ToggleFileDetailsCommand" Text="ToggleFileDetailsCommand" />
+            <RoutedUICommand x:Key="RehashFileCommand" Text="RehashFileCommand" />
 
-            
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
@@ -33,25 +34,26 @@
                         <RowDefinition />
                         <RowDefinition />
                         <RowDefinition />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
 
                     <Border BorderThickness="0,0,0,1" BorderBrush="LightGray"  Grid.Column="0" Grid.Row="0" Background="#F1F1F1" Margin="0,0,0,10">
 
                         <!-- General Contextual buttons toolbar -->
                         <StackPanel Orientation="Horizontal">
-                            
+
                             <!-- Play button-->
                             <Button Name="btnPlay" Margin="0,0,10,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center"
                             Visibility="{Binding Path=FileIsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
                             Command="{DynamicResource PlayVideoCommand}" CommandParameter="{Binding}">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="16" Width="16" Source="/Images/32_play.png" Margin="0,0,5,0"/>
-                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Play}" Margin="0,0,5,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Play}" Margin="0,0,5,0" Foreground="Black"/>
                                 </StackPanel>
                             </Button>
 
                             <!-- Set watched/unwatched button-->
-                            <Button Margin="0,0,10,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource ToggleWatchedStatusCommand}" CommandParameter="{Binding}">
+                            <Button Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource ToggleWatchedStatusCommand}" CommandParameter="{Binding}">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="16" Width="16" Source="/Images/16_eye.png" Margin="2,0,2,0"
                                     Visibility="{Binding Path=Watched, Converter={StaticResource BooleanToVisibilityConverter}}">
@@ -70,11 +72,11 @@
                             </Button>
 
                             <!-- open folder button-->
-                            <Button Margin="0,0,10,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource OpenFolderCommand}" 
+                            <Button Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource OpenFolderCommand}" 
                                 CommandParameter="{Binding}" Visibility="{Binding Path=FileIsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}" >
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="16" Width="16" Source="/Images/32_folder.png" Margin="2,0,2,0"/>
-                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=OpenFolder}" Margin="5,0,5,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=OpenFolder}" Margin="5,0,5,0" Foreground="Black"/>
                                 </StackPanel>
                                 <Button.ToolTip>
                                     <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=OpenFolder}"/>
@@ -82,12 +84,12 @@
                             </Button>
 
                             <!-- delete link button-->
-                            <Button Margin="0,0,10,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource DeleteLinkCommand}" 
+                            <Button Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource DeleteLinkCommand}" 
                                 CommandParameter="{Binding}" Visibility="{Binding Path=IsManualAssociation, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="16" Width="16" Source="../Images/16_link_remove.png" Margin="2,0,2,0" VerticalAlignment="Center">
                                     </Image>
-                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=DeleteLink}" Margin="5,0,5,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=DeleteLink}" Margin="5,0,5,0" Foreground="Black"/>
                                 </StackPanel>
                                 <Button.ToolTip>
                                     <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_DeleteLink}"/>
@@ -95,41 +97,29 @@
                             </Button>
 
                             <!-- delete button-->
-                            <Button Margin="0,0,10,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource DeleteFileCommand}" 
+                            <Button Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource DeleteFileCommand}" 
                                 CommandParameter="{Binding}" Visibility="{Binding Path=FileIsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}" >
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="16" Width="16" Source="/Images/32_trash.png" Margin="2,0,2,0"/>
-                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Delete}" Margin="5,0,5,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Delete}" Margin="5,0,5,0" Foreground="Black"/>
                                 </StackPanel>
                             </Button>
 
-                            <!-- force add to anidb MyList-->
-                            <Button Margin="0,0,10,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource ForceAddMyListCommand}" 
-                                CommandParameter="{Binding}" Visibility="{Binding Path=FileIsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}" >
+                            <!-- more Info-->
+                            <Button Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource ToggleFileDetailsCommand}" 
+                                CommandParameter="{Binding}" Visibility="{Binding Path=ShowLessDetails, Converter={StaticResource BooleanToVisibilityConverter}}" >
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                    <Image Height="16" Width="16" Source="/Images/32_add.png" Margin="2,0,2,0"/>
-                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=MyList}" Margin="5,0,5,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="More Info.." Margin="5,0,5,0" Foreground="Black"/>
                                 </StackPanel>
-                                <Button.ToolTip>
-                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_MyList}"/>
-                                </Button.ToolTip>
                             </Button>
 
-                            <!-- force update anidb -->
-                            <Button Margin="0,0,10,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource ForceUpdateCommand}" 
-                                CommandParameter="{Binding}" >
+                            <!-- less Info-->
+                            <Button Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource ToggleFileDetailsCommand}" 
+                                CommandParameter="{Binding}" Visibility="{Binding Path=ShowMoreDetails, Converter={StaticResource BooleanToVisibilityConverter}}" >
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                    <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="2,0,2,0"/>
-                                    <TextBlock VerticalAlignment="Center" Text="Update Info" Margin="5,0,5,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="Less Info.." Margin="5,0,5,0" Foreground="Black"/>
                                 </StackPanel>
-                                <Button.ToolTip>
-                                    <TextBlock Text="Force update information from AniDB"/>
-                                </Button.ToolTip>
                             </Button>
-
-                            <!-- Link to AniDB -->
-                            <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="AniDB" URL="{Binding Path=AniDB_SiteURL}" Margin="10,0,0,0"
-                                         Visibility="{Binding Path=HasAniDBFile, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
 
                         </StackPanel>
@@ -157,7 +147,7 @@
                                    Visibility="{Binding Path=IsAutoAssociation, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         <TextBlock Text="MANUAL LINK" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0"
                                    Visibility="{Binding Path=IsManualAssociation, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        
+
                         <TextBlock Text="{Binding Path=FormattedFileSize}" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0" />
                         <TextBlock Text="{Binding Path=VideoInfoSummary}" VerticalAlignment="Center" Margin="0,0,10,0" />
 
@@ -189,6 +179,78 @@
                         </TextBlock>
                     </StackPanel>
 
+                    <Grid Grid.Column="0" Grid.Row="3" Margin="0,2,10,10" Visibility="{Binding Path=ShowMoreDetails, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <Border BorderThickness="0,1,1,1" BorderBrush="LightGray"  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Background="#F1F1F1" Margin="0,0,0,10">
+                            <StackPanel Orientation="Horizontal" >
+                                <!-- force add to anidb MyList-->
+                                <Button Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource ForceAddMyListCommand}" 
+                                CommandParameter="{Binding}" Visibility="{Binding Path=FileIsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}" >
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                        <Image Height="16" Width="16" Source="/Images/32_add.png" Margin="2,0,2,0"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=MyList}" Margin="5,0,5,0" Foreground="Black"/>
+                                    </StackPanel>
+                                    <Button.ToolTip>
+                                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_MyList}"/>
+                                    </Button.ToolTip>
+                                </Button>
+
+                                <!-- force update anidb -->
+                                <Button Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource ForceUpdateCommand}" 
+                                CommandParameter="{Binding}" >
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                        <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="2,0,2,0"/>
+                                        <TextBlock VerticalAlignment="Center" Text="Update Info" Margin="5,0,5,0" Foreground="Black"/>
+                                    </StackPanel>
+                                    <Button.ToolTip>
+                                        <TextBlock Text="Force update information from AniDB"/>
+                                    </Button.ToolTip>
+                                </Button>
+
+                                <!-- re-hash file -->
+                                <Button Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource RehashFileCommand}" 
+                                CommandParameter="{Binding}" >
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                        <Image Height="16" Width="16" Source="/Images/32_redo.png" Margin="2,0,2,0"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Rehash}" Margin="0,0,5,0"/>
+                                    </StackPanel>
+                                    <Button.ToolTip>
+                                        <TextBlock Text="Re-calculate hashes"/>
+                                    </Button.ToolTip>
+                                </Button>
+
+                                <!-- Link to AniDB -->
+                                <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="AniDB" URL="{Binding Path=AniDB_SiteURL}" Margin="0,0,5,0"
+                                         Visibility="{Binding Path=HasAniDBFile, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                            </StackPanel >
+                        </Border>
+                            
+                        
+
+                        <TextBlock Text="Hash" FontWeight="Bold" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="0" Grid.Row="1"/>
+                        <TextBlock Text="CRC32" FontWeight="Bold" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="0" Grid.Row="2"/>
+                        <TextBlock Text="SHA1" FontWeight="Bold" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="0" Grid.Row="3"/>
+                        <TextBlock Text="MD5" FontWeight="Bold" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="0" Grid.Row="4"/>
+
+                        <TextBox Text="{Binding Path=VideoLocal_Hash}" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="1" Grid.Row="1"/>
+                        <TextBox Text="{Binding Path=VideoLocal_CRC32}" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="1" Grid.Row="2"/>
+                        <TextBox Text="{Binding Path=VideoLocal_SHA1}" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="1" Grid.Row="3"/>
+                        <TextBox Text="{Binding Path=VideoLocal_MD5}" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="1" Grid.Row="4"/>
+                    </Grid>
+
                 </Grid>
             </DataTemplate>
 
@@ -206,6 +268,8 @@
         <CommandBinding Command="{StaticResource DeleteFileCommand}" Executed="CommandBinding_DeleteFile" />
         <CommandBinding Command="{StaticResource ForceAddMyListCommand}" Executed="CommandBinding_ForceAddMyList" />
         <CommandBinding Command="{StaticResource ForceUpdateCommand}" Executed="CommandBinding_ForceUpdate" />
+        <CommandBinding Command="{StaticResource ToggleFileDetailsCommand}" Executed="CommandBinding_ToggleFileDetails" />
+        <CommandBinding Command="{StaticResource RehashFileCommand}" Executed="CommandBinding_RehashFile" />
         
     </UserControl.CommandBindings>
 
@@ -239,7 +303,7 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2">
             <TextBlock Name="tbEpisodeNumberAndName" Text="{Binding Path=EpisodeNumberAndName}" FontWeight="DemiBold" Foreground="Black" VerticalAlignment="Center" />
-            
+
             <Button Name="btnToggleWatched" Margin="5,0,0,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center"
                         Visibility="{Binding Path=HasFiles, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Command="{DynamicResource ToggleWatchedStatusCommand}" CommandParameter="{Binding}">
@@ -384,7 +448,7 @@
                        Visibility="{Binding Path=ShowEpisodeOverviewInExpanded, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:EpisodeDetail}}, Converter={StaticResource BooleanToVisibilityConverter}}">
         </TextBlock>
 
-        
+
 
 
         <ListBox Name="lbFiles" BorderThickness="0" BorderBrush="DarkGray" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch"  Margin="10,0,0,10" Padding="0"

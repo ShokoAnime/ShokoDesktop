@@ -17,7 +17,7 @@
             <RoutedUICommand x:Key="DeleteFileCommand" Text="DeleteFileCommand" />
             <RoutedUICommand x:Key="IgnoreFileCommand" Text="IgnoreFileCommand" />
             <RoutedUICommand x:Key="RehashFileCommand" Text="RehashFileCommand" />
-            <RoutedUICommand x:Key="RescanFileCommand" Text="RehashFileCommand" />
+            <RoutedUICommand x:Key="RescanFileCommand" Text="RescanFileCommand" />
             
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>

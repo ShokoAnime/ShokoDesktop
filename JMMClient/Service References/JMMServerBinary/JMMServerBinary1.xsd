@@ -1035,11 +1035,15 @@
       <xs:element minOccurs="0" name="VideoInfo_VideoInfoID" type="xs:int" />
       <xs:element minOccurs="0" name="VideoInfo_VideoResolution" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="VideoLocalID" type="xs:int" />
+      <xs:element minOccurs="0" name="VideoLocal_CRC32" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="VideoLocal_FilePath" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="VideoLocal_FileSize" type="xs:long" />
       <xs:element minOccurs="0" name="VideoLocal_Hash" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VideoLocal_HashSource" type="xs:int" />
       <xs:element minOccurs="0" name="VideoLocal_IsIgnored" type="xs:int" />
       <xs:element minOccurs="0" name="VideoLocal_IsWatched" type="xs:int" />
+      <xs:element minOccurs="0" name="VideoLocal_MD5" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VideoLocal_SHA1" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="VideoLocal_WatchedDate" nillable="true" type="xs:dateTime" />
     </xs:sequence>
   </xs:complexType>

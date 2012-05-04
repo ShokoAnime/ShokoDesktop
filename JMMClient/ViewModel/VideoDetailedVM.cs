@@ -31,6 +31,10 @@ namespace JMMClient
 		public long VideoLocal_FileSize { get; set; }
 		public DateTime? VideoLocal_WatchedDate { get; set; }
 		//public long VideoLocal_IsWatched { get; set; }
+		public string VideoLocal_CRC32 { get; set; }
+		public string VideoLocal_MD5 { get; set; }
+		public string VideoLocal_SHA1 { get; set; }
+		public int VideoLocal_HashSource { get; set; }
 
 		// VideoInfo
 		public int VideoInfo_VideoInfoID { get; set; }
@@ -200,6 +204,28 @@ namespace JMMClient
 			{
 				unwatched = value;
 				NotifyPropertyChanged("Unwatched");
+			}
+		}
+
+		private bool showMoreDetails = false;
+		public bool ShowMoreDetails
+		{
+			get { return showMoreDetails; }
+			set
+			{
+				showMoreDetails = value;
+				NotifyPropertyChanged("ShowMoreDetails");
+			}
+		}
+
+		private bool showLessDetails = true;
+		public bool ShowLessDetails
+		{
+			get { return showLessDetails; }
+			set
+			{
+				showLessDetails = value;
+				NotifyPropertyChanged("ShowLessDetails");
 			}
 		}
 
@@ -506,6 +532,10 @@ namespace JMMClient
 			this.VideoLocal_WatchedDate = contract.VideoLocal_WatchedDate;
 			this.WatchedDate = contract.VideoLocal_WatchedDate;
 			this.VideoLocal_IsIgnored = contract.VideoLocal_IsIgnored;
+			this.VideoLocal_MD5 = contract.VideoLocal_MD5;
+			this.VideoLocal_SHA1 = contract.VideoLocal_SHA1;
+			this.VideoLocal_CRC32 = contract.VideoLocal_CRC32;
+			this.VideoLocal_HashSource = contract.VideoLocal_HashSource;
 
 			this.VideoInfo_VideoInfoID = contract.VideoInfo_VideoInfoID;
 			this.VideoInfo_VideoCodec = contract.VideoInfo_VideoCodec;

@@ -478,6 +478,57 @@ namespace JMMClient.UserControls
 			}
 		}
 
+		private void CommandBinding_ToggleFileDetails(object sender, ExecutedRoutedEventArgs e)
+		{
+			Window parentWindow = Window.GetWindow(this);
+
+			object obj = e.Parameter;
+			if (obj == null) return;
+
+			try
+			{
+				if (obj.GetType() == typeof(VideoDetailedVM))
+				{
+					VideoDetailedVM vid = obj as VideoDetailedVM;
+					vid.ShowMoreDetails = !vid.ShowMoreDetails;
+					vid.ShowLessDetails = !vid.ShowLessDetails;
+				}
+
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+			finally
+			{
+				this.Cursor = Cursors.Arrow;
+			}
+		}
+
+		private void CommandBinding_RehashFile(object sender, ExecutedRoutedEventArgs e)
+		{
+			try
+			{
+				Window parentWindow = Window.GetWindow(this);
+
+				object obj = e.Parameter;
+				if (obj == null) return;
+
+				if (obj.GetType() == typeof(VideoDetailedVM))
+				{
+					VideoDetailedVM vid = obj as VideoDetailedVM;
+					JMMServerVM.Instance.clientBinaryHTTP.RehashFile(vid.VideoLocalID);
+				}
+				
+
+				MessageBox.Show(Properties.Resources.MSG_INFO_AddedQueueCmds, "Done", MessageBoxButton.OK, MessageBoxImage.Information);
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+		}
+
 		private void CommandBinding_ForceAddMyList(object sender, ExecutedRoutedEventArgs e)
 		{
 			Window parentWindow = Window.GetWindow(this);

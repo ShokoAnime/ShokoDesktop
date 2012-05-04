@@ -10077,6 +10077,9 @@ namespace JMMClient.JMMServerBinary {
         private int VideoLocalIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string VideoLocal_CRC32Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string VideoLocal_FilePathField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -10086,10 +10089,19 @@ namespace JMMClient.JMMServerBinary {
         private string VideoLocal_HashField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int VideoLocal_HashSourceField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int VideoLocal_IsIgnoredField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int VideoLocal_IsWatchedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string VideoLocal_MD5Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string VideoLocal_SHA1Field;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<System.DateTime> VideoLocal_WatchedDateField;
@@ -10599,6 +10611,19 @@ namespace JMMClient.JMMServerBinary {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string VideoLocal_CRC32 {
+            get {
+                return this.VideoLocal_CRC32Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.VideoLocal_CRC32Field, value) != true)) {
+                    this.VideoLocal_CRC32Field = value;
+                    this.RaisePropertyChanged("VideoLocal_CRC32");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string VideoLocal_FilePath {
             get {
                 return this.VideoLocal_FilePathField;
@@ -10638,6 +10663,19 @@ namespace JMMClient.JMMServerBinary {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public int VideoLocal_HashSource {
+            get {
+                return this.VideoLocal_HashSourceField;
+            }
+            set {
+                if ((this.VideoLocal_HashSourceField.Equals(value) != true)) {
+                    this.VideoLocal_HashSourceField = value;
+                    this.RaisePropertyChanged("VideoLocal_HashSource");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public int VideoLocal_IsIgnored {
             get {
                 return this.VideoLocal_IsIgnoredField;
@@ -10659,6 +10697,32 @@ namespace JMMClient.JMMServerBinary {
                 if ((this.VideoLocal_IsWatchedField.Equals(value) != true)) {
                     this.VideoLocal_IsWatchedField = value;
                     this.RaisePropertyChanged("VideoLocal_IsWatched");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string VideoLocal_MD5 {
+            get {
+                return this.VideoLocal_MD5Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.VideoLocal_MD5Field, value) != true)) {
+                    this.VideoLocal_MD5Field = value;
+                    this.RaisePropertyChanged("VideoLocal_MD5");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string VideoLocal_SHA1 {
+            get {
+                return this.VideoLocal_SHA1Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.VideoLocal_SHA1Field, value) != true)) {
+                    this.VideoLocal_SHA1Field = value;
+                    this.RaisePropertyChanged("VideoLocal_SHA1");
                 }
             }
         }
