@@ -180,8 +180,6 @@ namespace JMMClient
 			{
 				logger.ErrorException(ex.ToString(), ex);
 			}
-
-			throw new Exception("Test xec");
 		}
 
 		void btnAbout_Click(object sender, RoutedEventArgs e)
