@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using JMMClient.ViewModel;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
+using System.Globalization;
 
 namespace JMMClient.Forms
 {
@@ -169,6 +170,10 @@ namespace JMMClient.Forms
 			groupFilterCondition.ConditionType = (int)GroupFilterHelper.GetEnumForText_ConditionType(cboConditionType.SelectedItem.ToString());
 			groupFilterCondition.ConditionOperator = (int)GroupFilterHelper.GetEnumForText_Operator(cboConditionOperator.SelectedItem.ToString());
 
+			NumberStyles style = NumberStyles.Number;
+			CultureInfo culture = CultureInfo.CreateSpecificCulture("en-GB");
+
+
 			// get the parameter details
 			if (IsParameterDate)
 			{
@@ -196,7 +201,7 @@ namespace JMMClient.Forms
 				else
 				{
 					decimal dRating = -1;
-					decimal.TryParse(txtParameter.Text, out dRating);
+					decimal.TryParse(txtParameter.Text, style, culture, out dRating);
 					if (dRating <= 0 || dRating > 10)
 					{
 						MessageBox.Show(Properties.Resources.MSG_ERR_RatingValue, "Error", MessageBoxButton.OK, MessageBoxImage.Error);

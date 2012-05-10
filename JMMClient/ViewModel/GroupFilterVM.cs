@@ -7,6 +7,7 @@ using System.Windows;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Globalization;
 
 namespace JMMClient
 {
@@ -156,6 +157,9 @@ namespace JMMClient
 
 			// make sure the user has not filtered this out
 			if (!JMMServerVM.Instance.CurrentUser.EvaluateGroup(grp)) return false;
+
+			NumberStyles style = NumberStyles.Number;
+			CultureInfo culture = CultureInfo.CreateSpecificCulture("en-GB");
 
 			if (this.GroupFilterID.HasValue && this.GroupFilterID.Value < 0)
 			{
@@ -392,7 +396,7 @@ namespace JMMClient
 					case GroupFilterConditionType.AniDBRating:
 
 						decimal dRating = -1;
-						decimal.TryParse(gfc.ConditionParameter, out dRating);
+						decimal.TryParse(gfc.ConditionParameter, style, culture, out dRating);
 
 						if (gfc.ConditionOperatorEnum == GroupFilterOperator.GreaterThan && grp.AniDBRating < dRating) return false;
 						if (gfc.ConditionOperatorEnum == GroupFilterOperator.LessThan && grp.AniDBRating > dRating) return false;
@@ -403,7 +407,7 @@ namespace JMMClient
 						if (!grp.Stat_UserVoteOverall.HasValue) return false;
 
 						decimal dUserRating = -1;
-						decimal.TryParse(gfc.ConditionParameter, out dUserRating);
+						decimal.TryParse(gfc.ConditionParameter, style, culture, out dUserRating);
 
 						if (grp.AnimeGroupID.Value == 122)
 						{
@@ -555,6 +559,10 @@ namespace JMMClient
 
 		public bool EvaluateGroupFilter(AnimeSeriesVM ser)
 		{
+			NumberStyles style = NumberStyles.Number;
+			CultureInfo culture = CultureInfo.CreateSpecificCulture("en-GB");
+
+
 			foreach (GroupFilterConditionVM gfc in FilterConditions)
 			{
 				switch (gfc.ConditionTypeEnum)
@@ -707,7 +715,7 @@ namespace JMMClient
 					case GroupFilterConditionType.AniDBRating:
 
 						decimal dRating = -1;
-						decimal.TryParse(gfc.ConditionParameter, out dRating);
+						decimal.TryParse(gfc.ConditionParameter, style, culture, out dRating);
 
 						if (gfc.ConditionOperatorEnum == GroupFilterOperator.GreaterThan && ser.AniDB_Anime.AniDBRating < dRating) return false;
 						if (gfc.ConditionOperatorEnum == GroupFilterOperator.LessThan && ser.AniDB_Anime.AniDBRating > dRating) return false;
@@ -718,7 +726,7 @@ namespace JMMClient
 						if (ser.AniDB_Anime == null || ser.AniDB_Anime.Detail == null || ser.AniDB_Anime.Detail.UserVote == null) return false;
 
 						decimal dUserRating = -1;
-						decimal.TryParse(gfc.ConditionParameter, out dUserRating);
+						decimal.TryParse(gfc.ConditionParameter, style, culture, out dUserRating);
 
 						if (gfc.ConditionOperatorEnum == GroupFilterOperator.GreaterThan && ser.AniDB_Anime.Detail.UserRating < dUserRating) return false;
 						if (gfc.ConditionOperatorEnum == GroupFilterOperator.LessThan && ser.AniDB_Anime.Detail.UserRating > dUserRating) return false;

@@ -16,6 +16,8 @@ using System.Configuration;
 
 namespace JMMClient
 {
+	//http://www.codeproject.com/Articles/7482/User-Friendly-Exception-Handling
+
 	public sealed class UnhandledExceptionManager
 	{
 		private static bool _blnLogToFileOK;
@@ -525,7 +527,9 @@ namespace JMMClient
 		//--
 		private static void ExceptionToFile()
 		{
-			_strLogFullPath = GetApplicationPath() + _strLogName;
+			NLog.LogManager.GetCurrentClassLogger().Fatal(_strException);
+
+			/*_strLogFullPath = GetApplicationPath() + _strLogName;
 			try
 			{
 				System.IO.StreamWriter objStreamWriter = new System.IO.StreamWriter(_strLogFullPath, true);
@@ -537,7 +541,7 @@ namespace JMMClient
 			catch (Exception ex)
 			{
 				_blnLogToFileOK = false;
-			}
+			}*/
 		}
 
 		//--
