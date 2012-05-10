@@ -99,10 +99,7 @@ namespace JMMClient
 
 			try
 			{
-
-				//AppSettings.CreateDefaultConfig();
-				//listBox1.IsSynchronizedWithCurrentItem = true;
-				//treeGroupsSeries.iss
+				UnhandledExceptionManager.AddHandler();
 
 				AppSettings.DebugSettingsToLog();
 
@@ -184,8 +181,6 @@ namespace JMMClient
 				logger.ErrorException(ex.ToString(), ex);
 			}
 		}
-
-		
 
 		void btnAbout_Click(object sender, RoutedEventArgs e)
 		{

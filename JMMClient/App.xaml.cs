@@ -33,5 +33,6 @@ namespace JMMClient
 
 			//string hello = ResGlobal.GetString("Favorite");*/
 		}
+
 	}
 }
