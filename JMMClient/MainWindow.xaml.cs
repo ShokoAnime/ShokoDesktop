@@ -101,7 +101,7 @@ namespace JMMClient
 			{
 				UnhandledExceptionManager.AddHandler();
 
-				AppSettings.DebugSettingsToLog();
+				//AppSettings.DebugSettingsToLog();
 
 				lbGroupsSeries.MouseDoubleClick += new MouseButtonEventHandler(lbGroupsSeries_MouseDoubleClick);
 				lbGroupsSeries.SelectionChanged += new SelectionChangedEventHandler(lbGroupsSeries_SelectionChanged);
@@ -2807,16 +2807,23 @@ namespace JMMClient
 
 		void lbGroupsSeries_MouseDoubleClick(object sender, MouseButtonEventArgs e)
 		{
-			if (lbGroupsSeries.SelectedItem == null) return;
-
-			if (lbGroupsSeries.SelectedItem is MainListWrapper)
+			try
 			{
-				//SetDetailBinding(null);
-				// this is the last supported drill down
-				if (lbGroupsSeries.SelectedItem.GetType() == typeof(AnimeSeriesVM)) return;
+				if (lbGroupsSeries.SelectedItem == null) return;
 
-				EnableDisableGroupControls(false);
-				showChildWrappersWorker.RunWorkerAsync(lbGroupsSeries.SelectedItem);
+				if (lbGroupsSeries.SelectedItem is MainListWrapper)
+				{
+					//SetDetailBinding(null);
+					// this is the last supported drill down
+					if (lbGroupsSeries.SelectedItem.GetType() == typeof(AnimeSeriesVM)) return;
+
+					EnableDisableGroupControls(false);
+					showChildWrappersWorker.RunWorkerAsync(lbGroupsSeries.SelectedItem);
+				}
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex.ToString());
 			}
 		}
 
