@@ -21,6 +21,10 @@
             <RoutedUICommand x:Key="DeleteAllFilesCommand" Text="DeleteAllFilesCommand" />
             <RoutedUICommand x:Key="DeleteMALLinkCommand" Text="DeleteMALLinkCommand" />
             <RoutedUICommand x:Key="EditMALLinkCommand" Text="EditMALLinkCommand" />
+            <RoutedUICommand x:Key="ToggleAutoLinkTvDBCommand" Text="ToggleAutoLinkTvDBCommand" />
+            <RoutedUICommand x:Key="ToggleAutoLinkMovieDBCommand" Text="ToggleAutoLinkMovieDBCommand" />
+            <RoutedUICommand x:Key="ToggleAutoLinkTraktCommand" Text="ToggleAutoLinkTraktCommand" />
+            <RoutedUICommand x:Key="ToggleAutoLinkMALCommand" Text="ToggleAutoLinkMALCommand" />
 
             <!-- MALLinkTemplate -->
             <DataTemplate x:Key="MALLinkTemplate">
@@ -71,6 +75,10 @@
     <UserControl.CommandBindings>
         <CommandBinding Command="{StaticResource DeleteMALLinkCommand}" Executed="CommandBinding_DeleteMALLink" />
         <CommandBinding Command="{StaticResource EditMALLinkCommand}" Executed="CommandBinding_EditMALLink" />
+        <CommandBinding Command="{StaticResource ToggleAutoLinkTvDBCommand}" Executed="CommandBinding_ToggleAutoLinkTvDB" />
+        <CommandBinding Command="{StaticResource ToggleAutoLinkMovieDBCommand}" Executed="CommandBinding_ToggleAutoLinkMovieDB" />
+        <CommandBinding Command="{StaticResource ToggleAutoLinkTraktCommand}" Executed="CommandBinding_ToggleAutoLinkTrakt" />
+        <CommandBinding Command="{StaticResource ToggleAutoLinkMALCommand}" Executed="CommandBinding_ToggleAutoLinkMAL" />
     </UserControl.CommandBindings>
 
     <Grid Margin="3">
@@ -141,7 +149,31 @@
                         <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=UpdateInfo}" Margin="0,0,5,0"/>
                     </StackPanel>
                 </Button>
-            </StackPanel>
+
+                    <!-- Enable Auto TvDB Info links -->
+                    <Button Name="btnTvDBAutoLinkEnable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                            Command="{StaticResource ToggleAutoLinkTvDBCommand}" CommandParameter="{Binding}"
+                            Visibility="{Binding Path=IsTvDBLinkDisabled, Converter={StaticResource BooleanToVisibilityConverter}}" 
+                            ToolTip="{usercontrols:Info Title=Auto Linking Disabled, 
+                            Body=Auto linking from this anime to a TvDB series is currently disabled}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <Image Height="16" Width="16" Source="/Images/32_cancel.png" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- Disable Auto TvDB Info links -->
+                    <Button Name="btnTvDBAutoLinkDisable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                            Command="{StaticResource ToggleAutoLinkTvDBCommand}" CommandParameter="{Binding}"
+                            Visibility="{Binding Path=IsTvDBLinkEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            ToolTip="{usercontrols:Info Title=Auto Linking Enabled, 
+                            Body=Auto linking from this anime to a TvDB series is currently enabled. If JMM Server finds a close match or community recommendation it will automatically create a link}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
             </StackPanel>
 
         </StackPanel>
@@ -158,6 +190,30 @@
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/MagnifyingGlass7.png" Margin="0,0,5,0"/>
                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Enable Auto TvDB Info links -->
+            <Button Name="btnTvDBAutoLinkEnable2" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                            Command="{StaticResource ToggleAutoLinkTvDBCommand}" CommandParameter="{Binding}"
+                            Visibility="{Binding Path=IsTvDBLinkDisabled, Converter={StaticResource BooleanToVisibilityConverter}}" 
+                            ToolTip="{usercontrols:Info Title=Auto Linking Disabled, 
+                            Body=Auto linking from this anime to a TvDB series is currently disabled}">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <Image Height="16" Width="16" Source="/Images/32_cancel.png" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Disable Auto TvDB Info links -->
+            <Button Name="btnTvDBAutoLinkDisable2" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                            Command="{StaticResource ToggleAutoLinkTvDBCommand}" CommandParameter="{Binding}"
+                            Visibility="{Binding Path=IsTvDBLinkEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            ToolTip="{usercontrols:Info Title=Auto Linking Enabled, 
+                            Body=Auto linking from this anime to a TvDB series is currently enabled. If JMM Server finds a close match or community recommendation it will automatically create a link}">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
         </StackPanel>
@@ -206,7 +262,31 @@
                     </StackPanel>
                 </Button>
 
-            </StackPanel>
+                    <!-- Enable Auto MovieDB Info links -->
+                    <Button Name="btnMovieDBAutoLinkEnable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                            Command="{StaticResource ToggleAutoLinkMovieDBCommand}" CommandParameter="{Binding}"
+                            Visibility="{Binding Path=IsMovieDBLinkDisabled, Converter={StaticResource BooleanToVisibilityConverter}}" 
+                            ToolTip="{usercontrols:Info Title=Auto Linking Disabled, 
+                            Body=Auto linking from this anime to a MovieDB series is currently disabled}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <Image Height="16" Width="16" Source="/Images/32_cancel.png" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- Disable Auto MovieDB Info links -->
+                    <Button Name="btnMovieDBAutoLinkDisable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                            Command="{StaticResource ToggleAutoLinkMovieDBCommand}" CommandParameter="{Binding}"
+                            Visibility="{Binding Path=IsMovieDBLinkEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            ToolTip="{usercontrols:Info Title=Auto Linking Enabled, 
+                            Body=Auto linking from this anime to a MovieDB series is currently enabled. If JMM Server finds a close match or community recommendation it will automatically create a link}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
+                        </StackPanel>
+                    </Button>
+
+                </StackPanel>
 
             </StackPanel>
         </StackPanel>
@@ -223,6 +303,30 @@
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/MagnifyingGlass7.png" Margin="0,0,5,0"/>
                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Enable Auto MovieDB Info links -->
+            <Button Name="btnMovieDBAutoLinkEnable2" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                            Command="{StaticResource ToggleAutoLinkMovieDBCommand}" CommandParameter="{Binding}"
+                            Visibility="{Binding Path=IsMovieDBLinkDisabled, Converter={StaticResource BooleanToVisibilityConverter}}" 
+                            ToolTip="{usercontrols:Info Title=Auto Linking Disabled, 
+                            Body=Auto linking from this anime to a TvDB series is currently disabled}">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <Image Height="16" Width="16" Source="/Images/32_cancel.png" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Disable Auto MovieDB Info links -->
+            <Button Name="btnMovieDBAutoLinkDisable2" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                            Command="{StaticResource ToggleAutoLinkMovieDBCommand}" CommandParameter="{Binding}"
+                            Visibility="{Binding Path=IsMovieDBLinkEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            ToolTip="{usercontrols:Info Title=Auto Linking Enabled, 
+                            Body=Auto linking from this anime to a TvDB series is currently enabled. If JMM Server finds a close match or community recommendation it will automatically create a link}">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
         </StackPanel>
@@ -278,7 +382,31 @@
                         <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=UpdateInfo}" Margin="0,0,5,0"/>
                     </StackPanel>
                 </Button>
-            </StackPanel>
+
+                    <!-- Enable Auto Trakt Info links -->
+                    <Button Name="btnTraktAutoLinkEnable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                            Command="{StaticResource ToggleAutoLinkTraktCommand}" CommandParameter="{Binding}"
+                            Visibility="{Binding Path=IsTraktLinkDisabled, Converter={StaticResource BooleanToVisibilityConverter}}" 
+                            ToolTip="{usercontrols:Info Title=Auto Linking Disabled, 
+                            Body=Auto linking from this anime to a Trakt series is currently disabled}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <Image Height="16" Width="16" Source="/Images/32_cancel.png" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- Disable Auto Trakt Info links -->
+                    <Button Name="btnTraktAutoLinkDisable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                            Command="{StaticResource ToggleAutoLinkTraktCommand}" CommandParameter="{Binding}"
+                            Visibility="{Binding Path=IsTraktLinkEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            ToolTip="{usercontrols:Info Title=Auto Linking Enabled, 
+                            Body=Auto linking from this anime to a Trakt series is currently enabled. If JMM Server finds a close match or community recommendation it will automatically create a link}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
             </StackPanel>
 
         </StackPanel>
@@ -295,6 +423,30 @@
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/MagnifyingGlass7.png" Margin="0,0,5,0"/>
                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Enable Auto Trakt Info links -->
+            <Button Name="btnTraktAutoLinkEnable2" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                            Command="{StaticResource ToggleAutoLinkTraktCommand}" CommandParameter="{Binding}"
+                            Visibility="{Binding Path=IsTraktLinkDisabled, Converter={StaticResource BooleanToVisibilityConverter}}" 
+                            ToolTip="{usercontrols:Info Title=Auto Linking Disabled, 
+                            Body=Auto linking from this anime to a Trakt series is currently disabled}">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <Image Height="16" Width="16" Source="/Images/32_cancel.png" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Disable Auto Trakt Info links -->
+            <Button Name="btnTraktAutoLinkDisable2" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                            Command="{StaticResource ToggleAutoLinkTraktCommand}" CommandParameter="{Binding}"
+                            Visibility="{Binding Path=IsTraktLinkEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            ToolTip="{usercontrols:Info Title=Auto Linking Enabled, 
+                            Body=Auto linking from this anime to a Trakt series is currently enabled. If JMM Server finds a close match or community recommendation it will automatically create a link}">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
         </StackPanel>
@@ -316,6 +468,30 @@
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/MagnifyingGlass7.png" Margin="0,0,5,0"/>
                             <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- Enable Auto MAL Info links -->
+                    <Button Name="btnMALAutoLinkEnable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                            Command="{StaticResource ToggleAutoLinkMALCommand}" CommandParameter="{Binding}"
+                            Visibility="{Binding Path=IsMALLinkDisabled, Converter={StaticResource BooleanToVisibilityConverter}}" 
+                            ToolTip="{usercontrols:Info Title=Auto Linking Disabled, 
+                            Body=Auto linking from this anime to a MAL series is currently disabled}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <Image Height="16" Width="16" Source="/Images/32_cancel.png" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- Disable Auto MAL Info links -->
+                    <Button Name="btnMALAutoLinkDisable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                            Command="{StaticResource ToggleAutoLinkMALCommand}" CommandParameter="{Binding}"
+                            Visibility="{Binding Path=IsMALLinkEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            ToolTip="{usercontrols:Info Title=Auto Linking Enabled, 
+                            Body=Auto linking from this anime to a MAL series is currently enabled. If JMM Server finds a close match or community recommendation it will automatically create a link}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 

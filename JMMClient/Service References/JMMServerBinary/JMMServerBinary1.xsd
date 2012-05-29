@@ -33,6 +33,7 @@
       <xs:element minOccurs="0" name="DefaultImagePoster" nillable="true" type="tns:Contract_AniDB_Anime_DefaultImage" />
       <xs:element minOccurs="0" name="DefaultImageWideBanner" nillable="true" type="tns:Contract_AniDB_Anime_DefaultImage" />
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DisableExternalLinksFlag" type="xs:int" />
       <xs:element minOccurs="0" name="EndDate" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="EndYear" type="xs:int" />
       <xs:element minOccurs="0" name="EpisodeCount" type="xs:int" />
@@ -397,6 +398,15 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_AniDB_Seiyuu" nillable="true" type="tns:Contract_AniDB_Seiyuu" />
+  <xs:complexType name="Contract_FileFfdshowPreset">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FileFfdshowPresetID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="FileSize" type="xs:long" />
+      <xs:element minOccurs="0" name="Hash" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Preset" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_FileFfdshowPreset" nillable="true" type="tns:Contract_FileFfdshowPreset" />
   <xs:complexType name="ArrayOfContract_Trakt_ShoutUser">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_Trakt_ShoutUser" nillable="true" type="tns:Contract_Trakt_ShoutUser" />

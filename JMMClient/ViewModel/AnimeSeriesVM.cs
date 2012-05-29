@@ -403,6 +403,8 @@ namespace JMMClient
 			SeriesNameTruncated = ret;
 		}
 
+		
+
 		#endregion
 
 		public enum SortMethod { SortName = 0, AirDate = 1 };
@@ -766,7 +768,7 @@ namespace JMMClient
 			this.WatchedDate = contract.WatchedDate;
 			this.EpisodeAddedDate = contract.EpisodeAddedDate;
 			this.WatchedEpisodeCount = contract.WatchedEpisodeCount;
-
+			
 			this.MissingEpisodeCount = contract.MissingEpisodeCount;
 			this.MissingEpisodeCountGroups = contract.MissingEpisodeCountGroups;
 

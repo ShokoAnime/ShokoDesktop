@@ -210,6 +210,105 @@ namespace JMMClient.UserControls
 			}
 		}
 
+		private void CommandBinding_ToggleAutoLinkTvDB(object sender, ExecutedRoutedEventArgs e)
+		{
+			object obj = e.Parameter;
+			if (obj == null) return;
+
+			try
+			{
+				AniDB_AnimeVM anime = this.DataContext as AniDB_AnimeVM;
+				if (anime == null) return;
+
+				this.Cursor = Cursors.Wait;
+
+				anime.IsTvDBLinkDisabled = !anime.IsTvDBLinkDisabled;
+				anime.UpdateDisableExternalLinksFlag();
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+			finally
+			{
+				this.Cursor = Cursors.Arrow;
+			}
+		}
+
+		private void CommandBinding_ToggleAutoLinkTrakt(object sender, ExecutedRoutedEventArgs e)
+		{
+			object obj = e.Parameter;
+			if (obj == null) return;
+
+			try
+			{
+				AniDB_AnimeVM anime = this.DataContext as AniDB_AnimeVM;
+				if (anime == null) return;
+
+				this.Cursor = Cursors.Wait;
+
+				anime.IsTraktLinkDisabled = !anime.IsTraktLinkDisabled;
+				anime.UpdateDisableExternalLinksFlag();
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+			finally
+			{
+				this.Cursor = Cursors.Arrow;
+			}
+		}
+
+		private void CommandBinding_ToggleAutoLinkMovieDB(object sender, ExecutedRoutedEventArgs e)
+		{
+			object obj = e.Parameter;
+			if (obj == null) return;
+
+			try
+			{
+				AniDB_AnimeVM anime = this.DataContext as AniDB_AnimeVM;
+				if (anime == null) return;
+
+				this.Cursor = Cursors.Wait;
+
+				anime.IsMovieDBLinkDisabled = !anime.IsMovieDBLinkDisabled;
+				anime.UpdateDisableExternalLinksFlag();
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+			finally
+			{
+				this.Cursor = Cursors.Arrow;
+			}
+		}
+
+		private void CommandBinding_ToggleAutoLinkMAL(object sender, ExecutedRoutedEventArgs e)
+		{
+			object obj = e.Parameter;
+			if (obj == null) return;
+
+			try
+			{
+				AniDB_AnimeVM anime = this.DataContext as AniDB_AnimeVM;
+				if (anime == null) return;
+
+				this.Cursor = Cursors.Wait;
+
+				anime.IsMALLinkDisabled = !anime.IsMALLinkDisabled;
+				anime.UpdateDisableExternalLinksFlag();
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+			finally
+			{
+				this.Cursor = Cursors.Arrow;
+			}
+		}
 
 		#endregion
 

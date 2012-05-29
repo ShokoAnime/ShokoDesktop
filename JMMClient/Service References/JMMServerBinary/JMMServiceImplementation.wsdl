@@ -92,6 +92,30 @@
   <wsdl:message name="IJMMServer_GetEpisodeByAniDBEpisodeID_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetEpisodeByAniDBEpisodeIDResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_GetFFDPreset_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFFDPreset" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetFFDPreset_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFFDPresetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_DeleteFFDPreset_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteFFDPreset" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_DeleteFFDPreset_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteFFDPresetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SaveFFDPreset_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveFFDPreset" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SaveFFDPreset_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveFFDPresetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_UpdateAnimeDisableExternalLinksFlag_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAnimeDisableExternalLinksFlag" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_UpdateAnimeDisableExternalLinksFlag_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAnimeDisableExternalLinksFlagResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_ScanDropFolders_InputMessage">
     <wsdl:part name="parameters" element="tns:ScanDropFolders" />
   </wsdl:message>
@@ -1149,6 +1173,22 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetEpisodeByAniDBEpisodeID" message="tns:IJMMServer_GetEpisodeByAniDBEpisodeID_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetEpisodeByAniDBEpisodeIDResponse" message="tns:IJMMServer_GetEpisodeByAniDBEpisodeID_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetFFDPreset">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetFFDPreset" message="tns:IJMMServer_GetFFDPreset_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetFFDPresetResponse" message="tns:IJMMServer_GetFFDPreset_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFFDPreset">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/DeleteFFDPreset" message="tns:IJMMServer_DeleteFFDPreset_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/DeleteFFDPresetResponse" message="tns:IJMMServer_DeleteFFDPreset_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveFFDPreset">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SaveFFDPreset" message="tns:IJMMServer_SaveFFDPreset_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SaveFFDPresetResponse" message="tns:IJMMServer_SaveFFDPreset_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAnimeDisableExternalLinksFlag">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/UpdateAnimeDisableExternalLinksFlag" message="tns:IJMMServer_UpdateAnimeDisableExternalLinksFlag_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/UpdateAnimeDisableExternalLinksFlagResponse" message="tns:IJMMServer_UpdateAnimeDisableExternalLinksFlag_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="ScanDropFolders">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/ScanDropFolders" message="tns:IJMMServer_ScanDropFolders_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/ScanDropFoldersResponse" message="tns:IJMMServer_ScanDropFolders_OutputMessage" />
@@ -1926,6 +1966,42 @@
     </wsdl:operation>
     <wsdl:operation name="GetEpisodeByAniDBEpisodeID">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetEpisodeByAniDBEpisodeID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFFDPreset">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetFFDPreset" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFFDPreset">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/DeleteFFDPreset" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveFFDPreset">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/SaveFFDPreset" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAnimeDisableExternalLinksFlag">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/UpdateAnimeDisableExternalLinksFlag" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

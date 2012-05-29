@@ -9,6 +9,11 @@ namespace JMMClient
 	{
 		public static readonly string AssemblyName = @"JMMDesktop";
 
+		public static readonly int FlagLinkTvDB = 1;
+		public static readonly int FlagLinkTrakt = 2;
+		public static readonly int FlagLinkMAL = 4;
+		public static readonly int FlagLinkMovieDB = 8;
+
 		public struct StaticGF
 		{
 			public static readonly int All = -999;

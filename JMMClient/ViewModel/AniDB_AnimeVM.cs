@@ -49,6 +49,8 @@ namespace JMMClient
 		public int? AllCinemaID { get; set; }
 		public int? AnimeNfo { get; set; }
 		public int? LatestEpisodeNumber { get; set; }
+		public int DisableExternalLinksFlag { get; set; }
+
 
 		public AniDB_Anime_DefaultImageVM DefaultPoster { get; set; }
 		public AniDB_Anime_DefaultImageVM DefaultFanart { get; set; }
@@ -66,6 +68,24 @@ namespace JMMClient
 
 		public AniDB_AnimeVM()
 		{
+		}
+
+		public void UpdateDisableExternalLinksFlag()
+		{
+			DisableExternalLinksFlag = 0;
+			if (IsTvDBLinkDisabled) DisableExternalLinksFlag += Constants.FlagLinkTvDB;
+			if (IsTraktLinkDisabled) DisableExternalLinksFlag += Constants.FlagLinkTrakt;
+			if (IsMALLinkDisabled) DisableExternalLinksFlag += Constants.FlagLinkMAL;
+			if (IsMovieDBLinkDisabled) DisableExternalLinksFlag += Constants.FlagLinkMovieDB;
+
+			try
+			{
+				JMMServerVM.Instance.clientBinaryHTTP.UpdateAnimeDisableExternalLinksFlag(this.AnimeID, DisableExternalLinksFlag);
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
 		}
 
 		public AniDB_AnimeVM(JMMServerBinary.Contract_AniDBAnime contract)
@@ -108,6 +128,13 @@ namespace JMMClient
 			this.URL = contract.URL;
 			this.VoteCount = contract.VoteCount;
 			this.FormattedTitle = contract.FormattedTitle;
+			this.DisableExternalLinksFlag = contract.DisableExternalLinksFlag;
+
+			this.IsTvDBLinkDisabled = (DisableExternalLinksFlag & Constants.FlagLinkTvDB) > 0;
+			this.IsTraktLinkDisabled = (DisableExternalLinksFlag & Constants.FlagLinkTrakt) > 0;
+			this.IsMALLinkDisabled = (DisableExternalLinksFlag & Constants.FlagLinkMAL) > 0;
+			this.IsMovieDBLinkDisabled = (DisableExternalLinksFlag & Constants.FlagLinkMovieDB) > 0;
+
 
 			IsImageEnabled = ImageEnabled == 1;
 			IsImageDisabled = ImageEnabled != 1;
@@ -208,6 +235,98 @@ namespace JMMClient
 			{
 				isImageNotDefault = value;
 				NotifyPropertyChanged("IsImageNotDefault");
+			}
+		}
+
+		private bool isTvDBLinkDisabled = false;
+		public bool IsTvDBLinkDisabled
+		{
+			get { return isTvDBLinkDisabled; }
+			set
+			{
+				isTvDBLinkDisabled = value;
+				NotifyPropertyChanged("IsTvDBLinkDisabled");
+				IsTvDBLinkEnabled = !value;
+			}
+		}
+
+		private bool isTvDBLinkEnabled = true;
+		public bool IsTvDBLinkEnabled
+		{
+			get { return isTvDBLinkEnabled; }
+			set
+			{
+				isTvDBLinkEnabled = value;
+				NotifyPropertyChanged("IsTvDBLinkEnabled");
+			}
+		}
+
+		private bool isTraktLinkDisabled = false;
+		public bool IsTraktLinkDisabled
+		{
+			get { return isTraktLinkDisabled; }
+			set
+			{
+				isTraktLinkDisabled = value;
+				NotifyPropertyChanged("IsTraktLinkDisabled");
+				IsTraktLinkEnabled = !value;
+			}
+		}
+
+		private bool isTraktLinkEnabled = true;
+		public bool IsTraktLinkEnabled
+		{
+			get { return isTraktLinkEnabled; }
+			set
+			{
+				isTraktLinkEnabled = value;
+				NotifyPropertyChanged("IsTraktLinkEnabled");
+			}
+		}
+
+		private bool isMALLinkDisabled = false;
+		public bool IsMALLinkDisabled
+		{
+			get { return isMALLinkDisabled; }
+			set
+			{
+				isMALLinkDisabled = value;
+				NotifyPropertyChanged("IsMALLinkDisabled");
+				IsMALLinkEnabled = !value;
+			}
+		}
+
+		private bool isMALLinkEnabled = true;
+		public bool IsMALLinkEnabled
+		{
+			get { return isMALLinkEnabled; }
+			set
+			{
+				isMALLinkEnabled = value;
+				NotifyPropertyChanged("IsMALLinkEnabled");
+			}
+		}
+
+		private bool isMovieDBLinkDisabled = false;
+		public bool IsMovieDBLinkDisabled
+		{
+			get { return isMovieDBLinkDisabled; }
+			set
+			{
+				isMovieDBLinkDisabled = value;
+				NotifyPropertyChanged("IsMovieDBLinkDisabled");
+				IsMovieDBLinkEnabled = !value;
+			}
+		}
+
+		private bool isMovieDBLinkEnabled = true;
+		public bool IsMovieDBLinkEnabled
+		{
+			get { return isMovieDBLinkEnabled; }
+			set
+			{
+				isMovieDBLinkEnabled = value;
+				NotifyPropertyChanged("IsMovieDBLinkEnabled");
 			}
 		}
 
