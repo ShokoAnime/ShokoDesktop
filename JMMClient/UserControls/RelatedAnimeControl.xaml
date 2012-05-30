@@ -124,7 +124,7 @@
                             Background="FloralWhite">
                         <Image  Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_MiniCalendar_Height}" Margin="5,3,5,0"
                                MaxWidth="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_MiniCalendar_Height}" HorizontalAlignment="Left" 
-                               Source="{Binding Path=PosterPath}">
+                               Source="{Binding Path=PosterPath}" ToolTipService.ShowDuration="60000">
                             <Image.ToolTip>
 
                                 <Border Background="FloralWhite" BorderThickness="1" BorderBrush="DarkGray">
