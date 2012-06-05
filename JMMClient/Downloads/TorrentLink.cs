@@ -113,7 +113,10 @@ namespace JMMClient.Downloads
 
 				try
 				{
-					string match = Path.GetFileNameWithoutExtension(TorrentName);
+					string match = TorrentName;
+
+					try { match = Path.GetFileNameWithoutExtension(TorrentName); }
+					catch { }
 
 					//match = match.Replace("&#40;", "(");
 					//match = match.Replace("&#41;", ")");
