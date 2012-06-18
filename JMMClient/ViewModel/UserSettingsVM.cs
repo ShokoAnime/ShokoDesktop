@@ -855,6 +855,22 @@ namespace JMMClient
 			}
 		}
 
+		public bool ShowDownloadButtonWhenFilesExist
+		{
+			get { return !AppSettings.HideDownloadButtonWhenFilesExist; }
+		}
+
+		public bool HideDownloadButtonWhenFilesExist
+		{
+			get { return AppSettings.HideDownloadButtonWhenFilesExist; }
+			set
+			{
+				AppSettings.HideDownloadButtonWhenFilesExist = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("HideDownloadButtonWhenFilesExist"));
+				OnPropertyChanged(new PropertyChangedEventArgs("ShowDownloadButtonWhenFilesExist"));
+			}
+		}
+
 		public bool DisplayRatingDialogOnCompletion
 		{
 			get { return AppSettings.DisplayRatingDialogOnCompletion; }

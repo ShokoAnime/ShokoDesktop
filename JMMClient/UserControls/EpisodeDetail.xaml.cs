@@ -91,6 +91,16 @@ namespace JMMClient.UserControls
 			set { SetValue(ShowEpisodeOverviewInExpandedProperty, value); }
 		}
 
+		public static readonly DependencyProperty ShowDownloadButtonProperty = DependencyProperty.Register("ShowDownloadButton",
+			typeof(bool), typeof(EpisodeDetail), new UIPropertyMetadata(true, null));
+
+
+		public bool ShowDownloadButton
+		{
+			get { return (bool)GetValue(ShowDownloadButtonProperty); }
+			set { SetValue(ShowDownloadButtonProperty, value); }
+		}
+
 		private static void isExpandedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
 			EpisodeDetail input = (EpisodeDetail)d;
@@ -113,6 +123,11 @@ namespace JMMClient.UserControls
 
 				ShowEpisodeImageInExpanded = IsExpanded && ep.ShowEpisodeImageInExpanded;
 				ShowEpisodeOverviewInExpanded = IsExpanded && ep.ShowEpisodeOverviewInExpanded;
+
+				if ((ep.HasFiles && !AppSettings.HideDownloadButtonWhenFilesExist) || !ep.HasFiles)
+					ShowDownloadButton = true;
+				else
+					ShowDownloadButton = false;
 			}
 		}
 

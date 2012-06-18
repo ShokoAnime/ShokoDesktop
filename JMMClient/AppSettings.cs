@@ -428,6 +428,24 @@ namespace JMMClient
 			}
 		}
 
+		public static bool HideDownloadButtonWhenFilesExist
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["HideDownloadButtonWhenFilesExist"];
+				bool bval = true;
+				if (bool.TryParse(val, out bval))
+					return bval;
+				else
+					return false; // default value
+			}
+			set
+			{
+				UpdateSetting("HideDownloadButtonWhenFilesExist", value.ToString());
+			}
+		}
+
 		public static bool DisplayRatingDialogOnCompletion
 		{
 			get
