@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using JMMClient.ViewModel;
 using System.Collections.ObjectModel;
 using NLog;
+using JMMClient.Forms;
 
 namespace JMMClient.UserControls
 {
@@ -92,12 +93,43 @@ namespace JMMClient.UserControls
 
 			this.DataContextChanged += new DependencyPropertyChangedEventHandler(EpisodeList_DataContextChanged);
 			lbEpisodes.SelectionChanged += new SelectionChangedEventHandler(lbEpisodes_SelectionChanged);
+			lbEpisodes.MouseDoubleClick += new MouseButtonEventHandler(lbEpisodes_MouseDoubleClick);
 
 			btnMarkAllWatched.Click += new RoutedEventHandler(btnMarkAllWatched_Click);
 			btnMarkAllUnwatched.Click += new RoutedEventHandler(btnMarkAllUnwatched_Click);
 			btnMarkAllPreviousWatched.Click += new RoutedEventHandler(btnMarkAllPreviousWatched_Click);
 
 			
+		}
+
+		void lbEpisodes_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+		{
+			try
+			{
+				if (lbEpisodes.SelectedItem == null) return;
+
+				if (lbEpisodes.SelectedItem is AnimeEpisodeVM)
+				{
+					AnimeEpisodeVM ep = lbEpisodes.SelectedItem as AnimeEpisodeVM;
+					ep.RefreshFilesForEpisode();
+
+					if (ep.FilesForEpisode.Count == 1)
+						Utils.PlayVideo(ep.FilesForEpisode[0]);
+					else if (ep.FilesForEpisode.Count > 1)
+					{
+						Window parentWindow = Window.GetWindow(this);
+
+						PlayVideosForEpisodeForm frm = new PlayVideosForEpisodeForm();
+						frm.Owner = parentWindow;
+						frm.Init(ep);
+						frm.ShowDialog();
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex.ToString());
+			}
 		}
 
 		void btnMarkAllPreviousWatched_Click(object sender, RoutedEventArgs e)
