@@ -147,6 +147,22 @@ namespace JMMClient.UserControls
 
 			btnClearSearch.Click += new RoutedEventHandler(btnClearSearch_Click);
 			txtFileSearch.TextChanged += new TextChangedEventHandler(txtFileSearch_TextChanged);
+			btnLogs.Click += new RoutedEventHandler(btnLogs_Click);
+		}
+
+		void btnLogs_Click(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				string appPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+				string logPath = Path.Combine(appPath, "logs");
+
+				Process.Start(new ProcessStartInfo(logPath));
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
 		}
 
 		void btnRescan_Click(object sender, RoutedEventArgs e)
