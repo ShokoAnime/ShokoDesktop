@@ -31,6 +31,7 @@ namespace JMMClient.UserControls
 			chkImportSettings_SHA1.Click += new RoutedEventHandler(settingChanged);
 			chkImportSettings_UseEpisodeStatus.Click += new RoutedEventHandler(settingChanged);
 			chkImportSettings_AutoGroupSeries.Click += new RoutedEventHandler(settingChanged);
+			chkImportSettings_ScanDropOnStart.Click += new RoutedEventHandler(settingChanged);
 
 			cboImagesPath.Items.Clear();
 			cboImagesPath.Items.Add("Default");

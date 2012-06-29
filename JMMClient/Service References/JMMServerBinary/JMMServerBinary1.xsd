@@ -1265,6 +1265,7 @@
       <xs:element minOccurs="0" name="MovieDB_AutoFanartAmount" type="xs:int" />
       <xs:element minOccurs="0" name="MovieDB_AutoPosters" type="xs:boolean" />
       <xs:element minOccurs="0" name="RunImportOnStart" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ScanDropFoldersOnStart" type="xs:boolean" />
       <xs:element minOccurs="0" name="SeriesDescriptionSource" type="xs:int" />
       <xs:element minOccurs="0" name="SeriesNameSource" type="xs:int" />
       <xs:element minOccurs="0" name="Trakt_Password" nillable="true" type="xs:string" />

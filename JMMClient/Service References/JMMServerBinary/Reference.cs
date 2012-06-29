@@ -12489,6 +12489,9 @@ namespace JMMClient.JMMServerBinary {
         private bool RunImportOnStartField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool ScanDropFoldersOnStartField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int SeriesDescriptionSourceField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -13050,6 +13053,19 @@ namespace JMMClient.JMMServerBinary {
                 if ((this.RunImportOnStartField.Equals(value) != true)) {
                     this.RunImportOnStartField = value;
                     this.RaisePropertyChanged("RunImportOnStart");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool ScanDropFoldersOnStart {
+            get {
+                return this.ScanDropFoldersOnStartField;
+            }
+            set {
+                if ((this.ScanDropFoldersOnStartField.Equals(value) != true)) {
+                    this.ScanDropFoldersOnStartField = value;
+                    this.RaisePropertyChanged("ScanDropFoldersOnStart");
                 }
             }
         }

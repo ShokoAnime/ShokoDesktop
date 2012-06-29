@@ -24,6 +24,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <!-- Video Extensions -->
@@ -78,34 +79,43 @@
             <CheckBox Name="chkImportSettings_ImportOnStart" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=RunImportOnStart}" VerticalAlignment="Center"/>
         </StackPanel>
 
-        <!-- Hash_CRC32 -->
+        <!-- ScanDropFoldersOnStart -->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="5" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ImportSettings_HashCRC32}" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="Scan Drop Folders On Start" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="5" Margin="0,5,5,0" Grid.ColumnSpan="1">
+            <CheckBox Name="chkImportSettings_ScanDropOnStart" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=ScanDropFoldersOnStart}" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <!-- Hash_CRC32 -->
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="6" Margin="0,5,15,0">
+            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ImportSettings_HashCRC32}" VerticalAlignment="Center"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="6" Margin="0,5,5,0" Grid.ColumnSpan="1">
             <CheckBox Name="chkImportSettings_HashCRC32" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=Hash_CRC32}" VerticalAlignment="Center"/>
         </StackPanel>
 
         <!-- Hash_MD5 -->
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="6" Margin="0,5,15,0">
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="7" Margin="0,5,15,0">
             <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ImportSettings_HashMD5}" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="6" Margin="0,5,5,0" Grid.ColumnSpan="1">
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="7" Margin="0,5,5,0" Grid.ColumnSpan="1">
             <CheckBox Name="chkImportSettings_HashMD5" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=Hash_MD5}" VerticalAlignment="Center"/>
         </StackPanel>
 
         <!-- Hash_SHA1 -->
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="7" Margin="0,5,15,0">
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="8" Margin="0,5,15,0">
             <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ImportSettings_SHA1}" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="7" Margin="0,5,5,0" Grid.ColumnSpan="1">
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="8" Margin="0,5,5,0" Grid.ColumnSpan="1">
             <CheckBox Name="chkImportSettings_SHA1" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=Hash_SHA1}" VerticalAlignment="Center"/>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="0,15,5,0" Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="3">
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="0,15,5,0" Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="3">
             <TextBlock Text="Images Path"  VerticalAlignment="Center"/>
 
             <ComboBox Name="cboImagesPath" MinWidth="100" Margin="10,0,0,0" VerticalAlignment="Center"/>
@@ -118,7 +128,7 @@
             </Button>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="5,0,5,5" Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="3">
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="5,0,5,5" Grid.Column="0" Grid.Row="10" Grid.ColumnSpan="3">
             <TextBlock Text="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=BaseImagePath}" Name="txtImagesPath"  VerticalAlignment="Center" Margin="20,0,5,0" Foreground="DarkGray">
                                 <TextBlock.ToolTip>
                                     <TextBlock Text="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=BaseImagePath}" Foreground="Black" FontWeight="DemiBold"/>
