@@ -307,6 +307,7 @@
       <xs:element minOccurs="0" name="MissingEpisodeCountGroups" type="xs:int" />
       <xs:element minOccurs="0" name="OverrideDescription" type="xs:int" />
       <xs:element minOccurs="0" name="PlayedCount" type="xs:int" />
+      <xs:element minOccurs="0" name="ServerPosterPath" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="SortName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Stat_AirDate_Max" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Stat_AirDate_Min" nillable="true" type="xs:dateTime" />
@@ -1017,6 +1018,7 @@
       <xs:element minOccurs="0" name="AniDB_File_AudioCodec" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="AniDB_File_Description" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="AniDB_File_FileExtension" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AniDB_File_FileVersion" type="xs:int" />
       <xs:element minOccurs="0" name="AniDB_File_LengthSeconds" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="AniDB_File_ReleaseDate" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="AniDB_File_Source" nillable="true" type="xs:string" />

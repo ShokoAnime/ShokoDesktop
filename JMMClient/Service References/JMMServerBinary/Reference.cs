@@ -3326,6 +3326,9 @@ namespace JMMClient.JMMServerBinary {
         private int PlayedCountField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ServerPosterPathField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string SortNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -3587,6 +3590,19 @@ namespace JMMClient.JMMServerBinary {
                 if ((this.PlayedCountField.Equals(value) != true)) {
                     this.PlayedCountField = value;
                     this.RaisePropertyChanged("PlayedCount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ServerPosterPath {
+            get {
+                return this.ServerPosterPathField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ServerPosterPathField, value) != true)) {
+                    this.ServerPosterPathField = value;
+                    this.RaisePropertyChanged("ServerPosterPath");
                 }
             }
         }
@@ -10105,6 +10121,9 @@ namespace JMMClient.JMMServerBinary {
         private string AniDB_File_FileExtensionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AniDB_File_FileVersionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> AniDB_File_LengthSecondsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -10354,6 +10373,19 @@ namespace JMMClient.JMMServerBinary {
                 if ((object.ReferenceEquals(this.AniDB_File_FileExtensionField, value) != true)) {
                     this.AniDB_File_FileExtensionField = value;
                     this.RaisePropertyChanged("AniDB_File_FileExtension");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AniDB_File_FileVersion {
+            get {
+                return this.AniDB_File_FileVersionField;
+            }
+            set {
+                if ((this.AniDB_File_FileVersionField.Equals(value) != true)) {
+                    this.AniDB_File_FileVersionField = value;
+                    this.RaisePropertyChanged("AniDB_File_FileVersion");
                 }
             }
         }

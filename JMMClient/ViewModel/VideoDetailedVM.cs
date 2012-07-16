@@ -66,6 +66,7 @@ namespace JMMClient
 		public string AniDB_CRC { get; set; }
 		public string AniDB_MD5 { get; set; }
 		public string AniDB_SHA1 { get; set; }
+		public int AniDB_File_FileVersion { get; set; }
 
 		public string VideoResolution
 		{
@@ -565,6 +566,7 @@ namespace JMMClient
 			this.AniDB_GroupID = contract.AniDB_GroupID;
 			this.AniDB_MD5 = contract.AniDB_MD5;
 			this.AniDB_SHA1 = contract.AniDB_SHA1;
+			this.AniDB_File_FileVersion = contract.AniDB_File_FileVersion;
 
 			this.LanguagesAudio = contract.LanguagesAudio;
 			this.LanguagesSubtitle = contract.LanguagesSubtitle;

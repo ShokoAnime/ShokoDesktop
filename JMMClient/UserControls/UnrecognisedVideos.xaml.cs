@@ -148,6 +148,31 @@ namespace JMMClient.UserControls
 			btnClearSearch.Click += new RoutedEventHandler(btnClearSearch_Click);
 			txtFileSearch.TextChanged += new TextChangedEventHandler(txtFileSearch_TextChanged);
 			btnLogs.Click += new RoutedEventHandler(btnLogs_Click);
+
+			btnRefreshSeriesList.Click += new RoutedEventHandler(btnRefreshSeriesList_Click);
+		}
+
+		void btnRefreshSeriesList_Click(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				if (!JMMServerVM.Instance.ServerOnline) return;
+
+				this.Cursor = Cursors.Wait;
+				RefreshSeries();
+				this.Cursor = Cursors.Arrow;
+
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+			finally
+			{
+				this.Cursor = Cursors.Arrow;
+			}
+
+			
 		}
 
 		void btnLogs_Click(object sender, RoutedEventArgs e)

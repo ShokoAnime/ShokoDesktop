@@ -518,6 +518,10 @@ namespace JMMClient.UserControls
 				ser.Save();
 			}
 
+			ser.SetSeriesNames();
+
+			//MainListHelperVM.Instance.RefreshGroupsSeriesData();
+
 			EvaluateEditing();
 		}
 

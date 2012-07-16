@@ -329,7 +329,7 @@ namespace JMMClient
 			bool passed = false;
 			System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
 			{
-				passed = GroupSearchFilterHelper.EvaluateAnimeTextSearch(ser.AniDB_Anime, SeriesSearchTextBox.Text);
+				passed = GroupSearchFilterHelper.EvaluateSeriesTextSearch(ser, SeriesSearchTextBox.Text);
 			});
 
 			if (passed)

@@ -377,7 +377,7 @@ namespace JMMClient
 			}
 		}
 
-		private void SetSeriesNames()
+		public void SetSeriesNames()
 		{
 			if (!string.IsNullOrEmpty(SeriesNameOverride))
 				SeriesName = SeriesNameOverride;
