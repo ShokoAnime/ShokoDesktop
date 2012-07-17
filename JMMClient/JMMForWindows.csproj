@@ -339,6 +339,9 @@
     <Compile Include="UserControls\ExternalAnimeLinksControl.xaml.cs">
       <DependentUpon>ExternalAnimeLinksControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\FileSearchControl.xaml.cs">
+      <DependentUpon>FileSearchControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\GroupFilterAdmin.xaml.cs">
       <DependentUpon>GroupFilterAdmin.xaml</DependentUpon>
     </Compile>
@@ -797,6 +800,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\ExternalAnimeLinksControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\FileSearchControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

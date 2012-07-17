@@ -408,6 +408,43 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_FileFfdshowPreset" nillable="true" type="tns:Contract_FileFfdshowPreset" />
+  <xs:complexType name="ArrayOfContract_VideoLocal">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_VideoLocal" nillable="true" type="tns:Contract_VideoLocal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_VideoLocal" nillable="true" type="tns:ArrayOfContract_VideoLocal" />
+  <xs:complexType name="Contract_VideoLocal">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CRC32" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DateTimeUpdated" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FilePath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FileSize" type="xs:long" />
+      <xs:element minOccurs="0" name="Hash" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HashSource" type="xs:int" />
+      <xs:element minOccurs="0" name="ImportFolder" nillable="true" type="tns:Contract_ImportFolder" />
+      <xs:element minOccurs="0" name="ImportFolderID" type="xs:int" />
+      <xs:element minOccurs="0" name="IsIgnored" type="xs:int" />
+      <xs:element minOccurs="0" name="IsWatched" type="xs:int" />
+      <xs:element minOccurs="0" name="MD5" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SHA1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VideoLocalID" type="xs:int" />
+      <xs:element minOccurs="0" name="WatchedDate" nillable="true" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_VideoLocal" nillable="true" type="tns:Contract_VideoLocal" />
+  <xs:complexType name="Contract_ImportFolder">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ImportFolderID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ImportFolderLocation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ImportFolderName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ImportFolderType" type="xs:int" />
+      <xs:element minOccurs="0" name="IsDropDestination" type="xs:int" />
+      <xs:element minOccurs="0" name="IsDropSource" type="xs:int" />
+      <xs:element minOccurs="0" name="IsWatched" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_ImportFolder" nillable="true" type="tns:Contract_ImportFolder" />
   <xs:complexType name="ArrayOfContract_Trakt_ShoutUser">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_Trakt_ShoutUser" nillable="true" type="tns:Contract_Trakt_ShoutUser" />
@@ -940,43 +977,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_DuplicateFile" nillable="true" type="tns:Contract_DuplicateFile" />
-  <xs:complexType name="Contract_ImportFolder">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="ImportFolderID" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="ImportFolderLocation" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ImportFolderName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ImportFolderType" type="xs:int" />
-      <xs:element minOccurs="0" name="IsDropDestination" type="xs:int" />
-      <xs:element minOccurs="0" name="IsDropSource" type="xs:int" />
-      <xs:element minOccurs="0" name="IsWatched" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_ImportFolder" nillable="true" type="tns:Contract_ImportFolder" />
-  <xs:complexType name="ArrayOfContract_VideoLocal">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_VideoLocal" nillable="true" type="tns:Contract_VideoLocal" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_VideoLocal" nillable="true" type="tns:ArrayOfContract_VideoLocal" />
-  <xs:complexType name="Contract_VideoLocal">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="CRC32" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="DateTimeUpdated" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="FilePath" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="FileSize" type="xs:long" />
-      <xs:element minOccurs="0" name="Hash" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="HashSource" type="xs:int" />
-      <xs:element minOccurs="0" name="ImportFolder" nillable="true" type="tns:Contract_ImportFolder" />
-      <xs:element minOccurs="0" name="ImportFolderID" type="xs:int" />
-      <xs:element minOccurs="0" name="IsIgnored" type="xs:int" />
-      <xs:element minOccurs="0" name="IsWatched" type="xs:int" />
-      <xs:element minOccurs="0" name="MD5" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="SHA1" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="VideoLocalID" type="xs:int" />
-      <xs:element minOccurs="0" name="WatchedDate" nillable="true" type="xs:dateTime" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_VideoLocal" nillable="true" type="tns:Contract_VideoLocal" />
   <xs:complexType name="ArrayOfContract_GroupVideoQuality">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_GroupVideoQuality" nillable="true" type="tns:Contract_GroupVideoQuality" />

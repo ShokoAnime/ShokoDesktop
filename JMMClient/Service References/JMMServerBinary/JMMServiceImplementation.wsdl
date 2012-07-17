@@ -116,6 +116,12 @@
   <wsdl:message name="IJMMServer_UpdateAnimeDisableExternalLinksFlag_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateAnimeDisableExternalLinksFlagResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_SearchForFiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchForFiles" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SearchForFiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchForFilesResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_ScanDropFolders_InputMessage">
     <wsdl:part name="parameters" element="tns:ScanDropFolders" />
   </wsdl:message>
@@ -1189,6 +1195,10 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/UpdateAnimeDisableExternalLinksFlag" message="tns:IJMMServer_UpdateAnimeDisableExternalLinksFlag_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/UpdateAnimeDisableExternalLinksFlagResponse" message="tns:IJMMServer_UpdateAnimeDisableExternalLinksFlag_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="SearchForFiles">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SearchForFiles" message="tns:IJMMServer_SearchForFiles_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SearchForFilesResponse" message="tns:IJMMServer_SearchForFiles_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="ScanDropFolders">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/ScanDropFolders" message="tns:IJMMServer_ScanDropFolders_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/ScanDropFoldersResponse" message="tns:IJMMServer_ScanDropFolders_OutputMessage" />
@@ -2002,6 +2012,15 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateAnimeDisableExternalLinksFlag">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/UpdateAnimeDisableExternalLinksFlag" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchForFiles">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/SearchForFiles" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

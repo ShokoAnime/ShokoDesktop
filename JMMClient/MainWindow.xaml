@@ -749,6 +749,11 @@
                         <usercontrols:AvdumpBatchControl x:Name="avdumpBatch"/>
                     </TabItem>
 
+                    <TabItem Header="File Search" Name="tabFileSearch">
+
+                        <usercontrols:FileSearchControl x:Name="fileSearch"/>
+                    </TabItem>
+
                 </TabControl>
 
 

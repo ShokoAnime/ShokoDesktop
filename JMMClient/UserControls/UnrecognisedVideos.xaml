@@ -170,11 +170,11 @@
                     <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Path=FileDirectory}" Margin="3" />
                     <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Path=FormattedFileSize}" Margin="3" />
 
-                    <TextBlock Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Text="Hash" Margin="3" FontWeight="DemiBold" />
-                    <TextBlock Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Path=Hash}" Margin="3" />
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="Hash" Margin="3" FontWeight="DemiBold" />
+                    <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Path=Hash}" Margin="10,3,3,3" />
 
-                    <TextBlock Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Text="CRC32" Margin="3" FontWeight="DemiBold" />
-                    <TextBlock Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Path=CRC32}" Margin="3" />
+                    <TextBlock Grid.Row="5" Grid.Column="0" Text="CRC32" Margin="3" FontWeight="DemiBold" />
+                    <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Path=CRC32}" Margin="10,3,3,3" />
 
                 </Grid>
             </DataTemplate>

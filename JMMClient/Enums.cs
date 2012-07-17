@@ -372,6 +372,14 @@ namespace JMMClient
 		Manual = 3
 	}
 
+	public enum FileSearchCriteria
+	{
+		Name = 1,
+		Size = 2,
+		LastOneHundred = 3,
+		ED2KHash = 4
+	}
+
 	public class EnumTranslator
 	{
 		public static string EpisodeTypeTranslated(EpisodeType epType)

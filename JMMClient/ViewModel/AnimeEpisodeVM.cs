@@ -672,8 +672,20 @@ namespace JMMClient
 				MainListHelperVM.Instance.UpdateAnime(aniDB_Anime.AnimeID);
 		}
 
+		private AnimeSeriesVM animeSeries = null;
+		public AnimeSeriesVM AnimeSeries
+		{
+			get
+			{
+				if (animeSeries != null) return animeSeries;
 
-		
+				JMMServerBinary.Contract_AnimeSeries rawSeries = JMMServerVM.Instance.clientBinaryHTTP.GetSeries(AnimeSeriesID, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+				if (rawSeries == null) return null;
+
+				animeSeries = new AnimeSeriesVM(rawSeries);
+				return animeSeries;
+			}
+		}
 
 		public string RunTime
 		{
