@@ -760,6 +760,17 @@ namespace JMMClient
 			}
 		}
 
+		public string EndYearAsString
+		{
+			get
+			{
+				if (EndYear > 0)
+					return EndYear.ToString();
+				else
+					return JMMClient.Properties.Resources.Ongoing;
+			}
+		}
+
 		public string AirDateAndEndDate
 		{
 			get
@@ -774,7 +785,7 @@ namespace JMMClient
 			{
 				if (BeginYear == EndYear) return BeginYear.ToString();
 				else
-					return string.Format("{0} - {1}", BeginYear, EndYear);
+					return string.Format("{0} - {1}", BeginYear, EndYearAsString);
 			}
 		}
 
