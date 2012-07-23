@@ -516,6 +516,20 @@ namespace JMMClient.UserControls
 				// override name has changes so lets save to db
 				ser.SeriesNameOverride = newName;
 				ser.Save();
+
+				// prompt to change parent group name
+				MessageBoxResult res = MessageBox.Show("Do you also want to rename the parent group?",
+					"Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
+				if (res == MessageBoxResult.Yes)
+				{
+					AnimeGroupVM thisGrp = MainListHelperVM.Instance.AllGroupsDictionary[ser.AnimeGroupID];
+					if (thisGrp != null)
+					{
+						thisGrp.GroupName = newName;
+						thisGrp.SortName = newName;
+						thisGrp.Save();
+					}
+				}
 			}
 
 			ser.SetSeriesNames();
