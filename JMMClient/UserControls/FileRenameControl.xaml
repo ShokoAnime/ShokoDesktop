@@ -1,0 +1,252 @@
+﻿<UserControl x:Class="JMMClient.UserControls.FileRenameControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
+             xmlns:local="clr-namespace:JMMClient"
+             mc:Ignorable="d" 
+             xmlns:extToolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+
+        <ResourceDictionary>
+
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+
+            <!-- SimpleTagTemplate -->
+            <DataTemplate x:Key="SimpleTagTemplate">
+                <TextBlock Text="{Binding Path=Name}" Margin="0" />
+            </DataTemplate>
+
+            <!-- SimpleScriptTemplate -->
+            <DataTemplate x:Key="SimpleScriptTemplate">
+                <TextBlock Text="{Binding Path=ScriptName}" Margin="0" />
+            </DataTemplate>
+
+        </ResourceDictionary>
+
+
+
+    </UserControl.Resources>
+
+    <UserControl.CommandBindings>
+
+    </UserControl.CommandBindings>
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="250*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="400*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <TabControl Grid.Row="0" Grid.Column="0" Margin="5" Name="tabTorrentDetails" TabStripPlacement="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+
+
+            <TabItem Header="Renaming Rules">
+
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <Grid>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- script selection -->
+                        <Border DockPanel.Dock="Top" Background="FloralWhite" BorderBrush="DarkGray" BorderThickness="1" Grid.Column="0" Grid.Row="0" Padding="2"  Grid.ColumnSpan="3">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock VerticalAlignment="Center" FontWeight="Bold" Foreground="DarkRed" Text="Renaming functionality is currently DISABLED. You can preview how your files will look, but not commit those changes" Margin="5,5,5,5"/>
+                                <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" Margin="5">
+
+                                    <TextBlock VerticalAlignment="Center" Text="Script" Margin="0,0,5,0"/>
+                                    <ComboBox Name="cboScript" Margin="3,3,5,3" Height="24" VerticalAlignment="Center"
+                                      ItemTemplate="{StaticResource SimpleScriptTemplate}"
+                                      ItemsSource="{Binding Path=RenameScripts, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:FileRenameControl}}}"/>
+
+                                    <!-- Save Script -->
+                                    <Button Name="btnSaveScript" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}">
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                            <Image Height="16" Width="16" Source="/Images/32_save.png" Margin="0,0,5,0"/>
+                                            <TextBlock VerticalAlignment="Center" Text="Save" Margin="0,0,5,0"/>
+                                        </StackPanel>
+                                    </Button>
+                                    
+                                    <!-- New Script -->
+                                    <Button Name="btnNewScript" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}">
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                            <Image Height="16" Width="16" Source="/Images/16_plus.png" Margin="0,0,5,0"/>
+                                            <TextBlock VerticalAlignment="Center" Text="New" Margin="0,0,5,0"/>
+                                        </StackPanel>
+                                    </Button>
+
+                                    <!-- Add Tag -->
+                                    <Button Name="btnDeleteScript" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}">
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                            <Image Height="16" Width="16" Source="/Images/32_trash.png" Margin="0,0,5,0"/>
+                                            <TextBlock VerticalAlignment="Center" Text="Delete" Margin="0,0,5,0"/>
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <!-- Renaming script -->
+
+                        <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" Margin="5" Grid.Column="0" Grid.Row="1" >
+
+                            <TextBlock VerticalAlignment="Center" Text="Tag" Margin="0,0,5,0"/>
+                            <ComboBox Name="cboTagType" Margin="3,3,5,3" Height="24" VerticalAlignment="Center"
+                                      ItemTemplate="{StaticResource SimpleTagTemplate}"
+                                      ItemsSource="{Binding Path=ViewTags, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:FileRenameControl}}}"/>
+                            <!-- Add Tag -->
+                            <Button Name="btnAddTag" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="16" Width="16" Source="/Images/16_plus.png" Margin="0,0,5,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="Add" Margin="0,0,5,0"/>
+                                </StackPanel>
+                            </Button>
+
+                            <TextBlock VerticalAlignment="Center" Text="Test" Margin="15,0,5,0"/>
+                            <ComboBox Name="cboTestType" Margin="3,3,5,3" Height="24" VerticalAlignment="Center"
+                                      ItemTemplate="{StaticResource SimpleTagTemplate}"
+                                      ItemsSource="{Binding Path=ViewTests, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:FileRenameControl}}}"/>
+                            <!-- Add Tag -->
+                            <Button Name="btnAddTest" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="16" Width="16" Source="/Images/16_plus.png" Margin="0,0,5,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="Add" Margin="0,0,5,0"/>
+                                </StackPanel>
+                            </Button>
+
+                            <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="15,2,5,0" Grid.Column="2" VerticalAlignment="Center"/>
+                            <usercontrols:HyperLinkStandard Margin="0,0,20,0" VerticalAlignment="Center" DisplayText="Help with scripting"
+                                                                        URL="http://code.google.com/p/jmm/wiki/UserManual_File_Renaming"/>
+                        </StackPanel>
+                        <TextBox Name="txtRenameScript" MinWidth="400" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="2" Margin="5" Grid.RowSpan="3" AcceptsReturn="True" FontFamily="Courier New" />
+
+
+
+
+
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+
+        </TabControl>
+
+
+        <GridSplitter HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="1"
+                                Grid.Column="0" ResizeBehavior="PreviousAndNext"
+                                Height="2" Background="#FFBCBCBC"  />
+
+
+        <DockPanel Grid.Column="0" Grid.Row="2" >
+
+            <Border DockPanel.Dock="Top" Background="#F1F1F1" BorderBrush="DarkGray" BorderThickness="1" Padding="5">
+                <StackPanel Orientation="Horizontal">
+
+                    <TextBlock VerticalAlignment="Center" Text="Filter:" Margin="0,0,0,0"/>
+
+                    <ComboBox Name="cboFilterType" Margin="3,3,5,3" Height="24" VerticalAlignment="Center"/>
+
+                    <!-- Clear List -->
+                    <Button Name="btnClearList" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                            <Image Height="16" Width="16" Source="/Images/32_delete.png" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="Clear" Margin="0,0,5,0"/>
+                        </StackPanel>
+                    </Button>
+
+                    <ComboBox Name="cboLoadType" Margin="3,3,5,3" Height="24" VerticalAlignment="Center"/>
+
+
+
+                    <extToolkit:IntegerUpDown Name="udRandomFiles" Minimum="1" Maximum="99999" DefaultValue="100" Value="100" VerticalAlignment="Center"
+                                              Visibility="{Binding Path=LoadTypeIsRandom, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:FileRenameControl}}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                    <!-- Add Files -->
+                    <Button Name="btnLoadFiles" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                            <Image Height="16" Width="16" Source="/Images/16_plus.png" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="Add Files" Margin="0,0,5,0"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- Preview Files -->
+                    <Button Name="btnPreviewFiles" Margin="0,2,5,2" Style="{DynamicResource FlatButtonStyle}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                            <Image Height="16" Width="16" Source="/Images/16_preview.png" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="Preview" Margin="0,0,5,0"/>
+                        </StackPanel>
+                    </Button>
+
+                    <TextBlock Foreground="DarkGray" VerticalAlignment="Center" Text="{Binding Path=FileCountStatus, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:FileRenameControl}}}" Margin="0,0,0,0"
+                               Visibility="{Binding Path=PreviewWorkerNotRunning, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:FileRenameControl}}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                    <!-- Cancel Preview -->
+                    <Button Name="btnPreviewStop" Margin="0,2,10,2" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center"
+                            Visibility="{Binding Path=PreviewWorkerRunning, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:FileRenameControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                            <Image Height="16" Width="16" Source="/Images/32_cancel.png" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="Cancel" Margin="0,0,5,0"/>
+                        </StackPanel>
+                    </Button>
+
+                    <TextBlock Foreground="DarkGray" VerticalAlignment="Center" Text="{Binding Path=PreviewStatus, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:FileRenameControl}}}" Margin="0,0,0,0"
+                               Visibility="{Binding Path=PreviewWorkerRunning, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:FileRenameControl}}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                </StackPanel>
+            </Border >
+
+
+            <!-- grid for file rename preview -->
+            <DataGrid Name="dgTorrents" ItemsSource="{Binding Path=ViewFiles, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:FileRenameControl}}}" DockPanel.Dock="Top"
+                  AutoGenerateColumns="False" CanUserReorderColumns="True" CanUserResizeColumns="True" CanUserResizeRows="False" CanUserSortColumns="True" 
+                                  AlternatingRowBackground="Cornsilk"  AlternationCount="2" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="LightGray" 
+                                  AreRowDetailsFrozen="False" CanUserAddRows="False" CanUserDeleteRows="False">
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="Padding" Value="3,3,6,3"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                    <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                        <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </DataGrid.CellStyle>
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="" IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding StatusImage}" Width="16" Height="16" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Old Name" Binding="{Binding VideoLocal.FullPath}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="New Name" Binding="{Binding NewFileName}" IsReadOnly="True" />
+
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel >
+
+
+    </Grid>
+</UserControl>

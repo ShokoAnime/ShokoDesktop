@@ -589,6 +589,34 @@ namespace JMMClient
 			}
 		}
 
+		public List<VideoLocalVM> AllVideoLocals
+		{
+			get
+			{
+				List<VideoLocalVM> vids = new List<VideoLocalVM>();
+				try
+				{
+					DateTime start = DateTime.Now;
+					List<JMMServerBinary.Contract_VideoLocal> raws = JMMServerVM.Instance.clientBinaryHTTP.GetVideoLocalsForAnime(AniDB_ID,
+						JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+					TimeSpan ts = DateTime.Now - start;
+					logger.Trace("Got vids for series from service: {0} in {1} ms", AniDB_ID, ts.TotalMilliseconds);
+
+					foreach (JMMServerBinary.Contract_VideoLocal raw in raws)
+					{
+						VideoLocalVM vid = new VideoLocalVM(raw);
+						vids.Add(vid);
+					}
+				}
+				catch (Exception ex)
+				{
+					Utils.ShowErrorMessage(ex);
+				}
+				return vids;
+			}
+		}
+		
+
 		public void RefreshEpisodes()
 		{
 			allEpisodes = new List<AnimeEpisodeVM>();

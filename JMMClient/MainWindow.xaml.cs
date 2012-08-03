@@ -60,6 +60,8 @@ namespace JMMClient
 		private static readonly int TAB_FileManger_MissingEps = 7;
 		private static readonly int TAB_FileManger_IgnoredAnime = 8;
 		private static readonly int TAB_FileManger_Avdump = 9;
+		private static readonly int TAB_FileManger_FileSearch = 10;
+		private static readonly int TAB_FileManger_Rename = 11;
 
 		private static readonly int TAB_Settings_Essential = 0;
 		private static readonly int TAB_Settings_AniDB = 1;
@@ -365,6 +367,12 @@ namespace JMMClient
 					{
 						if (multipleFiles.CurrentEpisodes.Count == 0) multipleFiles.RefreshMultipleFiles();
 						lastFileManagerTab = TAB_FileManger_MultipleFiles;
+					}
+
+					if (tab.SelectedIndex == TAB_FileManger_Rename)
+					{
+						if (fileRenaming.RenameScripts.Count == 0) fileRenaming.RefreshScripts();
+						lastFileManagerTab = TAB_FileManger_Rename;
 					}
 					this.Cursor = Cursors.Arrow;
 				}

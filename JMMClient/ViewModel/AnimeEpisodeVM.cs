@@ -870,6 +870,30 @@ namespace JMMClient
 			}
 		}
 
+		public List<VideoLocalVM> GetAllVideoLocals()
+		{
+			List<VideoLocalVM> vids = new List<VideoLocalVM>();
+			try
+			{
+				
+				List<JMMServerBinary.Contract_VideoLocal> contracts = JMMServerVM.Instance.clientBinaryHTTP.GetVideoLocalsForEpisode(AnimeEpisodeID,
+					JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+
+				foreach (JMMServerBinary.Contract_VideoLocal fi in contracts)
+				{
+					vids.Add(new VideoLocalVM(fi));
+				}
+
+				List<SortPropOrFieldAndDirection> sortCriteria = new List<SortPropOrFieldAndDirection>();
+				sortCriteria.Add(new SortPropOrFieldAndDirection("FilePath", false, JMMClient.SortType.eString));
+				vids = Sorting.MultiSort<VideoLocalVM>(vids, sortCriteria);
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+			return vids;
+		}
 
 		public void RefreshFilesForEpisode()
 		{

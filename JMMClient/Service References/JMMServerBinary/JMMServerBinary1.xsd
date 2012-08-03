@@ -307,6 +307,7 @@
       <xs:element minOccurs="0" name="MissingEpisodeCountGroups" type="xs:int" />
       <xs:element minOccurs="0" name="OverrideDescription" type="xs:int" />
       <xs:element minOccurs="0" name="PlayedCount" type="xs:int" />
+      <xs:element minOccurs="0" name="SeriesForNameOverride" nillable="true" type="tns:Contract_AnimeSeries" />
       <xs:element minOccurs="0" name="ServerPosterPath" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="SortName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Stat_AirDate_Max" nillable="true" type="xs:dateTime" />
@@ -445,6 +446,36 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_ImportFolder" nillable="true" type="tns:Contract_ImportFolder" />
+  <xs:complexType name="Contract_VideoLocalRenamed">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="NewFileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VideoLocal" nillable="true" type="tns:Contract_VideoLocal" />
+      <xs:element minOccurs="0" name="VideoLocalID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_VideoLocalRenamed" nillable="true" type="tns:Contract_VideoLocalRenamed" />
+  <xs:complexType name="ArrayOfContract_RenameScript">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_RenameScript" nillable="true" type="tns:Contract_RenameScript" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_RenameScript" nillable="true" type="tns:ArrayOfContract_RenameScript" />
+  <xs:complexType name="Contract_RenameScript">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IsEnabledOnImport" type="xs:int" />
+      <xs:element minOccurs="0" name="RenameScriptID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Script" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ScriptName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_RenameScript" nillable="true" type="tns:Contract_RenameScript" />
+  <xs:complexType name="Contract_RenameScript_SaveResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RenameScript" nillable="true" type="tns:Contract_RenameScript" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_RenameScript_SaveResponse" nillable="true" type="tns:Contract_RenameScript_SaveResponse" />
   <xs:complexType name="ArrayOfContract_Trakt_ShoutUser">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_Trakt_ShoutUser" nillable="true" type="tns:Contract_Trakt_ShoutUser" />

@@ -52,8 +52,6 @@ namespace JMMClient.UserControls
 
 			btnSearch.Click += new RoutedEventHandler(btnSearch_Click);
 			lbVideos.SelectionChanged += new SelectionChangedEventHandler(lbVideos_SelectionChanged);
-			
-			//SetConfirmDetails();
 
 			cboSearchType.Items.Clear();
 			cboSearchType.Items.Add(SearchTypeFileName);

@@ -239,6 +239,9 @@
     <Compile Include="Forms\SelectDefaultSeriesForm.xaml.cs">
       <DependentUpon>SelectDefaultSeriesForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SelectGroupSeriesForm.xaml.cs">
+      <DependentUpon>SelectGroupSeriesForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SelectMALStartForm.xaml.cs">
       <DependentUpon>SelectMALStartForm.xaml</DependentUpon>
     </Compile>
@@ -338,6 +341,9 @@
     </Compile>
     <Compile Include="UserControls\ExternalAnimeLinksControl.xaml.cs">
       <DependentUpon>ExternalAnimeLinksControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\FileRenameControl.xaml.cs">
+      <DependentUpon>FileRenameControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\FileSearchControl.xaml.cs">
       <DependentUpon>FileSearchControl.xaml</DependentUpon>
@@ -482,6 +488,9 @@
     <Compile Include="UserCulture.cs" />
     <Compile Include="Utilities\DragAndDrop.cs" />
     <Compile Include="Utilities\MultiSort.cs" />
+    <Compile Include="Utilities\RenameHelper.cs" />
+    <Compile Include="Utilities\RenameTag.cs" />
+    <Compile Include="Utilities\RenameTest.cs" />
     <Compile Include="Utilities\ShowSelectedInExplorer.cs" />
     <Compile Include="Utilities\SortSearchCriteria.cs" />
     <Compile Include="Utilities\ValueComparison.cs" />
@@ -543,6 +552,7 @@
     <Compile Include="ViewModel\PlaylistVM.cs" />
     <Compile Include="ViewModel\RecommendationVM.cs" />
     <Compile Include="ViewModel\ReleaseGroupVM.cs" />
+    <Compile Include="ViewModel\RenameScriptVM.cs" />
     <Compile Include="ViewModel\TraktTVShowResponseVM.cs" />
     <Compile Include="ViewModel\Trakt_ActivityScrobbleVM.cs" />
     <Compile Include="ViewModel\Trakt_ActivityShoutEpisodeVM.cs" />
@@ -578,6 +588,7 @@
       <DependentUpon>Resources.de.resx</DependentUpon>
     </Compile>
     <Compile Include="Utils.cs" />
+    <Compile Include="ViewModel\VideoLocalRenamedVM.cs" />
     <Compile Include="ViewModel\VideoLocalVM.cs" />
     <Page Include="Forms\AboutForm.xaml">
       <SubType>Designer</SubType>
@@ -672,6 +683,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\SelectDefaultSeriesForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\SelectGroupSeriesForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -800,6 +815,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\ExternalAnimeLinksControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\FileRenameControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1167,6 +1186,12 @@
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_Recommendation.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_RenameScript.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_RenameScript_SaveResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_ServerSettings.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -1219,6 +1244,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_VideoLocal.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_VideoLocalRenamed.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMServerBinary.xsd">
@@ -1668,6 +1696,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="PostBuild.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16_preview.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\64_preview.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

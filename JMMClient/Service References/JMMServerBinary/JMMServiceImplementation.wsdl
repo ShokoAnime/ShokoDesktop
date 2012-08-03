@@ -122,6 +122,48 @@
   <wsdl:message name="IJMMServer_SearchForFiles_OutputMessage">
     <wsdl:part name="parameters" element="tns:SearchForFilesResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_RenameFilePreview_InputMessage">
+    <wsdl:part name="parameters" element="tns:RenameFilePreview" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RenameFilePreview_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RenameFilePreviewResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RandomFileRenamePreview_InputMessage">
+    <wsdl:part name="parameters" element="tns:RandomFileRenamePreview" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RandomFileRenamePreview_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RandomFileRenamePreviewResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetVideoLocalsForEpisode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVideoLocalsForEpisode" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetVideoLocalsForEpisode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVideoLocalsForEpisodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetVideoLocalsForAnime_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVideoLocalsForAnime" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetVideoLocalsForAnime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVideoLocalsForAnimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllRenameScripts_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllRenameScripts" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllRenameScripts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllRenameScriptsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SaveRenameScript_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveRenameScript" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SaveRenameScript_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveRenameScriptResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_DeleteRenameScript_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRenameScript" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_DeleteRenameScript_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRenameScriptResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_ScanDropFolders_InputMessage">
     <wsdl:part name="parameters" element="tns:ScanDropFolders" />
   </wsdl:message>
@@ -1199,6 +1241,34 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SearchForFiles" message="tns:IJMMServer_SearchForFiles_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SearchForFilesResponse" message="tns:IJMMServer_SearchForFiles_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="RenameFilePreview">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RenameFilePreview" message="tns:IJMMServer_RenameFilePreview_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RenameFilePreviewResponse" message="tns:IJMMServer_RenameFilePreview_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RandomFileRenamePreview">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RandomFileRenamePreview" message="tns:IJMMServer_RandomFileRenamePreview_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RandomFileRenamePreviewResponse" message="tns:IJMMServer_RandomFileRenamePreview_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVideoLocalsForEpisode">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetVideoLocalsForEpisode" message="tns:IJMMServer_GetVideoLocalsForEpisode_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetVideoLocalsForEpisodeResponse" message="tns:IJMMServer_GetVideoLocalsForEpisode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVideoLocalsForAnime">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetVideoLocalsForAnime" message="tns:IJMMServer_GetVideoLocalsForAnime_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetVideoLocalsForAnimeResponse" message="tns:IJMMServer_GetVideoLocalsForAnime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllRenameScripts">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllRenameScripts" message="tns:IJMMServer_GetAllRenameScripts_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllRenameScriptsResponse" message="tns:IJMMServer_GetAllRenameScripts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveRenameScript">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SaveRenameScript" message="tns:IJMMServer_SaveRenameScript_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SaveRenameScriptResponse" message="tns:IJMMServer_SaveRenameScript_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRenameScript">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/DeleteRenameScript" message="tns:IJMMServer_DeleteRenameScript_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/DeleteRenameScriptResponse" message="tns:IJMMServer_DeleteRenameScript_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="ScanDropFolders">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/ScanDropFolders" message="tns:IJMMServer_ScanDropFolders_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/ScanDropFoldersResponse" message="tns:IJMMServer_ScanDropFolders_OutputMessage" />
@@ -2021,6 +2091,69 @@
     </wsdl:operation>
     <wsdl:operation name="SearchForFiles">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/SearchForFiles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RenameFilePreview">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/RenameFilePreview" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RandomFileRenamePreview">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/RandomFileRenamePreview" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVideoLocalsForEpisode">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetVideoLocalsForEpisode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVideoLocalsForAnime">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetVideoLocalsForAnime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllRenameScripts">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllRenameScripts" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveRenameScript">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/SaveRenameScript" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRenameScript">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/DeleteRenameScript" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

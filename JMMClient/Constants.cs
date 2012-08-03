@@ -14,6 +14,112 @@ namespace JMMClient
 		public static readonly int FlagLinkMAL = 4;
 		public static readonly int FlagLinkMovieDB = 8;
 
+		// http://wiki.anidb.net/w/WebAOM#Move.2Frename_system
+		public struct FileRenameTag_Name
+		{
+			public static readonly string AnimeNameRomaji = "Anime Name - Romaji";
+			public static readonly string AnimeNameKanji = "Anime Name - Kanji";
+			public static readonly string AnimeNameEnglish = "Anime Name - English";
+			public static readonly string EpisodeNameRomaji = "Episode Name - Romaji";
+			public static readonly string EpisodeNameEnglish = "Episode Name - English";
+			public static readonly string EpisodeNumber = "Episode Number";
+			public static readonly string GroupShortName = "Group Name - Short";
+			public static readonly string GroupLongName = "Group Name - Long";
+			public static readonly string ED2KLower = "ED2K - Lower";
+			public static readonly string ED2KUpper = "ED2K - Upper";
+			public static readonly string CRCLower = "CRC - Lower";
+			public static readonly string CRCUpper = "CRC - Upper";
+			public static readonly string FileVersion = "File Version";
+			public static readonly string Source = "Video Source";
+			public static readonly string Resolution = "Video Resolution";
+			public static readonly string Year = "Year";
+			public static readonly string Episodes = "Episode Count"; // Total number of episodes
+			public static readonly string Type = "Anime Type"; // Type [unknown, TV, OVA, Movie, TV Special, Other, web]
+			public static readonly string FileID = "File ID";
+			public static readonly string AnimeID = "Anime ID";
+			public static readonly string EpisodeID = "Episode ID";
+			public static readonly string GroupID = "Group ID";
+			public static readonly string DubLanguage = "Dub Language";
+			public static readonly string SubLanguage = "Sub Language";
+			public static readonly string VideoCodec = "Video Codecs"; //tracks separated with '
+			public static readonly string AudioCodec = "Audio Codecs"; //tracks separated with '
+			public static readonly string VideoBitDepth = "Video Bit Depth"; // 8bit, 10bit
+		}
+
+		public struct FileRenameTag_Tag
+		{
+			public static readonly string AnimeNameRomaji = "%ann";
+			public static readonly string AnimeNameKanji = "%kan";
+			public static readonly string AnimeNameEnglish = "%eng";
+			public static readonly string EpisodeNameRomaji = "%epn";
+			//public static readonly string EpisodeNameKanji = "%epk";
+			public static readonly string EpisodeNameEnglish = "%epr";
+			public static readonly string EpisodeNumber = "%enr";
+			public static readonly string GroupShortName = "%grp";
+			public static readonly string GroupLongName = "%grl";
+			public static readonly string ED2KLower = "%ed2";
+			public static readonly string ED2KUpper = "%ED2";
+			public static readonly string CRCLower = "%crc";
+			public static readonly string CRCUpper = "%CRC";
+			public static readonly string FileVersion = "%ver";
+			public static readonly string Source = "%src";
+			public static readonly string Resolution = "%res";
+			public static readonly string Year = "%yea";
+			public static readonly string Episodes = "%eps"; // Total number of episodes
+			public static readonly string Type = "%typ"; // Type [unknown, TV, OVA, Movie, TV Special, Other, web]
+			public static readonly string FileID = "%fid";
+			public static readonly string AnimeID = "%aid";
+			public static readonly string EpisodeID = "%eid";
+			public static readonly string GroupID = "%gid";
+			public static readonly string DubLanguage = "%dub";
+			public static readonly string SubLanguage = "%sub";
+			public static readonly string VideoCodec = "%vid"; //tracks separated with '
+			public static readonly string AudioCodec = "%aud"; //tracks separated with '
+			public static readonly string VideoBitDepth = "%bit"; // 8bit, 10bit
+
+
+			/*
+			%md5 / %MD5	 md5 sum (lower/upper)
+			%sha / %SHA	 sha1 sum (lower/upper)
+			%inv	 Invalid crc string
+			%cen	 Censored string
+			 * */
+		}
+
+		public struct FileRenameTest_Name
+		{
+			public static readonly string AnimeID = "Anime ID";
+			public static readonly string GroupID = "Group ID";
+			public static readonly string FileVersion = "File Version";
+			public static readonly string EpisodeNumber = "Episode Number";
+			public static readonly string EpisodeCount = "Episode Count";
+			public static readonly string RipSource = "Rip Source";
+			public static readonly string AnimeType = "Anime Type";
+			public static readonly string Year = "Year";
+			public static readonly string DubLanguage = "Dub Language";
+			public static readonly string SubLanguage = "Sub Language";
+			public static readonly string Codec = "Codec";
+			public static readonly string Tag = "Tag";
+			public static readonly string VideoBitDepth = "Video Bit Depth";
+		}
+
+		public struct FileRenameTest_Test
+		{
+			public static readonly string AnimeID = "A()";
+			public static readonly string GroupID = "G()";
+			public static readonly string FileVersion = "F()";
+			public static readonly string EpisodeNumber = "E()";
+			public static readonly string EpisodeCount = "X()";
+			public static readonly string RipSource = "R()";
+			public static readonly string AnimeType = "T()";
+			public static readonly string Year = "Y()";
+			public static readonly string DubLanguage = "D()";
+			public static readonly string SubLanguage = "S()";
+			public static readonly string Codec = "C()";
+			public static readonly string Tag = "I()";
+			public static readonly string VideoBitDepth = "Z()";
+		}
+
 		public struct StaticGF
 		{
 			public static readonly int All = -999;
