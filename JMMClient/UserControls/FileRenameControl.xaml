@@ -21,7 +21,7 @@
 
             <!-- SimpleScriptTemplate -->
             <DataTemplate x:Key="SimpleScriptTemplate">
-                <TextBlock Text="{Binding Path=ScriptName}" Margin="0" />
+                <TextBlock Text="{Binding Path=ScriptNameLong}" Margin="0" />
             </DataTemplate>
 
         </ResourceDictionary>
@@ -59,6 +59,7 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
@@ -70,7 +71,7 @@
                         <!-- script selection -->
                         <Border DockPanel.Dock="Top" Background="FloralWhite" BorderBrush="DarkGray" BorderThickness="1" Grid.Column="0" Grid.Row="0" Padding="2"  Grid.ColumnSpan="3">
                             <StackPanel Orientation="Vertical">
-                                <TextBlock VerticalAlignment="Center" FontWeight="Bold" Foreground="DarkRed" Text="Renaming functionality is currently DISABLED. You can preview how your files will look, but not commit those changes" Margin="5,5,5,5"/>
+                                
                                 <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" Margin="5">
 
                                     <TextBlock VerticalAlignment="Center" Text="Script" Margin="0,0,5,0"/>
@@ -136,8 +137,9 @@
                             <usercontrols:HyperLinkStandard Margin="0,0,20,0" VerticalAlignment="Center" DisplayText="Help with scripting"
                                                                         URL="http://code.google.com/p/jmm/wiki/UserManual_File_Renaming"/>
                         </StackPanel>
-                        <TextBox Name="txtRenameScript" MinWidth="400" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="2" Margin="5" Grid.RowSpan="3" AcceptsReturn="True" FontFamily="Courier New" />
-
+                        <CheckBox Name="chkIsUsedForImports" Margin="5" Content="Run this script when importing files into collection" Grid.Column="0" Grid.Row="2"/>
+                        <TextBox Name="txtRenameScript" MinWidth="400" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="3" Margin="5" Grid.RowSpan="3" AcceptsReturn="True" FontFamily="Courier New" />
+                        
 
 
 
@@ -194,20 +196,28 @@
                         </StackPanel>
                     </Button>
 
+                    <!-- Rename Files -->
+                    <Button Name="btnRenameFiles" Margin="0,2,5,2" Style="{DynamicResource FlatButtonStyle}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                            <Image Height="16" Width="16" Source="/Images/32_save.png" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="Rename Now" Margin="0,0,5,0"/>
+                        </StackPanel>
+                    </Button>
+
                     <TextBlock Foreground="DarkGray" VerticalAlignment="Center" Text="{Binding Path=FileCountStatus, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:FileRenameControl}}}" Margin="0,0,0,0"
-                               Visibility="{Binding Path=PreviewWorkerNotRunning, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:FileRenameControl}}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                               Visibility="{Binding Path=WorkerNotRunning, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:FileRenameControl}}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                     <!-- Cancel Preview -->
                     <Button Name="btnPreviewStop" Margin="0,2,10,2" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center"
-                            Visibility="{Binding Path=PreviewWorkerRunning, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:FileRenameControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            Visibility="{Binding Path=WorkerRunning, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:FileRenameControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                             <Image Height="16" Width="16" Source="/Images/32_cancel.png" Margin="0,0,5,0"/>
                             <TextBlock VerticalAlignment="Center" Text="Cancel" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
-                    <TextBlock Foreground="DarkGray" VerticalAlignment="Center" Text="{Binding Path=PreviewStatus, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:FileRenameControl}}}" Margin="0,0,0,0"
-                               Visibility="{Binding Path=PreviewWorkerRunning, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:FileRenameControl}}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                    <TextBlock Foreground="DarkGray" VerticalAlignment="Center" Text="{Binding Path=WorkerStatus, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:FileRenameControl}}}" Margin="0,0,0,0"
+                               Visibility="{Binding Path=WorkerRunning, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:FileRenameControl}}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                 </StackPanel>
             </Border >

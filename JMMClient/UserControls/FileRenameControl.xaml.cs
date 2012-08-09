@@ -76,31 +76,31 @@ namespace JMMClient.UserControls
 			set { SetValue(LoadTypeIsSeriesProperty, value); }
 		}
 
-		public static readonly DependencyProperty PreviewWorkerRunningProperty = DependencyProperty.Register("PreviewWorkerRunning",
+		public static readonly DependencyProperty WorkerRunningProperty = DependencyProperty.Register("WorkerRunning",
 			typeof(bool), typeof(FileRenameControl), new UIPropertyMetadata(false, null));
 
-		public bool PreviewWorkerRunning
+		public bool WorkerRunning
 		{
-			get { return (bool)GetValue(PreviewWorkerRunningProperty); }
-			set { SetValue(PreviewWorkerRunningProperty, value); }
+			get { return (bool)GetValue(WorkerRunningProperty); }
+			set { SetValue(WorkerRunningProperty, value); }
 		}
 
-		public static readonly DependencyProperty PreviewWorkerNotRunningProperty = DependencyProperty.Register("PreviewWorkerNotRunning",
+		public static readonly DependencyProperty WorkerNotRunningProperty = DependencyProperty.Register("WorkerNotRunning",
 			typeof(bool), typeof(FileRenameControl), new UIPropertyMetadata(true, null));
 
-		public bool PreviewWorkerNotRunning
+		public bool WorkerNotRunning
 		{
-			get { return (bool)GetValue(PreviewWorkerNotRunningProperty); }
-			set { SetValue(PreviewWorkerNotRunningProperty, value); }
+			get { return (bool)GetValue(WorkerNotRunningProperty); }
+			set { SetValue(WorkerNotRunningProperty, value); }
 		}
 
-		public static readonly DependencyProperty PreviewStatusProperty = DependencyProperty.Register("PreviewStatus",
+		public static readonly DependencyProperty WorkerStatusProperty = DependencyProperty.Register("WorkerStatus",
 			typeof(string), typeof(FileRenameControl), new UIPropertyMetadata("", null));
 
-		public string PreviewStatus
+		public string WorkerStatus
 		{
-			get { return (string)GetValue(PreviewStatusProperty); }
-			set { SetValue(PreviewStatusProperty, value); }
+			get { return (string)GetValue(WorkerStatusProperty); }
+			set { SetValue(WorkerStatusProperty, value); }
 		}
 
 		private readonly string LoadTypeRandom = "Random";
@@ -113,7 +113,8 @@ namespace JMMClient.UserControls
 		private int? defaultScriptID = null;
 
 		BackgroundWorker previewWorker = new BackgroundWorker();
-		private bool stopPreview = false;
+		BackgroundWorker renameWorker = new BackgroundWorker();
+		private bool stopWorker = false;
 
 		public FileRenameControl()
 		{
@@ -166,6 +167,7 @@ namespace JMMClient.UserControls
 
 			btnLoadFiles.Click += new RoutedEventHandler(btnLoadFiles_Click);
 			btnPreviewFiles.Click += new RoutedEventHandler(btnPreviewFiles_Click);
+			btnRenameFiles.Click += new RoutedEventHandler(btnRenameFiles_Click);
 			btnPreviewStop.Click += new RoutedEventHandler(btnPreviewStop_Click);
 			btnClearList.Click += new RoutedEventHandler(btnClearList_Click);
 			btnAddTag.Click += new RoutedEventHandler(btnAddTag_Click);
@@ -197,12 +199,21 @@ namespace JMMClient.UserControls
 			previewWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(previewWorker_RunWorkerCompleted);
 			previewWorker.ProgressChanged += new ProgressChangedEventHandler(previewWorker_ProgressChanged);
 
+
+			renameWorker.DoWork += new DoWorkEventHandler(renameWorker_DoWork);
+			renameWorker.WorkerSupportsCancellation = true;
+			renameWorker.WorkerReportsProgress = true;
+			renameWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(renameWorker_RunWorkerCompleted);
+			renameWorker.ProgressChanged += new ProgressChangedEventHandler(renameWorker_ProgressChanged);
+
 			txtRenameScript.LostFocus += new RoutedEventHandler(txtRenameScript_LostFocus);
 
 			ViewTags.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
 			ViewTests.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
 			//ViewScripts.SortDescriptions.Add(new SortDescription("ScriptName", ListSortDirection.Ascending));
 		}
+
+		
 
 		void btnDeleteScript_Click(object sender, RoutedEventArgs e)
 		{
@@ -246,7 +257,7 @@ namespace JMMClient.UserControls
 				if (cboScript.SelectedItem == null) return;
 
 				RenameScriptVM script = cboScript.SelectedItem as RenameScriptVM;
-				script.IsEnabledOnImport = 0;
+				script.IsEnabledOnImport = chkIsUsedForImports.IsChecked.Value ? 1 : 0;
 				script.Script = txtRenameScript.Text;
 				if (script.Save())
 				{
@@ -312,6 +323,7 @@ namespace JMMClient.UserControls
 
 			RenameScriptVM script = cboScript.SelectedItem as RenameScriptVM;
 			txtRenameScript.Text = script.Script;
+			chkIsUsedForImports.IsChecked = script.IsEnabledOnImportBool;
 		}
 
 		public void RefreshScripts()
@@ -373,8 +385,8 @@ namespace JMMClient.UserControls
 
 			if (filterType.Equals(FilterTypeAll)) return true;
 
-			if (filterType.Equals(FilterTypeFailed) && string.IsNullOrEmpty(vid.NewFileName)) return true;
-			if (filterType.Equals(FilterTypePassed) && !string.IsNullOrEmpty(vid.NewFileName)) return true;
+			if (filterType.Equals(FilterTypeFailed) && !vid.Success) return true;
+			if (filterType.Equals(FilterTypePassed) && vid.Success) return true;
 
 			return false;
 		}
@@ -425,34 +437,33 @@ namespace JMMClient.UserControls
 
 		void btnPreviewStop_Click(object sender, RoutedEventArgs e)
 		{
-			stopPreview = true;
+			stopWorker = true;
 		}
 
-		void previewWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+		void renameWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
 		{
 			ViewFiles.Refresh();
-			PreviewStatusContainer status = e.UserState as PreviewStatusContainer;
-			PreviewStatus = string.Format("{0} of {1}", status.CurrentFile, status.TotalFileCount);
+			WorkerStatusContainer status = e.UserState as WorkerStatusContainer;
+			WorkerStatus = string.Format("{0} of {1}", status.CurrentFile, status.TotalFileCount);
 		}
 
-		void previewWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+		void renameWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
 		{
 			ViewFiles.Refresh();
-			PreviewWorkerRunning = false;
-			PreviewWorkerNotRunning = true;
-			stopPreview = false;
+			WorkerRunning = false;
+			WorkerNotRunning = true;
+			stopWorker = false;
 			EnableDisableControls(true);
-			//HideShowControls(System.Windows.Visibility.Visible);
 		}
 
-		void previewWorker_DoWork(object sender, DoWorkEventArgs e)
+		void renameWorker_DoWork(object sender, DoWorkEventArgs e)
 		{
-			PreviewJob job = e.Argument as PreviewJob;
+			WorkerJob job = e.Argument as WorkerJob;
 			BackgroundWorker worker = sender as BackgroundWorker;
 
 			foreach (VideoLocalRenamedVM ren in job.FileResults)
 			{
-				if (stopPreview) return;
+				if (stopWorker) return;
 				ren.NewFileName = "";
 			}
 
@@ -460,7 +471,79 @@ namespace JMMClient.UserControls
 			int delay = 0;
 			foreach (VideoLocalRenamedVM ren in job.FileResults)
 			{
-				if (stopPreview) return;
+				if (stopWorker) return;
+
+				curFile++;
+				delay++;
+
+				JMMServerBinary.Contract_VideoLocalRenamed raw = JMMServerVM.Instance.clientBinaryHTTP.RenameFile(
+					ren.VideoLocalID, job.RenameScript);
+
+				ren.NewFileName = raw.NewFileName;
+				ren.Success = raw.Success;
+
+				// do this so we don't lock the UI
+				if (delay == 20)
+				{
+					renameWorker.ReportProgress(0, new WorkerStatusContainer(job.FileResults.Count, curFile));
+					delay = 0;
+				}
+			}
+		}
+
+		void btnRenameFiles_Click(object sender, RoutedEventArgs e)
+		{
+			string msg = string.Format("Are you sure you want to rename the files below?");
+			MessageBoxResult res = MessageBox.Show(msg, "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+			if (res != MessageBoxResult.Yes) return;
+
+			EnableDisableControls(false);
+
+			WorkerRunning = true;
+			WorkerNotRunning = false;
+			stopWorker = false;
+
+			WorkerJob job = new WorkerJob();
+			job.RenameScript = txtRenameScript.Text;
+			job.FileResults = FileResults;
+
+			renameWorker.RunWorkerAsync(job);
+		}
+
+		void previewWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+		{
+			ViewFiles.Refresh();
+			WorkerStatusContainer status = e.UserState as WorkerStatusContainer;
+			WorkerStatus = string.Format("{0} of {1}", status.CurrentFile, status.TotalFileCount);
+		}
+
+		void previewWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+		{
+			ViewFiles.Refresh();
+			WorkerRunning = false;
+			WorkerNotRunning = true;
+			stopWorker = false;
+			EnableDisableControls(true);
+			//HideShowControls(System.Windows.Visibility.Visible);
+		}
+
+		void previewWorker_DoWork(object sender, DoWorkEventArgs e)
+		{
+			WorkerJob job = e.Argument as WorkerJob;
+			BackgroundWorker worker = sender as BackgroundWorker;
+
+			foreach (VideoLocalRenamedVM ren in job.FileResults)
+			{
+				if (stopWorker) return;
+				ren.NewFileName = "";
+			}
+
+			int curFile = 0;
+			int delay = 0;
+			foreach (VideoLocalRenamedVM ren in job.FileResults)
+			{
+				if (stopWorker) return;
 
 				curFile++;
 				delay++;
@@ -469,11 +552,12 @@ namespace JMMClient.UserControls
 					ren.VideoLocalID, job.RenameScript);
 
 				ren.NewFileName = raw.NewFileName;
+				ren.Success = raw.Success;
 			
 				// do this so we don't lock the UI
 				if (delay == 20)
 				{
-					previewWorker.ReportProgress(0, new PreviewStatusContainer(job.FileResults.Count, curFile));
+					previewWorker.ReportProgress(0, new WorkerStatusContainer(job.FileResults.Count, curFile));
 					delay = 0;
 				}
 			}
@@ -483,11 +567,11 @@ namespace JMMClient.UserControls
 		{
 			EnableDisableControls(false);
 			//HideShowControls(System.Windows.Visibility.Hidden);
-			PreviewWorkerRunning = true;
-			PreviewWorkerNotRunning = false;
-			stopPreview = false;
+			WorkerRunning = true;
+			WorkerNotRunning = false;
+			stopWorker = false;
 
-			PreviewJob job = new PreviewJob();
+			WorkerJob job = new WorkerJob();
 			job.RenameScript = txtRenameScript.Text;
 			job.FileResults = FileResults;
 
@@ -515,9 +599,9 @@ namespace JMMClient.UserControls
 
 				if (LoadTypeIsRandom)
 				{
-					//rawVids = JMMServerVM.Instance.clientBinaryHTTP.RandomFileRenamePreview(udRandomFiles.Value.Value, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+					rawVids = JMMServerVM.Instance.clientBinaryHTTP.RandomFileRenamePreview(udRandomFiles.Value.Value, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
 
-					List<int> testIDs = new List<int>();
+					/*List<int> testIDs = new List<int>();
 
 					testIDs.Add(6041); // Gekijouban Bleach: Fade to Black Kimi no Na o Yobu
 					testIDs.Add(6784); // Fate/Stay Night: Unlimited Blade Works
@@ -534,7 +618,7 @@ namespace JMMClient.UserControls
 							JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
 
 						rawVids.AddRange(raws);
-					}
+					}*/
 				}
 				
 
@@ -576,6 +660,7 @@ namespace JMMClient.UserControls
 					VideoLocalRenamedVM ren = new VideoLocalRenamedVM();
 					ren.VideoLocalID = vid.VideoLocalID;
 					ren.VideoLocal = vid;
+					ren.Success = false;
 					FileResults.Add(ren);
 				}
 
@@ -610,23 +695,23 @@ namespace JMMClient.UserControls
 		}
 	}
 
-	public class PreviewJob
+	public class WorkerJob
 	{
 		public string RenameScript { get; set; }
 		public int MaxFiles { get; set; }
 		public ObservableCollection<VideoLocalRenamedVM> FileResults { get; set; }
 	}
 
-	public class PreviewStatusContainer
+	public class WorkerStatusContainer
 	{
 		public int TotalFileCount { get; set; }
 		public int CurrentFile { get; set; }
 
-		public PreviewStatusContainer()
+		public WorkerStatusContainer()
 		{
 		}
 
-		public PreviewStatusContainer(int totalFileCount, int currentFile)
+		public WorkerStatusContainer(int totalFileCount, int currentFile)
 		{
 			TotalFileCount = totalFileCount;
 			CurrentFile = currentFile;

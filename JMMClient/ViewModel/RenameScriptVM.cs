@@ -65,6 +65,17 @@ namespace JMMClient.ViewModel
 			}
 		}
 
+		private string scriptNameLong = "";
+		public string ScriptNameLong
+		{
+			get { return scriptNameLong; }
+			set
+			{
+				scriptNameLong = value;
+				NotifyPropertyChanged("ScriptNameLong");
+			}
+		}
+
 		public RenameScriptVM()
 		{
 		}
@@ -80,6 +91,10 @@ namespace JMMClient.ViewModel
 			this.ScriptName = contract.ScriptName;
 			this.Script = contract.Script;
 			this.IsEnabledOnImport = contract.IsEnabledOnImport;
+
+			this.ScriptNameLong = contract.ScriptName;
+			if (IsEnabledOnImportBool)
+				ScriptNameLong += " (Run On Import)";
 
 		}
 

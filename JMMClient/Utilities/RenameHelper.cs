@@ -36,6 +36,7 @@ namespace JMMClient
 			allTags.Add(new RenameTag(Constants.FileRenameTag_Name.SubLanguage, Constants.FileRenameTag_Tag.SubLanguage));
 			allTags.Add(new RenameTag(Constants.FileRenameTag_Name.Type, Constants.FileRenameTag_Tag.Type));
 			allTags.Add(new RenameTag(Constants.FileRenameTag_Name.Year, Constants.FileRenameTag_Tag.Year));
+			allTags.Add(new RenameTag(Constants.FileRenameTag_Name.OriginalFileName, Constants.FileRenameTag_Tag.OriginalFileName));
 
 			return allTags;
 		}
@@ -57,6 +58,8 @@ namespace JMMClient
 			allTests.Add(new RenameTest(Constants.FileRenameTest_Name.Tag, Constants.FileRenameTest_Test.Tag));
 			allTests.Add(new RenameTest(Constants.FileRenameTest_Name.VideoBitDepth, Constants.FileRenameTest_Test.VideoBitDepth));
 			allTests.Add(new RenameTest(Constants.FileRenameTest_Name.Year, Constants.FileRenameTest_Test.Year));
+			allTests.Add(new RenameTest(Constants.FileRenameTest_Name.VideoResolutionWidth, Constants.FileRenameTest_Test.VideoResolutionWidth));
+			allTests.Add(new RenameTest(Constants.FileRenameTest_Name.VideoResolutionHeight, Constants.FileRenameTest_Test.VideoResolutionHeight));
 			
 
 			return allTests;

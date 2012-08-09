@@ -128,6 +128,12 @@
   <wsdl:message name="IJMMServer_RenameFilePreview_OutputMessage">
     <wsdl:part name="parameters" element="tns:RenameFilePreviewResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_RenameFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:RenameFile" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RenameFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RenameFileResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_RandomFileRenamePreview_InputMessage">
     <wsdl:part name="parameters" element="tns:RandomFileRenamePreview" />
   </wsdl:message>
@@ -163,6 +169,24 @@
   </wsdl:message>
   <wsdl:message name="IJMMServer_DeleteRenameScript_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteRenameScriptResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_ClearHasherQueue_InputMessage">
+    <wsdl:part name="parameters" element="tns:ClearHasherQueue" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_ClearHasherQueue_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ClearHasherQueueResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_ClearImagesQueue_InputMessage">
+    <wsdl:part name="parameters" element="tns:ClearImagesQueue" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_ClearImagesQueue_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ClearImagesQueueResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_ClearGeneralQueue_InputMessage">
+    <wsdl:part name="parameters" element="tns:ClearGeneralQueue" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_ClearGeneralQueue_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ClearGeneralQueueResponse" />
   </wsdl:message>
   <wsdl:message name="IJMMServer_ScanDropFolders_InputMessage">
     <wsdl:part name="parameters" element="tns:ScanDropFolders" />
@@ -1245,6 +1269,10 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RenameFilePreview" message="tns:IJMMServer_RenameFilePreview_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RenameFilePreviewResponse" message="tns:IJMMServer_RenameFilePreview_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="RenameFile">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RenameFile" message="tns:IJMMServer_RenameFile_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RenameFileResponse" message="tns:IJMMServer_RenameFile_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="RandomFileRenamePreview">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RandomFileRenamePreview" message="tns:IJMMServer_RandomFileRenamePreview_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RandomFileRenamePreviewResponse" message="tns:IJMMServer_RandomFileRenamePreview_OutputMessage" />
@@ -1268,6 +1296,18 @@
     <wsdl:operation name="DeleteRenameScript">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/DeleteRenameScript" message="tns:IJMMServer_DeleteRenameScript_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/DeleteRenameScriptResponse" message="tns:IJMMServer_DeleteRenameScript_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ClearHasherQueue">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/ClearHasherQueue" message="tns:IJMMServer_ClearHasherQueue_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/ClearHasherQueueResponse" message="tns:IJMMServer_ClearHasherQueue_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ClearImagesQueue">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/ClearImagesQueue" message="tns:IJMMServer_ClearImagesQueue_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/ClearImagesQueueResponse" message="tns:IJMMServer_ClearImagesQueue_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ClearGeneralQueue">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/ClearGeneralQueue" message="tns:IJMMServer_ClearGeneralQueue_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/ClearGeneralQueueResponse" message="tns:IJMMServer_ClearGeneralQueue_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ScanDropFolders">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/ScanDropFolders" message="tns:IJMMServer_ScanDropFolders_InputMessage" />
@@ -2107,6 +2147,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="RenameFile">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/RenameFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="RandomFileRenamePreview">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/RandomFileRenamePreview" style="document" />
       <wsdl:input>
@@ -2154,6 +2203,33 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteRenameScript">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/DeleteRenameScript" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClearHasherQueue">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/ClearHasherQueue" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClearImagesQueue">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/ClearImagesQueue" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClearGeneralQueue">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/ClearGeneralQueue" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

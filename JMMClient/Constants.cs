@@ -44,6 +44,7 @@ namespace JMMClient
 			public static readonly string VideoCodec = "Video Codecs"; //tracks separated with '
 			public static readonly string AudioCodec = "Audio Codecs"; //tracks separated with '
 			public static readonly string VideoBitDepth = "Video Bit Depth"; // 8bit, 10bit
+			public static readonly string OriginalFileName = "Sub Group File Name"; // The original file name as specified by the sub group
 		}
 
 		public struct FileRenameTag_Tag
@@ -76,6 +77,7 @@ namespace JMMClient
 			public static readonly string VideoCodec = "%vid"; //tracks separated with '
 			public static readonly string AudioCodec = "%aud"; //tracks separated with '
 			public static readonly string VideoBitDepth = "%bit"; // 8bit, 10bit
+			public static readonly string OriginalFileName = "%sna"; // The original file name as specified by the sub group
 
 
 			/*
@@ -101,6 +103,8 @@ namespace JMMClient
 			public static readonly string Codec = "Codec";
 			public static readonly string Tag = "Tag";
 			public static readonly string VideoBitDepth = "Video Bit Depth";
+			public static readonly string VideoResolutionWidth = "Video Res Width";
+			public static readonly string VideoResolutionHeight = "Video Res Height";
 		}
 
 		public struct FileRenameTest_Test
@@ -118,6 +122,8 @@ namespace JMMClient
 			public static readonly string Codec = "C()";
 			public static readonly string Tag = "I()";
 			public static readonly string VideoBitDepth = "Z()";
+			public static readonly string VideoResolutionWidth = "W()";
+			public static readonly string VideoResolutionHeight = "U()";
 		}
 
 		public struct StaticGF

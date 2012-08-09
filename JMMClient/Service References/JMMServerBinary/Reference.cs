@@ -5199,6 +5199,9 @@ namespace JMMClient.JMMServerBinary {
         private string NewFileNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool SuccessField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private JMMClient.JMMServerBinary.Contract_VideoLocal VideoLocalField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -5223,6 +5226,19 @@ namespace JMMClient.JMMServerBinary {
                 if ((object.ReferenceEquals(this.NewFileNameField, value) != true)) {
                     this.NewFileNameField = value;
                     this.RaisePropertyChanged("NewFileName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Success {
+            get {
+                return this.SuccessField;
+            }
+            set {
+                if ((this.SuccessField.Equals(value) != true)) {
+                    this.SuccessField = value;
+                    this.RaisePropertyChanged("Success");
                 }
             }
         }
@@ -15091,6 +15107,9 @@ namespace JMMClient.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/RenameFilePreview", ReplyAction="http://tempuri.org/IJMMServer/RenameFilePreviewResponse")]
         JMMClient.JMMServerBinary.Contract_VideoLocalRenamed RenameFilePreview(int videoLocalID, string renameRules);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/RenameFile", ReplyAction="http://tempuri.org/IJMMServer/RenameFileResponse")]
+        JMMClient.JMMServerBinary.Contract_VideoLocalRenamed RenameFile(int videoLocalID, string renameRules);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/RandomFileRenamePreview", ReplyAction="http://tempuri.org/IJMMServer/RandomFileRenamePreviewResponse")]
         System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_VideoLocal> RandomFileRenamePreview(int maxResults, int userID);
         
@@ -15108,6 +15127,15 @@ namespace JMMClient.JMMServerBinary {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/DeleteRenameScript", ReplyAction="http://tempuri.org/IJMMServer/DeleteRenameScriptResponse")]
         string DeleteRenameScript(int renameScriptID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/ClearHasherQueue", ReplyAction="http://tempuri.org/IJMMServer/ClearHasherQueueResponse")]
+        void ClearHasherQueue();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/ClearImagesQueue", ReplyAction="http://tempuri.org/IJMMServer/ClearImagesQueueResponse")]
+        void ClearImagesQueue();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/ClearGeneralQueue", ReplyAction="http://tempuri.org/IJMMServer/ClearGeneralQueueResponse")]
+        void ClearGeneralQueue();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/ScanDropFolders", ReplyAction="http://tempuri.org/IJMMServer/ScanDropFoldersResponse")]
         void ScanDropFolders();
@@ -15713,6 +15741,10 @@ namespace JMMClient.JMMServerBinary {
             return base.Channel.RenameFilePreview(videoLocalID, renameRules);
         }
         
+        public JMMClient.JMMServerBinary.Contract_VideoLocalRenamed RenameFile(int videoLocalID, string renameRules) {
+            return base.Channel.RenameFile(videoLocalID, renameRules);
+        }
+        
         public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_VideoLocal> RandomFileRenamePreview(int maxResults, int userID) {
             return base.Channel.RandomFileRenamePreview(maxResults, userID);
         }
@@ -15735,6 +15767,18 @@ namespace JMMClient.JMMServerBinary {
         
         public string DeleteRenameScript(int renameScriptID) {
             return base.Channel.DeleteRenameScript(renameScriptID);
+        }
+        
+        public void ClearHasherQueue() {
+            base.Channel.ClearHasherQueue();
+        }
+        
+        public void ClearImagesQueue() {
+            base.Channel.ClearImagesQueue();
+        }
+        
+        public void ClearGeneralQueue() {
+            base.Channel.ClearGeneralQueue();
         }
         
         public void ScanDropFolders() {

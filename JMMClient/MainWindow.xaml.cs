@@ -169,6 +169,9 @@ namespace JMMClient
 
 				btnUpdateMediaInfo.Click += new RoutedEventHandler(btnUpdateMediaInfo_Click);
 				btnAbout.Click += new RoutedEventHandler(btnAbout_Click);
+				btnClearHasherQueue.Click += new RoutedEventHandler(btnClearHasherQueue_Click);
+				btnClearGeneralQueue.Click += new RoutedEventHandler(btnClearGeneralQueue_Click);
+				btnClearServerImageQueue.Click += new RoutedEventHandler(btnClearServerImageQueue_Click);
 
 				JMMServerVM.Instance.BaseImagePath = Utils.GetBaseImagesPath();
 
@@ -182,6 +185,48 @@ namespace JMMClient
 			{
 				logger.ErrorException(ex.ToString(), ex);
 			}
+		}
+
+		void btnClearServerImageQueue_Click(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				this.Cursor = Cursors.Wait;
+				JMMServerVM.Instance.clientBinaryHTTP.ClearImagesQueue();
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+			this.Cursor = Cursors.Arrow;
+		}
+
+		void btnClearGeneralQueue_Click(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				this.Cursor = Cursors.Wait;
+				JMMServerVM.Instance.clientBinaryHTTP.ClearGeneralQueue();
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+			this.Cursor = Cursors.Arrow;
+		}
+
+		void btnClearHasherQueue_Click(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				this.Cursor = Cursors.Wait;
+				JMMServerVM.Instance.clientBinaryHTTP.ClearHasherQueue();
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+			this.Cursor = Cursors.Arrow;
 		}
 
 		void btnAbout_Click(object sender, RoutedEventArgs e)

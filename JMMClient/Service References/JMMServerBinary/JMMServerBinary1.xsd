@@ -449,6 +449,7 @@
   <xs:complexType name="Contract_VideoLocalRenamed">
     <xs:sequence>
       <xs:element minOccurs="0" name="NewFileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
       <xs:element minOccurs="0" name="VideoLocal" nillable="true" type="tns:Contract_VideoLocal" />
       <xs:element minOccurs="0" name="VideoLocalID" type="xs:int" />
     </xs:sequence>
