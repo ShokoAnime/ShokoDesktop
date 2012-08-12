@@ -114,7 +114,7 @@ namespace JMMClient.UserControls
 					ep.RefreshFilesForEpisode();
 
 					if (ep.FilesForEpisode.Count == 1)
-						Utils.PlayVideo(ep.FilesForEpisode[0]);
+						MainWindow.videoHandler.PlayVideo(ep.FilesForEpisode[0]);
 					else if (ep.FilesForEpisode.Count > 1)
 					{
 						Window parentWindow = Window.GetWindow(this);

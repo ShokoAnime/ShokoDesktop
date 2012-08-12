@@ -354,18 +354,6 @@ namespace JMMClient
 			}
 		}
 
-		public static void PlayVideo(VideoDetailedVM vid)
-		{
-			try
-			{
-				Process.Start(new ProcessStartInfo(vid.FullPath));
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-		}
-
 		public static void OpenFile(string fullePath)
 		{
 			try

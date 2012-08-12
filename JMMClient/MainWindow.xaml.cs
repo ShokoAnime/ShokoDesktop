@@ -29,6 +29,7 @@ using NLog;
 using System.Collections.ObjectModel;
 using JMMClient.UserControls;
 using JMMClient.Downloads;
+using JMMClient.Utilities;
 
 namespace JMMClient
 {
@@ -88,6 +89,8 @@ namespace JMMClient
 
 		BackgroundWorker showDashboardWorker = new BackgroundWorker();
 
+		public static VideoHandler videoHandler = new VideoHandler();
+
 		public MainWindow()
 		{
 			try
@@ -144,6 +147,8 @@ namespace JMMClient
 				imageHelper = new ImageDownloader();
 				imageHelper.Init();
 
+				videoHandler.Init();
+
 				InitCulture();
 
 				imageHelper.QueueUpdateEvent += new ImageDownloader.QueueUpdateEventHandler(imageHelper_QueueUpdateEvent);
@@ -180,6 +185,8 @@ namespace JMMClient
 				postStartTimer.AutoReset = false;
 				postStartTimer.Interval = 5 * 1000; // 15 seconds
 				postStartTimer.Elapsed += new System.Timers.ElapsedEventHandler(postStartTimer_Elapsed);
+
+				//videoHandler.HandleFileChange(@"C:\Program Files (x86)\Combined Community Codec Pack\MPC\mpc-hc.ini");
 			}
 			catch (Exception ex)
 			{
@@ -2595,7 +2602,6 @@ namespace JMMClient
 			EnableDisableGroupControls(false);
 			toggleStatusWorker.RunWorkerAsync(obj);
 		}
-
 
 
 		private void CommandBinding_BreadCrumbSelect(object sender, ExecutedRoutedEventArgs e)

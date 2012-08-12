@@ -276,15 +276,15 @@ namespace JMMClient.UserControls
 
 			togTraktScrobbles.Click += new RoutedEventHandler(togTraktScrobbles_Click);
 			togTraktShouts.Click += new RoutedEventHandler(togTraktShouts_Click);
+
+			MainWindow.videoHandler.VideoWatchedEvent += new Utilities.VideoHandler.VideoWatchedEventHandler(videoHandler_VideoWatchedEvent);
 		}
 
-		
+		void videoHandler_VideoWatchedEvent(Utilities.VideoWatchedEventArgs ev)
+		{
+			RefreshData(true, false, false);
+		}
 
-		
-
-		
-
-		
 
 		void togTraktShouts_Click(object sender, RoutedEventArgs e)
 		{
@@ -571,24 +571,27 @@ namespace JMMClient.UserControls
 
 		private void RefreshData(bool refreshContinueWatching, bool refreshRecentAdditions, bool refreshOtherWidgets)
 		{
-			Window parentWindow = Window.GetWindow(this);
+			System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
+			{
+				Window parentWindow = Window.GetWindow(this);
 
-			IsLoadingData = true;
-			this.IsEnabled = false;
-			parentWindow.Cursor = Cursors.Wait;
+				IsLoadingData = true;
+				this.IsEnabled = false;
+				parentWindow.Cursor = Cursors.Wait;
 
-			RecentAdditionsType addType = RecentAdditionsType.Episode;
-			if (cboDashRecentAdditionsType.SelectedIndex == 0) addType = RecentAdditionsType.Episode;
-			if (cboDashRecentAdditionsType.SelectedIndex == 1) addType = RecentAdditionsType.Series;
+				RecentAdditionsType addType = RecentAdditionsType.Episode;
+				if (cboDashRecentAdditionsType.SelectedIndex == 0) addType = RecentAdditionsType.Episode;
+				if (cboDashRecentAdditionsType.SelectedIndex == 1) addType = RecentAdditionsType.Series;
 
-			RefreshOptions opt = new RefreshOptions();
-			opt.TraktScrobbles = togTraktScrobbles.IsChecked.Value;
-			opt.TraktShouts = togTraktShouts.IsChecked.Value;
-			opt.RefreshContinueWatching = refreshContinueWatching;
-			opt.RefreshRecentAdditions = refreshRecentAdditions;
-			opt.RefreshOtherWidgets = refreshOtherWidgets;
-			opt.RecentAdditionType = addType;
-			refreshDataWorker.RunWorkerAsync(opt);
+				RefreshOptions opt = new RefreshOptions();
+				opt.TraktScrobbles = togTraktScrobbles.IsChecked.Value;
+				opt.TraktShouts = togTraktShouts.IsChecked.Value;
+				opt.RefreshContinueWatching = refreshContinueWatching;
+				opt.RefreshRecentAdditions = refreshRecentAdditions;
+				opt.RefreshOtherWidgets = refreshOtherWidgets;
+				opt.RecentAdditionType = addType;
+				refreshDataWorker.RunWorkerAsync(opt);
+			});
 		}
 
 
@@ -756,7 +759,7 @@ namespace JMMClient.UserControls
 					AnimeEpisodeVM ep = obj as AnimeEpisodeVM;
 
 					if (ep.FilesForEpisode.Count == 1)
-						Utils.PlayVideo(ep.FilesForEpisode[0]);
+						MainWindow.videoHandler.PlayVideo(ep.FilesForEpisode[0]);
 					else if (ep.FilesForEpisode.Count > 1)
 					{
 						PlayVideosForEpisodeForm frm = new PlayVideosForEpisodeForm();

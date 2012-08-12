@@ -487,6 +487,7 @@
     </Compile>
     <Compile Include="UserCulture.cs" />
     <Compile Include="Utilities\DragAndDrop.cs" />
+    <Compile Include="Utilities\MPCHelper.cs" />
     <Compile Include="Utilities\MultiSort.cs" />
     <Compile Include="Utilities\RenameHelper.cs" />
     <Compile Include="Utilities\RenameTag.cs" />
@@ -494,6 +495,7 @@
     <Compile Include="Utilities\ShowSelectedInExplorer.cs" />
     <Compile Include="Utilities\SortSearchCriteria.cs" />
     <Compile Include="Utilities\ValueComparison.cs" />
+    <Compile Include="Utilities\VideoHandler.cs" />
     <Compile Include="ViewModel\AniDBReleaseGroupVM.cs" />
     <Compile Include="ViewModel\AniDB_AnimeCrossRefsVM.cs" />
     <Compile Include="ViewModel\AniDB_AnimeVM.cs" />
@@ -1709,10 +1711,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(TargetDir)*.dll" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y	
-xcopy "$(TargetDir)*.exe" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y
-xcopy "$(TargetDir)*.pdb" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y
-xcopy "$(TargetDir)*.manifest" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

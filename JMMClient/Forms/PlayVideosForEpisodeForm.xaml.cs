@@ -41,7 +41,7 @@ namespace JMMClient.Forms
 				if (obj.GetType() == typeof(VideoDetailedVM))
 				{
 					VideoDetailedVM vid = obj as VideoDetailedVM;
-					Utils.PlayVideo(vid);
+					MainWindow.videoHandler.PlayVideo(vid);
 				}
 			}
 			catch (Exception ex)

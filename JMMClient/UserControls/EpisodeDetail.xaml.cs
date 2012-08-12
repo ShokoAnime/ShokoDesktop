@@ -466,7 +466,7 @@ namespace JMMClient.UserControls
 				{
 					VideoDetailedVM vid = obj as VideoDetailedVM;
 					//AnimeEpisodeVM ep = this.DataContext as AnimeEpisodeVM;
-					Utils.PlayVideo(vid);
+					MainWindow.videoHandler.PlayVideo(vid);
 				}
 			}
 			catch (Exception ex)
@@ -485,7 +485,7 @@ namespace JMMClient.UserControls
 				ep.RefreshFilesForEpisode();
 
 				if (ep.FilesForEpisode.Count > 0)
-					Utils.PlayVideo(ep.FilesForEpisode[0]);
+					MainWindow.videoHandler.PlayVideo(ep.FilesForEpisode[0]);
 			}
 			catch (Exception ex)
 			{

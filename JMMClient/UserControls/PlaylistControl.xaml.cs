@@ -219,7 +219,7 @@ namespace JMMClient.UserControls
 					ep.SetTvDBInfo();
 
 					if (ep.FilesForEpisode.Count == 1)
-						Utils.PlayVideo(ep.FilesForEpisode[0]);
+						MainWindow.videoHandler.PlayVideo(ep.FilesForEpisode[0]);
 					else if (ep.FilesForEpisode.Count > 1)
 					{
 						PlayVideosForEpisodeForm frm = new PlayVideosForEpisodeForm();
