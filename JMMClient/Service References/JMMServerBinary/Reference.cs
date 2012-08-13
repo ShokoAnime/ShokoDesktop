@@ -10399,6 +10399,15 @@ namespace JMMClient.JMMServerBinary {
         private int AniDB_File_FileVersionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AniDB_File_InternalVersionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AniDB_File_IsCensoredField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AniDB_File_IsDeprecatedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> AniDB_File_LengthSecondsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -10661,6 +10670,45 @@ namespace JMMClient.JMMServerBinary {
                 if ((this.AniDB_File_FileVersionField.Equals(value) != true)) {
                     this.AniDB_File_FileVersionField = value;
                     this.RaisePropertyChanged("AniDB_File_FileVersion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AniDB_File_InternalVersion {
+            get {
+                return this.AniDB_File_InternalVersionField;
+            }
+            set {
+                if ((this.AniDB_File_InternalVersionField.Equals(value) != true)) {
+                    this.AniDB_File_InternalVersionField = value;
+                    this.RaisePropertyChanged("AniDB_File_InternalVersion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AniDB_File_IsCensored {
+            get {
+                return this.AniDB_File_IsCensoredField;
+            }
+            set {
+                if ((this.AniDB_File_IsCensoredField.Equals(value) != true)) {
+                    this.AniDB_File_IsCensoredField = value;
+                    this.RaisePropertyChanged("AniDB_File_IsCensored");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AniDB_File_IsDeprecated {
+            get {
+                return this.AniDB_File_IsDeprecatedField;
+            }
+            set {
+                if ((this.AniDB_File_IsDeprecatedField.Equals(value) != true)) {
+                    this.AniDB_File_IsDeprecatedField = value;
+                    this.RaisePropertyChanged("AniDB_File_IsDeprecated");
                 }
             }
         }
@@ -12712,6 +12760,9 @@ namespace JMMClient.JMMServerBinary {
         private bool AniDB_DownloadSimilarAnimeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AniDB_File_UpdateFrequencyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int AniDB_MyListStats_UpdateFrequencyField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -12996,6 +13047,19 @@ namespace JMMClient.JMMServerBinary {
                 if ((this.AniDB_DownloadSimilarAnimeField.Equals(value) != true)) {
                     this.AniDB_DownloadSimilarAnimeField = value;
                     this.RaisePropertyChanged("AniDB_DownloadSimilarAnime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AniDB_File_UpdateFrequency {
+            get {
+                return this.AniDB_File_UpdateFrequencyField;
+            }
+            set {
+                if ((this.AniDB_File_UpdateFrequencyField.Equals(value) != true)) {
+                    this.AniDB_File_UpdateFrequencyField = value;
+                    this.RaisePropertyChanged("AniDB_File_UpdateFrequency");
                 }
             }
         }
@@ -15053,6 +15117,9 @@ namespace JMMClient.JMMServerBinary {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="JMMServerBinary.IJMMServer")]
     public interface IJMMServer {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/UpdateAniDBFileData", ReplyAction="http://tempuri.org/IJMMServer/UpdateAniDBFileDataResponse")]
+        int UpdateAniDBFileData(bool missingInfo, bool outOfDate, bool countOnly);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/SaveBookmarkedAnime", ReplyAction="http://tempuri.org/IJMMServer/SaveBookmarkedAnimeResponse")]
         JMMClient.JMMServerBinary.Contract_BookmarkedAnime_SaveResponse SaveBookmarkedAnime(JMMClient.JMMServerBinary.Contract_BookmarkedAnime contract);
         
@@ -15667,6 +15734,10 @@ namespace JMMClient.JMMServerBinary {
         
         public JMMServerClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public int UpdateAniDBFileData(bool missingInfo, bool outOfDate, bool countOnly) {
+            return base.Channel.UpdateAniDBFileData(missingInfo, outOfDate, countOnly);
         }
         
         public JMMClient.JMMServerBinary.Contract_BookmarkedAnime_SaveResponse SaveBookmarkedAnime(JMMClient.JMMServerBinary.Contract_BookmarkedAnime contract) {

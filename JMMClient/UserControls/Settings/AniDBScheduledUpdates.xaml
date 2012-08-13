@@ -56,5 +56,14 @@
             <ComboBox Grid.Row="0" Name="cboUpdateFrequencyMyListStats" VerticalAlignment="Center"></ComboBox>
         </StackPanel>
 
+        <!--AniDBScheduleMyListStats-->
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="4" Margin="0,5,15,0">
+            <TextBlock Text="Automatically Update Files With Missing Info" VerticalAlignment="Center"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="4" Margin="0,5,5,0">
+            <ComboBox Grid.Row="0" Name="cboUpdateFrequencyAniDBFiles" VerticalAlignment="Center"></ComboBox>
+        </StackPanel>
+
     </Grid>
 </UserControl>

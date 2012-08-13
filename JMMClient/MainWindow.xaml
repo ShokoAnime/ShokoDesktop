@@ -811,6 +811,11 @@
                         <usercontrols:FileRenameControl x:Name="fileRenaming"/>
                     </TabItem>
 
+                    <TabItem Header="Update AniDB Data" Name="tabUpdateAniDBData">
+
+                        <usercontrols:UpdateAniDBDataControl x:Name="updateAniDBData"/>
+                    </TabItem>
+
                 </TabControl>
 
 

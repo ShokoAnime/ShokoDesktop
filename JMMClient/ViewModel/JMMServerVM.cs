@@ -367,6 +367,7 @@ namespace JMMClient
 			this.AniDB_Calendar_UpdateFrequency = (ScheduledUpdateFrequency)contract.AniDB_Calendar_UpdateFrequency;
 			this.AniDB_MyList_UpdateFrequency = (ScheduledUpdateFrequency)contract.AniDB_MyList_UpdateFrequency;
 			this.AniDB_MyListStats_UpdateFrequency = (ScheduledUpdateFrequency)contract.AniDB_MyListStats_UpdateFrequency;
+			this.AniDB_File_UpdateFrequency = (ScheduledUpdateFrequency)contract.AniDB_File_UpdateFrequency;
 
 			// Web Cache
 			this.WebCache_Address = contract.WebCache_Address;
@@ -474,6 +475,7 @@ namespace JMMClient
 				contract.AniDB_Calendar_UpdateFrequency = (int)this.AniDB_Calendar_UpdateFrequency;
 				contract.AniDB_MyList_UpdateFrequency = (int)this.AniDB_MyList_UpdateFrequency;
 				contract.AniDB_MyListStats_UpdateFrequency = (int)this.AniDB_MyListStats_UpdateFrequency;
+				contract.AniDB_File_UpdateFrequency = (int)this.AniDB_File_UpdateFrequency;
 
 				// Web Cache
 				contract.WebCache_Address = this.WebCache_Address;
@@ -1104,6 +1106,17 @@ namespace JMMClient
 			{
 				aniDB_Anime_UpdateFrequency = value;
 				OnPropertyChanged(new PropertyChangedEventArgs("AniDB_Anime_UpdateFrequency"));
+			}
+		}
+
+		private ScheduledUpdateFrequency aniDB_File_UpdateFrequency = ScheduledUpdateFrequency.Daily;
+		public ScheduledUpdateFrequency AniDB_File_UpdateFrequency
+		{
+			get { return aniDB_File_UpdateFrequency; }
+			set
+			{
+				aniDB_File_UpdateFrequency = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("AniDB_File_UpdateFrequency"));
 			}
 		}
 

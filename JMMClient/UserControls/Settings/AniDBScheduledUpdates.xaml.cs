@@ -90,6 +90,36 @@ namespace JMMClient.UserControls
 			}
 
 			cboUpdateFrequencyMyListStats.SelectionChanged += new SelectionChangedEventHandler(cboUpdateFrequencyMyListStats_SelectionChanged);
+
+			cboUpdateFrequencyAniDBFiles.Items.Clear();
+
+			cboUpdateFrequencyAniDBFiles.Items.Add(Properties.Resources.UpdateFrequency_Daily);
+			cboUpdateFrequencyAniDBFiles.Items.Add(Properties.Resources.UpdateFrequency_12Hours);
+			cboUpdateFrequencyAniDBFiles.Items.Add(Properties.Resources.UpdateFrequency_6Hours);
+			cboUpdateFrequencyAniDBFiles.Items.Add(Properties.Resources.UpdateFrequency_Never);
+
+			switch (JMMServerVM.Instance.AniDB_File_UpdateFrequency)
+			{
+				case ScheduledUpdateFrequency.Daily: cboUpdateFrequencyAniDBFiles.SelectedIndex = 0; break;
+				case ScheduledUpdateFrequency.HoursTwelve: cboUpdateFrequencyAniDBFiles.SelectedIndex = 1; break;
+				case ScheduledUpdateFrequency.HoursSix: cboUpdateFrequencyAniDBFiles.SelectedIndex = 2; break;
+				case ScheduledUpdateFrequency.Never: cboUpdateFrequencyAniDBFiles.SelectedIndex = 3; break;
+			}
+
+			cboUpdateFrequencyAniDBFiles.SelectionChanged += new SelectionChangedEventHandler(cboUpdateFrequencyAniDBFiles_SelectionChanged);
+		}
+
+		void cboUpdateFrequencyAniDBFiles_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			switch (cboUpdateFrequencyAniDBFiles.SelectedIndex)
+			{
+				case 0: JMMServerVM.Instance.AniDB_File_UpdateFrequency = ScheduledUpdateFrequency.Daily; break;
+				case 1: JMMServerVM.Instance.AniDB_File_UpdateFrequency = ScheduledUpdateFrequency.HoursTwelve; break;
+				case 2: JMMServerVM.Instance.AniDB_File_UpdateFrequency = ScheduledUpdateFrequency.HoursSix; break;
+				case 3: JMMServerVM.Instance.AniDB_File_UpdateFrequency = ScheduledUpdateFrequency.Never; break;
+			}
+
+			JMMServerVM.Instance.SaveServerSettingsAsync();
 		}
 
 		void cboUpdateFrequencyMyListStats_SelectionChanged(object sender, SelectionChangedEventArgs e)
