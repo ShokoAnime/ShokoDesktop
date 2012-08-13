@@ -37,6 +37,8 @@ namespace JMMClient
 			allTags.Add(new RenameTag(Constants.FileRenameTag_Name.Type, Constants.FileRenameTag_Tag.Type));
 			allTags.Add(new RenameTag(Constants.FileRenameTag_Name.Year, Constants.FileRenameTag_Tag.Year));
 			allTags.Add(new RenameTag(Constants.FileRenameTag_Name.OriginalFileName, Constants.FileRenameTag_Tag.OriginalFileName));
+			allTags.Add(new RenameTag(Constants.FileRenameTag_Name.Censored, Constants.FileRenameTag_Tag.Censored));
+			allTags.Add(new RenameTag(Constants.FileRenameTag_Name.Deprecated, Constants.FileRenameTag_Tag.Deprecated));
 
 			return allTags;
 		}
