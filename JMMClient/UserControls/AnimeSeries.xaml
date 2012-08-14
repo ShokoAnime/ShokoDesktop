@@ -23,6 +23,9 @@
             <RoutedUICommand x:Key="MoveUpWidgetCommand" Text="MoveUpWidgetCommand" />
             <RoutedUICommand x:Key="MoveDownWidgetCommand" Text="MoveDownWidgetCommand" />
 
+            <RoutedUICommand x:Key="RefreshSeriesCommand" Text="RefreshSeriesCommand" />
+
+            
             
 
 
@@ -341,6 +344,7 @@
         <CommandBinding Command="{StaticResource ToggleWatchedStatusCommand}" Executed="CommandBinding_ToggleWatchedStatus" />
         <CommandBinding Command="{StaticResource MoveUpWidgetCommand}" Executed="CommandBinding_MoveUpWidget" />
         <CommandBinding Command="{StaticResource MoveDownWidgetCommand}" Executed="CommandBinding_MoveDownWidget" />
+        <CommandBinding Command="{StaticResource RefreshSeriesCommand}" Executed="CommandBinding_RefreshSeries" />
     </UserControl.CommandBindings>
 
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Name="Scroller2" Grid.Column="0" Grid.Row="0" Margin="0,0,0,0" >
@@ -387,7 +391,7 @@
                                 <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="{Binding Path=AniDB_Anime.AnimeID_Friendly}" URL="{Binding Path=AniDB_Anime.AniDB_SiteURL}" Margin="20,0,0,0"/>
 
                                 <!-- show pinned series button -->
-                                <Button Margin="10,2,2,2" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center"
+                                <Button Margin="0,2,2,2" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center"
                                         Command="{DynamicResource ShowPinnedSeriesCommand}" CommandParameter="{Binding}">
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                         <Image Height="16" Width="16" Source="/Images/16_windows.png" Margin="2,0,2,0">
@@ -399,8 +403,21 @@
                                     </StackPanel>
                                 </Button>
 
+                                <!-- refresh series button -->
+                                <Button Margin="0,2,2,2" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center"
+                                        Command="{DynamicResource RefreshSeriesCommand}" CommandParameter="{Binding}">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                        <Image Height="16" Width="16" Source="/Images/16_refresh.png" Margin="2,0,2,0">
+                                            <Image.ToolTip>
+                                                <TextBlock Text="Refresh"/>
+                                            </Image.ToolTip>
+                                        </Image>
+
+                                    </StackPanel>
+                                </Button>
+
                                 <!-- add to playlist button -->
-                                <Button Margin="5,2,2,2" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Name="btnPlaylistAdd" >
+                                <Button Margin="0,2,2,2" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Name="btnPlaylistAdd" >
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                         <Image Height="16" Width="16" Source="/Images/32_playlist_add.png" Margin="2,0,2,0">
                                             <Image.ToolTip>
@@ -412,7 +429,7 @@
                                 </Button>
 
                                 <!-- Edit Series -->
-                                <Button Name="btnEditSeries" Margin="5,2,2,2" Style="{DynamicResource FlatButtonStyle}"
+                                <Button Name="btnEditSeries" Margin="0,2,2,2" Style="{DynamicResource FlatButtonStyle}"
                                          Visibility="{Binding Path=IsReadOnly, Converter={StaticResource BooleanToVisibilityConverter}}">
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                         <Image Height="16" Width="16" Source="/Images/32_folder_edit.png" Margin="0,0,3,0"/>
@@ -421,7 +438,7 @@
                                 </Button>
 
                                 <!-- Finish Editing Series -->
-                                <Button Name="btnEditSeriesFinish" Margin="5,2,2,2" Style="{DynamicResource FlatButtonStyle}"
+                                <Button Name="btnEditSeriesFinish" Margin="0,2,2,2" Style="{DynamicResource FlatButtonStyle}"
                                          Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}">
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                         <Image Height="16" Width="16" Source="/Images/32_folder_edit.png" Margin="0,0,3,0"/>
@@ -430,7 +447,7 @@
                                 </Button>
 
                                 <!-- Move Series -->
-                                <Button Name="btnMoveSeries" Margin="10,2,2,2" Style="{DynamicResource FlatButtonStyle}" Command="{DynamicResource MoveSeriesCommand}" CommandParameter="{Binding}">
+                                <Button Name="btnMoveSeries" Margin="0,2,2,2" Style="{DynamicResource FlatButtonStyle}" Command="{DynamicResource MoveSeriesCommand}" CommandParameter="{Binding}">
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                         <Image Height="16" Width="16" Source="/Images/32_cut.png" Margin="0,0,3,0"/>
                                         <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=MoveSeries}" Margin="0,0,0,0"/>
@@ -438,7 +455,7 @@
                                 </Button>
 
                                 <!-- Group -->
-                                <Button Name="btnAnimeGroupShow" Margin="10,2,2,2" Style="{DynamicResource FlatButtonStyle}">
+                                <Button Name="btnAnimeGroupShow" Margin="0,2,2,2" Style="{DynamicResource FlatButtonStyle}">
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
 
                                         <Image Height="16" Width="16" Source="/Images/64_navdown.png" Margin="2,0,2,0"
@@ -451,7 +468,7 @@
                                 </Button>
 
                                 <!-- Update Series Info -->
-                                <Button Name="btnUpdateAniDBInfo" Margin="10,2,2,2" Style="{DynamicResource FlatButtonStyle}">
+                                <Button Name="btnUpdateAniDBInfo" Margin="0,2,2,2" Style="{DynamicResource FlatButtonStyle}">
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                         <Image Height="16" Width="16" Source="/Images/anidb.ico" Margin="0,0,3,0"/>
                                         <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=UpdateAniDBInfo}" Margin="0,0,0,0"/>
@@ -459,7 +476,7 @@
                                 </Button>
 
                                 <!-- Delete Series -->
-                                <Button Name="btnDeleteSeries" Margin="10,2,2,2" Style="{DynamicResource FlatButtonStyle}" Command="{DynamicResource DeleteSeriesCommand}" CommandParameter="{Binding}">
+                                <Button Name="btnDeleteSeries" Margin="0,2,2,2" Style="{DynamicResource FlatButtonStyle}" Command="{DynamicResource DeleteSeriesCommand}" CommandParameter="{Binding}">
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                         <Image Height="16" Width="16" Source="/Images/32_trash.png" Margin="0,0,3,0"/>
                                         <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=DeleteSeries}" Margin="0,0,0,0"/>
@@ -467,7 +484,7 @@
                                 </Button>
 
                                 <!-- Random Episode -->
-                                <Button Name="btnRandomEpisode" Margin="10,2,2,2" Style="{DynamicResource FlatButtonStyle}" >
+                                <Button Name="btnRandomEpisode" Margin="0,2,2,2" Style="{DynamicResource FlatButtonStyle}" >
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                         <Image Height="16" Width="16" Source="/Images/32_dice.png" Margin="0,0,3,0"/>
                                         <TextBlock VerticalAlignment="Center" Text="Random Episode" Margin="0,0,0,0"/>

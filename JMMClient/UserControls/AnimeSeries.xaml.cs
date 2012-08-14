@@ -1090,9 +1090,22 @@ namespace JMMClient.UserControls
 			ShowNextEpisode();
 		}*/
 
-		void AnimeSeries_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+		private void CommandBinding_RefreshSeries(object sender, ExecutedRoutedEventArgs e)
+		{
+			AnimeSeriesVM ser = this.DataContext as AnimeSeriesVM;
+			if (ser == null) return;
+
+			ser.RefreshBase();
+
+			LoadSeries();
+		}
+
+		private void LoadSeries()
 		{
 			this.Cursor = Cursors.Wait;
+
+			AnimeSeriesVM ser = this.DataContext as AnimeSeriesVM;
+			if (ser == null) return;
 
 			FullDescription = false;
 			TruncatedDescription = true;
@@ -1101,8 +1114,7 @@ namespace JMMClient.UserControls
 			ShowTvDBLinks();
 			ShowNextEpisode();
 
-			AnimeSeriesVM ser = this.DataContext as AnimeSeriesVM;
-			if (ser == null) return;
+			
 
 			ser.PopulateIsFave();
 
@@ -1147,6 +1159,11 @@ namespace JMMClient.UserControls
 			EvaluateEditing();
 
 			this.Cursor = Cursors.Arrow;
+		}
+
+		void AnimeSeries_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+		{
+			LoadSeries();
 		}
 
 		
