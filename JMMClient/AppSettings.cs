@@ -1777,6 +1777,74 @@ namespace JMMClient
 			}
 		}
 
+		public static string MPCFolder
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+
+				string val = appSettings["MPCFolder"];
+				if (string.IsNullOrEmpty(val))
+				{
+					// default value
+					val = "";
+					UpdateSetting("MPCFolder", val);
+				}
+				return val;
+			}
+			set
+			{
+				UpdateSetting("MPCFolder", value);
+			}
+		}
+
+		public static int VideoWatchedPct
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+
+				string val = appSettings["VideoWatchedPct"];
+				int ival = 0;
+				if (int.TryParse(val, out ival))
+				{
+					if (ival < 1)
+						return 85;
+
+					if (ival > 100)
+						return 85;
+
+					return ival;
+				}
+				else
+				{
+					return 85; // default value
+				}
+			}
+			set
+			{
+				UpdateSetting("VideoWatchedPct", value.ToString());
+			}
+		}
+
+		public static bool VideoAutoSetWatched
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["VideoAutoSetWatched"];
+				bool bval = false;
+				if (bool.TryParse(val, out bval))
+					return bval;
+				else
+					return false; // default value
+			}
+			set
+			{
+				UpdateSetting("VideoAutoSetWatched", value.ToString());
+			}
+		}
+
 		public static void DebugSettingsToLog()
 		{
 			#region System Info

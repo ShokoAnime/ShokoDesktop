@@ -62,6 +62,19 @@ namespace JMMClient.UserControls
 			btnRandomEpisode.Click += new RoutedEventHandler(btnRandomEpisode_Click);
 
 			this.DataContextChanged += new DependencyPropertyChangedEventHandler(PlaylistControl_DataContextChanged);
+			MainWindow.videoHandler.VideoWatchedEvent += new Utilities.VideoHandler.VideoWatchedEventHandler(videoHandler_VideoWatchedEvent);
+		}
+
+		void videoHandler_VideoWatchedEvent(Utilities.VideoWatchedEventArgs ev)
+		{
+			if (MainWindow.CurrentMainTabIndex == MainWindow.TAB_MAIN_Playlists)
+			{
+				PlaylistVM pl = this.DataContext as PlaylistVM;
+				if (pl == null) return;
+
+				pl.PopulatePlaylistObjects();
+				ShowNextEpisode();
+			}
 		}
 
 		void btnRandomEpisode_Click(object sender, RoutedEventArgs e)

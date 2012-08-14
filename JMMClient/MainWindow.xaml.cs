@@ -40,16 +40,18 @@ namespace JMMClient
 	{
 		private static Logger logger = LogManager.GetCurrentClassLogger();
 
-		private static readonly int TAB_MAIN_Dashboard = 0;
-		private static readonly int TAB_MAIN_Collection = 1;
-		private static readonly int TAB_MAIN_Playlists = 2;
-		private static readonly int TAB_MAIN_Bookmarks = 3;
-		private static readonly int TAB_MAIN_Server = 4;
-		private static readonly int TAB_MAIN_FileManger = 5;
-		private static readonly int TAB_MAIN_Settings = 6;
-		private static readonly int TAB_MAIN_Pinned = 7;
-		private static readonly int TAB_MAIN_Downloads = 8;
-		private static readonly int TAB_MAIN_Search = 9;
+		public static readonly int TAB_MAIN_Dashboard = 0;
+		public static readonly int TAB_MAIN_Collection = 1;
+		public static readonly int TAB_MAIN_Playlists = 2;
+		public static readonly int TAB_MAIN_Bookmarks = 3;
+		public static readonly int TAB_MAIN_Server = 4;
+		public static readonly int TAB_MAIN_FileManger = 5;
+		public static readonly int TAB_MAIN_Settings = 6;
+		public static readonly int TAB_MAIN_Pinned = 7;
+		public static readonly int TAB_MAIN_Downloads = 8;
+		public static readonly int TAB_MAIN_Search = 9;
+
+		public static int CurrentMainTabIndex = TAB_MAIN_Dashboard;
 
 		private static readonly int TAB_FileManger_Unrecognised = 0;
 		private static readonly int TAB_FileManger_Ignored = 1;
@@ -148,6 +150,7 @@ namespace JMMClient
 				imageHelper.Init();
 
 				videoHandler.Init();
+				//videoHandler.HandleFileChange(AppSettings.MPCFolder + "\\mpc-hc.ini");
 
 				InitCulture();
 
@@ -187,10 +190,22 @@ namespace JMMClient
 				postStartTimer.Elapsed += new System.Timers.ElapsedEventHandler(postStartTimer_Elapsed);
 
 				//videoHandler.HandleFileChange(@"C:\Program Files (x86)\Combined Community Codec Pack\MPC\mpc-hc.ini");
+
+				MainWindow.videoHandler.VideoWatchedEvent += new VideoHandler.VideoWatchedEventHandler(videoHandler_VideoWatchedEvent);
 			}
 			catch (Exception ex)
 			{
 				logger.ErrorException(ex.ToString(), ex);
+			}
+		}
+
+		void videoHandler_VideoWatchedEvent(VideoWatchedEventArgs ev)
+		{
+			if (tabControl1.SelectedIndex == TAB_MAIN_Collection || tabControl1.SelectedIndex == TAB_MAIN_Pinned)
+			{
+				
+
+				//RefreshView();
 			}
 		}
 
@@ -454,6 +469,8 @@ namespace JMMClient
 		{
 			try
 			{
+				CurrentMainTabIndex = tabIndex;
+
 				if (tabIndex == TAB_MAIN_Dashboard)
 				{
 					if (DashboardVM.Instance.EpsWatchNext_Recent.Count == 0 && DashboardVM.Instance.SeriesMissingEps.Count == 0
@@ -1349,6 +1366,13 @@ namespace JMMClient
 						ShowTorrentSearch(crit);
 					}
 				}
+
+				/*if (obj.GetType() == typeof(MissingFileVM))
+				{
+					MissingFileVM mis = (MissingFileVM)obj;
+					ShowPinnedSeries(mis.AnimeSeries);
+				}*/
+
 
 				if (obj.GetType() == typeof(RecommendationVM))
 				{

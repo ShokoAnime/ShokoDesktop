@@ -1318,6 +1318,47 @@
                         </ScrollViewer>
                     </TabItem>
 
+                    <!-- Video Player tab -->
+                    <TabItem Header="Video Player" Name="tabSettingVideoPlayer"
+                             Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <ScrollViewer>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+
+
+
+                                <!-- Media Player Classic -->
+
+                                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="0" Background="#FFE9ECEF" Margin="0,0,0,5">
+                                    <TextBlock Text="Media Player Classic Integration" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                </Border>
+
+                                
+
+                                <usercontrols:MPCSettingsControl Grid.Column="0" Grid.Row="1" Margin="5,0,0,10"/>
+
+
+
+
+                            </Grid>
+                        </ScrollViewer>
+                    </TabItem>
+
                 </TabControl>
 
             </TabItem>
@@ -1461,8 +1502,6 @@
                         
 
                     </TabItem>
-
-
 
                 </TabControl>
 

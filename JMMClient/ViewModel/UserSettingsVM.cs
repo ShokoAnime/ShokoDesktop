@@ -1034,6 +1034,36 @@ namespace JMMClient
 			}
 		}
 
+		public string MPCFolder
+		{
+			get { return AppSettings.MPCFolder; }
+			set
+			{
+				AppSettings.MPCFolder = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("MPCFolder"));
+			}
+		}
+
+		public int VideoWatchedPct
+		{
+			get { return AppSettings.VideoWatchedPct; }
+			set
+			{
+				AppSettings.VideoWatchedPct = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("VideoWatchedPct"));
+			}
+		}
+
+		public bool VideoAutoSetWatched
+		{
+			get { return AppSettings.VideoAutoSetWatched; }
+			set
+			{
+				AppSettings.VideoAutoSetWatched = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("VideoAutoSetWatched"));
+			}
+		}
+
 		public int GetSeriesWidgetPosition(SeriesWidgets swid)
 		{
 			// read the series widgets order

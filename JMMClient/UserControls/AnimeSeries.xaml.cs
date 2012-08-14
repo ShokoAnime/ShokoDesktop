@@ -200,7 +200,15 @@ namespace JMMClient.UserControls
 			chkSerNameOverride.Click += new RoutedEventHandler(chkSerNameOverride_Click);
 			btnSelectOverrideName.Click += new RoutedEventHandler(btnSelectOverrideName_Click);
 
+			MainWindow.videoHandler.VideoWatchedEvent += new Utilities.VideoHandler.VideoWatchedEventHandler(videoHandler_VideoWatchedEvent);
+
 			SetSeriesWidgetOrder();
+		}
+
+		void videoHandler_VideoWatchedEvent(Utilities.VideoWatchedEventArgs ev)
+		{
+			if (MainWindow.CurrentMainTabIndex == MainWindow.TAB_MAIN_Collection || MainWindow.CurrentMainTabIndex == MainWindow.TAB_MAIN_Pinned)
+				ShowNextEpisode();
 		}
 
 		void btnSelectOverrideName_Click(object sender, RoutedEventArgs e)

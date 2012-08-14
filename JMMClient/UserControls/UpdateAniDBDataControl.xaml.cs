@@ -11,6 +11,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
+using System.IO;
+using System.Diagnostics;
 
 namespace JMMClient.UserControls
 {
@@ -27,6 +30,26 @@ namespace JMMClient.UserControls
 			btnEstimate.Click += new RoutedEventHandler(btnEstimate_Click);
 		}
 
+		private void Test()
+		{
+
+
+			XDocument xmlDoc = XDocument.Load(@"C:\Projects\SVN\JMM\1344911476-1630-10345\mylist.xml");
+
+			var my_anime_list = from file in xmlDoc.Descendants("file")
+							select new
+							{
+								FID = file.Element("FID").Value,
+								State = file.Element("State").Value,
+								VersionName = file.Element("VersionName").Value,
+							};
+
+			foreach (var file in my_anime_list)
+			{
+				Debug.WriteLine(file.FID);
+			}
+
+		}
 		void btnEstimate_Click(object sender, RoutedEventArgs e)
 		{
 			try

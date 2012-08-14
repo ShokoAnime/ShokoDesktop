@@ -282,7 +282,8 @@ namespace JMMClient.UserControls
 
 		void videoHandler_VideoWatchedEvent(Utilities.VideoWatchedEventArgs ev)
 		{
-			RefreshData(true, false, false);
+			if (MainWindow.CurrentMainTabIndex == MainWindow.TAB_MAIN_Dashboard)
+				RefreshData(true, false, false);
 		}
 
 
