@@ -90,6 +90,14 @@ namespace JMMClient.UserControls
 			btnRefresh.Click += new RoutedEventHandler(btnRefresh_Click);
 			lbMultipleFiles.SelectionChanged += new SelectionChangedEventHandler(lbMultipleFiles_SelectionChanged);
 
+			chkOnlyFinished.IsChecked = AppSettings.MultipleFilesOnlyFinished;
+
+			chkOnlyFinished.Checked += new RoutedEventHandler(chkOnlyFinished_Checked);
+		}
+
+		void chkOnlyFinished_Checked(object sender, RoutedEventArgs e)
+		{
+			AppSettings.MultipleFilesOnlyFinished = chkOnlyFinished.IsChecked.Value;
 		}
 
 		void workerFiles_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -115,7 +123,9 @@ namespace JMMClient.UserControls
 		{
 			try
 			{
-				List<JMMServerBinary.Contract_AnimeEpisode> eps = JMMServerVM.Instance.clientBinaryHTTP.GetAllEpisodesWithMultipleFiles(JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+				bool onlyFinishedSeries = (bool)e.Argument; 
+				List<JMMServerBinary.Contract_AnimeEpisode> eps = JMMServerVM.Instance.clientBinaryHTTP.GetAllEpisodesWithMultipleFiles(
+					JMMServerVM.Instance.CurrentUser.JMMUserID.Value, onlyFinishedSeries);
 				e.Result = eps;
 			}
 			catch (Exception ex)
@@ -141,7 +151,7 @@ namespace JMMClient.UserControls
 
 			StatusMessage = "Loading...";
 
-			workerFiles.RunWorkerAsync();
+			workerFiles.RunWorkerAsync(chkOnlyFinished.IsChecked.Value);
 		}
 
 		void btnRefresh_Click(object sender, RoutedEventArgs e)

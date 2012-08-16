@@ -15475,7 +15475,7 @@ namespace JMMClient.JMMServerBinary {
         System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_VideoLocal> GetAllManuallyLinkedFiles(int userID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetAllEpisodesWithMultipleFiles", ReplyAction="http://tempuri.org/IJMMServer/GetAllEpisodesWithMultipleFilesResponse")]
-        System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AnimeEpisode> GetAllEpisodesWithMultipleFiles(int userID);
+        System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AnimeEpisode> GetAllEpisodesWithMultipleFiles(int userID, bool onlyFinishedSeries);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/ReevaluateDuplicateFiles", ReplyAction="http://tempuri.org/IJMMServer/ReevaluateDuplicateFilesResponse")]
         void ReevaluateDuplicateFiles();
@@ -16212,8 +16212,8 @@ namespace JMMClient.JMMServerBinary {
             return base.Channel.GetAllManuallyLinkedFiles(userID);
         }
         
-        public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AnimeEpisode> GetAllEpisodesWithMultipleFiles(int userID) {
-            return base.Channel.GetAllEpisodesWithMultipleFiles(userID);
+        public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AnimeEpisode> GetAllEpisodesWithMultipleFiles(int userID, bool onlyFinishedSeries) {
+            return base.Channel.GetAllEpisodesWithMultipleFiles(userID, onlyFinishedSeries);
         }
         
         public void ReevaluateDuplicateFiles() {

@@ -1845,6 +1845,24 @@ namespace JMMClient
 			}
 		}
 
+		public static bool MultipleFilesOnlyFinished
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["MultipleFilesOnlyFinished"];
+				bool bval = true;
+				if (bool.TryParse(val, out bval))
+					return bval;
+				else
+					return false; // default value
+			}
+			set
+			{
+				UpdateSetting("MultipleFilesOnlyFinished", value.ToString());
+			}
+		}
+
 		public static void DebugSettingsToLog()
 		{
 			#region System Info

@@ -432,7 +432,7 @@ namespace JMMClient
 					}
 					if (tab.SelectedIndex == TAB_FileManger_MultipleFiles)
 					{
-						if (multipleFiles.CurrentEpisodes.Count == 0) multipleFiles.RefreshMultipleFiles();
+						//if (multipleFiles.CurrentEpisodes.Count == 0) multipleFiles.RefreshMultipleFiles();
 						lastFileManagerTab = TAB_FileManger_MultipleFiles;
 					}
 
