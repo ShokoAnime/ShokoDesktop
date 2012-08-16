@@ -533,6 +533,7 @@
     <Compile Include="ViewModel\DashboardVM.cs" />
     <Compile Include="ViewModel\DuplicateFileVM.cs" />
     <Compile Include="ViewModel\ExternalSiteLink.cs" />
+    <Compile Include="ViewModel\GroupFileSummaryVM.cs" />
     <Compile Include="ViewModel\GroupFilterConditionVM.cs" />
     <Compile Include="ViewModel\GroupFilterHelper.cs" />
     <Compile Include="ViewModel\GroupFilterSortingCriteria.cs" />
@@ -1149,6 +1150,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_FileFfdshowPreset.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_GroupFileSummary.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_GroupFilter.datasource">

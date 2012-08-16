@@ -51,7 +51,56 @@ namespace JMMClient.UserControls
 		public bool IsDataFinishedLoading
 		{
 			get { return (bool)GetValue(IsDataFinishedLoadingProperty); }
-			set { SetValue(IsDataFinishedLoadingProperty, value); }
+			set 
+			{ 
+				SetValue(IsDataFinishedLoadingProperty, value);
+				if (!value)
+				{
+					DisplayGroupSummary = false;
+					DisplayGroupQualityDetails = false;
+				}
+				else
+				{
+					DisplayGroupSummary = IsGroupSummary;
+					DisplayGroupQualityDetails = IsGroupQualityDetails;
+				}
+			}
+		}
+
+		public static readonly DependencyProperty IsGroupSummaryProperty = DependencyProperty.Register("IsGroupSummary",
+			typeof(bool), typeof(AnimeFileSummaryControl), new UIPropertyMetadata(false, null));
+
+		public bool IsGroupSummary
+		{
+			get { return (bool)GetValue(IsGroupSummaryProperty); }
+			set { SetValue(IsGroupSummaryProperty, value); }
+		}
+
+		public static readonly DependencyProperty IsGroupQualityDetailsProperty = DependencyProperty.Register("IsGroupQualityDetails",
+			typeof(bool), typeof(AnimeFileSummaryControl), new UIPropertyMetadata(true, null));
+
+		public bool IsGroupQualityDetails
+		{
+			get { return (bool)GetValue(IsGroupQualityDetailsProperty); }
+			set { SetValue(IsGroupQualityDetailsProperty, value); }
+		}
+
+		public static readonly DependencyProperty DisplayGroupSummaryProperty = DependencyProperty.Register("DisplayGroupSummary",
+			typeof(bool), typeof(AnimeFileSummaryControl), new UIPropertyMetadata(false, null));
+
+		public bool DisplayGroupSummary
+		{
+			get { return (bool)GetValue(DisplayGroupSummaryProperty); }
+			set { SetValue(DisplayGroupSummaryProperty, value); }
+		}
+
+		public static readonly DependencyProperty DisplayGroupQualityDetailsProperty = DependencyProperty.Register("DisplayGroupQualityDetails",
+			typeof(bool), typeof(AnimeFileSummaryControl), new UIPropertyMetadata(true, null));
+
+		public bool DisplayGroupQualityDetails
+		{
+			get { return (bool)GetValue(DisplayGroupQualityDetailsProperty); }
+			set { SetValue(DisplayGroupQualityDetailsProperty, value); }
 		}
 
 
@@ -60,18 +109,74 @@ namespace JMMClient.UserControls
 		public ObservableCollection<GroupVideoQualityVM> VideoQualityRecords { get; set; }
 		public ICollectionView ViewSummary { get; set; }
 
+		public ObservableCollection<GroupFileSummaryVM> GroupSummaryRecords { get; set; }
+		public ICollectionView ViewGroupSummary { get; set; }
+
 		public AnimeFileSummaryControl()
 		{
 			InitializeComponent();
 
 			VideoQualityRecords = new ObservableCollection<GroupVideoQualityVM>();
 			ViewSummary = CollectionViewSource.GetDefaultView(VideoQualityRecords);
-			ViewSummary.SortDescriptions.Add(new SortDescription("Ranking", ListSortDirection.Descending));
-			ViewSummary.SortDescriptions.Add(new SortDescription("FileCountNormal", ListSortDirection.Descending));
+
+			GroupSummaryRecords = new ObservableCollection<GroupFileSummaryVM>();
+			ViewGroupSummary = CollectionViewSource.GetDefaultView(GroupSummaryRecords);
+
+			ViewGroupSummary.SortDescriptions.Add(new SortDescription("GroupName", ListSortDirection.Ascending));
+
+			cboSortGroupQual.Items.Clear();
+			cboSortGroupQual.Items.Add("By Quality Ranking");
+			cboSortGroupQual.Items.Add("By Release Group");
+			cboSortGroupQual.SelectionChanged += new SelectionChangedEventHandler(cboSortGroupQual_SelectionChanged);
+
+			cboFileSummaryType.Items.Clear();
+			cboFileSummaryType.Items.Add("Quality/Release Group Details");
+			cboFileSummaryType.Items.Add("Release Group Summary");
+			cboFileSummaryType.SelectedIndex = 0;
+			cboFileSummaryType.SelectionChanged += new SelectionChangedEventHandler(cboFileSummaryType_SelectionChanged);
 
 			this.DataContextChanged += new DependencyPropertyChangedEventHandler(AnimeFileSummaryControl_DataContextChanged);
 			//dataWorker.DoWork += new DoWorkEventHandler(dataWorker_DoWork);
 			//dataWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(dataWorker_RunWorkerCompleted);
+		}
+
+		void cboFileSummaryType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			if (cboFileSummaryType.SelectedIndex == 0)
+			{
+				IsGroupQualityDetails = true;
+				IsGroupSummary = false;
+				AppSettings.FileSummaryTypeDefault = 0;
+			}
+
+			if (cboFileSummaryType.SelectedIndex == 1)
+			{
+				IsGroupQualityDetails = false;
+				IsGroupSummary = true;
+				AppSettings.FileSummaryTypeDefault = 1;
+			}
+
+			RefreshRecords();
+		}
+
+		void cboSortGroupQual_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			ViewSummary.SortDescriptions.Clear();
+
+			if (cboSortGroupQual.SelectedIndex == 0)
+			{
+				ViewSummary.SortDescriptions.Add(new SortDescription("Ranking", ListSortDirection.Descending));
+				ViewSummary.SortDescriptions.Add(new SortDescription("FileCountNormal", ListSortDirection.Descending));
+				AppSettings.FileSummaryQualSortDefault = 0;
+			}
+
+			if (cboSortGroupQual.SelectedIndex == 1)
+			{
+				ViewSummary.SortDescriptions.Add(new SortDescription("GroupName", ListSortDirection.Ascending));
+				ViewSummary.SortDescriptions.Add(new SortDescription("Ranking", ListSortDirection.Descending));
+				AppSettings.FileSummaryQualSortDefault = 1;
+			}
+			ViewSummary.Refresh();
 		}
 
 		void AnimeFileSummaryControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -81,13 +186,20 @@ namespace JMMClient.UserControls
 				if (this.DataContext == null)
 				{
 					VideoQualityRecords.Clear();
+					GroupSummaryRecords.Clear();
 					return;
 				}
 
+				bool changedCombo = false;
 
-				RefreshRecords();
+				if (cboSortGroupQual.SelectedIndex != AppSettings.FileSummaryQualSortDefault && cboSortGroupQual.SelectedIndex >= 0) changedCombo = true;
+				if (cboFileSummaryType.SelectedIndex != AppSettings.FileSummaryTypeDefault && cboFileSummaryType.SelectedIndex >= 0) changedCombo = true;
 
-				
+				cboSortGroupQual.SelectedIndex = AppSettings.FileSummaryQualSortDefault;
+				cboFileSummaryType.SelectedIndex = AppSettings.FileSummaryTypeDefault;
+
+				if (!changedCombo)
+					RefreshRecords();
 			}
 			catch (Exception ex)
 			{
@@ -99,24 +211,39 @@ namespace JMMClient.UserControls
 		{
 			try
 			{
-
 				IsDataLoading = true;
 				IsDataFinishedLoading = false;
+
 				VideoQualityRecords.Clear();
+				GroupSummaryRecords.Clear();
+
 				TotalFileCount = 0;
 
 				AniDB_AnimeVM anime = this.DataContext as AniDB_AnimeVM;
 				if (anime == null) return;
 
-				//dataWorker.RunWorkerAsync(anime.AnimeID);
-
-				List<JMMServerBinary.Contract_GroupVideoQuality> summ = JMMServerVM.Instance.clientBinaryHTTP.GetGroupVideoQualitySummary(anime.AnimeID);
-				foreach (JMMServerBinary.Contract_GroupVideoQuality contract in summ)
+				if (IsGroupQualityDetails)
 				{
-					GroupVideoQualityVM vidQual = new GroupVideoQualityVM(contract);
-					TotalFileCount += vidQual.FileCountNormal + vidQual.FileCountSpecials;
-					VideoQualityRecords.Add(vidQual);
+					List<JMMServerBinary.Contract_GroupVideoQuality> summ = JMMServerVM.Instance.clientBinaryHTTP.GetGroupVideoQualitySummary(anime.AnimeID);
+					foreach (JMMServerBinary.Contract_GroupVideoQuality contract in summ)
+					{
+						GroupVideoQualityVM vidQual = new GroupVideoQualityVM(contract);
+						TotalFileCount += vidQual.FileCountNormal + vidQual.FileCountSpecials;
+						VideoQualityRecords.Add(vidQual);
+					}
 				}
+
+				if (IsGroupSummary)
+				{
+					List<JMMServerBinary.Contract_GroupFileSummary> summ = JMMServerVM.Instance.clientBinaryHTTP.GetGroupFileSummary(anime.AnimeID);
+					foreach (JMMServerBinary.Contract_GroupFileSummary contract in summ)
+					{
+						GroupFileSummaryVM vidQual = new GroupFileSummaryVM(contract);
+						TotalFileCount += vidQual.FileCountNormal + vidQual.FileCountSpecials;
+						GroupSummaryRecords.Add(vidQual);
+					}
+				}
+
 				IsDataLoading = false;
 				IsDataFinishedLoading = true;
 			}
@@ -125,32 +252,6 @@ namespace JMMClient.UserControls
 				Utils.ShowErrorMessage(ex);
 			}
 		}
-
-		/*void dataWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-		{
-			IsDataLoading = false;
-			IsDataFinishedLoading = true;
-			List<JMMServerBinary.Contract_GroupVideoQuality> summ = e.Result as List<JMMServerBinary.Contract_GroupVideoQuality>;
-			foreach (JMMServerBinary.Contract_GroupVideoQuality contract in summ)
-			{
-				GroupVideoQualityVM vidQual = new GroupVideoQualityVM(contract);
-				TotalFileCount += vidQual.FileCountNormal + vidQual.FileCountSpecials;
-				VideoQualityRecords.Add(vidQual);
-			}
-		}
-
-		void dataWorker_DoWork(object sender, DoWorkEventArgs e)
-		{
-			try
-			{
-				List<JMMServerBinary.Contract_GroupVideoQuality> summ = JMMServerVM.Instance.clientBinaryHTTP.GetGroupVideoQualitySummary(int.Parse(e.Argument.ToString()));
-				e.Result = summ;
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-		}*/
 
 		private void CommandBinding_DeleteAllFiles(object sender, ExecutedRoutedEventArgs e)
 		{

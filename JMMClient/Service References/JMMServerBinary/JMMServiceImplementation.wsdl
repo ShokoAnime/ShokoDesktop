@@ -26,6 +26,12 @@
   <wsdl:message name="IJMMServer_UpdateAniDBFileData_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateAniDBFileDataResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_GetGroupFileSummary_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroupFileSummary" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetGroupFileSummary_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroupFileSummaryResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_SaveBookmarkedAnime_InputMessage">
     <wsdl:part name="parameters" element="tns:SaveBookmarkedAnime" />
   </wsdl:message>
@@ -1207,6 +1213,10 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/UpdateAniDBFileData" message="tns:IJMMServer_UpdateAniDBFileData_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/UpdateAniDBFileDataResponse" message="tns:IJMMServer_UpdateAniDBFileData_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetGroupFileSummary">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetGroupFileSummary" message="tns:IJMMServer_GetGroupFileSummary_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetGroupFileSummaryResponse" message="tns:IJMMServer_GetGroupFileSummary_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="SaveBookmarkedAnime">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SaveBookmarkedAnime" message="tns:IJMMServer_SaveBookmarkedAnime_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SaveBookmarkedAnimeResponse" message="tns:IJMMServer_SaveBookmarkedAnime_OutputMessage" />
@@ -1997,6 +2007,15 @@
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="UpdateAniDBFileData">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/UpdateAniDBFileData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupFileSummary">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetGroupFileSummary" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -1863,6 +1863,64 @@ namespace JMMClient
 			}
 		}
 
+		public static int FileSummaryTypeDefault
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+
+				string val = appSettings["FileSummaryTypeDefault"];
+				int ival = 0;
+				if (int.TryParse(val, out ival))
+				{
+					if (ival < 0)
+						return 0;
+
+					if (ival > 1)
+						return 0;
+
+					return ival;
+				}
+				else
+				{
+					return 0; // default value
+				}
+			}
+			set
+			{
+				UpdateSetting("FileSummaryTypeDefault", value.ToString());
+			}
+		}
+
+		public static int FileSummaryQualSortDefault
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+
+				string val = appSettings["FileSummaryQualSortDefault"];
+				int ival = 0;
+				if (int.TryParse(val, out ival))
+				{
+					if (ival < 0)
+						return 0;
+
+					if (ival > 1)
+						return 0;
+
+					return ival;
+				}
+				else
+				{
+					return 0; // default value
+				}
+			}
+			set
+			{
+				UpdateSetting("FileSummaryQualSortDefault", value.ToString());
+			}
+		}
+
 		public static void DebugSettingsToLog()
 		{
 			#region System Info

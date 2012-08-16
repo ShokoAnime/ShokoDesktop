@@ -67,6 +67,40 @@
                     </StackPanel>
             </DataTemplate>
 
+            <!-- groupFileSummaryTemplate-->
+            <DataTemplate x:Key="groupFileSummaryTemplate">
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" Margin="5,0,0,0" VerticalAlignment="Center">
+                        <TextBlock Margin="0,0,10,0" FontWeight="DemiBold" Text="{Binding Path=GroupNameShort}" VerticalAlignment="Center" MinWidth="70"/>
+
+                        <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,0,2" VerticalAlignment="Center"
+                               Visibility="{Binding Path=NormalComplete, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <TextBlock Margin="3,0,0,0" Text="{Binding Path=FileCountNormal}" VerticalAlignment="Center"/>
+                        <TextBlock Margin="2,0,10,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episodes}" VerticalAlignment="Center"/>
+                        <TextBlock Margin="3,0,0,0" Text="(" VerticalAlignment="Center"/>
+                        <TextBlock Margin="0,0,0,0" Text="{Binding Path=NormalEpisodeNumberSummary}" VerticalAlignment="Center"/>
+                        <TextBlock Margin="0,0,0,0" Text=")" VerticalAlignment="Center"/>
+                        <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="5,0,0,2" VerticalAlignment="Center"
+                               Visibility="{Binding Path=SpecialsComplete, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <StackPanel Orientation="Horizontal" Visibility="{Binding Path=HasAnySpecials, Converter={StaticResource BooleanToVisibilityConverter}}" VerticalAlignment="Center">
+                            <TextBlock Margin="3,0,0,0" Text="{Binding Path=FileCountSpecials}" />
+                            <TextBlock Margin="2,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Specials}" />
+                        </StackPanel>
+                        <!-- delete button-->
+                        <Button Margin="10,0,0,0" Style="{DynamicResource RoundButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource DeleteAllFilesCommand}" 
+                                CommandParameter="{Binding}" >
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/32_trash.png" Margin="2,0,2,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=DeleteAll}" Margin="5,0,5,0"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+
+
+
+                </StackPanel>
+            </DataTemplate>
+
         </ResourceDictionary>
 
     </UserControl.Resources>
@@ -91,8 +125,11 @@
 
         <Border Grid.Row="0" BorderBrush="DarkGray" BorderThickness="0,0,0,1" Margin="0,0,0,5">
             <StackPanel Orientation="Horizontal">
-                <TextBlock FontWeight="Bold" Padding="5" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TotalFileCount}" />
-                <TextBlock Padding="5" Text="{Binding Path=TotalFileCount, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeFileSummaryControl}}}" />
+                <ComboBox Margin="5,5,5,5" Name="cboFileSummaryType" VerticalAlignment="Center" Style="{DynamicResource FlatComboBox}"/>
+                <TextBlock FontWeight="Bold" Padding="5" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TotalFileCount}" VerticalAlignment="Center" />
+                <TextBlock Padding="5" Text="{Binding Path=TotalFileCount, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeFileSummaryControl}}}" VerticalAlignment="Center" />
+                <ComboBox Margin="5,5,5,5" Name="cboSortGroupQual" VerticalAlignment="Center" Style="{DynamicResource FlatComboBox}"
+                          Visibility="{Binding Path=IsGroupQualityDetails, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeFileSummaryControl}}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
             </StackPanel>
         </Border>
 
@@ -103,13 +140,19 @@
 
         <ListBox Name="lbFiles" BorderThickness="0" BorderBrush="DarkGray" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left"  Margin="10,0,0,10" Padding="0"
                 ItemTemplate="{DynamicResource groupVidQualityTemplate}"
-                 Visibility="{Binding Path=IsDataFinishedLoading, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeFileSummaryControl}}, Converter={StaticResource BooleanToVisibilityConverter}}"
+                 Visibility="{Binding Path=DisplayGroupQualityDetails, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeFileSummaryControl}}, Converter={StaticResource BooleanToVisibilityConverter}}"
                  ItemsSource="{Binding Path=ViewSummary, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeFileSummaryControl}}}"
                 Background="Transparent" ItemContainerStyle="{DynamicResource ListBoxItemStylePlain}"  VerticalAlignment="Top" >
 
         </ListBox>
 
+        <ListBox BorderThickness="0" BorderBrush="DarkGray" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left"  Margin="10,0,0,10" Padding="0"
+                ItemTemplate="{DynamicResource groupFileSummaryTemplate}"
+                 Visibility="{Binding Path=DisplayGroupSummary, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeFileSummaryControl}}, Converter={StaticResource BooleanToVisibilityConverter}}"
+                 ItemsSource="{Binding Path=ViewGroupSummary, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeFileSummaryControl}}}"
+                Background="Transparent" ItemContainerStyle="{DynamicResource ListBoxItemStylePlain}"  VerticalAlignment="Top" >
 
+        </ListBox>
 
     </Grid>
 </UserControl>
