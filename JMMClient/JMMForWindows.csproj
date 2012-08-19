@@ -451,6 +451,9 @@
     <Compile Include="UserControls\Settings\TvDBSettings.xaml.cs">
       <DependentUpon>TvDBSettings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Settings\VideoPlayerOptionsControl.xaml.cs">
+      <DependentUpon>VideoPlayerOptionsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Settings\WebCacheBasicSettings.xaml.cs">
       <DependentUpon>WebCacheBasicSettings.xaml</DependentUpon>
     </Compile>
@@ -964,6 +967,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Settings\TvDBSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Settings\VideoPlayerOptionsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1726,6 +1733,10 @@
   <ItemGroup>
     <Resource Include="Images\Pause.png" />
     <Resource Include="Images\Play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\32_play2.png" />
+    <Resource Include="Images\32_play2_all.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

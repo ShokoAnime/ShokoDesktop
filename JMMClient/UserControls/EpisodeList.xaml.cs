@@ -119,10 +119,19 @@ namespace JMMClient.UserControls
 					{
 						Window parentWindow = Window.GetWindow(this);
 
-						PlayVideosForEpisodeForm frm = new PlayVideosForEpisodeForm();
-						frm.Owner = parentWindow;
-						frm.Init(ep);
-						frm.ShowDialog();
+						if (AppSettings.AutoFileSingleEpisode)
+						{
+							VideoDetailedVM vid = MainWindow.videoHandler.GetAutoFileForEpisode(ep);
+							if (vid != null)
+								MainWindow.videoHandler.PlayVideo(vid);
+						}
+						else
+						{
+							PlayVideosForEpisodeForm frm = new PlayVideosForEpisodeForm();
+							frm.Owner = parentWindow;
+							frm.Init(ep);
+							frm.ShowDialog();
+						}
 					}
 				}
 			}

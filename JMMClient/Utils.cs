@@ -14,6 +14,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using JMMClient.Forms;
 using System.Windows;
+using System.Security.Cryptography;
 
 namespace JMMClient
 {
@@ -45,6 +46,13 @@ namespace JMMClient
 				appPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 
 			return appPath;
+		}
+
+		public static string GetTempFilePathWithExtension(string extension)
+		{
+			var path = Path.GetTempPath();
+			var fileName = Guid.NewGuid().ToString() + extension;
+			return Path.Combine(path, fileName);
 		}
 
 		public static string FormatByteSize(long fileSize)
@@ -129,6 +137,12 @@ namespace JMMClient
 
 				return "";
 			}
+		}
+
+		public static void ShowErrorMessage(string msg, Exception ex)
+		{
+			System.Windows.Forms.MessageBox.Show(msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			logger.ErrorException(ex.ToString(), ex);
 		}
 
 		public static void ShowErrorMessage(Exception ex)
@@ -712,6 +726,23 @@ namespace JMMClient
 			catch (Exception ex)
 			{
 				Utils.ShowErrorMessage(ex);
+			}
+		}
+
+		public static void Shuffle<T>(this IList<T> list)
+		{
+			RNGCryptoServiceProvider provider = new RNGCryptoServiceProvider();
+			int n = list.Count;
+			while (n > 1)
+			{
+				byte[] box = new byte[1];
+				do provider.GetBytes(box);
+				while (!(box[0] < n * (Byte.MaxValue / n)));
+				int k = (box[0] % n);
+				n--;
+				T value = list[k];
+				list[k] = list[n];
+				list[n] = value;
 			}
 		}
 	}

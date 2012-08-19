@@ -25,6 +25,12 @@ namespace JMMClient
 		Trakt_WatchedEpisode = 16
 	}
 
+	public enum AutoFileSubsequentType
+	{
+		PreviousGroup = 0,
+		BestQuality = 1
+	}
+
 	public enum ImageDownloadEventType
 	{
 		Started = 1,

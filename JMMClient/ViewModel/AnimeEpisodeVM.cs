@@ -31,7 +31,7 @@ namespace JMMClient
 		public int WatchedCount { get; set; }
 		public int StoppedCount { get; set; }
 		//public int LocalFileCount { get; set; }
-
+		public int UnwatchedEpCountSeries { get; set; }
 		
 
 		public int AniDB_LengthSeconds { get; set; }
@@ -50,6 +50,11 @@ namespace JMMClient
 				var args = new PropertyChangedEventArgs(propertyName);
 				PropertyChanged(this, args);
 			}
+		}
+
+		public bool MultipleUnwatchedEpsSeries
+		{
+			get { return UnwatchedEpCountSeries > 1; }
 		}
 
 		public string WatchedDateAsString
@@ -751,7 +756,7 @@ namespace JMMClient
 				this.EpisodeNumber = contract.EpisodeNumber;
 				this.EpisodeType = contract.EpisodeType;
 				this.IsWatched = contract.IsWatched;
-				
+				this.UnwatchedEpCountSeries = contract.UnwatchedEpCountSeries;
 
 				this.AniDB_LengthSeconds = contract.AniDB_LengthSeconds;
 				this.AniDB_Rating = contract.AniDB_Rating;

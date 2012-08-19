@@ -32,6 +32,12 @@
   <wsdl:message name="IJMMServer_GetGroupFileSummary_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetGroupFileSummaryResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllUnwatchedEpisodes_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUnwatchedEpisodes" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllUnwatchedEpisodes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUnwatchedEpisodesResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_SaveBookmarkedAnime_InputMessage">
     <wsdl:part name="parameters" element="tns:SaveBookmarkedAnime" />
   </wsdl:message>
@@ -1217,6 +1223,10 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetGroupFileSummary" message="tns:IJMMServer_GetGroupFileSummary_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetGroupFileSummaryResponse" message="tns:IJMMServer_GetGroupFileSummary_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetAllUnwatchedEpisodes">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllUnwatchedEpisodes" message="tns:IJMMServer_GetAllUnwatchedEpisodes_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllUnwatchedEpisodesResponse" message="tns:IJMMServer_GetAllUnwatchedEpisodes_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="SaveBookmarkedAnime">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SaveBookmarkedAnime" message="tns:IJMMServer_SaveBookmarkedAnime_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SaveBookmarkedAnimeResponse" message="tns:IJMMServer_SaveBookmarkedAnime_OutputMessage" />
@@ -2016,6 +2026,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetGroupFileSummary">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetGroupFileSummary" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUnwatchedEpisodes">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllUnwatchedEpisodes" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -1,0 +1,110 @@
+﻿<UserControl x:Class="JMMClient.UserControls.VideoPlayerOptionsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
+             xmlns:extToolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
+             xmlns:local="clr-namespace:JMMClient"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+
+
+        <!-- Info -->
+        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Background="FloralWhite" Margin="0,0,0,5" Padding="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,5,0" Grid.Column="0" VerticalAlignment="Top"/>
+                <TextBlock Grid.Column="1" Grid.Row="0" Margin="0,0,5,0" VerticalAlignment="Center" Text="Automatic File Selection Preferences - this refers to when you have more than file for an episode"  TextWrapping="Wrap" />
+                <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,5,5,0" VerticalAlignment="Center" Text="For a playlist it needs to choose one file, which will be based on you preferences below."  TextWrapping="Wrap" />
+                <TextBlock Grid.Column="1" Grid.Row="2" Margin="0,5,5,0" VerticalAlignment="Center" Text="For a single episode you can enable auto file selection or have JMM prompt you to select a file whenever you have more than one"  TextWrapping="Wrap" />
+
+            </Grid>
+        </Border>
+
+        
+
+
+        <!-- Video Player Optons -->
+        <Grid Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+
+            <TextBlock Grid.Column="0" VerticalAlignment="Center" Grid.Row="0" Text="Automatic File Selection - First episode in series" Margin="10,0,0,5"/>
+            <ComboBox Name="cboAutoFileFirst" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Margin="10,0,0,5"/>
+
+            <TextBlock Grid.Column="0" VerticalAlignment="Center" Grid.Row="1" Text="Automatic File Selection - Subsequent episodes in series" Margin="10,0,0,5"/>
+            <ComboBox Name="cboAutoFileSubsequent" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="10,0,0,5"/>
+
+            <!-- Info 2 -->
+            <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Background="FloralWhite" Margin="20,0,0,5" Padding="5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Height="16" Width="16" Source="/Images/16_exclamation.png" Margin="5,2,5,0" Grid.Column="0" VerticalAlignment="Top"/>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Margin="0,0,5,0" VerticalAlignment="Center" Text="If you select 'Release Group From Previously Played Episode' in the above setting you also need to do the following "  TextWrapping="Wrap" />
+                    <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,5,5,0" VerticalAlignment="Center" Text="Uncheck 'Set file as watched if episode is watched' Under Settings - Essential - Import Settings"  TextWrapping="Wrap" />
+                    <TextBlock Grid.Column="1" Grid.Row="2" Margin="0,5,5,0" VerticalAlignment="Center" Text="Always Mark a File as watched and not an episode"  TextWrapping="Wrap" />
+
+                </Grid>
+            </Border>
+
+            <CheckBox Name="chkAutoSelectFile" Grid.Column="0" VerticalAlignment="Center" Grid.Row="3" Grid.ColumnSpan="2" Content="Enable auto file selection on single episodes" Margin="10,0,0,5"/>
+
+
+
+        </Grid>
+
+    </Grid>
+</UserControl>

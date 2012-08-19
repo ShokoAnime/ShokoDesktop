@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using JMMClient.Forms;
 using System.ComponentModel;
 using JMMClient.ViewModel;
+using System.Diagnostics;
 
 namespace JMMClient.UserControls
 {
@@ -763,14 +764,42 @@ namespace JMMClient.UserControls
 						MainWindow.videoHandler.PlayVideo(ep.FilesForEpisode[0]);
 					else if (ep.FilesForEpisode.Count > 1)
 					{
-						PlayVideosForEpisodeForm frm = new PlayVideosForEpisodeForm();
-						frm.Owner = parentWindow;
-						frm.Init(ep);
-						bool? result = frm.ShowDialog();
-						if (result.Value)
+						if (AppSettings.AutoFileSingleEpisode)
 						{
+							VideoDetailedVM vid = MainWindow.videoHandler.GetAutoFileForEpisode(ep);
+							if (vid != null)
+								MainWindow.videoHandler.PlayVideo(vid);
+						}
+						else
+						{
+							PlayVideosForEpisodeForm frm = new PlayVideosForEpisodeForm();
+							frm.Owner = parentWindow;
+							frm.Init(ep);
+							bool? result = frm.ShowDialog();
 						}
 					}
+				}
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+		}
+
+		private void CommandBinding_PlayAllUnwatchedEpisode(object sender, ExecutedRoutedEventArgs e)
+		{
+			Window parentWindow = Window.GetWindow(this);
+
+			object obj = e.Parameter;
+			if (obj == null) return;
+
+			try
+			{
+				if (obj.GetType() == typeof(AnimeEpisodeVM))
+				{
+					AnimeEpisodeVM ep = obj as AnimeEpisodeVM;
+
+					MainWindow.videoHandler.PlayAllUnwatchedEpisodes(ep.AnimeSeriesID);
 				}
 			}
 			catch (Exception ex)

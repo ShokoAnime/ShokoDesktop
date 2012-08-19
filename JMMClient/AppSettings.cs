@@ -1921,6 +1921,82 @@ namespace JMMClient
 			}
 		}
 
+		public static int AutoFileFirst
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+
+				string val = appSettings["AutoFileFirst"];
+				int ival = 0;
+				if (int.TryParse(val, out ival))
+				{
+					if (ival < 0)
+						return 0;
+
+					if (ival > 1)
+						return 0;
+
+					return ival;
+				}
+				else
+				{
+					return 0; // default value
+				}
+			}
+			set
+			{
+				UpdateSetting("AutoFileFirst", value.ToString());
+			}
+		}
+
+		public static int AutoFileSubsequent
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+
+				string val = appSettings["AutoFileSubsequent"];
+				int ival = 0;
+				if (int.TryParse(val, out ival))
+				{
+					if (ival < 0)
+						return 0;
+
+					if (ival > 1)
+						return 0;
+
+					return ival;
+				}
+				else
+				{
+					return 0; // default value
+				}
+			}
+			set
+			{
+				UpdateSetting("AutoFileSubsequent", value.ToString());
+			}
+		}
+
+		public static bool AutoFileSingleEpisode
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["AutoFileSingleEpisode"];
+				bool bval = true;
+				if (bool.TryParse(val, out bval))
+					return bval;
+				else
+					return false; // default value
+			}
+			set
+			{
+				UpdateSetting("AutoFileSingleEpisode", value.ToString());
+			}
+		}
+
 		public static void DebugSettingsToLog()
 		{
 			#region System Info

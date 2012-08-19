@@ -512,6 +512,87 @@ namespace JMMClient.ViewModel
 
 		}
 
+		public List<AnimeEpisodeVM> GetAllEpisodes(bool onlyRandom)
+		{
+			List<AnimeEpisodeVM> allEps = new List<AnimeEpisodeVM>();
+
+			// find the next episode to play
+			if (DefaultPlayOrderEnum == PlaylistPlayOrder.Sequential && !onlyRandom)
+			{
+				foreach (PlaylistItemVM pli in PlaylistObjects)
+				{
+					if (pli.ItemType == JMMClient.PlaylistItemType.Episode)
+					{
+						AnimeEpisodeVM epTemp = pli.PlaylistItem as AnimeEpisodeVM;
+						if (CanUseEpisode(this, epTemp))
+						{
+							allEps.Add(epTemp);
+						}
+					}
+
+					if (pli.ItemType == JMMClient.PlaylistItemType.AnimeSeries)
+					{
+						AnimeSeriesVM ser = pli.PlaylistItem as AnimeSeriesVM;
+						ser.RefreshBase();
+						ser.RefreshEpisodes();
+
+						List<AnimeEpisodeVM> eps = ser.AllEpisodes;
+
+						List<SortPropOrFieldAndDirection> sortCriteria = new List<SortPropOrFieldAndDirection>();
+						sortCriteria.Add(new SortPropOrFieldAndDirection("EpisodeType", false, JMMClient.SortType.eInteger));
+						sortCriteria.Add(new SortPropOrFieldAndDirection("EpisodeNumber", false, JMMClient.SortType.eInteger));
+						eps = Sorting.MultiSort<AnimeEpisodeVM>(eps, sortCriteria);
+
+						foreach (AnimeEpisodeVM epTemp in eps)
+						{
+							if (epTemp.EpisodeTypeEnum == EpisodeType.Episode || epTemp.EpisodeTypeEnum == EpisodeType.Special)
+							{
+								if (CanUseEpisode(this, epTemp))
+								{
+									allEps.Add(epTemp);
+								}
+							}
+						}
+
+					}
+				}
+			}
+			else // random
+			{
+				foreach (PlaylistItemVM pli in PlaylistObjects)
+				{
+					if (pli.ItemType == JMMClient.PlaylistItemType.Episode)
+					{
+						AnimeEpisodeVM epTemp = pli.PlaylistItem as AnimeEpisodeVM;
+						if (CanUseEpisode(this, epTemp)) allEps.Add(epTemp);
+					}
+
+					if (pli.ItemType == JMMClient.PlaylistItemType.AnimeSeries)
+					{
+						AnimeSeriesVM ser = pli.PlaylistItem as AnimeSeriesVM;
+						ser.RefreshBase();
+						ser.RefreshEpisodes();
+
+						List<AnimeEpisodeVM> eps = ser.AllEpisodes;
+
+						foreach (AnimeEpisodeVM epTemp in eps)
+						{
+							if (epTemp.EpisodeTypeEnum == EpisodeType.Episode || epTemp.EpisodeTypeEnum == EpisodeType.Special)
+							{
+								if (CanUseEpisode(this, epTemp)) allEps.Add(epTemp);
+							}
+						}
+
+					}
+				}
+
+				allEps.Shuffle();
+
+			}
+
+			return allEps;
+		}
+
 		public void PopulatePlaylistObjects()
 		{
 			PlaylistObjects.Clear();

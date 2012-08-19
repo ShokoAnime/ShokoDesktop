@@ -2270,6 +2270,7 @@ namespace JMMClient
 
 				//DisplayMainTab(TAB_MAIN_Collection);
 				tabControl1.SelectedIndex = TAB_MAIN_Collection;
+				
 
 			}
 			catch (Exception ex)

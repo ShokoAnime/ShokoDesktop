@@ -63,6 +63,20 @@ namespace JMMClient.UserControls
 
 			this.DataContextChanged += new DependencyPropertyChangedEventHandler(PlaylistControl_DataContextChanged);
 			MainWindow.videoHandler.VideoWatchedEvent += new Utilities.VideoHandler.VideoWatchedEventHandler(videoHandler_VideoWatchedEvent);
+
+			btnPlayAll.Click += new RoutedEventHandler(btnPlayAll_Click);
+		}
+
+		void btnPlayAll_Click(object sender, RoutedEventArgs e)
+		{
+			PlaylistVM pl = this.DataContext as PlaylistVM;
+			if (pl == null) return;
+
+			this.Cursor = Cursors.Wait;
+			List<AnimeEpisodeVM> eps = pl.GetAllEpisodes(false);
+			this.Cursor = Cursors.Arrow;
+
+			MainWindow.videoHandler.PlayEpisodes(eps);
 		}
 
 		void videoHandler_VideoWatchedEvent(Utilities.VideoWatchedEventArgs ev)
@@ -235,12 +249,18 @@ namespace JMMClient.UserControls
 						MainWindow.videoHandler.PlayVideo(ep.FilesForEpisode[0]);
 					else if (ep.FilesForEpisode.Count > 1)
 					{
-						PlayVideosForEpisodeForm frm = new PlayVideosForEpisodeForm();
-						frm.Owner = parentWindow;
-						frm.Init(ep);
-						bool? result = frm.ShowDialog();
-						if (result.Value)
+						if (AppSettings.AutoFileSingleEpisode)
 						{
+							VideoDetailedVM vid = MainWindow.videoHandler.GetAutoFileForEpisode(ep);
+							if (vid != null)
+								MainWindow.videoHandler.PlayVideo(vid);
+						}
+						else
+						{
+							PlayVideosForEpisodeForm frm = new PlayVideosForEpisodeForm();
+							frm.Owner = parentWindow;
+							frm.Init(ep);
+							frm.ShowDialog();
 						}
 					}
 				}
