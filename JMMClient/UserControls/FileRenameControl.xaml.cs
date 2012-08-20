@@ -76,6 +76,15 @@ namespace JMMClient.UserControls
 			set { SetValue(LoadTypeIsSeriesProperty, value); }
 		}
 
+		public static readonly DependencyProperty LoadTypeIsAllProperty = DependencyProperty.Register("LoadTypeIsAll",
+			typeof(bool), typeof(FileRenameControl), new UIPropertyMetadata(false, null));
+
+		public bool LoadTypeIsAll
+		{
+			get { return (bool)GetValue(LoadTypeIsAllProperty); }
+			set { SetValue(LoadTypeIsAllProperty, value); }
+		}
+
 		public static readonly DependencyProperty WorkerRunningProperty = DependencyProperty.Register("WorkerRunning",
 			typeof(bool), typeof(FileRenameControl), new UIPropertyMetadata(false, null));
 
@@ -105,6 +114,7 @@ namespace JMMClient.UserControls
 
 		private readonly string LoadTypeRandom = "Random";
 		private readonly string LoadTypeSeries = "Series";
+		private readonly string LoadTypeAll = "Entire Collection";
 
 		private readonly string FilterTypeAll = "All";
 		private readonly string FilterTypeFailed = "Failed";
@@ -180,6 +190,7 @@ namespace JMMClient.UserControls
 			cboLoadType.Items.Clear();
 			cboLoadType.Items.Add(LoadTypeRandom);
 			cboLoadType.Items.Add(LoadTypeSeries);
+			cboLoadType.Items.Add(LoadTypeAll);
 			cboLoadType.SelectedIndex = 0;
 
 			cboLoadType.SelectionChanged += new SelectionChangedEventHandler(cboLoadType_SelectionChanged);
@@ -583,6 +594,7 @@ namespace JMMClient.UserControls
 		{
 			LoadTypeIsRandom = (cboLoadType.SelectedItem.ToString() == LoadTypeRandom);
 			LoadTypeIsSeries = (cboLoadType.SelectedItem.ToString() == LoadTypeSeries);
+			LoadTypeIsAll = (cboLoadType.SelectedItem.ToString() == LoadTypeAll);
 		}
 
 		void btnLoadFiles_Click(object sender, RoutedEventArgs e)
@@ -619,6 +631,11 @@ namespace JMMClient.UserControls
 
 						rawVids.AddRange(raws);
 					}*/
+				}
+
+				if (LoadTypeIsAll)
+				{
+					rawVids = JMMServerVM.Instance.clientBinaryHTTP.RandomFileRenamePreview(int.MaxValue, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
 				}
 				
 
