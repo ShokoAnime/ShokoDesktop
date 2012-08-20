@@ -491,6 +491,15 @@
         <Setter Property="BorderThickness"  Value="0,0,0,1" />
     </Style>
 
+    <!-- ListBoxItemStyleRecDownloads -->
+    <Style x:Key="ListBoxItemStyleRecDownloads" TargetType="ListBoxItem">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="BorderBrush" Value="DarkGray" />
+        <Setter Property="BorderThickness" Value="0" />
+    </Style>
+
     <!-- ListBoxItemStyleMultipleFiles -->
     <Style x:Key="ListBoxItemStyleMultipleFiles" TargetType="ListBoxItem">
         <Setter Property="Background" Value="FloralWhite" />

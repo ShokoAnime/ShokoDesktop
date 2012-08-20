@@ -1997,6 +1997,29 @@ namespace JMMClient
 			}
 		}
 
+		public static int DownloadsRecItems
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["DownloadsRecItems"];
+				int ival = 0;
+				if (int.TryParse(val, out ival))
+				{
+					if (ival >= 0 && ival <= 100)
+						return ival;
+					else
+						return 10;
+				}
+				else
+					return 10; // default value
+			}
+			set
+			{
+				UpdateSetting("DownloadsRecItems", value.ToString());
+			}
+		}
+
 		public static void DebugSettingsToLog()
 		{
 			#region System Info

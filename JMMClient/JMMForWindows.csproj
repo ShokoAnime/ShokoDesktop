@@ -309,6 +309,9 @@
     <Compile Include="UserControls\DashboardControl.xaml.cs">
       <DependentUpon>DashboardControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Downloads\DownloadRecommendationsControl.xaml.cs">
+      <DependentUpon>DownloadRecommendationsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Downloads\DownloadsBrowseTorrentsControl.xaml.cs">
       <DependentUpon>DownloadsBrowseTorrentsControl.xaml</DependentUpon>
     </Compile>
@@ -783,6 +786,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\DashboardControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Downloads\DownloadRecommendationsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

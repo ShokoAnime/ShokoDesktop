@@ -1422,6 +1422,11 @@
 
                     </TabItem>
 
+                    <TabItem Header="Recommendations" Name="tabRecommendations">
+                        <usercontrols:DownloadRecommendationsControl/>
+
+                    </TabItem>
+
                     <TabItem Header="Settings" Name="tabDownloadSettings">
 
                         <ScrollViewer>

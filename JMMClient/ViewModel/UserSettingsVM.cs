@@ -1064,6 +1064,16 @@ namespace JMMClient
 			}
 		}
 
+		public int DownloadsRecItems
+		{
+			get { return AppSettings.DownloadsRecItems; }
+			set
+			{
+				AppSettings.DownloadsRecItems = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("DownloadsRecItems"));
+			}
+		}
+
 		public int GetSeriesWidgetPosition(SeriesWidgets swid)
 		{
 			// read the series widgets order
