@@ -1417,6 +1417,11 @@
 
                     </TabItem>
 
+                    <TabItem Header="Missing Episodes" Name="tabDownloadsMissingEpisodes">
+                        <usercontrols:MissingEpisodesControl/>
+
+                    </TabItem>
+
                     <TabItem Header="Settings" Name="tabDownloadSettings">
 
                         <ScrollViewer>
