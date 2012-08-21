@@ -139,6 +139,39 @@ namespace JMMClient
 			}
 		}
 
+		public static void DownloadFile(string url, string destFile, string cookieHeader, bool setUserAgent)
+		{
+			try
+			{
+				logger.Trace("DownloadFile: {0}", url);
+
+
+				using (WebClient client = new WebClient())
+				{
+					if (!string.IsNullOrEmpty(cookieHeader))
+						client.Headers.Add("Cookie", cookieHeader);
+					if (setUserAgent)
+						client.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)");
+
+					client.DownloadFile(url, destFile);
+				}
+
+			}
+			catch (Exception ex)
+			{
+				string msg = "---------- ERROR IN DOWNLOAD WEB PAGE ---------" + Environment.NewLine +
+					url + Environment.NewLine +
+					ex.ToString() + Environment.NewLine + "------------------------------------";
+				logger.Error(msg);
+
+				// if the error is a 404 error it may mean that there is a bad series association
+				// so lets log it to the web cache so we can investigate
+				if (ex.ToString().Contains("(404) Not Found"))
+				{
+				}
+			}
+		}
+
 		public static void ShowErrorMessage(string msg, Exception ex)
 		{
 			System.Windows.Forms.MessageBox.Show(msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

@@ -132,6 +132,13 @@ namespace JMMClient.Downloads
 				links.AddRange(bakauLinks);
 			}
 
+			if (TorrentSource == TorrentSourceType.AnimeBytes)
+			{
+				TorrentsAnimeBytes abytes = new TorrentsAnimeBytes();
+				List<TorrentLinkVM> abytesLinks = abytes.BrowseTorrents();
+				links.AddRange(abytesLinks);
+			}
+
 			foreach (TorrentLinkVM torLink in links)
 				NLog.LogManager.GetCurrentClassLogger().Trace(torLink.ToStringMatch());
 

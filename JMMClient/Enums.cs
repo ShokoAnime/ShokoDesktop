@@ -368,7 +368,8 @@ namespace JMMClient
 		TokyoToshokanAll = 2,
 		BakaBT = 3,
 		Nyaa = 4,
-		AnimeSuki = 5
+		AnimeSuki = 5,
+		AnimeBytes = 6
 	}
 
 	public enum DownloadSearchType
@@ -431,6 +432,7 @@ namespace JMMClient
 				case TorrentSourceType.BakaBT: return "BakaBT";
 				case TorrentSourceType.Nyaa: return "Nyaa";
 				case TorrentSourceType.AnimeSuki: return "Anime Suki";
+				case TorrentSourceType.AnimeBytes: return "Anime Byt.es";
 				default: return "Tokyo Toshokan (Anime)";
 			}
 		}
@@ -444,6 +446,7 @@ namespace JMMClient
 				case TorrentSourceType.BakaBT: return "BakaBT";
 				case TorrentSourceType.Nyaa: return "Nyaa";
 				case TorrentSourceType.AnimeSuki: return "Suki";
+				case TorrentSourceType.AnimeBytes: return "AByt.es";
 				default: return "TT";
 			}
 		}
@@ -455,6 +458,7 @@ namespace JMMClient
 			if (tsType == "BakaBT") return TorrentSourceType.BakaBT;
 			if (tsType == "Nyaa") return TorrentSourceType.Nyaa;
 			if (tsType == "Anime Suki") return TorrentSourceType.AnimeSuki;
+			if (tsType == "Anime Byt.es") return TorrentSourceType.AnimeBytes;
 
 			return TorrentSourceType.TokyoToshokanAnime;
 		}

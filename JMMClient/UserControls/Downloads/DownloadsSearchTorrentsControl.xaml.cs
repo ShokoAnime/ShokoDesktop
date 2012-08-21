@@ -16,6 +16,7 @@ using System.Collections.ObjectModel;
 using JMMClient.Downloads;
 using JMMClient.ViewModel;
 using System.Diagnostics;
+using System.Net;
 
 namespace JMMClient.UserControls
 {
@@ -510,6 +511,7 @@ namespace JMMClient.UserControls
 
 					TorrentLinkVM torLink = item.CommandParameter as TorrentLinkVM;
 					torLink.Source.PopulateTorrentDownloadLink(ref torLink);
+
 					UTorrentHelperVM.Instance.AddTorrentFromURL(torLink.TorrentDownloadLink);
 
 					parentWindow.Cursor = Cursors.Arrow;

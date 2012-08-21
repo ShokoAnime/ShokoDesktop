@@ -31,24 +31,7 @@ namespace JMMClient.Downloads
 					match = match.Replace("&#96;", "`");
 					match = match.Replace(rubish1, "");
 
-
-
-					//<span class="s"> </span>
-
 					return match;
-
-					/*string newName = "";
-					foreach (char chr in torrentName.ToCharArray())
-					{
-						if ((int)chr >= 34 && (int)chr <= 40) continue;
-						if ((int)chr >= 58 && (int)chr <= 64) continue;
-
-						if ((int)chr <= 128)
-							newName += chr.ToString();
-					}
-
-
-					return newName;*/
 				}
 				catch (Exception ex)
 				{
@@ -101,7 +84,12 @@ namespace JMMClient.Downloads
 		{
 			get
 			{
-				return string.Format("http://bakabt.me{0} ", TorrentLink);
+				switch (Source.TorrentSource)
+				{
+					case TorrentSourceType.BakaBT: return string.Format(@"http://bakabt.me{0} ", TorrentLink);
+					case TorrentSourceType.AnimeBytes: return string.Format(@"http://animebyt.es/{0}", TorrentLink);
+				}
+				return TorrentLink;
 			}
 		}
 

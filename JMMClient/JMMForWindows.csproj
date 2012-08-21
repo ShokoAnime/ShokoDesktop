@@ -160,6 +160,7 @@
     <Compile Include="Downloads\TorrentFileList.cs" />
     <Compile Include="Downloads\TorrentLink.cs" />
     <Compile Include="Downloads\TorrentList.cs" />
+    <Compile Include="Downloads\TorrentsAnimeBytes.cs" />
     <Compile Include="Downloads\TorrentsAnimeSuki.cs" />
     <Compile Include="Downloads\TorrentsBakaBT.cs" />
     <Compile Include="Downloads\TorrentsNyaa.cs" />
@@ -314,6 +315,9 @@
     </Compile>
     <Compile Include="UserControls\Downloads\DownloadsBrowseTorrentsControl.xaml.cs">
       <DependentUpon>DownloadsBrowseTorrentsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Downloads\DownloadSettingsAnimeBytes.xaml.cs">
+      <DependentUpon>DownloadSettingsAnimeBytes.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Downloads\DownloadSettingsBakaBT.xaml.cs">
       <DependentUpon>DownloadSettingsBakaBT.xaml</DependentUpon>
@@ -794,6 +798,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Downloads\DownloadsBrowseTorrentsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Downloads\DownloadSettingsAnimeBytes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1747,8 +1755,10 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>xcopy "$(TargetDir)*.dll" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y	
+xcopy "$(TargetDir)*.exe" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y
+xcopy "$(TargetDir)*.pdb" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y
+xcopy "$(TargetDir)*.manifest" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

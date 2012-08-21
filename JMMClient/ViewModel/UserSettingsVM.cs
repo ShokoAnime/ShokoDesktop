@@ -56,6 +56,7 @@ namespace JMMClient
 			sources.Add(new TorrentSourceVM(TorrentSourceType.Nyaa, true));
 			sources.Add(new TorrentSourceVM(TorrentSourceType.AnimeSuki, true));
 			sources.Add(new TorrentSourceVM(TorrentSourceType.BakaBT, true));
+			sources.Add(new TorrentSourceVM(TorrentSourceType.AnimeBytes, true));
 
 			return sources;
 		}
@@ -1031,6 +1032,67 @@ namespace JMMClient
 			{
 				bakaBTCookieHeaderSet = value;
 				OnPropertyChanged(new PropertyChangedEventArgs("BakaBTCookieHeaderSet"));
+			}
+		}
+
+
+
+
+
+
+		public string AnimeBytesUsername
+		{
+			get { return AppSettings.AnimeBytesUsername; }
+			set
+			{
+				AppSettings.AnimeBytesUsername = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("AnimeBytesUsername"));
+			}
+		}
+
+		public string AnimeBytesPassword
+		{
+			get { return AppSettings.AnimeBytesPassword; }
+			set
+			{
+				AppSettings.AnimeBytesPassword = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("AnimeBytesPassword"));
+			}
+		}
+
+		public bool AnimeBytesOnlyUseForSeriesSearches
+		{
+			get { return AppSettings.AnimeBytesOnlyUseForSeriesSearches; }
+			set
+			{
+				AppSettings.AnimeBytesOnlyUseForSeriesSearches = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("AnimeBytesOnlyUseForSeriesSearches"));
+			}
+		}
+
+
+
+
+		private string animeBytesCookieHeader = "";
+		public string AnimeBytesCookieHeader
+		{
+			get { return animeBytesCookieHeader; }
+			set
+			{
+				animeBytesCookieHeader = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("AnimeBytesCookieHeader"));
+				AnimeBytesCookieHeaderSet = !string.IsNullOrEmpty(value);
+			}
+		}
+
+		private bool animeBytesCookieHeaderSet = false;
+		public bool AnimeBytesCookieHeaderSet
+		{
+			get { return animeBytesCookieHeaderSet; }
+			set
+			{
+				animeBytesCookieHeaderSet = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("AnimeBytesCookieHeaderSet"));
 			}
 		}
 

@@ -29,13 +29,28 @@ namespace JMMClient.Downloads
 			// default sources have an order
 			List<TorrentSourceVM> orderedSources = new List<TorrentSourceVM>();
 
-			if (search.SearchType == DownloadSearchType.Series && UserSettingsVM.Instance.BakaBTOnlyUseForSeriesSearches &&
-				!string.IsNullOrEmpty(UserSettingsVM.Instance.BakaBTUsername) && !string.IsNullOrEmpty(UserSettingsVM.Instance.BakaBTPassword))
+			// if only full torrent sites
+			bool onlyFullSites = false;
+			if (search.SearchType == DownloadSearchType.Series)
 			{
-				TorrentSourceVM src = new TorrentSourceVM(TorrentSourceType.BakaBT, true);
-				orderedSources.Add(src);
+				if (UserSettingsVM.Instance.BakaBTOnlyUseForSeriesSearches &&
+				!string.IsNullOrEmpty(UserSettingsVM.Instance.BakaBTUsername) && !string.IsNullOrEmpty(UserSettingsVM.Instance.BakaBTPassword))
+				{
+					onlyFullSites = true;
+					TorrentSourceVM src = new TorrentSourceVM(TorrentSourceType.BakaBT, true);
+					orderedSources.Add(src);
+				}
+
+				if (UserSettingsVM.Instance.AnimeBytesOnlyUseForSeriesSearches &&
+				!string.IsNullOrEmpty(UserSettingsVM.Instance.AnimeBytesUsername) && !string.IsNullOrEmpty(UserSettingsVM.Instance.AnimeBytesPassword))
+				{
+					onlyFullSites = true;
+					TorrentSourceVM src = new TorrentSourceVM(TorrentSourceType.AnimeBytes, true);
+					orderedSources.Add(src);
+				}
 			}
-			else
+
+			if (!onlyFullSites)
 			{
 				foreach (TorrentSourceVM src in UserSettingsVM.Instance.SelectedTorrentSources)
 				{
@@ -114,6 +129,13 @@ namespace JMMClient.Downloads
 					TorrentsBakaBT bakaBT = new TorrentsBakaBT();
 					List<TorrentLinkVM> bbLinks = bakaBT.GetTorrents(parms);
 					links.AddRange(bbLinks);
+				}
+
+				if (src.TorrentSource == TorrentSourceType.AnimeBytes)
+				{
+					TorrentsAnimeBytes abytes = new TorrentsAnimeBytes();
+					List<TorrentLinkVM> abytesLinks = abytes.GetTorrents(parms);
+					links.AddRange(abytesLinks);
 				}
 
 				if (src.TorrentSource == TorrentSourceType.TokyoToshokanAll || src.TorrentSource == TorrentSourceType.TokyoToshokanAnime)

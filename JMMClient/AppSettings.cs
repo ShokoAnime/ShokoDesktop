@@ -1684,7 +1684,7 @@ namespace JMMClient
 				// just in case the user has manually edited the config, or is using an old config
 				string[] sources = val.Split(';');
 				bool invalidSource = false;
-				int maxEnum = 5;
+				int maxEnum = 6;
 				foreach (string src in sources)
 				{
 					int iSrc = 0;
@@ -1774,6 +1774,66 @@ namespace JMMClient
 			set
 			{
 				UpdateSetting("BakaBTOnlyUseForSeriesSearches", value.ToString());
+			}
+		}
+
+		public static string AnimeBytesUsername
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+
+				string val = appSettings["AnimeBytesUsername"];
+				if (string.IsNullOrEmpty(val))
+				{
+					// default value
+					val = "";
+					UpdateSetting("AnimeBytesUsername", val);
+				}
+				return val;
+			}
+			set
+			{
+				UpdateSetting("AnimeBytesUsername", value);
+			}
+		}
+
+		public static string AnimeBytesPassword
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+
+				string val = appSettings["AnimeBytesPassword"];
+				if (string.IsNullOrEmpty(val))
+				{
+					// default value
+					val = "";
+					UpdateSetting("AnimeBytesPassword", val);
+				}
+				return val;
+			}
+			set
+			{
+				UpdateSetting("AnimeBytesPassword", value);
+			}
+		}
+
+		public static bool AnimeBytesOnlyUseForSeriesSearches
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["AnimeBytesOnlyUseForSeriesSearches"];
+				bool bval = false;
+				if (bool.TryParse(val, out bval))
+					return bval;
+				else
+					return true; // default value
+			}
+			set
+			{
+				UpdateSetting("AnimeBytesOnlyUseForSeriesSearches", value.ToString());
 			}
 		}
 
