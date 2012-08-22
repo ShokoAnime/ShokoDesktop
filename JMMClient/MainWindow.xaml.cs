@@ -389,6 +389,10 @@ namespace JMMClient
 				if (tempWidth > 0)
 					MainListHelperVM.Instance.PlaylistScrollerWidth = tempWidth;
 
+				tempWidth = tabcDownloads.ActualWidth - 130;
+				if (tempWidth > 0)
+					MainListHelperVM.Instance.DownloadRecScrollerWidth = tempWidth;
+
 
 			}
 			catch (Exception ex)

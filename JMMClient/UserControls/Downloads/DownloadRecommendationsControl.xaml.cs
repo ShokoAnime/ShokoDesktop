@@ -59,6 +59,7 @@ namespace JMMClient.UserControls
 			set { SetValue(StatusMessageProperty, value); }
 		}
 
+
 		public DownloadRecommendationsControl()
 		{
 			InitializeComponent();
@@ -73,6 +74,32 @@ namespace JMMClient.UserControls
 
 			getMissingDataWorker.DoWork += new DoWorkEventHandler(getMissingDataWorker_DoWork);
 			getMissingDataWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(getMissingDataWorker_RunWorkerCompleted);
+		}
+
+		private void CommandBinding_IgnoreAnimeDownload(object sender, ExecutedRoutedEventArgs e)
+		{
+			Window parentWindow = Window.GetWindow(this);
+
+			object obj = e.Parameter;
+			if (obj == null) return;
+
+			try
+			{
+				if (obj.GetType() == typeof(RecommendationVM))
+				{
+					RecommendationVM rec = obj as RecommendationVM;
+					if (rec == null) return;
+
+					JMMServerVM.Instance.clientBinaryHTTP.IgnoreAnime(rec.RecommendedAnimeID, (int)RecommendationType.Download,
+						JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+
+					RefreshData();
+				}
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
 		}
 
 		void btnGetRecDownloadMissingInfo_Click(object sender, RoutedEventArgs e)

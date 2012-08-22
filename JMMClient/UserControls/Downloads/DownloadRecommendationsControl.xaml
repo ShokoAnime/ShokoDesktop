@@ -14,6 +14,8 @@
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
+            <RoutedUICommand x:Key="IgnoreAnimeDownloadCommand" Text="IgnoreAnimeDownloadCommand" />
+
             <!-- RecDownloadTemplate -->
             <DataTemplate x:Key="RecDownloadTemplate">
                 <Grid Margin="10" VerticalAlignment="Top">
@@ -47,7 +49,7 @@
 
                                 <!-- ignore anime button -->
                                 <Button Margin="5,0,0,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center"
-                                    Command="{DynamicResource IgnoreAnimeDownloadCommand}" CommandParameter="{Binding}">
+                                    Command="{StaticResource IgnoreAnimeDownloadCommand}" CommandParameter="{Binding}">
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                         <Image Height="16" Width="16" Source="/Images/32_cancel.png" Margin="1,0,1,0" ToolTipService.ShowDuration="60000">
                                             <Image.ToolTip>
@@ -194,6 +196,7 @@
     </UserControl.Resources>
 
     <UserControl.CommandBindings>
+        <CommandBinding Command="{StaticResource IgnoreAnimeDownloadCommand}" Executed="CommandBinding_IgnoreAnimeDownload" />
     </UserControl.CommandBindings>
 
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Name="ScrollerDownloadRecs" Grid.Column="0" Grid.Row="0" Margin="0,0,0,0">
@@ -268,7 +271,7 @@
                         </Border>
 
                         <ListBox Name="lblRecs" BorderThickness="0" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch"  Margin="0" 
-                    VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
+                    VirtualizingStackPanel.IsVirtualizing="False" ScrollViewer.CanContentScroll="True"
                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                     ItemTemplate="{StaticResource RecDownloadTemplate}"
                     ItemsSource="{Binding Path=ViewRecs, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DownloadRecommendationsControl}}}" 

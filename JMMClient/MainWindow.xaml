@@ -1423,7 +1423,7 @@
                     </TabItem>
 
                     <TabItem Header="Recommendations" Name="tabRecommendations">
-                        <usercontrols:DownloadRecommendationsControl/>
+                        <usercontrols:DownloadRecommendationsControl Width="{Binding Source={x:Static local:MainListHelperVM.Instance},Path=DownloadRecScrollerWidth}"/>
 
                     </TabItem>
 

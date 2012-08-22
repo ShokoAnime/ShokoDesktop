@@ -131,6 +131,17 @@ namespace JMMClient
 			}
 		}
 
+		private double downloadRecScrollerWidth = 10;
+		public double DownloadRecScrollerWidth
+		{
+			get { return downloadRecScrollerWidth; }
+			set
+			{
+				downloadRecScrollerWidth = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("DownloadRecScrollerWidth"));
+			}
+		}
+
 		private double mainScrollerWidth = 10;
 		public double MainScrollerWidth
 		{
