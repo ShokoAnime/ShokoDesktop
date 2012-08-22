@@ -69,6 +69,85 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_AniDBReleaseGroup" nillable="true" type="tns:Contract_AniDBReleaseGroup" />
+  <xs:complexType name="ArrayOfContract_VideoDetailed">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_VideoDetailed" nillable="true" type="tns:Contract_VideoDetailed" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_VideoDetailed" nillable="true" type="tns:ArrayOfContract_VideoDetailed" />
+  <xs:complexType name="Contract_VideoDetailed">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AniDB_AnimeID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="AniDB_Anime_GroupName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AniDB_Anime_GroupNameShort" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AniDB_CRC" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AniDB_Episode_Rating" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="AniDB_Episode_Votes" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="AniDB_FileID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="AniDB_File_AudioCodec" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AniDB_File_Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AniDB_File_FileExtension" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AniDB_File_FileVersion" type="xs:int" />
+      <xs:element minOccurs="0" name="AniDB_File_InternalVersion" type="xs:int" />
+      <xs:element minOccurs="0" name="AniDB_File_IsCensored" type="xs:int" />
+      <xs:element minOccurs="0" name="AniDB_File_IsDeprecated" type="xs:int" />
+      <xs:element minOccurs="0" name="AniDB_File_LengthSeconds" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="AniDB_File_ReleaseDate" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="AniDB_File_Source" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AniDB_File_VideoCodec" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AniDB_File_VideoResolution" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AniDB_GroupID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="AniDB_MD5" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AniDB_SHA1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AnimeEpisodeID" type="xs:int" />
+      <xs:element minOccurs="0" name="CrossRefSource" type="xs:int" />
+      <xs:element minOccurs="0" name="EpisodeOrder" type="xs:int" />
+      <xs:element minOccurs="0" name="ImportFolderID" type="xs:int" />
+      <xs:element minOccurs="0" name="ImportFolderLocation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ImportFolderName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LanguagesAudio" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LanguagesSubtitle" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Percentage" type="xs:int" />
+      <xs:element minOccurs="0" name="ReleaseGroup" nillable="true" type="tns:Contract_ReleaseGroup" />
+      <xs:element minOccurs="0" name="VideoInfo_AudioBitrate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VideoInfo_AudioCodec" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VideoInfo_Duration" type="xs:long" />
+      <xs:element minOccurs="0" name="VideoInfo_VideoBitDepth" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VideoInfo_VideoBitrate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VideoInfo_VideoCodec" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VideoInfo_VideoFrameRate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VideoInfo_VideoInfoID" type="xs:int" />
+      <xs:element minOccurs="0" name="VideoInfo_VideoResolution" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VideoLocalID" type="xs:int" />
+      <xs:element minOccurs="0" name="VideoLocal_CRC32" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VideoLocal_FilePath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VideoLocal_FileSize" type="xs:long" />
+      <xs:element minOccurs="0" name="VideoLocal_Hash" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VideoLocal_HashSource" type="xs:int" />
+      <xs:element minOccurs="0" name="VideoLocal_IsIgnored" type="xs:int" />
+      <xs:element minOccurs="0" name="VideoLocal_IsWatched" type="xs:int" />
+      <xs:element minOccurs="0" name="VideoLocal_MD5" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VideoLocal_SHA1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VideoLocal_WatchedDate" nillable="true" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_VideoDetailed" nillable="true" type="tns:Contract_VideoDetailed" />
+  <xs:complexType name="Contract_ReleaseGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AnimeCount" type="xs:int" />
+      <xs:element minOccurs="0" name="FileCount" type="xs:int" />
+      <xs:element minOccurs="0" name="GroupID" type="xs:int" />
+      <xs:element minOccurs="0" name="GroupName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GroupNameShort" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IRCChannel" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IRCServer" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Picname" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Rating" type="xs:int" />
+      <xs:element minOccurs="0" name="URL" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Votes" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_ReleaseGroup" nillable="true" type="tns:Contract_ReleaseGroup" />
   <xs:complexType name="Contract_BookmarkedAnime">
     <xs:sequence>
       <xs:element minOccurs="0" name="Anime" nillable="true" type="tns:Contract_AniDBAnime" />
@@ -1052,85 +1131,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_GroupVideoQuality" nillable="true" type="tns:Contract_GroupVideoQuality" />
-  <xs:complexType name="ArrayOfContract_VideoDetailed">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_VideoDetailed" nillable="true" type="tns:Contract_VideoDetailed" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_VideoDetailed" nillable="true" type="tns:ArrayOfContract_VideoDetailed" />
-  <xs:complexType name="Contract_VideoDetailed">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="AniDB_AnimeID" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="AniDB_Anime_GroupName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="AniDB_Anime_GroupNameShort" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="AniDB_CRC" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="AniDB_Episode_Rating" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="AniDB_Episode_Votes" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="AniDB_FileID" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="AniDB_File_AudioCodec" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="AniDB_File_Description" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="AniDB_File_FileExtension" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="AniDB_File_FileVersion" type="xs:int" />
-      <xs:element minOccurs="0" name="AniDB_File_InternalVersion" type="xs:int" />
-      <xs:element minOccurs="0" name="AniDB_File_IsCensored" type="xs:int" />
-      <xs:element minOccurs="0" name="AniDB_File_IsDeprecated" type="xs:int" />
-      <xs:element minOccurs="0" name="AniDB_File_LengthSeconds" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="AniDB_File_ReleaseDate" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="AniDB_File_Source" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="AniDB_File_VideoCodec" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="AniDB_File_VideoResolution" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="AniDB_GroupID" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="AniDB_MD5" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="AniDB_SHA1" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="AnimeEpisodeID" type="xs:int" />
-      <xs:element minOccurs="0" name="CrossRefSource" type="xs:int" />
-      <xs:element minOccurs="0" name="EpisodeOrder" type="xs:int" />
-      <xs:element minOccurs="0" name="ImportFolderID" type="xs:int" />
-      <xs:element minOccurs="0" name="ImportFolderLocation" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ImportFolderName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="LanguagesAudio" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="LanguagesSubtitle" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Percentage" type="xs:int" />
-      <xs:element minOccurs="0" name="ReleaseGroup" nillable="true" type="tns:Contract_ReleaseGroup" />
-      <xs:element minOccurs="0" name="VideoInfo_AudioBitrate" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="VideoInfo_AudioCodec" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="VideoInfo_Duration" type="xs:long" />
-      <xs:element minOccurs="0" name="VideoInfo_VideoBitDepth" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="VideoInfo_VideoBitrate" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="VideoInfo_VideoCodec" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="VideoInfo_VideoFrameRate" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="VideoInfo_VideoInfoID" type="xs:int" />
-      <xs:element minOccurs="0" name="VideoInfo_VideoResolution" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="VideoLocalID" type="xs:int" />
-      <xs:element minOccurs="0" name="VideoLocal_CRC32" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="VideoLocal_FilePath" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="VideoLocal_FileSize" type="xs:long" />
-      <xs:element minOccurs="0" name="VideoLocal_Hash" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="VideoLocal_HashSource" type="xs:int" />
-      <xs:element minOccurs="0" name="VideoLocal_IsIgnored" type="xs:int" />
-      <xs:element minOccurs="0" name="VideoLocal_IsWatched" type="xs:int" />
-      <xs:element minOccurs="0" name="VideoLocal_MD5" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="VideoLocal_SHA1" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="VideoLocal_WatchedDate" nillable="true" type="xs:dateTime" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_VideoDetailed" nillable="true" type="tns:Contract_VideoDetailed" />
-  <xs:complexType name="Contract_ReleaseGroup">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="AnimeCount" type="xs:int" />
-      <xs:element minOccurs="0" name="FileCount" type="xs:int" />
-      <xs:element minOccurs="0" name="GroupID" type="xs:int" />
-      <xs:element minOccurs="0" name="GroupName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="GroupNameShort" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="IRCChannel" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="IRCServer" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Picname" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Rating" type="xs:int" />
-      <xs:element minOccurs="0" name="URL" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Votes" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_ReleaseGroup" nillable="true" type="tns:Contract_ReleaseGroup" />
   <xs:complexType name="Contract_AniDB_AnimeCrossRefs">
     <xs:sequence>
       <xs:element minOccurs="0" name="AnimeID" type="xs:int" />

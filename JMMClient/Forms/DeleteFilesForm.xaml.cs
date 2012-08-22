@@ -57,6 +57,33 @@ namespace JMMClient.Forms
 			set { SetValue(DeleteStatusProperty, value); }
 		}
 
+		public static readonly DependencyProperty GroupFileSummaryProperty = DependencyProperty.Register("GroupFileSummary",
+			typeof(GroupFileSummaryVM), typeof(DeleteFilesForm), new UIPropertyMetadata(null, null));
+
+		public GroupFileSummaryVM GroupFileSummary
+		{
+			get { return (GroupFileSummaryVM)GetValue(GroupFileSummaryProperty); }
+			set { SetValue(GroupFileSummaryProperty, value); }
+		}
+
+		public static readonly DependencyProperty SummaryTextProperty = DependencyProperty.Register("SummaryText",
+			typeof(string), typeof(DeleteFilesForm), new UIPropertyMetadata("", null));
+
+		public string SummaryText
+		{
+			get { return (string)GetValue(SummaryTextProperty); }
+			set { SetValue(SummaryTextProperty, value); }
+		}
+
+		public static readonly DependencyProperty GroupNameProperty = DependencyProperty.Register("GroupName",
+			typeof(string), typeof(DeleteFilesForm), new UIPropertyMetadata("", null));
+
+		public string GroupName
+		{
+			get { return (string)GetValue(GroupNameProperty); }
+			set { SetValue(GroupNameProperty, value); }
+		}
+
 		private BackgroundWorker deleteFilesWorker = new BackgroundWorker();
 		public bool FilesDeleted { get; set; }
 		private bool inProgress = false;
@@ -128,12 +155,15 @@ namespace JMMClient.Forms
 				string msg = string.Format("Deleting file {0} of {1}", i, vids.Count);
 				deleteFilesWorker.ReportProgress(0, msg);
 				//Thread.Sleep(500);
+
 				string result = JMMServerVM.Instance.clientBinaryHTTP.DeleteVideoLocalAndFile(vid.VideoLocalID);
 				if (result.Length > 0)
 				{
 					deleteFilesWorker.ReportProgress(0, result);
 					return;
 				}
+
+				
 			}
 
 			deleteFilesWorker.ReportProgress(100, "Done!");
@@ -159,6 +189,44 @@ namespace JMMClient.Forms
 				}
 				FileCount = vids.Count;
 				lbFiles.ItemsSource = vids;
+
+				GroupName = GroupVideoQuality.GroupName;
+				SummaryText = string.Format("{0} - {1}", GroupVideoQuality.VideoSource, GroupVideoQuality.Resolution);
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+			finally
+			{
+				this.Cursor = Cursors.Arrow;
+			}
+
+		}
+
+		public void Init(int animeID, GroupFileSummaryVM gfs)
+		{
+			this.Cursor = Cursors.Wait;
+
+			GroupFileSummary = gfs;
+			AnimeID = animeID;
+
+			// get the videos
+			try
+			{
+				List<JMMServerBinary.Contract_VideoDetailed> vidContracts = JMMServerVM.Instance.clientBinaryHTTP.GetFilesByGroup(AnimeID,
+					GroupFileSummary.GroupName, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+				vids = new List<VideoDetailedVM>();
+				foreach (JMMServerBinary.Contract_VideoDetailed contract in vidContracts)
+				{
+					VideoDetailedVM vid = new VideoDetailedVM(contract);
+					vids.Add(vid);
+				}
+				FileCount = vids.Count;
+				lbFiles.ItemsSource = vids;
+
+				GroupName = GroupFileSummary.GroupName;
+				SummaryText = "";
 			}
 			catch (Exception ex)
 			{

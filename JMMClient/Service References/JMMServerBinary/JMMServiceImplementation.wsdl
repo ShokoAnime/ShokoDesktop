@@ -38,6 +38,12 @@
   <wsdl:message name="IJMMServer_GetAllUnwatchedEpisodes_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllUnwatchedEpisodesResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_GetFilesByGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFilesByGroup" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetFilesByGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFilesByGroupResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_SaveBookmarkedAnime_InputMessage">
     <wsdl:part name="parameters" element="tns:SaveBookmarkedAnime" />
   </wsdl:message>
@@ -1227,6 +1233,10 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllUnwatchedEpisodes" message="tns:IJMMServer_GetAllUnwatchedEpisodes_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllUnwatchedEpisodesResponse" message="tns:IJMMServer_GetAllUnwatchedEpisodes_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetFilesByGroup">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetFilesByGroup" message="tns:IJMMServer_GetFilesByGroup_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetFilesByGroupResponse" message="tns:IJMMServer_GetFilesByGroup_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="SaveBookmarkedAnime">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SaveBookmarkedAnime" message="tns:IJMMServer_SaveBookmarkedAnime_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SaveBookmarkedAnimeResponse" message="tns:IJMMServer_SaveBookmarkedAnime_OutputMessage" />
@@ -2035,6 +2045,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAllUnwatchedEpisodes">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllUnwatchedEpisodes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFilesByGroup">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetFilesByGroup" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

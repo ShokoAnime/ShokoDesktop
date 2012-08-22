@@ -281,6 +281,24 @@ namespace JMMClient.UserControls
 
 					this.Cursor = Cursors.Arrow;
 				}
+
+				if (obj.GetType() == typeof(GroupFileSummaryVM))
+				{
+					GroupFileSummaryVM gfs = (GroupFileSummaryVM)obj;
+
+					this.Cursor = Cursors.Wait;
+					DeleteFilesForm frm = new DeleteFilesForm();
+					frm.Owner = wdw;
+					frm.Init(anime.AnimeID, gfs);
+					bool? result = frm.ShowDialog();
+					if (result.Value)
+					{
+						// refresh
+						RefreshRecords();
+					}
+
+					this.Cursor = Cursors.Arrow;
+				}
 			}
 			catch (Exception ex)
 			{
