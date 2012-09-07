@@ -563,7 +563,7 @@ namespace JMMClient
 				if (tabIndex == TAB_MAIN_Playlists)
 				{
 					if (PlaylistHelperVM.Instance.Playlists == null || PlaylistHelperVM.Instance.Playlists.Count == 0) PlaylistHelperVM.Instance.RefreshData();
-					if (lbPlaylists.Items.Count > 0)
+					if (lbPlaylists.Items.Count > 0 && lbPlaylists.SelectedIndex < 0)
 						lbPlaylists.SelectedIndex = 0;
 
 				}

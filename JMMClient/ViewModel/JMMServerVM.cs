@@ -324,6 +324,7 @@ namespace JMMClient
 				Username = CurrentUser.Username;
 				IsAdminUser = CurrentUser.IsAdmin == 1;
 				UserAuthenticated = true;
+				SetShowServerSettings();
 
 				return true;
 			}
