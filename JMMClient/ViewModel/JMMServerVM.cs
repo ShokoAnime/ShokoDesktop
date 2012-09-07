@@ -313,10 +313,28 @@ namespace JMMClient
 			ShowServerSettings = ServerOnline && CurrentUser.CanEditSettings;
 		}
 
+		public bool LoginAsLastUser()
+		{
+			if (string.IsNullOrEmpty(AppSettings.LastLoginUsername)) return false;
+
+			JMMServerBinary.Contract_JMMUser retUser = JMMServerVM.Instance.clientBinaryHTTP.AuthenticateUser(AppSettings.LastLoginUsername, "");
+			if (retUser != null)
+			{
+				CurrentUser = new JMMUserVM(retUser);
+				Username = CurrentUser.Username;
+				IsAdminUser = CurrentUser.IsAdmin == 1;
+				UserAuthenticated = true;
+
+				return true;
+			}
+
+			return false;
+		}
+
 		public bool AuthenticateUser()
 		{
-			CurrentUser = null;
-			Username = "";
+			//CurrentUser = null;
+			//Username = "";
 
 			LoginForm frm = new LoginForm();
 
@@ -329,6 +347,7 @@ namespace JMMClient
 					CurrentUser = frm.ThisUser;
 					Username = CurrentUser.Username;
 					IsAdminUser = CurrentUser.IsAdmin == 1;
+					AppSettings.LastLoginUsername = CurrentUser.Username;
 				}
 			}
 			else

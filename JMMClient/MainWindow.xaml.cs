@@ -189,6 +189,8 @@ namespace JMMClient
 				postStartTimer.Interval = 5 * 1000; // 15 seconds
 				postStartTimer.Elapsed += new System.Timers.ElapsedEventHandler(postStartTimer_Elapsed);
 
+				btnSwitchUser.Click += new RoutedEventHandler(btnSwitchUser_Click);
+
 				//videoHandler.HandleFileChange(@"C:\Program Files (x86)\Combined Community Codec Pack\MPC\mpc-hc.ini");
 
 				MainWindow.videoHandler.VideoWatchedEvent += new VideoHandler.VideoWatchedEventHandler(videoHandler_VideoWatchedEvent);
@@ -196,6 +198,34 @@ namespace JMMClient
 			catch (Exception ex)
 			{
 				logger.ErrorException(ex.ToString(), ex);
+			}
+		}
+
+		void btnSwitchUser_Click(object sender, RoutedEventArgs e)
+		{
+			// authenticate user
+			if (JMMServerVM.Instance.ServerOnline)
+			{
+				if (JMMServerVM.Instance.AuthenticateUser())
+				{
+					MainListHelperVM.Instance.ClearData();
+					MainListHelperVM.Instance.ShowChildWrappers(null);
+
+					RecentAdditionsType addType = RecentAdditionsType.Episode;
+					if (dash.cboDashRecentAdditionsType.SelectedIndex == 0) addType = RecentAdditionsType.Episode;
+					if (dash.cboDashRecentAdditionsType.SelectedIndex == 1) addType = RecentAdditionsType.Series;
+
+					RefreshOptions opt = new RefreshOptions();
+					opt.TraktScrobbles = dash.togTraktScrobbles.IsChecked.Value;
+					opt.TraktShouts = dash.togTraktShouts.IsChecked.Value;
+					opt.RecentAdditionType = addType;
+					opt.RefreshRecentAdditions = true;
+					opt.RefreshContinueWatching = true;
+					opt.RefreshOtherWidgets = true;
+					showDashboardWorker.RunWorkerAsync(opt);
+
+					tabControl1.SelectedIndex = TAB_MAIN_Dashboard;
+				}
 			}
 		}
 
@@ -315,11 +345,18 @@ namespace JMMClient
 			// validate settings
 			JMMServerVM.Instance.Test();
 
-			// authenticate user
-			if (JMMServerVM.Instance.ServerOnline && !JMMServerVM.Instance.AuthenticateUser())
+			bool loggedIn = false;
+			if (JMMServerVM.Instance.ServerOnline)
+				loggedIn = JMMServerVM.Instance.LoginAsLastUser();
+
+			if (!loggedIn)
 			{
-				this.Close();
-				return;
+				// authenticate user
+				if (JMMServerVM.Instance.ServerOnline && !JMMServerVM.Instance.AuthenticateUser())
+				{
+					this.Close();
+					return;
+				}
 			}
 
 			if (JMMServerVM.Instance.ServerOnline)

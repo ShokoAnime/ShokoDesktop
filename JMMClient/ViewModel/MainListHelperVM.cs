@@ -660,6 +660,17 @@ namespace JMMClient
 			}
 		}
 
+		public void ClearData()
+		{
+			AllGroups.Clear();
+			AllSeries.Clear();
+			AllGroupsDictionary.Clear();
+			AllSeriesDictionary.Clear();
+			AllAnimeDictionary.Clear();
+
+			ViewSeriesSearch.Refresh();
+		}
+
 		public void RefreshGroupsSeriesData()
 		{
 			//LoadTestData();

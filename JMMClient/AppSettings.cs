@@ -2080,6 +2080,27 @@ namespace JMMClient
 			}
 		}
 
+		public static string LastLoginUsername
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+
+				string val = appSettings["LastLoginUsername"];
+				if (string.IsNullOrEmpty(val))
+				{
+					// default value
+					val = "";
+					UpdateSetting("LastLoginUsername", val);
+				}
+				return val;
+			}
+			set
+			{
+				UpdateSetting("LastLoginUsername", value);
+			}
+		}
+
 		public static void DebugSettingsToLog()
 		{
 			#region System Info
