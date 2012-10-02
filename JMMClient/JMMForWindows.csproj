@@ -95,12 +95,45 @@
     <Reference Include="AutomaticUpdaterWPF">
       <HintPath>..\..\..\..\..\..\Program Files (x86)\wyBuild\AutomaticUpdater\Microsoft .NET 4.0\AutomaticUpdaterWPF.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.Data.v12.1, Version=12.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.PivotGrid.v12.1.Core, Version=12.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Core.v12.1, Version=12.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Core.v12.1.Extensions, Version=12.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Grid.v12.1, Version=12.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Grid.v12.1.Core, Version=12.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Layout.v12.1.Core, Version=12.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.LayoutControl.v12.1, Version=12.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.PivotGrid.v12.1, Version=12.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="GongSolutions.Wpf.DragDrop">
       <HintPath>..\Dependencies\GongSolutions.Wpf.DragDrop.dll</HintPath>
     </Reference>
     <Reference Include="Infralution.Localization.Wpf, Version=2.1.1.0, Culture=neutral, PublicKeyToken=547ccae517a004b5, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\Infralution.Localization.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro">
+      <HintPath>..\Dependencies\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro.Resources">
+      <HintPath>..\Dependencies\MahApps.Metro.Resources.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -140,6 +173,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BindableObject.cs" />
     <Compile Include="DataTemplateSelectors\BreadCrumbTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\DashRecentAdditionsTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\DashWatchNextTemplateSelector.cs" />
@@ -262,9 +296,16 @@
     <Compile Include="ImageDownload\BlockingList.cs" />
     <Compile Include="ImageDownload\ImageDownloader.cs" />
     <Compile Include="ImageDownload\ImageDownloadRequest.cs" />
+    <Compile Include="ImageSourceHelper.cs" />
     <Compile Include="Languages.cs" />
     <Compile Include="MainListWrapper.cs" />
     <Compile Include="DataTemplateSelectors\MainListTemplateSelector.cs" />
+    <Compile Include="Metro\ContinueWatchingTile.cs" />
+    <Compile Include="Metro\NavContainer.cs" />
+    <Compile Include="Metro\RandomSeriesTile.cs" />
+    <Compile Include="Metro\RecommendationTile.cs" />
+    <Compile Include="Metro\TraktActivityTile.cs" />
+    <Compile Include="Metro\TraktShoutTile.cs" />
     <Compile Include="MoveSeriesDetails.cs" />
     <Compile Include="MultiSortLib\MultiSort.cs" />
     <Compile Include="MultiSortLib\SortSearchCriteria.cs" />
@@ -280,6 +321,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="StringFormatConverter.cs" />
     <Compile Include="UnhandledExceptionManager.cs" />
     <Compile Include="UriToImageConverter.cs" />
     <Compile Include="UserControls\AnimeFileSummaryControl.xaml.cs">
@@ -307,8 +349,14 @@
       <DependentUpon>Categories.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\CloseableTabItem.cs" />
+    <Compile Include="UserControls\ContinueWatchingTileControl.xaml.cs">
+      <DependentUpon>ContinueWatchingTileControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\DashboardControl.xaml.cs">
       <DependentUpon>DashboardControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\DashboardMetroDXControl.xaml.cs">
+      <DependentUpon>DashboardMetroDXControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Downloads\DownloadRecommendationsControl.xaml.cs">
       <DependentUpon>DownloadRecommendationsControl.xaml</DependentUpon>
@@ -503,6 +551,7 @@
     </Compile>
     <Compile Include="UserCulture.cs" />
     <Compile Include="Utilities\DragAndDrop.cs" />
+    <Compile Include="Utilities\ImageAsyncHelper.cs" />
     <Compile Include="Utilities\MPCHelper.cs" />
     <Compile Include="Utilities\MultiSort.cs" />
     <Compile Include="Utilities\RenameHelper.cs" />
@@ -540,6 +589,7 @@
     <Compile Include="ViewModel\CrossRef_AniDB_TvDBEpisodeVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_TvDBResultVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_TvDBVM.cs" />
+    <Compile Include="ViewModel\DashboardMetroVM.cs" />
     <Compile Include="ViewModel\DashboardVM.cs" />
     <Compile Include="ViewModel\DuplicateFileVM.cs" />
     <Compile Include="ViewModel\ExternalSiteLink.cs" />
@@ -789,7 +839,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\ContinueWatchingTileControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\DashboardControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\DashboardMetroDXControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1753,10 +1811,35 @@
     <Resource Include="Images\32_play2.png" />
     <Resource Include="Images\32_play2_all.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\metro_Back.png" />
+    <Resource Include="Images\metro_Next.png" />
+    <Resource Include="Images\metro_Prev.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Backgrounds\shattered.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Backgrounds\subtlenet2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\vote_down.png" />
+    <Resource Include="Images\vote_down2.png" />
+    <Resource Include="Images\vote_up.png" />
+    <Resource Include="Images\vote_up2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\blankfanart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\trakt_logo.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>xcopy "$(TargetDir)*.dll" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y	
+xcopy "$(TargetDir)*.exe" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y
+xcopy "$(TargetDir)*.pdb" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y
+xcopy "$(TargetDir)*.manifest" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

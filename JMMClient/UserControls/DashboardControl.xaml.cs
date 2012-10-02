@@ -279,12 +279,26 @@ namespace JMMClient.UserControls
 			togTraktShouts.Click += new RoutedEventHandler(togTraktShouts_Click);
 
 			MainWindow.videoHandler.VideoWatchedEvent += new Utilities.VideoHandler.VideoWatchedEventHandler(videoHandler_VideoWatchedEvent);
+
+			btnToggleDash.Click += new RoutedEventHandler(btnToggleDash_Click);
+		}
+
+		void btnToggleDash_Click(object sender, RoutedEventArgs e)
+		{
+			MainWindow mainwdw = (MainWindow)Window.GetWindow(this);
+			mainwdw.ShowDashMetroView(MetroViews.MainMetro);
 		}
 
 		void videoHandler_VideoWatchedEvent(Utilities.VideoWatchedEventArgs ev)
 		{
-			if (MainWindow.CurrentMainTabIndex == MainWindow.TAB_MAIN_Dashboard)
-				RefreshData(true, false, false);
+			try
+			{
+				MainWindow mainwdw = (MainWindow)Window.GetWindow(this);
+
+				if (MainWindow.CurrentMainTabIndex == MainWindow.TAB_MAIN_Dashboard && mainwdw.dash.Visibility == System.Windows.Visibility.Visible)
+					RefreshData(true, false, false);
+			}
+			catch { }
 		}
 
 

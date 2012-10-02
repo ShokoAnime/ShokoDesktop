@@ -493,6 +493,29 @@ namespace JMMClient
 			return allFanart;
 		}
 
+		private List<string> GetFanartFilenamesPreferThumb()
+		{
+			List<string> allFanart = new List<string>();
+
+			// check if user has specied a fanart to always be used
+			if (DefaultFanart != null)
+			{
+				allFanart.Add(DefaultFanart.FullThumbnailPath);
+				return allFanart;
+			}
+
+			//if (anime.AniDB_AnimeCrossRefs != nul
+			foreach (FanartContainer fanart in AniDB_AnimeCrossRefs.AllFanarts)
+			{
+				if (!fanart.IsImageEnabled) continue;
+
+				allFanart.Add(fanart.FullThumbnailPath);
+			}
+
+
+			return allFanart;
+		}
+
 		public bool UseFanartOnSeries
 		{
 			get
@@ -570,6 +593,25 @@ namespace JMMClient
 			get
 			{
 				List<string> allFanarts = GetFanartFilenames();
+				string fanartName = "";
+				if (allFanarts.Count > 0)
+				{
+					fanartName = allFanarts[fanartRandom.Next(0, allFanarts.Count)];
+				}
+
+				if (!String.IsNullOrEmpty(fanartName))
+					return fanartName;
+
+
+				return "";
+			}
+		}
+
+		public string FanartPathPreferThumb
+		{
+			get
+			{
+				List<string> allFanarts = GetFanartFilenamesPreferThumb();
 				string fanartName = "";
 				if (allFanarts.Count > 0)
 				{

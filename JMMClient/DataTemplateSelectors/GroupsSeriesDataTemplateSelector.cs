@@ -26,6 +26,7 @@ namespace JMMClient
 				if (item.GetType() == typeof(AnimeSeriesVM))
 				{
 					return element.FindResource("seriesDetailTemplate") as DataTemplate;
+					//return element.FindResource("seriesDetailHuluTemplate") as DataTemplate;
 				}
 				if (item.GetType() == typeof(AnimeEpisodeVM))
 				{

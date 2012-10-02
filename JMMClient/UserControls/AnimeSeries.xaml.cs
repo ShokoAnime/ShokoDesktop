@@ -165,7 +165,6 @@ namespace JMMClient.UserControls
 			btnAnimeGroupShow.Click += new RoutedEventHandler(btnAnimeGroupShow_Click);
 			btnFileSummary.Click += new RoutedEventHandler(btnFileSummary_Click);
 			btnTvDBLinks.Click += new RoutedEventHandler(btnTvDBLinks_Click);
-			//btnPlayNextEpisode.Click += new RoutedEventHandler(btnPlayNextEpisode_Click);
 			btnGetRelMissingInfo.Click += new RoutedEventHandler(btnGetRelMissingInfo_Click);
 			btnGetSimMissingInfo.Click += new RoutedEventHandler(btnGetSimMissingInfo_Click);
 

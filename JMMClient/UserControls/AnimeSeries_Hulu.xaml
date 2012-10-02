@@ -254,14 +254,29 @@
                             </Grid.ColumnDefinitions>
 
                             <!-- Fanart Image -->
-                            <Border BorderBrush="Black" Margin="7" BorderThickness="3" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0"
-                                Grid.ColumnSpan="2" Grid.RowSpan="5">
+                            <Border BorderBrush="Black" Margin="7" BorderThickness="0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0"
+                                Grid.ColumnSpan="3" Grid.RowSpan="1">
                                 <Image Height="250" Source="{Binding Path=AniDB_Anime.FanartPathThenPosterPath}"/>
                             </Border>
 
 
                             <!-- Fave button and series names-->
-                            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="2" Margin="0,10,0,0">
+                            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Margin="0,10,0,0">
+
+                                
+
+                                
+
+
+                            </StackPanel>
+
+                            
+
+                        </Grid>
+
+                        <!-- Second Toolbar -->
+                        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Padding="6" Background="#F1F1F1">
+                            <StackPanel Orientation="Horizontal">
 
                                 <Button Name="btnToggleFave2" Margin="1,1,1,1" Style="{DynamicResource FlatButtonStyle}" Command="{DynamicResource ToggleFaveCommand}" CommandParameter="{Binding}"
                         Visibility="{Binding Path=IsFave, Converter={StaticResource BooleanToVisibilityConverter}}" VerticalAlignment="Top">
@@ -275,20 +290,11 @@
                                         <Image Source="/Images/16_blankstar.png" Margin="0,0,3,0" Height="20" Width="20" Canvas.Left="0" Canvas.Top="0"/>
                                     </Canvas>
                                 </Button>
+                                
+                                <usercontrols:ExternalAnimeLinksControl x:Name="ucExternalLinks" VerticalAlignment="Center" LinkType="1" Margin="10,0,0,0"  />
 
                                 <TextBlock VerticalAlignment="Top" Text="{Binding Path=SeriesName}" FontWeight="Bold" FontSize="18" Margin="5,3,0,0" />
-
-
                             </StackPanel>
-
-                            
-
-                        </Grid>
-
-                        <!-- Second Toolbar -->
-                        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Padding="6" Background="#F1F1F1">
-
-                            <usercontrols:ExternalAnimeLinksControl x:Name="ucExternalLinks" VerticalAlignment="Center" LinkType="1"  />
                         </Border>
 
                         <!-- Play Next Episode -->

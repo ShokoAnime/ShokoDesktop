@@ -23,7 +23,7 @@
 
     </UserControl.Resources>
 
-    <Grid Margin="0,5,5,5">
+    <Grid Margin="0,5,10,5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
@@ -34,7 +34,7 @@
 
         </Grid.RowDefinitions>
 
-        <Border BorderThickness="1" BorderBrush="DarkGray" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" CornerRadius="8,8,0,0" Background="Cornsilk">
+        <Border BorderThickness="1,1,1,0" BorderBrush="DarkGray" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" CornerRadius="0" Background="White" Padding="5">
 
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                 <TextBlock  Text="{Binding Path=SeriesNameTruncated}" FontWeight="Bold" Foreground="Black" VerticalAlignment="Center"
@@ -54,7 +54,7 @@
             </StackPanel>
         </Border>
 
-        <Border BorderThickness="1,0,0,1" BorderBrush="DarkGray" Grid.Row="1" Grid.Column="0" >
+        <Border BorderThickness="1,0,0,1" BorderBrush="DarkGray" Grid.Row="1" Grid.Column="0" Background="White" Padding="5">
             <Image Name="imgPoster" Margin="3,3,5,3" Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=DisplayHeight_SeriesInfo}" 
                    MaxWidth="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=DisplayHeight_SeriesInfo}" HorizontalAlignment="Left" VerticalAlignment="Top"
                     Source="{Binding Path=PosterPath, Converter={StaticResource LocalUriToImageConverter}}">
@@ -66,7 +66,7 @@
             </Image>
         </Border>
 
-        <Border BorderThickness="0,0,1,1" BorderBrush="DarkGray" Grid.Row="1" Grid.Column="1" Padding="3" >
+        <Border BorderThickness="0,0,1,1" BorderBrush="DarkGray" Grid.Row="1" Grid.Column="1" Padding="5" Background="White" >
             <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
                 <!--Years-->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0">

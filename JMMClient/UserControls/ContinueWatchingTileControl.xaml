@@ -1,0 +1,520 @@
+﻿<UserControl x:Class="JMMClient.UserControls.ContinueWatchingTileControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:JMMClient"
+             xmlns:extToolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
+             xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
+             xmlns:MahMetro="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:MahMetroShared="http://metro.mahapps.com/winfx/xaml/shared"
+            mc:Ignorable="d"
+            d:DesignHeight="800" d:DesignWidth="1000">
+
+    <UserControl.Resources>
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colours.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <RoutedUICommand x:Key="PlayEpisodeCommand" Text="PlayEpisodeCommand" />
+            <RoutedUICommand x:Key="PlayAllUnwatchedEpisodeCommand" Text="PlayAllUnwatchedEpisodeCommand" />
+            <RoutedUICommand x:Key="ToggleWatchedStatusCommand" Text="ToggleWatchedStatusCommand" />
+
+            <RoutedUICommand x:Key="VoteUpCommand" Text="VoteUpCommand" />
+            <RoutedUICommand x:Key="VoteDownCommand" Text="VoteDownCommand" />
+            <RoutedUICommand x:Key="RecDetailsCommand" Text="RecDetailsCommand" />
+
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+
+            <LinearGradientBrush x:Key="DarkBackground" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0" Color="#FF333344"></GradientStop>
+                <GradientStop Offset="1" Color="#FF666677"></GradientStop>
+            </LinearGradientBrush>
+
+            <RadialGradientBrush x:Key="GlowFX" GradientOrigin=".5,1" Center=".5,1">
+                <GradientStop Offset="0" Color="#990000FF"></GradientStop>
+                <GradientStop Offset=".5" Color="#660000DD"></GradientStop>
+                <GradientStop Offset="1" Color="#33000000"></GradientStop>
+            </RadialGradientBrush>
+
+            <!-- AnimeEpisodePoster2 -->
+            <DataTemplate x:Key="AnimeEpisodePoster2">
+                <Border Background="White" BorderBrush="DarkGray" BorderThickness="1" Margin="0,10,10,10">
+                    <Grid Margin="10" VerticalAlignment="Top">
+
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <!-- Episode Image  -->
+                        <Border BorderThickness="1" BorderBrush="DarkGray" Grid.Column="0" Grid.Row="0" Margin="5">
+
+                            <Image Source="{Binding EpisodeImageLoading}" ToolTipService.ShowDuration="60000"
+                               Width="200" VerticalAlignment="Top" HorizontalAlignment="Left">
+                                <Image.ToolTip>
+                                    <Border Background="White" BorderThickness="1" BorderBrush="DarkGray">
+                                        <Grid >
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="260"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition />
+                                            </Grid.RowDefinitions>
+
+                                            <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding EpisodeOverviewLoading}" HorizontalAlignment="Left" Margin="10,5,0,5"  Foreground="Black" 
+                                                   VerticalAlignment="Top"  TextWrapping="Wrap">
+                                            </TextBlock>
+                                        </Grid>
+                                    </Border>
+                                </Image.ToolTip>
+                            </Image>
+
+
+                        </Border>
+
+                        <StackPanel Grid.Column="0" Grid.Row="0" Margin="5" Orientation="Horizontal"  HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                            <!-- Toggle watched button -->
+                            <Button Name="btnToggleWatched" Margin="0,0,0,0" Style="{StaticResource FlatButtonStyle}" VerticalAlignment="Center"
+                            Command="{StaticResource ToggleWatchedStatusCommand}" CommandParameter="{Binding}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="24" Width="24" Source="/Images/16_eye2.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000">
+                                        <Image.ToolTip>
+                                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_Unwatched}"/>
+                                        </Image.ToolTip>
+                                    </Image>
+
+                                </StackPanel>
+                            </Button>
+
+                            <!-- Play episode button -->
+                            <Button Name="btnPlay" Margin="10,0,0,0" Style="{StaticResource FlatButtonStyle}" Command="{StaticResource PlayEpisodeCommand}" CommandParameter="{Binding}"
+                            VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="24" Width="24" Source="/Images/32_play2.png" Margin="0,0,0,0"/>
+                                </StackPanel>
+                                <Button.ToolTip>
+                                    <TextBlock Text="Play"/>
+                                </Button.ToolTip>
+                            </Button>
+                        </StackPanel>
+
+                        <TextBlock Grid.Column="0" Grid.Row="1" Margin="5" Text="{Binding Path=EpisodeNumberWithType}" FontSize="14" FontWeight="Bold"
+                                   Foreground="Black" VerticalAlignment="Center">
+                        </TextBlock>
+
+                        <TextBlock Grid.Column="0" Grid.Row="2" Margin="5" Text="{Binding Path=EpisodeName}" Width="200"
+                                   Foreground="Black" VerticalAlignment="Center" ToolTipService.ShowDuration="60000">
+                                <TextBlock.ToolTip>
+                                    <TextBlock Text="{Binding Path=EpisodeName}"/>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+
+
+                    </Grid>
+                </Border>
+            </DataTemplate>
+
+            <!-- RecommendationTemplate -->
+            <DataTemplate x:Key="RecommendationTemplate">
+                <Border BorderBrush="DarkGray" BorderThickness="1" Margin="0,10,10,10">
+                    <Border.Style>
+                        <Style TargetType="{x:Type Border}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding HasSeries}" Value="True">
+                                    <Setter Property="Background" Value="White"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding HasSeries}" Value="False">
+                                    <Setter Property="Background" Value="White"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <Grid Margin="10" VerticalAlignment="Top">
+
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <!-- Image  -->
+                        <Border BorderThickness="1" BorderBrush="DarkGray" Grid.Column="0" Grid.Row="0" Margin="5">
+
+                            <Image Source="{Binding Picture}" ToolTipService.ShowDuration="60000"
+                               Height="150" VerticalAlignment="Top" HorizontalAlignment="Left">
+                                <Image.ToolTip>
+                                    <Border Background="White" BorderThickness="1" BorderBrush="DarkGray">
+                                        <Grid >
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="300"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition />
+                                            </Grid.RowDefinitions>
+
+                                            <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding EpisodeOverviewLoading}" HorizontalAlignment="Left" Margin="10,5,0,5"  Foreground="Black" 
+                                                   VerticalAlignment="Top"  TextWrapping="Wrap">
+                                            </TextBlock>
+                                        </Grid>
+                                    </Border>
+                                </Image.ToolTip>
+                            </Image>
+
+
+                        </Border>
+
+                        <TextBlock Grid.Column="0" Grid.Row="1" Margin="5" Text="{Binding Path=AnimeName}" FontSize="14" FontWeight="Bold" Grid.ColumnSpan="2"
+                                   Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Left" MaxWidth="200">
+                        </TextBlock>
+
+                        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2" Margin="5,2,5,5" Grid.ColumnSpan="2" HorizontalAlignment="Left">
+                            <TextBlock Text="From " FontSize="12" Foreground="DarkGray" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding Path=Source}" FontSize="14" Foreground="DarkGray" VerticalAlignment="Center" Margin="3,0,0,0" FontWeight="Bold"/>
+                            <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="5,0,0,0" VerticalAlignment="Center"
+                                   Visibility="{Binding Path=HasSeries, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <Image.ToolTip>
+                                    <TextBlock Text="You Have this Anime in your collection"/>
+                                </Image.ToolTip>
+                            </Image>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="3" Margin="5,2,5,5" Grid.ColumnSpan="2">
+                            <!-- vote up -->
+                            <Button Margin="0" VerticalAlignment="Center" Command="{StaticResource VoteUpCommand}" CommandParameter="{Binding}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="24" Width="24" Source="/Images/vote_up2.png" Margin="2,0,2,0" VerticalAlignment="Center">
+                                        <Image.ToolTip>
+                                            <TextBlock Text="Vote Up"/>
+                                        </Image.ToolTip>
+                                    </Image>
+                                </StackPanel>
+                            </Button>
+
+                            <!-- vote down -->
+                            <Button Margin="10,0,0,0" VerticalAlignment="Center" Command="{StaticResource VoteDownCommand}" CommandParameter="{Binding}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="24" Width="24" Source="/Images/vote_down2.png" Margin="2,0,2,0" VerticalAlignment="Center">
+                                        <Image.ToolTip>
+                                            <TextBlock Text="Vote Down"/>
+                                        </Image.ToolTip>
+                                    </Image>
+                                </StackPanel>
+                            </Button>
+
+                            <!-- Details -->
+                            <Button Margin="10,0,0,0" VerticalAlignment="Center" Command="{StaticResource RecDetailsCommand}" CommandParameter="{Binding}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <TextBlock Text="Details" VerticalAlignment="Center" FontSize="12" FontWeight="Normal"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+
+                    </Grid>
+                </Border>
+            </DataTemplate>
+
+            <!-- TraktShoutTemplate -->
+            <DataTemplate x:Key="TraktShoutTemplate">
+                <Border Background="White" BorderBrush="DarkGray" BorderThickness="1" Margin="0,10,10,0">
+                    <Grid Margin="10" VerticalAlignment="Top">
+
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <!-- Image  -->
+                        <Border HorizontalAlignment="Left" Grid.Column="0" Grid.Row="0" Grid.RowSpan="4" VerticalAlignment="Top" BorderThickness="0" BorderBrush="White" Margin="0,0,10,0">
+                            <Image Margin="0" Stretch="Fill" Width="100" Height="100" 
+                               RenderOptions.BitmapScalingMode="LowQuality" Source="{Binding DelayedUserImage}">
+                            </Image>
+                        </Border>
+
+                        <TextBlock Grid.Column="1" Grid.Row="0" Margin="5,0,0,0" Text="{Binding Path=User.Username}" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"
+                                   Foreground="Black" ToolTipService.ShowDuration="60000">
+                        </TextBlock>
+
+                        <TextBlock Grid.Column="2" Grid.Row="0" Margin="5,0,0,0" Text="{Binding Path=Shout.ShoutDateString}" FontSize="14" HorizontalAlignment="Left" FontWeight="Bold"
+                                   Foreground="DarkGray" VerticalAlignment="Top" ToolTipService.ShowDuration="60000">
+                        </TextBlock>
+
+
+                        <TextBlock Grid.Column="1" Grid.Row="1" Margin="5,5,0,0" Grid.RowSpan="3" Text="{Binding Path=Shout.Text}" Width="300" TextWrapping="Wrap" Grid.ColumnSpan="2"
+                                   Foreground="Black" VerticalAlignment="Top" ToolTipService.ShowDuration="60000">
+                            </TextBlock>
+
+
+                    </Grid>
+                </Border>
+            </DataTemplate>
+
+
+
+        </ResourceDictionary>
+
+    </UserControl.Resources>
+
+    <UserControl.CommandBindings>
+
+        <CommandBinding Command="{StaticResource PlayEpisodeCommand}" Executed="CommandBinding_PlayEpisode" />
+        <CommandBinding Command="{StaticResource PlayAllUnwatchedEpisodeCommand}" Executed="CommandBinding_PlayAllUnwatchedEpisode" />
+        <CommandBinding Command="{StaticResource ToggleWatchedStatusCommand}" Executed="CommandBinding_ToggleWatchedStatus" />
+
+        <CommandBinding Command="{StaticResource VoteUpCommand}" Executed="CommandBinding_VoteUp" />
+        <CommandBinding Command="{StaticResource VoteDownCommand}" Executed="CommandBinding_VoteDown" />
+        <CommandBinding Command="{StaticResource RecDetailsCommand}" Executed="CommandBinding_RecDetails" />
+
+
+    </UserControl.CommandBindings>
+
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Name="ScrollerCWatching" Grid.Column="0" Grid.Row="0" Margin="0,0,0,0">
+
+
+        <Grid  Width="{Binding ElementName=ScrollerCWatching, Path=ViewportWidth}">
+
+            <Grid.RowDefinitions>
+                <RowDefinition MaxHeight="50" Height="Auto"/>
+                <!-- tool bar-->
+                <RowDefinition Height="Auto"/>
+
+
+                <RowDefinition Height="Auto"/>
+
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Top row, back button, anime name -->
+            <Border Name="panelTop" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,10,0,0">
+                <StackPanel Orientation="Horizontal"  VerticalAlignment="Center" >
+
+                    <Button Name="btnBack" Margin="0" Style="{DynamicResource MetroCircleButtonStyle}" VerticalAlignment="Center">
+                        <Image Height="32" Width="32" Source="/Images/metro_Prev.png" Margin="2,0,2,0"/>
+
+                    </Button>
+
+                    <TextBlock VerticalAlignment="Center" Text="{Binding Path=SeriesName}" FontWeight="Bold" FontFamily="Segoe UI" FontSize="24" Foreground="Black"  Margin="15,0,0,0" />
+
+
+                    <!-- show pinned series button -->
+                    <Button Margin="10,2,2,2" Style="{StaticResource FlatButtonStyle}" VerticalAlignment="Center"
+                                        Command="{DynamicResource ShowPinnedSeriesCommand}" CommandParameter="{Binding}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                            <Image Height="16" Width="16" Source="/Images/16_windows.png" Margin="2,0,2,0">
+                                <Image.ToolTip>
+                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_ViewSeries}"/>
+                                </Image.ToolTip>
+                            </Image>
+
+                        </StackPanel>
+                    </Button>
+
+
+
+                </StackPanel>
+            </Border>
+
+
+
+            <!-- fanart image and series description -->
+            <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition MaxHeight="40" Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Fanart Image -->
+                <Rectangle Margin="5,10,10,10" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="1" HorizontalAlignment="Center" VerticalAlignment="Top" Name="imgFanart"
+                           RadiusX="5" RadiusY="5" Width="444" 
+                                   Height="250">
+                    <Rectangle.Effect>
+                        <DropShadowEffect Opacity="0.5"/>
+                    </Rectangle.Effect>
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="{Binding Path=AniDB_Anime.FanartPathThenPosterPath}" RenderOptions.BitmapScalingMode="HighQuality">
+
+                        </ImageBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+
+                <TextBlock Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1" Text="{Binding Description}" HorizontalAlignment="Stretch" Margin="10,5,5,5" 
+                            VerticalAlignment="Top" TextWrapping="Wrap" Foreground="Black" FontSize="16" >
+                </TextBlock>
+
+            </Grid>
+
+            <!-- play next ep and play all unwatched -->
+            <Border  Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="5,10,0,0">
+                <StackPanel Orientation="Horizontal"  VerticalAlignment="Center" >
+
+                    <Button Name="btnPlayNextEp" Margin="0" VerticalAlignment="Top" >
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                            <Image Height="24" Width="24" Source="/Images/32_play2.png" Margin="2,0,2,0" VerticalAlignment="Center"/>
+                            <TextBlock Text="Play Next Episode" FontSize="14" VerticalAlignment="Center" Margin="2,0,8,0"/>
+                        </StackPanel>
+
+                    </Button>
+
+                    <Button Name="btnPlayAllEps" VerticalAlignment="Top" Margin="12,0,2,0">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                            <Image Height="24" Width="24" Source="/Images/32_play2.png" Margin="2,0,2,0" VerticalAlignment="Center"/>
+                            <TextBlock Text="Play All UnWatched (" FontSize="14" VerticalAlignment="Center" Margin="2,0,0,0"/>
+                            <TextBlock Text="{Binding Path=UnwatchedEpisodeCount, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:ContinueWatchingTileControl}}}" FontSize="14" VerticalAlignment="Center" Margin="0,0,0,0"/>
+                            <TextBlock Text=")" FontSize="14" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                        </StackPanel>
+
+                    </Button>
+
+                    <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,0,0,0">
+
+
+                        <TextBox Name="txtShoutNew" Height="30" Width="300" HorizontalAlignment="Stretch" DockPanel.Dock="Left" TextWrapping="Wrap" 
+                         VerticalScrollBarVisibility="Visible" AcceptsReturn="True" Foreground="DarkGray" Text="Have Your Say..." FontSize="14" />
+
+                        <StackPanel  Orientation="Horizontal" DockPanel.Dock="Left" VerticalAlignment="Top" Margin="10,0,0,0">
+
+                            <Button Name="btnSubmitShout" Margin="0" Style="{DynamicResource RoundButtonStyle}" Height="35" VerticalAlignment="Center" >
+
+                                <Border BorderThickness="0" BorderBrush="Navy" Background="{StaticResource GreenGradientBrush}" Padding="6,3,3,3" CornerRadius="4">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Shout" Foreground="White" FontWeight="Bold" FontSize="12" VerticalAlignment="Center"/>
+                                        <Image Height="16" Width="16" Source="/Images/trakt-icon-shouts.png" Margin="10,0,4,0" VerticalAlignment="Center"/>
+                                    </StackPanel>
+
+                                </Border>
+
+                            </Button>
+
+                            <StackPanel Orientation="Horizontal" Margin="5" VerticalAlignment="Center">
+                                <CheckBox Name="chkSpoiler" VerticalAlignment="Center"/>
+                                <TextBlock Text="Spoiler" Foreground="Black" FontSize="12" VerticalAlignment="Center" Margin="5,0,0,0"/>
+
+                            </StackPanel>
+
+                        </StackPanel>
+
+
+
+
+
+
+                    </DockPanel>
+
+
+
+                </StackPanel>
+            </Border>
+
+            <!-- Play Next Episode -->
+
+            <TextBlock VerticalAlignment="Top" Text="Next 10 Episodes" Foreground="DarkBlue" FontFamily="Segoe UI"  FontSize="20" Margin="5,10,0,0"  Grid.Row="3" Grid.Column="0"/>
+
+            <ListBox Grid.Row="4" Grid.Column="0" BorderThickness="0" Grid.ColumnSpan="3"  HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="5,5,0,5"
+                 VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
+                     ItemTemplate="{StaticResource AnimeEpisodePoster2}"
+                 ItemsSource="{Binding Path=ViewUnwatchedEpisodes, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:ContinueWatchingTileControl}}}"
+                 Background="Transparent"  VerticalAlignment="Stretch" >
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+
+            <TextBlock VerticalAlignment="Top" Text="You May Also Like" Foreground="DarkBlue" FontFamily="Segoe UI"  FontSize="20" Margin="5,10,0,0"  Grid.Row="5" Grid.Column="0"/>
+
+            <ListBox Grid.Row="6" Grid.Column="0" BorderThickness="0" Grid.ColumnSpan="3"  HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="5,5,0,5"
+                 VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
+                     ItemTemplate="{StaticResource RecommendationTemplate}"
+                 ItemsSource="{Binding Path=Recommendations, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:ContinueWatchingTileControl}}}"
+                 Background="Transparent"  VerticalAlignment="Stretch" >
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+
+            <TextBlock VerticalAlignment="Top" Text="What People Are Saying" Foreground="DarkBlue" FontFamily="Segoe UI"  FontSize="20" Margin="5,10,0,0"  Grid.Row="7" Grid.Column="0"/>
+
+            <ListBox Grid.Row="8" Grid.Column="0" BorderThickness="0" Grid.ColumnSpan="3"  HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="5,5,0,5"
+                 VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
+                     ItemTemplate="{StaticResource TraktShoutTemplate}"
+                 ItemsSource="{Binding Path=Shouts, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:ContinueWatchingTileControl}}}"
+                 Background="Transparent"  VerticalAlignment="Stretch" >
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+
+
+        </Grid>
+
+
+    </ScrollViewer>
+
+
+
+
+
+</UserControl>

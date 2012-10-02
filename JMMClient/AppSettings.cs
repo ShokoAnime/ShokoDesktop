@@ -1026,6 +1026,10 @@ namespace JMMClient
 
 
 
+		
+
+
+
 		public static int Dash_RecentlyWatchedEp_Items
 		{
 			get
@@ -2098,6 +2102,137 @@ namespace JMMClient
 			set
 			{
 				UpdateSetting("LastLoginUsername", value);
+			}
+		}
+
+		public static DashboardType DashboardType
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				int val = 1;
+				if (int.TryParse(appSettings["DashboardType"], out val))
+					return (DashboardType)val;
+				else
+					return DashboardType.Normal; // default value
+			}
+			set
+			{
+				UpdateSetting("DashboardType", ((int)value).ToString());
+			}
+		}
+
+		public static int DashMetro_WatchNext_Items
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["DashMetro_WatchNext_Items"];
+				int ival = 0;
+				if (int.TryParse(val, out ival))
+				{
+					if (ival >= 0 && ival <= 100)
+						return ival;
+					else
+						return 10;
+				}
+				else
+					return 10; // default value
+			}
+			set
+			{
+				UpdateSetting("DashMetro_WatchNext_Items", value.ToString());
+			}
+		}
+
+		public static int DashMetro_RandomSeries_Items
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["DashMetro_RandomSeries_Items"];
+				int ival = 0;
+				if (int.TryParse(val, out ival))
+				{
+					if (ival >= 0 && ival <= 100)
+						return ival;
+					else
+						return 5;
+				}
+				else
+					return 5; // default value
+			}
+			set
+			{
+				UpdateSetting("DashMetro_RandomSeries_Items", value.ToString());
+			}
+		}
+
+		public static int DashMetro_TraktActivity_Items
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["DashMetro_TraktActivity_Items"];
+				int ival = 0;
+				if (int.TryParse(val, out ival))
+				{
+					if (ival >= 0 && ival <= 100)
+						return ival;
+					else
+						return 5;
+				}
+				else
+					return 5; // default value
+			}
+			set
+			{
+				UpdateSetting("DashMetro_TraktActivity_Items", value.ToString());
+			}
+		}
+
+		public static int DashMetro_Image_Height
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["DashMetro_Image_Height"];
+				int ival = 0;
+				if (int.TryParse(val, out ival))
+				{
+					if (ival < 30)
+						return 30;
+
+					if (ival > 300)
+						return 300;
+
+					return ival;
+				}
+				else
+				{
+					return 150; // default value
+				}
+			}
+			set
+			{
+				UpdateSetting("DashMetro_Image_Height", value.ToString());
+			}
+		}
+
+		public static DashboardMetroImageType DashMetroImageType
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				int val = 1;
+				if (int.TryParse(appSettings["DashMetroImageType"], out val))
+					return (DashboardMetroImageType)val;
+				else
+					return DashboardMetroImageType.Fanart; // default value
+			}
+			set
+			{
+				UpdateSetting("DashMetroImageType", ((int)value).ToString());
 			}
 		}
 

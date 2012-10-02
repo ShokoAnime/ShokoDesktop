@@ -32,6 +32,11 @@
         <usercontrols:AnimeSeries DataContext="{Binding}" />
     </DataTemplate>
 
+    <!-- seriesDetailHuluTemplate-->
+    <DataTemplate x:Key="seriesDetailHuluTemplate">
+        <usercontrols:AnimeSeries_Hulu DataContext="{Binding}" />
+    </DataTemplate>
+
 
     <!-- Playlist_PlaylistTemplate -->
     <DataTemplate x:Key="Playlist_PlaylistTemplate">

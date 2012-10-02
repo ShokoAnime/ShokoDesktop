@@ -131,6 +131,17 @@ namespace JMMClient
 			}
 		}
 
+		private double fullScrollerHeight = 500;
+		public double FullScrollerHeight
+		{
+			get { return fullScrollerHeight; }
+			set
+			{
+				fullScrollerHeight = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("FullScrollerHeight"));
+			}
+		}
+
 		private double downloadRecScrollerWidth = 10;
 		public double DownloadRecScrollerWidth
 		{

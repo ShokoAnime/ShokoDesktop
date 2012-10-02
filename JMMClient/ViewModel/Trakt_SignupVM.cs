@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel;
 
-namespace JMMClient.ViewModel
+namespace JMMClient
 {
 	public class Trakt_SignupVM : INotifyPropertyChanged
 	{

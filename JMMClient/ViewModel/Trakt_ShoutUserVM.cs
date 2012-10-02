@@ -7,7 +7,7 @@ using JMMClient.ImageDownload;
 
 namespace JMMClient.ViewModel
 {
-	public class Trakt_ShoutUserVM
+	public class Trakt_ShoutUserVM : BindableObject
 	{
 		public int AnimeID { get; set; }
 
@@ -80,6 +80,17 @@ namespace JMMClient.ViewModel
 				}
 
 				return UserFullImagePathPlain;
+			}
+		}
+
+		private string delayedUserImage = "";
+		public string DelayedUserImage
+		{
+			get { return delayedUserImage; }
+			set
+			{
+				delayedUserImage = value;
+				base.RaisePropertyChanged("DelayedUserImage");
 			}
 		}
 	}

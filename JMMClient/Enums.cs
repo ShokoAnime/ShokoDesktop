@@ -277,6 +277,32 @@ namespace JMMClient
 		Detailed = 2
 	}
 
+	public enum DashboardType
+	{
+		Normal = 1,
+		Metro = 2
+	}
+
+	public enum DashboardMetroImageType
+	{
+		Fanart = 1,
+		Posters = 2
+	}
+
+	public enum DashboardMetroProcessType
+	{
+		TraktActivity = 1,
+		ContinueWatching = 2,
+		RandomSeries = 3
+	}
+
+	public enum MetroViews
+	{
+		MainNormal = 1,
+		MainMetro = 2,
+		ContinueWatching = 3
+	}
+
 	public enum ScheduledUpdateFrequency
 	{
 		Never = 1,

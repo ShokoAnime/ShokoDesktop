@@ -79,6 +79,7 @@ namespace JMMClient.UserControls
 			try
 			{
 				Uri uri = new Uri(URL);
+				
 				Process.Start(new ProcessStartInfo(uri.AbsoluteUri));
 			}
 			catch { }

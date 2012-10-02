@@ -77,6 +77,17 @@ namespace JMMClient.ViewModel
 			}
 		}
 
+		public string ActivityDateString
+		{
+			get
+			{
+				if (ActivityDate.HasValue)
+					return ActivityDate.Value.ToString("dd MMM yyyy", Globals.Culture) + ", " + ActivityDate.Value.ToShortTimeString();
+				else
+					return "";
+			}
+		}
+
 		public Trakt_ActivityShoutShowVM(JMMServerBinary.Contract_Trakt_FriendActivity contract)
 		{
 			this.User = new Trakt_UserVM(contract.User);

@@ -42,6 +42,7 @@ namespace JMMClient.Forms
 				{
 					VideoDetailedVM vid = obj as VideoDetailedVM;
 					MainWindow.videoHandler.PlayVideo(vid);
+					this.Close();
 				}
 			}
 			catch (Exception ex)

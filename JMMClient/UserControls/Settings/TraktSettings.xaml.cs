@@ -58,7 +58,53 @@ namespace JMMClient.UserControls
 			cboSyncFrequency.SelectionChanged += new SelectionChangedEventHandler(cboSyncFrequency_SelectionChanged);
 
 
-			btnTest.Click += new RoutedEventHandler(btnTest_Click);		
+			btnTest.Click += new RoutedEventHandler(btnTest_Click);
+			txtUsername.TextChanged += new TextChangedEventHandler(txtUsername_TextChanged);
+
+			EvaulateVisibility();
+
+			btnJoinTrakt.Click += new RoutedEventHandler(btnJoinTrakt_Click);
+		}
+
+		void btnJoinTrakt_Click(object sender, RoutedEventArgs e)
+		{
+			Window parentWindow = Window.GetWindow(this);
+
+			try
+			{
+				parentWindow.Cursor = Cursors.Wait;
+				string retMessage = "";
+				bool success = JMMServerVM.Instance.clientBinaryHTTP.CreateTraktAccount(txtUsernameSignup.Text.Trim(), txtPasswordSignup.Password.Trim(), 
+					txtEmail.Text.Trim(), ref retMessage);
+				parentWindow.Cursor = Cursors.Arrow;
+
+				if (success)
+				{
+					MessageBox.Show(retMessage, "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+					JMMServerVM.Instance.GetServerSettings();
+					DashboardVM.Instance.RefreshTraktFriends(true, true);
+				}
+				else
+					MessageBox.Show(retMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+		}
+
+		private void EvaulateVisibility()
+		{
+			if (string.IsNullOrEmpty(txtUsername.Text))
+				bdrSignup.Visibility = System.Windows.Visibility.Visible;
+			else
+				bdrSignup.Visibility = System.Windows.Visibility.Collapsed;
+		}
+
+		void txtUsername_TextChanged(object sender, TextChangedEventArgs e)
+		{
+			EvaulateVisibility();
 		}
 
 		void cboSyncFrequency_SelectionChanged(object sender, SelectionChangedEventArgs e)

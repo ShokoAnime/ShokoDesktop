@@ -66,11 +66,11 @@ namespace JMMClient
 		private static readonly int TAB_FileManger_FileSearch = 10;
 		private static readonly int TAB_FileManger_Rename = 11;
 
-		private static readonly int TAB_Settings_Essential = 0;
-		private static readonly int TAB_Settings_AniDB = 1;
-		private static readonly int TAB_Settings_TvDB = 2;
-		private static readonly int TAB_Settings_WebCache = 3;
-		private static readonly int TAB_Settings_Display = 4;
+		public static readonly int TAB_Settings_Essential = 0;
+		public static readonly int TAB_Settings_AniDB = 1;
+		public static readonly int TAB_Settings_TvDB = 2;
+		public static readonly int TAB_Settings_WebCache = 3;
+		public static readonly int TAB_Settings_Display = 4;
 
 		private static System.Timers.Timer postStartTimer = null;
 
@@ -194,6 +194,14 @@ namespace JMMClient
 				//videoHandler.HandleFileChange(@"C:\Program Files (x86)\Combined Community Codec Pack\MPC\mpc-hc.ini");
 
 				MainWindow.videoHandler.VideoWatchedEvent += new VideoHandler.VideoWatchedEventHandler(videoHandler_VideoWatchedEvent);
+
+				if (AppSettings.DashboardType == DashboardType.Normal)
+					dash.Visibility = System.Windows.Visibility.Visible;
+				else
+					dashMetro.Visibility = System.Windows.Visibility.Visible;
+
+
+				UserSettingsVM.Instance.SetDashMetro_Image_Width();
 			}
 			catch (Exception ex)
 			{
@@ -342,6 +350,8 @@ namespace JMMClient
 		{
 			this.WindowState = AppSettings.DefaultWindowState;
 
+			Utils.ClearAutoUpdateCache();
+
 			// validate settings
 			JMMServerVM.Instance.Test();
 
@@ -411,6 +421,7 @@ namespace JMMClient
 				//Debug.Print("Scroller ViewportWidth = {0}", Scroller.ViewportWidth);
 
 				double tempWidth = Scroller.ViewportWidth - 8;
+				double tempHeight = Scroller.ViewportHeight - 8;
 				if (tempWidth > 0)
 				{
 					MainListHelperVM.Instance.MainScrollerWidth = tempWidth;
@@ -420,6 +431,10 @@ namespace JMMClient
 				//tempWidth = tabControl1.ActualWidth - 300;
 				if (tempWidth > 0)
 					MainListHelperVM.Instance.FullScrollerWidth = tempWidth;
+
+				tempHeight = tabControl1.ActualHeight - 50;
+				if (tempHeight > 0)
+					MainListHelperVM.Instance.FullScrollerHeight = tempHeight;
 
 
 				tempWidth = ScrollerPlaylist.ViewportWidth - 8;
@@ -514,26 +529,34 @@ namespace JMMClient
 
 				if (tabIndex == TAB_MAIN_Dashboard)
 				{
-					if (DashboardVM.Instance.EpsWatchNext_Recent.Count == 0 && DashboardVM.Instance.SeriesMissingEps.Count == 0
-						&& DashboardVM.Instance.MiniCalendar.Count == 0 && DashboardVM.Instance.RecommendationsWatch.Count == 0
-						&& DashboardVM.Instance.RecommendationsDownload.Count == 0)
+					if (dash.Visibility == System.Windows.Visibility.Visible)
 					{
-						tabControl1.IsEnabled = false;
-						this.Cursor = Cursors.Wait;
+						if (DashboardVM.Instance.EpsWatchNext_Recent.Count == 0 && DashboardVM.Instance.SeriesMissingEps.Count == 0
+							&& DashboardVM.Instance.MiniCalendar.Count == 0 && DashboardVM.Instance.RecommendationsWatch.Count == 0
+							&& DashboardVM.Instance.RecommendationsDownload.Count == 0)
+						{
+							tabControl1.IsEnabled = false;
+							this.Cursor = Cursors.Wait;
 
-						RecentAdditionsType addType = RecentAdditionsType.Episode;
-						if (dash.cboDashRecentAdditionsType.SelectedIndex == 0) addType = RecentAdditionsType.Episode;
-						if (dash.cboDashRecentAdditionsType.SelectedIndex == 1) addType = RecentAdditionsType.Series;
+							RecentAdditionsType addType = RecentAdditionsType.Episode;
+							if (dash.cboDashRecentAdditionsType.SelectedIndex == 0) addType = RecentAdditionsType.Episode;
+							if (dash.cboDashRecentAdditionsType.SelectedIndex == 1) addType = RecentAdditionsType.Series;
 
-						RefreshOptions opt = new RefreshOptions();
-						opt.TraktScrobbles = dash.togTraktScrobbles.IsChecked.Value;
-						opt.TraktShouts = dash.togTraktShouts.IsChecked.Value;
-						opt.RecentAdditionType = addType;
-						opt.RefreshRecentAdditions = true;
-						opt.RefreshContinueWatching = true;
-						opt.RefreshOtherWidgets = true;
-						showDashboardWorker.RunWorkerAsync(opt);
+							RefreshOptions opt = new RefreshOptions();
+							opt.TraktScrobbles = dash.togTraktScrobbles.IsChecked.Value;
+							opt.TraktShouts = dash.togTraktShouts.IsChecked.Value;
+							opt.RecentAdditionType = addType;
+							opt.RefreshRecentAdditions = true;
+							opt.RefreshContinueWatching = true;
+							opt.RefreshOtherWidgets = true;
+							showDashboardWorker.RunWorkerAsync(opt);
 
+						}
+					}
+					else
+					{
+						if (DashboardMetroVM.Instance.ContinueWatching.Count == 0)
+							dashMetro.RefreshAllData();
 					}
 				}
 
@@ -612,6 +635,8 @@ namespace JMMClient
 		{
 			try
 			{
+				SetColours();
+
 				//if (!this.IsLoaded || !JMMServerVM.Instance.UserAuthenticated) return;
 				if (!JMMServerVM.Instance.UserAuthenticated) return;
 
@@ -1114,7 +1139,7 @@ namespace JMMClient
 		private void CommandBinding_EditTraktCredentials(object sender, ExecutedRoutedEventArgs e)
 		{
 			tabControl1.SelectedIndex = TAB_MAIN_Settings;
-			tabSettingsChild.SelectedIndex = 2;
+			tabSettingsChild.SelectedIndex = TAB_Settings_TvDB;
 		}
 
 		public void ShowPinnedFileAvDump(VideoLocalVM vid)
@@ -1147,6 +1172,7 @@ namespace JMMClient
 			//TabItem cti = new TabItem();
 			cti.Header = series.SeriesName;
 
+			//AnimeSeries_Hulu seriesControl = new AnimeSeries_Hulu();
 			AnimeSeries seriesControl = new AnimeSeries();
 			seriesControl.DataContext = series;
 			cti.Content = seriesControl;
@@ -1157,6 +1183,77 @@ namespace JMMClient
 			tabPinned.SelectedIndex = tabPinned.Items.Count - 1;
 
 			this.Cursor = Cursors.Arrow;
+		}
+
+		/*public void ToggleDashMetroStyle()
+		{
+			if (dash.Visibility == System.Windows.Visibility.Collapsed)
+			{
+				dash.Visibility = System.Windows.Visibility.Visible;
+				dashMetro.Visibility = System.Windows.Visibility.Collapsed;
+				DisplayMainTab(TAB_MAIN_Dashboard);
+				AppSettings.DashboardType = DashboardType.Normal;
+			}
+			else
+			{
+				dash.Visibility = System.Windows.Visibility.Collapsed;
+				dashMetro.Visibility = System.Windows.Visibility.Visible;
+				DisplayMainTab(TAB_MAIN_Dashboard);
+				AppSettings.DashboardType = DashboardType.Metro;
+			}
+
+			SetColours();
+		}*/
+
+		private void SetColours()
+		{
+			if (tabControl1.SelectedIndex == TAB_MAIN_Dashboard)
+			{
+				if (dash.Visibility == System.Windows.Visibility.Visible)
+				{
+					tabControl1.Background = new SolidColorBrush(Colors.Transparent);
+				}
+				else
+				{
+					var bc = new BrushConverter();
+					tabControl1.Background = (Brush)bc.ConvertFrom("#F1F1F1");
+					//tabControl1.Background = new SolidColorBrush(Colors.LightGray);
+				}
+			}
+			else
+				tabControl1.Background = new SolidColorBrush(Colors.Transparent);
+		}
+
+		public void ShowDashMetroView(MetroViews viewType, object data)
+		{
+			tileContinueWatching.Visibility = System.Windows.Visibility.Collapsed;
+			dash.Visibility = System.Windows.Visibility.Collapsed;
+			dashMetro.Visibility = System.Windows.Visibility.Collapsed;
+
+			switch (viewType)
+			{
+				case MetroViews.MainNormal:
+					dash.Visibility = System.Windows.Visibility.Visible;
+					DisplayMainTab(TAB_MAIN_Dashboard);
+					AppSettings.DashboardType = DashboardType.Normal;
+					break;
+				case MetroViews.MainMetro:
+					dashMetro.Visibility = System.Windows.Visibility.Visible;
+					DisplayMainTab(TAB_MAIN_Dashboard);
+					AppSettings.DashboardType = DashboardType.Metro;
+					break;
+				case MetroViews.ContinueWatching:
+					tileContinueWatching.Visibility = System.Windows.Visibility.Visible;
+					tileContinueWatching.DataContext = data;
+					break;
+			}
+
+			SetColours();
+		}
+
+		public void ShowDashMetroView(MetroViews viewType)
+		{
+			ShowDashMetroView(viewType, null);
 		}
 
 		private void CommandBinding_CreateSeriesFromAnime(object sender, ExecutedRoutedEventArgs e)

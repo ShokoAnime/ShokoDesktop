@@ -139,6 +139,17 @@ namespace JMMClient
 			}
 		}
 
+		private string episodeNumberWithType = "";
+		public string EpisodeNumberWithType
+		{
+			get { return episodeNumberWithType; }
+			set
+			{
+				episodeNumberWithType = value;
+				NotifyPropertyChanged("EpisodeNumberWithType");
+			}
+		}
+
 		private string episodeNumberAndNameWithTypeTruncated = "";
 		public string EpisodeNumberAndNameWithTypeTruncated
 		{
@@ -731,6 +742,7 @@ namespace JMMClient
 				case JMMClient.EpisodeType.Trailer: shortType = "T"; break;
 			}
 			EpisodeNumberAndNameWithType = string.Format("{0}{1} - {2}", shortType, EpisodeNumber, EpisodeName);
+			EpisodeNumberWithType = string.Format("{0} {1}", EpisodeTypeEnum.ToString(), EpisodeNumber);
 			EpisodeTypeAndNumber = string.Format("{0}{1}", shortType, EpisodeNumber);
 			EpisodeTypeAndNumberAbsolute = string.Format("{0}{1}", shortType, EpisodeNumber.ToString().PadLeft(5, '0'));
 
