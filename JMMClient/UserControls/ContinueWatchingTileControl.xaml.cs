@@ -92,6 +92,30 @@ namespace JMMClient.UserControls
 			postShoutWorker.DoWork += new DoWorkEventHandler(postShoutWorker_DoWork);
 			postShoutWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(postShoutWorker_RunWorkerCompleted);
 
+			cRating.OnRatingValueChangedEvent += new RatingControl.RatingValueChangedHandler(cRating_OnRatingValueChangedEvent);
+		}
+
+		void cRating_OnRatingValueChangedEvent(RatingValueEventArgs ev)
+		{
+			AnimeSeriesVM ser = this.DataContext as AnimeSeriesVM;
+			if (ser == null) return;
+
+			try
+			{
+				decimal rating = (decimal)ev.RatingValue;
+
+				int voteType = 1;
+				if (ser.AniDB_Anime.FinishedAiring) voteType = 2;
+
+				JMMServerVM.Instance.VoteAnime(ser.AniDB_ID, rating, voteType);
+
+				// refresh the data
+				MainListHelperVM.Instance.UpdateHeirarchy(ser);
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
 		}
 
 		void postShoutWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -298,7 +322,7 @@ namespace JMMClient.UserControls
 
 		void episodesWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
 		{
-			UnwatchedEpisodeCount = UnwatchedEpisodes.Count;
+			
 			AnimeSeriesVM ser = this.DataContext as AnimeSeriesVM;
 			if (ser == null) return;
 
@@ -459,6 +483,8 @@ namespace JMMClient.UserControls
 			AnimeSeriesVM ser = this.DataContext as AnimeSeriesVM;
 			if (ser == null) return;
 
+			UnwatchedEpisodeCount = ser.UnwatchedEpisodeCount;
+
 			UnwatchedEpisodes.Clear();
 			Recommendations.Clear();
 			Shouts.Clear();
@@ -468,6 +494,10 @@ namespace JMMClient.UserControls
 
 		void ContinueWatchingTileControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
 		{
+			AnimeSeriesVM ser = this.DataContext as AnimeSeriesVM;
+			if (ser == null) return;
+
+			ucExternalLinks.DataContext = ser;
 
 			RefreshData();
 		}

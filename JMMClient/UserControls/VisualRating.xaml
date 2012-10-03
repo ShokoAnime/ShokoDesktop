@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     
@@ -19,11 +20,16 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Image Grid.Column="0" Grid.Row="0" Name="imgStar1" Height="20" Width="20" Margin="0,0,0,0" Source="../Images/star_48.png" VerticalAlignment="Center"/>
-        <Image Grid.Column="1" Grid.Row="0" Name="imgStar2" Height="20" Width="20" Margin="0,0,0,0" Source="../Images/star_48.png" VerticalAlignment="Center"/>
-        <Image Grid.Column="2" Grid.Row="0" Name="imgStar3" Height="20" Width="20" Margin="0,0,0,0" Source="../Images/star_48.png" VerticalAlignment="Center"/>
-        <Image Grid.Column="3" Grid.Row="0" Name="imgStar4" Height="20" Width="20" Margin="0,0,0,0" Source="../Images/star_half_48.png" VerticalAlignment="Center"/>
-        <Image Grid.Column="4" Grid.Row="0" Name="imgStar5" Height="20" Width="20" Margin="0,0,0,0" Source="../Images/star_off_48.png" VerticalAlignment="Center"/>
+        <Image Grid.Column="0" Grid.Row="0" Name="imgStar1" Height="{Binding Path=ImageSize, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:VisualRating}}}" 
+               Width="{Binding Path=ImageSize, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:VisualRating}}}" Margin="0,0,0,0" Source="../Images/star_48.png" VerticalAlignment="Center"/>
+        <Image Grid.Column="1" Grid.Row="0" Name="imgStar2" Height="{Binding Path=ImageSize, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:VisualRating}}}" 
+               Width="{Binding Path=ImageSize, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:VisualRating}}}" Margin="0,0,0,0" Source="../Images/star_48.png" VerticalAlignment="Center"/>
+        <Image Grid.Column="2" Grid.Row="0" Name="imgStar3" Height="{Binding Path=ImageSize, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:VisualRating}}}" 
+               Width="{Binding Path=ImageSize, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:VisualRating}}}" Margin="0,0,0,0" Source="../Images/star_48.png" VerticalAlignment="Center"/>
+        <Image Grid.Column="3" Grid.Row="0" Name="imgStar4" Height="{Binding Path=ImageSize, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:VisualRating}}}" 
+               Width="{Binding Path=ImageSize, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:VisualRating}}}" Margin="0,0,0,0" Source="../Images/star_half_48.png" VerticalAlignment="Center"/>
+        <Image Grid.Column="4" Grid.Row="0" Name="imgStar5" Height="{Binding Path=ImageSize, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:VisualRating}}}" 
+               Width="{Binding Path=ImageSize, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:VisualRating}}}" Margin="0,0,0,0" Source="../Images/star_off_48.png" VerticalAlignment="Center"/>
 
     </Grid>
 </UserControl>

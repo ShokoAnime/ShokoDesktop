@@ -24,7 +24,6 @@ namespace JMMClient
 
 		private MainWindow mainWdw;
 		private List<NavContainer> NavigationHistory = new List<NavContainer>();
-		private int CurrentNavIndex = 0;
 
 
 		public ObservableCollection<ContinueWatchingTile> ContinueWatching { get; set; }
@@ -32,6 +31,8 @@ namespace JMMClient
 
 		public ObservableCollection<RandomSeriesTile> RandomSeries { get; set; }
 		public ICollectionView ViewRandomSeries { get; set; }
+
+		public ObservableCollection<NewEpisodeTile> NewEpisodes { get; set; }
 
 		public ObservableCollection<object> TraktActivity { get; set; }
 		private List<TraktShoutTile> TraktShouts = new List<TraktShoutTile>();
@@ -114,6 +115,8 @@ namespace JMMClient
 			RandomSeries = new ObservableCollection<RandomSeriesTile>();
 			ViewRandomSeries = CollectionViewSource.GetDefaultView(RandomSeries);
 
+			NewEpisodes = new ObservableCollection<NewEpisodeTile>();
+
 			TraktActivity = new ObservableCollection<object>();
 
 			rotateShoutsTimer = new System.Timers.Timer();
@@ -131,21 +134,24 @@ namespace JMMClient
 		public void InitNavigator(MainWindow wdw)
 		{
 			mainWdw = wdw;
-			NavigationHistory.Clear();
-			CurrentNavIndex = 0;
+			
 		}
 
 		public void NavigateForward(MetroViews viewType, object content)
 		{
 			NavigationHistory.Add(new NavContainer() { NavView = viewType, NavContent = content });
-			CurrentNavIndex = NavigationHistory.Count;
 			mainWdw.ShowDashMetroView(MetroViews.ContinueWatching, content);
 		}
 
 		public void NavigateBack()
 		{
+			if (NavigationHistory.Count == 0)
+			{
+				mainWdw.ShowDashMetroView(MetroViews.MainMetro);
+				return;
+			}
+
 			NavigationHistory.RemoveAt(NavigationHistory.Count - 1);
-			CurrentNavIndex = CurrentNavIndex - 1;
 
 			if (NavigationHistory.Count > 0)
 				mainWdw.ShowDashMetroView(NavigationHistory[NavigationHistory.Count - 1].NavView, NavigationHistory[NavigationHistory.Count - 1].NavContent);
@@ -297,7 +303,7 @@ namespace JMMClient
 				RefreshTraktActivity();
 				RefreshContinueWatching();
 				RefreshRandomSeries();
-
+				RefreshNewEpisodes();
 			}
 			catch (Exception ex)
 			{
@@ -376,6 +382,7 @@ namespace JMMClient
 						ContinueWatching.Add(new ContinueWatchingTile() { EpisodeDetails = ep.EpisodeNumberAndName, AnimeName = ep.AnimeSeries.SeriesName,
 																		  Picture = imageName,
 																		  AnimeSeries = ep.AnimeSeries,
+																		  UnwatchedEpisodes = ep.AnimeSeries.UnwatchedEpisodeCount,
 																		  TileSize = "Large",
 																		  Height = 100
 						});
@@ -480,7 +487,7 @@ namespace JMMClient
 				});
 
 				JMMServerBinary.Contract_Trakt_Activity traktActivity = JMMServerVM.Instance.clientBinaryHTTP.GetTraktFriendInfo(20,
-					AppSettings.Dash_TraktFriends_AnimeOnly, true, false);
+					false, true, false);
 
 				if (traktActivity.HasTraktAccount)
 				{
@@ -556,7 +563,7 @@ namespace JMMClient
 					}
 
 					traktActivity = JMMServerVM.Instance.clientBinaryHTTP.GetTraktFriendInfo(AppSettings.DashMetro_TraktActivity_Items + 1,
-						AppSettings.Dash_TraktFriends_AnimeOnly, false, true);
+						false, false, true);
 
 					foreach (JMMServerBinary.Contract_Trakt_FriendActivity contractAct in traktActivity.TraktFriendActivity)
 					{
@@ -604,6 +611,60 @@ namespace JMMClient
 			catch (Exception ex)
 			{
 				Utils.ShowErrorMessage(ex);
+			}
+			finally
+			{
+			}
+		}
+
+		public void RefreshNewEpisodes()
+		{
+			try
+			{
+				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
+				{
+					NewEpisodes.Clear();
+				});
+
+				List<JMMServerBinary.Contract_AnimeEpisode> epContracts =
+						JMMServerVM.Instance.clientBinaryHTTP.GetEpisodesRecentlyAdded(UserSettingsVM.Instance.DashMetro_NewEpisodes_Items, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+
+				foreach (JMMServerBinary.Contract_AnimeEpisode contract in epContracts)
+				{
+					AnimeEpisodeVM ep = new AnimeEpisodeVM(contract);
+					ep.RefreshAnime();
+					if (ep.AniDB_Anime != null)
+					{
+						ep.SetTvDBInfo();
+
+						string imageName = "";
+						if (AppSettings.DashMetroImageType == DashboardMetroImageType.Fanart)
+							imageName = ep.AnimeSeries.AniDB_Anime.FanartPath;
+						else
+							imageName = ep.AnimeSeries.AniDB_Anime.DefaultPosterPath;
+
+						NewEpisodeTile tile = new NewEpisodeTile()
+						{
+							EpisodeDetails = ep.EpisodeNumberAndName,
+							AnimeName = ep.AnimeSeries.SeriesName,
+							Picture = imageName,
+							AnimeSeries = ep.AnimeSeries,
+							TileSize = "Large",
+							Height = 100
+						};
+
+						System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
+						{
+							NewEpisodes.Add(tile);
+						});
+					}
+				}
+
+				OnFinishedProcess(new FinishedProcessEventArgs(DashboardMetroProcessType.NewEpisodes));
+			}
+			catch (Exception ex)
+			{
+				logger.ErrorException(ex.ToString(), ex);
 			}
 			finally
 			{

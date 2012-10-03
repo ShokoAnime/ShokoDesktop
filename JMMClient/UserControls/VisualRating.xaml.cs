@@ -22,15 +22,24 @@ namespace JMMClient.UserControls
 		public static readonly DependencyProperty RatingProperty = DependencyProperty.Register("Rating",
 			typeof(decimal), typeof(VisualRating), new UIPropertyMetadata((decimal)-1, ratingChangedCallback));
 
-		public VisualRating()
-		{
-			InitializeComponent();
-		}
-
 		public decimal Rating
 		{
 			get { return (decimal)GetValue(RatingProperty); }
 			set { SetValue(RatingProperty, value); }
+		}
+
+		public static readonly DependencyProperty ImageSizeProperty = DependencyProperty.Register("ImageSize",
+			typeof(double), typeof(VisualRating), new UIPropertyMetadata((double)20, ratingChangedCallback));
+
+		public double ImageSize
+		{
+			get { return (double)GetValue(ImageSizeProperty); }
+			set { SetValue(ImageSizeProperty, value); }
+		}
+
+		public VisualRating()
+		{
+			InitializeComponent();
 		}
 
 		private static void ratingChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)

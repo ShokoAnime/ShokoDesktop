@@ -2191,6 +2191,29 @@ namespace JMMClient
 			}
 		}
 
+		public static int DashMetro_NewEpisodes_Items
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["DashMetro_NewEpisodes_Items"];
+				int ival = 0;
+				if (int.TryParse(val, out ival))
+				{
+					if (ival >= 0 && ival <= 100)
+						return ival;
+					else
+						return 5;
+				}
+				else
+					return 5; // default value
+			}
+			set
+			{
+				UpdateSetting("DashMetro_NewEpisodes_Items", value.ToString());
+			}
+		}
+
 		public static int DashMetro_Image_Height
 		{
 			get

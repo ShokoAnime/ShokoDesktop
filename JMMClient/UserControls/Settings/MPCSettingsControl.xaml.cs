@@ -79,7 +79,7 @@ namespace JMMClient.UserControls
 				if (!foundFileHistory)
 					MessageBox.Show("INI file found, but no history found for previous watched files", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
 				else
-					MessageBox.Show("INI file found. Last file watched was.." + Environment.NewLine + lastHistoryLine, "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+					MessageBox.Show("INI file found. Sample of recently watched file..." + Environment.NewLine + lastHistoryLine, "Error", MessageBoxButton.OK, MessageBoxImage.Information);
 			}
 			catch (Exception ex)
 			{

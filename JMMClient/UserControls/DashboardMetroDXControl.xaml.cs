@@ -31,6 +31,7 @@ namespace JMMClient.UserControls
 		BackgroundWorker refreshContinueWatchingWorker = new BackgroundWorker();
 		BackgroundWorker refreshRandomSeriesWorker = new BackgroundWorker();
 		BackgroundWorker refreshActivityWorker = new BackgroundWorker();
+		BackgroundWorker refreshNewEpisodesWorker = new BackgroundWorker();
 
 		public static readonly DependencyProperty IsLoadingContinueWatchingProperty = DependencyProperty.Register("IsLoadingContinueWatching",
 			typeof(bool), typeof(DashboardMetroDXControl), new UIPropertyMetadata(false, null));
@@ -59,6 +60,15 @@ namespace JMMClient.UserControls
 			set { SetValue(IsLoadingTraktActivityProperty, value); }
 		}
 
+		public static readonly DependencyProperty IsLoadingNewEpisodesProperty = DependencyProperty.Register("IsLoadingNewEpisodes",
+			typeof(bool), typeof(DashboardMetroDXControl), new UIPropertyMetadata(false, null));
+
+		public bool IsLoadingNewEpisodes
+		{
+			get { return (bool)GetValue(IsLoadingNewEpisodesProperty); }
+			set { SetValue(IsLoadingNewEpisodesProperty, value); }
+		}
+
 		public DashboardMetroDXControl()
 		{
 			InitializeComponent();
@@ -75,6 +85,9 @@ namespace JMMClient.UserControls
 			refreshActivityWorker.DoWork += new DoWorkEventHandler(refreshActivityWorker_DoWork);
 			refreshActivityWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(refreshActivityWorker_RunWorkerCompleted);
 
+			refreshNewEpisodesWorker.DoWork += new DoWorkEventHandler(refreshNewEpisodesWorker_DoWork);
+			refreshNewEpisodesWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(refreshNewEpisodesWorker_RunWorkerCompleted);
+
 			this.Loaded += new RoutedEventHandler(DashboardMetroDXControl_Loaded);
 			btnToggleDash.Click += new RoutedEventHandler(btnToggleDash_Click);
 
@@ -84,6 +97,7 @@ namespace JMMClient.UserControls
 			btnRefresh.Click += new RoutedEventHandler(btnRefresh_Click);
 			btnRefreshRandomSeries.Click += new RoutedEventHandler(btnRefreshRandomSeries_Click);
 			btnRefreshActivity.Click += new RoutedEventHandler(btnRefreshActivity_Click);
+			btnRefreshNewEpisodes.Click += new RoutedEventHandler(btnRefreshNewEpisodes_Click);
 
 			btnOptions.Click += new RoutedEventHandler(btnOptions_Click);
 
@@ -100,6 +114,10 @@ namespace JMMClient.UserControls
 
 			DashboardMetroVM.Instance.OnFinishedProcessEvent += new DashboardMetroVM.FinishedProcessHandler(Instance_OnFinishedProcessEvent);
 		}
+
+		
+
+		
 
 		
 
@@ -139,6 +157,12 @@ namespace JMMClient.UserControls
 			refreshRandomSeriesWorker.RunWorkerAsync(false);
 		}
 
+		void btnRefreshNewEpisodes_Click(object sender, RoutedEventArgs e)
+		{
+			IsLoadingNewEpisodes = true;
+			refreshNewEpisodesWorker.RunWorkerAsync(false);
+		}
+
 		void btnRefreshActivity_Click(object sender, RoutedEventArgs e)
 		{
 			FrameworkElements obj = tileLayoutActivity.GetChildren(false);
@@ -173,6 +197,7 @@ namespace JMMClient.UserControls
 			IsLoadingContinueWatching = true;
 			IsLoadingRandomSeries = true;
 			IsLoadingTraktActivity = true;
+			IsLoadingNewEpisodes = true;
 			refreshDataWorker.RunWorkerAsync(true);
 		}
 
@@ -207,6 +232,7 @@ namespace JMMClient.UserControls
 					case DashboardMetroProcessType.ContinueWatching: IsLoadingContinueWatching = false; break;
 					case DashboardMetroProcessType.RandomSeries: IsLoadingRandomSeries = false; break;
 					case DashboardMetroProcessType.TraktActivity: IsLoadingTraktActivity = false; break;
+					case DashboardMetroProcessType.NewEpisodes: IsLoadingNewEpisodes = false; break;
 				}
 			});
 		}
@@ -242,6 +268,15 @@ namespace JMMClient.UserControls
 			//bool refreshAll = (bool)e.Argument;
 			DashboardMetroVM.Instance.RefreshRandomSeries();
 			//e.Result = refreshAll;
+		}
+
+		void refreshNewEpisodesWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+		{
+		}
+
+		void refreshNewEpisodesWorker_DoWork(object sender, DoWorkEventArgs e)
+		{
+			DashboardMetroVM.Instance.RefreshNewEpisodes();
 		}
 
 		void refreshActivityWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -322,6 +357,14 @@ namespace JMMClient.UserControls
 		{
 			Tile mytile = e.Tile;
 			RandomSeriesTile item = mytile.DataContext as RandomSeriesTile;
+
+			DashboardMetroVM.Instance.NavigateForward(MetroViews.ContinueWatching, item.AnimeSeries);
+		}
+
+		private void tileLayoutNewEpisodes_TileClick(object sender, TileClickEventArgs e)
+		{
+			Tile mytile = e.Tile;
+			NewEpisodeTile item = mytile.DataContext as NewEpisodeTile;
 
 			DashboardMetroVM.Instance.NavigateForward(MetroViews.ContinueWatching, item.AnimeSeries);
 		}

@@ -621,6 +621,16 @@ namespace JMMClient
 			}
 		}
 
+		public int DashMetro_NewEpisodes_Items
+		{
+			get { return AppSettings.DashMetro_NewEpisodes_Items; }
+			set
+			{
+				AppSettings.DashMetro_NewEpisodes_Items = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("DashMetro_NewEpisodes_Items"));
+			}
+		}
+
 		public int DashMetro_Image_Height
 		{
 			get { return AppSettings.DashMetro_Image_Height; }

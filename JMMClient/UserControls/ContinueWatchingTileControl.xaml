@@ -272,7 +272,7 @@
 
                         <TextBlock Grid.Column="1" Grid.Row="1" Margin="5,5,0,0" Grid.RowSpan="3" Text="{Binding Path=Shout.Text}" Width="300" TextWrapping="Wrap" Grid.ColumnSpan="2"
                                    Foreground="Black" VerticalAlignment="Top" ToolTipService.ShowDuration="60000">
-                            </TextBlock>
+                        </TextBlock>
 
 
                     </Grid>
@@ -353,6 +353,8 @@
                         </StackPanel>
                     </Button>
 
+                    <usercontrols:ExternalAnimeLinksControl x:Name="ucExternalLinks" VerticalAlignment="Center" LinkType="1" Margin="10,0,0,0"  />
+
 
 
                 </StackPanel>
@@ -403,62 +405,88 @@
 
             <!-- play next ep and play all unwatched -->
             <Border  Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="5,10,0,0">
-                <StackPanel Orientation="Horizontal"  VerticalAlignment="Center" >
 
-                    <Button Name="btnPlayNextEp" Margin="0" VerticalAlignment="Top" >
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                            <Image Height="24" Width="24" Source="/Images/32_play2.png" Margin="2,0,2,0" VerticalAlignment="Center"/>
-                            <TextBlock Text="Play Next Episode" FontSize="14" VerticalAlignment="Center" Margin="2,0,8,0"/>
+                <StackPanel Orientation="Vertical">
+
+                    <!-- Rating -->
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                        <usercontrols:VisualRating Rating="{Binding Path=AniDB_Anime.AniDBRating}" VerticalAlignment="Center" ImageSize="32">
+                        </usercontrols:VisualRating>
+                        <TextBlock Padding="5" Text="{Binding Path=AniDB_Anime.AniDBRatingFormatted}" VerticalAlignment="Center">
+                            <TextBlock.ToolTip>
+                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AniDBRating}"></TextBlock>
+                            </TextBlock.ToolTip>
+                        </TextBlock>
+
+                        <!-- User rating if the user has NOT voted -->
+                        <StackPanel Orientation="Horizontal">
+
+                            <TextBlock Margin="5,0,5,0"  FontWeight="Heavy" Foreground="DarkGray"  Text="My Vote" VerticalAlignment="Center"/>
+
+                            <usercontrols:RatingControl x:Name="cRating" Width="280" Height="24" RatingValue="{Binding Path=AniDB_Anime.Detail.UserRating}" />                   
+
                         </StackPanel>
 
-                    </Button>
+                        
+                    </StackPanel>
 
-                    <Button Name="btnPlayAllEps" VerticalAlignment="Top" Margin="12,0,2,0">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                            <Image Height="24" Width="24" Source="/Images/32_play2.png" Margin="2,0,2,0" VerticalAlignment="Center"/>
-                            <TextBlock Text="Play All UnWatched (" FontSize="14" VerticalAlignment="Center" Margin="2,0,0,0"/>
-                            <TextBlock Text="{Binding Path=UnwatchedEpisodeCount, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:ContinueWatchingTileControl}}}" FontSize="14" VerticalAlignment="Center" Margin="0,0,0,0"/>
-                            <TextBlock Text=")" FontSize="14" VerticalAlignment="Center" Margin="0,0,8,0"/>
-                        </StackPanel>
+                    <StackPanel Orientation="Horizontal"  VerticalAlignment="Center" >
 
-                    </Button>
+                        <Button Name="btnPlayNextEp" Margin="0" VerticalAlignment="Top" >
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="24" Width="24" Source="/Images/32_play2.png" Margin="2,0,2,0" VerticalAlignment="Center"/>
+                                <TextBlock Text="Play Next Episode" FontSize="14" VerticalAlignment="Center" Margin="2,0,8,0"/>
+                            </StackPanel>
 
-                    <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,0,0,0">
+                        </Button>
+
+                        <Button Name="btnPlayAllEps" VerticalAlignment="Top" Margin="12,0,2,0">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="24" Width="24" Source="/Images/32_play2.png" Margin="2,0,2,0" VerticalAlignment="Center"/>
+                                <TextBlock Text="Play All UnWatched (" FontSize="14" VerticalAlignment="Center" Margin="2,0,0,0"/>
+                                <TextBlock Text="{Binding Path=UnwatchedEpisodeCount, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:ContinueWatchingTileControl}}}" FontSize="14" VerticalAlignment="Center" Margin="0,0,0,0"/>
+                                <TextBlock Text=")" FontSize="14" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                            </StackPanel>
+
+                        </Button>
+
+                        <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,0,0,0">
 
 
-                        <TextBox Name="txtShoutNew" Height="30" Width="300" HorizontalAlignment="Stretch" DockPanel.Dock="Left" TextWrapping="Wrap" 
+                            <TextBox Name="txtShoutNew" Height="30" Width="300" HorizontalAlignment="Stretch" DockPanel.Dock="Left" TextWrapping="Wrap" 
                          VerticalScrollBarVisibility="Visible" AcceptsReturn="True" Foreground="DarkGray" Text="Have Your Say..." FontSize="14" />
 
-                        <StackPanel  Orientation="Horizontal" DockPanel.Dock="Left" VerticalAlignment="Top" Margin="10,0,0,0">
+                            <StackPanel  Orientation="Horizontal" DockPanel.Dock="Left" VerticalAlignment="Top" Margin="10,0,0,0">
 
-                            <Button Name="btnSubmitShout" Margin="0" Style="{DynamicResource RoundButtonStyle}" Height="35" VerticalAlignment="Center" >
+                                <Button Name="btnSubmitShout" Margin="0" Style="{DynamicResource RoundButtonStyle}" Height="35" VerticalAlignment="Center" >
 
-                                <Border BorderThickness="0" BorderBrush="Navy" Background="{StaticResource GreenGradientBrush}" Padding="6,3,3,3" CornerRadius="4">
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="Shout" Foreground="White" FontWeight="Bold" FontSize="12" VerticalAlignment="Center"/>
-                                        <Image Height="16" Width="16" Source="/Images/trakt-icon-shouts.png" Margin="10,0,4,0" VerticalAlignment="Center"/>
-                                    </StackPanel>
+                                    <Border BorderThickness="0" BorderBrush="Navy" Background="{StaticResource GreenGradientBrush}" Padding="6,3,3,3" CornerRadius="4">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="Shout" Foreground="White" FontWeight="Bold" FontSize="12" VerticalAlignment="Center"/>
+                                            <Image Height="16" Width="16" Source="/Images/trakt-icon-shouts.png" Margin="10,0,4,0" VerticalAlignment="Center"/>
+                                        </StackPanel>
 
-                                </Border>
+                                    </Border>
 
-                            </Button>
+                                </Button>
 
-                            <StackPanel Orientation="Horizontal" Margin="5" VerticalAlignment="Center">
-                                <CheckBox Name="chkSpoiler" VerticalAlignment="Center"/>
-                                <TextBlock Text="Spoiler" Foreground="Black" FontSize="12" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                                <StackPanel Orientation="Horizontal" Margin="5" VerticalAlignment="Center">
+                                    <CheckBox Name="chkSpoiler" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Spoiler" Foreground="Black" FontSize="12" VerticalAlignment="Center" Margin="5,0,0,0"/>
+
+                                </StackPanel>
 
                             </StackPanel>
 
-                        </StackPanel>
 
 
 
 
 
+                        </DockPanel>
 
-                    </DockPanel>
-
-
+                    </StackPanel>
+                    
 
                 </StackPanel>
             </Border>
