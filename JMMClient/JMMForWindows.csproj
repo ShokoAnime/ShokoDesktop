@@ -451,6 +451,9 @@
     <Compile Include="UserControls\PlayNextEpisodeControl.xaml.cs">
       <DependentUpon>PlayNextEpisodeControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\RankingsControl.xaml.cs">
+      <DependentUpon>RankingsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\RatingControl.xaml.cs">
       <DependentUpon>RatingControl.xaml</DependentUpon>
     </Compile>
@@ -969,6 +972,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\RankingsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\RatingControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1137,6 +1144,210 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Service References\JMMImageServer\JMMClient.JMMImageServer.Contract_Test.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMImageServer\JMMServerImage.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AniDBAnime1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AniDBReleaseGroup1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AniDBVote1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AniDB_AnimeCrossRefs1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AniDB_AnimeDetailed1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AniDB_Anime_Relation1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AniDB_Anime_Similar1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AniDB_Character1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AniDB_Seiyuu1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AnimeEpisode1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AnimeGroup1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AnimeGroup_SaveResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AnimeSeries1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AnimeSeries_SaveResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AppVersions1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_BookmarkedAnime1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_BookmarkedAnime_SaveResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_MALResult1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_Other1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_OtherResult1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_Trakt1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_TraktResult1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_TvDB1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_TvDBResult1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_TvDB_Episode1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_DuplicateFile1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_FileFfdshowPreset1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_GroupFileSummary1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_GroupFilter1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_GroupFilterExtended1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_GroupFilter_SaveResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_GroupVideoQuality1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_IgnoreAnime1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_ImportFolder1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_ImportFolder_SaveResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_JMMUser1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_MALAnimeResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_MissingEpisode1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_MissingFile1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_MovieDBMovieSearchResult1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_MovieDB_Fanart1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_MovieDB_Poster1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_Playlist1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_Playlist_SaveResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_Recommendation1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_RenameScript1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_RenameScript_SaveResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_ServerSettings1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_ServerSettings_SaveResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_ServerStatus1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_ToggleWatchedStatusOnEpisode_Response1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_TraktTVShowResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_Trakt_Activity1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_Trakt_Episode1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_Trakt_ImageFanart1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_Trakt_ImagePoster1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_Trakt_ShoutUser1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_TvDBLanguage1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_TVDBSeriesSearchResult1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_TvDB_Episode1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_TvDB_ImageFanart1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_TvDB_ImagePoster1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_TvDB_ImageWideBanner1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_VideoDetailed1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_VideoLocal1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_VideoLocalRenamed1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\JMMServerBinary\JMMServerBinary.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -1672,10 +1883,24 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Metro\ArrowHead-Down.png" />
+    <Resource Include="Images\Metro\ArrowHead-Up.png" />
+    <Resource Include="Images\Metro\check_false.png" />
+    <Resource Include="Images\Metro\check_true.png" />
+    <Resource Include="Images\Metro\down.png" />
+    <Resource Include="Images\Metro\up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Metro\add.png" />
+    <Resource Include="Images\Metro\minus.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>xcopy "$(TargetDir)*.dll" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y	
+xcopy "$(TargetDir)*.exe" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y
+xcopy "$(TargetDir)*.pdb" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y
+xcopy "$(TargetDir)*.manifest" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

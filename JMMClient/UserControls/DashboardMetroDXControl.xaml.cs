@@ -33,6 +33,9 @@ namespace JMMClient.UserControls
 		BackgroundWorker refreshActivityWorker = new BackgroundWorker();
 		BackgroundWorker refreshNewEpisodesWorker = new BackgroundWorker();
 
+		public ObservableCollection<MetroDashSection> Sections { get; set; }
+		public ICollectionView ViewSections { get; set; }
+
 		public static readonly DependencyProperty IsLoadingContinueWatchingProperty = DependencyProperty.Register("IsLoadingContinueWatching",
 			typeof(bool), typeof(DashboardMetroDXControl), new UIPropertyMetadata(false, null));
 
@@ -57,11 +60,94 @@ namespace JMMClient.UserControls
 		public bool IsLoadingTraktActivity
 		{
 			get { return (bool)GetValue(IsLoadingTraktActivityProperty); }
-			set { SetValue(IsLoadingTraktActivityProperty, value); }
+			set { 
+				SetValue(IsLoadingTraktActivityProperty, value);
+				SetSectionVisibility(DashboardMetroProcessType.TraktActivity);
+			}
 		}
 
 		public static readonly DependencyProperty IsLoadingNewEpisodesProperty = DependencyProperty.Register("IsLoadingNewEpisodes",
 			typeof(bool), typeof(DashboardMetroDXControl), new UIPropertyMetadata(false, null));
+
+		public static readonly DependencyProperty Dash_TraktActivity_ColumnProperty = DependencyProperty.Register("Dash_TraktActivity_Column",
+			typeof(int), typeof(DashboardMetroDXControl), new UIPropertyMetadata((int)1, null));
+
+		public int Dash_TraktActivity_Column
+		{
+			get { return (int)GetValue(Dash_TraktActivity_ColumnProperty); }
+			set { SetValue(Dash_TraktActivity_ColumnProperty, value); }
+		}
+
+		public static readonly DependencyProperty Dash_TraktActivity_VisibilityProperty = DependencyProperty.Register("Dash_TraktActivity_Visibility",
+			typeof(Visibility), typeof(DashboardMetroDXControl), new UIPropertyMetadata(Visibility.Visible, null));
+
+		public Visibility Dash_TraktActivity_Visibility
+		{
+			get { return (Visibility)GetValue(Dash_TraktActivity_VisibilityProperty); }
+			set { SetValue(Dash_TraktActivity_VisibilityProperty, value); }
+		}
+
+
+
+		public static readonly DependencyProperty Dash_ContinueWatching_ColumnProperty = DependencyProperty.Register("Dash_ContinueWatching_Column",
+			typeof(int), typeof(DashboardMetroDXControl), new UIPropertyMetadata((int)2, null));
+
+		public int Dash_ContinueWatching_Column
+		{
+			get { return (int)GetValue(Dash_ContinueWatching_ColumnProperty); }
+			set { SetValue(Dash_ContinueWatching_ColumnProperty, value); }
+		}
+
+		public static readonly DependencyProperty Dash_ContinueWatching_VisibilityProperty = DependencyProperty.Register("Dash_ContinueWatching_Visibility",
+			typeof(Visibility), typeof(DashboardMetroDXControl), new UIPropertyMetadata(Visibility.Visible, null));
+
+		public Visibility Dash_ContinueWatching_Visibility
+		{
+			get { return (Visibility)GetValue(Dash_ContinueWatching_VisibilityProperty); }
+			set { SetValue(Dash_ContinueWatching_VisibilityProperty, value); }
+		}
+
+
+
+
+		public static readonly DependencyProperty Dash_RandomSeries_ColumnProperty = DependencyProperty.Register("Dash_RandomSeries_Column",
+			typeof(int), typeof(DashboardMetroDXControl), new UIPropertyMetadata((int)3, null));
+
+		public int Dash_RandomSeries_Column
+		{
+			get { return (int)GetValue(Dash_RandomSeries_ColumnProperty); }
+			set { SetValue(Dash_RandomSeries_ColumnProperty, value); }
+		}
+
+		public static readonly DependencyProperty Dash_RandomSeries_VisibilityProperty = DependencyProperty.Register("Dash_RandomSeries_Visibility",
+			typeof(Visibility), typeof(DashboardMetroDXControl), new UIPropertyMetadata(Visibility.Visible, null));
+
+		public Visibility Dash_RandomSeries_Visibility
+		{
+			get { return (Visibility)GetValue(Dash_RandomSeries_VisibilityProperty); }
+			set { SetValue(Dash_RandomSeries_VisibilityProperty, value); }
+		}
+
+
+
+		public static readonly DependencyProperty Dash_NewEpisodes_ColumnProperty = DependencyProperty.Register("Dash_NewEpisodes_Column",
+			typeof(int), typeof(DashboardMetroDXControl), new UIPropertyMetadata((int)4, null));
+
+		public int Dash_NewEpisodes_Column
+		{
+			get { return (int)GetValue(Dash_NewEpisodes_ColumnProperty); }
+			set { SetValue(Dash_NewEpisodes_ColumnProperty, value); }
+		}
+
+		public static readonly DependencyProperty Dash_NewEpisodes_VisibilityProperty = DependencyProperty.Register("Dash_NewEpisodes_Visibility",
+			typeof(Visibility), typeof(DashboardMetroDXControl), new UIPropertyMetadata(Visibility.Visible, null));
+
+		public Visibility Dash_NewEpisodes_Visibility
+		{
+			get { return (Visibility)GetValue(Dash_NewEpisodes_VisibilityProperty); }
+			set { SetValue(Dash_NewEpisodes_VisibilityProperty, value); }
+		}
+
 
 		public bool IsLoadingNewEpisodes
 		{
@@ -113,10 +199,109 @@ namespace JMMClient.UserControls
 			cboImageType.SelectionChanged += new SelectionChangedEventHandler(cboImageType_SelectionChanged);
 
 			DashboardMetroVM.Instance.OnFinishedProcessEvent += new DashboardMetroVM.FinishedProcessHandler(Instance_OnFinishedProcessEvent);
+
+			Sections = new ObservableCollection<MetroDashSection>();
+			ViewSections = CollectionViewSource.GetDefaultView(Sections);
+
+			SetSectionOrder();
 		}
 
-		
+		private void SetSectionOrder()
+		{
+			int posTrakt = 0, posCont = 0, posRSeries = 0, posNewEps = 0;
+			Visibility visTrakt = System.Windows.Visibility.Visible,
+				visCont = System.Windows.Visibility.Visible,
+				visRSeries = System.Windows.Visibility.Visible,
+				visNewEps = System.Windows.Visibility.Visible;
 
+			UserSettingsVM.Instance.GetDashboardMetroSectionPosition(DashboardMetroProcessType.TraktActivity, ref posTrakt, ref visTrakt);
+			UserSettingsVM.Instance.GetDashboardMetroSectionPosition(DashboardMetroProcessType.ContinueWatching, ref posCont, ref visCont);
+			UserSettingsVM.Instance.GetDashboardMetroSectionPosition(DashboardMetroProcessType.RandomSeries, ref posRSeries, ref visRSeries);
+			UserSettingsVM.Instance.GetDashboardMetroSectionPosition(DashboardMetroProcessType.NewEpisodes, ref posNewEps, ref visNewEps);
+
+			Dash_TraktActivity_Column = posTrakt;
+			Dash_ContinueWatching_Column = posCont;
+			Dash_RandomSeries_Column = posRSeries;
+			Dash_NewEpisodes_Column = posNewEps;
+
+			Dash_TraktActivity_Visibility = visTrakt;
+			Dash_ContinueWatching_Visibility = visCont;
+			Dash_RandomSeries_Visibility = visRSeries;
+			Dash_NewEpisodes_Visibility = visNewEps;
+
+			Sections.Clear();
+			List<MetroDashSection> sections = UserSettingsVM.Instance.GetMetroDashSections();
+			foreach (MetroDashSection sect in sections)
+				Sections.Add(sect);
+
+			ViewSections.Refresh();
+		}
+
+		private void CommandBinding_MoveUpSection(object sender, ExecutedRoutedEventArgs e)
+		{
+			object obj = e.Parameter;
+			if (obj == null) return;
+
+			MetroDashSection sect = obj as MetroDashSection;
+			if (sect == null) return;
+
+			UserSettingsVM.Instance.MoveUpDashboardMetroSection(sect.SectionType);
+			SetSectionOrder();
+		}
+
+		private void CommandBinding_MoveDownSection(object sender, ExecutedRoutedEventArgs e)
+		{
+			object obj = e.Parameter;
+			if (obj == null) return;
+
+			MetroDashSection sect = obj as MetroDashSection;
+			if (sect == null) return;
+
+			UserSettingsVM.Instance.MoveDownDashboardMetroSection(sect.SectionType);
+			SetSectionOrder();
+		}
+
+		private void CommandBinding_EnableSectionCommand(object sender, ExecutedRoutedEventArgs e)
+		{
+			object obj = e.Parameter;
+			if (obj == null) return;
+
+			MetroDashSection sect = obj as MetroDashSection;
+			if (sect == null) return;
+
+			UserSettingsVM.Instance.EnableDisableDashboardMetroSection(sect.SectionType, true);
+			SetSectionOrder();
+		}
+
+		private void CommandBinding_DisableSectionCommand(object sender, ExecutedRoutedEventArgs e)
+		{
+			object obj = e.Parameter;
+			if (obj == null) return;
+
+			MetroDashSection sect = obj as MetroDashSection;
+			if (sect == null) return;
+
+			UserSettingsVM.Instance.EnableDisableDashboardMetroSection(sect.SectionType, false);
+			SetSectionOrder();
+		}
+
+		private void SetSectionVisibility(DashboardMetroProcessType sectionType)
+		{
+			/*switch (sectionType)
+			{
+				case DashboardMetroProcessType.ContinueWatching: break;
+
+				case DashboardMetroProcessType.NewEpisodes: break;
+				case DashboardMetroProcessType.RandomSeries: break;
+				case DashboardMetroProcessType.TraktActivity:
+					if (IsLoadingTraktActivity) Dash_TraktActivity_Visibility = System.Windows.Visibility.Collapsed;
+					else
+					{
+						Dash_TraktActivity_Visibility = System.Windows.Visibility.Visible;
+					}
+					break;
+			}*/
+		}
 		
 
 		
@@ -194,11 +379,20 @@ namespace JMMClient.UserControls
 
 		public void RefreshAllData()
 		{
-			IsLoadingContinueWatching = true;
-			IsLoadingRandomSeries = true;
-			IsLoadingTraktActivity = true;
-			IsLoadingNewEpisodes = true;
-			refreshDataWorker.RunWorkerAsync(true);
+			RefreshDashOptions opt = new RefreshDashOptions()
+			{
+				TraktActivity = Dash_TraktActivity_Visibility == System.Windows.Visibility.Visible,
+				ContinueWatching = Dash_ContinueWatching_Visibility == System.Windows.Visibility.Visible,
+				RandomSeries = Dash_RandomSeries_Visibility == System.Windows.Visibility.Visible,
+				NewEpisodes = Dash_NewEpisodes_Visibility == System.Windows.Visibility.Visible
+			};
+
+			if (opt.ContinueWatching) IsLoadingContinueWatching = true;
+			if (opt.RandomSeries) IsLoadingRandomSeries = true;
+			if (opt.TraktActivity) IsLoadingTraktActivity = true;
+			if (opt.NewEpisodes) IsLoadingNewEpisodes = true;
+
+			refreshDataWorker.RunWorkerAsync(opt);
 		}
 
 		void refreshDataWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -215,7 +409,13 @@ namespace JMMClient.UserControls
 		{
 			try
 			{
-				DashboardMetroVM.Instance.RefreshAllData();
+				RefreshDashOptions opt = e.Argument as RefreshDashOptions;
+
+				DashboardMetroVM.Instance.RefreshAllData(
+					opt.TraktActivity,
+					opt.ContinueWatching,
+					opt.RandomSeries,
+					opt.NewEpisodes);
 			}
 			catch (Exception ex)
 			{
@@ -368,5 +568,13 @@ namespace JMMClient.UserControls
 
 			DashboardMetroVM.Instance.NavigateForward(MetroViews.ContinueWatching, item.AnimeSeries);
 		}
+	}
+
+	public class RefreshDashOptions
+	{
+		public bool TraktActivity { get; set; }
+		public bool ContinueWatching { get; set; }
+		public bool RandomSeries { get; set; }
+		public bool NewEpisodes { get; set; }
 	}
 }

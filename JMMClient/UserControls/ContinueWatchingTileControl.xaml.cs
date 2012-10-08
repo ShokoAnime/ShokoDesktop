@@ -55,6 +55,15 @@ namespace JMMClient.UserControls
 			set { SetValue(UnwatchedEpisodeCountProperty, value); }
 		}
 
+		public static readonly DependencyProperty PosterWidthProperty = DependencyProperty.Register("PosterWidth",
+			typeof(double), typeof(ContinueWatchingTileControl), new UIPropertyMetadata((double)180, null));
+
+		public double PosterWidth
+		{
+			get { return (double)GetValue(PosterWidthProperty); }
+			set { SetValue(PosterWidthProperty, value); }
+		}
+
 		public ContinueWatchingTileControl()
 		{
 			InitializeComponent();
@@ -498,6 +507,26 @@ namespace JMMClient.UserControls
 			if (ser == null) return;
 
 			ucExternalLinks.DataContext = ser;
+
+			try
+			{
+				PosterWidth = 180;
+				if (ser.AniDB_Anime.UsePosterOnSeries)
+				{
+					string imgName = ser.AniDB_Anime.FanartPathThenPosterPath;
+					if (File.Exists(imgName))
+					{
+						BitmapDecoder decoder = BitmapDecoder.Create(new Uri(imgName), BitmapCreateOptions.None, BitmapCacheOption.None);
+						BitmapFrame frame = decoder.Frames[0];
+
+						PosterWidth = (double)250 * ((double)frame.PixelWidth / (double)frame.PixelHeight);
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				logger.ErrorException(ex.ToString(), ex);
+			}
 
 			RefreshData();
 		}

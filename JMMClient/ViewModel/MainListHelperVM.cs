@@ -258,6 +258,8 @@ namespace JMMClient
 			{
 				if (allAnimeDetailedDictionary == null)
 				{
+					DateTime start = DateTime.Now;
+
 					List<JMMServerBinary.Contract_AniDB_AnimeDetailed> allAnimeDetailed = JMMServerVM.Instance.clientBinaryHTTP.GetAllAnimeDetailed();
 					allAnimeDetailedDictionary = new Dictionary<int, AniDB_AnimeDetailedVM>();
 					foreach (JMMServerBinary.Contract_AniDB_AnimeDetailed aniDetail in allAnimeDetailed)
@@ -266,6 +268,9 @@ namespace JMMClient
 						anid.Populate(aniDetail, aniDetail.AniDBAnime.AnimeID);
 						allAnimeDetailedDictionary[anid.AniDB_Anime.AnimeID] = anid;
 					}
+
+					TimeSpan ts = DateTime.Now - start;
+					NLog.LogManager.GetCurrentClassLogger().Trace("Got all anime detailed in {0} ms", ts.TotalMilliseconds);
 				}
 				return allAnimeDetailedDictionary;
 			}

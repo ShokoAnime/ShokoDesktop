@@ -2,13 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows;
 
 namespace JMMClient
 {
-	public class MetroDashSection
+	public class MetroDashSection 
 	{
 		public DashboardMetroProcessType SectionType { get; set; }
 		public bool Enabled { get; set; }
+
+		public Visibility WinVisibility { get; set; }
+
+		public bool Disabled
+		{
+			get { return !Enabled; }
+		}
+
 		public string SectionName
 		{
 			get

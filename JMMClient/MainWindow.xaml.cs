@@ -65,6 +65,8 @@ namespace JMMClient
 		private static readonly int TAB_FileManger_Avdump = 9;
 		private static readonly int TAB_FileManger_FileSearch = 10;
 		private static readonly int TAB_FileManger_Rename = 11;
+		private static readonly int TAB_FileManger_UpdateData = 12;
+		private static readonly int TAB_FileManger_Rankings = 13;
 
 		public static readonly int TAB_Settings_Essential = 0;
 		public static readonly int TAB_Settings_AniDB = 1;
@@ -496,6 +498,12 @@ namespace JMMClient
 					{
 						if (fileRenaming.RenameScripts.Count == 0) fileRenaming.RefreshScripts();
 						lastFileManagerTab = TAB_FileManger_Rename;
+					}
+
+					if (tab.SelectedIndex == TAB_FileManger_Rankings)
+					{
+						if (rankings.AllAnime.Count == 0) rankings.Init();
+						lastFileManagerTab = TAB_FileManger_Rankings;
 					}
 					this.Cursor = Cursors.Arrow;
 				}

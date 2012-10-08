@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8111/JMMServerImage?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/JMMContracts" />
   <xs:element name="GetImage">
     <xs:complexType>
       <xs:sequence>
@@ -13,6 +14,35 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="GetImageResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetImageUsingPath">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="serverImagePath" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetImageUsingPathResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetImageUsingPathResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="maxRecords" type="xs:int" />
+        <xs:element minOccurs="0" name="jmmuserID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTestResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetTestResult" nillable="true" type="q1:Contract_Test" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

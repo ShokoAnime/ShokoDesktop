@@ -12,7 +12,7 @@
     <GenerateSerializableTypes>true</GenerateSerializableTypes>
     <Serializer>Auto</Serializer>
     <UseSerializerForFaults>true</UseSerializerForFaults>
-    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
     <ReferencedAssemblies />
     <ReferencedDataContractTypes />
     <ServiceContractMappings />
@@ -22,6 +22,7 @@
   </MetadataSources>
   <Metadata>
     <MetadataFile FileName="JMMServerImage2.xsd" MetadataType="Schema" ID="335fc998-0a3a-4136-85f8-1cf8af43706b" SourceId="1" SourceUrl="http://localhost:8111/JMMServerImage?xsd=xsd0" />
+    <MetadataFile FileName="JMMServerImage.xsd" MetadataType="Schema" ID="fec8b2a5-3be3-4176-afee-7e768efa9aeb" SourceId="1" SourceUrl="http://localhost:8111/JMMServerImage?xsd=xsd2" />
     <MetadataFile FileName="JMMServerImage21.xsd" MetadataType="Schema" ID="09bba86b-72f1-423c-ba15-b0a3961f4a09" SourceId="1" SourceUrl="http://localhost:8111/JMMServerImage?xsd=xsd1" />
     <MetadataFile FileName="JMMServerImage1.disco" MetadataType="Disco" ID="30e305f3-989a-49a2-865c-4cf7be0c5d74" SourceId="1" SourceUrl="http://localhost:8111/JMMServerImage?disco" />
     <MetadataFile FileName="JMMServiceImplementationImage1.wsdl" MetadataType="Wsdl" ID="b7fcb2fe-6281-4d35-a5d9-40e4638976b3" SourceId="1" SourceUrl="http://localhost:8111/JMMServerImage?wsdl" />

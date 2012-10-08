@@ -5,6 +5,7 @@ using System.Text;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using JMMClient.Downloads;
+using System.Windows;
 
 namespace JMMClient
 {
@@ -1247,6 +1248,7 @@ namespace JMMClient
 			return 1;
 		}
 
+
 		public int MoveUpSeriesWidget(SeriesWidgets swid)
 		{
 			// read the series widgets order
@@ -1402,6 +1404,166 @@ namespace JMMClient
 			AppSettings.DashboardWidgetsOrder = newWidgetOrder;
 
 			return pos + 1;
+		}
+
+
+
+
+
+
+
+
+		public void GetDashboardMetroSectionPosition(DashboardMetroProcessType swid, ref int pos, ref Visibility vis)
+		{
+			// read the series sections order
+			string[] sections = AppSettings.DashboardMetroSectionOrder.Split(';');
+
+			int i = 1;
+			foreach (string section in sections)
+			{
+				string[] vals = section.Split(':');
+				DashboardMetroProcessType thisswid = (DashboardMetroProcessType)int.Parse(vals[0]);
+
+				if (thisswid == swid)
+				{
+					bool v = bool.Parse(vals[1]);
+					pos = i;
+					vis = v ? Visibility.Visible : Visibility.Collapsed;
+					return;
+				}
+				else
+					i++;
+			}
+		}
+
+		public List<MetroDashSection> GetMetroDashSections()
+		{
+			List<MetroDashSection> sectionsRet = new List<MetroDashSection>();
+
+			string[] sections = AppSettings.DashboardMetroSectionOrder.Split(';');
+
+			foreach (string section in sections)
+			{
+				string[] vals = section.Split(':');
+				bool enabled = bool.Parse(vals[1]);
+
+				MetroDashSection dashSect = new MetroDashSection()
+				{
+					SectionType = (DashboardMetroProcessType)int.Parse(vals[0]),
+					Enabled = enabled,
+					WinVisibility = enabled ? Visibility.Visible : Visibility.Collapsed
+				};
+
+				sectionsRet.Add(dashSect);
+			}
+
+			return sectionsRet;
+		}
+
+		public int MoveUpDashboardMetroSection(DashboardMetroProcessType swid)
+		{
+			// read the series sections order
+			string[] sections = AppSettings.DashboardMetroSectionOrder.Split(';');
+
+			string moveSectionType = ((int)swid).ToString();
+			string moveSection = "";
+
+			// find the position of the language to be moved
+			int pos = -1;
+			for (int i = 0; i < sections.Length; i++)
+			{
+				string[] vals = sections[i].Split(':');
+				if (vals[0].Trim().ToUpper() == moveSectionType.Trim().ToUpper())
+				{
+					pos = i;
+					moveSection = sections[i];
+				}
+			}
+
+			if (pos == -1) return -1; // not found
+			if (pos == 0) return -1; // already at top
+
+			string wid1 = sections[pos - 1];
+			sections[pos - 1] = moveSection;
+			sections[pos] = wid1;
+
+			string newSectionOrder = string.Empty;
+			foreach (string wid in sections)
+			{
+				if (!string.IsNullOrEmpty(newSectionOrder))
+					newSectionOrder += ";";
+
+				newSectionOrder += wid;
+			}
+
+			AppSettings.DashboardMetroSectionOrder = newSectionOrder;
+
+			return pos - 1;
+		}
+
+		public int MoveDownDashboardMetroSection(DashboardMetroProcessType swid)
+		{
+			// read the series sections order
+			string[] sections = AppSettings.DashboardMetroSectionOrder.Split(';');
+			string moveSectionType = ((int)swid).ToString();
+			string moveSection = "";
+
+			// find the position of the language to be moved
+			int pos = -1;
+			for (int i = 0; i < sections.Length; i++)
+			{
+				string[] vals = sections[i].Split(':');
+				if (vals[0].Trim().ToUpper() == moveSectionType.Trim().ToUpper())
+				{
+					pos = i;
+					moveSection = sections[i];
+				}
+			}
+
+			if (pos == -1) return -1; // not found
+			if (pos == sections.Length - 1) return -1; // already at bottom
+
+			string lan1 = sections[pos + 1];
+			sections[pos + 1] = moveSection;
+			sections[pos] = lan1;
+
+			string newSectionOrder = string.Empty;
+			foreach (string wid in sections)
+			{
+				if (!string.IsNullOrEmpty(newSectionOrder))
+					newSectionOrder += ";";
+
+				newSectionOrder += wid;
+			}
+
+			AppSettings.DashboardMetroSectionOrder = newSectionOrder;
+
+			return pos + 1;
+		}
+
+		public void EnableDisableDashboardMetroSection(DashboardMetroProcessType swid, bool enabled)
+		{
+			// read the series sections order
+			string[] sections = AppSettings.DashboardMetroSectionOrder.Split(';');
+			string moveSectionType = ((int)swid).ToString();
+
+			string newSectionOrder = string.Empty;
+			foreach (string sect in sections)
+			{
+				string thisSect = sect;
+				string[] vals = sect.Split(':');
+				if (vals[0].Trim().Equals(moveSectionType.Trim(), StringComparison.InvariantCultureIgnoreCase))
+				{
+					thisSect = string.Format("{0}:{1}", moveSectionType, enabled.ToString());
+				}
+
+				if (!string.IsNullOrEmpty(newSectionOrder))
+					newSectionOrder += ";";
+
+				newSectionOrder += thisSect;
+			}
+
+			AppSettings.DashboardMetroSectionOrder = newSectionOrder;
 		}
 	}
 }

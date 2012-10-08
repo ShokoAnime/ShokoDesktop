@@ -36,6 +36,13 @@
             <helpers:ImageSourceConverter x:Key="ImageSourceConverter" />
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
+            <RoutedUICommand x:Key="MoveUpSectionCommand" Text="MoveUpSectionCommand" />
+            <RoutedUICommand x:Key="MoveDownSectionCommand" Text="MoveDownSectionCommand" />
+            <RoutedUICommand x:Key="EnableSectionCommand" Text="EnableSectionCommand" />
+            <RoutedUICommand x:Key="DisableSectionCommand" Text="DisableSectionCommand" />
+
+            
+
             <Style x:Key="VerticalTile" TargetType="dxlc:Tile">
                 <Setter Property="VerticalContentAlignment" Value="Center" />
                 <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -339,6 +346,52 @@
                     </Grid>
                 </Border>
             </DataTemplate>
+
+            <!-- MetroSectionTemplate -->
+            <DataTemplate x:Key="MetroSectionTemplate">
+
+                <StackPanel Orientation="Horizontal">
+                    <Button HorizontalAlignment="Left" Name="btnEnable" Margin="5,0,0,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto"
+                            Visibility="{Binding Path=Disabled, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            Command="{StaticResource EnableSectionCommand}" CommandParameter="{Binding}" 
+                            ToolTip="Enable Section">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                            <Image Height="26" Width="26" Source="/Images/Metro/check_false.png" Margin="0,0,0,0"/>
+
+                        </StackPanel>
+                    </Button>
+
+                    <Button HorizontalAlignment="Left" Name="btnDisable" Margin="5,0,0,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto"
+                            Visibility="{Binding Path=Enabled, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            Command="{StaticResource DisableSectionCommand}" CommandParameter="{Binding}" 
+                            ToolTip="Enable Section">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                            <Image Height="26" Width="26" Source="/Images/Metro/check_true.png" Margin="0,0,0,0"/>
+
+                        </StackPanel>
+                    </Button>
+
+                    <Button HorizontalAlignment="Left" Margin="5,0,0,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto"
+                                    Command="{StaticResource MoveUpSectionCommand}" CommandParameter="{Binding}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                            <Image Height="26" Width="26" Source="/Images/Metro/up.png" Margin="0,0,0,0"/>
+
+                        </StackPanel>
+                    </Button>
+
+                    <Button HorizontalAlignment="Left" Margin="5,0,5,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto"
+                                    Command="{StaticResource MoveDownSectionCommand}" CommandParameter="{Binding}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                            <Image Height="26" Width="26" Source="/Images/Metro/down.png" Margin="0,0,0,0"/>
+
+                        </StackPanel>
+                    </Button>
+                    
+                    <TextBlock Margin="5,0,10,0" Text="{Binding Path=SectionName}" VerticalAlignment="Center" FontWeight="DemiBold" FontSize="16"/>
+                    
+                </StackPanel>
+            </DataTemplate>
+            
         </ResourceDictionary>
         
         
@@ -346,13 +399,22 @@
 
     </UserControl.Resources>
 
+    <UserControl.CommandBindings>
 
+        <CommandBinding Command="{StaticResource MoveUpSectionCommand}" Executed="CommandBinding_MoveUpSection" />
+        <CommandBinding Command="{StaticResource MoveDownSectionCommand}" Executed="CommandBinding_MoveDownSection" />
+        <CommandBinding Command="{StaticResource EnableSectionCommand}" Executed="CommandBinding_EnableSectionCommand" />
+        <CommandBinding Command="{StaticResource DisableSectionCommand}" Executed="CommandBinding_DisableSectionCommand" />
+
+
+    </UserControl.CommandBindings>
 
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Name="ScrollerDashMetroDX" Grid.Column="0" Grid.Row="0" Margin="0" PanningMode="HorizontalOnly">
 
 
         <Grid x:Name="LayoutRoot" Height="{Binding ElementName=ScrollerDashMetroDX, Path=ViewportHeight}" Margin="10,0,0,0">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
@@ -363,10 +425,11 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
             <!-- settings -->
-            <Grid Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Margin="5,10,20,0" 
+            <Grid Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Margin="5,10,20,0" 
                   Visibility="{Binding Source={x:Static local:DashboardMetroVM.Instance}, Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -395,88 +458,94 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" IsHitTestVisible="False" Text="Options" Foreground="Black" FontSize="20" FontWeight="Bold" />
+                <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" IsHitTestVisible="False" Text="Options" Foreground="Black" FontSize="24" FontWeight="Bold" />
 
                 <TextBlock Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4" IsHitTestVisible="False" Text="General" Foreground="DarkBlue" FontSize="16" FontWeight="Bold" Margin="0,10,0,0"/>
 
                 <!-- Height Buttons -->
-                <StackPanel Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" Orientation="Horizontal" Margin="10,2,2,2" >
+                <StackPanel Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4" Orientation="Horizontal" Margin="10,2,2,2" >
                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ImageSize}" Margin="0,0,3,0" Foreground="Black"/>
 
                     <Button Name="btnContinueWatchingIncrease" Margin="0,2,0,2" Style="{DynamicResource FlatButtonStyle}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                            <Image Height="24" Width="24" Source="/Images/16_plus.png" Margin="0,0,0,0"/>
+                            <Image Height="26" Width="26" Source="/Images/Metro/add.png" Margin="0,0,0,0"/>
                         </StackPanel>
                     </Button>
 
                     <Button Name="btnContinueWatchingReduce" Margin="0,2,0,2" Style="{DynamicResource FlatButtonStyle}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                            <Image Height="24" Width="24" Source="/Images/16_minus.png" Margin="0,0,0,0"/>
+                            <Image Height="26" Width="26" Source="/Images/Metro/minus.png" Margin="0,0,0,0"/>
                         </StackPanel>
                     </Button>
                 </StackPanel>
 
-                <!-- Height Buttons -->
-                <StackPanel Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="4" Orientation="Horizontal" Margin="10,2,2,2" >
+                <!-- Posters or fanart -->
+                <StackPanel Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4" Orientation="Horizontal" Margin="10,2,2,2" >
                     <TextBlock VerticalAlignment="Center" Text="Image Type" Margin="0,0,3,0" Foreground="Black"/>
 
                     <ComboBox Name="cboImageType" VerticalAlignment="Center">
                     </ComboBox>
                 </StackPanel>
 
-                <TextBlock Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="4" IsHitTestVisible="False" Text="Trakt Activity" Foreground="DarkBlue" FontSize="16" FontWeight="Bold" Margin="0,10,0,0"/>
-
                 <!-- Number of Items - Trakt Activity -->
-                <StackPanel Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="4" Orientation="Horizontal" Margin="10,10,2,2" >
+                <TextBlock Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="1" IsHitTestVisible="False" Text="Trakt Activity" Foreground="DarkBlue" FontSize="16" FontWeight="Bold" Margin="0,10,0,0"/>
+
+                
+                <StackPanel Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="4" Orientation="Horizontal" Margin="10,10,2,2" >
                     <TextBlock VerticalAlignment="Center" Text="Items" Margin="0,0,5,0" Foreground="Black"/>
                     <extToolkit:IntegerUpDown Name="udItemsTraktActivity" Minimum="1" Maximum="100" DefaultValue="10" VerticalAlignment="Center" 
                                       Value="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=DashMetro_TraktActivity_Items}" />
                 </StackPanel>
 
-
-                <TextBlock Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="4" IsHitTestVisible="False" Text="Continue Watching" Foreground="DarkBlue" FontSize="16" FontWeight="Bold" Margin="0,10,0,0"/>
-
                 <!-- Number of Items - Continue Watching -->
-                <StackPanel Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="4" Orientation="Horizontal" Margin="10,10,2,2" >
+                <TextBlock Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="1" IsHitTestVisible="False" Text="Continue Watching" Foreground="DarkBlue" FontSize="16" FontWeight="Bold" Margin="0,10,0,0"/>
+
+                
+                <StackPanel Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="4" Orientation="Horizontal" Margin="10,10,2,2" >
                     <TextBlock VerticalAlignment="Center" Text="Items" Margin="0,0,5,0" Foreground="Black"/>
                     <extToolkit:IntegerUpDown Name="udItemsContinueWatching" Minimum="1" Maximum="100" DefaultValue="10" VerticalAlignment="Center" 
                                       Value="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=DashMetro_WatchNext_Items}" />
                 </StackPanel>
 
-
-                <TextBlock Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="6" IsHitTestVisible="False" Text="Random Series" Foreground="DarkBlue" FontSize="16" FontWeight="Bold" Margin="0,10,0,0"/>
-
                 <!-- Number of Items - Random Series -->
-                <StackPanel Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="4" Orientation="Horizontal" Margin="10,10,2,2" >
+                <TextBlock Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="1" IsHitTestVisible="False" Text="Random Series" Foreground="DarkBlue" FontSize="16" FontWeight="Bold" Margin="0,10,0,0"/>
+
+               
+                <StackPanel Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="4" Orientation="Horizontal" Margin="10,10,2,2" >
                     <TextBlock VerticalAlignment="Center" Text="Items" Margin="0,0,5,0" Foreground="Black"/>
                     <extToolkit:IntegerUpDown Name="udItemsRandomSeries" Minimum="1" Maximum="100" DefaultValue="5" VerticalAlignment="Center" 
                                       Value="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=DashMetro_RandomSeries_Items}" />
                 </StackPanel>
 
-                <TextBlock Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="6" IsHitTestVisible="False" Text="New Episodes" Foreground="DarkBlue" FontSize="16" FontWeight="Bold" Margin="0,10,0,0"/>
-
                 <!-- Number of Items - New Episodes -->
-                <StackPanel Grid.Column="0" Grid.Row="11" Grid.ColumnSpan="4" Orientation="Horizontal" Margin="10,10,2,2" >
+                <TextBlock Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="1" IsHitTestVisible="False" Text="New Episodes" Foreground="DarkBlue" FontSize="16" FontWeight="Bold" Margin="0,10,0,0"/>
+
+                
+                <StackPanel Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="4" Orientation="Horizontal" Margin="10,10,2,2" >
                     <TextBlock VerticalAlignment="Center" Text="Items" Margin="0,0,5,0" Foreground="Black"/>
                     <extToolkit:IntegerUpDown Name="udItemsNewEpisodes" Minimum="1" Maximum="100" DefaultValue="5" VerticalAlignment="Center" 
                                       Value="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=DashMetro_NewEpisodes_Items}" />
                 </StackPanel>
 
+                <!-- Sections -->
+                <TextBlock Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="6" IsHitTestVisible="False" Text="Sections" Foreground="DarkBlue" FontSize="16" FontWeight="Bold" Margin="0,10,0,0"/>
+
+                <ListBox Margin="10,10,0,10" BorderThickness="0" Background="Transparent" Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="4"
+                         HorizontalAlignment="Left" VerticalAlignment="Top" 
+                         ItemTemplate="{StaticResource MetroSectionTemplate}"
+                         ItemsSource="{Binding Path=ViewSections, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}"/>
+
             </Grid>
 
-            <!-- Activity -->
-            <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" Margin="10,5,0,17">
-                <TextBlock IsHitTestVisible="False"  Text="Activity" Foreground="Black" FontSize="24" FontFamily="Segoe UI" FontWeight="Bold"  VerticalAlignment="Center"/>
 
-                <!-- Refresh -->
-                <Button Name="btnRefreshActivity" Margin="12,2,2,2" Style="{DynamicResource FlatButtonStyle}">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                        <Image Height="24" Width="24" Source="/Images/Metro/reload_32.png" Margin="0,0,0,0"  RenderOptions.BitmapScalingMode="HighQuality"/>
-                    </StackPanel>
-                    <Button.ToolTip>
-                        <TextBlock Text="Refresh"/>
-                    </Button.ToolTip>
-                </Button>
+            <!-- ************************** -->
+            <!-- Top tool bar -->
+            <!-- ************************** -->
+            <StackPanel Orientation="Horizontal" 
+                        Grid.Column="1" 
+                        Grid.Row="0" Margin="10,5,0,10">
+
+                
 
                 <!-- Edit Dashboard -->
                 <Button Name="btnOptions" Margin="0,2,2,2" Style="{DynamicResource FlatButtonStyle}"
@@ -501,8 +570,33 @@
 
             </StackPanel>
 
-            <dxlc:TileLayoutControl Name="tileLayoutActivity" Grid.Column="1" Grid.Row="1"
-                                AllowDrop="True"  Margin="10,0,0,0" Padding="0,0,30,10"
+            <!-- ************************** -->
+            <!-- Activity -->
+            <!-- ************************** -->
+            <StackPanel Orientation="Horizontal" 
+                        Grid.Column="{Binding Path=Dash_TraktActivity_Column, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" 
+                        Visibility="{Binding Path=Dash_TraktActivity_Visibility, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}"
+                        Grid.Row="1" Margin="10,5,0,17">
+                <TextBlock IsHitTestVisible="False"  Text="Activity" Foreground="Black" FontSize="24" FontFamily="Segoe UI" FontWeight="Bold"  VerticalAlignment="Center"/>
+
+                <!-- Refresh -->
+                <Button Name="btnRefreshActivity" Margin="12,2,2,2" Style="{DynamicResource FlatButtonStyle}">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                        <Image Height="24" Width="24" Source="/Images/Metro/reload_32.png" Margin="0,0,0,0"  RenderOptions.BitmapScalingMode="HighQuality"/>
+                    </StackPanel>
+                    <Button.ToolTip>
+                        <TextBlock Text="Refresh"/>
+                    </Button.ToolTip>
+                </Button>
+
+
+
+            </StackPanel>
+
+            <dxlc:TileLayoutControl Name="tileLayoutActivity" 
+                                    Grid.Column="{Binding Path=Dash_TraktActivity_Column, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" 
+                                    Visibility="{Binding Path=Dash_TraktActivity_Visibility, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}"
+                                Grid.Row="2" AllowDrop="True"  Margin="10,0,0,0" Padding="0,0,30,10"
                                 ItemsSource="{Binding Source={x:Static local:DashboardMetroVM.Instance}, Path=TraktActivity}"
                                     TileClick="tileLayoutTraktActivity_TileClick">
                 <dxlc:TileLayoutControl.Resources>
@@ -526,7 +620,8 @@
                 </dxlc:TileLayoutControl.Resources>
             </dxlc:TileLayoutControl>
 
-            <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" Margin="30,5,0,17"
+            <StackPanel Orientation="Horizontal" Grid.Column="{Binding Path=Dash_TraktActivity_Column, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" 
+                        Grid.Row="2" Margin="30,5,0,17"
                         Visibility="{Binding Path=IsLoadingTraktActivity, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
 
                 <MahControls:ProgressRing IsActive="True" VerticalAlignment="Top" Foreground="DarkBlue" />
@@ -535,7 +630,10 @@
             <!-- ************************** -->
             <!-- Continue Watching -->
             <!-- ************************** -->
-            <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="0" Margin="10,5,0,17">
+            <StackPanel Orientation="Horizontal" 
+                        Grid.Column="{Binding Path=Dash_ContinueWatching_Column, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" 
+                        Visibility="{Binding Path=Dash_ContinueWatching_Visibility, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}"
+                        Grid.Row="1" Margin="10,5,0,17">
                 <TextBlock IsHitTestVisible="False"  Text="Continue Watching" Foreground="Black" FontSize="24" FontFamily="Segoe UI" FontWeight="Bold"  VerticalAlignment="Center"/>
 
                 <!-- Refresh -->
@@ -550,7 +648,9 @@
 
             </StackPanel>
 
-            <dxlc:TileLayoutControl Name="tileLayoutControl1" Grid.Column="2" Grid.Row="1"
+            <dxlc:TileLayoutControl Name="tileLayoutControl1" Grid.Row="2"
+                                    Grid.Column="{Binding Path=Dash_ContinueWatching_Column, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" 
+                        Visibility="{Binding Path=Dash_ContinueWatching_Visibility, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}"
                                 AllowDrop="True"  Margin="10,0,0,0" Padding="0,0,30,10"
                                 DragOver="tileLayoutControl1_DragOver"
                                 Drop="tileLayoutControl1_Drop"
@@ -577,7 +677,8 @@
                 </dxlc:TileLayoutControl.Resources>
             </dxlc:TileLayoutControl>
 
-            <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="1" Margin="30,5,0,17"
+            <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="30,5,0,17"
+                        Grid.Column="{Binding Path=Dash_ContinueWatching_Column, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" 
                         Visibility="{Binding Path=IsLoadingContinueWatching, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
 
                 <MahControls:ProgressRing IsActive="True" VerticalAlignment="Top" Foreground="DarkBlue" />
@@ -586,7 +687,10 @@
             <!-- ************************** -->
             <!-- Random Series -->
             <!-- ************************** -->
-            <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="0" Margin="10,5,0,17">
+            <StackPanel Orientation="Horizontal" 
+                        Grid.Column="{Binding Path=Dash_RandomSeries_Column, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" 
+                        Visibility="{Binding Path=Dash_RandomSeries_Visibility, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}"
+                        Grid.Row="1" Margin="10,5,0,17">
                 <TextBlock  IsHitTestVisible="False" Text="Random Series" 
                        Foreground="Black" FontSize="24" FontFamily="Segoe UI" FontWeight="Bold"   />
 
@@ -601,7 +705,10 @@
                 </Button>
             </StackPanel>
 
-            <dxlc:TileLayoutControl Name="tileLayoutRandomSeries" Grid.Column="3" Grid.Row="1"
+            <dxlc:TileLayoutControl Name="tileLayoutRandomSeries"
+                                    Grid.Column="{Binding Path=Dash_RandomSeries_Column, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" 
+                        Visibility="{Binding Path=Dash_RandomSeries_Visibility, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}"
+                                    Grid.Row="2"
                                 AllowDrop="True"  Margin="10,0,0,0" Padding="0,0,30,10"
                                 DragOver="tileLayoutControl1_DragOver"
                                 Drop="tileLayoutControl1_Drop"
@@ -628,7 +735,8 @@
                 </dxlc:TileLayoutControl.Resources>
             </dxlc:TileLayoutControl>
 
-            <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="1" Margin="30,5,0,17"
+            <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="30,5,0,17"
+                        Grid.Column="{Binding Path=Dash_RandomSeries_Column, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" 
                         Visibility="{Binding Path=IsLoadingRandomSeries, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
 
                 <MahControls:ProgressRing IsActive="True" VerticalAlignment="Top" Foreground="DarkBlue" />
@@ -637,7 +745,10 @@
             <!-- ************************** -->
             <!-- New Episodes -->
             <!-- ************************** -->
-            <StackPanel Orientation="Horizontal" Grid.Column="4" Grid.Row="0" Margin="10,5,0,17">
+            <StackPanel Orientation="Horizontal" 
+                        Grid.Column="{Binding Path=Dash_NewEpisodes_Column, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" 
+                        Visibility="{Binding Path=Dash_NewEpisodes_Visibility, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}"
+                        Grid.Row="1" Margin="10,5,0,17">
                 <TextBlock  IsHitTestVisible="False" Text="New Episodes" 
                        Foreground="Black" FontSize="24" FontFamily="Segoe UI" FontWeight="Bold"   />
 
@@ -652,7 +763,10 @@
                 </Button>
             </StackPanel>
 
-            <dxlc:TileLayoutControl Name="tileLayoutNewEpisodes" Grid.Column="4" Grid.Row="1"
+            <dxlc:TileLayoutControl Name="tileLayoutNewEpisodes" 
+                                    Grid.Column="{Binding Path=Dash_NewEpisodes_Column, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" 
+                        Visibility="{Binding Path=Dash_NewEpisodes_Visibility, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}"
+                                    Grid.Row="2"
                                 AllowDrop="True"  Margin="10,0,0,0" Padding="0,0,30,10"
                                 DragOver="tileLayoutControl1_DragOver"
                                 Drop="tileLayoutControl1_Drop"
@@ -679,8 +793,10 @@
                 </dxlc:TileLayoutControl.Resources>
             </dxlc:TileLayoutControl>
 
-            <StackPanel Orientation="Horizontal" Grid.Column="4" Grid.Row="1" Margin="30,5,0,17"
-                        Visibility="{Binding Path=IsLoadingRandomSeries, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <StackPanel Orientation="Horizontal" 
+                        Grid.Column="{Binding Path=Dash_NewEpisodes_Column, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" 
+                        Grid.Row="2" Margin="30,5,0,17"
+                        Visibility="{Binding Path=IsLoadingNewEpisodes, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
 
                 <MahControls:ProgressRing IsActive="True" VerticalAlignment="Top" Foreground="DarkBlue" />
             </StackPanel>

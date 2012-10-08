@@ -295,15 +295,15 @@ namespace JMMClient
 
 		}
 
-		public void RefreshAllData()
+		public void RefreshAllData(bool trakt, bool contWatching, bool randomSeries, bool newEps)
 		{
 			try
 			{
 				RefreshBaseData();
-				RefreshTraktActivity();
-				RefreshContinueWatching();
-				RefreshRandomSeries();
-				RefreshNewEpisodes();
+				if (trakt) RefreshTraktActivity();
+				if (contWatching) RefreshContinueWatching();
+				if (randomSeries) RefreshRandomSeries();
+				if (newEps) RefreshNewEpisodes();
 			}
 			catch (Exception ex)
 			{
@@ -627,7 +627,7 @@ namespace JMMClient
 				});
 
 				List<JMMServerBinary.Contract_AnimeEpisode> epContracts =
-						JMMServerVM.Instance.clientBinaryHTTP.GetEpisodesRecentlyAdded(UserSettingsVM.Instance.DashMetro_NewEpisodes_Items, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+						JMMServerVM.Instance.clientBinaryHTTP.GetEpisodesRecentlyAddedSummary(UserSettingsVM.Instance.DashMetro_NewEpisodes_Items, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
 
 				foreach (JMMServerBinary.Contract_AnimeEpisode contract in epContracts)
 				{
@@ -635,7 +635,7 @@ namespace JMMClient
 					ep.RefreshAnime();
 					if (ep.AniDB_Anime != null)
 					{
-						ep.SetTvDBInfo();
+						//ep.SetTvDBInfo();
 
 						string imageName = "";
 						if (AppSettings.DashMetroImageType == DashboardMetroImageType.Fanart)

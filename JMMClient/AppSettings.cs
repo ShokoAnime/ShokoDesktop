@@ -2259,6 +2259,81 @@ namespace JMMClient
 			}
 		}
 
+		public static string DashboardMetroSectionOrder
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["DashboardMetroSectionOrder"];
+				if (string.IsNullOrEmpty(val))
+				{
+					// default value
+					val = "1:true;2:false;3:false;4:true";
+					UpdateSetting("DashboardMetroSectionOrder", val);
+				}
+
+				// make sure the setting contains all the widgets
+				// just in case the user has manually edited the config, or is using an old config
+				string[] widgets = val.Split(';');
+				List<string> tempWidgets = new List<string>();
+				foreach (string w in widgets)
+				{
+					string[] vals = w.Split(':');
+					tempWidgets.Add(vals[0]);
+				}
+
+				int maxEnum = 4;
+				for (int i = 1; i <= maxEnum; i++)
+				{
+					if (!tempWidgets.Contains(i.ToString()))
+					{
+						if (val.Length > 0) val += ";";
+						val += i.ToString() + ":true";
+					}
+				}
+
+				return val;
+			}
+			set
+			{
+				UpdateSetting("DashboardMetroSectionOrder", value);
+			}
+		}
+
+		public static string DashboardMetroSectionVisibility
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["DashboardMetroSectionVisibility"];
+				if (string.IsNullOrEmpty(val))
+				{
+					// default value
+					val = "1;1;1;1";
+					UpdateSetting("DashboardMetroSectionVisibility", val);
+				}
+
+				// make sure the setting contains all the widgets
+				// just in case the user has manually edited the config, or is using an old config
+				string[] widgets = val.Split(';');
+				int maxEnum = 4;
+				for (int i = 1; i <= maxEnum; i++)
+				{
+					if (!widgets.Contains(i.ToString()))
+					{
+						if (val.Length > 0) val += ";";
+						val += i.ToString();
+					}
+				}
+
+				return val;
+			}
+			set
+			{
+				UpdateSetting("DashboardMetroSectionVisibility", value);
+			}
+		}
+
 		public static void DebugSettingsToLog()
 		{
 			#region System Info
