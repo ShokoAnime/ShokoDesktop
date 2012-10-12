@@ -933,6 +933,5 @@
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Background" Value="Transparent" />
     </Style>
-
-
+    
 </ResourceDictionary>

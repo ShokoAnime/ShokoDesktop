@@ -2134,10 +2134,10 @@ namespace JMMClient
 					if (ival >= 0 && ival <= 100)
 						return ival;
 					else
-						return 10;
+						return 5;
 				}
 				else
-					return 10; // default value
+					return 5; // default value
 			}
 			set
 			{
@@ -2268,7 +2268,7 @@ namespace JMMClient
 				if (string.IsNullOrEmpty(val))
 				{
 					// default value
-					val = "1:true;2:false;3:false;4:true";
+					val = "1:true;2:true;3:true;4:true";
 					UpdateSetting("DashboardMetroSectionOrder", val);
 				}
 

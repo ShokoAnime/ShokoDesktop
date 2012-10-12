@@ -6,7 +6,7 @@
              xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
              xmlns:local="clr-namespace:JMMClient"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="900">
 
     <UserControl.Resources>
 
@@ -22,133 +22,203 @@
     <Grid>
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="600*" />
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="300*" />
         </Grid.ColumnDefinitions>
 
 
-        <TabControl Grid.Row="0" Grid.Column="0" Margin="5" TabStripPlacement="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
 
 
-            <TabItem Header="My Rankings">
+        <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Margin="0,0,10,5">
 
-                    <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+            <!-- sorting and group -->
+            <Border DockPanel.Dock="Top" Background="#F1F1F1" BorderBrush="DarkGray" BorderThickness="1" Grid.Column="0" Grid.Row="0" Padding="2"  Grid.ColumnSpan="3">
+                <StackPanel Orientation="Vertical">
 
-                        <!-- script selection -->
-                        <Border DockPanel.Dock="Top" Background="FloralWhite" BorderBrush="DarkGray" BorderThickness="1" Grid.Column="0" Grid.Row="0" Padding="2"  Grid.ColumnSpan="3">
-                            <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" Margin="5">
 
-                                <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" Margin="5">
-
-                                    <TextBlock VerticalAlignment="Center" Text="Script" Margin="0,0,5,0"/>
-                                   
-                                    <!-- Save Script -->
-                                    <Button Name="btnSaveScript" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}">
-                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                            <Image Height="16" Width="16" Source="/Images/32_save.png" Margin="0,0,5,0"/>
-                                            <TextBlock VerticalAlignment="Center" Text="Save" Margin="0,0,5,0"/>
-                                        </StackPanel>
-                                    </Button>
-
-                                    <!-- New Script -->
-                                    <Button Name="btnNewScript" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}">
-                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                            <Image Height="16" Width="16" Source="/Images/16_plus.png" Margin="0,0,5,0"/>
-                                            <TextBlock VerticalAlignment="Center" Text="New" Margin="0,0,5,0"/>
-                                        </StackPanel>
-                                    </Button>
-
-                                    <!-- Add Tag -->
-                                    <Button Name="btnDeleteScript" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}">
-                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                            <Image Height="16" Width="16" Source="/Images/32_trash.png" Margin="0,0,5,0"/>
-                                            <TextBlock VerticalAlignment="Center" Text="Delete" Margin="0,0,5,0"/>
-                                        </StackPanel>
-                                    </Button>
-                                </StackPanel>
+                        <!-- Refresh -->
+                        <Button Name="btnRefresh" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}"
+                            Visibility="{Binding Path=IsNotLoading, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:RankingsControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/16_Refresh.png" Margin="0,0,5,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Refresh}" Margin="0,0,5,0"/>
                             </StackPanel>
-                        </Border>
+                        </Button>
+
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center"
+                                    Visibility="{Binding Path=IsLoading, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:RankingsControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <TextBlock VerticalAlignment="Center" Text="{Binding Path=StatusMessage, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:RankingsControl}}}" Margin="10,5,0,5" FontWeight="Bold"/>
+                        </StackPanel>
+
+                        <Button Name="btnSortOverall" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/32_sort.png" Margin="0,0,5,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="By Overall User Rating" Margin="0,0,5,0"/>
+                            </StackPanel>
+                        </Button>
+
+                        <!-- New Script -->
+                        <Button Name="btnSortYear" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/32_sort.png" Margin="0,0,5,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="Grouped By Year" Margin="0,0,5,0"/>
+                            </StackPanel>
+                        </Button>
+
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" Margin="5,0,5,5">
+
+                        <TextBlock VerticalAlignment="Center" Text="Collection State" Margin="10,0,0,0"/>
+                        <ComboBox Margin="7,0,0,0" Name="cboCollection" VerticalAlignment="Center"></ComboBox>
+
+                        <TextBlock VerticalAlignment="Center" Text="Completed" Margin="10,0,0,0"/>
+                        <ComboBox Margin="7,0,0,0" Name="cboWatched" VerticalAlignment="Center"></ComboBox>
+
+                        <TextBlock VerticalAlignment="Center" Text="Voted" Margin="10,0,0,0"/>
+                        <ComboBox Margin="7,0,0,0" Name="cboVoted" VerticalAlignment="Center"></ComboBox>
+
+                    </StackPanel>
+                </StackPanel>
+            </Border>
 
 
-                    <!-- grid for user rankings -->
-                    <DataGrid Name="dgRankings" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3"
+            <!-- grid for user rankings -->
+            <DataGrid Name="dgRankings" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3"
                               ItemsSource="{Binding Path=ViewUserRankings, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:RankingsControl}}}"      
                             AutoGenerateColumns="False" CanUserReorderColumns="True" CanUserResizeColumns="True" CanUserResizeRows="False" CanUserSortColumns="True"
                                   GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="LightGray" 
                                   AreRowDetailsFrozen="False" CanUserAddRows="False" CanUserDeleteRows="False">
-                        <DataGrid.GroupStyle>
-                            <GroupStyle>
-                                <GroupStyle.HeaderTemplate>
-                                    <DataTemplate>
-                                        <StackPanel>
-                                            <TextBlock Text="{Binding Path=Name}" />
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </GroupStyle.HeaderTemplate>
-                                <GroupStyle.ContainerStyle>
-                                    <Style TargetType="{x:Type GroupItem}">
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="{x:Type GroupItem}">
-                                                    <Expander>
-                                                        <Expander.Header>
-                                                            <StackPanel Orientation="Horizontal">
-                                                                <TextBlock Text="{Binding Path=Name}" FontWeight="Bold" />
-                                                                <TextBlock Text="{Binding Path=ItemCount}" Margin="10,0,0,0"/>
-                                                                <TextBlock Text=" Anime"/>
-                                                            </StackPanel>
-                                                        </Expander.Header>
-                                                        <ItemsPresenter />
-                                                    </Expander>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </GroupStyle.ContainerStyle>
-                            </GroupStyle>
-                        </DataGrid.GroupStyle>
-                        <DataGrid.CellStyle>
-                            <Style TargetType="DataGridCell">
-                                <Setter Property="Padding" Value="3,3,6,3"/>
+                <DataGrid.GroupStyle>
+                    <GroupStyle>
+                        <GroupStyle.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Path=Name}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </GroupStyle.HeaderTemplate>
+                        <GroupStyle.ContainerStyle>
+                            <Style TargetType="{x:Type GroupItem}">
                                 <Setter Property="Template">
                                     <Setter.Value>
-                                        <ControlTemplate TargetType="{x:Type DataGridCell}">
-                                            <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
-                                                <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-                                            </Border>
+                                        <ControlTemplate TargetType="{x:Type GroupItem}">
+                                            <Expander>
+                                                <Expander.Header>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="{Binding Path=Name}" FontWeight="Bold" />
+                                                        <TextBlock Text="{Binding Path=ItemCount}" Margin="10,0,0,0"/>
+                                                        <TextBlock Text=" Anime"/>
+                                                    </StackPanel>
+                                                </Expander.Header>
+                                                <ItemsPresenter />
+                                            </Expander>
                                         </ControlTemplate>
                                     </Setter.Value>
                                 </Setter>
                             </Style>
-                        </DataGrid.CellStyle>
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Anime" Binding="{Binding AnimeName}" IsReadOnly="True" />
-                            <DataGridTextColumn Header="Ranking" Binding="{Binding Ranking}" IsReadOnly="True" />
-                            <DataGridTextColumn Header="Rating" Binding="{Binding Rating}" IsReadOnly="True" />
-                            <DataGridTextColumn Header="UserRating" Binding="{Binding UserRating}" IsReadOnly="True" />
+                        </GroupStyle.ContainerStyle>
+                    </GroupStyle>
+                </DataGrid.GroupStyle>
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="Padding" Value="3,3,6,3"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                    <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                        <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </DataGrid.CellStyle>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Anime" Binding="{Binding AnimeName}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="AniDB Rating" Binding="{Binding Rating}" IsReadOnly="True" />
+                    <DataGridTemplateColumn Header="Your Rating" IsReadOnly="False">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
 
-                            <DataGridTextColumn Header="Year" Binding="{Binding Year}" IsReadOnly="True" />
-                        </DataGrid.Columns>
-                    </DataGrid>
+                                    <usercontrols:VisualRating Rating="{Binding Path=UserRating}" VerticalAlignment="Center" ImageSize="16" Margin="0,0,5,0"/>
+                                    <TextBlock Text="{Binding UserRating}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
 
-                </Grid>
+                    <DataGridTextColumn Header="Year" Binding="{Binding Year}" IsReadOnly="True" />
+                </DataGrid.Columns>
+            </DataGrid>
 
-            </TabItem>
+        </Grid>
 
-        </TabControl>
+        <GridSplitter HorizontalAlignment="Right" 
+                  VerticalAlignment="Stretch" Grid.Row="0"
+                  Grid.Column="1" ResizeBehavior="PreviousAndNext"
+                  Width="2" Background="#FFBCBCBC" Grid.RowSpan="3" />
 
+        <Border Grid.Row="0" Grid.Column="2" Margin="10,0,5,5" Padding="5" Grid.RowSpan="3"  Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1">
+
+            <StackPanel Orientation="Vertical"
+                        Visibility="{Binding Path=ShowAnimeDetails, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:RankingsControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <TextBlock Margin="5" Text="{Binding Path=AnimeDetailed.AniDB_Anime.MainTitle}" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" FontWeight="Heavy" />
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <Image  Height="250" HorizontalAlignment="Left" VerticalAlignment="Top"
+                        Source="{Binding Path=AnimeDetailed.AniDB_Anime.PosterPath}">
+                    </Image>
+
+                    <StackPanel Orientation="Vertical" Margin="5,0,0,0">
+                        <TextBlock Margin="0,0,0,0"  FontWeight="Heavy"  Text="{Binding Path=AnimeDetailed.AniDB_Anime.AirDateAndEndDate}" VerticalAlignment="Top"/>
+                        <TextBlock Margin="0,5,0,0"  FontWeight="Heavy"  Text="{Binding Path=AnimeDetailed.AniDB_Anime.EpisodeCountFormatted}" VerticalAlignment="Top"/>
+                        
+                        <StackPanel Orientation="Horizontal">
+                            <!-- Refresh -->
+                            <Button Name="btnViewSeries" Margin="0,7,2,2" Style="{DynamicResource FlatButtonStyle}"
+                            Visibility="{Binding Path=IsNotLoading, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:RankingsControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="16" Width="16" Source="/Images/16_windows.png" Margin="0,0,5,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="View Series"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="5"
+                            Visibility="{Binding Path=AnimeHasSeries, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:RankingsControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                    <TextBlock Margin="0,0,5,0"  FontWeight="Heavy" Foreground="DarkGray"  Text="My Vote" VerticalAlignment="Center"/>
+
+                    <usercontrols:RatingControl x:Name="cRating" Width="280" Height="24" RatingValue="{Binding Path=AnimeDetailed.AniDB_Anime.Detail.UserRating}" />
+
+                </StackPanel>
+
+                <TextBlock Margin="5" Text="{Binding Path=AnimeDetailed.AniDB_Anime.Description}" TextWrapping="Wrap" VerticalAlignment="Top" />
+
+                
+            </StackPanel>
+        </Border>
 
     </Grid>
 </UserControl>

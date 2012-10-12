@@ -50,6 +50,12 @@
   <wsdl:message name="IJMMServer_GetEpisodesRecentlyAddedSummary_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetEpisodesRecentlyAddedSummaryResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAnimeRatings_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAnimeRatings" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAnimeRatings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAnimeRatingsResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_SaveBookmarkedAnime_InputMessage">
     <wsdl:part name="parameters" element="tns:SaveBookmarkedAnime" />
   </wsdl:message>
@@ -1247,6 +1253,10 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetEpisodesRecentlyAddedSummary" message="tns:IJMMServer_GetEpisodesRecentlyAddedSummary_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetEpisodesRecentlyAddedSummaryResponse" message="tns:IJMMServer_GetEpisodesRecentlyAddedSummary_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetAnimeRatings">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAnimeRatings" message="tns:IJMMServer_GetAnimeRatings_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAnimeRatingsResponse" message="tns:IJMMServer_GetAnimeRatings_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="SaveBookmarkedAnime">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SaveBookmarkedAnime" message="tns:IJMMServer_SaveBookmarkedAnime_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SaveBookmarkedAnimeResponse" message="tns:IJMMServer_SaveBookmarkedAnime_OutputMessage" />
@@ -2073,6 +2083,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetEpisodesRecentlyAddedSummary">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetEpisodesRecentlyAddedSummary" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAnimeRatings">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAnimeRatings" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

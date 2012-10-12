@@ -167,6 +167,15 @@ namespace JMMClient
 			IsImageNotDefault = !isDefault;
 		}
 
+		public string EpisodeCountFormatted
+		{
+			get
+			{
+				return string.Format("{0} {1} ({2} {3})", EpisodeCountNormal, JMMClient.Properties.Resources.Episodes,
+					EpisodeCountSpecial, JMMClient.Properties.Resources.Specials);
+			}
+		}
+
 		private AniDB_AnimeCrossRefsVM aniDB_AnimeCrossRefs = null;
 		public AniDB_AnimeCrossRefsVM AniDB_AnimeCrossRefs
 		{

@@ -820,7 +820,7 @@
                         <usercontrols:UpdateAniDBDataControl x:Name="updateAniDBData"/>
                     </TabItem>
 
-                    <TabItem Header="Rankings" Name="tabRankings">
+                    <TabItem Header="My Votes" Name="tabRankings">
 
                         <usercontrols:RankingsControl x:Name="rankings"/>
                     </TabItem>
