@@ -20,7 +20,7 @@
             <RoutedUICommand x:Key="ForceUpdateCommand" Text="ForceUpdateCommand" />
             <RoutedUICommand x:Key="ToggleFileDetailsCommand" Text="ToggleFileDetailsCommand" />
             <RoutedUICommand x:Key="RehashFileCommand" Text="RehashFileCommand" />
-
+            <RoutedUICommand x:Key="ToggleVariationCommand" Text="ToggleVariationCommand" />
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
@@ -104,6 +104,14 @@
                                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Delete}" Margin="5,0,5,0" Foreground="Black"/>
                                 </StackPanel>
                             </Button>
+
+                            <!-- Is Variation-->
+                            <CheckBox Content="Is Variation" IsChecked="{Binding Path=Variation, Mode=OneWay}" Command="{StaticResource ToggleVariationCommand}" 
+                                CommandParameter="{Binding}" VerticalAlignment="Center"
+                                       ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=IsVariation}, 
+                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_IsVariation}}">
+
+                            </CheckBox>
 
                             <!-- more Info-->
                             <Button Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource ToggleFileDetailsCommand}" 
@@ -274,7 +282,7 @@
         <CommandBinding Command="{StaticResource ForceUpdateCommand}" Executed="CommandBinding_ForceUpdate" />
         <CommandBinding Command="{StaticResource ToggleFileDetailsCommand}" Executed="CommandBinding_ToggleFileDetails" />
         <CommandBinding Command="{StaticResource RehashFileCommand}" Executed="CommandBinding_RehashFile" />
-        
+        <CommandBinding Command="{StaticResource ToggleVariationCommand}" Executed="CommandBinding_ToggleVariation" />
     </UserControl.CommandBindings>
 
     <Grid Margin="3" Name="epDetailMainGrid">

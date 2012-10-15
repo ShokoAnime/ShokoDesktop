@@ -56,6 +56,12 @@
   <wsdl:message name="IJMMServer_GetAnimeRatings_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAnimeRatingsResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_SetVariationStatusOnFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetVariationStatusOnFile" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SetVariationStatusOnFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetVariationStatusOnFileResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_SaveBookmarkedAnime_InputMessage">
     <wsdl:part name="parameters" element="tns:SaveBookmarkedAnime" />
   </wsdl:message>
@@ -1257,6 +1263,10 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAnimeRatings" message="tns:IJMMServer_GetAnimeRatings_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAnimeRatingsResponse" message="tns:IJMMServer_GetAnimeRatings_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="SetVariationStatusOnFile">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SetVariationStatusOnFile" message="tns:IJMMServer_SetVariationStatusOnFile_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SetVariationStatusOnFileResponse" message="tns:IJMMServer_SetVariationStatusOnFile_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="SaveBookmarkedAnime">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SaveBookmarkedAnime" message="tns:IJMMServer_SaveBookmarkedAnime_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SaveBookmarkedAnimeResponse" message="tns:IJMMServer_SaveBookmarkedAnime_OutputMessage" />
@@ -2092,6 +2102,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAnimeRatings">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAnimeRatings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetVariationStatusOnFile">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/SetVariationStatusOnFile" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

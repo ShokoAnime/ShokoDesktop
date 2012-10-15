@@ -95,6 +95,21 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="SetVariationStatusOnFile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="videoLocalID" type="xs:int" />
+        <xs:element minOccurs="0" name="isVariation" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetVariationStatusOnFileResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SetVariationStatusOnFileResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="SaveBookmarkedAnime">
     <xs:complexType>
       <xs:sequence>
@@ -1752,6 +1767,7 @@
       <xs:sequence>
         <xs:element minOccurs="0" name="userID" type="xs:int" />
         <xs:element minOccurs="0" name="onlyFinishedSeries" type="xs:boolean" />
+        <xs:element minOccurs="0" name="ignoreVariations" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

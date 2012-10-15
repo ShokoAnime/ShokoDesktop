@@ -72,9 +72,11 @@
                     </StackPanel>
 
                     <TextBlock VerticalAlignment="Center" Text="{Binding Path=EpisodeCount, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MultipleFilesControl}}}" Margin="10,0,0,0" Foreground="DarkGray" />
-                    <CheckBox Name="chkOnlyFinished" Content="Only Finished Airing" VerticalAlignment="Center" Margin="15,0,0,0"/>
                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episodes}" Margin="10,0,0,0" Foreground="DarkGray"/>
+                    <CheckBox Name="chkOnlyFinished" Content="Only Finished Airing" VerticalAlignment="Center" Margin="15,0,0,0"/>
+                    <CheckBox Name="chkIgnoreVariations" Content="Ignore Variations" VerticalAlignment="Center" Margin="15,0,0,0"/>
                     
+
                 </StackPanel>
 
                 <!-- Help -->

@@ -125,6 +125,7 @@
       <xs:element minOccurs="0" name="VideoLocal_Hash" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="VideoLocal_HashSource" type="xs:int" />
       <xs:element minOccurs="0" name="VideoLocal_IsIgnored" type="xs:int" />
+      <xs:element minOccurs="0" name="VideoLocal_IsVariation" type="xs:int" />
       <xs:element minOccurs="0" name="VideoLocal_IsWatched" type="xs:int" />
       <xs:element minOccurs="0" name="VideoLocal_MD5" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="VideoLocal_SHA1" nillable="true" type="xs:string" />
@@ -612,6 +613,7 @@
       <xs:element minOccurs="0" name="ImportFolder" nillable="true" type="tns:Contract_ImportFolder" />
       <xs:element minOccurs="0" name="ImportFolderID" type="xs:int" />
       <xs:element minOccurs="0" name="IsIgnored" type="xs:int" />
+      <xs:element minOccurs="0" name="IsVariation" type="xs:int" />
       <xs:element minOccurs="0" name="IsWatched" type="xs:int" />
       <xs:element minOccurs="0" name="MD5" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="SHA1" nillable="true" type="xs:string" />

@@ -123,9 +123,9 @@ namespace JMMClient.UserControls
 		{
 			try
 			{
-				bool onlyFinishedSeries = (bool)e.Argument; 
+				MultipleFilesRefreshOptions opt = e.Argument as MultipleFilesRefreshOptions;
 				List<JMMServerBinary.Contract_AnimeEpisode> eps = JMMServerVM.Instance.clientBinaryHTTP.GetAllEpisodesWithMultipleFiles(
-					JMMServerVM.Instance.CurrentUser.JMMUserID.Value, onlyFinishedSeries);
+					JMMServerVM.Instance.CurrentUser.JMMUserID.Value, opt.OnlyFinishedSeries, opt.IgnoreVariations);
 				e.Result = eps;
 			}
 			catch (Exception ex)
@@ -151,7 +151,14 @@ namespace JMMClient.UserControls
 
 			StatusMessage = "Loading...";
 
-			workerFiles.RunWorkerAsync(chkOnlyFinished.IsChecked.Value);
+			
+			MultipleFilesRefreshOptions opt = new MultipleFilesRefreshOptions()
+			{
+				OnlyFinishedSeries = chkOnlyFinished.IsChecked.Value,
+				IgnoreVariations = chkIgnoreVariations.IsChecked.Value
+			};
+
+			workerFiles.RunWorkerAsync(opt);
 		}
 
 		void btnRefresh_Click(object sender, RoutedEventArgs e)
@@ -210,5 +217,11 @@ namespace JMMClient.UserControls
 
 		
 
+	}
+
+	public class MultipleFilesRefreshOptions
+	{
+		public bool OnlyFinishedSeries { get; set; }
+		public bool IgnoreVariations { get; set; }
 	}
 }

@@ -104,6 +104,36 @@ namespace JMMClient.UserControls
 			}
 		}
 
+		private void CommandBinding_ToggleVariation(object sender, ExecutedRoutedEventArgs e)
+		{
+			Window parentWindow = Window.GetWindow(this);
+
+			object obj = e.Parameter;
+			if (obj == null) return;
+
+			try
+			{
+				if (obj.GetType() == typeof(VideoDetailedVM))
+				{
+					VideoDetailedVM vid = obj as VideoDetailedVM;
+
+					vid.VideoLocal_IsVariation = vid.Variation ? 0 : 1;
+
+					string result = JMMServerVM.Instance.clientBinaryHTTP.SetVariationStatusOnFile(vid.VideoLocalID, vid.Variation);
+					if (result.Length > 0)
+						MessageBox.Show(result, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				}
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+			finally
+			{
+				this.Cursor = Cursors.Arrow;
+			}
+		}
+
 		public void DisplayFiles()
 		{
 			try

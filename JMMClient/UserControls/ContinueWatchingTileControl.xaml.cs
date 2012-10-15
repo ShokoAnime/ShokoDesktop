@@ -492,6 +492,8 @@ namespace JMMClient.UserControls
 			AnimeSeriesVM ser = this.DataContext as AnimeSeriesVM;
 			if (ser == null) return;
 
+			ser.RefreshBase();
+
 			UnwatchedEpisodeCount = ser.UnwatchedEpisodeCount;
 
 			UnwatchedEpisodes.Clear();

@@ -186,6 +186,42 @@ namespace JMMClient
 			}
 		}
 
+
+		private int videoLocal_IsVariation = 0;
+		public int VideoLocal_IsVariation
+		{
+			get { return videoLocal_IsVariation; }
+			set
+			{
+				videoLocal_IsVariation = value;
+				NotifyPropertyChanged("VideoLocal_IsVariation");
+				Variation = videoLocal_IsVariation == 1;
+				NotVariation = videoLocal_IsVariation == 0;
+			}
+		}
+
+		private bool variation = false;
+		public bool Variation
+		{
+			get { return variation; }
+			set
+			{
+				variation = value;
+				NotifyPropertyChanged("Variation");
+			}
+		}
+
+		private bool notVariation = false;
+		public bool NotVariation
+		{
+			get { return notVariation; }
+			set
+			{
+				notVariation = value;
+				NotifyPropertyChanged("NotVariation");
+			}
+		}
+
 		private bool watched = false;
 		public bool Watched
 		{
@@ -533,6 +569,7 @@ namespace JMMClient
 			this.VideoLocal_WatchedDate = contract.VideoLocal_WatchedDate;
 			this.WatchedDate = contract.VideoLocal_WatchedDate;
 			this.VideoLocal_IsIgnored = contract.VideoLocal_IsIgnored;
+			this.VideoLocal_IsVariation = contract.VideoLocal_IsVariation;
 			this.VideoLocal_MD5 = contract.VideoLocal_MD5;
 			this.VideoLocal_SHA1 = contract.VideoLocal_SHA1;
 			this.VideoLocal_CRC32 = contract.VideoLocal_CRC32;

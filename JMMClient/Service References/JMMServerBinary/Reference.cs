@@ -814,6 +814,9 @@ namespace JMMClient.JMMServerBinary {
         private int VideoLocal_IsIgnoredField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int VideoLocal_IsVariationField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int VideoLocal_IsWatchedField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1455,6 +1458,19 @@ namespace JMMClient.JMMServerBinary {
                 if ((this.VideoLocal_IsIgnoredField.Equals(value) != true)) {
                     this.VideoLocal_IsIgnoredField = value;
                     this.RaisePropertyChanged("VideoLocal_IsIgnored");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int VideoLocal_IsVariation {
+            get {
+                return this.VideoLocal_IsVariationField;
+            }
+            set {
+                if ((this.VideoLocal_IsVariationField.Equals(value) != true)) {
+                    this.VideoLocal_IsVariationField = value;
+                    this.RaisePropertyChanged("VideoLocal_IsVariation");
                 }
             }
         }
@@ -6770,6 +6786,9 @@ namespace JMMClient.JMMServerBinary {
         private int IsIgnoredField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IsVariationField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IsWatchedField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -6907,6 +6926,19 @@ namespace JMMClient.JMMServerBinary {
                 if ((this.IsIgnoredField.Equals(value) != true)) {
                     this.IsIgnoredField = value;
                     this.RaisePropertyChanged("IsIgnored");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IsVariation {
+            get {
+                return this.IsVariationField;
+            }
+            set {
+                if ((this.IsVariationField.Equals(value) != true)) {
+                    this.IsVariationField = value;
+                    this.RaisePropertyChanged("IsVariation");
                 }
             }
         }
@@ -15397,6 +15429,9 @@ namespace JMMClient.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetAnimeRatings", ReplyAction="http://tempuri.org/IJMMServer/GetAnimeRatingsResponse")]
         System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AnimeRating> GetAnimeRatings(int collectionState, int watchedState, int ratingVotedState, int userID);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/SetVariationStatusOnFile", ReplyAction="http://tempuri.org/IJMMServer/SetVariationStatusOnFileResponse")]
+        string SetVariationStatusOnFile(int videoLocalID, bool isVariation);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/SaveBookmarkedAnime", ReplyAction="http://tempuri.org/IJMMServer/SaveBookmarkedAnimeResponse")]
         JMMClient.JMMServerBinary.Contract_BookmarkedAnime_SaveResponse SaveBookmarkedAnime(JMMClient.JMMServerBinary.Contract_BookmarkedAnime contract);
         
@@ -15752,7 +15787,7 @@ namespace JMMClient.JMMServerBinary {
         System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_VideoLocal> GetAllManuallyLinkedFiles(int userID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetAllEpisodesWithMultipleFiles", ReplyAction="http://tempuri.org/IJMMServer/GetAllEpisodesWithMultipleFilesResponse")]
-        System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AnimeEpisode> GetAllEpisodesWithMultipleFiles(int userID, bool onlyFinishedSeries);
+        System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AnimeEpisode> GetAllEpisodesWithMultipleFiles(int userID, bool onlyFinishedSeries, bool ignoreVariations);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/ReevaluateDuplicateFiles", ReplyAction="http://tempuri.org/IJMMServer/ReevaluateDuplicateFilesResponse")]
         void ReevaluateDuplicateFiles();
@@ -16035,6 +16070,10 @@ namespace JMMClient.JMMServerBinary {
         
         public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AnimeRating> GetAnimeRatings(int collectionState, int watchedState, int ratingVotedState, int userID) {
             return base.Channel.GetAnimeRatings(collectionState, watchedState, ratingVotedState, userID);
+        }
+        
+        public string SetVariationStatusOnFile(int videoLocalID, bool isVariation) {
+            return base.Channel.SetVariationStatusOnFile(videoLocalID, isVariation);
         }
         
         public JMMClient.JMMServerBinary.Contract_BookmarkedAnime_SaveResponse SaveBookmarkedAnime(JMMClient.JMMServerBinary.Contract_BookmarkedAnime contract) {
@@ -16509,8 +16548,8 @@ namespace JMMClient.JMMServerBinary {
             return base.Channel.GetAllManuallyLinkedFiles(userID);
         }
         
-        public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AnimeEpisode> GetAllEpisodesWithMultipleFiles(int userID, bool onlyFinishedSeries) {
-            return base.Channel.GetAllEpisodesWithMultipleFiles(userID, onlyFinishedSeries);
+        public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AnimeEpisode> GetAllEpisodesWithMultipleFiles(int userID, bool onlyFinishedSeries, bool ignoreVariations) {
+            return base.Channel.GetAllEpisodesWithMultipleFiles(userID, onlyFinishedSeries, ignoreVariations);
         }
         
         public void ReevaluateDuplicateFiles() {

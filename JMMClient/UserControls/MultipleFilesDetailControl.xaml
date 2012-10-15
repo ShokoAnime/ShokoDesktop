@@ -10,6 +10,8 @@
         <ResourceDictionary>
 
             <RoutedUICommand x:Key="DeleteFileCommand" Text="DeleteFileCommand" />
+            <RoutedUICommand x:Key="ToggleVariationCommand" Text="ToggleVariationCommand" />
+            
             
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
@@ -31,7 +33,7 @@
                         <!-- General Contextual buttons toolbar -->
                         <StackPanel Orientation="Horizontal">
                             <!-- Play button-->
-                            <Button Name="btnPlay" Margin="0,0,10,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center"
+                            <Button Name="btnPlay" Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center"
                             Visibility="{Binding Path=FileIsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
                             Command="{DynamicResource PlayVideoCommand}" CommandParameter="{Binding}">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
@@ -41,7 +43,7 @@
                             </Button>
 
                             <!-- open folder button-->
-                            <Button Margin="0,0,10,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource OpenFolderCommand}" 
+                            <Button Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource OpenFolderCommand}" 
                                 CommandParameter="{Binding}" Visibility="{Binding Path=FileIsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}" >
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="16" Width="16" Source="/Images/32_folder.png" Margin="2,0,2,0"/>
@@ -53,13 +55,20 @@
                             </Button>
 
                             <!-- delete button-->
-                            <Button Margin="0,0,10,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource DeleteFileCommand}" 
+                            <Button Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource DeleteFileCommand}" 
                                 CommandParameter="{Binding}" Visibility="{Binding Path=FileIsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}" >
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="16" Width="16" Source="/Images/32_trash.png" Margin="2,0,2,0"/>
                                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Delete}" Margin="5,0,5,0"/>
                                 </StackPanel>
                             </Button>
+
+                            <CheckBox Content="Is Variation" IsChecked="{Binding Path=Variation, Mode=OneWay}" Command="{StaticResource ToggleVariationCommand}" 
+                                CommandParameter="{Binding}" VerticalAlignment="Center"
+                                       ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=IsVariation}, 
+                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_IsVariation}}">
+                                
+                            </CheckBox>
 
                             <!-- Link to AniDB -->
                             <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="AniDB" URL="{Binding Path=AniDB_SiteURL}" Margin="10,0,0,0"
@@ -132,6 +141,7 @@
 
     <UserControl.CommandBindings>
         <CommandBinding Command="{StaticResource DeleteFileCommand}" Executed="CommandBinding_DeleteFile" />
+        <CommandBinding Command="{StaticResource ToggleVariationCommand}" Executed="CommandBinding_ToggleVariation" />
     </UserControl.CommandBindings>
 
     <Grid Margin="3">

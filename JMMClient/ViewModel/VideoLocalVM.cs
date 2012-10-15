@@ -19,6 +19,7 @@ namespace JMMClient.ViewModel
 		public long FileSize { get; set; }
 		public int IsWatched { get; set; }
 		public int IsIgnored { get; set; }
+		public int IsVariation { get; set; }
 		public DateTime? WatchedDate { get; set; }
 		public DateTime DateTimeUpdated { get; set; }
 
@@ -135,6 +136,7 @@ namespace JMMClient.ViewModel
 			this.ImportFolderID = contract.ImportFolderID;
 			this.IsWatched = contract.IsWatched;
 			this.IsIgnored = contract.IsIgnored;
+			this.IsVariation = contract.IsVariation;
 			this.MD5 = contract.MD5;
 			this.SHA1 = contract.SHA1;
 			this.VideoLocalID = contract.VideoLocalID;
