@@ -106,11 +106,34 @@ namespace JMMClient.UserControls
 		{
 			try
 			{
-				if (lbEpisodes.SelectedItem == null) return;
+				FrameworkElement ctrl = e.OriginalSource as FrameworkElement;
 
-				if (lbEpisodes.SelectedItem is AnimeEpisodeVM)
+				if (ctrl == null || lbEpisodes.SelectedItem == null)
+					return;
+
+				// The below while loop, etc. is used to make sure that the double click event is coming from an episode detail.
+				// When the ListBox is responsible for rendering the scrollbar, it turns out that the scrollbar will also raise
+				// double click events. So we'll see if the EpisodeDetail is an ancestor of the original source of the event
+				bool srcWasListItem = false;
+
+				while (ctrl != null)
 				{
-					AnimeEpisodeVM ep = lbEpisodes.SelectedItem as AnimeEpisodeVM;
+					if (ctrl is EpisodeDetail)
+					{
+						srcWasListItem = true;
+						break;
+					}
+
+					ctrl = ctrl.Parent as FrameworkElement;
+				}
+
+				if (!srcWasListItem)
+					return; // The source of the event wasn't an EpisodeDetail
+
+				AnimeEpisodeVM ep = lbEpisodes.SelectedItem as AnimeEpisodeVM;
+
+				if (ep != null)
+				{
 					ep.RefreshFilesForEpisode();
 
 					if (ep.FilesForEpisode.Count == 1)

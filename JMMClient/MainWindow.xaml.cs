@@ -422,8 +422,8 @@ namespace JMMClient
 				//Debug.Print("Scroller width = {0}", Scroller.ActualWidth);
 				//Debug.Print("Scroller ViewportWidth = {0}", Scroller.ViewportWidth);
 
-				double tempWidth = Scroller.ViewportWidth - 8;
-				double tempHeight = Scroller.ViewportHeight - 8;
+				double tempWidth = ccDetail.ActualWidth - 8;
+				double tempHeight = ccDetail.ActualHeight - 8;
 				if (tempWidth > 0)
 				{
 					MainListHelperVM.Instance.MainScrollerWidth = tempWidth;

@@ -106,10 +106,10 @@
             </StackPanel>
         </Border>
 
-        <ListBox Name="lbEpisodes" BorderThickness="0" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch"  Margin="0" 
-                 VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
+        <ListBox x:Name="lbEpisodes" BorderThickness="0" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch"  Margin="0" 
+                 VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" ScrollViewer.CanContentScroll="True"
                  ItemsSource="{Binding Path=CurrentEpisodes, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:EpisodeList}}}" 
-                 Background="Transparent" ItemContainerStyle="{DynamicResource ListBoxItemStyle}"  VerticalAlignment="Stretch" >
+                 Background="Transparent" ItemContainerStyle="{DynamicResource ListBoxItemStyle}"  VerticalAlignment="Stretch">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <usercontrols:EpisodeDetail/>

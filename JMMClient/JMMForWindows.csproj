@@ -299,6 +299,7 @@
     <Compile Include="ImageDownload\ImageDownloader.cs" />
     <Compile Include="ImageDownload\ImageDownloadRequest.cs" />
     <Compile Include="ImageSourceHelper.cs" />
+    <Compile Include="IntegerAdditionConverter.cs" />
     <Compile Include="Languages.cs" />
     <Compile Include="MainListWrapper.cs" />
     <Compile Include="DataTemplateSelectors\MainListTemplateSelector.cs" />
