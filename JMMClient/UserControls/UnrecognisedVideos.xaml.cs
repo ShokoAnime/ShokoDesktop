@@ -111,7 +111,7 @@ namespace JMMClient.UserControls
 
 			UnrecognisedFiles = new ObservableCollection<VideoLocalVM>();
 			ViewFiles = CollectionViewSource.GetDefaultView(UnrecognisedFiles);
-			ViewFiles.SortDescriptions.Add(new SortDescription("FullPath", ListSortDirection.Ascending));
+			ViewFiles.SortDescriptions.Add(new SortDescription("FileName", ListSortDirection.Ascending));
 			ViewFiles.Filter = FileSearchFilter;
 
 			AllSeries = new ObservableCollection<AnimeSeriesVM>();
