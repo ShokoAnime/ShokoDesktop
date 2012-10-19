@@ -8,6 +8,7 @@
              xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
              xmlns:MahMetro="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:MahMetroShared="http://metro.mahapps.com/winfx/xaml/shared"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
             mc:Ignorable="d"
             d:DesignHeight="800" d:DesignWidth="1000">
 
@@ -20,7 +21,10 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+                <ResourceDictionary Source="/Resources/Metro.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <local:PeopleSayingTemplateSelector x:Key="PeopleSayingTemplateSelector"/>
 
             <RoutedUICommand x:Key="PlayEpisodeCommand" Text="PlayEpisodeCommand" />
             <RoutedUICommand x:Key="PlayAllUnwatchedEpisodeCommand" Text="PlayAllUnwatchedEpisodeCommand" />
@@ -164,7 +168,7 @@
 
                             <Image Source="{Binding Picture}" ToolTipService.ShowDuration="60000"
                                Height="150" VerticalAlignment="Top" HorizontalAlignment="Left">
-                                
+
                             </Image>
 
 
@@ -193,7 +197,7 @@
                                     <TextBlock Text="Details" VerticalAlignment="Center" FontSize="12" FontWeight="Normal"/>
                                 </StackPanel>
                             </Button>
-                            
+
                             <!-- vote up -->
                             <Button Margin="10,0,0,0" VerticalAlignment="Center" Command="{StaticResource VoteUpCommand}" CommandParameter="{Binding}" Visibility="Collapsed">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
@@ -216,7 +220,7 @@
                                 </StackPanel>
                             </Button>
 
-                            
+
                         </StackPanel>
 
                     </Grid>
@@ -238,26 +242,29 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
 
                         <!-- Image  -->
-                        <Border HorizontalAlignment="Left" Grid.Column="0" Grid.Row="0" Grid.RowSpan="4" VerticalAlignment="Top" BorderThickness="0" BorderBrush="White" Margin="0,0,10,0">
+                        <Border HorizontalAlignment="Left" Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" VerticalAlignment="Top" BorderThickness="0" BorderBrush="White" Margin="0,0,10,0">
                             <Image Margin="0" Stretch="Fill" Width="100" Height="100" 
                                RenderOptions.BitmapScalingMode="LowQuality" Source="{Binding DelayedUserImage}">
                             </Image>
                         </Border>
 
-                        <TextBlock Grid.Column="1" Grid.Row="0" Margin="5,0,0,0" Text="{Binding Path=User.Username}" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"
+                        <TextBlock Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Margin="5,0,0,0" Text="From Trakt" FontSize="14" Foreground="DarkGray" VerticalAlignment="Center" FontWeight="Bold"/>
+
+                        <TextBlock Grid.Column="1" Grid.Row="1" Margin="5,0,0,0" Text="{Binding Path=User.Username}" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"
                                    Foreground="Black" ToolTipService.ShowDuration="60000">
                         </TextBlock>
 
-                        <TextBlock Grid.Column="2" Grid.Row="0" Margin="5,0,0,0" Text="{Binding Path=Shout.ShoutDateString}" FontSize="14" HorizontalAlignment="Left" FontWeight="Bold"
+                        <TextBlock Grid.Column="2" Grid.Row="1" Margin="5,0,0,0" Text="{Binding Path=Shout.ShoutDateString}" FontSize="14" HorizontalAlignment="Left" FontWeight="Bold"
                                    Foreground="DarkGray" VerticalAlignment="Top" ToolTipService.ShowDuration="60000">
                         </TextBlock>
 
 
-                        <TextBlock Grid.Column="1" Grid.Row="1" Margin="5,5,0,0" Grid.RowSpan="3" Text="{Binding Path=Shout.Text}" Width="300" TextWrapping="Wrap" Grid.ColumnSpan="2"
+                        <TextBlock Grid.Column="1" Grid.Row="2" Margin="5,5,0,0" Grid.RowSpan="3" Text="{Binding Path=Shout.Text}" Width="270" TextWrapping="Wrap" Grid.ColumnSpan="2"
                                    Foreground="Black" VerticalAlignment="Top" ToolTipService.ShowDuration="60000">
                         </TextBlock>
 
@@ -265,6 +272,55 @@
                     </Grid>
                 </Border>
             </DataTemplate>
+
+            <!-- AniDBShoutTemplate -->
+            <DataTemplate x:Key="AniDBShoutTemplate">
+                <Border Background="White" BorderBrush="DarkGray" BorderThickness="1" Margin="0,10,10,0">
+                    <Grid Margin="10" VerticalAlignment="Top">
+
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <!-- Image  -->
+                        <Border HorizontalAlignment="Left" Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" VerticalAlignment="Top" BorderThickness="0" BorderBrush="White" Margin="0,0,10,0">
+                            <Image Margin="0" Stretch="Fill" Width="100" Height="100" 
+                               RenderOptions.BitmapScalingMode="LowQuality" Source="{Binding DelayedUserImage}">
+                            </Image>
+                        </Border>
+
+                        <TextBlock Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Margin="5,0,0,0" Text="From AniDB" FontSize="14" Foreground="DarkGray" VerticalAlignment="Center" FontWeight="Bold"/>
+
+                        <TextBlock Grid.Column="1" Grid.Row="1" Margin="5,0,0,0" Text="{Binding Path=UserID}" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"
+                                   Foreground="Black" ToolTipService.ShowDuration="60000">
+                        </TextBlock>
+
+                        <TextBlock Grid.Column="2" Grid.Row="1" Margin="5,0,0,0" Text="{Binding Path=RecommendationTypeText}" FontSize="14" HorizontalAlignment="Left" FontWeight="Bold"
+                                   Foreground="DarkGray" VerticalAlignment="Top" ToolTipService.ShowDuration="60000">
+                        </TextBlock>
+
+
+                        <TextBlock Grid.Column="1" Grid.Row="2" Margin="5,5,0,0" Grid.RowSpan="3" Text="{Binding Path=RecommendationText}" Width="270" TextWrapping="Wrap" Grid.ColumnSpan="2"
+                                   Foreground="Black" VerticalAlignment="Top" ToolTipService.ShowDuration="60000">
+                        </TextBlock>
+
+
+                    </Grid>
+                </Border>
+            </DataTemplate>
+
+            
+
 
 
 
@@ -285,13 +341,14 @@
 
     </UserControl.CommandBindings>
 
-    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Name="ScrollerCWatching" Grid.Column="0" Grid.Row="0" Margin="0,0,0,0">
+    <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto" Name="ScrollerCWatching" Grid.Column="0" Grid.Row="0" Margin="0,0,0,0"
+                 Style="{StaticResource FavsScrollViewer}" >
 
 
-        <Grid  Width="{Binding ElementName=ScrollerCWatching, Path=ViewportWidth}">
+        <Grid x:Name="grdMain"  Width="{Binding ElementName=ScrollerCWatching, Path=ViewportWidth}" Margin="10,0,0,0">
 
             <Grid.RowDefinitions>
-                <RowDefinition MaxHeight="50" Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <!-- tool bar-->
                 <RowDefinition Height="Auto"/>
 
@@ -317,7 +374,7 @@
 
             <!-- Top row, back button, anime name -->
             <Border Name="panelTop" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,10,0,0">
-                <StackPanel Orientation="Horizontal"  VerticalAlignment="Center" >
+                <WrapPanel Orientation="Horizontal" VerticalAlignment="Center">
 
                     <Button Name="btnBack" Margin="0" Style="{DynamicResource MetroCircleButtonStyle}" VerticalAlignment="Center">
                         <Image Height="32" Width="32" Source="/Images/metro_Prev.png" Margin="2,0,2,0"/>
@@ -341,7 +398,7 @@
 
 
 
-                </StackPanel>
+                </WrapPanel>
             </Border>
 
 
@@ -439,7 +496,7 @@
 
                     </StackPanel>
 
-                    <StackPanel Orientation="Horizontal"  VerticalAlignment="Center" >
+                    <WrapPanel Orientation="Horizontal"  VerticalAlignment="Center" >
 
                         <Button Name="btnPlayNextEp" Margin="0" VerticalAlignment="Top" >
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
@@ -494,7 +551,7 @@
 
                         </DockPanel>
 
-                    </StackPanel>
+                    </WrapPanel>
 
 
                 </StackPanel>
@@ -518,7 +575,7 @@
 
             <TextBlock VerticalAlignment="Top" Text="You May Also Like" Foreground="DarkBlue" FontFamily="Segoe UI"  FontSize="20" Margin="5,10,0,0"  Grid.Row="5" Grid.Column="0"/>
 
-            <ListBox Grid.Row="6" Grid.Column="0" BorderThickness="0" Grid.ColumnSpan="3"  HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="5,5,0,5"
+            <ListBox x:Name="lbEpisodes" Grid.Row="6" Grid.Column="0" BorderThickness="0" Grid.ColumnSpan="3"  HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="5,5,0,5"
                  VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
                      ItemTemplate="{StaticResource RecommendationTemplate}"
                  ItemsSource="{Binding Path=Recommendations, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:ContinueWatchingTileControl}}}"
@@ -530,11 +587,18 @@
                 </ListBox.ItemsPanel>
             </ListBox>
 
-            <TextBlock VerticalAlignment="Top" Text="What People Are Saying" Foreground="DarkBlue" FontFamily="Segoe UI"  FontSize="20" Margin="5,10,0,0"  Grid.Row="7" Grid.Column="0"/>
+            <StackPanel Orientation="Horizontal" Margin="5,10,0,0"  Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3">
+                
+                <TextBlock VerticalAlignment="Top" Text="What People Are Saying" Foreground="DarkBlue" FontFamily="Segoe UI"  FontSize="20" />
+                <TextBlock VerticalAlignment="Top" Text="Loading..." Foreground="Green" FontFamily="Segoe UI"  FontSize="20" Margin="10,0,0,0"
+                           Visibility="{Binding Path=IsLoadingShouts, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:ContinueWatchingTileControl}}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-            <ListBox Grid.Row="8" Grid.Column="0" BorderThickness="0" Grid.ColumnSpan="3"  HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="5,5,0,5"
+            </StackPanel>
+            
+
+            <ListBox x:Name="lbShouts" Grid.Row="8" Grid.Column="0" BorderThickness="0" Grid.ColumnSpan="3"  HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="5,5,0,5"
                  VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
-                     ItemTemplate="{StaticResource TraktShoutTemplate}"
+                 ItemTemplateSelector="{StaticResource PeopleSayingTemplateSelector}"
                  ItemsSource="{Binding Path=Shouts, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:ContinueWatchingTileControl}}}"
                  Background="Transparent"  VerticalAlignment="Stretch" >
                 <ListBox.ItemsPanel>

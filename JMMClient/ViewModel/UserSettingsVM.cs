@@ -1409,7 +1409,25 @@ namespace JMMClient
 
 
 
+		public bool WindowFullScreen
+		{
+			get { return AppSettings.WindowFullScreen; }
+			set
+			{
+				AppSettings.WindowFullScreen = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("WindowFullScreen"));
+			}
+		}
 
+		public bool WindowNormal
+		{
+			get { return AppSettings.WindowNormal; }
+			set
+			{
+				AppSettings.WindowNormal = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("WindowNormal"));
+			}
+		}
 
 
 

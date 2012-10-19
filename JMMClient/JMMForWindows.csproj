@@ -179,6 +179,7 @@
     <Compile Include="DataTemplateSelectors\BreadCrumbTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\DashRecentAdditionsTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\DashWatchNextTemplateSelector.cs" />
+    <Compile Include="DataTemplateSelectors\PeopleSayingTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\PlaylistTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\RecDownloadTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\RecWatchTemplateSelector.cs" />
@@ -575,6 +576,7 @@
     <Compile Include="ViewModel\AniDB_Anime_DefaultImageVM.cs" />
     <Compile Include="ViewModel\AniDB_Anime_RelationVM.cs" />
     <Compile Include="ViewModel\AniDB_Anime_SimilarVM.cs" />
+    <Compile Include="ViewModel\AniDB_RecommendationVM.cs" />
     <Compile Include="ViewModel\AniDB_VoteVM.cs" />
     <Compile Include="ViewModel\AnimeCategoryVM.cs" />
     <Compile Include="ViewModel\AnimeEpisodeTypeVM.cs">
@@ -805,6 +807,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\MainListStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Metro.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1176,6 +1182,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AniDB_Character1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AniDB_Recommendation.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AniDB_Seiyuu1.datasource">
@@ -1901,6 +1910,14 @@
   <ItemGroup>
     <Resource Include="Images\Metro\add.png" />
     <Resource Include="Images\Metro\minus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Metro\close.png" />
+    <Resource Include="Images\Metro\maximize.png" />
+    <Resource Include="Images\Metro\minimize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Metro\fullscreen.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

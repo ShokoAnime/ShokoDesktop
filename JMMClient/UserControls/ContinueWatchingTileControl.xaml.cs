@@ -38,7 +38,7 @@ namespace JMMClient.UserControls
 
 		public ObservableCollection<RecommendationTile> Recommendations { get; set; }
 
-		public ObservableCollection<Trakt_ShoutUserVM> Shouts { get; set; }
+		public ObservableCollection<object> Shouts { get; set; }
 		
 
 		BackgroundWorker episodesWorker = new BackgroundWorker();
@@ -64,6 +64,15 @@ namespace JMMClient.UserControls
 			set { SetValue(PosterWidthProperty, value); }
 		}
 
+		public static readonly DependencyProperty IsLoadingShoutsProperty = DependencyProperty.Register("IsLoadingShouts",
+			typeof(bool), typeof(ContinueWatchingTileControl), new UIPropertyMetadata(false, null));
+
+		public bool IsLoadingShouts
+		{
+			get { return (bool)GetValue(IsLoadingShoutsProperty); }
+			set { SetValue(IsLoadingShoutsProperty, value); }
+		}
+
 		public ContinueWatchingTileControl()
 		{
 			InitializeComponent();
@@ -72,7 +81,7 @@ namespace JMMClient.UserControls
 			ViewUnwatchedEpisodes = CollectionViewSource.GetDefaultView(UnwatchedEpisodes);
 
 			Recommendations = new ObservableCollection<RecommendationTile>();
-			Shouts = new ObservableCollection<Trakt_ShoutUserVM>();
+			Shouts = new ObservableCollection<object>();
 
 			this.DataContextChanged += new DependencyPropertyChangedEventHandler(ContinueWatchingTileControl_DataContextChanged);
 
@@ -102,6 +111,37 @@ namespace JMMClient.UserControls
 			postShoutWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(postShoutWorker_RunWorkerCompleted);
 
 			cRating.OnRatingValueChangedEvent += new RatingControl.RatingValueChangedHandler(cRating_OnRatingValueChangedEvent);
+
+			grdMain.PreviewMouseWheel += new MouseWheelEventHandler(grdMain_PreviewMouseWheel);
+			lbEpisodes.PreviewMouseWheel += new MouseWheelEventHandler(lbEpisodes_PreviewMouseWheel);
+			lbShouts.PreviewMouseWheel += new MouseWheelEventHandler(lbShouts_PreviewMouseWheel);
+		}
+
+		void lbShouts_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+		{
+			try
+			{
+				ScrollerCWatching.ScrollToVerticalOffset(ScrollerCWatching.VerticalOffset - e.Delta / 3);
+			}
+			catch { }
+		}
+
+		void lbEpisodes_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+		{
+			try
+			{
+				ScrollerCWatching.ScrollToVerticalOffset(ScrollerCWatching.VerticalOffset - e.Delta / 3);
+			}
+			catch { }
+		}
+
+		void grdMain_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+		{
+			try
+			{
+				ScrollerCWatching.ScrollToVerticalOffset(ScrollerCWatching.VerticalOffset - e.Delta / 3);
+			}
+			catch { }
 		}
 
 		void cRating_OnRatingValueChangedEvent(RatingValueEventArgs ev)
@@ -251,6 +291,15 @@ namespace JMMClient.UserControls
 
 					}
 
+					if (req.GetType() == typeof(AniDB_RecommendationVM))
+					{
+						AniDB_RecommendationVM tile = req as AniDB_RecommendationVM;
+
+						// unfortunately AniDB doesn't have any user images yet
+						// we will use a placeholder
+						tile.DelayedUserImage = tile.UserImagePathForDisplay;
+					}
+
 
 					imagesToDownload.Remove(req);
 				}
@@ -374,7 +423,10 @@ namespace JMMClient.UserControls
 			if (ser == null) return;
 
 			if (!shoutsWorker.IsBusy)
+			{
+				IsLoadingShouts = true;
 				shoutsWorker.RunWorkerAsync(ser);
+			}
 		}
 
 		void recsWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -443,7 +495,7 @@ namespace JMMClient.UserControls
 
 		void shoutsWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
 		{
-				
+			IsLoadingShouts = false;
 		}
 
 		void shoutsWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -457,6 +509,8 @@ namespace JMMClient.UserControls
 				{
 					Shouts.Clear();
 				});
+
+				// get shouts from trakt
 				List<JMMServerBinary.Contract_Trakt_ShoutUser> rawShouts = JMMServerVM.Instance.clientBinaryHTTP.GetTraktShoutsForAnime(ser.AniDB_ID);
 				foreach (JMMServerBinary.Contract_Trakt_ShoutUser contract in rawShouts)
 				{
@@ -471,6 +525,20 @@ namespace JMMClient.UserControls
 					imagesToDownload.Add(shout);
 				}
 
+				// get recommendations from AniDB
+				List<JMMServerBinary.Contract_AniDB_Recommendation> rawRecs = JMMServerVM.Instance.clientBinaryHTTP.GetAniDBRecommendations(ser.AniDB_ID);
+				foreach (JMMServerBinary.Contract_AniDB_Recommendation contract in rawRecs)
+				{
+					AniDB_RecommendationVM rec = new AniDB_RecommendationVM(contract);
+
+					rec.DelayedUserImage = @"/Images/blankposter.png";
+					System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
+					{
+						Shouts.Add(rec);
+					});
+
+					imagesToDownload.Add(rec);
+				}
 
 			}
 			catch (Exception ex)

@@ -5,8 +5,8 @@
         xmlns:downloads="clr-namespace:JMMClient.Downloads"
         xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
         xmlns:my="clr-namespace:wyDay.Controls;assembly=AutomaticUpdaterWPF"
-        WindowStartupLocation="CenterScreen"
-        Title="JMM Desktop" Height="647" Width="994" Name="mainWindow" Icon="/JMMDesktop;component/Web%20Database.ico" >
+        WindowStartupLocation="CenterScreen" 
+        Title="JMM Desktop" Height="700" Width="1350"  Name="mainWindow" Icon="/JMMDesktop;component/Web%20Database.ico" >
 
 
 
@@ -20,6 +20,11 @@
             <local:PlaylistTemplateSelector x:Key="PlaylistTemplateSelector"/>
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+
+            <RoutedUICommand x:Key="WindowFullScreenCommand" Text="WindowFullScreenCommand" />
+            <RoutedUICommand x:Key="WindowNormalCommand" Text="WindowNormalCommand" />
+            <RoutedUICommand x:Key="WindowCloseCommand" Text="WindowCloseCommand" />
+            <RoutedUICommand x:Key="WindowMinimizeCommand" Text="WindowMinimizeCommand" />
 
             <RoutedUICommand x:Key="RevokeVoteCommand" Text="RevokeVoteCommand" />
             <RoutedUICommand x:Key="ShowPinnedSeriesCommand" Text="ShowPinnedSeriesCommand" />
@@ -130,6 +135,11 @@
 
         <CommandBinding Command="{StaticResource IncrementSeriesImageSizeCommand}" Executed="CommandBinding_IncrementSeriesImageSize" />
         <CommandBinding Command="{StaticResource DecrementSeriesImageSizeCommand}" Executed="CommandBinding_DecrementSeriesImageSize" />
+
+        <CommandBinding Command="{StaticResource WindowFullScreenCommand}" Executed="CommandBinding_WindowFullScreen" />
+        <CommandBinding Command="{StaticResource WindowNormalCommand}" Executed="CommandBinding_WindowNormal" />
+        <CommandBinding Command="{StaticResource WindowCloseCommand}" Executed="CommandBinding_WindowClose" />
+        <CommandBinding Command="{StaticResource WindowMinimizeCommand}" Executed="CommandBinding_WindowMinimize" />
 
         <CommandBinding Command="{StaticResource RevokeVoteCommand}" Executed="CommandBinding_RevokeVote" />
         <CommandBinding Command="{StaticResource ShowPinnedSeriesCommand}" Executed="CommandBinding_ShowPinnedSeries" />

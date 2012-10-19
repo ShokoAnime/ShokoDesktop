@@ -350,7 +350,12 @@ namespace JMMClient
 
 		void MainWindow_Loaded(object sender, RoutedEventArgs e)
 		{
-			this.WindowState = AppSettings.DefaultWindowState;
+			//this.WindowState = AppSettings.DefaultWindowState;
+
+			if (AppSettings.WindowFullScreen)
+				SetWindowFullscreen();
+			else
+				SetWindowNormal();
 
 			Utils.ClearAutoUpdateCache();
 
@@ -2838,6 +2843,44 @@ namespace JMMClient
 		private void CommandBinding_ToggleExpandTitles(object sender, ExecutedRoutedEventArgs e)
 		{
 			UserSettingsVM.Instance.TitlesExpanded = !UserSettingsVM.Instance.TitlesExpanded;
+		}
+
+		private void SetWindowFullscreen()
+		{
+			this.WindowState = System.Windows.WindowState.Normal;
+			this.WindowStyle = System.Windows.WindowStyle.None;
+			this.Topmost = true;
+			this.WindowState = System.Windows.WindowState.Maximized;
+		}
+
+		private void CommandBinding_WindowFullScreen(object sender, ExecutedRoutedEventArgs e)
+		{
+			UserSettingsVM.Instance.WindowFullScreen = true;
+			UserSettingsVM.Instance.WindowNormal = false;
+			SetWindowFullscreen();
+		}
+
+		private void SetWindowNormal()
+		{
+			this.WindowState = AppSettings.DefaultWindowState;
+			this.WindowStyle = System.Windows.WindowStyle.SingleBorderWindow;
+		}
+
+		private void CommandBinding_WindowNormal(object sender, ExecutedRoutedEventArgs e)
+		{
+			UserSettingsVM.Instance.WindowFullScreen = false;
+			UserSettingsVM.Instance.WindowNormal = true;
+			SetWindowNormal();
+		}
+
+		private void CommandBinding_WindowClose(object sender, ExecutedRoutedEventArgs e)
+		{
+			this.Close();
+		}
+
+		private void CommandBinding_WindowMinimize(object sender, ExecutedRoutedEventArgs e)
+		{
+			this.WindowState = System.Windows.WindowState.Minimized;
 		}
 
 

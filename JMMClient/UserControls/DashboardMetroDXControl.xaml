@@ -28,6 +28,7 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+                <ResourceDictionary Source="/Resources/Metro.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <ImageBrush x:Key="noise" ImageSource="/Images/Backgrounds/subtlenet2.png" TileMode="Tile" Viewport="0,0 128,128" ViewportUnits="Absolute" />
@@ -409,7 +410,8 @@
 
     </UserControl.CommandBindings>
 
-    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Name="ScrollerDashMetroDX" Grid.Column="0" Grid.Row="0" Margin="0" PanningMode="HorizontalOnly">
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Name="ScrollerDashMetroDX" Grid.Column="0" Grid.Row="0" Margin="0" PanningMode="HorizontalOnly"
+                  Style="{StaticResource FavsScrollViewer}">
 
 
         <Grid x:Name="LayoutRoot" Height="{Binding ElementName=ScrollerDashMetroDX, Path=ViewportHeight}" Margin="10,0,0,0">

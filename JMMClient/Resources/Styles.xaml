@@ -850,6 +850,8 @@
     <SolidColorBrush x:Key="tabHeaderDisabled" Color="Gray"/>
     <SolidColorBrush x:Key="tabHeaderSelected" Color="DarkBlue"/>
 
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+
     <Style x:Key="tabMain"  TargetType="{x:Type TabControl}">
         <Setter Property="Template">
             <Setter.Value>
@@ -859,17 +861,59 @@
                             <RowDefinition  Height="40"/>
                             <RowDefinition  Height="*"/>
                         </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
 
-
-                        <StackPanel Grid.Row="0" Panel.ZIndex="1" Orientation="Horizontal" IsItemsHost="True">
-
+                        <!-- Background -->
+                        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
                             <StackPanel.Background>
                                 <ImageBrush ImageSource="/Images/navbar.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,40,40" />
                             </StackPanel.Background>
+                        </StackPanel>
+
+                        <!-- Tab Items -->
+                        <StackPanel Grid.Row="0" Grid.Column="0" Panel.ZIndex="1" Orientation="Horizontal" IsItemsHost="True"/>
+
+                        <!-- Buttons - normal -->
+                        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center"
+                                    Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=WindowNormal, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            
+                            <Button Margin="0,2,2,2" Style="{DynamicResource FlatButtonStyle}" ToolTip="Full Screen" Command="{DynamicResource WindowFullScreenCommand}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="24" Width="24" Source="/Images/Metro/fullscreen.png" Margin="0,0,0,0"/>
+                                </StackPanel>
+                            </Button>
 
                         </StackPanel>
 
-                        <Border Grid.Row="1" BorderBrush="Black" BorderThickness="0" Background="{TemplateBinding Background}" CornerRadius="0">
+                        <!-- Buttons - full screen -->
+                        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center"
+                                    Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=WindowFullScreen, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                            <Button Margin="0,2,2,2" Style="{DynamicResource FlatButtonStyle}" ToolTip="Minimize" Command="{DynamicResource WindowMinimizeCommand}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="24" Width="24" Source="/Images/Metro/minimize.png" Margin="0,0,0,0"/>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Margin="0,2,2,2" Style="{DynamicResource FlatButtonStyle}" ToolTip="Normal Window" Command="{DynamicResource WindowNormalCommand}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="24" Width="24" Source="/Images/Metro/maximize.png" Margin="0,0,0,0"/>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Margin="0,2,2,2" Style="{DynamicResource FlatButtonStyle}" ToolTip="Exit JMM Desktop" Command="{DynamicResource WindowCloseCommand}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="24" Width="24" Source="/Images/Metro/close.png" Margin="0,0,0,0"/>
+                                </StackPanel>
+                            </Button>
+
+                        </StackPanel>
+
+                        <!-- Tab Item Content -->
+                        <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="0" Background="{TemplateBinding Background}" CornerRadius="0">
                             <ContentPresenter ContentSource="SelectedContent" />
                         </Border>
                     </Grid>

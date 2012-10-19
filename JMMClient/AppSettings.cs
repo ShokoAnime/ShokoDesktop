@@ -671,6 +671,42 @@ namespace JMMClient
 			}
 		}
 
+		public static bool WindowFullScreen
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["WindowFullScreen"];
+				bool bval = true;
+				if (bool.TryParse(val, out bval))
+					return bval;
+				else
+					return false; // default value
+			}
+			set
+			{
+				UpdateSetting("WindowFullScreen", value.ToString());
+			}
+		}
+
+		public static bool WindowNormal
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				string val = appSettings["WindowNormal"];
+				bool bval = true;
+				if (bool.TryParse(val, out bval))
+					return bval;
+				else
+					return true; // default value
+			}
+			set
+			{
+				UpdateSetting("WindowNormal", value.ToString());
+			}
+		}
+
 		public static bool SeriesNextEpisodeExpanded
 		{
 			get
@@ -2233,7 +2269,7 @@ namespace JMMClient
 				}
 				else
 				{
-					return 150; // default value
+					return 136; // default value
 				}
 			}
 			set

@@ -204,6 +204,35 @@ namespace JMMClient.UserControls
 			ViewSections = CollectionViewSource.GetDefaultView(Sections);
 
 			SetSectionOrder();
+
+			LayoutRoot.PreviewMouseWheel += new MouseWheelEventHandler(LayoutRoot_PreviewMouseWheel);
+			ScrollerDashMetroDX.PreviewMouseWheel += new MouseWheelEventHandler(ScrollerDashMetroDX_PreviewMouseWheel);
+		}
+
+		void ScrollerDashMetroDX_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+		{
+			try
+			{
+				if (e.Delta > 0)
+					ScrollerDashMetroDX.LineLeft();
+				else
+					ScrollerDashMetroDX.LineRight();
+				e.Handled = true;
+			}
+			catch { }
+		}
+
+		void LayoutRoot_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+		{
+			try
+			{
+				if (e.Delta > 0)
+					ScrollerDashMetroDX.LineLeft();
+				else
+					ScrollerDashMetroDX.LineRight();
+				e.Handled = true;
+			}
+			catch { }
 		}
 
 		private void SetSectionOrder()

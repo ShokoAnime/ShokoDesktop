@@ -518,6 +518,22 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_TvDB_Series" nillable="true" type="tns:Contract_TvDB_Series" />
+  <xs:complexType name="ArrayOfContract_AniDB_Recommendation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_AniDB_Recommendation" nillable="true" type="tns:Contract_AniDB_Recommendation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_AniDB_Recommendation" nillable="true" type="tns:ArrayOfContract_AniDB_Recommendation" />
+  <xs:complexType name="Contract_AniDB_Recommendation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AniDB_RecommendationID" type="xs:int" />
+      <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
+      <xs:element minOccurs="0" name="RecommendationText" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RecommendationType" type="xs:int" />
+      <xs:element minOccurs="0" name="UserID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_AniDB_Recommendation" nillable="true" type="tns:Contract_AniDB_Recommendation" />
   <xs:complexType name="Contract_BookmarkedAnime">
     <xs:sequence>
       <xs:element minOccurs="0" name="Anime" nillable="true" type="tns:Contract_AniDBAnime" />
