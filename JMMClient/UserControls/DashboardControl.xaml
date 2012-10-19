@@ -268,7 +268,7 @@
                     <Border BorderThickness="0,0,0,0" BorderBrush="DarkGray" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1" Background="FloralWhite">
                         <TextBlock MaxWidth="200"  Text="{Binding EpisodeOverviewLoading}" HorizontalAlignment="Left" Margin="0,0,5,0"  Foreground="Black" 
                                    Visibility="{Binding ShowEpisodeOverviewInExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                   Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_WatchNext_Height, Converter={StaticResource IntegerAdditionConverter}, ConverterParameter=5}"
+                                   Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_WatchNext_Height, Converter={StaticResource IntegerAdditionConverter}, ConverterParameter=3}"
                                    VerticalAlignment="Top"  TextWrapping="Wrap">
                         </TextBlock>
                     </Border>
@@ -278,7 +278,7 @@
                         <Image Source="{Binding EpisodeImageLoading}" ToolTipService.ShowDuration="60000"
                                Visibility="{Binding ShowEpisodeImageInDashboard, Converter={StaticResource BooleanToVisibilityConverter}}"
                                Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_WatchNext_Height}"
-                               Margin="5,5,5,5" VerticalAlignment="Top" HorizontalAlignment="Left">
+                               Margin="3,3,5,5" VerticalAlignment="Top" HorizontalAlignment="Left">
                             <Image.ToolTip>
                                 <Border Background="FloralWhite" BorderThickness="1" BorderBrush="DarkGray">
                                     <Grid>
@@ -363,7 +363,7 @@
                     <Border BorderThickness="0,0,0,0" BorderBrush="DarkGray" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1" Background="FloralWhite">
                         <TextBlock MaxWidth="200" Text="{Binding EpisodeOverviewLoading}" HorizontalAlignment="Left" Margin="0,2,5,0" Foreground="Black" 
                                    Visibility="{Binding ShowEpisodeOverviewInExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                   Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_RecentlyWatchedEp_Height, Converter={StaticResource IntegerAdditionConverter}, ConverterParameter=5}"
+                                   Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_RecentlyWatchedEp_Height, Converter={StaticResource IntegerAdditionConverter}, ConverterParameter=3}"
                                    VerticalAlignment="Top" TextWrapping="Wrap">
                         </TextBlock>
                     </Border>
@@ -373,7 +373,7 @@
                         <Image Source="{Binding EpisodeImageLoading}" 
                                Visibility="{Binding ShowEpisodeImageInDashboard, Converter={StaticResource BooleanToVisibilityConverter}}"
                                Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_RecentlyWatchedEp_Height}"
-                               Margin="5,5,5,5" VerticalAlignment="Top" HorizontalAlignment="Left"
+                               Margin="3,3,5,5" VerticalAlignment="Top" HorizontalAlignment="Left"
                                ToolTipService.ShowDuration="60000">
                             <Image.Effect>
                                 <DropShadowEffect Opacity="0.5"/>
@@ -495,7 +495,7 @@
                         </Image>
                     </Border>
 
-                    <!-- info   -->
+                    <!-- info -->
                     <Border BorderThickness="1,0,1,1" BorderBrush="DarkGray" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"
                             Background="FloralWhite">
                         <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left">
@@ -1741,14 +1741,14 @@
                         </StackPanel>
                     </Border>
 
-                    <!-- anime image  -->
+                    <!-- anime image -->
                     <Border BorderThickness="1,0,0,0" BorderBrush="DarkGray" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="1" Background="FloralWhite">
-                        <Image Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_RecentAdditions_Height}"  Margin="5,3,10,5"
+                        <Image Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_RecentAdditions_Height}" Margin="5,3,10,5"
                                HorizontalAlignment="Left"  ToolTipService.ShowDuration="60000"
                                Source="{Binding Path=AniDB_Anime.DefaultPosterPath}">
                             <Image.ToolTip>
                                 <Border Background="FloralWhite" BorderThickness="1" BorderBrush="DarkGray">
-                                    <Grid >
+                                    <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
@@ -1803,7 +1803,7 @@
                     <Border BorderThickness="0,0,0,0" BorderBrush="DarkGray" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1" Background="FloralWhite">
                         <TextBlock MaxWidth="200" Text="{Binding EpisodeOverviewLoading}" HorizontalAlignment="Left" Margin="0,0,5,0" Foreground="Black" 
                                    Visibility="{Binding ShowEpisodeOverviewInExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                   Height="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=Dash_RecentAdditions_Height, Converter={StaticResource IntegerAdditionConverter}, ConverterParameter=5}"
+                                   Height="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=Dash_RecentAdditions_Height, Converter={StaticResource IntegerAdditionConverter}, ConverterParameter=3}"
                                    VerticalAlignment="Top"  TextWrapping="Wrap">
                         </TextBlock>
                     </Border>
@@ -1813,7 +1813,7 @@
                         <Image Source="{Binding EpisodeImageLoading}" ToolTipService.ShowDuration="60000"
                                Visibility="{Binding ShowEpisodeImageInDashboard, Converter={StaticResource BooleanToVisibilityConverter}}"
                                Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_RecentAdditions_Height}"
-                               Margin="5,5,5,5" VerticalAlignment="Top" HorizontalAlignment="Left">
+                               Margin="3,3,5,5" VerticalAlignment="Top" HorizontalAlignment="Left">
                             <Image.ToolTip>
                                 <Border Background="FloralWhite" BorderThickness="1" BorderBrush="DarkGray">
                                     <Grid >
@@ -1930,8 +1930,8 @@
 
                     <!-- anime description  -->
                     <Border BorderThickness="0,0,1,1" BorderBrush="DarkGray" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Background="FloralWhite">
-                        <TextBlock MaxWidth="200"  Text="{Binding Description}" Foreground="Black"  HorizontalAlignment="Left" Margin="0,0,5,5" 
-                                   Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_RecentAdditions_Height}"
+                        <TextBlock MaxWidth="200" Text="{Binding Description}" Foreground="Black"  HorizontalAlignment="Left" Margin="0,0,5,5" 
+                                   Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_RecentAdditions_Height, Converter={StaticResource IntegerAdditionConverter}, ConverterParameter=3}"
                                    VerticalAlignment="Top"  TextWrapping="Wrap">
                         </TextBlock>
                     </Border>
