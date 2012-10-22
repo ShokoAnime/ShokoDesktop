@@ -588,9 +588,18 @@
             </ListBox>
 
             <StackPanel Orientation="Horizontal" Margin="5,10,0,0"  Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3">
-                
-                <TextBlock VerticalAlignment="Top" Text="What People Are Saying" Foreground="DarkBlue" FontFamily="Segoe UI"  FontSize="20" />
-                <TextBlock VerticalAlignment="Top" Text="Loading..." Foreground="Green" FontFamily="Segoe UI"  FontSize="20" Margin="10,0,0,0"
+
+                <TextBlock VerticalAlignment="Top" Text="What People Are Saying" Foreground="DarkBlue" FontFamily="Segoe UI"  FontSize="20" Margin="0,0,10,0" />
+
+                <!-- refresh shouts button -->
+                <Button x:Name="btnRefreshShouts"  Margin="0,0,2,2" Style="{StaticResource FlatButtonStyle}" VerticalAlignment="Center" ToolTip="Update Info from AniDB and Refresh"
+                        Visibility="{Binding Path=IsNotLoadingShouts, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:ContinueWatchingTileControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                        <Image Height="22" Width="22" Source="/Images/Metro/reload_48.png" Margin="2,0,2,0"/>
+                    </StackPanel>
+                </Button>
+
+                <TextBlock VerticalAlignment="Top" Text="Loading..." Foreground="Green" FontFamily="Segoe UI"  FontSize="20" Margin="0,0,0,0"
                            Visibility="{Binding Path=IsLoadingShouts, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:ContinueWatchingTileControl}}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
             </StackPanel>

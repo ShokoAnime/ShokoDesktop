@@ -2849,7 +2849,7 @@ namespace JMMClient
 		{
 			this.WindowState = System.Windows.WindowState.Normal;
 			this.WindowStyle = System.Windows.WindowStyle.None;
-			this.Topmost = true;
+			//this.Topmost = true;
 			this.WindowState = System.Windows.WindowState.Maximized;
 		}
 

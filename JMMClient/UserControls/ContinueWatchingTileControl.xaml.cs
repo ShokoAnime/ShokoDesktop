@@ -45,6 +45,7 @@ namespace JMMClient.UserControls
 		BackgroundWorker recsWorker = new BackgroundWorker();
 		BackgroundWorker shoutsWorker = new BackgroundWorker();
 		BackgroundWorker postShoutWorker = new BackgroundWorker();
+		BackgroundWorker refreshShoutsRecsWorker = new BackgroundWorker();
 
 		public static readonly DependencyProperty UnwatchedEpisodeCountProperty = DependencyProperty.Register("UnwatchedEpisodeCount",
 			typeof(int), typeof(ContinueWatchingTileControl), new UIPropertyMetadata(0, null));
@@ -70,7 +71,20 @@ namespace JMMClient.UserControls
 		public bool IsLoadingShouts
 		{
 			get { return (bool)GetValue(IsLoadingShoutsProperty); }
-			set { SetValue(IsLoadingShoutsProperty, value); }
+			set 
+			{ 
+				SetValue(IsLoadingShoutsProperty, value);
+				IsNotLoadingShouts = !value;
+			}
+		}
+
+		public static readonly DependencyProperty IsNotLoadingShoutsProperty = DependencyProperty.Register("IsNotLoadingShouts",
+			typeof(bool), typeof(ContinueWatchingTileControl), new UIPropertyMetadata(false, null));
+
+		public bool IsNotLoadingShouts
+		{
+			get { return (bool)GetValue(IsNotLoadingShoutsProperty); }
+			set { SetValue(IsNotLoadingShoutsProperty, value); }
 		}
 
 		public ContinueWatchingTileControl()
@@ -98,6 +112,9 @@ namespace JMMClient.UserControls
 			shoutsWorker.DoWork += new DoWorkEventHandler(shoutsWorker_DoWork);
 			shoutsWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(shoutsWorker_RunWorkerCompleted);
 
+			refreshShoutsRecsWorker.DoWork += new DoWorkEventHandler(refreshShoutsRecsWorker_DoWork);
+			refreshShoutsRecsWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(refreshShoutsRecsWorker_RunWorkerCompleted);
+
 			MainWindow.videoHandler.VideoWatchedEvent += new Utilities.VideoHandler.VideoWatchedEventHandler(videoHandler_VideoWatchedEvent);
 
 			workerImages.DoWork += new DoWorkEventHandler(workerImages_DoWork);
@@ -106,6 +123,8 @@ namespace JMMClient.UserControls
 			txtShoutNew.GotFocus += new RoutedEventHandler(txtShoutNew_GotFocus);
 			txtShoutNew.LostFocus += new RoutedEventHandler(txtShoutNew_LostFocus);
 			btnSubmitShout.Click += new RoutedEventHandler(btnSubmitShout_Click);
+
+			btnRefreshShouts.Click += new RoutedEventHandler(btnRefreshShouts_Click);
 
 			postShoutWorker.DoWork += new DoWorkEventHandler(postShoutWorker_DoWork);
 			postShoutWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(postShoutWorker_RunWorkerCompleted);
@@ -116,6 +135,10 @@ namespace JMMClient.UserControls
 			lbEpisodes.PreviewMouseWheel += new MouseWheelEventHandler(lbEpisodes_PreviewMouseWheel);
 			lbShouts.PreviewMouseWheel += new MouseWheelEventHandler(lbShouts_PreviewMouseWheel);
 		}
+
+		
+
+		
 
 		void lbShouts_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
 		{
@@ -234,6 +257,44 @@ namespace JMMClient.UserControls
 			shout.Spoiler = chkSpoiler.IsChecked.Value;
 
 			postShoutWorker.RunWorkerAsync(shout);
+		}
+
+		void btnRefreshShouts_Click(object sender, RoutedEventArgs e)
+		{
+			AnimeSeriesVM animeSeries = (AnimeSeriesVM)this.DataContext;
+			if (animeSeries == null) return;
+
+			IsLoadingShouts = true;
+
+			refreshShoutsRecsWorker.RunWorkerAsync(animeSeries);
+		}
+
+		void refreshShoutsRecsWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+		{
+			AnimeSeriesVM animeSeries = (AnimeSeriesVM)this.DataContext;
+			if (animeSeries == null) return;
+
+			shoutsWorker.RunWorkerAsync(animeSeries);
+		}
+
+		void refreshShoutsRecsWorker_DoWork(object sender, DoWorkEventArgs e)
+		{
+			try
+			{
+				AnimeSeriesVM ser = e.Argument as AnimeSeriesVM;
+
+				JMMServerVM.Instance.clientBinaryHTTP.UpdateAnimeData(ser.AniDB_ID);
+
+				// refresh the data
+				MainListHelperVM.Instance.UpdateHeirarchy(ser);
+			}
+			catch (Exception ex)
+			{
+				logger.ErrorException(ex.ToString(), ex);
+			}
+			finally
+			{
+			}
 		}
 
 		void txtShoutNew_LostFocus(object sender, RoutedEventArgs e)

@@ -59,7 +59,7 @@ namespace JMMClient.UserControls
 
 			IgnoredFilesCollection = new ObservableCollection<VideoLocalVM>();
 			ViewFiles = CollectionViewSource.GetDefaultView(IgnoredFilesCollection);
-			ViewFiles.SortDescriptions.Add(new SortDescription("FullPath", ListSortDirection.Ascending));
+			ViewFiles.SortDescriptions.Add(new SortDescription("FileName", ListSortDirection.Ascending));
 
 			btnRefresh.Click += new RoutedEventHandler(btnRefresh_Click);
 	
