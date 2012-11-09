@@ -156,12 +156,12 @@ namespace JMMClient.Forms
 				deleteFilesWorker.ReportProgress(0, msg);
 				//Thread.Sleep(500);
 
-				/*string result = JMMServerVM.Instance.clientBinaryHTTP.DeleteVideoLocalAndFile(vid.VideoLocalID);
+				string result = JMMServerVM.Instance.clientBinaryHTTP.DeleteVideoLocalAndFile(vid.VideoLocalID);
 				if (result.Length > 0)
 				{
 					deleteFilesWorker.ReportProgress(0, result);
 					return;
-				}*/
+				}
 
 				
 			}
