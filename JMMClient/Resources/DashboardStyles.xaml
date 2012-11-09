@@ -1,0 +1,64 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:JMMClient">
+
+    <Style x:Key="DashAnimePoster" TargetType="{x:Type Image}">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="ToolTipService.ShowDuration" Value="60000"/>
+        <Setter Property="RenderOptions.BitmapScalingMode" Value="LowQuality"/>
+        <Setter Property="ToolTip">
+            <Setter.Value>
+                <local:CustomToolTip DataContext="{Binding Path=PlacementTarget, RelativeSource={RelativeSource Self}}" HasRoundCorners="False">
+                    <Image MaxWidth="400" MaxHeight="550" Source="{Binding Path=Source}" 
+                           VerticalAlignment="Top" HorizontalAlignment="Left" RenderOptions.BitmapScalingMode="HighQuality">
+                    </Image>
+                </local:CustomToolTip>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style x:Key="DashAnimeTitle" TargetType="{x:Type TextBlock}">
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontWeight" Value="DemiBold"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="ToolTipService.ShowDuration" Value="60000"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+        <Setter Property="ToolTip">
+            <Setter.Value>
+                <ToolTip DataContext="{Binding Path=PlacementTarget, RelativeSource={RelativeSource Self}}">
+                    <TextBlock Text="{Binding Path=Text}" Foreground="Black" FontWeight="DemiBold"/>
+                </ToolTip>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="DashEpisodeNumberAndName" TargetType="{x:Type TextBlock}">
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="ToolTipService.ShowDuration" Value="60000"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+        <Setter Property="ToolTip">
+            <Setter.Value>
+                <ToolTip DataContext="{Binding Path=PlacementTarget, RelativeSource={RelativeSource Self}}">
+                    <TextBlock Text="{Binding Path=Text}" Foreground="Black" FontWeight="DemiBold"/>
+                </ToolTip>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style x:Key="DashItemBorder" TargetType="{x:Type Border}">
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="DarkGray"/>
+        <Setter Property="Background" Value="FloralWhite"/>
+        <Setter Property="Margin" Value="3,0,4,5"/>
+        <Setter Property="CornerRadius" Value="5"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Opacity="0.4"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

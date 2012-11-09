@@ -5,8 +5,8 @@
         xmlns:downloads="clr-namespace:JMMClient.Downloads"
         xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
         xmlns:my="clr-namespace:wyDay.Controls;assembly=AutomaticUpdaterWPF"
-        WindowStartupLocation="CenterScreen" 
-        Title="JMM Desktop" Height="700" Width="1350"  Name="mainWindow" Icon="/JMMDesktop;component/Web%20Database.ico" >
+        WindowStartupLocation="CenterScreen" UseLayoutRounding="True"
+        Title="JMM Desktop" Height="700" Width="1350" x:Name="mainWindow" Icon="/JMMDesktop;component/Web%20Database.ico" >
 
 
 

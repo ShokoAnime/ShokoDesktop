@@ -53,7 +53,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>C:\Program Files\JMM Desktop\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -95,32 +95,32 @@
     <Reference Include="AutomaticUpdaterWPF">
       <HintPath>..\..\..\..\..\..\Program Files (x86)\wyBuild\AutomaticUpdater\Microsoft .NET 4.0\AutomaticUpdaterWPF.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Data.v12.1, Version=12.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
+    <Reference Include="DevExpress.Data.v12.1">
+      <HintPath>C:\Program Files\JMM Desktop\DevExpress.Data.v12.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.PivotGrid.v12.1.Core, Version=12.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
+    <Reference Include="DevExpress.PivotGrid.v12.1.Core">
+      <HintPath>C:\Program Files\JMM Desktop\DevExpress.PivotGrid.v12.1.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Core.v12.1, Version=12.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
+    <Reference Include="DevExpress.Xpf.Core.v12.1">
+      <HintPath>C:\Program Files\JMM Desktop\DevExpress.Xpf.Core.v12.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Core.v12.1.Extensions, Version=12.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
+    <Reference Include="DevExpress.Xpf.Core.v12.1.Extensions">
+      <HintPath>C:\Program Files\JMM Desktop\DevExpress.Xpf.Core.v12.1.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Grid.v12.1, Version=12.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
+    <Reference Include="DevExpress.Xpf.Grid.v12.1">
+      <HintPath>C:\Program Files\JMM Desktop\DevExpress.Xpf.Grid.v12.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Grid.v12.1.Core, Version=12.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
+    <Reference Include="DevExpress.Xpf.Grid.v12.1.Core">
+      <HintPath>C:\Program Files\JMM Desktop\DevExpress.Xpf.Grid.v12.1.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Layout.v12.1.Core, Version=12.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
+    <Reference Include="DevExpress.Xpf.Layout.v12.1.Core">
+      <HintPath>C:\Program Files\JMM Desktop\DevExpress.Xpf.Layout.v12.1.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Xpf.LayoutControl.v12.1, Version=12.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
+    <Reference Include="DevExpress.Xpf.LayoutControl.v12.1">
+      <HintPath>C:\Program Files\JMM Desktop\DevExpress.Xpf.LayoutControl.v12.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Xpf.PivotGrid.v12.1, Version=12.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
+    <Reference Include="DevExpress.Xpf.PivotGrid.v12.1">
+      <HintPath>C:\Program Files\JMM Desktop\DevExpress.Xpf.PivotGrid.v12.1.dll</HintPath>
     </Reference>
     <Reference Include="GongSolutions.Wpf.DragDrop">
       <HintPath>..\Dependencies\GongSolutions.Wpf.DragDrop.dll</HintPath>
@@ -139,6 +139,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\NLog.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework.Aero" />
     <Reference Include="ReuxablesLegacy">
       <HintPath>..\Dependencies\ReuxablesLegacy.dll</HintPath>
     </Reference>
@@ -300,7 +301,6 @@
     <Compile Include="ImageDownload\ImageDownloader.cs" />
     <Compile Include="ImageDownload\ImageDownloadRequest.cs" />
     <Compile Include="ImageSourceHelper.cs" />
-    <Compile Include="IntegerAdditionConverter.cs" />
     <Compile Include="Languages.cs" />
     <Compile Include="MainListWrapper.cs" />
     <Compile Include="DataTemplateSelectors\MainListTemplateSelector.cs" />
@@ -358,11 +358,18 @@
     <Compile Include="UserControls\ContinueWatchingTileControl.xaml.cs">
       <DependentUpon>ContinueWatchingTileControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\CustomToolTip.cs" />
     <Compile Include="UserControls\DashboardControl.xaml.cs">
       <DependentUpon>DashboardControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\DashboardEpisodeOverviewTooltipContent.xaml.cs">
+      <DependentUpon>DashboardEpisodeOverviewTooltipContent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\DashboardMetroDXControl.xaml.cs">
       <DependentUpon>DashboardMetroDXControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\DashboardEpisodeOverview.xaml.cs">
+      <DependentUpon>DashboardEpisodeOverview.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Downloads\DownloadRecommendationsControl.xaml.cs">
       <DependentUpon>DownloadRecommendationsControl.xaml</DependentUpon>
@@ -802,6 +809,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Resources\DashboardStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\MainListContent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -862,7 +873,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\DashboardEpisodeOverviewTooltipContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\DashboardMetroDXControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\DashboardEpisodeOverview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
