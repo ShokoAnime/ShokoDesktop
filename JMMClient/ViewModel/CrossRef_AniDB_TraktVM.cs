@@ -17,7 +17,7 @@ namespace JMMClient.ViewModel
 		{
 			get
 			{
-				return string.Format(Constants.URLS.MAL_Series, TraktID);
+				return string.Format(Constants.URLS.Trakt_Series, TraktID);
 			}
 		}
 

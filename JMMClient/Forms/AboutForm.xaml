@@ -73,8 +73,8 @@
                                                                         URL="http://code.google.com/p/jmm/"/>
 
                 <TextBlock Grid.Row="2" Grid.Column="0" Margin="5"  Text="MediaPortal Forum"  VerticalAlignment="Center"/>
-                <usercontrols:HyperLinkStandard Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="5" DisplayText="http://forum.team-mediaportal.com/threads/my-anime-2.60793"
-                                                                        URL="http://forum.team-mediaportal.com/threads/my-anime-2.60793/"/>
+                <usercontrols:HyperLinkStandard Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="5" DisplayText="MyAnime 3"
+                                                                        URL="http://forum.team-mediaportal.com/threads/my-anime-3.107475/"/>
 
                 <Button Grid.Row="3" Grid.Column="0" Name="btnUpdates" Margin="5,20,5,5" Style="{DynamicResource RoundButtonStyle}">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
