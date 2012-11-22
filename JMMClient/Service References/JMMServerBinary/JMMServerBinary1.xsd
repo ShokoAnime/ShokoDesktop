@@ -1387,6 +1387,8 @@
       <xs:element minOccurs="0" name="AniDB_Anime_UpdateFrequency" type="xs:int" />
       <xs:element minOccurs="0" name="AniDB_Calendar_UpdateFrequency" type="xs:int" />
       <xs:element minOccurs="0" name="AniDB_ClientPort" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AniDB_DownloadCharacters" type="xs:boolean" />
+      <xs:element minOccurs="0" name="AniDB_DownloadCreators" type="xs:boolean" />
       <xs:element minOccurs="0" name="AniDB_DownloadRelatedAnime" type="xs:boolean" />
       <xs:element minOccurs="0" name="AniDB_DownloadReleaseGroups" type="xs:boolean" />
       <xs:element minOccurs="0" name="AniDB_DownloadReviews" type="xs:boolean" />
@@ -1419,10 +1421,14 @@
       <xs:element minOccurs="0" name="MovieDB_AutoFanart" type="xs:boolean" />
       <xs:element minOccurs="0" name="MovieDB_AutoFanartAmount" type="xs:int" />
       <xs:element minOccurs="0" name="MovieDB_AutoPosters" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MovieDB_AutoPostersAmount" type="xs:int" />
       <xs:element minOccurs="0" name="RunImportOnStart" type="xs:boolean" />
       <xs:element minOccurs="0" name="ScanDropFoldersOnStart" type="xs:boolean" />
       <xs:element minOccurs="0" name="SeriesDescriptionSource" type="xs:int" />
       <xs:element minOccurs="0" name="SeriesNameSource" type="xs:int" />
+      <xs:element minOccurs="0" name="Trakt_DownloadEpisodes" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Trakt_DownloadFanart" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Trakt_DownloadPosters" type="xs:boolean" />
       <xs:element minOccurs="0" name="Trakt_Password" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Trakt_SyncFrequency" type="xs:int" />
       <xs:element minOccurs="0" name="Trakt_UpdateFrequency" type="xs:int" />
@@ -1430,7 +1436,9 @@
       <xs:element minOccurs="0" name="TvDB_AutoFanart" type="xs:boolean" />
       <xs:element minOccurs="0" name="TvDB_AutoFanartAmount" type="xs:int" />
       <xs:element minOccurs="0" name="TvDB_AutoPosters" type="xs:boolean" />
+      <xs:element minOccurs="0" name="TvDB_AutoPostersAmount" type="xs:int" />
       <xs:element minOccurs="0" name="TvDB_AutoWideBanners" type="xs:boolean" />
+      <xs:element minOccurs="0" name="TvDB_AutoWideBannersAmount" type="xs:int" />
       <xs:element minOccurs="0" name="TvDB_Language" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TvDB_UpdateFrequency" type="xs:int" />
       <xs:element minOccurs="0" name="VideoExtensions" nillable="true" type="xs:string" />

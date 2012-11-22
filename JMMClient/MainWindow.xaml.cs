@@ -213,6 +213,13 @@ namespace JMMClient
 
 		void btnSwitchUser_Click(object sender, RoutedEventArgs e)
 		{
+
+			Stream s = JMMServerVM.Instance.streamingClient.Download("");
+			using (var fileStream = File.Create(@"C:\test.mkv"))
+			{
+				s.CopyTo(fileStream);
+			}
+
 			// authenticate user
 			if (JMMServerVM.Instance.ServerOnline)
 			{

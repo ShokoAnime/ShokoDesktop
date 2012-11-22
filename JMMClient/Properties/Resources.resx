@@ -1694,4 +1694,16 @@
   <data name="Tooltip_IsVariation" xml:space="preserve">
     <value>Use this when you don't want a file to show up in the Multiple Files Control. This may be the case where you have multiple versions of an OP/ED for clean/no clean, director's cut and other types of variations</value>
   </data>
+  <data name="AniDBDownloadCharacters" xml:space="preserve">
+    <value>Download Character Images</value>
+  </data>
+  <data name="AniDBDownloadCreators" xml:space="preserve">
+    <value>Download Creator Images</value>
+  </data>
+  <data name="Tooltip_AniDBDownloadCharacters" xml:space="preserve">
+    <value>These images are shown in MyAnime 3 and Anime Buddy</value>
+  </data>
+  <data name="Tooltip_AniDBDownloadCreators" xml:space="preserve">
+    <value>These images are shown in MyAnime 3 and Anime Buddy (Voice Actors)</value>
+  </data>
 </root>

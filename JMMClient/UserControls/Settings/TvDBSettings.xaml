@@ -58,6 +58,15 @@
                                                 Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_TvDB_WideBannerAutoDownload}}"/>
         </StackPanel>
 
+        <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="2" Margin="0,5,15,0">
+            <TextBlock Text="Maximum Wide Banners" VerticalAlignment="Center"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="2" Margin="0,5,5,0">
+            <extToolkit:IntegerUpDown Name="udMaxWideBanners" Minimum="1" Maximum="999" DefaultValue="5" VerticalAlignment="Center" 
+                                      Value="{Binding Source={x:Static local:JMMServerVM.Instance},Path=TvDB_AutoWideBannersAmount}" />
+        </StackPanel>
+
         <!-- Poster Auto Download-->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="3" Margin="0,5,15,0">
             <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TvDB_PosterAutoDownload}" VerticalAlignment="Center"></TextBlock>
@@ -67,6 +76,15 @@
             <CheckBox Name="chkTvDB_PosterAutoDownload" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=TvDB_AutoPosters}" VerticalAlignment="Center"
                       ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=TvDB_PosterAutoDownload}, 
                                                 Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_TvDB_PosterAutoDownload}}"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="3" Margin="0,5,15,0">
+            <TextBlock Text="Maximum Posters" VerticalAlignment="Center"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="3" Margin="0,5,5,0">
+            <extToolkit:IntegerUpDown Name="udMaxPosters" Minimum="1" Maximum="999" DefaultValue="5" VerticalAlignment="Center" 
+                                      Value="{Binding Source={x:Static local:JMMServerVM.Instance},Path=TvDB_AutoPostersAmount}" />
         </StackPanel>
 
         <!-- Schedule Updates-->

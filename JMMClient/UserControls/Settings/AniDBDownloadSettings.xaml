@@ -20,6 +20,26 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Margin="0,5,15,0">
+            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AniDBDownloadCharacters}" VerticalAlignment="Center"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" Margin="0,5,5,0">
+            <CheckBox Name="chkDownloadCharacters" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=AniDB_DownloadCharacters}" VerticalAlignment="Center"
+                      ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=AniDBDownloadCharacters}, 
+                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AniDBDownloadCharacters}}"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Margin="0,5,15,0">
+            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AniDBDownloadCreators}" VerticalAlignment="Center"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" Margin="0,5,5,0">
+            <CheckBox Name="chkDownloadCreators" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=AniDB_DownloadCreators}" VerticalAlignment="Center"
+                      ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=AniDBDownloadCreators}, 
+                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AniDBDownloadCreators}}"/>
+        </StackPanel>
+
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2" Margin="0,5,15,0">
             <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AniDBDownloadReviews}" VerticalAlignment="Center"></TextBlock>
         </StackPanel>

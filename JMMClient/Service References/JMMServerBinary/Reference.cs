@@ -13705,6 +13705,12 @@ namespace JMMClient.JMMServerBinary {
         private string AniDB_ClientPortField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool AniDB_DownloadCharactersField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool AniDB_DownloadCreatorsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool AniDB_DownloadRelatedAnimeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -13801,6 +13807,9 @@ namespace JMMClient.JMMServerBinary {
         private bool MovieDB_AutoPostersField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MovieDB_AutoPostersAmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool RunImportOnStartField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -13811,6 +13820,15 @@ namespace JMMClient.JMMServerBinary {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int SeriesNameSourceField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool Trakt_DownloadEpisodesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool Trakt_DownloadFanartField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool Trakt_DownloadPostersField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string Trakt_PasswordField;
@@ -13834,7 +13852,13 @@ namespace JMMClient.JMMServerBinary {
         private bool TvDB_AutoPostersField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TvDB_AutoPostersAmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool TvDB_AutoWideBannersField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TvDB_AutoWideBannersAmountField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string TvDB_LanguageField;
@@ -13952,6 +13976,32 @@ namespace JMMClient.JMMServerBinary {
                 if ((object.ReferenceEquals(this.AniDB_ClientPortField, value) != true)) {
                     this.AniDB_ClientPortField = value;
                     this.RaisePropertyChanged("AniDB_ClientPort");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool AniDB_DownloadCharacters {
+            get {
+                return this.AniDB_DownloadCharactersField;
+            }
+            set {
+                if ((this.AniDB_DownloadCharactersField.Equals(value) != true)) {
+                    this.AniDB_DownloadCharactersField = value;
+                    this.RaisePropertyChanged("AniDB_DownloadCharacters");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool AniDB_DownloadCreators {
+            get {
+                return this.AniDB_DownloadCreatorsField;
+            }
+            set {
+                if ((this.AniDB_DownloadCreatorsField.Equals(value) != true)) {
+                    this.AniDB_DownloadCreatorsField = value;
+                    this.RaisePropertyChanged("AniDB_DownloadCreators");
                 }
             }
         }
@@ -14373,6 +14423,19 @@ namespace JMMClient.JMMServerBinary {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public int MovieDB_AutoPostersAmount {
+            get {
+                return this.MovieDB_AutoPostersAmountField;
+            }
+            set {
+                if ((this.MovieDB_AutoPostersAmountField.Equals(value) != true)) {
+                    this.MovieDB_AutoPostersAmountField = value;
+                    this.RaisePropertyChanged("MovieDB_AutoPostersAmount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public bool RunImportOnStart {
             get {
                 return this.RunImportOnStartField;
@@ -14420,6 +14483,45 @@ namespace JMMClient.JMMServerBinary {
                 if ((this.SeriesNameSourceField.Equals(value) != true)) {
                     this.SeriesNameSourceField = value;
                     this.RaisePropertyChanged("SeriesNameSource");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Trakt_DownloadEpisodes {
+            get {
+                return this.Trakt_DownloadEpisodesField;
+            }
+            set {
+                if ((this.Trakt_DownloadEpisodesField.Equals(value) != true)) {
+                    this.Trakt_DownloadEpisodesField = value;
+                    this.RaisePropertyChanged("Trakt_DownloadEpisodes");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Trakt_DownloadFanart {
+            get {
+                return this.Trakt_DownloadFanartField;
+            }
+            set {
+                if ((this.Trakt_DownloadFanartField.Equals(value) != true)) {
+                    this.Trakt_DownloadFanartField = value;
+                    this.RaisePropertyChanged("Trakt_DownloadFanart");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Trakt_DownloadPosters {
+            get {
+                return this.Trakt_DownloadPostersField;
+            }
+            set {
+                if ((this.Trakt_DownloadPostersField.Equals(value) != true)) {
+                    this.Trakt_DownloadPostersField = value;
+                    this.RaisePropertyChanged("Trakt_DownloadPosters");
                 }
             }
         }
@@ -14516,6 +14618,19 @@ namespace JMMClient.JMMServerBinary {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TvDB_AutoPostersAmount {
+            get {
+                return this.TvDB_AutoPostersAmountField;
+            }
+            set {
+                if ((this.TvDB_AutoPostersAmountField.Equals(value) != true)) {
+                    this.TvDB_AutoPostersAmountField = value;
+                    this.RaisePropertyChanged("TvDB_AutoPostersAmount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public bool TvDB_AutoWideBanners {
             get {
                 return this.TvDB_AutoWideBannersField;
@@ -14524,6 +14639,19 @@ namespace JMMClient.JMMServerBinary {
                 if ((this.TvDB_AutoWideBannersField.Equals(value) != true)) {
                     this.TvDB_AutoWideBannersField = value;
                     this.RaisePropertyChanged("TvDB_AutoWideBanners");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TvDB_AutoWideBannersAmount {
+            get {
+                return this.TvDB_AutoWideBannersAmountField;
+            }
+            set {
+                if ((this.TvDB_AutoWideBannersAmountField.Equals(value) != true)) {
+                    this.TvDB_AutoWideBannersAmountField = value;
+                    this.RaisePropertyChanged("TvDB_AutoWideBannersAmount");
                 }
             }
         }

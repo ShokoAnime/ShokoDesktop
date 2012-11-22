@@ -30,6 +30,8 @@ namespace JMMClient.UserControls
 			chkTvDB_PosterAutoDownload.Click += new RoutedEventHandler(settingChanged);
 			chkTvDB_WideBannerAutoDownload.Click += new RoutedEventHandler(settingChanged);
 			udMaxFanarts.ValueChanged += new RoutedPropertyChangedEventHandler<object>(udMaxFanarts_ValueChanged);
+			udMaxPosters.ValueChanged += new RoutedPropertyChangedEventHandler<object>(udMaxPosters_ValueChanged);
+			udMaxWideBanners.ValueChanged += new RoutedPropertyChangedEventHandler<object>(udMaxWideBanners_ValueChanged);
 
 			cboUpdateFrequency.Items.Clear();
 			cboUpdateFrequency.Items.Add(Properties.Resources.UpdateFrequency_Daily);
@@ -49,6 +51,8 @@ namespace JMMClient.UserControls
 
 			btnChangeLanguage.Click += new RoutedEventHandler(btnChangeLanguage_Click);
 		}
+
+		
 
 		void btnChangeLanguage_Click(object sender, RoutedEventArgs e)
 		{
@@ -96,6 +100,18 @@ namespace JMMClient.UserControls
 		void udMaxFanarts_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
 		{
 			JMMServerVM.Instance.TvDB_AutoFanartAmount = udMaxFanarts.Value.Value;
+			JMMServerVM.Instance.SaveServerSettingsAsync();
+		}
+
+		void udMaxWideBanners_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+		{
+			JMMServerVM.Instance.TvDB_AutoWideBannersAmount = udMaxWideBanners.Value.Value;
+			JMMServerVM.Instance.SaveServerSettingsAsync();
+		}
+
+		void udMaxPosters_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+		{
+			JMMServerVM.Instance.TvDB_AutoPostersAmount = udMaxPosters.Value.Value;
 			JMMServerVM.Instance.SaveServerSettingsAsync();
 		}
 

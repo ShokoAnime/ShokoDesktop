@@ -26,6 +26,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -73,14 +74,41 @@
             <ComboBox Grid.Row="0" Name="cboSyncFrequency" VerticalAlignment="Center"></ComboBox>
         </StackPanel>
 
+        <!-- Fanart Auto Download-->
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="4" Margin="0,5,15,0">
+            <TextBlock Text="Auto Download Fanart"  VerticalAlignment="Center"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" Margin="0,5,5,0">
+            <CheckBox Name="chkTrakt_FanartAutoDownload" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=Trakt_DownloadFanart}" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <!-- Posters Auto Download-->
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="5" Margin="0,5,15,0">
+            <TextBlock Text="Auto Download Posters"  VerticalAlignment="Center"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" Margin="0,5,5,0">
+            <CheckBox Name="chkTrakt_PostersAutoDownload" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=Trakt_DownloadPosters}" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <!-- Episode Auto Download-->
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="6" Margin="0,5,15,0">
+            <TextBlock Text="Auto Download Episode Images"  VerticalAlignment="Center"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" Margin="0,5,5,0">
+            <CheckBox Name="chkTrakt_EpisodeAutoDownload" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=Trakt_DownloadEpisodes}" VerticalAlignment="Center"/>
+        </StackPanel>
+
         <!-- Visit Website -->
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="4" Margin="0,10,15,0">
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="7" Margin="0,10,15,0">
             <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=VisitWebsite}" URL="http://trakt.tv" Margin="0,0,0,0"/>
         </StackPanel>
         
         <!-- SIGNNUP DETAILS -->
         <!-- Prompt text -->
-        <Border x:Name="bdrSignup" Margin="20,0,5,5" BorderThickness="1" BorderBrush="DarkGray" Grid.Row="0" Grid.Column="3" Grid.RowSpan="8"  Background="FloralWhite">
+        <Border x:Name="bdrSignup" Margin="20,0,5,5" BorderThickness="1" BorderBrush="DarkGray" Grid.Row="0" Grid.Column="3" Grid.RowSpan="9"  Background="FloralWhite">
             <Grid  VerticalAlignment="Top">
 
 

@@ -53,7 +53,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>C:\Program Files\JMM Desktop\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -323,6 +323,11 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Service References\JMMServerBinary\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\JMMServerStreaming\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -1396,6 +1401,16 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\JMMServerBinary\JMMServiceImplementation.wsdl" />
+    <None Include="Service References\JMMServerStreaming\Message.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\JMMServerStreaming\service.wsdl" />
+    <None Include="Service References\JMMServerStreaming\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\JMMServerStreaming\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -1403,6 +1418,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\JMMImageServer\" />
     <WCFMetadataStorage Include="Service References\JMMServerBinary\" />
+    <WCFMetadataStorage Include="Service References\JMMServerStreaming\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\JMMImageServer\JMMServerImage2.xsd">
@@ -1938,12 +1954,22 @@
   <ItemGroup>
     <Resource Include="Images\Metro\fullscreen.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\JMMServerStreaming\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\JMMServerStreaming\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\JMMServerStreaming\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(TargetDir)*.dll" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y	
-xcopy "$(TargetDir)*.exe" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y
-xcopy "$(TargetDir)*.pdb" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y
-xcopy "$(TargetDir)*.manifest" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -94,6 +94,23 @@ namespace JMMClient
 			}
 		}
 
+		private JMMServerStreaming.IJMMServerStreaming _streamingClient = null;
+		public JMMServerStreaming.IJMMServerStreaming streamingClient
+		{
+			get
+			{
+				if (_streamingClient == null)
+				{
+					try
+					{
+						SetupStreamingClient();
+					}
+					catch { }
+				}
+				return _streamingClient;
+			}
+		}
+
 		public static bool SettingsAreValid()
 		{
 			if (string.IsNullOrEmpty(AppSettings.JMMServer_Address) || string.IsNullOrEmpty(AppSettings.JMMServer_Port))
@@ -119,6 +136,45 @@ namespace JMMClient
 				binding.ReaderQuotas.MaxArrayLength = 2147483647;
 				EndpointAddress endpoint = new EndpointAddress(new Uri(url));
 				_imageClient = new JMMImageServer.JMMServerImageClient(binding, endpoint);
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+		}
+
+		public void SetupStreamingClient()
+		{
+			//ServerOnline = false;
+			_streamingClient = null;
+
+			if (!SettingsAreValid()) return;
+
+			try
+			{
+				string url = string.Format(@"net.tcp://{0}:{1}/JMMServerStreaming", AppSettings.JMMServer_Address, AppSettings.JMMServer_FilePort);
+
+
+				NetTcpBinding netTCPbinding = new NetTcpBinding();
+				netTCPbinding.TransferMode = TransferMode.Streamed;
+				netTCPbinding.SendTimeout = TimeSpan.MaxValue;
+				netTCPbinding.MaxReceivedMessageSize = int.MaxValue;
+
+				EndpointAddress endpoint = new EndpointAddress(new Uri(url));
+
+				var factory = new ChannelFactory<JMMServerStreaming.IJMMServerStreamingChannel>(netTCPbinding, endpoint);
+				foreach (OperationDescription op in factory.Endpoint.Contract.Operations)
+				{
+					var dataContractBehavior = op.Behaviors.Find<DataContractSerializerOperationBehavior>();
+					if (dataContractBehavior != null)
+					{
+						dataContractBehavior.MaxItemsInObjectGraph = int.MaxValue;
+					}
+				}
+
+				_streamingClient = factory.CreateChannel();
+
+
 			}
 			catch (Exception ex)
 			{
@@ -389,6 +445,9 @@ namespace JMMClient
 			this.AniDB_MyListStats_UpdateFrequency = (ScheduledUpdateFrequency)contract.AniDB_MyListStats_UpdateFrequency;
 			this.AniDB_File_UpdateFrequency = (ScheduledUpdateFrequency)contract.AniDB_File_UpdateFrequency;
 
+			this.AniDB_DownloadCharacters = contract.AniDB_DownloadCharacters;
+			this.AniDB_DownloadCreators = contract.AniDB_DownloadCreators;
+
 			// Web Cache
 			this.WebCache_Address = contract.WebCache_Address;
 			this.WebCache_Anonymous = contract.WebCache_Anonymous;
@@ -407,7 +466,9 @@ namespace JMMClient
 			this.TvDB_AutoFanart = contract.TvDB_AutoFanart;
 			this.TvDB_AutoFanartAmount = contract.TvDB_AutoFanartAmount;
 			this.TvDB_AutoWideBanners = contract.TvDB_AutoWideBanners;
+			this.TvDB_AutoWideBannersAmount = contract.TvDB_AutoWideBannersAmount;
 			this.TvDB_AutoPosters = contract.TvDB_AutoPosters;
+			this.TvDB_AutoPostersAmount = contract.TvDB_AutoPostersAmount;
 			this.TvDB_UpdateFrequency = (ScheduledUpdateFrequency)contract.TvDB_UpdateFrequency;
 			this.TvDB_Language = contract.TvDB_Language;
 
@@ -415,6 +476,7 @@ namespace JMMClient
 			this.MovieDB_AutoFanart = contract.MovieDB_AutoFanart;
 			this.MovieDB_AutoFanartAmount = contract.MovieDB_AutoFanartAmount;
 			this.MovieDB_AutoPosters = contract.MovieDB_AutoPosters;
+			this.MovieDB_AutoPostersAmount = contract.MovieDB_AutoPostersAmount;
 
 			// Import settings
 			this.VideoExtensions = contract.VideoExtensions;
@@ -438,6 +500,9 @@ namespace JMMClient
 			this.Trakt_Password = contract.Trakt_Password;
 			this.Trakt_UpdateFrequency = (ScheduledUpdateFrequency)contract.Trakt_UpdateFrequency;
 			this.Trakt_SyncFrequency = (ScheduledUpdateFrequency)contract.Trakt_SyncFrequency;
+			this.Trakt_DownloadFanart = contract.Trakt_DownloadFanart;
+			this.Trakt_DownloadPosters = contract.Trakt_DownloadPosters;
+			this.Trakt_DownloadEpisodes = contract.Trakt_DownloadEpisodes;
 
 			// MAL
 			this.MAL_Username = contract.MAL_Username;
@@ -497,6 +562,9 @@ namespace JMMClient
 				contract.AniDB_MyListStats_UpdateFrequency = (int)this.AniDB_MyListStats_UpdateFrequency;
 				contract.AniDB_File_UpdateFrequency = (int)this.AniDB_File_UpdateFrequency;
 
+				contract.AniDB_DownloadCharacters = this.AniDB_DownloadCharacters;
+				contract.AniDB_DownloadCreators = this.AniDB_DownloadCreators;
+
 				// Web Cache
 				contract.WebCache_Address = this.WebCache_Address;
 				contract.WebCache_Anonymous = this.WebCache_Anonymous;
@@ -515,7 +583,9 @@ namespace JMMClient
 				contract.TvDB_AutoFanart = this.TvDB_AutoFanart;
 				contract.TvDB_AutoFanartAmount = this.TvDB_AutoFanartAmount;
 				contract.TvDB_AutoWideBanners = this.TvDB_AutoWideBanners;
+				contract.TvDB_AutoWideBannersAmount = this.TvDB_AutoWideBannersAmount;
 				contract.TvDB_AutoPosters = this.TvDB_AutoPosters;
+				contract.TvDB_AutoPostersAmount = this.TvDB_AutoPostersAmount;
 				contract.TvDB_UpdateFrequency = (int)this.TvDB_UpdateFrequency;
 				contract.TvDB_Language = this.TvDB_Language;
 
@@ -523,6 +593,7 @@ namespace JMMClient
 				contract.MovieDB_AutoFanart = this.MovieDB_AutoFanart;
 				contract.MovieDB_AutoFanartAmount = this.MovieDB_AutoFanartAmount;
 				contract.MovieDB_AutoPosters = this.MovieDB_AutoPosters;
+				contract.MovieDB_AutoPostersAmount = this.MovieDB_AutoPostersAmount;
 
 				// Import settings
 				contract.VideoExtensions = this.VideoExtensions;
@@ -546,6 +617,9 @@ namespace JMMClient
 				contract.Trakt_Password = this.Trakt_Password;
 				contract.Trakt_UpdateFrequency = (int)this.Trakt_UpdateFrequency;
 				contract.Trakt_SyncFrequency = (int)this.Trakt_SyncFrequency;
+				contract.Trakt_DownloadFanart = this.Trakt_DownloadFanart;
+				contract.Trakt_DownloadPosters = this.Trakt_DownloadPosters;
+				contract.Trakt_DownloadEpisodes = this.Trakt_DownloadEpisodes;
 
 				// MAL
 				contract.MAL_Username = this.MAL_Username;
@@ -1140,6 +1214,28 @@ namespace JMMClient
 			}
 		}
 
+		private bool aniDB_DownloadCharacters = false;
+		public bool AniDB_DownloadCharacters
+		{
+			get { return aniDB_DownloadCharacters; }
+			set
+			{
+				aniDB_DownloadCharacters = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("AniDB_DownloadCharacters"));
+			}
+		}
+
+		private bool aniDB_DownloadCreators = false;
+		public bool AniDB_DownloadCreators
+		{
+			get { return aniDB_DownloadCreators; }
+			set
+			{
+				aniDB_DownloadCreators = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("AniDB_DownloadCreators"));
+			}
+		}
+
 		private string webCache_Address = "";
 		public string WebCache_Address
 		{
@@ -1308,6 +1404,17 @@ namespace JMMClient
 			}
 		}
 
+		private int tvDB_AutoWideBannersAmount = 10;
+		public int TvDB_AutoWideBannersAmount
+		{
+			get { return tvDB_AutoWideBannersAmount; }
+			set
+			{
+				tvDB_AutoWideBannersAmount = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("TvDB_AutoWideBannersAmount"));
+			}
+		}
+
 		private bool tvDB_AutoPosters = false;
 		public bool TvDB_AutoPosters
 		{
@@ -1316,6 +1423,17 @@ namespace JMMClient
 			{
 				tvDB_AutoPosters = value;
 				OnPropertyChanged(new PropertyChangedEventArgs("TvDB_AutoPosters"));
+			}
+		}
+
+		private int tvDB_AutoPostersAmount = 10;
+		public int TvDB_AutoPostersAmount
+		{
+			get { return tvDB_AutoPostersAmount; }
+			set
+			{
+				tvDB_AutoPostersAmount = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("TvDB_AutoPostersAmount"));
 			}
 		}
 
@@ -1375,7 +1493,16 @@ namespace JMMClient
 			}
 		}
 
-
+		private int movieDB_AutoPostersAmount = 10;
+		public int MovieDB_AutoPostersAmount
+		{
+			get { return movieDB_AutoPostersAmount; }
+			set
+			{
+				movieDB_AutoPostersAmount = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("MovieDB_AutoPostersAmount"));
+			}
+		}
 
 		private string videoExtensions = "";
 		public string VideoExtensions
@@ -1541,6 +1668,39 @@ namespace JMMClient
 			{
 				trakt_Password = value;
 				OnPropertyChanged(new PropertyChangedEventArgs("Trakt_Password"));
+			}
+		}
+
+		private bool trakt_DownloadFanart = true;
+		public bool Trakt_DownloadFanart
+		{
+			get { return trakt_DownloadFanart; }
+			set
+			{
+				trakt_DownloadFanart = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("Trakt_DownloadFanart"));
+			}
+		}
+
+		private bool trakt_DownloadPosters = true;
+		public bool Trakt_DownloadPosters
+		{
+			get { return trakt_DownloadPosters; }
+			set
+			{
+				trakt_DownloadPosters = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("Trakt_DownloadPosters"));
+			}
+		}
+
+		private bool trakt_DownloadEpisodes = true;
+		public bool Trakt_DownloadEpisodes
+		{
+			get { return trakt_DownloadEpisodes; }
+			set
+			{
+				trakt_DownloadEpisodes = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("Trakt_DownloadEpisodes"));
 			}
 		}
 

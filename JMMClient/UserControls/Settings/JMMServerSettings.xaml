@@ -9,9 +9,10 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
-
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
@@ -19,11 +20,19 @@
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0">
             <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Server}" Margin="0,5,5,0" VerticalAlignment="Center"></TextBlock>
             <TextBox Name="txtServer" Width="300" Margin="0,5,5,0" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right">
             <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Port}" Margin="10,5,5,0" VerticalAlignment="Center"></TextBlock>
             <TextBox Name="txtPort" Width="50" Margin="0,5,5,0" VerticalAlignment="Center"/>
         </StackPanel>
 
-        <Button Name="btnTest" Margin="0,8,2,2" Grid.Column="0" Grid.Row="1"  HorizontalAlignment="Left" >
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Right">
+            <TextBlock Text="File Port" Margin="10,5,5,0" VerticalAlignment="Center"></TextBlock>
+            <TextBox Name="txtFilePort" Width="50" Margin="0,5,5,0" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <Button Name="btnTest" Margin="0,8,2,2" Grid.Column="0" Grid.Row="2"  HorizontalAlignment="Left" >
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                 <Image Height="16" Width="16" Source="/Images/32_save.png" Margin="0,0,5,0"/>
                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TestAndSave}" Margin="0,0,5,0"

@@ -162,6 +162,27 @@ namespace JMMClient
 			}
 		}
 
+		public static string JMMServer_FilePort
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+
+				string val = appSettings["JMMServer_FilePort"];
+				if (string.IsNullOrEmpty(val))
+				{
+					// default value
+					val = "8112";
+					UpdateSetting("JMMServer_FilePort", val);
+				}
+				return val;
+			}
+			set
+			{
+				UpdateSetting("JMMServer_FilePort", value);
+			}
+		}
+
 		public static int DisplayHeight_GroupList
 		{
 			get
@@ -2408,6 +2429,7 @@ namespace JMMClient
 			logger.Info("BaseImagesPathIsDefault: {0}", BaseImagesPathIsDefault);
 			logger.Info("JMMServer_Address: {0}", JMMServer_Address);
 			logger.Info("JMMServer_Port: {0}", JMMServer_Port);
+			logger.Info("JMMServer_FilePort: {0}", JMMServer_FilePort);
 			logger.Info("EpisodeImageOverviewStyle: {0}", EpisodeImageOverviewStyle);
 			logger.Info("HideEpisodeImageWhenUnwatched: {0}", HideEpisodeImageWhenUnwatched);
 			logger.Info("HideEpisodeOverviewWhenUnwatched: {0}", HideEpisodeOverviewWhenUnwatched);

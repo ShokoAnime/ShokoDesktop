@@ -61,9 +61,18 @@ namespace JMMClient.UserControls
 			btnTest.Click += new RoutedEventHandler(btnTest_Click);
 			txtUsername.TextChanged += new TextChangedEventHandler(txtUsername_TextChanged);
 
+			chkTrakt_EpisodeAutoDownload.Click += new RoutedEventHandler(settingChanged);
+			chkTrakt_FanartAutoDownload.Click += new RoutedEventHandler(settingChanged);
+			chkTrakt_PostersAutoDownload.Click += new RoutedEventHandler(settingChanged);
+
 			EvaulateVisibility();
 
 			btnJoinTrakt.Click += new RoutedEventHandler(btnJoinTrakt_Click);
+		}
+
+		void settingChanged(object sender, RoutedEventArgs e)
+		{
+			JMMServerVM.Instance.SaveServerSettingsAsync();
 		}
 
 		void btnJoinTrakt_Click(object sender, RoutedEventArgs e)
