@@ -108,6 +108,27 @@ namespace JMMClient.UserControls
 
 		}
 
+		private void CommandBinding_PlayVideo(object sender, ExecutedRoutedEventArgs e)
+		{
+			Window parentWindow = Window.GetWindow(this);
+
+			object obj = e.Parameter;
+			if (obj == null) return;
+
+			try
+			{
+				if (obj.GetType() == typeof(AnimeEpisodeVM))
+				{
+					VideoLocalVM vid = this.DataContext as VideoLocalVM;
+					MainWindow.videoHandler.PlayVideo(vid);
+				}
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+		}
+
 		private void CommandBinding_DeleteLink(object sender, ExecutedRoutedEventArgs e)
 		{
 			Window parentWindow = Window.GetWindow(this);

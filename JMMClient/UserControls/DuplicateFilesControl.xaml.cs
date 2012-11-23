@@ -15,6 +15,7 @@ using System.ComponentModel;
 using System.Collections.ObjectModel;
 using JMMClient.ViewModel;
 using System.IO;
+using System.Diagnostics;
 
 namespace JMMClient.UserControls
 {
@@ -165,6 +166,52 @@ namespace JMMClient.UserControls
 			catch (Exception ex)
 			{
 				Utils.ShowErrorMessage(ex);
+			}
+		}
+
+		private void CommandBinding_PlayVideo1(object sender, ExecutedRoutedEventArgs e)
+		{
+			object obj = e.Parameter;
+			if (obj == null) return;
+
+			try
+			{
+				if (obj.GetType() == typeof(DuplicateFileVM))
+				{
+					DuplicateFileVM df = obj as DuplicateFileVM;
+					Process.Start(new ProcessStartInfo(df.FullPath1));
+				}
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+			finally
+			{
+				this.Cursor = Cursors.Arrow;
+			}
+		}
+
+		private void CommandBinding_PlayVideo2(object sender, ExecutedRoutedEventArgs e)
+		{
+			object obj = e.Parameter;
+			if (obj == null) return;
+
+			try
+			{
+				if (obj.GetType() == typeof(DuplicateFileVM))
+				{
+					DuplicateFileVM df = obj as DuplicateFileVM;
+					Process.Start(new ProcessStartInfo(df.FullPath2));
+				}
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+			finally
+			{
+				this.Cursor = Cursors.Arrow;
 			}
 		}
 

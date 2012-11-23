@@ -107,6 +107,27 @@ namespace JMMClient.UserControls
 			}
 		}
 
+		private void CommandBinding_PlayVideo(object sender, ExecutedRoutedEventArgs e)
+		{
+			Window parentWindow = Window.GetWindow(this);
+
+			object obj = e.Parameter;
+			if (obj == null) return;
+
+			try
+			{
+				if (obj.GetType() == typeof(VideoLocalVM))
+				{
+					VideoLocalVM vid = obj as VideoLocalVM;
+					MainWindow.videoHandler.PlayVideo(vid);
+				}
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+		}
+
 		private void CommandBinding_OpenFolder(object sender, ExecutedRoutedEventArgs e)
 		{
 			object obj = e.Parameter;

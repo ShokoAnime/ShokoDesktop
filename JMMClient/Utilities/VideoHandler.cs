@@ -44,6 +44,18 @@ namespace JMMClient.Utilities
 			}
 		}
 
+		public void PlayVideo(VideoLocalVM vid)
+		{
+			try
+			{
+				Process.Start(new ProcessStartInfo(vid.FullPath));
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+		}
+
 		public void Init()
 		{
 			try

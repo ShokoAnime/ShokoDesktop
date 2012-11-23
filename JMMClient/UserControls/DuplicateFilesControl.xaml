@@ -16,6 +16,8 @@
             <RoutedUICommand x:Key="DeleteFile1Command" Text="DeleteFile1Command" />
             <RoutedUICommand x:Key="DeleteFile2Command" Text="DeleteFile2Command" />
             <RoutedUICommand x:Key="DeleteFileDBCommand" Text="DeleteFileDBCommand" />
+            <RoutedUICommand x:Key="PlayVideo1Command" Text="PlayVideo1Command" />
+            <RoutedUICommand x:Key="PlayVideo2Command" Text="PlayVideo2Command" />
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
@@ -29,6 +31,8 @@
         <CommandBinding Command="{StaticResource DeleteFile1Command}" Executed="CommandBinding_DeleteFile1" />
         <CommandBinding Command="{StaticResource DeleteFile2Command}" Executed="CommandBinding_DeleteFile2" />
         <CommandBinding Command="{StaticResource DeleteFileDBCommand}" Executed="CommandBinding_DeleteFileDB" />
+        <CommandBinding Command="{StaticResource PlayVideo1Command}" Executed="CommandBinding_PlayVideo1" />
+        <CommandBinding Command="{StaticResource PlayVideo2Command}" Executed="CommandBinding_PlayVideo2" />
     </UserControl.CommandBindings>
 
     <Grid>
