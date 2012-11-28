@@ -135,7 +135,7 @@
                             </StackPanel>
                         </Button>
 
-                        <!-- rehash file -->
+                        <!-- rescan file -->
                         <Button Name="btnRescanFile" Margin="0,0,2,2" Grid.Column="0" Grid.Row="3" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" 
                                 Command="{StaticResource RescanFileCommand}" CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">

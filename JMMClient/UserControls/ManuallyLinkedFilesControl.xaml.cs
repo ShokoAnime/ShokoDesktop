@@ -46,6 +46,30 @@ namespace JMMClient.UserControls
 			btnClearSearch.Click += new RoutedEventHandler(btnClearSearch_Click);
 			txtFileSearch.TextChanged += new TextChangedEventHandler(txtFileSearch_TextChanged);
 			btnRefresh.Click += new RoutedEventHandler(btnRefresh_Click);
+			btnRescan.Click += new RoutedEventHandler(btnRescan_Click);
+		}
+
+		void btnRescan_Click(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				if (!JMMServerVM.Instance.ServerOnline) return;
+
+				this.Cursor = Cursors.Wait;
+				JMMServerVM.Instance.clientBinaryHTTP.RescanManuallyLinkedFiles();
+				this.Cursor = Cursors.Arrow;
+
+				MessageBox.Show("Files queued for AniDB scan", "Complete", MessageBoxButton.OK, MessageBoxImage.Information);
+
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+			finally
+			{
+				this.Cursor = Cursors.Arrow;
+			}
 		}
 
 		void txtFileSearch_TextChanged(object sender, TextChangedEventArgs e)

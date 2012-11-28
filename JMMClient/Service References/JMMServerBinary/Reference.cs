@@ -15678,6 +15678,9 @@ namespace JMMClient.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetAniDBRecommendations", ReplyAction="http://tempuri.org/IJMMServer/GetAniDBRecommendationsResponse")]
         System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDB_Recommendation> GetAniDBRecommendations(int animeID);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/RescanManuallyLinkedFiles", ReplyAction="http://tempuri.org/IJMMServer/RescanManuallyLinkedFilesResponse")]
+        void RescanManuallyLinkedFiles();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/SaveBookmarkedAnime", ReplyAction="http://tempuri.org/IJMMServer/SaveBookmarkedAnimeResponse")]
         JMMClient.JMMServerBinary.Contract_BookmarkedAnime_SaveResponse SaveBookmarkedAnime(JMMClient.JMMServerBinary.Contract_BookmarkedAnime contract);
         
@@ -16324,6 +16327,10 @@ namespace JMMClient.JMMServerBinary {
         
         public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDB_Recommendation> GetAniDBRecommendations(int animeID) {
             return base.Channel.GetAniDBRecommendations(animeID);
+        }
+        
+        public void RescanManuallyLinkedFiles() {
+            base.Channel.RescanManuallyLinkedFiles();
         }
         
         public JMMClient.JMMServerBinary.Contract_BookmarkedAnime_SaveResponse SaveBookmarkedAnime(JMMClient.JMMServerBinary.Contract_BookmarkedAnime contract) {

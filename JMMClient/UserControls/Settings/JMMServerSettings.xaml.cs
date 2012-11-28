@@ -25,7 +25,7 @@ namespace JMMClient.UserControls
 
 			txtServer.Text = AppSettings.JMMServer_Address;
 			txtPort.Text = AppSettings.JMMServer_Port;
-			txtFilePort.Text = AppSettings.JMMServer_FilePort;
+			//txtFilePort.Text = AppSettings.JMMServer_FilePort;
 			
 
 			btnTest.Click += new RoutedEventHandler(btnTest_Click);
@@ -37,7 +37,7 @@ namespace JMMClient.UserControls
 			{
 				AppSettings.JMMServer_Address = txtServer.Text.Trim();
 				AppSettings.JMMServer_Port = txtPort.Text.Trim();
-				AppSettings.JMMServer_FilePort = txtFilePort.Text.Trim();
+				//AppSettings.JMMServer_FilePort = txtFilePort.Text.Trim();
 
 				if (JMMServerVM.Instance.SetupBinaryClient())
 				{

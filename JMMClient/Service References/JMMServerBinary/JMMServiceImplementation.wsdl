@@ -68,6 +68,12 @@
   <wsdl:message name="IJMMServer_GetAniDBRecommendations_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAniDBRecommendationsResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_RescanManuallyLinkedFiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:RescanManuallyLinkedFiles" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RescanManuallyLinkedFiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RescanManuallyLinkedFilesResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_SaveBookmarkedAnime_InputMessage">
     <wsdl:part name="parameters" element="tns:SaveBookmarkedAnime" />
   </wsdl:message>
@@ -1277,6 +1283,10 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAniDBRecommendations" message="tns:IJMMServer_GetAniDBRecommendations_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAniDBRecommendationsResponse" message="tns:IJMMServer_GetAniDBRecommendations_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="RescanManuallyLinkedFiles">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RescanManuallyLinkedFiles" message="tns:IJMMServer_RescanManuallyLinkedFiles_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RescanManuallyLinkedFilesResponse" message="tns:IJMMServer_RescanManuallyLinkedFiles_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="SaveBookmarkedAnime">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SaveBookmarkedAnime" message="tns:IJMMServer_SaveBookmarkedAnime_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SaveBookmarkedAnimeResponse" message="tns:IJMMServer_SaveBookmarkedAnime_OutputMessage" />
@@ -2130,6 +2140,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAniDBRecommendations">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAniDBRecommendations" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RescanManuallyLinkedFiles">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/RescanManuallyLinkedFiles" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

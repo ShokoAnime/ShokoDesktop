@@ -12,6 +12,7 @@
             <RoutedUICommand x:Key="DeleteLinkCommand" Text="DeleteLinkCommand" />
             <RoutedUICommand x:Key="AvdumpFileCommand" Text="AvdumpFileCommand" />
             <RoutedUICommand x:Key="PlayVideoCommand" Text="PlayVideoCommand" />
+            <RoutedUICommand x:Key="RescanFileCommand" Text="RescanFileCommand" />
             
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
@@ -41,7 +42,19 @@
                                 <TextBlock Text="Play Video"/>
                             </Button.ToolTip>
                         </Button>
-                        
+
+                        <!-- rescan file -->
+                        <Button Name="btnRescanFile" Margin="0,0,10,0" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" 
+                                Command="{StaticResource RescanFileCommand}" CommandParameter="{Binding}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="0,0,5,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="Rescan" Margin="0,0,5,0"/>
+                            </StackPanel>
+                            <Button.ToolTip>
+                                <TextBlock Text="Force update information from AniDB"/>
+                            </Button.ToolTip>
+                        </Button>
+
                         <!-- delete link button-->
                         <Button Margin="0,0,10,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{StaticResource DeleteLinkCommand}"
                                  CommandParameter="{Binding}">
@@ -78,6 +91,7 @@
         <CommandBinding Command="{StaticResource DeleteLinkCommand}" Executed="CommandBinding_DeleteLink" />
         <CommandBinding Command="{StaticResource AvdumpFileCommand}" Executed="CommandBinding_AvdumpFile" />
         <CommandBinding Command="{StaticResource PlayVideoCommand}" Executed="CommandBinding_PlayVideo" />
+        <CommandBinding Command="{StaticResource RescanFileCommand}" Executed="CommandBinding_RescanFile" />
     </UserControl.CommandBindings>
 
     <Grid Margin="3">

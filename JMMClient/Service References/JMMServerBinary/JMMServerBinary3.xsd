@@ -124,6 +124,16 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="RescanManuallyLinkedFiles">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RescanManuallyLinkedFilesResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="SaveBookmarkedAnime">
     <xs:complexType>
       <xs:sequence>
