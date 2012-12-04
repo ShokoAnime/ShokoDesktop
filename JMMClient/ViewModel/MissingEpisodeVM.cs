@@ -14,6 +14,7 @@ namespace JMMClient.ViewModel
 		public int EpisodeNumber { get; set; }
 		public int EpisodeType { get; set; }
 		public string GroupFileSummary { get; set; }
+		public string GroupFileSummarySimple { get; set; }
 
 		public AnimeSeriesVM AnimeSeries { get; set; }
 
@@ -102,6 +103,7 @@ namespace JMMClient.ViewModel
 			this.EpisodeNumber = contract.EpisodeNumber;
 			this.EpisodeType = contract.EpisodeType;
 			this.GroupFileSummary = contract.GroupFileSummary;
+			this.GroupFileSummarySimple = contract.GroupFileSummarySimple;
 
 			AnimeSeries = null;
 			if (contract.AnimeSeries != null) AnimeSeries = new AnimeSeriesVM(contract.AnimeSeries);

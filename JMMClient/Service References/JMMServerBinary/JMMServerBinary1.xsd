@@ -962,6 +962,7 @@
       <xs:element minOccurs="0" name="EpisodeNumber" type="xs:int" />
       <xs:element minOccurs="0" name="EpisodeType" type="xs:int" />
       <xs:element minOccurs="0" name="GroupFileSummary" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GroupFileSummarySimple" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_MissingEpisode" nillable="true" type="tns:Contract_MissingEpisode" />

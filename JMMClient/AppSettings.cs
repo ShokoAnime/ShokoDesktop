@@ -616,16 +616,16 @@ namespace JMMClient
 				if (string.IsNullOrEmpty(val))
 				{
 					// default value
-					val = "1;1;1;1;1;1;1";
+					val = "1;1;1;1;1;1;1;1";
 					UpdateSetting("MissingEpsExportColumns", val);
 				}
 
 				// make sure the setting contains all the columns
 				// just in case the user has manually edited the config, or is using an old config
 				string[] columns = val.Split(';');
-				if (columns.Length != 7)
+				if (columns.Length != 8)
 				{
-					val = "1;1;1;1;1;1;1";
+					val = "1;1;1;1;1;1;1;1";
 					UpdateSetting("MissingEpsExportColumns", val);
 				}
 

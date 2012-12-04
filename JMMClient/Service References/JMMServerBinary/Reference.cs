@@ -9879,6 +9879,9 @@ namespace JMMClient.JMMServerBinary {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string GroupFileSummaryField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string GroupFileSummarySimpleField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -9976,6 +9979,19 @@ namespace JMMClient.JMMServerBinary {
                 if ((object.ReferenceEquals(this.GroupFileSummaryField, value) != true)) {
                     this.GroupFileSummaryField = value;
                     this.RaisePropertyChanged("GroupFileSummary");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string GroupFileSummarySimple {
+            get {
+                return this.GroupFileSummarySimpleField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GroupFileSummarySimpleField, value) != true)) {
+                    this.GroupFileSummarySimpleField = value;
+                    this.RaisePropertyChanged("GroupFileSummarySimple");
                 }
             }
         }

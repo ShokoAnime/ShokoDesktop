@@ -131,13 +131,15 @@ namespace JMMClient.UserControls
 					string[] columns = AppSettings.MissingEpsExportColumns.Split(';');
 					for (int i=0;i<columns.Length;i++)
 					{
-						if (i == 0 && columns[i] == "1") export += string.Format("{0} / ", missingEp.AnimeTitle);
-						if (i == 1 && columns[i] == "1") export += string.Format("{0} / ", missingEp.AnimeID);
-						if (i == 2 && columns[i] == "1") export += string.Format("{0} / ", missingEp.EpisodeTypeAndNumber);
-						if (i == 3 && columns[i] == "1") export += string.Format("{0} / ", missingEp.EpisodeID);
-						if (i == 4 && columns[i] == "1") export += string.Format("{0} / ", missingEp.GroupFileSummary);
-						if (i == 5 && columns[i] == "1") export += string.Format("{0} / ", missingEp.AniDB_SiteURL);
-						if (i == 6 && columns[i] == "1") export += string.Format("{0} / ", missingEp.Episode_SiteURL);
+						if (i == 0 && columns[i] == "1") export += string.Format("{0} , ", missingEp.AnimeTitle);
+						if (i == 1 && columns[i] == "1") export += string.Format("{0} , ", missingEp.AnimeID);
+						if (i == 2 && columns[i] == "1") export += string.Format("{0} , ", missingEp.EpisodeTypeAndNumber);
+						if (i == 3 && columns[i] == "1") export += string.Format("{0} , ", missingEp.EpisodeID);
+						if (i == 4 && columns[i] == "1") export += string.Format("{0} , ", missingEp.GroupFileSummary);
+						if (i == 5 && columns[i] == "1") export += string.Format("{0} , ", missingEp.GroupFileSummarySimple);
+						if (i == 6 && columns[i] == "1") export += string.Format("{0} , ", missingEp.AniDB_SiteURL);
+						if (i == 7 && columns[i] == "1") export += string.Format("{0} , ", missingEp.Episode_SiteURL);
+						
 					}
 
 					export += Environment.NewLine;
