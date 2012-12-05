@@ -735,6 +735,17 @@ namespace JMMClient
 			}
 		}
 
+		private string banOrigin = "";
+		public string BanOrigin
+		{
+			get { return banOrigin; }
+			set
+			{
+				banOrigin = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("BanOrigin"));
+			}
+		}
+
 		private string baseImagePath = "";
 		public string BaseImagePath
 		{
@@ -1861,6 +1872,7 @@ namespace JMMClient
 
 					IsBanned = status.IsBanned;
 					BanReason = status.BanReason;
+					BanOrigin = status.BanOrigin;
 
 					HasherQueuePaused = HasherQueueState.ToLower().Contains("pause");
 					HasherQueueRunning = !HasherQueueState.ToLower().Contains("pause");

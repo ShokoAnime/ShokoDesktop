@@ -1543,6 +1543,7 @@
   <xs:element name="ArrayOfContract_ImportFolder" nillable="true" type="tns:ArrayOfContract_ImportFolder" />
   <xs:complexType name="Contract_ServerStatus">
     <xs:sequence>
+      <xs:element minOccurs="0" name="BanOrigin" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="BanReason" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="GeneralQueueCount" type="xs:int" />
       <xs:element minOccurs="0" name="GeneralQueueState" nillable="true" type="xs:string" />

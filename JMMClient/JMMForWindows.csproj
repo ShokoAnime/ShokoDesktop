@@ -97,30 +97,39 @@
     </Reference>
     <Reference Include="DevExpress.Data.v12.1">
       <HintPath>C:\Program Files\JMM Desktop\DevExpress.Data.v12.1.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.PivotGrid.v12.1.Core">
       <HintPath>C:\Program Files\JMM Desktop\DevExpress.PivotGrid.v12.1.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.Xpf.Core.v12.1">
       <HintPath>C:\Program Files\JMM Desktop\DevExpress.Xpf.Core.v12.1.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.Xpf.Core.v12.1.Extensions">
       <HintPath>C:\Program Files\JMM Desktop\DevExpress.Xpf.Core.v12.1.Extensions.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.Xpf.Grid.v12.1">
       <HintPath>C:\Program Files\JMM Desktop\DevExpress.Xpf.Grid.v12.1.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.Xpf.Grid.v12.1.Core">
       <HintPath>C:\Program Files\JMM Desktop\DevExpress.Xpf.Grid.v12.1.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.Xpf.Layout.v12.1.Core">
       <HintPath>C:\Program Files\JMM Desktop\DevExpress.Xpf.Layout.v12.1.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.Xpf.LayoutControl.v12.1">
       <HintPath>C:\Program Files\JMM Desktop\DevExpress.Xpf.LayoutControl.v12.1.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.Xpf.PivotGrid.v12.1">
       <HintPath>C:\Program Files\JMM Desktop\DevExpress.Xpf.PivotGrid.v12.1.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="GongSolutions.Wpf.DragDrop">
       <HintPath>..\Dependencies\GongSolutions.Wpf.DragDrop.dll</HintPath>

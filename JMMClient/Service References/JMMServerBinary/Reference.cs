@@ -15519,6 +15519,9 @@ namespace JMMClient.JMMServerBinary {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string BanOriginField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string BanReasonField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -15549,6 +15552,19 @@ namespace JMMClient.JMMServerBinary {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string BanOrigin {
+            get {
+                return this.BanOriginField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BanOriginField, value) != true)) {
+                    this.BanOriginField = value;
+                    this.RaisePropertyChanged("BanOrigin");
+                }
             }
         }
         
