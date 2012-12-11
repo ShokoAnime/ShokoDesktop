@@ -18,7 +18,7 @@ namespace JMMClient.Utilities
 		private System.Timers.Timer handleTimer = null;
 		private string iniPath = string.Empty;
 
-		FileSystemWatcher fsw = null;
+		private List<FileSystemWatcher> watcherVids = null;
 		Dictionary<string, string> previousFilePositions = new Dictionary<string, string>();
 
 		public delegate void VideoWatchedEventHandler(VideoWatchedEventArgs ev);
@@ -64,21 +64,40 @@ namespace JMMClient.Utilities
 				previousFilePositions.Clear();
 
 				if (!AppSettings.VideoAutoSetWatched) return;
-				if (string.IsNullOrEmpty(AppSettings.MPCFolder)) return;
-				if (!Directory.Exists(AppSettings.MPCFolder)) return;
 
+				StopWatchingFiles();
+				watcherVids = new List<FileSystemWatcher>();
 
-				if (fsw != null)
-					fsw.Dispose();
+				if (!string.IsNullOrEmpty(AppSettings.MPCFolder) && Directory.Exists(AppSettings.MPCFolder))
+				{
+					FileSystemWatcher fsw = new FileSystemWatcher(AppSettings.MPCFolder, "*.ini");
+					fsw.IncludeSubdirectories = false;
+					fsw.Changed += new FileSystemEventHandler(fsw_Changed);
+					fsw.EnableRaisingEvents = true;
+				}
 
-				fsw = new FileSystemWatcher(AppSettings.MPCFolder, "*.ini");
-				fsw.IncludeSubdirectories = false;
-				fsw.Changed += new FileSystemEventHandler(fsw_Changed);
-				fsw.EnableRaisingEvents = true;
+				if (!string.IsNullOrEmpty(AppSettings.PotPlayerFolder) && Directory.Exists(AppSettings.PotPlayerFolder))
+				{
+					FileSystemWatcher fsw = new FileSystemWatcher(AppSettings.PotPlayerFolder, "*.ini");
+					fsw.IncludeSubdirectories = false;
+					fsw.Changed += new FileSystemEventHandler(fsw_Changed);
+					fsw.EnableRaisingEvents = true;
+				}
+
 			}
 			catch (Exception ex)
 			{
 				logger.ErrorException(ex.ToString(), ex);
+			}
+		}
+
+		public void StopWatchingFiles()
+		{
+			if (watcherVids == null) return;
+
+			foreach (FileSystemWatcher fsw in watcherVids)
+			{
+				fsw.EnableRaisingEvents = false;
 			}
 		}
 
@@ -103,11 +122,134 @@ namespace JMMClient.Utilities
 		{
 			System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
 			{
-				HandleFileChange(iniPath);
+				FileInfo fi = new FileInfo(iniPath);
+				if (fi.DirectoryName.Equals(AppSettings.MPCFolder, StringComparison.InvariantCultureIgnoreCase))
+					HandleFileChangeMPC(iniPath);
+
+				if (fi.DirectoryName.Equals(AppSettings.PotPlayerFolder, StringComparison.InvariantCultureIgnoreCase))
+					HandleFileChangePotPlayer(iniPath);
 			});
 		}
 
-		public void HandleFileChange(string filePath)
+		public void HandleFileChangePotPlayer(string filePath)
+		{
+			try
+			{
+				if (!AppSettings.VideoAutoSetWatched) return;
+
+				List<int> allFiles = new List<int>();
+
+				string[] lines = File.ReadAllLines(filePath);
+
+				bool foundSectionStart = false;
+				bool foundSectionEnd = false;
+
+				for (int i = 0; i < lines.Length; i++)
+				{
+					string line = lines[i];
+
+					if (line.ToLower().Contains("[rememberfiles]"))
+						foundSectionStart = true;
+
+					if (foundSectionStart && line.Trim().ToLower().StartsWith("[") && !line.ToLower().Contains("[rememberfiles]"))
+						foundSectionEnd = true;
+
+					if (foundSectionStart && !foundSectionEnd)
+					{
+						if (!line.ToLower().Contains("[rememberfiles]") && !string.IsNullOrEmpty(line)) allFiles.Add(i);
+					}
+
+				}
+
+				if (allFiles.Count == 0) return;
+
+				Dictionary<string, string> filePositions = new Dictionary<string, string>();
+				foreach (int lineNumber in allFiles)
+				{
+					// find the last file played
+					string fileNameLine = lines[lineNumber];
+
+					int iPos1 = fileNameLine.IndexOf("=");
+					int iPos2 = fileNameLine.IndexOf("=", iPos1 + 1);
+
+					if (iPos1 <= 0 || iPos2 <= 0) continue;
+
+					string position = fileNameLine.Substring(iPos1 + 1, iPos2 - iPos1 - 1);
+					string fileName = fileNameLine.Substring(iPos2 + 1, fileNameLine.Length - iPos2 - 1);
+
+
+					filePositions[fileName] = position;
+				}
+
+				// find all the files which have changed
+				Dictionary<string, string> changedFilePositions = new Dictionary<string, string>();
+
+				foreach (KeyValuePair<string, string> kvp in filePositions)
+				{
+					changedFilePositions[kvp.Key] = kvp.Value;
+				}
+
+				// update the changed positions
+				foreach (KeyValuePair<string, string> kvp in changedFilePositions)
+				{
+					previousFilePositions[kvp.Key] = kvp.Value;
+				}
+
+				foreach (KeyValuePair<string, string> kvp in changedFilePositions)
+				{
+					lastFileNameProcessed = kvp.Key;
+					lastPositionProcessed = kvp.Value;
+
+					long mpcPos = 0;
+					if (!long.TryParse(kvp.Value, out mpcPos)) continue;
+
+					// if mpcPos == 0, it means that file has finished played completely
+
+					// MPC position is in micro-seconds
+					// convert to milli-seconds
+					//double mpcPosMS = (double)mpcPos / (double)10000;
+					double mpcPosMS = (double)mpcPos;
+
+					foreach (KeyValuePair<int, VideoDetailedVM> kvpVid in recentlyPlayedFiles)
+					{
+						if (kvpVid.Value.FullPath.Equals(kvp.Key, StringComparison.InvariantCultureIgnoreCase))
+						{
+							// we don't care about files that are already watched
+							if (kvpVid.Value.Watched) continue;
+
+							logger.Info(string.Format("Video position for {0} has changed to {1}", kvp.Key, kvp.Value));
+
+							// now check if this file is considered watched
+							double fileDurationMS = (double)kvpVid.Value.VideoInfo_Duration;
+
+							double progress = mpcPosMS / fileDurationMS * (double)100;
+							if (progress > (double)AppSettings.VideoWatchedPct || mpcPos == 0)
+							{
+								VideoDetailedVM vid = kvpVid.Value;
+
+								logger.Info(string.Format("Updating to watched from MPC: {0}", kvp.Key));
+
+								JMMServerVM.Instance.clientBinaryHTTP.ToggleWatchedStatusOnVideo(vid.VideoLocalID, true, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+								MainListHelperVM.Instance.UpdateHeirarchy(vid);
+								MainListHelperVM.Instance.GetSeriesForVideo(vid.VideoLocalID);
+
+								//kvp.Value.VideoLocal_IsWatched = 1;
+								OnVideoWatchedEvent(new VideoWatchedEventArgs(vid.VideoLocalID, vid));
+
+								Debug.WriteLine("complete");
+							}
+
+						}
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				logger.ErrorException(ex.ToString(), ex);
+			}
+		}
+
+		public void HandleFileChangeMPC(string filePath)
 		{
 			try
 			{

@@ -1919,6 +1919,27 @@ namespace JMMClient
 			}
 		}
 
+		public static string PotPlayerFolder
+		{
+			get
+			{
+				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+
+				string val = appSettings["PotPlayerFolder"];
+				if (string.IsNullOrEmpty(val))
+				{
+					// default value
+					val = "";
+					UpdateSetting("PotPlayerFolder", val);
+				}
+				return val;
+			}
+			set
+			{
+				UpdateSetting("PotPlayerFolder", value);
+			}
+		}
+
 		public static int VideoWatchedPct
 		{
 			get

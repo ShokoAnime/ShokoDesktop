@@ -1199,6 +1199,16 @@ namespace JMMClient
 			}
 		}
 
+		public string PotPlayerFolder
+		{
+			get { return AppSettings.PotPlayerFolder; }
+			set
+			{
+				AppSettings.PotPlayerFolder = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("PotPlayerFolder"));
+			}
+		}
+
 		public int VideoWatchedPct
 		{
 			get { return AppSettings.VideoWatchedPct; }
