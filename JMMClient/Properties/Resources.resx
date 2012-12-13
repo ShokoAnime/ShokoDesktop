@@ -1706,4 +1706,10 @@
   <data name="Tooltip_AniDBDownloadCreators" xml:space="preserve">
     <value>These images are shown in MyAnime 3 and Anime Buddy (Voice Actors)</value>
   </data>
+  <data name="AniDBMyListDeleteAction" xml:space="preserve">
+    <value>Delete Action</value>
+  </data>
+  <data name="Tooltip_AniDBMyListDeleteAction" xml:space="preserve">
+    <value>What action to take for a file when you delete it from you local collection, DELETE FILE means to permanently remove it from your list, MARK DELETED means to leave the file on your list, but change the state to deleted</value>
+  </data>
 </root>

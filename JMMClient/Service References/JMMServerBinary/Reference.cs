@@ -13748,6 +13748,9 @@ namespace JMMClient.JMMServerBinary {
         private bool AniDB_MyList_AddFilesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AniDB_MyList_DeleteTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool AniDB_MyList_ReadUnwatchedField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -14109,6 +14112,19 @@ namespace JMMClient.JMMServerBinary {
                 if ((this.AniDB_MyList_AddFilesField.Equals(value) != true)) {
                     this.AniDB_MyList_AddFilesField = value;
                     this.RaisePropertyChanged("AniDB_MyList_AddFiles");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AniDB_MyList_DeleteType {
+            get {
+                return this.AniDB_MyList_DeleteTypeField;
+            }
+            set {
+                if ((this.AniDB_MyList_DeleteTypeField.Equals(value) != true)) {
+                    this.AniDB_MyList_DeleteTypeField = value;
+                    this.RaisePropertyChanged("AniDB_MyList_DeleteType");
                 }
             }
         }

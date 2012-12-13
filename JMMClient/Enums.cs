@@ -12,6 +12,12 @@ namespace JMMClient
 		MustSee = 3,
 	}
 
+	public enum AniDBFileDeleteType
+	{
+		Delete = 0,
+		MarkDeleted = 1
+	}
+
 	public enum RatingCollectionState
 	{
 		All = 0,

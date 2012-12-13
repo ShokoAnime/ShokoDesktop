@@ -434,6 +434,7 @@ namespace JMMClient
 
 			this.AniDB_MyList_AddFiles = contract.AniDB_MyList_AddFiles;
 			this.AniDB_MyList_StorageState = contract.AniDB_MyList_StorageState;
+			this.AniDB_MyList_DeleteType = (AniDBFileDeleteType)contract.AniDB_MyList_DeleteType;
 			this.AniDB_MyList_ReadWatched = contract.AniDB_MyList_ReadWatched;
 			this.AniDB_MyList_ReadUnwatched = contract.AniDB_MyList_ReadUnwatched;
 			this.AniDB_MyList_SetWatched = contract.AniDB_MyList_SetWatched;
@@ -551,6 +552,7 @@ namespace JMMClient
 
 				contract.AniDB_MyList_AddFiles = this.AniDB_MyList_AddFiles;
 				contract.AniDB_MyList_StorageState = this.AniDB_MyList_StorageState;
+				contract.AniDB_MyList_DeleteType = (int)this.AniDB_MyList_DeleteType;
 				contract.AniDB_MyList_ReadWatched = this.AniDB_MyList_ReadWatched;
 				contract.AniDB_MyList_ReadUnwatched = this.AniDB_MyList_ReadUnwatched;
 				contract.AniDB_MyList_SetWatched = this.AniDB_MyList_SetWatched;
@@ -1123,6 +1125,17 @@ namespace JMMClient
 			{
 				aniDB_MyList_StorageState = value;
 				OnPropertyChanged(new PropertyChangedEventArgs("AniDB_MyList_WatchedState"));
+			}
+		}
+
+		private AniDBFileDeleteType aniDB_MyList_DeleteType = AniDBFileDeleteType.Delete;
+		public AniDBFileDeleteType AniDB_MyList_DeleteType
+		{
+			get { return aniDB_MyList_DeleteType; }
+			set
+			{
+				aniDB_MyList_DeleteType = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("AniDB_MyList_DeleteType"));
 			}
 		}
 

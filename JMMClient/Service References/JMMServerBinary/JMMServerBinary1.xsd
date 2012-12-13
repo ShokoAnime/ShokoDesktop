@@ -1397,6 +1397,7 @@
       <xs:element minOccurs="0" name="AniDB_File_UpdateFrequency" type="xs:int" />
       <xs:element minOccurs="0" name="AniDB_MyListStats_UpdateFrequency" type="xs:int" />
       <xs:element minOccurs="0" name="AniDB_MyList_AddFiles" type="xs:boolean" />
+      <xs:element minOccurs="0" name="AniDB_MyList_DeleteType" type="xs:int" />
       <xs:element minOccurs="0" name="AniDB_MyList_ReadUnwatched" type="xs:boolean" />
       <xs:element minOccurs="0" name="AniDB_MyList_ReadWatched" type="xs:boolean" />
       <xs:element minOccurs="0" name="AniDB_MyList_SetUnwatched" type="xs:boolean" />

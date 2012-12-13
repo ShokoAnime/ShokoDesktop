@@ -29,15 +29,28 @@ namespace JMMClient.UserControls
 			cboStorageState.Items.Add("CD/DVD");
 			cboStorageState.SelectedIndex = 0;
 
+			cboDeleteAction.Items.Clear();
+			cboDeleteAction.Items.Add("Delete File");
+			cboDeleteAction.Items.Add("Mark Deleted");
+			cboDeleteAction.SelectedIndex = 0;
+
 			this.Loaded += new RoutedEventHandler(AniDBMyListSettings_Loaded);
 
 			cboStorageState.SelectionChanged += new SelectionChangedEventHandler(cboStorageState_SelectionChanged);
+			cboDeleteAction.SelectionChanged += new SelectionChangedEventHandler(cboDeleteAction_SelectionChanged);
 
 			chkMyListAdd.Click += new RoutedEventHandler(settingChanged);
 			chkMyListReadUnwatched.Click += new RoutedEventHandler(settingChanged);
 			chkMyListReadWatched.Click += new RoutedEventHandler(settingChanged);
 			chkMyListSetUnwatched.Click += new RoutedEventHandler(settingChanged);
 			chkMyListSetWatched.Click += new RoutedEventHandler(settingChanged);
+		}
+
+		void cboDeleteAction_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			JMMServerVM.Instance.AniDB_MyList_DeleteType = (AniDBFileDeleteType)cboDeleteAction.SelectedIndex;
+
+			JMMServerVM.Instance.SaveServerSettingsAsync();
 		}
 
 		void settingChanged(object sender, RoutedEventArgs e)
@@ -55,6 +68,7 @@ namespace JMMClient.UserControls
 		void AniDBMyListSettings_Loaded(object sender, RoutedEventArgs e)
 		{
 			cboStorageState.SelectedIndex = JMMServerVM.Instance.AniDB_MyList_StorageState;
+			cboDeleteAction.SelectedIndex = (int)JMMServerVM.Instance.AniDB_MyList_DeleteType;
 		}
 	}
 }
