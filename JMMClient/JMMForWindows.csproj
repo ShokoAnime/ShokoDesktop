@@ -449,6 +449,9 @@
     <Compile Include="UserControls\InfoPopup.xaml.cs">
       <DependentUpon>InfoPopup.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\LogsControl.xaml.cs">
+      <DependentUpon>LogsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ManuallyLinkedFilesControl.xaml.cs">
       <DependentUpon>ManuallyLinkedFilesControl.xaml</DependentUpon>
     </Compile>
@@ -632,6 +635,7 @@
     <Compile Include="ViewModel\GroupVideoQualityVM.cs" />
     <Compile Include="ViewModel\IgnoreAnimeVM.cs" />
     <Compile Include="ViewModel\JMMUserVM.cs" />
+    <Compile Include="ViewModel\LogMessageVM.cs" />
     <Compile Include="ViewModel\MainListHelperVM.cs" />
     <Compile Include="ViewModel\AnimeSeriesVM.cs" />
     <Compile Include="AppSettings.cs" />
@@ -983,6 +987,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\LogsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\ManuallyLinkedFilesControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1305,6 +1313,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_JMMUser1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_LogMessage.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_MALAnimeResponse1.datasource">

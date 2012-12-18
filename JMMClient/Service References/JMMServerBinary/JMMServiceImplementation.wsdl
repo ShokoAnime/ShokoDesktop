@@ -74,6 +74,12 @@
   <wsdl:message name="IJMMServer_RescanManuallyLinkedFiles_OutputMessage">
     <wsdl:part name="parameters" element="tns:RescanManuallyLinkedFilesResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_GetLogMessages_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogMessages" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetLogMessages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogMessagesResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_SaveBookmarkedAnime_InputMessage">
     <wsdl:part name="parameters" element="tns:SaveBookmarkedAnime" />
   </wsdl:message>
@@ -1287,6 +1293,10 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RescanManuallyLinkedFiles" message="tns:IJMMServer_RescanManuallyLinkedFiles_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RescanManuallyLinkedFilesResponse" message="tns:IJMMServer_RescanManuallyLinkedFiles_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetLogMessages">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetLogMessages" message="tns:IJMMServer_GetLogMessages_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetLogMessagesResponse" message="tns:IJMMServer_GetLogMessages_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="SaveBookmarkedAnime">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SaveBookmarkedAnime" message="tns:IJMMServer_SaveBookmarkedAnime_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SaveBookmarkedAnimeResponse" message="tns:IJMMServer_SaveBookmarkedAnime_OutputMessage" />
@@ -2149,6 +2159,15 @@
     </wsdl:operation>
     <wsdl:operation name="RescanManuallyLinkedFiles">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/RescanManuallyLinkedFiles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLogMessages">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetLogMessages" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

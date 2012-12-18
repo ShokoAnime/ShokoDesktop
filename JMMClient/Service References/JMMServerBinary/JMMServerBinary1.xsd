@@ -534,6 +534,21 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_AniDB_Recommendation" nillable="true" type="tns:Contract_AniDB_Recommendation" />
+  <xs:complexType name="ArrayOfContract_LogMessage">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_LogMessage" nillable="true" type="tns:Contract_LogMessage" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_LogMessage" nillable="true" type="tns:ArrayOfContract_LogMessage" />
+  <xs:complexType name="Contract_LogMessage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="LogContent" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LogDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LogMessageID" type="xs:int" />
+      <xs:element minOccurs="0" name="LogType" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_LogMessage" nillable="true" type="tns:Contract_LogMessage" />
   <xs:complexType name="Contract_BookmarkedAnime">
     <xs:sequence>
       <xs:element minOccurs="0" name="Anime" nillable="true" type="tns:Contract_AniDBAnime" />

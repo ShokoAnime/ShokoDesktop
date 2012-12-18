@@ -14,6 +14,13 @@ namespace JMMClient
 		public static readonly int FlagLinkMAL = 4;
 		public static readonly int FlagLinkMovieDB = 8;
 
+		public struct DBLogType
+		{
+			public static readonly string APIAniDBHTTP = "AniDB HTTP";
+			public static readonly string APIAniDBUDP = "AniDB UDP";
+			public static readonly string APIAzureHTTP = "Cache HTTP";
+		}
+
 		// http://wiki.anidb.net/w/WebAOM#Move.2Frename_system
 		public struct FileRenameTag_Name
 		{
