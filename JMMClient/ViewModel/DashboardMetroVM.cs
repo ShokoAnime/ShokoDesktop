@@ -426,6 +426,7 @@ namespace JMMClient
 					{
 						if (!ser.IsComplete) continue;
 						if (ser.AllFilesWatched) continue;
+						if (!JMMServerVM.Instance.CurrentUser.EvaluateSeries(ser)) continue;
 
 						serList.Add(ser);
 					}
