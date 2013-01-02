@@ -69,7 +69,13 @@ namespace JMMClient.UserControls
 		private static void RatingValueChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
 		{
 			RatingControl parent = sender as RatingControl;
-			double ratingValue = (double)e.NewValue;
+
+			NumberStyles style = NumberStyles.Number;
+			CultureInfo culture = CultureInfo.CreateSpecificCulture("en-GB");
+
+			double ratingValue = -1;
+			double.TryParse(e.NewValue.ToString(), style, culture, out ratingValue);
+
 			int numberOfButtonsToHighlight = (int)(2 * ratingValue);
 
 			UIElementCollection children = ((StackPanel)(parent.Content)).Children;
@@ -95,7 +101,12 @@ namespace JMMClient.UserControls
 		{
 			ToggleButton button = sender as ToggleButton;
 
-			double newRating = double.Parse((String)button.Tag);
+			NumberStyles style = NumberStyles.Number;
+			CultureInfo culture = CultureInfo.CreateSpecificCulture("en-GB");
+
+			double newRating = -1;
+			double.TryParse((String)button.Tag, style, culture, out newRating);
+
 			if (RatingValue == newRating && newRating == 0.5)
 			{
 				RatingValue = 0.0;
@@ -112,7 +123,13 @@ namespace JMMClient.UserControls
 		private void RatingButtonMouseEnterEventHandler(object sender, System.Windows.Input.MouseEventArgs e)
 		{
 			ToggleButton button = sender as ToggleButton;
-			double hoverRating = double.Parse((String)button.Tag);
+
+			NumberStyles style = NumberStyles.Number;
+			CultureInfo culture = CultureInfo.CreateSpecificCulture("en-GB");
+
+			double hoverRating = -1;
+			double.TryParse((String)button.Tag, style, culture, out hoverRating);
+
 			int numberOfButtonsToHighlight = (int)(2 * hoverRating);
 
 			UIElementCollection children = RatingContentPanel.Children;
