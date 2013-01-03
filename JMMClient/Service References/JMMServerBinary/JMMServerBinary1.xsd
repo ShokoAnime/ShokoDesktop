@@ -549,6 +549,25 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_LogMessage" nillable="true" type="tns:Contract_LogMessage" />
+  <xs:complexType name="ArrayOfContract_AnimeSearch">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_AnimeSearch" nillable="true" type="tns:Contract_AnimeSearch" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_AnimeSearch" nillable="true" type="tns:ArrayOfContract_AnimeSearch" />
+  <xs:complexType name="Contract_AnimeSearch">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AnimeGroupID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="AnimeGroupName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
+      <xs:element minOccurs="0" name="AnimeSeriesID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="AnimeSeriesName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MainTitle" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SeriesExists" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Titles" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_AnimeSearch" nillable="true" type="tns:Contract_AnimeSearch" />
   <xs:complexType name="Contract_BookmarkedAnime">
     <xs:sequence>
       <xs:element minOccurs="0" name="Anime" nillable="true" type="tns:Contract_AniDBAnime" />

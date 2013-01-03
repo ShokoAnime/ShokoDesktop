@@ -239,7 +239,7 @@ namespace JMMClient.UserControls
 			{
 				NewSeries frm = new NewSeries();
 				frm.Owner = GetTopParent();
-				frm.Init(null, "");
+				frm.Init(0, "");
 				bool? result = frm.ShowDialog();
 				if (result.HasValue && result.Value == true)
 				{

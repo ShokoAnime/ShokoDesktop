@@ -1308,7 +1308,7 @@ namespace JMMClient
 				{
 					NewSeries frm = new NewSeries();
 					frm.Owner = this;
-					frm.Init(null, "");
+					frm.Init(0, "");
 					bool? result = frm.ShowDialog();
 					if (result.HasValue && result.Value == true)
 					{
@@ -1685,6 +1685,21 @@ namespace JMMClient
 
 					ShowPinnedSeries(ser);
 				}
+
+				if (obj.GetType() == typeof(AnimeSearchVM))
+				{
+					AnimeSearchVM search = (AnimeSearchVM)obj;
+					if (!search.AnimeSeriesID.HasValue) return;
+
+					JMMServerBinary.Contract_AnimeSeries contract = JMMServerVM.Instance.clientBinaryHTTP.GetSeries(search.AnimeSeriesID.Value,
+						JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+
+					if (contract == null) return;
+					AnimeSeriesVM ser = new AnimeSeriesVM(contract);
+
+					ShowPinnedSeries(ser);
+				}
+
 			}
 			catch (Exception ex)
 			{

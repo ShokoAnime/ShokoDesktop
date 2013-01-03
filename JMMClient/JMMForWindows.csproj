@@ -611,6 +611,7 @@
     <Compile Include="ViewModel\AnimeGroupVM.cs" />
     <Compile Include="ViewModel\AniDB_AnimeDetailedVM.cs" />
     <Compile Include="ViewModel\AnimeRatingVM.cs" />
+    <Compile Include="ViewModel\AnimeSearchVM.cs" />
     <Compile Include="ViewModel\AnimeTagVM.cs" />
     <Compile Include="ViewModel\AnimeTitleVM.cs" />
     <Compile Include="ViewModel\AVDumpVM.cs" />
@@ -1243,6 +1244,9 @@
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AnimeRating.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AnimeSearch.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AnimeSeries1.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -1408,6 +1412,7 @@
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_VideoLocalRenamed1.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\JMMServerBinary\JMMServerBinary.wsdl" />
     <None Include="Service References\JMMServerBinary\JMMServerBinary.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -1989,7 +1994,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
-</PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
