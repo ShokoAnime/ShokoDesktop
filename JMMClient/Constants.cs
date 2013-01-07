@@ -115,6 +115,8 @@ namespace JMMClient
 			public static readonly string VideoBitDepth = "Video Bit Depth";
 			public static readonly string VideoResolutionWidth = "Video Res Width";
 			public static readonly string VideoResolutionHeight = "Video Res Height";
+			public static readonly string ManuallyLinked = "Is Manually Linked";
+			public static readonly string HasEpisodes = "Has Episodes";
 		}
 
 		public struct FileRenameTest_Test
@@ -134,6 +136,8 @@ namespace JMMClient
 			public static readonly string VideoBitDepth = "Z()";
 			public static readonly string VideoResolutionWidth = "W()";
 			public static readonly string VideoResolutionHeight = "U()";
+			public static readonly string ManuallyLinked = "M()";
+			public static readonly string HasEpisodes = "N()";
 		}
 
 		public struct StaticGF
