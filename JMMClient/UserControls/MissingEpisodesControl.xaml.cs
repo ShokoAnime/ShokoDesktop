@@ -101,6 +101,12 @@ namespace JMMClient.UserControls
 			workerFiles.RunWorkerCompleted += new RunWorkerCompletedEventHandler(workerFiles_RunWorkerCompleted);
 
 			btnSelectColumns.Click += new RoutedEventHandler(btnSelectColumns_Click);
+
+			cboAiringFilter.Items.Clear();
+			cboAiringFilter.Items.Add("All");
+			cboAiringFilter.Items.Add("Still Airing");
+			cboAiringFilter.Items.Add("Finished Airing");
+			cboAiringFilter.SelectedIndex = 0;
 		}
 
 		void btnSelectColumns_Click(object sender, RoutedEventArgs e)
@@ -184,7 +190,7 @@ namespace JMMClient.UserControls
 			{
 				WorkRequest wr = e.Argument as WorkRequest;
 				List<JMMServerBinary.Contract_MissingEpisode> contractsTemp = JMMServerVM.Instance.clientBinaryHTTP.GetMissingEpisodes(
-					JMMServerVM.Instance.CurrentUser.JMMUserID.Value, wr.MyGroupsOnly, wr.RegularEpisodesOnly);
+					JMMServerVM.Instance.CurrentUser.JMMUserID.Value, wr.MyGroupsOnly, wr.RegularEpisodesOnly, (int)wr.AiringFilter);
 				e.Result = contractsTemp;
 			}
 			catch (Exception ex)
@@ -201,8 +207,10 @@ namespace JMMClient.UserControls
 			ReadyToExport = false;
 			EpisodeCount = 0;
 
+			AiringState state = (AiringState)cboAiringFilter.SelectedIndex;
+
 			StatusMessage = "Loading...";
-			WorkRequest wr = new WorkRequest(chkMyGroupsOnly.IsChecked.Value, chkRegularEpisodesOnly.IsChecked.Value);
+			WorkRequest wr = new WorkRequest(chkMyGroupsOnly.IsChecked.Value, chkRegularEpisodesOnly.IsChecked.Value, state);
 
 			workerFiles.RunWorkerAsync(wr);
 		}
@@ -212,11 +220,13 @@ namespace JMMClient.UserControls
 	{
 		public bool MyGroupsOnly { get; set; }
 		public bool RegularEpisodesOnly { get; set; }
+		public AiringState AiringFilter { get; set; }
 
-		public WorkRequest(bool myGroups, bool regEps)
+		public WorkRequest(bool myGroups, bool regEps, AiringState state)
 		{
 			MyGroupsOnly = myGroups;
 			RegularEpisodesOnly = regEps;
+			AiringFilter = state;
 		}
 	}
 }

@@ -16220,7 +16220,7 @@ namespace JMMClient.JMMServerBinary {
         void DeleteFileFromMyList(int fileID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetMissingEpisodes", ReplyAction="http://tempuri.org/IJMMServer/GetMissingEpisodesResponse")]
-        System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_MissingEpisode> GetMissingEpisodes(int userID, bool onlyMyGroups, bool regularEpisodesOnly);
+        System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_MissingEpisode> GetMissingEpisodes(int userID, bool onlyMyGroups, bool regularEpisodesOnly, int airingState);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/IgnoreAnime", ReplyAction="http://tempuri.org/IJMMServer/IgnoreAnimeResponse")]
         void IgnoreAnime(int animeID, int ignoreType, int userID);
@@ -16953,8 +16953,8 @@ namespace JMMClient.JMMServerBinary {
             base.Channel.DeleteFileFromMyList(fileID);
         }
         
-        public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_MissingEpisode> GetMissingEpisodes(int userID, bool onlyMyGroups, bool regularEpisodesOnly) {
-            return base.Channel.GetMissingEpisodes(userID, onlyMyGroups, regularEpisodesOnly);
+        public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_MissingEpisode> GetMissingEpisodes(int userID, bool onlyMyGroups, bool regularEpisodesOnly, int airingState) {
+            return base.Channel.GetMissingEpisodes(userID, onlyMyGroups, regularEpisodesOnly, airingState);
         }
         
         public void IgnoreAnime(int animeID, int ignoreType, int userID) {

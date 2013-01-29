@@ -1199,6 +1199,7 @@
         <xs:element minOccurs="0" name="userID" type="xs:int" />
         <xs:element minOccurs="0" name="onlyMyGroups" type="xs:boolean" />
         <xs:element minOccurs="0" name="regularEpisodesOnly" type="xs:boolean" />
+        <xs:element minOccurs="0" name="airingState" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

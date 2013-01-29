@@ -5,6 +5,13 @@ using System.Text;
 
 namespace JMMClient
 {
+	public enum AiringState
+	{
+		All = 0,
+		StillAiring = 1,
+		FinishedAiring = 2,
+	}
+
 	public enum AniDBRecommendationType
 	{
 		ForFans = 1,

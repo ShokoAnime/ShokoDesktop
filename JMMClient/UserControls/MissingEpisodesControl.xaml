@@ -148,6 +148,10 @@
                     <CheckBox Name="chkRegularEpisodesOnly" IsChecked="True" VerticalAlignment="Center" Margin="12,0,2,0"/>
                     <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=RegularEpisodesOnly}" VerticalAlignment="Center"></TextBlock>
 
+                    <TextBlock VerticalAlignment="Center" Text="Airing State:" Margin="10,0,0,0"/>
+
+                    <ComboBox Name="cboAiringFilter" Margin="3,3,5,3" Height="24" VerticalAlignment="Center"/>
+
                     <TextBlock VerticalAlignment="Center" Text="{Binding Path=EpisodeCount, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MissingEpisodesControl}}}" Margin="10,0,0,0" Foreground="DarkGray" />
                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episodes}" Margin="5,0,0,0" Foreground="DarkGray"/>
                 </StackPanel>
