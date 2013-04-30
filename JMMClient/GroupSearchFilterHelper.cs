@@ -42,7 +42,7 @@ namespace JMMClient
 			return false;
 		}
 
-		public static bool EvaluateSeriesTextSearch(AnimeSeriesVM series, string filterText)
+		public static bool EvaluateSeriesTextSearch(AnimeSeriesVM series, string filterText, SeriesSearchType searchType)
 		{
 			if (String.IsNullOrEmpty(filterText) || series == null)
 				return true;
@@ -53,10 +53,15 @@ namespace JMMClient
 				if (index > -1) return true;
 			}
 
-			return EvaluateAnimeTextSearch(series.AniDB_Anime, filterText);
+			return EvaluateAnimeTextSearch(series.AniDB_Anime, filterText, searchType);
 		}
 
-		public static bool EvaluateAnimeTextSearch(AniDB_AnimeVM anime, string filterText)
+		public static bool EvaluateSeriesTextSearch(AnimeSeriesVM series, string filterText)
+		{
+			return EvaluateSeriesTextSearch(series, filterText, SeriesSearchType.Everything);
+		}
+
+		public static bool EvaluateAnimeTextSearch(AniDB_AnimeVM anime, string filterText, SeriesSearchType searchType)
 		{
 			if (String.IsNullOrEmpty(filterText) || anime == null)
 				return true;
@@ -65,16 +70,27 @@ namespace JMMClient
 			int index = anime.AllTitles.IndexOf(filterText, 0, StringComparison.InvariantCultureIgnoreCase);
 			if (index > -1) return true;
 
-			// check the categories
-			index = anime.AllCategories.IndexOf(filterText, 0, StringComparison.InvariantCultureIgnoreCase);
-			if (index > -1) return true;
+			if (searchType == SeriesSearchType.Everything)
+			{
+				// check the categories
+				index = anime.AllCategories.IndexOf(filterText, 0, StringComparison.InvariantCultureIgnoreCase);
+				if (index > -1) return true;
+			}
 
-			// check the tags
-			index = anime.AllTags.IndexOf(filterText, 0, StringComparison.InvariantCultureIgnoreCase);
-			if (index > -1) return true;
+			if (searchType == SeriesSearchType.Everything)
+			{
+				// check the tags
+				index = anime.AllTags.IndexOf(filterText, 0, StringComparison.InvariantCultureIgnoreCase);
+				if (index > -1) return true;
+			}
 
 
 			return false;
+		}
+
+		public static bool EvaluateAnimeTextSearch(AniDB_AnimeVM anime, string filterText)
+		{
+			return EvaluateAnimeTextSearch(anime, filterText, SeriesSearchType.Everything);
 		}
 
 		public static bool EvaluateGroupFilter(GroupFilterVM gf, AnimeGroupVM grp)

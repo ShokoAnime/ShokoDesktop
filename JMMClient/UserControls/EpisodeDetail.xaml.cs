@@ -194,7 +194,8 @@ namespace JMMClient.UserControls
 				// get the current tvdb link
 				AnimeEpisodeVM ep = this.DataContext as AnimeEpisodeVM;
 				ep.RefreshAnime();
-				if (ep.AniDB_Anime == null || ep.AniDB_Anime.CrossRefTvDB == null)
+				if (ep.AniDB_Anime == null || ep.AniDB_Anime.TvSummary == null || ep.AniDB_Anime.TvSummary.CrossRefTvDBV2 == null || 
+					ep.AniDB_Anime.TvSummary.CrossRefTvDBV2.Count == 0)
 				{
 					Utils.ShowErrorMessage("The series must be linked to a TvDB series first");
 					return;

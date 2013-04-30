@@ -12,6 +12,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using NLog;
 using JMMClient.ViewModel;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace JMMClient.Forms
 {
@@ -24,19 +26,26 @@ namespace JMMClient.Forms
 		private int AnimeID = 0;
 		private AniDB_AnimeVM Anime = null;
 		private AnimeEpisodeVM AnimeEpisode = null;
+		private TvDBDetails TvDetails = null;
 
-		public static readonly DependencyProperty CurrentEpisodesProperty = DependencyProperty.Register("CurrentEpisodes",
+		public ObservableCollection<TvDB_EpisodeVM> CurrentEpisodes { get; set; }
+		public ObservableCollection<int> SeasonNumbers { get; set; }
+
+		/*public static readonly DependencyProperty CurrentEpisodesProperty = DependencyProperty.Register("CurrentEpisodes",
 			typeof(List<TvDB_EpisodeVM>), typeof(SelectTvDBEpisodeForm), new UIPropertyMetadata(null, null));
 
 		public List<TvDB_EpisodeVM> CurrentEpisodes
 		{
 			get { return (List<TvDB_EpisodeVM>)GetValue(CurrentEpisodesProperty); }
 			set { SetValue(CurrentEpisodesProperty, value); }
-		}
+		}*/
 
 		public SelectTvDBEpisodeForm()
 		{
 			InitializeComponent();
+
+			CurrentEpisodes = new ObservableCollection<TvDB_EpisodeVM>();
+			SeasonNumbers = new ObservableCollection<int>();
 
 			btnClose.Click += new RoutedEventHandler(btnClose_Click);
 			cboSeason.SelectionChanged += new SelectionChangedEventHandler(cboSeason_SelectionChanged);
@@ -48,8 +57,8 @@ namespace JMMClient.Forms
 			// refresh episode list
 			try
 			{
-				CurrentEpisodes = new List<TvDB_EpisodeVM>();
-				foreach (TvDB_EpisodeVM tvep in Anime.TvDBEpisodes)
+				CurrentEpisodes.Clear();
+				foreach (TvDB_EpisodeVM tvep in TvDetails.TvDBEpisodes)
 				{
 					if (tvep.SeasonNumber == int.Parse(cboSeason.SelectedItem.ToString()))
 						CurrentEpisodes.Add(tvep);
@@ -115,11 +124,47 @@ namespace JMMClient.Forms
 			Anime = anime;
 			AnimeEpisode = ep;
 
+			List<int> uids = new List<int>();
+			cboSeries.Items.Clear();
+			foreach (CrossRef_AniDB_TvDBVMV2 xref in Anime.TvSummary.CrossRefTvDBV2)
+			{
+				if (!uids.Contains(xref.TvDBID))
+					cboSeries.Items.Add(xref);
+
+				uids.Add(xref.TvDBID);
+			}
+			
+			cboSeries.SelectionChanged += new SelectionChangedEventHandler(cboSeries_SelectionChanged);
+
+			if (cboSeries.Items.Count > 0)
+				cboSeries.SelectedIndex = 0;
+		}
+
+		private void PopulateSeasons(CrossRef_AniDB_TvDBVMV2 xref)
+		{
+			cboSeason.SelectionChanged -= new SelectionChangedEventHandler(cboSeason_SelectionChanged);
+
+			SeasonNumbers.Clear();
 			cboSeason.Items.Clear();
-			foreach (int season in Anime.DictTvDBSeasons.Keys)
+			TvDetails = null;
+			if (Anime.TvSummary.TvDetails.ContainsKey(xref.TvDBID))
+				TvDetails = Anime.TvSummary.TvDetails[xref.TvDBID];
+
+			if (TvDetails == null) return;
+
+			foreach (int season in TvDetails.DictTvDBSeasons.Keys)
 				cboSeason.Items.Add(season);
 
-			if (cboSeason.Items.Count > 0) cboSeason.SelectedIndex = 0;
+			cboSeason.SelectionChanged += new SelectionChangedEventHandler(cboSeason_SelectionChanged);
+
+			if (cboSeason.Items.Count > 0)
+				cboSeason.SelectedIndex = 0;
+		}
+
+		void cboSeries_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			CrossRef_AniDB_TvDBVMV2 xref = cboSeries.SelectedItem as CrossRef_AniDB_TvDBVMV2;
+			PopulateSeasons(xref);
 		}
 	}
 }

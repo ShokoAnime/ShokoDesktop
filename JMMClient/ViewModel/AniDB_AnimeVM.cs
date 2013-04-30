@@ -984,25 +984,32 @@ namespace JMMClient
 			}
 		}
 
-		private CrossRef_AniDB_TvDBVM crossRefTvDB = null;
-		public CrossRef_AniDB_TvDBVM CrossRefTvDB
+		#region OldTvDBCode
+
+		/*private List<CrossRef_AniDB_TvDBVMV2> crossRefTvDBV2 = null;
+		public List<CrossRef_AniDB_TvDBVMV2> CrossRefTvDBV2
 		{
 			get
 			{
-				if (crossRefTvDB == null)
+				if (crossRefTvDBV2 == null)
 				{
 					try
 					{
-						JMMServerBinary.Contract_CrossRef_AniDB_TvDB contract = JMMServerVM.Instance.clientBinaryHTTP.GetTVDBCrossRef(this.AnimeID);
+						//TODO
+						List<JMMServerBinary.Contract_CrossRef_AniDB_TvDBV2> contract = JMMServerVM.Instance.clientBinaryHTTP.GetTVDBCrossRefV2(this.AnimeID);
 						if (contract != null)
-							crossRefTvDB = new CrossRef_AniDB_TvDBVM(contract);
+						{
+							crossRefTvDBV2 = new List<CrossRef_AniDB_TvDBVMV2>();
+							foreach (JMMServerBinary.Contract_CrossRef_AniDB_TvDBV2 x in contract)
+								crossRefTvDBV2.Add(new CrossRef_AniDB_TvDBVMV2(x));
+						}
 					}
 					catch (Exception ex)
 					{
 						Utils.ShowErrorMessage(ex);
 					}
 				}
-				return crossRefTvDB;
+				return crossRefTvDBV2;
 			}
 		}
 
@@ -1172,17 +1179,24 @@ namespace JMMClient
 				{
 					try
 					{
-						if (CrossRefTvDB != null)
+						if (CrossRefTvDBV2 != null)
 						{
-							List<JMMServerBinary.Contract_TvDB_Episode> eps = JMMServerVM.Instance.clientBinaryHTTP.GetAllTvDBEpisodes(CrossRefTvDB.TvDBID);
 							tvDBEpisodes = new List<TvDB_EpisodeVM>();
-							foreach (JMMServerBinary.Contract_TvDB_Episode episode in eps)
-								tvDBEpisodes.Add(new TvDB_EpisodeVM(episode));
+							foreach (CrossRef_AniDB_TvDBVMV2 xref in CrossRefTvDBV2)
+							{
+								List<JMMServerBinary.Contract_TvDB_Episode> eps = JMMServerVM.Instance.clientBinaryHTTP.GetAllTvDBEpisodes(xref.TvDBID);
+								
+								foreach (JMMServerBinary.Contract_TvDB_Episode episode in eps)
+									tvDBEpisodes.Add(new TvDB_EpisodeVM(episode));
+							}
 
-							List<SortPropOrFieldAndDirection> sortCriteria = new List<SortPropOrFieldAndDirection>();
-							sortCriteria.Add(new SortPropOrFieldAndDirection("SeasonNumber", false, SortType.eInteger));
-							sortCriteria.Add(new SortPropOrFieldAndDirection("EpisodeNumber", false, SortType.eInteger));
-							tvDBEpisodes = Sorting.MultiSort<TvDB_EpisodeVM>(tvDBEpisodes, sortCriteria);
+							if (tvDBEpisodes.Count > 0)
+							{
+								List<SortPropOrFieldAndDirection> sortCriteria = new List<SortPropOrFieldAndDirection>();
+								sortCriteria.Add(new SortPropOrFieldAndDirection("SeasonNumber", false, SortType.eInteger));
+								sortCriteria.Add(new SortPropOrFieldAndDirection("EpisodeNumber", false, SortType.eInteger));
+								tvDBEpisodes = Sorting.MultiSort<TvDB_EpisodeVM>(tvDBEpisodes, sortCriteria);
+							}
 						}
 					}
 					catch (Exception ex)
@@ -1193,13 +1207,34 @@ namespace JMMClient
 				return tvDBEpisodes;
 			}
 		}
+		*/
 
+#endregion
+		
 		public void ClearTvDBData()
 		{
-			tvDBEpisodes = null;
-			dictTvDBSeasonsSpecials = null;
-			dictTvDBSeasons = null;
-			dictTvDBEpisodes = null;
+			tvSummary = null;
+		}
+
+		private TvDBSummary tvSummary = null;
+		public TvDBSummary TvSummary
+		{
+			get
+			{
+				if (tvSummary == null)
+				{
+					try
+					{
+						tvSummary = new TvDBSummary();
+						tvSummary.Populate(this.AnimeID);
+					}
+					catch (Exception ex)
+					{
+						Utils.ShowErrorMessage(ex);
+					}
+				}
+				return tvSummary;
+			}
 		}
 
 		public List<ExternalSiteLink> ExternalSiteLinks
@@ -1217,13 +1252,14 @@ namespace JMMClient
 
 				//RefreshAnimeCrossRefs();
 
-				if (AniDB_AnimeCrossRefs != null && AniDB_AnimeCrossRefs.TvDBCrossRefExists && AniDB_AnimeCrossRefs.TvDBSeries != null)
+				//TODO
+				if (AniDB_AnimeCrossRefs != null && AniDB_AnimeCrossRefs.TvDBCrossRefExists && AniDB_AnimeCrossRefs.TvDBSeriesV2 != null && AniDB_AnimeCrossRefs.TvDBSeriesV2.Count > 0)
 				{
 					ExternalSiteLink tvdb = new ExternalSiteLink();
 					tvdb.SiteName = "TvDB";
 					tvdb.SiteLogo = @"/Images/tvdb.ico";
-					tvdb.SiteURL = AniDB_AnimeCrossRefs.TvDBSeries.SeriesURL;
-					tvdb.SiteURLDiscussion = AniDB_AnimeCrossRefs.TvDBSeries.SeriesURL;
+					tvdb.SiteURL = AniDB_AnimeCrossRefs.TvDBSeriesV2[0].SeriesURL;
+					tvdb.SiteURLDiscussion = AniDB_AnimeCrossRefs.TvDBSeriesV2[0].SeriesURL;
 					links.Add(tvdb);
 				}
 

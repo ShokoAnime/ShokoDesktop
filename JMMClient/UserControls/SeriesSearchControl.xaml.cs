@@ -33,25 +33,37 @@ namespace JMMClient.UserControls
 			txtSeriesSearch.TextChanged += new TextChangedEventHandler(txtSeriesSearch_TextChanged);
 
 			this.GotFocus += new RoutedEventHandler(SeriesSearchControl_GotFocus);
+
+			cboSearchType.Items.Add("Title Only");
+			cboSearchType.Items.Add("Everything");
+			cboSearchType.SelectedIndex = 0;
+			cboSearchType.SelectionChanged += new SelectionChangedEventHandler(cboSearchType_SelectionChanged);
+		}
+
+		void cboSearchType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			switch (cboSearchType.SelectedIndex)
+			{
+				case 0: MainListHelperVM.Instance.SerSearchType = SeriesSearchType.TitleOnly; break;
+				case 1: MainListHelperVM.Instance.SerSearchType = SeriesSearchType.Everything; break;
+				default: MainListHelperVM.Instance.SerSearchType = SeriesSearchType.TitleOnly; break;
+			}
+			MainListHelperVM.Instance.SearchResultCount = 0;
+			MainListHelperVM.Instance.ViewSeriesSearch.Refresh();
 		}
 
 		void SeriesSearchControl_GotFocus(object sender, RoutedEventArgs e)
 		{
-			txtSeriesSearch.Focus();
+			//txtSeriesSearch.Focus();
 		}
 
 		void txtSeriesSearch_TextChanged(object sender, TextChangedEventArgs e)
 		{
-			
 		}
 
 		void btnClearSearch_Click(object sender, RoutedEventArgs e)
 		{
 			txtSeriesSearch.Text = "";
 		}
-
-		
-
-		
 	}
 }

@@ -34,7 +34,7 @@ namespace JMMClient.Forms
 			typeof(bool), typeof(SearchTvDBForm), new UIPropertyMetadata(false, null));
 
 		public static readonly DependencyProperty CrossRef_AniDB_TvDBResultProperty = DependencyProperty.Register("CrossRef_AniDB_TvDBResult",
-			typeof(CrossRef_AniDB_TvDBResultVM), typeof(SearchTvDBForm), new UIPropertyMetadata(null, null));
+			typeof(List<CrossRef_AniDB_TvDBVMV2>), typeof(SearchTvDBForm), new UIPropertyMetadata(null, null));
 
 		public static readonly DependencyProperty TVDBSeriesSearchResultsProperty = DependencyProperty.Register("TVDBSeriesSearchResults",
 			typeof(List<TVDBSeriesSearchResultVM>), typeof(SearchTvDBForm), new UIPropertyMetadata(null, null));
@@ -57,9 +57,9 @@ namespace JMMClient.Forms
 			set { SetValue(HasWebCacheRecProperty, value); }
 		}
 
-		public CrossRef_AniDB_TvDBResultVM CrossRef_AniDB_TvDBResult
+		public List<CrossRef_AniDB_TvDBVMV2> CrossRef_AniDB_TvDBResult
 		{
-			get { return (CrossRef_AniDB_TvDBResultVM)GetValue(CrossRef_AniDB_TvDBResultProperty); }
+			get { return (List<CrossRef_AniDB_TvDBVMV2>)GetValue(CrossRef_AniDB_TvDBResultProperty); }
 			set { SetValue(CrossRef_AniDB_TvDBResultProperty, value); }
 		}
 
@@ -81,16 +81,18 @@ namespace JMMClient.Forms
 		private int AnimeID = 0;
 		private int? ExistingTVDBID = null;
 		public int? SelectedTvDBID = null;
+		private AniDB_AnimeVM Anime = null;
 
 		public SearchTvDBForm()
 		{
 			InitializeComponent();
 
+			CrossRef_AniDB_TvDBResult = new List<CrossRef_AniDB_TvDBVMV2>();
+
 			rbExisting.Checked += new RoutedEventHandler(rbExisting_Checked);
 			rbSearch.Checked += new RoutedEventHandler(rbSearch_Checked);
 
 			hlURL.Click += new RoutedEventHandler(hlURL_Click);
-			hlURLWebCache.Click += new RoutedEventHandler(hlURLWebCache_Click);
 
 			rbSearch.IsChecked = true;
 			rbExisting.IsChecked = false;
@@ -122,7 +124,7 @@ namespace JMMClient.Forms
 				this.Cursor = Cursors.Wait;
 				SelectTvDBSeasonForm frm = new SelectTvDBSeasonForm();
 				frm.Owner = wdw;
-				frm.Init(AnimeID, AnimeName, id, 1, AnimeName);
+				frm.Init(AnimeID, AnimeName, EpisodeType.Episode, 1, id, 1, 1, AnimeName, Anime, null);
 				bool? result = frm.ShowDialog();
 				if (result.Value)
 				{
@@ -149,7 +151,33 @@ namespace JMMClient.Forms
 			try
 			{
 				this.Cursor = Cursors.Wait;
-				LinkAniDBToTVDB(CrossRef_AniDB_TvDBResult.TvDBID, CrossRef_AniDB_TvDBResult.TvDBSeasonNumber);
+
+				// remove any existing links
+				string res = JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBTvDBForAnime(this.AnimeID);
+				if (res.Length > 0)
+				{
+					MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					this.Cursor = Cursors.Arrow;
+					return;
+				}
+
+
+				// add links
+				foreach (CrossRef_AniDB_TvDBVMV2 xref in CrossRef_AniDB_TvDBResult)
+				{
+					res = JMMServerVM.Instance.clientBinaryHTTP.LinkAniDBTvDB(xref.AnimeID, xref.AniDBStartEpisodeType, xref.AniDBStartEpisodeNumber,
+						xref.TvDBID, xref.TvDBSeasonNumber, xref.TvDBStartEpisodeNumber, null);
+					if (res.Length > 0)
+					{
+						MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+						this.Cursor = Cursors.Arrow;
+						return;
+					}
+
+				}
+
+				this.Cursor = Cursors.Arrow;
+				this.Close();
 			}
 			catch (Exception ex)
 			{
@@ -166,19 +194,6 @@ namespace JMMClient.Forms
 			this.DialogResult = false;
 			SelectedTvDBID = null;
 			this.Close();
-		}
-
-		private void LinkAniDBToTVDB(int tvDBID, int season)
-		{
-			string res = JMMServerVM.Instance.clientBinaryHTTP.LinkAniDBTvDB(AnimeID, tvDBID, season);
-			if (res.Length > 0)
-				MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-			else
-			{
-				this.DialogResult = true;
-				SelectedTvDBID = tvDBID;
-				this.Close();
-			}
 		}
 
 		private void CommandBinding_UseThis(object sender, ExecutedRoutedEventArgs e)
@@ -201,7 +216,7 @@ namespace JMMClient.Forms
 					this.Cursor = Cursors.Wait;
 					SelectTvDBSeasonForm frm = new SelectTvDBSeasonForm();
 					frm.Owner = wdw;
-					frm.Init(AnimeID, AnimeName, searchResult.SeriesID, 1, searchResult.SeriesName);
+					frm.Init(AnimeID, AnimeName, EpisodeType.Episode, 1, searchResult.SeriesID, 1,1, searchResult.SeriesName, Anime, null);
 					bool? result = frm.ShowDialog();
 					if (result.Value)
 					{
@@ -234,11 +249,17 @@ namespace JMMClient.Forms
 			this.Cursor = Cursors.Wait;
 			try
 			{
+				CrossRef_AniDB_TvDBResult.Clear();
 				// first find what the community recommends
-				JMMServerBinary.Contract_CrossRef_AniDB_TvDBResult xref = JMMServerVM.Instance.clientBinaryHTTP.GetTVDBCrossRefWebCache(AnimeID);
-				if (xref != null)
+				List<JMMServerBinary.Contract_Azure_CrossRef_AniDB_TvDB> xrefs = JMMServerVM.Instance.clientBinaryHTTP.GetTVDBCrossRefWebCache(AnimeID);
+				if (xrefs != null && xrefs.Count > 0)
 				{
-					CrossRef_AniDB_TvDBResult = new CrossRef_AniDB_TvDBResultVM(xref);
+					foreach (JMMServerBinary.Contract_Azure_CrossRef_AniDB_TvDB xref in xrefs)
+					{
+						CrossRef_AniDB_TvDBVMV2 xrefAzure = new CrossRef_AniDB_TvDBVMV2(xref);
+						CrossRef_AniDB_TvDBResult.Add(xrefAzure);
+					}
+					
 					HasWebCacheRec = true;
 				}
 
@@ -271,8 +292,8 @@ namespace JMMClient.Forms
 
 		void hlURLWebCache_Click(object sender, RoutedEventArgs e)
 		{
-			Uri uri = new Uri(string.Format(Constants.URLS.TvDB_Series, CrossRef_AniDB_TvDBResult.TvDBID));
-			Process.Start(new ProcessStartInfo(uri.AbsoluteUri));
+			//Uri uri = new Uri(string.Format(Constants.URLS.TvDB_Series, CrossRef_AniDB_TvDBResult.TvDBID));
+			//Process.Start(new ProcessStartInfo(uri.AbsoluteUri));
 		}
 
 		void rbSearch_Checked(object sender, RoutedEventArgs e)
@@ -290,11 +311,12 @@ namespace JMMClient.Forms
 			IsSearch = rbSearch.IsChecked.Value;
 			IsExisting = rbExisting.IsChecked.Value;
 
-			HasWebCacheRec = IsSearch && CrossRef_AniDB_TvDBResult != null;
+			HasWebCacheRec = IsSearch && CrossRef_AniDB_TvDBResult != null && CrossRef_AniDB_TvDBResult.Count > 0;
 		}
 
-		public void Init(int animeID, string animeName, string searchCriteria, int? existingTVDBID)
+		public void Init(int animeID, string animeName, string searchCriteria, int? existingTVDBID, AniDB_AnimeVM anime)
 		{
+			Anime = anime;
 			AnimeID = animeID;
 			AnimeName = animeName;
 			ExistingTVDBID = existingTVDBID;

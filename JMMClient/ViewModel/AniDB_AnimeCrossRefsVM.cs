@@ -46,25 +46,25 @@ namespace JMMClient.ViewModel
 			}
 		}
 
-		private TvDB_SeriesVM tvDBSeries = null;
-		public TvDB_SeriesVM TvDBSeries
+		private List<TvDB_SeriesVM> tvDBSeriesV2 = null;
+		public List<TvDB_SeriesVM> TvDBSeriesV2
 		{
-			get { return tvDBSeries; }
+			get { return tvDBSeriesV2; }
 			set
 			{
-				tvDBSeries = value;
-				NotifyPropertyChanged("TvDBSeries");
+				tvDBSeriesV2 = value;
+				NotifyPropertyChanged("TvDBSeriesV2");
 			}
 		}
 
-		private CrossRef_AniDB_TvDBVM crossRef_AniDB_TvDB = null;
-		public CrossRef_AniDB_TvDBVM CrossRef_AniDB_TvDB
+		private List<CrossRef_AniDB_TvDBVMV2> crossRef_AniDB_TvDBV2 = null;
+		public List<CrossRef_AniDB_TvDBVMV2> CrossRef_AniDB_TvDBV2
 		{
-			get { return crossRef_AniDB_TvDB; }
+			get { return crossRef_AniDB_TvDBV2; }
 			set
 			{
-				crossRef_AniDB_TvDB = value;
-				NotifyPropertyChanged("CrossRef_AniDB_TvDB");
+				crossRef_AniDB_TvDBV2 = value;
+				NotifyPropertyChanged("CrossRef_AniDB_TvDBV2");
 			}
 		}
 
@@ -309,8 +309,8 @@ namespace JMMClient.ViewModel
 			if (MainListHelperVM.Instance.AllAnimeDictionary.ContainsKey(AnimeID))
 				anime = MainListHelperVM.Instance.AllAnimeDictionary[AnimeID];
 
-			CrossRef_AniDB_TvDB = null;
-			TvDBSeries = null;
+			CrossRef_AniDB_TvDBV2 = new List<CrossRef_AniDB_TvDBVMV2>();
+			TvDBSeriesV2 = new List<TvDB_SeriesVM>();
 			TvDBEpisodes = new List<TvDB_EpisodeVM>();
 			TvDBImageFanarts = new List<TvDB_ImageFanartVM>();
 			TvDBImagePosters = new List<TvDB_ImagePosterVM>();
@@ -404,10 +404,20 @@ namespace JMMClient.ViewModel
 
 			// TvDB
 			if (details.CrossRef_AniDB_TvDB != null)
-				CrossRef_AniDB_TvDB = new CrossRef_AniDB_TvDBVM(details.CrossRef_AniDB_TvDB);
+			{
+				foreach (JMMServerBinary.Contract_CrossRef_AniDB_TvDBV2 contract in details.CrossRef_AniDB_TvDB)
+				{
+					CrossRef_AniDB_TvDBV2.Add(new CrossRef_AniDB_TvDBVMV2(contract));
+				}
+			}
 
 			if (details.TvDBSeries != null)
-				TvDBSeries = new TvDB_SeriesVM(details.TvDBSeries);
+			{
+				foreach (JMMServerBinary.Contract_TvDB_Series contract in details.TvDBSeries)
+				{
+					TvDBSeriesV2.Add(new TvDB_SeriesVM(contract));
+				}
+			}
 
 			foreach (JMMServerBinary.Contract_TvDB_Episode contract in details.TvDBEpisodes)
 				TvDBEpisodes.Add(new TvDB_EpisodeVM(contract));
@@ -460,7 +470,7 @@ namespace JMMClient.ViewModel
 				TvDBImageWideBanners.Add(tvBanner);
 			}
 
-			if (CrossRef_AniDB_TvDB == null || TvDBSeries == null)
+			if (CrossRef_AniDB_TvDBV2.Count == 0 || TvDBSeriesV2.Count == 0)
 			{
 				TvDBCrossRefExists = false;
 				TvDBCrossRefMissing = true;

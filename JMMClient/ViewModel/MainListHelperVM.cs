@@ -37,7 +37,9 @@ namespace JMMClient
 		public Dictionary<int, AnimeGroupVM> AllGroupsDictionary { get; set; }
 		public Dictionary<int, AnimeSeriesVM> AllSeriesDictionary { get; set; }
 		public Dictionary<int, AniDB_AnimeVM> AllAnimeDictionary { get; set; }
-		
+
+		public SeriesSearchType SerSearchType { get; set; }
+		public int SearchResultCount = 0;
 
 		public ObservableCollection<AnimeEpisodeVM> EpisodesForSeries { get; set; }
 		//public ObservableCollection<FileDetailedVM> FilesForSeries { get; set; }
@@ -69,7 +71,7 @@ namespace JMMClient
 		public ICollectionView ViewSeriesSearch { get; set; }
 		private System.Timers.Timer searchTimer = null;
 
-		private int searchResultCount = 0;
+		
 
 		public bool BookmarkFilter_Downloading = true;
 		public bool BookmarkFilter_NotDownloading = true;
@@ -294,6 +296,8 @@ namespace JMMClient
 
 		private MainListHelperVM()
 		{
+			SerSearchType = SeriesSearchType.TitleOnly;
+
 			CurrentWrapperList = new ObservableCollection<MainListWrapper>();
 			AllGroupFilters = new ObservableCollection<GroupFilterVM>();
 			AllGroups = new ObservableCollection<AnimeGroupVM>();
@@ -341,7 +345,7 @@ namespace JMMClient
 		{
 			System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
 			{
-				searchResultCount = 0;
+				SearchResultCount = 0;
 				ViewSeriesSearch.Refresh();
 			});
 		}
@@ -351,16 +355,16 @@ namespace JMMClient
 			AnimeSeriesVM ser = obj as AnimeSeriesVM;
 			if (ser == null) return false;
 
-			if (searchResultCount > 40) return false;
+			if (SearchResultCount > 100) return false;
 
 			bool passed = false;
 			System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
 			{
-				passed = GroupSearchFilterHelper.EvaluateSeriesTextSearch(ser, SeriesSearchTextBox.Text);
+				passed = GroupSearchFilterHelper.EvaluateSeriesTextSearch(ser, SeriesSearchTextBox.Text, SerSearchType);
 			});
 
 			if (passed)
-				searchResultCount++;
+				SearchResultCount++;
 
 			return passed;
 		}

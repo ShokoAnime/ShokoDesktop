@@ -4,7 +4,7 @@
         xmlns:local="clr-namespace:JMMClient"
         xmlns:forms="clr-namespace:JMMClient.Forms"
         xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
-        Title="Switch TvDB Season" Width="600" ShowInTaskbar="False" WindowStyle="ToolWindow" Icon="/JMMDesktop;component/Images/16_switch.png"
+        Title="Switch TvDB Season" Width="700" ShowInTaskbar="False" WindowStyle="ToolWindow" Icon="/JMMDesktop;component/Images/16_switch.png"
         WindowStartupLocation="CenterOwner" Topmost="False" SizeToContent="Height">
     <Grid>
         <Grid.Resources>
@@ -18,10 +18,55 @@
                 </ResourceDictionary.MergedDictionaries>
 
                 <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+
+                <!-- EpisodeTemplate -->
+                <DataTemplate x:Key="EpisodeTemplate">
+                    <Grid Margin="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0">
+
+                            <TextBlock VerticalAlignment="Center" Text="{Binding Path=EpisodeNumber}" Margin="0,0,0,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="-" Margin="5,0,0,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Binding Path=EpisodeName}" Margin="5,0,0,0"/>
+
+
+                        </StackPanel>
+
+                    </Grid>
+                </DataTemplate>
+
+                <!-- AniDBEpisodeTemplate -->
+                <DataTemplate x:Key="AniDBEpisodeTemplate">
+                    <Grid Margin="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0">
+
+                            <TextBlock VerticalAlignment="Center" Text="{Binding Path=EpisodeNumber}" Margin="0,0,0,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="-" Margin="5,0,0,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Binding Path=EpisodeName}" Margin="5,0,0,0"/>
+
+
+                        </StackPanel>
+
+                    </Grid>
+                </DataTemplate>
             </ResourceDictionary>
         </Grid.Resources>
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -33,21 +78,34 @@
 
         <!-- anime details -->
         <Border Grid.Row="0" Grid.Column="0" Margin="5,5,5,5" Padding="5" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1">
-           
-            <StackPanel Orientation="Horizontal"  Margin="0,0,0,0" DockPanel.Dock="Top">
-                <Image Margin="5,0,0,0" Height="16" Width="16" Source="/Images/anidb.ico" VerticalAlignment="Center"/>
-                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AniDB}" Margin="5,0,0,0"/>
 
-                <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=AnimeName, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SelectTvDBSeasonForm}}}" Margin="5,0,0,0"/>
+            <StackPanel Orientation="Vertical">
 
-                <usercontrols:HyperLinkStandard DisplayText="{Binding Path=AnimeID, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SelectTvDBSeasonForm}}}" 
+                <StackPanel Orientation="Horizontal"  Margin="0,0,0,0" DockPanel.Dock="Top">
+                    <Image Margin="5,0,0,0" Height="16" Width="16" Source="/Images/anidb.ico" VerticalAlignment="Center"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AniDB}" Margin="5,0,0,0"/>
+
+                    <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=AnimeName, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SelectTvDBSeasonForm}}}" Margin="5,0,0,0"/>
+
+                    <usercontrols:HyperLinkStandard DisplayText="{Binding Path=AnimeID, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SelectTvDBSeasonForm}}}" 
                         VerticalAlignment="Center" URL="{Binding Path=AnimeURL, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SelectTvDBSeasonForm}}}" Margin="10,0,0,0"/>
-                
-               
 
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal"  Margin="0,5,0,0" DockPanel.Dock="Top">
+
+                    <TextBlock VerticalAlignment="Center" Text="Episode Type:" Margin="25,0,0,0"/>
+                    <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" Name="cboEpisodeType"></ComboBox>
+                    <TextBlock VerticalAlignment="Center" Text="Starting Episode #" Margin="5,0,0,0"/>
+                    <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" Name="cboAniDBEpisodeNumber"
+                              ItemTemplate="{StaticResource AniDBEpisodeTemplate}"/>
+                </StackPanel>
             </StackPanel>
+
+
+
         </Border>
-        
+
         <!-- tvdb details -->
         <Border Grid.Row="1" Grid.Column="0" Margin="5,5,5,5" Padding="5" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1">
 
@@ -56,37 +114,76 @@
                 <StackPanel Orientation="Horizontal"  Margin="0,0,0,0" DockPanel.Dock="Top">
                     <Image Margin="5,0,0,0" Height="16" Width="16" Source="/Images/tvdb.ico" VerticalAlignment="Center"/>
                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TheTvDB}" Margin="5,0,0,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="[" Margin="5,0,0,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Binding Path=TvDBID, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SelectTvDBSeasonForm}}}" Margin="5,0,0,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeasonNumber}" Margin="5,0,0,0"/>
-                    <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" Name="cboSeasonNumber"></ComboBox>
-                    <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=TvDBSeriesName, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SelectTvDBSeasonForm}}}" Margin="5,0,0,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="]" Margin="5,0,0,0"/>
 
-                </StackPanel>
+                    <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=TvDBSeriesName, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SelectTvDBSeasonForm}}}" Margin="15,0,0,0"/>
 
-                <StackPanel Orientation="Horizontal"  Margin="15,7,0,0" DockPanel.Dock="Top">
-                    
                     <usercontrols:HyperLinkStandard DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=TvDBShow}" 
                      VerticalAlignment="Center" URL="{Binding Path=TvDBURL, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SelectTvDBSeasonForm}}}" Margin="10,0,0,0"/>
 
-                    <!-- update button -->
-                    <Button Name="btnUpdate" Margin="10,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                            <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Update}" Margin="0,0,5,0"/>
-                        </StackPanel>
-                    </Button>
                 </StackPanel>
+
+                <StackPanel Orientation="Horizontal"  Margin="0,5,0,0" DockPanel.Dock="Top">
+
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeasonNumber}" Margin="25,0,0,0"/>
+                    <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" Name="cboSeasonNumber"></ComboBox>
+                    <TextBlock VerticalAlignment="Center" Text="Starting Episode #" Margin="5,0,0,0"/>
+                    <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" Name="cboEpisodeNumber"
+                              ItemTemplate="{StaticResource EpisodeTemplate}"/>
+
+                </StackPanel>
+
+
 
             </StackPanel>
         </Border>
 
-        <DockPanel Grid.Row="2" Grid.Column="0"  Margin="5,5,5,5">
+        <!-- tvdb selected episode details -->
+        <Border Grid.Row="2" Grid.Column="0" Margin="5,5,5,5" Padding="5" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1">
+
+            <Grid Margin="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Height="80" Margin="10,5,10,5" VerticalAlignment="Top"
+                       Source="{Binding Path=SelectedEpisode.ImagePath, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SelectTvDBSeasonForm}}}">
+                </Image>
+
+                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" Margin="10,5,10,5" VerticalAlignment="Top">
+
+                    <TextBlock VerticalAlignment="Center" Text="{Binding Path=SelectedEpisode.Id, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SelectTvDBSeasonForm}}}" Foreground="Gray" Margin="0,0,0,0"/>
+                    <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=SelectedEpisode.EpisodeNumber, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SelectTvDBSeasonForm}}}" Margin="10,0,0,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Binding Path=SelectedEpisode.EpisodeName, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SelectTvDBSeasonForm}}}" Margin="10,0,0,0"/>
+
+                </StackPanel>
+
+                <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Path=SelectedEpisode.Overview, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SelectTvDBSeasonForm}}}" HorizontalAlignment="Stretch" 
+                                   Margin="10,5,0,5" VerticalAlignment="Top"  TextWrapping="Wrap" MaxHeight="150">
+                </TextBlock>
+
+
+            </Grid>
+        </Border>
+
+        <DockPanel Grid.Row="3" Grid.Column="0"  Margin="5,5,5,5">
+
 
             <Button Name="btnClose" Margin="2,2,2,2" Style="{DynamicResource RoundButtonStyle}" DockPanel.Dock="Right" HorizontalAlignment="Right">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Close}" Margin="0,0,5,0"/>
+                </StackPanel>
+            </Button>
+
+            <!-- update button -->
+            <Button Name="btnUpdate" Margin="10,0,2,2" Style="{DynamicResource RoundButtonStyle}" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Update}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
 

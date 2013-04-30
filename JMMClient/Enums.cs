@@ -5,6 +5,12 @@ using System.Text;
 
 namespace JMMClient
 {
+	public enum SeriesSearchType
+	{
+		TitleOnly = 0,
+		Everything = 1
+	}
+
 	public enum AiringState
 	{
 		All = 0,

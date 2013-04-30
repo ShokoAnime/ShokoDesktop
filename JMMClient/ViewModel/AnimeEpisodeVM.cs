@@ -457,16 +457,9 @@ namespace JMMClient
 		{
 			this.RefreshAnime();
 
-			Dictionary<int, TvDB_EpisodeVM> dictTvDBEpisodes = AniDB_Anime.DictTvDBEpisodes;
-			Dictionary<int, int> dictTvDBSeasons = AniDB_Anime.DictTvDBSeasons;
-			Dictionary<int, int> dictTvDBSeasonsSpecials = AniDB_Anime.DictTvDBSeasonsSpecials;
-			CrossRef_AniDB_TvDBVM tvDBCrossRef = AniDB_Anime.CrossRefTvDB;
-			List<CrossRef_AniDB_TvDBEpisodeVM> tvDBCrossRefEpisodes = AniDB_Anime.CrossRefTvDBEpisodes;
-			Dictionary<int, int> dictTvDBCrossRefEpisodes = new Dictionary<int,int>();
-			foreach (CrossRef_AniDB_TvDBEpisodeVM xrefEp in tvDBCrossRefEpisodes)
-				dictTvDBCrossRefEpisodes[xrefEp.AniDBEpisodeID] = xrefEp.TvDBEpisodeID;
+			TvDBSummary tvSummary = AniDB_Anime.TvSummary;
 
-			SetTvDBInfo(dictTvDBEpisodes, dictTvDBSeasons, dictTvDBSeasonsSpecials, tvDBCrossRef, dictTvDBCrossRefEpisodes);
+			SetTvDBInfo(tvSummary);
 		}
 
 		/// <summary>
@@ -476,18 +469,18 @@ namespace JMMClient
 		/// <param name="dictTvDBSeasons"></param>
 		/// <param name="dictTvDBSeasonsSpecials"></param>
 		/// <param name="tvDBCrossRef"></param>
-		public void SetTvDBInfo(Dictionary<int, TvDB_EpisodeVM> dictTvDBEpisodes, Dictionary<int, int> dictTvDBSeasons,
-			Dictionary<int, int> dictTvDBSeasonsSpecials, CrossRef_AniDB_TvDBVM tvDBCrossRef, Dictionary<int, int> dictTvDBCrossRefEpisodes)
+		public void SetTvDBInfo(TvDBSummary tvSummary)
 		{
 			TvDBLinkExists = false;
 			TvDBLinkMissing = true;
 
+			#region episode override
 			// check if this episode has a direct tvdb over-ride
-			if (dictTvDBCrossRefEpisodes.ContainsKey(AniDB_EpisodeID))
+			if (tvSummary.DictTvDBCrossRefEpisodes.ContainsKey(AniDB_EpisodeID))
 			{
-				foreach (TvDB_EpisodeVM tvep in dictTvDBEpisodes.Values)
+				foreach (TvDB_EpisodeVM tvep in tvSummary.DictTvDBEpisodes.Values)
 				{
-					if (dictTvDBCrossRefEpisodes[AniDB_EpisodeID] == tvep.Id)
+					if (tvSummary.DictTvDBCrossRefEpisodes[AniDB_EpisodeID] == tvep.Id)
 					{
 						if (string.IsNullOrEmpty(tvep.Overview))
 							this.EpisodeOverviewLoading = "Episode Overview Not Available";
@@ -518,79 +511,161 @@ namespace JMMClient
 					}
 				}
 			}
+			#endregion
 
+			#region normal episodes
 			// now do stuff to improve performance
 			if (this.EpisodeTypeEnum == JMMClient.EpisodeType.Episode)
 			{
-				if (dictTvDBEpisodes != null && dictTvDBSeasons != null && tvDBCrossRef != null)
+				if (tvSummary != null && tvSummary.CrossRefTvDBV2 != null && tvSummary.CrossRefTvDBV2.Count > 0)
 				{
-					if (dictTvDBSeasons.ContainsKey(tvDBCrossRef.TvDBSeasonNumber))
+					// find the xref that is right
+					// relies on the xref's being sorted by season number and then episode number (desc)
+					List<SortPropOrFieldAndDirection> sortCriteria = new List<SortPropOrFieldAndDirection>();
+					sortCriteria.Add(new SortPropOrFieldAndDirection("AniDBStartEpisodeNumber", true, JMMClient.SortType.eInteger));
+					List<CrossRef_AniDB_TvDBVMV2> tvDBCrossRef = Sorting.MultiSort<CrossRef_AniDB_TvDBVMV2>(tvSummary.CrossRefTvDBV2, sortCriteria);
+
+					bool foundStartingPoint = false;
+					CrossRef_AniDB_TvDBVMV2 xrefBase = null;
+					foreach (CrossRef_AniDB_TvDBVMV2 xrefTV in tvDBCrossRef)
 					{
-						int episodeNumber = dictTvDBSeasons[tvDBCrossRef.TvDBSeasonNumber] + this.EpisodeNumber - 1;
-						if (dictTvDBEpisodes.ContainsKey(episodeNumber))
+						if (xrefTV.AniDBStartEpisodeType != (int)JMMClient.EpisodeType.Episode) continue;
+						if (this.EpisodeNumber >= xrefTV.AniDBStartEpisodeNumber)
 						{
-
-							TvDB_EpisodeVM tvep = dictTvDBEpisodes[episodeNumber];
-							if (string.IsNullOrEmpty(tvep.Overview))
-								this.EpisodeOverviewLoading = "Episode Overview Not Available";
-							else
-								this.EpisodeOverviewLoading = tvep.Overview;
-
-							if (string.IsNullOrEmpty(tvep.FullImagePath) || !File.Exists(tvep.FullImagePath))
-							{
-								if (string.IsNullOrEmpty(tvep.OnlineImagePath))
-								{
-									this.EpisodeImageLoading = @"/Images/EpisodeThumb_NotFound.png";
-									// if there is no proper image to show, we will hide it on the dashboard
-									ShowEpisodeImageInDashboard = false;
-								}
-								else
-									this.EpisodeImageLoading = tvep.OnlineImagePath;
-							}
-							else
-								this.EpisodeImageLoading = tvep.FullImagePath;
-
-							if (JMMServerVM.Instance.EpisodeTitleSource == DataSourceType.TheTvDB && !string.IsNullOrEmpty(tvep.EpisodeName))
-								EpisodeName = tvep.EpisodeName;
+							foundStartingPoint = true;
+							xrefBase = xrefTV;
+							break;
 						}
 					}
+
+					// we have found the starting epiosde numbder from AniDB
+					// now let's check that the TvDB Season and Episode Number exist
+					if (foundStartingPoint)
+					{
+
+						Dictionary<int, int> dictTvDBSeasons = null;
+						Dictionary<int, TvDB_EpisodeVM> dictTvDBEpisodes = null;
+						foreach (TvDBDetails det in tvSummary.TvDetails.Values)
+						{
+							if (det.TvDBID == xrefBase.TvDBID)
+							{
+								dictTvDBSeasons = det.DictTvDBSeasons;
+								dictTvDBEpisodes = det.DictTvDBEpisodes;
+								break;
+							}
+						}
+
+						if (dictTvDBSeasons.ContainsKey(xrefBase.TvDBSeasonNumber))
+						{
+							int episodeNumber = dictTvDBSeasons[xrefBase.TvDBSeasonNumber] + (this.EpisodeNumber + xrefBase.TvDBStartEpisodeNumber - 2) - (xrefBase.AniDBStartEpisodeNumber - 1);
+							if (dictTvDBEpisodes.ContainsKey(episodeNumber))
+							{
+
+								TvDB_EpisodeVM tvep = dictTvDBEpisodes[episodeNumber];
+								if (string.IsNullOrEmpty(tvep.Overview))
+									this.EpisodeOverviewLoading = "Episode Overview Not Available";
+								else
+									this.EpisodeOverviewLoading = tvep.Overview;
+
+								if (string.IsNullOrEmpty(tvep.FullImagePath) || !File.Exists(tvep.FullImagePath))
+								{
+									if (string.IsNullOrEmpty(tvep.OnlineImagePath))
+									{
+										this.EpisodeImageLoading = @"/Images/EpisodeThumb_NotFound.png";
+										// if there is no proper image to show, we will hide it on the dashboard
+										ShowEpisodeImageInDashboard = false;
+									}
+									else
+										this.EpisodeImageLoading = tvep.OnlineImagePath;
+								}
+								else
+									this.EpisodeImageLoading = tvep.FullImagePath;
+
+								if (JMMServerVM.Instance.EpisodeTitleSource == DataSourceType.TheTvDB && !string.IsNullOrEmpty(tvep.EpisodeName))
+									EpisodeName = tvep.EpisodeName;
+							}
+						}
+					}
+
+
+
+					
 				}
 			}
+			#endregion
 
+			#region special episodes
 			if (this.EpisodeTypeEnum == JMMClient.EpisodeType.Special)
 			{
-				if (dictTvDBEpisodes != null && dictTvDBSeasonsSpecials != null && tvDBCrossRef != null)
-				{
-					if (dictTvDBSeasonsSpecials.ContainsKey(tvDBCrossRef.TvDBSeasonNumber))
-					{
-						int episodeNumber = dictTvDBSeasonsSpecials[tvDBCrossRef.TvDBSeasonNumber] + this.EpisodeNumber - 1;
-						if (dictTvDBEpisodes.ContainsKey(episodeNumber))
-						{
-							TvDB_EpisodeVM tvep = dictTvDBEpisodes[episodeNumber];
-							this.EpisodeOverviewLoading = tvep.Overview;
+				// find the xref that is right
+				// relies on the xref's being sorted by season number and then episode number (desc)
+				List<SortPropOrFieldAndDirection> sortCriteria = new List<SortPropOrFieldAndDirection>();
+				sortCriteria.Add(new SortPropOrFieldAndDirection("AniDBStartEpisodeNumber", true, JMMClient.SortType.eInteger));
+				List<CrossRef_AniDB_TvDBVMV2> tvDBCrossRef = Sorting.MultiSort<CrossRef_AniDB_TvDBVMV2>(tvSummary.CrossRefTvDBV2, sortCriteria);
 
-							if (string.IsNullOrEmpty(tvep.FullImagePath) || !File.Exists(tvep.FullImagePath))
+				bool foundStartingPoint = false;
+				CrossRef_AniDB_TvDBVMV2 xrefBase = null;
+				foreach (CrossRef_AniDB_TvDBVMV2 xrefTV in tvDBCrossRef)
+				{
+					if (xrefTV.AniDBStartEpisodeType != (int)JMMClient.EpisodeType.Special) continue;
+					if (this.EpisodeNumber >= xrefTV.AniDBStartEpisodeNumber)
+					{
+						foundStartingPoint = true;
+						xrefBase = xrefTV;
+						break;
+					}
+				}
+
+				if (tvSummary != null && tvSummary.CrossRefTvDBV2 != null && tvSummary.CrossRefTvDBV2.Count > 0)
+				{
+					// we have found the starting epiosde numbder from AniDB
+					// now let's check that the TvDB Season and Episode Number exist
+					if (foundStartingPoint)
+					{
+
+						Dictionary<int, int> dictTvDBSeasons = null;
+						Dictionary<int, TvDB_EpisodeVM> dictTvDBEpisodes = null;
+						foreach (TvDBDetails det in tvSummary.TvDetails.Values)
+						{
+							if (det.TvDBID == xrefBase.TvDBID)
 							{
-								if (string.IsNullOrEmpty(tvep.OnlineImagePath))
+								dictTvDBSeasons = det.DictTvDBSeasons;
+								dictTvDBEpisodes = det.DictTvDBEpisodes;
+								break;
+							}
+						}
+
+						if (dictTvDBSeasons.ContainsKey(xrefBase.TvDBSeasonNumber))
+						{
+							int episodeNumber = dictTvDBSeasons[xrefBase.TvDBSeasonNumber] + (this.EpisodeNumber + xrefBase.TvDBStartEpisodeNumber - 2) - (xrefBase.AniDBStartEpisodeNumber - 1);
+							if (dictTvDBEpisodes.ContainsKey(episodeNumber))
+							{
+								TvDB_EpisodeVM tvep = dictTvDBEpisodes[episodeNumber];
+								this.EpisodeOverviewLoading = tvep.Overview;
+
+								if (string.IsNullOrEmpty(tvep.FullImagePath) || !File.Exists(tvep.FullImagePath))
 								{
-									this.EpisodeImageLoading = @"/Images/EpisodeThumb_NotFound.png";
-									// if there is no proper image to show, we will hide it on the dashboard
-									ShowEpisodeImageInDashboard = false;
+									if (string.IsNullOrEmpty(tvep.OnlineImagePath))
+									{
+										this.EpisodeImageLoading = @"/Images/EpisodeThumb_NotFound.png";
+										// if there is no proper image to show, we will hide it on the dashboard
+										ShowEpisodeImageInDashboard = false;
+									}
+									else
+										this.EpisodeImageLoading = tvep.OnlineImagePath;
 								}
 								else
-									this.EpisodeImageLoading = tvep.OnlineImagePath;
-							}
-							else
-								this.EpisodeImageLoading = tvep.FullImagePath;
+									this.EpisodeImageLoading = tvep.FullImagePath;
 
-							if (JMMServerVM.Instance.EpisodeTitleSource == DataSourceType.TheTvDB && !string.IsNullOrEmpty(tvep.EpisodeName))
-								EpisodeName = tvep.EpisodeName;
+								if (JMMServerVM.Instance.EpisodeTitleSource == DataSourceType.TheTvDB && !string.IsNullOrEmpty(tvep.EpisodeName))
+									EpisodeName = tvep.EpisodeName;
+							}
 						}
 					}
 				}
 			}
+			#endregion
 
-			
 		}
 
 		public bool FutureDated
@@ -633,33 +708,7 @@ namespace JMMClient
 			}
 		}
 
-		public TvDB_EpisodeVM TvDBEpisode
-		{
-			get
-			{
-				logger.Trace("Getting tvdb episode for ep#: {0}", this.EpisodeNumber);
-
-				if (MainListHelperVM.Instance.AllSeriesDictionary.ContainsKey(this.AnimeSeriesID))
-				{
-					AnimeSeriesVM ser = MainListHelperVM.Instance.AllSeriesDictionary[this.AnimeSeriesID];
-					if (ser.AniDB_Anime == null) return null;
-					if (ser.AniDB_Anime.CrossRefTvDB == null) return null;
-
-					/*foreach (TvDB_EpisodeVM ep in ser.AniDB_Anime.TvDBEpisodes)
-					{
-						if (ep.EpisodeNumber == this.EpisodeNumber)
-							return ep;
-					}*/
-
-					if (ser.AniDB_Anime.DictTvDBEpisodes.ContainsKey(this.EpisodeNumber))
-						return ser.AniDB_Anime.DictTvDBEpisodes[this.EpisodeNumber];
-
-					return null;
-				}
-				else
-					return null;
-			}
-		}
+		
 
 
 		private AniDB_AnimeVM aniDB_Anime = null;

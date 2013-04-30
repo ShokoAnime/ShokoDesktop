@@ -178,10 +178,10 @@ namespace JMMClient
 		#endregion
 
 		public AniDB_AnimeVM AniDB_Anime { get; set; }
-		public CrossRef_AniDB_TvDBVM CrossRef_AniDB_TvDB { get; set; }
+		public List<CrossRef_AniDB_TvDBVMV2> CrossRef_AniDB_TvDBV2 { get; set; }
 		public CrossRef_AniDB_OtherVM CrossRef_AniDB_MovieDB { get; set; }
 		public List<CrossRef_AniDB_MALVM> CrossRef_AniDB_MAL { get; set; }
-		public TvDB_SeriesVM TvDBSeries { get; set; }
+		public List<TvDB_SeriesVM> TvDBSeriesV2 { get; set; }
 
 		
 
@@ -388,9 +388,9 @@ namespace JMMClient
 				else
 				{
 
-					if (TvDBSeries != null && !string.IsNullOrEmpty(TvDBSeries.SeriesName) &&
-						!TvDBSeries.SeriesName.ToUpper().Contains("**DUPLICATE"))
-						SeriesName = TvDBSeries.SeriesName;
+					if (TvDBSeriesV2 != null && TvDBSeriesV2.Count > 0 && !string.IsNullOrEmpty(TvDBSeriesV2[0].SeriesName) &&
+						!TvDBSeriesV2[0].SeriesName.ToUpper().Contains("**DUPLICATE"))
+						SeriesName = TvDBSeriesV2[0].SeriesName;
 					else
 						SeriesName = AniDB_Anime.FormattedTitle;
 				}
@@ -504,8 +504,8 @@ namespace JMMClient
 				if (JMMServerVM.Instance.SeriesDescriptionSource == DataSourceType.AniDB)
 					return AniDB_Anime.Description;
 
-				if (TvDBSeries != null && !string.IsNullOrEmpty(TvDBSeries.Overview))
-					return TvDBSeries.Overview;
+				if (TvDBSeriesV2 != null && TvDBSeriesV2.Count > 0 && !string.IsNullOrEmpty(TvDBSeriesV2[0].Overview))
+					return TvDBSeriesV2[0].Overview;
 				else
 					return AniDB_Anime.Description;
 			}
@@ -630,35 +630,15 @@ namespace JMMClient
 				logger.Info("Got episode data from service: {0} in {1} ms", AniDB_Anime.FormattedTitle, ts.TotalMilliseconds);
 
 				start = DateTime.Now;
-				Dictionary<int, TvDB_EpisodeVM> dictTvDBEpisodes = this.AniDB_Anime.DictTvDBEpisodes;
-				Dictionary<int, int> dictTvDBSeasons = this.AniDB_Anime.DictTvDBSeasons;
-				Dictionary<int, int> dictTvDBSeasonsSpecials = this.AniDB_Anime.DictTvDBSeasonsSpecials;
-				CrossRef_AniDB_TvDBVM tvDBCrossRef = this.AniDB_Anime.CrossRefTvDB;
 
-				List<CrossRef_AniDB_TvDBEpisodeVM> tvDBCrossRefEpisodes = AniDB_Anime.CrossRefTvDBEpisodes;
-				Dictionary<int, int> dictTvDBCrossRefEpisodes = new Dictionary<int, int>();
-				foreach (CrossRef_AniDB_TvDBEpisodeVM xrefEp in tvDBCrossRefEpisodes)
-					dictTvDBCrossRefEpisodes[xrefEp.AniDBEpisodeID] = xrefEp.TvDBEpisodeID;
-
+				TvDBSummary tvSummary = AniDB_Anime.TvSummary;
 				// Normal episodes
 				List<AnimeEpisodeVM> specials = new List<AnimeEpisodeVM>();
 				foreach (JMMServerBinary.Contract_AnimeEpisode ep in eps)
 				{
 					AnimeEpisodeVM epvm = new AnimeEpisodeVM(ep);
-
-					epvm.SetTvDBInfo(dictTvDBEpisodes, dictTvDBSeasons, dictTvDBSeasonsSpecials, tvDBCrossRef, dictTvDBCrossRefEpisodes);
-
+					epvm.SetTvDBInfo(tvSummary);
 					allEpisodes.Add(epvm);
-				}
-
-				foreach (AnimeEpisodeVM epvm in specials)
-				{
-					// specials should always be season 0
-					// find the starting point episode number
-					if (dictTvDBSeasons == null) continue;
-					if (tvDBCrossRef == null) continue;
-
-					if (!dictTvDBSeasons.ContainsKey(tvDBCrossRef.TvDBSeasonNumber)) continue;
 				}
 
 				ts = DateTime.Now - start;
@@ -742,6 +722,8 @@ namespace JMMClient
 
 		public AnimeSeriesVM()
 		{
+			CrossRef_AniDB_TvDBV2 = new List<CrossRef_AniDB_TvDBVMV2>();
+			TvDBSeriesV2 = new List<TvDB_SeriesVM>();
 		}
 
 		public void Populate(JMMServerBinary.Contract_AnimeSeries contract)
@@ -751,15 +733,18 @@ namespace JMMClient
 
 			MainListHelperVM.Instance.AllAnimeDictionary[AniDB_Anime.AnimeID] = AniDB_Anime;
 
-			if (contract.CrossRefAniDBTvDB != null)
-				CrossRef_AniDB_TvDB = new CrossRef_AniDB_TvDBVM(contract.CrossRefAniDBTvDB);
-			else
-				CrossRef_AniDB_TvDB = null;
+
+			if (contract.CrossRefAniDBTvDBV2 != null)
+			{
+				foreach (JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_TvDBV2 contractTV in contract.CrossRefAniDBTvDBV2)
+					CrossRef_AniDB_TvDBV2.Add(new CrossRef_AniDB_TvDBVMV2(contractTV));
+			}
 
 			if (contract.TvDB_Series != null)
-				TvDBSeries = new TvDB_SeriesVM(contract.TvDB_Series);
-			else
-				TvDBSeries = null;
+			{
+				foreach (JMMClient.JMMServerBinary.Contract_TvDB_Series contractSer in contract.TvDB_Series)
+					TvDBSeriesV2.Add(new TvDB_SeriesVM(contractSer));
+			}
 
 			if (contract.CrossRefAniDBMovieDB != null)
 				CrossRef_AniDB_MovieDB = new CrossRef_AniDB_OtherVM(contract.CrossRefAniDBMovieDB);
@@ -811,6 +796,9 @@ namespace JMMClient
 
 		public AnimeSeriesVM(JMMServerBinary.Contract_AnimeSeries contract)
 		{
+			CrossRef_AniDB_TvDBV2 = new List<CrossRef_AniDB_TvDBVMV2>();
+			TvDBSeriesV2 = new List<TvDB_SeriesVM>();
+
 			Populate(contract);
 		}
 

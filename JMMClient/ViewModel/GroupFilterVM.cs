@@ -591,8 +591,10 @@ namespace JMMClient
 
 					case GroupFilterConditionType.AssignedTvDBInfo:
 
-						if (gfc.ConditionOperatorEnum == GroupFilterOperator.Include && ser.CrossRef_AniDB_TvDB == null) return false;
-						if (gfc.ConditionOperatorEnum == GroupFilterOperator.Exclude && ser.CrossRef_AniDB_TvDB != null) return false;
+						bool tvDBInfoMissing = ser.CrossRef_AniDB_TvDBV2 == null || ser.CrossRef_AniDB_TvDBV2.Count == 0;
+
+						if (gfc.ConditionOperatorEnum == GroupFilterOperator.Include && tvDBInfoMissing) return false;
+						if (gfc.ConditionOperatorEnum == GroupFilterOperator.Exclude && !tvDBInfoMissing) return false;
 						break;
 
 					case GroupFilterConditionType.AssignedMALInfo:
@@ -609,8 +611,11 @@ namespace JMMClient
 
 					case GroupFilterConditionType.AssignedTvDBOrMovieDBInfo:
 
-						if (gfc.ConditionOperatorEnum == GroupFilterOperator.Include && ser.CrossRef_AniDB_TvDB == null && ser.CrossRef_AniDB_MovieDB == null) return false;
-						if (gfc.ConditionOperatorEnum == GroupFilterOperator.Exclude && ser.CrossRef_AniDB_TvDB != null && ser.CrossRef_AniDB_MovieDB != null) return false;
+						bool tvDBInfoMissing2 = ser.CrossRef_AniDB_TvDBV2 == null || ser.CrossRef_AniDB_TvDBV2.Count == 0;
+
+
+						if (gfc.ConditionOperatorEnum == GroupFilterOperator.Include && tvDBInfoMissing2 && ser.CrossRef_AniDB_MovieDB == null) return false;
+						if (gfc.ConditionOperatorEnum == GroupFilterOperator.Exclude && !tvDBInfoMissing2 && ser.CrossRef_AniDB_MovieDB != null) return false;
 						break;
 					
 					case GroupFilterConditionType.FinishedAiring:

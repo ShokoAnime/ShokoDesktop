@@ -26,6 +26,13 @@
             <RoutedUICommand x:Key="ToggleAutoLinkTraktCommand" Text="ToggleAutoLinkTraktCommand" />
             <RoutedUICommand x:Key="ToggleAutoLinkMALCommand" Text="ToggleAutoLinkMALCommand" />
 
+            <RoutedUICommand x:Key="ReportTvDBLinkCommand" Text="ReportTvDBLinkCommand" />
+            <RoutedUICommand x:Key="DeleteTvDBLinkCommand" Text="DeleteTvDBLinkCommand" />
+            <RoutedUICommand x:Key="EditTvDBLinkCommand" Text="EditTvDBLinkCommand" />
+            <RoutedUICommand x:Key="UpdateTvDBLinkCommand" Text="UpdateTvDBLinkCommand" />
+
+            
+
             <!-- MALLinkTemplate -->
             <DataTemplate x:Key="MALLinkTemplate">
                 <Grid Margin="0">
@@ -68,6 +75,76 @@
                 </Grid>
             </DataTemplate>
 
+            <!-- TvDBLinkTemplate -->
+            <DataTemplate x:Key="TvDBLinkTemplate">
+                <Grid Margin="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+
+                    <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Margin="0,0,0,5">
+
+                        <usercontrols:HyperLinkStandard DisplayText="{Binding Path=TvDBTitle}" VerticalAlignment="Center" URL="{Binding Path=SeriesURL}" Margin="5,0,0,0"/>
+
+                        <TextBlock VerticalAlignment="Center" Text="AniDB Start:" Margin="10,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=AniDBStartEpisodeTypeString}" Margin="5,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=AniDBStartEpisodeNumber}" Margin="5,0,0,0"/>
+
+                        <TextBlock VerticalAlignment="Center" Text="TvDB: " Margin="10,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=TvDBSeasonNumberString}" Margin="5,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="/" Margin="5,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=TvDBStartEpisodeNumberString}" Margin="5,0,0,0"/>
+
+                        <!-- delete link button -->
+                        <Button Margin="8,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                Command="{StaticResource DeleteTvDBLinkCommand}" CommandParameter="{Binding}"
+                                ToolTip="{usercontrols:Info Title=Delete, 
+                                Body=Delete this Link}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <Image Height="16" Width="16" Source="/Images/32_delete.png" Margin="0,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+
+                        <!-- Edit TvDB Details button -->
+                        <Button Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                Command="{StaticResource EditTvDBLinkCommand}" CommandParameter="{Binding}"
+                                ToolTip="{usercontrols:Info Title=Edit, 
+                                Body=Edit the details of this Link}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <Image Height="16" Width="16" Source="/Images/16_switch.png" Margin="0,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+
+                        <!-- Update TvDB Info button -->
+                        <Button Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                Command="{StaticResource UpdateTvDBLinkCommand}" CommandParameter="{Binding}"
+                                ToolTip="{usercontrols:Info Title=Update, 
+                                Body=Download fresh data from The TvDB and update the local database}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <Image Height="16" Width="16" Source="/Images/32_import.png" Margin="0,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+
+                        <!-- Report incorrect links -->
+                        <Button Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                            Command="{StaticResource ReportTvDBLinkCommand}" CommandParameter="{Binding}"
+                            ToolTip="{usercontrols:Info Title=Report Linking Error, 
+                            Body=If this is linked to the wrong series click here to let the developers know}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <Image Height="16" Width="16" Source="/Images/vote_down2.png" Margin="0,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+
+
+                    </StackPanel>
+
+                </Grid>
+            </DataTemplate>
+
         </ResourceDictionary>
 
     </UserControl.Resources>
@@ -79,6 +156,11 @@
         <CommandBinding Command="{StaticResource ToggleAutoLinkMovieDBCommand}" Executed="CommandBinding_ToggleAutoLinkMovieDB" />
         <CommandBinding Command="{StaticResource ToggleAutoLinkTraktCommand}" Executed="CommandBinding_ToggleAutoLinkTrakt" />
         <CommandBinding Command="{StaticResource ToggleAutoLinkMALCommand}" Executed="CommandBinding_ToggleAutoLinkMAL" />
+
+        <CommandBinding Command="{StaticResource ReportTvDBLinkCommand}" Executed="CommandBinding_ReportTvDBLink" />
+        <CommandBinding Command="{StaticResource DeleteTvDBLinkCommand}" Executed="CommandBinding_DeleteTvDBLink" />
+        <CommandBinding Command="{StaticResource EditTvDBLinkCommand}" Executed="CommandBinding_EditTvDBLink" />
+        <CommandBinding Command="{StaticResource UpdateTvDBLinkCommand}" Executed="CommandBinding_UpdateTvDBLink" />
     </UserControl.CommandBindings>
 
     <Grid Margin="3">
@@ -106,49 +188,18 @@
                     Visibility="{Binding Path=AniDB_AnimeCrossRefs.TvDBCrossRefExists, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}, Converter={StaticResource BooleanToVisibilityConverter}}">
             
             <StackPanel Orientation="Vertical">
-            <StackPanel Orientation="Horizontal">
-                <Image Height="16" Width="16" Source="/Images/tvdb.ico" Margin="0,0,10,2" VerticalAlignment="Center"/>
-                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TheTvDB}" Width="120" VerticalAlignment="Center"/>
-                <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,0,2" VerticalAlignment="Center"/>
-                    <usercontrols:HyperLinkStandard DisplayText="{Binding Path=AniDB_AnimeCrossRefs.TvDBSeries.SeriesName, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}}" 
-                         VerticalAlignment="Center" URL="{Binding Path=AniDB_AnimeCrossRefs.TvDBSeries.SeriesURL, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}}" Margin="10,0,0,0"/>
-                <TextBlock Margin="5,0,0,0" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeasonNumber}" />
-                <TextBlock Margin="4,0,0,0" VerticalAlignment="Center" 
-                           Text="{Binding Path=AniDB_AnimeCrossRefs.CrossRef_AniDB_TvDB.TvDBSeasonNumber, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}}" />
-            </StackPanel>
-
-            <StackPanel Orientation="Horizontal" Margin="126,7,0,0">
-                <!-- delete link button -->
-                <Button Name="btnDeleteTvDBLink" Margin="20,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                        <Image Height="16" Width="16" Source="/Images/32_delete.png" Margin="0,0,5,0"/>
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Delete}" Margin="0,0,5,0"/>
-                    </StackPanel>
-                </Button>
-
-                <!-- Switch Season button -->
-                <Button Name="btnSwitchTvDBSeason" Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                        <Image Height="16" Width="16" Source="/Images/16_switch.png" Margin="0,0,5,0"/>
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SwitchSeason}" Margin="0,0,5,0"/>
-                    </StackPanel>
-                </Button>
-
-                <!-- search button -->
-                <Button Name="btnSearchExistingTvDB" Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                        <Image Height="16" Width="16" Source="/Images/MagnifyingGlass7.png" Margin="0,0,5,0"/>
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
-                    </StackPanel>
-                </Button>
-
-                <!-- Update TvDB Info button -->
-                <Button Name="btnUpdateTvDBInfo" Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                        <Image Height="16" Width="16" Source="/Images/32_import.png" Margin="0,0,5,0"/>
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=UpdateInfo}" Margin="0,0,5,0"/>
-                    </StackPanel>
-                </Button>
+                <StackPanel Orientation="Horizontal">
+                    <Image Height="16" Width="16" Source="/Images/tvdb.ico" Margin="0,0,10,2" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TheTvDB}" Width="120" VerticalAlignment="Center"/>
+                    <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,0,2" VerticalAlignment="Center"/>
+                        
+                    <!-- search button -->
+                    <Button Name="btnSearchExistingTvDB" Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <Image Height="16" Width="16" Source="/Images/MagnifyingGlass7.png" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
+                        </StackPanel>
+                    </Button>
 
                     <!-- Enable Auto TvDB Info links -->
                     <Button Name="btnTvDBAutoLinkEnable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
@@ -174,6 +225,14 @@
                         </StackPanel>
                     </Button>
                 </StackPanel>
+
+                <ListBox Name="lbTvDBLinks" BorderThickness="0" Background="Transparent" Margin="140,0,0,0"
+                                ItemsSource="{Binding Path=AniDB_AnimeCrossRefs.CrossRef_AniDB_TvDBV2, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}}"
+                                HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                                ItemTemplate="{StaticResource TvDBLinkTemplate}"
+                                ItemContainerStyle="{DynamicResource ListBoxItemStylePlain}" 
+                                />
+
             </StackPanel>
 
         </StackPanel>

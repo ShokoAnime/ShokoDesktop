@@ -65,6 +65,28 @@
 
                     </Grid>
                 </DataTemplate>
+
+                <!-- SeriesSelectionTemplate -->
+                <DataTemplate x:Key="SeriesSelectionTemplate">
+                    <Grid Margin="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0">
+
+                            <TextBlock VerticalAlignment="Center" Text="{Binding Path=TvDBID}" Margin="0,0,0,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="-" Margin="5,0,0,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Binding Path=TvDBTitle}" Margin="5,0,0,0"/>
+
+
+                        </StackPanel>
+
+                    </Grid>
+                </DataTemplate>
             </ResourceDictionary>
 
 
@@ -90,7 +112,11 @@
         <Border Grid.Row="0" Grid.Column="0" Margin="5,5,5,5" Padding="5" Background="#F1F1F1" BorderBrush="LightGray" BorderThickness="1">
             <StackPanel Orientation="Horizontal"  Margin="0,0,0,5" DockPanel.Dock="Top">
                 <Image Height="16" Width="16" Source="/Images/tvdb.ico" Margin="5,0,5,0"/>
-                <TextBlock VerticalAlignment="Center" Text="Select TvDB Season" Margin="0,0,10,0"/>
+                <TextBlock VerticalAlignment="Center" Text="Select TvDB Details" Margin="0,0,10,0"/>
+                <ComboBox Name="cboSeries" VerticalAlignment="Center" Margin="0,0,20,0"
+                          ItemTemplate="{StaticResource SeriesSelectionTemplate}"/>
+
+                <TextBlock VerticalAlignment="Center" Text="Season" Margin="0,0,10,0"/>
                 <ComboBox Name="cboSeason" VerticalAlignment="Center" Margin="0,0,20,0"/>
             </StackPanel>
         </Border>
@@ -100,7 +126,7 @@
             <ListBox Name="lbFiles" BorderThickness="0" Background="Transparent"  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                             ItemsSource="{Binding Path=CurrentEpisodes, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SelectTvDBEpisodeForm}}}"
                             HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
-                            ItemTemplate="{DynamicResource EpisodeTemplate}"
+                            ItemTemplate="{StaticResource EpisodeTemplate}"
                             ItemContainerStyle="{DynamicResource ListBoxItemStyle}" 
                             />
         </Border>

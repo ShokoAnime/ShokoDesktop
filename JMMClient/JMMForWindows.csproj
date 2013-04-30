@@ -600,6 +600,7 @@
     <Compile Include="ViewModel\AniDB_Anime_DefaultImageVM.cs" />
     <Compile Include="ViewModel\AniDB_Anime_RelationVM.cs" />
     <Compile Include="ViewModel\AniDB_Anime_SimilarVM.cs" />
+    <Compile Include="ViewModel\AniDB_EpisodeVM.cs" />
     <Compile Include="ViewModel\AniDB_RecommendationVM.cs" />
     <Compile Include="ViewModel\AniDB_VoteVM.cs" />
     <Compile Include="ViewModel\AnimeCategoryVM.cs" />
@@ -623,8 +624,8 @@
     <Compile Include="ViewModel\CrossRef_AniDB_TraktResultVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_TraktVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_TvDBEpisodeVM.cs" />
-    <Compile Include="ViewModel\CrossRef_AniDB_TvDBResultVM.cs" />
-    <Compile Include="ViewModel\CrossRef_AniDB_TvDBVM.cs" />
+    <Compile Include="ViewModel\TvDBDetails.cs" />
+    <Compile Include="ViewModel\CrossRef_AniDB_TvDBVMV2.cs" />
     <Compile Include="ViewModel\DashboardMetroVM.cs" />
     <Compile Include="ViewModel\DashboardVM.cs" />
     <Compile Include="ViewModel\DuplicateFileVM.cs" />
@@ -677,6 +678,7 @@
     <Compile Include="ViewModel\Trakt_UserVM.cs" />
     <Compile Include="ViewModel\Trakt_WatchedEpisodeVM.cs" />
     <Compile Include="ViewModel\TVDBSeriesSearchResultVM.cs" />
+    <Compile Include="ViewModel\TvDBSummary.cs" />
     <Compile Include="ViewModel\TvDB_EpisodeVM.cs" />
     <Compile Include="ViewModel\TvDB_ImageFanartVM.cs" />
     <Compile Include="ViewModel\TvDB_ImagePosterVM.cs" />
@@ -1226,6 +1228,9 @@
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AniDB_Character1.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AniDB_Episode.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AniDB_Recommendation.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -1256,6 +1261,9 @@
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AppVersions1.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_Azure_CrossRef_AniDB_TvDB.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_BookmarkedAnime1.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -1277,10 +1285,7 @@
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_TraktResult1.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_TvDB1.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_TvDBResult1.datasource">
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_TvDBV2.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_TvDB_Episode1.datasource">
@@ -1991,13 +1996,13 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ToDo.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(TargetDir)*.dll" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y	
-xcopy "$(TargetDir)*.exe" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y
-xcopy "$(TargetDir)*.pdb" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y
-xcopy "$(TargetDir)*.manifest" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y
-</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

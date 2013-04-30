@@ -72,6 +72,11 @@ namespace JMMClient.ViewModel
 			}
 		}
 
+		public override string ToString()
+		{
+			return string.Format("Season#: {0}, Episode {1}-{2}", SeasonNumber, EpisodeNumber, EpisodeName);
+		}
+
 		public TvDB_EpisodeVM(JMMServerBinary.Contract_TvDB_Episode contract)
 		{
 			this.TvDB_EpisodeID = contract.TvDB_EpisodeID;

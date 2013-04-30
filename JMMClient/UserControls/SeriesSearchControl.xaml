@@ -24,6 +24,8 @@
                     <StackPanel Orientation="Horizontal" >
                         <Image Source="/Images/MagnifyingGlass7.png" Width="16" Height="16" Margin="5,0,0,0" ></Image>
 
+                        <ComboBox x:Name="cboSearchType" Width="100" Margin="10,3,0,3" />
+                        
                         <TextBox Name="txtSeriesSearch" Width="180" Margin="10,3,0,3" BorderThickness="1" TabIndex="0">
 
                         </TextBox>
