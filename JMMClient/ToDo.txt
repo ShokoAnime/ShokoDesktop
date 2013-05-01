@@ -6,4 +6,4 @@ AnimeSeriesVM
 AnimeEpisodeVM
   ***- SetTvDBInfo
 SearchTvDBForm
- - LinkAniDBToTVDB (web cache result)
+  ***- LinkAniDBToTVDB (web cache result)

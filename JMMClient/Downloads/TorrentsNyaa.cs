@@ -63,10 +63,15 @@ namespace JMMClient.Downloads
 			char q = (char)34;
 			string quote = q.ToString();
 
-			string startBlock = @"http://www.nyaa.eu/?page=torrentinfo";
+			//class="tlistthone">Category
+			//string startBlock = @"http://www.nyaa.eu/?page=torrentinfo";
+			string startBlock = @"class=" + quote + "tlistthone" + quote + ">Category";
 
-			string nameStart = ">";
-			string nameEnd = "</a>";
+			//<td class="tlistname">
+			string nameStart1 = @"<td class=" + quote + "tlistname" + quote + "><a href=";
+
+			string nameStart2 = ">";
+			string nameEnd2 = "</a>";
 
 			string torStart = "href=" + quote;
 			string torEnd = quote;
@@ -88,10 +93,14 @@ namespace JMMClient.Downloads
 
 				if (pos <= 0) break;
 
-				int posNameStart = output.IndexOf(nameStart, pos + 1);
-				int posNameEnd = output.IndexOf(nameEnd, posNameStart + nameStart.Length + 1);
+				// find the start of the torrent
+				int posBegin = output.IndexOf(nameStart1, pos + 1);
+				if (posBegin <= 0) break;
 
-				string torName = output.Substring(posNameStart + nameStart.Length, posNameEnd - posNameStart - nameStart.Length);
+				int posNameStart = output.IndexOf(nameStart2, posBegin + nameStart1.Length + 1);
+				int posNameEnd = output.IndexOf(nameEnd2, posNameStart + nameStart2.Length + 1);
+
+				string torName = output.Substring(posNameStart + nameStart2.Length, posNameEnd - posNameStart - nameStart2.Length);
 
 				int posTorStart = output.IndexOf(torStart, posNameEnd);
 				int posTorEnd = output.IndexOf(torEnd, posTorStart + torStart.Length + 1);
@@ -140,7 +149,7 @@ namespace JMMClient.Downloads
 				torrentLink.Leechers = torLeech.Trim();
 				torLinks.Add(torrentLink);
 
-				pos = output.IndexOf(startBlock, pos + 1);
+				pos = output.IndexOf(nameStart1, pos + 1);
 
 			}
 			//Console.ReadLine();
