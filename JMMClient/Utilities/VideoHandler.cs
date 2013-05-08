@@ -255,51 +255,96 @@ namespace JMMClient.Utilities
 			{
 				if (!AppSettings.VideoAutoSetWatched) return;
 
-				List<int> allFiles = new List<int>();
+				List<int> allFilesHeaders = new List<int>();
+				List<int> allFilesPositions = new List<int>();
 
 				string[] lines = File.ReadAllLines(filePath);
 
 				// really we only need to check the first file, but will do this just in case
-				string prefix = string.Format("File Name ");
+
+				// MPC 1.3 and lower looks like this
+				// File Name 0=M:\[ Anime to Watch - New ]\Arata Kangatari\[HorribleSubs] Arata Kangatari - 05 [720p].mkv
+				// File Position 0=14251233493
+				// File Name 1=M:\[ Anime to Watch - New ]\Hentai Ouji to Warawanai Neko\[gg]_Hentai_Ouji_to_Warawanai_Neko_-_04_[62E1DBF8].mkv
+				// File Position 1=13688612500
+
+				// MPC 1.6 and lower looks like this
+				// File Name 0=M:\[ Anime to Watch - New ]\Arata Kangatari\[HorribleSubs] Arata Kangatari - 05 [720p].mkv
+				// File Name 1=M:\[ Anime to Watch - New ]\Hentai Ouji to Warawanai Neko\[gg]_Hentai_Ouji_to_Warawanai_Neko_-_04_[62E1DBF8].mkv
+				// File Position 0=14251233493
+				// File Position 1=13688612500
+
+				// get file name header lines
+				string prefixHeader = string.Format("File Name ");
 				for (int i = 0; i < lines.Length; i++)
 				{
 					string line = lines[i];
 
-					if (line.StartsWith(prefix, StringComparison.InvariantCultureIgnoreCase)) allFiles.Add(i);
+					if (line.StartsWith(prefixHeader, StringComparison.InvariantCultureIgnoreCase)) allFilesHeaders.Add(i);
 
-					if (allFiles.Count == 20) break;
+					if (allFilesHeaders.Count == 20) break;
 				}
 
-				if (allFiles.Count == 0) return;
+				if (allFilesHeaders.Count == 0) return;
+
+				string prefixPos = string.Format("File Position ");
+				for (int i = 0; i < lines.Length; i++)
+				{
+					string line = lines[i];
+
+					if (line.StartsWith(prefixPos, StringComparison.InvariantCultureIgnoreCase)) allFilesPositions.Add(i);
+
+					if (allFilesPositions.Count == 20) break;
+				}
 
 				Dictionary<string, string> filePositions = new Dictionary<string, string>();
-				foreach (int lineNumber in allFiles)
+				foreach (int lineNumber in allFilesHeaders)
 				{
 					// find the last file played
 					string fileNameLine = lines[lineNumber];
-					string filePosLine = lines[lineNumber + 1];
 
+					// find the number of this file
+					string temp = fileNameLine.Trim().Replace(prefixHeader, "");
+					int iPosTemp = temp.IndexOf("=");
+					if (iPosTemp < 0) continue;
+
+					string fileNumber = temp.Substring(0, iPosTemp);
+
+					// now find the match play position line
+					string properPosLine = string.Empty;
+					foreach (int lineNumberPos in allFilesPositions)
+					{
+						string filePosLineTemp = lines[lineNumberPos];
+
+						// find the number of this file
+						string temp2 = filePosLineTemp.Trim().Replace(prefixPos, "");
+						int iPosTemp2 = temp2.IndexOf("=");
+						if (iPosTemp2 < 0) continue;
+
+						string fileNumber2 = temp2.Substring(0, iPosTemp2);
+						if (fileNumber.Equals(fileNumber2, StringComparison.InvariantCultureIgnoreCase))
+						{
+							properPosLine = filePosLineTemp;
+							break;
+						}
+					}
+
+					if (string.IsNullOrEmpty(properPosLine)) continue;
+
+					// extract the file name and position
 					int iPos1 = fileNameLine.IndexOf("=");
-					int iPos2 = filePosLine.IndexOf("=");
+					if (iPos1 < 0) continue;
+
+					int iPos2 = properPosLine.IndexOf("=");
 
 					string fileName = fileNameLine.Substring(iPos1 + 1, fileNameLine.Length - iPos1 - 1);
-					string position = filePosLine.Substring(iPos2 + 1, filePosLine.Length - iPos2 - 1);
+					string position = properPosLine.Substring(iPos2 + 1, properPosLine.Length - iPos2 - 1);
 
 					filePositions[fileName] = position;
 				}
 
 				// find all the files which have changed
 				Dictionary<string, string> changedFilePositions = new Dictionary<string, string>();
-				/*foreach (KeyValuePair<string, string> kvp in filePositions)
-				{
-					if (previousFilePositions.ContainsKey(kvp.Key))
-					{
-						if (!previousFilePositions[kvp.Key].Equals(kvp.Value))
-							changedFilePositions[kvp.Key] = kvp.Value;
-					}
-					else
-						changedFilePositions[kvp.Key] = kvp.Value;
-				}*/
 
 				foreach (KeyValuePair<string, string> kvp in filePositions)
 				{
