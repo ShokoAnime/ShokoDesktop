@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="1300">
     
@@ -53,5 +54,7 @@
         <ToggleButton Margin="0" Padding="0" Tag="9" Cursor="Hand" Template="{StaticResource starTemplateRight}" Click="RatingButtonClickEventHandler" MouseEnter="RatingButtonMouseEnterEventHandler" MouseLeave="RatingButtonMouseLeaveEventHandler"/>
         <ToggleButton Margin="0" Padding="0" Tag="9.5" Cursor="Hand" Template="{StaticResource starTemplateLeft}" Click="RatingButtonClickEventHandler" MouseEnter="RatingButtonMouseEnterEventHandler" MouseLeave="RatingButtonMouseLeaveEventHandler"/>
         <ToggleButton Margin="0" Padding="0" Tag="10" Cursor="Hand" Template="{StaticResource starTemplateRight}" Click="RatingButtonClickEventHandler" MouseEnter="RatingButtonMouseEnterEventHandler" MouseLeave="RatingButtonMouseLeaveEventHandler"/>
+        <TextBlock x:Name="txtRating" Margin="5,0,0,0" Padding="0" Text="{Binding Path=HoverRatingValue, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:RatingControl}}}" 
+                   VerticalAlignment="Center"/>
     </StackPanel>
 </UserControl>

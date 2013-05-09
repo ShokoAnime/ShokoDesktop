@@ -31,5 +31,6 @@
         <Image Grid.Column="4" Grid.Row="0" Name="imgStar5" Height="{Binding Path=ImageSize, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:VisualRating}}}" 
                Width="{Binding Path=ImageSize, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:VisualRating}}}" Margin="0,0,0,0" Source="../Images/star_off_48.png" VerticalAlignment="Center"/>
 
+
     </Grid>
 </UserControl>

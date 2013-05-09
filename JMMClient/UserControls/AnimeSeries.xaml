@@ -551,7 +551,7 @@
                                 <!-- User rating if the user has NOT voted -->
                                 <StackPanel Orientation="Horizontal" Visibility="{Binding Path=AniDB_Anime.Detail.UserHasNotVoted, Converter={StaticResource BooleanToVisibilityConverter}}">
                                     <TextBlock Padding="5" FontWeight="Heavy" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VoteNow}" VerticalAlignment="Center"/>
-                                    <usercontrols:RatingControl x:Name="cRating" Width="175" Height="16" RatingValue="7.5" />
+                                    <usercontrols:RatingControl x:Name="cRating" Width="195" Height="16" RatingValue="7.5"/>
                                     <ComboBox x:Name="cboVoteType" VerticalAlignment="Center"></ComboBox>
                                 </StackPanel>
                             </WrapPanel>

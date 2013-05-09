@@ -27,6 +27,58 @@ namespace JMMClient.UserControls
 									   new FrameworkPropertyMetadata(0.0,
 																	 FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
 																	 RatingValueChanged));
+
+		public double RatingValue
+		{
+			get { return (double)GetValue(RatingValueProperty); }
+			set
+			{
+				if (value < 0)
+				{
+					SetValue(RatingValueProperty, 0);
+					HoverRatingValue = 0;
+				}
+				else if (value > _maxValue)
+				{
+					SetValue(RatingValueProperty, _maxValue);
+					HoverRatingValue = _maxValue;
+				}
+				else
+				{
+					SetValue(RatingValueProperty, value);
+					HoverRatingValue = value;
+				}
+
+
+			}
+		}
+
+		public static readonly DependencyProperty HoverRatingValueProperty =
+		   DependencyProperty.Register("HoverRatingValue", typeof(double), typeof(RatingControl),
+			new FrameworkPropertyMetadata(0.0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, null));
+
+		public double HoverRatingValue
+		{
+			get { return (double)GetValue(HoverRatingValueProperty); }
+			set
+			{
+				if (value < 0)
+				{
+					SetValue(HoverRatingValueProperty, 0);
+				}
+				else if (value > _maxValue)
+				{
+					SetValue(HoverRatingValueProperty, _maxValue);
+				}
+				else
+				{
+					SetValue(HoverRatingValueProperty, value);
+				}
+
+
+			}
+		}
+
 		private double _maxValue = 10;
 
 		public delegate void RatingValueChangedHandler(RatingValueEventArgs ev);
@@ -39,32 +91,21 @@ namespace JMMClient.UserControls
 			}
 		}
 
+		/*public static readonly DependencyProperty HoverRatingProperty = DependencyProperty.Register("HoverRating",
+			typeof(double), typeof(RatingControl), new UIPropertyMetadata((double)0, null));
+
+		public double HoverRating
+		{
+			get { return (double)GetValue(HoverRatingProperty); }
+			set { SetValue(HoverRatingProperty, value); }
+		}*/
+
 		public RatingControl()
 		{
 			InitializeComponent();
 		}
 
-		public double RatingValue
-		{
-			get { return (double)GetValue(RatingValueProperty); }
-			set
-			{
-				if (value < 0)
-				{
-					SetValue(RatingValueProperty, 0);
-				}
-				else if (value > _maxValue)
-				{
-					SetValue(RatingValueProperty, _maxValue);
-				}
-				else
-				{
-					SetValue(RatingValueProperty, value);
-				}
-
-
-			}
-		}
+		
 
 		private static void RatingValueChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
 		{
@@ -115,6 +156,7 @@ namespace JMMClient.UserControls
 			{
 				RatingValue = newRating;
 			}
+			HoverRatingValue = RatingValue; 
 			e.Handled = true;
 
 			OnRatingValueChanged(new RatingValueEventArgs(RatingValue));
@@ -129,6 +171,9 @@ namespace JMMClient.UserControls
 
 			double hoverRating = -1;
 			double.TryParse((String)button.Tag, style, culture, out hoverRating);
+
+			if (hoverRating >= 0)
+				HoverRatingValue = hoverRating; 
 
 			int numberOfButtonsToHighlight = (int)(2 * hoverRating);
 
@@ -155,6 +200,8 @@ namespace JMMClient.UserControls
 		{
 			double ratingValue = RatingValue;
 			int numberOfButtonsToHighlight = (int)(2 * ratingValue);
+
+			HoverRatingValue = ratingValue; 
 
 			UIElementCollection children = RatingContentPanel.Children;
 			ToggleButton button = null;
