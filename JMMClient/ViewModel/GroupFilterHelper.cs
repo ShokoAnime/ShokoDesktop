@@ -17,6 +17,7 @@ namespace JMMClient.ViewModel
 				gf.GroupFilterID = Constants.StaticGF.All;
 				gf.FilterConditions = new ObservableCollection<GroupFilterConditionVM>();
 				gf.AllowEditing = false;
+				gf.AllowDeletion = false;
 				gf.ApplyToSeries = 0;
 				gf.BaseCondition = 1;
 				gf.FilterName = JMMClient.Properties.Resources.GroupFilter_All;
@@ -38,6 +39,7 @@ namespace JMMClient.ViewModel
 				gf.GroupFilterID = Constants.StaticGF.Predefined;
 				gf.FilterConditions = new ObservableCollection<GroupFilterConditionVM>();
 				gf.AllowEditing = false;
+				gf.AllowDeletion = false;
 				gf.ApplyToSeries = 0;
 				gf.BaseCondition = 1;
 				gf.FilterName = JMMClient.Properties.Resources.GroupFilter_Predefined;

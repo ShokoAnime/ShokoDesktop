@@ -922,6 +922,7 @@
       <xs:element minOccurs="0" name="FilterConditions" nillable="true" type="tns:ArrayOfContract_GroupFilterCondition" />
       <xs:element minOccurs="0" name="GroupFilterID" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="GroupFilterName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Locked" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="SortingCriteria" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
@@ -1467,6 +1468,20 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_CrossRef_AniDB_OtherResult" nillable="true" type="tns:Contract_CrossRef_AniDB_OtherResult" />
+  <xs:complexType name="Contract_ServerStatus">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BanOrigin" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BanReason" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GeneralQueueCount" type="xs:int" />
+      <xs:element minOccurs="0" name="GeneralQueueState" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HashQueueCount" type="xs:int" />
+      <xs:element minOccurs="0" name="HashQueueState" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ImagesQueueCount" type="xs:int" />
+      <xs:element minOccurs="0" name="ImagesQueueState" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsBanned" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_ServerStatus" nillable="true" type="tns:Contract_ServerStatus" />
   <xs:complexType name="Contract_ServerSettings">
     <xs:sequence>
       <xs:element minOccurs="0" name="AniDB_AVDumpClientPort" nillable="true" type="xs:string" />
@@ -1628,18 +1643,4 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfContract_ImportFolder" nillable="true" type="tns:ArrayOfContract_ImportFolder" />
-  <xs:complexType name="Contract_ServerStatus">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="BanOrigin" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="BanReason" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="GeneralQueueCount" type="xs:int" />
-      <xs:element minOccurs="0" name="GeneralQueueState" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="HashQueueCount" type="xs:int" />
-      <xs:element minOccurs="0" name="HashQueueState" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ImagesQueueCount" type="xs:int" />
-      <xs:element minOccurs="0" name="ImagesQueueState" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="IsBanned" type="xs:boolean" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_ServerStatus" nillable="true" type="tns:Contract_ServerStatus" />
 </xs:schema>

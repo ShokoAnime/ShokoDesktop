@@ -14,6 +14,11 @@ namespace JMMClient
 		public static readonly int FlagLinkMAL = 4;
 		public static readonly int FlagLinkMovieDB = 8;
 
+		public struct GroupFilterName
+		{
+			public static readonly string ContinueWatching = "Continue Watching (SYSTEM)";
+		}
+
 		public struct DBLogType
 		{
 			public static readonly string APIAniDBHTTP = "AniDB HTTP";

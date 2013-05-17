@@ -25,6 +25,9 @@ namespace JMMClient
 
 		public int? GroupFilterID { get; set; }
 		public bool AllowEditing { get; set; }
+		public bool AllowDeletion { get; set; }
+		public bool IsSystemGroupFilter { get; set; }
+		public bool IsNotSystemGroupFilter { get; set; }
 
 		public ObservableCollection<GroupFilterConditionVM> FilterConditions { get; set; }
 		public ObservableCollection<GroupFilterSortingCriteria> SortCriteriaList { get; set; }
@@ -59,6 +62,17 @@ namespace JMMClient
 			{
 				filterName = value;
 				NotifyPropertyChanged("FilterName");
+			}
+		}
+
+		private int? locked = null;
+		public int? Locked
+		{
+			get { return locked; }
+			set
+			{
+				locked = value;
+				NotifyPropertyChanged("Locked");
 			}
 		}
 
@@ -919,6 +933,7 @@ namespace JMMClient
 				gf.GroupFilterID = Constants.StaticGF.Predefined_Years;
 				gf.FilterConditions = new ObservableCollection<GroupFilterConditionVM>();
 				gf.AllowEditing = false;
+				gf.AllowDeletion = false;
 				gf.ApplyToSeries = 0;
 				gf.BaseCondition = 1;
 				gf.FilterName = "By Year";
@@ -929,6 +944,7 @@ namespace JMMClient
 				gfGenres.GroupFilterID = Constants.StaticGF.Predefined_Categories;
 				gfGenres.FilterConditions = new ObservableCollection<GroupFilterConditionVM>();
 				gfGenres.AllowEditing = false;
+				gf.AllowDeletion = false;
 				gfGenres.ApplyToSeries = 0;
 				gfGenres.BaseCondition = 1;
 				gfGenres.FilterName = "By Category";
@@ -966,6 +982,7 @@ namespace JMMClient
 					gf.GroupFilterID = Constants.StaticGF.Predefined_Years_Child;
 					gf.FilterConditions = new ObservableCollection<GroupFilterConditionVM>();
 					gf.AllowEditing = false;
+					gf.AllowDeletion = false;
 					gf.ApplyToSeries = 0;
 					gf.BaseCondition = 1;
 					gf.FilterName = yr.ToString();
@@ -998,6 +1015,7 @@ namespace JMMClient
 					gf.GroupFilterID = Constants.StaticGF.Predefined_Categories_Child;
 					gf.FilterConditions = new ObservableCollection<GroupFilterConditionVM>();
 					gf.AllowEditing = false;
+					gf.AllowDeletion = false;
 					gf.ApplyToSeries = 0;
 					gf.BaseCondition = 1;
 					gf.FilterName = cat;
@@ -1017,6 +1035,7 @@ namespace JMMClient
 			contract.GroupFilterName = this.FilterName;
 			contract.ApplyToSeries = this.ApplyToSeries;
 			contract.BaseCondition = this.BaseCondition;
+			contract.Locked = this.Locked;
 			
 			contract.FilterConditions = new List<JMMServerBinary.Contract_GroupFilterCondition>();
 			foreach (GroupFilterConditionVM gfc in FilterConditions)
@@ -1041,9 +1060,24 @@ namespace JMMClient
 			this.FilterName = contract.GroupFilterName;
 			this.ApplyToSeries = contract.ApplyToSeries;
 			this.BaseCondition = contract.BaseCondition;
+			this.Locked = contract.Locked;
 			this.PredefinedCriteria = "";
+
+			this.AllowDeletion = true;
+			if (this.Locked.HasValue && this.Locked == 1) this.AllowDeletion = false;
+
+			this.IsSystemGroupFilter = false;
+			this.IsNotSystemGroupFilter = true;
+
+			if (this.FilterName.Equals(Constants.GroupFilterName.ContinueWatching, StringComparison.InvariantCultureIgnoreCase))
+			{
+				this.IsSystemGroupFilter = true;
+				this.IsNotSystemGroupFilter = false;
+			}
+
 			//this.FilterConditions = new ObservableCollection<GroupFilterConditionVM>();
 			this.FilterConditions.Clear();
+
 			if (contract.FilterConditions != null)
 			{
 				foreach (JMMServerBinary.Contract_GroupFilterCondition gfc_con in contract.FilterConditions)

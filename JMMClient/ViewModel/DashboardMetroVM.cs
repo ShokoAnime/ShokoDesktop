@@ -351,7 +351,7 @@ namespace JMMClient
 				DateTime start = DateTime.Now;
 
 				List<JMMServerBinary.Contract_AnimeEpisode> epContracts =
-					JMMServerVM.Instance.clientBinaryHTTP.GetEpisodesToWatch_RecentlyWatched(UserSettingsVM.Instance.DashMetro_WatchNext_Items, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+					JMMServerVM.Instance.clientBinaryHTTP.GetContinueWatchingFilter(JMMServerVM.Instance.CurrentUser.JMMUserID.Value, UserSettingsVM.Instance.DashMetro_WatchNext_Items);
 
 				TimeSpan ts = DateTime.Now - start;
 				logger.Trace("Dashboard Time: RefreshEpsWatchNext_Recent: contracts: {0}", ts.TotalMilliseconds);

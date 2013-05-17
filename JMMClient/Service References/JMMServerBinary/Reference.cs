@@ -8549,6 +8549,7 @@ namespace JMMClient.JMMServerBinary {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_TVDBSeriesSearchResult>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_TVDBSeriesSearchResult))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_OtherResult))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_ServerStatus))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_ServerSettings))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_ServerSettings_SaveResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_ToggleWatchedStatusOnEpisode_Response))]
@@ -8561,7 +8562,6 @@ namespace JMMClient.JMMServerBinary {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AnimeSeries_Save))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDB_AnimeDetailed>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_ImportFolder>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_ServerStatus))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<int>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<string>))]
     public partial class Contract_Trakt_User : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -9665,6 +9665,9 @@ namespace JMMClient.JMMServerBinary {
         private string GroupFilterNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> LockedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string SortingCriteriaField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -9738,6 +9741,19 @@ namespace JMMClient.JMMServerBinary {
                 if ((object.ReferenceEquals(this.GroupFilterNameField, value) != true)) {
                     this.GroupFilterNameField = value;
                     this.RaisePropertyChanged("GroupFilterName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> Locked {
+            get {
+                return this.LockedField;
+            }
+            set {
+                if ((this.LockedField.Equals(value) != true)) {
+                    this.LockedField = value;
+                    this.RaisePropertyChanged("Locked");
                 }
             }
         }
@@ -11222,6 +11238,7 @@ namespace JMMClient.JMMServerBinary {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_TVDBSeriesSearchResult>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_TVDBSeriesSearchResult))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_OtherResult))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_ServerStatus))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_ServerSettings))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_ServerSettings_SaveResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_ToggleWatchedStatusOnEpisode_Response))]
@@ -11234,7 +11251,6 @@ namespace JMMClient.JMMServerBinary {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AnimeSeries_Save))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDB_AnimeDetailed>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_ImportFolder>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_ServerStatus))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<int>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<string>))]
     public partial class Contract_Trakt_FriendFrequest : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -11594,6 +11610,7 @@ namespace JMMClient.JMMServerBinary {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_TVDBSeriesSearchResult>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_TVDBSeriesSearchResult))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_OtherResult))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_ServerStatus))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_ServerSettings))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_ServerSettings_SaveResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_ToggleWatchedStatusOnEpisode_Response))]
@@ -11606,7 +11623,6 @@ namespace JMMClient.JMMServerBinary {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AnimeSeries_Save))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDB_AnimeDetailed>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_ImportFolder>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_ServerStatus))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<int>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<string>))]
     public partial class Contract_Trakt_Friend : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -14372,6 +14388,179 @@ namespace JMMClient.JMMServerBinary {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_ServerStatus", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
+    [System.SerializableAttribute()]
+    public partial class Contract_ServerStatus : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string BanOriginField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string BanReasonField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int GeneralQueueCountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string GeneralQueueStateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int HashQueueCountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string HashQueueStateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ImagesQueueCountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ImagesQueueStateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsBannedField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string BanOrigin {
+            get {
+                return this.BanOriginField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BanOriginField, value) != true)) {
+                    this.BanOriginField = value;
+                    this.RaisePropertyChanged("BanOrigin");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string BanReason {
+            get {
+                return this.BanReasonField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BanReasonField, value) != true)) {
+                    this.BanReasonField = value;
+                    this.RaisePropertyChanged("BanReason");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int GeneralQueueCount {
+            get {
+                return this.GeneralQueueCountField;
+            }
+            set {
+                if ((this.GeneralQueueCountField.Equals(value) != true)) {
+                    this.GeneralQueueCountField = value;
+                    this.RaisePropertyChanged("GeneralQueueCount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string GeneralQueueState {
+            get {
+                return this.GeneralQueueStateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GeneralQueueStateField, value) != true)) {
+                    this.GeneralQueueStateField = value;
+                    this.RaisePropertyChanged("GeneralQueueState");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int HashQueueCount {
+            get {
+                return this.HashQueueCountField;
+            }
+            set {
+                if ((this.HashQueueCountField.Equals(value) != true)) {
+                    this.HashQueueCountField = value;
+                    this.RaisePropertyChanged("HashQueueCount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string HashQueueState {
+            get {
+                return this.HashQueueStateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.HashQueueStateField, value) != true)) {
+                    this.HashQueueStateField = value;
+                    this.RaisePropertyChanged("HashQueueState");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ImagesQueueCount {
+            get {
+                return this.ImagesQueueCountField;
+            }
+            set {
+                if ((this.ImagesQueueCountField.Equals(value) != true)) {
+                    this.ImagesQueueCountField = value;
+                    this.RaisePropertyChanged("ImagesQueueCount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ImagesQueueState {
+            get {
+                return this.ImagesQueueStateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ImagesQueueStateField, value) != true)) {
+                    this.ImagesQueueStateField = value;
+                    this.RaisePropertyChanged("ImagesQueueState");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsBanned {
+            get {
+                return this.IsBannedField;
+            }
+            set {
+                if ((this.IsBannedField.Equals(value) != true)) {
+                    this.IsBannedField = value;
+                    this.RaisePropertyChanged("IsBanned");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Contract_ServerSettings", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
     [System.SerializableAttribute()]
     public partial class Contract_ServerSettings : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -16199,182 +16388,12 @@ namespace JMMClient.JMMServerBinary {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_ServerStatus", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
-    [System.SerializableAttribute()]
-    public partial class Contract_ServerStatus : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string BanOriginField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string BanReasonField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int GeneralQueueCountField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string GeneralQueueStateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int HashQueueCountField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string HashQueueStateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ImagesQueueCountField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ImagesQueueStateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool IsBannedField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string BanOrigin {
-            get {
-                return this.BanOriginField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.BanOriginField, value) != true)) {
-                    this.BanOriginField = value;
-                    this.RaisePropertyChanged("BanOrigin");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string BanReason {
-            get {
-                return this.BanReasonField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.BanReasonField, value) != true)) {
-                    this.BanReasonField = value;
-                    this.RaisePropertyChanged("BanReason");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int GeneralQueueCount {
-            get {
-                return this.GeneralQueueCountField;
-            }
-            set {
-                if ((this.GeneralQueueCountField.Equals(value) != true)) {
-                    this.GeneralQueueCountField = value;
-                    this.RaisePropertyChanged("GeneralQueueCount");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string GeneralQueueState {
-            get {
-                return this.GeneralQueueStateField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.GeneralQueueStateField, value) != true)) {
-                    this.GeneralQueueStateField = value;
-                    this.RaisePropertyChanged("GeneralQueueState");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int HashQueueCount {
-            get {
-                return this.HashQueueCountField;
-            }
-            set {
-                if ((this.HashQueueCountField.Equals(value) != true)) {
-                    this.HashQueueCountField = value;
-                    this.RaisePropertyChanged("HashQueueCount");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string HashQueueState {
-            get {
-                return this.HashQueueStateField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.HashQueueStateField, value) != true)) {
-                    this.HashQueueStateField = value;
-                    this.RaisePropertyChanged("HashQueueState");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ImagesQueueCount {
-            get {
-                return this.ImagesQueueCountField;
-            }
-            set {
-                if ((this.ImagesQueueCountField.Equals(value) != true)) {
-                    this.ImagesQueueCountField = value;
-                    this.RaisePropertyChanged("ImagesQueueCount");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ImagesQueueState {
-            get {
-                return this.ImagesQueueStateField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ImagesQueueStateField, value) != true)) {
-                    this.ImagesQueueStateField = value;
-                    this.RaisePropertyChanged("ImagesQueueState");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool IsBanned {
-            get {
-                return this.IsBannedField;
-            }
-            set {
-                if ((this.IsBannedField.Equals(value) != true)) {
-                    this.IsBannedField = value;
-                    this.RaisePropertyChanged("IsBanned");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="JMMServerBinary.IJMMServer")]
     public interface IJMMServer {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/ClearImagesQueue", ReplyAction="http://tempuri.org/IJMMServer/ClearImagesQueueResponse")]
+        void ClearImagesQueue();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/ClearGeneralQueue", ReplyAction="http://tempuri.org/IJMMServer/ClearGeneralQueueResponse")]
         void ClearGeneralQueue();
@@ -16414,6 +16433,9 @@ namespace JMMClient.JMMServerBinary {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetAniDBEpisodesForAnime", ReplyAction="http://tempuri.org/IJMMServer/GetAniDBEpisodesForAnimeResponse")]
         System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDB_Episode> GetAniDBEpisodesForAnime(int animeID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/RescanFile", ReplyAction="http://tempuri.org/IJMMServer/RescanFileResponse")]
+        string RescanFile(int videoLocalID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetAllBookmarkedAnime", ReplyAction="http://tempuri.org/IJMMServer/GetAllBookmarkedAnimeResponse")]
         System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_BookmarkedAnime> GetAllBookmarkedAnime();
@@ -16496,8 +16518,8 @@ namespace JMMClient.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/ClearHasherQueue", ReplyAction="http://tempuri.org/IJMMServer/ClearHasherQueueResponse")]
         void ClearHasherQueue();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/ClearImagesQueue", ReplyAction="http://tempuri.org/IJMMServer/ClearImagesQueueResponse")]
-        void ClearImagesQueue();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/RemoveDefaultSeriesForGroup", ReplyAction="http://tempuri.org/IJMMServer/RemoveDefaultSeriesForGroupResponse")]
+        void RemoveDefaultSeriesForGroup(int animeGroupID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetTvDBLanguages", ReplyAction="http://tempuri.org/IJMMServer/GetTvDBLanguagesResponse")]
         System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_TvDBLanguage> GetTvDBLanguages();
@@ -16580,8 +16602,8 @@ namespace JMMClient.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/UpdateFileData", ReplyAction="http://tempuri.org/IJMMServer/UpdateFileDataResponse")]
         string UpdateFileData(int videoLocalID);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/RescanFile", ReplyAction="http://tempuri.org/IJMMServer/RescanFileResponse")]
-        string RescanFile(int videoLocalID);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetSeasonNumbersForTrakt", ReplyAction="http://tempuri.org/IJMMServer/GetSeasonNumbersForTraktResponse")]
+        System.Collections.Generic.List<int> GetSeasonNumbersForTrakt(string traktID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/UpdateTraktData", ReplyAction="http://tempuri.org/IJMMServer/UpdateTraktDataResponse")]
         string UpdateTraktData(string traktD);
@@ -16664,8 +16686,8 @@ namespace JMMClient.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/SetDefaultSeriesForGroup", ReplyAction="http://tempuri.org/IJMMServer/SetDefaultSeriesForGroupResponse")]
         void SetDefaultSeriesForGroup(int animeGroupID, int animeSeriesID);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/RemoveDefaultSeriesForGroup", ReplyAction="http://tempuri.org/IJMMServer/RemoveDefaultSeriesForGroupResponse")]
-        void RemoveDefaultSeriesForGroup(int animeGroupID);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetOtherAnimeCrossRef", ReplyAction="http://tempuri.org/IJMMServer/GetOtherAnimeCrossRefResponse")]
+        JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_Other GetOtherAnimeCrossRef(int animeID, int crossRefType);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/SearchTheMovieDB", ReplyAction="http://tempuri.org/IJMMServer/SearchTheMovieDBResponse")]
         System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_MovieDBMovieSearchResult> SearchTheMovieDB(string criteria);
@@ -16748,8 +16770,8 @@ namespace JMMClient.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/RemoveLinkAniDBTrakt", ReplyAction="http://tempuri.org/IJMMServer/RemoveLinkAniDBTraktResponse")]
         string RemoveLinkAniDBTrakt(int animeID);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetSeasonNumbersForTrakt", ReplyAction="http://tempuri.org/IJMMServer/GetSeasonNumbersForTraktResponse")]
-        System.Collections.Generic.List<int> GetSeasonNumbersForTrakt(string traktID);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/VoteAnimeRevoke", ReplyAction="http://tempuri.org/IJMMServer/VoteAnimeRevokeResponse")]
+        void VoteAnimeRevoke(int animeID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/SetWatchedStatusOnSeries", ReplyAction="http://tempuri.org/IJMMServer/SetWatchedStatusOnSeriesResponse")]
         string SetWatchedStatusOnSeries(int animeSeriesID, bool watchedStatus, int maxEpisodeNumber, int episodeType, int userID);
@@ -16832,8 +16854,8 @@ namespace JMMClient.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetOtherAnimeCrossRefWebCache", ReplyAction="http://tempuri.org/IJMMServer/GetOtherAnimeCrossRefWebCacheResponse")]
         JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_OtherResult GetOtherAnimeCrossRefWebCache(int animeID, int crossRefType);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetOtherAnimeCrossRef", ReplyAction="http://tempuri.org/IJMMServer/GetOtherAnimeCrossRefResponse")]
-        JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_Other GetOtherAnimeCrossRef(int animeID, int crossRefType);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetServerStatus", ReplyAction="http://tempuri.org/IJMMServer/GetServerStatusResponse")]
+        JMMClient.JMMServerBinary.Contract_ServerStatus GetServerStatus();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetServerSettings", ReplyAction="http://tempuri.org/IJMMServer/GetServerSettingsResponse")]
         JMMClient.JMMServerBinary.Contract_ServerSettings GetServerSettings();
@@ -16916,8 +16938,8 @@ namespace JMMClient.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/VoteAnime", ReplyAction="http://tempuri.org/IJMMServer/VoteAnimeResponse")]
         void VoteAnime(int animeID, decimal voteValue, int voteType);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/VoteAnimeRevoke", ReplyAction="http://tempuri.org/IJMMServer/VoteAnimeRevokeResponse")]
-        void VoteAnimeRevoke(int animeID);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetContinueWatchingFilter", ReplyAction="http://tempuri.org/IJMMServer/GetContinueWatchingFilterResponse")]
+        System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AnimeEpisode> GetContinueWatchingFilter(int userID, int maxRecords);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/RemoveLinkAniDBTvDBForAnime", ReplyAction="http://tempuri.org/IJMMServer/RemoveLinkAniDBTvDBForAnimeResponse")]
         string RemoveLinkAniDBTvDBForAnime(int animeID);
@@ -16999,9 +17021,6 @@ namespace JMMClient.JMMServerBinary {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetImportFolders", ReplyAction="http://tempuri.org/IJMMServer/GetImportFoldersResponse")]
         System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_ImportFolder> GetImportFolders();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetServerStatus", ReplyAction="http://tempuri.org/IJMMServer/GetServerStatusResponse")]
-        JMMClient.JMMServerBinary.Contract_ServerStatus GetServerStatus();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -17029,6 +17048,10 @@ namespace JMMClient.JMMServerBinary {
         
         public JMMServerClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public void ClearImagesQueue() {
+            base.Channel.ClearImagesQueue();
         }
         
         public void ClearGeneralQueue() {
@@ -17081,6 +17104,10 @@ namespace JMMClient.JMMServerBinary {
         
         public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDB_Episode> GetAniDBEpisodesForAnime(int animeID) {
             return base.Channel.GetAniDBEpisodesForAnime(animeID);
+        }
+        
+        public string RescanFile(int videoLocalID) {
+            return base.Channel.RescanFile(videoLocalID);
         }
         
         public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_BookmarkedAnime> GetAllBookmarkedAnime() {
@@ -17191,8 +17218,8 @@ namespace JMMClient.JMMServerBinary {
             base.Channel.ClearHasherQueue();
         }
         
-        public void ClearImagesQueue() {
-            base.Channel.ClearImagesQueue();
+        public void RemoveDefaultSeriesForGroup(int animeGroupID) {
+            base.Channel.RemoveDefaultSeriesForGroup(animeGroupID);
         }
         
         public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_TvDBLanguage> GetTvDBLanguages() {
@@ -17303,8 +17330,8 @@ namespace JMMClient.JMMServerBinary {
             return base.Channel.UpdateFileData(videoLocalID);
         }
         
-        public string RescanFile(int videoLocalID) {
-            return base.Channel.RescanFile(videoLocalID);
+        public System.Collections.Generic.List<int> GetSeasonNumbersForTrakt(string traktID) {
+            return base.Channel.GetSeasonNumbersForTrakt(traktID);
         }
         
         public string UpdateTraktData(string traktD) {
@@ -17415,8 +17442,8 @@ namespace JMMClient.JMMServerBinary {
             base.Channel.SetDefaultSeriesForGroup(animeGroupID, animeSeriesID);
         }
         
-        public void RemoveDefaultSeriesForGroup(int animeGroupID) {
-            base.Channel.RemoveDefaultSeriesForGroup(animeGroupID);
+        public JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_Other GetOtherAnimeCrossRef(int animeID, int crossRefType) {
+            return base.Channel.GetOtherAnimeCrossRef(animeID, crossRefType);
         }
         
         public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_MovieDBMovieSearchResult> SearchTheMovieDB(string criteria) {
@@ -17527,8 +17554,8 @@ namespace JMMClient.JMMServerBinary {
             return base.Channel.RemoveLinkAniDBTrakt(animeID);
         }
         
-        public System.Collections.Generic.List<int> GetSeasonNumbersForTrakt(string traktID) {
-            return base.Channel.GetSeasonNumbersForTrakt(traktID);
+        public void VoteAnimeRevoke(int animeID) {
+            base.Channel.VoteAnimeRevoke(animeID);
         }
         
         public string SetWatchedStatusOnSeries(int animeSeriesID, bool watchedStatus, int maxEpisodeNumber, int episodeType, int userID) {
@@ -17639,8 +17666,8 @@ namespace JMMClient.JMMServerBinary {
             return base.Channel.GetOtherAnimeCrossRefWebCache(animeID, crossRefType);
         }
         
-        public JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_Other GetOtherAnimeCrossRef(int animeID, int crossRefType) {
-            return base.Channel.GetOtherAnimeCrossRef(animeID, crossRefType);
+        public JMMClient.JMMServerBinary.Contract_ServerStatus GetServerStatus() {
+            return base.Channel.GetServerStatus();
         }
         
         public JMMClient.JMMServerBinary.Contract_ServerSettings GetServerSettings() {
@@ -17751,8 +17778,8 @@ namespace JMMClient.JMMServerBinary {
             base.Channel.VoteAnime(animeID, voteValue, voteType);
         }
         
-        public void VoteAnimeRevoke(int animeID) {
-            base.Channel.VoteAnimeRevoke(animeID);
+        public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AnimeEpisode> GetContinueWatchingFilter(int userID, int maxRecords) {
+            return base.Channel.GetContinueWatchingFilter(userID, maxRecords);
         }
         
         public string RemoveLinkAniDBTvDBForAnime(int animeID) {
@@ -17861,10 +17888,6 @@ namespace JMMClient.JMMServerBinary {
         
         public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_ImportFolder> GetImportFolders() {
             return base.Channel.GetImportFolders();
-        }
-        
-        public JMMClient.JMMServerBinary.Contract_ServerStatus GetServerStatus() {
-            return base.Channel.GetServerStatus();
         }
     }
 }
