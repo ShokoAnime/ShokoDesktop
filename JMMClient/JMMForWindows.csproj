@@ -95,40 +95,52 @@
     <Reference Include="AutomaticUpdaterWPF">
       <HintPath>..\..\..\..\..\..\Program Files (x86)\wyBuild\AutomaticUpdater\Microsoft .NET 4.0\AutomaticUpdaterWPF.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Data.v12.1">
-      <HintPath>C:\Program Files\JMM Desktop\DevExpress.Data.v12.1.dll</HintPath>
+    <Reference Include="DevExpress.Data.v12.2">
+      
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.PivotGrid.v12.1.Core">
-      <HintPath>C:\Program Files\JMM Desktop\DevExpress.PivotGrid.v12.1.Core.dll</HintPath>
+    <Reference Include="DevExpress.Printing.v12.2.Core">
+      
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Core.v12.1">
-      <HintPath>C:\Program Files\JMM Desktop\DevExpress.Xpf.Core.v12.1.dll</HintPath>
+    <Reference Include="DevExpress.PivotGrid.v12.2.Core">
+      
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Core.v12.1.Extensions">
-      <HintPath>C:\Program Files\JMM Desktop\DevExpress.Xpf.Core.v12.1.Extensions.dll</HintPath>
+    <Reference Include="DevExpress.Xpf.Core.v12.2">
+      
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Grid.v12.1">
-      <HintPath>C:\Program Files\JMM Desktop\DevExpress.Xpf.Grid.v12.1.dll</HintPath>
+    <Reference Include="DevExpress.Xpf.Core.v12.2.Extensions">
+      
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Grid.v12.1.Core">
-      <HintPath>C:\Program Files\JMM Desktop\DevExpress.Xpf.Grid.v12.1.Core.dll</HintPath>
+    <Reference Include="DevExpress.Xpf.Printing.v12.2.Core">
+      
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Layout.v12.1.Core">
-      <HintPath>C:\Program Files\JMM Desktop\DevExpress.Xpf.Layout.v12.1.Core.dll</HintPath>
+    <Reference Include="DevExpress.Xpf.Printing.v12.2">
+      
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Xpf.LayoutControl.v12.1">
-      <HintPath>C:\Program Files\JMM Desktop\DevExpress.Xpf.LayoutControl.v12.1.dll</HintPath>
+    <Reference Include="DevExpress.Xpf.Grid.v12.2">
+      
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Xpf.PivotGrid.v12.1">
-      <HintPath>C:\Program Files\JMM Desktop\DevExpress.Xpf.PivotGrid.v12.1.dll</HintPath>
+    <Reference Include="DevExpress.Xpf.Grid.v12.2.Core">
+      
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Layout.v12.2.Core">
+      
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.LayoutControl.v12.2">
+      
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.PivotGrid.v12.2">
+      
       <Private>True</Private>
     </Reference>
     <Reference Include="GongSolutions.Wpf.DragDrop">

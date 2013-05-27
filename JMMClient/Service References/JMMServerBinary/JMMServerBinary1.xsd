@@ -1167,6 +1167,13 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_IgnoreAnime" nillable="true" type="tns:Contract_IgnoreAnime" />
+  <xs:complexType name="Contract_CrossRef_AniDB_OtherResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
+      <xs:element minOccurs="0" name="CrossRefID" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_CrossRef_AniDB_OtherResult" nillable="true" type="tns:Contract_CrossRef_AniDB_OtherResult" />
   <xs:complexType name="ArrayOfContract_MovieDBMovieSearchResult">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_MovieDBMovieSearchResult" nillable="true" type="tns:Contract_MovieDBMovieSearchResult" />
@@ -1461,13 +1468,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_TVDBSeriesSearchResult" nillable="true" type="tns:Contract_TVDBSeriesSearchResult" />
-  <xs:complexType name="Contract_CrossRef_AniDB_OtherResult">
+  <xs:complexType name="ArrayOfContract_ImportFolder">
     <xs:sequence>
-      <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
-      <xs:element minOccurs="0" name="CrossRefID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_ImportFolder" nillable="true" type="tns:Contract_ImportFolder" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="Contract_CrossRef_AniDB_OtherResult" nillable="true" type="tns:Contract_CrossRef_AniDB_OtherResult" />
+  <xs:element name="ArrayOfContract_ImportFolder" nillable="true" type="tns:ArrayOfContract_ImportFolder" />
   <xs:complexType name="Contract_ServerStatus">
     <xs:sequence>
       <xs:element minOccurs="0" name="BanOrigin" nillable="true" type="xs:string" />
@@ -1637,10 +1643,4 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfContract_AniDB_AnimeDetailed" nillable="true" type="tns:ArrayOfContract_AniDB_AnimeDetailed" />
-  <xs:complexType name="ArrayOfContract_ImportFolder">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_ImportFolder" nillable="true" type="tns:Contract_ImportFolder" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_ImportFolder" nillable="true" type="tns:ArrayOfContract_ImportFolder" />
 </xs:schema>

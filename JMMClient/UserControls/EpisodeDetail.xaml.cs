@@ -146,7 +146,37 @@ namespace JMMClient.UserControls
 
 			btnTvDBLinkAdd.Click += new RoutedEventHandler(btnTvDBLinkAdd_Click);
 			btnTvDBLinkRemove.Click += new RoutedEventHandler(btnTvDBLinkRemove_Click);
+            btnUpdateEpisode.Click += new RoutedEventHandler(btnUpdateEpisode_Click);
 		}
+
+        void btnUpdateEpisode_Click(object sender, RoutedEventArgs e)
+        {
+            AnimeEpisodeVM ep = this.DataContext as AnimeEpisodeVM;
+
+            Window wdw = Window.GetWindow(this);
+
+            this.Cursor = Cursors.Wait;
+
+            try
+            {
+                string res = JMMServerVM.Instance.clientBinaryHTTP.UpdateEpisodeData(ep.AniDB_EpisodeID);
+                if (res.Length > 0)
+                {
+                    this.Cursor = Cursors.Arrow;
+                    Utils.ShowErrorMessage(res);
+                    return;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Arrow;
+            }
+        }
 
 		void btnTvDBLinkRemove_Click(object sender, RoutedEventArgs e)
 		{
@@ -574,6 +604,8 @@ namespace JMMClient.UserControls
 				this.Cursor = Cursors.Arrow;
 			}
 		}
+
+        
 
 		private void CommandBinding_ForceUpdate(object sender, ExecutedRoutedEventArgs e)
 		{

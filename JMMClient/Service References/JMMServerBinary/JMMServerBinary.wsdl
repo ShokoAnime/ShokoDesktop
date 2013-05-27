@@ -17,6 +17,15 @@
   <wsdl:binding name="BinaryBinding_IJMMServer" type="i0:IJMMServer">
     <wsp:PolicyReference URI="#BinaryBinding_IJMMServer_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ClearHasherQueue">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/ClearHasherQueue" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ClearImagesQueue">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/ClearImagesQueue" style="document" />
       <wsdl:input>
@@ -136,6 +145,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAniDBEpisodesForAnime">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAniDBEpisodesForAnime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFileData">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/UpdateFileData" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -386,8 +404,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ClearHasherQueue">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/ClearHasherQueue" style="document" />
+    <wsdl:operation name="SetDefaultSeriesForGroup">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/SetDefaultSeriesForGroup" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -638,8 +656,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="UpdateFileData">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/UpdateFileData" style="document" />
+    <wsdl:operation name="RemoveLinkAniDBTrakt">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/RemoveLinkAniDBTrakt" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -890,8 +908,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="SetDefaultSeriesForGroup">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/SetDefaultSeriesForGroup" style="document" />
+    <wsdl:operation name="GetOtherAnimeCrossRefWebCache">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetOtherAnimeCrossRefWebCache" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1142,8 +1160,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="RemoveLinkAniDBTrakt">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/RemoveLinkAniDBTrakt" style="document" />
+    <wsdl:operation name="VoteAnime">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/VoteAnime" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1394,8 +1412,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetOtherAnimeCrossRefWebCache">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetOtherAnimeCrossRefWebCache" style="document" />
+    <wsdl:operation name="GetImportFolders">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetImportFolders" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1646,8 +1664,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="VoteAnime">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/VoteAnime" style="document" />
+    <wsdl:operation name="UpdateEpisodeData">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/UpdateEpisodeData" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1891,15 +1909,6 @@
     </wsdl:operation>
     <wsdl:operation name="GetMyReleaseGroupsForAniDBEpisode">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetMyReleaseGroupsForAniDBEpisode" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetImportFolders">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetImportFolders" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
