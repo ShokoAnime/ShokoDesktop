@@ -96,51 +96,39 @@
       <HintPath>..\..\..\..\..\..\Program Files (x86)\wyBuild\AutomaticUpdater\Microsoft .NET 4.0\AutomaticUpdaterWPF.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Data.v12.2">
-      
       <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.Printing.v12.2.Core">
-      
       <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.PivotGrid.v12.2.Core">
-      
       <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.Xpf.Core.v12.2">
-      
       <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.Xpf.Core.v12.2.Extensions">
-      
       <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.Xpf.Printing.v12.2.Core">
-      
       <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.Xpf.Printing.v12.2">
-      
       <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.Xpf.Grid.v12.2">
-      
       <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.Xpf.Grid.v12.2.Core">
-      
       <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.Xpf.Layout.v12.2.Core">
-      
       <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.Xpf.LayoutControl.v12.2">
-      
       <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.Xpf.PivotGrid.v12.2">
-      
       <Private>True</Private>
     </Reference>
     <Reference Include="GongSolutions.Wpf.DragDrop">
@@ -2016,8 +2004,7 @@
     <PostBuildEvent>xcopy "$(TargetDir)*.dll" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y	
 xcopy "$(TargetDir)*.exe" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y
 xcopy "$(TargetDir)*.pdb" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y
-xcopy "$(TargetDir)*.manifest" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y
-</PostBuildEvent>
+xcopy "$(TargetDir)*.manifest" "C:\Projects\SVN\JMM\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

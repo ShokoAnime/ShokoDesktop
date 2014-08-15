@@ -654,9 +654,10 @@ namespace JMMClient
 							Height = 100
 						};
 
+                        
 						System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
 						{
-							NewEpisodes.Add(tile);
+                            NewEpisodes.Add(tile);
 						});
 					}
 				}
