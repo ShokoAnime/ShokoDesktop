@@ -86,9 +86,7 @@
                         </StackPanel>
                     </Button>
 
-                    <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="20,2,5,0" Grid.Column="2" VerticalAlignment="Center"/>
-                    <usercontrols:HyperLinkStandard Margin="0,0,20,0" VerticalAlignment="Center" DisplayText="Examples of how this is used"
-                                                                        URL="http://code.google.com/p/jmm/wiki/User_Manual_MyAnimeList#Links_from_AniDB_to_MAL"/>
+                    
                 </StackPanel>
 
             </StackPanel>
