@@ -49,10 +49,6 @@ namespace JMMClient.UserControls
 			btnSearchExistingTrakt.Click += new RoutedEventHandler(btnSearchExistingTrakt_Click);
 			btnSearchTrakt.Click += new RoutedEventHandler(btnSearchTrakt_Click);
 
-			btnDeleteTraktLink.Click += new RoutedEventHandler(btnDeleteTraktLink_Click);
-			btnSwitchTraktSeason.Click += new RoutedEventHandler(btnSwitchTraktSeason_Click);
-			btnUpdateTraktInfo.Click += new RoutedEventHandler(btnUpdateTraktInfo_Click);
-
 			btnSearchExistingMAL.Click += new RoutedEventHandler(btnSearchExistingMAL_Click);
 			btnSearchMAL.Click += new RoutedEventHandler(btnSearchMAL_Click);
 		}
@@ -158,266 +154,57 @@ namespace JMMClient.UserControls
 			}
 		}
 
-		private void CommandBinding_DeleteMALLink(object sender, ExecutedRoutedEventArgs e)
-		{
-			object obj = e.Parameter;
-			if (obj == null) return;
+        private void CommandBinding_DeleteMALLink(object sender, ExecutedRoutedEventArgs e)
+        {
+            object obj = e.Parameter;
+            if (obj == null) return;
 
-			try
-			{
-				AniDB_AnimeVM anime = this.DataContext as AniDB_AnimeVM;
-				if (anime == null) return;
+            try
+            {
+                AniDB_AnimeVM anime = this.DataContext as AniDB_AnimeVM;
+                if (anime == null) return;
 
-				if (obj.GetType() == typeof(CrossRef_AniDB_MALVM))
-				{
-					this.Cursor = Cursors.Wait;
-					CrossRef_AniDB_MALVM malLink = obj as CrossRef_AniDB_MALVM;
+                if (obj.GetType() == typeof(CrossRef_AniDB_MALVM))
+                {
+                    this.Cursor = Cursors.Wait;
+                    CrossRef_AniDB_MALVM malLink = obj as CrossRef_AniDB_MALVM;
 
-					// prompt to select details
-					Window wdw = Window.GetWindow(this);
+                    // prompt to select details
+                    Window wdw = Window.GetWindow(this);
 
-					string msg = string.Format("Are you sure you want to delete this link?");
-					MessageBoxResult result = MessageBox.Show(msg, "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    string msg = string.Format("Are you sure you want to delete this link?");
+                    MessageBoxResult result = MessageBox.Show(msg, "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
-					if (result == MessageBoxResult.Yes)
-					{
-						this.Cursor = Cursors.Wait;
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        this.Cursor = Cursors.Wait;
 
-						string res = JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBMAL(anime.AnimeID, malLink.StartEpisodeType, malLink.StartEpisodeNumber);
-						if (res.Length > 0)
-							MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-						else
-						{
-							// update info
-							RefreshData();
-						}
+                        string res = JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBMAL(anime.AnimeID, malLink.StartEpisodeType, malLink.StartEpisodeNumber);
+                        if (res.Length > 0)
+                            MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        else
+                        {
+                            // update info
+                            RefreshData();
+                        }
 
-						this.Cursor = Cursors.Arrow;
-					}
-				}
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-			finally
-			{
-				this.Cursor = Cursors.Arrow;
-			}
-		}
+                        this.Cursor = Cursors.Arrow;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Arrow;
+            }
+        }
 
-		private void CommandBinding_ToggleAutoLinkTvDB(object sender, ExecutedRoutedEventArgs e)
-		{
-			object obj = e.Parameter;
-			if (obj == null) return;
+		
 
-			try
-			{
-				AniDB_AnimeVM anime = this.DataContext as AniDB_AnimeVM;
-				if (anime == null) return;
-
-				this.Cursor = Cursors.Wait;
-
-				anime.IsTvDBLinkDisabled = !anime.IsTvDBLinkDisabled;
-				anime.UpdateDisableExternalLinksFlag();
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-			finally
-			{
-				this.Cursor = Cursors.Arrow;
-			}
-		}
-
-		private void CommandBinding_ReportTvDBLink(object sender, ExecutedRoutedEventArgs e)
-		{
-			object obj = e.Parameter;
-			if (obj == null) return;
-
-			try
-			{
-				if (obj.GetType() == typeof(CrossRef_AniDB_TvDBVMV2))
-				{
-					CrossRef_AniDB_TvDBVMV2 link = obj as CrossRef_AniDB_TvDBVMV2;
-
-					AniDB_AnimeVM anime = this.DataContext as AniDB_AnimeVM;
-					if (anime == null) return;
-
-					this.Cursor = Cursors.Wait;
-
-				}
-
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-			finally
-			{
-				this.Cursor = Cursors.Arrow;
-			}
-		}
-
-		private void CommandBinding_EditTvDBLink(object sender, ExecutedRoutedEventArgs e)
-		{
-			object obj = e.Parameter;
-			if (obj == null) return;
-
-			try
-			{
-				if (obj.GetType() == typeof(CrossRef_AniDB_TvDBVMV2))
-				{
-					CrossRef_AniDB_TvDBVMV2 link = obj as CrossRef_AniDB_TvDBVMV2;
-
-					AniDB_AnimeVM anime = this.DataContext as AniDB_AnimeVM;
-					if (anime == null) return;
-
-					Window wdw = Window.GetWindow(this);
-
-					this.Cursor = Cursors.Wait;
-					SelectTvDBSeasonForm frm = new SelectTvDBSeasonForm();
-					frm.Owner = wdw;
-					//TODO
-					frm.Init(anime.AnimeID, anime.FormattedTitle, (EpisodeType)link.AniDBStartEpisodeType, link.AniDBStartEpisodeNumber, link.TvDBID,
-						link.TvDBSeasonNumber, link.TvDBStartEpisodeNumber, link.TvDBTitle, anime, link.CrossRef_AniDB_TvDBV2ID);
-					bool? result = frm.ShowDialog();
-					if (result.Value)
-					{
-						// update info
-						RefreshData();
-					}
-				}
-
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-			finally
-			{
-				this.Cursor = Cursors.Arrow;
-			}
-		}
-
-		private void CommandBinding_DeleteTvDBLink(object sender, ExecutedRoutedEventArgs e)
-		{
-			object obj = e.Parameter;
-			if (obj == null) return;
-
-			try
-			{
-				if (obj.GetType() == typeof(CrossRef_AniDB_TvDBVMV2))
-				{
-					CrossRef_AniDB_TvDBVMV2 link = obj as CrossRef_AniDB_TvDBVMV2;
-
-					AniDB_AnimeVM anime = this.DataContext as AniDB_AnimeVM;
-					if (anime == null) return;
-
-					this.Cursor = Cursors.Wait;
-
-					Window wdw = Window.GetWindow(this);
-
-					string msg = string.Format("Are you sure you want to delete this link?");
-					MessageBoxResult result = MessageBox.Show(msg, "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-
-					if (result == MessageBoxResult.Yes)
-					{
-						this.Cursor = Cursors.Wait;
-						string res = JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBTvDB(link.AnimeID, link.AniDBStartEpisodeType, link.AniDBStartEpisodeNumber,
-							link.TvDBID, link.TvDBSeasonNumber, link.TvDBStartEpisodeNumber);
-						if (res.Length > 0)
-							MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-						else
-						{
-							// update info
-							RefreshData();
-						}
-
-						this.Cursor = Cursors.Arrow;
-					}
-
-				}
-
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-			finally
-			{
-				this.Cursor = Cursors.Arrow;
-			}
-		}
-
-		private void CommandBinding_UpdateTvDBLink(object sender, ExecutedRoutedEventArgs e)
-		{
-			object obj = e.Parameter;
-			if (obj == null) return;
-
-			try
-			{
-				if (obj.GetType() == typeof(CrossRef_AniDB_TvDBVMV2))
-				{
-					AniDB_AnimeVM anime = this.DataContext as AniDB_AnimeVM;
-					if (anime == null) return;
-
-					this.Cursor = Cursors.Wait;
-
-					foreach (CrossRef_AniDB_TvDBVMV2 xref in AniDB_AnimeCrossRefs.CrossRef_AniDB_TvDBV2)
-						JMMServerVM.Instance.clientBinaryHTTP.UpdateTvDBData(xref.TvDBID);
-
-					anime.ClearTvDBData();
-
-					// find the series for this anime
-					foreach (AnimeSeriesVM ser in MainListHelperVM.Instance.AllSeries)
-					{
-						if (anime.AnimeID == ser.AniDB_ID)
-						{
-							MainListHelperVM.Instance.UpdateHeirarchy(ser);
-							break;
-						}
-					}
-
-					RefreshData();
-				}
-
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-			finally
-			{
-				this.Cursor = Cursors.Arrow;
-			}
-		}
-
-		private void CommandBinding_ToggleAutoLinkTrakt(object sender, ExecutedRoutedEventArgs e)
-		{
-			object obj = e.Parameter;
-			if (obj == null) return;
-
-			try
-			{
-				AniDB_AnimeVM anime = this.DataContext as AniDB_AnimeVM;
-				if (anime == null) return;
-
-				this.Cursor = Cursors.Wait;
-
-				anime.IsTraktLinkDisabled = !anime.IsTraktLinkDisabled;
-				anime.UpdateDisableExternalLinksFlag();
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-			finally
-			{
-				this.Cursor = Cursors.Arrow;
-			}
-		}
+		
 
 		private void CommandBinding_ToggleAutoLinkMovieDB(object sender, ExecutedRoutedEventArgs e)
 		{
@@ -473,99 +260,192 @@ namespace JMMClient.UserControls
 
 		#region Trakt
 
-		void btnUpdateTraktInfo_Click(object sender, RoutedEventArgs e)
-		{
-			try
-			{
-				AniDB_AnimeVM anime = this.DataContext as AniDB_AnimeVM;
-				if (anime == null) return;
+        private void CommandBinding_ReportTraktLink(object sender, ExecutedRoutedEventArgs e)
+        {
+            object obj = e.Parameter;
+            if (obj == null) return;
 
-				this.Cursor = Cursors.Wait;
-				JMMServerVM.Instance.clientBinaryHTTP.UpdateTraktData(AniDB_AnimeCrossRefs.CrossRef_AniDB_Trakt.TraktID);
+            try
+            {
+                if (obj.GetType() == typeof(CrossRef_AniDB_TvDBVMV2))
+                {
+                    CrossRef_AniDB_TraktVMV2 link = obj as CrossRef_AniDB_TraktVMV2;
 
-				// find the series for this anime
-				foreach (AnimeSeriesVM ser in MainListHelperVM.Instance.AllSeries)
-				{
-					if (anime.AnimeID == ser.AniDB_ID)
-					{
-						MainListHelperVM.Instance.UpdateHeirarchy(ser);
-						break;
-					}
-				}
+                    AniDB_AnimeVM anime = this.DataContext as AniDB_AnimeVM;
+                    if (anime == null) return;
 
-				RefreshData();
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-			finally
-			{
-				this.Cursor = Cursors.Arrow;
-			}
-		}
+                    this.Cursor = Cursors.Wait;
 
-		void btnSwitchTraktSeason_Click(object sender, RoutedEventArgs e)
-		{
-			try
-			{
-				AniDB_AnimeVM anime = this.DataContext as AniDB_AnimeVM;
-				if (anime == null) return;
+                }
 
-				Window wdw = Window.GetWindow(this);
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Arrow;
+            }
+        }
 
-				this.Cursor = Cursors.Wait;
-				SelectTraktSeasonForm frm = new SelectTraktSeasonForm();
-				frm.Owner = wdw;
-				frm.Init(anime.AnimeID, anime.FormattedTitle, AniDB_AnimeCrossRefs.CrossRef_AniDB_Trakt.TraktID,
-					AniDB_AnimeCrossRefs.CrossRef_AniDB_Trakt.TraktSeasonNumber, AniDB_AnimeCrossRefs.TraktShow.Title);
-				bool? result = frm.ShowDialog();
-				if (result.Value)
-				{
-					// update info
-					RefreshData();
-				}
+        private void CommandBinding_DeleteTraktLink(object sender, ExecutedRoutedEventArgs e)
+        {
+            object obj = e.Parameter;
+            if (obj == null) return;
 
-				this.Cursor = Cursors.Arrow;
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-		}
+            try
+            {
+                if (obj.GetType() == typeof(CrossRef_AniDB_TraktVMV2))
+                {
+                    CrossRef_AniDB_TraktVMV2 link = obj as CrossRef_AniDB_TraktVMV2;
 
-		void btnDeleteTraktLink_Click(object sender, RoutedEventArgs e)
-		{
-			try
-			{
-				AniDB_AnimeVM anime = this.DataContext as AniDB_AnimeVM;
-				if (anime == null) return;
+                    AniDB_AnimeVM anime = this.DataContext as AniDB_AnimeVM;
+                    if (anime == null) return;
 
-				Window wdw = Window.GetWindow(this);
+                    this.Cursor = Cursors.Wait;
 
-				string msg = string.Format("Are you sure you want to delete this link?");
-				MessageBoxResult result = MessageBox.Show(msg, "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    Window wdw = Window.GetWindow(this);
 
-				if (result == MessageBoxResult.Yes)
-				{
-					this.Cursor = Cursors.Wait;
-					string res = JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBTrakt(anime.AnimeID);
-					if (res.Length > 0)
-						MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-					else
-					{
-						// update info
-						RefreshData();
-					}
+                    string msg = string.Format("Are you sure you want to delete this link?");
+                    MessageBoxResult result = MessageBox.Show(msg, "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
-					this.Cursor = Cursors.Arrow;
-				}
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-		}
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        this.Cursor = Cursors.Wait;
+                        string res = JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBTrakt(link.AnimeID, link.AniDBStartEpisodeType, link.AniDBStartEpisodeNumber,
+                            link.TraktID, link.TraktSeasonNumber, link.TraktStartEpisodeNumber);
+                        if (res.Length > 0)
+                            MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        else
+                        {
+                            // update info
+                            RefreshData();
+                        }
+
+                        this.Cursor = Cursors.Arrow;
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Arrow;
+            }
+        }
+
+        private void CommandBinding_EditTraktLink(object sender, ExecutedRoutedEventArgs e)
+        {
+            object obj = e.Parameter;
+            if (obj == null) return;
+
+            try
+            {
+                if (obj.GetType() == typeof(CrossRef_AniDB_TraktVMV2))
+                {
+                    CrossRef_AniDB_TraktVMV2 link = obj as CrossRef_AniDB_TraktVMV2;
+
+                    AniDB_AnimeVM anime = this.DataContext as AniDB_AnimeVM;
+                    if (anime == null) return;
+
+                    Window wdw = Window.GetWindow(this);
+
+                    this.Cursor = Cursors.Wait;
+                    SelectTraktSeasonForm frm = new SelectTraktSeasonForm();
+                    frm.Owner = wdw;
+                    frm.Init(anime.AnimeID, anime.FormattedTitle, (EpisodeType)link.AniDBStartEpisodeType, link.AniDBStartEpisodeNumber, link.TraktID,
+                        link.TraktSeasonNumber, link.TraktStartEpisodeNumber, link.TraktTitle, anime, link.CrossRef_AniDB_TraktV2ID);
+                    bool? result = frm.ShowDialog();
+                    if (result.Value)
+                    {
+                        // update info
+                        RefreshData();
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Arrow;
+            }
+        }
+
+        private void CommandBinding_UpdateTraktLink(object sender, ExecutedRoutedEventArgs e)
+        {
+            object obj = e.Parameter;
+            if (obj == null) return;
+
+            try
+            {
+                if (obj.GetType() == typeof(CrossRef_AniDB_TraktVMV2))
+                {
+                    AniDB_AnimeVM anime = this.DataContext as AniDB_AnimeVM;
+                    if (anime == null) return;
+
+                    this.Cursor = Cursors.Wait;
+
+                    foreach (CrossRef_AniDB_TraktVMV2 xref in AniDB_AnimeCrossRefs.CrossRef_AniDB_TraktV2)
+                        JMMServerVM.Instance.clientBinaryHTTP.UpdateTraktData(xref.TraktID);
+
+                    anime.ClearTraktData();
+
+                    // find the series for this anime
+                    foreach (AnimeSeriesVM ser in MainListHelperVM.Instance.AllSeries)
+                    {
+                        if (anime.AnimeID == ser.AniDB_ID)
+                        {
+                            MainListHelperVM.Instance.UpdateHeirarchy(ser);
+                            break;
+                        }
+                    }
+
+                    RefreshData();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Arrow;
+            }
+        }
+
+        private void CommandBinding_ToggleAutoLinkTrakt(object sender, ExecutedRoutedEventArgs e)
+        {
+            object obj = e.Parameter;
+            if (obj == null) return;
+
+            try
+            {
+                AniDB_AnimeVM anime = this.DataContext as AniDB_AnimeVM;
+                if (anime == null) return;
+
+                this.Cursor = Cursors.Wait;
+
+                anime.IsTraktLinkDisabled = !anime.IsTraktLinkDisabled;
+                anime.UpdateDisableExternalLinksFlag();
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Arrow;
+            }
+        }
 
 		void btnSearchTrakt_Click(object sender, RoutedEventArgs e)
 		{
@@ -574,7 +454,7 @@ namespace JMMClient.UserControls
 
 		void btnSearchExistingTrakt_Click(object sender, RoutedEventArgs e)
 		{
-			SearchTrakt(AniDB_AnimeCrossRefs.CrossRef_AniDB_Trakt.TraktID);
+            SearchTrakt("");
 		}
 
 		private void SearchTrakt(string ExistingTraktID)
@@ -589,7 +469,7 @@ namespace JMMClient.UserControls
 				this.Cursor = Cursors.Wait;
 				SearchTraktForm frm = new SearchTraktForm();
 				frm.Owner = wdw;
-				frm.Init(anime.AnimeID, anime.FormattedTitle, anime.FormattedTitle, ExistingTraktID);
+                frm.Init(anime.AnimeID, anime.FormattedTitle, anime.FormattedTitle, ExistingTraktID, anime);
 				bool? result = frm.ShowDialog();
 				if (result.Value)
 				{
@@ -647,6 +527,193 @@ namespace JMMClient.UserControls
 			}
 		}
 
+        private void CommandBinding_ToggleAutoLinkTvDB(object sender, ExecutedRoutedEventArgs e)
+        {
+            object obj = e.Parameter;
+            if (obj == null) return;
+
+            try
+            {
+                AniDB_AnimeVM anime = this.DataContext as AniDB_AnimeVM;
+                if (anime == null) return;
+
+                this.Cursor = Cursors.Wait;
+
+                anime.IsTvDBLinkDisabled = !anime.IsTvDBLinkDisabled;
+                anime.UpdateDisableExternalLinksFlag();
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Arrow;
+            }
+        }
+
+        private void CommandBinding_ReportTvDBLink(object sender, ExecutedRoutedEventArgs e)
+        {
+            object obj = e.Parameter;
+            if (obj == null) return;
+
+            try
+            {
+                if (obj.GetType() == typeof(CrossRef_AniDB_TvDBVMV2))
+                {
+                    CrossRef_AniDB_TvDBVMV2 link = obj as CrossRef_AniDB_TvDBVMV2;
+
+                    AniDB_AnimeVM anime = this.DataContext as AniDB_AnimeVM;
+                    if (anime == null) return;
+
+                    this.Cursor = Cursors.Wait;
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Arrow;
+            }
+        }
+
+        private void CommandBinding_EditTvDBLink(object sender, ExecutedRoutedEventArgs e)
+        {
+            object obj = e.Parameter;
+            if (obj == null) return;
+
+            try
+            {
+                if (obj.GetType() == typeof(CrossRef_AniDB_TvDBVMV2))
+                {
+                    CrossRef_AniDB_TvDBVMV2 link = obj as CrossRef_AniDB_TvDBVMV2;
+
+                    AniDB_AnimeVM anime = this.DataContext as AniDB_AnimeVM;
+                    if (anime == null) return;
+
+                    Window wdw = Window.GetWindow(this);
+
+                    this.Cursor = Cursors.Wait;
+                    SelectTvDBSeasonForm frm = new SelectTvDBSeasonForm();
+                    frm.Owner = wdw;
+                    //TODO
+                    frm.Init(anime.AnimeID, anime.FormattedTitle, (EpisodeType)link.AniDBStartEpisodeType, link.AniDBStartEpisodeNumber, link.TvDBID,
+                        link.TvDBSeasonNumber, link.TvDBStartEpisodeNumber, link.TvDBTitle, anime, link.CrossRef_AniDB_TvDBV2ID);
+                    bool? result = frm.ShowDialog();
+                    if (result.Value)
+                    {
+                        // update info
+                        RefreshData();
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Arrow;
+            }
+        }
+
+        private void CommandBinding_DeleteTvDBLink(object sender, ExecutedRoutedEventArgs e)
+        {
+            object obj = e.Parameter;
+            if (obj == null) return;
+
+            try
+            {
+                if (obj.GetType() == typeof(CrossRef_AniDB_TvDBVMV2))
+                {
+                    CrossRef_AniDB_TvDBVMV2 link = obj as CrossRef_AniDB_TvDBVMV2;
+
+                    AniDB_AnimeVM anime = this.DataContext as AniDB_AnimeVM;
+                    if (anime == null) return;
+
+                    this.Cursor = Cursors.Wait;
+
+                    Window wdw = Window.GetWindow(this);
+
+                    string msg = string.Format("Are you sure you want to delete this link?");
+                    MessageBoxResult result = MessageBox.Show(msg, "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        this.Cursor = Cursors.Wait;
+                        string res = JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBTvDB(link.AnimeID, link.AniDBStartEpisodeType, link.AniDBStartEpisodeNumber,
+                            link.TvDBID, link.TvDBSeasonNumber, link.TvDBStartEpisodeNumber);
+                        if (res.Length > 0)
+                            MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        else
+                        {
+                            // update info
+                            RefreshData();
+                        }
+
+                        this.Cursor = Cursors.Arrow;
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Arrow;
+            }
+        }
+
+        private void CommandBinding_UpdateTvDBLink(object sender, ExecutedRoutedEventArgs e)
+        {
+            object obj = e.Parameter;
+            if (obj == null) return;
+
+            try
+            {
+                if (obj.GetType() == typeof(CrossRef_AniDB_TvDBVMV2))
+                {
+                    AniDB_AnimeVM anime = this.DataContext as AniDB_AnimeVM;
+                    if (anime == null) return;
+
+                    this.Cursor = Cursors.Wait;
+
+                    foreach (CrossRef_AniDB_TvDBVMV2 xref in AniDB_AnimeCrossRefs.CrossRef_AniDB_TvDBV2)
+                        JMMServerVM.Instance.clientBinaryHTTP.UpdateTvDBData(xref.TvDBID);
+
+                    anime.ClearTvDBData();
+
+                    // find the series for this anime
+                    foreach (AnimeSeriesVM ser in MainListHelperVM.Instance.AllSeries)
+                    {
+                        if (anime.AnimeID == ser.AniDB_ID)
+                        {
+                            MainListHelperVM.Instance.UpdateHeirarchy(ser);
+                            break;
+                        }
+                    }
+
+                    RefreshData();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Arrow;
+            }
+        }
 
 		#endregion
 
@@ -757,7 +824,7 @@ namespace JMMClient.UserControls
 				JMMServerBinary.Contract_AniDB_AnimeCrossRefs xrefDetails = JMMServerVM.Instance.clientBinaryHTTP.GetCrossRefDetails(anime.AnimeID);
 				if (xrefDetails == null) return;
 
-				AniDB_AnimeCrossRefs = new AniDB_AnimeCrossRefsVM();
+                AniDB_AnimeCrossRefs = new AniDB_AnimeCrossRefsVM();
 				AniDB_AnimeCrossRefs.Populate(xrefDetails);
 
 				MainListHelperVM.Instance.UpdateAnime(anime.AnimeID);

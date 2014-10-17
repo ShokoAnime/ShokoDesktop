@@ -8,6 +8,7 @@ namespace JMMClient.ViewModel
 	public class Trakt_ShoutPost
 	{
 		public int AnimeID { get; set; }
+        public string TraktID { get; set; }
 		public string ShoutText { get; set; }
 		public bool Spoiler { get; set; }
 	}

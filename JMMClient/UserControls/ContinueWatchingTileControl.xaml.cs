@@ -211,7 +211,7 @@ namespace JMMClient.UserControls
 			string msg = "";
 			try
 			{
-				JMMServerVM.Instance.clientBinaryHTTP.PostShoutShow(shout.AnimeID, shout.ShoutText, shout.Spoiler, ref msg);
+				JMMServerVM.Instance.clientBinaryHTTP.PostShoutShow(shout.TraktID, shout.ShoutText, shout.Spoiler, ref msg);
 			}
 			catch (Exception ex)
 			{
@@ -249,14 +249,51 @@ namespace JMMClient.UserControls
 
 			btnSubmitShout.IsEnabled = false;
 
-			this.Cursor = Cursors.Wait;
+            if (animeSeries.AniDB_Anime.traktSummary != null)
+            {
+                string traktID = string.Empty;
 
-			Trakt_ShoutPost shout = new Trakt_ShoutPost();
-			shout.AnimeID = animeSeries.AniDB_ID;
-			shout.ShoutText = shoutText;
-			shout.Spoiler = chkSpoiler.IsChecked.Value;
+                // check to  see if this series is linked to more than one Trakt series
+                if (animeSeries.AniDB_Anime.traktSummary.traktDetails == null ||
+                    animeSeries.AniDB_Anime.traktSummary.traktDetails.Count == 0)
+                {
+                    Utils.ShowErrorMessage(string.Format("Cannot shout where a series does not have a Trakt show linked"));
+                    txtShoutNew.Focus();
+                    return;
+                }
 
-			postShoutWorker.RunWorkerAsync(shout);
+                // check to  see if this series is linked to more than one Trakt series
+                if (animeSeries.AniDB_Anime.traktSummary.traktDetails != null &&
+                    animeSeries.AniDB_Anime.traktSummary.traktDetails.Count > 1)
+                {
+                    Utils.ShowErrorMessage(string.Format("Cannot shout where a series has more than one Trakt show linked"));
+                    txtShoutNew.Focus();
+                    return;
+                }
+
+                if (animeSeries.AniDB_Anime.traktSummary.traktDetails != null &&
+                    animeSeries.AniDB_Anime.traktSummary.traktDetails.Count == 1)
+                {
+
+                    this.Cursor = Cursors.Wait;
+
+                    foreach (KeyValuePair<string, TraktDetails> kvp in animeSeries.AniDB_Anime.traktSummary.traktDetails)
+                    { traktID = kvp.Key; }
+
+                    Trakt_ShoutPost shout = new Trakt_ShoutPost();
+                    shout.TraktID = traktID;
+                    shout.AnimeID = animeSeries.AniDB_ID;
+                    shout.ShoutText = shoutText;
+                    shout.Spoiler = chkSpoiler.IsChecked.Value;
+
+                    postShoutWorker.RunWorkerAsync(shout);
+                }
+            }
+            else
+            {
+                Utils.ShowErrorMessage(string.Format("Cannot shout where a series does not have a Trakt show linked"));
+                txtShoutNew.Focus();
+            }
 		}
 
 		void btnRefreshShouts_Click(object sender, RoutedEventArgs e)

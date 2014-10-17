@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using JMMClient.ViewModel;
 using NLog;
 
 namespace JMMClient.Forms
@@ -19,7 +20,12 @@ namespace JMMClient.Forms
 	/// </summary>
 	public partial class SelectTraktSeasonForm : Window
 	{
-		private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private AniDB_AnimeVM Anime = null;
+        private List<AniDB_EpisodeVM> AniDBEpisodes = null;
+        private bool FirstLoad = true;
+        private int? CrossRef_AniDB_TraktV2ID = null;
+        private TraktDetails traktDetails = null;
 
 		public static readonly DependencyProperty AnimeIDProperty = DependencyProperty.Register("AnimeID",
 			typeof(int), typeof(SelectTraktSeasonForm), new UIPropertyMetadata(0, null));
@@ -38,6 +44,24 @@ namespace JMMClient.Forms
 			get { return (string)GetValue(AnimeNameProperty); }
 			set { SetValue(AnimeNameProperty, value); }
 		}
+
+        public static readonly DependencyProperty AnimeEpisodeTypeProperty = DependencyProperty.Register("AnimeEpisodeType",
+            typeof(int), typeof(SelectTraktSeasonForm), new UIPropertyMetadata(0, null));
+
+        public int AnimeEpisodeType
+        {
+            get { return (int)GetValue(AnimeEpisodeTypeProperty); }
+            set { SetValue(AnimeEpisodeTypeProperty, value); }
+        }
+
+        public static readonly DependencyProperty AnimeEpisodeNumberProperty = DependencyProperty.Register("AnimeEpisodeNumber",
+            typeof(int), typeof(SelectTraktSeasonForm), new UIPropertyMetadata(0, null));
+
+        public int AnimeEpisodeNumber
+        {
+            get { return (int)GetValue(AnimeEpisodeNumberProperty); }
+            set { SetValue(AnimeEpisodeNumberProperty, value); }
+        }
 
 		public static readonly DependencyProperty AnimeURLProperty = DependencyProperty.Register("AnimeURL",
 			typeof(string), typeof(SelectTraktSeasonForm), new UIPropertyMetadata("", null));
@@ -66,6 +90,15 @@ namespace JMMClient.Forms
 			set { SetValue(TraktSeasonProperty, value); }
 		}
 
+        public static readonly DependencyProperty TraktEpisodeNumberProperty = DependencyProperty.Register("TraktEpisodeNumber",
+            typeof(int), typeof(SelectTraktSeasonForm), new UIPropertyMetadata(0, null));
+
+        public int TraktEpisodeNumber
+        {
+            get { return (int)GetValue(TraktEpisodeNumberProperty); }
+            set { SetValue(TraktEpisodeNumberProperty, value); }
+        }
+
 		public static readonly DependencyProperty TraktSeriesNameProperty = DependencyProperty.Register("TraktSeriesName",
 			typeof(string), typeof(SelectTraktSeasonForm), new UIPropertyMetadata("", null));
 
@@ -84,6 +117,15 @@ namespace JMMClient.Forms
 			set { SetValue(TraktURLProperty, value); }
 		}
 
+        public static readonly DependencyProperty SelectedEpisodeProperty = DependencyProperty.Register("SelectedEpisode",
+            typeof(Trakt_EpisodeVM), typeof(SelectTraktSeasonForm), new UIPropertyMetadata(null, null));
+
+        public Trakt_EpisodeVM SelectedEpisode
+        {
+            get { return (Trakt_EpisodeVM)GetValue(SelectedEpisodeProperty); }
+            set { SetValue(SelectedEpisodeProperty, value); }
+        }
+
 		public SelectTraktSeasonForm()
 		{
 			InitializeComponent();
@@ -96,24 +138,35 @@ namespace JMMClient.Forms
 		{
 			try
 			{
-				if (cboSeasonNumber.Items.Count == 0)
-				{
-					MessageBox.Show("No seasons available, check the Trakt ID again", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-					return;
-				}
+                if (cboSeasonNumber.Items.Count == 0)
+                {
+                    MessageBox.Show("No seasons available, check the Trakt ID again", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
 
-				this.Cursor = Cursors.Wait;
+                AniDB_EpisodeVM aniEp = cboAniDBEpisodeNumber.SelectedItem as AniDB_EpisodeVM;
+                AnimeEpisodeNumber = aniEp.EpisodeNumber;
 
-				TraktSeason = int.Parse(cboSeasonNumber.SelectedItem.ToString());
+                Trakt_EpisodeVM traktep = cboEpisodeNumber.SelectedItem as Trakt_EpisodeVM;
+                TraktEpisodeNumber = traktep.EpisodeNumber;
 
-				string res = JMMServerVM.Instance.clientBinaryHTTP.LinkAniDBTrakt(AnimeID, TraktID, TraktSeason);
-				if (res.Length > 0)
-					MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-				else
-				{
-					this.DialogResult = true;
-					this.Close();
-				}
+                int aniEpType = (int)EpisodeType.Episode;
+                if (cboEpisodeType.SelectedIndex == 1) aniEpType = (int)EpisodeType.Special;
+
+                AnimeEpisodeType = aniEpType;
+                TraktSeason = int.Parse(cboSeasonNumber.SelectedItem.ToString());
+
+                this.Cursor = Cursors.Wait;
+
+                string res = JMMServerVM.Instance.clientBinaryHTTP.LinkAniDBTrakt(AnimeID, AnimeEpisodeType, AnimeEpisodeNumber,
+                    TraktID, TraktSeason, TraktEpisodeNumber, CrossRef_AniDB_TraktV2ID);
+                if (res.Length > 0)
+                    MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                else
+                {
+                    this.DialogResult = true;
+                    this.Close();
+                }	
 			}
 			catch (Exception ex)
 			{
@@ -131,38 +184,154 @@ namespace JMMClient.Forms
 			this.Close();
 		}
 
-		public void Init(int animeID, string animeName, string traktID, int traktSeason, string trakSeriesName)
+        public void Init(int animeID, string animeName, EpisodeType aniEpType, int aniEpNumber, string traktID, int traktSeason, int traktEpNumber, string trakSeriesName,
+            AniDB_AnimeVM anime, int? crossRef_AniDB_TraktV2ID)
 		{
-			AnimeID = animeID;
-			AnimeName = animeName;
-			TraktID = traktID;
-			TraktSeason = traktSeason;
-			TraktSeriesName = trakSeriesName;
+            Anime = anime;
+            AnimeID = animeID;
+            AnimeName = animeName;
+            AnimeEpisodeType = (int)aniEpType;
+            AnimeEpisodeNumber = aniEpNumber;
+            TraktID = traktID;
+            TraktSeason = traktSeason;
+            TraktEpisodeNumber = traktEpNumber;
+            TraktSeriesName = trakSeriesName;
+            CrossRef_AniDB_TraktV2ID = crossRef_AniDB_TraktV2ID;
 
 			AnimeURL = string.Format(Constants.URLS.AniDB_Series, AnimeID);
 			TraktURL = string.Format(Constants.URLS.Trakt_Series, TraktID);
 
-			// get the seasons
+            bool hasSpecials = false;
+            AniDBEpisodes = new List<AniDB_EpisodeVM>();
+            List<JMMClient.JMMServerBinary.Contract_AniDB_Episode> contracts = JMMServerVM.Instance.clientBinaryHTTP.GetAniDBEpisodesForAnime(AnimeID);
+            foreach (JMMClient.JMMServerBinary.Contract_AniDB_Episode contract in contracts)
+            {
+                AniDBEpisodes.Add(new AniDB_EpisodeVM(contract));
+                if (contract.EpisodeType == (int)EpisodeType.Special) hasSpecials = true;
+            }
 
-			try
-			{
-				cboSeasonNumber.Items.Clear();
-				List<int> seasons = JMMServerVM.Instance.clientBinaryHTTP.GetSeasonNumbersForTrakt(traktID);
-				int i = 0;
-				int idx = 0;
-				foreach (int season in seasons)
-				{
-					cboSeasonNumber.Items.Add(season.ToString());
-					if (season == traktSeason) idx = i;
-					i++;
-				}
-				cboSeasonNumber.SelectedIndex = idx;
+            cboEpisodeType.Items.Clear();
+            cboEpisodeType.Items.Add("Episodes");
+            if (hasSpecials) cboEpisodeType.Items.Add("Specials");
 
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
+            cboEpisodeType.SelectionChanged += new SelectionChangedEventHandler(cboEpisodeType_SelectionChanged);
+
+            if (aniEpType == EpisodeType.Episode)
+                cboEpisodeType.SelectedIndex = 0;
+            else
+                cboEpisodeType.SelectedIndex = 1;
+
+
+
+            // get the seasons
+
+            try
+            {
+                cboSeasonNumber.Items.Clear();
+
+                List<int> seasons = null;
+                if (anime.traktSummary.traktDetails.ContainsKey(traktID))
+                {
+                    traktDetails = anime.traktSummary.traktDetails[traktID];
+                    seasons = anime.traktSummary.traktDetails[traktID].DictTraktSeasons.Keys.ToList();
+                }
+                else
+                {
+                    JMMServerVM.Instance.clientBinaryHTTP.UpdateTraktData(traktID);
+                    traktDetails = new TraktDetails(traktID);
+                    seasons = traktDetails.DictTraktSeasons.Keys.ToList();
+                }
+
+                int i = 0;
+                int idx = 0;
+                foreach (int season in seasons)
+                {
+                    cboSeasonNumber.Items.Add(season.ToString());
+                    if (season == traktSeason) idx = i;
+                    i++;
+                }
+
+                cboSeasonNumber.SelectionChanged += new SelectionChangedEventHandler(cboSeasonNumber_SelectionChanged);
+                cboEpisodeNumber.SelectionChanged += new SelectionChangedEventHandler(cboEpisodeNumber_SelectionChanged);
+
+                cboSeasonNumber.SelectedIndex = idx;
+
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
 		}
+
+        void cboEpisodeType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                cboAniDBEpisodeNumber.Items.Clear();
+
+                int i = 0;
+                int idx = 0;
+                int epType = cboEpisodeType.SelectedIndex == 0 ? (int)EpisodeType.Episode : (int)EpisodeType.Special;
+
+
+                foreach (AniDB_EpisodeVM ep in AniDBEpisodes)
+                {
+                    if (ep.EpisodeType == epType)
+                    {
+                        cboAniDBEpisodeNumber.Items.Add(ep);
+
+                        if (AnimeEpisodeNumber == ep.EpisodeNumber) idx = i;
+                        i++;
+                    }
+                }
+
+                if (cboAniDBEpisodeNumber.Items.Count > 0)
+                {
+                    if (FirstLoad)
+                    {
+                        cboAniDBEpisodeNumber.SelectedIndex = idx;
+                        FirstLoad = false;
+                    }
+                    else
+                        cboAniDBEpisodeNumber.SelectedIndex = 0;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+        }
+
+        void cboEpisodeNumber_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SelectedEpisode = cboEpisodeNumber.SelectedItem as Trakt_EpisodeVM;
+        }
+
+        void cboSeasonNumber_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int idx = 0;
+            int idxCount = 0;
+            cboEpisodeNumber.Items.Clear();
+            if (traktDetails != null)
+            {
+                foreach (Trakt_EpisodeVM ep in traktDetails.DictTraktEpisodes.Values)
+                {
+                    if (ep.Season == int.Parse(cboSeasonNumber.SelectedItem.ToString()))
+                    {
+                        cboEpisodeNumber.Items.Add(ep);
+
+                        if (ep.EpisodeNumber == TraktEpisodeNumber)
+                            idx = idxCount;
+
+                        idxCount++;
+                    }
+                }
+            }
+            if (cboEpisodeNumber.Items.Count > 0)
+            {
+                cboEpisodeNumber.SelectedIndex = idx;
+            }
+        }
 	}
 }

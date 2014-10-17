@@ -33,8 +33,8 @@ namespace JMMClient.Forms
 		public static readonly DependencyProperty HasWebCacheRecProperty = DependencyProperty.Register("HasWebCacheRec",
 			typeof(bool), typeof(SearchTraktForm), new UIPropertyMetadata(false, null));
 
-		public static readonly DependencyProperty CrossRef_AniDB_TraktResultProperty = DependencyProperty.Register("CrossRef_AniDB_TraktResult",
-			typeof(CrossRef_AniDB_TraktResultVM), typeof(SearchTraktForm), new UIPropertyMetadata(null, null));
+        public static readonly DependencyProperty CrossRef_AniDB_TraktResultProperty = DependencyProperty.Register("CrossRef_AniDB_TraktResult",
+            typeof(List<CrossRef_AniDB_TraktVMV2>), typeof(SearchTraktForm), new UIPropertyMetadata(null, null));
 
 		public static readonly DependencyProperty TraktSeriesSearchResultsProperty = DependencyProperty.Register("TraktSeriesSearchResults",
 			typeof(List<TraktTVShowResponseVM>), typeof(SearchTraktForm), new UIPropertyMetadata(null, null));
@@ -57,11 +57,11 @@ namespace JMMClient.Forms
 			set { SetValue(HasWebCacheRecProperty, value); }
 		}
 
-		public CrossRef_AniDB_TraktResultVM CrossRef_AniDB_TraktResult
-		{
-			get { return (CrossRef_AniDB_TraktResultVM)GetValue(CrossRef_AniDB_TraktResultProperty); }
-			set { SetValue(CrossRef_AniDB_TraktResultProperty, value); }
-		}
+        public List<CrossRef_AniDB_TraktVMV2> CrossRef_AniDB_TraktResult
+        {
+            get { return (List<CrossRef_AniDB_TraktVMV2>)GetValue(CrossRef_AniDB_TraktResultProperty); }
+            set { SetValue(CrossRef_AniDB_TraktResultProperty, value); }
+        }
 
 		public List<TraktTVShowResponseVM> TraktSeriesSearchResults
 		{
@@ -81,16 +81,19 @@ namespace JMMClient.Forms
 		private int AnimeID = 0;
 		private string ExistingTraktID = "";
 		public string SelectedTraktID = "";
+        private AniDB_AnimeVM Anime = null;
 
 		public SearchTraktForm()
 		{
 			InitializeComponent();
 
+            CrossRef_AniDB_TraktResult = new List<CrossRef_AniDB_TraktVMV2>();
+
 			rbExisting.Checked += new RoutedEventHandler(rbExisting_Checked);
 			rbSearch.Checked += new RoutedEventHandler(rbSearch_Checked);
 
 			hlURL.Click += new RoutedEventHandler(hlURL_Click);
-			hlURLWebCache.Click += new RoutedEventHandler(hlURLWebCache_Click);
+			//hlURLWebCache.Click += new RoutedEventHandler(hlURLWebCache_Click);
 
 			rbSearch.IsChecked = true;
 			rbExisting.IsChecked = false;
@@ -111,7 +114,7 @@ namespace JMMClient.Forms
 				this.Cursor = Cursors.Wait;
 				SelectTraktSeasonForm frm = new SelectTraktSeasonForm();
 				frm.Owner = wdw;
-				frm.Init(AnimeID, AnimeName, txtSeriesID.Text.Trim(), 1, "");
+                frm.Init(AnimeID, AnimeName, EpisodeType.Episode, 1, txtSeriesID.Text.Trim(), 1, 1, AnimeName, Anime, null);
 				bool? result = frm.ShowDialog();
 				if (result.Value)
 				{
@@ -121,7 +124,6 @@ namespace JMMClient.Forms
 					this.Close();
 				}
 
-				//LinkAniDBToTrakt(txtSeriesID.Text.Trim(), 1);
 			}
 			catch (Exception ex)
 			{
@@ -138,7 +140,33 @@ namespace JMMClient.Forms
 			try
 			{
 				this.Cursor = Cursors.Wait;
-				LinkAniDBToTrakt(CrossRef_AniDB_TraktResult.TraktID, CrossRef_AniDB_TraktResult.TraktSeasonNumber);
+
+                // remove any existing links
+                string res = JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBTraktForAnime(this.AnimeID);
+                if (res.Length > 0)
+                {
+                    MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    this.Cursor = Cursors.Arrow;
+                    return;
+                }
+
+                // add links
+                foreach (CrossRef_AniDB_TraktVMV2 xref in CrossRef_AniDB_TraktResult)
+                {
+                    res = JMMServerVM.Instance.clientBinaryHTTP.LinkAniDBTrakt(xref.AnimeID, xref.AniDBStartEpisodeType, xref.AniDBStartEpisodeNumber,
+                        xref.TraktID, xref.TraktSeasonNumber, xref.TraktStartEpisodeNumber, null);
+                    if (res.Length > 0)
+                    {
+                        MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        this.Cursor = Cursors.Arrow;
+                        return;
+                    }
+
+                }
+
+                this.DialogResult = true;
+                this.Cursor = Cursors.Arrow;
+                this.Close();
 			}
 			catch (Exception ex)
 			{
@@ -155,19 +183,6 @@ namespace JMMClient.Forms
 			this.DialogResult = false;
 			SelectedTraktID = "";
 			this.Close();
-		}
-
-		private void LinkAniDBToTrakt(string traktID, int season)
-		{
-			string res = JMMServerVM.Instance.clientBinaryHTTP.LinkAniDBTrakt(AnimeID, traktID, season);
-			if (res.Length > 0)
-				MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-			else
-			{
-				this.DialogResult = true;
-				SelectedTraktID = traktID;
-				this.Close();
-			}
 		}
 
 		private void CommandBinding_UseThis(object sender, ExecutedRoutedEventArgs e)
@@ -190,8 +205,7 @@ namespace JMMClient.Forms
 					this.Cursor = Cursors.Wait;
 					SelectTraktSeasonForm frm = new SelectTraktSeasonForm();
 					frm.Owner = wdw;
-					frm.Init(AnimeID, AnimeName, searchResult.TraktID,
-						1, searchResult.title);
+                    frm.Init(AnimeID, AnimeName, EpisodeType.Episode, 1, searchResult.TraktID, 1, 1, AnimeName, Anime, null);
 					bool? result = frm.ShowDialog();
 					if (result.Value)
 					{
@@ -200,8 +214,6 @@ namespace JMMClient.Forms
 						this.Cursor = Cursors.Arrow;
 						this.Close();
 					}
-
-					//LinkAniDBToTrakt(searchResult.TraktID, 1);
 				}
 			}
 			catch (Exception ex)
@@ -222,15 +234,21 @@ namespace JMMClient.Forms
 			this.Cursor = Cursors.Wait;
 			try
 			{
-				// first find what the community recommends
-				JMMServerBinary.Contract_CrossRef_AniDB_TraktResult xref = JMMServerVM.Instance.clientBinaryHTTP.GetTraktCrossRefWebCache(AnimeID);
-				if (xref != null)
-				{
-					CrossRef_AniDB_TraktResult = new CrossRef_AniDB_TraktResultVM(xref);
-					HasWebCacheRec = true;
-				}
+                CrossRef_AniDB_TraktResult.Clear();
+                // first find what the community recommends
+                List<JMMServerBinary.Contract_Azure_CrossRef_AniDB_Trakt> xrefs = JMMServerVM.Instance.clientBinaryHTTP.GetTraktCrossRefWebCache(AnimeID);
+                if (xrefs != null && xrefs.Count > 0)
+                {
+                    foreach (JMMServerBinary.Contract_Azure_CrossRef_AniDB_Trakt xref in xrefs)
+                    {
+                        CrossRef_AniDB_TraktVMV2 xrefAzure = new CrossRef_AniDB_TraktVMV2(xref);
+                        CrossRef_AniDB_TraktResult.Add(xrefAzure);
+                    }
 
-				// now search the TvDB
+                    HasWebCacheRec = true;
+                }
+
+				// now search Trakt
 				TraktSeriesSearchResults = new List<TraktTVShowResponseVM>();
 				List<JMMServerBinary.Contract_TraktTVShowResponse> traktResults = JMMServerVM.Instance.clientBinaryHTTP.SearchTrakt(txtSearch.Text.Trim());
 				foreach (JMMServerBinary.Contract_TraktTVShowResponse traktResult in traktResults)
@@ -255,8 +273,8 @@ namespace JMMClient.Forms
 
 		void hlURLWebCache_Click(object sender, RoutedEventArgs e)
 		{
-			Uri uri = new Uri(string.Format(Constants.URLS.Trakt_Series, CrossRef_AniDB_TraktResult.TraktID));
-			Process.Start(new ProcessStartInfo(uri.AbsoluteUri));
+			//Uri uri = new Uri(string.Format(Constants.URLS.Trakt_Series, CrossRef_AniDB_TraktResult.TraktID));
+			//Process.Start(new ProcessStartInfo(uri.AbsoluteUri));
 		}
 
 		void rbSearch_Checked(object sender, RoutedEventArgs e)
@@ -274,11 +292,12 @@ namespace JMMClient.Forms
 			IsSearch = rbSearch.IsChecked.Value;
 			IsExisting = rbExisting.IsChecked.Value;
 
-			HasWebCacheRec = IsSearch && CrossRef_AniDB_TraktResult != null;
+            HasWebCacheRec = IsSearch && CrossRef_AniDB_TraktResult != null && CrossRef_AniDB_TraktResult.Count > 0;
 		}
 
-		public void Init(int animeID, string animeName, string searchCriteria, string existingTraktID)
+        public void Init(int animeID, string animeName, string searchCriteria, string existingTraktID, AniDB_AnimeVM anime)
 		{
+            Anime = anime;
 			AnimeID = animeID;
 			AnimeName = animeName;
 			ExistingTraktID = existingTraktID;

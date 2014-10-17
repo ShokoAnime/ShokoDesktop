@@ -1237,6 +1237,32 @@ namespace JMMClient
 			}
 		}
 
+        public void ClearTraktData()
+        {
+            _traktSummary = null;
+        }
+
+        private TraktSummary _traktSummary = null;
+        public TraktSummary traktSummary
+        {
+            get
+            {
+                if (_traktSummary == null)
+                {
+                    try
+                    {
+                        _traktSummary = new TraktSummary();
+                        _traktSummary.Populate(this.AnimeID);
+                    }
+                    catch (Exception ex)
+                    {
+                        Utils.ShowErrorMessage(ex);
+                    }
+                }
+                return _traktSummary;
+            }
+        }
+
 		public List<ExternalSiteLink> ExternalSiteLinks
 		{
 			get
@@ -1263,13 +1289,13 @@ namespace JMMClient
 					links.Add(tvdb);
 				}
 
-				if (AniDB_AnimeCrossRefs != null && AniDB_AnimeCrossRefs.TraktCrossRefExists && AniDB_AnimeCrossRefs.TraktShow != null)
+                if (AniDB_AnimeCrossRefs != null && AniDB_AnimeCrossRefs.TraktCrossRefExists && AniDB_AnimeCrossRefs.TraktShowV2 != null && AniDB_AnimeCrossRefs.TraktShowV2.Count > 0)
 				{
 					ExternalSiteLink trakt = new ExternalSiteLink();
 					trakt.SiteName = "Trakt";
 					trakt.SiteLogo = @"/Images/trakttv.ico";
-					trakt.SiteURL = AniDB_AnimeCrossRefs.TraktShow.ShowURL;
-					trakt.SiteURLDiscussion = AniDB_AnimeCrossRefs.TraktShow.ShowURL;
+					trakt.SiteURL = AniDB_AnimeCrossRefs.TraktShowV2[0].ShowURL;
+                    trakt.SiteURLDiscussion = AniDB_AnimeCrossRefs.TraktShowV2[0].ShowURL;
 					links.Add(trakt);
 				}
 

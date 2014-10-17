@@ -133,8 +133,6 @@ namespace JMMClient.Forms
 					this.Cursor = Cursors.Arrow;
 					this.Close();
 				}
-
-				//LinkAniDBToTVDB(id, 1);
 			}
 			catch (Exception ex)
 			{
@@ -225,9 +223,6 @@ namespace JMMClient.Forms
 						this.Cursor = Cursors.Arrow;
 						this.Close();
 					}
-
-
-					//LinkAniDBToTVDB(searchResult.SeriesID, 1);
 				}
 			}
 			catch (Exception ex)

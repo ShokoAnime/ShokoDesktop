@@ -621,9 +621,11 @@
     <Compile Include="ViewModel\CrossRef_AniDB_MALVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_OtherResultVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_OtherVM.cs" />
-    <Compile Include="ViewModel\CrossRef_AniDB_TraktResultVM.cs" />
-    <Compile Include="ViewModel\CrossRef_AniDB_TraktVM.cs" />
+    <Compile Include="ViewModel\CrossRef_AniDB_TraktEpisodeVM.cs" />
+    <Compile Include="ViewModel\CrossRef_AniDB_TraktVMV2.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_TvDBEpisodeVM.cs" />
+    <Compile Include="ViewModel\TraktDetails.cs" />
+    <Compile Include="ViewModel\TraktSummary.cs" />
     <Compile Include="ViewModel\TvDBDetails.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_TvDBVMV2.cs" />
     <Compile Include="ViewModel\DashboardMetroVM.cs" />
@@ -1261,6 +1263,9 @@
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AppVersions1.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_Azure_CrossRef_AniDB_Trakt.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_Azure_CrossRef_AniDB_TvDB.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -1279,10 +1284,10 @@
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_OtherResult1.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_Trakt1.datasource">
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_TraktV2.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_TraktResult1.datasource">
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_Trakt_Episode.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_TvDBV2.datasource">

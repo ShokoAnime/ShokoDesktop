@@ -31,7 +31,10 @@
             <RoutedUICommand x:Key="EditTvDBLinkCommand" Text="EditTvDBLinkCommand" />
             <RoutedUICommand x:Key="UpdateTvDBLinkCommand" Text="UpdateTvDBLinkCommand" />
 
-            
+            <RoutedUICommand x:Key="ReportTraktLinkCommand" Text="ReportTraktLinkCommand" />
+            <RoutedUICommand x:Key="DeleteTraktLinkCommand" Text="DeleteTraktLinkCommand" />
+            <RoutedUICommand x:Key="EditTraktLinkCommand" Text="EditTraktLinkCommand" />
+            <RoutedUICommand x:Key="UpdateTraktLinkCommand" Text="UpdateTraktLinkCommand" />
 
             <!-- MALLinkTemplate -->
             <DataTemplate x:Key="MALLinkTemplate">
@@ -131,7 +134,77 @@
 
                         <!-- Report incorrect links -->
                         <Button Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
-                            Command="{StaticResource ReportTvDBLinkCommand}" CommandParameter="{Binding}"
+                            Command="{StaticResource ReportTvDBLinkCommand}" CommandParameter="{Binding}"  Visibility="Collapsed"
+                            ToolTip="{usercontrols:Info Title=Report Linking Error, 
+                            Body=If this is linked to the wrong series click here to let the developers know}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <Image Height="16" Width="16" Source="/Images/vote_down2.png" Margin="0,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+
+
+                    </StackPanel>
+
+                </Grid>
+            </DataTemplate>
+
+            <!-- TraktLinkTemplate -->
+            <DataTemplate x:Key="TraktLinkTemplate">
+                <Grid Margin="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+
+                    <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Margin="0,0,0,5">
+
+                        <usercontrols:HyperLinkStandard DisplayText="{Binding Path=TraktTitle}" VerticalAlignment="Center" URL="{Binding Path=ShowURL}" Margin="5,0,0,0"/>
+
+                        <TextBlock VerticalAlignment="Center" Text="AniDB Start:" Margin="10,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=AniDBStartEpisodeTypeString}" Margin="5,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=AniDBStartEpisodeNumber}" Margin="5,0,0,0"/>
+
+                        <TextBlock VerticalAlignment="Center" Text="Trakt: " Margin="10,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=TraktSeasonNumberString}" Margin="5,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="/" Margin="5,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=TraktStartEpisodeNumberString}" Margin="5,0,0,0"/>
+
+                        <!-- delete link button -->
+                        <Button Margin="8,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                Command="{StaticResource DeleteTraktLinkCommand}" CommandParameter="{Binding}"
+                                ToolTip="{usercontrols:Info Title=Delete, 
+                                Body=Delete this Link}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <Image Height="16" Width="16" Source="/Images/32_delete.png" Margin="0,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+
+                        <!-- Edit Trakt Details button -->
+                        <Button Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                Command="{StaticResource EditTraktLinkCommand}" CommandParameter="{Binding}"
+                                ToolTip="{usercontrols:Info Title=Edit, 
+                                Body=Edit the details of this Link}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <Image Height="16" Width="16" Source="/Images/16_switch.png" Margin="0,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+
+                        <!-- Update Trakt Info button -->
+                        <Button Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                Command="{StaticResource UpdateTraktLinkCommand}" CommandParameter="{Binding}"
+                                ToolTip="{usercontrols:Info Title=Update, 
+                                Body=Download fresh data from The TvDB and update the local database}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <Image Height="16" Width="16" Source="/Images/32_import.png" Margin="0,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+
+                        <!-- Report incorrect links -->
+                        <Button Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                            Command="{StaticResource ReportTraktLinkCommand}" CommandParameter="{Binding}" Visibility="Collapsed"
                             ToolTip="{usercontrols:Info Title=Report Linking Error, 
                             Body=If this is linked to the wrong series click here to let the developers know}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
@@ -161,6 +234,11 @@
         <CommandBinding Command="{StaticResource DeleteTvDBLinkCommand}" Executed="CommandBinding_DeleteTvDBLink" />
         <CommandBinding Command="{StaticResource EditTvDBLinkCommand}" Executed="CommandBinding_EditTvDBLink" />
         <CommandBinding Command="{StaticResource UpdateTvDBLinkCommand}" Executed="CommandBinding_UpdateTvDBLink" />
+
+        <CommandBinding Command="{StaticResource ReportTraktLinkCommand}" Executed="CommandBinding_ReportTraktLink" />
+        <CommandBinding Command="{StaticResource DeleteTraktLinkCommand}" Executed="CommandBinding_DeleteTraktLink" />
+        <CommandBinding Command="{StaticResource EditTraktLinkCommand}" Executed="CommandBinding_EditTraktLink" />
+        <CommandBinding Command="{StaticResource UpdateTraktLinkCommand}" Executed="CommandBinding_UpdateTraktLink" />
     </UserControl.CommandBindings>
 
     <Grid Margin="3">
@@ -279,8 +357,178 @@
 
         <Border Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="LightGray" Margin="5,5,5,0"  />
 
-        <!-- MovieDB - Where a link exists-->
+        <!-- Trakt - Where a link exists-->
         <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10,10,0,0" VerticalAlignment="Center" 
+                    Visibility="{Binding Path=AniDB_AnimeCrossRefs.TraktCrossRefExists, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+
+                    <Image Height="16" Width="16" Source="/Images/trakttv.ico" Margin="0,0,10,2" VerticalAlignment="Center"/>
+                    <TextBlock Text="Trakt TV" Width="120" VerticalAlignment="Center"/>
+                    <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,0,2" VerticalAlignment="Center"/>
+
+                    <!-- search button -->
+                    <Button Name="btnSearchExistingTrakt" Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <Image Height="16" Width="16" Source="/Images/MagnifyingGlass7.png" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- Enable Auto TvDB Info links -->
+                    <Button Name="btnTraktAutoLinkEnable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                    Command="{StaticResource ToggleAutoLinkTraktCommand}" CommandParameter="{Binding}"
+                                    Visibility="{Binding Path=IsTraktLinkDisabled, Converter={StaticResource BooleanToVisibilityConverter}}" 
+                                    ToolTip="{usercontrols:Info Title=Auto Linking Disabled, 
+                                    Body=Auto linking from this anime to a Trakt series is currently disabled}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <Image Height="16" Width="16" Source="/Images/32_cancel.png" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- Disable Auto Trakt Info links -->
+                    <Button Name="btnTraktAutoLinkDisable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                    Command="{StaticResource ToggleAutoLinkTraktCommand}" CommandParameter="{Binding}"
+                                    Visibility="{Binding Path=IsTraktLinkEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                    ToolTip="{usercontrols:Info Title=Auto Linking Enabled, 
+                                    Body=Auto linking from this anime to a Trakt series is currently enabled. If JMM Server finds a close match or community recommendation it will automatically create a link}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+
+                <ListBox Name="lbTraktLinks" BorderThickness="0" Background="Transparent" Margin="140,0,0,0"
+                                ItemsSource="{Binding Path=AniDB_AnimeCrossRefs.CrossRef_AniDB_TraktV2, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}}"
+                                HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                                ItemTemplate="{StaticResource TraktLinkTemplate}"
+                                ItemContainerStyle="{DynamicResource ListBoxItemStylePlain}" 
+                                />
+
+            </StackPanel>
+
+        </StackPanel>
+
+        <!-- Trakt - Where a link is mising -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10,10,0,0" VerticalAlignment="Center" 
+                    Visibility="{Binding Path=AniDB_AnimeCrossRefs.TraktCrossRefMissing, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Image Height="16" Width="16" Source="/Images/trakttv.ico" Margin="0,0,10,2" VerticalAlignment="Center"/>
+            <TextBlock Text="Trakt TV" Width="120" VerticalAlignment="Center"/>
+            <Image Height="16" Width="16" Source="/Images/32_warning.png" Margin="0,0,0,2" VerticalAlignment="Center"/>
+
+            <!-- search button -->
+            <Button Name="btnSearchTrakt" Margin="20,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <Image Height="16" Width="16" Source="/Images/MagnifyingGlass7.png" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Enable Auto Trakt Info links -->
+            <Button Name="btnTraktAutoLinkEnable2" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                            Command="{StaticResource ToggleAutoLinkTraktCommand}" CommandParameter="{Binding}"
+                            Visibility="{Binding Path=IsTraktLinkDisabled, Converter={StaticResource BooleanToVisibilityConverter}}" 
+                            ToolTip="{usercontrols:Info Title=Auto Linking Disabled, 
+                            Body=Auto linking from this anime to a Trakt series is currently disabled}">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <Image Height="16" Width="16" Source="/Images/32_cancel.png" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Disable Auto Trakt Info links -->
+            <Button Name="btnTraktAutoLinkDisable2" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                            Command="{StaticResource ToggleAutoLinkTraktCommand}" CommandParameter="{Binding}"
+                            Visibility="{Binding Path=IsTraktLinkEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            ToolTip="{usercontrols:Info Title=Auto Linking Enabled, 
+                            Body=Auto linking from this anime to a Trakt series is currently enabled. If JMM Server finds a close match or community recommendation it will automatically create a link}">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+        <Border Grid.Row="3" BorderThickness="0,1,0,0" BorderBrush="LightGray" Margin="5,5,5,0"  />
+
+        <!-- MAL - Where a link exists-->
+        <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="10,10,0,0" VerticalAlignment="Center" 
+                    Visibility="{Binding Path=AniDB_AnimeCrossRefs.MALCrossRefExists, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <Image Height="16" Width="16" Source="/Images/myanimelist.ico" Margin="0,0,10,2" VerticalAlignment="Center"/>
+                    <TextBlock Text="MyAnimeList" Width="120" VerticalAlignment="Center"/>
+                    <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,0,2" VerticalAlignment="Center"/>
+
+                    <!-- search button -->
+                    <Button Name="btnSearchExistingMAL" Margin="20,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <Image Height="16" Width="16" Source="/Images/MagnifyingGlass7.png" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- Enable Auto MAL Info links -->
+                    <Button Name="btnMALAutoLinkEnable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                            Command="{StaticResource ToggleAutoLinkMALCommand}" CommandParameter="{Binding}"
+                            Visibility="{Binding Path=IsMALLinkDisabled, Converter={StaticResource BooleanToVisibilityConverter}}" 
+                            ToolTip="{usercontrols:Info Title=Auto Linking Disabled, 
+                            Body=Auto linking from this anime to a MAL series is currently disabled}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <Image Height="16" Width="16" Source="/Images/32_cancel.png" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- Disable Auto MAL Info links -->
+                    <Button Name="btnMALAutoLinkDisable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                            Command="{StaticResource ToggleAutoLinkMALCommand}" CommandParameter="{Binding}"
+                            Visibility="{Binding Path=IsMALLinkEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            ToolTip="{usercontrols:Info Title=Auto Linking Enabled, 
+                            Body=Auto linking from this anime to a MAL series is currently enabled. If JMM Server finds a close match or community recommendation it will automatically create a link}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
+                        </StackPanel>
+                    </Button>
+
+                </StackPanel>
+
+                <ListBox Name="lbMALLinks" BorderThickness="0" Background="Transparent" Margin="140,0,0,0"
+                                ItemsSource="{Binding Path=AniDB_AnimeCrossRefs.CrossRef_AniDB_MAL, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}}"
+                                HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                                ItemTemplate="{DynamicResource MALLinkTemplate}"
+                                ItemContainerStyle="{DynamicResource ListBoxItemStylePlain}" 
+                                />
+            </StackPanel>
+
+        </StackPanel>
+
+
+        <!-- MAL - Where a link is mising -->
+        <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="10,10,0,0" VerticalAlignment="Center" 
+                    Visibility="{Binding Path=AniDB_AnimeCrossRefs.MALCrossRefMissing, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Image Height="16" Width="16" Source="/Images/myanimelist.ico" Margin="0,0,10,2" VerticalAlignment="Center"/>
+            <TextBlock Text="MyAnimeList" Width="120" VerticalAlignment="Center"/>
+            <Image Height="16" Width="16" Source="/Images/32_warning.png" Margin="0,0,0,2" VerticalAlignment="Center"/>
+
+            <!-- search button -->
+            <Button Name="btnSearchMAL" Margin="20,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <Image Height="16" Width="16" Source="/Images/MagnifyingGlass7.png" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+        <Border Grid.Row="5" BorderThickness="0,1,0,0" BorderBrush="LightGray" Margin="5,5,5,0"  />
+
+        <!-- MovieDB - Where a link exists-->
+        <StackPanel Grid.Row="6" Orientation="Horizontal" Margin="10,10,0,0" VerticalAlignment="Center" 
                     Visibility="{Binding Path=AniDB_AnimeCrossRefs.MovieDBCrossRefExists, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}, Converter={StaticResource BooleanToVisibilityConverter}}">
             
             <StackPanel Orientation="Vertical">
@@ -351,7 +599,7 @@
         </StackPanel>
 
         <!-- MovieDB - Where a link is mising -->
-        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10,10,0,0" VerticalAlignment="Center" 
+        <StackPanel Grid.Row="6" Orientation="Horizontal" Margin="10,10,0,0" VerticalAlignment="Center" 
                     Visibility="{Binding Path=AniDB_AnimeCrossRefs.MovieDBCrossRefMissing, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Image Height="16" Width="16" Source="/Images/moviedb.ico" Margin="0,0,10,2" VerticalAlignment="Center"/>
             <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TheMovieDB}" Width="120" VerticalAlignment="Center"/>
@@ -390,198 +638,11 @@
             </Button>
         </StackPanel>
 
-        <Border Grid.Row="3" BorderThickness="0,1,0,0" BorderBrush="LightGray" Margin="5,5,5,0"  />
+        
 
-        <!-- Trakt - Where a link exists-->
-        <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="10,10,0,0" VerticalAlignment="Center" 
-                    Visibility="{Binding Path=AniDB_AnimeCrossRefs.TraktCrossRefExists, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}, Converter={StaticResource BooleanToVisibilityConverter}}">
-            
-            <StackPanel Orientation="Vertical">
-            <StackPanel Orientation="Horizontal">
-                <Image Height="16" Width="16" Source="/Images/trakttv.ico" Margin="0,0,10,2" VerticalAlignment="Center"/>
-                <TextBlock Text="Trakt TV" Width="120" VerticalAlignment="Center"/>
-                <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,0,2" VerticalAlignment="Center"/>
-                <usercontrols:HyperLinkStandard DisplayText="{Binding Path=AniDB_AnimeCrossRefs.TraktShow.Title, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}}" 
-                         VerticalAlignment="Center" URL="{Binding Path=AniDB_AnimeCrossRefs.TraktShow.ShowURL, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}}" Margin="10,0,0,0"/>
-                <TextBlock Margin="5,0,0,0" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeasonNumber}" />
-                <TextBlock Margin="4,0,0,0" VerticalAlignment="Center" 
-                           Text="{Binding Path=AniDB_AnimeCrossRefs.CrossRef_AniDB_Trakt.TraktSeasonNumber, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}}" />
+        
 
-            </StackPanel>
-            
-            <StackPanel Orientation="Horizontal" Margin="126,7,0,0">
-                <!-- delete link button -->
-                <Button Name="btnDeleteTraktLink" Margin="20,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                        <Image Height="16" Width="16" Source="/Images/32_delete.png" Margin="0,0,5,0"/>
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Delete}" Margin="0,0,5,0"/>
-                    </StackPanel>
-                </Button>
-
-                <!-- Switch Season button -->
-                <Button Name="btnSwitchTraktSeason" Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                        <Image Height="16" Width="16" Source="/Images/16_switch.png" Margin="0,0,5,0"/>
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SwitchSeason}" Margin="0,0,5,0"/>
-                    </StackPanel>
-                </Button>
-
-                <!-- search button -->
-                <Button Name="btnSearchExistingTrakt" Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                        <Image Height="16" Width="16" Source="/Images/MagnifyingGlass7.png" Margin="0,0,5,0"/>
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
-                    </StackPanel>
-                </Button>
-
-                <!-- Update TvDB Info button -->
-                <Button Name="btnUpdateTraktInfo" Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                        <Image Height="16" Width="16" Source="/Images/32_import.png" Margin="0,0,5,0"/>
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=UpdateInfo}" Margin="0,0,5,0"/>
-                    </StackPanel>
-                </Button>
-
-                    <!-- Enable Auto Trakt Info links -->
-                    <Button Name="btnTraktAutoLinkEnable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
-                            Command="{StaticResource ToggleAutoLinkTraktCommand}" CommandParameter="{Binding}"
-                            Visibility="{Binding Path=IsTraktLinkDisabled, Converter={StaticResource BooleanToVisibilityConverter}}" 
-                            ToolTip="{usercontrols:Info Title=Auto Linking Disabled, 
-                            Body=Auto linking from this anime to a Trakt series is currently disabled}">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                            <Image Height="16" Width="16" Source="/Images/32_cancel.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
-                        </StackPanel>
-                    </Button>
-
-                    <!-- Disable Auto Trakt Info links -->
-                    <Button Name="btnTraktAutoLinkDisable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
-                            Command="{StaticResource ToggleAutoLinkTraktCommand}" CommandParameter="{Binding}"
-                            Visibility="{Binding Path=IsTraktLinkEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-                            ToolTip="{usercontrols:Info Title=Auto Linking Enabled, 
-                            Body=Auto linking from this anime to a Trakt series is currently enabled. If JMM Server finds a close match or community recommendation it will automatically create a link}">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                            <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
-                        </StackPanel>
-                    </Button>
-                </StackPanel>
-            </StackPanel>
-
-        </StackPanel>
-
-        <!-- Trakt - Where a link is mising -->
-        <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="10,10,0,0" VerticalAlignment="Center" 
-                    Visibility="{Binding Path=AniDB_AnimeCrossRefs.TraktCrossRefMissing, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <Image Height="16" Width="16" Source="/Images/trakttv.ico" Margin="0,0,10,2" VerticalAlignment="Center"/>
-            <TextBlock Text="Trakt TV" Width="120" VerticalAlignment="Center"/>
-            <Image Height="16" Width="16" Source="/Images/32_warning.png" Margin="0,0,0,2" VerticalAlignment="Center"/>
-
-            <!-- search button -->
-            <Button Name="btnSearchTrakt" Margin="20,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                    <Image Height="16" Width="16" Source="/Images/MagnifyingGlass7.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
-                </StackPanel>
-            </Button>
-
-            <!-- Enable Auto Trakt Info links -->
-            <Button Name="btnTraktAutoLinkEnable2" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
-                            Command="{StaticResource ToggleAutoLinkTraktCommand}" CommandParameter="{Binding}"
-                            Visibility="{Binding Path=IsTraktLinkDisabled, Converter={StaticResource BooleanToVisibilityConverter}}" 
-                            ToolTip="{usercontrols:Info Title=Auto Linking Disabled, 
-                            Body=Auto linking from this anime to a Trakt series is currently disabled}">
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                    <Image Height="16" Width="16" Source="/Images/32_cancel.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
-                </StackPanel>
-            </Button>
-
-            <!-- Disable Auto Trakt Info links -->
-            <Button Name="btnTraktAutoLinkDisable2" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
-                            Command="{StaticResource ToggleAutoLinkTraktCommand}" CommandParameter="{Binding}"
-                            Visibility="{Binding Path=IsTraktLinkEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-                            ToolTip="{usercontrols:Info Title=Auto Linking Enabled, 
-                            Body=Auto linking from this anime to a Trakt series is currently enabled. If JMM Server finds a close match or community recommendation it will automatically create a link}">
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                    <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
-                </StackPanel>
-            </Button>
-        </StackPanel>
-
-        <Border Grid.Row="5" BorderThickness="0,1,0,0" BorderBrush="LightGray" Margin="5,5,5,0"  />
-
-        <!-- MAL - Where a link exists-->
-        <StackPanel Grid.Row="6" Orientation="Horizontal" Margin="10,10,0,0" VerticalAlignment="Center" 
-                    Visibility="{Binding Path=AniDB_AnimeCrossRefs.MALCrossRefExists, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}, Converter={StaticResource BooleanToVisibilityConverter}}">
-            
-            <StackPanel Orientation="Vertical">
-                <StackPanel Orientation="Horizontal">
-                    <Image Height="16" Width="16" Source="/Images/myanimelist.ico" Margin="0,0,10,2" VerticalAlignment="Center"/>
-                    <TextBlock Text="MyAnimeList" Width="120" VerticalAlignment="Center"/>
-                    <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,0,2" VerticalAlignment="Center"/>
-
-                    <!-- search button -->
-                    <Button Name="btnSearchExistingMAL" Margin="20,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                            <Image Height="16" Width="16" Source="/Images/MagnifyingGlass7.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
-                        </StackPanel>
-                    </Button>
-
-                    <!-- Enable Auto MAL Info links -->
-                    <Button Name="btnMALAutoLinkEnable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
-                            Command="{StaticResource ToggleAutoLinkMALCommand}" CommandParameter="{Binding}"
-                            Visibility="{Binding Path=IsMALLinkDisabled, Converter={StaticResource BooleanToVisibilityConverter}}" 
-                            ToolTip="{usercontrols:Info Title=Auto Linking Disabled, 
-                            Body=Auto linking from this anime to a MAL series is currently disabled}">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                            <Image Height="16" Width="16" Source="/Images/32_cancel.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
-                        </StackPanel>
-                    </Button>
-
-                    <!-- Disable Auto MAL Info links -->
-                    <Button Name="btnMALAutoLinkDisable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
-                            Command="{StaticResource ToggleAutoLinkMALCommand}" CommandParameter="{Binding}"
-                            Visibility="{Binding Path=IsMALLinkEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-                            ToolTip="{usercontrols:Info Title=Auto Linking Enabled, 
-                            Body=Auto linking from this anime to a MAL series is currently enabled. If JMM Server finds a close match or community recommendation it will automatically create a link}">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                            <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
-                        </StackPanel>
-                    </Button>
-
-                </StackPanel>
-
-                <ListBox Name="lbMALLinks" BorderThickness="0" Background="Transparent" Margin="140,0,0,0"
-                                ItemsSource="{Binding Path=AniDB_AnimeCrossRefs.CrossRef_AniDB_MAL, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}}"
-                                HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
-                                ItemTemplate="{DynamicResource MALLinkTemplate}"
-                                ItemContainerStyle="{DynamicResource ListBoxItemStylePlain}" 
-                                />
-            </StackPanel>
-
-        </StackPanel>
-
-
-        <!-- MAL - Where a link is mising -->
-        <StackPanel Grid.Row="6" Orientation="Horizontal" Margin="10,10,0,0" VerticalAlignment="Center" 
-                    Visibility="{Binding Path=AniDB_AnimeCrossRefs.MALCrossRefMissing, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <Image Height="16" Width="16" Source="/Images/myanimelist.ico" Margin="0,0,10,2" VerticalAlignment="Center"/>
-            <TextBlock Text="MyAnimeList" Width="120" VerticalAlignment="Center"/>
-            <Image Height="16" Width="16" Source="/Images/32_warning.png" Margin="0,0,0,2" VerticalAlignment="Center"/>
-
-            <!-- search button -->
-            <Button Name="btnSearchMAL" Margin="20,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                    <Image Height="16" Width="16" Source="/Images/MagnifyingGlass7.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
-                </StackPanel>
-            </Button>
-        </StackPanel>
+        
         
     </Grid>
 </UserControl>
