@@ -15222,25 +15222,19 @@ namespace JMMClient.JMMServerBinary {
         private string WebCache_AddressField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool WebCache_AniDB_File_GetField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool WebCache_AniDB_File_SendField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool WebCache_AnonymousField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool WebCache_FileHashes_GetField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool WebCache_FileHashes_SendField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool WebCache_MAL_GetField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool WebCache_MAL_SendField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool WebCache_Trakt_GetField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool WebCache_Trakt_SendField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool WebCache_TvDB_GetField;
@@ -16071,32 +16065,6 @@ namespace JMMClient.JMMServerBinary {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool WebCache_AniDB_File_Get {
-            get {
-                return this.WebCache_AniDB_File_GetField;
-            }
-            set {
-                if ((this.WebCache_AniDB_File_GetField.Equals(value) != true)) {
-                    this.WebCache_AniDB_File_GetField = value;
-                    this.RaisePropertyChanged("WebCache_AniDB_File_Get");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool WebCache_AniDB_File_Send {
-            get {
-                return this.WebCache_AniDB_File_SendField;
-            }
-            set {
-                if ((this.WebCache_AniDB_File_SendField.Equals(value) != true)) {
-                    this.WebCache_AniDB_File_SendField = value;
-                    this.RaisePropertyChanged("WebCache_AniDB_File_Send");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public bool WebCache_Anonymous {
             get {
                 return this.WebCache_AnonymousField;
@@ -16105,32 +16073,6 @@ namespace JMMClient.JMMServerBinary {
                 if ((this.WebCache_AnonymousField.Equals(value) != true)) {
                     this.WebCache_AnonymousField = value;
                     this.RaisePropertyChanged("WebCache_Anonymous");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool WebCache_FileHashes_Get {
-            get {
-                return this.WebCache_FileHashes_GetField;
-            }
-            set {
-                if ((this.WebCache_FileHashes_GetField.Equals(value) != true)) {
-                    this.WebCache_FileHashes_GetField = value;
-                    this.RaisePropertyChanged("WebCache_FileHashes_Get");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool WebCache_FileHashes_Send {
-            get {
-                return this.WebCache_FileHashes_SendField;
-            }
-            set {
-                if ((this.WebCache_FileHashes_SendField.Equals(value) != true)) {
-                    this.WebCache_FileHashes_SendField = value;
-                    this.RaisePropertyChanged("WebCache_FileHashes_Send");
                 }
             }
         }
@@ -16157,6 +16099,32 @@ namespace JMMClient.JMMServerBinary {
                 if ((this.WebCache_MAL_SendField.Equals(value) != true)) {
                     this.WebCache_MAL_SendField = value;
                     this.RaisePropertyChanged("WebCache_MAL_Send");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool WebCache_Trakt_Get {
+            get {
+                return this.WebCache_Trakt_GetField;
+            }
+            set {
+                if ((this.WebCache_Trakt_GetField.Equals(value) != true)) {
+                    this.WebCache_Trakt_GetField = value;
+                    this.RaisePropertyChanged("WebCache_Trakt_Get");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool WebCache_Trakt_Send {
+            get {
+                return this.WebCache_Trakt_SendField;
+            }
+            set {
+                if ((this.WebCache_Trakt_SendField.Equals(value) != true)) {
+                    this.WebCache_Trakt_SendField = value;
+                    this.RaisePropertyChanged("WebCache_Trakt_Send");
                 }
             }
         }

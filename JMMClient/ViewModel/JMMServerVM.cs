@@ -452,16 +452,14 @@ namespace JMMClient
 			// Web Cache
 			this.WebCache_Address = contract.WebCache_Address;
 			this.WebCache_Anonymous = contract.WebCache_Anonymous;
-			this.WebCache_FileHashes_Get = contract.WebCache_FileHashes_Get;
-			this.WebCache_FileHashes_Send = contract.WebCache_FileHashes_Send;
 			this.WebCache_TvDB_Get = contract.WebCache_TvDB_Get;
 			this.WebCache_TvDB_Send = contract.WebCache_TvDB_Send;
+            this.WebCache_Trakt_Get = contract.WebCache_Trakt_Get;
+            this.WebCache_Trakt_Send = contract.WebCache_Trakt_Send;
 			this.WebCache_MAL_Get = contract.WebCache_MAL_Get;
 			this.WebCache_MAL_Send = contract.WebCache_MAL_Send;
 			this.WebCache_XRefFileEpisode_Get = contract.WebCache_XRefFileEpisode_Get;
 			this.WebCache_XRefFileEpisode_Send = contract.WebCache_XRefFileEpisode_Send;
-			this.WebCache_AniDB_File_Get = contract.WebCache_AniDB_File_Get;
-			this.WebCache_AniDB_File_Send = contract.WebCache_AniDB_File_Send;
 
 			// TvDB
 			this.TvDB_AutoFanart = contract.TvDB_AutoFanart;
@@ -570,16 +568,14 @@ namespace JMMClient
 				// Web Cache
 				contract.WebCache_Address = this.WebCache_Address;
 				contract.WebCache_Anonymous = this.WebCache_Anonymous;
-				contract.WebCache_FileHashes_Get = this.WebCache_FileHashes_Get;
-				contract.WebCache_FileHashes_Send = this.WebCache_FileHashes_Send;
 				contract.WebCache_TvDB_Get = this.WebCache_TvDB_Get;
 				contract.WebCache_TvDB_Send = this.WebCache_TvDB_Send;
+                contract.WebCache_Trakt_Get = this.WebCache_Trakt_Get;
+                contract.WebCache_Trakt_Send = this.WebCache_Trakt_Send;
 				contract.WebCache_MAL_Get = this.WebCache_MAL_Get;
 				contract.WebCache_MAL_Send = this.WebCache_MAL_Send;
 				contract.WebCache_XRefFileEpisode_Get = this.WebCache_XRefFileEpisode_Get;
 				contract.WebCache_XRefFileEpisode_Send = this.WebCache_XRefFileEpisode_Send;
-				contract.WebCache_AniDB_File_Get = this.WebCache_AniDB_File_Get;
-				contract.WebCache_AniDB_File_Send = this.WebCache_AniDB_File_Send;
 
 				// TvDB
 				contract.TvDB_AutoFanart = this.TvDB_AutoFanart;
@@ -1282,50 +1278,6 @@ namespace JMMClient
 			}
 		}
 
-		private bool webCache_FileHashes_Get = false;
-		public bool WebCache_FileHashes_Get
-		{
-			get { return webCache_FileHashes_Get; }
-			set
-			{
-				webCache_FileHashes_Get = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("WebCache_FileHashes_Get"));
-			}
-		}
-
-		private bool webCache_FileHashes_Send = false;
-		public bool WebCache_FileHashes_Send
-		{
-			get { return webCache_FileHashes_Send; }
-			set
-			{
-				webCache_FileHashes_Send = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("WebCache_FileHashes_Send"));
-			}
-		}
-
-		private bool webCache_AniDB_File_Get = false;
-		public bool WebCache_AniDB_File_Get
-		{
-			get { return webCache_AniDB_File_Get; }
-			set
-			{
-				webCache_AniDB_File_Get = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("WebCache_AniDB_File_Get"));
-			}
-		}
-
-		private bool webCache_AniDB_File_Send = false;
-		public bool WebCache_AniDB_File_Send
-		{
-			get { return webCache_AniDB_File_Send; }
-			set
-			{
-				webCache_AniDB_File_Send = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("WebCache_AniDB_File_Send"));
-			}
-		}
-
 		private bool webCache_XRefFileEpisode_Get = false;
 		public bool WebCache_XRefFileEpisode_Get
 		{
@@ -1369,6 +1321,28 @@ namespace JMMClient
 				OnPropertyChanged(new PropertyChangedEventArgs("WebCache_TvDB_Send"));
 			}
 		}
+
+        private bool webCache_Trakt_Get = false;
+        public bool WebCache_Trakt_Get
+        {
+            get { return webCache_Trakt_Get; }
+            set
+            {
+                webCache_Trakt_Get = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("WebCache_Trakt_Get"));
+            }
+        }
+
+        private bool webCache_Trakt_Send = false;
+        public bool WebCache_Trakt_Send
+        {
+            get { return webCache_Trakt_Send; }
+            set
+            {
+                webCache_Trakt_Send = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("WebCache_Trakt_Send"));
+            }
+        }
 
 
 		private bool webCache_MAL_Get = false;
