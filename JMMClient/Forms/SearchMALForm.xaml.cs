@@ -241,14 +241,11 @@ namespace JMMClient.Forms
 			{
 				// first find what the community recommends
 				
-				List<JMMServerBinary.Contract_CrossRef_AniDB_MALResult> xrefs = JMMServerVM.Instance.clientBinaryHTTP.GetMALCrossRefWebCache(AnimeID);
-				if (xrefs != null)
+				JMMServerBinary.Contract_CrossRef_AniDB_MALResult xref = JMMServerVM.Instance.clientBinaryHTTP.GetMALCrossRefWebCache(AnimeID);
+				if (xref != null)
 				{
-					foreach (JMMServerBinary.Contract_CrossRef_AniDB_MALResult xref in xrefs)
-					{
-						CrossRef_AniDB_MALResult.Add(new CrossRef_AniDB_MALResultVM(xref));
-						HasWebCacheRec = true;
-					}
+					CrossRef_AniDB_MALResult.Add(new CrossRef_AniDB_MALResultVM(xref));
+					HasWebCacheRec = true;
 				}
 
 				// now search MAL

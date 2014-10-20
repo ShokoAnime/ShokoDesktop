@@ -747,7 +747,7 @@
   <xs:element name="GetMALCrossRefWebCacheResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetMALCrossRefWebCacheResult" nillable="true" type="q32:ArrayOfContract_CrossRef_AniDB_MALResult" />
+        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetMALCrossRefWebCacheResult" nillable="true" type="q32:Contract_CrossRef_AniDB_MALResult" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

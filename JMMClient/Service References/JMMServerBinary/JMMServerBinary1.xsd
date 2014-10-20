@@ -964,16 +964,11 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_MALAnimeResponse" nillable="true" type="tns:Contract_MALAnimeResponse" />
-  <xs:complexType name="ArrayOfContract_CrossRef_AniDB_MALResult">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_CrossRef_AniDB_MALResult" nillable="true" type="tns:Contract_CrossRef_AniDB_MALResult" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_CrossRef_AniDB_MALResult" nillable="true" type="tns:ArrayOfContract_CrossRef_AniDB_MALResult" />
   <xs:complexType name="Contract_CrossRef_AniDB_MALResult">
     <xs:sequence>
       <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
       <xs:element minOccurs="0" name="CrossRefSource" type="xs:int" />
+      <xs:element minOccurs="0" name="IsAdminApproved" type="xs:int" />
       <xs:element minOccurs="0" name="MALID" type="xs:int" />
       <xs:element minOccurs="0" name="MALTitle" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="StartEpisodeNumber" type="xs:int" />

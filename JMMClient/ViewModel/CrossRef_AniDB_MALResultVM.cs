@@ -13,6 +13,7 @@ namespace JMMClient.ViewModel
 		public string MALTitle { get; set; }
 		public int StartEpisodeType { get; set; }
 		public int StartEpisodeNumber { get; set; }
+        public int IsAdminApproved { get; set; }
 
 		public string SiteURL
 		{
@@ -30,6 +31,14 @@ namespace JMMClient.ViewModel
 			}
 		}
 
+        public bool AdminApproved
+        {
+            get
+            {
+                return IsAdminApproved == 1;
+            }
+        }
+
 		public CrossRef_AniDB_MALResultVM()
 		{
 		}
@@ -42,6 +51,7 @@ namespace JMMClient.ViewModel
 			this.MALTitle = contract.MALTitle;
 			this.StartEpisodeType = contract.StartEpisodeType;
 			this.StartEpisodeNumber = contract.StartEpisodeNumber;
+            this.IsAdminApproved = contract.IsAdminApproved;
 		}
 
 		public override string ToString()
