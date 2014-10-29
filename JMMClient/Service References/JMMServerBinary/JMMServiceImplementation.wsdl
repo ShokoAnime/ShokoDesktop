@@ -9,6 +9,12 @@
       <xsd:import schemaLocation="http://localhost:8111/JMMServerBinary?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IJMMServer_RenameFilePreview_InputMessage">
+    <wsdl:part name="parameters" element="tns:RenameFilePreview" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RenameFilePreview_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RenameFilePreviewResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_RenameFile_InputMessage">
     <wsdl:part name="parameters" element="tns:RenameFile" />
   </wsdl:message>
@@ -140,6 +146,12 @@
   </wsdl:message>
   <wsdl:message name="IJMMServer_GetAniDBEpisodesForAnime_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAniDBEpisodesForAnimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetReleaseGroupsForAnime_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReleaseGroupsForAnime" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetReleaseGroupsForAnime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReleaseGroupsForAnimeResponse" />
   </wsdl:message>
   <wsdl:message name="IJMMServer_GetAnimeForMonth_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAnimeForMonth" />
@@ -519,12 +531,6 @@
   <wsdl:message name="IJMMServer_SearchForFiles_OutputMessage">
     <wsdl:part name="parameters" element="tns:SearchForFilesResponse" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_RenameFilePreview_InputMessage">
-    <wsdl:part name="parameters" element="tns:RenameFilePreview" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_RenameFilePreview_OutputMessage">
-    <wsdl:part name="parameters" element="tns:RenameFilePreviewResponse" />
-  </wsdl:message>
   <wsdl:message name="IJMMServer_GetAllManuallyLinkedFiles_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAllManuallyLinkedFiles" />
   </wsdl:message>
@@ -849,6 +855,12 @@
   <wsdl:message name="IJMMServer_UpdateTraktData_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateTraktDataResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_UpdateMovieDBData_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMovieDBData" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_UpdateMovieDBData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMovieDBDataResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_GetGroupFilterExtended_InputMessage">
     <wsdl:part name="parameters" element="tns:GetGroupFilterExtended" />
   </wsdl:message>
@@ -902,12 +914,6 @@
   </wsdl:message>
   <wsdl:message name="IJMMServer_GetRecommendations_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetRecommendationsResponse" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_GetReleaseGroupsForAnime_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetReleaseGroupsForAnime" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_GetReleaseGroupsForAnime_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetReleaseGroupsForAnimeResponse" />
   </wsdl:message>
   <wsdl:message name="IJMMServer_UpdateEpisodeData_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateEpisodeData" />
@@ -1294,6 +1300,10 @@
     <wsdl:part name="parameters" element="tns:DeleteDuplicateFileResponse" />
   </wsdl:message>
   <wsdl:portType name="IJMMServer">
+    <wsdl:operation name="RenameFilePreview">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RenameFilePreview" message="tns:IJMMServer_RenameFilePreview_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RenameFilePreviewResponse" message="tns:IJMMServer_RenameFilePreview_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="RenameFile">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RenameFile" message="tns:IJMMServer_RenameFile_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RenameFileResponse" message="tns:IJMMServer_RenameFile_OutputMessage" />
@@ -1381,6 +1391,10 @@
     <wsdl:operation name="GetAniDBEpisodesForAnime">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAniDBEpisodesForAnime" message="tns:IJMMServer_GetAniDBEpisodesForAnime_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAniDBEpisodesForAnimeResponse" message="tns:IJMMServer_GetAniDBEpisodesForAnime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReleaseGroupsForAnime">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetReleaseGroupsForAnime" message="tns:IJMMServer_GetReleaseGroupsForAnime_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetReleaseGroupsForAnimeResponse" message="tns:IJMMServer_GetReleaseGroupsForAnime_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetAnimeForMonth">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAnimeForMonth" message="tns:IJMMServer_GetAnimeForMonth_InputMessage" />
@@ -1634,10 +1648,6 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SearchForFiles" message="tns:IJMMServer_SearchForFiles_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SearchForFilesResponse" message="tns:IJMMServer_SearchForFiles_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="RenameFilePreview">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RenameFilePreview" message="tns:IJMMServer_RenameFilePreview_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RenameFilePreviewResponse" message="tns:IJMMServer_RenameFilePreview_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="GetAllManuallyLinkedFiles">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllManuallyLinkedFiles" message="tns:IJMMServer_GetAllManuallyLinkedFiles_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllManuallyLinkedFilesResponse" message="tns:IJMMServer_GetAllManuallyLinkedFiles_OutputMessage" />
@@ -1854,6 +1864,10 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/UpdateTraktData" message="tns:IJMMServer_UpdateTraktData_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/UpdateTraktDataResponse" message="tns:IJMMServer_UpdateTraktData_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="UpdateMovieDBData">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/UpdateMovieDBData" message="tns:IJMMServer_UpdateMovieDBData_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/UpdateMovieDBDataResponse" message="tns:IJMMServer_UpdateMovieDBData_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetGroupFilterExtended">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilterExtended" message="tns:IJMMServer_GetGroupFilterExtended_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilterExtendedResponse" message="tns:IJMMServer_GetGroupFilterExtended_OutputMessage" />
@@ -1889,10 +1903,6 @@
     <wsdl:operation name="GetRecommendations">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetRecommendations" message="tns:IJMMServer_GetRecommendations_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetRecommendationsResponse" message="tns:IJMMServer_GetRecommendations_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetReleaseGroupsForAnime">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetReleaseGroupsForAnime" message="tns:IJMMServer_GetReleaseGroupsForAnime_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetReleaseGroupsForAnimeResponse" message="tns:IJMMServer_GetReleaseGroupsForAnime_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="UpdateEpisodeData">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/UpdateEpisodeData" message="tns:IJMMServer_UpdateEpisodeData_InputMessage" />

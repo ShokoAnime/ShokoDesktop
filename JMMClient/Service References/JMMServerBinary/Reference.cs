@@ -16689,6 +16689,9 @@ namespace JMMClient.JMMServerBinary {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="JMMServerBinary.IJMMServer")]
     public interface IJMMServer {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/RenameFilePreview", ReplyAction="http://tempuri.org/IJMMServer/RenameFilePreviewResponse")]
+        JMMClient.JMMServerBinary.Contract_VideoLocalRenamed RenameFilePreview(int videoLocalID, string renameRules);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/RenameFile", ReplyAction="http://tempuri.org/IJMMServer/RenameFileResponse")]
         JMMClient.JMMServerBinary.Contract_VideoLocalRenamed RenameFile(int videoLocalID, string renameRules);
         
@@ -16754,6 +16757,9 @@ namespace JMMClient.JMMServerBinary {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetAniDBEpisodesForAnime", ReplyAction="http://tempuri.org/IJMMServer/GetAniDBEpisodesForAnimeResponse")]
         System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDB_Episode> GetAniDBEpisodesForAnime(int animeID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetReleaseGroupsForAnime", ReplyAction="http://tempuri.org/IJMMServer/GetReleaseGroupsForAnimeResponse")]
+        System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDBReleaseGroup> GetReleaseGroupsForAnime(int animeID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetAnimeForMonth", ReplyAction="http://tempuri.org/IJMMServer/GetAnimeForMonthResponse")]
         System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDBAnime> GetAnimeForMonth(int jmmuserID, int month, int year);
@@ -16944,9 +16950,6 @@ namespace JMMClient.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/SearchForFiles", ReplyAction="http://tempuri.org/IJMMServer/SearchForFilesResponse")]
         System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_VideoLocal> SearchForFiles(int searchType, string searchCriteria, int userID);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/RenameFilePreview", ReplyAction="http://tempuri.org/IJMMServer/RenameFilePreviewResponse")]
-        JMMClient.JMMServerBinary.Contract_VideoLocalRenamed RenameFilePreview(int videoLocalID, string renameRules);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetAllManuallyLinkedFiles", ReplyAction="http://tempuri.org/IJMMServer/GetAllManuallyLinkedFilesResponse")]
         System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_VideoLocal> GetAllManuallyLinkedFiles(int userID);
         
@@ -17109,6 +17112,9 @@ namespace JMMClient.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/UpdateTraktData", ReplyAction="http://tempuri.org/IJMMServer/UpdateTraktDataResponse")]
         string UpdateTraktData(string traktD);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/UpdateMovieDBData", ReplyAction="http://tempuri.org/IJMMServer/UpdateMovieDBDataResponse")]
+        string UpdateMovieDBData(int movieD);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetGroupFilterExtended", ReplyAction="http://tempuri.org/IJMMServer/GetGroupFilterExtendedResponse")]
         JMMClient.JMMServerBinary.Contract_GroupFilterExtended GetGroupFilterExtended(int groupFilterID, int userID);
         
@@ -17135,9 +17141,6 @@ namespace JMMClient.JMMServerBinary {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetRecommendations", ReplyAction="http://tempuri.org/IJMMServer/GetRecommendationsResponse")]
         System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_Recommendation> GetRecommendations(int maxResults, int userID, int recommendationType);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetReleaseGroupsForAnime", ReplyAction="http://tempuri.org/IJMMServer/GetReleaseGroupsForAnimeResponse")]
-        System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDBReleaseGroup> GetReleaseGroupsForAnime(int animeID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/UpdateEpisodeData", ReplyAction="http://tempuri.org/IJMMServer/UpdateEpisodeDataResponse")]
         string UpdateEpisodeData(int episodeID);
@@ -17359,6 +17362,10 @@ namespace JMMClient.JMMServerBinary {
                 base(binding, remoteAddress) {
         }
         
+        public JMMClient.JMMServerBinary.Contract_VideoLocalRenamed RenameFilePreview(int videoLocalID, string renameRules) {
+            return base.Channel.RenameFilePreview(videoLocalID, renameRules);
+        }
+        
         public JMMClient.JMMServerBinary.Contract_VideoLocalRenamed RenameFile(int videoLocalID, string renameRules) {
             return base.Channel.RenameFile(videoLocalID, renameRules);
         }
@@ -17445,6 +17452,10 @@ namespace JMMClient.JMMServerBinary {
         
         public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDB_Episode> GetAniDBEpisodesForAnime(int animeID) {
             return base.Channel.GetAniDBEpisodesForAnime(animeID);
+        }
+        
+        public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDBReleaseGroup> GetReleaseGroupsForAnime(int animeID) {
+            return base.Channel.GetReleaseGroupsForAnime(animeID);
         }
         
         public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDBAnime> GetAnimeForMonth(int jmmuserID, int month, int year) {
@@ -17699,10 +17710,6 @@ namespace JMMClient.JMMServerBinary {
             return base.Channel.SearchForFiles(searchType, searchCriteria, userID);
         }
         
-        public JMMClient.JMMServerBinary.Contract_VideoLocalRenamed RenameFilePreview(int videoLocalID, string renameRules) {
-            return base.Channel.RenameFilePreview(videoLocalID, renameRules);
-        }
-        
         public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_VideoLocal> GetAllManuallyLinkedFiles(int userID) {
             return base.Channel.GetAllManuallyLinkedFiles(userID);
         }
@@ -17919,6 +17926,10 @@ namespace JMMClient.JMMServerBinary {
             return base.Channel.UpdateTraktData(traktD);
         }
         
+        public string UpdateMovieDBData(int movieD) {
+            return base.Channel.UpdateMovieDBData(movieD);
+        }
+        
         public JMMClient.JMMServerBinary.Contract_GroupFilterExtended GetGroupFilterExtended(int groupFilterID, int userID) {
             return base.Channel.GetGroupFilterExtended(groupFilterID, userID);
         }
@@ -17953,10 +17964,6 @@ namespace JMMClient.JMMServerBinary {
         
         public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_Recommendation> GetRecommendations(int maxResults, int userID, int recommendationType) {
             return base.Channel.GetRecommendations(maxResults, userID, recommendationType);
-        }
-        
-        public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDBReleaseGroup> GetReleaseGroupsForAnime(int animeID) {
-            return base.Channel.GetReleaseGroupsForAnime(animeID);
         }
         
         public string UpdateEpisodeData(int episodeID) {

@@ -45,6 +45,7 @@ namespace JMMClient.UserControls
 			btnSearchExistingMovieDB.Click += new RoutedEventHandler(btnSearchExistingMovieDB_Click);
 			btnSearchMovieDB.Click += new RoutedEventHandler(btnSearchMovieDB_Click);
 			btnDeleteMovieDBLink.Click += new RoutedEventHandler(btnDeleteMovieDBLink_Click);
+            btnUpdateMovieDBInfo.Click += btnUpdateMovieDBInfo_Click;
 
 			btnSearchExistingTrakt.Click += new RoutedEventHandler(btnSearchExistingTrakt_Click);
 			btnSearchTrakt.Click += new RoutedEventHandler(btnSearchTrakt_Click);
@@ -52,6 +53,8 @@ namespace JMMClient.UserControls
 			btnSearchExistingMAL.Click += new RoutedEventHandler(btnSearchExistingMAL_Click);
 			btnSearchMAL.Click += new RoutedEventHandler(btnSearchMAL_Click);
 		}
+
+        
 
 		
 
@@ -756,6 +759,37 @@ namespace JMMClient.UserControls
 		{
 			SearchMovieDB();
 		}
+
+        void btnUpdateMovieDBInfo_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                AniDB_AnimeVM anime = this.DataContext as AniDB_AnimeVM;
+                if (anime == null) return;
+
+                Window wdw = Window.GetWindow(this);
+                
+                this.Cursor = Cursors.Wait;
+                string res = JMMServerVM.Instance.clientBinaryHTTP.UpdateMovieDBData(AniDB_AnimeCrossRefs.MovieDB_Movie.MovieId);
+                if (res.Length > 0)
+                    MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                else
+                {
+                    // update info
+                    RefreshData();
+                }
+
+                this.Cursor = Cursors.Arrow;
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Arrow;
+            }
+        }
 
 		void btnDeleteMovieDBLink_Click(object sender, RoutedEventArgs e)
 		{
