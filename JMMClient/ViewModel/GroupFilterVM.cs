@@ -26,11 +26,34 @@ namespace JMMClient
 		public int? GroupFilterID { get; set; }
 		public bool AllowEditing { get; set; }
 		public bool AllowDeletion { get; set; }
-		public bool IsSystemGroupFilter { get; set; }
-		public bool IsNotSystemGroupFilter { get; set; }
 
 		public ObservableCollection<GroupFilterConditionVM> FilterConditions { get; set; }
 		public ObservableCollection<GroupFilterSortingCriteria> SortCriteriaList { get; set; }
+
+        private Boolean isSystemGroupFilter = false;
+        public Boolean IsSystemGroupFilter
+        {
+            get { return isSystemGroupFilter; }
+            set
+            {
+                isSystemGroupFilter = value;
+                IsNotSystemGroupFilter = !isSystemGroupFilter;
+                NotifyPropertyChanged("IsSystemGroupFilter");
+            }
+        }
+
+        private Boolean isNotSystemGroupFilter = true;
+        public Boolean IsNotSystemGroupFilter
+        {
+            get { return isNotSystemGroupFilter; }
+            set
+            {
+                isNotSystemGroupFilter = value;
+                NotifyPropertyChanged("IsNotSystemGroupFilter");
+            }
+        }
+
+        
 
 		private Boolean isLocked = true;
 		public Boolean IsLocked

@@ -2106,6 +2106,7 @@ namespace JMMClient
 				gfNew.AllowEditing = true;
 				gfNew.IsBeingEdited = true;
 				gfNew.IsLocked = false;
+                gfNew.IsSystemGroupFilter = false;
 				gfNew.FilterName = "New Filter";
 				gfNew.ApplyToSeries = 0;
 				gfNew.BaseCondition = (int)GroupFilterBaseCondition.Include;
