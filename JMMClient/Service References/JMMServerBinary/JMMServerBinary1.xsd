@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/JMMContracts" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/JMMContracts" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:8111/JMMServerBinary?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-  <xs:complexType name="Contract_VideoLocalRenamed">
+  <xs:complexType name="ArrayOfContract_VideoLocal">
     <xs:sequence>
-      <xs:element minOccurs="0" name="NewFileName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
-      <xs:element minOccurs="0" name="VideoLocal" nillable="true" type="tns:Contract_VideoLocal" />
-      <xs:element minOccurs="0" name="VideoLocalID" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_VideoLocal" nillable="true" type="tns:Contract_VideoLocal" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="Contract_VideoLocalRenamed" nillable="true" type="tns:Contract_VideoLocalRenamed" />
+  <xs:element name="ArrayOfContract_VideoLocal" nillable="true" type="tns:ArrayOfContract_VideoLocal" />
   <xs:complexType name="Contract_VideoLocal">
     <xs:sequence>
       <xs:element minOccurs="0" name="CRC32" nillable="true" type="xs:string" />
@@ -42,12 +39,15 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_ImportFolder" nillable="true" type="tns:Contract_ImportFolder" />
-  <xs:complexType name="ArrayOfContract_VideoLocal">
+  <xs:complexType name="Contract_VideoLocalRenamed">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_VideoLocal" nillable="true" type="tns:Contract_VideoLocal" />
+      <xs:element minOccurs="0" name="NewFileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+      <xs:element minOccurs="0" name="VideoLocal" nillable="true" type="tns:Contract_VideoLocal" />
+      <xs:element minOccurs="0" name="VideoLocalID" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfContract_VideoLocal" nillable="true" type="tns:ArrayOfContract_VideoLocal" />
+  <xs:element name="Contract_VideoLocalRenamed" nillable="true" type="tns:Contract_VideoLocalRenamed" />
   <xs:complexType name="ArrayOfContract_RenameScript">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_RenameScript" nillable="true" type="tns:Contract_RenameScript" />
@@ -676,6 +676,26 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_AniDB_Episode" nillable="true" type="tns:Contract_AniDB_Episode" />
+  <xs:complexType name="ArrayOfContract_Recommendation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_Recommendation" nillable="true" type="tns:Contract_Recommendation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_Recommendation" nillable="true" type="tns:ArrayOfContract_Recommendation" />
+  <xs:complexType name="Contract_Recommendation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BasedOnAnimeID" type="xs:int" />
+      <xs:element minOccurs="0" name="BasedOnVoteValue" type="xs:int" />
+      <xs:element minOccurs="0" name="BasedOn_AniDB_Anime" nillable="true" type="tns:Contract_AniDBAnime" />
+      <xs:element minOccurs="0" name="BasedOn_AnimeSeries" nillable="true" type="tns:Contract_AnimeSeries" />
+      <xs:element minOccurs="0" name="RecommendedAnimeID" type="xs:int" />
+      <xs:element minOccurs="0" name="RecommendedApproval" type="xs:double" />
+      <xs:element minOccurs="0" name="Recommended_AniDB_Anime" nillable="true" type="tns:Contract_AniDBAnime" />
+      <xs:element minOccurs="0" name="Recommended_AnimeSeries" nillable="true" type="tns:Contract_AnimeSeries" />
+      <xs:element minOccurs="0" name="Score" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_Recommendation" nillable="true" type="tns:Contract_Recommendation" />
   <xs:complexType name="ArrayOfContract_AniDBAnime">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_AniDBAnime" nillable="true" type="tns:Contract_AniDBAnime" />
@@ -1464,26 +1484,22 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_AniDB_Anime_Relation" nillable="true" type="tns:Contract_AniDB_Anime_Relation" />
-  <xs:complexType name="ArrayOfContract_Recommendation">
+  <xs:complexType name="ArrayOfContract_AdminMessage">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_Recommendation" nillable="true" type="tns:Contract_Recommendation" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_AdminMessage" nillable="true" type="tns:Contract_AdminMessage" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfContract_Recommendation" nillable="true" type="tns:ArrayOfContract_Recommendation" />
-  <xs:complexType name="Contract_Recommendation">
+  <xs:element name="ArrayOfContract_AdminMessage" nillable="true" type="tns:ArrayOfContract_AdminMessage" />
+  <xs:complexType name="Contract_AdminMessage">
     <xs:sequence>
-      <xs:element minOccurs="0" name="BasedOnAnimeID" type="xs:int" />
-      <xs:element minOccurs="0" name="BasedOnVoteValue" type="xs:int" />
-      <xs:element minOccurs="0" name="BasedOn_AniDB_Anime" nillable="true" type="tns:Contract_AniDBAnime" />
-      <xs:element minOccurs="0" name="BasedOn_AnimeSeries" nillable="true" type="tns:Contract_AnimeSeries" />
-      <xs:element minOccurs="0" name="RecommendedAnimeID" type="xs:int" />
-      <xs:element minOccurs="0" name="RecommendedApproval" type="xs:double" />
-      <xs:element minOccurs="0" name="Recommended_AniDB_Anime" nillable="true" type="tns:Contract_AniDBAnime" />
-      <xs:element minOccurs="0" name="Recommended_AnimeSeries" nillable="true" type="tns:Contract_AnimeSeries" />
-      <xs:element minOccurs="0" name="Score" type="xs:double" />
+      <xs:element minOccurs="0" name="AdminMessageId" type="xs:int" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MessageDate" type="xs:long" />
+      <xs:element minOccurs="0" name="MessageType" type="xs:int" />
+      <xs:element minOccurs="0" name="MessageURL" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="Contract_Recommendation" nillable="true" type="tns:Contract_Recommendation" />
+  <xs:element name="Contract_AdminMessage" nillable="true" type="tns:Contract_AdminMessage" />
   <xs:complexType name="Contract_AnimeSeries_SaveResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="AnimeSeries" nillable="true" type="tns:Contract_AnimeSeries" />

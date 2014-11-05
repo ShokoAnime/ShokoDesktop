@@ -711,6 +711,17 @@ namespace JMMClient
 			}
 		}
 
+        private bool adminMessagesAvailable = false;
+        public bool AdminMessagesAvailable
+        {
+            get { return adminMessagesAvailable; }
+            set
+            {
+                adminMessagesAvailable = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("AdminMessagesAvailable"));
+            }
+        }
+
 		private bool isAdminUser = false;
 		public bool IsAdminUser
 		{
@@ -1768,6 +1779,8 @@ namespace JMMClient
 			}
 		}
 
+        public ObservableCollection<AdminMessage> AdminMessages { get; set; }
+
 
 		#endregion
 
@@ -1812,6 +1825,7 @@ namespace JMMClient
 			SelectedLanguages = new ObservableCollection<NamingLanguage>();
 			AllUsers = new ObservableCollection<JMMUserVM>();
 			AllCategories = new ObservableCollection<string>();
+            AdminMessages = new ObservableCollection<AdminMessage>();
 
 			try
 			{
@@ -1840,12 +1854,29 @@ namespace JMMClient
 				}
 
 				TimeSpan ts = DateTime.Now - lastVersionCheck;
-				lastVersionCheck = DateTime.Now;
-
+				
 				JMMServerBinary.Contract_ServerStatus status = JMMServerVM.Instance.clientBinaryHTTP.GetServerStatus();
 				JMMServerBinary.Contract_AppVersions appv = null;
 				if (ts.TotalMinutes > 180)
-					appv = JMMServerVM.Instance.clientBinaryHTTP.GetAppVersions();
+                {
+                    //appv = JMMServerVM.Instance.clientBinaryHTTP.GetAppVersions();
+
+                    lastVersionCheck = DateTime.Now;
+                    // check for admin messages
+                    AdminMessages.Clear();
+                    List<JMMServerBinary.Contract_AdminMessage> msgs = JMMServerVM.Instance.clientBinaryHTTP.GetAdminMessages();
+                    if (msgs != null)
+                    {
+                        foreach (JMMServerBinary.Contract_AdminMessage msg in msgs)
+                        {
+                            AdminMessage newMsg = new AdminMessage(msg);
+                            AdminMessages.Add(newMsg);
+                        }
+                    }
+
+                    AdminMessagesAvailable = AdminMessages.Count > 0;
+                }
+					
 
 				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
 				{

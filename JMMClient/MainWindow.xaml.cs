@@ -182,6 +182,7 @@ namespace JMMClient
 				btnClearHasherQueue.Click += new RoutedEventHandler(btnClearHasherQueue_Click);
 				btnClearGeneralQueue.Click += new RoutedEventHandler(btnClearGeneralQueue_Click);
 				btnClearServerImageQueue.Click += new RoutedEventHandler(btnClearServerImageQueue_Click);
+                btnAdminMessages.Click += new RoutedEventHandler(btnAdminMessages_Click);
 
 				JMMServerVM.Instance.BaseImagePath = Utils.GetBaseImagesPath();
 
@@ -298,7 +299,12 @@ namespace JMMClient
 			frm.ShowDialog();
 		}
 
-		
+        void btnAdminMessages_Click(object sender, RoutedEventArgs e)
+        {
+            AdminMessagesForm frm = new AdminMessagesForm();
+            frm.Owner = this;
+            frm.ShowDialog();
+        }
 
 		void btnUpdateMediaInfo_Click(object sender, RoutedEventArgs e)
 		{

@@ -9,6 +9,12 @@
       <xsd:import schemaLocation="http://localhost:8111/JMMServerBinary?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IJMMServer_SearchForFiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchForFiles" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SearchForFiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchForFilesResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_RenameFilePreview_InputMessage">
     <wsdl:part name="parameters" element="tns:RenameFilePreview" />
   </wsdl:message>
@@ -146,6 +152,12 @@
   </wsdl:message>
   <wsdl:message name="IJMMServer_GetAniDBEpisodesForAnime_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAniDBEpisodesForAnimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetRecommendations_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRecommendations" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetRecommendations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRecommendationsResponse" />
   </wsdl:message>
   <wsdl:message name="IJMMServer_GetReleaseGroupsForAnime_InputMessage">
     <wsdl:part name="parameters" element="tns:GetReleaseGroupsForAnime" />
@@ -525,11 +537,11 @@
   <wsdl:message name="IJMMServer_UpdateAnimeDisableExternalLinksFlag_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateAnimeDisableExternalLinksFlagResponse" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_SearchForFiles_InputMessage">
-    <wsdl:part name="parameters" element="tns:SearchForFiles" />
+  <wsdl:message name="IJMMServer_DeleteDuplicateFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDuplicateFile" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_SearchForFiles_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SearchForFilesResponse" />
+  <wsdl:message name="IJMMServer_DeleteDuplicateFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDuplicateFileResponse" />
   </wsdl:message>
   <wsdl:message name="IJMMServer_GetAllManuallyLinkedFiles_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAllManuallyLinkedFiles" />
@@ -909,17 +921,17 @@
   <wsdl:message name="IJMMServer_GetRelatedAnimeLinks_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetRelatedAnimeLinksResponse" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_GetRecommendations_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetRecommendations" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_GetRecommendations_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetRecommendationsResponse" />
-  </wsdl:message>
   <wsdl:message name="IJMMServer_UpdateEpisodeData_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateEpisodeData" />
   </wsdl:message>
   <wsdl:message name="IJMMServer_UpdateEpisodeData_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateEpisodeDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAdminMessages_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAdminMessages" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAdminMessages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAdminMessagesResponse" />
   </wsdl:message>
   <wsdl:message name="IJMMServer_GetContinueWatchingFilter_InputMessage">
     <wsdl:part name="parameters" element="tns:GetContinueWatchingFilter" />
@@ -1293,13 +1305,11 @@
   <wsdl:message name="IJMMServer_GetAllDuplicateFiles_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllDuplicateFilesResponse" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_DeleteDuplicateFile_InputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteDuplicateFile" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_DeleteDuplicateFile_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteDuplicateFileResponse" />
-  </wsdl:message>
   <wsdl:portType name="IJMMServer">
+    <wsdl:operation name="SearchForFiles">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SearchForFiles" message="tns:IJMMServer_SearchForFiles_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SearchForFilesResponse" message="tns:IJMMServer_SearchForFiles_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="RenameFilePreview">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RenameFilePreview" message="tns:IJMMServer_RenameFilePreview_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RenameFilePreviewResponse" message="tns:IJMMServer_RenameFilePreview_OutputMessage" />
@@ -1391,6 +1401,10 @@
     <wsdl:operation name="GetAniDBEpisodesForAnime">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAniDBEpisodesForAnime" message="tns:IJMMServer_GetAniDBEpisodesForAnime_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAniDBEpisodesForAnimeResponse" message="tns:IJMMServer_GetAniDBEpisodesForAnime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRecommendations">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetRecommendations" message="tns:IJMMServer_GetRecommendations_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetRecommendationsResponse" message="tns:IJMMServer_GetRecommendations_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetReleaseGroupsForAnime">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetReleaseGroupsForAnime" message="tns:IJMMServer_GetReleaseGroupsForAnime_InputMessage" />
@@ -1644,9 +1658,9 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/UpdateAnimeDisableExternalLinksFlag" message="tns:IJMMServer_UpdateAnimeDisableExternalLinksFlag_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/UpdateAnimeDisableExternalLinksFlagResponse" message="tns:IJMMServer_UpdateAnimeDisableExternalLinksFlag_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="SearchForFiles">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SearchForFiles" message="tns:IJMMServer_SearchForFiles_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SearchForFilesResponse" message="tns:IJMMServer_SearchForFiles_OutputMessage" />
+    <wsdl:operation name="DeleteDuplicateFile">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/DeleteDuplicateFile" message="tns:IJMMServer_DeleteDuplicateFile_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/DeleteDuplicateFileResponse" message="tns:IJMMServer_DeleteDuplicateFile_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetAllManuallyLinkedFiles">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllManuallyLinkedFiles" message="tns:IJMMServer_GetAllManuallyLinkedFiles_InputMessage" />
@@ -1900,13 +1914,13 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetRelatedAnimeLinks" message="tns:IJMMServer_GetRelatedAnimeLinks_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetRelatedAnimeLinksResponse" message="tns:IJMMServer_GetRelatedAnimeLinks_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetRecommendations">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetRecommendations" message="tns:IJMMServer_GetRecommendations_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetRecommendationsResponse" message="tns:IJMMServer_GetRecommendations_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="UpdateEpisodeData">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/UpdateEpisodeData" message="tns:IJMMServer_UpdateEpisodeData_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/UpdateEpisodeDataResponse" message="tns:IJMMServer_UpdateEpisodeData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAdminMessages">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAdminMessages" message="tns:IJMMServer_GetAdminMessages_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAdminMessagesResponse" message="tns:IJMMServer_GetAdminMessages_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetContinueWatchingFilter">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetContinueWatchingFilter" message="tns:IJMMServer_GetContinueWatchingFilter_InputMessage" />
@@ -2155,10 +2169,6 @@
     <wsdl:operation name="GetAllDuplicateFiles">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllDuplicateFiles" message="tns:IJMMServer_GetAllDuplicateFiles_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllDuplicateFilesResponse" message="tns:IJMMServer_GetAllDuplicateFiles_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="DeleteDuplicateFile">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/DeleteDuplicateFile" message="tns:IJMMServer_DeleteDuplicateFile_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/DeleteDuplicateFileResponse" message="tns:IJMMServer_DeleteDuplicateFile_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:service name="JMMServiceImplementation">
