@@ -36,6 +36,15 @@ namespace JMMClient.UserControls
 			set { SetValue(TotalFileCountProperty, value); }
 		}
 
+        public static readonly DependencyProperty TotalFileSizeProperty = DependencyProperty.Register("TotalFileSize",
+            typeof(string), typeof(AnimeFileSummaryControl), new UIPropertyMetadata("", null));
+
+        public string TotalFileSize
+        {
+            get { return (string)GetValue(TotalFileSizeProperty); }
+            set { SetValue(TotalFileSizeProperty, value); }
+        }
+
 		public static readonly DependencyProperty IsDataLoadingProperty = DependencyProperty.Register("IsDataLoading",
 			typeof(bool), typeof(AnimeFileSummaryControl), new UIPropertyMetadata(true, null));
 
@@ -218,6 +227,7 @@ namespace JMMClient.UserControls
 				GroupSummaryRecords.Clear();
 
 				TotalFileCount = 0;
+                double fileSize = 0;
 
 				AniDB_AnimeVM anime = this.DataContext as AniDB_AnimeVM;
 				if (anime == null) return;
@@ -229,6 +239,7 @@ namespace JMMClient.UserControls
 					{
 						GroupVideoQualityVM vidQual = new GroupVideoQualityVM(contract);
 						TotalFileCount += vidQual.FileCountNormal + vidQual.FileCountSpecials;
+                        fileSize += vidQual.TotalFileSize;
 						VideoQualityRecords.Add(vidQual);
 					}
 				}
@@ -240,9 +251,13 @@ namespace JMMClient.UserControls
 					{
 						GroupFileSummaryVM vidQual = new GroupFileSummaryVM(contract);
 						TotalFileCount += vidQual.FileCountNormal + vidQual.FileCountSpecials;
+                        //fileSize += vidQual.TotalFileSize;
 						GroupSummaryRecords.Add(vidQual);
 					}
 				}
+
+                TotalFileSize = Utils.FormatFileSize(fileSize);
+
 
 				IsDataLoading = false;
 				IsDataFinishedLoading = true;

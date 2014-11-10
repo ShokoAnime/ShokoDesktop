@@ -17,6 +17,7 @@ namespace JMMClient.ViewModel
 		public bool NormalComplete { get; set; }
 		public int FileCountSpecials { get; set; }
 		public bool SpecialsComplete { get; set; }
+        public double TotalFileSize { get; set; }
 
 		public List<int> NormalEpisodeNumbers { get; set; }
 		public string NormalEpisodeNumberSummary { get; set; }
@@ -40,6 +41,7 @@ namespace JMMClient.ViewModel
 			this.FileCountSpecials = contract.FileCountSpecials;
 			this.NormalComplete = contract.NormalComplete;
 			this.SpecialsComplete = contract.SpecialsComplete;
+            this.TotalFileSize = contract.TotalFileSize;
 
 			this.NormalEpisodeNumbers = contract.NormalEpisodeNumbers;
 			this.NormalEpisodeNumberSummary = contract.NormalEpisodeNumberSummary;

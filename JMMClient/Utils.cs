@@ -253,6 +253,43 @@ namespace JMMClient
 			return mb.ToString("##.# MB");
 		}
 
+        public static string FormatFileSize(double bytes)
+        {
+            string[] suffixes = { "bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"};
+            for (int i = 0; i < suffixes.Length; i++)
+            {
+                if (bytes <= (Math.Pow(1024, i + 1)))
+                {
+                    return ThreeNonZeroDigits(bytes /
+                        Math.Pow(1024, i)) +
+                        " " + suffixes[i];
+                }
+            }
+
+            return ThreeNonZeroDigits(bytes /
+                Math.Pow(1024, suffixes.Length - 1)) +
+                " " + suffixes[suffixes.Length - 1];
+        }
+
+        private static string ThreeNonZeroDigits(double value)
+        {
+            if (value >= 100)
+            {
+                // No digits after the decimal.
+                return value.ToString("0,0");
+            }
+            else if (value >= 10)
+            {
+                // One digit after the decimal.
+                return value.ToString("0.0");
+            }
+            else
+            {
+                // Two digits after the decimal.
+                return value.ToString("0.00");
+            }
+        }
+
 		public static string GetBaseImagesPath()
 		{
 			lock (assemblyLock)

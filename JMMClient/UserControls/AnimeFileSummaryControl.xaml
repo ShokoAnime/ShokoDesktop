@@ -127,7 +127,12 @@
             <StackPanel Orientation="Horizontal">
                 <ComboBox Margin="5,5,5,5" Name="cboFileSummaryType" VerticalAlignment="Center" Style="{DynamicResource FlatComboBox}"/>
                 <TextBlock FontWeight="Bold" Padding="5" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TotalFileCount}" VerticalAlignment="Center" />
-                <TextBlock Padding="5" Text="{Binding Path=TotalFileCount, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeFileSummaryControl}}}" VerticalAlignment="Center" />
+                <TextBlock Padding="5" Text="{Binding Path=TotalFileCount, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeFileSummaryControl}}}" 
+                           VerticalAlignment="Center" />
+                <TextBlock Padding="5,5,0,5" Text="(" VerticalAlignment="Center" />
+                <TextBlock Padding="2,5,2,5" Text="{Binding Path=TotalFileSize, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeFileSummaryControl}}}" 
+                           VerticalAlignment="Center" />
+                <TextBlock Padding="0,5,5,5" Text=")" VerticalAlignment="Center" />
                 <ComboBox Margin="5,5,5,5" Name="cboSortGroupQual" VerticalAlignment="Center" Style="{DynamicResource FlatComboBox}"
                           Visibility="{Binding Path=IsGroupQualityDetails, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeFileSummaryControl}}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
             </StackPanel>

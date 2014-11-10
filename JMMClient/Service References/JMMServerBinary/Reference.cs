@@ -12418,6 +12418,9 @@ namespace JMMClient.JMMServerBinary {
         private bool SpecialsCompleteField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double TotalFileSizeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int VideoBitDepthField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -12559,6 +12562,19 @@ namespace JMMClient.JMMServerBinary {
                 if ((this.SpecialsCompleteField.Equals(value) != true)) {
                     this.SpecialsCompleteField = value;
                     this.RaisePropertyChanged("SpecialsComplete");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double TotalFileSize {
+            get {
+                return this.TotalFileSizeField;
+            }
+            set {
+                if ((this.TotalFileSizeField.Equals(value) != true)) {
+                    this.TotalFileSizeField = value;
+                    this.RaisePropertyChanged("TotalFileSize");
                 }
             }
         }
