@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
+using System.Windows.Data;
 
 namespace JMMClient.ViewModel
 {
@@ -17,6 +18,8 @@ namespace JMMClient.ViewModel
 		public List<AnimeCategoryVM> AnimeCategoriesSummary { get; set; }
 		public List<AnimeTagVM> AnimeTags { get; set; }
 		public List<AnimeTagVM> AnimeTagsSummary { get; set; }
+        public List<CustomTagVM> CustomTags { get; set; }
+        public ICollectionView ViewCustomTags { get; set; }
 
 		public List<AnimeTitleVM> AnimeTitles { get; set; }
 		public List<AnimeTitleVM> AnimeTitlesSummary { get; set; }
@@ -50,52 +53,15 @@ namespace JMMClient.ViewModel
 			AnimeTitlesSynonym = new List<AnimeTitleVM>();
 			AnimeTitlesShort = new List<AnimeTitleVM>();
 
+
 			AnimeCategories = new List<AnimeCategoryVM>();
 			AnimeCategoriesSummary = new List<AnimeCategoryVM>();
 
 			AnimeTags = new List<AnimeTagVM>();
 			AnimeTagsSummary = new List<AnimeTagVM>();
-			
+            CustomTags = new List<CustomTagVM>();
+            ViewCustomTags = CollectionViewSource.GetDefaultView(CustomTags);
 		}
-
-		/*public string FormattedTitle
-		{
-			get
-			{
-				foreach (NamingLanguage nlan in Languages.PreferredNamingLanguages)
-				{
-					string thisLanguage = nlan.Language.Trim().ToUpper();
-					// Romaji and English titles will be contained in MAIN and/or OFFICIAL
-					// we won't use synonyms for these two languages
-					if (thisLanguage == "X-JAT" || thisLanguage == "EN")
-					{
-						// first try the  Main title
-						if (AnimeTitlesMain[0].Language.Trim().ToUpper() == thisLanguage) return AnimeTitlesMain[0].Title;
-					}
-
-					// now check official
-					// now try the official title
-					for (int i = 0; i < AnimeTitlesOfficial.Count; i++)
-					{
-						if (AnimeTitlesOfficial[i].Language.Trim().ToUpper() == thisLanguage) return AnimeTitlesOfficial[i].Title;
-					}
-
-					// try synonyms
-					if (JMMServerVM.Instance.LanguageUseSynonyms)
-					{
-						for (int i = 0; i < AnimeTitlesSynonym.Count; i++)
-						{
-							if (AnimeTitlesSynonym[i].Language.Trim().ToUpper() == thisLanguage) return AnimeTitlesSynonym[i].Title;
-						}
-					}
-					
-
-				}
-
-				// otherwise just use the main title
-				return AnimeTitlesMain[0].Title;
-			}
-		}*/
 
 		private bool userHasVoted = false;
 		public bool UserHasVoted
@@ -163,6 +129,7 @@ namespace JMMClient.ViewModel
 
 			AnimeTags = new List<AnimeTagVM>();
 			AnimeTagsSummary = new List<AnimeTagVM>();
+            CustomTags.Clear();
 
 			try
 			{
@@ -217,7 +184,6 @@ namespace JMMClient.ViewModel
 					AnimeTags.Add(vtag);
 				}
 				AnimeTags.Sort();
-
 				i = 0;
 				foreach (AnimeTagVM tag in AnimeTags)
 				{
@@ -227,6 +193,14 @@ namespace JMMClient.ViewModel
 						break;
 					i++;
 				}
+
+                foreach (JMMServerBinary.Contract_CustomTag ctag in contract.CustomTags)
+                {
+                    CustomTagVM vtag = new CustomTagVM(ctag);
+                    CustomTags.Add(vtag);
+                }
+                CustomTags.Sort();
+                ViewCustomTags.Refresh();
 
 				foreach (JMMServerBinary.Contract_AnimeTitle title in contract.AnimeTitles)
 				{

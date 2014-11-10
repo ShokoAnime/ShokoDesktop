@@ -22,6 +22,7 @@
             <RoutedUICommand x:Key="MoveDownWidgetCommand" Text="MoveDownWidgetCommand" />
 
             <RoutedUICommand x:Key="RefreshSeriesCommand" Text="RefreshSeriesCommand" />
+            <RoutedUICommand x:Key="DeleteCustomTagCommand" Text="DeleteCustomTagCommand" />
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
@@ -249,6 +250,41 @@
                 </StackPanel>
             </DataTemplate>
 
+            <!-- customTagTemplateCollapsed-->
+            <DataTemplate x:Key="customTagTemplateCollapsed">
+                <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
+
+                    <TextBlock Text="{Binding Path=TagName}" VerticalAlignment="Center" Margin="5,2,2,2">
+                        <TextBlock.ToolTip>
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontWeight="Bold" Text="{Binding Path=TagName}"></TextBlock>
+                                </StackPanel>
+                                <TextBlock Text="{Binding Path=TagDescription}"></TextBlock>
+                            </StackPanel>
+                        </TextBlock.ToolTip>
+                     </TextBlock>
+                </StackPanel>
+            </DataTemplate>
+
+            <!-- customTagTemplate-->
+            <DataTemplate x:Key="customTagTemplate">
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
+                    <Button HorizontalAlignment="Left" Margin="0,0,0,0" Style="{DynamicResource RoundButtonStyle}" Width="Auto"
+                            Command="{DynamicResource DeleteCustomTagCommand}" CommandParameter="{Binding}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                            <Image Height="16" Width="16" Source="/Images/32_Delete.png" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Binding Path=TagName}" Margin="0,0,5,0"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </DataTemplate>
+
+            <!-- SimpleTagTemplate -->
+            <DataTemplate x:Key="SimpleTagTemplate">
+                <TextBlock Text="{Binding Path=TagName}" Margin="0" />
+            </DataTemplate>
+
             <!-- animeCategoryTemplate-->
             <DataTemplate x:Key="animeCategoryTemplate">
                 <StackPanel Orientation="Horizontal" Margin="5,0,0,0" >
@@ -290,6 +326,7 @@
         <CommandBinding Command="{StaticResource MoveUpWidgetCommand}" Executed="CommandBinding_MoveUpWidget" />
         <CommandBinding Command="{StaticResource MoveDownWidgetCommand}" Executed="CommandBinding_MoveDownWidget" />
         <CommandBinding Command="{StaticResource RefreshSeriesCommand}" Executed="CommandBinding_RefreshSeries" />
+        <CommandBinding Command="{StaticResource DeleteCustomTagCommand}" Executed="CommandBinding_DeleteCustomTag" />
     </UserControl.CommandBindings>
 
     <TabControl Grid.Column="0" Grid.Row="1" x:Name="tabContainer" Padding="0" Margin="2,0,2,0" SelectedIndex="0">
@@ -629,6 +666,7 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
@@ -895,6 +933,98 @@
                                         Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=SeriesTvDBLinksExpanded, Converter={StaticResource BooleanToVisibilityConverter}}">
                                     <usercontrols:TvDBAndOtherLinks x:Name="ucTvDBLinks" Margin="0,0,0,0" />
                                 </Border>
+                            </StackPanel>
+
+                            <!-- Custom Tags -->
+                            <StackPanel Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2"
+                                        Grid.Row="{Binding Path=SeriesPos_CustomTags, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeSeries}}}">
+                                <!-- Buttons -->
+                                <StackPanel Orientation="Horizontal">
+                                    <!-- Expand Collapse -->
+                                    <Button Name="btnCustomTags" Margin="6,2,2,2" Style="{DynamicResource FlatButtonStyle}">
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                            <Image Height="16" Width="16" Source="/Images/16_toggle2.png" Margin="0,0,2,0"
+                                                   Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=CustomTagsCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                            </Image>
+                                            <Image Height="16" Width="16" Source="/Images/16_collapse2.png" Margin="0,0,2,0"
+                                                   Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=CustomTagsExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                        </StackPanel>
+                                    </Button>
+
+                                    <!-- Buttons for moving the widget up and down -->
+                                    <StackPanel Orientation="Horizontal" Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}" >
+                                        <Button HorizontalAlignment="Left" Margin="5,0,0,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto"
+                                                Command="{DynamicResource MoveUpWidgetCommand}" CommandParameter="7">
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                                <Image Height="16" Width="16" Source="/Images/16_up.png" Margin="0,0,0,0"/>
+                                            </StackPanel>
+                                        </Button>
+
+                                        <Button HorizontalAlignment="Left" Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto"
+                                                Command="{DynamicResource MoveDownWidgetCommand}" CommandParameter="7">
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                                <Image Height="16" Width="16" Source="/Images/16_down.png" Margin="0,0,0,0"/>
+                                            </StackPanel>
+                                        </Button>
+                                    </StackPanel>
+
+                                    <TextBlock VerticalAlignment="Center" Text="Custom Tags" FontWeight="Bold" Margin="8,0,0,0"/>
+
+                                    <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled"  VerticalAlignment="Top"
+                                             Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=CustomTagsCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                             Background="Transparent" Padding="0" BorderThickness="0" 
+                                             ItemTemplate="{StaticResource customTagTemplateCollapsed}" 
+                                             ItemsSource="{Binding Path=AniDB_Anime.Detail.ViewCustomTags}">
+                                        <ListBox.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <WrapPanel  Focusable="False"  Orientation="Horizontal" />
+                                            </ItemsPanelTemplate>
+                                        </ListBox.ItemsPanel>
+                                    </ListBox>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal"
+                                            Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=CustomTagsExpanded, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" Margin="5" Grid.Column="0" Grid.Row="1" >
+
+                                        <!-- Manage Tags -->
+                                        <Button Name="btnManageTags" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}">
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                                <Image Height="16" Width="16" Source="/Images/32_settings2.png" Margin="0,0,5,0">
+                                                    <Image.ToolTip>
+                                                        <TextBlock Margin="5,0,0,0" Text="Manage Custom Tags" VerticalAlignment="Center" />
+                                                    </Image.ToolTip>
+                                                </Image>
+                                            </StackPanel>
+                                        </Button>
+                                        
+                                        <TextBlock VerticalAlignment="Center" Text="Tag" Margin="2,0,5,0"/>
+                                        <ComboBox Name="cboCustomTag" Margin="3,3,5,3" Height="24" VerticalAlignment="Center"
+                                            ItemTemplate="{StaticResource SimpleTagTemplate}"
+                                            ItemsSource="{Binding Source={x:Static local:JMMServerVM.Instance},Path=ViewCustomTagsAll}"/>
+                                        <!-- Add Tag -->
+                                        <Button Name="btnAddCustomTag" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}">
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                                <Image Height="16" Width="16" Source="/Images/16_plus.png" Margin="0,0,5,0"/>
+                                                <TextBlock VerticalAlignment="Center" Text="Add" Margin="0,0,5,0"/>
+                                            </StackPanel>
+                                        </Button>
+
+                                        
+                                        
+                                    </StackPanel>
+                                </StackPanel>
+
+                                <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="5,5,5,5"
+                                        Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=CustomTagsExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                        Background="Transparent" Padding="0" BorderThickness="0" VerticalAlignment="Center"
+                                        ItemTemplate="{StaticResource customTagTemplate}" ItemsSource="{Binding Path=AniDB_Anime.Detail.ViewCustomTags}">
+                                <ListBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel  Focusable="False"  Orientation="Horizontal" />
+                                    </ItemsPanelTemplate>
+                                </ListBox.ItemsPanel>
+                                </ListBox>
                             </StackPanel>
                         </Grid>
                     </StackPanel>

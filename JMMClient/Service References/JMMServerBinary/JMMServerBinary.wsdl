@@ -17,6 +17,69 @@
   <wsdl:binding name="BinaryBinding_IJMMServer" type="i0:IJMMServer">
     <wsp:PolicyReference URI="#BinaryBinding_IJMMServer_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAniDBSeiyuu">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAniDBSeiyuu" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPreviousEpisodeForUnwatched">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetPreviousEpisodeForUnwatched" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEpisodeByAniDBEpisodeID">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetEpisodeByAniDBEpisodeID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFFDPreset">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetFFDPreset" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFFDPreset">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/DeleteFFDPreset" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveFFDPreset">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/SaveFFDPreset" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAnimeDisableExternalLinksFlag">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/UpdateAnimeDisableExternalLinksFlag" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="SearchForFiles">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/SearchForFiles" style="document" />
       <wsdl:input>
@@ -226,6 +289,69 @@
     </wsdl:operation>
     <wsdl:operation name="GetAniDBEpisodesForAnime">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAniDBEpisodesForAnime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAnimeGroupsForFilter">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAnimeGroupsForFilter" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllGroupFiltersExtended">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllGroupFiltersExtended" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubGroupsForGroup">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetSubGroupsForGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSeriesForGroupRecursive">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetSeriesForGroupRecursive" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSeriesExistingForAnime">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetSeriesExistingForAnime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSimilarAnimeLinks">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetSimilarAnimeLinks" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRelatedAnimeLinks">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetRelatedAnimeLinks" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -746,8 +872,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetAniDBSeiyuu">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAniDBSeiyuu" style="document" />
+    <wsdl:operation name="VoteAnime">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/VoteAnime" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -755,8 +881,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetPreviousEpisodeForUnwatched">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetPreviousEpisodeForUnwatched" style="document" />
+    <wsdl:operation name="VoteAnimeRevoke">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/VoteAnimeRevoke" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -764,8 +890,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetEpisodeByAniDBEpisodeID">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetEpisodeByAniDBEpisodeID" style="document" />
+    <wsdl:operation name="SetWatchedStatusOnSeries">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/SetWatchedStatusOnSeries" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -773,8 +899,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetFFDPreset">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetFFDPreset" style="document" />
+    <wsdl:operation name="GetAllUniqueVideoQuality">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllUniqueVideoQuality" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -782,8 +908,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="DeleteFFDPreset">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/DeleteFFDPreset" style="document" />
+    <wsdl:operation name="GetAllUniqueAudioLanguages">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllUniqueAudioLanguages" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -791,8 +917,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="SaveFFDPreset">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/SaveFFDPreset" style="document" />
+    <wsdl:operation name="GetAllUniqueSubtitleLanguages">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllUniqueSubtitleLanguages" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -800,8 +926,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="UpdateAnimeDisableExternalLinksFlag">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/UpdateAnimeDisableExternalLinksFlag" style="document" />
+    <wsdl:operation name="GetAllDuplicateFiles">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllDuplicateFiles" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1322,71 +1448,71 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetAnimeGroupsForFilter">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAnimeGroupsForFilter" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetAllGroupFiltersExtended">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllGroupFiltersExtended" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetSubGroupsForGroup">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetSubGroupsForGroup" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetSeriesForGroupRecursive">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetSeriesForGroupRecursive" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetSeriesExistingForAnime">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetSeriesExistingForAnime" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetSimilarAnimeLinks">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetSimilarAnimeLinks" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetRelatedAnimeLinks">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetRelatedAnimeLinks" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="UpdateEpisodeData">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/UpdateEpisodeData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCustomTagCrossRef">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/DeleteCustomTagCrossRef" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveCustomTagCrossRef">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/SaveCustomTagCrossRef" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCustomTagCrossRefByID">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/DeleteCustomTagCrossRefByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCustomTags">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllCustomTags" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveCustomTag">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/SaveCustomTag" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCustomTag">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/DeleteCustomTag" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomTag">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetCustomTag" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1891,69 +2017,6 @@
     </wsdl:operation>
     <wsdl:operation name="SyncVotes">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/SyncVotes" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="VoteAnime">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/VoteAnime" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="VoteAnimeRevoke">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/VoteAnimeRevoke" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="SetWatchedStatusOnSeries">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/SetWatchedStatusOnSeries" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetAllUniqueVideoQuality">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllUniqueVideoQuality" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetAllUniqueAudioLanguages">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllUniqueAudioLanguages" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetAllUniqueSubtitleLanguages">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllUniqueSubtitleLanguages" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetAllDuplicateFiles">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllDuplicateFiles" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -491,6 +491,33 @@ namespace JMMClient
 							if (foundCat) return false;
 						break;
 
+                    case GroupFilterConditionType.CustomTags:
+
+                         filterParm = gfc.ConditionParameter.Trim();
+
+                        string[] ctags = filterParm.Split(',');
+                        bool foundCTag = false;
+                        index = 0;
+                        foreach (string ctag in ctags)
+                        {
+                            if (ctag.Trim().Length == 0) continue;
+                            if (ctag.Trim() == ",") continue;
+
+                            index = grp.Stat_AllCustomTags.IndexOf(ctag, 0, StringComparison.InvariantCultureIgnoreCase);
+                            if (index > -1)
+                            {
+                                foundCTag = true;
+                                break;
+                            }
+                        }
+
+                        if (gfc.ConditionOperatorEnum == GroupFilterOperator.In)
+                            if (!foundCTag) return false;
+
+                        if (gfc.ConditionOperatorEnum == GroupFilterOperator.NotIn)
+                            if (foundCTag) return false;
+                        break;
+
 					case GroupFilterConditionType.AnimeType:
 
 						filterParm = gfc.ConditionParameter.Trim();
@@ -809,6 +836,33 @@ namespace JMMClient
 						if (gfc.ConditionOperatorEnum == GroupFilterOperator.NotIn)
 							if (foundCat) return false;
 						break;
+
+                    case GroupFilterConditionType.CustomTags:
+
+                        filterParm = gfc.ConditionParameter.Trim();
+
+                        string[] tags = filterParm.Split(',');
+                        bool foundTag = false;
+                        index = 0;
+                        foreach (string tag in tags)
+                        {
+                            if (tag.Trim().Length == 0) continue;
+                            if (tag.Trim() == ",") continue;
+
+                            index = ser.CustomTagsString.IndexOf(tag, 0, StringComparison.InvariantCultureIgnoreCase);
+                            if (index > -1)
+                            {
+                                foundTag = true;
+                                break;
+                            }
+                        }
+
+                        if (gfc.ConditionOperatorEnum == GroupFilterOperator.In)
+                            if (!foundTag) return false;
+
+                        if (gfc.ConditionOperatorEnum == GroupFilterOperator.NotIn)
+                            if (foundTag) return false;
+                        break;
 
 					case GroupFilterConditionType.AnimeType:
 

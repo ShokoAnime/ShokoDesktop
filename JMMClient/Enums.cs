@@ -11,6 +11,12 @@ namespace JMMClient
 		Everything = 1
 	}
 
+    public enum CustomTagCrossRefType
+    {
+        Anime = 1,
+        Group = 2
+    }
+
 	public enum AiringState
 	{
 		All = 0,
@@ -200,7 +206,8 @@ namespace JMMClient
 		UserVotedAny = 27,
 		HasWatchedEpisodes = 28,
 		AssignedMALInfo = 29,
-		EpisodeCount = 30
+		EpisodeCount = 30,
+        CustomTags = 31
 	}
 
 	public enum GroupFilterOperator
@@ -304,7 +311,8 @@ namespace JMMClient
 		FileSummary = 3,
 		TvDBLinks = 4,
 		PlayNextEpisode = 5,
-		Tags = 6
+		Tags = 6,
+        CustomTags = 7
 	}
 
 	public enum DashboardWidgets

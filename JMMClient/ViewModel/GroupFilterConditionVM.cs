@@ -134,6 +134,7 @@ namespace JMMClient.ViewModel
 
 				case GroupFilterConditionType.AnimeType:
 				case GroupFilterConditionType.Category:
+                case GroupFilterConditionType.CustomTags:
 				case GroupFilterConditionType.ReleaseGroup:
 				case GroupFilterConditionType.Studio:
 				case GroupFilterConditionType.VideoQuality:

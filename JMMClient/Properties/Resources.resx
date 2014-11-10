@@ -1712,4 +1712,7 @@
   <data name="Tooltip_AniDBMyListDeleteAction" xml:space="preserve">
     <value>What action to take for a file when you delete it from you local collection, DELETE FILE means to permanently remove it from your list, MARK DELETED means to leave the file on your list, but change the state to deleted</value>
   </data>
+  <data name="GroupFilterConditionType_CustomTag" xml:space="preserve">
+    <value>Custom Tag</value>
+  </data>
 </root>

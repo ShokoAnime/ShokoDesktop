@@ -226,6 +226,7 @@ namespace JMMClient.ViewModel
 				case GroupFilterConditionType.SubtitleLanguage: return Properties.Resources.GroupFilterConditionType_SubtitleLanguage;
 				case GroupFilterConditionType.HasWatchedEpisodes: return Properties.Resources.GroupFilterConditionType_HasWatchedEpisodes;
 				case GroupFilterConditionType.EpisodeCount: return Properties.Resources.GroupFilterConditionType_EpisodeCount;
+                case GroupFilterConditionType.CustomTags: return Properties.Resources.GroupFilterConditionType_CustomTag;
 					
 				default: return Properties.Resources.GroupFilterConditionType_AirDate;
 			}
@@ -242,6 +243,7 @@ namespace JMMClient.ViewModel
 			if (enumDesc == Properties.Resources.GroupFilterConditionType_AssignedMovieDBInfo) return GroupFilterConditionType.AssignedMovieDBInfo;
 			if (enumDesc == Properties.Resources.GroupFilterConditionType_AssignedTvDBOrMovieDBInfo) return GroupFilterConditionType.AssignedTvDBOrMovieDBInfo;
 			if (enumDesc == Properties.Resources.GroupFilterConditionType_Category) return GroupFilterConditionType.Category;
+            if (enumDesc == Properties.Resources.GroupFilterConditionType_CustomTag) return GroupFilterConditionType.CustomTags;
 			if (enumDesc == Properties.Resources.GroupFilterConditionType_CompletedSeries) return GroupFilterConditionType.CompletedSeries;
 			if (enumDesc == Properties.Resources.GroupFilterConditionType_Favourite) return GroupFilterConditionType.Favourite;
 			if (enumDesc == Properties.Resources.GroupFilterConditionType_HasUnwatchedEpisodes) return GroupFilterConditionType.HasUnwatchedEpisodes;
@@ -285,6 +287,7 @@ namespace JMMClient.ViewModel
 			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.AssignedMovieDBInfo));
 			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.AssignedTvDBOrMovieDBInfo));
 			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.Category));
+            cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.CustomTags));
 			//cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.ReleaseGroup));
 			//cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.Studio));
 			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.UserVoted));
@@ -384,6 +387,10 @@ namespace JMMClient.ViewModel
 					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.In));
 					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.NotIn));
 					break;
+                case GroupFilterConditionType.CustomTags:
+                    ops.Add(GetTextForEnum_Operator(GroupFilterOperator.In));
+                    ops.Add(GetTextForEnum_Operator(GroupFilterOperator.NotIn));
+                    break;
 				case GroupFilterConditionType.AudioLanguage:
 					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.In));
 					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.NotIn));

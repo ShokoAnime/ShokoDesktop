@@ -32,6 +32,13 @@ namespace JMMClient
 				if (index > -1) return true;
 			}
 
+            // check the custom tags
+            if (grp.Stat_AllCustomTags != null)
+            {
+                index = grp.Stat_AllCustomTags.IndexOf(filterText, 0, StringComparison.InvariantCultureIgnoreCase);
+                if (index > -1) return true;
+            }
+
 			// search the titles (romaji name, english names) etc from anidb
 			if (grp.Stat_AllTitles != null)
 			{

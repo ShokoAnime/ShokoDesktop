@@ -281,6 +281,22 @@ namespace JMMClient
 			get { return !AppSettings.TagsExpanded; }
 		}
 
+        public bool CustomTagsExpanded
+        {
+            get { return AppSettings.CustomTagsExpanded; }
+            set
+            {
+                AppSettings.CustomTagsExpanded = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("CustomTagsExpanded"));
+                OnPropertyChanged(new PropertyChangedEventArgs("CustomTagsCollapsed"));
+            }
+        }
+
+        public bool CustomTagsCollapsed
+        {
+            get { return !AppSettings.CustomTagsExpanded; }
+        }
+
 		public bool TitlesExpanded
 		{
 			get { return AppSettings.TitlesExpanded; }

@@ -470,6 +470,23 @@ namespace JMMClient
 			}
 		}
 
+        public string CustomTagsString
+        {
+            get
+            {
+                string allCustomTags = string.Empty;
+
+                foreach (CustomTagVM ctag in AniDB_Anime.Detail.CustomTags)
+                {
+                    if (!string.IsNullOrEmpty(allCustomTags))
+                        allCustomTags += "|";
+                    allCustomTags += ctag.TagName;
+                }
+
+                return allCustomTags;
+            }
+        }
+
 		public bool HasUnwatchedFiles
 		{
 			get

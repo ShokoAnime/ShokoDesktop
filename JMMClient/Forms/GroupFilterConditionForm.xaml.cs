@@ -30,6 +30,9 @@ namespace JMMClient.Forms
 		public ICollectionView ViewCategoryNames { get; set; }
 		public ObservableCollection<string> AllCategoryNames { get; set; }
 
+        public ICollectionView ViewCustomTagNames { get; set; }
+        public ObservableCollection<string> AllCustomTagNames { get; set; }
+
 		public ObservableCollection<string> AllVideoQuality { get; set; }
 		public ObservableCollection<string> AllAnimeTypes { get; set; }
 		public ObservableCollection<string> AllAudioLanguages { get; set; }
@@ -88,6 +91,15 @@ namespace JMMClient.Forms
 			get { return (bool)GetValue(IsParameterCategoryProperty); }
 			set { SetValue(IsParameterCategoryProperty, value); }
 		}
+
+        public static readonly DependencyProperty IsParameterCustomTagProperty = DependencyProperty.Register("IsParameterCustomTag",
+            typeof(bool), typeof(GroupFilterConditionForm), new UIPropertyMetadata(false, null));
+
+        public bool IsParameterCustomTag
+        {
+            get { return (bool)GetValue(IsParameterCustomTagProperty); }
+            set { SetValue(IsParameterCustomTagProperty, value); }
+        }
 
 		public static readonly DependencyProperty IsParameterVideoQualityProperty = DependencyProperty.Register("IsParameterVideoQuality",
 			typeof(bool), typeof(GroupFilterConditionForm), new UIPropertyMetadata(false, null));
@@ -162,7 +174,17 @@ namespace JMMClient.Forms
 			lbAnimeTypes.MouseDoubleClick += new MouseButtonEventHandler(lbAnimeTypes_MouseDoubleClick);
 			lbAudioLanguages.MouseDoubleClick += new MouseButtonEventHandler(lbAudioLanguages_MouseDoubleClick);
 			lbSubtitleLanguages.MouseDoubleClick += new MouseButtonEventHandler(lbSubtitleLanguages_MouseDoubleClick);
+
+            btnClearCustomTagSearch.Click += btnClearCustomTagSearch_Click;
+            txtCustomTagSearch.TextChanged += txtCustomTagSearch_TextChanged;
+            lbCustomTags.MouseDoubleClick += lbCustomTags_MouseDoubleClick;
 		}
+
+        
+
+        
+
+        
 
 		void btnConfirm_Click(object sender, RoutedEventArgs e)
 		{
@@ -287,6 +309,32 @@ namespace JMMClient.Forms
 				}
 
 			}
+
+            if (IsParameterCustomTag)
+            {
+                if (txtSelectedCustomTags.Text.Trim().Length == 0)
+                {
+                    MessageBox.Show(Properties.Resources.MSG_ERR_EnterValue, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    txtSelectedCustomTags.Focus();
+                    return;
+                }
+                else
+                {
+                    // validate
+                    string[] tags = txtSelectedCustomTags.Text.Trim().Split(',');
+                    groupFilterCondition.ConditionParameter = "";
+                    foreach (string tag in tags)
+                    {
+                        if (tag.Trim().Length == 0) continue;
+                        if (tag.Trim() == ",") continue;
+
+                        if (groupFilterCondition.ConditionParameter.Length > 0) groupFilterCondition.ConditionParameter += ",";
+                        groupFilterCondition.ConditionParameter += tag;
+                    }
+
+                }
+
+            }
 
 			if (IsParameterVideoQuality)
 			{
@@ -450,6 +498,7 @@ namespace JMMClient.Forms
 			IsParameterText = false;
 			IsParameterInNotIn = false;
 			IsParameterCategory = false;
+            IsParameterCustomTag = false;
 			IsParameterRating = false;
 			IsParameterLastXDays = false;
 			IsParameterVideoQuality = false;
@@ -487,6 +536,11 @@ namespace JMMClient.Forms
 					IsParameterInNotIn = true;
 					IsParameterCategory = true;
 					break;
+
+                case GroupFilterConditionType.CustomTags:
+                    IsParameterInNotIn = true;
+                    IsParameterCustomTag = true;
+                    break;
 
 				case GroupFilterConditionType.AudioLanguage:
 					IsParameterInNotIn = true;
@@ -547,6 +601,24 @@ namespace JMMClient.Forms
 
 			ViewCategoryNames.Filter = CategoryFilter;
 		}
+
+        private void PopulateCustomTags()
+        {
+            AllCustomTagNames = new ObservableCollection<string>();
+
+            ViewCustomTagNames = CollectionViewSource.GetDefaultView(AllCustomTagNames);
+
+            List<SortPropOrFieldAndDirection> sortCriteria = new List<SortPropOrFieldAndDirection>();
+            sortCriteria.Add(new SortPropOrFieldAndDirection("TagName", false, SortType.eString));
+            List<CustomTagVM> tags = Sorting.MultiSort<CustomTagVM>(JMMServerVM.Instance.AllCustomTags.ToList(), sortCriteria);
+
+            foreach (CustomTagVM tag in tags)
+                AllCustomTagNames.Add(tag.TagName);
+
+
+            ViewCustomTagNames.Filter = CustomTagFilter;
+            ViewCustomTagNames.Refresh();
+        }
 
 		private void PopulateVideoQuality()
 		{
@@ -621,6 +693,7 @@ namespace JMMClient.Forms
 
 				PopulateAnimeGroups();
 				PopulateCategories();
+                PopulateCustomTags();
 				PopulateVideoQuality();
 				PopulateAnimeTypes();
 				PopulateLanguages();
@@ -684,6 +757,7 @@ namespace JMMClient.Forms
 
 					case GroupFilterConditionType.AnimeType:
 					case GroupFilterConditionType.Category:
+                    case GroupFilterConditionType.CustomTags:
 					case GroupFilterConditionType.ReleaseGroup:
 					case GroupFilterConditionType.Studio:
 					case GroupFilterConditionType.VideoQuality:
@@ -722,6 +796,17 @@ namespace JMMClient.Forms
 			return false;
 		}
 
+        private bool CustomTagFilter(object obj)
+        {
+            string tagName = obj as string;
+            if (tagName == null) return true;
+
+
+            int index = tagName.IndexOf(txtCustomTagSearch.Text.Trim(), 0, StringComparison.InvariantCultureIgnoreCase);
+            if (index > -1) return true;
+            return false;
+        }
+
 		void txtGroupSearch_TextChanged(object sender, TextChangedEventArgs e)
 		{
 			ViewGroups.Refresh();
@@ -741,6 +826,16 @@ namespace JMMClient.Forms
 		{
 			ViewCategoryNames.Refresh();
 		}
+
+        void btnClearCustomTagSearch_Click(object sender, RoutedEventArgs e)
+        {
+            txtCustomTagSearch.Text = "";
+        }
+
+        void txtCustomTagSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ViewCustomTagNames.Refresh();
+        }
 
 		void lbSubtitleLanguages_MouseDoubleClick(object sender, MouseButtonEventArgs e)
 		{
@@ -834,6 +929,23 @@ namespace JMMClient.Forms
 			txtSelectedCategories.Text = currentList;
 		}
 
-		
+        void lbCustomTags_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            object obj = lbCustomTags.SelectedItem;
+            if (obj == null) return;
+
+            
+            string tagName = obj.ToString();
+            string currentList = txtSelectedCustomTags.Text.Trim();
+
+            // add to the selected list
+            int index = currentList.IndexOf(tagName, 0, StringComparison.InvariantCultureIgnoreCase);
+            if (index > -1) return;
+
+            if (currentList.Length > 0) currentList += ",";
+            currentList += tagName;
+
+            txtSelectedCustomTags.Text = currentList;
+        }
 	}
 }

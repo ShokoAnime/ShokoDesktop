@@ -577,10 +577,13 @@ namespace JMMClient
 						if (DashboardMetroVM.Instance.ContinueWatching.Count == 0)
 							dashMetro.RefreshAllData();
 					}
+
+                    if (JMMServerVM.Instance.AllCustomTags.Count == 0) JMMServerVM.Instance.RefreshAllCustomTags();
 				}
 
 				if (tabIndex == TAB_MAIN_Collection)
 				{
+
 					if (MainListHelperVM.Instance.AllGroups.Count == 0)
 					{
 						MainListHelperVM.Instance.RefreshGroupsSeriesData();
@@ -593,13 +596,15 @@ namespace JMMClient
 						MainListHelperVM.Instance.ShowChildWrappers(MainListHelperVM.Instance.CurrentWrapper);
 						lbGroupsSeries.SelectedIndex = 0;
 					}
+
+                    if (JMMServerVM.Instance.AllCustomTags.Count == 0) JMMServerVM.Instance.RefreshAllCustomTags();
 				}
 
 
 				if (tabIndex == TAB_MAIN_FileManger)
 				{
 					if (unRecVids.UnrecognisedFiles.Count == 0) unRecVids.RefreshUnrecognisedFiles();
-
+                    if (JMMServerVM.Instance.AllCustomTags.Count == 0) JMMServerVM.Instance.RefreshAllCustomTags();
 				}
 
 				if (tabIndex == TAB_MAIN_Playlists)
@@ -635,7 +640,13 @@ namespace JMMClient
 					if (JMMServerVM.Instance.SelectedLanguages.Count == 0) JMMServerVM.Instance.RefreshNamingLanguages();
 					if (JMMServerVM.Instance.AllUsers.Count == 0) JMMServerVM.Instance.RefreshAllUsers();
 					if (JMMServerVM.Instance.AllCategories.Count == 0) JMMServerVM.Instance.RefreshAllCategories();
+                    if (JMMServerVM.Instance.AllCustomTags.Count == 0) JMMServerVM.Instance.RefreshAllCustomTags();
 				}
+
+                if (tabIndex == TAB_MAIN_Pinned)
+                {
+                    if (JMMServerVM.Instance.AllCustomTags.Count == 0) JMMServerVM.Instance.RefreshAllCustomTags();
+                }
 
 				if (tabIndex == TAB_MAIN_Downloads)
 				{

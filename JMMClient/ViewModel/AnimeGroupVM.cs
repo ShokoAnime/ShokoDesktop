@@ -42,6 +42,7 @@ namespace JMMClient
 		public decimal? Stat_UserVoteTemporary { get; set; }
 		public decimal? Stat_UserVoteOverall { get; set; }
 		public string Stat_AllCategories { get; set; }
+        public string Stat_AllCustomTags { get; set; }
 		public string Stat_AllTitles { get; set; }
 		public bool Stat_IsComplete { get; set; }
 		public bool Stat_HasFinishedAiring { get; set; }
@@ -790,6 +791,7 @@ namespace JMMClient
 			this.Stat_UserVotePermanent = contract.Stat_UserVotePermanent;
 			this.Stat_UserVoteTemporary = contract.Stat_UserVoteTemporary;
 			this.Stat_AllCategories = contract.Stat_AllCategories;
+            this.Stat_AllCustomTags = contract.Stat_AllCustomTags;
 			this.Stat_AllTitles = contract.Stat_AllTitles;
 			this.Stat_IsComplete = contract.Stat_IsComplete;
 			this.Stat_HasFinishedAiring = contract.Stat_HasFinishedAiring;

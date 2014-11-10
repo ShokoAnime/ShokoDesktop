@@ -251,6 +251,9 @@
     <Compile Include="Forms\LoginForm.xaml.cs">
       <DependentUpon>LoginForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ManageCustomTags.xaml.cs">
+      <DependentUpon>ManageCustomTags.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MissingEpsColumnsForm.xaml.cs">
       <DependentUpon>MissingEpsColumnsForm.xaml</DependentUpon>
     </Compile>
@@ -628,6 +631,7 @@
     <Compile Include="ViewModel\CrossRef_AniDB_TraktEpisodeVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_TraktVMV2.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_TvDBEpisodeVM.cs" />
+    <Compile Include="ViewModel\CustomTagVM.cs" />
     <Compile Include="ViewModel\TraktDetails.cs" />
     <Compile Include="ViewModel\TraktSummary.cs" />
     <Compile Include="ViewModel\TvDBDetails.cs" />
@@ -749,6 +753,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\LoginForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\ManageCustomTags.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1305,6 +1313,15 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_TvDB_Episode1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_CrossRef_CustomTag_SaveResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_CustomTag.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_CustomTag_SaveResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_DuplicateFile1.datasource">
@@ -2020,10 +2037,10 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(TargetDir)*.dll" "C:\Projects\GitHub\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y	
-xcopy "$(TargetDir)*.exe" "C:\Projects\GitHub\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y
-xcopy "$(TargetDir)*.pdb" "C:\Projects\GitHub\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y
-xcopy "$(TargetDir)*.manifest" "C:\Projects\GitHub\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y
+    <PostBuildEvent>xcopy "$(TargetDir)*.dll" "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y	
+xcopy "$(TargetDir)*.exe" "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y
+xcopy "$(TargetDir)*.pdb" "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y
+xcopy "$(TargetDir)*.manifest" "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y
 </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

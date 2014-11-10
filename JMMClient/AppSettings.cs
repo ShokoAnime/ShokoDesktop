@@ -692,6 +692,24 @@ namespace JMMClient
 			}
 		}
 
+        public static bool CustomTagsExpanded
+        {
+            get
+            {
+                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                string val = appSettings["CustomTagsExpanded"];
+                bool bval = true;
+                if (bool.TryParse(val, out bval))
+                    return bval;
+                else
+                    return false; // default value
+            }
+            set
+            {
+                UpdateSetting("CustomTagsExpanded", value.ToString());
+            }
+        }
+
 		public static bool WindowFullScreen
 		{
 			get

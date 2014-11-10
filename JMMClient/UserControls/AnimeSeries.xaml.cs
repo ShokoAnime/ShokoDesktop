@@ -16,6 +16,7 @@ using NLog;
 using JMMClient.ViewModel;
 using System.Diagnostics;
 using JMMClient.Forms;
+using System.Collections.ObjectModel;
 
 namespace JMMClient.UserControls
 {
@@ -126,6 +127,15 @@ namespace JMMClient.UserControls
 			set { SetValue(SeriesPos_TagsProperty, value); }
 		}
 
+        public static readonly DependencyProperty SeriesPos_CustomTagsProperty = DependencyProperty.Register("SeriesPos_CustomTags",
+            typeof(int), typeof(AnimeSeries), new UIPropertyMetadata((int)7, null));
+
+        public int SeriesPos_CustomTags
+        {
+            get { return (int)GetValue(SeriesPos_CustomTagsProperty); }
+            set { SetValue(SeriesPos_CustomTagsProperty, value); }
+        }
+
 		public static readonly DependencyProperty TruncatedDescriptionProperty = DependencyProperty.Register("TruncatedDescription",
 			typeof(bool), typeof(AnimeSeries), new UIPropertyMetadata(true, null));
 
@@ -182,18 +192,12 @@ namespace JMMClient.UserControls
 			btnAnimeTitles.Click += new RoutedEventHandler(btnAnimeTitles_Click);
 			btnAnimeTags.Click += new RoutedEventHandler(btnAnimeTags_Click);
 			btnAnimeCategories.Click += new RoutedEventHandler(btnAnimeCategories_Click);
-
+            btnCustomTags.Click += new RoutedEventHandler(btnCustomTags_Click);
+            btnAddCustomTag.Click += new RoutedEventHandler(btnAddCustomTag_Click);
+            btnManageTags.Click += new RoutedEventHandler(btnManageTags_Click);
 
 			btnPlaylistAdd.ContextMenu = playlistMenu;
 			btnPlaylistAdd.Click += new RoutedEventHandler(btnPlaylistAdd_Click);
-			
-
-			/*SeriesPos_PlayNextEpisode = JMMServerVM.Instance.SeriesPos_PlayNextEpisode;
-			SeriesPos_TvDBLinks = JMMServerVM.Instance.SeriesPos_TvDBLinks;
-			SeriesPos_FileSummary = JMMServerVM.Instance.SeriesPos_FileSummary;
-			SeriesPos_Categories = JMMServerVM.Instance.SeriesPos_Categories;
-			SeriesPos_Titles = JMMServerVM.Instance.SeriesPos_Titles;
-			SeriesPos_Tags = JMMServerVM.Instance.SeriesPos_Tags;*/
 
 			btnRandomEpisode.Click += new RoutedEventHandler(btnRandomEpisode_Click);
 
@@ -203,7 +207,9 @@ namespace JMMClient.UserControls
 			MainWindow.videoHandler.VideoWatchedEvent += new Utilities.VideoHandler.VideoWatchedEventHandler(videoHandler_VideoWatchedEvent);
 
 			SetSeriesWidgetOrder();
+            
 		}
+
 
 		void videoHandler_VideoWatchedEvent(Utilities.VideoWatchedEventArgs ev)
 		{
@@ -570,6 +576,7 @@ namespace JMMClient.UserControls
 			SeriesPos_Categories = UserSettingsVM.Instance.GetSeriesWidgetPosition(SeriesWidgets.Categories) + 4;
 			SeriesPos_Titles = UserSettingsVM.Instance.GetSeriesWidgetPosition(SeriesWidgets.Titles) + 4;
 			SeriesPos_Tags = UserSettingsVM.Instance.GetSeriesWidgetPosition(SeriesWidgets.Tags) + 4;
+            SeriesPos_CustomTags = UserSettingsVM.Instance.GetSeriesWidgetPosition(SeriesWidgets.CustomTags) + 4;
 		}
 
 		
@@ -1065,6 +1072,128 @@ namespace JMMClient.UserControls
 			UserSettingsVM.Instance.TagsExpanded = !UserSettingsVM.Instance.TagsExpanded;
 		}
 
+        void btnCustomTags_Click(object sender, RoutedEventArgs e)
+        {
+            UserSettingsVM.Instance.CustomTagsExpanded = !UserSettingsVM.Instance.CustomTagsExpanded;
+        }
+
+        void btnManageTags_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Window wdw = Window.GetWindow(this);
+
+                ManageCustomTags frm = new ManageCustomTags();
+                frm.Owner = wdw;
+                bool? result = frm.ShowDialog();
+                if (result.Value)
+                {
+                    // refresh
+                    //RefreshRecords();
+                }
+
+            }
+            catch { }
+        }
+
+        void btnAddCustomTag_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (cboCustomTag.SelectedItem == null) return;
+
+                AnimeSeriesVM ser = this.DataContext as AnimeSeriesVM;
+                if (ser == null) return;
+
+                CustomTagVM tag = cboCustomTag.SelectedItem as CustomTagVM;
+
+                // check if we already have this tag
+                foreach (CustomTagVM ctag in ser.AniDB_Anime.Detail.CustomTags)
+                {
+                    if (ctag.CustomTagID == tag.CustomTagID)
+                        return;
+                }
+
+                JMMServerBinary.Contract_CrossRef_CustomTag xref = new JMMServerBinary.Contract_CrossRef_CustomTag();
+                xref.CrossRefID = ser.AniDB_ID;
+                xref.CrossRefType = (int)CustomTagCrossRefType.Anime;
+                xref.CustomTagID = tag.CustomTagID;
+
+                JMMServerBinary.Contract_CrossRef_CustomTag_SaveResponse resp = JMMServerVM.Instance.clientBinaryHTTP.SaveCustomTagCrossRef(xref);
+                if (!string.IsNullOrEmpty(resp.ErrorMessage))
+                {
+                    Utils.ShowErrorMessage(resp.ErrorMessage);
+                    return;
+                }
+                else
+                {
+                    ser.AniDB_Anime.Detail.CustomTags.Add(tag);
+                    ser.AniDB_Anime.Detail.ViewCustomTags.Refresh();
+                }
+
+            }
+            catch { }
+        }
+
+        private void CommandBinding_DeleteCustomTag(object sender, ExecutedRoutedEventArgs e)
+        {
+            object obj = e.Parameter;
+            if (obj == null) return;
+
+            try
+            {
+                AnimeSeriesVM ser = this.DataContext as AnimeSeriesVM;
+                if (ser == null) return;
+
+                this.Cursor = Cursors.Wait;
+                string res = "";
+
+
+                // NOTE if we are disabling an image we should also make sure it is not the default
+                CustomTagVM tag = null;
+                if (obj.GetType() == typeof(CustomTagVM))
+                {
+                    tag = (CustomTagVM)obj;
+                    res = JMMServerVM.Instance.clientBinaryHTTP.DeleteCustomTagCrossRef(
+                        tag.CustomTagID, (int)CustomTagCrossRefType.Anime, ser.AniDB_ID);
+                   
+                }
+
+                if (res.Length > 0)
+                {
+                    MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    CustomTagVM ctagToRemove = null;
+                    foreach (CustomTagVM ctag in ser.AniDB_Anime.Detail.CustomTags)
+                    {
+                        if (ctag.CustomTagID == tag.CustomTagID)
+                        { 
+                            ctagToRemove = ctag;
+                            break;
+                        }
+                          
+                    }
+
+                    if (ctagToRemove != null)
+                    {
+                        ser.AniDB_Anime.Detail.CustomTags.Remove(ctagToRemove);
+                        ser.AniDB_Anime.Detail.ViewCustomTags.Refresh();
+                    }
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Arrow;
+            }
+        }
+
 		void btnAnimeCategories_Click(object sender, RoutedEventArgs e)
 		{
 			UserSettingsVM.Instance.CategoriesExpanded = !UserSettingsVM.Instance.CategoriesExpanded;
@@ -1212,7 +1341,8 @@ namespace JMMClient.UserControls
 
 		void AnimeSeries_Loaded(object sender, RoutedEventArgs e)
 		{
-			
+            if (cboCustomTag.Items != null && cboCustomTag.Items.Count > 0)
+                cboCustomTag.SelectedIndex = 0;
 		}
 
 		void cRating_OnRatingValueChangedEvent(RatingValueEventArgs ev)

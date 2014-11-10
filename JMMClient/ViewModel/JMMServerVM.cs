@@ -25,24 +25,6 @@ namespace JMMClient
 		public bool UserAuthenticated { get; set; }
 		public JMMUserVM CurrentUser { get; set; }
 
-
-		/*private JMMServer.IJMMServer _client = null;
-		public JMMServer.IJMMServer client
-		{
-			get
-			{
-				if (_client == null)
-				{
-					try
-					{
-						SetupClient();
-					}
-					catch { }
-				}
-				return _client;
-			}
-		}*/
-
 		private JMMServerBinary.IJMMServer _clientBinaryHTTP = null;
 		public JMMServerBinary.IJMMServer clientBinaryHTTP
 		{
@@ -59,23 +41,6 @@ namespace JMMClient
 				return _clientBinaryHTTP;
 			}
 		}
-
-		/*private JMMServerTCP.IJMMServer _clientTCP = null;
-		public JMMServerTCP.IJMMServer clientTCP
-		{
-			get
-			{
-				if (_clientTCP == null)
-				{
-					try
-					{
-						SetupTCPClient();
-					}
-					catch { }
-				}
-				return _clientTCP;
-			}
-		}*/
 
 		private JMMImageServer.JMMServerImageClient _imageClient = null;
 		public JMMImageServer.JMMServerImageClient imageClient
@@ -181,119 +146,6 @@ namespace JMMClient
 				Utils.ShowErrorMessage(ex);
 			}
 		}
-
-		/*
-		public void SetupClient()
-		{
-			ServerOnline = false;
-			_client = null;
-
-			if (!SettingsAreValid()) return;
-
-			try
-			{
-
-				string url = string.Format(@"http://{0}:{1}/JMMServer", AppSettings.JMMServer_Address, AppSettings.JMMServer_Port);
-				BasicHttpBinding binding = new BasicHttpBinding();
-				//binding.MaxReceivedMessageSize = 2097152; // 2 megabytes
-				binding.MaxReceivedMessageSize = 20971520; // 20 megabytes
-				binding.MaxBufferPoolSize = 20971520; // 20 megabytes
-				binding.MaxBufferSize = 20971520; // 20 megabytes
-				binding.ReceiveTimeout = new TimeSpan(0, 0, 60);
-
-				binding.ReaderQuotas.MaxArrayLength = int.MaxValue;
-				binding.ReaderQuotas.MaxBytesPerRead = int.MaxValue;
-				binding.ReaderQuotas.MaxDepth = int.MaxValue;
-				binding.ReaderQuotas.MaxNameTableCharCount = int.MaxValue;
-				binding.ReaderQuotas.MaxStringContentLength = int.MaxValue;
-
-
-				EndpointAddress endpoint = new EndpointAddress(new Uri(url));
-
-
-				var factory = new ChannelFactory<JMMServer.IJMMServer>(binding, endpoint);
-				foreach (OperationDescription op in factory.Endpoint.Contract.Operations)
-				{
-					var dataContractBehavior = op.Behaviors.Find<DataContractSerializerOperationBehavior>();
-					if (dataContractBehavior != null)
-					{
-						dataContractBehavior.MaxItemsInObjectGraph = int.MaxValue;
-					}
-				}
-
-				_client = factory.CreateChannel();
-
-				// try connecting to see if the server is responding
-				JMMServerBinary.Contract_ServerStatus status = JMMServerVM.Instance.clientBinaryHTTP.GetServerStatus();
-				ServerOnline = true;
-
-				GetServerSettings();
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-			
-		}
-
-		public void SetupTCPClient()
-		{
-			_clientTCP = null;
-
-			if (!SettingsAreValid()) return;
-
-			try
-			{
-
-				string url = string.Format(@"net.tcp://{0}:{1}/JMMServerTCP", AppSettings.JMMServer_Address, 8112);
-				NetTcpBinding binding = new NetTcpBinding(); 
-				//transport.MaxReceivedMessageSize = 2097152; // 2 megabytes
-
-				binding.SendTimeout = new TimeSpan(30, 0, 30);
-				binding.ReceiveTimeout = new TimeSpan(30, 0, 30);
-				binding.OpenTimeout = new TimeSpan(30, 0, 30);
-				binding.CloseTimeout = new TimeSpan(30, 0, 30);
-				binding.MaxBufferPoolSize = int.MaxValue;
-				binding.MaxBufferSize = int.MaxValue;
-				binding.MaxReceivedMessageSize = int.MaxValue;
-
-				XmlDictionaryReaderQuotas quotas = new XmlDictionaryReaderQuotas();
-				quotas.MaxArrayLength = int.MaxValue;
-				quotas.MaxBytesPerRead = int.MaxValue;
-				quotas.MaxDepth = int.MaxValue;
-
-				quotas.MaxNameTableCharCount = int.MaxValue;
-				quotas.MaxStringContentLength = int.MaxValue;
-
-				binding.ReaderQuotas = quotas;
-
-				
-				
-				EndpointAddress endpoint = new EndpointAddress(new Uri(url));
-				
-
-				var factory = new ChannelFactory<JMMServerTCP.IJMMServerChannel>(binding, endpoint);
-				foreach (OperationDescription op in factory.Endpoint.Contract.Operations)
-				{
-					var dataContractBehavior = op.Behaviors.Find<DataContractSerializerOperationBehavior>();
-					if (dataContractBehavior != null)
-					{
-						dataContractBehavior.MaxItemsInObjectGraph = int.MaxValue;
-					}
-				}
-
-				//_clientTCP = new JMMServerTCP.JMMServerClient(binding, endpoint);
-				_clientTCP = factory.CreateChannel();
-
-				// try connecting to see if the server is responding
-				JMMServerTCP.Contract_ServerStatus status = JMMServerVM.Instance.clientTCP.GetServerStatus();
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-
-		}*/
 
 		public bool SetupBinaryClient()
 		{
@@ -696,6 +548,8 @@ namespace JMMClient
 		public ObservableCollection<ImportFolderVM> ImportFolders { get; set; }
 		public ObservableCollection<JMMUserVM> AllUsers { get; set; }
 		public ObservableCollection<string> AllCategories { get; set; }
+        public ObservableCollection<CustomTagVM> AllCustomTags { get; set; }
+        public ICollectionView ViewCustomTagsAll { get; set; }
 
 		public ObservableCollection<NamingLanguage> UnselectedLanguages { get; set; }
 		public ObservableCollection<NamingLanguage> SelectedLanguages { get; set; }
@@ -1825,6 +1679,10 @@ namespace JMMClient
 			SelectedLanguages = new ObservableCollection<NamingLanguage>();
 			AllUsers = new ObservableCollection<JMMUserVM>();
 			AllCategories = new ObservableCollection<string>();
+            AllCustomTags = new ObservableCollection<CustomTagVM>();
+            ViewCustomTagsAll = System.Windows.Data.CollectionViewSource.GetDefaultView(JMMServerVM.Instance.AllCustomTags);
+            ViewCustomTagsAll.SortDescriptions.Add(new SortDescription("TagName", ListSortDirection.Ascending ));
+
             AdminMessages = new ObservableCollection<AdminMessage>();
 
 			try
@@ -2190,6 +2048,28 @@ namespace JMMClient
 			}
 
 		}
+
+        public void RefreshAllCustomTags()
+        {
+
+            AllCustomTags.Clear();
+
+            if (!ServerOnline) return;
+            try
+            {
+                List<JMMServerBinary.Contract_CustomTag> tagsRaw = JMMServerVM.Instance.clientBinaryHTTP.GetAllCustomTags();
+
+                foreach (JMMServerBinary.Contract_CustomTag tag in tagsRaw)
+                    AllCustomTags.Add(new CustomTagVM(tag));
+
+                ViewCustomTagsAll.Refresh();
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+
+        }
 
 		public void RunImport()
 		{
