@@ -13,6 +13,8 @@ namespace JMMClient.ViewModel
 		public bool NormalComplete { get; set; }
 		public int FileCountSpecials { get; set; }
 		public bool SpecialsComplete { get; set; }
+        public double TotalFileSize { get; set; }
+        public long TotalRunningTime { get; set; }
 
 		public List<int> NormalEpisodeNumbers { get; set; }
 		public string NormalEpisodeNumberSummary { get; set; }
@@ -25,6 +27,25 @@ namespace JMMClient.ViewModel
 			}
 		}
 
+        public string TotalFileSizeFormatted
+        {
+            get
+            {
+                return Utils.FormatFileSize(TotalFileSize);
+            }
+        }
+
+        public string AverageFileSizeFormatted
+        {
+            get
+            {
+                if (TotalRunningTime <= 0) return "N/A";
+
+                double avgBitRate = TotalFileSize / TotalRunningTime;
+                return Utils.FormatFileSize(avgBitRate) + "/sec";
+            }
+        }
+
 		public GroupFileSummaryVM(JMMServerBinary.Contract_GroupFileSummary contract)
 		{
 			this.GroupName = contract.GroupName;
@@ -33,6 +54,8 @@ namespace JMMClient.ViewModel
 			this.FileCountSpecials = contract.FileCountSpecials;
 			this.NormalComplete = contract.NormalComplete;
 			this.SpecialsComplete = contract.SpecialsComplete;
+            this.TotalFileSize = contract.TotalFileSize;
+            this.TotalRunningTime = contract.TotalRunningTime;
 
 			this.NormalEpisodeNumbers = contract.NormalEpisodeNumbers;
 			this.NormalEpisodeNumberSummary = contract.NormalEpisodeNumberSummary;

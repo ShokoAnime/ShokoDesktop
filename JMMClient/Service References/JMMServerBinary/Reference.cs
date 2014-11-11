@@ -1379,6 +1379,12 @@ namespace JMMClient.JMMServerBinary {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool SpecialsCompleteField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double TotalFileSizeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long TotalRunningTimeField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -1489,6 +1495,32 @@ namespace JMMClient.JMMServerBinary {
                 if ((this.SpecialsCompleteField.Equals(value) != true)) {
                     this.SpecialsCompleteField = value;
                     this.RaisePropertyChanged("SpecialsComplete");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double TotalFileSize {
+            get {
+                return this.TotalFileSizeField;
+            }
+            set {
+                if ((this.TotalFileSizeField.Equals(value) != true)) {
+                    this.TotalFileSizeField = value;
+                    this.RaisePropertyChanged("TotalFileSize");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long TotalRunningTime {
+            get {
+                return this.TotalRunningTimeField;
+            }
+            set {
+                if ((this.TotalRunningTimeField.Equals(value) != true)) {
+                    this.TotalRunningTimeField = value;
+                    this.RaisePropertyChanged("TotalRunningTime");
                 }
             }
         }
@@ -12421,6 +12453,9 @@ namespace JMMClient.JMMServerBinary {
         private double TotalFileSizeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long TotalRunningTimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int VideoBitDepthField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -12575,6 +12610,19 @@ namespace JMMClient.JMMServerBinary {
                 if ((this.TotalFileSizeField.Equals(value) != true)) {
                     this.TotalFileSizeField = value;
                     this.RaisePropertyChanged("TotalFileSize");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long TotalRunningTime {
+            get {
+                return this.TotalRunningTimeField;
+            }
+            set {
+                if ((this.TotalRunningTimeField.Equals(value) != true)) {
+                    this.TotalRunningTimeField = value;
+                    this.RaisePropertyChanged("TotalRunningTime");
                 }
             }
         }

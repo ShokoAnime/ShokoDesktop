@@ -147,6 +147,8 @@
       <xs:element minOccurs="0" name="NormalEpisodeNumberSummary" nillable="true" type="xs:string" />
       <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="NormalEpisodeNumbers" nillable="true" type="q1:ArrayOfint" />
       <xs:element minOccurs="0" name="SpecialsComplete" type="xs:boolean" />
+      <xs:element minOccurs="0" name="TotalFileSize" type="xs:double" />
+      <xs:element minOccurs="0" name="TotalRunningTime" type="xs:long" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_GroupFileSummary" nillable="true" type="tns:Contract_GroupFileSummary" />
@@ -1222,6 +1224,7 @@
       <xs:element minOccurs="0" name="Resolution" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="SpecialsComplete" type="xs:boolean" />
       <xs:element minOccurs="0" name="TotalFileSize" type="xs:double" />
+      <xs:element minOccurs="0" name="TotalRunningTime" type="xs:long" />
       <xs:element minOccurs="0" name="VideoBitDepth" type="xs:int" />
       <xs:element minOccurs="0" name="VideoSource" nillable="true" type="xs:string" />
     </xs:sequence>

@@ -251,7 +251,7 @@ namespace JMMClient.UserControls
 					{
 						GroupFileSummaryVM vidQual = new GroupFileSummaryVM(contract);
 						TotalFileCount += vidQual.FileCountNormal + vidQual.FileCountSpecials;
-                        //fileSize += vidQual.TotalFileSize;
+                        fileSize += vidQual.TotalFileSize;
 						GroupSummaryRecords.Add(vidQual);
 					}
 				}
