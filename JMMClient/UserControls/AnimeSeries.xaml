@@ -276,13 +276,42 @@
                             <Image Height="16" Width="16" Source="/Images/32_Delete.png" Margin="0,0,5,0"/>
                             <TextBlock VerticalAlignment="Center" Text="{Binding Path=TagName}" Margin="0,0,5,0"/>
                         </StackPanel>
+                        <Button.ToolTip>
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontWeight="Bold" Text="{Binding Path=TagName}"></TextBlock>
+                                </StackPanel>
+                                <TextBlock Text="{Binding Path=TagDescription}"></TextBlock>
+                            </StackPanel>
+                        </Button.ToolTip>
                     </Button>
                 </StackPanel>
             </DataTemplate>
 
             <!-- SimpleTagTemplate -->
             <DataTemplate x:Key="SimpleTagTemplate">
-                <TextBlock Text="{Binding Path=TagName}" Margin="0" />
+                <Grid Margin="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock VerticalAlignment="Center" Text="{Binding Path=TagName}" Margin="0" Grid.Column="0" Grid.Row="0">
+                        
+                    </TextBlock>
+
+                    <Grid.ToolTip>
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontWeight="Bold" Text="{Binding Path=TagName}"></TextBlock>
+                            </StackPanel>
+                            <TextBlock Text="{Binding Path=TagDescription}"></TextBlock>
+                        </StackPanel>
+                    </Grid.ToolTip>
+                </Grid>
             </DataTemplate>
 
             <!-- animeCategoryTemplate-->
@@ -999,7 +1028,7 @@
                                         </Button>
                                         
                                         <TextBlock VerticalAlignment="Center" Text="Tag" Margin="2,0,5,0"/>
-                                        <ComboBox Name="cboCustomTag" Margin="3,3,5,3" Height="24" VerticalAlignment="Center"
+                                        <ComboBox Name="cboCustomTag" Margin="3,3,5,3" Height="Auto" VerticalAlignment="Center"
                                             ItemTemplate="{StaticResource SimpleTagTemplate}"
                                             ItemsSource="{Binding Source={x:Static local:JMMServerVM.Instance},Path=ViewCustomTagsAll}"/>
                                         <!-- Add Tag -->
