@@ -92,8 +92,9 @@
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutomaticUpdaterWPF">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\wyBuild\AutomaticUpdater\Microsoft .NET 4.0\AutomaticUpdaterWPF.dll</HintPath>
+    <Reference Include="AutomaticUpdaterWPF, Version=2.6.18.4, Culture=neutral, PublicKeyToken=3dbca7c1b6b9ada2, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\AutomaticUpdaterWPF.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Data.v12.2">
       <Private>True</Private>
