@@ -32,6 +32,7 @@ namespace JMMClient.UserControls
 			cboDeleteAction.Items.Clear();
 			cboDeleteAction.Items.Add("Delete File");
 			cboDeleteAction.Items.Add("Mark Deleted");
+            cboDeleteAction.Items.Add("Mark External (CD/DVD)");
 			cboDeleteAction.SelectedIndex = 0;
 
 			this.Loaded += new RoutedEventHandler(AniDBMyListSettings_Loaded);

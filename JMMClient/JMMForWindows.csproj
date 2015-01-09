@@ -2036,6 +2036,28 @@
   <ItemGroup>
     <Resource Include="Images\32_mail.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Dependencies\AutomaticUpdaterWPF.dll" />
+    <Content Include="Dependencies\DevExpress.Data.v12.2.dll" />
+    <Content Include="Dependencies\DevExpress.Data.v12.2.resources.dll" />
+    <Content Include="Dependencies\DevExpress.PivotGrid.v12.2.Core.dll" />
+    <Content Include="Dependencies\DevExpress.PivotGrid.v12.2.Core.resources.dll" />
+    <Content Include="Dependencies\DevExpress.Printing.v12.2.Core.dll" />
+    <Content Include="Dependencies\DevExpress.Printing.v12.2.Core.resources.dll" />
+    <Content Include="Dependencies\DevExpress.Xpf.Core.v12.2.dll" />
+    <Content Include="Dependencies\DevExpress.Xpf.Core.v12.2.Extensions.dll" />
+    <Content Include="Dependencies\DevExpress.Xpf.Core.v12.2.resources.dll" />
+    <Content Include="Dependencies\DevExpress.Xpf.Grid.v12.2.Core.dll" />
+    <Content Include="Dependencies\DevExpress.Xpf.Grid.v12.2.Core.resources.dll" />
+    <Content Include="Dependencies\DevExpress.Xpf.Grid.v12.2.dll" />
+    <Content Include="Dependencies\DevExpress.Xpf.Layout.v12.2.Core.dll" />
+    <Content Include="Dependencies\DevExpress.Xpf.LayoutControl.v12.2.dll" />
+    <Content Include="Dependencies\DevExpress.Xpf.LayoutControl.v12.2.resources.dll" />
+    <Content Include="Dependencies\DevExpress.Xpf.PivotGrid.v12.2.dll" />
+    <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.Core.dll" />
+    <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.dll" />
+    <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.resources.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(TargetDir)*.dll" "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y	
