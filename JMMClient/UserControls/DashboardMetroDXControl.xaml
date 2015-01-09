@@ -622,7 +622,7 @@
                         Grid.Row="2" Margin="30,5,0,17"
                         Visibility="{Binding Path=IsLoadingTraktActivity, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
 
-                <MahControls:ProgressRing IsActive="True" VerticalAlignment="Top" Foreground="DarkBlue" />
+                <MahControls:ProgressRing IsActive="{Binding Path=IsLoadingTraktActivity, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" VerticalAlignment="Top" Foreground="DarkBlue" />
             </StackPanel>
 
             <!-- ************************** -->
@@ -679,7 +679,7 @@
                         Grid.Column="{Binding Path=Dash_ContinueWatching_Column, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" 
                         Visibility="{Binding Path=IsLoadingContinueWatching, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
 
-                <MahControls:ProgressRing IsActive="True" VerticalAlignment="Top" Foreground="DarkBlue" />
+                <MahControls:ProgressRing IsActive="{Binding Path=IsLoadingContinueWatching, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" VerticalAlignment="Top" Foreground="DarkBlue" />
             </StackPanel>
 
             <!-- ************************** -->
@@ -737,7 +737,7 @@
                         Grid.Column="{Binding Path=Dash_RandomSeries_Column, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" 
                         Visibility="{Binding Path=IsLoadingRandomSeries, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
 
-                <MahControls:ProgressRing IsActive="True" VerticalAlignment="Top" Foreground="DarkBlue" />
+                <MahControls:ProgressRing IsActive="{Binding Path=IsLoadingRandomSeries, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" VerticalAlignment="Top" Foreground="DarkBlue" />
             </StackPanel>
 
             <!-- ************************** -->
@@ -796,7 +796,7 @@
                         Grid.Row="2" Margin="30,5,0,17"
                         Visibility="{Binding Path=IsLoadingNewEpisodes, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
 
-                <MahControls:ProgressRing IsActive="True" VerticalAlignment="Top" Foreground="DarkBlue" />
+                <MahControls:ProgressRing IsActive="{Binding Path=IsLoadingNewEpisodes, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" VerticalAlignment="Top" Foreground="DarkBlue" />
             </StackPanel>
 
         </Grid>
