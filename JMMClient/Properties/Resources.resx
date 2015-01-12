@@ -768,10 +768,10 @@
     <value>The maximum amount of fanart images to download</value>
   </data>
   <data name="Tooltip_TvDB_PosterAutoDownload" xml:space="preserve">
-    <value>Automatically download new wide banners whenever a import is performed.</value>
+    <value>Automatically download new posters whenever a import is performed.</value>
   </data>
   <data name="Tooltip_TvDB_WideBannerAutoDownload" xml:space="preserve">
-    <value>Automatically download new posters whenever a import is performed.</value>
+    <value>Automatically download new wide banners whenever a import is performed.</value>
   </data>
   <data name="ImportSettings_HashCRC32" xml:space="preserve">
     <value>Calculate CRC32</value>
