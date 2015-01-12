@@ -1710,7 +1710,7 @@
     <value>Delete Action</value>
   </data>
   <data name="Tooltip_AniDBMyListDeleteAction" xml:space="preserve">
-    <value>What action to take for a file when you delete it from you local collection, DELETE FILE means to permanently remove it from your list, MARK DELETED means to leave the file on your list, but change the state to deleted</value>
+    <value>What action to take for a file when you delete it from you local collection, DELETE FILE means to permanently remove it from your list, MARK DELETED means to leave the file on your list, but change the state to deleted, MARK EXTERNAL (CD/DVD) means to leave the file on your list, but change the state to external storage</value>
   </data>
   <data name="GroupFilterConditionType_CustomTag" xml:space="preserve">
     <value>Custom Tag</value>

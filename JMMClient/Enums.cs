@@ -34,7 +34,8 @@ namespace JMMClient
 	public enum AniDBFileDeleteType
 	{
 		Delete = 0,
-		MarkDeleted = 1
+		MarkDeleted = 1,
+        MarkExternalStorage = 2
 	}
 
 	public enum RatingCollectionState

@@ -87,8 +87,6 @@ namespace JMMClient.UserControls
 			set { SetValue(Dash_TraktActivity_VisibilityProperty, value); }
 		}
 
-
-
 		public static readonly DependencyProperty Dash_ContinueWatching_ColumnProperty = DependencyProperty.Register("Dash_ContinueWatching_Column",
 			typeof(int), typeof(DashboardMetroDXControl), new UIPropertyMetadata((int)2, null));
 
