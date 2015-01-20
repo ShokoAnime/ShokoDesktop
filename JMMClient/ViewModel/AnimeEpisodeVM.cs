@@ -495,8 +495,8 @@ namespace JMMClient
 								// if there is no proper image to show, we will hide it on the dashboard
 								ShowEpisodeImageInDashboard = false;
 							}
-							else
-								this.EpisodeImageLoading = tvep.OnlineImagePath;
+							//else
+							//	this.EpisodeImageLoading = tvep.OnlineImagePath;
 						}
 						else
 							this.EpisodeImageLoading = tvep.FullImagePath;
@@ -575,8 +575,8 @@ namespace JMMClient
 										// if there is no proper image to show, we will hide it on the dashboard
 										ShowEpisodeImageInDashboard = false;
 									}
-									else
-										this.EpisodeImageLoading = tvep.OnlineImagePath;
+									//else
+									//	this.EpisodeImageLoading = tvep.OnlineImagePath;
 								}
 								else
 									this.EpisodeImageLoading = tvep.FullImagePath;
@@ -651,8 +651,8 @@ namespace JMMClient
 										// if there is no proper image to show, we will hide it on the dashboard
 										ShowEpisodeImageInDashboard = false;
 									}
-									else
-										this.EpisodeImageLoading = tvep.OnlineImagePath;
+									//else
+									//	this.EpisodeImageLoading = tvep.OnlineImagePath;
 								}
 								else
 									this.EpisodeImageLoading = tvep.FullImagePath;
