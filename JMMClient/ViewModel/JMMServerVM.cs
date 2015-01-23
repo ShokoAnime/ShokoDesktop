@@ -312,6 +312,7 @@ namespace JMMClient
 			this.WebCache_MAL_Send = contract.WebCache_MAL_Send;
 			this.WebCache_XRefFileEpisode_Get = contract.WebCache_XRefFileEpisode_Get;
 			this.WebCache_XRefFileEpisode_Send = contract.WebCache_XRefFileEpisode_Send;
+            this.WebCache_UserInfo = contract.WebCache_UserInfo;
 
 			// TvDB
 			this.TvDB_AutoFanart = contract.TvDB_AutoFanart;
@@ -428,6 +429,7 @@ namespace JMMClient
 				contract.WebCache_MAL_Send = this.WebCache_MAL_Send;
 				contract.WebCache_XRefFileEpisode_Get = this.WebCache_XRefFileEpisode_Get;
 				contract.WebCache_XRefFileEpisode_Send = this.WebCache_XRefFileEpisode_Send;
+                contract.WebCache_UserInfo = this.WebCache_UserInfo;
 
 				// TvDB
 				contract.TvDB_AutoFanart = this.TvDB_AutoFanart;
@@ -1232,6 +1234,16 @@ namespace JMMClient
 			}
 		}
 
+        private bool webCache_UserInfo = false;
+        public bool WebCache_UserInfo
+        {
+            get { return webCache_UserInfo; }
+            set
+            {
+                webCache_UserInfo = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("WebCache_UserInfo"));
+            }
+        }
 
 
 		private bool tvDB_AutoFanart = false;

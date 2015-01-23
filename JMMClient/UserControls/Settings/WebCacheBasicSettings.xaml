@@ -20,6 +20,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Margin="0,0,0,10">
@@ -118,6 +119,17 @@
                       IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=WebCache_XRefFileEpisode_Send}" VerticalAlignment="Center"
                       ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=WebCache_FileEpisodes}, 
                                                 Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_WebCache_FileEpisodes}}"/>
+        </StackPanel>
+
+        <!-- Usage Stats -->
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="6" Margin="0,5,15,0">
+            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=WebCache_UserInfo}" VerticalAlignment="Center"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="6" Margin="0,5,5,0" Grid.ColumnSpan="2">
+            <CheckBox Name="chkWebCache_UserInfo" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=WebCache_UserInfo}" VerticalAlignment="Center"
+                      ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=WebCache_UserInfo}, 
+                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_WebCache_UserInfo}}"/>
         </StackPanel>
 
 
