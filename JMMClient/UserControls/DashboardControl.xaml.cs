@@ -270,8 +270,10 @@ namespace JMMClient.UserControls
 
 			btnGetRecDownloadMissingInfo.Click += new RoutedEventHandler(btnGetRecDownloadMissingInfo_Click);
 			btnForceTraktRefresh.Click += new RoutedEventHandler(btnForceTraktRefresh_Click);
+            btnForceCalendarRefresh.Click += btnForceCalendarRefresh_Click;
 
 			chkTraktAnimeOnly.Click += new RoutedEventHandler(chkTraktAnimeOnly_Click);
+            chkCalUpcomingOnly.Click += chkCalUpcomingOnly_Click;
 
 			SetWidgetOrder();
 
@@ -282,6 +284,10 @@ namespace JMMClient.UserControls
 
 			btnToggleDash.Click += new RoutedEventHandler(btnToggleDash_Click);
 		}
+
+        
+
+        
 
 		void btnToggleDash_Click(object sender, RoutedEventArgs e)
 		{
@@ -328,7 +334,10 @@ namespace JMMClient.UserControls
 			JMMServerVM.Instance.SaveServerSettingsAsync();
 		}
 
-		
+        void chkCalUpcomingOnly_Click(object sender, RoutedEventArgs e)
+        {
+            JMMServerVM.Instance.SaveServerSettingsAsync();
+        }
 
 		void cboDashWatchNextStyle_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
@@ -648,6 +657,13 @@ namespace JMMClient.UserControls
 
 			MessageBox.Show("Process is running on server, please try refreshing in a few seconds", "Running", MessageBoxButton.OK, MessageBoxImage.Information);
 		}
+
+        void btnForceCalendarRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            JMMServerVM.Instance.clientBinaryHTTP.UpdateCalendarData();
+
+            MessageBox.Show("Process is queued on server, please try refreshing in a few seconds", "Running", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
 
 		private void CommandBinding_ToggleWatchedStatus(object sender, ExecutedRoutedEventArgs e)
 		{

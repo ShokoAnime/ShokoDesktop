@@ -1231,6 +1231,24 @@ namespace JMMClient
 			}
 		}
 
+        public static bool Dash_MiniCalendarUpcomingOnly
+        {
+            get
+            {
+                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                string val = appSettings["Dash_MiniCalendarUpcomingOnly"];
+                bool bval = false;
+                if (bool.TryParse(val, out bval))
+                    return bval;
+                else
+                    return true; // default value
+            }
+            set
+            {
+                UpdateSetting("Dash_MiniCalendarUpcomingOnly", value.ToString());
+            }
+        }
+
 		public static int Dash_MiniCalendar_Height
 		{
 			get

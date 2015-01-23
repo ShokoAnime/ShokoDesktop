@@ -2,6 +2,24 @@
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:8111/JMMServerBinary?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/JMMContracts" />
   <xs:import schemaLocation="http://localhost:8111/JMMServerBinary?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:element name="LinkAniDBMAL">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="animeID" type="xs:int" />
+        <xs:element minOccurs="0" name="malID" type="xs:int" />
+        <xs:element minOccurs="0" name="malTitle" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="epType" type="xs:int" />
+        <xs:element minOccurs="0" name="epNumber" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LinkAniDBMALResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="LinkAniDBMALResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="RemoveLinkAniDBMAL">
     <xs:complexType>
       <xs:sequence>
@@ -731,6 +749,26 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetAniDBEpisodesForAnimeResult" nillable="true" type="q36:ArrayOfContract_AniDB_Episode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LinkAniDBTvDB">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="animeID" type="xs:int" />
+        <xs:element minOccurs="0" name="aniEpType" type="xs:int" />
+        <xs:element minOccurs="0" name="aniEpNumber" type="xs:int" />
+        <xs:element minOccurs="0" name="tvDBID" type="xs:int" />
+        <xs:element minOccurs="0" name="tvSeasonNumber" type="xs:int" />
+        <xs:element minOccurs="0" name="tvEpNumber" type="xs:int" />
+        <xs:element minOccurs="0" name="crossRef_AniDB_TvDBV2ID" nillable="true" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LinkAniDBTvDBResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="LinkAniDBTvDBResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1948,21 +1986,15 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="LinkAniDBMAL">
+  <xs:element name="UpdateCalendarData">
     <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="animeID" type="xs:int" />
-        <xs:element minOccurs="0" name="malID" type="xs:int" />
-        <xs:element minOccurs="0" name="malTitle" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="epType" type="xs:int" />
-        <xs:element minOccurs="0" name="epNumber" type="xs:int" />
-      </xs:sequence>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="LinkAniDBMALResponse">
+  <xs:element name="UpdateCalendarDataResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="LinkAniDBMALResult" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="UpdateCalendarDataResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -3117,26 +3149,6 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q148="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetSeasonNumbersForSeriesResult" nillable="true" type="q148:ArrayOfint" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="LinkAniDBTvDB">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="animeID" type="xs:int" />
-        <xs:element minOccurs="0" name="aniEpType" type="xs:int" />
-        <xs:element minOccurs="0" name="aniEpNumber" type="xs:int" />
-        <xs:element minOccurs="0" name="tvDBID" type="xs:int" />
-        <xs:element minOccurs="0" name="tvSeasonNumber" type="xs:int" />
-        <xs:element minOccurs="0" name="tvEpNumber" type="xs:int" />
-        <xs:element minOccurs="0" name="crossRef_AniDB_TvDBV2ID" nillable="true" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="LinkAniDBTvDBResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="LinkAniDBTvDBResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

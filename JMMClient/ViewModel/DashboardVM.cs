@@ -640,6 +640,11 @@ namespace JMMClient
 				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
 				{
 					MiniCalendar.Clear();
+                    ViewMiniCalendar.SortDescriptions.Clear();
+                    if (UserSettingsVM.Instance.Dash_MiniCalendarUpcomingOnly)
+                        ViewMiniCalendar.SortDescriptions.Add(new SortDescription("AirDate", ListSortDirection.Ascending));
+                    else
+                        ViewMiniCalendar.SortDescriptions.Add(new SortDescription("AirDate", ListSortDirection.Descending));
 				});
 
 				List<JMMServerBinary.Contract_AniDBAnime> contracts = 
@@ -647,13 +652,21 @@ namespace JMMClient
 
 				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
 				{
+                    DateTime yesterday = DateTime.Now.AddDays(-1);
 					foreach (JMMServerBinary.Contract_AniDBAnime contract in contracts)
 					{
-						AniDB_AnimeVM anime = new AniDB_AnimeVM(contract);
-						if (JMMServerVM.Instance.CurrentUser.EvaluateAnime(anime))
-							MiniCalendar.Add(anime);
+                        bool useAnime = true;
+                        if (UserSettingsVM.Instance.Dash_MiniCalendarUpcomingOnly && contract.AirDate < yesterday) useAnime = false;
+
+                        if (useAnime)
+                        {
+                            AniDB_AnimeVM anime = new AniDB_AnimeVM(contract);
+                            if (JMMServerVM.Instance.CurrentUser.EvaluateAnime(anime))
+                                MiniCalendar.Add(anime);
+                        }
 					}
-					ViewEpsWatchNext_Recent.Refresh();
+
+                    ViewMiniCalendar.Refresh();
 				});
 			}
 			catch (Exception ex)

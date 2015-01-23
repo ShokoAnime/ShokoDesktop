@@ -17,6 +17,15 @@
   <wsdl:binding name="BinaryBinding_IJMMServer" type="i0:IJMMServer">
     <wsp:PolicyReference URI="#BinaryBinding_IJMMServer_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="LinkAniDBMAL">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/LinkAniDBMAL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="RemoveLinkAniDBMAL">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/RemoveLinkAniDBMAL" style="document" />
       <wsdl:input>
@@ -487,6 +496,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAniDBEpisodesForAnime">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAniDBEpisodesForAnime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LinkAniDBTvDB">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/LinkAniDBTvDB" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1250,8 +1268,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="LinkAniDBMAL">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/LinkAniDBMAL" style="document" />
+    <wsdl:operation name="UpdateCalendarData">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/UpdateCalendarData" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -2008,15 +2026,6 @@
     </wsdl:operation>
     <wsdl:operation name="GetSeasonNumbersForSeries">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetSeasonNumbersForSeries" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="LinkAniDBTvDB">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/LinkAniDBTvDB" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

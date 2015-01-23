@@ -17223,6 +17223,9 @@ namespace JMMClient.JMMServerBinary {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="JMMServerBinary.IJMMServer")]
     public interface IJMMServer {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/LinkAniDBMAL", ReplyAction="http://tempuri.org/IJMMServer/LinkAniDBMALResponse")]
+        string LinkAniDBMAL(int animeID, int malID, string malTitle, int epType, int epNumber);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/RemoveLinkAniDBMAL", ReplyAction="http://tempuri.org/IJMMServer/RemoveLinkAniDBMALResponse")]
         string RemoveLinkAniDBMAL(int animeID, int epType, int epNumber);
         
@@ -17381,6 +17384,9 @@ namespace JMMClient.JMMServerBinary {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetAniDBEpisodesForAnime", ReplyAction="http://tempuri.org/IJMMServer/GetAniDBEpisodesForAnimeResponse")]
         System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDB_Episode> GetAniDBEpisodesForAnime(int animeID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/LinkAniDBTvDB", ReplyAction="http://tempuri.org/IJMMServer/LinkAniDBTvDBResponse")]
+        string LinkAniDBTvDB(int animeID, int aniEpType, int aniEpNumber, int tvDBID, int tvSeasonNumber, int tvEpNumber, System.Nullable<int> crossRef_AniDB_TvDBV2ID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/RemoveLinkAniDBTvDB", ReplyAction="http://tempuri.org/IJMMServer/RemoveLinkAniDBTvDBResponse")]
         string RemoveLinkAniDBTvDB(int animeID, int aniEpType, int aniEpNumber, int tvDBID, int tvSeasonNumber, int tvEpNumber);
@@ -17634,8 +17640,8 @@ namespace JMMClient.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetMALCrossRefWebCache", ReplyAction="http://tempuri.org/IJMMServer/GetMALCrossRefWebCacheResponse")]
         JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_MALResult GetMALCrossRefWebCache(int animeID);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/LinkAniDBMAL", ReplyAction="http://tempuri.org/IJMMServer/LinkAniDBMALResponse")]
-        string LinkAniDBMAL(int animeID, int malID, string malTitle, int epType, int epNumber);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/UpdateCalendarData", ReplyAction="http://tempuri.org/IJMMServer/UpdateCalendarDataResponse")]
+        string UpdateCalendarData();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/UpdateEpisodeData", ReplyAction="http://tempuri.org/IJMMServer/UpdateEpisodeDataResponse")]
         string UpdateEpisodeData(int episodeID);
@@ -17888,9 +17894,6 @@ namespace JMMClient.JMMServerBinary {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetSeasonNumbersForSeries", ReplyAction="http://tempuri.org/IJMMServer/GetSeasonNumbersForSeriesResponse")]
         System.Collections.Generic.List<int> GetSeasonNumbersForSeries(int seriesID);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/LinkAniDBTvDB", ReplyAction="http://tempuri.org/IJMMServer/LinkAniDBTvDBResponse")]
-        string LinkAniDBTvDB(int animeID, int aniEpType, int aniEpNumber, int tvDBID, int tvSeasonNumber, int tvEpNumber, System.Nullable<int> crossRef_AniDB_TvDBV2ID);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -17918,6 +17921,10 @@ namespace JMMClient.JMMServerBinary {
         
         public JMMServerClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public string LinkAniDBMAL(int animeID, int malID, string malTitle, int epType, int epNumber) {
+            return base.Channel.LinkAniDBMAL(animeID, malID, malTitle, epType, epNumber);
         }
         
         public string RemoveLinkAniDBMAL(int animeID, int epType, int epNumber) {
@@ -18130,6 +18137,10 @@ namespace JMMClient.JMMServerBinary {
         
         public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDB_Episode> GetAniDBEpisodesForAnime(int animeID) {
             return base.Channel.GetAniDBEpisodesForAnime(animeID);
+        }
+        
+        public string LinkAniDBTvDB(int animeID, int aniEpType, int aniEpNumber, int tvDBID, int tvSeasonNumber, int tvEpNumber, System.Nullable<int> crossRef_AniDB_TvDBV2ID) {
+            return base.Channel.LinkAniDBTvDB(animeID, aniEpType, aniEpNumber, tvDBID, tvSeasonNumber, tvEpNumber, crossRef_AniDB_TvDBV2ID);
         }
         
         public string RemoveLinkAniDBTvDB(int animeID, int aniEpType, int aniEpNumber, int tvDBID, int tvSeasonNumber, int tvEpNumber) {
@@ -18468,8 +18479,8 @@ namespace JMMClient.JMMServerBinary {
             return base.Channel.GetMALCrossRefWebCache(animeID);
         }
         
-        public string LinkAniDBMAL(int animeID, int malID, string malTitle, int epType, int epNumber) {
-            return base.Channel.LinkAniDBMAL(animeID, malID, malTitle, epType, epNumber);
+        public string UpdateCalendarData() {
+            return base.Channel.UpdateCalendarData();
         }
         
         public string UpdateEpisodeData(int episodeID) {
@@ -18806,10 +18817,6 @@ namespace JMMClient.JMMServerBinary {
         
         public System.Collections.Generic.List<int> GetSeasonNumbersForSeries(int seriesID) {
             return base.Channel.GetSeasonNumbersForSeries(seriesID);
-        }
-        
-        public string LinkAniDBTvDB(int animeID, int aniEpType, int aniEpNumber, int tvDBID, int tvSeasonNumber, int tvEpNumber, System.Nullable<int> crossRef_AniDB_TvDBV2ID) {
-            return base.Channel.LinkAniDBTvDB(animeID, aniEpType, aniEpNumber, tvDBID, tvSeasonNumber, tvEpNumber, crossRef_AniDB_TvDBV2ID);
         }
     }
 }

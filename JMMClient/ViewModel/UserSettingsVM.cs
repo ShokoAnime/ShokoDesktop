@@ -855,6 +855,16 @@ namespace JMMClient
 			}
 		}
 
+        public bool Dash_MiniCalendarUpcomingOnly
+        {
+            get { return AppSettings.Dash_MiniCalendarUpcomingOnly; }
+            set
+            {
+                AppSettings.Dash_MiniCalendarUpcomingOnly = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("Dash_MiniCalendarUpcomingOnly"));
+            }
+        }
+
 		public int Dash_MiniCalendar_Height
 		{
 			get { return AppSettings.Dash_MiniCalendar_Height; }

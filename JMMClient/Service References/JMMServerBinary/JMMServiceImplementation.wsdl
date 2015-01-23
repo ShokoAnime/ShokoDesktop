@@ -9,6 +9,12 @@
       <xsd:import schemaLocation="http://localhost:8111/JMMServerBinary?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IJMMServer_LinkAniDBMAL_InputMessage">
+    <wsdl:part name="parameters" element="tns:LinkAniDBMAL" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_LinkAniDBMAL_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LinkAniDBMALResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_RemoveLinkAniDBMAL_InputMessage">
     <wsdl:part name="parameters" element="tns:RemoveLinkAniDBMAL" />
   </wsdl:message>
@@ -326,6 +332,12 @@
   </wsdl:message>
   <wsdl:message name="IJMMServer_GetAniDBEpisodesForAnime_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAniDBEpisodesForAnimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_LinkAniDBTvDB_InputMessage">
+    <wsdl:part name="parameters" element="tns:LinkAniDBTvDB" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_LinkAniDBTvDB_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LinkAniDBTvDBResponse" />
   </wsdl:message>
   <wsdl:message name="IJMMServer_RemoveLinkAniDBTvDB_InputMessage">
     <wsdl:part name="parameters" element="tns:RemoveLinkAniDBTvDB" />
@@ -831,11 +843,11 @@
   <wsdl:message name="IJMMServer_GetMALCrossRefWebCache_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetMALCrossRefWebCacheResponse" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_LinkAniDBMAL_InputMessage">
-    <wsdl:part name="parameters" element="tns:LinkAniDBMAL" />
+  <wsdl:message name="IJMMServer_UpdateCalendarData_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCalendarData" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_LinkAniDBMAL_OutputMessage">
-    <wsdl:part name="parameters" element="tns:LinkAniDBMALResponse" />
+  <wsdl:message name="IJMMServer_UpdateCalendarData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCalendarDataResponse" />
   </wsdl:message>
   <wsdl:message name="IJMMServer_UpdateEpisodeData_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateEpisodeData" />
@@ -1341,13 +1353,11 @@
   <wsdl:message name="IJMMServer_GetSeasonNumbersForSeries_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetSeasonNumbersForSeriesResponse" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_LinkAniDBTvDB_InputMessage">
-    <wsdl:part name="parameters" element="tns:LinkAniDBTvDB" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_LinkAniDBTvDB_OutputMessage">
-    <wsdl:part name="parameters" element="tns:LinkAniDBTvDBResponse" />
-  </wsdl:message>
   <wsdl:portType name="IJMMServer">
+    <wsdl:operation name="LinkAniDBMAL">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/LinkAniDBMAL" message="tns:IJMMServer_LinkAniDBMAL_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/LinkAniDBMALResponse" message="tns:IJMMServer_LinkAniDBMAL_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="RemoveLinkAniDBMAL">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RemoveLinkAniDBMAL" message="tns:IJMMServer_RemoveLinkAniDBMAL_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RemoveLinkAniDBMALResponse" message="tns:IJMMServer_RemoveLinkAniDBMAL_OutputMessage" />
@@ -1559,6 +1569,10 @@
     <wsdl:operation name="GetAniDBEpisodesForAnime">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAniDBEpisodesForAnime" message="tns:IJMMServer_GetAniDBEpisodesForAnime_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAniDBEpisodesForAnimeResponse" message="tns:IJMMServer_GetAniDBEpisodesForAnime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LinkAniDBTvDB">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/LinkAniDBTvDB" message="tns:IJMMServer_LinkAniDBTvDB_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/LinkAniDBTvDBResponse" message="tns:IJMMServer_LinkAniDBTvDB_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="RemoveLinkAniDBTvDB">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RemoveLinkAniDBTvDB" message="tns:IJMMServer_RemoveLinkAniDBTvDB_InputMessage" />
@@ -1896,9 +1910,9 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetMALCrossRefWebCache" message="tns:IJMMServer_GetMALCrossRefWebCache_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetMALCrossRefWebCacheResponse" message="tns:IJMMServer_GetMALCrossRefWebCache_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="LinkAniDBMAL">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/LinkAniDBMAL" message="tns:IJMMServer_LinkAniDBMAL_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/LinkAniDBMALResponse" message="tns:IJMMServer_LinkAniDBMAL_OutputMessage" />
+    <wsdl:operation name="UpdateCalendarData">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/UpdateCalendarData" message="tns:IJMMServer_UpdateCalendarData_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/UpdateCalendarDataResponse" message="tns:IJMMServer_UpdateCalendarData_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="UpdateEpisodeData">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/UpdateEpisodeData" message="tns:IJMMServer_UpdateEpisodeData_InputMessage" />
@@ -2235,10 +2249,6 @@
     <wsdl:operation name="GetSeasonNumbersForSeries">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetSeasonNumbersForSeries" message="tns:IJMMServer_GetSeasonNumbersForSeries_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetSeasonNumbersForSeriesResponse" message="tns:IJMMServer_GetSeasonNumbersForSeries_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="LinkAniDBTvDB">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/LinkAniDBTvDB" message="tns:IJMMServer_LinkAniDBTvDB_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/LinkAniDBTvDBResponse" message="tns:IJMMServer_LinkAniDBTvDB_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:service name="JMMServiceImplementation">
