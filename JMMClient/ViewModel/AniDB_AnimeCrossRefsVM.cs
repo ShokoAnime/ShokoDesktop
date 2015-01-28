@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace JMMClient.ViewModel
 {
@@ -60,8 +61,8 @@ namespace JMMClient.ViewModel
 			}
 		}
 
-		private List<CrossRef_AniDB_TvDBVMV2> crossRef_AniDB_TvDBV2 = null;
-		public List<CrossRef_AniDB_TvDBVMV2> CrossRef_AniDB_TvDBV2
+        private ObservableCollection<CrossRef_AniDB_TvDBVMV2> crossRef_AniDB_TvDBV2 = null;
+        public ObservableCollection<CrossRef_AniDB_TvDBVMV2> CrossRef_AniDB_TvDBV2
 		{
 			get { return crossRef_AniDB_TvDBV2; }
 			set
@@ -233,8 +234,8 @@ namespace JMMClient.ViewModel
 			}
 		}
 
-		private List<CrossRef_AniDB_TraktVMV2> crossRef_AniDB_TraktV2 = null;
-        public List<CrossRef_AniDB_TraktVMV2> CrossRef_AniDB_TraktV2
+        private ObservableCollection<CrossRef_AniDB_TraktVMV2> crossRef_AniDB_TraktV2 = null;
+        public ObservableCollection<CrossRef_AniDB_TraktVMV2> CrossRef_AniDB_TraktV2
 		{
             get { return crossRef_AniDB_TraktV2; }
 			set
@@ -281,8 +282,8 @@ namespace JMMClient.ViewModel
 
         #region MAL
 
-        private List<CrossRef_AniDB_MALVM> crossRef_AniDB_MAL = null;
-		public List<CrossRef_AniDB_MALVM> CrossRef_AniDB_MAL
+        private ObservableCollection<CrossRef_AniDB_MALVM> crossRef_AniDB_MAL = null;
+        public ObservableCollection<CrossRef_AniDB_MALVM> CrossRef_AniDB_MAL
 		{
 			get { return crossRef_AniDB_MAL; }
 			set
@@ -320,7 +321,7 @@ namespace JMMClient.ViewModel
 		{
 			AnimeID = details.AnimeID;
 
-            CrossRef_AniDB_TvDBV2 = new List<CrossRef_AniDB_TvDBVMV2>();
+            CrossRef_AniDB_TvDBV2 = new ObservableCollection<CrossRef_AniDB_TvDBVMV2>();
             TvDBSeriesV2 = new List<TvDB_SeriesVM>();
             TvDBEpisodes = new List<TvDB_EpisodeVM>();
             TvDBImageFanarts = new List<TvDB_ImageFanartVM>();
@@ -332,12 +333,12 @@ namespace JMMClient.ViewModel
             MovieDBPosters = new List<MovieDB_PosterVM>();
             MovieDBFanarts = new List<MovieDB_FanartVM>();
 
-            CrossRef_AniDB_TraktV2 = new List<CrossRef_AniDB_TraktVMV2>();
+            CrossRef_AniDB_TraktV2 = new ObservableCollection<CrossRef_AniDB_TraktVMV2>();
             TraktShowV2 = new List<Trakt_ShowVM>();
             TraktImageFanarts = new List<Trakt_ImageFanartVM>();
             TraktImagePosters = new List<Trakt_ImagePosterVM>();
 
-            CrossRef_AniDB_MAL = null;
+            CrossRef_AniDB_MAL = new ObservableCollection<CrossRef_AniDB_MALVM>();
 
             AllPosters = new List<PosterContainer>();
             AllFanarts = new List<FanartContainer>();
@@ -373,7 +374,7 @@ namespace JMMClient.ViewModel
 			// MAL
 			if (details.CrossRef_AniDB_MAL != null)
 			{
-				CrossRef_AniDB_MAL = new List<CrossRef_AniDB_MALVM>();
+                CrossRef_AniDB_MAL = new ObservableCollection<CrossRef_AniDB_MALVM>();
 				foreach ( JMMServerBinary.Contract_CrossRef_AniDB_MAL contract in details.CrossRef_AniDB_MAL)
 					CrossRef_AniDB_MAL.Add(new CrossRef_AniDB_MALVM(contract));
 			}
