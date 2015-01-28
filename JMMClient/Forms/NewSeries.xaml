@@ -109,8 +109,10 @@
 
 
 
-                    <TextBlock VerticalAlignment="Center" Text="Search by title" Margin="5,0,0,0"/>
-                    <TextBox Name="txtAnimeSearch" Width="180" Margin="5,2,2,0" BorderThickness="1" VerticalAlignment="Center" />
+                    <TextBlock VerticalAlignment="Center" Text="Search by title or ID" Margin="5,0,0,0"/>
+                    <TextBox Name="txtAnimeSearch" Width="180" Margin="5,2,2,0" BorderThickness="1" VerticalAlignment="Center"
+                             ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=NewSeries_Search}, 
+                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_NewSeries_Search}}"/>
 
                     <Button Name="btnAnimeSearch" Style="{DynamicResource FlatButtonStyle}" IsDefault="True">
 

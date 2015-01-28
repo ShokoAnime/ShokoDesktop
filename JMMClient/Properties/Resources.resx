@@ -1721,4 +1721,10 @@
   <data name="WebCache_UserInfo" xml:space="preserve">
     <value>Send Anonymous Usage Info</value>
   </data>
+  <data name="NewSeries_Search" xml:space="preserve">
+    <value>Search By Title or ID</value>
+  </data>
+  <data name="Tooltip_NewSeries_Search" xml:space="preserve">
+    <value>Enter part of the name of the anime, or if you know the AniDB ID just enter that directly</value>
+  </data>
 </root>
