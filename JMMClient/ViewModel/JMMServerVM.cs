@@ -788,6 +788,17 @@ namespace JMMClient
 			}
 		}
 
+        private bool showCommunity = false;
+        public bool ShowCommunity
+        {
+            get { return showCommunity; }
+            set
+            {
+                showCommunity = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("ShowCommunity"));
+            }
+        }
+
 		private bool showServerSettings = false;
 		public bool ShowServerSettings
 		{
@@ -1746,6 +1757,9 @@ namespace JMMClient
 
                     AdminMessagesAvailable = AdminMessages.Count > 0;
                 }
+
+                // check if this user is allowed to admin the web cache
+                ShowCommunity = JMMServerVM.Instance.clientBinaryHTTP.IsWebCacheAdmin();
 					
 
 				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()

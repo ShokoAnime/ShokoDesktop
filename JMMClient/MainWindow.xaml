@@ -1575,6 +1575,44 @@
 
             </TabItem>
 
+            <!-- Community tab-->
+            <TabItem Name="tabCommunity" Style="{DynamicResource tabMainItem}"
+                     Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ShowCommunity, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
+                        <TextBlock Text="Community" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
+                    </StackPanel>
+                </TabItem.Header>
+
+                <TabControl Name="tabcCommunity" TabStripPlacement="Left" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,10,5,5">
+
+                    <TabControl.Resources>
+                        <Style TargetType="{x:Type TabItem}">
+                            <Setter Property="Padding" Value="6" />
+
+                        </Style>
+                    </TabControl.Resources>
+
+
+
+                    <TabItem Header="Stats" Name="tabComStats">
+                        
+
+                    </TabItem>
+
+                    <TabItem Header="Links" Name="tabComLinks">
+                        <usercontrols:CommunityLinksControl x:Name="ucComLinks"/>
+
+                    </TabItem>
+
+                    
+
+                    
+
+                </TabControl>
+                
+            </TabItem>
+
         </TabControl>
 
         <!-- bottom status bar container -->

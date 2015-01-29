@@ -18,6 +18,10 @@ namespace JMMClient.ViewModel
 		public string TvDBTitle { get; set; }
 		public int CrossRefSource { get; set; }
 
+        public string Username { get; set; }
+
+        
+
 		public event PropertyChangedEventHandler PropertyChanged;
 		private void NotifyPropertyChanged(String propertyName)
 		{
@@ -27,6 +31,63 @@ namespace JMMClient.ViewModel
 				PropertyChanged(this, args);
 			}
 		}
+
+        private string isAdminApprovedImage = @"/Images/placeholder.png";
+        public string IsAdminApprovedImage
+        {
+            get { return isAdminApprovedImage; }
+            set
+            {
+                isAdminApprovedImage = value;
+                NotifyPropertyChanged("IsAdminApprovedImage");
+            }
+        }
+
+        private void SetAdminApprovedImage()
+        {
+            if (IsAdminApproved == 1) 
+                IsAdminApprovedImage = @"/Images/16_tick.png";
+            else
+                IsAdminApprovedImage = @"/Images/placeholder.png";
+        }
+
+        private int isAdminApproved = 0;
+        public int IsAdminApproved
+        {
+            get { return isAdminApproved; }
+            set
+            {
+                isAdminApproved = value;
+                NotifyPropertyChanged("IsAdminApproved");
+
+                IsAdminApprovedBool = isAdminApproved == 1;
+                IsNotAdminApprovedBool = !IsAdminApprovedBool;
+
+                SetAdminApprovedImage();
+            }
+        }
+
+        private bool isAdminApprovedBool = false;
+        public bool IsAdminApprovedBool
+        {
+            get { return isAdminApprovedBool; }
+            set
+            {
+                isAdminApprovedBool = value;
+                NotifyPropertyChanged("IsAdminApprovedBool");
+            }
+        }
+
+        private bool isNotAdminApprovedBool = true;
+        public bool IsNotAdminApprovedBool
+        {
+            get { return isNotAdminApprovedBool; }
+            set
+            {
+                isNotAdminApprovedBool = value;
+                NotifyPropertyChanged("IsNotAdminApprovedBool");
+            }
+        }
 
 		private string seriesURL = string.Empty;
 		public string SeriesURL
@@ -38,6 +99,17 @@ namespace JMMClient.ViewModel
 				NotifyPropertyChanged("SeriesURL");
 			}
 		}
+
+        private string anidbURL = string.Empty;
+        public string AniDBURL
+        {
+            get { return anidbURL; }
+            set
+            {
+                anidbURL = value;
+                NotifyPropertyChanged("AniDBURL");
+            }
+        }
 
 		public string AniDBStartEpisodeTypeString
 		{
@@ -88,6 +160,7 @@ namespace JMMClient.ViewModel
 			this.TvDBTitle = contract.TvDBTitle;
 
 			SeriesURL = string.Format(Constants.URLS.TvDB_Series, TvDBID);
+            AniDBURL = string.Format(Constants.URLS.AniDB_Series, AnimeID);
 		}
 
 		public CrossRef_AniDB_TvDBVMV2(JMMServerBinary.Contract_Azure_CrossRef_AniDB_TvDB contract)
@@ -96,13 +169,16 @@ namespace JMMClient.ViewModel
 			this.AniDBStartEpisodeType = contract.AniDBStartEpisodeType;
 			this.AniDBStartEpisodeNumber = contract.AniDBStartEpisodeNumber;
 			this.TvDBID = contract.TvDBID;
-			//this.CrossRef_AniDB_TvDBV2ID = contract.CrossRef_AniDB_TvDBV2ID;
+			this.CrossRef_AniDB_TvDBV2ID = contract.CrossRef_AniDB_TvDBId.Value;
 			this.TvDBSeasonNumber = contract.TvDBSeasonNumber;
 			this.TvDBStartEpisodeNumber = contract.TvDBStartEpisodeNumber;
 			this.CrossRefSource = contract.CrossRefSource;
 			this.TvDBTitle = contract.TvDBTitle;
+            this.Username = contract.Username;
+            this.IsAdminApproved = contract.IsAdminApproved;
 
 			SeriesURL = string.Format(Constants.URLS.TvDB_Series, TvDBID);
+            AniDBURL = string.Format(Constants.URLS.AniDB_Series, AnimeID);
 		}
 
 		public override string ToString()

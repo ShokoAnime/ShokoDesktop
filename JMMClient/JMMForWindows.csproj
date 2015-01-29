@@ -376,6 +376,9 @@
       <DependentUpon>Categories.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\CloseableTabItem.cs" />
+    <Compile Include="UserControls\Community\CommunityLinksControl.xaml.cs">
+      <DependentUpon>CommunityLinksControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ContinueWatchingTileControl.xaml.cs">
       <DependentUpon>ContinueWatchingTileControl.xaml</DependentUpon>
     </Compile>
@@ -902,6 +905,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Categories.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Community\CommunityLinksControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -2057,6 +2064,7 @@
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.Core.dll" />
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.dll" />
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.resources.dll" />
+    <Resource Include="Images\placeholder.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

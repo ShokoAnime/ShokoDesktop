@@ -9,6 +9,24 @@
       <xsd:import schemaLocation="http://localhost:8111/JMMServerBinary?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IJMMServer_SearchMAL_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchMAL" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SearchMAL_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchMALResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_TestMALLogin_InputMessage">
+    <wsdl:part name="parameters" element="tns:TestMALLogin" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_TestMALLogin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TestMALLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetMALCrossRefWebCache_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMALCrossRefWebCache" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetMALCrossRefWebCache_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMALCrossRefWebCacheResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_LinkAniDBMAL_InputMessage">
     <wsdl:part name="parameters" element="tns:LinkAniDBMAL" />
   </wsdl:message>
@@ -332,6 +350,24 @@
   </wsdl:message>
   <wsdl:message name="IJMMServer_GetAniDBEpisodesForAnime_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAniDBEpisodesForAnimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetTVDBCrossRefV2_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTVDBCrossRefV2" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetTVDBCrossRefV2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTVDBCrossRefV2Response" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SearchTheTvDB_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchTheTvDB" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SearchTheTvDB_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchTheTvDBResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetSeasonNumbersForSeries_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSeasonNumbersForSeries" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetSeasonNumbersForSeries_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSeasonNumbersForSeriesResponse" />
   </wsdl:message>
   <wsdl:message name="IJMMServer_LinkAniDBTvDB_InputMessage">
     <wsdl:part name="parameters" element="tns:LinkAniDBTvDB" />
@@ -825,23 +861,23 @@
   <wsdl:message name="IJMMServer_GetEpisodesRecentlyWatched_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetEpisodesRecentlyWatchedResponse" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_SearchMAL_InputMessage">
-    <wsdl:part name="parameters" element="tns:SearchMAL" />
+  <wsdl:message name="IJMMServer_IsWebCacheAdmin_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsWebCacheAdmin" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_SearchMAL_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SearchMALResponse" />
+  <wsdl:message name="IJMMServer_IsWebCacheAdmin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsWebCacheAdminResponse" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_TestMALLogin_InputMessage">
-    <wsdl:part name="parameters" element="tns:TestMALLogin" />
+  <wsdl:message name="IJMMServer_ApproveTVDBCrossRefWebCache_InputMessage">
+    <wsdl:part name="parameters" element="tns:ApproveTVDBCrossRefWebCache" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_TestMALLogin_OutputMessage">
-    <wsdl:part name="parameters" element="tns:TestMALLoginResponse" />
+  <wsdl:message name="IJMMServer_ApproveTVDBCrossRefWebCache_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ApproveTVDBCrossRefWebCacheResponse" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_GetMALCrossRefWebCache_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetMALCrossRefWebCache" />
+  <wsdl:message name="IJMMServer_RevokeTVDBCrossRefWebCache_InputMessage">
+    <wsdl:part name="parameters" element="tns:RevokeTVDBCrossRefWebCache" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_GetMALCrossRefWebCache_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetMALCrossRefWebCacheResponse" />
+  <wsdl:message name="IJMMServer_RevokeTVDBCrossRefWebCache_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RevokeTVDBCrossRefWebCacheResponse" />
   </wsdl:message>
   <wsdl:message name="IJMMServer_UpdateCalendarData_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateCalendarData" />
@@ -1335,25 +1371,19 @@
   <wsdl:message name="IJMMServer_GetTVDBCrossRefWebCache_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetTVDBCrossRefWebCacheResponse" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_GetTVDBCrossRefV2_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetTVDBCrossRefV2" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_GetTVDBCrossRefV2_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetTVDBCrossRefV2Response" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_SearchTheTvDB_InputMessage">
-    <wsdl:part name="parameters" element="tns:SearchTheTvDB" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_SearchTheTvDB_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SearchTheTvDBResponse" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_GetSeasonNumbersForSeries_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetSeasonNumbersForSeries" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_GetSeasonNumbersForSeries_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetSeasonNumbersForSeriesResponse" />
-  </wsdl:message>
   <wsdl:portType name="IJMMServer">
+    <wsdl:operation name="SearchMAL">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SearchMAL" message="tns:IJMMServer_SearchMAL_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SearchMALResponse" message="tns:IJMMServer_SearchMAL_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TestMALLogin">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/TestMALLogin" message="tns:IJMMServer_TestMALLogin_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/TestMALLoginResponse" message="tns:IJMMServer_TestMALLogin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMALCrossRefWebCache">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetMALCrossRefWebCache" message="tns:IJMMServer_GetMALCrossRefWebCache_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetMALCrossRefWebCacheResponse" message="tns:IJMMServer_GetMALCrossRefWebCache_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="LinkAniDBMAL">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/LinkAniDBMAL" message="tns:IJMMServer_LinkAniDBMAL_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/LinkAniDBMALResponse" message="tns:IJMMServer_LinkAniDBMAL_OutputMessage" />
@@ -1569,6 +1599,18 @@
     <wsdl:operation name="GetAniDBEpisodesForAnime">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAniDBEpisodesForAnime" message="tns:IJMMServer_GetAniDBEpisodesForAnime_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAniDBEpisodesForAnimeResponse" message="tns:IJMMServer_GetAniDBEpisodesForAnime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTVDBCrossRefV2">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetTVDBCrossRefV2" message="tns:IJMMServer_GetTVDBCrossRefV2_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetTVDBCrossRefV2Response" message="tns:IJMMServer_GetTVDBCrossRefV2_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchTheTvDB">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SearchTheTvDB" message="tns:IJMMServer_SearchTheTvDB_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SearchTheTvDBResponse" message="tns:IJMMServer_SearchTheTvDB_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSeasonNumbersForSeries">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetSeasonNumbersForSeries" message="tns:IJMMServer_GetSeasonNumbersForSeries_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetSeasonNumbersForSeriesResponse" message="tns:IJMMServer_GetSeasonNumbersForSeries_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="LinkAniDBTvDB">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/LinkAniDBTvDB" message="tns:IJMMServer_LinkAniDBTvDB_InputMessage" />
@@ -1898,17 +1940,17 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetEpisodesRecentlyWatched" message="tns:IJMMServer_GetEpisodesRecentlyWatched_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetEpisodesRecentlyWatchedResponse" message="tns:IJMMServer_GetEpisodesRecentlyWatched_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="SearchMAL">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SearchMAL" message="tns:IJMMServer_SearchMAL_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SearchMALResponse" message="tns:IJMMServer_SearchMAL_OutputMessage" />
+    <wsdl:operation name="IsWebCacheAdmin">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/IsWebCacheAdmin" message="tns:IJMMServer_IsWebCacheAdmin_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/IsWebCacheAdminResponse" message="tns:IJMMServer_IsWebCacheAdmin_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="TestMALLogin">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/TestMALLogin" message="tns:IJMMServer_TestMALLogin_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/TestMALLoginResponse" message="tns:IJMMServer_TestMALLogin_OutputMessage" />
+    <wsdl:operation name="ApproveTVDBCrossRefWebCache">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/ApproveTVDBCrossRefWebCache" message="tns:IJMMServer_ApproveTVDBCrossRefWebCache_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/ApproveTVDBCrossRefWebCacheResponse" message="tns:IJMMServer_ApproveTVDBCrossRefWebCache_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetMALCrossRefWebCache">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetMALCrossRefWebCache" message="tns:IJMMServer_GetMALCrossRefWebCache_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetMALCrossRefWebCacheResponse" message="tns:IJMMServer_GetMALCrossRefWebCache_OutputMessage" />
+    <wsdl:operation name="RevokeTVDBCrossRefWebCache">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RevokeTVDBCrossRefWebCache" message="tns:IJMMServer_RevokeTVDBCrossRefWebCache_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RevokeTVDBCrossRefWebCacheResponse" message="tns:IJMMServer_RevokeTVDBCrossRefWebCache_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="UpdateCalendarData">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/UpdateCalendarData" message="tns:IJMMServer_UpdateCalendarData_InputMessage" />
@@ -2237,18 +2279,6 @@
     <wsdl:operation name="GetTVDBCrossRefWebCache">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetTVDBCrossRefWebCache" message="tns:IJMMServer_GetTVDBCrossRefWebCache_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetTVDBCrossRefWebCacheResponse" message="tns:IJMMServer_GetTVDBCrossRefWebCache_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetTVDBCrossRefV2">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetTVDBCrossRefV2" message="tns:IJMMServer_GetTVDBCrossRefV2_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetTVDBCrossRefV2Response" message="tns:IJMMServer_GetTVDBCrossRefV2_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="SearchTheTvDB">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SearchTheTvDB" message="tns:IJMMServer_SearchTheTvDB_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SearchTheTvDBResponse" message="tns:IJMMServer_SearchTheTvDB_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetSeasonNumbersForSeries">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetSeasonNumbersForSeries" message="tns:IJMMServer_GetSeasonNumbersForSeries_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetSeasonNumbersForSeriesResponse" message="tns:IJMMServer_GetSeasonNumbersForSeries_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:service name="JMMServiceImplementation">
