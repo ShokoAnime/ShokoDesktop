@@ -1756,10 +1756,12 @@ namespace JMMClient
                     }
 
                     AdminMessagesAvailable = AdminMessages.Count > 0;
+
+                    // check if this user is allowed to admin the web cache
+                    ShowCommunity = JMMServerVM.Instance.clientBinaryHTTP.IsWebCacheAdmin();
                 }
 
-                // check if this user is allowed to admin the web cache
-                ShowCommunity = JMMServerVM.Instance.clientBinaryHTTP.IsWebCacheAdmin();
+                
 					
 
 				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
