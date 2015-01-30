@@ -9,6 +9,12 @@
       <xsd:import schemaLocation="http://localhost:8111/JMMServerBinary?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IJMMServer_GetEpisodesRecentlyWatched_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEpisodesRecentlyWatched" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetEpisodesRecentlyWatched_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEpisodesRecentlyWatchedResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_SearchMAL_InputMessage">
     <wsdl:part name="parameters" element="tns:SearchMAL" />
   </wsdl:message>
@@ -350,6 +356,12 @@
   </wsdl:message>
   <wsdl:message name="IJMMServer_GetAniDBEpisodesForAnime_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAniDBEpisodesForAnimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetTVDBCrossRefWebCache_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTVDBCrossRefWebCache" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetTVDBCrossRefWebCache_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTVDBCrossRefWebCacheResponse" />
   </wsdl:message>
   <wsdl:message name="IJMMServer_GetTVDBCrossRefV2_InputMessage">
     <wsdl:part name="parameters" element="tns:GetTVDBCrossRefV2" />
@@ -855,11 +867,11 @@
   <wsdl:message name="IJMMServer_GetTopLevelGroupForSeries_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetTopLevelGroupForSeriesResponse" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_GetEpisodesRecentlyWatched_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetEpisodesRecentlyWatched" />
+  <wsdl:message name="IJMMServer_Admin_GetRandomLinkForApproval_InputMessage">
+    <wsdl:part name="parameters" element="tns:Admin_GetRandomLinkForApproval" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_GetEpisodesRecentlyWatched_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetEpisodesRecentlyWatchedResponse" />
+  <wsdl:message name="IJMMServer_Admin_GetRandomLinkForApproval_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Admin_GetRandomLinkForApprovalResponse" />
   </wsdl:message>
   <wsdl:message name="IJMMServer_IsWebCacheAdmin_InputMessage">
     <wsdl:part name="parameters" element="tns:IsWebCacheAdmin" />
@@ -1365,13 +1377,11 @@
   <wsdl:message name="IJMMServer_GetCrossRefDetails_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetCrossRefDetailsResponse" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_GetTVDBCrossRefWebCache_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetTVDBCrossRefWebCache" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_GetTVDBCrossRefWebCache_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetTVDBCrossRefWebCacheResponse" />
-  </wsdl:message>
   <wsdl:portType name="IJMMServer">
+    <wsdl:operation name="GetEpisodesRecentlyWatched">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetEpisodesRecentlyWatched" message="tns:IJMMServer_GetEpisodesRecentlyWatched_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetEpisodesRecentlyWatchedResponse" message="tns:IJMMServer_GetEpisodesRecentlyWatched_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="SearchMAL">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SearchMAL" message="tns:IJMMServer_SearchMAL_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SearchMALResponse" message="tns:IJMMServer_SearchMAL_OutputMessage" />
@@ -1599,6 +1609,10 @@
     <wsdl:operation name="GetAniDBEpisodesForAnime">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAniDBEpisodesForAnime" message="tns:IJMMServer_GetAniDBEpisodesForAnime_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAniDBEpisodesForAnimeResponse" message="tns:IJMMServer_GetAniDBEpisodesForAnime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTVDBCrossRefWebCache">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetTVDBCrossRefWebCache" message="tns:IJMMServer_GetTVDBCrossRefWebCache_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetTVDBCrossRefWebCacheResponse" message="tns:IJMMServer_GetTVDBCrossRefWebCache_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetTVDBCrossRefV2">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetTVDBCrossRefV2" message="tns:IJMMServer_GetTVDBCrossRefV2_InputMessage" />
@@ -1936,9 +1950,9 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetTopLevelGroupForSeries" message="tns:IJMMServer_GetTopLevelGroupForSeries_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetTopLevelGroupForSeriesResponse" message="tns:IJMMServer_GetTopLevelGroupForSeries_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetEpisodesRecentlyWatched">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetEpisodesRecentlyWatched" message="tns:IJMMServer_GetEpisodesRecentlyWatched_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetEpisodesRecentlyWatchedResponse" message="tns:IJMMServer_GetEpisodesRecentlyWatched_OutputMessage" />
+    <wsdl:operation name="Admin_GetRandomLinkForApproval">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/Admin_GetRandomLinkForApproval" message="tns:IJMMServer_Admin_GetRandomLinkForApproval_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/Admin_GetRandomLinkForApprovalResponse" message="tns:IJMMServer_Admin_GetRandomLinkForApproval_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="IsWebCacheAdmin">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/IsWebCacheAdmin" message="tns:IJMMServer_IsWebCacheAdmin_InputMessage" />
@@ -2275,10 +2289,6 @@
     <wsdl:operation name="GetCrossRefDetails">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetCrossRefDetails" message="tns:IJMMServer_GetCrossRefDetails_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetCrossRefDetailsResponse" message="tns:IJMMServer_GetCrossRefDetails_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetTVDBCrossRefWebCache">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetTVDBCrossRefWebCache" message="tns:IJMMServer_GetTVDBCrossRefWebCache_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetTVDBCrossRefWebCacheResponse" message="tns:IJMMServer_GetTVDBCrossRefWebCache_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:service name="JMMServiceImplementation">

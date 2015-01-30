@@ -174,6 +174,7 @@ namespace JMMClient.Forms
 
 				}
 
+                this.DialogResult = true;
 				this.Cursor = Cursors.Arrow;
 				this.Close();
 			}

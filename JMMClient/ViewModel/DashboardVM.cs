@@ -534,8 +534,20 @@ namespace JMMClient
 				{
 					AnimeEpisodeVM ep = new AnimeEpisodeVM(contract);
 					string animename = ep.AnimeName; // just do this to force anidb anime detail record to be loaded
+
+                    ts = DateTime.Now - start;
+                    logger.Trace("Dashboard Time: RefreshEpsWatchNext_Recent: episode details: Stage 1: {0}", ts.TotalMilliseconds);
+
 					ep.RefreshAnime();
+
+                    ts = DateTime.Now - start;
+                    logger.Trace("Dashboard Time: RefreshEpsWatchNext_Recent: episode details: Stage 2: {0}", ts.TotalMilliseconds);
+
 					ep.SetTvDBInfo();
+
+                    ts = DateTime.Now - start;
+                    logger.Trace("Dashboard Time: RefreshEpsWatchNext_Recent: episode details: Stage 3: {0}", ts.TotalMilliseconds);
+
 					epList.Add(ep);
 				}
 				ts = DateTime.Now - start;

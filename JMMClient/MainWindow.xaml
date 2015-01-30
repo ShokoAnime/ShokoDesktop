@@ -36,6 +36,8 @@
             <RoutedUICommand x:Key="DeletePlaylistCommand" Text="DeletePlaylistCommand" />
             <RoutedUICommand x:Key="RefreshPlaylistCommand" Text="RefreshPlaylistCommand" />
             <RoutedUICommand x:Key="DeletePlaylistItemCommand" Text="DeletePlaylistItemCommand" />
+            <RoutedUICommand x:Key="ShowWebCacheAdminCommand" Text="ShowWebCacheAdminCommand" />
+            
 
 
 
@@ -203,6 +205,7 @@
         <CommandBinding Command="{StaticResource ServerImageQueueResumeCommand}" Executed="CommandBinding_ServerImageQueueResume" />
 
         <CommandBinding Command="{StaticResource ShowTorrentSearchCommand}" Executed="CommandBinding_ShowTorrentSearch" />
+        <CommandBinding Command="{StaticResource ShowWebCacheAdminCommand}" Executed="CommandBinding_ShowWebCacheAdmin" />
     </Window.CommandBindings>
 
     <Grid Margin="0">

@@ -17,6 +17,15 @@
   <wsdl:binding name="BinaryBinding_IJMMServer" type="i0:IJMMServer">
     <wsp:PolicyReference URI="#BinaryBinding_IJMMServer_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetEpisodesRecentlyWatched">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetEpisodesRecentlyWatched" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="SearchMAL">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/SearchMAL" style="document" />
       <wsdl:input>
@@ -523,6 +532,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAniDBEpisodesForAnime">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAniDBEpisodesForAnime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTVDBCrossRefWebCache">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetTVDBCrossRefWebCache" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1286,8 +1304,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetEpisodesRecentlyWatched">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetEpisodesRecentlyWatched" style="document" />
+    <wsdl:operation name="Admin_GetRandomLinkForApproval">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/Admin_GetRandomLinkForApproval" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -2044,15 +2062,6 @@
     </wsdl:operation>
     <wsdl:operation name="GetCrossRefDetails">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetCrossRefDetails" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetTVDBCrossRefWebCache">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetTVDBCrossRefWebCache" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
