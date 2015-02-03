@@ -1201,7 +1201,11 @@ namespace JMMClient
 
 			CloseableTabItem cti = new CloseableTabItem();
 			//TabItem cti = new TabItem();
-			cti.Header = series.SeriesName;
+
+            string tabHeader = series.SeriesName;
+            if (tabHeader.Length > 30)
+                tabHeader = tabHeader.Substring(0, 30) + "...";
+            cti.Header = tabHeader;
 
 			//AnimeSeries_Hulu seriesControl = new AnimeSeries_Hulu();
 			AnimeSeries seriesControl = new AnimeSeries();
@@ -1215,26 +1219,6 @@ namespace JMMClient
 
 			this.Cursor = Cursors.Arrow;
 		}
-
-		/*public void ToggleDashMetroStyle()
-		{
-			if (dash.Visibility == System.Windows.Visibility.Collapsed)
-			{
-				dash.Visibility = System.Windows.Visibility.Visible;
-				dashMetro.Visibility = System.Windows.Visibility.Collapsed;
-				DisplayMainTab(TAB_MAIN_Dashboard);
-				AppSettings.DashboardType = DashboardType.Normal;
-			}
-			else
-			{
-				dash.Visibility = System.Windows.Visibility.Collapsed;
-				dashMetro.Visibility = System.Windows.Visibility.Visible;
-				DisplayMainTab(TAB_MAIN_Dashboard);
-				AppSettings.DashboardType = DashboardType.Metro;
-			}
-
-			SetColours();
-		}*/
 
 		private void SetColours()
 		{
