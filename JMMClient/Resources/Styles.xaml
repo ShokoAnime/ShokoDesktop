@@ -947,7 +947,6 @@
                                 <Condition Property="IsSelected" Value="False"/>
                             </MultiTrigger.Conditions>
                             <Setter TargetName="Border" Property="Background" Value="#2D2D2D" />
-                            <Setter TargetName="Border" Property="BorderThickness" Value="1" />
                         </MultiTrigger>
 
                         
