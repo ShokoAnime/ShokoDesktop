@@ -55,12 +55,12 @@ namespace JMMClient.ViewModel
 		{
 			get
 			{
-				if (!File.Exists(FullImagePathPlain))
+				if (!string.IsNullOrEmpty(FullImagePathPlain) && !File.Exists(FullImagePathPlain))
 				{
-                    logger.Trace("TvDB_EpisodeVM: downloading image\n - {0}\n", FullImagePathPlain);
+                    //logger.Trace("TvDB_EpisodeVM: downloading image\n - {0}\n", FullImagePathPlain);
 					ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.TvDB_Episode, this, false);
 					MainWindow.imageHelper.DownloadImage(req);
-                    logger.Trace("TvDB_EpisodeVM: downloading image done");
+                    //logger.Trace("TvDB_EpisodeVM: downloading image done");
 					if (File.Exists(FullImagePathPlain)) return FullImagePathPlain;
 				}
 
