@@ -768,10 +768,10 @@
     <value>The maximum amount of fanart images to download</value>
   </data>
   <data name="Tooltip_TvDB_PosterAutoDownload" xml:space="preserve">
-    <value>Automatically download new wide banners whenever a import is performed.</value>
+    <value>Automatically download new posters whenever a import is performed.</value>
   </data>
   <data name="Tooltip_TvDB_WideBannerAutoDownload" xml:space="preserve">
-    <value>Automatically download new posters whenever a import is performed.</value>
+    <value>Automatically download new wide banners whenever a import is performed.</value>
   </data>
   <data name="ImportSettings_HashCRC32" xml:space="preserve">
     <value>Calculate CRC32</value>
@@ -1714,5 +1714,17 @@
   </data>
   <data name="GroupFilterConditionType_CustomTag" xml:space="preserve">
     <value>Custom Tag</value>
+  </data>
+  <data name="Tooltip_WebCache_UserInfo" xml:space="preserve">
+    <value>Sends anonymous usage info to the web cache like Database Type, Windows version etc. See the help link for all the data that is sent</value>
+  </data>
+  <data name="WebCache_UserInfo" xml:space="preserve">
+    <value>Send Anonymous Usage Info</value>
+  </data>
+  <data name="NewSeries_Search" xml:space="preserve">
+    <value>Search By Title or ID</value>
+  </data>
+  <data name="Tooltip_NewSeries_Search" xml:space="preserve">
+    <value>Enter part of the name of the anime, or if you know the AniDB ID just enter that directly</value>
   </data>
 </root>

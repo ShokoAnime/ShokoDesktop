@@ -455,6 +455,7 @@ namespace JMMClient
 
 		public void SetTvDBInfo()
 		{
+            //logger.Trace("SetTvDBInfo: RefreshAnime start: {0} - {1}", this.AnimeSeries.SeriesName, this.EpisodeNumberAndName);
 			this.RefreshAnime();
 
 			TvDBSummary tvSummary = AniDB_Anime.TvSummary;
@@ -487,16 +488,11 @@ namespace JMMClient
 						else
 							this.EpisodeOverviewLoading = tvep.Overview;
 
-						if (string.IsNullOrEmpty(tvep.FullImagePath) || !File.Exists(tvep.FullImagePath))
+						if (string.IsNullOrEmpty(tvep.FullImagePathPlain) || !File.Exists(tvep.FullImagePath))
 						{
-							if (string.IsNullOrEmpty(tvep.OnlineImagePath))
-							{
-								this.EpisodeImageLoading = @"/Images/EpisodeThumb_NotFound.png";
-								// if there is no proper image to show, we will hide it on the dashboard
-								ShowEpisodeImageInDashboard = false;
-							}
-							else
-								this.EpisodeImageLoading = tvep.OnlineImagePath;
+							this.EpisodeImageLoading = @"/Images/EpisodeThumb_NotFound.png";
+							// if there is no proper image to show, we will hide it on the dashboard
+							ShowEpisodeImageInDashboard = false;
 						}
 						else
 							this.EpisodeImageLoading = tvep.FullImagePath;
@@ -513,17 +509,23 @@ namespace JMMClient
 			}
 			#endregion
 
+            //logger.Trace("SetTvDBInfo: normal episodes start");
+
 			#region normal episodes
 			// now do stuff to improve performance
 			if (this.EpisodeTypeEnum == JMMClient.EpisodeType.Episode)
 			{
 				if (tvSummary != null && tvSummary.CrossRefTvDBV2 != null && tvSummary.CrossRefTvDBV2.Count > 0)
 				{
+                    //logger.Trace("SetTvDBInfo: sorting TvDB cross refs: {0} records", tvSummary.CrossRefTvDBV2.Count);
+
 					// find the xref that is right
 					// relies on the xref's being sorted by season number and then episode number (desc)
 					List<SortPropOrFieldAndDirection> sortCriteria = new List<SortPropOrFieldAndDirection>();
 					sortCriteria.Add(new SortPropOrFieldAndDirection("AniDBStartEpisodeNumber", true, JMMClient.SortType.eInteger));
 					List<CrossRef_AniDB_TvDBVMV2> tvDBCrossRef = Sorting.MultiSort<CrossRef_AniDB_TvDBVMV2>(tvSummary.CrossRefTvDBV2, sortCriteria);
+
+                    //logger.Trace("SetTvDBInfo: looking for starting points");
 
 					bool foundStartingPoint = false;
 					CrossRef_AniDB_TvDBVMV2 xrefBase = null;
@@ -538,10 +540,14 @@ namespace JMMClient
 						}
 					}
 
+                    //logger.Trace("SetTvDBInfo: looking for starting points - done");
+
 					// we have found the starting epiosde numbder from AniDB
 					// now let's check that the TvDB Season and Episode Number exist
 					if (foundStartingPoint)
 					{
+
+                        //logger.Trace("SetTvDBInfo: creating dictionary");
 
 						Dictionary<int, int> dictTvDBSeasons = null;
 						Dictionary<int, TvDB_EpisodeVM> dictTvDBEpisodes = null;
@@ -555,31 +561,33 @@ namespace JMMClient
 							}
 						}
 
+                        //logger.Trace("SetTvDBInfo: creating dictionary - done");
+
 						if (dictTvDBSeasons.ContainsKey(xrefBase.TvDBSeasonNumber))
 						{
 							int episodeNumber = dictTvDBSeasons[xrefBase.TvDBSeasonNumber] + (this.EpisodeNumber + xrefBase.TvDBStartEpisodeNumber - 2) - (xrefBase.AniDBStartEpisodeNumber - 1);
 							if (dictTvDBEpisodes.ContainsKey(episodeNumber))
 							{
 
+                                //logger.Trace("SetTvDBInfo: loading episode overview");
 								TvDB_EpisodeVM tvep = dictTvDBEpisodes[episodeNumber];
 								if (string.IsNullOrEmpty(tvep.Overview))
 									this.EpisodeOverviewLoading = "Episode Overview Not Available";
 								else
 									this.EpisodeOverviewLoading = tvep.Overview;
 
-								if (string.IsNullOrEmpty(tvep.FullImagePath) || !File.Exists(tvep.FullImagePath))
+                                //logger.Trace("SetTvDBInfo: loading episode overview - done");
+
+                                if (string.IsNullOrEmpty(tvep.FullImagePathPlain) || !File.Exists(tvep.FullImagePath))
 								{
-									if (string.IsNullOrEmpty(tvep.OnlineImagePath))
-									{
-										this.EpisodeImageLoading = @"/Images/EpisodeThumb_NotFound.png";
-										// if there is no proper image to show, we will hide it on the dashboard
-										ShowEpisodeImageInDashboard = false;
-									}
-									else
-										this.EpisodeImageLoading = tvep.OnlineImagePath;
+									this.EpisodeImageLoading = @"/Images/EpisodeThumb_NotFound.png";
+									// if there is no proper image to show, we will hide it on the dashboard
+									ShowEpisodeImageInDashboard = false;
 								}
 								else
 									this.EpisodeImageLoading = tvep.FullImagePath;
+
+                                //logger.Trace("SetTvDBInfo: episode image - done");
 
 								if (JMMServerVM.Instance.EpisodeTitleSource == DataSourceType.TheTvDB && !string.IsNullOrEmpty(tvep.EpisodeName))
 									EpisodeName = tvep.EpisodeName;
@@ -593,6 +601,8 @@ namespace JMMClient
 				}
 			}
 			#endregion
+
+            //logger.Trace("SetTvDBInfo: normal episodes finish");
 
 			#region special episodes
 			if (this.EpisodeTypeEnum == JMMClient.EpisodeType.Special)
@@ -643,16 +653,11 @@ namespace JMMClient
 								TvDB_EpisodeVM tvep = dictTvDBEpisodes[episodeNumber];
 								this.EpisodeOverviewLoading = tvep.Overview;
 
-								if (string.IsNullOrEmpty(tvep.FullImagePath) || !File.Exists(tvep.FullImagePath))
+								if (string.IsNullOrEmpty(tvep.FullImagePathPlain) || !File.Exists(tvep.FullImagePath))
 								{
-									if (string.IsNullOrEmpty(tvep.OnlineImagePath))
-									{
-										this.EpisodeImageLoading = @"/Images/EpisodeThumb_NotFound.png";
-										// if there is no proper image to show, we will hide it on the dashboard
-										ShowEpisodeImageInDashboard = false;
-									}
-									else
-										this.EpisodeImageLoading = tvep.OnlineImagePath;
+									this.EpisodeImageLoading = @"/Images/EpisodeThumb_NotFound.png";
+									// if there is no proper image to show, we will hide it on the dashboard
+									ShowEpisodeImageInDashboard = false;
 								}
 								else
 									this.EpisodeImageLoading = tvep.FullImagePath;

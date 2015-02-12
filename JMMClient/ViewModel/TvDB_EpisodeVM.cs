@@ -4,11 +4,14 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using JMMClient.ImageDownload;
+using NLog;
 
 namespace JMMClient.ViewModel
 {
 	public class TvDB_EpisodeVM
 	{
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+
 		public int TvDB_EpisodeID { get; set; }
 		public int Id { get; set; }
 		public int SeriesID { get; set; }
@@ -52,10 +55,12 @@ namespace JMMClient.ViewModel
 		{
 			get
 			{
-				if (!File.Exists(FullImagePathPlain))
+				if (!string.IsNullOrEmpty(FullImagePathPlain) && !File.Exists(FullImagePathPlain))
 				{
+                    //logger.Trace("TvDB_EpisodeVM: downloading image\n - {0}\n", FullImagePathPlain);
 					ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.TvDB_Episode, this, false);
 					MainWindow.imageHelper.DownloadImage(req);
+                    //logger.Trace("TvDB_EpisodeVM: downloading image done");
 					if (File.Exists(FullImagePathPlain)) return FullImagePathPlain;
 				}
 

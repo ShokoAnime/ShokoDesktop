@@ -379,8 +379,8 @@ namespace JMMClient
 					MainWindow.imageHelper.DownloadImage(req);
 					if (File.Exists(fileName)) return fileName;
 
-					if (!string.IsNullOrEmpty(Picname))
-						return string.Format(Constants.URLS.AniDB_Images, Picname);
+					//if (!string.IsNullOrEmpty(Picname))
+					//	return string.Format(Constants.URLS.AniDB_Images, Picname);
 					
 					string packUriBlank = string.Format("pack://application:,,,/{0};component/Images/blankposter.png", Constants.AssemblyName);
 					return packUriBlank;

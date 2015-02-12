@@ -5,6 +5,14 @@ using System.Text;
 
 namespace JMMClient
 {
+    public enum AzureLinkType
+    {
+        TvDB = 1,
+        Trakt = 2,
+        MAL = 3,
+        MovieDB = 4,
+    }
+
 	public enum SeriesSearchType
 	{
 		TitleOnly = 0,

@@ -174,6 +174,7 @@ namespace JMMClient.Forms
 
 				}
 
+                this.DialogResult = true;
 				this.Cursor = Cursors.Arrow;
 				this.Close();
 			}
@@ -246,7 +247,7 @@ namespace JMMClient.Forms
 			{
 				CrossRef_AniDB_TvDBResult.Clear();
 				// first find what the community recommends
-				List<JMMServerBinary.Contract_Azure_CrossRef_AniDB_TvDB> xrefs = JMMServerVM.Instance.clientBinaryHTTP.GetTVDBCrossRefWebCache(AnimeID);
+				List<JMMServerBinary.Contract_Azure_CrossRef_AniDB_TvDB> xrefs = JMMServerVM.Instance.clientBinaryHTTP.GetTVDBCrossRefWebCache(AnimeID, false);
 				if (xrefs != null && xrefs.Count > 0)
 				{
 					foreach (JMMServerBinary.Contract_Azure_CrossRef_AniDB_TvDB xref in xrefs)

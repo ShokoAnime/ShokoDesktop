@@ -50,6 +50,7 @@ namespace JMMClient
 		public static readonly int TAB_MAIN_Pinned = 7;
 		public static readonly int TAB_MAIN_Downloads = 8;
 		public static readonly int TAB_MAIN_Search = 9;
+        public static readonly int TAB_MAIN_Community = 10;
 
 		public static int CurrentMainTabIndex = TAB_MAIN_Dashboard;
 
@@ -1200,7 +1201,11 @@ namespace JMMClient
 
 			CloseableTabItem cti = new CloseableTabItem();
 			//TabItem cti = new TabItem();
-			cti.Header = series.SeriesName;
+
+            string tabHeader = series.SeriesName;
+            if (tabHeader.Length > 30)
+                tabHeader = tabHeader.Substring(0, 30) + "...";
+            cti.Header = tabHeader;
 
 			//AnimeSeries_Hulu seriesControl = new AnimeSeries_Hulu();
 			AnimeSeries seriesControl = new AnimeSeries();
@@ -1214,26 +1219,6 @@ namespace JMMClient
 
 			this.Cursor = Cursors.Arrow;
 		}
-
-		/*public void ToggleDashMetroStyle()
-		{
-			if (dash.Visibility == System.Windows.Visibility.Collapsed)
-			{
-				dash.Visibility = System.Windows.Visibility.Visible;
-				dashMetro.Visibility = System.Windows.Visibility.Collapsed;
-				DisplayMainTab(TAB_MAIN_Dashboard);
-				AppSettings.DashboardType = DashboardType.Normal;
-			}
-			else
-			{
-				dash.Visibility = System.Windows.Visibility.Collapsed;
-				dashMetro.Visibility = System.Windows.Visibility.Visible;
-				DisplayMainTab(TAB_MAIN_Dashboard);
-				AppSettings.DashboardType = DashboardType.Metro;
-			}
-
-			SetColours();
-		}*/
 
 		private void SetColours()
 		{
@@ -1592,6 +1577,38 @@ namespace JMMClient
 				Utils.ShowErrorMessage(ex);
 			}
 		}
+
+        private void CommandBinding_ShowWebCacheAdmin(object sender, ExecutedRoutedEventArgs e)
+        {
+            object obj = e.Parameter;
+            if (obj == null) return;
+
+            try
+            {
+                SearchCriteria crit = null;
+
+                if (obj.GetType() == typeof(AniDB_AnimeVM))
+                {
+                    AniDB_AnimeVM anime = (AniDB_AnimeVM)obj;
+                    crit = new SearchCriteria();
+                    crit.ExtraInfo = string.Empty;
+                    crit.AnimeID = anime.AnimeID;
+                }
+
+                if (crit != null)
+                {
+                    tabControl1.SelectedIndex = TAB_MAIN_Community;
+                    tabcCommunity.SelectedIndex = 1;
+
+                    ucComLinks.PerformSearch(crit);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+        }
 
 		private void CommandBinding_ShowPinnedSeries(object sender, ExecutedRoutedEventArgs e)
 		{

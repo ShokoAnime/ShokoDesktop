@@ -534,8 +534,20 @@ namespace JMMClient
 				{
 					AnimeEpisodeVM ep = new AnimeEpisodeVM(contract);
 					string animename = ep.AnimeName; // just do this to force anidb anime detail record to be loaded
+
+                    ts = DateTime.Now - start;
+                    logger.Trace("Dashboard Time: RefreshEpsWatchNext_Recent: episode details: Stage 1: {0}", ts.TotalMilliseconds);
+
 					ep.RefreshAnime();
+
+                    ts = DateTime.Now - start;
+                    logger.Trace("Dashboard Time: RefreshEpsWatchNext_Recent: episode details: Stage 2: {0}", ts.TotalMilliseconds);
+
 					ep.SetTvDBInfo();
+
+                    ts = DateTime.Now - start;
+                    logger.Trace("Dashboard Time: RefreshEpsWatchNext_Recent: episode details: Stage 3: {0}", ts.TotalMilliseconds);
+
 					epList.Add(ep);
 				}
 				ts = DateTime.Now - start;
@@ -640,6 +652,11 @@ namespace JMMClient
 				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
 				{
 					MiniCalendar.Clear();
+                    ViewMiniCalendar.SortDescriptions.Clear();
+                    if (UserSettingsVM.Instance.Dash_MiniCalendarUpcomingOnly)
+                        ViewMiniCalendar.SortDescriptions.Add(new SortDescription("AirDate", ListSortDirection.Ascending));
+                    else
+                        ViewMiniCalendar.SortDescriptions.Add(new SortDescription("AirDate", ListSortDirection.Descending));
 				});
 
 				List<JMMServerBinary.Contract_AniDBAnime> contracts = 
@@ -647,13 +664,21 @@ namespace JMMClient
 
 				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
 				{
+                    DateTime yesterday = DateTime.Now.AddDays(-1);
 					foreach (JMMServerBinary.Contract_AniDBAnime contract in contracts)
 					{
-						AniDB_AnimeVM anime = new AniDB_AnimeVM(contract);
-						if (JMMServerVM.Instance.CurrentUser.EvaluateAnime(anime))
-							MiniCalendar.Add(anime);
+                        bool useAnime = true;
+                        if (UserSettingsVM.Instance.Dash_MiniCalendarUpcomingOnly && contract.AirDate < yesterday) useAnime = false;
+
+                        if (useAnime)
+                        {
+                            AniDB_AnimeVM anime = new AniDB_AnimeVM(contract);
+                            if (JMMServerVM.Instance.CurrentUser.EvaluateAnime(anime))
+                                MiniCalendar.Add(anime);
+                        }
 					}
-					ViewEpsWatchNext_Recent.Refresh();
+
+                    ViewMiniCalendar.Refresh();
 				});
 			}
 			catch (Exception ex)

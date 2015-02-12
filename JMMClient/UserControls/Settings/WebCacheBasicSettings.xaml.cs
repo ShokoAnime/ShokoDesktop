@@ -31,6 +31,7 @@ namespace JMMClient.UserControls
 			chkWebCache_MALAssociations_Send.Click += new RoutedEventHandler(settingChanged);
             chkWebCache_TraktAssociations_Get.Click += new RoutedEventHandler(settingChanged);
             chkWebCache_TraktAssociations_Send.Click += new RoutedEventHandler(settingChanged);
+            chkWebCache_UserInfo.Click += new RoutedEventHandler(settingChanged);
 			btnSave.Click += new RoutedEventHandler(btnSave_Click);
 		}
 

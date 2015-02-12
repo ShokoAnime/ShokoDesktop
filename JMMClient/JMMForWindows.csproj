@@ -222,6 +222,7 @@
     <Compile Include="Forms\AdminMessagesForm.xaml.cs">
       <DependentUpon>AdminMessagesForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\AzureAnimeLink.cs" />
     <Compile Include="Forms\ChangePasswordForm.xaml.cs">
       <DependentUpon>ChangePasswordForm.xaml</DependentUpon>
     </Compile>
@@ -376,6 +377,9 @@
       <DependentUpon>Categories.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\CloseableTabItem.cs" />
+    <Compile Include="UserControls\Community\CommunityLinksControl.xaml.cs">
+      <DependentUpon>CommunityLinksControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ContinueWatchingTileControl.xaml.cs">
       <DependentUpon>ContinueWatchingTileControl.xaml</DependentUpon>
     </Compile>
@@ -905,6 +909,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\Community\CommunityLinksControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\ContinueWatchingTileControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1281,6 +1289,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AppVersions1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_Azure_AnimeLink.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_Azure_CrossRef_AniDB_Trakt.datasource">
@@ -2057,6 +2068,7 @@
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.Core.dll" />
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.dll" />
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.resources.dll" />
+    <Resource Include="Images\placeholder.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
