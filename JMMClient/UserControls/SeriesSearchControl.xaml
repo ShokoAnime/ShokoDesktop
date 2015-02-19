@@ -39,6 +39,11 @@
                  VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
                  ItemsSource="{Binding Source={x:Static local:MainListHelperVM.Instance}, Path=ViewSeriesSearch}"
                  Background="Transparent"  VerticalAlignment="Stretch" >
+                    <ListBox.Template>
+                        <ControlTemplate>
+                            <ItemsPresenter />
+                        </ControlTemplate>
+                    </ListBox.Template>
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <usercontrols:SeriesPosterView/>

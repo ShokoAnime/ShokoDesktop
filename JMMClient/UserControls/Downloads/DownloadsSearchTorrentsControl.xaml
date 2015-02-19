@@ -157,6 +157,11 @@
                             <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled"  VerticalAlignment="Center" Background="Transparent" Padding="0" BorderThickness="0" Margin="10,0,0,5"
                             ItemTemplate="{StaticResource subGroupsFilterTemplate}" 
                             ItemsSource="{Binding Path=SubGroups, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DownloadsSearchTorrentsControl}}}">
+                                <ListBox.Template>
+                                    <ControlTemplate>
+                                        <ItemsPresenter />
+                                    </ControlTemplate>
+                                </ListBox.Template>
                                 <ListBox.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <WrapPanel  Focusable="False"  Orientation="Horizontal" />

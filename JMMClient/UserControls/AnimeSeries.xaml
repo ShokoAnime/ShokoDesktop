@@ -467,6 +467,11 @@
                             BorderThickness="0" VerticalAlignment="Center"
                             ItemTemplate="{DynamicResource BreadCrumb_GroupTemplateForSeries}"
                             ItemsSource="{Binding Path=Heirarchy}">
+                        <ListBox.Template>
+                            <ControlTemplate>
+                                <ItemsPresenter />
+                            </ControlTemplate>
+                        </ListBox.Template>
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel Orientation="Horizontal" />
@@ -770,6 +775,11 @@
                                              Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=CategoriesCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}"
                                              Background="Transparent" Padding="0" BorderThickness="0" VerticalAlignment="Center"
                                              ItemTemplate="{DynamicResource animeCategoryTemplate}" ItemsSource="{Binding Path=AniDB_Anime.Detail.AnimeCategoriesSummary}">
+                                        <ListBox.Template>
+                                            <ControlTemplate>
+                                                <ItemsPresenter />
+                                            </ControlTemplate>
+                                        </ListBox.Template>
                                         <ListBox.ItemsPanel>
                                             <ItemsPanelTemplate>
                                                 <WrapPanel Focusable="False" Orientation="Horizontal" />
@@ -782,6 +792,11 @@
                                          Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=CategoriesExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
                                          Background="Transparent" Padding="0" BorderThickness="0" VerticalAlignment="Center"
                                          ItemTemplate="{DynamicResource animeCategoryTemplate}" ItemsSource="{Binding Path=AniDB_Anime.Detail.AnimeCategories}">
+                                    <ListBox.Template>
+                                        <ControlTemplate>
+                                            <ItemsPresenter />
+                                        </ControlTemplate>
+                                    </ListBox.Template>
                                     <ListBox.ItemsPanel>
                                         <ItemsPanelTemplate>
                                             <WrapPanel  Focusable="False"  Orientation="Horizontal" />
@@ -829,6 +844,11 @@
                                              Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=TagsCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}"
                                              Background="Transparent" Padding="0" BorderThickness="0" 
                                              ItemTemplate="{DynamicResource animeTagTemplate}" ItemsSource="{Binding Path=AniDB_Anime.Detail.AnimeTagsSummary}">
+                                        <ListBox.Template>
+                                            <ControlTemplate>
+                                                <ItemsPresenter />
+                                            </ControlTemplate>
+                                        </ListBox.Template>
                                         <ListBox.ItemsPanel>
                                             <ItemsPanelTemplate>
                                                 <WrapPanel  Focusable="False"  Orientation="Horizontal" />
@@ -841,6 +861,11 @@
                                          Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=TagsExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
                                          Background="Transparent" Padding="0" BorderThickness="0" VerticalAlignment="Center"
                                          ItemTemplate="{DynamicResource animeTagTemplate}" ItemsSource="{Binding Path=AniDB_Anime.Detail.AnimeTags}">
+                                    <ListBox.Template>
+                                        <ControlTemplate>
+                                            <ItemsPresenter />
+                                        </ControlTemplate>
+                                    </ListBox.Template>
                                     <ListBox.ItemsPanel>
                                         <ItemsPanelTemplate>
                                             <WrapPanel  Focusable="False"  Orientation="Horizontal" />
@@ -883,6 +908,11 @@
                                              Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=TitlesCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}"
                                              Background="Transparent" Padding="0" BorderThickness="0" 
                                              ItemTemplate="{DynamicResource animeTitleTemplate}" ItemsSource="{Binding Path=AniDB_Anime.Detail.AnimeTitlesSummary}">
+                                        <ListBox.Template>
+                                            <ControlTemplate>
+                                                <ItemsPresenter />
+                                            </ControlTemplate>
+                                        </ListBox.Template>
                                         <ListBox.ItemsPanel>
                                             <ItemsPanelTemplate>
                                                 <WrapPanel Focusable="False" Orientation="Horizontal" />
@@ -1004,6 +1034,11 @@
                                              Background="Transparent" Padding="0" BorderThickness="0" 
                                              ItemTemplate="{StaticResource customTagTemplateCollapsed}" 
                                              ItemsSource="{Binding Path=AniDB_Anime.Detail.ViewCustomTags}">
+                                        <ListBox.Template>
+                                            <ControlTemplate>
+                                                <ItemsPresenter />
+                                            </ControlTemplate>
+                                        </ListBox.Template>
                                         <ListBox.ItemsPanel>
                                             <ItemsPanelTemplate>
                                                 <WrapPanel  Focusable="False"  Orientation="Horizontal" />
@@ -1048,7 +1083,12 @@
                                         Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=CustomTagsExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
                                         Background="Transparent" Padding="0" BorderThickness="0" VerticalAlignment="Center"
                                         ItemTemplate="{StaticResource customTagTemplate}" ItemsSource="{Binding Path=AniDB_Anime.Detail.ViewCustomTags}">
-                                <ListBox.ItemsPanel>
+                                    <ListBox.Template>
+                                        <ControlTemplate>
+                                            <ItemsPresenter />
+                                        </ControlTemplate>
+                                    </ListBox.Template>
+                                    <ListBox.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <WrapPanel  Focusable="False"  Orientation="Horizontal" />
                                     </ItemsPanelTemplate>
@@ -1117,6 +1157,11 @@
                                  ItemTemplate="{DynamicResource tvDBWideBannerTemplate}"
                                  ItemsSource="{Binding Path=SeriesTvDBWideBanners, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeSeries}}}" 
                                  Background="Transparent" VerticalAlignment="Stretch" >
+                            <ListBox.Template>
+                                <ControlTemplate>
+                                    <ItemsPresenter />
+                                </ControlTemplate>
+                            </ListBox.Template>
                             <ListBox.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <WrapPanel/>

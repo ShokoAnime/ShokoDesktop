@@ -566,6 +566,11 @@
                      ItemTemplate="{StaticResource AnimeEpisodePoster2}"
                  ItemsSource="{Binding Path=ViewUnwatchedEpisodes, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:ContinueWatchingTileControl}}}"
                  Background="Transparent"  VerticalAlignment="Stretch" >
+                <ListBox.Template>
+                    <ControlTemplate>
+                        <ItemsPresenter />
+                    </ControlTemplate>
+                </ListBox.Template>
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel/>
@@ -580,6 +585,11 @@
                      ItemTemplate="{StaticResource RecommendationTemplate}"
                  ItemsSource="{Binding Path=Recommendations, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:ContinueWatchingTileControl}}}"
                  Background="Transparent"  VerticalAlignment="Stretch" >
+                <ListBox.Template>
+                    <ControlTemplate>
+                        <ItemsPresenter />
+                    </ControlTemplate>
+                </ListBox.Template>
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel/>
@@ -610,6 +620,11 @@
                  ItemTemplateSelector="{StaticResource PeopleSayingTemplateSelector}"
                  ItemsSource="{Binding Path=Shouts, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:ContinueWatchingTileControl}}}"
                  Background="Transparent"  VerticalAlignment="Stretch" >
+                <ListBox.Template>
+                    <ControlTemplate>
+                        <ItemsPresenter />
+                    </ControlTemplate>
+                </ListBox.Template>
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel/>

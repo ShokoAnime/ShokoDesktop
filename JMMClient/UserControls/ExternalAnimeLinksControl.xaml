@@ -43,6 +43,11 @@
         <StackPanel Orientation="Horizontal">
             <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled"  VerticalAlignment="Center" Background="Transparent" Padding="0" BorderThickness="0" 
                      ItemTemplate="{DynamicResource seriesLinkTemplate}" ItemsSource="{Binding Path=AniDB_Anime.ExternalSiteLinks}">
+                <ListBox.Template>
+                    <ControlTemplate>
+                        <ItemsPresenter />
+                    </ControlTemplate>
+                </ListBox.Template>
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel  Focusable="False"  Orientation="Horizontal" />

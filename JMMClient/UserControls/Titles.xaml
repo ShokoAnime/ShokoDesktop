@@ -58,6 +58,11 @@
                   Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=TitlesExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Background="Transparent" Padding="0" BorderThickness="0" VerticalAlignment="Center"
                         ItemTemplate="{StaticResource animeTitleTemplate}" ItemsSource="{Binding Path=AnimeTitlesOfficial}">
+            <ListBox.Template>
+                <ControlTemplate>
+                    <ItemsPresenter />
+                </ControlTemplate>
+            </ListBox.Template>
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel  Focusable="False"  Orientation="Horizontal" />
@@ -73,6 +78,11 @@
                   Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=TitlesExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Background="Transparent" Padding="0" BorderThickness="0" VerticalAlignment="Center"
                         ItemTemplate="{StaticResource animeTitleTemplate}" ItemsSource="{Binding Path=AnimeTitlesSynonym}">
+            <ListBox.Template>
+                <ControlTemplate>
+                    <ItemsPresenter />
+                </ControlTemplate>
+            </ListBox.Template>
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel  Focusable="False"  Orientation="Horizontal" />
@@ -88,6 +98,11 @@
                   Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=TitlesExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Background="Transparent" Padding="0" BorderThickness="0" VerticalAlignment="Center"
                         ItemTemplate="{StaticResource animeTitleTemplate}" ItemsSource="{Binding Path=AnimeTitlesShort}">
+            <ListBox.Template>
+                <ControlTemplate>
+                    <ItemsPresenter />
+                </ControlTemplate>
+            </ListBox.Template>
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel  Focusable="False"  Orientation="Horizontal" />
