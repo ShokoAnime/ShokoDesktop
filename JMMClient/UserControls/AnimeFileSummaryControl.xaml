@@ -133,10 +133,11 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
 
@@ -165,7 +166,11 @@
                  Visibility="{Binding Path=DisplayGroupQualityDetails, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeFileSummaryControl}}, Converter={StaticResource BooleanToVisibilityConverter}}"
                  ItemsSource="{Binding Path=ViewSummary, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeFileSummaryControl}}}"
                 Background="Transparent" ItemContainerStyle="{DynamicResource ListBoxItemStylePlain}"  VerticalAlignment="Top" >
-
+            <ListBox.Template>
+                <ControlTemplate>
+                    <ItemsPresenter />
+                </ControlTemplate>
+            </ListBox.Template>
         </ListBox>
 
         <ListBox BorderThickness="0" BorderBrush="DarkGray" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left"  Margin="10,0,0,10" Padding="0"
@@ -173,7 +178,11 @@
                  Visibility="{Binding Path=DisplayGroupSummary, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeFileSummaryControl}}, Converter={StaticResource BooleanToVisibilityConverter}}"
                  ItemsSource="{Binding Path=ViewGroupSummary, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeFileSummaryControl}}}"
                 Background="Transparent" ItemContainerStyle="{DynamicResource ListBoxItemStylePlain}"  VerticalAlignment="Top" >
-
+            <ListBox.Template>
+                <ControlTemplate>
+                    <ItemsPresenter />
+                </ControlTemplate>
+            </ListBox.Template>
         </ListBox>
 
     </Grid>

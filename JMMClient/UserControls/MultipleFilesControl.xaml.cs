@@ -32,8 +32,6 @@ namespace JMMClient.UserControls
 		public static readonly DependencyProperty EpisodeCountProperty = DependencyProperty.Register("EpisodeCount",
 			typeof(int), typeof(MultipleFilesControl), new UIPropertyMetadata(0, null));
 
-		private int lastSelIndex = 0;
-
 		public int EpisodeCount
 		{
 			get { return (int)GetValue(EpisodeCountProperty); }
@@ -88,7 +86,6 @@ namespace JMMClient.UserControls
 			workerFiles.RunWorkerCompleted += new RunWorkerCompletedEventHandler(workerFiles_RunWorkerCompleted);
 			
 			btnRefresh.Click += new RoutedEventHandler(btnRefresh_Click);
-			lbMultipleFiles.SelectionChanged += new SelectionChangedEventHandler(lbMultipleFiles_SelectionChanged);
 
 			chkOnlyFinished.IsChecked = AppSettings.MultipleFilesOnlyFinished;
 
@@ -105,8 +102,9 @@ namespace JMMClient.UserControls
 			try
 			{
 				contracts = e.Result as List<JMMServerBinary.Contract_AnimeEpisode>;
-				foreach (JMMServerBinary.Contract_AnimeEpisode ep in contracts)
-					CurrentEpisodes.Add(new AnimeEpisodeVM(ep));
+                foreach (JMMServerBinary.Contract_AnimeEpisode ep in contracts)
+                    CurrentEpisodes.Add(new AnimeEpisodeVM(ep));
+
 				EpisodeCount = contracts.Count;
 			
 				btnRefresh.IsEnabled = true;
@@ -132,12 +130,6 @@ namespace JMMClient.UserControls
 			{
 				Utils.ShowErrorMessage(ex);
 			}
-		}
-
-		void lbMultipleFiles_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			if (lbMultipleFiles.Items.Count > 0)
-				lastSelIndex = lbMultipleFiles.SelectedIndex;
 		}
 
 		public void RefreshMultipleFiles()

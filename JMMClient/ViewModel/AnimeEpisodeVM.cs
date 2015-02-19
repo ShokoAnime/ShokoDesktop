@@ -975,9 +975,7 @@ namespace JMMClient
 					JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
 
 				foreach (JMMServerBinary.Contract_VideoDetailed fi in contracts)
-				{
 					filesForEpisode.Add(new VideoDetailedVM(fi));
-				}
 
 				List<SortPropOrFieldAndDirection> sortCriteria = new List<SortPropOrFieldAndDirection>();
 				sortCriteria.Add(new SortPropOrFieldAndDirection("OverallVideoSourceRanking", true, JMMClient.SortType.eInteger));
