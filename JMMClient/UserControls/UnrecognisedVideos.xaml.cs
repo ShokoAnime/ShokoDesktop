@@ -124,6 +124,7 @@ namespace JMMClient.UserControls
 			btnConfirm.Click += new RoutedEventHandler(btnConfirm_Click);
 			btnAddSeries.Click += new RoutedEventHandler(btnAddSeries_Click);
 			btnRescan.Click += new RoutedEventHandler(btnRescan_Click);
+            btnRehash.Click += btnRehash_Click;
 
 			txtSeriesSearch.TextChanged += new TextChangedEventHandler(txtSeriesSearch_TextChanged);
 			
@@ -151,6 +152,8 @@ namespace JMMClient.UserControls
 
 			btnRefreshSeriesList.Click += new RoutedEventHandler(btnRefreshSeriesList_Click);
 		}
+
+        
 
 		void btnRefreshSeriesList_Click(object sender, RoutedEventArgs e)
 		{
@@ -189,6 +192,32 @@ namespace JMMClient.UserControls
 				Utils.ShowErrorMessage(ex);
 			}
 		}
+
+        void btnRehash_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (!JMMServerVM.Instance.ServerOnline) return;
+
+                this.Cursor = Cursors.Wait;
+                foreach (VideoLocalVM vid in UnrecognisedFiles)
+                {
+                    JMMServerVM.Instance.clientBinaryHTTP.RehashFile(vid.VideoLocalID);
+                }
+                this.Cursor = Cursors.Arrow;
+
+                MessageBox.Show("Files queued for AniDB rehash", "Complete", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Arrow;
+            }
+        }
 
 		void btnRescan_Click(object sender, RoutedEventArgs e)
 		{
