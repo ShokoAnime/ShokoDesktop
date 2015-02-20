@@ -587,6 +587,7 @@ namespace JMMClient.UserControls
 					}
 
 				}
+                
 				
 			}
 			catch (Exception ex)
@@ -646,6 +647,14 @@ namespace JMMClient.UserControls
 
 					JMMServerVM.Instance.clientBinaryHTTP.RescanFile(vid.VideoLocalID);
 				}
+                if (obj.GetType() == typeof(MultipleVideos))
+                {
+                    MultipleVideos mv = obj as MultipleVideos;
+                    foreach (int id in mv.VideoLocalIDs)
+                    {
+                        JMMServerVM.Instance.clientBinaryHTTP.RescanFile(id);
+                    }
+                }
 
 				MessageBox.Show(Properties.Resources.MSG_INFO_AddedQueueCmds, "Done", MessageBoxButton.OK, MessageBoxImage.Information);
 			}
