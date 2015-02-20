@@ -361,8 +361,12 @@
                  ItemsSource="{Binding PlaylistObjects}"  ItemTemplateSelector="{StaticResource PlaylistTemplateSelector}"
                  Background="Transparent" ItemContainerStyle="{DynamicResource ListBoxItemStyle}"  VerticalAlignment="Stretch"
                  dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True" dd:DragDrop.DropHandler="{Binding}">
-
-            </ListBox>
+            <ListBox.Template>
+                <ControlTemplate>
+                    <ItemsPresenter />
+                </ControlTemplate>
+            </ListBox.Template>
+        </ListBox>
 
 
         </Grid>
