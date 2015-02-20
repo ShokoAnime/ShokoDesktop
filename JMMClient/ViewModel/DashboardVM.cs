@@ -450,8 +450,11 @@ namespace JMMClient
 			{
 				IsLoadingData = true;
 
-				foreach (RecommendationVM rec in RecommendationsDownload)
+				foreach (object obj in RecommendationsDownload)
 				{
+                    RecommendationVM rec = obj as RecommendationVM;
+                    if (rec == null) continue;
+
 					if (rec.Recommended_AnimeInfoNotExists)
 					{
 						string result = JMMServerVM.Instance.clientBinaryHTTP.UpdateAnimeData(rec.RecommendedAnimeID);
