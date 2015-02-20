@@ -111,31 +111,38 @@ namespace JMMClient.UserControls
 		{
 			RatingControl parent = sender as RatingControl;
 
-			NumberStyles style = NumberStyles.Number;
-			CultureInfo culture = CultureInfo.CreateSpecificCulture("en-GB");
+            try
+            { 
+                NumberStyles style = NumberStyles.Number;
+                CultureInfo culture = CultureInfo.CreateSpecificCulture(AppSettings.Culture);
 
-			double ratingValue = -1;
-			double.TryParse(e.NewValue.ToString(), style, culture, out ratingValue);
+                double ratingValue = -1;
+                double.TryParse(e.NewValue.ToString(), style, culture, out ratingValue);
 
-			int numberOfButtonsToHighlight = (int)(2 * ratingValue);
+                int numberOfButtonsToHighlight = (int)(2 * ratingValue);
 
-			UIElementCollection children = ((StackPanel)(parent.Content)).Children;
-			ToggleButton button = null;
+                UIElementCollection children = ((StackPanel)(parent.Content)).Children;
+                ToggleButton button = null;
 
-			for (int i = 0; i < numberOfButtonsToHighlight; i++)
-			{
-				button = children[i] as ToggleButton;
-				if (button != null)
-					button.IsChecked = true;
-			}
+                for (int i = 0; i < numberOfButtonsToHighlight; i++)
+                {
+                    button = children[i] as ToggleButton;
+                    if (button != null)
+                        button.IsChecked = true;
+                    
+                }
 
-			for (int i = numberOfButtonsToHighlight; i < children.Count; i++)
-			{
-				button = children[i] as ToggleButton;
-				if (button != null)
-					button.IsChecked = false;
-			}
-
+                for (int i = numberOfButtonsToHighlight; i < children.Count; i++)
+                {
+                    button = children[i] as ToggleButton;
+                    if (button != null)
+                        button.IsChecked = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.ToString());
+            }
 		}
 
 		private void RatingButtonClickEventHandler(Object sender, RoutedEventArgs e)
@@ -143,7 +150,7 @@ namespace JMMClient.UserControls
 			ToggleButton button = sender as ToggleButton;
 
 			NumberStyles style = NumberStyles.Number;
-			CultureInfo culture = CultureInfo.CreateSpecificCulture("en-GB");
+            CultureInfo culture = CultureInfo.CreateSpecificCulture("en-GB");
 
 			double newRating = -1;
 			double.TryParse((String)button.Tag, style, culture, out newRating);
