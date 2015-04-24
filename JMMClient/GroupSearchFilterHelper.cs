@@ -25,10 +25,10 @@ namespace JMMClient
 			index = grp.SortName.IndexOf(filterText, 0, StringComparison.InvariantCultureIgnoreCase);
 			if (index > -1) return true;
 
-			// check the categories
-			if (grp.Stat_AllCategories != null)
+			// check the tags
+			if (grp.Stat_AllTags != null)
 			{
-				index = grp.Stat_AllCategories.IndexOf(filterText, 0, StringComparison.InvariantCultureIgnoreCase);
+				index = grp.Stat_AllTags.IndexOf(filterText, 0, StringComparison.InvariantCultureIgnoreCase);
 				if (index > -1) return true;
 			}
 
@@ -79,8 +79,8 @@ namespace JMMClient
 
 			if (searchType == SeriesSearchType.Everything)
 			{
-				// check the categories
-				index = anime.AllCategories.IndexOf(filterText, 0, StringComparison.InvariantCultureIgnoreCase);
+				// check the tags
+				index = anime.AllTags.IndexOf(filterText, 0, StringComparison.InvariantCultureIgnoreCase);
 				if (index > -1) return true;
 			}
 

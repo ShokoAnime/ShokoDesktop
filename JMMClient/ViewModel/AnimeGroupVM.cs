@@ -41,7 +41,7 @@ namespace JMMClient
 		public decimal? Stat_UserVotePermanent { get; set; }
 		public decimal? Stat_UserVoteTemporary { get; set; }
 		public decimal? Stat_UserVoteOverall { get; set; }
-		public string Stat_AllCategories { get; set; }
+		public string Stat_AllTags { get; set; }
         public string Stat_AllCustomTags { get; set; }
 		public string Stat_AllTitles { get; set; }
 		public bool Stat_IsComplete { get; set; }
@@ -305,36 +305,36 @@ namespace JMMClient
 			}
 		}
 
-		public string CategoriesString
+		public string TagsString
 		{
 			get
 			{
-				string categoriesString = "";
-				foreach (string cat in CategoriesList)
+				string tagsString = "";
+				foreach (string cat in TagsList)
 				{
-					if (!string.IsNullOrEmpty(categoriesString))
-						categoriesString += ", ";
-					categoriesString += cat;
+					if (!string.IsNullOrEmpty(tagsString))
+						tagsString += ", ";
+					tagsString += cat;
 				}
-				return categoriesString;
+				return tagsString;
 			}
 		}
 
-		public List<string> CategoriesList
+		public List<string> TagsList
 		{
 			get
 			{
-				List<string> catList = new List<string>();
+				List<string> tagList = new List<string>();
 				foreach (AnimeSeriesVM series in AllAnimeSeries)
 				{
-					string catstemp = series.CategoriesString.Replace(" ", "");
-					string[] catsArray = series.CategoriesString.Split('|');
-					foreach (string cat in catsArray)
+					string catstemp = series.TagsString.Replace(" ", "");
+					string[] tagsArray = series.TagsString.Split('|');
+					foreach (string tag in tagsArray)
 					{
-						if (!catList.Contains(cat)) catList.Add(cat);
+						if (!tagList.Contains(tag)) tagList.Add(tag);
 					}
 				}
-				return catList;
+				return tagList;
 			}
 		}
 
@@ -790,7 +790,7 @@ namespace JMMClient
 			this.Stat_UserVoteOverall = contract.Stat_UserVoteOverall;
 			this.Stat_UserVotePermanent = contract.Stat_UserVotePermanent;
 			this.Stat_UserVoteTemporary = contract.Stat_UserVoteTemporary;
-			this.Stat_AllCategories = contract.Stat_AllCategories;
+            this.Stat_AllTags = contract.Stat_AllTags;
             this.Stat_AllCustomTags = contract.Stat_AllCustomTags;
 			this.Stat_AllTitles = contract.Stat_AllTitles;
 			this.Stat_IsComplete = contract.Stat_IsComplete;

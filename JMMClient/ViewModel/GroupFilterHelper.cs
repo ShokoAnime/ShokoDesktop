@@ -205,7 +205,7 @@ namespace JMMClient.ViewModel
 				case GroupFilterConditionType.AssignedMALInfo: return Properties.Resources.GroupFilterConditionType_AssignedMALInfo;
 				case GroupFilterConditionType.AssignedMovieDBInfo: return Properties.Resources.GroupFilterConditionType_AssignedMovieDBInfo;
 				case GroupFilterConditionType.AssignedTvDBOrMovieDBInfo: return Properties.Resources.GroupFilterConditionType_AssignedTvDBOrMovieDBInfo;
-				case GroupFilterConditionType.Category: return Properties.Resources.GroupFilterConditionType_Category;
+				case GroupFilterConditionType.Tag: return Properties.Resources.GroupFilterConditionType_Tag;
 				case GroupFilterConditionType.CompletedSeries: return Properties.Resources.GroupFilterConditionType_CompletedSeries;
 				case GroupFilterConditionType.Favourite: return Properties.Resources.GroupFilterConditionType_Favourite;
 				case GroupFilterConditionType.HasUnwatchedEpisodes: return Properties.Resources.GroupFilterConditionType_HasUnwatchedEpisodes;
@@ -242,7 +242,7 @@ namespace JMMClient.ViewModel
 			if (enumDesc == Properties.Resources.GroupFilterConditionType_AssignedMALInfo) return GroupFilterConditionType.AssignedMALInfo;
 			if (enumDesc == Properties.Resources.GroupFilterConditionType_AssignedMovieDBInfo) return GroupFilterConditionType.AssignedMovieDBInfo;
 			if (enumDesc == Properties.Resources.GroupFilterConditionType_AssignedTvDBOrMovieDBInfo) return GroupFilterConditionType.AssignedTvDBOrMovieDBInfo;
-			if (enumDesc == Properties.Resources.GroupFilterConditionType_Category) return GroupFilterConditionType.Category;
+			if (enumDesc == Properties.Resources.GroupFilterConditionType_Tag) return GroupFilterConditionType.Tag;
             if (enumDesc == Properties.Resources.GroupFilterConditionType_CustomTag) return GroupFilterConditionType.CustomTags;
 			if (enumDesc == Properties.Resources.GroupFilterConditionType_CompletedSeries) return GroupFilterConditionType.CompletedSeries;
 			if (enumDesc == Properties.Resources.GroupFilterConditionType_Favourite) return GroupFilterConditionType.Favourite;
@@ -286,7 +286,7 @@ namespace JMMClient.ViewModel
 			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.AssignedMALInfo));
 			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.AssignedMovieDBInfo));
 			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.AssignedTvDBOrMovieDBInfo));
-			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.Category));
+			cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.Tag));
             cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.CustomTags));
 			//cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.ReleaseGroup));
 			//cons.Add(GetTextForEnum_ConditionType(GroupFilterConditionType.Studio));
@@ -383,7 +383,7 @@ namespace JMMClient.ViewModel
 					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Include));
 					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Exclude));
 					break;
-				case GroupFilterConditionType.Category:
+				case GroupFilterConditionType.Tag:
 					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.In));
 					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.NotIn));
 					break;

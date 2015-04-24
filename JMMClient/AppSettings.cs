@@ -800,24 +800,6 @@ namespace JMMClient
 			}
 		}
 
-		public static bool CategoriesExpanded
-		{
-			get
-			{
-				NameValueCollection appSettings = ConfigurationManager.AppSettings;
-				string val = appSettings["CategoriesExpanded"];
-				bool bval = true;
-				if (bool.TryParse(val, out bval))
-					return bval;
-				else
-					return false; // default value
-			}
-			set
-			{
-				UpdateSetting("CategoriesExpanded", value.ToString());
-			}
-		}
-
 		public static bool DashWatchNextEpExpanded
 		{
 			get

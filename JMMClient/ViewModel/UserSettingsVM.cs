@@ -249,22 +249,6 @@ namespace JMMClient
 			RefreshTorrentSources();
 		}
 
-		public bool CategoriesExpanded
-		{
-			get { return AppSettings.CategoriesExpanded; }
-			set
-			{
-				AppSettings.CategoriesExpanded = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("CategoriesExpanded"));
-				OnPropertyChanged(new PropertyChangedEventArgs("CategoriesCollapsed"));
-			}
-		}
-
-		public bool CategoriesCollapsed
-		{
-			get { return !AppSettings.CategoriesExpanded; }
-		}
-
 		public bool TagsExpanded
 		{
 			get { return AppSettings.TagsExpanded; }

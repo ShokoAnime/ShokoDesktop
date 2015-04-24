@@ -100,15 +100,6 @@ namespace JMMClient.UserControls
 			set { SetValue(SeriesPos_FileSummaryProperty, value); }
 		}
 
-		public static readonly DependencyProperty SeriesPos_CategoriesProperty = DependencyProperty.Register("SeriesPos_Categories",
-			typeof(int), typeof(AnimeSeries), new UIPropertyMetadata((int)6, null));
-
-		public int SeriesPos_Categories
-		{
-			get { return (int)GetValue(SeriesPos_CategoriesProperty); }
-			set { SetValue(SeriesPos_CategoriesProperty, value); }
-		}
-
 		public static readonly DependencyProperty SeriesPos_TitlesProperty = DependencyProperty.Register("SeriesPos_Titles",
 			typeof(int), typeof(AnimeSeries), new UIPropertyMetadata((int)6, null));
 
@@ -191,7 +182,6 @@ namespace JMMClient.UserControls
 
 			btnAnimeTitles.Click += new RoutedEventHandler(btnAnimeTitles_Click);
 			btnAnimeTags.Click += new RoutedEventHandler(btnAnimeTags_Click);
-			btnAnimeCategories.Click += new RoutedEventHandler(btnAnimeCategories_Click);
             btnCustomTags.Click += new RoutedEventHandler(btnCustomTags_Click);
             btnAddCustomTag.Click += new RoutedEventHandler(btnAddCustomTag_Click);
             btnManageTags.Click += new RoutedEventHandler(btnManageTags_Click);
@@ -573,7 +563,6 @@ namespace JMMClient.UserControls
 			SeriesPos_PlayNextEpisode = UserSettingsVM.Instance.GetSeriesWidgetPosition(SeriesWidgets.PlayNextEpisode) + 4;
 			SeriesPos_TvDBLinks = UserSettingsVM.Instance.GetSeriesWidgetPosition(SeriesWidgets.TvDBLinks) + 4;
 			SeriesPos_FileSummary = UserSettingsVM.Instance.GetSeriesWidgetPosition(SeriesWidgets.FileSummary) + 4;
-			SeriesPos_Categories = UserSettingsVM.Instance.GetSeriesWidgetPosition(SeriesWidgets.Categories) + 4;
 			SeriesPos_Titles = UserSettingsVM.Instance.GetSeriesWidgetPosition(SeriesWidgets.Titles) + 4;
 			SeriesPos_Tags = UserSettingsVM.Instance.GetSeriesWidgetPosition(SeriesWidgets.Tags) + 4;
             SeriesPos_CustomTags = UserSettingsVM.Instance.GetSeriesWidgetPosition(SeriesWidgets.CustomTags) + 4;
@@ -1193,11 +1182,6 @@ namespace JMMClient.UserControls
                 this.Cursor = Cursors.Arrow;
             }
         }
-
-		void btnAnimeCategories_Click(object sender, RoutedEventArgs e)
-		{
-			UserSettingsVM.Instance.CategoriesExpanded = !UserSettingsVM.Instance.CategoriesExpanded;
-		}
 
 		/*void btnPlayNextEpisode_Click(object sender, RoutedEventArgs e)
 		{

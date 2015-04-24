@@ -549,7 +549,7 @@ namespace JMMClient
 
 		public ObservableCollection<ImportFolderVM> ImportFolders { get; set; }
 		public ObservableCollection<JMMUserVM> AllUsers { get; set; }
-		public ObservableCollection<string> AllCategories { get; set; }
+		public ObservableCollection<string> AllTags { get; set; }
         public ObservableCollection<CustomTagVM> AllCustomTags { get; set; }
         public ICollectionView ViewCustomTagsAll { get; set; }
 
@@ -1701,7 +1701,7 @@ namespace JMMClient
 			UnselectedLanguages = new ObservableCollection<NamingLanguage>();
 			SelectedLanguages = new ObservableCollection<NamingLanguage>();
 			AllUsers = new ObservableCollection<JMMUserVM>();
-			AllCategories = new ObservableCollection<string>();
+			AllTags = new ObservableCollection<string>();
             AllCustomTags = new ObservableCollection<CustomTagVM>();
             ViewCustomTagsAll = System.Windows.Data.CollectionViewSource.GetDefaultView(JMMServerVM.Instance.AllCustomTags);
             ViewCustomTagsAll.SortDescriptions.Add(new SortDescription("TagName", ListSortDirection.Ascending ));
@@ -2057,18 +2057,18 @@ namespace JMMClient
 
 		}
 
-		public void RefreshAllCategories()
+		public void RefreshAllTags()
 		{
 
-			AllCategories.Clear();
+			AllTags.Clear();
 
 			if (!ServerOnline) return;
 			try
 			{
-				List<string> catsRaw = JMMServerVM.Instance.clientBinaryHTTP.GetAllCategoryNames();
+                List<string> tagsRaw = JMMServerVM.Instance.clientBinaryHTTP.GetAllTagNames();
 
-				foreach (string cat in catsRaw)
-					AllCategories.Add(cat);
+				foreach (string tag in tagsRaw)
+					AllTags.Add(tag);
 			}
 			catch (Exception ex)
 			{

@@ -131,14 +131,14 @@
                                    Text="{Resx ResxName=JMMClient.Properties.Resources, Key=User_EditSettings}"/>
                         <CheckBox Grid.Row="4" Grid.Column="1" Name="chkEditSettings" VerticalAlignment="Center" />
 
-                        <TextBlock Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" FontWeight="Bold" Margin="0,5,15,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=User_HideCategories}"/>
-                        <TextBox Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="300" Margin="0,5,0,0" Text="{Binding Path=SortName}" Name="txtCategories"/>
+                        <TextBlock Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" FontWeight="Bold" Margin="0,5,15,0" Text="Hide Tags"/>
+                        <TextBox Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="300" Margin="0,5,0,0" Text="{Binding Path=SortName}" Name="txtTags"/>
 
 
-                        <ListBox Name="lbCategories" Grid.Row="6" Grid.Column="1" BorderThickness="1" BorderBrush="LightGray" Background="White" Margin="0,0,5,5" Height="130" 
+                        <ListBox Name="lbTags" Grid.Row="6" Grid.Column="1" BorderThickness="1" BorderBrush="LightGray" Background="White" Margin="0,0,5,5" Height="130" 
                             HorizontalAlignment="Left" VerticalAlignment="Top" Width="300"
                             ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                            ItemsSource="{Binding Source={x:Static local:JMMServerVM.Instance},Path=AllCategories}"
+                            ItemsSource="{Binding Source={x:Static local:JMMServerVM.Instance},Path=AllTags}"
                              />
 
 

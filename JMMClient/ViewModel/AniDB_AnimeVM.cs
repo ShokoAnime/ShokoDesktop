@@ -27,7 +27,6 @@ namespace JMMClient
 		public string MainTitle { get; set; }
 		public string FormattedTitle { get; set; }
 		public string AllTitles { get; set; }
-		public string AllCategories { get; set; }
 		public string AllTags { get; set; }
 		public string Description { get; set; }
 		public string DescriptionTruncated { get; set; }
@@ -91,9 +90,8 @@ namespace JMMClient
 		public AniDB_AnimeVM(JMMServerBinary.Contract_AniDBAnime contract)
 		{
 			this.AirDate = contract.AirDate;
-			this.AllCategories = contract.AllCategories;
-			this.AllCinemaID = contract.AllCinemaID;
-			this.AllTags = contract.AllTags;
+            this.AllCinemaID = contract.AllCinemaID;
+            this.AllTags = contract.AllTags;
 			this.AllTitles = contract.AllTitles;
 			this.AnimeID = contract.AnimeID;
 			this.AnimeNfo = contract.AnimeNfo;

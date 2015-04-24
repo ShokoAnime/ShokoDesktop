@@ -1263,11 +1263,11 @@
   <wsdl:message name="IJMMServer_DeleteGroupFilter_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteGroupFilterResponse" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_GetAllCategoryNames_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllCategoryNames" />
+  <wsdl:message name="IJMMServer_GetAllTagNames_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllTagNames" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_GetAllCategoryNames_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllCategoryNamesResponse" />
+  <wsdl:message name="IJMMServer_GetAllTagNames_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllTagNamesResponse" />
   </wsdl:message>
   <wsdl:message name="IJMMServer_ScanFolder_InputMessage">
     <wsdl:part name="parameters" element="tns:ScanFolder" />
@@ -2214,9 +2214,9 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/DeleteGroupFilter" message="tns:IJMMServer_DeleteGroupFilter_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/DeleteGroupFilterResponse" message="tns:IJMMServer_DeleteGroupFilter_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetAllCategoryNames">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllCategoryNames" message="tns:IJMMServer_GetAllCategoryNames_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllCategoryNamesResponse" message="tns:IJMMServer_GetAllCategoryNames_OutputMessage" />
+    <wsdl:operation name="GetAllTagNames">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllTagNames" message="tns:IJMMServer_GetAllTagNames_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllTagNamesResponse" message="tns:IJMMServer_GetAllTagNames_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ScanFolder">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/ScanFolder" message="tns:IJMMServer_ScanFolder_InputMessage" />

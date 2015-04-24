@@ -640,7 +640,7 @@ namespace JMMClient
 					if (JMMServerVM.Instance.ImportFolders.Count == 0) JMMServerVM.Instance.RefreshImportFolders();
 					if (JMMServerVM.Instance.SelectedLanguages.Count == 0) JMMServerVM.Instance.RefreshNamingLanguages();
 					if (JMMServerVM.Instance.AllUsers.Count == 0) JMMServerVM.Instance.RefreshAllUsers();
-					if (JMMServerVM.Instance.AllCategories.Count == 0) JMMServerVM.Instance.RefreshAllCategories();
+					if (JMMServerVM.Instance.AllTags.Count == 0) JMMServerVM.Instance.RefreshAllTags();
                     if (JMMServerVM.Instance.AllCustomTags.Count == 0) JMMServerVM.Instance.RefreshAllCustomTags();
 				}
 
@@ -1752,12 +1752,6 @@ namespace JMMClient
 			{
 				// move to all groups
 				MainListHelperVM.Instance.ShowAllGroups();
-
-				if (e.Parameter is AnimeCategoryVM)
-				{
-					AnimeCategoryVM obj = e.Parameter as AnimeCategoryVM;
-					txtGroupSearch.Text = obj.CategoryName;
-				}
 
 				if (e.Parameter is AnimeTagVM)
 				{

@@ -2955,15 +2955,15 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetAllCategoryNames">
+  <xs:element name="GetAllTagNames">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetAllCategoryNamesResponse">
+  <xs:element name="GetAllTagNamesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q140="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetAllCategoryNamesResult" nillable="true" type="q140:ArrayOfstring" />
+        <xs:element xmlns:q140="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetAllTagNamesResult" nillable="true" type="q140:ArrayOfstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -152,10 +152,10 @@ namespace JMMClient
 			public static readonly int Predefined = -900;
 
 			public static readonly int Predefined_Years = -901;
-			public static readonly int Predefined_Categories = -902;
+			public static readonly int Predefined_Tags = -902;
 
 			public static readonly int Predefined_Years_Child = -921;
-			public static readonly int Predefined_Categories_Child = -922;
+			public static readonly int Predefined_Tags_Child = -922;
 		}
 
 		public struct URLS

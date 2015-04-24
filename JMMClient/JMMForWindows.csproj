@@ -373,9 +373,6 @@
     <Compile Include="UserControls\BookmarksControl.xaml.cs">
       <DependentUpon>BookmarksControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Categories.xaml.cs">
-      <DependentUpon>Categories.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\CloseableTabItem.cs" />
     <Compile Include="UserControls\Community\CommunityLinksControl.xaml.cs">
       <DependentUpon>CommunityLinksControl.xaml</DependentUpon>
@@ -615,7 +612,6 @@
     <Compile Include="ViewModel\AniDB_EpisodeVM.cs" />
     <Compile Include="ViewModel\AniDB_RecommendationVM.cs" />
     <Compile Include="ViewModel\AniDB_VoteVM.cs" />
-    <Compile Include="ViewModel\AnimeCategoryVM.cs" />
     <Compile Include="ViewModel\AnimeEpisodeTypeVM.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -902,10 +898,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\BookmarksControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\Categories.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

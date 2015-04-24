@@ -27,8 +27,8 @@ namespace JMMClient.Forms
 		public ICollectionView ViewGroups { get; set; }
 		public ObservableCollection<AnimeGroupVM> AllGroups { get; set; }
 
-		public ICollectionView ViewCategoryNames { get; set; }
-		public ObservableCollection<string> AllCategoryNames { get; set; }
+		public ICollectionView ViewTagNames { get; set; }
+		public ObservableCollection<string> AllTagNames { get; set; }
 
         public ICollectionView ViewCustomTagNames { get; set; }
         public ObservableCollection<string> AllCustomTagNames { get; set; }
@@ -83,13 +83,13 @@ namespace JMMClient.Forms
 			set { SetValue(IsParameterInNotInProperty, value); }
 		}
 
-		public static readonly DependencyProperty IsParameterCategoryProperty = DependencyProperty.Register("IsParameterCategory",
+        public static readonly DependencyProperty IsParameterTagProperty = DependencyProperty.Register("IsParameterTag",
 			typeof(bool), typeof(GroupFilterConditionForm), new UIPropertyMetadata(false, null));
 
-		public bool IsParameterCategory
+		public bool IsParameterTag
 		{
-			get { return (bool)GetValue(IsParameterCategoryProperty); }
-			set { SetValue(IsParameterCategoryProperty, value); }
+			get { return (bool)GetValue(IsParameterTagProperty); }
+			set { SetValue(IsParameterTagProperty, value); }
 		}
 
         public static readonly DependencyProperty IsParameterCustomTagProperty = DependencyProperty.Register("IsParameterCustomTag",
@@ -163,13 +163,13 @@ namespace JMMClient.Forms
 			txtGroupSearch.TextChanged += new TextChangedEventHandler(txtGroupSearch_TextChanged);
 			btnClearGroupSearch.Click += new RoutedEventHandler(btnClearGroupSearch_Click);
 
-			txtCategorySearch.TextChanged += new TextChangedEventHandler(txtCategorySearch_TextChanged);
-			btnClearCategorySearch.Click += new RoutedEventHandler(btnClearCategorySearch_Click);
+            txtTagSearch.TextChanged += new TextChangedEventHandler(txtTagSearch_TextChanged);
+            btnClearTagSearch.Click += new RoutedEventHandler(btnClearTagSearch_Click);
 
 			btnCancel.Click += new RoutedEventHandler(btnCancel_Click);
 			btnConfirm.Click += new RoutedEventHandler(btnConfirm_Click);
 
-			lbCategories.MouseDoubleClick += new MouseButtonEventHandler(lbCategories_MouseDoubleClick);
+            lbTags.MouseDoubleClick += new MouseButtonEventHandler(lbTags_MouseDoubleClick);
 			lbVideoQuality.MouseDoubleClick += new MouseButtonEventHandler(lbVideoQuality_MouseDoubleClick);
 			lbAnimeTypes.MouseDoubleClick += new MouseButtonEventHandler(lbAnimeTypes_MouseDoubleClick);
 			lbAudioLanguages.MouseDoubleClick += new MouseButtonEventHandler(lbAudioLanguages_MouseDoubleClick);
@@ -284,9 +284,9 @@ namespace JMMClient.Forms
 			}
 
 
-			if (IsParameterCategory)
+			if (IsParameterTag)
 			{
-				if (txtSelectedCategories.Text.Trim().Length == 0)
+                if (txtSelectedTags.Text.Trim().Length == 0)
 				{
 					MessageBox.Show(Properties.Resources.MSG_ERR_EnterValue, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 					txtParameter.Focus();
@@ -295,7 +295,7 @@ namespace JMMClient.Forms
 				else
 				{
 					// validate
-					string[] cats = txtSelectedCategories.Text.Trim().Split(',');
+                    string[] cats = txtSelectedTags.Text.Trim().Split(',');
 					groupFilterCondition.ConditionParameter = "";
 					foreach (string cat in cats)
 					{
@@ -497,7 +497,7 @@ namespace JMMClient.Forms
 			IsParameterAnimeType = false;
 			IsParameterText = false;
 			IsParameterInNotIn = false;
-			IsParameterCategory = false;
+			IsParameterTag = false;
             IsParameterCustomTag = false;
 			IsParameterRating = false;
 			IsParameterLastXDays = false;
@@ -532,9 +532,9 @@ namespace JMMClient.Forms
 				case GroupFilterConditionType.Studio:
 					IsParameterInNotIn = true; break;
 
-				case GroupFilterConditionType.Category:
+				case GroupFilterConditionType.Tag:
 					IsParameterInNotIn = true;
-					IsParameterCategory = true;
+					IsParameterTag = true;
 					break;
 
                 case GroupFilterConditionType.CustomTags:
@@ -589,17 +589,17 @@ namespace JMMClient.Forms
 			EvaluateConditionsAndOperators();
 		}
 
-		private void PopulateCategories()
+		private void PopulateTags()
 		{
-			AllCategoryNames = new ObservableCollection<string>();
+			AllTagNames = new ObservableCollection<string>();
 
-			ViewCategoryNames = CollectionViewSource.GetDefaultView(AllCategoryNames);
-			List<string> catsRaw = JMMServerVM.Instance.clientBinaryHTTP.GetAllCategoryNames();
+			ViewTagNames = CollectionViewSource.GetDefaultView(AllTagNames);
+            List<string> tagsRaw = JMMServerVM.Instance.clientBinaryHTTP.GetAllTagNames();
 
-			foreach (string cat in catsRaw)
-				AllCategoryNames.Add(cat);
+			foreach (string tag in tagsRaw)
+				AllTagNames.Add(tag);
 
-			ViewCategoryNames.Filter = CategoryFilter;
+			ViewTagNames.Filter = TagFilter;
 		}
 
         private void PopulateCustomTags()
@@ -692,7 +692,7 @@ namespace JMMClient.Forms
 					cboConditionType.Items.Add(cond);
 
 				PopulateAnimeGroups();
-				PopulateCategories();
+				PopulateTags();
                 PopulateCustomTags();
 				PopulateVideoQuality();
 				PopulateAnimeTypes();
@@ -756,7 +756,7 @@ namespace JMMClient.Forms
 						break;
 
 					case GroupFilterConditionType.AnimeType:
-					case GroupFilterConditionType.Category:
+					case GroupFilterConditionType.Tag:
                     case GroupFilterConditionType.CustomTags:
 					case GroupFilterConditionType.ReleaseGroup:
 					case GroupFilterConditionType.Studio:
@@ -786,12 +786,12 @@ namespace JMMClient.Forms
 			return GroupSearchFilterHelper.EvaluateGroupTextSearch(grpvm, txtGroupSearch.Text);
 		}
 
-		private bool CategoryFilter(object obj)
+		private bool TagFilter(object obj)
 		{
-			string catName = obj as string;
-			if (catName == null) return true;
+			string tagName = obj as string;
+			if (tagName == null) return true;
 
-			int index = catName.IndexOf(txtCategorySearch.Text.Trim(), 0, StringComparison.InvariantCultureIgnoreCase);
+            int index = tagName.IndexOf(txtTagSearch.Text.Trim(), 0, StringComparison.InvariantCultureIgnoreCase);
 			if (index > -1) return true;
 			return false;
 		}
@@ -817,14 +817,14 @@ namespace JMMClient.Forms
 			txtGroupSearch.Text = "";
 		}
 
-		void btnClearCategorySearch_Click(object sender, RoutedEventArgs e)
+        void btnClearTagSearch_Click(object sender, RoutedEventArgs e)
 		{
-			txtCategorySearch.Text = "";
+            txtTagSearch.Text = "";
 		}
 
-		void txtCategorySearch_TextChanged(object sender, TextChangedEventArgs e)
+        void txtTagSearch_TextChanged(object sender, TextChangedEventArgs e)
 		{
-			ViewCategoryNames.Refresh();
+			ViewTagNames.Refresh();
 		}
 
         void btnClearCustomTagSearch_Click(object sender, RoutedEventArgs e)
@@ -911,13 +911,13 @@ namespace JMMClient.Forms
 			txtSelectedAnimeTypes.Text = currentList;
 		}
 
-		void lbCategories_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        void lbTags_MouseDoubleClick(object sender, MouseButtonEventArgs e)
 		{
-			object obj = lbCategories.SelectedItem;
+            object obj = lbTags.SelectedItem;
 			if (obj == null) return;
 
 			string catName = obj.ToString();
-			string currentList = txtSelectedCategories.Text.Trim();
+            string currentList = txtSelectedTags.Text.Trim();
 
 			// add to the selected list
 			int index = currentList.IndexOf(catName, 0, StringComparison.InvariantCultureIgnoreCase);
@@ -926,7 +926,7 @@ namespace JMMClient.Forms
 			if (currentList.Length > 0) currentList += ",";
 			currentList += catName;
 
-			txtSelectedCategories.Text = currentList;
+            txtSelectedTags.Text = currentList;
 		}
 
         void lbCustomTags_MouseDoubleClick(object sender, MouseButtonEventArgs e)

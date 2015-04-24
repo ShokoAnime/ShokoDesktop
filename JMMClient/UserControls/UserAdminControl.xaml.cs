@@ -51,7 +51,7 @@ namespace JMMClient.UserControls
 			this.Loaded += new RoutedEventHandler(UserAdminControl_Loaded);
 			lbUsers.SelectionChanged += new SelectionChangedEventHandler(lbUsers_SelectionChanged);
 
-			lbCategories.MouseDoubleClick += new MouseButtonEventHandler(lbCategories_MouseDoubleClick);
+			lbTags.MouseDoubleClick += new MouseButtonEventHandler(lbTags_MouseDoubleClick);
 
 			btnNewUser.Click += new RoutedEventHandler(btnNewUser_Click);
 			btnSave.Click += new RoutedEventHandler(btnSave_Click);
@@ -85,7 +85,7 @@ namespace JMMClient.UserControls
 			}
 
 			SelectedUser.Username = txtUsername.Text.Trim();
-			SelectedUser.HideCategories = txtCategories.Text.Trim();
+			SelectedUser.HideTags = txtTags.Text.Trim();
 			SelectedUser.IsAdmin = chkIsAdmin.IsChecked.Value ? 1 : 0;
 			SelectedUser.IsAniDBUser = chkIsAniDB.IsChecked.Value ? 1 : 0;
 			SelectedUser.IsTraktUser = chkIsTrakt.IsChecked.Value ? 1 : 0;
@@ -175,23 +175,23 @@ namespace JMMClient.UserControls
 			
 		}
 
-		void lbCategories_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+		void lbTags_MouseDoubleClick(object sender, MouseButtonEventArgs e)
 		{
-			object obj = lbCategories.SelectedItem;
+			object obj = lbTags.SelectedItem;
 			if (obj == null) return;
 
-			string catName = obj.ToString().Trim();
-			string currentList = txtCategories.Text.Trim();
+			string tagName = obj.ToString().Trim();
+			string currentList = txtTags.Text.Trim();
 
 			// add to the selected list
-			string[] cats = currentList.Split(',');
-			foreach (string cat in cats)
-				if (cat.Trim().Equals(catName, StringComparison.InvariantCultureIgnoreCase)) return;
+			string[] tags = currentList.Split(',');
+			foreach (string cat in tags)
+				if (cat.Trim().Equals(tagName, StringComparison.InvariantCultureIgnoreCase)) return;
 
 			if (currentList.Length > 0) currentList += ",";
-			currentList += catName;
+			currentList += tagName;
 
-			txtCategories.Text = currentList;
+			txtTags.Text = currentList;
 		}
 
 		void lbUsers_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -216,7 +216,7 @@ namespace JMMClient.UserControls
 		{
 			btnChangePassword.Visibility = System.Windows.Visibility.Hidden;
 			txtUsername.Text = "";
-			txtCategories.Text = "";
+			txtTags.Text = "";
 			chkIsAdmin.IsChecked = false;
 			chkIsAniDB.IsChecked = false;
 			chkIsTrakt.IsChecked = false;
@@ -228,7 +228,7 @@ namespace JMMClient.UserControls
 
 			btnChangePassword.Visibility = System.Windows.Visibility.Visible;
 			txtUsername.Text = SelectedUser.Username;
-			txtCategories.Text = SelectedUser.HideCategories;
+			txtTags.Text = SelectedUser.HideTags;
 			chkIsAdmin.IsChecked = SelectedUser.IsAdminUser;
 			chkIsAniDB.IsChecked = SelectedUser.IsAniDBUserBool;
 			chkIsTrakt.IsChecked = SelectedUser.IsTraktUserBool;
