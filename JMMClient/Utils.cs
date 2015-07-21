@@ -88,6 +88,15 @@ namespace JMMClient
             return thisDate;
         }
 
+        public static DateTime? GetUTCDate(long secs)
+        {
+            if (secs == 0) return null;
+
+            DateTime thisDate = new DateTime(1970, 1, 1, 0, 0, 0);
+            thisDate = thisDate.AddSeconds(secs);
+            return thisDate;
+        }
+
 		public static string DownloadWebPage(string url)
 		{
 			return DownloadWebPage(url, null, false);

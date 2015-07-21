@@ -35,7 +35,6 @@
             <RoutedUICommand x:Key="MoveUpWidgetCommand" Text="MoveUpWidgetCommand" />
             <RoutedUICommand x:Key="MoveDownWidgetCommand" Text="MoveDownWidgetCommand" />
 
-            <RoutedUICommand x:Key="JoinTraktCommand" Text="JoinTraktCommand" />
             <RoutedUICommand x:Key="SyncVotesCommand" Text="SyncVotesCommand" />
             <RoutedUICommand x:Key="FriendRequestApproveCommand" Text="FriendRequestApproveCommand" />
             <RoutedUICommand x:Key="FriendRequestDenyCommand" Text="FriendRequestDenyCommand" />
@@ -810,99 +809,6 @@
                 </Grid>
             </DataTemplate>
 
-            <!-- TraktSignupTemplate -->
-            <DataTemplate x:Key="TraktSignupTemplate">
-                <Grid Margin="0,0,5,5" VerticalAlignment="Top">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-
-                    <!-- Prompt text -->
-                    <Border BorderThickness="1,1,1,0" BorderBrush="DarkGray" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" 
-                            Background="FloralWhite">
-                        <StackPanel Orientation="Horizontal" Margin="10,10,10,5">
-                            <Image Height="16" Width="16" Source="/Images/32_Info.png" Margin="0,0,5,0"/>
-                            <TextBlock Text="You haven't specified any " FontWeight="Bold" VerticalAlignment="Center" Foreground="Black"/>
-                            <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="Trakt" URL="http://trakt.tv" Margin="5,0,0,0"/>
-                            <TextBlock Text="credentials" FontWeight="Bold" Foreground="Black"  Margin="5,0,0,0" VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </Border>
-
-                    <Border BorderThickness="1,0,1,0" BorderBrush="DarkGray" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" 
-                            Background="FloralWhite">
-                        <StackPanel Orientation="Horizontal" Margin="10,10,10,5">
-                            <TextBlock Text="Signup below, or enter your " VerticalAlignment="Center" Foreground="Black"/>
-                            <Button Name="btnTraktCredentials" Margin="5,2,2,2" Style="{DynamicResource RoundButtonStyle}"  Command="{DynamicResource EditTraktCredentialsCommand}">
-                                <TextBlock VerticalAlignment="Center" Text="existing credentials" Foreground="Black"  Margin="5,0,5,0"/>
-                            </Button>
-                            <TextBlock Text="now" Margin="5,0,0,0" VerticalAlignment="Center" Foreground="Black"/>
-                        </StackPanel>
-                    </Border>
-
-                    <!-- username label -->
-                    <Border BorderThickness="1,0,0,0" BorderBrush="DarkGray" Grid.Column="0" Grid.Row="2" 
-                            Background="FloralWhite">
-                        <TextBlock Text="Username" VerticalAlignment="Center" Margin="10,5,10,5" Foreground="Black"/>
-                    </Border>
-
-                    <!-- username entry -->
-                    <Border BorderThickness="0,0,1,0" BorderBrush="DarkGray" Grid.Column="1" Grid.Row="2"
-                            Background="FloralWhite">
-                        <TextBox Name="txtUsername" Width="150" Margin="0,5,5,0" VerticalAlignment="Center" HorizontalAlignment="Left" 
-                                 Text="{Binding Path=Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="Black"/>
-                    </Border>
-
-                    <!-- password label -->
-                    <Border BorderThickness="1,0,0,0" BorderBrush="DarkGray" Grid.Column="0" Grid.Row="3"
-                            Background="FloralWhite">
-                        <TextBlock Text="Password" VerticalAlignment="Center" Margin="10,5,10,5" Foreground="Black"/>
-                    </Border>
-
-                    <!-- password entry -->
-                    <Border BorderThickness="0,0,1,0" BorderBrush="DarkGray" Grid.Column="1" Grid.Row="3"
-                            Background="FloralWhite">
-                        <PasswordBox Width="150" Margin="0,5,5,0" VerticalAlignment="Center" HorizontalAlignment="Left" x:Name="txtPassword" Foreground="Black"
-                                     local:PasswordBoxAssistant.BindPassword="true"
-                                     local:PasswordBoxAssistant.BoundPassword="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                    </Border>
-
-                    <!-- email label -->
-                    <Border BorderThickness="1,0,0,0" BorderBrush="DarkGray" Grid.Column="0" Grid.Row="4" 
-                            Background="FloralWhite">
-                        <TextBlock Text="Email Address" VerticalAlignment="Center" Margin="10,5,10,5" Foreground="Black"/>
-                    </Border>
-
-                    <!-- email entry -->
-                    <Border BorderThickness="0,0,1,0" BorderBrush="DarkGray" Grid.Column="1" Grid.Row="4"
-                            Background="FloralWhite">
-                        <TextBox Name="txtEmail" Width="250" Margin="0,5,10,0" VerticalAlignment="Center" HorizontalAlignment="Left"
-                                 Text="{Binding Path=Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="Black"/>
-                    </Border>
-
-                    <!-- join trakt button -->
-                    <Border BorderThickness="1,0,0,1" BorderBrush="DarkGray" Grid.Column="0" Grid.Row="5" Background="FloralWhite" Grid.ColumnSpan="1"/>
-
-                    <Border BorderThickness="0,0,1,1" BorderBrush="DarkGray" Grid.Column="1" Grid.Row="5" Background="FloralWhite" Grid.ColumnSpan="1">
-                        <Button Name="btnJoinTrakt" Margin="0,5,10,10" Style="{DynamicResource RoundButtonStyle}" Foreground="Black"
-                                Command="{DynamicResource JoinTraktCommand}" CommandParameter="{Binding}">
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,5,0"/>
-                                <TextBlock VerticalAlignment="Center" Text="Join Trakt" Foreground="Black"  Margin="0,0,5,0" Width="Auto"/>
-                            </StackPanel>
-                        </Button>
-                    </Border>
-                </Grid>
-            </DataTemplate>
-
             <!-- TraktActivityScrobbleTemplate -->
             <DataTemplate x:Key="TraktActivityScrobbleTemplate">
                 <Grid Margin="0,0,5,5" VerticalAlignment="Top">
@@ -1561,7 +1467,7 @@
         <CommandBinding Command="{StaticResource MoveUpWidgetCommand}" Executed="CommandBinding_MoveUpWidget" />
         <CommandBinding Command="{StaticResource MoveDownWidgetCommand}" Executed="CommandBinding_MoveDownWidget" />
 
-        <CommandBinding Command="{StaticResource JoinTraktCommand}" Executed="CommandBinding_JoinTrakt" />
+        
         <CommandBinding Command="{StaticResource SyncVotesCommand}" Executed="CommandBinding_SyncVotes" />
         <CommandBinding Command="{StaticResource FriendRequestApproveCommand}" Executed="CommandBinding_FriendRequestApprove" />
         <CommandBinding Command="{StaticResource FriendRequestDenyCommand}" Executed="CommandBinding_FriendRequestDeny" />

@@ -39,8 +39,6 @@ namespace JMMClient.UserControls
 
 			cboUpdateFrequency.SelectionChanged += new SelectionChangedEventHandler(cboUpdateFrequency_SelectionChanged);
 
-
-
 			cboSyncFrequency.Items.Clear();
 			cboSyncFrequency.Items.Add(Properties.Resources.UpdateFrequency_Daily);
 			cboSyncFrequency.Items.Add(Properties.Resources.UpdateFrequency_12Hours);
@@ -57,17 +55,13 @@ namespace JMMClient.UserControls
 
 			cboSyncFrequency.SelectionChanged += new SelectionChangedEventHandler(cboSyncFrequency_SelectionChanged);
 
+            EvaulateVisibility();
 
 			btnTest.Click += new RoutedEventHandler(btnTest_Click);
-			txtUsername.TextChanged += new TextChangedEventHandler(txtUsername_TextChanged);
 
 			chkTrakt_EpisodeAutoDownload.Click += new RoutedEventHandler(settingChanged);
 			chkTrakt_FanartAutoDownload.Click += new RoutedEventHandler(settingChanged);
 			chkTrakt_PostersAutoDownload.Click += new RoutedEventHandler(settingChanged);
-
-			EvaulateVisibility();
-
-			btnJoinTrakt.Click += new RoutedEventHandler(btnJoinTrakt_Click);
 		}
 
 		void settingChanged(object sender, RoutedEventArgs e)
@@ -75,46 +69,6 @@ namespace JMMClient.UserControls
 			JMMServerVM.Instance.SaveServerSettingsAsync();
 		}
 
-		void btnJoinTrakt_Click(object sender, RoutedEventArgs e)
-		{
-			Window parentWindow = Window.GetWindow(this);
-
-			try
-			{
-				parentWindow.Cursor = Cursors.Wait;
-				string retMessage = "";
-				bool success = JMMServerVM.Instance.clientBinaryHTTP.CreateTraktAccount(txtUsernameSignup.Text.Trim(), txtPasswordSignup.Password.Trim(), 
-					txtEmail.Text.Trim(), ref retMessage);
-				parentWindow.Cursor = Cursors.Arrow;
-
-				if (success)
-				{
-					MessageBox.Show(retMessage, "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-					JMMServerVM.Instance.GetServerSettings();
-					DashboardVM.Instance.RefreshTraktFriends(true, true);
-				}
-				else
-					MessageBox.Show(retMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-		}
-
-		private void EvaulateVisibility()
-		{
-			if (string.IsNullOrEmpty(txtUsername.Text))
-				bdrSignup.Visibility = System.Windows.Visibility.Visible;
-			else
-				bdrSignup.Visibility = System.Windows.Visibility.Collapsed;
-		}
-
-		void txtUsername_TextChanged(object sender, TextChangedEventArgs e)
-		{
-			EvaulateVisibility();
-		}
 
 		void cboSyncFrequency_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
@@ -144,7 +98,33 @@ namespace JMMClient.UserControls
 
 		void btnTest_Click(object sender, RoutedEventArgs e)
 		{
-			JMMServerVM.Instance.TestTraktLogin();
+			JMMServerVM.Instance.AuthorizeTraktPIN(txtTraktPIN.Text.Trim());
+            JMMServerVM.Instance.GetServerSettings();
+            EvaulateVisibility();
 		}
+
+        private void EvaulateVisibility()
+        {
+            bool validToken = false;
+            if (!string.IsNullOrEmpty(JMMServerVM.Instance.Trakt_AuthToken))
+            {
+                long validUntil = 0;
+                long.TryParse(JMMServerVM.Instance.Trakt_TokenExpirationDate, out validUntil);
+                if (validUntil > 0)
+                {
+                    DateTime? validDate = Utils.GetUTCDate(validUntil);
+                    if (validDate.HasValue)
+                    {
+                        tbValidity.Text = string.Format("Current token is valid until: {0}", validDate.ToString());
+                        validToken = true;
+                    }
+                }
+            }
+
+            if (validToken)
+                tbValidity.Visibility = System.Windows.Visibility.Visible;
+            else
+                tbValidity.Visibility = System.Windows.Visibility.Collapsed;
+        }
 	}
 }

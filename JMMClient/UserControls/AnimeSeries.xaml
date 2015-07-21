@@ -1122,7 +1122,7 @@
             </ScrollViewer>
         </TabItem>
 
-        <TabItem x:Name="tabTraktShouts" Header="Trakt Shouts">
+        <TabItem x:Name="tabTraktShouts" Header="Comments From Users">
             <usercontrols:TraktShoutsShowControl x:Name="ucTraktShouts"  />
         </TabItem>
     </TabControl>

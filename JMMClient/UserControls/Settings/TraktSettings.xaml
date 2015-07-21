@@ -30,30 +30,30 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Username-->
+        <!-- Trakt PIN-->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Trakt_Username}"  VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="Trakt PIN"  VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0">
-            <TextBox Name="txtUsername" Width="150" Margin="0,5,5,0" VerticalAlignment="Center" Text="{Binding Source={x:Static local:JMMServerVM.Instance},Path=Trakt_Username}"/>
+            <TextBox Name="txtTraktPIN" Width="150" Margin="0,5,5,0" VerticalAlignment="Center" Text=""/>
         </StackPanel>
 
-        <!-- Password-->
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Trakt_Password}"  VerticalAlignment="Center"></TextBlock>
+        <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="0">
+            <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="Get PIN" URL="https://trakt.tv/pin/5309" Margin="0,0,0,0"/>
         </StackPanel>
+        
 
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
-            <PasswordBox Width="150" Margin="0,5,5,0" VerticalAlignment="Center" x:Name="txtPassword" local:PasswordBoxAssistant.BindPassword="true"  local:PasswordBoxAssistant.BoundPassword="{Binding Source={x:Static local:JMMServerVM.Instance},Path=Trakt_Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        </StackPanel>
-
-        <Button Name="btnTest" Margin="0,8,2,2" Grid.Column="2" Grid.Row="1"  HorizontalAlignment="Left" >
+        <Button Name="btnTest" Margin="0,8,2,2" Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Left" >
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                 <Image Height="16" Width="16" Source="/Images/32_save.png" Margin="0,0,5,0"/>
-                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TestAndSave}" Margin="0,0,5,0"/>
+                <TextBlock VerticalAlignment="Center" Text="Authorize JMM" Margin="0,0,5,0"/>
             </StackPanel>
         </Button>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="1" Margin="0,5,15,0">
+            <TextBlock x:Name="tbValidity" Text="Current token is valid until:" VerticalAlignment="Center"></TextBlock>
+        </StackPanel>
 
         <!-- Schedule Updates-->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2" Margin="0,5,15,0">
@@ -106,67 +106,6 @@
             <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=VisitWebsite}" URL="http://trakt.tv" Margin="0,0,0,0"/>
         </StackPanel>
         
-        <!-- SIGNNUP DETAILS -->
-        <!-- Prompt text -->
-        <Border x:Name="bdrSignup" Margin="20,0,5,5" BorderThickness="1" BorderBrush="DarkGray" Grid.Row="0" Grid.Column="3" Grid.RowSpan="9"  Background="FloralWhite">
-            <Grid  VerticalAlignment="Top">
-
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-
-            <!-- Prompt text -->
-
-            <StackPanel Orientation="Horizontal" Margin="10,10,10,5" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
-                <Image Height="16" Width="16" Source="/Images/32_Info.png" Margin="0,0,5,0"/>
-                <TextBlock Text="You haven't specified any " FontWeight="Bold" VerticalAlignment="Center" Foreground="Black"/>
-                <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="Trakt" URL="http://trakt.tv" Margin="5,0,0,0"/>
-                <TextBlock Text="credentials" FontWeight="Bold" Foreground="Black"  Margin="5,0,0,0" VerticalAlignment="Center"/>
-            </StackPanel>
-                
-            <!-- username label -->
-            <TextBlock Text="Username" VerticalAlignment="Center" Margin="10,5,10,5" Foreground="Black" Grid.Column="0" Grid.Row="2"/>
-
-            <!-- username entry -->
-            <TextBox Name="txtUsernameSignup" Width="150" Margin="0,5,5,0" VerticalAlignment="Center" HorizontalAlignment="Left"  Grid.Column="1" Grid.Row="2" Foreground="Black"/>
- 
-
-
-            <!-- password label -->
-            <TextBlock Text="Password" VerticalAlignment="Center" Margin="10,5,10,5" Foreground="Black" Grid.Column="0" Grid.Row="3"/>
-
-            <!-- password entry -->
-            <PasswordBox Width="150" Margin="0,5,5,0" VerticalAlignment="Center" HorizontalAlignment="Left" x:Name="txtPasswordSignup" Foreground="Black" Grid.Column="1" Grid.Row="3"/>
-
-            <!-- email label -->
-            <TextBlock Text="Email Address" VerticalAlignment="Center" Margin="10,5,10,5" Foreground="Black" Grid.Column="0" Grid.Row="4"/>
-
-            <!-- email entry -->
-            <TextBox Name="txtEmail" Width="250" Margin="0,5,10,0" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="4" Foreground="Black"/>
-
-
-            <!-- join trakt button -->
-
-            <Button Name="btnJoinTrakt" Margin="0,5,10,10" Style="{DynamicResource RoundButtonStyle}" Foreground="Black" Grid.Column="1" Grid.Row="5"
-                            Width="120" HorizontalAlignment="Left">
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                    <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="Join Trakt" Foreground="Black"   Margin="0,0,5,0" Width="Auto"/>
-                </StackPanel>
-            </Button>
-
-        </Grid>
-        </Border>
+        
     </Grid>
 </UserControl>

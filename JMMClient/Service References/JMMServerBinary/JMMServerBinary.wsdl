@@ -17,15 +17,6 @@
   <wsdl:binding name="BinaryBinding_IJMMServer" type="i0:IJMMServer">
     <wsp:PolicyReference URI="#BinaryBinding_IJMMServer_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="GetEpisodesRecentlyWatched">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetEpisodesRecentlyWatched" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="SearchMAL">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/SearchMAL" style="document" />
       <wsdl:input>
@@ -827,8 +818,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="TestTraktLogin">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/TestTraktLogin" style="document" />
+    <wsdl:operation name="EnterTraktPIN">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/EnterTraktPIN" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1232,15 +1223,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="CreateTraktAccount">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/CreateTraktAccount" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="TraktFriendRequestDeny">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/TraktFriendRequestDeny" style="document" />
       <wsdl:input>
@@ -1297,6 +1279,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetTopLevelGroupForSeries">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetTopLevelGroupForSeries" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEpisodesRecentlyWatched">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetEpisodesRecentlyWatched" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

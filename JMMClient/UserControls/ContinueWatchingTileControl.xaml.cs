@@ -30,8 +30,6 @@ namespace JMMClient.UserControls
 	{
 
 		private static Logger logger = LogManager.GetCurrentClassLogger();
-		private BlockingList<object> imagesToDownload = new BlockingList<object>();
-		private BackgroundWorker workerImages = new BackgroundWorker();
 
 		public ObservableCollection<AnimeEpisodeVM> UnwatchedEpisodes { get; set; }
 		public ICollectionView ViewUnwatchedEpisodes { get; set; }
@@ -116,9 +114,6 @@ namespace JMMClient.UserControls
 			refreshShoutsRecsWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(refreshShoutsRecsWorker_RunWorkerCompleted);
 
 			MainWindow.videoHandler.VideoWatchedEvent += new Utilities.VideoHandler.VideoWatchedEventHandler(videoHandler_VideoWatchedEvent);
-
-			workerImages.DoWork += new DoWorkEventHandler(workerImages_DoWork);
-			workerImages.RunWorkerAsync();
 
 			txtShoutNew.GotFocus += new RoutedEventHandler(txtShoutNew_GotFocus);
 			txtShoutNew.LostFocus += new RoutedEventHandler(txtShoutNew_LostFocus);
@@ -352,65 +347,6 @@ namespace JMMClient.UserControls
 			txtShoutNew.Height = 150;
 		}
 
-		void workerImages_DoWork(object sender, DoWorkEventArgs e)
-		{
-			ProcessImages();
-		}
-
-		private void ProcessImages()
-		{
-			foreach (object req in imagesToDownload)
-			{
-				try
-				{
-					if (req.GetType() == typeof(Trakt_ShoutUserVM))
-					{
-						Trakt_ShoutUserVM tile = req as Trakt_ShoutUserVM;
-
-
-						//user
-						Uri uriUser = new Uri(tile.UserOnlineImagePath);
-						string filenameUser = Path.GetFileName(uriUser.LocalPath);
-						string tempNameUser = Path.Combine(Path.GetTempPath(), filenameUser);
-
-						using (WebClient client = new WebClient())
-						{
-							client.Headers.Add("user-agent", "JMM");
-
-
-							if (!File.Exists(tempNameUser))
-							{
-								if (tile.UserOnlineImagePath.Length > 0)
-									client.DownloadFile(tile.UserOnlineImagePath, tempNameUser);
-							}
-							if (File.Exists(tempNameUser)) tile.DelayedUserImage = tempNameUser;
-
-						}
-
-					}
-
-					if (req.GetType() == typeof(AniDB_RecommendationVM))
-					{
-						AniDB_RecommendationVM tile = req as AniDB_RecommendationVM;
-
-						// unfortunately AniDB doesn't have any user images yet
-						// we will use a placeholder
-						tile.DelayedUserImage = tile.UserImagePathForDisplay;
-					}
-
-
-					imagesToDownload.Remove(req);
-				}
-				catch (Exception ex)
-				{
-					imagesToDownload.Remove(req);
-					logger.ErrorException(ex.ToString(), ex);
-				}
-			}
-
-		}
-
-		
 
 		void videoHandler_VideoWatchedEvent(Utilities.VideoWatchedEventArgs ev)
 		{
@@ -614,13 +550,11 @@ namespace JMMClient.UserControls
 				{
 					Trakt_ShoutUserVM shout = new Trakt_ShoutUserVM(contract);
 
-					shout.DelayedUserImage = @"/Images/blankposter.png";
 					System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
 					{
 						Shouts.Add(shout);
 					});
 
-					imagesToDownload.Add(shout);
 				}
 
 				// get recommendations from AniDB
@@ -629,13 +563,10 @@ namespace JMMClient.UserControls
 				{
 					AniDB_RecommendationVM rec = new AniDB_RecommendationVM(contract);
 
-					rec.DelayedUserImage = @"/Images/blankposter.png";
 					System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
 					{
 						Shouts.Add(rec);
 					});
-
-					imagesToDownload.Add(rec);
 				}
 
 			}

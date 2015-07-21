@@ -21,6 +21,78 @@
             </ResourceDictionary.MergedDictionaries>
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+            <local:PeopleSayingTemplateSelector x:Key="PeopleSayingTemplateSelector"/>
+
+            <!-- TraktShoutTemplate -->
+            <DataTemplate x:Key="TraktShoutTemplate">
+                <Border Background="White" BorderBrush="DarkGray" BorderThickness="1" Margin="0,10,10,0">
+                    <Grid Margin="10" VerticalAlignment="Top">
+
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="120" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Column="0" Grid.Row="0"  Margin="5,0,0,0" Text="From Trakt" FontSize="14" Foreground="DarkGreen" 
+                                   VerticalAlignment="Center" FontWeight="Bold"/>
+
+                        <TextBlock Grid.Column="1" Grid.Row="0" Margin="15,0,0,0" Text="{Binding Path=Shout.ShoutDateString}" FontSize="12" HorizontalAlignment="Left"
+                                   Foreground="DarkGray" VerticalAlignment="Top" ToolTipService.ShowDuration="60000">
+                        </TextBlock>
+
+                        <TextBlock Grid.Column="0" Grid.Row="1" Margin="5,0,0,0" Grid.ColumnSpan="2" Text="{Binding Path=User.Username}" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"
+                                   Foreground="Black" ToolTipService.ShowDuration="60000"/>
+
+                        <TextBlock Grid.Column="0" Grid.Row="2" Margin="5,5,0,0" Text="{Binding Path=CommentTruncated}" Width="270" TextWrapping="Wrap" Grid.ColumnSpan="2"
+                                   Foreground="Black" VerticalAlignment="Top" ToolTipService.ShowDuration="60000">
+                        </TextBlock>
+
+
+                    </Grid>
+                </Border>
+            </DataTemplate>
+
+            <!-- AniDBShoutTemplate -->
+            <DataTemplate x:Key="AniDBShoutTemplate">
+                <Border Background="White" BorderBrush="DarkGray" BorderThickness="1" Margin="0,10,10,0">
+                    <Grid Margin="10" VerticalAlignment="Top">
+
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="120" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Margin="5,0,0,0" Text="From AniDB" FontSize="14" Foreground="DarkBlue" VerticalAlignment="Center" FontWeight="Bold"/>
+
+                        <TextBlock Grid.Column="0" Grid.Row="1" Margin="5,0,0,0" Text="{Binding Path=UserID}" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"
+                                   Foreground="Black" ToolTipService.ShowDuration="60000">
+                        </TextBlock>
+
+                        <TextBlock Grid.Column="1" Grid.Row="1" Margin="5,0,0,0" Text="{Binding Path=RecommendationTypeText}" FontSize="14" HorizontalAlignment="Left" FontWeight="Bold"
+                                   Foreground="DarkGray" VerticalAlignment="Top" ToolTipService.ShowDuration="60000">
+                        </TextBlock>
+
+
+                        <TextBlock Grid.Column="0" Grid.Row="2" Margin="5,5,0,0" Grid.RowSpan="3" Text="{Binding Path=RecommendationText}" Width="270" TextWrapping="Wrap" Grid.ColumnSpan="2"
+                                   Foreground="Black" VerticalAlignment="Top" ToolTipService.ShowDuration="60000">
+                        </TextBlock>
+
+
+                    </Grid>
+                </Border>
+            </DataTemplate>
 
         </ResourceDictionary>
 
@@ -33,101 +105,106 @@
 
     </UserControl.CommandBindings>
 
-    <Grid Margin="0,0,0,0" Name="grdTraktShouts">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Name="ScrollerSeriesComments" Grid.Column="0" Grid.Row="0" Margin="0,0,0,0">
+        <StackPanel Orientation="Vertical" Width="{Binding ElementName=ScrollerSeriesComments, Path=ViewportWidth}">
+            <Grid Margin="0,0,0,0" Name="grdTraktShouts">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Margin="0,0,0,0" Background="#F1F1F1" Padding="6" BorderThickness="0" Grid.Row="0">
-                
-                <DockPanel HorizontalAlignment="Stretch">
+                <Border Style="{DynamicResource ToolbarBorderControlStyle}" Margin="0,0,0,0" Background="#F1F1F1" Padding="6" BorderThickness="0" Grid.Row="0">
+
+                    <DockPanel HorizontalAlignment="Stretch">
 
 
-                <TextBox Name="txtShoutNew" Height="80" HorizontalAlignment="Stretch" DockPanel.Dock="Top" TextWrapping="Wrap" 
+                        <TextBox Name="txtShoutNew" Height="80" HorizontalAlignment="Stretch" DockPanel.Dock="Top" TextWrapping="Wrap" 
                          VerticalScrollBarVisibility="Visible" AcceptsReturn="True"/>
 
-                <StackPanel  Orientation="Horizontal" DockPanel.Dock="Top">
+                        <StackPanel  Orientation="Horizontal" DockPanel.Dock="Top">
 
-                    <Button Name="btnSubmitShout" Margin="0,5,5,2" Style="{DynamicResource RoundButtonStyle}" Height="35" VerticalAlignment="Bottom" >
+                            <Button Name="btnSubmitShout" Margin="0,5,5,2" Style="{DynamicResource RoundButtonStyle}" Height="35" VerticalAlignment="Bottom" >
 
-                        <Border BorderThickness="0" BorderBrush="Navy" Background="{StaticResource GreenGradientBrush}" Padding="6,3,3,3" CornerRadius="4">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Shout" Foreground="White" FontWeight="Bold" FontSize="12" VerticalAlignment="Center"/>
-                                <Image Height="16" Width="16" Source="/Images/trakt-icon-shouts.png" Margin="10,0,4,0" VerticalAlignment="Center"/>
+                                <Border BorderThickness="0" BorderBrush="Navy" Background="{StaticResource GreenGradientBrush}" Padding="6,3,3,3" CornerRadius="4">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Comment on Trakt" Foreground="White" FontWeight="Bold" FontSize="12" VerticalAlignment="Center"/>
+                                        <Image Height="16" Width="16" Source="/Images/trakt-icon-shouts.png" Margin="10,0,4,0" VerticalAlignment="Center"/>
+                                    </StackPanel>
+
+                                </Border>
+
+                            </Button>
+
+                            <StackPanel Orientation="Horizontal" Margin="5">
+                                <CheckBox Name="chkSpoiler" VerticalAlignment="Center"/>
+                                <TextBlock Text="Spoiler" Foreground="Black" FontSize="12" VerticalAlignment="Center" Margin="5,0,0,0"/>
+
                             </StackPanel>
 
-                        </Border>
-
-                    </Button>
-
-                    <StackPanel Orientation="Horizontal" Margin="5">
-                        <CheckBox Name="chkSpoiler" VerticalAlignment="Center"/>
-                        <TextBlock Text="Spoiler" Foreground="Black" FontSize="12" VerticalAlignment="Center" Margin="5,0,0,0"/>
-
-                    </StackPanel>
-
-                </StackPanel>
-
-                
+                        </StackPanel>
 
 
 
 
-            </DockPanel>
-                
-        </Border>
 
-        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Margin="0,0,0,0" Background="#2D2D2D" Padding="6" BorderThickness="0" Grid.Row="1"
+
+                    </DockPanel>
+
+                </Border>
+
+                <Border Style="{DynamicResource ToolbarBorderControlStyle}" Margin="0,0,0,0" Background="#2D2D2D" Padding="6" BorderThickness="0" Grid.Row="1"
                 Visibility="{Binding Path=IsLoading, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TraktShoutsShowControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
 
-            <TextBlock VerticalAlignment="Center" Foreground="White" Text="Loading..." Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Foreground="White" Text="Loading..." Margin="0,0,5,0"/>
 
-        </Border>
+                </Border>
 
-        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Margin="0,0,0,0" Background="White" Padding="6" BorderThickness="0" Grid.Row="1"
+                <Border Style="{DynamicResource ToolbarBorderControlStyle}" Margin="0,0,0,0" Background="White" Padding="6" BorderThickness="0" Grid.Row="1"
                 Visibility="{Binding Path=IsNotLoading, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TraktShoutsShowControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
 
-            <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal">
 
-                <TextBlock VerticalAlignment="Center" Foreground="Black" Margin="7,0,5,0"
+                        <TextBlock VerticalAlignment="Center" Foreground="Black" Margin="7,0,5,0"
                            Text="{Binding Path=NumberOfShouts, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TraktShoutsShowControl}}}" />
-                <TextBlock VerticalAlignment="Center" Foreground="Black" Text="Shouts" Margin="0,0,5,0"/>
+                        <TextBlock VerticalAlignment="Center" Foreground="Black" Text="Comments" Margin="0,0,5,0"/>
 
-                <!-- Refresh -->
-                <Button Name="btnRefresh" Margin="12,2,2,2" Style="{DynamicResource RoundButtonStyle}">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                        <Image Height="16" Width="16" Source="/Images/16_Refresh.png" Margin="0,0,5,0"/>
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Refresh}" Margin="0,0,5,0"/>
+                        <!-- Refresh -->
+                        <Button Name="btnRefresh" Margin="12,2,2,2" Style="{DynamicResource RoundButtonStyle}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/16_Refresh.png" Margin="0,0,5,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Refresh}" Margin="0,0,5,0"/>
+                            </StackPanel>
+                        </Button>
+
                     </StackPanel>
-                </Button>
 
-            </StackPanel>
-                
 
-        </Border>
+                </Border>
 
-        
 
-        <ListBox Name="lbShouts" BorderThickness="0" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch"  Margin="0" 
+
+                <ListBox Name="lbShouts" BorderThickness="0" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch"  Margin="0" 
                  VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 ItemTemplateSelector="{StaticResource PeopleSayingTemplateSelector}"
                  ItemsSource="{Binding Path=CurrentShouts, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TraktShoutsShowControl}}}" 
-                 Background="Transparent" ItemContainerStyle="{DynamicResource ListBoxItemStyleShouts}"  VerticalAlignment="Stretch" >
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <usercontrols:TraktShoutControl/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-            <ListBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <VirtualizingStackPanel/>
-                </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
-        </ListBox>
-    </Grid>
+                 Background="Transparent"  VerticalAlignment="Stretch" >
+                    <ListBox.Template>
+                        <ControlTemplate>
+                            <ItemsPresenter />
+                        </ControlTemplate>
+                    </ListBox.Template>
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                </ListBox>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
 </UserControl>

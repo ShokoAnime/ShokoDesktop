@@ -13,24 +13,24 @@ namespace JMMClient.ViewModel
 		public int RecommendationType { get; set; }
 		public string RecommendationText { get; set; }
 
-		private string delayedUserImage = "";
-		public string DelayedUserImage
-		{
-			get { return delayedUserImage; }
-			set
-			{
-				delayedUserImage = value;
-				base.RaisePropertyChanged("DelayedUserImage");
-			}
-		}
+        public string CommentTruncated
+        {
+            get
+            {
+                if (RecommendationText.Length > 250)
+                    return RecommendationText.Substring(0, 250) + ".......";
+                else
+                    return RecommendationText;
+            }
+        }
 
-		public string UserImagePathForDisplay
-		{
-			get
-			{
-				return @"/Images/EpisodeThumb_NotFound.png";
-			}
-		}
+        public string Comment
+        {
+            get
+            {
+                return RecommendationText;
+            }
+        }
 
 		public AniDBRecommendationType RecommendationTypeEnum
 		{

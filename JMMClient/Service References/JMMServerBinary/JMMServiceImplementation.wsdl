@@ -9,12 +9,6 @@
       <xsd:import schemaLocation="http://localhost:8111/JMMServerBinary?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IJMMServer_GetEpisodesRecentlyWatched_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetEpisodesRecentlyWatched" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_GetEpisodesRecentlyWatched_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetEpisodesRecentlyWatchedResponse" />
-  </wsdl:message>
   <wsdl:message name="IJMMServer_SearchMAL_InputMessage">
     <wsdl:part name="parameters" element="tns:SearchMAL" />
   </wsdl:message>
@@ -549,11 +543,11 @@
   <wsdl:message name="IJMMServer_DeleteUser_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteUserResponse" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_TestTraktLogin_InputMessage">
-    <wsdl:part name="parameters" element="tns:TestTraktLogin" />
+  <wsdl:message name="IJMMServer_EnterTraktPIN_InputMessage">
+    <wsdl:part name="parameters" element="tns:EnterTraktPIN" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_TestTraktLogin_OutputMessage">
-    <wsdl:part name="parameters" element="tns:TestTraktLoginResponse" />
+  <wsdl:message name="IJMMServer_EnterTraktPIN_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EnterTraktPINResponse" />
   </wsdl:message>
   <wsdl:message name="IJMMServer_GetAllTraktFanart_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAllTraktFanart" />
@@ -819,12 +813,6 @@
   <wsdl:message name="IJMMServer_RefreshAllMediaInfo_OutputMessage">
     <wsdl:part name="parameters" element="tns:RefreshAllMediaInfoResponse" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_CreateTraktAccount_InputMessage">
-    <wsdl:part name="parameters" element="tns:CreateTraktAccount" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_CreateTraktAccount_OutputMessage">
-    <wsdl:part name="parameters" element="tns:CreateTraktAccountResponse" />
-  </wsdl:message>
   <wsdl:message name="IJMMServer_TraktFriendRequestDeny_InputMessage">
     <wsdl:part name="parameters" element="tns:TraktFriendRequestDeny" />
   </wsdl:message>
@@ -866,6 +854,12 @@
   </wsdl:message>
   <wsdl:message name="IJMMServer_GetTopLevelGroupForSeries_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetTopLevelGroupForSeriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetEpisodesRecentlyWatched_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEpisodesRecentlyWatched" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetEpisodesRecentlyWatched_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEpisodesRecentlyWatchedResponse" />
   </wsdl:message>
   <wsdl:message name="IJMMServer_Admin_GetRandomLinkForApproval_InputMessage">
     <wsdl:part name="parameters" element="tns:Admin_GetRandomLinkForApproval" />
@@ -1378,10 +1372,6 @@
     <wsdl:part name="parameters" element="tns:GetCrossRefDetailsResponse" />
   </wsdl:message>
   <wsdl:portType name="IJMMServer">
-    <wsdl:operation name="GetEpisodesRecentlyWatched">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetEpisodesRecentlyWatched" message="tns:IJMMServer_GetEpisodesRecentlyWatched_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetEpisodesRecentlyWatchedResponse" message="tns:IJMMServer_GetEpisodesRecentlyWatched_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="SearchMAL">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SearchMAL" message="tns:IJMMServer_SearchMAL_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SearchMALResponse" message="tns:IJMMServer_SearchMAL_OutputMessage" />
@@ -1738,9 +1728,9 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/DeleteUser" message="tns:IJMMServer_DeleteUser_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/DeleteUserResponse" message="tns:IJMMServer_DeleteUser_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="TestTraktLogin">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/TestTraktLogin" message="tns:IJMMServer_TestTraktLogin_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/TestTraktLoginResponse" message="tns:IJMMServer_TestTraktLogin_OutputMessage" />
+    <wsdl:operation name="EnterTraktPIN">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/EnterTraktPIN" message="tns:IJMMServer_EnterTraktPIN_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/EnterTraktPINResponse" message="tns:IJMMServer_EnterTraktPIN_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetAllTraktFanart">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllTraktFanart" message="tns:IJMMServer_GetAllTraktFanart_InputMessage" />
@@ -1918,10 +1908,6 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RefreshAllMediaInfo" message="tns:IJMMServer_RefreshAllMediaInfo_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RefreshAllMediaInfoResponse" message="tns:IJMMServer_RefreshAllMediaInfo_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="CreateTraktAccount">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/CreateTraktAccount" message="tns:IJMMServer_CreateTraktAccount_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/CreateTraktAccountResponse" message="tns:IJMMServer_CreateTraktAccount_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="TraktFriendRequestDeny">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/TraktFriendRequestDeny" message="tns:IJMMServer_TraktFriendRequestDeny_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/TraktFriendRequestDenyResponse" message="tns:IJMMServer_TraktFriendRequestDeny_OutputMessage" />
@@ -1949,6 +1935,10 @@
     <wsdl:operation name="GetTopLevelGroupForSeries">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetTopLevelGroupForSeries" message="tns:IJMMServer_GetTopLevelGroupForSeries_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetTopLevelGroupForSeriesResponse" message="tns:IJMMServer_GetTopLevelGroupForSeries_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEpisodesRecentlyWatched">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetEpisodesRecentlyWatched" message="tns:IJMMServer_GetEpisodesRecentlyWatched_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetEpisodesRecentlyWatchedResponse" message="tns:IJMMServer_GetEpisodesRecentlyWatched_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="Admin_GetRandomLinkForApproval">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/Admin_GetRandomLinkForApproval" message="tns:IJMMServer_Admin_GetRandomLinkForApproval_InputMessage" />

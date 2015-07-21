@@ -838,42 +838,6 @@ namespace JMMClient.UserControls
 			}
 		}
 
-		private void CommandBinding_JoinTrakt(object sender, ExecutedRoutedEventArgs e)
-		{
-			Window parentWindow = Window.GetWindow(this);
-
-			object obj = e.Parameter;
-			if (obj == null) return;
-
-			try
-			{
-				if (obj.GetType() == typeof(Trakt_SignupVM))
-				{
-					Trakt_SignupVM signup = obj as Trakt_SignupVM;
-					if (signup == null) return;
-
-					parentWindow.Cursor = Cursors.Wait;
-					string retMessage = "";
-					bool success = JMMServerVM.Instance.clientBinaryHTTP.CreateTraktAccount(signup.Username, signup.Password, signup.Email, ref retMessage);
-					parentWindow.Cursor = Cursors.Arrow;
-
-					if (success)
-					{
-						MessageBox.Show(retMessage, "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-						JMMServerVM.Instance.GetServerSettings();
-						DashboardVM.Instance.RefreshTraktFriends(togTraktScrobbles.IsChecked.Value, togTraktShouts.IsChecked.Value);
-					}
-					else
-						MessageBox.Show(retMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-					
-				}
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-		}
-
 		private void CommandBinding_SyncVotes(object sender, ExecutedRoutedEventArgs e)
 		{
 			Window parentWindow = Window.GetWindow(this);
