@@ -30,7 +30,6 @@ namespace JMMClient.UserControls
 		BackgroundWorker refreshDataWorker = new BackgroundWorker();
 		BackgroundWorker refreshContinueWatchingWorker = new BackgroundWorker();
 		BackgroundWorker refreshRandomSeriesWorker = new BackgroundWorker();
-		BackgroundWorker refreshActivityWorker = new BackgroundWorker();
 		BackgroundWorker refreshNewEpisodesWorker = new BackgroundWorker();
 
 		public ObservableCollection<MetroDashSection> Sections { get; set; }
@@ -54,38 +53,8 @@ namespace JMMClient.UserControls
 			set { SetValue(IsLoadingRandomSeriesProperty, value); }
 		}
 
-		public static readonly DependencyProperty IsLoadingTraktActivityProperty = DependencyProperty.Register("IsLoadingTraktActivity",
-			typeof(bool), typeof(DashboardMetroDXControl), new UIPropertyMetadata(false, null));
-
-		public bool IsLoadingTraktActivity
-		{
-			get { return (bool)GetValue(IsLoadingTraktActivityProperty); }
-			set { 
-				SetValue(IsLoadingTraktActivityProperty, value);
-				SetSectionVisibility(DashboardMetroProcessType.TraktActivity);
-			}
-		}
-
 		public static readonly DependencyProperty IsLoadingNewEpisodesProperty = DependencyProperty.Register("IsLoadingNewEpisodes",
 			typeof(bool), typeof(DashboardMetroDXControl), new UIPropertyMetadata(false, null));
-
-		public static readonly DependencyProperty Dash_TraktActivity_ColumnProperty = DependencyProperty.Register("Dash_TraktActivity_Column",
-			typeof(int), typeof(DashboardMetroDXControl), new UIPropertyMetadata((int)1, null));
-
-		public int Dash_TraktActivity_Column
-		{
-			get { return (int)GetValue(Dash_TraktActivity_ColumnProperty); }
-			set { SetValue(Dash_TraktActivity_ColumnProperty, value); }
-		}
-
-		public static readonly DependencyProperty Dash_TraktActivity_VisibilityProperty = DependencyProperty.Register("Dash_TraktActivity_Visibility",
-			typeof(Visibility), typeof(DashboardMetroDXControl), new UIPropertyMetadata(Visibility.Visible, null));
-
-		public Visibility Dash_TraktActivity_Visibility
-		{
-			get { return (Visibility)GetValue(Dash_TraktActivity_VisibilityProperty); }
-			set { SetValue(Dash_TraktActivity_VisibilityProperty, value); }
-		}
 
 		public static readonly DependencyProperty Dash_ContinueWatching_ColumnProperty = DependencyProperty.Register("Dash_ContinueWatching_Column",
 			typeof(int), typeof(DashboardMetroDXControl), new UIPropertyMetadata((int)2, null));
@@ -166,9 +135,6 @@ namespace JMMClient.UserControls
 			refreshRandomSeriesWorker.DoWork += new DoWorkEventHandler(refreshRandomSeriesWorker_DoWork);
 			refreshRandomSeriesWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(refreshRandomSeriesWorker_RunWorkerCompleted);
 
-			refreshActivityWorker.DoWork += new DoWorkEventHandler(refreshActivityWorker_DoWork);
-			refreshActivityWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(refreshActivityWorker_RunWorkerCompleted);
-
 			refreshNewEpisodesWorker.DoWork += new DoWorkEventHandler(refreshNewEpisodesWorker_DoWork);
 			refreshNewEpisodesWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(refreshNewEpisodesWorker_RunWorkerCompleted);
 
@@ -180,7 +146,6 @@ namespace JMMClient.UserControls
 
 			btnRefresh.Click += new RoutedEventHandler(btnRefresh_Click);
 			btnRefreshRandomSeries.Click += new RoutedEventHandler(btnRefreshRandomSeries_Click);
-			btnRefreshActivity.Click += new RoutedEventHandler(btnRefreshActivity_Click);
 			btnRefreshNewEpisodes.Click += new RoutedEventHandler(btnRefreshNewEpisodes_Click);
 
 			btnOptions.Click += new RoutedEventHandler(btnOptions_Click);
@@ -235,23 +200,19 @@ namespace JMMClient.UserControls
 
 		private void SetSectionOrder()
 		{
-			int posTrakt = 0, posCont = 0, posRSeries = 0, posNewEps = 0;
-			Visibility visTrakt = System.Windows.Visibility.Visible,
-				visCont = System.Windows.Visibility.Visible,
+			int posCont = 0, posRSeries = 0, posNewEps = 0;
+			Visibility visCont = System.Windows.Visibility.Visible,
 				visRSeries = System.Windows.Visibility.Visible,
 				visNewEps = System.Windows.Visibility.Visible;
 
-			UserSettingsVM.Instance.GetDashboardMetroSectionPosition(DashboardMetroProcessType.TraktActivity, ref posTrakt, ref visTrakt);
 			UserSettingsVM.Instance.GetDashboardMetroSectionPosition(DashboardMetroProcessType.ContinueWatching, ref posCont, ref visCont);
 			UserSettingsVM.Instance.GetDashboardMetroSectionPosition(DashboardMetroProcessType.RandomSeries, ref posRSeries, ref visRSeries);
 			UserSettingsVM.Instance.GetDashboardMetroSectionPosition(DashboardMetroProcessType.NewEpisodes, ref posNewEps, ref visNewEps);
 
-			Dash_TraktActivity_Column = posTrakt;
 			Dash_ContinueWatching_Column = posCont;
 			Dash_RandomSeries_Column = posRSeries;
 			Dash_NewEpisodes_Column = posNewEps;
 
-			Dash_TraktActivity_Visibility = visTrakt;
 			Dash_ContinueWatching_Visibility = visCont;
 			Dash_RandomSeries_Visibility = visRSeries;
 			Dash_NewEpisodes_Visibility = visNewEps;
@@ -314,20 +275,6 @@ namespace JMMClient.UserControls
 
 		private void SetSectionVisibility(DashboardMetroProcessType sectionType)
 		{
-			/*switch (sectionType)
-			{
-				case DashboardMetroProcessType.ContinueWatching: break;
-
-				case DashboardMetroProcessType.NewEpisodes: break;
-				case DashboardMetroProcessType.RandomSeries: break;
-				case DashboardMetroProcessType.TraktActivity:
-					if (IsLoadingTraktActivity) Dash_TraktActivity_Visibility = System.Windows.Visibility.Collapsed;
-					else
-					{
-						Dash_TraktActivity_Visibility = System.Windows.Visibility.Visible;
-					}
-					break;
-			}*/
 		}
 		
 
@@ -375,13 +322,6 @@ namespace JMMClient.UserControls
 			refreshNewEpisodesWorker.RunWorkerAsync(false);
 		}
 
-		void btnRefreshActivity_Click(object sender, RoutedEventArgs e)
-		{
-			FrameworkElements obj = tileLayoutActivity.GetChildren(false);
-			IsLoadingTraktActivity = true;
-			refreshActivityWorker.RunWorkerAsync(false);
-		}
-
 		void btnContinueWatchingReduce_Click(object sender, RoutedEventArgs e)
 		{
 			UserSettingsVM.Instance.DashMetro_Image_Height = UserSettingsVM.Instance.DashMetro_Image_Height - 7;
@@ -408,7 +348,6 @@ namespace JMMClient.UserControls
 		{
 			RefreshDashOptions opt = new RefreshDashOptions()
 			{
-				TraktActivity = Dash_TraktActivity_Visibility == System.Windows.Visibility.Visible,
 				ContinueWatching = Dash_ContinueWatching_Visibility == System.Windows.Visibility.Visible,
 				RandomSeries = Dash_RandomSeries_Visibility == System.Windows.Visibility.Visible,
 				NewEpisodes = Dash_NewEpisodes_Visibility == System.Windows.Visibility.Visible
@@ -416,7 +355,6 @@ namespace JMMClient.UserControls
 
 			if (opt.ContinueWatching) IsLoadingContinueWatching = true;
 			if (opt.RandomSeries) IsLoadingRandomSeries = true;
-			if (opt.TraktActivity) IsLoadingTraktActivity = true;
 			if (opt.NewEpisodes) IsLoadingNewEpisodes = true;
 
 			refreshDataWorker.RunWorkerAsync(opt);
@@ -439,7 +377,6 @@ namespace JMMClient.UserControls
 				RefreshDashOptions opt = e.Argument as RefreshDashOptions;
 
 				DashboardMetroVM.Instance.RefreshAllData(
-					opt.TraktActivity,
 					opt.ContinueWatching,
 					opt.RandomSeries,
 					opt.NewEpisodes);
@@ -458,7 +395,6 @@ namespace JMMClient.UserControls
 				{
 					case DashboardMetroProcessType.ContinueWatching: IsLoadingContinueWatching = false; break;
 					case DashboardMetroProcessType.RandomSeries: IsLoadingRandomSeries = false; break;
-					case DashboardMetroProcessType.TraktActivity: IsLoadingTraktActivity = false; break;
 					case DashboardMetroProcessType.NewEpisodes: IsLoadingNewEpisodes = false; break;
 				}
 			});
@@ -483,11 +419,6 @@ namespace JMMClient.UserControls
 
 		void refreshRandomSeriesWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
 		{
-			//bool refreshAll = (bool)e.Result;
-			//IsLoadingRandomSeries = false;
-
-			//if (refreshAll)
-			//	refreshActivityWorker.RunWorkerAsync(true);
 		}
 
 		void refreshRandomSeriesWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -506,16 +437,6 @@ namespace JMMClient.UserControls
 			DashboardMetroVM.Instance.RefreshNewEpisodes();
 		}
 
-		void refreshActivityWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-		{
-		}
-
-		void refreshActivityWorker_DoWork(object sender, DoWorkEventArgs e)
-		{
-			//bool refreshAll = (bool)e.Argument;
-			DashboardMetroVM.Instance.RefreshTraktActivity();
-			//e.Result = refreshAll;
-		}
 
 		private void tileLayoutControl1_DragOver(object sender, DragEventArgs e)
 		{
@@ -532,53 +453,14 @@ namespace JMMClient.UserControls
 			((ObservableCollection<SomeItem>)tileLayoutControl.ItemsSource).Add(item);*/
 		}
 
-		private void tileLayoutTraktActivity_TileClick(object sender, TileClickEventArgs e)
-		{
-			try
-			{
-				Tile mytile = e.Tile;
-				object item = mytile.DataContext as object;
-				if (item == null) return;
+        private void tileLayoutContinueWatching_TileClick(object sender, TileClickEventArgs e)
+        {
+            Tile mytile = e.Tile;
+            ContinueWatchingTile item = mytile.DataContext as ContinueWatchingTile;
+            if (item == null) return;
 
-
-
-				if (item.GetType() == typeof(TraktActivityTile))
-				{
-					TraktActivityTile tile = item as TraktActivityTile;
-					Uri uri = new Uri(tile.URL);
-					Process.Start(new ProcessStartInfo(uri.AbsoluteUri));
-				}
-
-				if (item.GetType() == typeof(TraktShoutTile))
-				{
-					TraktShoutTile tile = item as TraktShoutTile;
-					Uri uri = new Uri(tile.URL);
-					Process.Start(new ProcessStartInfo(uri.AbsoluteUri));
-				}
-
-				if (item.GetType() == typeof(Trakt_SignupVM))
-				{
-					MainWindow mainwdw = (MainWindow)Window.GetWindow(this);
-					mainwdw.tabControl1.SelectedIndex = MainWindow.TAB_MAIN_Settings;
-					mainwdw.tabSettingsChild.SelectedIndex = MainWindow.TAB_Settings_TvDB;
-				}
-
-
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-		}
-
-		private void tileLayoutContinueWatching_TileClick(object sender, TileClickEventArgs e)
-		{
-			Tile mytile = e.Tile;
-			ContinueWatchingTile item = mytile.DataContext as ContinueWatchingTile;
-			if (item == null) return;
-
-			DashboardMetroVM.Instance.NavigateForward(MetroViews.ContinueWatching, item.AnimeSeries);
-		}
+            DashboardMetroVM.Instance.NavigateForward(MetroViews.ContinueWatching, item.AnimeSeries);
+        }
 
 		private void tileLayoutRandomSeries_TileClick(object sender, TileClickEventArgs e)
 		{
@@ -599,7 +481,6 @@ namespace JMMClient.UserControls
 
 	public class RefreshDashOptions
 	{
-		public bool TraktActivity { get; set; }
 		public bool ContinueWatching { get; set; }
 		public bool RandomSeries { get; set; }
 		public bool NewEpisodes { get; set; }

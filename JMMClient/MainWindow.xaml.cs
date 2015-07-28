@@ -228,8 +228,6 @@ namespace JMMClient
 					if (dash.cboDashRecentAdditionsType.SelectedIndex == 1) addType = RecentAdditionsType.Series;
 
 					RefreshOptions opt = new RefreshOptions();
-					opt.TraktScrobbles = dash.togTraktScrobbles.IsChecked.Value;
-					opt.TraktShouts = dash.togTraktShouts.IsChecked.Value;
 					opt.RecentAdditionType = addType;
 					opt.RefreshRecentAdditions = true;
 					opt.RefreshContinueWatching = true;
@@ -531,7 +529,7 @@ namespace JMMClient
 		{
 			RefreshOptions opt = e.Argument as RefreshOptions;
 
-			DashboardVM.Instance.RefreshData(opt.TraktScrobbles, opt.TraktShouts, opt.RefreshContinueWatching, opt.RefreshRecentAdditions, 
+			DashboardVM.Instance.RefreshData(opt.RefreshContinueWatching, opt.RefreshRecentAdditions, 
 				opt.RefreshOtherWidgets, opt.RecentAdditionType);
 		}
 
@@ -563,8 +561,6 @@ namespace JMMClient
 							if (dash.cboDashRecentAdditionsType.SelectedIndex == 1) addType = RecentAdditionsType.Series;
 
 							RefreshOptions opt = new RefreshOptions();
-							opt.TraktScrobbles = dash.togTraktScrobbles.IsChecked.Value;
-							opt.TraktShouts = dash.togTraktShouts.IsChecked.Value;
 							opt.RecentAdditionType = addType;
 							opt.RefreshRecentAdditions = true;
 							opt.RefreshContinueWatching = true;
@@ -1676,48 +1672,6 @@ namespace JMMClient
 							ShowPinnedSeries(MainListHelperVM.Instance.AllSeriesDictionary[ep.AnimeSeriesID]);
 						
 					}
-				}
-
-				if (obj.GetType() == typeof(Trakt_ActivityScrobbleVM))
-				{
-					Trakt_ActivityScrobbleVM scrobble = (Trakt_ActivityScrobbleVM)obj;
-					if (!scrobble.Episode.AnimeSeriesID.HasValue) return;
-
-					JMMServerBinary.Contract_AnimeSeries contract = JMMServerVM.Instance.clientBinaryHTTP.GetSeries(scrobble.Episode.AnimeSeriesID.Value, 
-						JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
-
-					if (contract == null) return;
-					AnimeSeriesVM ser = new AnimeSeriesVM(contract);
-
-					ShowPinnedSeries(ser);
-				}
-
-				if (obj.GetType() == typeof(Trakt_ActivityShoutEpisodeVM))
-				{
-					Trakt_ActivityShoutEpisodeVM shoutEpisode = (Trakt_ActivityShoutEpisodeVM)obj;
-					if (!shoutEpisode.Shout.AnimeSeriesID.HasValue) return;
-
-					JMMServerBinary.Contract_AnimeSeries contract = JMMServerVM.Instance.clientBinaryHTTP.GetSeries(shoutEpisode.Shout.AnimeSeriesID.Value,
-						JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
-
-					if (contract == null) return;
-					AnimeSeriesVM ser = new AnimeSeriesVM(contract);
-
-					ShowPinnedSeries(ser);
-				}
-
-				if (obj.GetType() == typeof(Trakt_ActivityShoutShowVM))
-				{
-					Trakt_ActivityShoutShowVM shoutShow = (Trakt_ActivityShoutShowVM)obj;
-					if (!shoutShow.Shout.AnimeSeriesID.HasValue) return;
-
-					JMMServerBinary.Contract_AnimeSeries contract = JMMServerVM.Instance.clientBinaryHTTP.GetSeries(shoutShow.Shout.AnimeSeriesID.Value,
-						JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
-
-					if (contract == null) return;
-					AnimeSeriesVM ser = new AnimeSeriesVM(contract);
-
-					ShowPinnedSeries(ser);
 				}
 
 				if (obj.GetType() == typeof(AnimeSearchVM))

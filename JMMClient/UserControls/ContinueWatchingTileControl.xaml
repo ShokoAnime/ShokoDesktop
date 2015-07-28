@@ -507,7 +507,7 @@
 
                                     <Border BorderThickness="0" BorderBrush="Navy" Background="{StaticResource GreenGradientBrush}" Padding="6,3,3,3" CornerRadius="4">
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="Shout" Foreground="White" FontWeight="Bold" FontSize="12" VerticalAlignment="Center"/>
+                                            <TextBlock Text="Comment on Trakt" Foreground="White" FontWeight="Bold" FontSize="12" VerticalAlignment="Center"/>
                                             <Image Height="16" Width="16" Source="/Images/trakt-icon-shouts.png" Margin="10,0,4,0" VerticalAlignment="Center"/>
                                         </StackPanel>
 

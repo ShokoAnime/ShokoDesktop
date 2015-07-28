@@ -164,26 +164,6 @@ namespace JMMClient.UserControls
 			set { SetValue(DashPos_RecDownload_HeaderProperty, value); }
 		}
 
-		// Trakt Friends Download position
-		public static readonly DependencyProperty DashPos_TraktFriendsProperty = DependencyProperty.Register("DashPos_TraktFriends",
-			typeof(int), typeof(DashboardControl), new UIPropertyMetadata((int)1, null));
-
-		public int DashPos_TraktFriends
-		{
-			get { return (int)GetValue(DashPos_TraktFriendsProperty); }
-			set { SetValue(DashPos_TraktFriendsProperty, value); }
-		}
-
-		public static readonly DependencyProperty DashPos_TraktFriends_HeaderProperty = DependencyProperty.Register("DashPos_TraktFriends_Header",
-			typeof(int), typeof(DashboardControl), new UIPropertyMetadata((int)1, null));
-
-		public int DashPos_TraktFriends_Header
-		{
-			get { return (int)GetValue(DashPos_TraktFriends_HeaderProperty); }
-			set { SetValue(DashPos_TraktFriends_HeaderProperty, value); }
-		}
-
-
 
 		public static readonly DependencyProperty IsLoadingDataProperty = DependencyProperty.Register("IsLoadingData",
 			typeof(bool), typeof(DashboardControl), new UIPropertyMetadata(false, null));
@@ -228,7 +208,6 @@ namespace JMMClient.UserControls
 			btnExpandDashMiniCalendar.Click += new RoutedEventHandler(btnExpandDashMiniCalendar_Click);
 			btnExpandRecWatch.Click += new RoutedEventHandler(btnExpandRecWatch_Click);
 			btnExpandRecDownload.Click += new RoutedEventHandler(btnExpandRecDownload_Click);
-			btnExpandTraktFriends.Click += new RoutedEventHandler(btnExpandTraktFriends_Click);
 			btnExpandDashRecentEpisodes.Click += new RoutedEventHandler(btnExpandDashRecentEpisodes_Click);
 			btnExpandDashRecentAdditions.Click += new RoutedEventHandler(btnExpandDashRecentAdditions_Click);
 
@@ -253,9 +232,6 @@ namespace JMMClient.UserControls
 			btnRecDownloadIncrease.Click += new RoutedEventHandler(btnRecDownloadIncrease_Click);
 			btnRecDownloadReduce.Click += new RoutedEventHandler(btnRecDownloadReduce_Click);
 
-			btnTraktFriendsIncrease.Click += new RoutedEventHandler(btnTraktFriendsIncrease_Click);
-			btnTraktFriendsReduce.Click += new RoutedEventHandler(btnTraktFriendsReduce_Click);
-
 			btnRecentAdditionsIncrease.Click += new RoutedEventHandler(btnRecentAdditionsIncrease_Click);
 			btnRecentAdditionsReduce.Click += new RoutedEventHandler(btnRecentAdditionsReduce_Click);
 
@@ -264,21 +240,15 @@ namespace JMMClient.UserControls
 			udItemsMissingEps.ValueChanged += new RoutedPropertyChangedEventHandler<object>(udItemsMissingEps_ValueChanged);
 			udItemsRecWatch.ValueChanged += new RoutedPropertyChangedEventHandler<object>(udItemsRecWatch_ValueChanged);
 			udItemsRecDownload.ValueChanged += new RoutedPropertyChangedEventHandler<object>(udItemsRecDownload_ValueChanged);
-			udItemsTraktFriends.ValueChanged += new RoutedPropertyChangedEventHandler<object>(udItemsTraktFriends_ValueChanged);
 			udItemsRecentEpisodes.ValueChanged += new RoutedPropertyChangedEventHandler<object>(udItemsRecentEpisodes_ValueChanged);
 			udItemsRecentAdditions.ValueChanged += new RoutedPropertyChangedEventHandler<object>(udItemsRecentAdditions_ValueChanged);
 
 			btnGetRecDownloadMissingInfo.Click += new RoutedEventHandler(btnGetRecDownloadMissingInfo_Click);
-			btnForceTraktRefresh.Click += new RoutedEventHandler(btnForceTraktRefresh_Click);
             btnForceCalendarRefresh.Click += btnForceCalendarRefresh_Click;
 
-			chkTraktAnimeOnly.Click += new RoutedEventHandler(chkTraktAnimeOnly_Click);
             chkCalUpcomingOnly.Click += chkCalUpcomingOnly_Click;
 
 			SetWidgetOrder();
-
-			togTraktScrobbles.Click += new RoutedEventHandler(togTraktScrobbles_Click);
-			togTraktShouts.Click += new RoutedEventHandler(togTraktShouts_Click);
 
 			MainWindow.videoHandler.VideoWatchedEvent += new Utilities.VideoHandler.VideoWatchedEventHandler(videoHandler_VideoWatchedEvent);
 
@@ -307,32 +277,6 @@ namespace JMMClient.UserControls
 			catch { }
 		}
 
-
-		void togTraktShouts_Click(object sender, RoutedEventArgs e)
-		{
-			//RefreshData();
-			if (UserSettingsVM.Instance.DashTraktFriendsExpanded)
-				DashboardVM.Instance.RefreshTraktFriends(togTraktScrobbles.IsChecked.Value, togTraktShouts.IsChecked.Value);
-		}
-
-		void togTraktScrobbles_Click(object sender, RoutedEventArgs e)
-		{
-			if (UserSettingsVM.Instance.DashTraktFriendsExpanded)
-				DashboardVM.Instance.RefreshTraktFriends(togTraktScrobbles.IsChecked.Value, togTraktShouts.IsChecked.Value);
-		}
-
-		
-
-		
-
-		
-
-		
-
-		void chkTraktAnimeOnly_Click(object sender, RoutedEventArgs e)
-		{
-			JMMServerVM.Instance.SaveServerSettingsAsync();
-		}
 
         void chkCalUpcomingOnly_Click(object sender, RoutedEventArgs e)
         {
@@ -391,11 +335,6 @@ namespace JMMClient.UserControls
 		void udItemsRecDownload_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
 		{
 			UserSettingsVM.Instance.Dash_RecDownload_Items = udItemsRecDownload.Value.Value;
-		}
-
-		void udItemsTraktFriends_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
-		{
-			UserSettingsVM.Instance.Dash_TraktFriends_Items = udItemsTraktFriends.Value.Value;
 		}
 		
 		void btnWatchNextReduce_Click(object sender, RoutedEventArgs e)
@@ -471,20 +410,6 @@ namespace JMMClient.UserControls
 			UserSettingsVM.Instance.Dash_RecDownload_Height = UserSettingsVM.Instance.Dash_RecDownload_Height + 10;
 		}
 
-
-
-		void btnTraktFriendsReduce_Click(object sender, RoutedEventArgs e)
-		{
-			UserSettingsVM.Instance.Dash_TraktFriends_Height = UserSettingsVM.Instance.Dash_TraktFriends_Height - 10;
-		}
-
-		void btnTraktFriendsIncrease_Click(object sender, RoutedEventArgs e)
-		{
-			UserSettingsVM.Instance.Dash_TraktFriends_Height = UserSettingsVM.Instance.Dash_TraktFriends_Height + 10;
-		}
-
-
-
 		void btnEditDashboardFinish_Click(object sender, RoutedEventArgs e)
 		{
 			DashboardVM.Instance.IsBeingEdited = !DashboardVM.Instance.IsBeingEdited;
@@ -529,14 +454,6 @@ namespace JMMClient.UserControls
 			UserSettingsVM.Instance.DashRecommendationsDownloadExpanded = !UserSettingsVM.Instance.DashRecommendationsDownloadExpanded;
 		}
 
-		void btnExpandTraktFriends_Click(object sender, RoutedEventArgs e)
-		{
-			if (UserSettingsVM.Instance.DashTraktFriendsCollapsed && DashboardVM.Instance.TraktActivity.Count == 0)
-				DashboardVM.Instance.RefreshTraktFriends(togTraktScrobbles.IsChecked.Value, togTraktShouts.IsChecked.Value);
-
-			UserSettingsVM.Instance.DashTraktFriendsExpanded = !UserSettingsVM.Instance.DashTraktFriendsExpanded;
-		}
-
 		void btnExpandDashWatchNext_Click(object sender, RoutedEventArgs e)
 		{
 			if (UserSettingsVM.Instance.DashWatchNextEpCollapsed && DashboardVM.Instance.EpsWatchNext_Recent.Count == 0)
@@ -579,7 +496,7 @@ namespace JMMClient.UserControls
 			{
 				RefreshOptions opt = e.Argument as RefreshOptions;
 
-				DashboardVM.Instance.RefreshData(opt.TraktScrobbles, opt.TraktShouts, opt.RefreshContinueWatching, opt.RefreshRecentAdditions, 
+				DashboardVM.Instance.RefreshData(opt.RefreshContinueWatching, opt.RefreshRecentAdditions, 
 					opt.RefreshOtherWidgets, opt.RecentAdditionType);
 			}
 			catch (Exception ex)
@@ -609,8 +526,6 @@ namespace JMMClient.UserControls
 				if (cboDashRecentAdditionsType.SelectedIndex == 1) addType = RecentAdditionsType.Series;
 
 				RefreshOptions opt = new RefreshOptions();
-				opt.TraktScrobbles = togTraktScrobbles.IsChecked.Value;
-				opt.TraktShouts = togTraktShouts.IsChecked.Value;
 				opt.RefreshContinueWatching = refreshContinueWatching;
 				opt.RefreshRecentAdditions = refreshRecentAdditions;
 				opt.RefreshOtherWidgets = refreshOtherWidgets;
@@ -648,14 +563,6 @@ namespace JMMClient.UserControls
 			this.IsEnabled = false;
 			parentWindow.Cursor = Cursors.Wait;
 			getMissingDataWorker.RunWorkerAsync();
-		}
-
-
-		void btnForceTraktRefresh_Click(object sender, RoutedEventArgs e)
-		{
-			JMMServerVM.Instance.clientBinaryHTTP.RefreshTraktFriendInfo();
-
-			MessageBox.Show("Process is running on server, please try refreshing in a few seconds", "Running", MessageBoxButton.OK, MessageBoxImage.Information);
 		}
 
         void btnForceCalendarRefresh_Click(object sender, RoutedEventArgs e)
@@ -860,86 +767,6 @@ namespace JMMClient.UserControls
 			}
 		}
 
-		private void CommandBinding_FriendRequestDeny(object sender, ExecutedRoutedEventArgs e)
-		{
-			Window parentWindow = Window.GetWindow(this);
-
-			object obj = e.Parameter;
-			if (obj == null) return;
-
-			try
-			{
-				if (obj.GetType() == typeof(Trakt_FriendRequestVM))
-				{
-					Trakt_FriendRequestVM req = obj as Trakt_FriendRequestVM;
-					if (req == null) return;
-
-					TraktFriendApproveDeny(req, false);
-
-				}
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-		}
-
-		private void CommandBinding_FriendRequestApprove(object sender, ExecutedRoutedEventArgs e)
-		{
-			Window parentWindow = Window.GetWindow(this);
-
-			object obj = e.Parameter;
-			if (obj == null) return;
-
-			try
-			{
-				if (obj.GetType() == typeof(Trakt_FriendRequestVM))
-				{
-					Trakt_FriendRequestVM req = obj as Trakt_FriendRequestVM;
-					if (req == null) return;
-
-					TraktFriendApproveDeny(req, true);
-
-				}
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-		}
-
-		private void TraktFriendApproveDeny(Trakt_FriendRequestVM req, bool isApprove)
-		{
-			try
-			{
-				Window parentWindow = Window.GetWindow(this);
-				parentWindow.Cursor = Cursors.Wait;
-				string retMessage = "";
-
-				bool success = false;
-				if (isApprove)
-					success = JMMServerVM.Instance.clientBinaryHTTP.TraktFriendRequestApprove(req.Username, ref retMessage);
-				else
-					success = JMMServerVM.Instance.clientBinaryHTTP.TraktFriendRequestDeny(req.Username, ref retMessage);
-				parentWindow.Cursor = Cursors.Arrow;
-
-				if (success)
-				{
-					MessageBox.Show(retMessage, "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-					DashboardVM.Instance.RefreshTraktFriends(togTraktScrobbles.IsChecked.Value, togTraktShouts.IsChecked.Value);
-				}
-				else
-					MessageBox.Show(retMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-
-				
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-		}
-
-		
 		private void CommandBinding_MoveUpWidget(object sender, ExecutedRoutedEventArgs e)
 		{
 			object obj = e.Parameter;
@@ -970,7 +797,6 @@ namespace JMMClient.UserControls
 			DashPos_MiniCalendar = UserSettingsVM.Instance.GetDashboardWidgetPosition(DashboardWidgets.MiniCalendar);
 			DashPos_RecWatch = UserSettingsVM.Instance.GetDashboardWidgetPosition(DashboardWidgets.RecommendationsWatch);
 			DashPos_RecDownload = UserSettingsVM.Instance.GetDashboardWidgetPosition(DashboardWidgets.RecommendationsDownload);
-			DashPos_TraktFriends = UserSettingsVM.Instance.GetDashboardWidgetPosition(DashboardWidgets.TraktFriends);
 			DashPos_RecentlyWatchedEpisode = UserSettingsVM.Instance.GetDashboardWidgetPosition(DashboardWidgets.RecentlyWatchedEpisode);
 			DashPos_RecentAdditions = UserSettingsVM.Instance.GetDashboardWidgetPosition(DashboardWidgets.RecentAdditions);
 
@@ -979,7 +805,6 @@ namespace JMMClient.UserControls
 			DashPos_MiniCalendar = DashPos_MiniCalendar * 2;
 			DashPos_RecWatch = DashPos_RecWatch * 2;
 			DashPos_RecDownload = DashPos_RecDownload * 2;
-			DashPos_TraktFriends = DashPos_TraktFriends * 2;
 			DashPos_RecentlyWatchedEpisode = DashPos_RecentlyWatchedEpisode * 2;
 			DashPos_RecentAdditions = DashPos_RecentAdditions * 2;
 
@@ -988,7 +813,6 @@ namespace JMMClient.UserControls
 			DashPos_MiniCalendar_Header = DashPos_MiniCalendar - 1;
 			DashPos_RecWatch_Header = DashPos_RecWatch - 1;
 			DashPos_RecDownload_Header = DashPos_RecDownload - 1;
-			DashPos_TraktFriends_Header = DashPos_TraktFriends - 1;
 			DashPos_RecentlyWatchedEpisode_Header = DashPos_RecentlyWatchedEpisode - 1;
 			DashPos_RecentAdditions_Header = DashPos_RecentAdditions - 1;
 		}
@@ -1000,8 +824,6 @@ namespace JMMClient.UserControls
 
 	public class RefreshOptions
 	{
-		public bool TraktScrobbles { get; set; }
-		public bool TraktShouts { get; set; }
 		public bool RefreshContinueWatching { get; set; }
 		public bool RefreshRecentAdditions { get; set; }
 		public bool RefreshOtherWidgets { get; set; }

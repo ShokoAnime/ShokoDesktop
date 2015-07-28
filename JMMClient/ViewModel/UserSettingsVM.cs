@@ -486,22 +486,6 @@ namespace JMMClient
 
 
 
-		public bool DashTraktFriendsCollapsed
-		{
-			get { return !AppSettings.DashTraktFriendsExpanded; }
-		}
-
-		public bool DashTraktFriendsExpanded
-		{
-			get { return AppSettings.DashTraktFriendsExpanded; }
-			set
-			{
-				AppSettings.DashTraktFriendsExpanded = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("DashTraktFriendsExpanded"));
-				OnPropertyChanged(new PropertyChangedEventArgs("DashTraktFriendsCollapsed"));
-			}
-		}
-
 		public bool DashMiniCalendarCollapsed
 		{
 			get { return !AppSettings.DashMiniCalendarExpanded; }
@@ -612,15 +596,6 @@ namespace JMMClient
 			}
 		}
 
-		public int DashMetro_TraktActivity_Items
-		{
-			get { return AppSettings.DashMetro_TraktActivity_Items; }
-			set
-			{
-				AppSettings.DashMetro_TraktActivity_Items = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("DashMetro_TraktActivity_Items"));
-			}
-		}
 
 		public int DashMetro_NewEpisodes_Items
 		{
@@ -648,12 +623,10 @@ namespace JMMClient
 			if (AppSettings.DashMetroImageType == DashboardMetroImageType.Fanart)
 			{
 				DashMetro_Image_Width = (int)((double)DashMetro_Image_Height * 1.777777777777778);
-				DashMetro_Image_WidthTrakt = (int)((double)DashMetro_Image_Height * 1.777777777777778);
 			}
 			else
 			{
 				DashMetro_Image_Width = (int)((double)DashMetro_Image_Height * 0.68);
-				DashMetro_Image_WidthTrakt = (int)((double)DashMetro_Image_Height * 1.777777777777778);
 			}
 		}
 
@@ -667,18 +640,6 @@ namespace JMMClient
 				OnPropertyChanged(new PropertyChangedEventArgs("DashMetro_Image_Width"));
 			}
 		}
-
-		private int dashMetro_Image_WidthTrakt = 200;
-		public int DashMetro_Image_WidthTrakt
-		{
-			get { return dashMetro_Image_WidthTrakt; }
-			set
-			{
-				dashMetro_Image_WidthTrakt = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("DashMetro_Image_WidthTrakt"));
-			}
-		}
-
 
 
 		public int Dash_RecentAdditions_Height
@@ -896,36 +857,6 @@ namespace JMMClient
 			{
 				AppSettings.Dash_RecDownload_Items = value;
 				OnPropertyChanged(new PropertyChangedEventArgs("Dash_RecDownload_Items"));
-			}
-		}
-
-		public int Dash_TraktFriends_Height
-		{
-			get { return AppSettings.Dash_TraktFriends_Height; }
-			set
-			{
-				AppSettings.Dash_TraktFriends_Height = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("Dash_TraktFriends_Height"));
-			}
-		}
-
-		public int Dash_TraktFriends_Items
-		{
-			get { return AppSettings.Dash_TraktFriends_Items; }
-			set
-			{
-				AppSettings.Dash_TraktFriends_Items = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("Dash_TraktFriends_Items"));
-			}
-		}
-
-		public bool Dash_TraktFriends_AnimeOnly
-		{
-			get { return AppSettings.Dash_TraktFriends_AnimeOnly; }
-			set
-			{
-				AppSettings.Dash_TraktFriends_AnimeOnly = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("Dash_TraktFriends_AnimeOnly"));
 			}
 		}
 
@@ -1381,6 +1312,7 @@ namespace JMMClient
 			string newWidgetOrder = string.Empty;
 			foreach (string wid in widgets)
 			{
+
 				if (!string.IsNullOrEmpty(newWidgetOrder))
 					newWidgetOrder += ";";
 
@@ -1485,9 +1417,13 @@ namespace JMMClient
 				string[] vals = section.Split(':');
 				bool enabled = bool.Parse(vals[1]);
 
+                // skip Trakt as this has been deprecated
+                DashboardMetroProcessType sectionType = (DashboardMetroProcessType)int.Parse(vals[0]);
+                if (sectionType == DashboardMetroProcessType.TraktActivity) continue;
+
 				MetroDashSection dashSect = new MetroDashSection()
 				{
-					SectionType = (DashboardMetroProcessType)int.Parse(vals[0]),
+                    SectionType = sectionType,
 					Enabled = enabled,
 					WinVisibility = enabled ? Visibility.Visible : Visibility.Collapsed
 				};

@@ -107,6 +107,20 @@ namespace JMMClient.UserControls
 
 		void btnSubmitShout_Click(object sender, RoutedEventArgs e)
 		{
+            if (!JMMServerVM.Instance.Trakt_IsEnabled)
+            {
+                Utils.ShowErrorMessage("You have not enabled Trakt, for more info go to 'Settings - Community Sites - Trakt TV'");
+                txtShoutNew.Focus();
+                return;
+            }
+
+            if (string.IsNullOrEmpty(JMMServerVM.Instance.Trakt_AuthToken))
+            {
+                Utils.ShowErrorMessage("You have not authorized JMM to use your Trakt account, for more info go to 'Settings - Community Sites - Trakt TV'");
+                txtShoutNew.Focus();
+                return;
+            }
+
 			AnimeSeriesVM animeSeries = (AnimeSeriesVM)this.DataContext;
 			if (animeSeries == null)
 			{

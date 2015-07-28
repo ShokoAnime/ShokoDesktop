@@ -62,7 +62,14 @@ namespace JMMClient.UserControls
 			chkTrakt_EpisodeAutoDownload.Click += new RoutedEventHandler(settingChanged);
 			chkTrakt_FanartAutoDownload.Click += new RoutedEventHandler(settingChanged);
 			chkTrakt_PostersAutoDownload.Click += new RoutedEventHandler(settingChanged);
+            chkTrakt_Enabled.Click += chkTrakt_Enabled_Click;
 		}
+
+        void chkTrakt_Enabled_Click(object sender, RoutedEventArgs e)
+        {
+            JMMServerVM.Instance.SaveServerSettingsAsync();
+            EvaulateVisibility();
+        }
 
 		void settingChanged(object sender, RoutedEventArgs e)
 		{
@@ -105,6 +112,32 @@ namespace JMMClient.UserControls
 
         private void EvaulateVisibility()
         {
+            System.Windows.Visibility vis = System.Windows.Visibility.Collapsed;
+            if (JMMServerVM.Instance.Trakt_IsEnabled) vis = System.Windows.Visibility.Visible;
+
+            spPINLabel.Visibility = vis;
+            spPINData.Visibility = vis;
+            spPINLink.Visibility = vis;
+
+            btnTest.Visibility = vis;
+            spValidity.Visibility = vis;
+
+            spUpdatesLabel.Visibility = vis;
+            spUpdatesData.Visibility = vis;
+
+            spSyncLabel.Visibility = vis;
+            spSyncData.Visibility = vis;
+
+            spFanartLabel.Visibility = vis;
+            spFanartData.Visibility = vis;
+
+            spPostersLabel.Visibility = vis;
+            spPostersData.Visibility = vis;
+
+            spEpisodeLabel.Visibility = vis;
+            spEpisodeData.Visibility = vis;
+
+
             bool validToken = false;
             if (!string.IsNullOrEmpty(JMMServerVM.Instance.Trakt_AuthToken))
             {

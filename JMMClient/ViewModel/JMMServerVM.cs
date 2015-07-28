@@ -348,6 +348,7 @@ namespace JMMClient
 			this.SeriesNameSource = (DataSourceType)contract.SeriesNameSource;
 
 			// trakt
+            this.Trakt_IsEnabled = contract.Trakt_IsEnabled;
             this.Trakt_AuthToken = contract.Trakt_AuthToken;
             this.Trakt_RefreshToken = contract.Trakt_RefreshToken;
             this.Trakt_TokenExpirationDate = contract.Trakt_TokenExpirationDate;
@@ -466,6 +467,7 @@ namespace JMMClient
 				contract.SeriesNameSource = (int)this.SeriesNameSource;
 
 				// trakt
+                contract.Trakt_IsEnabled = this.Trakt_IsEnabled;
                 contract.Trakt_AuthToken = this.Trakt_AuthToken;
                 contract.Trakt_RefreshToken = this.Trakt_RefreshToken;
                 contract.Trakt_TokenExpirationDate = this.Trakt_TokenExpirationDate;
@@ -1534,6 +1536,17 @@ namespace JMMClient
 				OnPropertyChanged(new PropertyChangedEventArgs("SeriesNameSource"));
 			}
 		}
+
+        private bool trakt_IsEnabled = true;
+        public bool Trakt_IsEnabled
+        {
+            get { return trakt_IsEnabled; }
+            set
+            {
+                trakt_IsEnabled = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("Trakt_IsEnabled"));
+            }
+        }
 
         private string trakt_AuthToken = "";
         public string Trakt_AuthToken

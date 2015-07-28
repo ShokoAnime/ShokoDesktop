@@ -17,24 +17,6 @@
   <wsdl:binding name="BinaryBinding_IJMMServer" type="i0:IJMMServer">
     <wsp:PolicyReference URI="#BinaryBinding_IJMMServer_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="SearchMAL">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/SearchMAL" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="TestMALLogin">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/TestMALLogin" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetMALCrossRefWebCache">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetMALCrossRefWebCache" style="document" />
       <wsdl:input>
@@ -1133,15 +1115,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetTraktFriendInfo">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetTraktFriendInfo" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetUserVote">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetUserVote" style="document" />
       <wsdl:input>
@@ -1268,15 +1241,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="RefreshTraktFriendInfo">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/RefreshTraktFriendInfo" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetTopLevelGroupForSeries">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetTopLevelGroupForSeries" style="document" />
       <wsdl:input>
@@ -1288,6 +1252,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetEpisodesRecentlyWatched">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetEpisodesRecentlyWatched" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchMAL">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/SearchMAL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestMALLogin">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/TestMALLogin" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -18,9 +18,6 @@ namespace JMMClient
 	public class DashboardMetroVM : INotifyPropertyChanged
 	{
 		private static Logger logger = LogManager.GetCurrentClassLogger();
-		private BlockingList<object> imagesToDownload = new BlockingList<object>();
-		private BackgroundWorker workerImages = new BackgroundWorker();
-		private static System.Timers.Timer rotateShoutsTimer = null;
 
 		private MainWindow mainWdw;
 		private List<NavContainer> NavigationHistory = new List<NavContainer>();
@@ -34,9 +31,6 @@ namespace JMMClient
 
 		public ObservableCollection<NewEpisodeTile> NewEpisodes { get; set; }
 
-		public ObservableCollection<object> TraktActivity { get; set; }
-		private List<TraktShoutTile> TraktShouts = new List<TraktShoutTile>();
-		private int CurrentShoutIndex = 0;
 
 		private static DashboardMetroVM _instance;
 		
@@ -116,19 +110,6 @@ namespace JMMClient
 			ViewRandomSeries = CollectionViewSource.GetDefaultView(RandomSeries);
 
 			NewEpisodes = new ObservableCollection<NewEpisodeTile>();
-
-			TraktActivity = new ObservableCollection<object>();
-
-			rotateShoutsTimer = new System.Timers.Timer();
-			rotateShoutsTimer.AutoReset = false;
-			rotateShoutsTimer.Interval = 15 * 1000; // 15 seconds
-			rotateShoutsTimer.Elapsed += new System.Timers.ElapsedEventHandler(rotateShoutsTimer_Elapsed);
-
-			workerImages.DoWork += new DoWorkEventHandler(workerImages_DoWork);
-
-			workerImages.RunWorkerAsync();
-
-			rotateShoutsTimer.Start();
 		}
 
 		public void InitNavigator(MainWindow wdw)
@@ -159,148 +140,11 @@ namespace JMMClient
 				mainWdw.ShowDashMetroView(MetroViews.MainMetro);
 		}
 
-		void rotateShoutsTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
-		{
-			try
-			{
-				rotateShoutsTimer.Stop();
-
-				if (TraktShouts.Count > 1)
-				{
-					CurrentShoutIndex = CurrentShoutIndex + 1;
-					if ((CurrentShoutIndex + 1) > TraktShouts.Count) CurrentShoutIndex = 0;
-
-					System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
-					{
-						TraktActivity[0] = TraktShouts[CurrentShoutIndex];
-					});
-				}
-			}
-			catch (Exception ex)
-			{
-				logger.ErrorException(ex.ToString(), ex);
-			}
-			finally
-			{
-				rotateShoutsTimer.Start();
-			}
-			
-		}
-
-		void workerImages_DoWork(object sender, DoWorkEventArgs e)
-		{
-			ProcessImages();
-		}
-
-		private void ProcessImages()
-		{
-			foreach (object req in imagesToDownload)
-			{
-				try
-				{
-					if (req.GetType() == typeof(TraktActivityTile))
-					{
-						TraktActivityTile tile = req as TraktActivityTile;
-
-						using (WebClient client = new WebClient())
-						{
-							client.Headers.Add("user-agent", "JMM");
-
-							// show
-							if (!string.IsNullOrEmpty(tile.Scrobble.Episode.OnlineImagePath))
-							{
-								Uri uriShow = new Uri(tile.Scrobble.Episode.OnlineImagePath);
-								string filenameShow = Path.GetFileName(uriShow.LocalPath);
-								string tempNameShow = Path.Combine(Path.GetTempPath(), filenameShow);
-
-								if (!File.Exists(tempNameShow))
-								{
-									if (tile.Scrobble.Episode.OnlineImagePath.Length > 0)
-										client.DownloadFile(tile.Scrobble.Episode.OnlineImagePath, tempNameShow);
-								}
-								if (File.Exists(tempNameShow)) tile.ShowPicture = tempNameShow;
-							}
-
-							//user
-							if (!string.IsNullOrEmpty(tile.Scrobble.UserOnlineImagePath))
-							{
-								Uri uriUser = new Uri(tile.Scrobble.UserOnlineImagePath);
-								string filenameUser = Path.GetFileName(uriUser.LocalPath);
-								string tempNameUser = Path.Combine(Path.GetTempPath(), filenameUser);
-
-								if (!File.Exists(tempNameUser))
-								{
-									if (tile.Scrobble.UserOnlineImagePath.Length > 0)
-										client.DownloadFile(tile.Scrobble.UserOnlineImagePath, tempNameUser);
-								}
-
-								if (File.Exists(tempNameUser)) tile.FriendPicture = tempNameUser;
-							}
-							
-						}
-						
-					}
-
-					if (req.GetType() == typeof(TraktShoutTile))
-					{
-						TraktShoutTile tile = req as TraktShoutTile;
-
-						using (WebClient client = new WebClient())
-						{
-							client.Headers.Add("user-agent", "JMM");
-
-							// show
-							if (!string.IsNullOrEmpty(tile.OnlineShowPicture))
-							{
-								Uri uriShow = new Uri(tile.OnlineShowPicture);
-								string filenameShow = Path.GetFileName(uriShow.LocalPath);
-								string tempNameShow = Path.Combine(Path.GetTempPath(), filenameShow);
-								if (!File.Exists(tempNameShow))
-								{
-									if (tile.OnlineShowPicture.Length > 0)
-										client.DownloadFile(tile.OnlineShowPicture, tempNameShow);
-								}
-								if (File.Exists(tempNameShow)) tile.ShowPicture = tempNameShow;
-							}
-
-							//user
-							if (!string.IsNullOrEmpty(tile.OnlineFriendPicture))
-							{
-								Uri uriUser = new Uri(tile.OnlineFriendPicture);
-								string filenameUser = Path.GetFileName(uriUser.LocalPath);
-								string tempNameUser = Path.Combine(Path.GetTempPath(), filenameUser);
-								if (!File.Exists(tempNameUser))
-								{
-									if (tile.OnlineFriendPicture.Length > 0)
-										client.DownloadFile(tile.OnlineFriendPicture, tempNameUser);
-								}
-
-
-								if (File.Exists(tempNameUser)) tile.FriendPicture = tempNameUser;
-							}
-
-						}
-
-					}
-
-					
-					imagesToDownload.Remove(req);
-				}
-				catch (Exception ex)
-				{
-					imagesToDownload.Remove(req);
-					logger.ErrorException(ex.ToString(), ex);
-				}
-			}
-
-		}
-
-		public void RefreshAllData(bool trakt, bool contWatching, bool randomSeries, bool newEps)
+		public void RefreshAllData(bool contWatching, bool randomSeries, bool newEps)
 		{
 			try
 			{
 				RefreshBaseData();
-				if (trakt) RefreshTraktActivity();
 				if (contWatching) RefreshContinueWatching();
 				if (randomSeries) RefreshRandomSeries();
 				if (newEps) RefreshNewEpisodes();
@@ -471,147 +315,6 @@ namespace JMMClient
 			catch (Exception ex)
 			{
 				logger.ErrorException(ex.ToString(), ex);
-			}
-			finally
-			{
-			}
-		}
-
-		public void RefreshTraktActivity()
-		{
-			try
-			{
-				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
-				{
-					TraktActivity.Clear();
-					TraktShouts.Clear();
-				});
-
-				JMMServerBinary.Contract_Trakt_Activity traktActivity = JMMServerVM.Instance.clientBinaryHTTP.GetTraktFriendInfo(20,
-					false, true, false);
-
-				if (traktActivity.HasTraktAccount)
-				{
-
-					string blankImageName = @"/Images/blankposter.png";
-					if (AppSettings.DashMetroImageType == DashboardMetroImageType.Fanart)
-						blankImageName = @"/Images/blankfanart.png";
-
-					int numItems = 0;
-
-					// first get all the shouts
-					foreach (JMMServerBinary.Contract_Trakt_FriendActivity contractAct in traktActivity.TraktFriendActivity)
-					{
-						if (contractAct.ActivityAction == (int)TraktActivityAction.Shout)
-						{
-							if (contractAct.ActivityType == (int)TraktActivityType.Episode)
-							{
-								Trakt_ActivityShoutEpisodeVM shoutEp = new Trakt_ActivityShoutEpisodeVM(contractAct);
-
-								TraktShoutTile tile = new TraktShoutTile()
-								{
-									ShowName = shoutEp.Shout.ShowTitle,
-									ShowPicture = blankImageName,
-									Details = shoutEp.Shout.EpisodeDescription + Environment.NewLine + shoutEp.Shout.Text,
-									ShoutDateString = shoutEp.ActivityDateString,
-									FriendName = shoutEp.User.Username,
-									FriendPicture = blankImageName,
-									OnlineShowPicture = shoutEp.Shout.OnlineImagePath,
-									OnlineFriendPicture = shoutEp.User.Avatar,
-									URL = shoutEp.Shout.Episode_Url,
-									TileSize = "Large",
-									Height = 100
-								};
-
-								TraktShouts.Add(tile);
-								imagesToDownload.Add(tile);
-								numItems = 1;
-							}
-							else
-							{
-								Trakt_ActivityShoutShowVM shoutShow = new Trakt_ActivityShoutShowVM(contractAct);
-
-								TraktShoutTile tile = new TraktShoutTile()
-								{
-									ShowName = shoutShow.Shout.ShowTitle,
-									ShowPicture = blankImageName,
-									Details = shoutShow.Shout.Text,
-									ShoutDateString = shoutShow.ActivityDateString,
-									FriendName = shoutShow.User.Username,
-									FriendPicture = blankImageName,
-									URL = shoutShow.Shout.TraktShow.url,
-									OnlineShowPicture = shoutShow.Shout.OnlineImagePath,
-									OnlineFriendPicture = shoutShow.User.Avatar,
-									TileSize = "Large",
-									Height = 100
-								};
-
-								TraktShouts.Add(tile);
-								imagesToDownload.Add(tile);
-								numItems = 1;
-							}
-						}
-
-
-					}
-
-					if (TraktShouts.Count > 0)
-					{
-						System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
-						{
-							TraktActivity.Add(TraktShouts[0]);
-						});
-					}
-
-					traktActivity = JMMServerVM.Instance.clientBinaryHTTP.GetTraktFriendInfo(AppSettings.DashMetro_TraktActivity_Items + 1,
-						false, false, true);
-
-					foreach (JMMServerBinary.Contract_Trakt_FriendActivity contractAct in traktActivity.TraktFriendActivity)
-					{
-						if (numItems == AppSettings.DashMetro_TraktActivity_Items) break;
-
-						if (contractAct.ActivityAction == (int)TraktActivityAction.Scrobble)
-						{
-							Trakt_ActivityScrobbleVM scrobble = new Trakt_ActivityScrobbleVM(contractAct);
-
-							TraktActivityTile tile = new TraktActivityTile()
-							{
-								Scrobble = scrobble,
-								ShowName = scrobble.Episode.ShowTitle,
-								ShowPicture = blankImageName,
-								EpisodeDetails = scrobble.Episode.EpisodeDescription,
-								URL = scrobble.Episode.Episode_Url,
-								FriendName = scrobble.User.Username,
-								FriendPicture = blankImageName,
-								TileSize = "Large",
-								Height = 100
-							};
-
-							numItems++;
-
-							System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
-							{
-								TraktActivity.Add(tile);
-							});
-
-							imagesToDownload.Add(tile);
-						}
-					}
-				}
-				else
-				{
-					Trakt_SignupVM signup = new Trakt_SignupVM();
-					System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
-					{
-						TraktActivity.Add(signup);
-					});
-				}
-
-				OnFinishedProcess(new FinishedProcessEventArgs(DashboardMetroProcessType.TraktActivity));
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
 			}
 			finally
 			{

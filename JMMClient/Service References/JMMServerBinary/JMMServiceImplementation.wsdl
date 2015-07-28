@@ -9,18 +9,6 @@
       <xsd:import schemaLocation="http://localhost:8111/JMMServerBinary?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IJMMServer_SearchMAL_InputMessage">
-    <wsdl:part name="parameters" element="tns:SearchMAL" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_SearchMAL_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SearchMALResponse" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_TestMALLogin_InputMessage">
-    <wsdl:part name="parameters" element="tns:TestMALLogin" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_TestMALLogin_OutputMessage">
-    <wsdl:part name="parameters" element="tns:TestMALLoginResponse" />
-  </wsdl:message>
   <wsdl:message name="IJMMServer_GetMALCrossRefWebCache_InputMessage">
     <wsdl:part name="parameters" element="tns:GetMALCrossRefWebCache" />
   </wsdl:message>
@@ -753,12 +741,6 @@
   <wsdl:message name="IJMMServer_IgnoreAnime_OutputMessage">
     <wsdl:part name="parameters" element="tns:IgnoreAnimeResponse" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_GetTraktFriendInfo_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetTraktFriendInfo" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_GetTraktFriendInfo_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetTraktFriendInfoResponse" />
-  </wsdl:message>
   <wsdl:message name="IJMMServer_GetUserVote_InputMessage">
     <wsdl:part name="parameters" element="tns:GetUserVote" />
   </wsdl:message>
@@ -843,12 +825,6 @@
   <wsdl:message name="IJMMServer_PostShoutShow_OutputMessage">
     <wsdl:part name="parameters" element="tns:PostShoutShowResponse" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_RefreshTraktFriendInfo_InputMessage">
-    <wsdl:part name="parameters" element="tns:RefreshTraktFriendInfo" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_RefreshTraktFriendInfo_OutputMessage">
-    <wsdl:part name="parameters" element="tns:RefreshTraktFriendInfoResponse" />
-  </wsdl:message>
   <wsdl:message name="IJMMServer_GetTopLevelGroupForSeries_InputMessage">
     <wsdl:part name="parameters" element="tns:GetTopLevelGroupForSeries" />
   </wsdl:message>
@@ -860,6 +836,18 @@
   </wsdl:message>
   <wsdl:message name="IJMMServer_GetEpisodesRecentlyWatched_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetEpisodesRecentlyWatchedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SearchMAL_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchMAL" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SearchMAL_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchMALResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_TestMALLogin_InputMessage">
+    <wsdl:part name="parameters" element="tns:TestMALLogin" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_TestMALLogin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TestMALLoginResponse" />
   </wsdl:message>
   <wsdl:message name="IJMMServer_Admin_GetRandomLinkForApproval_InputMessage">
     <wsdl:part name="parameters" element="tns:Admin_GetRandomLinkForApproval" />
@@ -1372,14 +1360,6 @@
     <wsdl:part name="parameters" element="tns:GetCrossRefDetailsResponse" />
   </wsdl:message>
   <wsdl:portType name="IJMMServer">
-    <wsdl:operation name="SearchMAL">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SearchMAL" message="tns:IJMMServer_SearchMAL_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SearchMALResponse" message="tns:IJMMServer_SearchMAL_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="TestMALLogin">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/TestMALLogin" message="tns:IJMMServer_TestMALLogin_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/TestMALLoginResponse" message="tns:IJMMServer_TestMALLogin_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="GetMALCrossRefWebCache">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetMALCrossRefWebCache" message="tns:IJMMServer_GetMALCrossRefWebCache_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetMALCrossRefWebCacheResponse" message="tns:IJMMServer_GetMALCrossRefWebCache_OutputMessage" />
@@ -1868,10 +1848,6 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/IgnoreAnime" message="tns:IJMMServer_IgnoreAnime_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/IgnoreAnimeResponse" message="tns:IJMMServer_IgnoreAnime_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetTraktFriendInfo">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetTraktFriendInfo" message="tns:IJMMServer_GetTraktFriendInfo_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetTraktFriendInfoResponse" message="tns:IJMMServer_GetTraktFriendInfo_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="GetUserVote">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetUserVote" message="tns:IJMMServer_GetUserVote_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetUserVoteResponse" message="tns:IJMMServer_GetUserVote_OutputMessage" />
@@ -1928,10 +1904,6 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/PostShoutShow" message="tns:IJMMServer_PostShoutShow_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/PostShoutShowResponse" message="tns:IJMMServer_PostShoutShow_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="RefreshTraktFriendInfo">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RefreshTraktFriendInfo" message="tns:IJMMServer_RefreshTraktFriendInfo_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RefreshTraktFriendInfoResponse" message="tns:IJMMServer_RefreshTraktFriendInfo_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="GetTopLevelGroupForSeries">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetTopLevelGroupForSeries" message="tns:IJMMServer_GetTopLevelGroupForSeries_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetTopLevelGroupForSeriesResponse" message="tns:IJMMServer_GetTopLevelGroupForSeries_OutputMessage" />
@@ -1939,6 +1911,14 @@
     <wsdl:operation name="GetEpisodesRecentlyWatched">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetEpisodesRecentlyWatched" message="tns:IJMMServer_GetEpisodesRecentlyWatched_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetEpisodesRecentlyWatchedResponse" message="tns:IJMMServer_GetEpisodesRecentlyWatched_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchMAL">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SearchMAL" message="tns:IJMMServer_SearchMAL_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SearchMALResponse" message="tns:IJMMServer_SearchMAL_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TestMALLogin">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/TestMALLogin" message="tns:IJMMServer_TestMALLogin_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/TestMALLoginResponse" message="tns:IJMMServer_TestMALLogin_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="Admin_GetRandomLinkForApproval">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/Admin_GetRandomLinkForApproval" message="tns:IJMMServer_Admin_GetRandomLinkForApproval_InputMessage" />

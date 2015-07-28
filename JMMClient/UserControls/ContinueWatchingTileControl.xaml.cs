@@ -192,6 +192,7 @@ namespace JMMClient.UserControls
 
 			MessageBox.Show(msg, "Message", MessageBoxButton.OK, MessageBoxImage.Information);
 			txtShoutNew.Text = "";
+            btnSubmitShout.IsEnabled = true;
 
 			AnimeSeriesVM ser = this.DataContext as AnimeSeriesVM;
 			if (ser == null) return;
@@ -219,6 +220,20 @@ namespace JMMClient.UserControls
 
 		void btnSubmitShout_Click(object sender, RoutedEventArgs e)
 		{
+            if (!JMMServerVM.Instance.Trakt_IsEnabled)
+            {
+                Utils.ShowErrorMessage("You have not enabled Trakt, for more info go to 'Settings - Community Sites - Trakt TV'");
+                txtShoutNew.Focus();
+                return;
+            }
+
+            if (string.IsNullOrEmpty(JMMServerVM.Instance.Trakt_AuthToken))
+            {
+                Utils.ShowErrorMessage("You have not authorized JMM to use your Trakt account, for more info go to 'Settings - Community Sites - Trakt TV'");
+                txtShoutNew.Focus();
+                return;
+            }
+
 			AnimeSeriesVM animeSeries = (AnimeSeriesVM)this.DataContext;
 			if (animeSeries == null)
 			{
@@ -230,14 +245,14 @@ namespace JMMClient.UserControls
 			string shoutText = txtShoutNew.Text.Trim();
 			if (string.IsNullOrEmpty(shoutText))
 			{
-				Utils.ShowErrorMessage("Please enter text for your shout");
+				Utils.ShowErrorMessage("Please enter text for your comment");
 				txtShoutNew.Focus();
 				return;
 			}
 
 			if (shoutText.Length > 2000)
 			{
-				Utils.ShowErrorMessage(string.Format("Shout text must be less than 2000 characters ({0})", shoutText.Length));
+				Utils.ShowErrorMessage(string.Format("Comment text must be less than 2000 characters ({0})", shoutText.Length));
 				txtShoutNew.Focus();
 				return;
 			}
@@ -252,8 +267,9 @@ namespace JMMClient.UserControls
                 if (animeSeries.AniDB_Anime.traktSummary.traktDetails == null ||
                     animeSeries.AniDB_Anime.traktSummary.traktDetails.Count == 0)
                 {
-                    Utils.ShowErrorMessage(string.Format("Cannot shout where a series does not have a Trakt show linked"));
+                    Utils.ShowErrorMessage(string.Format("Cannot comment where a series does not have a Trakt show linked"));
                     txtShoutNew.Focus();
+                    btnSubmitShout.IsEnabled = true;
                     return;
                 }
 
@@ -261,8 +277,9 @@ namespace JMMClient.UserControls
                 if (animeSeries.AniDB_Anime.traktSummary.traktDetails != null &&
                     animeSeries.AniDB_Anime.traktSummary.traktDetails.Count > 1)
                 {
-                    Utils.ShowErrorMessage(string.Format("Cannot shout where a series has more than one Trakt show linked"));
+                    Utils.ShowErrorMessage(string.Format("Cannot comment where a series has more than one Trakt show linked"));
                     txtShoutNew.Focus();
+                    btnSubmitShout.IsEnabled = true;
                     return;
                 }
 
@@ -286,8 +303,9 @@ namespace JMMClient.UserControls
             }
             else
             {
-                Utils.ShowErrorMessage(string.Format("Cannot shout where a series does not have a Trakt show linked"));
+                Utils.ShowErrorMessage(string.Format("Cannot comment where a series does not have a Trakt show linked"));
                 txtShoutNew.Focus();
+                btnSubmitShout.IsEnabled = true;
             }
 		}
 
