@@ -11649,6 +11649,9 @@ namespace JMMClient.JMMServerBinary {
         private System.Nullable<int> AnimeSeriesIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string Comment_UrlField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string Episode_NumberField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -11713,6 +11716,19 @@ namespace JMMClient.JMMServerBinary {
                 if ((this.AnimeSeriesIDField.Equals(value) != true)) {
                     this.AnimeSeriesIDField = value;
                     this.RaisePropertyChanged("AnimeSeriesID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Comment_Url {
+            get {
+                return this.Comment_UrlField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.Comment_UrlField, value) != true)) {
+                    this.Comment_UrlField = value;
+                    this.RaisePropertyChanged("Comment_Url");
                 }
             }
         }

@@ -16,6 +16,7 @@ using JMMClient.ViewModel;
 using System.IO;
 using JMMClient.ImageDownload;
 using System.ComponentModel;
+using JMMClient.Forms;
 
 namespace JMMClient.UserControls
 {
@@ -77,6 +78,26 @@ namespace JMMClient.UserControls
 			postShoutWorker.DoWork += new DoWorkEventHandler(postShoutWorker_DoWork);
 			postShoutWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(postShoutWorker_RunWorkerCompleted);
 		}
+
+        private void CommandBinding_ViewComment(object sender, ExecutedRoutedEventArgs e)
+        {
+            Window parentWindow = Window.GetWindow(this);
+
+            object obj = e.Parameter;
+            if (obj == null) return;
+
+            try
+            {
+                ViewCommentForm frm = new ViewCommentForm();
+                frm.Owner = parentWindow;
+                frm.Init(obj);
+                bool? result = frm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+        }
 
 		void postShoutWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
 		{

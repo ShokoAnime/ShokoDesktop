@@ -657,6 +657,26 @@ namespace JMMClient.UserControls
 				episodesWorker.RunWorkerAsync(ser);
 		}
 
+        private void CommandBinding_ViewComment(object sender, ExecutedRoutedEventArgs e)
+        {
+            Window parentWindow = Window.GetWindow(this);
+
+            object obj = e.Parameter;
+            if (obj == null) return;
+
+            try
+            {
+                ViewCommentForm frm = new ViewCommentForm();
+                frm.Owner = parentWindow;
+                frm.Init(obj);
+                bool? result = frm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+        }
+
 		private void CommandBinding_PlayEpisode(object sender, ExecutedRoutedEventArgs e)
 		{
 			Window parentWindow = Window.GetWindow(this);

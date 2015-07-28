@@ -1254,6 +1254,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Anime" nillable="true" type="tns:Contract_AniDBAnime" />
       <xs:element minOccurs="0" name="AnimeSeriesID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Comment_Url" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Episode_Number" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Episode_Overview" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Episode_Screenshot" nillable="true" type="xs:string" />

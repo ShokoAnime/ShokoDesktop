@@ -34,6 +34,8 @@
             <RoutedUICommand x:Key="VoteDownCommand" Text="VoteDownCommand" />
             <RoutedUICommand x:Key="RecDetailsCommand" Text="RecDetailsCommand" />
 
+            <RoutedUICommand x:Key="ViewCommentCommand" Text="ViewCommentCommand" />
+
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
             <LinearGradientBrush x:Key="DarkBackground" StartPoint="0,0" EndPoint="1,1">
@@ -241,23 +243,33 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="120" />
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <TextBlock Grid.Column="0" Grid.Row="0"  Margin="5,0,0,0" Text="From Trakt" FontSize="14" Foreground="DarkGreen" 
+                        <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"  Margin="5,0,0,0" Text="From Trakt" FontSize="14" Foreground="DarkGreen" 
                                    VerticalAlignment="Center" FontWeight="Bold"/>
 
-                        <TextBlock Grid.Column="1" Grid.Row="0" Margin="15,0,0,0" Text="{Binding Path=Shout.ShoutDateString}" FontSize="12" HorizontalAlignment="Left"
-                                   Foreground="DarkGray" VerticalAlignment="Top" ToolTipService.ShowDuration="60000">
+                        <TextBlock Grid.Column="1" Grid.Row="1" Margin="15,0,0,0" Text="{Binding Path=Shout.ShoutDateString}" FontSize="12" HorizontalAlignment="Left"
+                                   Foreground="DarkGray" VerticalAlignment="Center" ToolTipService.ShowDuration="60000">
                         </TextBlock>
 
-                        <TextBlock Grid.Column="0" Grid.Row="1" Margin="5,0,0,0" Grid.ColumnSpan="2" Text="{Binding Path=User.Username}" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"
+                        <TextBlock Grid.Column="0" Grid.Row="1" Margin="5,0,0,0"  Text="{Binding Path=User.Username}" VerticalAlignment="Center" FontSize="14" FontWeight="Bold"
                                    Foreground="Black" ToolTipService.ShowDuration="60000"/>
 
                         <TextBlock Grid.Column="0" Grid.Row="2" Margin="5,5,0,0" Text="{Binding Path=CommentTruncated}" Width="270" TextWrapping="Wrap" Grid.ColumnSpan="2"
                                    Foreground="Black" VerticalAlignment="Top" ToolTipService.ShowDuration="60000">
                         </TextBlock>
 
+                        <StackPanel Grid.Column="0" Grid.Row="3" Margin="5" Grid.ColumnSpan="1">
+                            <Button Style="{StaticResource RoundButtonStyle}" VerticalAlignment="Center"
+                            Command="{StaticResource ViewCommentCommand}" CommandParameter="{Binding}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <TextBlock Text="View"/>
 
+                                </StackPanel>
+                            </Button>
+                        </StackPanel >
+                        
                     </Grid>
                 </Border>
             </DataTemplate>
@@ -276,23 +288,33 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="120" />
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
                         <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Margin="5,0,0,0" Text="From AniDB" FontSize="14" Foreground="DarkBlue" VerticalAlignment="Center" FontWeight="Bold"/>
 
-                        <TextBlock Grid.Column="0" Grid.Row="1" Margin="5,0,0,0" Text="{Binding Path=UserID}" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"
+                        <TextBlock Grid.Column="0" Grid.Row="1" Margin="5,0,0,0" Text="{Binding Path=UserID}" VerticalAlignment="Center" FontSize="14" FontWeight="Bold"
                                    Foreground="Black" ToolTipService.ShowDuration="60000">
                         </TextBlock>
 
-                        <TextBlock Grid.Column="1" Grid.Row="1" Margin="5,0,0,0" Text="{Binding Path=RecommendationTypeText}" FontSize="14" HorizontalAlignment="Left" FontWeight="Bold"
-                                   Foreground="DarkGray" VerticalAlignment="Top" ToolTipService.ShowDuration="60000">
+                        <TextBlock Grid.Column="1" Grid.Row="1" Margin="5,0,0,0" Text="{Binding Path=RecommendationTypeText}" FontSize="12" HorizontalAlignment="Left" 
+                                   Foreground="DarkGray" VerticalAlignment="Center" ToolTipService.ShowDuration="60000">
                         </TextBlock>
 
 
-                        <TextBlock Grid.Column="0" Grid.Row="2" Margin="5,5,0,0" Grid.RowSpan="3" Text="{Binding Path=RecommendationText}" Width="270" TextWrapping="Wrap" Grid.ColumnSpan="2"
+                        <TextBlock Grid.Column="0" Grid.Row="2" Margin="5,5,0,0" Text="{Binding Path=RecommendationText}" Width="270" TextWrapping="Wrap" Grid.ColumnSpan="2"
                                    Foreground="Black" VerticalAlignment="Top" ToolTipService.ShowDuration="60000">
                         </TextBlock>
 
+                        <StackPanel Grid.Column="0" Grid.Row="3" Margin="5" Grid.ColumnSpan="1">
+                            <Button Style="{StaticResource RoundButtonStyle}" VerticalAlignment="Center"
+                            Command="{StaticResource ViewCommentCommand}" CommandParameter="{Binding}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <TextBlock Text="View"/>
+
+                                </StackPanel>
+                            </Button>
+                        </StackPanel >
 
                     </Grid>
                 </Border>
@@ -317,6 +339,7 @@
         <CommandBinding Command="{StaticResource VoteDownCommand}" Executed="CommandBinding_VoteDown" />
         <CommandBinding Command="{StaticResource RecDetailsCommand}" Executed="CommandBinding_RecDetails" />
 
+        <CommandBinding Command="{StaticResource ViewCommentCommand}" Executed="CommandBinding_ViewComment" />
 
     </UserControl.CommandBindings>
 

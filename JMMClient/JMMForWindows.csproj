@@ -221,6 +221,9 @@
     <Compile Include="Forms\AdminMessagesForm.xaml.cs">
       <DependentUpon>AdminMessagesForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ViewCommentForm.xaml.cs">
+      <DependentUpon>ViewCommentForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\AzureAnimeLink.cs" />
     <Compile Include="Forms\ChangePasswordForm.xaml.cs">
       <DependentUpon>ChangePasswordForm.xaml</DependentUpon>
@@ -825,6 +828,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\SelectTvDBSeasonForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\ViewCommentForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
