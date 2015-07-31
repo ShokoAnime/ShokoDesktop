@@ -195,7 +195,7 @@
         <!-- Search results -->
         <Border Grid.Row="3" Grid.Column="0" Margin="5,5,5,5" Background="White" BorderBrush="LightGray" BorderThickness="1">
             <ListBox Name="lbFiles" BorderThickness="0" Background="Transparent" 
-                            ItemsSource="{Binding Path=TraktSeriesSearchResults, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SearchTraktForm}}}"
+                            ItemsSource="{Binding Path=ViewTraktSeriesSearchResults, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SearchTraktForm}}}"
                             HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
                             ItemTemplate="{DynamicResource TraktSearchResultTemplate}"
                             ItemContainerStyle="{DynamicResource ListBoxItemStyle}" 

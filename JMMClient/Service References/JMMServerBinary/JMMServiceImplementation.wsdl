@@ -9,6 +9,12 @@
       <xsd:import schemaLocation="http://localhost:8111/JMMServerBinary?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IJMMServer_TestMALLogin_InputMessage">
+    <wsdl:part name="parameters" element="tns:TestMALLogin" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_TestMALLogin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TestMALLoginResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_GetMALCrossRefWebCache_InputMessage">
     <wsdl:part name="parameters" element="tns:GetMALCrossRefWebCache" />
   </wsdl:message>
@@ -615,6 +621,12 @@
   <wsdl:message name="IJMMServer_UpdateTraktData_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateTraktDataResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_SyncTraktSeries_InputMessage">
+    <wsdl:part name="parameters" element="tns:SyncTraktSeries" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SyncTraktSeries_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SyncTraktSeriesResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_UpdateMovieDBData_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateMovieDBData" />
   </wsdl:message>
@@ -842,12 +854,6 @@
   </wsdl:message>
   <wsdl:message name="IJMMServer_SearchMAL_OutputMessage">
     <wsdl:part name="parameters" element="tns:SearchMALResponse" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_TestMALLogin_InputMessage">
-    <wsdl:part name="parameters" element="tns:TestMALLogin" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_TestMALLogin_OutputMessage">
-    <wsdl:part name="parameters" element="tns:TestMALLoginResponse" />
   </wsdl:message>
   <wsdl:message name="IJMMServer_Admin_GetRandomLinkForApproval_InputMessage">
     <wsdl:part name="parameters" element="tns:Admin_GetRandomLinkForApproval" />
@@ -1360,6 +1366,10 @@
     <wsdl:part name="parameters" element="tns:GetCrossRefDetailsResponse" />
   </wsdl:message>
   <wsdl:portType name="IJMMServer">
+    <wsdl:operation name="TestMALLogin">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/TestMALLogin" message="tns:IJMMServer_TestMALLogin_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/TestMALLoginResponse" message="tns:IJMMServer_TestMALLogin_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetMALCrossRefWebCache">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetMALCrossRefWebCache" message="tns:IJMMServer_GetMALCrossRefWebCache_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetMALCrossRefWebCacheResponse" message="tns:IJMMServer_GetMALCrossRefWebCache_OutputMessage" />
@@ -1764,6 +1774,10 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/UpdateTraktData" message="tns:IJMMServer_UpdateTraktData_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/UpdateTraktDataResponse" message="tns:IJMMServer_UpdateTraktData_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="SyncTraktSeries">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SyncTraktSeries" message="tns:IJMMServer_SyncTraktSeries_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SyncTraktSeriesResponse" message="tns:IJMMServer_SyncTraktSeries_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="UpdateMovieDBData">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/UpdateMovieDBData" message="tns:IJMMServer_UpdateMovieDBData_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/UpdateMovieDBDataResponse" message="tns:IJMMServer_UpdateMovieDBData_OutputMessage" />
@@ -1915,10 +1929,6 @@
     <wsdl:operation name="SearchMAL">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SearchMAL" message="tns:IJMMServer_SearchMAL_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SearchMALResponse" message="tns:IJMMServer_SearchMAL_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="TestMALLogin">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/TestMALLogin" message="tns:IJMMServer_TestMALLogin_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/TestMALLoginResponse" message="tns:IJMMServer_TestMALLogin_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="Admin_GetRandomLinkForApproval">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/Admin_GetRandomLinkForApproval" message="tns:IJMMServer_Admin_GetRandomLinkForApproval_InputMessage" />

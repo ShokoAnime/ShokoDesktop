@@ -1,30 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Diagnostics;
 using NLog;
 using JMMClient.ViewModel;
-using System.Threading;
+using System.Collections.ObjectModel;
+using System.Windows.Data;
+using System.ComponentModel;
 
 namespace JMMClient.Forms
 {
-	/// <summary>
-	/// Interaction logic for SearchTraktForm.xaml
-	/// </summary>
-	public partial class SearchTraktForm : Window
+    /// <summary>
+    /// Interaction logic for SearchTraktForm.xaml
+    /// </summary>
+    public partial class SearchTraktForm : Window
 	{
 		private static Logger logger = LogManager.GetCurrentClassLogger();
 
-		public static readonly DependencyProperty IsSearchProperty = DependencyProperty.Register("IsSearch",
+        public ICollectionView ViewTraktSeriesSearchResults { get; set; }
+        public ObservableCollection<TraktTVShowResponseVM> TraktSeriesSearchResults { get; set; }
+
+        public ICollectionView ViewCrossRef_AniDB_TraktResult { get; set; }
+        public ObservableCollection<CrossRef_AniDB_TraktVMV2> CrossRef_AniDB_TraktResult { get; set; }
+
+        public static readonly DependencyProperty IsSearchProperty = DependencyProperty.Register("IsSearch",
 			typeof(bool), typeof(SearchTraktForm), new UIPropertyMetadata(false, null));
 
 		public static readonly DependencyProperty IsExistingProperty = DependencyProperty.Register("IsExisting",
@@ -33,11 +33,6 @@ namespace JMMClient.Forms
 		public static readonly DependencyProperty HasWebCacheRecProperty = DependencyProperty.Register("HasWebCacheRec",
 			typeof(bool), typeof(SearchTraktForm), new UIPropertyMetadata(false, null));
 
-        public static readonly DependencyProperty CrossRef_AniDB_TraktResultProperty = DependencyProperty.Register("CrossRef_AniDB_TraktResult",
-            typeof(List<CrossRef_AniDB_TraktVMV2>), typeof(SearchTraktForm), new UIPropertyMetadata(null, null));
-
-		public static readonly DependencyProperty TraktSeriesSearchResultsProperty = DependencyProperty.Register("TraktSeriesSearchResults",
-			typeof(List<TraktTVShowResponseVM>), typeof(SearchTraktForm), new UIPropertyMetadata(null, null));
 
 		public bool IsSearch
 		{
@@ -57,17 +52,7 @@ namespace JMMClient.Forms
 			set { SetValue(HasWebCacheRecProperty, value); }
 		}
 
-        public List<CrossRef_AniDB_TraktVMV2> CrossRef_AniDB_TraktResult
-        {
-            get { return (List<CrossRef_AniDB_TraktVMV2>)GetValue(CrossRef_AniDB_TraktResultProperty); }
-            set { SetValue(CrossRef_AniDB_TraktResultProperty, value); }
-        }
-
-		public List<TraktTVShowResponseVM> TraktSeriesSearchResults
-		{
-			get { return (List<TraktTVShowResponseVM>)GetValue(TraktSeriesSearchResultsProperty); }
-			set { SetValue(TraktSeriesSearchResultsProperty, value); }
-		}
+		
 
 		public static readonly DependencyProperty AnimeNameProperty = DependencyProperty.Register("AnimeName",
 			typeof(string), typeof(SearchTraktForm), new UIPropertyMetadata("", null));
@@ -87,9 +72,13 @@ namespace JMMClient.Forms
 		{
 			InitializeComponent();
 
-            CrossRef_AniDB_TraktResult = new List<CrossRef_AniDB_TraktVMV2>();
+            TraktSeriesSearchResults = new ObservableCollection<TraktTVShowResponseVM>();
+            ViewTraktSeriesSearchResults = CollectionViewSource.GetDefaultView(TraktSeriesSearchResults);
 
-			rbExisting.Checked += new RoutedEventHandler(rbExisting_Checked);
+            CrossRef_AniDB_TraktResult = new ObservableCollection<CrossRef_AniDB_TraktVMV2>();
+            ViewCrossRef_AniDB_TraktResult = CollectionViewSource.GetDefaultView(CrossRef_AniDB_TraktResult);
+
+            rbExisting.Checked += new RoutedEventHandler(rbExisting_Checked);
 			rbSearch.Checked += new RoutedEventHandler(rbSearch_Checked);
 
 			hlURL.Click += new RoutedEventHandler(hlURL_Click);
@@ -228,13 +217,16 @@ namespace JMMClient.Forms
 
 		void btnSearch_Click(object sender, RoutedEventArgs e)
 		{
-			HasWebCacheRec = false;
+            TraktSeriesSearchResults.Clear();
+            CrossRef_AniDB_TraktResult.Clear();
+
+            HasWebCacheRec = false;
 			if (!JMMServerVM.Instance.ServerOnline) return;
 
 			this.Cursor = Cursors.Wait;
 			try
 			{
-                CrossRef_AniDB_TraktResult.Clear();
+                
                 // first find what the community recommends
                 List<JMMServerBinary.Contract_Azure_CrossRef_AniDB_Trakt> xrefs = JMMServerVM.Instance.clientBinaryHTTP.GetTraktCrossRefWebCache(AnimeID);
                 if (xrefs != null && xrefs.Count > 0)
@@ -248,9 +240,10 @@ namespace JMMClient.Forms
                     HasWebCacheRec = true;
                 }
 
-				// now search Trakt
-				TraktSeriesSearchResults = new List<TraktTVShowResponseVM>();
-				List<JMMServerBinary.Contract_TraktTVShowResponse> traktResults = JMMServerVM.Instance.clientBinaryHTTP.SearchTrakt(txtSearch.Text.Trim());
+                // now search Trakt
+                
+
+                List<JMMServerBinary.Contract_TraktTVShowResponse> traktResults = JMMServerVM.Instance.clientBinaryHTTP.SearchTrakt(txtSearch.Text.Trim());
 				foreach (JMMServerBinary.Contract_TraktTVShowResponse traktResult in traktResults)
 					TraktSeriesSearchResults.Add(new TraktTVShowResponseVM(traktResult));
 			}

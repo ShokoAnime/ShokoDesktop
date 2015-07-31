@@ -35,6 +35,7 @@
             <RoutedUICommand x:Key="DeleteTraktLinkCommand" Text="DeleteTraktLinkCommand" />
             <RoutedUICommand x:Key="EditTraktLinkCommand" Text="EditTraktLinkCommand" />
             <RoutedUICommand x:Key="UpdateTraktLinkCommand" Text="UpdateTraktLinkCommand" />
+            <RoutedUICommand x:Key="SyncTraktLinkCommand" Text="SyncTraktLinkCommand" />
 
             <!-- MALLinkTemplate -->
             <DataTemplate x:Key="MALLinkTemplate">
@@ -202,6 +203,16 @@
                             </StackPanel>
                         </Button>
 
+                        <!-- Sync Trakt Info button -->
+                        <Button Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                Command="{StaticResource SyncTraktLinkCommand}" CommandParameter="{Binding}"
+                                ToolTip="{usercontrols:Info Title=Sync, 
+                                Body=Sync your collection and history data with Trakt}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="0,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+
                         <!-- Report incorrect links -->
                         <Button Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                             Command="{StaticResource ReportTraktLinkCommand}" CommandParameter="{Binding}" Visibility="Collapsed"
@@ -239,6 +250,7 @@
         <CommandBinding Command="{StaticResource DeleteTraktLinkCommand}" Executed="CommandBinding_DeleteTraktLink" />
         <CommandBinding Command="{StaticResource EditTraktLinkCommand}" Executed="CommandBinding_EditTraktLink" />
         <CommandBinding Command="{StaticResource UpdateTraktLinkCommand}" Executed="CommandBinding_UpdateTraktLink" />
+        <CommandBinding Command="{StaticResource SyncTraktLinkCommand}" Executed="CommandBinding_SyncTraktLink" />
     </UserControl.CommandBindings>
 
     <Grid Margin="3">

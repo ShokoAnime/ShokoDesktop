@@ -2,6 +2,18 @@
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:8111/JMMServerBinary?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/JMMContracts" />
   <xs:import schemaLocation="http://localhost:8111/JMMServerBinary?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:element name="TestMALLogin">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TestMALLoginResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="TestMALLoginResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetMALCrossRefWebCache">
     <xs:complexType>
       <xs:sequence>
@@ -1451,6 +1463,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="SyncTraktSeries">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="animeID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SyncTraktSeriesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SyncTraktSeriesResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="UpdateMovieDBData">
     <xs:complexType>
       <xs:sequence>
@@ -1985,18 +2011,6 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q91="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="SearchMALResult" nillable="true" type="q91:ArrayOfContract_MALAnimeResponse" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="TestMALLogin">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="TestMALLoginResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="TestMALLoginResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
