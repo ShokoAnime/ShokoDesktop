@@ -16,6 +16,7 @@ using JMMClient.ViewModel;
 using System.IO;
 using JMMClient.ImageDownload;
 using System.ComponentModel;
+using JMMClient.Forms;
 
 namespace JMMClient.UserControls
 {
@@ -24,7 +25,7 @@ namespace JMMClient.UserControls
 	/// </summary>
 	public partial class TraktShoutsShowControl : UserControl
 	{
-		public ObservableCollection<Trakt_ShoutUserVM> CurrentShouts { get; set; }
+        public ObservableCollection<object> CurrentShouts { get; set; }
 
 		public static readonly DependencyProperty NumberOfShoutsProperty = DependencyProperty.Register("NumberOfShouts",
 			typeof(int), typeof(TraktShoutsShowControl), new UIPropertyMetadata(0, null));
@@ -64,7 +65,7 @@ namespace JMMClient.UserControls
 		{
 			InitializeComponent();
 
-			CurrentShouts = new ObservableCollection<Trakt_ShoutUserVM>();
+			CurrentShouts = new ObservableCollection<object>();
 
 			this.DataContextChanged += new DependencyPropertyChangedEventHandler(TraktShoutsShowControl_DataContextChanged);
 
@@ -77,6 +78,26 @@ namespace JMMClient.UserControls
 			postShoutWorker.DoWork += new DoWorkEventHandler(postShoutWorker_DoWork);
 			postShoutWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(postShoutWorker_RunWorkerCompleted);
 		}
+
+        private void CommandBinding_ViewComment(object sender, ExecutedRoutedEventArgs e)
+        {
+            Window parentWindow = Window.GetWindow(this);
+
+            object obj = e.Parameter;
+            if (obj == null) return;
+
+            try
+            {
+                ViewCommentForm frm = new ViewCommentForm();
+                frm.Owner = parentWindow;
+                frm.Init(obj);
+                bool? result = frm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+        }
 
 		void postShoutWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
 		{
@@ -107,6 +128,20 @@ namespace JMMClient.UserControls
 
 		void btnSubmitShout_Click(object sender, RoutedEventArgs e)
 		{
+            if (!JMMServerVM.Instance.Trakt_IsEnabled)
+            {
+                Utils.ShowErrorMessage("You have not enabled Trakt, for more info go to 'Settings - Community Sites - Trakt TV'");
+                txtShoutNew.Focus();
+                return;
+            }
+
+            if (string.IsNullOrEmpty(JMMServerVM.Instance.Trakt_AuthToken))
+            {
+                Utils.ShowErrorMessage("You have not authorized JMM to use your Trakt account, for more info go to 'Settings - Community Sites - Trakt TV'");
+                txtShoutNew.Focus();
+                return;
+            }
+
 			AnimeSeriesVM animeSeries = (AnimeSeriesVM)this.DataContext;
 			if (animeSeries == null)
 			{
@@ -183,10 +218,10 @@ namespace JMMClient.UserControls
 
 		void refreshDataWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
 		{
-			List<Trakt_ShoutUserVM> tempShouts = e.Result as List<Trakt_ShoutUserVM>;
+            List<object> tempShouts = e.Result as List<object>;
 			NumberOfShouts = tempShouts.Count;
 			
-			foreach (Trakt_ShoutUserVM shout in tempShouts)
+			foreach (object shout in tempShouts)
 				CurrentShouts.Add(shout);
 
 			IsLoading = false;
@@ -197,44 +232,36 @@ namespace JMMClient.UserControls
 
 		void refreshDataWorker_DoWork(object sender, DoWorkEventArgs e)
 		{
-			List<Trakt_ShoutUserVM> tempShouts = new List<Trakt_ShoutUserVM>();
+            List<object> tempComments = new List<object>();
 
 			try
 			{
 				AnimeSeriesVM animeSeries = (AnimeSeriesVM)e.Argument;
 				if (animeSeries == null) return;
 
+                // get comments from Trakt
 				List<JMMServerBinary.Contract_Trakt_ShoutUser> rawShouts = JMMServerVM.Instance.clientBinaryHTTP.GetTraktShoutsForAnime(animeSeries.AniDB_ID);
 				foreach (JMMServerBinary.Contract_Trakt_ShoutUser contract in rawShouts)
 				{
-					Trakt_ShoutUserVM shout = new Trakt_ShoutUserVM(contract);
-
-
-					if (!string.IsNullOrEmpty(shout.UserFullImagePath) && !File.Exists(shout.UserFullImagePath))
-					{
-						// re-download the friends avatar image
-						try
-						{
-							ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.Trakt_ShoutUser, shout, false);
-							MainWindow.imageHelper.DownloadImage(req);
-						}
-						catch (Exception ex)
-						{
-							Console.WriteLine(ex.ToString());
-						}
-					}
-
-					tempShouts.Add(shout);
+					Trakt_ShoutUserVM traktComment = new Trakt_ShoutUserVM(contract);
+					tempComments.Add(traktComment);
 				}
 
-				
+				// get comments from AniDB
+                // get recommendations from AniDB
+                List<JMMServerBinary.Contract_AniDB_Recommendation> rawRecs = JMMServerVM.Instance.clientBinaryHTTP.GetAniDBRecommendations(animeSeries.AniDB_ID);
+                foreach (JMMServerBinary.Contract_AniDB_Recommendation contract in rawRecs)
+                {
+                    AniDB_RecommendationVM rec = new AniDB_RecommendationVM(contract);
+                    tempComments.Add(rec);
+                }
 			}
 			catch (Exception ex)
 			{
 				Utils.ShowErrorMessage(ex);
 			}
 
-			e.Result = tempShouts;
+			e.Result = tempComments;
 		}
 
 		void btnRefresh_Click(object sender, RoutedEventArgs e)

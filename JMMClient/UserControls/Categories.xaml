@@ -79,6 +79,11 @@
                      Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=CategoriesCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Background="Transparent" Padding="0" BorderThickness="0" VerticalAlignment="Center"
                         ItemTemplate="{DynamicResource animeCategoryTemplate}" ItemsSource="{Binding Path=AnimeCategoriesSummary}">
+            <ListBox.Template>
+                <ControlTemplate>
+                    <ItemsPresenter />
+                </ControlTemplate>
+            </ListBox.Template>
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel  Focusable="False"  Orientation="Horizontal" />
@@ -91,6 +96,11 @@
                  Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=CategoriesExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
                     Background="Transparent" Padding="0" BorderThickness="0" VerticalAlignment="Center"
                     ItemTemplate="{DynamicResource animeCategoryTemplate}" ItemsSource="{Binding Path=AnimeCategories}">
+            <ListBox.Template>
+                <ControlTemplate>
+                    <ItemsPresenter />
+                </ControlTemplate>
+            </ListBox.Template>
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel  Focusable="False"  Orientation="Horizontal" />

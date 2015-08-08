@@ -236,12 +236,12 @@ namespace JMMClient.UserControls
 		{
 			ValidED2KDump = false;
 			Clipboard.Clear();
-			Clipboard.SetText("");
+			Clipboard.SetDataObject("");
 			AvDumpText = "";
 
 			if (string.IsNullOrEmpty(result)) return;
 
-			Clipboard.SetText(result);
+            Clipboard.SetDataObject(result);
 			ValidED2KDump = true;
 			AvDumpText = result;
 		}

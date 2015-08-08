@@ -147,6 +147,7 @@ namespace JMMClient.UserControls
 					fileSummary.DataContext = ep.AniDB_Anime;
 
 					lbFiles.ItemsSource = ep.FilesForEpisode;
+
 				}
 			}
 			catch (Exception ex)

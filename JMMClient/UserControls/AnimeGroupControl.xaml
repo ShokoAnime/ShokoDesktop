@@ -310,6 +310,11 @@
                  VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True" Name="lbSeriesList"
                  ItemsSource="{Binding Path=AllAnimeSeriesFiltered}" 
                  Background="Transparent"  VerticalAlignment="Stretch" >
+                    <ListBox.Template>
+                        <ControlTemplate>
+                            <ItemsPresenter />
+                        </ControlTemplate>
+                    </ListBox.Template>
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <usercontrols:SeriesPosterView/>

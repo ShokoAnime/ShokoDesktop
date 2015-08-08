@@ -13,7 +13,7 @@ namespace JMMClient.ViewModel
 		public int IsAdmin { get; set; }
 		public int IsAniDBUser { get; set; }
 		public int IsTraktUser { get; set; }
-		public string HideCategories { get; set; }
+		public string HideTags { get; set; }
 		public int? CanEditServerSettings { get; set; }
 
 		public bool IsAdminUser
@@ -48,7 +48,7 @@ namespace JMMClient.ViewModel
 			this.IsAdmin = contract.IsAdmin;
 			this.IsAniDBUser = contract.IsAniDBUser;
 			this.IsTraktUser = contract.IsTraktUser;
-			this.HideCategories = contract.HideCategories;
+			this.HideTags = contract.HideCategories;
 			this.CanEditServerSettings = contract.CanEditServerSettings;
 		}
 
@@ -61,19 +61,19 @@ namespace JMMClient.ViewModel
 			contract.IsAdmin = this.IsAdmin;
 			contract.IsAniDBUser = this.IsAniDBUser;
 			contract.IsTraktUser = this.IsTraktUser;
-			contract.HideCategories = this.HideCategories;
+			contract.HideCategories = this.HideTags;
 			contract.CanEditServerSettings = this.CanEditServerSettings;
 			return contract;
 		}
 
 		public override string ToString()
 		{
-			return string.Format("{0} - {1} ({2}) - {3}", Username, IsAdmin, IsAniDBUser, HideCategories);
+			return string.Format("{0} - {1} ({2}) - {3}", Username, IsAdmin, IsAniDBUser, HideTags);
 		}
 
-		private bool EvaluateCategoryString(string allcats)
+		private bool EvaluateTagString(string allcats)
 		{
-			string filterParm = HideCategories.Trim();
+			string filterParm = HideTags.Trim();
 
 			string[] cats = filterParm.Trim().Split(',');
 			int index = 0;
@@ -92,9 +92,9 @@ namespace JMMClient.ViewModel
 		public bool EvaluateGroup(AnimeGroupVM grp)
 		{
 			// make sure the user has not filtered this out
-			if (!string.IsNullOrEmpty(JMMServerVM.Instance.CurrentUser.HideCategories))
+			if (!string.IsNullOrEmpty(JMMServerVM.Instance.CurrentUser.HideTags))
 			{
-				return EvaluateCategoryString(grp.Stat_AllCategories);
+				return EvaluateTagString(grp.Stat_AllTags);
 			}
 
 			return true;
@@ -103,9 +103,9 @@ namespace JMMClient.ViewModel
 		public bool EvaluateSeries(AnimeSeriesVM ser)
 		{
 			// make sure the user has not filtered this out
-			if (!string.IsNullOrEmpty(JMMServerVM.Instance.CurrentUser.HideCategories))
+			if (!string.IsNullOrEmpty(JMMServerVM.Instance.CurrentUser.HideTags))
 			{
-				return EvaluateCategoryString(ser.CategoriesString);
+				return EvaluateTagString(ser.TagsString);
 			}
 
 			return true;
@@ -114,9 +114,9 @@ namespace JMMClient.ViewModel
 		public bool EvaluateAnime(AniDB_AnimeVM anime)
 		{
 			// make sure the user has not filtered this out
-			if (!string.IsNullOrEmpty(JMMServerVM.Instance.CurrentUser.HideCategories))
+			if (!string.IsNullOrEmpty(JMMServerVM.Instance.CurrentUser.HideTags))
 			{
-				return EvaluateCategoryString(anime.AllCategories);
+				return EvaluateTagString(anime.AllTags);
 			}
 
 			return true;

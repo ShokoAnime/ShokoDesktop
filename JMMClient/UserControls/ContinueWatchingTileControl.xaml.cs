@@ -30,8 +30,6 @@ namespace JMMClient.UserControls
 	{
 
 		private static Logger logger = LogManager.GetCurrentClassLogger();
-		private BlockingList<object> imagesToDownload = new BlockingList<object>();
-		private BackgroundWorker workerImages = new BackgroundWorker();
 
 		public ObservableCollection<AnimeEpisodeVM> UnwatchedEpisodes { get; set; }
 		public ICollectionView ViewUnwatchedEpisodes { get; set; }
@@ -117,9 +115,6 @@ namespace JMMClient.UserControls
 
 			MainWindow.videoHandler.VideoWatchedEvent += new Utilities.VideoHandler.VideoWatchedEventHandler(videoHandler_VideoWatchedEvent);
 
-			workerImages.DoWork += new DoWorkEventHandler(workerImages_DoWork);
-			workerImages.RunWorkerAsync();
-
 			txtShoutNew.GotFocus += new RoutedEventHandler(txtShoutNew_GotFocus);
 			txtShoutNew.LostFocus += new RoutedEventHandler(txtShoutNew_LostFocus);
 			btnSubmitShout.Click += new RoutedEventHandler(btnSubmitShout_Click);
@@ -197,6 +192,7 @@ namespace JMMClient.UserControls
 
 			MessageBox.Show(msg, "Message", MessageBoxButton.OK, MessageBoxImage.Information);
 			txtShoutNew.Text = "";
+            btnSubmitShout.IsEnabled = true;
 
 			AnimeSeriesVM ser = this.DataContext as AnimeSeriesVM;
 			if (ser == null) return;
@@ -224,6 +220,20 @@ namespace JMMClient.UserControls
 
 		void btnSubmitShout_Click(object sender, RoutedEventArgs e)
 		{
+            if (!JMMServerVM.Instance.Trakt_IsEnabled)
+            {
+                Utils.ShowErrorMessage("You have not enabled Trakt, for more info go to 'Settings - Community Sites - Trakt TV'");
+                txtShoutNew.Focus();
+                return;
+            }
+
+            if (string.IsNullOrEmpty(JMMServerVM.Instance.Trakt_AuthToken))
+            {
+                Utils.ShowErrorMessage("You have not authorized JMM to use your Trakt account, for more info go to 'Settings - Community Sites - Trakt TV'");
+                txtShoutNew.Focus();
+                return;
+            }
+
 			AnimeSeriesVM animeSeries = (AnimeSeriesVM)this.DataContext;
 			if (animeSeries == null)
 			{
@@ -235,14 +245,14 @@ namespace JMMClient.UserControls
 			string shoutText = txtShoutNew.Text.Trim();
 			if (string.IsNullOrEmpty(shoutText))
 			{
-				Utils.ShowErrorMessage("Please enter text for your shout");
+				Utils.ShowErrorMessage("Please enter text for your comment");
 				txtShoutNew.Focus();
 				return;
 			}
 
 			if (shoutText.Length > 2000)
 			{
-				Utils.ShowErrorMessage(string.Format("Shout text must be less than 2000 characters ({0})", shoutText.Length));
+				Utils.ShowErrorMessage(string.Format("Comment text must be less than 2000 characters ({0})", shoutText.Length));
 				txtShoutNew.Focus();
 				return;
 			}
@@ -257,8 +267,9 @@ namespace JMMClient.UserControls
                 if (animeSeries.AniDB_Anime.traktSummary.traktDetails == null ||
                     animeSeries.AniDB_Anime.traktSummary.traktDetails.Count == 0)
                 {
-                    Utils.ShowErrorMessage(string.Format("Cannot shout where a series does not have a Trakt show linked"));
+                    Utils.ShowErrorMessage(string.Format("Cannot comment where a series does not have a Trakt show linked"));
                     txtShoutNew.Focus();
+                    btnSubmitShout.IsEnabled = true;
                     return;
                 }
 
@@ -266,8 +277,9 @@ namespace JMMClient.UserControls
                 if (animeSeries.AniDB_Anime.traktSummary.traktDetails != null &&
                     animeSeries.AniDB_Anime.traktSummary.traktDetails.Count > 1)
                 {
-                    Utils.ShowErrorMessage(string.Format("Cannot shout where a series has more than one Trakt show linked"));
+                    Utils.ShowErrorMessage(string.Format("Cannot comment where a series has more than one Trakt show linked"));
                     txtShoutNew.Focus();
+                    btnSubmitShout.IsEnabled = true;
                     return;
                 }
 
@@ -291,8 +303,9 @@ namespace JMMClient.UserControls
             }
             else
             {
-                Utils.ShowErrorMessage(string.Format("Cannot shout where a series does not have a Trakt show linked"));
+                Utils.ShowErrorMessage(string.Format("Cannot comment where a series does not have a Trakt show linked"));
                 txtShoutNew.Focus();
+                btnSubmitShout.IsEnabled = true;
             }
 		}
 
@@ -352,65 +365,6 @@ namespace JMMClient.UserControls
 			txtShoutNew.Height = 150;
 		}
 
-		void workerImages_DoWork(object sender, DoWorkEventArgs e)
-		{
-			ProcessImages();
-		}
-
-		private void ProcessImages()
-		{
-			foreach (object req in imagesToDownload)
-			{
-				try
-				{
-					if (req.GetType() == typeof(Trakt_ShoutUserVM))
-					{
-						Trakt_ShoutUserVM tile = req as Trakt_ShoutUserVM;
-
-
-						//user
-						Uri uriUser = new Uri(tile.UserOnlineImagePath);
-						string filenameUser = Path.GetFileName(uriUser.LocalPath);
-						string tempNameUser = Path.Combine(Path.GetTempPath(), filenameUser);
-
-						using (WebClient client = new WebClient())
-						{
-							client.Headers.Add("user-agent", "JMM");
-
-
-							if (!File.Exists(tempNameUser))
-							{
-								if (tile.UserOnlineImagePath.Length > 0)
-									client.DownloadFile(tile.UserOnlineImagePath, tempNameUser);
-							}
-							if (File.Exists(tempNameUser)) tile.DelayedUserImage = tempNameUser;
-
-						}
-
-					}
-
-					if (req.GetType() == typeof(AniDB_RecommendationVM))
-					{
-						AniDB_RecommendationVM tile = req as AniDB_RecommendationVM;
-
-						// unfortunately AniDB doesn't have any user images yet
-						// we will use a placeholder
-						tile.DelayedUserImage = tile.UserImagePathForDisplay;
-					}
-
-
-					imagesToDownload.Remove(req);
-				}
-				catch (Exception ex)
-				{
-					imagesToDownload.Remove(req);
-					logger.ErrorException(ex.ToString(), ex);
-				}
-			}
-
-		}
-
-		
 
 		void videoHandler_VideoWatchedEvent(Utilities.VideoWatchedEventArgs ev)
 		{
@@ -614,13 +568,11 @@ namespace JMMClient.UserControls
 				{
 					Trakt_ShoutUserVM shout = new Trakt_ShoutUserVM(contract);
 
-					shout.DelayedUserImage = @"/Images/blankposter.png";
 					System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
 					{
 						Shouts.Add(shout);
 					});
 
-					imagesToDownload.Add(shout);
 				}
 
 				// get recommendations from AniDB
@@ -629,13 +581,10 @@ namespace JMMClient.UserControls
 				{
 					AniDB_RecommendationVM rec = new AniDB_RecommendationVM(contract);
 
-					rec.DelayedUserImage = @"/Images/blankposter.png";
 					System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
 					{
 						Shouts.Add(rec);
 					});
-
-					imagesToDownload.Add(rec);
 				}
 
 			}
@@ -707,6 +656,26 @@ namespace JMMClient.UserControls
 			if (!episodesWorker.IsBusy)
 				episodesWorker.RunWorkerAsync(ser);
 		}
+
+        private void CommandBinding_ViewComment(object sender, ExecutedRoutedEventArgs e)
+        {
+            Window parentWindow = Window.GetWindow(this);
+
+            object obj = e.Parameter;
+            if (obj == null) return;
+
+            try
+            {
+                ViewCommentForm frm = new ViewCommentForm();
+                frm.Owner = parentWindow;
+                frm.Init(obj);
+                bool? result = frm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+        }
 
 		private void CommandBinding_PlayEpisode(object sender, ExecutedRoutedEventArgs e)
 		{

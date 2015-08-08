@@ -276,6 +276,11 @@
                     ItemTemplate="{StaticResource RecDownloadTemplate}"
                     ItemsSource="{Binding Path=ViewRecs, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DownloadRecommendationsControl}}}" 
                     Background="Transparent" ItemContainerStyle="{DynamicResource ListBoxItemStyleRecDownloads}"  VerticalAlignment="Stretch" >
+                            <ListBox.Template>
+                                <ControlTemplate>
+                                    <ItemsPresenter />
+                                </ControlTemplate>
+                            </ListBox.Template>
 
                             <ListBox.ItemsPanel>
                                 <ItemsPanelTemplate>

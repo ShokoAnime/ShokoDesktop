@@ -92,7 +92,8 @@ namespace JMMClient.UserControls
 			CurrentEpisodeTypes = new ObservableCollection<AnimeEpisodeTypeVM>();
 
 			this.DataContextChanged += new DependencyPropertyChangedEventHandler(EpisodeList_DataContextChanged);
-			lbEpisodes.SelectionChanged += new SelectionChangedEventHandler(lbEpisodes_SelectionChanged);
+			//lbEpisodes.SelectionChanged += new SelectionChangedEventHandler(lbEpisodes_SelectionChanged);
+            lbEpisodes.SelectedItemChanged += lbEpisodes_SelectedItemChanged;
 			lbEpisodes.MouseDoubleClick += new MouseButtonEventHandler(lbEpisodes_MouseDoubleClick);
 
 			btnMarkAllWatched.Click += new RoutedEventHandler(btnMarkAllWatched_Click);
@@ -101,6 +102,30 @@ namespace JMMClient.UserControls
 
 			
 		}
+
+        void lbEpisodes_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            try
+            {
+                IsEpisodeSelected = false;
+
+                if (lbEpisodes.SelectedItem != null)
+                {
+                    AnimeEpisodeVM ep = lbEpisodes.SelectedItem as AnimeEpisodeVM;
+                    MainListHelperVM.Instance.LastEpisodeForSeries[ep.AnimeSeriesID] = ep.AnimeEpisodeID;
+
+                    if (ep.EpisodeTypeEnum == EpisodeType.Episode)
+                    {
+                        IsEpisodeSelected = true;
+                        CurrentEpisodeNumber = ep.EpisodeNumber;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+        }
 
 		void lbEpisodes_MouseDoubleClick(object sender, MouseButtonEventArgs e)
 		{
@@ -466,9 +491,9 @@ namespace JMMClient.UserControls
 
 				if (lbEpisodes.Items.Count > 0)
 				{
-					lbEpisodes.SelectedIndex = idxEp;
+					//lbEpisodes.SelectedIndex = idxEp;
 					lbEpisodes.Focus();
-					lbEpisodes.ScrollIntoView(lbEpisodes.SelectedItem);
+					//lbEpisodes.ScrollIntoView(lbEpisodes.SelectedItem);
 				}
 			}
 			catch (Exception ex)

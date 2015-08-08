@@ -194,7 +194,6 @@
     <Compile Include="DataTemplateSelectors\PlaylistTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\RecDownloadTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\RecWatchTemplateSelector.cs" />
-    <Compile Include="DataTemplateSelectors\TraktActivityTemplateSelector.cs" />
     <Compile Include="Downloads\CsvParser.cs" />
     <Compile Include="Downloads\CsvStream.cs" />
     <Compile Include="Downloads\DownloadHelper.cs" />
@@ -221,6 +220,9 @@
     </Compile>
     <Compile Include="Forms\AdminMessagesForm.xaml.cs">
       <DependentUpon>AdminMessagesForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ViewCommentForm.xaml.cs">
+      <DependentUpon>ViewCommentForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AzureAnimeLink.cs" />
     <Compile Include="Forms\ChangePasswordForm.xaml.cs">
@@ -327,7 +329,6 @@
     <Compile Include="Metro\NewEpisodeTile.cs" />
     <Compile Include="Metro\RandomSeriesTile.cs" />
     <Compile Include="Metro\RecommendationTile.cs" />
-    <Compile Include="Metro\TraktActivityTile.cs" />
     <Compile Include="Metro\TraktShoutTile.cs" />
     <Compile Include="MoveSeriesDetails.cs" />
     <Compile Include="MultiSortLib\MultiSort.cs" />
@@ -372,9 +373,6 @@
     </Compile>
     <Compile Include="UserControls\BookmarksControl.xaml.cs">
       <DependentUpon>BookmarksControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\Categories.xaml.cs">
-      <DependentUpon>Categories.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\CloseableTabItem.cs" />
     <Compile Include="UserControls\Community\CommunityLinksControl.xaml.cs">
@@ -615,7 +613,6 @@
     <Compile Include="ViewModel\AniDB_EpisodeVM.cs" />
     <Compile Include="ViewModel\AniDB_RecommendationVM.cs" />
     <Compile Include="ViewModel\AniDB_VoteVM.cs" />
-    <Compile Include="ViewModel\AnimeCategoryVM.cs" />
     <Compile Include="ViewModel\AnimeEpisodeTypeVM.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -676,12 +673,7 @@
     <Compile Include="ViewModel\ReleaseGroupVM.cs" />
     <Compile Include="ViewModel\RenameScriptVM.cs" />
     <Compile Include="ViewModel\TraktTVShowResponseVM.cs" />
-    <Compile Include="ViewModel\Trakt_ActivityScrobbleVM.cs" />
-    <Compile Include="ViewModel\Trakt_ActivityShoutEpisodeVM.cs" />
-    <Compile Include="ViewModel\Trakt_ActivityShoutShowVM.cs" />
     <Compile Include="ViewModel\Trakt_EpisodeVM.cs" />
-    <Compile Include="ViewModel\Trakt_FriendRequestVM.cs" />
-    <Compile Include="ViewModel\Trakt_FriendVM.cs" />
     <Compile Include="ViewModel\Trakt_ImageFanartVM.cs" />
     <Compile Include="ViewModel\Trakt_ImagePosterVM.cs" />
     <Compile Include="ViewModel\Trakt_SeasonVM.cs" />
@@ -689,9 +681,7 @@
     <Compile Include="ViewModel\Trakt_ShoutUserVM.cs" />
     <Compile Include="ViewModel\Trakt_ShoutVM.cs" />
     <Compile Include="ViewModel\Trakt_ShowVM.cs" />
-    <Compile Include="ViewModel\Trakt_SignupVM.cs" />
     <Compile Include="ViewModel\Trakt_UserVM.cs" />
-    <Compile Include="ViewModel\Trakt_WatchedEpisodeVM.cs" />
     <Compile Include="ViewModel\TVDBSeriesSearchResultVM.cs" />
     <Compile Include="ViewModel\TvDBSummary.cs" />
     <Compile Include="ViewModel\TvDB_EpisodeVM.cs" />
@@ -841,6 +831,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Forms\ViewCommentForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -902,10 +896,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\BookmarksControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\Categories.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1418,9 +1408,6 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_TraktTVShowResponse1.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_Trakt_Activity1.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_Trakt_Episode1.datasource">

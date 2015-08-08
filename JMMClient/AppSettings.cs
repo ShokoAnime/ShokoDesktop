@@ -558,6 +558,7 @@ namespace JMMClient
 				int maxEnum = 7;
 				for (int i = 1; i <= maxEnum; i++)
 				{
+
 					if (!widgets.Contains(i.ToString()))
 					{
 						if (val.Length > 0) val += ";";
@@ -582,7 +583,7 @@ namespace JMMClient
 				if (string.IsNullOrEmpty(val))
 				{
 					// default value
-					val = "1;2;3;4;5;6;7;8";
+					val = "1;2;3;4;5;7;8";
 					UpdateSetting("DashboardWidgetsOrder", val);
 				}
 
@@ -592,6 +593,10 @@ namespace JMMClient
 				int maxEnum = 8;
 				for (int i = 1; i <= maxEnum; i++)
 				{
+                    // skip Trakt as this has been deprecated
+                    DashboardWidgets sectionType = (DashboardWidgets)i;
+                    if (sectionType == DashboardWidgets.TraktFriends) continue;
+
 					if (!widgets.Contains(i.ToString()))
 					{
 						if (val.Length > 0) val += ";";
@@ -797,24 +802,6 @@ namespace JMMClient
 			set
 			{
 				UpdateSetting("SeriesGroupExpanded", value.ToString());
-			}
-		}
-
-		public static bool CategoriesExpanded
-		{
-			get
-			{
-				NameValueCollection appSettings = ConfigurationManager.AppSettings;
-				string val = appSettings["CategoriesExpanded"];
-				bool bval = true;
-				if (bool.TryParse(val, out bval))
-					return bval;
-				else
-					return false; // default value
-			}
-			set
-			{
-				UpdateSetting("CategoriesExpanded", value.ToString());
 			}
 		}
 
@@ -2382,7 +2369,7 @@ namespace JMMClient
 				if (string.IsNullOrEmpty(val))
 				{
 					// default value
-					val = "1:true;2:true;3:true;4:true";
+					val = "2:true;3:true;4:true";
 					UpdateSetting("DashboardMetroSectionOrder", val);
 				}
 
@@ -2399,6 +2386,10 @@ namespace JMMClient
 				int maxEnum = 4;
 				for (int i = 1; i <= maxEnum; i++)
 				{
+                    // skip Trakt as this has been deprecated
+                    DashboardMetroProcessType sectionType = (DashboardMetroProcessType)i;
+                    if (sectionType == DashboardMetroProcessType.TraktActivity) continue;
+
 					if (!tempWidgets.Contains(i.ToString()))
 					{
 						if (val.Length > 0) val += ";";
@@ -2423,7 +2414,7 @@ namespace JMMClient
 				if (string.IsNullOrEmpty(val))
 				{
 					// default value
-					val = "1;1;1;1";
+					val = "1;1;1";
 					UpdateSetting("DashboardMetroSectionVisibility", val);
 				}
 
@@ -2433,6 +2424,10 @@ namespace JMMClient
 				int maxEnum = 4;
 				for (int i = 1; i <= maxEnum; i++)
 				{
+                    // skip Trakt as this has been deprecated
+                    DashboardMetroProcessType sectionType = (DashboardMetroProcessType)i;
+                    if (sectionType == DashboardMetroProcessType.TraktActivity) continue;
+
 					if (!widgets.Contains(i.ToString()))
 					{
 						if (val.Length > 0) val += ";";

@@ -348,8 +348,10 @@ namespace JMMClient
 			this.SeriesNameSource = (DataSourceType)contract.SeriesNameSource;
 
 			// trakt
-			this.Trakt_Username = contract.Trakt_Username;
-			this.Trakt_Password = contract.Trakt_Password;
+            this.Trakt_IsEnabled = contract.Trakt_IsEnabled;
+            this.Trakt_AuthToken = contract.Trakt_AuthToken;
+            this.Trakt_RefreshToken = contract.Trakt_RefreshToken;
+            this.Trakt_TokenExpirationDate = contract.Trakt_TokenExpirationDate;
 			this.Trakt_UpdateFrequency = (ScheduledUpdateFrequency)contract.Trakt_UpdateFrequency;
 			this.Trakt_SyncFrequency = (ScheduledUpdateFrequency)contract.Trakt_SyncFrequency;
 			this.Trakt_DownloadFanart = contract.Trakt_DownloadFanart;
@@ -465,8 +467,10 @@ namespace JMMClient
 				contract.SeriesNameSource = (int)this.SeriesNameSource;
 
 				// trakt
-				contract.Trakt_Username = this.Trakt_Username;
-				contract.Trakt_Password = this.Trakt_Password;
+                contract.Trakt_IsEnabled = this.Trakt_IsEnabled;
+                contract.Trakt_AuthToken = this.Trakt_AuthToken;
+                contract.Trakt_RefreshToken = this.Trakt_RefreshToken;
+                contract.Trakt_TokenExpirationDate = this.Trakt_TokenExpirationDate;
 				contract.Trakt_UpdateFrequency = (int)this.Trakt_UpdateFrequency;
 				contract.Trakt_SyncFrequency = (int)this.Trakt_SyncFrequency;
 				contract.Trakt_DownloadFanart = this.Trakt_DownloadFanart;
@@ -509,17 +513,15 @@ namespace JMMClient
 			
 		}
 
-		public void TestTraktLogin()
+		public void AuthorizeTraktPIN(string pin)
 		{
 			try
 			{
 				SaveServerSettings();
 
-				string response = _clientBinaryHTTP.TestTraktLogin();
-				if (string.IsNullOrEmpty(response))
-					MessageBox.Show("Success", "", MessageBoxButton.OK, MessageBoxImage.Information);
-				else
-					MessageBox.Show(response, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                string response = _clientBinaryHTTP.EnterTraktPIN(pin);
+                MessageBox.Show(response, "Trakt Auth", MessageBoxButton.OK, MessageBoxImage.Information);
+				
 			}
 			catch (Exception ex)
 			{
@@ -549,7 +551,7 @@ namespace JMMClient
 
 		public ObservableCollection<ImportFolderVM> ImportFolders { get; set; }
 		public ObservableCollection<JMMUserVM> AllUsers { get; set; }
-		public ObservableCollection<string> AllCategories { get; set; }
+		public ObservableCollection<string> AllTags { get; set; }
         public ObservableCollection<CustomTagVM> AllCustomTags { get; set; }
         public ICollectionView ViewCustomTagsAll { get; set; }
 
@@ -1535,27 +1537,49 @@ namespace JMMClient
 			}
 		}
 
-		private string trakt_Username = "";
-		public string Trakt_Username
-		{
-			get { return trakt_Username; }
-			set
-			{
-				trakt_Username = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("Trakt_Username"));
-			}
-		}
+        private bool trakt_IsEnabled = true;
+        public bool Trakt_IsEnabled
+        {
+            get { return trakt_IsEnabled; }
+            set
+            {
+                trakt_IsEnabled = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("Trakt_IsEnabled"));
+            }
+        }
 
-		private string trakt_Password = "";
-		public string Trakt_Password
-		{
-			get { return trakt_Password; }
-			set
-			{
-				trakt_Password = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("Trakt_Password"));
-			}
-		}
+        private string trakt_AuthToken = "";
+        public string Trakt_AuthToken
+        {
+            get { return trakt_AuthToken; }
+            set
+            {
+                trakt_AuthToken = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("Trakt_AuthToken"));
+            }
+        }
+
+        private string trakt_RefreshToken = "";
+        public string Trakt_RefreshToken
+        {
+            get { return trakt_RefreshToken; }
+            set
+            {
+                trakt_RefreshToken = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("Trakt_RefreshToken"));
+            }
+        }
+
+        private string trakt_TokenExpirationDate = "";
+        public string Trakt_TokenExpirationDate
+        {
+            get { return trakt_TokenExpirationDate; }
+            set
+            {
+                trakt_TokenExpirationDate = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("Trakt_TokenExpirationDate"));
+            }
+        }
 
 		private bool trakt_DownloadFanart = true;
 		public bool Trakt_DownloadFanart
@@ -1701,7 +1725,7 @@ namespace JMMClient
 			UnselectedLanguages = new ObservableCollection<NamingLanguage>();
 			SelectedLanguages = new ObservableCollection<NamingLanguage>();
 			AllUsers = new ObservableCollection<JMMUserVM>();
-			AllCategories = new ObservableCollection<string>();
+			AllTags = new ObservableCollection<string>();
             AllCustomTags = new ObservableCollection<CustomTagVM>();
             ViewCustomTagsAll = System.Windows.Data.CollectionViewSource.GetDefaultView(JMMServerVM.Instance.AllCustomTags);
             ViewCustomTagsAll.SortDescriptions.Add(new SortDescription("TagName", ListSortDirection.Ascending ));
@@ -2057,18 +2081,18 @@ namespace JMMClient
 
 		}
 
-		public void RefreshAllCategories()
+		public void RefreshAllTags()
 		{
 
-			AllCategories.Clear();
+			AllTags.Clear();
 
 			if (!ServerOnline) return;
 			try
 			{
-				List<string> catsRaw = JMMServerVM.Instance.clientBinaryHTTP.GetAllCategoryNames();
+                List<string> tagsRaw = JMMServerVM.Instance.clientBinaryHTTP.GetAllTagNames();
 
-				foreach (string cat in catsRaw)
-					AllCategories.Add(cat);
+				foreach (string tag in tagsRaw)
+					AllTags.Add(tag);
 			}
 			catch (Exception ex)
 			{

@@ -25,8 +25,8 @@ namespace JMMClient.Forms
 		private static Random rndm = new Random();
 		private static Random eprndm = new Random();
 
-		public ICollectionView ViewCategoryNames { get; set; }
-		public ObservableCollection<string> AllCategoryNames { get; set; }
+		public ICollectionView ViewTagNames { get; set; }
+		public ObservableCollection<string> AllTagNames { get; set; }
 
 		public static readonly DependencyProperty SeriesProperty = DependencyProperty.Register("Series",
 			typeof(AnimeSeriesVM), typeof(RandomEpisodeForm), new UIPropertyMetadata(null, null));
@@ -84,31 +84,31 @@ namespace JMMClient.Forms
 			set { SetValue(EpisodeMissingProperty, value); }
 		}
 
-		public static readonly DependencyProperty CategoriesExpandedProperty = DependencyProperty.Register("CategoriesExpanded",
+        public static readonly DependencyProperty TagsExpandedProperty = DependencyProperty.Register("TagsExpanded",
 			typeof(bool), typeof(RandomEpisodeForm), new UIPropertyMetadata(false, null));
 
-		public bool CategoriesExpanded
+		public bool TagsExpanded
 		{
-			get { return (bool)GetValue(CategoriesExpandedProperty); }
-			set { SetValue(CategoriesExpandedProperty, value); }
+			get { return (bool)GetValue(TagsExpandedProperty); }
+			set { SetValue(TagsExpandedProperty, value); }
 		}
 
-		public static readonly DependencyProperty CategoriesCollapsedProperty = DependencyProperty.Register("CategoriesCollapsed",
+        public static readonly DependencyProperty TagsCollapsedProperty = DependencyProperty.Register("TagsCollapsed",
 			typeof(bool), typeof(RandomEpisodeForm), new UIPropertyMetadata(true, null));
 
-		public bool CategoriesCollapsed
+		public bool TagsCollapsed
 		{
-			get { return (bool)GetValue(CategoriesCollapsedProperty); }
-			set { SetValue(CategoriesCollapsedProperty, value); }
+			get { return (bool)GetValue(TagsCollapsedProperty); }
+			set { SetValue(TagsCollapsedProperty, value); }
 		}
 
-		public static readonly DependencyProperty SelectedCategoriesProperty = DependencyProperty.Register("SelectedCategories",
+        public static readonly DependencyProperty SelectedTagsProperty = DependencyProperty.Register("SelectedTags",
 			typeof(string), typeof(RandomEpisodeForm), new UIPropertyMetadata("", null));
 
-		public string SelectedCategories
+		public string SelectedTags
 		{
-			get { return (string)GetValue(SelectedCategoriesProperty); }
-			set { SetValue(SelectedCategoriesProperty, value); }
+			get { return (string)GetValue(SelectedTagsProperty); }
+			set { SetValue(SelectedTagsProperty, value); }
 		}
 
 		public static readonly DependencyProperty MatchesFoundProperty = DependencyProperty.Register("MatchesFound",
@@ -120,13 +120,13 @@ namespace JMMClient.Forms
 			set { SetValue(MatchesFoundProperty, value); }
 		}
 
-		public static readonly DependencyProperty SelectedCategoryFilterProperty = DependencyProperty.Register("SelectedCategoryFilter",
+        public static readonly DependencyProperty SelectedTagFilterProperty = DependencyProperty.Register("SelectedTagFilter",
 			typeof(string), typeof(RandomEpisodeForm), new UIPropertyMetadata("Any", null));
 
-		public string SelectedCategoryFilter
+		public string SelectedTagFilter
 		{
-			get { return (string)GetValue(SelectedCategoryFilterProperty); }
-			set { SetValue(SelectedCategoryFilterProperty, value); }
+			get { return (string)GetValue(SelectedTagFilterProperty); }
+			set { SetValue(SelectedTagFilterProperty, value); }
 		}
 
 		public RandomEpisodeForm()
@@ -135,9 +135,9 @@ namespace JMMClient.Forms
 
 			btnRandomEpisode.Click += new RoutedEventHandler(btnRandomSeries_Click);
 			this.Loaded += new RoutedEventHandler(RandomEpisodeForm_Loaded);
-			btnEditCategories.Click += new RoutedEventHandler(btnEditCategories_Click);
-			btnEditCategoriesFinish.Click += new RoutedEventHandler(btnEditCategoriesFinish_Click);
-			lbCategories.MouseDoubleClick += new MouseButtonEventHandler(lbCategories_MouseDoubleClick);
+            btnEditTags.Click += new RoutedEventHandler(btnEditTags_Click);
+            btnEditTagsFinish.Click += new RoutedEventHandler(btnEditTagsFinish_Click);
+            lbTags.MouseDoubleClick += new MouseButtonEventHandler(lbTags_MouseDoubleClick);
 
 			cboCatFilter.Items.Clear();
 			cboCatFilter.Items.Add("Any");
@@ -192,13 +192,13 @@ namespace JMMClient.Forms
 			}
 		}
 
-		void lbCategories_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        void lbTags_MouseDoubleClick(object sender, MouseButtonEventArgs e)
 		{
-			object obj = lbCategories.SelectedItem;
+            object obj = lbTags.SelectedItem;
 			if (obj == null) return;
 
 			string catName = obj.ToString();
-			string currentList = txtSelectedCategories.Text.Trim();
+            string currentList = txtSelectedTags.Text.Trim();
 
 			// add to the selected list
 			int index = currentList.IndexOf(catName, 0, StringComparison.InvariantCultureIgnoreCase);
@@ -207,25 +207,25 @@ namespace JMMClient.Forms
 			if (currentList.Length > 0) currentList += ",";
 			currentList += catName;
 
-			txtSelectedCategories.Text = currentList;
+            txtSelectedTags.Text = currentList;
 		}
 
-		void btnEditCategoriesFinish_Click(object sender, RoutedEventArgs e)
+        void btnEditTagsFinish_Click(object sender, RoutedEventArgs e)
 		{
-			CategoriesCollapsed = true;
-			CategoriesExpanded = false;
+			TagsCollapsed = true;
+			TagsExpanded = false;
 
-			SelectedCategories = txtSelectedCategories.Text.Trim();
-			SelectedCategoryFilter = cboCatFilter.SelectedItem.ToString();
+            SelectedTags = txtSelectedTags.Text.Trim();
+			SelectedTagFilter = cboCatFilter.SelectedItem.ToString();
 		}
 
-		void btnEditCategories_Click(object sender, RoutedEventArgs e)
+        void btnEditTags_Click(object sender, RoutedEventArgs e)
 		{
-			CategoriesCollapsed = false;
-			CategoriesExpanded = true;
+			TagsCollapsed = false;
+			TagsExpanded = true;
 
-			txtSelectedCategories.Text = SelectedCategories;
-			if (SelectedCategoryFilter.Equals("Any"))
+            txtSelectedTags.Text = SelectedTags;
+			if (SelectedTagFilter.Equals("Any"))
 				cboCatFilter.SelectedIndex = 0;
 			else
 				cboCatFilter.SelectedIndex = 1;
@@ -357,10 +357,10 @@ namespace JMMClient.Forms
 						{
 							if (gf.EvaluateGroupFilter(ser))
 							{
-								// categories
-								if (!string.IsNullOrEmpty(SelectedCategories))
+								// tags
+								if (!string.IsNullOrEmpty(SelectedTags))
 								{
-									string filterParm = SelectedCategories.Trim();
+									string filterParm = SelectedTags.Trim();
 
 									string[] cats = filterParm.Split(',');
 
@@ -373,7 +373,7 @@ namespace JMMClient.Forms
 										if (cat.Trim().Length == 0) continue;
 										if (cat.Trim() == ",") continue;
 
-										index = ser.CategoriesString.IndexOf(cat, 0, StringComparison.InvariantCultureIgnoreCase);
+										index = ser.TagsString.IndexOf(cat, 0, StringComparison.InvariantCultureIgnoreCase);
 
 										if (cboCatFilter.SelectedIndex == 0) // any
 										{
@@ -422,10 +422,10 @@ namespace JMMClient.Forms
 				foreach (AnimeSeriesVM ser in grp.AllAnimeSeries)
 				{
 
-					// categories
-					if (!string.IsNullOrEmpty(SelectedCategories))
+					// tags
+					if (!string.IsNullOrEmpty(SelectedTags))
 					{
-						string filterParm = SelectedCategories.Trim();
+						string filterParm = SelectedTags.Trim();
 
 						string[] cats = filterParm.Split(',');
 
@@ -438,7 +438,7 @@ namespace JMMClient.Forms
 							if (cat.Trim().Length == 0) continue;
 							if (cat.Trim() == ",") continue;
 
-							index = ser.CategoriesString.IndexOf(cat, 0, StringComparison.InvariantCultureIgnoreCase);
+							index = ser.TagsString.IndexOf(cat, 0, StringComparison.InvariantCultureIgnoreCase);
 
 							if (cboCatFilter.SelectedIndex == 0) // any
 							{
@@ -477,18 +477,18 @@ namespace JMMClient.Forms
 			LevelType = levelType;
 			LevelObject = levelObject;
 
-			PopulateCategories();
+			PopulateTags();
 		}
 
-		private void PopulateCategories()
+		private void PopulateTags()
 		{
-			AllCategoryNames = new ObservableCollection<string>();
+			AllTagNames = new ObservableCollection<string>();
 
-			ViewCategoryNames = CollectionViewSource.GetDefaultView(AllCategoryNames);
-			List<string> catsRaw = JMMServerVM.Instance.clientBinaryHTTP.GetAllCategoryNames();
+			ViewTagNames = CollectionViewSource.GetDefaultView(AllTagNames);
+			List<string> tagsRaw = JMMServerVM.Instance.clientBinaryHTTP.GetAllTagNames();
 
-			foreach (string cat in catsRaw)
-				AllCategoryNames.Add(cat);
+			foreach (string tag in tagsRaw)
+				AllTagNames.Add(tag);
 
 		}
 	}

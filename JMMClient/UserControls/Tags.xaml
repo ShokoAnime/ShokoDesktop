@@ -65,6 +65,11 @@
                  Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=TagsExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
                     Background="Transparent" Padding="0" BorderThickness="0" VerticalAlignment="Center"
                     ItemTemplate="{DynamicResource animeTagTemplate}" ItemsSource="{Binding Path=AnimeTags}">
+            <ListBox.Template>
+                <ControlTemplate>
+                    <ItemsPresenter />
+                </ControlTemplate>
+            </ListBox.Template>
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel  Focusable="False"  Orientation="Horizontal" />

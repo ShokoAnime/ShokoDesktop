@@ -38,6 +38,8 @@ namespace JMMClient
 					return 4;
 				else if (this.GetType() == typeof(VideoDetailedVM))
 					return 5;
+                else if (this.GetType() == typeof(VideoLocalVM))
+                    return 5;
 
 				return 1;
 			}

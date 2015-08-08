@@ -462,30 +462,10 @@ namespace JMMClient.ImageDownload
 					Trakt_ImageFanartVM trakFanart = req.ImageData as Trakt_ImageFanartVM;
 					return trakFanart.FullImagePathPlain;
 
-				case ImageEntityType.Trakt_Friend:
-
-					Trakt_FriendVM trakFriend = req.ImageData as Trakt_FriendVM;
-					return trakFriend.FullImagePathPlain;
-
-				case ImageEntityType.Trakt_ActivityScrobble:
-
-					Trakt_ActivityScrobbleVM trakScrobble = req.ImageData as Trakt_ActivityScrobbleVM;
-					return trakScrobble.UserFullImagePathPlain;
-
-				case ImageEntityType.Trakt_ShoutUser:
-
-					Trakt_ShoutUserVM trakShoutUser = req.ImageData as Trakt_ShoutUserVM;
-					return trakShoutUser.UserFullImagePathPlain;
-
 				case ImageEntityType.Trakt_Episode:
 
 					Trakt_EpisodeVM trakEp = req.ImageData as Trakt_EpisodeVM;
 					return trakEp.FullImagePathPlain;
-
-				case ImageEntityType.Trakt_WatchedEpisode:
-
-					Trakt_WatchedEpisodeVM trakwEp = req.ImageData as Trakt_WatchedEpisodeVM;
-					return trakwEp.FullImagePathPlain;
 
 				default:
 					return "";
@@ -542,16 +522,6 @@ namespace JMMClient.ImageDownload
 					Trakt_ImageFanartVM trakFanart = req.ImageData as Trakt_ImageFanartVM;
 					return trakFanart.Trakt_ImageFanartID.ToString();
 
-				case ImageEntityType.Trakt_Friend:
-
-					Trakt_FriendVM trakFriend = req.ImageData as Trakt_FriendVM;
-					return trakFriend.Trakt_FriendID.ToString();
-
-				case ImageEntityType.Trakt_ActivityScrobble:
-
-					Trakt_ActivityScrobbleVM trakScrobble = req.ImageData as Trakt_ActivityScrobbleVM;
-					return trakScrobble.User.Trakt_FriendID.ToString();
-
 				case ImageEntityType.Trakt_ShoutUser:
 
 					Trakt_ShoutUserVM traktShoutUser = req.ImageData as Trakt_ShoutUserVM;
@@ -561,11 +531,6 @@ namespace JMMClient.ImageDownload
 
 					Trakt_EpisodeVM trakEp = req.ImageData as Trakt_EpisodeVM;
 					return trakEp.Trakt_EpisodeID.ToString();
-
-				case ImageEntityType.Trakt_WatchedEpisode:
-
-					Trakt_WatchedEpisodeVM trakwEp = req.ImageData as Trakt_WatchedEpisodeVM;
-					return trakwEp.Trakt_EpisodeID.ToString();
 
 				default:
 					return "";

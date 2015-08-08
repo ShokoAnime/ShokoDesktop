@@ -6,7 +6,7 @@ using System.IO;
 
 namespace JMMClient.ViewModel
 {
-	public class VideoLocalVM : IComparable<VideoLocalVM>
+    public class VideoLocalVM : MainListWrapper, IComparable<VideoLocalVM>
 	{
 		public int VideoLocalID { get; set; }
 		public string FilePath { get; set; }
@@ -144,6 +144,11 @@ namespace JMMClient.ViewModel
 
 			ImportFolder = new ImportFolderVM(contract.ImportFolder);
 		}
+
+        public override List<MainListWrapper> GetDirectChildren()
+        {
+            return null;
+        }
 
 		public int CompareTo(VideoLocalVM obj)
 		{

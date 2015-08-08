@@ -167,6 +167,11 @@
                      ItemTemplate="{DynamicResource SimilarAnimeTemplate}"
                      ItemsSource="{Binding Path=SimilarAnimeLinks, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:SimilarAnimeControl}}}" 
                      Background="Transparent">
+            <ListBox.Template>
+                <ControlTemplate>
+                    <ItemsPresenter />
+                </ControlTemplate>
+            </ListBox.Template>
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel/>

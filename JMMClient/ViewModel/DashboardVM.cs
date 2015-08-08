@@ -41,9 +41,6 @@ namespace JMMClient
 		public ObservableCollection<object> RecommendationsDownload { get; set; }
 		public ICollectionView ViewRecommendationsDownload { get; set; }
 
-		public ObservableCollection<object> TraktActivity { get; set; }
-		public ICollectionView ViewTraktActivity { get; set; }
-
 		public ObservableCollection<object> RecentAdditions { get; set; }
 		public ICollectionView ViewRecentAdditions { get; set; }
 
@@ -124,9 +121,6 @@ namespace JMMClient
 			RecommendationsDownload = new ObservableCollection<object>();
 			ViewRecommendationsDownload = CollectionViewSource.GetDefaultView(RecommendationsDownload);
 
-			TraktActivity = new ObservableCollection<object>();
-			ViewTraktActivity = CollectionViewSource.GetDefaultView(TraktActivity);
-
 			RecentAdditions = new ObservableCollection<object>();
 			ViewRecentAdditions = CollectionViewSource.GetDefaultView(RecentAdditions);
 			
@@ -134,7 +128,7 @@ namespace JMMClient
 
 
 
-		public void RefreshData(bool traktScrobbles, bool traktShouts, bool refreshContinueWatching, bool refreshRecentAdditions, bool refreshOtherWidgets, RecentAdditionsType addType)
+		public void RefreshData(bool refreshContinueWatching, bool refreshRecentAdditions, bool refreshOtherWidgets, RecentAdditionsType addType)
 		{
 			try
 			{
@@ -153,7 +147,6 @@ namespace JMMClient
 						MiniCalendar.Clear();
 						RecommendationsWatch.Clear();
 						RecommendationsDownload.Clear();
-						TraktActivity.Clear();
 					}
 
 					if (refreshOtherWidgets)
@@ -163,7 +156,6 @@ namespace JMMClient
 						ViewMiniCalendar.Refresh();
 						ViewRecommendationsWatch.Refresh();
 						ViewRecommendationsDownload.Refresh();
-						ViewTraktActivity.Refresh();
 						ViewRecentAdditions.Refresh();
 					}
 
@@ -200,8 +192,6 @@ namespace JMMClient
 					if (UserSettingsVM.Instance.DashRecommendationsDownloadExpanded)
 						RefreshRecommendationsDownload();
 
-					if (UserSettingsVM.Instance.DashTraktFriendsExpanded)
-						RefreshTraktFriends(traktScrobbles, traktShouts);
 				}
 
 				IsLoadingData = false;
@@ -270,101 +260,6 @@ namespace JMMClient
 			}
 		}
 		
-
-		public void RefreshTraktFriends(bool traktScrobbles, bool traktShouts)
-		{
-			try
-			{
-				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
-				{
-					TraktActivity.Clear();
-				});
-
-				JMMServerBinary.Contract_Trakt_Activity traktActivity = JMMServerVM.Instance.clientBinaryHTTP.GetTraktFriendInfo(AppSettings.Dash_TraktFriends_Items,
-					AppSettings.Dash_TraktFriends_AnimeOnly, traktShouts, traktScrobbles);
-
-				List<object> activity = new List<object>();
-
-				if (traktActivity.HasTraktAccount)
-				{
-					foreach (JMMServerBinary.Contract_Trakt_FriendFrequest contractFriend in traktActivity.TraktFriendRequests)
-					{
-						Trakt_FriendRequestVM req = new Trakt_FriendRequestVM(contractFriend);
-						activity.Add(req);
-					}
-
-					foreach (JMMServerBinary.Contract_Trakt_FriendActivity contractAct in traktActivity.TraktFriendActivity)
-					{
-						if (contractAct.ActivityAction == (int)TraktActivityAction.Scrobble)
-						{
-							Trakt_ActivityScrobbleVM scrobble = new Trakt_ActivityScrobbleVM(contractAct);
-
-							if (!string.IsNullOrEmpty(scrobble.UserFullImagePath) && !File.Exists(scrobble.UserFullImagePath))
-							{
-								// re-download the friends avatar image
-								try
-								{
-									System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
-									{
-										ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.Trakt_ActivityScrobble, scrobble, true);
-										MainWindow.imageHelper.DownloadImage(req);
-									});
-									
-								}
-								catch (Exception ex)
-								{
-									logger.ErrorException(ex.ToString(), ex);
-								}
-							}
-
-							activity.Add(scrobble);
-						}
-						else if (contractAct.ActivityAction == (int)TraktActivityAction.Shout)
-						{
-							if (contractAct.ActivityType == (int)TraktActivityType.Episode)
-							{
-								Trakt_ActivityShoutEpisodeVM shoutEp = new Trakt_ActivityShoutEpisodeVM(contractAct);
-								activity.Add(shoutEp);
-							}
-							else
-							{
-								Trakt_ActivityShoutShowVM shoutShow = new Trakt_ActivityShoutShowVM(contractAct);
-								activity.Add(shoutShow);
-							}
-						}
-					}
-
-					foreach (JMMServerBinary.Contract_Trakt_Friend contract in traktActivity.TraktFriends)
-					{
-						if (contract.WatchedEpisodes != null && contract.WatchedEpisodes.Count > 0)
-						{
-							Trakt_FriendVM friend = new Trakt_FriendVM(contract);
-							activity.Add(friend);
-						}
-					}
-				}
-				else
-				{
-					Trakt_SignupVM signup = new Trakt_SignupVM();
-					activity.Add(signup);
-				}
-
-				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
-				{
-					foreach (object act in activity)
-						TraktActivity.Add(act);
-					ViewTraktActivity.Refresh();
-				});
-				
-			}
-			catch (Exception ex)
-			{
-				logger.ErrorException(ex.ToString(), ex);
-			}
-			finally
-			{
-			}
-		}
 
 		public void RefreshRecommendationsWatch()
 		{
@@ -450,8 +345,11 @@ namespace JMMClient
 			{
 				IsLoadingData = true;
 
-				foreach (RecommendationVM rec in RecommendationsDownload)
+				foreach (object obj in RecommendationsDownload)
 				{
+                    RecommendationVM rec = obj as RecommendationVM;
+                    if (rec == null) continue;
+
 					if (rec.Recommended_AnimeInfoNotExists)
 					{
 						string result = JMMServerVM.Instance.clientBinaryHTTP.UpdateAnimeData(rec.RecommendedAnimeID);
@@ -560,43 +458,6 @@ namespace JMMClient
 						EpsWatchNext_Recent.Add(ep);
 					}
 					
-					ViewEpsWatchNext_Recent.Refresh();
-				});
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-			finally
-			{
-			}
-		}
-
-		public void RefreshEpsWatchNext_Recent_Old()
-		{
-			try
-			{
-				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
-				{
-					EpsWatchNext_Recent.Clear();
-				});
-
-				List<JMMServerBinary.Contract_AnimeEpisode> epContracts =
-					JMMServerVM.Instance.clientBinaryHTTP.GetEpisodesToWatch_RecentlyWatched(UserSettingsVM.Instance.Dash_WatchNext_Items, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
-
-				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
-				{
-					foreach (JMMServerBinary.Contract_AnimeEpisode contract in epContracts)
-					{
-						AnimeEpisodeVM ep = new AnimeEpisodeVM(contract);
-						ep.RefreshAnime();
-
-						if (ep.AniDB_Anime != null && JMMServerVM.Instance.CurrentUser.EvaluateAnime(ep.AniDB_Anime))
-						{
-							ep.SetTvDBInfo();
-							EpsWatchNext_Recent.Add(ep);
-						}
-					}
 					ViewEpsWatchNext_Recent.Refresh();
 				});
 			}

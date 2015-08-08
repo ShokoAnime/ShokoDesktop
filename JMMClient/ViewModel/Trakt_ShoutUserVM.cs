@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using JMMClient.ImageDownload;
+using System.ComponentModel;
 
 namespace JMMClient.ViewModel
 {
-	public class Trakt_ShoutUserVM : BindableObject
+    public class Trakt_ShoutUserVM : BindableObject
 	{
 		public int AnimeID { get; set; }
 
@@ -22,76 +23,46 @@ namespace JMMClient.ViewModel
 			this.Shout = new Trakt_ShoutVM(contract.Shout);
 		}
 
-		public string UserImagePathOnlineOrLocal
-		{
-			get
-			{
-				if (!string.IsNullOrEmpty(UserFullImagePath) && File.Exists(UserFullImagePath)) return UserFullImagePath;
 
-				return UserOnlineImagePath;
-			}
-		}
+        private bool isShoutCollapsed = false;
+        public bool IsShoutCollapsed
+        {
+            get { return isShoutCollapsed; }
+            set
+            {
+                isShoutCollapsed = value;
+                base.RaisePropertyChanged("IsShoutCollapsed");
+            }
+        }
 
-		public string UserImagePathForDisplay
-		{
-			get
-			{
-				if (!string.IsNullOrEmpty(UserFullImagePath) && File.Exists(UserFullImagePath)) return UserFullImagePath;
+        private bool isShoutExpanded = false;
+        public bool IsShoutExpanded
+        {
+            get { return isShoutExpanded; }
+            set
+            {
+                isShoutExpanded = value;
+                base.RaisePropertyChanged("IsShoutExpanded");
+            }
+        }
 
-				return @"/Images/EpisodeThumb_NotFound.png";
-			}
-		}
+        public string CommentTruncated
+        {
+            get
+            {
+                if (Shout.Text.Length > 250)
+                    return Shout.Text.Substring(0, 250) + ".......";
+                else
+                    return Shout.Text;
+            }
+        }
 
-		
-
-		public string UserOnlineImagePath
-		{
-			get
-			{
-				if (string.IsNullOrEmpty(User.Avatar)) return "";
-				return User.Avatar;
-			}
-		}
-
-		public string UserFullImagePathPlain
-		{
-			get
-			{
-				// typical url
-				// http://vicmackey.trakt.tv/images/avatars/837.jpg
-				// http://gravatar.com/avatar/f894a4cbd5e8bcbb1a79010699af1183.jpg?s=140&r=pg&d=http%3A%2F%2Fvicmackey.trakt.tv%2Fimages%2Favatar-large.jpg
-
-				if (string.IsNullOrEmpty(User.Avatar)) return "";
-
-				string path = Utils.GetTraktImagePath_Avatars();
-				return Path.Combine(path, string.Format("{0}.jpg", User.Username));
-			}
-		}
-
-		public string UserFullImagePath
-		{
-			get
-			{
-				if (!File.Exists(UserFullImagePathPlain))
-				{
-					ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.Trakt_ShoutUser, this, false);
-					MainWindow.imageHelper.DownloadImage(req);
-					if (File.Exists(UserFullImagePathPlain)) return UserFullImagePathPlain;
-				}
-
-				return UserFullImagePathPlain;
-			}
-		}
-
-		private string delayedUserImage = "";
-		public string DelayedUserImage
-		{
-			get { return delayedUserImage; }
-			set
-			{
-				delayedUserImage = value;
-				base.RaisePropertyChanged("DelayedUserImage");
-			}
-		}
+        public string Comment
+        {
+            get
+            {
+                return Shout.Text;
+            }
+        }
 	}
 }

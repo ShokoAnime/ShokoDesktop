@@ -13,6 +13,8 @@ namespace JMMClient.ViewModel
 		public bool Spoiler { get; set; }
 		public DateTime? Inserted { get; set; }
 
+        public string Comment_Url { get; set; }
+
 		public string Episode_Season { get; set; }
 		public string Episode_Number { get; set; }
 		public string Episode_Title { get; set; }
@@ -122,6 +124,8 @@ namespace JMMClient.ViewModel
 			this.Text = contract.Text;
 			this.Spoiler = contract.Spoiler;
 			this.Inserted = contract.Inserted;
+
+            this.Comment_Url = contract.Comment_Url;
 
 			this.Episode_Season = contract.Episode_Season;
 			this.Episode_Number = contract.Episode_Number;

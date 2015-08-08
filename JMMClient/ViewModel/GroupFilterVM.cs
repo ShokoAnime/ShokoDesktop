@@ -201,14 +201,14 @@ namespace JMMClient
 			if (this.GroupFilterID.HasValue && this.GroupFilterID.Value < 0)
 			{
 				if (this.GroupFilterID.Value == Constants.StaticGF.Predefined ||
-					this.GroupFilterID.Value == Constants.StaticGF.Predefined_Categories ||
+					this.GroupFilterID.Value == Constants.StaticGF.Predefined_Tags ||
 					this.GroupFilterID.Value == Constants.StaticGF.Predefined_Years) 
 					return false;
 
-				if (this.GroupFilterID.Value == Constants.StaticGF.Predefined_Categories_Child)
+				if (this.GroupFilterID.Value == Constants.StaticGF.Predefined_Tags_Child)
 				{
-					// find all the groups that qualify by this category
-					int index = grp.Stat_AllCategories.IndexOf(this.PredefinedCriteria, 0, StringComparison.InvariantCultureIgnoreCase);
+					// find all the groups that qualify by this tag
+					int index = grp.Stat_AllTags.IndexOf(this.PredefinedCriteria, 0, StringComparison.InvariantCultureIgnoreCase);
 					if (index > -1)
 						return true;
 					else
@@ -464,7 +464,7 @@ namespace JMMClient
 						if (gfc.ConditionOperatorEnum == GroupFilterOperator.LessThan && grp.Stat_EpisodeCount > epCount) return false;
 						break;
 
-					case GroupFilterConditionType.Category:
+					case GroupFilterConditionType.Tag:
 
 						string filterParm = gfc.ConditionParameter.Trim();
 
@@ -476,7 +476,7 @@ namespace JMMClient
 							if (cat.Trim().Length == 0) continue;
 							if (cat.Trim() == ",") continue;
 
-							index = grp.Stat_AllCategories.IndexOf(cat, 0, StringComparison.InvariantCultureIgnoreCase);
+							index = grp.Stat_AllTags.IndexOf(cat, 0, StringComparison.InvariantCultureIgnoreCase);
 							if (index > -1)
 							{
 								foundCat = true;
@@ -810,7 +810,7 @@ namespace JMMClient
 						if (gfc.ConditionOperatorEnum == GroupFilterOperator.LessThan && ser.AniDB_Anime.EpisodeCountNormal > epCount) return false;
 						break;
 					
-					case GroupFilterConditionType.Category:
+					case GroupFilterConditionType.Tag:
 
 						string filterParm = gfc.ConditionParameter.Trim();
 
@@ -822,7 +822,7 @@ namespace JMMClient
 							if (cat.Trim().Length == 0) continue;
 							if (cat.Trim() == ",") continue;
 
-							index = ser.CategoriesString.IndexOf(cat, 0, StringComparison.InvariantCultureIgnoreCase);
+							index = ser.TagsString.IndexOf(cat, 0, StringComparison.InvariantCultureIgnoreCase);
 							if (index > -1)
 							{
 								foundCat = true;
@@ -982,7 +982,7 @@ namespace JMMClient
 			//	MainListHelperVM.Instance.RefreshGroupsSeriesData();
 
 			if (this.GroupFilterID.Value == Constants.StaticGF.All ||
-				this.GroupFilterID.Value == Constants.StaticGF.Predefined_Categories_Child ||
+				this.GroupFilterID.Value == Constants.StaticGF.Predefined_Tags_Child ||
 				this.GroupFilterID.Value == Constants.StaticGF.Predefined_Years_Child ||
 				this.GroupFilterID.Value >= 0)
 			{
@@ -1018,13 +1018,13 @@ namespace JMMClient
 				wrappers.Add(gf);
 
 				GroupFilterVM gfGenres = new GroupFilterVM();
-				gfGenres.GroupFilterID = Constants.StaticGF.Predefined_Categories;
+				gfGenres.GroupFilterID = Constants.StaticGF.Predefined_Tags;
 				gfGenres.FilterConditions = new ObservableCollection<GroupFilterConditionVM>();
 				gfGenres.AllowEditing = false;
 				gf.AllowDeletion = false;
 				gfGenres.ApplyToSeries = 0;
 				gfGenres.BaseCondition = 1;
-				gfGenres.FilterName = "By Category";
+				gfGenres.FilterName = "By Tag";
 
 				wrappers.Add(gfGenres);
 			}
@@ -1068,28 +1068,28 @@ namespace JMMClient
 					wrappers.Add(gf);
 				}
 			}
-			else if (this.GroupFilterID.Value == Constants.StaticGF.Predefined_Categories)
+			else if (this.GroupFilterID.Value == Constants.StaticGF.Predefined_Tags)
 			{
-				List<string> categories = new List<string>();
+				List<string> tags = new List<string>();
 
 				List<AnimeGroupVM> grps = new List<AnimeGroupVM>(MainListHelperVM.Instance.AllGroups);
 				foreach (AnimeGroupVM grp in grps)
 				{
 					if (!JMMServerVM.Instance.CurrentUser.EvaluateGroup(grp)) continue;
 
-					foreach (string cat in grp.CategoriesList)
+					foreach (string tag in grp.TagsList)
 					{
-						if (!categories.Contains(cat) && !string.IsNullOrEmpty(cat))
-							categories.Add(cat);
+						if (!tags.Contains(tag) && !string.IsNullOrEmpty(tag))
+							tags.Add(tag);
 					}
 				}
 
-				categories.Sort();
+				tags.Sort();
 
-				foreach (string cat in categories)
+				foreach (string cat in tags)
 				{
 					GroupFilterVM gf = new GroupFilterVM();
-					gf.GroupFilterID = Constants.StaticGF.Predefined_Categories_Child;
+					gf.GroupFilterID = Constants.StaticGF.Predefined_Tags_Child;
 					gf.FilterConditions = new ObservableCollection<GroupFilterConditionVM>();
 					gf.AllowEditing = false;
 					gf.AllowDeletion = false;

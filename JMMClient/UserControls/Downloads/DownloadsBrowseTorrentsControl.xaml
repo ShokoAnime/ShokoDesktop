@@ -58,6 +58,11 @@
                 <StackPanel Orientation="Vertical">
                     <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled"  VerticalAlignment="Center" Background="Transparent" Padding="0" BorderThickness="0" Margin="0,0,0,5"
                      ItemTemplate="{StaticResource torrentLoadTemplate}" ItemsSource="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=AllTorrentSources}">
+                        <ListBox.Template>
+                            <ControlTemplate>
+                                <ItemsPresenter />
+                            </ControlTemplate>
+                        </ListBox.Template>
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel  Focusable="False"  Orientation="Horizontal" />

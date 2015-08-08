@@ -192,7 +192,7 @@ namespace JMMClient
 		HasUnwatchedEpisodes = 3,
 		AllEpisodesWatched = 4,
 		UserVoted = 5,
-		Category = 6,
+		Tag = 6,
 		AirDate = 7,
 		Studio = 8,
 		AssignedTvDBInfo = 9,

@@ -96,24 +96,24 @@
                     </Grid>
                 </Border>
 
-                <ListBox Name="lbMultipleFiles" Grid.Row="2" BorderThickness="0" Grid.Column="0" HorizontalAlignment="Stretch"  Margin="0" 
-                    VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
+
+
+                <TreeView Grid.Row="2" BorderThickness="0" Grid.Column="0" HorizontalAlignment="Stretch"  Margin="0"  ScrollViewer.CanContentScroll="True"
                     ItemsSource="{Binding Path=ViewEpisodes, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MultipleFilesControl}}}" 
-                    Background="Transparent" 
-                    ItemContainerStyle="{DynamicResource ListBoxItemStyle}"
-                         
-                    VerticalAlignment="Stretch" >
-                    <ListBox.ItemTemplate>
+                    Background="Transparent" ItemContainerStyle="{DynamicResource TreeViewItemStyleSimple}" VerticalAlignment="Stretch"
+                    VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" x:Name="lbMultipleFiles" >
+                    <TreeView.ItemTemplate>
                         <DataTemplate>
                             <usercontrols:MultipleFilesDetailControl/>
                         </DataTemplate>
-                    </ListBox.ItemTemplate>
-                    <ListBox.ItemsPanel>
+                    </TreeView.ItemTemplate>
+                    <TreeView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <VirtualizingStackPanel/>
                         </ItemsPanelTemplate>
-                    </ListBox.ItemsPanel>
-                </ListBox>
+                    </TreeView.ItemsPanel>
+                </TreeView>
+
             </DockPanel>
 
 

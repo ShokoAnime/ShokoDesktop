@@ -343,6 +343,11 @@
                                     BorderThickness="0" VerticalAlignment="Center"
                                     ItemTemplateSelector="{StaticResource BreadCrumbTemplateSelector}"
                                     ItemsSource="{Binding Source={x:Static local:MainListHelperVM.Instance},Path=BreadCrumbs}">
+                                    <ListBox.Template>
+                                        <ControlTemplate>
+                                            <ItemsPresenter />
+                                        </ControlTemplate>
+                                    </ListBox.Template>
                                     <ListBox.ItemsPanel>
                                         <ItemsPanelTemplate>
                                             <WrapPanel Orientation="Horizontal" />

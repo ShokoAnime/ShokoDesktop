@@ -478,7 +478,11 @@
                 ItemTemplate="{DynamicResource VideoDetailedTemplate}"
                 Visibility="{Binding Path=IsExpanded, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:EpisodeDetail}}, Converter={StaticResource BooleanToVisibilityConverter}}"
                 Background="Transparent" ItemContainerStyle="{DynamicResource ListBoxItemStyleMultipleFiles}"  VerticalAlignment="Stretch" >
-
+            <ListBox.Template>
+                <ControlTemplate>
+                    <ItemsPresenter />
+                </ControlTemplate>
+            </ListBox.Template>
         </ListBox>
 
     </Grid>

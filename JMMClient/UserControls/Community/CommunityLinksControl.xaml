@@ -29,6 +29,8 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="400*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="150*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -275,6 +277,24 @@
 
             
         </DockPanel >
+
+        <GridSplitter HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="1"
+                                Grid.Column="0" ResizeBehavior="PreviousAndNext"
+                                Height="2" Background="#FFBCBCBC"  />
+
+
+        <Grid Grid.Row="2" Grid.Column="0" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <WebBrowser x:Name="webAniDB" Grid.Column="0" Grid.Row="0" Margin="5"/>
+            <WebBrowser x:Name="webOther" Grid.Column="1" Grid.Row="0" Margin="5"/>
+        </Grid>
 
     </Grid>
     

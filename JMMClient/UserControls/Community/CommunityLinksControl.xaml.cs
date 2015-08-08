@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Windows;
@@ -56,6 +57,33 @@ namespace JMMClient.UserControls
 
             searchWorker.DoWork += new DoWorkEventHandler(searchWorker_DoWork);
             searchWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(searchWorker_RunWorkerCompleted);
+
+            dgTvDBResults.SelectionChanged += dgTvDBResults_SelectionChanged;
+
+            webAniDB.Navigated += webAniDB_Navigated;
+        }
+
+        void webAniDB_Navigated(object sender, NavigationEventArgs e)
+        {
+            HideScriptErrors(webAniDB, true);
+        }
+
+        void dgTvDBResults_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            e.Handled = true;
+            CrossRef_AniDB_TvDBVMV2 xref = ((DataGrid)sender).SelectedItem as CrossRef_AniDB_TvDBVMV2;
+            if (xref == null) return;
+            webAniDB.Navigate(xref.AniDBURL);
+            webOther.Navigate(xref.SeriesURL);
+        }
+
+        public void HideScriptErrors(WebBrowser wb, bool Hide)
+        {
+            FieldInfo fiComWebBrowser = typeof(WebBrowser).GetField("_axIWebBrowser2", BindingFlags.Instance | BindingFlags.NonPublic);
+            if (fiComWebBrowser == null) return;
+            object objComWebBrowser = fiComWebBrowser.GetValue(wb);
+            if (objComWebBrowser == null) return;
+            objComWebBrowser.GetType().InvokeMember("Silent", BindingFlags.SetProperty, null, objComWebBrowser, new object[] { Hide });
         }
 
         void searchWorker_DoWork(object sender, DoWorkEventArgs e)

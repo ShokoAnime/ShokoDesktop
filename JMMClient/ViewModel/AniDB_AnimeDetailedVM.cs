@@ -14,8 +14,6 @@ namespace JMMClient.ViewModel
 		public AniDB_AnimeVM AniDB_Anime { get; set; }
 		public AniDB_VoteVM UserVote { get; set; }
 
-		public List<AnimeCategoryVM> AnimeCategories { get; set; }
-		public List<AnimeCategoryVM> AnimeCategoriesSummary { get; set; }
 		public List<AnimeTagVM> AnimeTags { get; set; }
 		public List<AnimeTagVM> AnimeTagsSummary { get; set; }
         public List<CustomTagVM> CustomTags { get; set; }
@@ -52,10 +50,6 @@ namespace JMMClient.ViewModel
 			AnimeTitlesOfficial = new List<AnimeTitleVM>();
 			AnimeTitlesSynonym = new List<AnimeTitleVM>();
 			AnimeTitlesShort = new List<AnimeTitleVM>();
-
-
-			AnimeCategories = new List<AnimeCategoryVM>();
-			AnimeCategoriesSummary = new List<AnimeCategoryVM>();
 
 			AnimeTags = new List<AnimeTagVM>();
 			AnimeTagsSummary = new List<AnimeTagVM>();
@@ -124,9 +118,6 @@ namespace JMMClient.ViewModel
 			AnimeTitlesSynonym = new List<AnimeTitleVM>();
 			AnimeTitlesShort = new List<AnimeTitleVM>();
 
-			AnimeCategories = new List<AnimeCategoryVM>();
-			AnimeCategoriesSummary = new List<AnimeCategoryVM>();
-
 			AnimeTags = new List<AnimeTagVM>();
 			AnimeTagsSummary = new List<AnimeTagVM>();
             CustomTags.Clear();
@@ -160,31 +151,18 @@ namespace JMMClient.ViewModel
 				this.Stat_AudioLanguages = contract.Stat_AudioLanguages;
 				this.Stat_SubtitleLanguages = contract.Stat_SubtitleLanguages;
 
-				foreach (JMMServerBinary.Contract_AnimeCategory cat in contract.Categories)
-				{
-					AnimeCategoryVM vcat = new AnimeCategoryVM(cat);
-					AnimeCategories.Add(vcat);
-
-				}
-				AnimeCategories.Sort();
-
-				int i = 0;
-				foreach (AnimeCategoryVM cat in AnimeCategories)
-				{
-					if (i <= 5)
-						AnimeCategoriesSummary.Add(cat);
-					else
-						break;
-					i++;
-				}
-
 				foreach (JMMServerBinary.Contract_AnimeTag tag in contract.Tags)
 				{
 					AnimeTagVM vtag = new AnimeTagVM(tag);
 					AnimeTags.Add(vtag);
 				}
-				AnimeTags.Sort();
-				i = 0;
+				//AnimeTags.Sort();
+
+                List<SortPropOrFieldAndDirection> sortCriteria = new List<SortPropOrFieldAndDirection>();
+                sortCriteria.Add(new SortPropOrFieldAndDirection("Weight", true, SortType.eInteger));
+                AnimeTags = Sorting.MultiSort<AnimeTagVM>(AnimeTags, sortCriteria);
+
+				int i = 0;
 				foreach (AnimeTagVM tag in AnimeTags)
 				{
 					if (i <= 5)

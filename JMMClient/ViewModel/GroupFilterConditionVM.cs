@@ -133,7 +133,7 @@ namespace JMMClient.ViewModel
 					break;
 
 				case GroupFilterConditionType.AnimeType:
-				case GroupFilterConditionType.Category:
+				case GroupFilterConditionType.Tag:
                 case GroupFilterConditionType.CustomTags:
 				case GroupFilterConditionType.ReleaseGroup:
 				case GroupFilterConditionType.Studio:

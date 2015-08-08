@@ -425,6 +425,37 @@ namespace JMMClient.UserControls
             }
         }
 
+        private void CommandBinding_SyncTraktLink(object sender, ExecutedRoutedEventArgs e)
+        {
+            object obj = e.Parameter;
+            if (obj == null) return;
+
+            try
+            {
+                if (obj.GetType() == typeof(CrossRef_AniDB_TraktVMV2))
+                {
+                    AniDB_AnimeVM anime = this.DataContext as AniDB_AnimeVM;
+                    if (anime == null) return;
+
+                    string response = JMMServerVM.Instance.clientBinaryHTTP.SyncTraktSeries(anime.AnimeID);
+                    if (!string.IsNullOrEmpty(response))
+                        MessageBox.Show(response, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    else
+                        MessageBox.Show("Command has been queued", "Done", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Arrow;
+            }
+        }
+
         private void CommandBinding_ToggleAutoLinkTrakt(object sender, ExecutedRoutedEventArgs e)
         {
             object obj = e.Parameter;

@@ -106,20 +106,20 @@
             </StackPanel>
         </Border>
 
-        <ListBox x:Name="lbEpisodes" BorderThickness="0" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch"  Margin="0" 
-                 VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" ScrollViewer.CanContentScroll="True"
-                 ItemsSource="{Binding Path=CurrentEpisodes, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:EpisodeList}}}" 
-                 Background="Transparent" ItemContainerStyle="{DynamicResource ListBoxItemStyle}"  VerticalAlignment="Stretch">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
+        <TreeView BorderThickness="0" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch"  Margin="0" 
+                    ItemsSource="{Binding Path=CurrentEpisodes, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:EpisodeList}}}" 
+                    Background="Transparent" ItemContainerStyle="{DynamicResource TreeViewItemStyleSimple}" VerticalAlignment="Stretch"
+                    VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" x:Name="lbEpisodes" >
+                    <TreeView.ItemTemplate>
+                        <DataTemplate>
                     <usercontrols:EpisodeDetail/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-            <ListBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <VirtualizingStackPanel/>
-                </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
-        </ListBox>
+                        </DataTemplate>
+                    </TreeView.ItemTemplate>
+                    <TreeView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel/>
+                        </ItemsPanelTemplate>
+                    </TreeView.ItemsPanel>
+                </TreeView>
     </Grid>
 </UserControl>
