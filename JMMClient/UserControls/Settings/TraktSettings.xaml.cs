@@ -39,22 +39,6 @@ namespace JMMClient.UserControls
 
 			cboUpdateFrequency.SelectionChanged += new SelectionChangedEventHandler(cboUpdateFrequency_SelectionChanged);
 
-			cboSyncFrequency.Items.Clear();
-			cboSyncFrequency.Items.Add(Properties.Resources.UpdateFrequency_Daily);
-			cboSyncFrequency.Items.Add(Properties.Resources.UpdateFrequency_12Hours);
-			cboSyncFrequency.Items.Add(Properties.Resources.UpdateFrequency_6Hours);
-			cboSyncFrequency.Items.Add(Properties.Resources.UpdateFrequency_Never);
-
-			switch (JMMServerVM.Instance.Trakt_SyncFrequency)
-			{
-				case ScheduledUpdateFrequency.Daily: cboSyncFrequency.SelectedIndex = 0; break;
-				case ScheduledUpdateFrequency.HoursTwelve: cboSyncFrequency.SelectedIndex = 1; break;
-				case ScheduledUpdateFrequency.HoursSix: cboSyncFrequency.SelectedIndex = 2; break;
-				case ScheduledUpdateFrequency.Never: cboSyncFrequency.SelectedIndex = 3; break;
-			}
-
-			cboSyncFrequency.SelectionChanged += new SelectionChangedEventHandler(cboSyncFrequency_SelectionChanged);
-
             EvaulateVisibility();
 
 			btnTest.Click += new RoutedEventHandler(btnTest_Click);
@@ -73,20 +57,6 @@ namespace JMMClient.UserControls
 
 		void settingChanged(object sender, RoutedEventArgs e)
 		{
-			JMMServerVM.Instance.SaveServerSettingsAsync();
-		}
-
-
-		void cboSyncFrequency_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			switch (cboSyncFrequency.SelectedIndex)
-			{
-				case 0: JMMServerVM.Instance.Trakt_SyncFrequency = ScheduledUpdateFrequency.Daily; break;
-				case 1: JMMServerVM.Instance.Trakt_SyncFrequency = ScheduledUpdateFrequency.HoursTwelve; break;
-				case 2: JMMServerVM.Instance.Trakt_SyncFrequency = ScheduledUpdateFrequency.HoursSix; break;
-				case 3: JMMServerVM.Instance.Trakt_SyncFrequency = ScheduledUpdateFrequency.Never; break;
-			}
-
 			JMMServerVM.Instance.SaveServerSettingsAsync();
 		}
 
@@ -125,9 +95,6 @@ namespace JMMClient.UserControls
             spUpdatesLabel.Visibility = vis;
             spUpdatesData.Visibility = vis;
 
-            spSyncLabel.Visibility = vis;
-            spSyncData.Visibility = vis;
-
             spFanartLabel.Visibility = vis;
             spFanartData.Visibility = vis;
 
@@ -146,18 +113,23 @@ namespace JMMClient.UserControls
                 if (validUntil > 0)
                 {
                     DateTime? validDate = Utils.GetUTCDate(validUntil);
-                    if (validDate.HasValue)
+                    if (validDate.HasValue && DateTime.Now < validDate.Value)
                     {
                         tbValidity.Text = string.Format("Current token is valid until: {0}", validDate.ToString());
                         validToken = true;
                     }
+                    else
+                        tbValidity.Text = "Your token has expired, please get a new one.";
                 }
             }
+            else
+                tbValidity.Text = "You have not authorized JMM to access your Trakt account!";
 
+            /*
             if (validToken)
                 tbValidity.Visibility = System.Windows.Visibility.Visible;
             else
-                tbValidity.Visibility = System.Windows.Visibility.Collapsed;
+                tbValidity.Visibility = System.Windows.Visibility.Collapsed;*/
         }
 	}
 }

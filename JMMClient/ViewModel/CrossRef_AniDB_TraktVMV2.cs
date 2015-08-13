@@ -6,7 +6,7 @@ using System.Text;
 
 namespace JMMClient.ViewModel
 {
-    public class CrossRef_AniDB_TraktVMV2
+    public class CrossRef_AniDB_TraktVMV2 : INotifyPropertyChanged
     {
         public int CrossRef_AniDB_TraktV2ID { get; set; }
 		public int AnimeID { get; set; }
@@ -17,9 +17,11 @@ namespace JMMClient.ViewModel
 		public int TraktStartEpisodeNumber { get; set; }
 		public string TraktTitle { get; set; }
 		public int CrossRefSource { get; set; }
-        public int IsAdminApproved { get; set; }
+        
 
-		public event PropertyChangedEventHandler PropertyChanged;
+        public string Username { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 		private void NotifyPropertyChanged(String propertyName)
 		{
 			if (PropertyChanged != null)
@@ -40,7 +42,18 @@ namespace JMMClient.ViewModel
 			}
 		}
 
-		public string AniDBStartEpisodeTypeString
+        private string anidbURL = string.Empty;
+        public string AniDBURL
+        {
+            get { return anidbURL; }
+            set
+            {
+                anidbURL = value;
+                NotifyPropertyChanged("AniDBURL");
+            }
+        }
+
+        public string AniDBStartEpisodeTypeString
 		{
 			get
 			{
@@ -72,15 +85,64 @@ namespace JMMClient.ViewModel
 			}
 		}
 
-        public bool AdminApproved
+        private string isAdminApprovedImage = @"/Images/placeholder.png";
+        public string IsAdminApprovedImage
         {
-            get
+            get { return isAdminApprovedImage; }
+            set
             {
-                return IsAdminApproved == 1;
+                isAdminApprovedImage = value;
+                NotifyPropertyChanged("IsAdminApprovedImage");
             }
         }
 
-		public CrossRef_AniDB_TraktVMV2()
+        private void SetAdminApprovedImage()
+        {
+            if (IsAdminApproved == 1)
+                IsAdminApprovedImage = @"/Images/16_tick.png";
+            else
+                IsAdminApprovedImage = @"/Images/placeholder.png";
+        }
+
+        private int isAdminApproved = 0;
+        public int IsAdminApproved
+        {
+            get { return isAdminApproved; }
+            set
+            {
+                isAdminApproved = value;
+                NotifyPropertyChanged("IsAdminApproved");
+
+                IsAdminApprovedBool = isAdminApproved == 1;
+                IsNotAdminApprovedBool = !IsAdminApprovedBool;
+
+                SetAdminApprovedImage();
+            }
+        }
+
+        private bool isAdminApprovedBool = false;
+        public bool IsAdminApprovedBool
+        {
+            get { return isAdminApprovedBool; }
+            set
+            {
+                isAdminApprovedBool = value;
+                NotifyPropertyChanged("IsAdminApprovedBool");
+            }
+        }
+
+        private bool isNotAdminApprovedBool = true;
+        public bool IsNotAdminApprovedBool
+        {
+            get { return isNotAdminApprovedBool; }
+            set
+            {
+                isNotAdminApprovedBool = value;
+                NotifyPropertyChanged("IsNotAdminApprovedBool");
+            }
+        }
+
+        public CrossRef_AniDB_TraktVMV2()
 		{
 		}
 
@@ -98,11 +160,13 @@ namespace JMMClient.ViewModel
             this.IsAdminApproved = 0;
 
             ShowURL = string.Format(Constants.URLS.Trakt_Series, TraktID);
-		}
+            AniDBURL = string.Format(Constants.URLS.AniDB_Series, AnimeID);
+        }
 
         public CrossRef_AniDB_TraktVMV2(JMMServerBinary.Contract_Azure_CrossRef_AniDB_Trakt contract)
 		{
-			this.AnimeID = contract.AnimeID;
+            this.CrossRef_AniDB_TraktV2ID = contract.CrossRef_AniDB_TraktId.Value;
+            this.AnimeID = contract.AnimeID;
 			this.AniDBStartEpisodeType = contract.AniDBStartEpisodeType;
 			this.AniDBStartEpisodeNumber = contract.AniDBStartEpisodeNumber;
 			this.TraktID = contract.TraktID;
@@ -111,8 +175,11 @@ namespace JMMClient.ViewModel
 			this.CrossRefSource = contract.CrossRefSource;
 			this.TraktTitle = contract.TraktTitle;
             this.IsAdminApproved = contract.IsAdminApproved;
+            this.Username = contract.Username;
+            this.IsAdminApproved = contract.IsAdminApproved;
 
-			ShowURL = string.Format(Constants.URLS.Trakt_Series, TraktID);
+            ShowURL = string.Format(Constants.URLS.Trakt_Series, TraktID);
+            AniDBURL = string.Format(Constants.URLS.AniDB_Series, AnimeID);
         }
 
 		public override string ToString()

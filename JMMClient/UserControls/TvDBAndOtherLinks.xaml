@@ -316,6 +316,14 @@
                         </StackPanel>
                     </Button>
 
+                    <!-- TvDB Comm Links -->
+                    <Button Name="btnTvDBCommLinks2" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                            Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ShowCommunity, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <Image Height="16" Width="16" Source="/Images/16_Star.png" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Binding Path=CommTvDBButtonText, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}}" Margin="0,0,5,0"/>
+                        </StackPanel>
+                    </Button>
                     
                 </StackPanel>
 
@@ -369,6 +377,15 @@
                 </StackPanel>
             </Button>
 
+            <!-- TvDB Comm Links -->
+            <Button Name="btnTvDBCommLinks1" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                    Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ShowCommunity, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <Image Height="16" Width="16" Source="/Images/16_Star.png" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Binding Path=CommTvDBButtonText, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}}" Margin="0,0,5,0"/>
+                </StackPanel>
+            </Button>
+
         </StackPanel>
 
         <Border Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="LightGray" Margin="5,5,5,0"  />
@@ -392,7 +409,7 @@
                         </StackPanel>
                     </Button>
 
-                    <!-- Enable Auto TvDB Info links -->
+                    <!-- Enable Auto Trakt Info links -->
                     <Button Name="btnTraktAutoLinkEnable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                                     Command="{StaticResource ToggleAutoLinkTraktCommand}" CommandParameter="{Binding}"
                                     Visibility="{Binding Path=IsTraktLinkDisabled, Converter={StaticResource BooleanToVisibilityConverter}}" 
@@ -413,6 +430,15 @@
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
                             <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- Trakt Comm Links -->
+                    <Button Name="btnTraktCommLinks1" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                    Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ShowCommunity, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <Image Height="16" Width="16" Source="/Images/16_Star.png" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Binding Path=CommTraktButtonText, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
@@ -465,6 +491,15 @@
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
                     <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Trakt Comm Links -->
+            <Button Name="btnTraktCommLinks2" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                    Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ShowCommunity, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <Image Height="16" Width="16" Source="/Images/16_Star.png" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Binding Path=CommTraktButtonText, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
 

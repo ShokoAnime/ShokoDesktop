@@ -721,7 +721,7 @@ namespace JMMClient.UserControls
 
 	public class WorkerStatusContainer
 	{
-		public int TotalFileCount { get; set; }
+        public int TotalFileCount { get; set; }
 		public int CurrentFile { get; set; }
 
 		public WorkerStatusContainer()
@@ -730,7 +730,7 @@ namespace JMMClient.UserControls
 
 		public WorkerStatusContainer(int totalFileCount, int currentFile)
 		{
-			TotalFileCount = totalFileCount;
+            TotalFileCount = totalFileCount;
 			CurrentFile = currentFile;
 		}
 	}

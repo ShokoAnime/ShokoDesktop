@@ -24,10 +24,16 @@ namespace JMMClient.UserControls
     /// </summary>
     public partial class CommunityLinksControl : UserControl
     {
-        BackgroundWorker searchWorker = new BackgroundWorker();
+        BackgroundWorker searchTvDBWorker = new BackgroundWorker();
+        BackgroundWorker searchTraktWorker = new BackgroundWorker();
 
         public ObservableCollection<CrossRef_AniDB_TvDBVMV2> TVDBResults { get; set; }
         public ICollectionView ViewTVDBResults { get; set; }
+
+
+        public ObservableCollection<CrossRef_AniDB_TraktVMV2> TraktResults { get; set; }
+        public ICollectionView ViewTraktResults { get; set; }
+
 
         public static readonly DependencyProperty SearchStatusProperty = DependencyProperty.Register("SearchStatus",
             typeof(string), typeof(CommunityLinksControl), new UIPropertyMetadata("", null));
@@ -45,20 +51,32 @@ namespace JMMClient.UserControls
             TVDBResults = new ObservableCollection<CrossRef_AniDB_TvDBVMV2>();
             ViewTVDBResults = CollectionViewSource.GetDefaultView(TVDBResults);
 
+            TraktResults = new ObservableCollection<CrossRef_AniDB_TraktVMV2>();
+            ViewTraktResults = CollectionViewSource.GetDefaultView(TraktResults);
+
             ViewTVDBResults.SortDescriptions.Add(new SortDescription("IsAdminApproved", ListSortDirection.Descending));
             ViewTVDBResults.SortDescriptions.Add(new SortDescription("Username", ListSortDirection.Ascending));
-
             ViewTVDBResults.SortDescriptions.Add(new SortDescription("TvDBID", ListSortDirection.Ascending));
             ViewTVDBResults.SortDescriptions.Add(new SortDescription("TvDBSeasonNumber", ListSortDirection.Ascending));
             ViewTVDBResults.SortDescriptions.Add(new SortDescription("TvDBStartEpisodeNumber", ListSortDirection.Ascending));
 
+            ViewTraktResults.SortDescriptions.Add(new SortDescription("IsAdminApproved", ListSortDirection.Descending));
+            ViewTraktResults.SortDescriptions.Add(new SortDescription("Username", ListSortDirection.Ascending));
+            ViewTraktResults.SortDescriptions.Add(new SortDescription("TvDBID", ListSortDirection.Ascending));
+            ViewTraktResults.SortDescriptions.Add(new SortDescription("TvDBSeasonNumber", ListSortDirection.Ascending));
+            ViewTraktResults.SortDescriptions.Add(new SortDescription("TvDBStartEpisodeNumber", ListSortDirection.Ascending));
+
             btnSearch.Click += btnSearch_Click;
             btnRandomAnime.Click += btnRandomAnime_Click;
 
-            searchWorker.DoWork += new DoWorkEventHandler(searchWorker_DoWork);
-            searchWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(searchWorker_RunWorkerCompleted);
+            searchTvDBWorker.DoWork += new DoWorkEventHandler(searchTvDBWorker_DoWork);
+            searchTvDBWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(searchTvDBWorker_RunWorkerCompleted);
+
+            searchTraktWorker.DoWork += new DoWorkEventHandler(searchTraktWorker_DoWork);
+            searchTraktWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(searchTraktWorker_RunWorkerCompleted);
 
             dgTvDBResults.SelectionChanged += dgTvDBResults_SelectionChanged;
+            dgTraktResults.SelectionChanged += dgTraktResults_SelectionChanged;
 
             webAniDB.Navigated += webAniDB_Navigated;
         }
@@ -77,6 +95,15 @@ namespace JMMClient.UserControls
             webOther.Navigate(xref.SeriesURL);
         }
 
+        void dgTraktResults_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            e.Handled = true;
+            CrossRef_AniDB_TraktVMV2 xref = ((DataGrid)sender).SelectedItem as CrossRef_AniDB_TraktVMV2;
+            if (xref == null) return;
+            webAniDB.Navigate(xref.AniDBURL);
+            webOther.Navigate(xref.ShowURL);
+        }
+
         public void HideScriptErrors(WebBrowser wb, bool Hide)
         {
             FieldInfo fiComWebBrowser = typeof(WebBrowser).GetField("_axIWebBrowser2", BindingFlags.Instance | BindingFlags.NonPublic);
@@ -86,9 +113,11 @@ namespace JMMClient.UserControls
             objComWebBrowser.GetType().InvokeMember("Silent", BindingFlags.SetProperty, null, objComWebBrowser, new object[] { Hide });
         }
 
-        void searchWorker_DoWork(object sender, DoWorkEventArgs e)
+        #region TvDB
+
+        void searchTvDBWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            SearchResults res = new SearchResults();
+            SearchTvDBResults res = new SearchTvDBResults();
             res.ErrorMessage = string.Empty;
             res.TvDBLinks = new List<CrossRef_AniDB_TvDBVMV2>();
             res.ExtraInfo = string.Empty;
@@ -125,7 +154,7 @@ namespace JMMClient.UserControls
             }
         }
 
-        public void PerformSearch(SearchCriteria crit)
+        public void PerformTvDBSearch(SearchCriteria crit)
         {
             if (!JMMServerVM.Instance.ServerOnline) return;
 
@@ -140,7 +169,7 @@ namespace JMMClient.UserControls
 
                 this.Cursor = Cursors.Wait;
 
-                searchWorker.RunWorkerAsync(crit);
+                searchTvDBWorker.RunWorkerAsync(crit);
             }
             catch (Exception ex)
             {
@@ -148,11 +177,11 @@ namespace JMMClient.UserControls
             }
         }
 
-        void searchWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        void searchTvDBWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             try
             {
-                SearchResults res = e.Result as SearchResults;
+                SearchTvDBResults res = e.Result as SearchTvDBResults;
                 if (!string.IsNullOrEmpty(res.ErrorMessage))
                 {
                     //MessageBox.Show()
@@ -182,6 +211,106 @@ namespace JMMClient.UserControls
             }
         }
 
+        #endregion
+
+        #region Trakt
+
+        void searchTraktWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            SearchTraktResults res = new SearchTraktResults();
+            res.ErrorMessage = string.Empty;
+            res.TraktLinks = new List<CrossRef_AniDB_TraktVMV2>();
+            res.ExtraInfo = string.Empty;
+
+            try
+            {
+                SearchCriteria crit = e.Argument as SearchCriteria;
+                if (!string.IsNullOrEmpty(crit.ExtraInfo))
+                    res.ExtraInfo = crit.ExtraInfo;
+
+                try
+                {
+                    List<JMMServerBinary.Contract_Azure_CrossRef_AniDB_Trakt> xrefs = JMMServerVM.Instance.clientBinaryHTTP.GetTraktCrossRefWebCache(crit.AnimeID, true);
+                    if (xrefs != null && xrefs.Count > 0)
+                    {
+                        foreach (JMMServerBinary.Contract_Azure_CrossRef_AniDB_Trakt xref in xrefs)
+                        {
+                            CrossRef_AniDB_TraktVMV2 xrefAzure = new CrossRef_AniDB_TraktVMV2(xref);
+                            res.TraktLinks.Add(xrefAzure);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    res.ErrorMessage = ex.Message;
+                }
+
+                e.Result = res;
+            }
+            catch (Exception ex)
+            {
+                res.ErrorMessage = ex.Message;
+                e.Result = res;
+            }
+        }
+
+        public void PerformTraktSearch(SearchCriteria crit)
+        {
+            if (!JMMServerVM.Instance.ServerOnline) return;
+
+            this.Cursor = Cursors.Wait;
+            SearchStatus = string.Format("Searching...");
+
+            try
+            {
+                TraktResults.Clear();
+                btnRandomAnime.IsEnabled = false;
+                btnSearch.IsEnabled = false;
+
+                this.Cursor = Cursors.Wait;
+
+                searchTraktWorker.RunWorkerAsync(crit);
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+        }
+
+        void searchTraktWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            try
+            {
+                SearchTraktResults res = e.Result as SearchTraktResults;
+                if (!string.IsNullOrEmpty(res.ErrorMessage))
+                {
+                    //MessageBox.Show()
+                    SearchStatus = res.ErrorMessage;
+                    return;
+                }
+
+                foreach (CrossRef_AniDB_TraktVMV2 tvxref in res.TraktLinks)
+                    TraktResults.Add(tvxref);
+
+                SearchStatus = string.Empty;
+                if (!string.IsNullOrEmpty(res.ExtraInfo))
+                    SearchStatus = res.ExtraInfo;
+
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Arrow;
+                btnRandomAnime.IsEnabled = true;
+                btnSearch.IsEnabled = true;
+            }
+        }
+
+        #endregion
+
         void btnRandomAnime_Click(object sender, RoutedEventArgs e)
         {
             if (!JMMServerVM.Instance.ServerOnline) return;
@@ -194,17 +323,35 @@ namespace JMMClient.UserControls
             this.Cursor = Cursors.Wait;
             try
             {
-                TVDBResults.Clear();
-                
-                JMMServerBinary.Contract_Azure_AnimeLink contract = JMMServerVM.Instance.clientBinaryHTTP.Admin_GetRandomLinkForApproval((int)AzureLinkType.TvDB);
-                if (contract != null)
+                if (tabResults.SelectedIndex == 0)
                 {
-                    AzureAnimeLink link = new AzureAnimeLink(contract);
-                    SearchCriteria crit = new SearchCriteria();
-                    crit.AnimeID = link.RandomAnimeID;
-                    crit.ExtraInfo = string.Format("{0} Anime still need TvDB approval", link.AnimeNeedingApproval);
+                    TVDBResults.Clear();
 
-                    PerformSearch(crit); 
+                    JMMServerBinary.Contract_Azure_AnimeLink contract = JMMServerVM.Instance.clientBinaryHTTP.Admin_GetRandomLinkForApproval((int)AzureLinkType.TvDB);
+                    if (contract != null)
+                    {
+                        AzureAnimeLink link = new AzureAnimeLink(contract);
+                        SearchCriteria crit = new SearchCriteria();
+                        crit.AnimeID = link.RandomAnimeID;
+                        crit.ExtraInfo = string.Format("{0} Anime still need TvDB approval", link.AnimeNeedingApproval);
+
+                        PerformTvDBSearch(crit);
+                    }
+                }
+                else if (tabResults.SelectedIndex == 1)
+                {
+                    TraktResults.Clear();
+
+                    JMMServerBinary.Contract_Azure_AnimeLink contract = JMMServerVM.Instance.clientBinaryHTTP.Admin_GetRandomLinkForApproval((int)AzureLinkType.Trakt);
+                    if (contract != null)
+                    {
+                        AzureAnimeLink link = new AzureAnimeLink(contract);
+                        SearchCriteria crit = new SearchCriteria();
+                        crit.AnimeID = link.RandomAnimeID;
+                        crit.ExtraInfo = string.Format("{0} Anime still need TvDB approval", link.AnimeNeedingApproval);
+
+                        PerformTraktSearch(crit);
+                    }
                 }
             }
             catch (Exception ex)
@@ -227,7 +374,10 @@ namespace JMMClient.UserControls
             crit.AnimeID = animeID;
             crit.ExtraInfo = string.Empty;
 
-            PerformSearch(crit);
+            if (tabResults.SelectedIndex == 0)
+                PerformTvDBSearch(crit);
+            else if (tabResults.SelectedIndex == 1)
+                PerformTraktSearch(crit);
         }
 
         private void CommandBinding_Approve(object sender, ExecutedRoutedEventArgs e)
@@ -249,6 +399,17 @@ namespace JMMClient.UserControls
                     else
                         MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     
+                }
+                if (obj.GetType() == typeof(CrossRef_AniDB_TraktVMV2))
+                {
+                    CrossRef_AniDB_TraktVMV2 xref = obj as CrossRef_AniDB_TraktVMV2;
+
+                    string res = JMMServerVM.Instance.clientBinaryHTTP.ApproveTraktCrossRefWebCache(xref.CrossRef_AniDB_TraktV2ID);
+                    if (string.IsNullOrEmpty(res))
+                        xref.IsAdminApproved = 1;
+                    else
+                        MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
                 }
             }
             catch (Exception ex)
@@ -277,6 +438,17 @@ namespace JMMClient.UserControls
                         MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
                 }
+                if (obj.GetType() == typeof(CrossRef_AniDB_TraktVMV2))
+                {
+                    CrossRef_AniDB_TraktVMV2 xref = obj as CrossRef_AniDB_TraktVMV2;
+
+                    string res = JMMServerVM.Instance.clientBinaryHTTP.RevokeTraktCrossRefWebCache(xref.CrossRef_AniDB_TraktV2ID);
+                    if (string.IsNullOrEmpty(res))
+                        xref.IsAdminApproved = 0;
+                    else
+                        MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                }
             }
             catch (Exception ex)
             {
@@ -285,13 +457,25 @@ namespace JMMClient.UserControls
         }
     }
 
-    public class SearchResults
+    public class SearchTvDBResults
     {
         public string ErrorMessage { get; set; }
         public List<CrossRef_AniDB_TvDBVMV2> TvDBLinks { get; set; }
         public string ExtraInfo { get; set; }
 
-        public SearchResults()
+        public SearchTvDBResults()
+        {
+
+        }
+    }
+
+    public class SearchTraktResults
+    {
+        public string ErrorMessage { get; set; }
+        public List<CrossRef_AniDB_TraktVMV2> TraktLinks { get; set; }
+        public string ExtraInfo { get; set; }
+
+        public SearchTraktResults()
         {
 
         }

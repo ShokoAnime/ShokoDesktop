@@ -17,6 +17,60 @@
   <wsdl:binding name="BinaryBinding_IJMMServer" type="i0:IJMMServer">
     <wsp:PolicyReference URI="#BinaryBinding_IJMMServer_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ChangePassword">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/ChangePassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTraktShoutsForAnime">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetTraktShoutsForAnime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostShoutShow">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/PostShoutShow" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTopLevelGroupForSeries">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetTopLevelGroupForSeries" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEpisodesRecentlyWatched">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetEpisodesRecentlyWatched" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchMAL">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/SearchMAL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="TestMALLogin">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/TestMALLogin" style="document" />
       <wsdl:input>
@@ -521,6 +575,42 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="DeleteVideoLocalAndFile">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/DeleteVideoLocalAndFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RescanUnlinkedFiles">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/RescanUnlinkedFiles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFilesByGroupAndResolution">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetFilesByGroupAndResolution" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCrossRefDetails">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetCrossRefDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetTVDBCrossRefWebCache">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetTVDBCrossRefWebCache" style="document" />
       <wsdl:input>
@@ -856,6 +946,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetTraktCrossRefWebCache">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetTraktCrossRefWebCache" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApproveTraktCrossRefWebCache">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/ApproveTraktCrossRefWebCache" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RevokeTraktCrossRefWebCache">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/RevokeTraktCrossRefWebCache" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1232,8 +1340,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ChangePassword">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/ChangePassword" style="document" />
+    <wsdl:operation name="UseMyTraktLinksWebCache">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/UseMyTraktLinksWebCache" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1241,8 +1349,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetTraktShoutsForAnime">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetTraktShoutsForAnime" style="document" />
+    <wsdl:operation name="UseMyTvDBLinksWebCache">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/UseMyTvDBLinksWebCache" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1250,8 +1358,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="PostShoutShow">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/PostShoutShow" style="document" />
+    <wsdl:operation name="GetAllTraktCrossRefs">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllTraktCrossRefs" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1259,26 +1367,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetTopLevelGroupForSeries">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetTopLevelGroupForSeries" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetEpisodesRecentlyWatched">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetEpisodesRecentlyWatched" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="SearchMAL">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/SearchMAL" style="document" />
+    <wsdl:operation name="CheckTraktLinkValidity">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/CheckTraktLinkValidity" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -2008,42 +2098,6 @@
     </wsdl:operation>
     <wsdl:operation name="GetGroupVideoQualitySummary">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetGroupVideoQualitySummary" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DeleteVideoLocalAndFile">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/DeleteVideoLocalAndFile" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="RescanUnlinkedFiles">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/RescanUnlinkedFiles" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetFilesByGroupAndResolution">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetFilesByGroupAndResolution" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetCrossRefDetails">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetCrossRefDetails" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

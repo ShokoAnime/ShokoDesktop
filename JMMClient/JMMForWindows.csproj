@@ -224,6 +224,9 @@
     <Compile Include="Forms\ViewCommentForm.xaml.cs">
       <DependentUpon>ViewCommentForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Community\CommunityMaint.xaml.cs">
+      <DependentUpon>CommunityMaint.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\AzureAnimeLink.cs" />
     <Compile Include="Forms\ChangePasswordForm.xaml.cs">
       <DependentUpon>ChangePasswordForm.xaml</DependentUpon>
@@ -900,6 +903,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Community\CommunityLinksControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Community\CommunityMaint.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -75,15 +75,6 @@
         </StackPanel>
 
 
-        <!-- Schedule Sync -->
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="4" Margin="0,5,15,0" x:Name="spSyncLabel">
-            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TraktSyncFrequency}" VerticalAlignment="Center"></TextBlock>
-        </StackPanel>
-
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="4" Margin="0,5,5,0" x:Name="spSyncData">
-            <ComboBox Grid.Row="0" Name="cboSyncFrequency" VerticalAlignment="Center"></ComboBox>
-        </StackPanel>
-
         <!-- Fanart Auto Download-->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="5" Margin="0,5,15,0" x:Name="spFanartLabel">
             <TextBlock Text="Auto Download Fanart"  VerticalAlignment="Center"></TextBlock>

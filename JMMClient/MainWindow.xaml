@@ -823,6 +823,11 @@
                         <usercontrols:UpdateAniDBDataControl x:Name="updateAniDBData"/>
                     </TabItem>
 
+                    <TabItem Header="Community Data" Name="tabCommMaint">
+
+                        <usercontrols:CommunityMaint x:Name="commMaint"/>
+                    </TabItem>
+
                     <TabItem Header="My Votes" Name="tabRankings">
 
                         <usercontrols:RankingsControl x:Name="rankings"/>
@@ -1603,19 +1608,21 @@
 
 
 
-                    <TabItem Header="Stats" Name="tabComStats">
-                        
-
-                    </TabItem>
+                    
 
                     <TabItem Header="Links" Name="tabComLinks">
                         <usercontrols:CommunityLinksControl x:Name="ucComLinks"/>
 
                     </TabItem>
 
-                    
+                    <TabItem Header="Stats" Name="tabComStats">
+                        
+                        <TextBlock Margin="10" Text="Not Yet Implemented" FontSize="20"/>
+                    </TabItem>
 
-                    
+
+
+
 
                 </TabControl>
                 

@@ -228,7 +228,7 @@ namespace JMMClient.Forms
 			{
                 
                 // first find what the community recommends
-                List<JMMServerBinary.Contract_Azure_CrossRef_AniDB_Trakt> xrefs = JMMServerVM.Instance.clientBinaryHTTP.GetTraktCrossRefWebCache(AnimeID);
+                List<JMMServerBinary.Contract_Azure_CrossRef_AniDB_Trakt> xrefs = JMMServerVM.Instance.clientBinaryHTTP.GetTraktCrossRefWebCache(AnimeID, false);
                 if (xrefs != null && xrefs.Count > 0)
                 {
                     foreach (JMMServerBinary.Contract_Azure_CrossRef_AniDB_Trakt xref in xrefs)

@@ -1574,6 +1574,29 @@ namespace JMMClient
 			}
 		}
 
+        public void ShowWebCacheAdmin(AniDB_AnimeVM anime)
+        {
+            try
+            {
+                SearchCriteria crit = new SearchCriteria();
+
+                crit = new SearchCriteria();
+                crit.ExtraInfo = string.Empty;
+                crit.AnimeID = anime.AnimeID;
+
+                tabControl1.SelectedIndex = TAB_MAIN_Community;
+                tabcCommunity.SelectedIndex = 0;
+
+                ucComLinks.PerformTvDBSearch(crit);
+                ucComLinks.PerformTraktSearch(crit);
+
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+        }
+
         private void CommandBinding_ShowWebCacheAdmin(object sender, ExecutedRoutedEventArgs e)
         {
             object obj = e.Parameter;
@@ -1594,9 +1617,10 @@ namespace JMMClient
                 if (crit != null)
                 {
                     tabControl1.SelectedIndex = TAB_MAIN_Community;
-                    tabcCommunity.SelectedIndex = 1;
+                    tabcCommunity.SelectedIndex = 0;
 
-                    ucComLinks.PerformSearch(crit);
+                    ucComLinks.PerformTvDBSearch(crit);
+                    ucComLinks.PerformTraktSearch(crit);
                 }
 
             }
@@ -1688,7 +1712,20 @@ namespace JMMClient
 					ShowPinnedSeries(ser);
 				}
 
-			}
+                if (obj.GetType() == typeof(TraktSeriesData))
+                {
+                    TraktSeriesData trakt = (TraktSeriesData)obj;
+
+                    JMMServerBinary.Contract_AnimeSeries contract = JMMServerVM.Instance.clientBinaryHTTP.GetSeries(trakt.AnimeSeriesID,
+                        JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+
+                    if (contract == null) return;
+                    AnimeSeriesVM ser = new AnimeSeriesVM(contract);
+
+                    ShowPinnedSeries(ser);
+                }
+
+            }
 			catch (Exception ex)
 			{
 				Utils.ShowErrorMessage(ex);
