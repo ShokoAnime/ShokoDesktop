@@ -194,6 +194,7 @@
     <Compile Include="DataTemplateSelectors\PlaylistTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\RecDownloadTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\RecWatchTemplateSelector.cs" />
+    <Compile Include="DataTemplateSelectors\WatchingEpisodeTemplateSelector.cs" />
     <Compile Include="Downloads\CsvParser.cs" />
     <Compile Include="Downloads\CsvStream.cs" />
     <Compile Include="Downloads\DownloadHelper.cs" />
@@ -227,6 +228,7 @@
     <Compile Include="UserControls\Community\CommunityMaint.xaml.cs">
       <DependentUpon>CommunityMaint.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\AnimeEpisodeDisplayVM.cs" />
     <Compile Include="ViewModel\AzureAnimeLink.cs" />
     <Compile Include="Forms\ChangePasswordForm.xaml.cs">
       <DependentUpon>ChangePasswordForm.xaml</DependentUpon>
@@ -2062,6 +2064,7 @@
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.Core.dll" />
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.dll" />
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.resources.dll" />
+    <Resource Include="Images\Metro\back.png" />
     <Resource Include="Images\placeholder.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

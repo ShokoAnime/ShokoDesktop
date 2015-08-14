@@ -67,7 +67,6 @@ namespace JMMClient.UserControls
 
         private readonly string FilterTypeAll = "All";
         private readonly string FilterTypeMissing = "Missing a Link";
-        private readonly string FilterTypeIncorrect = "Link is Incorrect";
         private readonly string FilterTypeDifferent = "Link is Different to Approved Link";
 
 
@@ -86,7 +85,7 @@ namespace JMMClient.UserControls
             cboFilterType.Items.Clear();
             cboFilterType.Items.Add(FilterTypeAll);
             cboFilterType.Items.Add(FilterTypeMissing);
-            cboFilterType.Items.Add(FilterTypeIncorrect);
+            //cboFilterType.Items.Add(FilterTypeIncorrect);
             cboFilterType.Items.Add(FilterTypeDifferent);
             cboFilterType.SelectionChanged += new SelectionChangedEventHandler(cboFilterType_SelectionChanged);
             cboFilterType.SelectedIndex = 0;
@@ -112,8 +111,8 @@ namespace JMMClient.UserControls
 
             if (filterType.Equals(FilterTypeAll)) return true;
 
-            if (filterType.Equals(FilterTypeMissing) && ser.HasUserTraktLink) return true;
-            //if (filterType.Equals(FilterTypePassed) && ser.Success) return true;
+            if (filterType.Equals(FilterTypeMissing) && !ser.HasUserTraktLink) return true;
+            if (filterType.Equals(FilterTypeDifferent) && ser.HasCommTraktLink && !ser.UserTraktLinkMatch) return true;
 
             return false;
         }

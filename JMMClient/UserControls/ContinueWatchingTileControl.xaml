@@ -25,6 +25,8 @@
             </ResourceDictionary.MergedDictionaries>
 
             <local:PeopleSayingTemplateSelector x:Key="PeopleSayingTemplateSelector"/>
+            <local:WatchingEpisodeTemplateSelector x:Key="WatchingEpisodeTemplateSelector"/>
+            
 
             <RoutedUICommand x:Key="PlayEpisodeCommand" Text="PlayEpisodeCommand" />
             <RoutedUICommand x:Key="PlayAllUnwatchedEpisodeCommand" Text="PlayAllUnwatchedEpisodeCommand" />
@@ -48,6 +50,317 @@
                 <GradientStop Offset=".5" Color="#660000DD"></GradientStop>
                 <GradientStop Offset="1" Color="#33000000"></GradientStop>
             </RadialGradientBrush>
+
+            <!-- AnimeEpisodePrevious -->
+            <DataTemplate x:Key="AnimeEpisodePrevious">
+                <Border Background="#E3E3E6" BorderBrush="DarkGray" BorderThickness="1" Margin="0,10,10,10">
+                    <Grid Margin="5" VerticalAlignment="Top">
+
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <!-- Previous or Next Episode  -->
+                        <TextBlock Grid.Column="0" Grid.Row="0" Margin="5" Text="{Binding Path=DisplayTypeLabel}" FontSize="14" FontWeight="Bold"
+                                   Foreground="Black" VerticalAlignment="Center">
+                        </TextBlock>
+
+                        <StackPanel Grid.Column="0" Grid.Row="1" Margin="0" Orientation="Horizontal" >
+                            <!-- Episode Image  -->
+                            <Border BorderThickness="1" BorderBrush="DarkGray" Margin="5">
+
+                                <Image Source="{Binding EpisodeImageLoading}" ToolTipService.ShowDuration="60000"
+                               Width="200" VerticalAlignment="Top" HorizontalAlignment="Left">
+                                    <Image.ToolTip>
+                                        <Border Background="White" BorderThickness="1" BorderBrush="DarkGray">
+                                            <Grid >
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="260"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition />
+                                                </Grid.RowDefinitions>
+
+                                                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding EpisodeOverviewLoading}" HorizontalAlignment="Left" Margin="10,5,0,5"  Foreground="Black" 
+                                                   VerticalAlignment="Top"  TextWrapping="Wrap">
+                                                </TextBlock>
+                                            </Grid>
+                                        </Border>
+                                    </Image.ToolTip>
+                                </Image>
+
+
+                            </Border>
+
+                        </StackPanel>
+
+
+
+                        <StackPanel Grid.Column="0" Grid.Row="1" Margin="5" Orientation="Horizontal"  HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                            <!-- Toggle watched button -->
+                            <Button Name="btnToggleWatched" Margin="0,0,0,0" Style="{StaticResource FlatButtonStyle}" VerticalAlignment="Center"
+                            Command="{StaticResource ToggleWatchedStatusCommand}" CommandParameter="{Binding}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="24" Width="24" Source="/Images/16_eye2.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000">
+                                        <Image.ToolTip>
+                                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_Unwatched}"/>
+                                        </Image.ToolTip>
+                                    </Image>
+
+                                </StackPanel>
+                            </Button>
+
+                            <!-- Play episode button -->
+                            <Button Name="btnPlay" Margin="10,0,0,0" Style="{StaticResource FlatButtonStyle}" Command="{StaticResource PlayEpisodeCommand}" CommandParameter="{Binding}"
+                            VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="24" Width="24" Source="/Images/32_play2.png" Margin="0,0,0,0"/>
+                                </StackPanel>
+                                <Button.ToolTip>
+                                    <TextBlock Text="Play"/>
+                                </Button.ToolTip>
+                            </Button>
+                        </StackPanel>
+
+
+                        <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Horizontal"  HorizontalAlignment="Left" VerticalAlignment="Bottom">
+
+                            <TextBlock Margin="5" Text="{Binding Path=EpisodeNumberWithType}" FontSize="14" FontWeight="Bold"
+                                   Foreground="Black" VerticalAlignment="Center">
+                            </TextBlock>
+
+                            <TextBlock Margin="15,5,5,5" Text="Watched:" FontSize="12" FontWeight="Normal"
+                                   Foreground="Black" VerticalAlignment="Center">
+                            </TextBlock>
+
+                            <TextBlock Margin="5" Text="{Binding Path=WatchedDateAsString}" FontSize="12" FontWeight="Normal"
+                                   Foreground="Black" VerticalAlignment="Center">
+                            </TextBlock>
+
+                        </StackPanel>
+
+
+                        <TextBlock Grid.Column="0" Grid.Row="3" Margin="5" Text="{Binding Path=EpisodeName}" MaxWidth="500"
+                                   Foreground="Black" VerticalAlignment="Center" ToolTipService.ShowDuration="60000">
+                            <TextBlock.ToolTip>
+                                <TextBlock Text="{Binding Path=EpisodeName}"/>
+                            </TextBlock.ToolTip>
+                            </TextBlock>
+
+
+                    </Grid>
+                </Border>
+            </DataTemplate>
+
+            <!-- AnimeEpisodeCurrent -->
+            <DataTemplate x:Key="AnimeEpisodeCurrent">
+                <Border Background="White" BorderBrush="DarkGray" BorderThickness="1" Margin="0,10,10,10">
+                    <Grid Margin="5" VerticalAlignment="Top">
+
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <!-- Previous or Next Episode  -->
+                        <TextBlock Grid.Column="0" Grid.Row="0" Margin="5" Text="{Binding Path=DisplayTypeLabel}" FontSize="14" FontWeight="Bold"
+                                   Foreground="Black" VerticalAlignment="Center">
+                        </TextBlock>
+
+                        <StackPanel Grid.Column="0" Grid.Row="1" Margin="0" Orientation="Horizontal" >
+                            <!-- Episode Image  -->
+                            <Border BorderThickness="1" BorderBrush="DarkGray" Margin="5">
+
+                                <Image Source="{Binding EpisodeImageLoading}" ToolTipService.ShowDuration="60000"
+                               Width="200" VerticalAlignment="Top" HorizontalAlignment="Left">
+                                    <Image.ToolTip>
+                                        <Border Background="White" BorderThickness="1" BorderBrush="DarkGray">
+                                            <Grid >
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="260"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition />
+                                                </Grid.RowDefinitions>
+
+                                                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding EpisodeOverviewLoading}" HorizontalAlignment="Left" Margin="10,5,0,5"  Foreground="Black" 
+                                                   VerticalAlignment="Top"  TextWrapping="Wrap">
+                                                </TextBlock>
+                                            </Grid>
+                                        </Border>
+                                    </Image.ToolTip>
+                                </Image>
+
+
+                            </Border>
+
+                            <TextBlock MaxWidth="250" MaxHeight="125" Text="{Binding Path=EpisodeOverviewTruncated}" HorizontalAlignment="Left" Foreground="Black" 
+                                    Visibility="{Binding Path=ShowEpisodeOverviewInExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                    VerticalAlignment="Top" TextWrapping="Wrap" Margin="5,-1,0,0" Padding="0,0,5,0">
+                            </TextBlock>
+                        </StackPanel>
+                        
+                        
+
+                        <StackPanel Grid.Column="0" Grid.Row="1" Margin="5" Orientation="Horizontal"  HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                            <!-- Toggle watched button -->
+                            <Button Name="btnToggleWatched" Margin="0,0,0,0" Style="{StaticResource FlatButtonStyle}" VerticalAlignment="Center"
+                            Command="{StaticResource ToggleWatchedStatusCommand}" CommandParameter="{Binding}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="24" Width="24" Source="/Images/16_eye2.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000">
+                                        <Image.ToolTip>
+                                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_Unwatched}"/>
+                                        </Image.ToolTip>
+                                    </Image>
+
+                                </StackPanel>
+                            </Button>
+
+                            <!-- Play episode button -->
+                            <Button Name="btnPlay" Margin="10,0,0,0" Style="{StaticResource FlatButtonStyle}" Command="{StaticResource PlayEpisodeCommand}" CommandParameter="{Binding}"
+                            VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="24" Width="24" Source="/Images/32_play2.png" Margin="0,0,0,0"/>
+                                </StackPanel>
+                                <Button.ToolTip>
+                                    <TextBlock Text="Play"/>
+                                </Button.ToolTip>
+                            </Button>
+                        </StackPanel>
+
+
+                        <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Horizontal"  HorizontalAlignment="Left" VerticalAlignment="Bottom">
+
+                            <TextBlock Margin="5" Text="{Binding Path=EpisodeNumberWithType}" FontSize="14" FontWeight="Bold"
+                                   Foreground="Black" VerticalAlignment="Center">
+                            </TextBlock>
+
+                            <TextBlock Margin="15,5,5,5" Text="{Binding Path=AirDateAsString}" FontSize="14" FontWeight="Normal"
+                                   Foreground="Black" VerticalAlignment="Center">
+                            </TextBlock>
+
+                        </StackPanel>
+                            
+
+                        <TextBlock Grid.Column="0" Grid.Row="3" Margin="5" Text="{Binding Path=EpisodeName}" MaxWidth="500"
+                                   Foreground="Black" VerticalAlignment="Center" ToolTipService.ShowDuration="60000">
+                            <TextBlock.ToolTip>
+                                <TextBlock Text="{Binding Path=EpisodeName}"/>
+                            </TextBlock.ToolTip>
+                            </TextBlock>
+
+
+                    </Grid>
+                </Border>
+            </DataTemplate>
+
+            <!-- AnimeEpisodeOther -->
+            <DataTemplate x:Key="AnimeEpisodeOther">
+                <Border Background="White" BorderBrush="DarkGray" BorderThickness="1" Margin="0,10,10,10">
+                    <Grid Margin="5" VerticalAlignment="Top">
+
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <!-- Previous or Next Episode  -->
+                        <TextBlock Grid.Column="0" Grid.Row="0" Margin="5" Text="{Binding Path=DisplayTypeLabel}" FontSize="14" FontWeight="Bold"
+                                   Foreground="Black" VerticalAlignment="Center">
+                        </TextBlock>
+
+                        <!-- Episode Image  -->
+                        <Border BorderThickness="1" BorderBrush="DarkGray" Grid.Column="0" Grid.Row="1" Margin="5">
+
+                            <Image Source="{Binding EpisodeImageLoading}" ToolTipService.ShowDuration="60000"
+                               Width="200" VerticalAlignment="Top" HorizontalAlignment="Left">
+                                <Image.ToolTip>
+                                    <Border Background="White" BorderThickness="1" BorderBrush="DarkGray">
+                                        <Grid >
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="260"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition />
+                                            </Grid.RowDefinitions>
+
+                                            <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding EpisodeOverviewLoading}" HorizontalAlignment="Left" Margin="10,5,0,5"  Foreground="Black" 
+                                                   VerticalAlignment="Top"  TextWrapping="Wrap">
+                                            </TextBlock>
+                                        </Grid>
+                                    </Border>
+                                </Image.ToolTip>
+                            </Image>
+
+
+                        </Border>
+
+                        <StackPanel Grid.Column="0" Grid.Row="1" Margin="5" Orientation="Horizontal"  HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                            <!-- Toggle watched button -->
+                            <Button Name="btnToggleWatched" Margin="0,0,0,0" Style="{StaticResource FlatButtonStyle}" VerticalAlignment="Center"
+                            Command="{StaticResource ToggleWatchedStatusCommand}" CommandParameter="{Binding}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="24" Width="24" Source="/Images/16_eye2.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000">
+                                        <Image.ToolTip>
+                                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_Unwatched}"/>
+                                        </Image.ToolTip>
+                                    </Image>
+
+                                </StackPanel>
+                            </Button>
+
+                            <!-- Play episode button -->
+                            <Button Name="btnPlay" Margin="10,0,0,0" Style="{StaticResource FlatButtonStyle}" Command="{StaticResource PlayEpisodeCommand}" CommandParameter="{Binding}"
+                            VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="24" Width="24" Source="/Images/32_play2.png" Margin="0,0,0,0"/>
+                                </StackPanel>
+                                <Button.ToolTip>
+                                    <TextBlock Text="Play"/>
+                                </Button.ToolTip>
+                            </Button>
+                        </StackPanel>
+
+                        <TextBlock Grid.Column="0" Grid.Row="2" Margin="5" Text="{Binding Path=EpisodeNumberWithType}" FontSize="14" FontWeight="Bold"
+                                   Foreground="Black" VerticalAlignment="Center">
+                        </TextBlock>
+
+                        <TextBlock Grid.Column="0" Grid.Row="3" Margin="5" Text="{Binding Path=EpisodeName}" Width="200"
+                                   Foreground="Black" VerticalAlignment="Center" ToolTipService.ShowDuration="60000">
+                            <TextBlock.ToolTip>
+                                <TextBlock Text="{Binding Path=EpisodeName}"/>
+                            </TextBlock.ToolTip>
+                            </TextBlock>
+
+
+                    </Grid>
+                </Border>
+            </DataTemplate>
 
             <!-- AnimeEpisodePoster2 -->
             <DataTemplate x:Key="AnimeEpisodePoster2">
@@ -378,8 +691,13 @@
             <Border Name="panelTop" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,10,0,0">
                 <WrapPanel Orientation="Horizontal" VerticalAlignment="Center">
 
-                    <Button Name="btnBack" Margin="0" Style="{DynamicResource MetroCircleButtonStyle}" VerticalAlignment="Center">
-                        <Image Height="32" Width="32" Source="/Images/metro_Prev.png" Margin="2,0,2,0"/>
+                    <Button Name="btnBack" Margin="0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center">
+                        <Image Height="32" Width="32" Source="/Images/Metro/back.png" Margin="2,0,2,0"/>
+
+                    </Button>
+
+                    <Button Name="btnRefresh" Margin="0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center">
+                        <Image Height="32" Width="32" Source="/Images/Metro/refresh.png" Margin="2,0,2,0"/>
 
                     </Button>
 
@@ -561,13 +879,14 @@
 
             <!-- Play Next Episode -->
 
-            <TextBlock VerticalAlignment="Top" Text="Next 10 Episodes" Foreground="DarkBlue" FontFamily="Segoe UI"  FontSize="20" Margin="5,10,0,0"  Grid.Row="3" Grid.Column="0"/>
+            <TextBlock VerticalAlignment="Top" Text="Episodes" Foreground="DarkBlue" FontFamily="Segoe UI"  FontSize="20" Margin="5,10,0,0"  Grid.Row="3" Grid.Column="0"/>
 
-            <ListBox Grid.Row="4" Grid.Column="0" BorderThickness="0" Grid.ColumnSpan="3"  HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="5,5,0,5"
-                 VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
-                     ItemTemplate="{StaticResource AnimeEpisodePoster2}"
-                 ItemsSource="{Binding Path=ViewUnwatchedEpisodes, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:ContinueWatchingTileControl}}}"
-                 Background="Transparent"  VerticalAlignment="Stretch" >
+
+            <ListBox Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="0"   HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="5,5,0,5"
+                VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
+                ItemTemplateSelector="{StaticResource WatchingEpisodeTemplateSelector}"
+                ItemsSource="{Binding Path=ViewUnwatchedEpisodes, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:ContinueWatchingTileControl}}}"
+                Background="Transparent"  VerticalAlignment="Stretch" >
                 <ListBox.Template>
                     <ControlTemplate>
                         <ItemsPresenter />
@@ -580,7 +899,9 @@
                 </ListBox.ItemsPanel>
             </ListBox>
 
-            <TextBlock VerticalAlignment="Top" Text="You May Also Like" Foreground="DarkBlue" FontFamily="Segoe UI"  FontSize="20" Margin="5,10,0,0"  Grid.Row="5" Grid.Column="0"/>
+
+
+                <TextBlock VerticalAlignment="Top" Text="You May Also Like" Foreground="DarkBlue" FontFamily="Segoe UI"  FontSize="20" Margin="5,10,0,0"  Grid.Row="5" Grid.Column="0"/>
 
             <ListBox x:Name="lbEpisodes" Grid.Row="6" Grid.Column="0" BorderThickness="0" Grid.ColumnSpan="3"  HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="5,5,0,5"
                  VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
@@ -607,7 +928,7 @@
                 <Button x:Name="btnRefreshShouts"  Margin="0,0,2,2" Style="{StaticResource FlatButtonStyle}" VerticalAlignment="Center" ToolTip="Update Info from AniDB and Refresh"
                         Visibility="{Binding Path=IsNotLoadingShouts, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:ContinueWatchingTileControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                        <Image Height="22" Width="22" Source="/Images/Metro/reload_48.png" Margin="2,0,2,0"/>
+                        <Image Height="22" Width="22" Source="/Images/Metro/refresh.png" Margin="2,0,2,0"/>
                     </StackPanel>
                 </Button>
 

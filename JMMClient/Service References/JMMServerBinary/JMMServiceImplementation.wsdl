@@ -9,6 +9,12 @@
       <xsd:import schemaLocation="http://localhost:8111/JMMServerBinary?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IJMMServer_TraktFriendRequestApprove_InputMessage">
+    <wsdl:part name="parameters" element="tns:TraktFriendRequestApprove" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_TraktFriendRequestApprove_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TraktFriendRequestApproveResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_ChangePassword_InputMessage">
     <wsdl:part name="parameters" element="tns:ChangePassword" />
   </wsdl:message>
@@ -380,6 +386,12 @@
   </wsdl:message>
   <wsdl:message name="IJMMServer_GetAniDBEpisodesForAnime_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAniDBEpisodesForAnimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetGroupVideoQualitySummary_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroupVideoQualitySummary" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetGroupVideoQualitySummary_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroupVideoQualitySummaryResponse" />
   </wsdl:message>
   <wsdl:message name="IJMMServer_DeleteVideoLocalAndFile_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteVideoLocalAndFile" />
@@ -885,11 +897,11 @@
   <wsdl:message name="IJMMServer_TraktFriendRequestDeny_OutputMessage">
     <wsdl:part name="parameters" element="tns:TraktFriendRequestDenyResponse" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_TraktFriendRequestApprove_InputMessage">
-    <wsdl:part name="parameters" element="tns:TraktFriendRequestApprove" />
+  <wsdl:message name="IJMMServer_GetLastWatchedEpisodeForSeries_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLastWatchedEpisodeForSeries" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_TraktFriendRequestApprove_OutputMessage">
-    <wsdl:part name="parameters" element="tns:TraktFriendRequestApproveResponse" />
+  <wsdl:message name="IJMMServer_GetLastWatchedEpisodeForSeries_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLastWatchedEpisodeForSeriesResponse" />
   </wsdl:message>
   <wsdl:message name="IJMMServer_UseMyTraktLinksWebCache_InputMessage">
     <wsdl:part name="parameters" element="tns:UseMyTraktLinksWebCache" />
@@ -1395,13 +1407,11 @@
   <wsdl:message name="IJMMServer_ReevaluateDuplicateFiles_OutputMessage">
     <wsdl:part name="parameters" element="tns:ReevaluateDuplicateFilesResponse" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_GetGroupVideoQualitySummary_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetGroupVideoQualitySummary" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_GetGroupVideoQualitySummary_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetGroupVideoQualitySummaryResponse" />
-  </wsdl:message>
   <wsdl:portType name="IJMMServer">
+    <wsdl:operation name="TraktFriendRequestApprove">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/TraktFriendRequestApprove" message="tns:IJMMServer_TraktFriendRequestApprove_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/TraktFriendRequestApproveResponse" message="tns:IJMMServer_TraktFriendRequestApprove_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="ChangePassword">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/ChangePassword" message="tns:IJMMServer_ChangePassword_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/ChangePasswordResponse" message="tns:IJMMServer_ChangePassword_OutputMessage" />
@@ -1649,6 +1659,10 @@
     <wsdl:operation name="GetAniDBEpisodesForAnime">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAniDBEpisodesForAnime" message="tns:IJMMServer_GetAniDBEpisodesForAnime_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAniDBEpisodesForAnimeResponse" message="tns:IJMMServer_GetAniDBEpisodesForAnime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupVideoQualitySummary">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetGroupVideoQualitySummary" message="tns:IJMMServer_GetGroupVideoQualitySummary_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetGroupVideoQualitySummaryResponse" message="tns:IJMMServer_GetGroupVideoQualitySummary_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="DeleteVideoLocalAndFile">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/DeleteVideoLocalAndFile" message="tns:IJMMServer_DeleteVideoLocalAndFile_InputMessage" />
@@ -1986,9 +2000,9 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/TraktFriendRequestDeny" message="tns:IJMMServer_TraktFriendRequestDeny_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/TraktFriendRequestDenyResponse" message="tns:IJMMServer_TraktFriendRequestDeny_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="TraktFriendRequestApprove">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/TraktFriendRequestApprove" message="tns:IJMMServer_TraktFriendRequestApprove_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/TraktFriendRequestApproveResponse" message="tns:IJMMServer_TraktFriendRequestApprove_OutputMessage" />
+    <wsdl:operation name="GetLastWatchedEpisodeForSeries">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetLastWatchedEpisodeForSeries" message="tns:IJMMServer_GetLastWatchedEpisodeForSeries_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetLastWatchedEpisodeForSeriesResponse" message="tns:IJMMServer_GetLastWatchedEpisodeForSeries_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="UseMyTraktLinksWebCache">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/UseMyTraktLinksWebCache" message="tns:IJMMServer_UseMyTraktLinksWebCache_InputMessage" />
@@ -2325,10 +2339,6 @@
     <wsdl:operation name="ReevaluateDuplicateFiles">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/ReevaluateDuplicateFiles" message="tns:IJMMServer_ReevaluateDuplicateFiles_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/ReevaluateDuplicateFilesResponse" message="tns:IJMMServer_ReevaluateDuplicateFiles_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetGroupVideoQualitySummary">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetGroupVideoQualitySummary" message="tns:IJMMServer_GetGroupVideoQualitySummary_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetGroupVideoQualitySummaryResponse" message="tns:IJMMServer_GetGroupVideoQualitySummary_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:service name="JMMServiceImplementation">

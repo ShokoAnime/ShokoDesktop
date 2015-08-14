@@ -43,7 +43,7 @@ namespace JMMClient
 		public DateTime? AniDB_AirDateWithDefault { get; set; }
 
 		public event PropertyChangedEventHandler PropertyChanged;
-		private void NotifyPropertyChanged(String propertyName)
+		protected void NotifyPropertyChanged(String propertyName)
 		{
 			if (PropertyChanged != null)
 			{

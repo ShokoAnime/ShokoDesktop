@@ -899,6 +899,31 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_AniDB_Episode" nillable="true" type="tns:Contract_AniDB_Episode" />
+  <xs:complexType name="ArrayOfContract_GroupVideoQuality">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_GroupVideoQuality" nillable="true" type="tns:Contract_GroupVideoQuality" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_GroupVideoQuality" nillable="true" type="tns:ArrayOfContract_GroupVideoQuality" />
+  <xs:complexType name="Contract_GroupVideoQuality">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FileCountNormal" type="xs:int" />
+      <xs:element minOccurs="0" name="FileCountSpecials" type="xs:int" />
+      <xs:element minOccurs="0" name="GroupName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GroupNameShort" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NormalComplete" type="xs:boolean" />
+      <xs:element minOccurs="0" name="NormalEpisodeNumberSummary" nillable="true" type="xs:string" />
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="NormalEpisodeNumbers" nillable="true" type="q2:ArrayOfint" />
+      <xs:element minOccurs="0" name="Ranking" type="xs:int" />
+      <xs:element minOccurs="0" name="Resolution" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SpecialsComplete" type="xs:boolean" />
+      <xs:element minOccurs="0" name="TotalFileSize" type="xs:double" />
+      <xs:element minOccurs="0" name="TotalRunningTime" type="xs:long" />
+      <xs:element minOccurs="0" name="VideoBitDepth" type="xs:int" />
+      <xs:element minOccurs="0" name="VideoSource" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_GroupVideoQuality" nillable="true" type="tns:Contract_GroupVideoQuality" />
   <xs:complexType name="Contract_AniDB_AnimeCrossRefs">
     <xs:sequence>
       <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
@@ -1612,29 +1637,4 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_DuplicateFile" nillable="true" type="tns:Contract_DuplicateFile" />
-  <xs:complexType name="ArrayOfContract_GroupVideoQuality">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_GroupVideoQuality" nillable="true" type="tns:Contract_GroupVideoQuality" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_GroupVideoQuality" nillable="true" type="tns:ArrayOfContract_GroupVideoQuality" />
-  <xs:complexType name="Contract_GroupVideoQuality">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="FileCountNormal" type="xs:int" />
-      <xs:element minOccurs="0" name="FileCountSpecials" type="xs:int" />
-      <xs:element minOccurs="0" name="GroupName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="GroupNameShort" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="NormalComplete" type="xs:boolean" />
-      <xs:element minOccurs="0" name="NormalEpisodeNumberSummary" nillable="true" type="xs:string" />
-      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="NormalEpisodeNumbers" nillable="true" type="q2:ArrayOfint" />
-      <xs:element minOccurs="0" name="Ranking" type="xs:int" />
-      <xs:element minOccurs="0" name="Resolution" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="SpecialsComplete" type="xs:boolean" />
-      <xs:element minOccurs="0" name="TotalFileSize" type="xs:double" />
-      <xs:element minOccurs="0" name="TotalRunningTime" type="xs:long" />
-      <xs:element minOccurs="0" name="VideoBitDepth" type="xs:int" />
-      <xs:element minOccurs="0" name="VideoSource" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_GroupVideoQuality" nillable="true" type="tns:Contract_GroupVideoQuality" />
 </xs:schema>

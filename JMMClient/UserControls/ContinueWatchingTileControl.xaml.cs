@@ -31,7 +31,7 @@ namespace JMMClient.UserControls
 
 		private static Logger logger = LogManager.GetCurrentClassLogger();
 
-		public ObservableCollection<AnimeEpisodeVM> UnwatchedEpisodes { get; set; }
+		public ObservableCollection<AnimeEpisodeDisplayVM> UnwatchedEpisodes { get; set; }
 		public ICollectionView ViewUnwatchedEpisodes { get; set; }
 
 		public ObservableCollection<RecommendationTile> Recommendations { get; set; }
@@ -89,7 +89,7 @@ namespace JMMClient.UserControls
 		{
 			InitializeComponent();
 
-			UnwatchedEpisodes = new ObservableCollection<AnimeEpisodeVM>();
+			UnwatchedEpisodes = new ObservableCollection<AnimeEpisodeDisplayVM>();
 			ViewUnwatchedEpisodes = CollectionViewSource.GetDefaultView(UnwatchedEpisodes);
 
 			Recommendations = new ObservableCollection<RecommendationTile>();
@@ -100,6 +100,7 @@ namespace JMMClient.UserControls
 			btnBack.Click += new RoutedEventHandler(btnBack_Click);
 			btnPlayNextEp.Click += new RoutedEventHandler(btnPlayNextEp_Click);
 			btnPlayAllEps.Click += new RoutedEventHandler(btnPlayAllEps_Click);
+            btnRefresh.Click += BtnRefresh_Click;
 
 			episodesWorker.DoWork += new DoWorkEventHandler(episodesWorker_DoWork);
 			episodesWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(episodesWorker_RunWorkerCompleted);
@@ -131,11 +132,12 @@ namespace JMMClient.UserControls
 			lbShouts.PreviewMouseWheel += new MouseWheelEventHandler(lbShouts_PreviewMouseWheel);
 		}
 
-		
+        private void BtnRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            RefreshData();
+        }
 
-		
-
-		void lbShouts_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        void lbShouts_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
 		{
 			try
 			{
@@ -449,18 +451,34 @@ namespace JMMClient.UserControls
 				List<JMMServerBinary.Contract_AnimeEpisode> rawEps = JMMServerVM.Instance.clientBinaryHTTP.GetAllUnwatchedEpisodes(ser.AnimeSeriesID.Value,
 						JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
 
-				int i = 0;
+                // find the last watched episode
+                JMMServerBinary.Contract_AnimeEpisode rawLastEp = JMMServerVM.Instance.clientBinaryHTTP.GetLastWatchedEpisodeForSeries(ser.AnimeSeriesID.Value,
+                        JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+
+                if (rawLastEp != null)
+                {
+                    AnimeEpisodeDisplayVM ep = new AnimeEpisodeDisplayVM(rawLastEp);
+                    ep.SetTvDBInfo();
+                    ep.EpisodeOrder = 0;
+                    System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()
+                    {
+                        UnwatchedEpisodes.Add(ep);
+                    });
+                }
+
+                int i = 0;
 				foreach (JMMServerBinary.Contract_AnimeEpisode raw in rawEps)
 				{
 					i++;
-					AnimeEpisodeVM ep = new AnimeEpisodeVM(raw);
+                    AnimeEpisodeDisplayVM ep = new AnimeEpisodeDisplayVM(raw);
 					ep.SetTvDBInfo();
-					System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
+                    ep.EpisodeOrder = i;
+                    System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
 					{
 						UnwatchedEpisodes.Add(ep);
 					});
 
-					if (i == 10) break;
+					if (i == 5) break;
 				}
 			}
 			catch (Exception ex)
@@ -686,9 +704,9 @@ namespace JMMClient.UserControls
 
 			try
 			{
-				if (obj.GetType() == typeof(AnimeEpisodeVM))
+				if (obj.GetType() == typeof(AnimeEpisodeDisplayVM))
 				{
-					AnimeEpisodeVM ep = obj as AnimeEpisodeVM;
+                    AnimeEpisodeDisplayVM ep = obj as AnimeEpisodeDisplayVM;
 
 					if (ep.FilesForEpisode.Count == 1)
 						MainWindow.videoHandler.PlayVideo(ep.FilesForEpisode[0]);
@@ -745,9 +763,9 @@ namespace JMMClient.UserControls
 					ser = MainListHelperVM.Instance.GetSeriesForVideo(vid.VideoLocalID);
 				}
 
-				if (obj.GetType() == typeof(AnimeEpisodeVM))
+				if (obj.GetType() == typeof(AnimeEpisodeDisplayVM))
 				{
-					AnimeEpisodeVM ep = obj as AnimeEpisodeVM;
+                    AnimeEpisodeDisplayVM ep = obj as AnimeEpisodeDisplayVM;
 					newStatus = !ep.Watched;
 
 					JMMServerBinary.Contract_ToggleWatchedStatusOnEpisode_Response response = JMMServerVM.Instance.clientBinaryHTTP.ToggleWatchedStatusOnEpisode(ep.AnimeEpisodeID,
@@ -856,4 +874,6 @@ namespace JMMClient.UserControls
 			}
 		}
 	}
+
+    
 }
