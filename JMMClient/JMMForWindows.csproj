@@ -544,8 +544,8 @@
     <Compile Include="UserControls\Settings\MovieDBSettings.xaml.cs">
       <DependentUpon>MovieDBSettings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Settings\MPCSettingsControl.xaml.cs">
-      <DependentUpon>MPCSettingsControl.xaml</DependentUpon>
+    <Compile Include="UserControls\Settings\VideoPlayerSettingsControl.xaml.cs">
+      <DependentUpon>VideoPlayerSettingsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Settings\TraktSettings.xaml.cs">
       <DependentUpon>TraktSettings.xaml</DependentUpon>
@@ -1120,7 +1120,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Settings\MPCSettingsControl.xaml">
+    <Page Include="UserControls\Settings\VideoPlayerSettingsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

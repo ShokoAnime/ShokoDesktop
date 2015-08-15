@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using JMMClient.Downloads;
@@ -9,7 +7,7 @@ using System.Windows;
 
 namespace JMMClient
 {
-	public class UserSettingsVM : INotifyPropertyChanged
+    public class UserSettingsVM : INotifyPropertyChanged
 	{
 		public event PropertyChangedEventHandler PropertyChanged;
 
@@ -1149,6 +1147,16 @@ namespace JMMClient
 				OnPropertyChanged(new PropertyChangedEventArgs("PotPlayerFolder"));
 			}
 		}
+
+        public string VLCFolder
+        {
+            get { return AppSettings.VLCFolder; }
+            set
+            {
+                AppSettings.VLCFolder = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("VLCFolder"));
+            }
+        }
 
 		public int VideoWatchedPct
 		{

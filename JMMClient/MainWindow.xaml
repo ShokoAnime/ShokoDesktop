@@ -1372,7 +1372,7 @@
 
 
 
-                                <usercontrols:MPCSettingsControl Grid.Column="0" Grid.Row="1" Margin="5,0,0,10"/>
+                                <usercontrols:VideoPlayerSettingsControl Grid.Column="0" Grid.Row="1" Margin="5,0,0,10"/>
 
                                 <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="2" Background="#FFE9ECEF" Margin="0,0,0,5">
                                     <TextBlock Text="Automatic File Selection" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
