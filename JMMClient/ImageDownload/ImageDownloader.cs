@@ -467,7 +467,17 @@ namespace JMMClient.ImageDownload
 					Trakt_EpisodeVM trakEp = req.ImageData as Trakt_EpisodeVM;
 					return trakEp.FullImagePathPlain;
 
-				default:
+                case ImageEntityType.AniDB_Character:
+
+                    AniDB_CharacterVM chr = req.ImageData as AniDB_CharacterVM;
+                    return chr.ImagePathPlain;
+
+                case ImageEntityType.AniDB_Creator:
+
+                    AniDB_SeiyuuVM cre = req.ImageData as AniDB_SeiyuuVM;
+                    return cre.ImagePathPlain;
+
+                default:
 					return "";
 			}
 
@@ -532,7 +542,17 @@ namespace JMMClient.ImageDownload
 					Trakt_EpisodeVM trakEp = req.ImageData as Trakt_EpisodeVM;
 					return trakEp.Trakt_EpisodeID.ToString();
 
-				default:
+                case ImageEntityType.AniDB_Character:
+
+                    AniDB_CharacterVM chr = req.ImageData as AniDB_CharacterVM;
+                    return chr.AniDB_CharacterID.ToString();
+
+                case ImageEntityType.AniDB_Creator:
+
+                    AniDB_SeiyuuVM cre = req.ImageData as AniDB_SeiyuuVM;
+                    return cre.AniDB_SeiyuuID.ToString();
+
+                default:
 					return "";
 			}
 

@@ -188,6 +188,7 @@
     </ApplicationDefinition>
     <Compile Include="BindableObject.cs" />
     <Compile Include="DataTemplateSelectors\BreadCrumbTemplateSelector.cs" />
+    <Compile Include="DataTemplateSelectors\CharacterTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\DashRecentAdditionsTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\DashWatchNextTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\PeopleSayingTemplateSelector.cs" />
@@ -225,9 +226,14 @@
     <Compile Include="Forms\ViewCommentForm.xaml.cs">
       <DependentUpon>ViewCommentForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\AnimeSeriesSimple.xaml.cs">
+      <DependentUpon>AnimeSeriesSimple.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Community\CommunityMaint.xaml.cs">
       <DependentUpon>CommunityMaint.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\AniDB_CharacterVM.cs" />
+    <Compile Include="ViewModel\AniDB_SeiyuuVM.cs" />
     <Compile Include="ViewModel\AnimeEpisodeDisplayVM.cs" />
     <Compile Include="ViewModel\AzureAnimeLink.cs" />
     <Compile Include="Forms\ChangePasswordForm.xaml.cs">
@@ -366,9 +372,6 @@
     </Compile>
     <Compile Include="UserControls\AnimeSeries.xaml.cs">
       <DependentUpon>AnimeSeries.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\AnimeSeries_Hulu.xaml.cs">
-      <DependentUpon>AnimeSeries_Hulu.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\AvdumpBatchControl.xaml.cs">
       <DependentUpon>AvdumpBatchControl.xaml</DependentUpon>
@@ -888,7 +891,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\AnimeSeries_Hulu.xaml">
+    <Page Include="UserControls\AnimeSeriesSimple.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -12,6 +12,14 @@
         <Setter Property="Background" Value="#FF8FC4F2" />
     </Style>
 
+    <Style TargetType="ToolTip">
+        <Setter Property = "HorizontalOffset" Value="0"/>
+        <Setter Property = "VerticalOffset" Value="10"/>
+        <Setter Property = "Placement" Value="Right"/>
+        <Setter Property = "HasDropShadow" Value="false"/>
+        <Setter Property = "Margin" Value="0,0,0,0"/>
+    </Style>
+
     <Style x:Key="BorderControlStyle" TargetType="{x:Type Border}">
         <Setter Property="BorderBrush" Value="#FF000000" />
         <Setter Property="BorderThickness" Value="1,1,1,1" />

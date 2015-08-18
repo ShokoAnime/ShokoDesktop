@@ -14,7 +14,12 @@ namespace JMMClient
 		public static readonly int FlagLinkMAL = 4;
 		public static readonly int FlagLinkMovieDB = 8;
 
-		public struct GroupFilterName
+        public struct CharacterType
+        {
+            public static readonly string MAIN = "main character in";
+        }
+
+        public struct GroupFilterName
 		{
 			public static readonly string ContinueWatching = "Continue Watching (SYSTEM)";
 		}

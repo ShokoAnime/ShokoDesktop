@@ -37,15 +37,19 @@ namespace JMMClient.UserControls
 		public ObservableCollection<RecommendationTile> Recommendations { get; set; }
 
 		public ObservableCollection<object> Shouts { get; set; }
-		
 
-		BackgroundWorker episodesWorker = new BackgroundWorker();
+        public ObservableCollection<AniDB_CharacterVM> Characters { get; set; }
+        public ICollectionView ViewCharacters { get; set; }
+
+
+        BackgroundWorker episodesWorker = new BackgroundWorker();
 		BackgroundWorker recsWorker = new BackgroundWorker();
 		BackgroundWorker shoutsWorker = new BackgroundWorker();
 		BackgroundWorker postShoutWorker = new BackgroundWorker();
 		BackgroundWorker refreshShoutsRecsWorker = new BackgroundWorker();
+        BackgroundWorker charWorker = new BackgroundWorker();
 
-		public static readonly DependencyProperty UnwatchedEpisodeCountProperty = DependencyProperty.Register("UnwatchedEpisodeCount",
+        public static readonly DependencyProperty UnwatchedEpisodeCountProperty = DependencyProperty.Register("UnwatchedEpisodeCount",
 			typeof(int), typeof(ContinueWatchingTileControl), new UIPropertyMetadata(0, null));
 
 		public int UnwatchedEpisodeCount
@@ -92,7 +96,10 @@ namespace JMMClient.UserControls
 			UnwatchedEpisodes = new ObservableCollection<AnimeEpisodeDisplayVM>();
 			ViewUnwatchedEpisodes = CollectionViewSource.GetDefaultView(UnwatchedEpisodes);
 
-			Recommendations = new ObservableCollection<RecommendationTile>();
+            Characters = new ObservableCollection<AniDB_CharacterVM>();
+            ViewCharacters = CollectionViewSource.GetDefaultView(Characters);
+
+            Recommendations = new ObservableCollection<RecommendationTile>();
 			Shouts = new ObservableCollection<object>();
 
 			this.DataContextChanged += new DependencyPropertyChangedEventHandler(ContinueWatchingTileControl_DataContextChanged);
@@ -105,7 +112,10 @@ namespace JMMClient.UserControls
 			episodesWorker.DoWork += new DoWorkEventHandler(episodesWorker_DoWork);
 			episodesWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(episodesWorker_RunWorkerCompleted);
 
-			recsWorker.DoWork += new DoWorkEventHandler(recsWorker_DoWork);
+            charWorker.DoWork += new DoWorkEventHandler(charWorker_DoWork);
+            charWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(charWorker_RunWorkerCompleted);
+
+            recsWorker.DoWork += new DoWorkEventHandler(recsWorker_DoWork);
 			recsWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(recsWorker_RunWorkerCompleted);
 
 			shoutsWorker.DoWork += new DoWorkEventHandler(shoutsWorker_DoWork);
@@ -130,7 +140,11 @@ namespace JMMClient.UserControls
 			grdMain.PreviewMouseWheel += new MouseWheelEventHandler(grdMain_PreviewMouseWheel);
 			lbEpisodes.PreviewMouseWheel += new MouseWheelEventHandler(lbEpisodes_PreviewMouseWheel);
 			lbShouts.PreviewMouseWheel += new MouseWheelEventHandler(lbShouts_PreviewMouseWheel);
-		}
+            lbChars.PreviewMouseWheel += new MouseWheelEventHandler(lbShouts_PreviewMouseWheel);
+            lbRecommendations.PreviewMouseWheel += new MouseWheelEventHandler(lbShouts_PreviewMouseWheel);
+        }
+
+        
 
         private void BtnRefresh_Click(object sender, RoutedEventArgs e)
         {
@@ -321,6 +335,8 @@ namespace JMMClient.UserControls
 			refreshShoutsRecsWorker.RunWorkerAsync(animeSeries);
 		}
 
+
+
 		void refreshShoutsRecsWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
 		{
 			AnimeSeriesVM animeSeries = (AnimeSeriesVM)this.DataContext;
@@ -403,6 +419,13 @@ namespace JMMClient.UserControls
 			try
 			{
 				AnimeEpisodeVM ep = UnwatchedEpisodes[0];
+                if (ep.IsWatched == 1)
+                {
+                    if (UnwatchedEpisodes.Count == 1)
+                        ep = UnwatchedEpisodes[1];
+                    else
+                        return;
+                }
 
 				if (ep.FilesForEpisode.Count == 1)
 					MainWindow.videoHandler.PlayVideo(ep.FilesForEpisode[0]);
@@ -489,15 +512,14 @@ namespace JMMClient.UserControls
 
 		void recsWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
 		{
-			AnimeSeriesVM ser = this.DataContext as AnimeSeriesVM;
-			if (ser == null) return;
+            AnimeSeriesVM ser = this.DataContext as AnimeSeriesVM;
+            if (ser == null) return;
 
-			if (!shoutsWorker.IsBusy)
-			{
-				IsLoadingShouts = true;
-				shoutsWorker.RunWorkerAsync(ser);
-			}
-		}
+            if (!charWorker.IsBusy)
+            {
+                charWorker.RunWorkerAsync(ser);
+            }
+        }
 
 		void recsWorker_DoWork(object sender, DoWorkEventArgs e)
 		{
@@ -566,7 +588,7 @@ namespace JMMClient.UserControls
 		void shoutsWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
 		{
 			IsLoadingShouts = false;
-		}
+        }
 
 		void shoutsWorker_DoWork(object sender, DoWorkEventArgs e)
 		{
@@ -612,7 +634,84 @@ namespace JMMClient.UserControls
 			}
 		}
 
-		void btnBack_Click(object sender, RoutedEventArgs e)
+        void charWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            AnimeSeriesVM ser = this.DataContext as AnimeSeriesVM;
+            if (ser == null) return;
+
+            if (!shoutsWorker.IsBusy)
+            {
+                IsLoadingShouts = true;
+                shoutsWorker.RunWorkerAsync(ser);
+            }
+        }
+
+        void charWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                AnimeSeriesVM ser = e.Argument as AnimeSeriesVM;
+
+                List<JMMServerBinary.Contract_AniDB_Character> chars = JMMServerVM.Instance.clientBinaryHTTP.GetCharactersForAnime(ser.AniDB_ID);
+
+                List<AniDB_CharacterVM> chrsToAdd = new List<AniDB_CharacterVM>();
+
+                // first add all the main characters
+                foreach (JMMServerBinary.Contract_AniDB_Character chr in 
+                    chars.Where(x => x.CharType.Equals(Constants.CharacterType.MAIN, StringComparison.InvariantCultureIgnoreCase)))
+                {
+                    chrsToAdd.Add(new AniDB_CharacterVM(chr));
+                }
+
+                // now add all the character types
+                int i = 0;
+                foreach (JMMServerBinary.Contract_AniDB_Character chr in
+                    chars.Where(x => !x.CharType.Equals(Constants.CharacterType.MAIN, StringComparison.InvariantCultureIgnoreCase)))
+                {
+                    chrsToAdd.Add(new AniDB_CharacterVM(chr));
+                    i++;
+
+                    if (i == 25) break;
+                }
+
+                System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()
+                {
+                    foreach (AniDB_CharacterVM  chr in chrsToAdd)
+                        Characters.Add(chr);
+                });
+
+                /*
+                // first add all the main characters
+                foreach (JMMServerBinary.Contract_AniDB_Character chr in chars)
+                {
+                    if (chr.CharType.Equals(Constants.CharacterType.MAIN, StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()
+                        {
+                            Characters.Add(new AniDB_CharacterVM(chr));
+                        });
+                    }
+                }
+
+                // now add all the character types
+                foreach (JMMServerBinary.Contract_AniDB_Character chr in chars)
+                {
+                    if (!chr.CharType.Equals(Constants.CharacterType.MAIN, StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()
+                        {
+                            Characters.Add(new AniDB_CharacterVM(chr));
+                        });
+                    }
+                }*/
+            }
+            catch (Exception ex)
+            {
+                logger.ErrorException(ex.ToString(), ex);
+            }
+        }
+
+        void btnBack_Click(object sender, RoutedEventArgs e)
 		{
 			//MainWindow mainwdw = (MainWindow)Window.GetWindow(this);
 			//mainwdw.ShowDashMetroView(MetroViews.MainMetro);
@@ -632,6 +731,7 @@ namespace JMMClient.UserControls
 			UnwatchedEpisodes.Clear();
 			Recommendations.Clear();
 			Shouts.Clear();
+            Characters.Clear();
 
 			RefreshUnwatchedEpisodes();
 		}

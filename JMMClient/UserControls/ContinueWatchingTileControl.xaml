@@ -26,6 +26,8 @@
 
             <local:PeopleSayingTemplateSelector x:Key="PeopleSayingTemplateSelector"/>
             <local:WatchingEpisodeTemplateSelector x:Key="WatchingEpisodeTemplateSelector"/>
+            <local:CharacterTemplateSelector x:Key="CharacterTemplateSelector"/>
+            
             
 
             <RoutedUICommand x:Key="PlayEpisodeCommand" Text="PlayEpisodeCommand" />
@@ -633,10 +635,182 @@
                 </Border>
             </DataTemplate>
 
-            
+
+            <!-- CharacterTemplate -->
+            <DataTemplate x:Key="CharacterTemplate">
+                <Border Background="White" BorderBrush="DarkGray" BorderThickness="1" Margin="0,10,10,10">
+                    <Grid Margin="5" VerticalAlignment="Top">
+
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <!-- Char Type  -->
+                        <TextBlock Grid.Column="0" Grid.Row="0" Margin="5" Text="{Binding Path=CharName}" FontSize="14" FontWeight="Bold"
+                                   Foreground="Black" VerticalAlignment="Center">
+                        </TextBlock>
+
+                        <StackPanel Grid.Column="0" Grid.Row="1" Margin="0" Orientation="Horizontal" >
+                            <!-- Char Image  -->
+                            <Border BorderThickness="1" BorderBrush="DarkGray" Margin="5">
+                                <Image Source="{Binding ImagePath}" Height="140" VerticalAlignment="Top" HorizontalAlignment="Left">
+                                    <Image.ToolTip>
+
+                                        <Border Background="White" BorderBrush="DarkGray" BorderThickness="1" Margin="0,10,10,10">
+                                            <Grid Margin="5" VerticalAlignment="Top">
+
+
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition />
+                                                    <RowDefinition />
+                                                </Grid.RowDefinitions>
+
+                                                <!-- Char Type  -->
+                                                <TextBlock Grid.Column="0" Grid.Row="0" Margin="5" Text="{Binding Path=CharName}" FontSize="16" FontWeight="Bold" 
+                                                           Foreground="Black" VerticalAlignment="Center">
+                                                </TextBlock>
+
+                                                <!-- Seiyuu Name  -->
+                                                <TextBlock Grid.Column="1" Grid.Row="0" Margin="5" Text="{Binding Path=Seiyuu.SeiyuuName}" FontSize="16" FontWeight="Normal"
+                                                        Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Right">
+
+                                                </TextBlock>
+
+                                                <StackPanel Grid.Column="0" Grid.Row="1" Margin="0" Grid.ColumnSpan="2" Orientation="Horizontal" >
+                                                    <!-- Char Image  -->
+                                                    <Border BorderThickness="1" BorderBrush="DarkGray" Margin="5">
+                                                        <Image Source="{Binding ImagePath}" Height="300" VerticalAlignment="Top" HorizontalAlignment="Left">
+                                                        </Image>
+                                                    </Border>
 
 
 
+                                                    <TextBlock MaxWidth="300" MaxHeight="300" Text="{Binding Path=CharDescription}" HorizontalAlignment="Left" FontSize="14"
+                                                               Foreground="Black"  VerticalAlignment="Top" TextWrapping="Wrap" Margin="5,-1,0,0" Padding="0,0,5,0">
+                                                    </TextBlock>
+
+                                                    <!-- Seiyuu Image  -->
+                                                    <Border BorderThickness="1" BorderBrush="DarkGray" Margin="5">
+                                                        <Image Source="{Binding Seiyuu.ImagePath}" Height="300" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                                                    </Border>
+                                                </StackPanel>
+
+
+                                            </Grid>
+                                        </Border>
+
+                                    </Image.ToolTip>
+                                </Image>
+                            </Border>
+                        </StackPanel>
+
+
+                    </Grid>
+                </Border>
+            </DataTemplate>
+
+            <!-- CharacterTemplateMain -->
+            <DataTemplate x:Key="CharacterTemplateMain">
+                <Border Background="White" BorderBrush="DarkGray" BorderThickness="1" Margin="0,10,10,10">
+                    <Grid Margin="5" VerticalAlignment="Top">
+
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <!-- Char Name  -->
+                        <TextBlock Grid.Column="0" Grid.Row="0" Margin="5" Text="{Binding Path=CharName}" FontSize="14" FontWeight="Bold"
+                                   Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            
+                        </TextBlock>
+
+                        
+
+                        <StackPanel Grid.Column="0" Grid.Row="1" Margin="0" Orientation="Horizontal" >
+                            <!-- Char Image  -->
+                            <Border BorderThickness="1" BorderBrush="DarkGray" Margin="5">
+                                <Image Source="{Binding ImagePath}" Height="140" VerticalAlignment="Top" HorizontalAlignment="Left">
+                                    <Image.ToolTip>
+
+                                        <Border Background="White" BorderBrush="DarkGray" BorderThickness="1" Margin="0,10,10,10">
+                                            <Grid Margin="5" VerticalAlignment="Top">
+
+
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition />
+                                                    <RowDefinition />
+                                                </Grid.RowDefinitions>
+
+                                                <!-- Char Type  -->
+                                                <TextBlock Grid.Column="0" Grid.Row="0" Margin="5" Text="{Binding Path=CharName}" FontSize="16" FontWeight="Bold" 
+                                                           Foreground="Black" VerticalAlignment="Center">
+                                                </TextBlock>
+
+                                                <!-- Seiyuu Name  -->
+                                                <TextBlock Grid.Column="1" Grid.Row="0" Margin="5" Text="{Binding Path=Seiyuu.SeiyuuName}" FontSize="16" FontWeight="Normal"
+                                                        Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Right">
+
+                                                </TextBlock>
+
+                                                <StackPanel Grid.Column="0" Grid.Row="1" Margin="0" Grid.ColumnSpan="2" Orientation="Horizontal" >
+                                                    <!-- Char Image  -->
+                                                    <Border BorderThickness="1" BorderBrush="DarkGray" Margin="5">
+                                                        <Image Source="{Binding ImagePath}" Height="300" VerticalAlignment="Top" HorizontalAlignment="Left">
+                                                        </Image>
+                                                    </Border>
+
+
+
+                                                    <TextBlock MaxWidth="300" MaxHeight="300" Text="{Binding Path=CharDescription}" HorizontalAlignment="Left" FontSize="14"
+                                                               Foreground="Black"  VerticalAlignment="Top" TextWrapping="Wrap" Margin="5,-1,0,0" Padding="0,0,5,0">
+                                                    </TextBlock>
+
+                                                    <!-- Seiyuu Image  -->
+                                                    <Border BorderThickness="1" BorderBrush="DarkGray" Margin="5">
+                                                        <Image Source="{Binding Seiyuu.ImagePath}" Height="300" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                                                    </Border>
+                                                </StackPanel>
+
+
+                                            </Grid>
+                                        </Border>
+
+                                    </Image.ToolTip>
+                                </Image>
+                            </Border>
+
+                            <TextBlock MaxWidth="170" MaxHeight="140" Text="{Binding Path=CharDescription}" HorizontalAlignment="Left" Foreground="Black" 
+                                    VerticalAlignment="Top" TextWrapping="Wrap" Margin="5,-1,0,0" Padding="0,0,5,0">
+                            </TextBlock>
+
+                            <!-- Seiyuu Image  -->
+                            <Border BorderThickness="1" BorderBrush="DarkGray" Margin="5">
+                                <Image Source="{Binding Seiyuu.ImagePath}" Height="140" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                            </Border>
+                        </StackPanel>
+
+
+                    </Grid>
+                </Border>
+            </DataTemplate>
 
         </ResourceDictionary>
 
@@ -670,6 +844,8 @@
 
                 <RowDefinition Height="Auto"/>
 
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -882,7 +1058,7 @@
             <TextBlock VerticalAlignment="Top" Text="Episodes" Foreground="DarkBlue" FontFamily="Segoe UI"  FontSize="20" Margin="5,10,0,0"  Grid.Row="3" Grid.Column="0"/>
 
 
-            <ListBox Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="0"   HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="5,5,0,5"
+            <ListBox x:Name="lbEpisodes" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="0"   HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="5,5,0,5"
                 VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
                 ItemTemplateSelector="{StaticResource WatchingEpisodeTemplateSelector}"
                 ItemsSource="{Binding Path=ViewUnwatchedEpisodes, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:ContinueWatchingTileControl}}}"
@@ -900,10 +1076,30 @@
             </ListBox>
 
 
+            <!-- Characters -->
+            <TextBlock VerticalAlignment="Top" Text="Characters" Foreground="DarkBlue" FontFamily="Segoe UI"  FontSize="20" Margin="5,10,0,0"  Grid.Row="5" Grid.Column="0"/>
 
-                <TextBlock VerticalAlignment="Top" Text="You May Also Like" Foreground="DarkBlue" FontFamily="Segoe UI"  FontSize="20" Margin="5,10,0,0"  Grid.Row="5" Grid.Column="0"/>
+            <ListBox x:Name="lbChars" Grid.Row="6" Grid.Column="0" BorderThickness="0" Grid.ColumnSpan="3"  HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="5,5,0,5"
+                 VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
+                 ItemTemplateSelector="{StaticResource CharacterTemplateSelector}"
+                 ItemsSource="{Binding Path=ViewCharacters, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:ContinueWatchingTileControl}}}"
+                 Background="Transparent"  VerticalAlignment="Stretch" >
+                <ListBox.Template>
+                    <ControlTemplate>
+                        <ItemsPresenter />
+                    </ControlTemplate>
+                </ListBox.Template>
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
 
-            <ListBox x:Name="lbEpisodes" Grid.Row="6" Grid.Column="0" BorderThickness="0" Grid.ColumnSpan="3"  HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="5,5,0,5"
+            <!-- Recommendations -->
+            <TextBlock VerticalAlignment="Top" Text="You May Also Like" Foreground="DarkBlue" FontFamily="Segoe UI"  FontSize="20" Margin="5,10,0,0"  Grid.Row="7" Grid.Column="0"/>
+
+            <ListBox x:Name="lbRecommendations" Grid.Row="8" Grid.Column="0" BorderThickness="0" Grid.ColumnSpan="3"  HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="5,5,0,5"
                  VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
                      ItemTemplate="{StaticResource RecommendationTemplate}"
                  ItemsSource="{Binding Path=Recommendations, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:ContinueWatchingTileControl}}}"
@@ -920,7 +1116,10 @@
                 </ListBox.ItemsPanel>
             </ListBox>
 
-            <StackPanel Orientation="Horizontal" Margin="5,10,0,0"  Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3">
+
+            
+            <!-- Comments -->
+            <StackPanel Orientation="Horizontal" Margin="5,10,0,0"  Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="3">
 
                 <TextBlock VerticalAlignment="Top" Text="What People Are Saying" Foreground="DarkBlue" FontFamily="Segoe UI"  FontSize="20" Margin="0,0,10,0" />
 
@@ -938,7 +1137,7 @@
             </StackPanel>
             
 
-            <ListBox x:Name="lbShouts" Grid.Row="8" Grid.Column="0" BorderThickness="0" Grid.ColumnSpan="3"  HorizontalAlignment="Stretch" 
+            <ListBox x:Name="lbShouts" Grid.Row="10" Grid.Column="0" BorderThickness="0" Grid.ColumnSpan="3"  HorizontalAlignment="Stretch" 
                      ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="5,5,0,5"
                  VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
                  ItemTemplateSelector="{StaticResource PeopleSayingTemplateSelector}"
