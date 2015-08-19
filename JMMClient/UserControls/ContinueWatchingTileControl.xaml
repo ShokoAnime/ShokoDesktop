@@ -82,21 +82,9 @@
                                 <Image Source="{Binding EpisodeImageLoading}" ToolTipService.ShowDuration="60000"
                                Width="200" VerticalAlignment="Top" HorizontalAlignment="Left">
                                     <Image.ToolTip>
-                                        <Border Background="White" BorderThickness="1" BorderBrush="DarkGray">
-                                            <Grid >
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="Auto"/>
-                                                    <ColumnDefinition Width="260"/>
-                                                </Grid.ColumnDefinitions>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition />
-                                                </Grid.RowDefinitions>
-
-                                                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding EpisodeOverviewLoading}" HorizontalAlignment="Left" Margin="10,5,0,5"  Foreground="Black" 
-                                                   VerticalAlignment="Top"  TextWrapping="Wrap">
-                                                </TextBlock>
-                                            </Grid>
-                                        </Border>
+                                        <local:CustomToolTip HasRoundCorners="False">
+                                            <usercontrols:EpisodeDetailsToolTip/>
+                                        </local:CustomToolTip>
                                     </Image.ToolTip>
                                 </Image>
 
@@ -189,24 +177,11 @@
                             <!-- Episode Image  -->
                             <Border BorderThickness="1" BorderBrush="DarkGray" Margin="5">
 
-                                <Image Source="{Binding EpisodeImageLoading}" ToolTipService.ShowDuration="60000"
-                               Width="200" VerticalAlignment="Top" HorizontalAlignment="Left">
+                                <Image Source="{Binding EpisodeImageLoading}" ToolTipService.ShowDuration="60000" Width="200" VerticalAlignment="Top" HorizontalAlignment="Left">
                                     <Image.ToolTip>
-                                        <Border Background="White" BorderThickness="1" BorderBrush="DarkGray">
-                                            <Grid >
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="Auto"/>
-                                                    <ColumnDefinition Width="260"/>
-                                                </Grid.ColumnDefinitions>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition />
-                                                </Grid.RowDefinitions>
-
-                                                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding EpisodeOverviewLoading}" HorizontalAlignment="Left" Margin="10,5,0,5"  Foreground="Black" 
-                                                   VerticalAlignment="Top"  TextWrapping="Wrap">
-                                                </TextBlock>
-                                            </Grid>
-                                        </Border>
+                                        <local:CustomToolTip HasRoundCorners="False">
+                                            <usercontrols:EpisodeDetailsToolTip/>
+                                        </local:CustomToolTip>
                                     </Image.ToolTip>
                                 </Image>
 
@@ -301,21 +276,9 @@
                             <Image Source="{Binding EpisodeImageLoading}" ToolTipService.ShowDuration="60000"
                                Width="200" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <Image.ToolTip>
-                                    <Border Background="White" BorderThickness="1" BorderBrush="DarkGray">
-                                        <Grid >
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="260"/>
-                                            </Grid.ColumnDefinitions>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition />
-                                            </Grid.RowDefinitions>
-
-                                            <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding EpisodeOverviewLoading}" HorizontalAlignment="Left" Margin="10,5,0,5"  Foreground="Black" 
-                                                   VerticalAlignment="Top"  TextWrapping="Wrap">
-                                            </TextBlock>
-                                        </Grid>
-                                    </Border>
+                                    <local:CustomToolTip HasRoundCorners="False">
+                                        <usercontrols:EpisodeDetailsToolTip/>
+                                    </local:CustomToolTip>
                                 </Image.ToolTip>
                             </Image>
 

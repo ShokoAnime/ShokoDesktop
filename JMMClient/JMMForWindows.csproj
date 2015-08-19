@@ -235,6 +235,9 @@
     <Compile Include="UserControls\Custom ToolTips\CharacterSeiyuuToolTip.xaml.cs">
       <DependentUpon>CharacterSeiyuuToolTip.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Custom ToolTips\EpisodeDetailsToolTip.xaml.cs">
+      <DependentUpon>EpisodeDetailsToolTip.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\AniDB_CharacterVM.cs" />
     <Compile Include="ViewModel\AniDB_SeiyuuVM.cs" />
     <Compile Include="ViewModel\AnimeEpisodeDisplayVM.cs" />
@@ -923,6 +926,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Custom ToolTips\CharacterSeiyuuToolTip.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Custom ToolTips\EpisodeDetailsToolTip.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
