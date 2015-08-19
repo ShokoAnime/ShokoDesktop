@@ -232,6 +232,9 @@
     <Compile Include="UserControls\Community\CommunityMaint.xaml.cs">
       <DependentUpon>CommunityMaint.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Custom ToolTips\CharacterSeiyuuToolTip.xaml.cs">
+      <DependentUpon>CharacterSeiyuuToolTip.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\AniDB_CharacterVM.cs" />
     <Compile Include="ViewModel\AniDB_SeiyuuVM.cs" />
     <Compile Include="ViewModel\AnimeEpisodeDisplayVM.cs" />
@@ -389,11 +392,11 @@
     <Compile Include="UserControls\ContinueWatchingTileControl.xaml.cs">
       <DependentUpon>ContinueWatchingTileControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\CustomToolTip.cs" />
+    <Compile Include="UserControls\Custom ToolTips\CustomToolTip.cs" />
     <Compile Include="UserControls\DashboardControl.xaml.cs">
       <DependentUpon>DashboardControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\DashboardEpisodeOverviewTooltipContent.xaml.cs">
+    <Compile Include="UserControls\Custom ToolTips\DashboardEpisodeOverviewTooltipContent.xaml.cs">
       <DependentUpon>DashboardEpisodeOverviewTooltipContent.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\DashboardMetroDXControl.xaml.cs">
@@ -919,11 +922,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\Custom ToolTips\CharacterSeiyuuToolTip.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\DashboardControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\DashboardEpisodeOverviewTooltipContent.xaml">
+    <Page Include="UserControls\Custom ToolTips\DashboardEpisodeOverviewTooltipContent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

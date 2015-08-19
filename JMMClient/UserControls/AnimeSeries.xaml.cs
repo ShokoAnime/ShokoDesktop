@@ -1027,9 +1027,7 @@ namespace JMMClient.UserControls
 
 				SeriesTvDBWideBanners = AniDB_AnimeCrossRefs.TvDBImageWideBanners;
 
-				AniDB_AnimeCrossRefs.AllPosters.Insert(0, new PosterContainer(ImageEntityType.AniDB_Cover, ser.AniDB_Anime));
 				AllPosters = AniDB_AnimeCrossRefs.AllPosters;
-
 				AllFanarts = AniDB_AnimeCrossRefs.AllFanarts;
 			}
 			catch (Exception ex)
