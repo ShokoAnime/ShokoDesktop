@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.IO;
 using System.Diagnostics;
 using NLog;
@@ -9,12 +8,10 @@ using JMMClient.ViewModel;
 
 namespace JMMClient.Utilities
 {
-	public class VideoHandler
+    public class VideoHandler
 	{
 		private static Logger logger = LogManager.GetCurrentClassLogger();
 		private Dictionary<int, VideoDetailedVM> recentlyPlayedFiles = null;
-		private string lastFileNameProcessed = string.Empty;
-		private string lastPositionProcessed = string.Empty;
 		private System.Timers.Timer handleTimer = null;
 		private string iniPath = string.Empty;
 
@@ -84,7 +81,14 @@ namespace JMMClient.Utilities
 					fsw.EnableRaisingEvents = true;
 				}
 
-			}
+                if (!string.IsNullOrEmpty(AppSettings.VLCFolder) && Directory.Exists(AppSettings.VLCFolder))
+                {
+                    FileSystemWatcher fsw = new FileSystemWatcher(AppSettings.VLCFolder, "*.ini");
+                    fsw.IncludeSubdirectories = false;
+                    fsw.Changed += new FileSystemEventHandler(fsw_Changed);
+                    fsw.EnableRaisingEvents = true;
+                }
+            }
 			catch (Exception ex)
 			{
 				logger.ErrorException(ex.ToString(), ex);
@@ -128,7 +132,10 @@ namespace JMMClient.Utilities
 
 				if (fi.DirectoryName.Equals(AppSettings.PotPlayerFolder, StringComparison.InvariantCultureIgnoreCase))
 					HandleFileChangePotPlayer(iniPath);
-			});
+
+                if (fi.DirectoryName.Equals(AppSettings.VLCFolder, StringComparison.InvariantCultureIgnoreCase))
+                    HandleFileChangeVLC(iniPath);
+            });
 		}
 
 		public void HandleFileChangePotPlayer(string filePath)
@@ -151,19 +158,21 @@ namespace JMMClient.Utilities
 					if (line.ToLower().Contains("[rememberfiles]"))
 						foundSectionStart = true;
 
-					if (foundSectionStart && line.Trim().ToLower().StartsWith("[") && !line.ToLower().Contains("[rememberfiles]"))
-						foundSectionEnd = true;
+					if (foundSectionStart 
+                        && line.Trim().ToLower().StartsWith("[") 
+                        && !line.ToLower().Contains("[rememberfiles]"))
+						    foundSectionEnd = true;
 
-					if (foundSectionStart && !foundSectionEnd)
-					{
-						if (!line.ToLower().Contains("[rememberfiles]") && !string.IsNullOrEmpty(line)) allFiles.Add(i);
-					}
-
+					if (foundSectionStart 
+                        && !foundSectionEnd 
+                        && !line.ToLower().Contains("[rememberfiles]") 
+                        && !string.IsNullOrEmpty(line))
+                            allFiles.Add(i);
 				}
 
 				if (allFiles.Count == 0) return;
 
-				Dictionary<string, string> filePositions = new Dictionary<string, string>();
+				Dictionary<string, long> filePositions = new Dictionary<string, long>();
 				foreach (int lineNumber in allFiles)
 				{
 					// find the last file played
@@ -177,71 +186,15 @@ namespace JMMClient.Utilities
 					string position = fileNameLine.Substring(iPos1 + 1, iPos2 - iPos1 - 1);
 					string fileName = fileNameLine.Substring(iPos2 + 1, fileNameLine.Length - iPos2 - 1);
 
+                    long mpcPos = 0;
+                    long.TryParse(position, out mpcPos);
 
-					filePositions[fileName] = position;
+                    // if mpcPos == 0, it means that file has finished played completely
+
+                    filePositions[fileName] = mpcPos;
 				}
 
-				// find all the files which have changed
-				Dictionary<string, string> changedFilePositions = new Dictionary<string, string>();
-
-				foreach (KeyValuePair<string, string> kvp in filePositions)
-				{
-					changedFilePositions[kvp.Key] = kvp.Value;
-				}
-
-				// update the changed positions
-				foreach (KeyValuePair<string, string> kvp in changedFilePositions)
-				{
-					previousFilePositions[kvp.Key] = kvp.Value;
-				}
-
-				foreach (KeyValuePair<string, string> kvp in changedFilePositions)
-				{
-					lastFileNameProcessed = kvp.Key;
-					lastPositionProcessed = kvp.Value;
-
-					long mpcPos = 0;
-					if (!long.TryParse(kvp.Value, out mpcPos)) continue;
-
-					// if mpcPos == 0, it means that file has finished played completely
-
-					// MPC position is in micro-seconds
-					// convert to milli-seconds
-					//double mpcPosMS = (double)mpcPos / (double)10000;
-					double mpcPosMS = (double)mpcPos;
-
-					foreach (KeyValuePair<int, VideoDetailedVM> kvpVid in recentlyPlayedFiles)
-					{
-						if (kvpVid.Value.FullPath.Equals(kvp.Key, StringComparison.InvariantCultureIgnoreCase))
-						{
-							// we don't care about files that are already watched
-							if (kvpVid.Value.Watched) continue;
-
-							logger.Info(string.Format("Video position for {0} has changed to {1}", kvp.Key, kvp.Value));
-
-							// now check if this file is considered watched
-							double fileDurationMS = (double)kvpVid.Value.VideoInfo_Duration;
-
-							double progress = mpcPosMS / fileDurationMS * (double)100;
-							if (progress > (double)AppSettings.VideoWatchedPct || mpcPos == 0)
-							{
-								VideoDetailedVM vid = kvpVid.Value;
-
-								logger.Info(string.Format("Updating to watched from MPC: {0}", kvp.Key));
-
-								JMMServerVM.Instance.clientBinaryHTTP.ToggleWatchedStatusOnVideo(vid.VideoLocalID, true, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
-								MainListHelperVM.Instance.UpdateHeirarchy(vid);
-								MainListHelperVM.Instance.GetSeriesForVideo(vid.VideoLocalID);
-
-								//kvp.Value.VideoLocal_IsWatched = 1;
-								OnVideoWatchedEvent(new VideoWatchedEventArgs(vid.VideoLocalID, vid));
-
-								Debug.WriteLine("complete");
-							}
-
-						}
-					}
-				}
+                FindChangedFiles(filePositions);
 			}
 			catch (Exception ex)
 			{
@@ -252,165 +205,260 @@ namespace JMMClient.Utilities
 		public void HandleFileChangeMPC(string filePath)
 		{
 			try
-			{
-				if (!AppSettings.VideoAutoSetWatched) return;
+            {
+                if (!AppSettings.VideoAutoSetWatched) return;
 
-				List<int> allFilesHeaders = new List<int>();
-				List<int> allFilesPositions = new List<int>();
+                List<int> allFilesHeaders = new List<int>();
+                List<int> allFilesPositions = new List<int>();
 
-				string[] lines = File.ReadAllLines(filePath);
+                string[] lines = File.ReadAllLines(filePath);
 
-				// really we only need to check the first file, but will do this just in case
+                // really we only need to check the first file, but will do this just in case
 
-				// MPC 1.3 and lower looks like this
-				// File Name 0=M:\[ Anime to Watch - New ]\Arata Kangatari\[HorribleSubs] Arata Kangatari - 05 [720p].mkv
-				// File Position 0=14251233493
-				// File Name 1=M:\[ Anime to Watch - New ]\Hentai Ouji to Warawanai Neko\[gg]_Hentai_Ouji_to_Warawanai_Neko_-_04_[62E1DBF8].mkv
-				// File Position 1=13688612500
+                // MPC 1.3 and lower looks like this
+                // File Name 0=M:\[ Anime to Watch - New ]\Arata Kangatari\[HorribleSubs] Arata Kangatari - 05 [720p].mkv
+                // File Position 0=14251233493
+                // File Name 1=M:\[ Anime to Watch - New ]\Hentai Ouji to Warawanai Neko\[gg]_Hentai_Ouji_to_Warawanai_Neko_-_04_[62E1DBF8].mkv
+                // File Position 1=13688612500
 
-				// MPC 1.6 and lower looks like this
-				// File Name 0=M:\[ Anime to Watch - New ]\Arata Kangatari\[HorribleSubs] Arata Kangatari - 05 [720p].mkv
-				// File Name 1=M:\[ Anime to Watch - New ]\Hentai Ouji to Warawanai Neko\[gg]_Hentai_Ouji_to_Warawanai_Neko_-_04_[62E1DBF8].mkv
-				// File Position 0=14251233493
-				// File Position 1=13688612500
+                // MPC 1.6 and lower looks like this
+                // File Name 0=M:\[ Anime to Watch - New ]\Arata Kangatari\[HorribleSubs] Arata Kangatari - 05 [720p].mkv
+                // File Name 1=M:\[ Anime to Watch - New ]\Hentai Ouji to Warawanai Neko\[gg]_Hentai_Ouji_to_Warawanai_Neko_-_04_[62E1DBF8].mkv
+                // File Position 0=14251233493
+                // File Position 1=13688612500
 
-				// get file name header lines
-				string prefixHeader = string.Format("File Name ");
-				for (int i = 0; i < lines.Length; i++)
-				{
-					string line = lines[i];
+                // get file name header lines
+                string prefixHeader = string.Format("File Name ");
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    string line = lines[i];
 
-					if (line.StartsWith(prefixHeader, StringComparison.InvariantCultureIgnoreCase)) allFilesHeaders.Add(i);
+                    if (line.StartsWith(prefixHeader, StringComparison.InvariantCultureIgnoreCase)) allFilesHeaders.Add(i);
 
-					if (allFilesHeaders.Count == 20) break;
-				}
+                    if (allFilesHeaders.Count == 20) break;
+                }
 
-				if (allFilesHeaders.Count == 0) return;
+                if (allFilesHeaders.Count == 0) return;
 
-				string prefixPos = string.Format("File Position ");
-				for (int i = 0; i < lines.Length; i++)
-				{
-					string line = lines[i];
+                string prefixPos = string.Format("File Position ");
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    string line = lines[i];
 
-					if (line.StartsWith(prefixPos, StringComparison.InvariantCultureIgnoreCase)) allFilesPositions.Add(i);
+                    if (line.StartsWith(prefixPos, StringComparison.InvariantCultureIgnoreCase)) allFilesPositions.Add(i);
 
-					if (allFilesPositions.Count == 20) break;
-				}
+                    if (allFilesPositions.Count == 20) break;
+                }
 
-				Dictionary<string, string> filePositions = new Dictionary<string, string>();
-				foreach (int lineNumber in allFilesHeaders)
-				{
-					// find the last file played
-					string fileNameLine = lines[lineNumber];
+                Dictionary<string, long> filePositions = new Dictionary<string, long>();
+                foreach (int lineNumber in allFilesHeaders)
+                {
+                    // find the last file played
+                    string fileNameLine = lines[lineNumber];
 
-					// find the number of this file
-					string temp = fileNameLine.Trim().Replace(prefixHeader, "");
-					int iPosTemp = temp.IndexOf("=");
-					if (iPosTemp < 0) continue;
+                    // find the number of this file
+                    string temp = fileNameLine.Trim().Replace(prefixHeader, "");
+                    int iPosTemp = temp.IndexOf("=");
+                    if (iPosTemp < 0) continue;
 
-					string fileNumber = temp.Substring(0, iPosTemp);
+                    string fileNumber = temp.Substring(0, iPosTemp);
 
-					// now find the match play position line
-					string properPosLine = string.Empty;
-					foreach (int lineNumberPos in allFilesPositions)
-					{
-						string filePosLineTemp = lines[lineNumberPos];
+                    // now find the match play position line
+                    string properPosLine = string.Empty;
+                    foreach (int lineNumberPos in allFilesPositions)
+                    {
+                        string filePosLineTemp = lines[lineNumberPos];
 
-						// find the number of this file
-						string temp2 = filePosLineTemp.Trim().Replace(prefixPos, "");
-						int iPosTemp2 = temp2.IndexOf("=");
-						if (iPosTemp2 < 0) continue;
+                        // find the number of this file
+                        string temp2 = filePosLineTemp.Trim().Replace(prefixPos, "");
+                        int iPosTemp2 = temp2.IndexOf("=");
+                        if (iPosTemp2 < 0) continue;
 
-						string fileNumber2 = temp2.Substring(0, iPosTemp2);
-						if (fileNumber.Equals(fileNumber2, StringComparison.InvariantCultureIgnoreCase))
-						{
-							properPosLine = filePosLineTemp;
-							break;
-						}
-					}
+                        string fileNumber2 = temp2.Substring(0, iPosTemp2);
+                        if (fileNumber.Equals(fileNumber2, StringComparison.InvariantCultureIgnoreCase))
+                        {
+                            properPosLine = filePosLineTemp;
+                            break;
+                        }
+                    }
 
-					if (string.IsNullOrEmpty(properPosLine)) continue;
+                    if (string.IsNullOrEmpty(properPosLine)) continue;
 
-					// extract the file name and position
-					int iPos1 = fileNameLine.IndexOf("=");
-					if (iPos1 < 0) continue;
+                    // extract the file name and position
+                    int iPos1 = fileNameLine.IndexOf("=");
+                    if (iPos1 < 0) continue;
 
-					int iPos2 = properPosLine.IndexOf("=");
+                    int iPos2 = properPosLine.IndexOf("=");
 
-					string fileName = fileNameLine.Substring(iPos1 + 1, fileNameLine.Length - iPos1 - 1);
-					string position = properPosLine.Substring(iPos2 + 1, properPosLine.Length - iPos2 - 1);
+                    string fileName = fileNameLine.Substring(iPos1 + 1, fileNameLine.Length - iPos1 - 1);
+                    string position = properPosLine.Substring(iPos2 + 1, properPosLine.Length - iPos2 - 1);
 
-					filePositions[fileName] = position;
-				}
+                    long mpcPos = 0;
+                    long.TryParse(position, out mpcPos);
+                    
+                    // if mpcPos == 0, it means that file has finished played completely
 
-				// find all the files which have changed
-				Dictionary<string, string> changedFilePositions = new Dictionary<string, string>();
+                    // MPC position is in 10^-7 s
+                    // convert to milli-seconds (10^-3 s)
+                    // dont worry about remainder, as we're checking against 1 s precision later anyway
+                    filePositions[fileName] = mpcPos / 10000;
+                }
 
-				foreach (KeyValuePair<string, string> kvp in filePositions)
-				{
-					changedFilePositions[kvp.Key] = kvp.Value;
-				}
-
-				// update the changed positions
-				foreach (KeyValuePair<string, string> kvp in changedFilePositions)
-				{
-					previousFilePositions[kvp.Key] = kvp.Value;
-				}
-
-				foreach (KeyValuePair<string, string> kvp in changedFilePositions)
-				{
-					lastFileNameProcessed = kvp.Key;
-					lastPositionProcessed = kvp.Value;
-
-					long mpcPos = 0;
-					if (!long.TryParse(kvp.Value, out mpcPos)) continue;
-
-					// if mpcPos == 0, it means that file has finished played completely
-
-					// MPC position is in micro-seconds
-					// convert to milli-seconds
-					double mpcPosMS = (double)mpcPos / (double)10000;
-
-					foreach (KeyValuePair<int, VideoDetailedVM> kvpVid in recentlyPlayedFiles)
-					{
-						if (kvpVid.Value.FullPath.Equals(kvp.Key, StringComparison.InvariantCultureIgnoreCase))
-						{
-							// we don't care about files that are already watched
-							if (kvpVid.Value.Watched) continue;
-
-							logger.Info(string.Format("Video position for {0} has changed to {1}", kvp.Key, kvp.Value));
-
-							// now check if this file is considered watched
-							double fileDurationMS = (double)kvpVid.Value.VideoInfo_Duration;
-
-							double progress = mpcPosMS / fileDurationMS * (double)100;
-							if (progress > (double)AppSettings.VideoWatchedPct || mpcPos == 0)
-							{
-								VideoDetailedVM vid = kvpVid.Value;
-
-								logger.Info(string.Format("Updating to watched from MPC: {0}", kvp.Key));
-
-								JMMServerVM.Instance.clientBinaryHTTP.ToggleWatchedStatusOnVideo(vid.VideoLocalID, true, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
-								MainListHelperVM.Instance.UpdateHeirarchy(vid);
-								MainListHelperVM.Instance.GetSeriesForVideo(vid.VideoLocalID);
-
-								//kvp.Value.VideoLocal_IsWatched = 1;
-								OnVideoWatchedEvent(new VideoWatchedEventArgs(vid.VideoLocalID, vid));
-
-								Debug.WriteLine("complete");
-							}
-
-						}
-					}
-				}
-			}
-			catch (Exception ex)
+                FindChangedFiles(filePositions);
+            }
+            catch (Exception ex)
 			{
 				logger.ErrorException(ex.ToString(), ex);
 			}
 		}
 
-		public void PlayAllUnwatchedEpisodes(int animeSeriesID)
+        public void HandleFileChangeVLC(string filePath)
+        {
+            try
+            {
+                if (!AppSettings.VideoAutoSetWatched)
+                    return;
+
+                List<string> filePaths     = new List<string>();
+                List<long>   positions = new List<long>();
+
+                // Vlc ini file looks like
+                //
+                // ...
+                // [RecentsMRL]
+                // list=file://NAS/Anime/Gate%20Jieitai%20Kanochi%20nite%2C%20Kaku%20Tatakaeri/%5BHorribleSubs%5D%20GATE%20-%2007%20%5B720p%5D.mkv, file://NAS/Anime/Overlord/%5BHorribleSubs%5D%20OverLord%20-%2006%20%5B720p%5D.mkv
+                // times=0, 0
+                // ...
+                //
+                // and stores -1 for newly opened file, 0 for completed file, and a millisecond value for partial watched.
+                // it appears to update on file open, playlist item change, or vlc close
+
+                string[] lines = File.ReadAllLines(filePath);
+
+                bool foundSectionStart = false;
+
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    string line = lines[i];
+
+                    if (line.Equals("[RecentsMRL]", StringComparison.InvariantCultureIgnoreCase))
+                        foundSectionStart = true;
+
+                    if (foundSectionStart
+                        && line.Trim().ToLower().StartsWith("list="))
+                    {
+                        filePaths.AddRange(
+                            line.Remove(0, 5)
+                                .Split(',')
+                                .Select(
+                                    f => {
+                                        Uri tmp = null;
+                                        if (Uri.TryCreate(f.Trim(), UriKind.Absolute, out tmp))
+                                            return tmp.LocalPath;
+                                        else
+                                            throw new UriFormatException("Unable to parse URI in VLC ini file");
+                                    }
+                                )
+                            );
+                    }
+
+                    if (foundSectionStart
+                        && line.Trim().ToLower().StartsWith("times="))
+                    {
+                        positions.AddRange(
+                            line.Remove(0, 6)
+                                .Split(',')
+                                .Select(
+                                    p => {
+                                        long posMs = 0;
+                                        if (long.TryParse(p.Trim(), out posMs))
+                                            return posMs;
+                                        else
+                                            throw new FormatException("Unable to parse times in VLC ini file");
+                                    }
+                                )
+                            );
+
+                        break;
+                    }
+                }
+
+                if (filePaths.Count == 0)
+                    return;
+
+                if (filePaths.Count != positions.Count)
+                    throw new Exception("The count of Recent Files and Timestamps in the VLC ini file differ");
+
+                Dictionary<string, long> filePositions = new Dictionary<string, long>();
+
+                for (int i = 0; i < filePaths.Count; i++)
+                {
+                    filePositions[filePaths[i]] = positions[i];
+                }
+
+                FindChangedFiles(filePositions);
+            }
+            catch (Exception ex)
+            {
+                logger.ErrorException(ex.ToString(), ex);
+            }
+        }
+
+        private void FindChangedFiles(Dictionary<string, long> filePositions)
+        {
+            // find all the files which have changed
+            Dictionary<string, long> changedFilePositions = new Dictionary<string, long>();
+
+            foreach (KeyValuePair<string, long> kvp in filePositions)
+            {
+                changedFilePositions[kvp.Key] = kvp.Value;
+            }
+
+            // update the changed positions
+            foreach (KeyValuePair<string, long> kvp in changedFilePositions)
+            {
+                previousFilePositions[kvp.Key] = kvp.Value.ToString();
+            }
+
+            foreach (KeyValuePair<string, long> kvp in changedFilePositions)
+            {
+                long mpcPosMS = kvp.Value;
+
+                foreach (KeyValuePair<int, VideoDetailedVM> kvpVid in recentlyPlayedFiles)
+                {
+                    if (kvpVid.Value.FullPath.Equals(kvp.Key, StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        // we don't care about files that are already watched
+                        if (kvpVid.Value.Watched) continue;
+
+                        logger.Info(string.Format("Video position for {0} has changed to {1}", kvp.Key, kvp.Value));
+
+                        // now check if this file is considered watched
+                        double fileDurationMS = (double)kvpVid.Value.VideoInfo_Duration;
+
+                        double progress = mpcPosMS / fileDurationMS * 100.0d;
+                        if (progress > (double)AppSettings.VideoWatchedPct || mpcPosMS == 0)
+                        {
+                            VideoDetailedVM vid = kvpVid.Value;
+
+                            logger.Info(string.Format("Updating to watched by media player: {0}", kvp.Key));
+
+                            JMMServerVM.Instance.clientBinaryHTTP.ToggleWatchedStatusOnVideo(vid.VideoLocalID, true, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+                            MainListHelperVM.Instance.UpdateHeirarchy(vid);
+                            MainListHelperVM.Instance.GetSeriesForVideo(vid.VideoLocalID);
+
+                            //kvp.Value.VideoLocal_IsWatched = 1;
+                            OnVideoWatchedEvent(new VideoWatchedEventArgs(vid.VideoLocalID, vid));
+
+                            Debug.WriteLine("complete");
+                        }
+
+                    }
+                }
+            }
+        }
+
+        public void PlayAllUnwatchedEpisodes(int animeSeriesID)
 		{
 			try
 			{

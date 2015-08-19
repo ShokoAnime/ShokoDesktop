@@ -1963,6 +1963,27 @@ namespace JMMClient
 			}
 		}
 
+        public static string VLCFolder
+        {
+            get
+            {
+                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+
+                string val = appSettings["VLCFolder"];
+                if (string.IsNullOrEmpty(val))
+                {
+                    // default value
+                    val = "";
+                    UpdateSetting("VLCFolder", val);
+                }
+                return val;
+            }
+            set
+            {
+                UpdateSetting("VLCFolder", value);
+            }
+        }
+
 		public static int VideoWatchedPct
 		{
 			get
