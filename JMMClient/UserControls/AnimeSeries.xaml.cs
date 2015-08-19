@@ -548,7 +548,7 @@ namespace JMMClient.UserControls
 			AnimeSeriesVM ser = this.DataContext as AnimeSeriesVM;
 			if (ser == null) return;
 
-			if (string.IsNullOrEmpty(ser.SeriesNameOverride))
+            if (string.IsNullOrEmpty(ser.SeriesNameOverride))
 				PreviousOverrideName = "";
 			else
 				PreviousOverrideName = ser.SeriesNameOverride;
