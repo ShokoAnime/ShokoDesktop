@@ -238,6 +238,9 @@
     <Compile Include="UserControls\Custom ToolTips\EpisodeDetailsToolTip.xaml.cs">
       <DependentUpon>EpisodeDetailsToolTip.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\PlayNextEpisodeControlV2.xaml.cs">
+      <DependentUpon>PlayNextEpisodeControlV2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\AniDB_CharacterVM.cs" />
     <Compile Include="ViewModel\AniDB_SeiyuuVM.cs" />
     <Compile Include="ViewModel\AnimeEpisodeDisplayVM.cs" />
@@ -1066,6 +1069,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\PlayNextEpisodeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\PlayNextEpisodeControlV2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
