@@ -998,7 +998,7 @@ namespace JMMClient.UserControls
 				else if (tab.SelectedIndex == 4) // trakt shouts
 				{
 					this.Cursor = Cursors.Wait;
-					ucTraktShouts.RefreshShouts();
+					ucTraktShouts.RefreshComments();
 					this.Cursor = Cursors.Arrow;
 				}
 
@@ -1239,7 +1239,7 @@ namespace JMMClient.UserControls
 			else if (tabContainer.SelectedIndex == 4) // trakt shouts
 			{
 				this.Cursor = Cursors.Wait;
-				ucTraktShouts.RefreshShouts();
+				ucTraktShouts.RefreshComments();
 				this.Cursor = Cursors.Arrow;
 			}
 

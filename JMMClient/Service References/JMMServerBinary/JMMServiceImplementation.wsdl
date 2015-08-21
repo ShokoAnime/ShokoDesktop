@@ -21,17 +21,17 @@
   <wsdl:message name="IJMMServer_ChangePassword_OutputMessage">
     <wsdl:part name="parameters" element="tns:ChangePasswordResponse" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_GetTraktShoutsForAnime_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetTraktShoutsForAnime" />
+  <wsdl:message name="IJMMServer_GetTraktCommentsForAnime_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTraktCommentsForAnime" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_GetTraktShoutsForAnime_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetTraktShoutsForAnimeResponse" />
+  <wsdl:message name="IJMMServer_GetTraktCommentsForAnime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTraktCommentsForAnimeResponse" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_PostShoutShow_InputMessage">
-    <wsdl:part name="parameters" element="tns:PostShoutShow" />
+  <wsdl:message name="IJMMServer_PostTraktCommentShow_InputMessage">
+    <wsdl:part name="parameters" element="tns:PostTraktCommentShow" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_PostShoutShow_OutputMessage">
-    <wsdl:part name="parameters" element="tns:PostShoutShowResponse" />
+  <wsdl:message name="IJMMServer_PostTraktCommentShow_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PostTraktCommentShowResponse" />
   </wsdl:message>
   <wsdl:message name="IJMMServer_GetTopLevelGroupForSeries_InputMessage">
     <wsdl:part name="parameters" element="tns:GetTopLevelGroupForSeries" />
@@ -1416,13 +1416,13 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/ChangePassword" message="tns:IJMMServer_ChangePassword_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/ChangePasswordResponse" message="tns:IJMMServer_ChangePassword_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetTraktShoutsForAnime">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetTraktShoutsForAnime" message="tns:IJMMServer_GetTraktShoutsForAnime_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetTraktShoutsForAnimeResponse" message="tns:IJMMServer_GetTraktShoutsForAnime_OutputMessage" />
+    <wsdl:operation name="GetTraktCommentsForAnime">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetTraktCommentsForAnime" message="tns:IJMMServer_GetTraktCommentsForAnime_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetTraktCommentsForAnimeResponse" message="tns:IJMMServer_GetTraktCommentsForAnime_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="PostShoutShow">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/PostShoutShow" message="tns:IJMMServer_PostShoutShow_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/PostShoutShowResponse" message="tns:IJMMServer_PostShoutShow_OutputMessage" />
+    <wsdl:operation name="PostTraktCommentShow">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/PostTraktCommentShow" message="tns:IJMMServer_PostTraktCommentShow_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/PostTraktCommentShowResponse" message="tns:IJMMServer_PostTraktCommentShow_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetTopLevelGroupForSeries">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetTopLevelGroupForSeries" message="tns:IJMMServer_GetTopLevelGroupForSeries_InputMessage" />

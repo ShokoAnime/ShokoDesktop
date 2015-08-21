@@ -109,8 +109,8 @@ namespace JMMClient.Forms
 		{
 			if (TraktLinkExists)
 			{
-				//this.Cursor = Cursors.Wait;
-				ucTraktShouts.RefreshShouts();
+                //this.Cursor = Cursors.Wait;
+                ucTraktComments.RefreshComments();
 				//this.Cursor = Cursors.Arrow;
 			}
 		}
@@ -119,7 +119,7 @@ namespace JMMClient.Forms
 		{
 			Series = series;
 			this.DataContext = Series;
-			ucTraktShouts.DataContext = Series;
+            ucTraktComments.DataContext = Series;
 		}
 	}
 }

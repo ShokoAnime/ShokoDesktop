@@ -36,7 +36,7 @@ namespace JMMClient.UserControls
 
 		public ObservableCollection<RecommendationTile> Recommendations { get; set; }
 
-		public ObservableCollection<object> Shouts { get; set; }
+		public ObservableCollection<object> Comments { get; set; }
 
         public ObservableCollection<AniDB_CharacterVM> Characters { get; set; }
         public ICollectionView ViewCharacters { get; set; }
@@ -44,9 +44,9 @@ namespace JMMClient.UserControls
 
         BackgroundWorker episodesWorker = new BackgroundWorker();
 		BackgroundWorker recsWorker = new BackgroundWorker();
-		BackgroundWorker shoutsWorker = new BackgroundWorker();
-		BackgroundWorker postShoutWorker = new BackgroundWorker();
-		BackgroundWorker refreshShoutsRecsWorker = new BackgroundWorker();
+		BackgroundWorker commentsWorker = new BackgroundWorker();
+		BackgroundWorker postCommenttWorker = new BackgroundWorker();
+		BackgroundWorker refreshCommentsRecsWorker = new BackgroundWorker();
         BackgroundWorker charWorker = new BackgroundWorker();
 
         public static readonly DependencyProperty UnwatchedEpisodeCountProperty = DependencyProperty.Register("UnwatchedEpisodeCount",
@@ -67,26 +67,26 @@ namespace JMMClient.UserControls
 			set { SetValue(PosterWidthProperty, value); }
 		}
 
-		public static readonly DependencyProperty IsLoadingShoutsProperty = DependencyProperty.Register("IsLoadingShouts",
+		public static readonly DependencyProperty IsLoadingCommentsProperty = DependencyProperty.Register("IsLoadingComments",
 			typeof(bool), typeof(ContinueWatchingTileControl), new UIPropertyMetadata(false, null));
 
-		public bool IsLoadingShouts
+		public bool IsLoadingComments
 		{
-			get { return (bool)GetValue(IsLoadingShoutsProperty); }
+			get { return (bool)GetValue(IsLoadingCommentsProperty); }
 			set 
 			{ 
-				SetValue(IsLoadingShoutsProperty, value);
-				IsNotLoadingShouts = !value;
+				SetValue(IsLoadingCommentsProperty, value);
+				IsNotLoadingComments = !value;
 			}
 		}
 
-		public static readonly DependencyProperty IsNotLoadingShoutsProperty = DependencyProperty.Register("IsNotLoadingShouts",
+		public static readonly DependencyProperty IsNotLoadingCommentsProperty = DependencyProperty.Register("IsNotLoadingComments",
 			typeof(bool), typeof(ContinueWatchingTileControl), new UIPropertyMetadata(false, null));
 
-		public bool IsNotLoadingShouts
+		public bool IsNotLoadingComments
 		{
-			get { return (bool)GetValue(IsNotLoadingShoutsProperty); }
-			set { SetValue(IsNotLoadingShoutsProperty, value); }
+			get { return (bool)GetValue(IsNotLoadingCommentsProperty); }
+			set { SetValue(IsNotLoadingCommentsProperty, value); }
 		}
 
 		public ContinueWatchingTileControl()
@@ -100,7 +100,7 @@ namespace JMMClient.UserControls
             ViewCharacters = CollectionViewSource.GetDefaultView(Characters);
 
             Recommendations = new ObservableCollection<RecommendationTile>();
-			Shouts = new ObservableCollection<object>();
+			Comments = new ObservableCollection<object>();
 
 			this.DataContextChanged += new DependencyPropertyChangedEventHandler(ContinueWatchingTileControl_DataContextChanged);
 
@@ -118,30 +118,30 @@ namespace JMMClient.UserControls
             recsWorker.DoWork += new DoWorkEventHandler(recsWorker_DoWork);
 			recsWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(recsWorker_RunWorkerCompleted);
 
-			shoutsWorker.DoWork += new DoWorkEventHandler(shoutsWorker_DoWork);
-			shoutsWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(shoutsWorker_RunWorkerCompleted);
+			commentsWorker.DoWork += new DoWorkEventHandler(commentsWorker_DoWork);
+			commentsWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(commentsWorker_RunWorkerCompleted);
 
-			refreshShoutsRecsWorker.DoWork += new DoWorkEventHandler(refreshShoutsRecsWorker_DoWork);
-			refreshShoutsRecsWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(refreshShoutsRecsWorker_RunWorkerCompleted);
+			refreshCommentsRecsWorker.DoWork += new DoWorkEventHandler(refreshCommentsRecsWorker_DoWork);
+			refreshCommentsRecsWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(refreshCommentsRecsWorker_RunWorkerCompleted);
 
 			MainWindow.videoHandler.VideoWatchedEvent += new Utilities.VideoHandler.VideoWatchedEventHandler(videoHandler_VideoWatchedEvent);
 
-			txtShoutNew.GotFocus += new RoutedEventHandler(txtShoutNew_GotFocus);
-			txtShoutNew.LostFocus += new RoutedEventHandler(txtShoutNew_LostFocus);
-			btnSubmitShout.Click += new RoutedEventHandler(btnSubmitShout_Click);
+			txtCommentNew.GotFocus += new RoutedEventHandler(txtCommentNew_GotFocus);
+            txtCommentNew.LostFocus += new RoutedEventHandler(txtCommentNew_LostFocus);
+            btnSubmitComment.Click += new RoutedEventHandler(btnSubmitComment_Click);
 
-			btnRefreshShouts.Click += new RoutedEventHandler(btnRefreshShouts_Click);
+			btnRefreshComments.Click += new RoutedEventHandler(btnRefreshComments_Click);
 
-			postShoutWorker.DoWork += new DoWorkEventHandler(postShoutWorker_DoWork);
-			postShoutWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(postShoutWorker_RunWorkerCompleted);
+			postCommenttWorker.DoWork += new DoWorkEventHandler(postCommentWorker_DoWork);
+			postCommenttWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(postCommentWorker_RunWorkerCompleted);
 
 			cRating.OnRatingValueChangedEvent += new RatingControl.RatingValueChangedHandler(cRating_OnRatingValueChangedEvent);
 
 			grdMain.PreviewMouseWheel += new MouseWheelEventHandler(grdMain_PreviewMouseWheel);
 			lbEpisodes.PreviewMouseWheel += new MouseWheelEventHandler(lbEpisodes_PreviewMouseWheel);
-			lbShouts.PreviewMouseWheel += new MouseWheelEventHandler(lbShouts_PreviewMouseWheel);
-            lbChars.PreviewMouseWheel += new MouseWheelEventHandler(lbShouts_PreviewMouseWheel);
-            lbRecommendations.PreviewMouseWheel += new MouseWheelEventHandler(lbShouts_PreviewMouseWheel);
+			lbComments.PreviewMouseWheel += new MouseWheelEventHandler(lbComments_PreviewMouseWheel);
+            lbChars.PreviewMouseWheel += new MouseWheelEventHandler(lbComments_PreviewMouseWheel);
+            lbRecommendations.PreviewMouseWheel += new MouseWheelEventHandler(lbComments_PreviewMouseWheel);
         }
 
         
@@ -151,7 +151,7 @@ namespace JMMClient.UserControls
             RefreshData();
         }
 
-        void lbShouts_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        void lbComments_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
 		{
 			try
 			{
@@ -201,29 +201,29 @@ namespace JMMClient.UserControls
 			}
 		}
 
-		void postShoutWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+		void postCommentWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
 		{
 			string msg = e.Result.ToString();
 			this.Cursor = Cursors.Arrow;
 
 			MessageBox.Show(msg, "Message", MessageBoxButton.OK, MessageBoxImage.Information);
-			txtShoutNew.Text = "";
-            btnSubmitShout.IsEnabled = true;
+            txtCommentNew.Text = "";
+            btnSubmitComment.IsEnabled = true;
 
 			AnimeSeriesVM ser = this.DataContext as AnimeSeriesVM;
 			if (ser == null) return;
 
-			shoutsWorker.RunWorkerAsync(ser);
+			commentsWorker.RunWorkerAsync(ser);
 		}
 
-		void postShoutWorker_DoWork(object sender, DoWorkEventArgs e)
+		void postCommentWorker_DoWork(object sender, DoWorkEventArgs e)
 		{
-			Trakt_ShoutPost shout = e.Argument as Trakt_ShoutPost;
+			Trakt_CommentPost comment = e.Argument as Trakt_CommentPost;
 
 			string msg = "";
 			try
 			{
-				JMMServerVM.Instance.clientBinaryHTTP.PostShoutShow(shout.TraktID, shout.ShoutText, shout.Spoiler, ref msg);
+				JMMServerVM.Instance.clientBinaryHTTP.PostTraktCommentShow(comment.TraktID, comment.CommentText, comment.Spoiler, ref msg);
 			}
 			catch (Exception ex)
 			{
@@ -234,19 +234,19 @@ namespace JMMClient.UserControls
 			e.Result = msg;
 		}
 
-		void btnSubmitShout_Click(object sender, RoutedEventArgs e)
+		void btnSubmitComment_Click(object sender, RoutedEventArgs e)
 		{
             if (!JMMServerVM.Instance.Trakt_IsEnabled)
             {
                 Utils.ShowErrorMessage("You have not enabled Trakt, for more info go to 'Settings - Community Sites - Trakt TV'");
-                txtShoutNew.Focus();
+                txtCommentNew.Focus();
                 return;
             }
 
             if (string.IsNullOrEmpty(JMMServerVM.Instance.Trakt_AuthToken))
             {
                 Utils.ShowErrorMessage("You have not authorized JMM to use your Trakt account, for more info go to 'Settings - Community Sites - Trakt TV'");
-                txtShoutNew.Focus();
+                txtCommentNew.Focus();
                 return;
             }
 
@@ -254,26 +254,26 @@ namespace JMMClient.UserControls
 			if (animeSeries == null)
 			{
 				Utils.ShowErrorMessage("Anime series info not found");
-				txtShoutNew.Focus();
+                txtCommentNew.Focus();
 				return;
 			}
 
-			string shoutText = txtShoutNew.Text.Trim();
-			if (string.IsNullOrEmpty(shoutText))
+			string commentText = txtCommentNew.Text.Trim();
+			if (string.IsNullOrEmpty(commentText))
 			{
 				Utils.ShowErrorMessage("Please enter text for your comment");
-				txtShoutNew.Focus();
+                txtCommentNew.Focus();
 				return;
 			}
 
-			if (shoutText.Length > 2000)
+			if (commentText.Length > 2000)
 			{
-				Utils.ShowErrorMessage(string.Format("Comment text must be less than 2000 characters ({0})", shoutText.Length));
-				txtShoutNew.Focus();
+				Utils.ShowErrorMessage(string.Format("Comment text must be less than 2000 characters ({0})", commentText.Length));
+                txtCommentNew.Focus();
 				return;
 			}
 
-			btnSubmitShout.IsEnabled = false;
+            btnSubmitComment.IsEnabled = false;
 
             if (animeSeries.AniDB_Anime.traktSummary != null)
             {
@@ -284,8 +284,8 @@ namespace JMMClient.UserControls
                     animeSeries.AniDB_Anime.traktSummary.traktDetails.Count == 0)
                 {
                     Utils.ShowErrorMessage(string.Format("Cannot comment where a series does not have a Trakt show linked"));
-                    txtShoutNew.Focus();
-                    btnSubmitShout.IsEnabled = true;
+                    txtCommentNew.Focus();
+                    btnSubmitComment.IsEnabled = true;
                     return;
                 }
 
@@ -294,8 +294,8 @@ namespace JMMClient.UserControls
                     animeSeries.AniDB_Anime.traktSummary.traktDetails.Count > 1)
                 {
                     Utils.ShowErrorMessage(string.Format("Cannot comment where a series has more than one Trakt show linked"));
-                    txtShoutNew.Focus();
-                    btnSubmitShout.IsEnabled = true;
+                    txtCommentNew.Focus();
+                    btnSubmitComment.IsEnabled = true;
                     return;
                 }
 
@@ -308,44 +308,44 @@ namespace JMMClient.UserControls
                     foreach (KeyValuePair<string, TraktDetails> kvp in animeSeries.AniDB_Anime.traktSummary.traktDetails)
                     { traktID = kvp.Key; }
 
-                    Trakt_ShoutPost shout = new Trakt_ShoutPost();
-                    shout.TraktID = traktID;
-                    shout.AnimeID = animeSeries.AniDB_ID;
-                    shout.ShoutText = shoutText;
-                    shout.Spoiler = chkSpoiler.IsChecked.Value;
+                    Trakt_CommentPost comment = new Trakt_CommentPost();
+                    comment.TraktID = traktID;
+                    comment.AnimeID = animeSeries.AniDB_ID;
+                    comment.CommentText = commentText;
+                    comment.Spoiler = chkSpoiler.IsChecked.Value;
 
-                    postShoutWorker.RunWorkerAsync(shout);
+                    postCommenttWorker.RunWorkerAsync(comment);
                 }
             }
             else
             {
                 Utils.ShowErrorMessage(string.Format("Cannot comment where a series does not have a Trakt show linked"));
-                txtShoutNew.Focus();
-                btnSubmitShout.IsEnabled = true;
+                txtCommentNew.Focus();
+                btnSubmitComment.IsEnabled = true;
             }
 		}
 
-		void btnRefreshShouts_Click(object sender, RoutedEventArgs e)
+		void btnRefreshComments_Click(object sender, RoutedEventArgs e)
 		{
 			AnimeSeriesVM animeSeries = (AnimeSeriesVM)this.DataContext;
 			if (animeSeries == null) return;
 
-			IsLoadingShouts = true;
+			IsLoadingComments = true;
 
-			refreshShoutsRecsWorker.RunWorkerAsync(animeSeries);
+			refreshCommentsRecsWorker.RunWorkerAsync(animeSeries);
 		}
 
 
 
-		void refreshShoutsRecsWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+		void refreshCommentsRecsWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
 		{
 			AnimeSeriesVM animeSeries = (AnimeSeriesVM)this.DataContext;
 			if (animeSeries == null) return;
 
-			shoutsWorker.RunWorkerAsync(animeSeries);
+			commentsWorker.RunWorkerAsync(animeSeries);
 		}
 
-		void refreshShoutsRecsWorker_DoWork(object sender, DoWorkEventArgs e)
+		void refreshCommentsRecsWorker_DoWork(object sender, DoWorkEventArgs e)
 		{
 			try
 			{
@@ -365,22 +365,22 @@ namespace JMMClient.UserControls
 			}
 		}
 
-		void txtShoutNew_LostFocus(object sender, RoutedEventArgs e)
+		void txtCommentNew_LostFocus(object sender, RoutedEventArgs e)
 		{
-			txtShoutNew.Height = 30;
-			txtShoutNew.Foreground = Brushes.DarkGray;
+            txtCommentNew.Height = 30;
+            txtCommentNew.Foreground = Brushes.DarkGray;
 
-			if (txtShoutNew.Text.Trim().Length == 0)
-				txtShoutNew.Text = "Have Your Say...";
+			if (txtCommentNew.Text.Trim().Length == 0)
+                txtCommentNew.Text = "Have Your Say...";
 		}
 
-		void txtShoutNew_GotFocus(object sender, RoutedEventArgs e)
+		void txtCommentNew_GotFocus(object sender, RoutedEventArgs e)
 		{
-			if (txtShoutNew.Text.Equals("Have Your Say...", StringComparison.InvariantCultureIgnoreCase))
-				txtShoutNew.Text = "";
+			if (txtCommentNew.Text.Equals("Have Your Say...", StringComparison.InvariantCultureIgnoreCase))
+				txtCommentNew.Text = "";
 
-			txtShoutNew.Foreground = Brushes.Black;
-			txtShoutNew.Height = 150;
+			txtCommentNew.Foreground = Brushes.Black;
+			txtCommentNew.Height = 150;
 		}
 
 
@@ -585,32 +585,32 @@ namespace JMMClient.UserControls
 			}
 		}
 
-		void shoutsWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+		void commentsWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
 		{
-			IsLoadingShouts = false;
+			IsLoadingComments = false;
         }
 
-		void shoutsWorker_DoWork(object sender, DoWorkEventArgs e)
+		void commentsWorker_DoWork(object sender, DoWorkEventArgs e)
 		{
 			AnimeSeriesVM ser = e.Argument as AnimeSeriesVM;
-			List<Trakt_ShoutUserVM> tempShouts = new List<Trakt_ShoutUserVM>();
+			List<Trakt_CommentUserVM> tempComments = new List<Trakt_CommentUserVM>();
 
 			try
 			{
 				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
 				{
-					Shouts.Clear();
+					Comments.Clear();
 				});
 
-				// get shouts from trakt
-				List<JMMServerBinary.Contract_Trakt_ShoutUser> rawShouts = JMMServerVM.Instance.clientBinaryHTTP.GetTraktShoutsForAnime(ser.AniDB_ID);
-				foreach (JMMServerBinary.Contract_Trakt_ShoutUser contract in rawShouts)
+				// get comments from trakt
+				List<JMMServerBinary.Contract_Trakt_CommentUser> rawComments = JMMServerVM.Instance.clientBinaryHTTP.GetTraktCommentsForAnime(ser.AniDB_ID);
+				foreach (JMMServerBinary.Contract_Trakt_CommentUser contract in rawComments)
 				{
-					Trakt_ShoutUserVM shout = new Trakt_ShoutUserVM(contract);
+					Trakt_CommentUserVM comment = new Trakt_CommentUserVM(contract);
 
 					System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
 					{
-						Shouts.Add(shout);
+						Comments.Add(comment);
 					});
 
 				}
@@ -623,7 +623,7 @@ namespace JMMClient.UserControls
 
 					System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
 					{
-						Shouts.Add(rec);
+						Comments.Add(rec);
 					});
 				}
 
@@ -639,10 +639,10 @@ namespace JMMClient.UserControls
             AnimeSeriesVM ser = this.DataContext as AnimeSeriesVM;
             if (ser == null) return;
 
-            if (!shoutsWorker.IsBusy)
+            if (!commentsWorker.IsBusy)
             {
-                IsLoadingShouts = true;
-                shoutsWorker.RunWorkerAsync(ser);
+                IsLoadingComments = true;
+                commentsWorker.RunWorkerAsync(ser);
             }
         }
 
@@ -730,7 +730,7 @@ namespace JMMClient.UserControls
 
 			UnwatchedEpisodes.Clear();
 			Recommendations.Clear();
-			Shouts.Clear();
+			Comments.Clear();
             Characters.Clear();
 
 			RefreshUnwatchedEpisodes();

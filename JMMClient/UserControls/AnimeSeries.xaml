@@ -1123,7 +1123,7 @@
         </TabItem>
 
         <TabItem x:Name="tabTraktShouts" Header="Comments From Users">
-            <usercontrols:TraktShoutsShowControl x:Name="ucTraktShouts"  />
+            <usercontrols:TraktCommentsShowControl x:Name="ucTraktShouts"  />
         </TabItem>
     </TabControl>
 </UserControl>

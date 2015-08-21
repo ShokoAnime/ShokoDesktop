@@ -6,9 +6,9 @@ using System.IO;
 
 namespace JMMClient.ViewModel
 {
-	public class Trakt_ShoutVM
+	public class Trakt_CommentVM
 	{
-		public int ShoutType { get; set; } // episode, show
+		public int CommentType { get; set; } // episode, show
 		public string Text { get; set; }
 		public bool Spoiler { get; set; }
 		public DateTime? Inserted { get; set; }
@@ -106,7 +106,7 @@ namespace JMMClient.ViewModel
 			}
 		}
 
-		public string ShoutDateString
+		public string CommentDateString
 		{
 			get
 			{
@@ -118,9 +118,9 @@ namespace JMMClient.ViewModel
 			}
 		}
 
-		public Trakt_ShoutVM(JMMServerBinary.Contract_Trakt_Shout contract)
+		public Trakt_CommentVM(JMMServerBinary.Contract_Trakt_Comment contract)
 		{
-			this.ShoutType = contract.ShoutType;
+			this.CommentType = contract.CommentType;
 			this.Text = contract.Text;
 			this.Spoiler = contract.Spoiler;
 			this.Inserted = contract.Inserted;

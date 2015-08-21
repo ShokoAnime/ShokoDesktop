@@ -532,9 +532,9 @@ namespace JMMClient.ImageDownload
 					Trakt_ImageFanartVM trakFanart = req.ImageData as Trakt_ImageFanartVM;
 					return trakFanart.Trakt_ImageFanartID.ToString();
 
-				case ImageEntityType.Trakt_ShoutUser:
+				case ImageEntityType.Trakt_CommentUser:
 
-					Trakt_ShoutUserVM traktShoutUser = req.ImageData as Trakt_ShoutUserVM;
+					Trakt_CommentUserVM traktShoutUser = req.ImageData as Trakt_CommentUserVM;
 					return traktShoutUser.User.Trakt_FriendID.ToString();
 
 				case ImageEntityType.Trakt_Episode:

@@ -3317,12 +3317,4 @@ namespace JMMClient
 		{
 		}
 	}
-
-	/*public class RefreshOptions
-	{
-		public bool TraktScrobbles { get; set; }
-		public bool TraktShouts { get; set; }
-	}*/
-
-	
 }

@@ -35,8 +35,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetTraktShoutsForAnime">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetTraktShoutsForAnime" style="document" />
+    <wsdl:operation name="GetTraktCommentsForAnime">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetTraktCommentsForAnime" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -44,8 +44,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="PostShoutShow">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/PostShoutShow" style="document" />
+    <wsdl:operation name="PostTraktCommentShow">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/PostTraktCommentShow" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

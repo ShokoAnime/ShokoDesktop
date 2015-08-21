@@ -694,7 +694,7 @@
     <Compile Include="ViewModel\Trakt_ImageFanartVM.cs" />
     <Compile Include="ViewModel\Trakt_ImagePosterVM.cs" />
     <Compile Include="ViewModel\Trakt_SeasonVM.cs" />
-    <Compile Include="ViewModel\Trakt_ShoutPost.cs" />
+    <Compile Include="ViewModel\Trakt_CommentPost.cs" />
     <Compile Include="ViewModel\Trakt_ShoutUserVM.cs" />
     <Compile Include="ViewModel\Trakt_ShoutVM.cs" />
     <Compile Include="ViewModel\Trakt_ShowVM.cs" />
@@ -1443,6 +1443,9 @@
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_TraktTVShowResponse1.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_Trakt_CommentUser.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_Trakt_Episode1.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -1450,9 +1453,6 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_Trakt_ImagePoster1.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_Trakt_ShoutUser1.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_TvDBLanguage1.datasource">

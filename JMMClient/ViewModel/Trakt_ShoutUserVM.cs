@@ -8,41 +8,41 @@ using System.ComponentModel;
 
 namespace JMMClient.ViewModel
 {
-    public class Trakt_ShoutUserVM : BindableObject
+    public class Trakt_CommentUserVM : BindableObject
 	{
 		public int AnimeID { get; set; }
 
 		// user details
 		public Trakt_UserVM User { get; set; }
-		// shout details
-		public Trakt_ShoutVM Shout { get; set; }
+		// comment details
+		public Trakt_CommentVM Comment { get; set; }
 
-		public Trakt_ShoutUserVM(JMMServerBinary.Contract_Trakt_ShoutUser contract)
+		public Trakt_CommentUserVM(JMMServerBinary.Contract_Trakt_CommentUser contract)
 		{
 			this.User = new Trakt_UserVM(contract.User);
-			this.Shout = new Trakt_ShoutVM(contract.Shout);
+			this.Comment = new Trakt_CommentVM(contract.Comment);
 		}
 
 
-        private bool isShoutCollapsed = false;
-        public bool IsShoutCollapsed
+        private bool isCommentCollapsed = false;
+        public bool IsCommentCollapsed
         {
-            get { return isShoutCollapsed; }
+            get { return isCommentCollapsed; }
             set
             {
-                isShoutCollapsed = value;
-                base.RaisePropertyChanged("IsShoutCollapsed");
+                isCommentCollapsed = value;
+                base.RaisePropertyChanged("IsCommentCollapsed");
             }
         }
 
-        private bool isShoutExpanded = false;
-        public bool IsShoutExpanded
+        private bool isCommentExpanded = false;
+        public bool IsCommentExpanded
         {
-            get { return isShoutExpanded; }
+            get { return isCommentExpanded; }
             set
             {
-                isShoutExpanded = value;
-                base.RaisePropertyChanged("IsShoutExpanded");
+                isCommentExpanded = value;
+                base.RaisePropertyChanged("IsCommentExpanded");
             }
         }
 
@@ -50,18 +50,18 @@ namespace JMMClient.ViewModel
         {
             get
             {
-                if (Shout.Text.Length > 250)
-                    return Shout.Text.Substring(0, 250) + ".......";
+                if (Comment.Text.Length > 250)
+                    return Comment.Text.Substring(0, 250) + ".......";
                 else
-                    return Shout.Text;
+                    return Comment.Text;
             }
         }
 
-        public string Comment
+        public string CommentText
         {
             get
             {
-                return Shout.Text;
+                return Comment.Text;
             }
         }
 	}

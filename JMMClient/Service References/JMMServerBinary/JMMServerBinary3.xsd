@@ -33,34 +33,34 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetTraktShoutsForAnime">
+  <xs:element name="GetTraktCommentsForAnime">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="animeID" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetTraktShoutsForAnimeResponse">
+  <xs:element name="GetTraktCommentsForAnimeResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetTraktShoutsForAnimeResult" nillable="true" type="q1:ArrayOfContract_Trakt_ShoutUser" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetTraktCommentsForAnimeResult" nillable="true" type="q1:ArrayOfContract_Trakt_CommentUser" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="PostShoutShow">
+  <xs:element name="PostTraktCommentShow">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="traktID" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="shoutText" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="commentText" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="isSpoiler" type="xs:boolean" />
         <xs:element minOccurs="0" name="returnMessage" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="PostShoutShowResponse">
+  <xs:element name="PostTraktCommentShowResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="PostShoutShowResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="PostTraktCommentShowResult" type="xs:boolean" />
         <xs:element minOccurs="0" name="returnMessage" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>

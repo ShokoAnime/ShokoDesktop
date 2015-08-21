@@ -15,15 +15,15 @@ namespace JMMClient.JMMServerBinary {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_Trakt_ShoutUser", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_Trakt_CommentUser", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
     [System.SerializableAttribute()]
-    public partial class Contract_Trakt_ShoutUser : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class Contract_Trakt_CommentUser : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private JMMClient.JMMServerBinary.Contract_Trakt_Shout ShoutField;
+        private JMMClient.JMMServerBinary.Contract_Trakt_Comment CommentField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private JMMClient.JMMServerBinary.Contract_Trakt_User UserField;
@@ -39,14 +39,14 @@ namespace JMMClient.JMMServerBinary {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public JMMClient.JMMServerBinary.Contract_Trakt_Shout Shout {
+        public JMMClient.JMMServerBinary.Contract_Trakt_Comment Comment {
             get {
-                return this.ShoutField;
+                return this.CommentField;
             }
             set {
-                if ((object.ReferenceEquals(this.ShoutField, value) != true)) {
-                    this.ShoutField = value;
-                    this.RaisePropertyChanged("Shout");
+                if ((object.ReferenceEquals(this.CommentField, value) != true)) {
+                    this.CommentField = value;
+                    this.RaisePropertyChanged("Comment");
                 }
             }
         }
@@ -76,9 +76,9 @@ namespace JMMClient.JMMServerBinary {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_Trakt_Shout", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_Trakt_Comment", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
     [System.SerializableAttribute()]
-    public partial class Contract_Trakt_Shout : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class Contract_Trakt_Comment : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -88,6 +88,9 @@ namespace JMMClient.JMMServerBinary {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> AnimeSeriesIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CommentTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string Comment_UrlField;
@@ -112,9 +115,6 @@ namespace JMMClient.JMMServerBinary {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<System.DateTime> InsertedField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ShoutTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool SpoilerField;
@@ -157,6 +157,19 @@ namespace JMMClient.JMMServerBinary {
                 if ((this.AnimeSeriesIDField.Equals(value) != true)) {
                     this.AnimeSeriesIDField = value;
                     this.RaisePropertyChanged("AnimeSeriesID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CommentType {
+            get {
+                return this.CommentTypeField;
+            }
+            set {
+                if ((this.CommentTypeField.Equals(value) != true)) {
+                    this.CommentTypeField = value;
+                    this.RaisePropertyChanged("CommentType");
                 }
             }
         }
@@ -266,19 +279,6 @@ namespace JMMClient.JMMServerBinary {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ShoutType {
-            get {
-                return this.ShoutTypeField;
-            }
-            set {
-                if ((this.ShoutTypeField.Equals(value) != true)) {
-                    this.ShoutTypeField = value;
-                    this.RaisePropertyChanged("ShoutType");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public bool Spoiler {
             get {
                 return this.SpoilerField;
@@ -331,9 +331,9 @@ namespace JMMClient.JMMServerBinary {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Contract_Trakt_User", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
     [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_Trakt_ShoutUser>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_Trakt_ShoutUser))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_Trakt_Shout))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_Trakt_CommentUser>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_Trakt_CommentUser))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_Trakt_Comment))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AniDBAnime))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AniDB_Anime_DefaultImage))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_MovieDB_Fanart))]
@@ -15950,11 +15950,11 @@ namespace JMMClient.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/ChangePassword", ReplyAction="http://tempuri.org/IJMMServer/ChangePasswordResponse")]
         string ChangePassword(int userID, string newPassword);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetTraktShoutsForAnime", ReplyAction="http://tempuri.org/IJMMServer/GetTraktShoutsForAnimeResponse")]
-        System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_Trakt_ShoutUser> GetTraktShoutsForAnime(int animeID);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetTraktCommentsForAnime", ReplyAction="http://tempuri.org/IJMMServer/GetTraktCommentsForAnimeResponse")]
+        System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_Trakt_CommentUser> GetTraktCommentsForAnime(int animeID);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/PostShoutShow", ReplyAction="http://tempuri.org/IJMMServer/PostShoutShowResponse")]
-        bool PostShoutShow(string traktID, string shoutText, bool isSpoiler, ref string returnMessage);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/PostTraktCommentShow", ReplyAction="http://tempuri.org/IJMMServer/PostTraktCommentShowResponse")]
+        bool PostTraktCommentShow(string traktID, string commentText, bool isSpoiler, ref string returnMessage);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetTopLevelGroupForSeries", ReplyAction="http://tempuri.org/IJMMServer/GetTopLevelGroupForSeriesResponse")]
         JMMClient.JMMServerBinary.Contract_AnimeGroup GetTopLevelGroupForSeries(int animeSeriesID, int userID);
@@ -16679,12 +16679,12 @@ namespace JMMClient.JMMServerBinary {
             return base.Channel.ChangePassword(userID, newPassword);
         }
         
-        public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_Trakt_ShoutUser> GetTraktShoutsForAnime(int animeID) {
-            return base.Channel.GetTraktShoutsForAnime(animeID);
+        public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_Trakt_CommentUser> GetTraktCommentsForAnime(int animeID) {
+            return base.Channel.GetTraktCommentsForAnime(animeID);
         }
         
-        public bool PostShoutShow(string traktID, string shoutText, bool isSpoiler, ref string returnMessage) {
-            return base.Channel.PostShoutShow(traktID, shoutText, isSpoiler, ref returnMessage);
+        public bool PostTraktCommentShow(string traktID, string commentText, bool isSpoiler, ref string returnMessage) {
+            return base.Channel.PostTraktCommentShow(traktID, commentText, isSpoiler, ref returnMessage);
         }
         
         public JMMClient.JMMServerBinary.Contract_AnimeGroup GetTopLevelGroupForSeries(int animeSeriesID, int userID) {

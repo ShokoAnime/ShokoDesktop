@@ -507,8 +507,8 @@
                 </Border>
             </DataTemplate>
 
-            <!-- TraktShoutTemplate -->
-            <DataTemplate x:Key="TraktShoutTemplate">
+            <!-- TraktCommentTemplate -->
+            <DataTemplate x:Key="TraktCommentTemplate">
                 <Border Background="White" BorderBrush="DarkGray" BorderThickness="1" Margin="0,10,10,0">
                     <Grid Margin="10" VerticalAlignment="Top">
 
@@ -527,7 +527,7 @@
                         <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"  Margin="5,0,0,0" Text="From Trakt" FontSize="14" Foreground="DarkGreen" 
                                    VerticalAlignment="Center" FontWeight="Bold"/>
 
-                        <TextBlock Grid.Column="1" Grid.Row="1" Margin="15,0,0,0" Text="{Binding Path=Shout.ShoutDateString}" FontSize="12" HorizontalAlignment="Left"
+                        <TextBlock Grid.Column="1" Grid.Row="1" Margin="15,0,0,0" Text="{Binding Path=Comment.CommentDateString}" FontSize="12" HorizontalAlignment="Left"
                                    Foreground="DarkGray" VerticalAlignment="Center" ToolTipService.ShowDuration="60000">
                         </TextBlock>
 
@@ -552,8 +552,8 @@
                 </Border>
             </DataTemplate>
 
-            <!-- AniDBShoutTemplate -->
-            <DataTemplate x:Key="AniDBShoutTemplate">
+            <!-- AniDBCommentTemplate -->
+            <DataTemplate x:Key="AniDBCommentTemplate">
                 <Border Background="White" BorderBrush="DarkGray" BorderThickness="1" Margin="0,10,10,0">
                     <Grid Margin="10" VerticalAlignment="Top">
 
@@ -894,12 +894,12 @@
                             <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,0,0,0">
 
 
-                                <TextBox Name="txtShoutNew" Height="30" Width="300" HorizontalAlignment="Stretch" DockPanel.Dock="Left" TextWrapping="Wrap" 
+                                <TextBox Name="txtCommentNew" Height="30" Width="300" HorizontalAlignment="Stretch" DockPanel.Dock="Left" TextWrapping="Wrap" 
                          VerticalScrollBarVisibility="Visible" AcceptsReturn="True" Foreground="DarkGray" Text="Have Your Say..." FontSize="14" />
 
                                 <StackPanel  Orientation="Horizontal" DockPanel.Dock="Left" VerticalAlignment="Top" Margin="10,0,0,0">
 
-                                    <Button Name="btnSubmitShout" Margin="0" Style="{DynamicResource RoundButtonStyle}" Height="35" VerticalAlignment="Center" >
+                                    <Button Name="btnSubmitComment" Margin="0" Style="{DynamicResource RoundButtonStyle}" Height="35" VerticalAlignment="Center" >
 
                                         <Border BorderThickness="0" BorderBrush="Navy" Background="{StaticResource GreenGradientBrush}" Padding="6,3,3,3" CornerRadius="4">
                                             <StackPanel Orientation="Horizontal">
@@ -1002,25 +1002,25 @@
 
                     <TextBlock VerticalAlignment="Top" Text="What People Are Saying" Foreground="DarkBlue" FontFamily="Segoe UI"  FontSize="20" Margin="0,0,10,0" />
 
-                    <!-- refresh shouts button -->
-                    <Button x:Name="btnRefreshShouts"  Margin="0,0,2,2" Style="{StaticResource FlatButtonStyle}" VerticalAlignment="Center" ToolTip="Update Info from AniDB and Refresh"
-                        Visibility="{Binding Path=IsNotLoadingShouts, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:ContinueWatchingTileControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <!-- refresh comments button -->
+                    <Button x:Name="btnRefreshComments"  Margin="0,0,2,2" Style="{StaticResource FlatButtonStyle}" VerticalAlignment="Center" ToolTip="Update Info from AniDB and Refresh"
+                        Visibility="{Binding Path=IsNotLoadingComments, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:ContinueWatchingTileControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                             <Image Height="22" Width="22" Source="/Images/Metro/refresh.png" Margin="2,0,2,0"/>
                         </StackPanel>
                     </Button>
 
                     <TextBlock VerticalAlignment="Top" Text="Loading..." Foreground="Green" FontFamily="Segoe UI"  FontSize="20" Margin="0,0,0,0"
-                           Visibility="{Binding Path=IsLoadingShouts, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:ContinueWatchingTileControl}}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                           Visibility="{Binding Path=IsLoadingComments, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:ContinueWatchingTileControl}}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                 </StackPanel>
 
 
-                <ListBox x:Name="lbShouts" Grid.Row="10" Grid.Column="0" BorderThickness="0" Grid.ColumnSpan="3"  HorizontalAlignment="Stretch" 
+                <ListBox x:Name="lbComments" Grid.Row="10" Grid.Column="0" BorderThickness="0" Grid.ColumnSpan="3"  HorizontalAlignment="Stretch" 
                      ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="5,5,0,5"
                  VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
                  ItemTemplateSelector="{StaticResource PeopleSayingTemplateSelector}"
-                 ItemsSource="{Binding Path=Shouts, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:ContinueWatchingTileControl}}}"
+                 ItemsSource="{Binding Path=Comments, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:ContinueWatchingTileControl}}}"
                  Background="Transparent"  VerticalAlignment="Stretch" >
                     <ListBox.Template>
                         <ControlTemplate>
