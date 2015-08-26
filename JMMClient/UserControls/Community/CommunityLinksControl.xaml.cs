@@ -79,6 +79,12 @@ namespace JMMClient.UserControls
             dgTraktResults.SelectionChanged += dgTraktResults_SelectionChanged;
 
             webAniDB.Navigated += webAniDB_Navigated;
+            webOther.Navigated += WebOther_Navigated;
+        }
+
+        private void WebOther_Navigated(object sender, NavigationEventArgs e)
+        {
+            HideScriptErrors(webOther, true);
         }
 
         void webAniDB_Navigated(object sender, NavigationEventArgs e)
@@ -160,6 +166,8 @@ namespace JMMClient.UserControls
 
             this.Cursor = Cursors.Wait;
             SearchStatus = string.Format("Searching...");
+
+            txtSearch.Text = crit.AnimeID.ToString();
 
             try
             {
@@ -260,6 +268,8 @@ namespace JMMClient.UserControls
 
             this.Cursor = Cursors.Wait;
             SearchStatus = string.Format("Searching...");
+
+            txtSearch.Text = crit.AnimeID.ToString();
 
             try
             {
