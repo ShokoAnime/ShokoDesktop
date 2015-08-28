@@ -387,7 +387,7 @@
 
                 </StackPanel>
 
-                <ListBox Name="lbSeries" BorderThickness="1" BorderBrush="LightGray" Background="White" Margin="31,0,5,5" Height="100" DockPanel.Dock="Top" 
+                <ListBox Name="lbSeries" BorderThickness="1" BorderBrush="LightGray" Background="White" Margin="31,0,5,5" Height="170" DockPanel.Dock="Top" 
                         HorizontalAlignment="Stretch" VerticalAlignment="Top"  ItemTemplate="{DynamicResource SimpleAnimeSeriesTemplate}" 
                         
                        ItemsSource="{Binding Path=ViewSeries, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:UnrecognisedVideos}}}"
