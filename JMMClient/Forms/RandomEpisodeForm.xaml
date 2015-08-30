@@ -89,13 +89,13 @@
                     </Button>
 
                     <TextBlock VerticalAlignment="Center" Text="Tags" FontWeight="DemiBold" Margin="10,0,0,0"/>
-
+                    
                     <TextBlock VerticalAlignment="Center" Text="(" Margin="5,0,0,0"/>
                     <TextBlock VerticalAlignment="Center" Text="{Binding Path=SelectedTagFilter, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:RandomEpisodeForm}}}" Margin="2,0,0,0"/>
                     <TextBlock VerticalAlignment="Center" Text=")" Margin="2,0,0,0"/>
-
-
-                    <TextBlock VerticalAlignment="Center" Text="{Binding Path=SelectedTags, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:RandomEpisodeForm}}}" Margin="10,0,0,0"/>
+                    <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Width="600">
+                        <TextBlock VerticalAlignment="Center" Text="{Binding Path=SelectedTags, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:RandomEpisodeForm}}}" Margin="10,0,0,0"/>
+                    </ScrollViewer>
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical"  VerticalAlignment="Center" Margin="0,0,0,0" Background="#F1F1F1"
