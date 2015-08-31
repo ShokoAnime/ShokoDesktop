@@ -6,7 +6,7 @@
         xmlns:my="clr-namespace:wyDay.Controls;assembly=AutomaticUpdaterWPF"
         ShowInTaskbar="False" WindowStyle="ToolWindow"
         WindowStartupLocation="CenterScreen" Topmost="False" SizeToContent="WidthAndHeight"
-        Title="JMM Desktop" MinHeight="300" MinWidth="500" Name="aboutWindow" Icon="/JMMDesktop;component/Web%20Database.ico">
+        Title="JMM Desktop" MinHeight="250" MinWidth="500" Name="aboutWindow" Icon="/JMMDesktop;component/Web%20Database.ico">
 
     <Grid>
         <Grid.Resources>
@@ -64,27 +64,32 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" Margin="5"  Text="Home Page"  VerticalAlignment="Center"/>
-                <usercontrols:HyperLinkStandard Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin="5" DisplayText="http://japanesemediamanager.github.io/"
+                <TextBlock Grid.Row="0" Grid.Column="0" Margin="5,6"  Text="Home Page"  VerticalAlignment="Center"/>
+                <usercontrols:HyperLinkStandard Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin="5,6,5,5" DisplayText="http://japanesemediamanager.github.io/"
                                                                         URL="http://japanesemediamanager.github.io/"/>
-
-                <TextBlock Grid.Row="1" Grid.Column="0" Margin="5"  Text="Project Page"  VerticalAlignment="Center"/>
-                <usercontrols:HyperLinkStandard Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="5" DisplayText="https://github.com/japanesemediamanager"
+                
+                <TextBlock Grid.Row="1" Grid.Column="0" Margin="5,4.864,5,6"  Text="Project Page"  VerticalAlignment="Center"/>
+                <usercontrols:HyperLinkStandard Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="5,4.864,5,5" DisplayText="https://github.com/japanesemediamanager"
                                                                         URL="https://github.com/japanesemediamanager"/>
+               
+                <TextBlock Grid.Row="2" Grid.Column="0" Margin="5,6"  Text="Online Documentation"  VerticalAlignment="Center"/>
+                <usercontrols:HyperLinkStandard Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="5,5,5,6" DisplayText="http://japanesemediamanager.github.io/documentation.html"
+                                                                        URL="http://japanesemediamanager.github.io/documentation.html"/>
 
-                <TextBlock Grid.Row="2" Grid.Column="0" Margin="5"  Text="MediaPortal Forum"  VerticalAlignment="Center"/>
-                <usercontrols:HyperLinkStandard Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="5" DisplayText="MyAnime 3"
+                <TextBlock Grid.Row="3" Grid.Column="0" Margin="5,2,5,46"  Text="MediaPortal Forum"  VerticalAlignment="Center"/>
+                <usercontrols:HyperLinkStandard Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Margin="5,2,5,47" DisplayText="MyAnime 3"
                                                                         URL="http://forum.team-mediaportal.com/threads/my-anime-3.107475/"/>
 
-                <Button Grid.Row="3" Grid.Column="0" Name="btnUpdates" Margin="5,20,5,5" Style="{DynamicResource RoundButtonStyle}">
+                <Button Grid.Row="3" Grid.Column="0" Name="btnUpdates" Margin="5,30,5,-5" Style="{DynamicResource RoundButtonStyle}" Grid.RowSpan="2">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
 
                         <TextBlock VerticalAlignment="Center" Text="Check for Updates" Margin="0,0,5,0"/>
                     </StackPanel>
                 </Button>
 
-                <my:AutomaticUpdater Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="5,20,5,5" Width="300"
-                                     Height="100" Name="automaticUpdater" GUID="JMM-JMMDesktop2" DaysBetweenChecks="10" UpdateType="DoNothing"/>
+                <my:AutomaticUpdater Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="10,40,0,10" Width="300"
+                                     Height="100" Name="automaticUpdater" GUID="JMM-JMMServer2" DaysBetweenChecks="10" UpdateType="DoNothing" RenderTransformOrigin="0.625,2.201"/>
+
             </Grid>
             
             

@@ -29,7 +29,22 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
+        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Background="FloralWhite" Margin="0,44,10,374" Padding="5" DockPanel.Dock="Top" BorderThickness="0,1,0,1" Grid.RowSpan="3">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
 
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,5,0" Grid.Column="0" VerticalAlignment="Top"/>
+                <TextBlock VerticalAlignment="Center" Text="Depending on how big your log file are, this process may take some time." Margin="0,0,5,5" TextWrapping="Wrap" Grid.Column="1"/>
+            </Grid>
+        </Border>
 
 
         <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Margin="0,0,10,5">
@@ -52,7 +67,7 @@
 
                         <TextBlock VerticalAlignment="Center" Text="Log Types" Margin="10,0,0,0"/>
                         <ComboBox Margin="7,0,0,0" Name="cboTypes" VerticalAlignment="Center"></ComboBox>
-                        
+
                         <!-- Refresh -->
                         <Button Name="btnRefresh" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}"
                             Visibility="{Binding Path=IsNotLoading, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:LogsControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
@@ -99,7 +114,7 @@
                               ItemsSource="{Binding Path=ViewLogs, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:LogsControl}}}"      
                             AutoGenerateColumns="False" CanUserReorderColumns="True" CanUserResizeColumns="True" CanUserResizeRows="False" CanUserSortColumns="True"
                                   GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="LightGray" 
-                                  AreRowDetailsFrozen="False" CanUserAddRows="False" CanUserDeleteRows="False">
+                                  AreRowDetailsFrozen="False" CanUserAddRows="False" CanUserDeleteRows="False" Margin="0,31,0,0">
                 <DataGrid.CellStyle>
                     <Style TargetType="DataGridCell">
                         <Setter Property="Padding" Value="3,3,6,3"/>
