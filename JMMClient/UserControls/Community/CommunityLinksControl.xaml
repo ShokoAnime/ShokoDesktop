@@ -18,7 +18,7 @@
 
 
         </ResourceDictionary>
-        
+
     </UserControl.Resources>
 
     <UserControl.CommandBindings>
@@ -28,9 +28,10 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="400*"/>
+            <RowDefinition Height="163*"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="150*"/>
+            <RowDefinition Height="29*"/>
+            <RowDefinition Height="32*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -72,14 +73,14 @@
 
                     </StackPanel>
 
-                    
+
 
 
                 </StackPanel>
 
             </Border >
 
-            <TabControl Name="tabResults" TabStripPlacement="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,10,5,5" DockPanel.Dock="Top">
+            <TabControl Name="tabResults" TabStripPlacement="Top" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,10,5,0" Height="239">
 
                 <TabControl.Resources>
                     <Style TargetType="{x:Type TabItem}">
@@ -88,7 +89,7 @@
                     </Style>
                 </TabControl.Resources>
 
-            
+
 
                 <TabItem Header="TvDB" Name="tabTvDB">
 
@@ -245,22 +246,22 @@
                                                         <TextBlock VerticalAlignment="Center" Text="Revoke" Margin="0,0,5,0"/>
                                                     </StackPanel>
                                                 </Button>
-                                                
+
                                             </StackPanel>
-                                            
-                                            
+
+
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
 
-                                
+
 
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
 
-                   
-                    
+
+
                 </TabItem>
 
                 <TabItem Header="Trakt" Name="tabTrakt">
@@ -418,27 +419,45 @@
             </TabControl>
 
 
-            
+
         </DockPanel >
 
+        <!-- 
         <GridSplitter HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="1"
                                 Grid.Column="0" ResizeBehavior="PreviousAndNext"
                                 Height="2" Background="#FFBCBCBC"  />
+       
+         -->
 
-
-        <Grid Grid.Row="2" Grid.Column="0" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid Grid.Column="0" Margin="2,258,10,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.RowSpan="4">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            
-            <WebBrowser x:Name="webAniDB" Grid.Column="0" Grid.Row="0" Margin="5"/>
-            <WebBrowser x:Name="webOther" Grid.Column="1" Grid.Row="0" Margin="5"/>
+
+            <TabControl Name="tabCompare" TabStripPlacement="Top" Margin="3,34,-5,5" DockPanel.Dock="Top">
+
+                <TabControl.Resources>
+                    <Style TargetType="{x:Type TabItem}">
+                        <Setter Property="Padding" Value="6" />
+
+                    </Style>
+                </TabControl.Resources>
+
+                <TabItem Header="AniDB" Name="AniDB">
+                    <WebBrowser x:Name="webAniDB" Grid.Column="0" Grid.Row="0" Margin="5" />
+                </TabItem>
+
+                <TabItem Header="TvDB" Name="TvDB">
+                    <WebBrowser x:Name="webOther" Grid.Column="1" Grid.Row="0" Margin="5"/>
+                </TabItem>
+
+            </TabControl>
+
         </Grid>
 
     </Grid>
-    
+
 </UserControl>

@@ -204,7 +204,7 @@ namespace JMMClient.Forms
 			int index = currentList.IndexOf(catName, 0, StringComparison.InvariantCultureIgnoreCase);
 			if (index > -1) return;
 
-			if (currentList.Length > 0) currentList += ",";
+			if (currentList.Length > 0) currentList += ", ";
 			currentList += catName;
 
             txtSelectedTags.Text = currentList;
@@ -218,6 +218,11 @@ namespace JMMClient.Forms
             SelectedTags = txtSelectedTags.Text.Trim();
 			SelectedTagFilter = cboCatFilter.SelectedItem.ToString();
 		}
+
+        void ClearSelectedTags(object sender, RoutedEventArgs e)
+        {
+            txtSelectedTags.Text = "";
+        }
 
         void btnEditTags_Click(object sender, RoutedEventArgs e)
 		{
