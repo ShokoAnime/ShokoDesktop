@@ -44,6 +44,9 @@ namespace JMMClient.UserControls
             set { SetValue(SearchStatusProperty, value); }
         }
 
+        private string CurrentAniDBURL = string.Empty;
+        private string CurrentOtherURL = string.Empty;
+
         public CommunityLinksControl()
         {
             InitializeComponent();
@@ -85,11 +88,15 @@ namespace JMMClient.UserControls
         private void WebOther_Navigated(object sender, NavigationEventArgs e)
         {
             HideScriptErrors(webOther, true);
+
+            CurrentOtherURL = e.Uri.ToString();
         }
 
         void webAniDB_Navigated(object sender, NavigationEventArgs e)
         {
             HideScriptErrors(webAniDB, true);
+
+            CurrentAniDBURL = e.Uri.ToString();
         }
 
         void dgTvDBResults_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -97,8 +104,9 @@ namespace JMMClient.UserControls
             e.Handled = true;
             CrossRef_AniDB_TvDBVMV2 xref = ((DataGrid)sender).SelectedItem as CrossRef_AniDB_TvDBVMV2;
             if (xref == null) return;
-            webAniDB.Navigate(xref.AniDBURL);
-            webOther.Navigate(xref.SeriesURL);
+
+            ShowAniDBWebPage(xref.AniDBURL);
+            ShowOtherWebPage(xref.SeriesURL);
         }
 
         void dgTraktResults_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -106,8 +114,21 @@ namespace JMMClient.UserControls
             e.Handled = true;
             CrossRef_AniDB_TraktVMV2 xref = ((DataGrid)sender).SelectedItem as CrossRef_AniDB_TraktVMV2;
             if (xref == null) return;
-            webAniDB.Navigate(xref.AniDBURL);
-            webOther.Navigate(xref.ShowURL);
+
+            ShowAniDBWebPage(xref.AniDBURL);
+            ShowOtherWebPage(xref.ShowURL);
+        }
+
+        private void ShowAniDBWebPage(string url)
+        {
+            if (CurrentAniDBURL.Equals(url, StringComparison.InvariantCultureIgnoreCase)) return;
+            webAniDB.Navigate(url);
+        }
+
+        private void ShowOtherWebPage(string url)
+        {
+            if (CurrentOtherURL.Equals(url, StringComparison.InvariantCultureIgnoreCase)) return;
+            webOther.Navigate(url);
         }
 
         public void HideScriptErrors(WebBrowser wb, bool Hide)
