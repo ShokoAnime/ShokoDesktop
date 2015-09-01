@@ -145,7 +145,7 @@
                                                 Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_GroupFilter_BaseCondition}}"></TextBlock>
                 <ComboBox Grid.Row="0" Name="cboBaseCondition" VerticalAlignment="Center" IsEnabled="False"></ComboBox>
             </StackPanel>
-            
+
             <StackPanel Orientation="Horizontal" Margin="0,0,5,5">
                 <CheckBox Name="chkApplyToSeries" IsChecked="{Binding Path=IsApplyToSeries}" VerticalAlignment="Center" IsEnabled="False" />
                 <TextBlock Margin="10,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=GroupFilter_ApplyToSeries}" Name="lblApplyToSeries" />
@@ -205,17 +205,17 @@
                     <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=GroupFilterConditions}" Margin="5,10,0,10" FontWeight="DemiBold"></TextBlock>
                 </StackPanel>
 
-                
-                
+
+
                 <ListBox Margin="10,0,0,0" Name="lbFilterConditions" BorderThickness="0" Background="AntiqueWhite" Visibility="{Binding Path=IsLocked, Converter={StaticResource BooleanToVisibilityConverter}}"
                                  HorizontalAlignment="Left" VerticalAlignment="Top" ItemTemplate="{DynamicResource FilterConditionTemplate}" ItemContainerStyle="{DynamicResource ListBoxItemStyleFolders}"
-                                 ItemsSource="{Binding FilterConditions}">
+                                 MaxWidth="500" ItemsSource="{Binding FilterConditions}">
 
 
                 </ListBox>
                 <ListBox Margin="10,0,0,0" Name="lbFilterConditions_Editing" BorderThickness="0" Background="AntiqueWhite" Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}"
                                  HorizontalAlignment="Left" VerticalAlignment="Top" ItemTemplate="{DynamicResource FilterConditionTemplate_Editing}" ItemContainerStyle="{DynamicResource ListBoxItemStyleFolders}"
-                                 ItemsSource="{Binding FilterConditions}">
+                                 MaxWidth="500" ItemsSource="{Binding FilterConditions}">
 
 
                 </ListBox>
@@ -240,7 +240,7 @@
                     <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=GroupFilterSorting}" Margin="5,10,0,10" FontWeight="DemiBold"></TextBlock>
                 </StackPanel>
 
-                
+
 
                 <ListBox Margin="10,0,0,0" Name="lbSorting" BorderThickness="0" Background="AntiqueWhite" Visibility="{Binding Path=IsLocked, Converter={StaticResource BooleanToVisibilityConverter}}"
                                  HorizontalAlignment="Left" VerticalAlignment="Top" ItemTemplate="{DynamicResource SortingCriteriaTemplate}" ItemContainerStyle="{DynamicResource ListBoxItemStyleFolders}"
@@ -285,7 +285,7 @@
 
 
                 </ListBox>
-                
+
             </StackPanel>
 
 

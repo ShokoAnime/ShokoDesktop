@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:JMMClient"
         xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
-        Title="ImportFolder" Height="Auto" Width="Auto" Icon="/JMMDesktop;component/Images/32_folder_edit.png" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" SizeToContent="WidthAndHeight">
+        Title="Import Folder" Height="Auto" Width="Auto" Icon="/JMMDesktop;component/Images/32_folder_edit.png" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" SizeToContent="WidthAndHeight">
 
 
     <StackPanel Orientation="Vertical">
@@ -54,7 +54,13 @@
 
                 <TextBlock Grid.Column="0" Grid.Row="1" Margin="0,0,10,5" FontWeight="Bold" Padding="5" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ServerDetails}" />
                 <TextBlock Grid.Column="0" Grid.Row="2" Margin="0,0,10,5" FontWeight="DemiBold" Padding="5" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ImportFolderPath}"/>
-                <TextBox Name="txtImportFolderLocation" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="2" Width="400"  Margin="0,5,0,5"></TextBox>
+                <TextBox Name="txtImportFolderLocation" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="2" Width="368"  Margin="0,5,0,5"></TextBox>
+
+                <Button Name="btnChooseServerFolder" Style="{DynamicResource RoundButtonStyle}" Margin="373,3,0,3" Grid.Column="1" Grid.Row="2">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                        <Image Height="16" Width="16" Source="/Images/32_Folder.png" Margin="0,0,0,0"/>
+                    </StackPanel>
+                </Button>
 
                 <TextBlock Grid.Column="0" Grid.Row="3" Margin="0,0,10,5" FontWeight="DemiBold" Padding="5" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=DropSource}"/>
                 <CheckBox Name="chkDropSource" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center"></CheckBox>
@@ -83,7 +89,13 @@
                 <TextBlock Grid.Column="0" Grid.Row="0" Margin="0,0,10,5" FontWeight="Bold" Padding="5" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=LocalMapping}"/>
 
                 <TextBlock Grid.Column="0" Grid.Row="1" Margin="0,0,10,5" FontWeight="DemiBold" Padding="5" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=LocalPath}"/>
-                <TextBox  Name="txtLocalPath" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="2" Width="400"  Margin="0,5,0,5"></TextBox>
+                <TextBox  Name="txtLocalPath" HorizontalAlignment="Left" Grid.Row="1" Width="400"  Margin="99,0,0,10" Grid.ColumnSpan="2"/>
+
+                <Button Name="btnChooseLocalFolder" Style="{DynamicResource RoundButtonStyle}" Margin="399,29,-26,8" Grid.Column="1" Grid.RowSpan="2">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                        <Image Height="16" Width="16" Source="/Images/32_Folder.png" Margin="0,0,0,0"/>
+                    </StackPanel>
+                </Button>
 
             </Grid>
 
@@ -106,6 +118,6 @@
         </StackPanel>
 
     </StackPanel>
-    
-    
+
+
 </Window>

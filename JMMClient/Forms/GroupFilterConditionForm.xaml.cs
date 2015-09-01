@@ -300,9 +300,9 @@ namespace JMMClient.Forms
 					foreach (string cat in cats)
 					{
 						if (cat.Trim().Length == 0) continue;
-						if (cat.Trim() == ",") continue;
+						if (cat.Trim() == ", ") continue;
 
-						if (groupFilterCondition.ConditionParameter.Length > 0) groupFilterCondition.ConditionParameter += ",";
+						if (groupFilterCondition.ConditionParameter.Length > 0) groupFilterCondition.ConditionParameter += ", ";
 						groupFilterCondition.ConditionParameter += cat;
 					}
 
@@ -326,9 +326,9 @@ namespace JMMClient.Forms
                     foreach (string tag in tags)
                     {
                         if (tag.Trim().Length == 0) continue;
-                        if (tag.Trim() == ",") continue;
+                        if (tag.Trim() == ", ") continue;
 
-                        if (groupFilterCondition.ConditionParameter.Length > 0) groupFilterCondition.ConditionParameter += ",";
+                        if (groupFilterCondition.ConditionParameter.Length > 0) groupFilterCondition.ConditionParameter += ", ";
                         groupFilterCondition.ConditionParameter += tag;
                     }
 
@@ -353,9 +353,9 @@ namespace JMMClient.Forms
 					foreach (string vidq in vidQuals)
 					{
 						if (vidq.Trim().Length == 0) continue;
-						if (vidq.Trim() == ",") continue;
+						if (vidq.Trim() == ", ") continue;
 
-						if (groupFilterCondition.ConditionParameter.Length > 0) groupFilterCondition.ConditionParameter += ",";
+						if (groupFilterCondition.ConditionParameter.Length > 0) groupFilterCondition.ConditionParameter += ", ";
 						groupFilterCondition.ConditionParameter += vidq;
 					}
 
@@ -380,9 +380,9 @@ namespace JMMClient.Forms
 					foreach (string lanName in languages)
 					{
 						if (lanName.Trim().Length == 0) continue;
-						if (lanName.Trim() == ",") continue;
+						if (lanName.Trim() == ", ") continue;
 
-						if (groupFilterCondition.ConditionParameter.Length > 0) groupFilterCondition.ConditionParameter += ",";
+						if (groupFilterCondition.ConditionParameter.Length > 0) groupFilterCondition.ConditionParameter += ", ";
 						groupFilterCondition.ConditionParameter += lanName;
 					}
 
@@ -407,9 +407,9 @@ namespace JMMClient.Forms
 					foreach (string lanName in languages)
 					{
 						if (lanName.Trim().Length == 0) continue;
-						if (lanName.Trim() == ",") continue;
+						if (lanName.Trim() == ", ") continue;
 
-						if (groupFilterCondition.ConditionParameter.Length > 0) groupFilterCondition.ConditionParameter += ",";
+						if (groupFilterCondition.ConditionParameter.Length > 0) groupFilterCondition.ConditionParameter += ", ";
 						groupFilterCondition.ConditionParameter += lanName;
 					}
 
@@ -435,9 +435,9 @@ namespace JMMClient.Forms
 					foreach (string aType in aTypes)
 					{
 						if (aType.Trim().Length == 0) continue;
-						if (aType.Trim() == ",") continue;
+						if (aType.Trim() == ", ") continue;
 
-						if (groupFilterCondition.ConditionParameter.Length > 0) groupFilterCondition.ConditionParameter += ",";
+						if (groupFilterCondition.ConditionParameter.Length > 0) groupFilterCondition.ConditionParameter += ", ";
 						groupFilterCondition.ConditionParameter += aType;
 					}
 
@@ -850,7 +850,7 @@ namespace JMMClient.Forms
 			int index = currentList.IndexOf(lanName, 0, StringComparison.InvariantCultureIgnoreCase);
 			if (index > -1) return;
 
-			if (currentList.Length > 0) currentList += ",";
+			if (currentList.Length > 0) currentList += ", ";
 			currentList += lanName;
 
 			txtSelectedSubtitleLanguages.Text = currentList;
@@ -869,7 +869,7 @@ namespace JMMClient.Forms
 			int index = currentList.IndexOf(lanName, 0, StringComparison.InvariantCultureIgnoreCase);
 			if (index > -1) return;
 
-			if (currentList.Length > 0) currentList += ",";
+			if (currentList.Length > 0) currentList += ", ";
 			currentList += lanName;
 
 			txtSelectedAudioLanguages.Text = currentList;
@@ -887,7 +887,7 @@ namespace JMMClient.Forms
 			int index = currentList.IndexOf(vidQual, 0, StringComparison.InvariantCultureIgnoreCase);
 			if (index > -1) return;
 
-			if (currentList.Length > 0) currentList += ",";
+			if (currentList.Length > 0) currentList += ", ";
 			currentList += vidQual;
 
 			txtSelectedVideoQuality.Text = currentList;
@@ -905,7 +905,7 @@ namespace JMMClient.Forms
 			int index = currentList.IndexOf(aType, 0, StringComparison.InvariantCultureIgnoreCase);
 			if (index > -1) return;
 
-			if (currentList.Length > 0) currentList += ",";
+			if (currentList.Length > 0) currentList += ", ";
 			currentList += aType;
 
 			txtSelectedAnimeTypes.Text = currentList;
@@ -923,7 +923,7 @@ namespace JMMClient.Forms
 			int index = currentList.IndexOf(catName, 0, StringComparison.InvariantCultureIgnoreCase);
 			if (index > -1) return;
 
-			if (currentList.Length > 0) currentList += ",";
+			if (currentList.Length > 0) currentList += ", ";
 			currentList += catName;
 
             txtSelectedTags.Text = currentList;
@@ -942,7 +942,7 @@ namespace JMMClient.Forms
             int index = currentList.IndexOf(tagName, 0, StringComparison.InvariantCultureIgnoreCase);
             if (index > -1) return;
 
-            if (currentList.Length > 0) currentList += ",";
+            if (currentList.Length > 0) currentList += ", ";
             currentList += tagName;
 
             txtSelectedCustomTags.Text = currentList;
