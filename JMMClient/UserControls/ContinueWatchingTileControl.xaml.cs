@@ -482,6 +482,8 @@ namespace JMMClient.UserControls
                 {
                     AnimeEpisodeDisplayVM ep = new AnimeEpisodeDisplayVM(rawLastEp);
                     ep.SetTvDBInfo();
+                    if (JMMServerVM.Instance.Trakt_IsEnabled)
+                        ep.SetTraktInfo();
                     ep.EpisodeOrder = 0;
                     System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()
                     {
@@ -495,6 +497,7 @@ namespace JMMClient.UserControls
 					i++;
                     AnimeEpisodeDisplayVM ep = new AnimeEpisodeDisplayVM(raw);
 					ep.SetTvDBInfo();
+                    if (i == 1 && JMMServerVM.Instance.Trakt_IsEnabled) ep.SetTraktInfo();
                     ep.EpisodeOrder = i;
                     System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
 					{

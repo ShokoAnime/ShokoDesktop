@@ -70,10 +70,38 @@
                             <RowDefinition />
                         </Grid.RowDefinitions>
 
-                        <!-- Previous or Next Episode  -->
-                        <TextBlock Grid.Column="0" Grid.Row="0" Margin="5" Text="{Binding Path=DisplayTypeLabel}" FontSize="14" FontWeight="Bold"
+                        <StackPanel Grid.Column="0" Grid.Row="0" Margin="0" Orientation="Horizontal" >
+                            <!-- Previous or Next Episode  -->
+                            <TextBlock  Text="{Binding Path=DisplayTypeLabel}" FontSize="14" FontWeight="Bold"
                                    Foreground="Black" VerticalAlignment="Center">
-                        </TextBlock>
+                            </TextBlock>
+
+                            <!-- Link to Trakt Episode -->
+                            <Button Margin="10,0,0,0" Style="{StaticResource FlatButtonStyle}" VerticalAlignment="Center" Width="26"
+                                    Visibility="{Binding Path=TraktLinkExists, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                    CommandParameter="{Binding}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="16" Width="16" Source="/Images/trakttv.ico" Margin="2,0,2,0" ToolTipService.ShowDuration="60000">
+                                        <Image.ToolTip>
+                                            <TextBlock Text="Go this episode on Trakt.TV"/>
+                                        </Image.ToolTip>
+                                    </Image>
+
+                                </StackPanel>
+                            </Button>
+
+                            <!-- Trakt Comment Details  -->
+                            <Border BorderThickness="0" BorderBrush="Navy" Background="Transparent"
+                                    Visibility="{Binding Path=TraktLinkExists, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="3" Foreground="DarkGray" FontWeight="Bold" FontSize="14" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                                    <TextBlock Text="Comments" Foreground="DarkGray" FontWeight="Normal" FontSize="14" VerticalAlignment="Center" Margin="5,0,0,0" />
+                                </StackPanel>
+
+                            </Border>
+                        </StackPanel>
+
+                        
 
                         <StackPanel Grid.Column="0" Grid.Row="1" Margin="0" Orientation="Horizontal" >
                             <!-- Episode Image  -->
