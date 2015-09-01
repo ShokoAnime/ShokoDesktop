@@ -446,11 +446,11 @@
                     </Style>
                 </TabControl.Resources>
 
-                <TabItem Header="AniDB" Name="AniDB">
+                <TabItem Header="Source" Name="AniDB">
                     <WebBrowser x:Name="webAniDB" Grid.Column="0" Grid.Row="0" Margin="5" />
                 </TabItem>
 
-                <TabItem Header="TvDB" Name="TvDB">
+                <TabItem Header="Compare" Name="TvDB">
                     <WebBrowser x:Name="webOther" Grid.Column="1" Grid.Row="0" Margin="5"/>
                 </TabItem>
 
