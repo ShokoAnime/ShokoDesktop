@@ -52,9 +52,26 @@ namespace JMMClient.UserControls
 			btnRandomSeries.Click += new RoutedEventHandler(btnRandomSeries_Click);
 			btnRandomEpisode.Click += new RoutedEventHandler(btnRandomEpisode_Click);
 
-		}
+            lbGroups.PreviewMouseWheel += LbGroups_PreviewMouseWheel;
 
-		void btnRandomEpisode_Click(object sender, RoutedEventArgs e)
+        }
+
+        private void LbGroups_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            try
+            {
+                foreach (ScrollViewer sv in GetScrollViewers())
+                    sv.ScrollToVerticalOffset(sv.VerticalOffset - e.Delta / 3);
+            }
+            catch { }
+        }
+
+        IEnumerable<ScrollViewer> GetScrollViewers()
+        {
+            for (DependencyObject element = this; element != null; element = VisualTreeHelper.GetParent(element))
+                if (element is ScrollViewer) yield return element as ScrollViewer;
+        }
+        void btnRandomEpisode_Click(object sender, RoutedEventArgs e)
 		{
 			GroupFilterVM gf = this.DataContext as GroupFilterVM;
 			if (gf == null) return;
