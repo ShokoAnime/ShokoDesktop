@@ -26,35 +26,7 @@ namespace JMMClient.Forms
 			InitializeComponent();
 
 			btnCancel.Click += new RoutedEventHandler(btnCancel_Click);
-            btnChooseServerFolder.Click += new RoutedEventHandler(btnChooseServerFolder_Click);
-            btnChooseLocalFolder.Click += new RoutedEventHandler(btnChooseLocalFolder_Click);
             btnSave.Click += new RoutedEventHandler(btnSave_Click);
-        }
-
-        void btnChooseServerFolder_Click(object sender, RoutedEventArgs e)
-        {
-            System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
-
-            if (!string.IsNullOrEmpty(txtImportFolderLocation.Text))
-                dialog.SelectedPath = txtImportFolderLocation.Text;
-
-            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                txtImportFolderLocation.Text = dialog.SelectedPath;
-            }
-        }
-
-        void btnChooseLocalFolder_Click(object sender, RoutedEventArgs e)
-        {
-            System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
-
-            if (!string.IsNullOrEmpty(txtLocalPath.Text))
-                dialog.SelectedPath = txtLocalPath.Text;
-
-            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                txtLocalPath.Text = dialog.SelectedPath;
-            }
         }
 
         void btnSave_Click(object sender, RoutedEventArgs e)
