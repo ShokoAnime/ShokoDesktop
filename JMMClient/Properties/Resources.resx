@@ -1727,4 +1727,10 @@
   <data name="Tooltip_NewSeries_Search" xml:space="preserve">
     <value>Enter part of the name of the anime, or if you know the AniDB ID just enter that directly</value>
   </data>
+  <data name="Link_CommunityRecommendation" xml:space="preserve">
+    <value>http://japanesemediamanager.github.io/faq.html#faq-communityrecommendations</value>
+  </data>
+  <data name="WhatsThis" xml:space="preserve">
+    <value>What's This?</value>
+  </data>
 </root>
