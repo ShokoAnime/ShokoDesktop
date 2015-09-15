@@ -549,14 +549,15 @@
                                         <TextBox Margin="6,0,0,0" FontSize="16" Padding="5" MinWidth="200" FontWeight="Bold" x:Name="txtSeriesName" 
                                                     VerticalAlignment="Center"/>
                                         <CheckBox x:Name="chkSerNameOverride" VerticalAlignment="Center" Margin="5,0,0,0" />
-                                        <TextBlock VerticalAlignment="Center" Text="Override" Margin="5,0,0,0" />
+                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Override}" Margin="5,0,0,0" 
+                                                   ToolTip="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_NameOverride}"/>
 
                                         <!-- Select Override Name -->
                                         <Button Margin="5,0,2,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" x:Name="btnSelectOverrideName" >
                                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                                 <Image Height="16" Width="16" Source="/Images/16_switch.png" Margin="2,0,2,0">
                                                     <Image.ToolTip>
-                                                        <TextBlock Text="Select a name from the list of AniDB names"/>
+                                                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_NameOverride2}"/>
                                                     </Image.ToolTip>
                                                 </Image>
                                             </StackPanel>

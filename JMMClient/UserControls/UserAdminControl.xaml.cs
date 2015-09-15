@@ -188,7 +188,7 @@ namespace JMMClient.UserControls
 			foreach (string cat in tags)
 				if (cat.Trim().Equals(tagName, StringComparison.InvariantCultureIgnoreCase)) return;
 
-			if (currentList.Length > 0) currentList += ",";
+			if (currentList.Length > 0) currentList += ", ";
 			currentList += tagName;
 
 			txtTags.Text = currentList;
