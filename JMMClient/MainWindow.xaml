@@ -360,17 +360,17 @@
                         </Border>
                     </StackPanel>
 
-                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Name="ScrollerGroupFilterAdmin" Margin="0" Grid.Column="2" Grid.Row="1">
+                    <!--Allows scrolling through filter results. However it breaks the scrolling for series and episodes. -->
+                    <!--<ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Name="ScrollerGroupFilterAdmin" Margin="0" Grid.Column="2" Grid.Row="1">
                         <ContentControl VerticalAlignment="Stretch"  Name="ccDetail" Width="{Binding ElementName=ScrollerGroupFilterAdmin, Path=ViewportWidth}"
                                         ContentTemplateSelector="{StaticResource myDataTemplateSelector}" >
 
                         </ContentControl>
-                    </ScrollViewer>
+                    </ScrollViewer>-->
 
-                        <!--<ContentControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Name="ccDetail" Grid.Column="2" Grid.Row="1"
+                    <ContentControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Name="ccDetail" Grid.Column="2" Grid.Row="1"
                                     ContentTemplateSelector="{StaticResource myDataTemplateSelector}" >
-
-                        </ContentControl>-->
+                    </ContentControl>
 
                         <DockPanel Grid.Row="1" Grid.RowSpan="3">
                         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Background="#F1F1F1"
