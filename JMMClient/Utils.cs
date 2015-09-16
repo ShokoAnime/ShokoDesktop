@@ -15,6 +15,7 @@ using System.Runtime.InteropServices;
 using JMMClient.Forms;
 using System.Windows;
 using System.Security.Cryptography;
+using System.Windows.Controls;
 
 namespace JMMClient
 {
@@ -48,7 +49,13 @@ namespace JMMClient
 			return appPath;
 		}
 
-		public static string GetTempFilePathWithExtension(string extension)
+        public static IEnumerable<ScrollViewer> GetScrollViewers(DependencyObject control)
+        {
+            for (DependencyObject element = control; element != null; element = System.Windows.Media.VisualTreeHelper.GetParent(element))
+                if (element is ScrollViewer) yield return element as ScrollViewer;
+        }
+
+        public static string GetTempFilePathWithExtension(string extension)
 		{
 			var path = Path.GetTempPath();
 			var fileName = Guid.NewGuid().ToString() + extension;

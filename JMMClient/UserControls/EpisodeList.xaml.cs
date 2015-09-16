@@ -100,8 +100,20 @@ namespace JMMClient.UserControls
 			btnMarkAllUnwatched.Click += new RoutedEventHandler(btnMarkAllUnwatched_Click);
 			btnMarkAllPreviousWatched.Click += new RoutedEventHandler(btnMarkAllPreviousWatched_Click);
 
-			
+            lbEpisodes.PreviewMouseWheel += LbEpisodes_PreviewMouseWheel;
 		}
+
+        private void LbEpisodes_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            try
+            {
+                foreach (ScrollViewer sv in Utils.GetScrollViewers(this))
+                    sv.ScrollToVerticalOffset(sv.VerticalOffset - e.Delta / 3);
+            }
+            catch { }
+        }
+
+        
 
         void lbEpisodes_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
