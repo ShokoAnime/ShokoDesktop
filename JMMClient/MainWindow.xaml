@@ -360,13 +360,19 @@
                         </Border>
                     </StackPanel>
 
-                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Name="ScrollerGroupFilterAdmin" Margin="0" Grid.Column="2" Grid.Row="1">
+                    <!--Allows scrolling through filter results. However it breaks the scrolling for series and episodes. -->
+                    <!--<ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Name="ScrollerGroupFilterAdmin" Margin="0" Grid.Column="2" Grid.Row="1">
                         <ContentControl VerticalAlignment="Stretch"  Name="ccDetail" Width="{Binding ElementName=ScrollerGroupFilterAdmin, Path=ViewportWidth}"
                                         ContentTemplateSelector="{StaticResource myDataTemplateSelector}" >
 
                         </ContentControl>
-                    </ScrollViewer>
-                    <DockPanel Grid.Row="1" Grid.RowSpan="3">
+                    </ScrollViewer>-->
+
+                    <ContentControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Name="ccDetail" Grid.Column="2" Grid.Row="1"
+                                    ContentTemplateSelector="{StaticResource myDataTemplateSelector}" >
+                    </ContentControl>
+
+                        <DockPanel Grid.Row="1" Grid.RowSpan="3">
                         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Background="#F1F1F1"
                                     Visibility="{Binding Source={x:Static local:MainListHelperVM.Instance}, Path=CurrentListWrapperIsGroup, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <!-- add sub group -->
@@ -1398,9 +1404,8 @@
                         <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_Pinned}" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
                     </StackPanel>
                 </TabItem.Header>
-                <TabControl Name="tabPinned" VerticalAlignment="Stretch" TabStripPlacement="Left"
-                            Width="{Binding Source={x:Static local:MainListHelperVM.Instance},Path=FullScrollerWidth}"
-                             Margin="5,5,5,5"  />
+                    <TabControl Name="tabPinned" VerticalAlignment="Stretch" TabStripPlacement="Left"
+                                Width="{Binding Source={x:Static local:MainListHelperVM.Instance},Path=FullScrollerWidth}" Margin="5,5,5,5"  />
 
             </TabItem>
 

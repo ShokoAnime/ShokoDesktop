@@ -1285,7 +1285,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Apply these filters when viewing the series for the group as well.
+        ///   Looks up a localized string similar to Apply filter at series level instead of group level.
         /// </summary>
         public static string GroupFilter_ApplyToSeries {
             get {
@@ -2752,6 +2752,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Override.
+        /// </summary>
+        public static string Override {
+            get {
+                return ResourceManager.GetString("Override", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string Password {
@@ -3598,7 +3607,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tags.
+        ///   Looks up a localized string similar to Tags ( May Contain Spoilers ).
         /// </summary>
         public static string Tags {
             get {
@@ -4071,6 +4080,24 @@ namespace JMMClient.Properties {
         public static string Tooltip_MyList {
             get {
                 return ResourceManager.GetString("Tooltip_MyList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can manually type the preferred name or use the green arrows to the right to select a name from AniDB..
+        /// </summary>
+        public static string Tooltip_NameOverride {
+            get {
+                return ResourceManager.GetString("Tooltip_NameOverride", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a name from a list of AniDB names..
+        /// </summary>
+        public static string Tooltip_NameOverride2 {
+            get {
+                return ResourceManager.GetString("Tooltip_NameOverride2", resourceCulture);
             }
         }
         

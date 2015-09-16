@@ -238,7 +238,7 @@
     <value>Categories</value>
   </data>
   <data name="Tags" xml:space="preserve">
-    <value>Tags</value>
+    <value>Tags ( May Contain Spoilers )</value>
   </data>
   <data name="CategoryWeighting" xml:space="preserve">
     <value>Weighting</value>
@@ -960,7 +960,7 @@
     <value>Preview of Filter Results</value>
   </data>
   <data name="GroupFilter_ApplyToSeries" xml:space="preserve">
-    <value>Apply these filters when viewing the series for the group as well</value>
+    <value>Apply filter at series level instead of group level</value>
   </data>
   <data name="GroupFilter_BaseCondition" xml:space="preserve">
     <value>Base Condition</value>
@@ -1732,5 +1732,14 @@
   </data>
   <data name="WhatsThis" xml:space="preserve">
     <value>What's This?</value>
+  </data>
+  <data name="Override" xml:space="preserve">
+    <value>Override</value>
+  </data>
+  <data name="Tooltip_NameOverride" xml:space="preserve">
+    <value>You can manually type the preferred name or use the green arrows to the right to select a name from AniDB.</value>
+  </data>
+  <data name="Tooltip_NameOverride2" xml:space="preserve">
+    <value>Select a name from a list of AniDB names.</value>
   </data>
 </root>

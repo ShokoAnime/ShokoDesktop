@@ -197,7 +197,7 @@
                         <Button Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                                 Command="{StaticResource UpdateTraktLinkCommand}" CommandParameter="{Binding}"
                                 ToolTip="{usercontrols:Info Title=Update, 
-                                Body=Download fresh data from The TvDB and update the local database}">
+                                Body=Download fresh data from Trakt and update the local database}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Image Height="16" Width="16" Source="/Images/32_import.png" Margin="0,0,0,0"/>
                             </StackPanel>
