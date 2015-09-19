@@ -197,11 +197,21 @@ namespace JMMClient.UserControls
 			MainWindow.videoHandler.VideoWatchedEvent += new Utilities.VideoHandler.VideoWatchedEventHandler(videoHandler_VideoWatchedEvent);
 
 			SetSeriesWidgetOrder();
-            
+
+            this.PreviewMouseWheel += AnimeSeries_PreviewMouseWheel;
 		}
 
+        private void AnimeSeries_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            try
+            {
+                foreach (ScrollViewer sv in Utils.GetScrollViewers(this))
+                    sv.ScrollToVerticalOffset(sv.VerticalOffset - e.Delta / 3);
+            }
+            catch { }
+        }
 
-		void videoHandler_VideoWatchedEvent(Utilities.VideoWatchedEventArgs ev)
+        void videoHandler_VideoWatchedEvent(Utilities.VideoWatchedEventArgs ev)
 		{
 			if (MainWindow.CurrentMainTabIndex == MainWindow.TAB_MAIN_Collection || MainWindow.CurrentMainTabIndex == MainWindow.TAB_MAIN_Pinned)
 				ShowNextEpisode();
