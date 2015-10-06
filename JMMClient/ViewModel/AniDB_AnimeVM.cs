@@ -385,16 +385,19 @@ namespace JMMClient
 			}
 		}
 
+        private string posterPathWithRandoms = string.Empty;
         public string PosterPathWithRandoms
         {
             get
             {
                 if (DefaultPoster == null)
                 {
+                    if (!string.IsNullOrEmpty(posterPathWithRandoms)) return posterPathWithRandoms;
                     PosterContainer poster = GetRandomPoster();
                     if (poster != null)
                     {
-                        return poster.FullImagePath;
+                        posterPathWithRandoms = poster.FullImagePath;
+                        return posterPathWithRandoms;
                     }
                     else
                     {
@@ -670,10 +673,10 @@ namespace JMMClient
 		{
 			get
 			{
-				if (!AppSettings.UseFanartOnSeries) return PosterPathWithRandoms;
+				if (!AppSettings.UseFanartOnSeries) return DefaultPosterPath;
 
 				if (string.IsNullOrEmpty(FanartPath))
-					return PosterPathWithRandoms;
+					return DefaultPosterPath;
 
 				return FanartPath;
 			}

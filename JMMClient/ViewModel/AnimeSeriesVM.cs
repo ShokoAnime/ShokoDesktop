@@ -346,7 +346,7 @@ namespace JMMClient
 		private string posterPath = "";
 		public string PosterPath
 		{
-			get { return AniDB_Anime.PosterPathWithRandoms; }
+			get { return AniDB_Anime.DefaultPosterPath; }
 			set
 			{
 				posterPath = value;

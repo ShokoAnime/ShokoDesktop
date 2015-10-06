@@ -504,7 +504,7 @@
                                     Margin="10,10,10,10" Grid.Row="0" Grid.Column="0" Grid.RowSpan="8" HorizontalAlignment="Center" VerticalAlignment="Top"
                                     Visibility="{Binding Path=AniDB_Anime.UsePosterOnSeries, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <Image.ToolTip>
-                                    <Image Stretch="Fill" HorizontalAlignment="Center" Height="400" Source="{Binding AniDB_Anime.FanartPathThenPosterPath}" />
+                                    <Image Stretch="Fill" HorizontalAlignment="Center" Height="400" Source="{Binding AniDB_Anime.DefaultPosterPath}" />
                                 </Image.ToolTip>
                                 <Image.Effect>
                                     <DropShadowEffect Opacity="0.5"/>
