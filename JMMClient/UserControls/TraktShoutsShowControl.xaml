@@ -215,7 +215,7 @@
                  VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                  ItemTemplateSelector="{StaticResource PeopleSayingTemplateSelector}"
-                 ItemsSource="{Binding Path=CurrentShouts, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TraktCommentsShowControl}}}" 
+                 ItemsSource="{Binding Path=CurrentComments, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TraktCommentsShowControl}}}" 
                  Background="Transparent"  VerticalAlignment="Stretch" >
                     <ListBox.Template>
                         <ControlTemplate>
