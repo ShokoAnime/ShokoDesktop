@@ -85,10 +85,6 @@
                 <TextBlock Margin="5,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Unwatched}" VerticalAlignment="Center" FontSize="11"/>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="4">
-                <TextBlock Margin="5,0,0,0" Text="{Binding Path=TotalFileSize}" VerticalAlignment="Center" FontSize="11"/>
-            </StackPanel>
-
             <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" 
                                 Visibility="{Binding Path=HasMissingEpisodesAny, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <StackPanel Orientation="Horizontal" Margin="0,0,10,0"
