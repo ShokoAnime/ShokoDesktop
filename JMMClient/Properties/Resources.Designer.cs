@@ -70,6 +70,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Admin Message.
+        /// </summary>
+        public static string AdminMessageTitle {
+            get {
+                return ResourceManager.GetString("AdminMessageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Air Date.
         /// </summary>
         public static string AirDate {
@@ -660,6 +669,15 @@ namespace JMMClient.Properties {
         public static string ChangeLanguage {
             get {
                 return ResourceManager.GetString("ChangeLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check For Updates.
+        /// </summary>
+        public static string CheckForUpdate {
+            get {
+                return ResourceManager.GetString("CheckForUpdate", resourceCulture);
             }
         }
         
@@ -2320,11 +2338,146 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/faq.html#faq-communityrecommendations.
+        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/general/faq.html#banned-from-anidb.
+        /// </summary>
+        public static string Link_AniDBBanned {
+            get {
+                return ResourceManager.GetString("Link_AniDBBanned", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/jmmdesktop/settings.html#anidb.
+        /// </summary>
+        public static string Link_AniDBSettings {
+            get {
+                return ResourceManager.GetString("Link_AniDBSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/general/faq.html#what-are-community-recommendations.
         /// </summary>
         public static string Link_CommunityRecommendation {
             get {
                 return ResourceManager.GetString("Link_CommunityRecommendation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/documentation.html.
+        /// </summary>
+        public static string Link_Documentation {
+            get {
+                return ResourceManager.GetString("Link_Documentation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/jmmdesktop/utilities.html#renaming-overview.
+        /// </summary>
+        public static string Link_FileRenaming {
+            get {
+                return ResourceManager.GetString("Link_FileRenaming", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/jmmdesktop/collection.html#group-filters.
+        /// </summary>
+        public static string Link_GroupFilters {
+            get {
+                return ResourceManager.GetString("Link_GroupFilters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/jmmserver/import.html.
+        /// </summary>
+        public static string Link_ImportFolders {
+            get {
+                return ResourceManager.GetString("Link_ImportFolders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/jmmdesktop/settings.html#mal.
+        /// </summary>
+        public static string Link_MAL {
+            get {
+                return ResourceManager.GetString("Link_MAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/jmmdesktop/settings.html#mpc.
+        /// </summary>
+        public static string Link_MPC {
+            get {
+                return ResourceManager.GetString("Link_MPC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/jmmdesktop/settings.html#pot-player.
+        /// </summary>
+        public static string Link_PotPlayer {
+            get {
+                return ResourceManager.GetString("Link_PotPlayer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/jmmdesktop/settings.html#tmdb.
+        /// </summary>
+        public static string Link_TMDb {
+            get {
+                return ResourceManager.GetString("Link_TMDb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/jmmdesktop/settings.html#trakt.
+        /// </summary>
+        public static string Link_Trakt {
+            get {
+                return ResourceManager.GetString("Link_Trakt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/jmmdesktop/settings.html#tvdb.
+        /// </summary>
+        public static string Link_TvDB {
+            get {
+                return ResourceManager.GetString("Link_TvDB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/jmmdesktop/downloads.html#utorrent.
+        /// </summary>
+        public static string Link_uTorrent {
+            get {
+                return ResourceManager.GetString("Link_uTorrent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/jmmdesktop/settings.html#vlc.
+        /// </summary>
+        public static string Link_VLC {
+            get {
+                return ResourceManager.GetString("Link_VLC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/jmmdesktop/settings.html#web-cache.
+        /// </summary>
+        public static string Link_WebCache {
+            get {
+                return ResourceManager.GetString("Link_WebCache", resourceCulture);
             }
         }
         

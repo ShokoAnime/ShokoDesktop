@@ -45,7 +45,7 @@
                 <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,5,0" Grid.Column="0" Grid.Row="1" VerticalAlignment="Top"/>
                 <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,0,5,0" VerticalAlignment="Center" Text="For MPC Integration you must enable two options (1) Store settings to .ini file and (2) Keep history of recently watched files. See the following screenshot for more details. The location of MPC is usually something like C:\Program Files (x86)\Combined Community Codec Pack\MPC"  TextWrapping="Wrap" />
                 <usercontrols:HyperLinkStandard Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Margin="0,5,0,0" DisplayText="MPC Options"
-                                                                        URL="http://japanesemediamanager.github.io/wiki_usermanual_videoplayers.html#Media Player Classic"/>
+                                                                        URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_MPC}"/>
             </Grid>
         </Border>
 
@@ -103,7 +103,7 @@
                 <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,5,0" Grid.Column="0" Grid.Row="1" VerticalAlignment="Top"/>
                 <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,0,5,0" VerticalAlignment="Center" Text="For PotPlayer Integration you must enable the following options (1) Preferences > General > Store Settings to .ini file (2) Preferences > Playback > Play from latest point. See the following screenshot for more details. The location of the PlotPlayer .ini file is usually something like C:\Users\username\AppData\Roaming\PotPlayer64\PotPlayer64.ini"  TextWrapping="Wrap" />
                 <usercontrols:HyperLinkStandard Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Margin="0,5,0,0" DisplayText="PotPlayer Options"
-                                                                        URL="http://japanesemediamanager.github.io/wiki_usermanual_videoplayers.html#PotPlayer"/>
+                                                                        URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_PotPlayer}"/>
             </Grid>
         </Border>
 
@@ -161,7 +161,7 @@
                 <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,5,0" Grid.Column="0" Grid.Row="1" VerticalAlignment="Top"/>
                 <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,0,5,0" VerticalAlignment="Center" Text="VLC 2.2+ records recent files and timestamps by default (and disabling is an 'Advanced' option). Older versions do not support 'Resume from last position' functionality. The location of the VLC .ini file is usually something like C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini"  TextWrapping="Wrap" />
                 <usercontrols:HyperLinkStandard Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Margin="0,5,0,0" DisplayText="VLC Options"
-                                                                        URL="http://japanesemediamanager.github.io/wiki_usermanual_videoplayers.html#VLC"/>
+                                                                        URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_VLC}"/>
             </Grid>
         </Border>
 

@@ -77,7 +77,7 @@
                         
                        
                     <usercontrols:HyperLinkStandard VerticalAlignment="Center" Margin="5,0,0,0" DisplayText="What does this mean?" Grid.Column="1"
-                                                                    URL="http://japanesemediamanager.github.io/jmmdesktop_collections.html#collections-groupfilters"/>
+                                                                    URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_GroupFilters}"/>
                 </StackPanel>
             </Grid>
 
