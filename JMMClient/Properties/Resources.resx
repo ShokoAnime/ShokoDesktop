@@ -1728,7 +1728,7 @@
     <value>Enter part of the name of the anime, or if you know the AniDB ID just enter that directly</value>
   </data>
   <data name="Link_CommunityRecommendation" xml:space="preserve">
-    <value>http://japanesemediamanager.github.io/faq.html#faq-communityrecommendations</value>
+    <value>http://japanesemediamanager.github.io/general/faq.html#what-are-community-recommendations</value>
   </data>
   <data name="WhatsThis" xml:space="preserve">
     <value>What's This?</value>
@@ -1741,5 +1741,56 @@
   </data>
   <data name="Tooltip_NameOverride2" xml:space="preserve">
     <value>Select a name from a list of AniDB names.</value>
+  </data>
+  <data name="AdminMessageTitle" xml:space="preserve">
+    <value>Admin Message</value>
+  </data>
+  <data name="CheckForUpdate" xml:space="preserve">
+    <value>Check For Updates</value>
+  </data>
+  <data name="Link_Documentation" xml:space="preserve">
+    <value>http://japanesemediamanager.github.io/documentation.html</value>
+  </data>
+  <data name="Link_AniDBBanned" xml:space="preserve">
+    <value>http://japanesemediamanager.github.io/general/faq.html#banned-from-anidb</value>
+  </data>
+  <data name="Link_AniDBSettings" xml:space="preserve">
+    <value>http://japanesemediamanager.github.io/jmmdesktop/settings.html#anidb</value>
+  </data>
+  <data name="Link_FileRenaming" xml:space="preserve">
+    <value>http://japanesemediamanager.github.io/jmmdesktop/utilities.html#renaming-overview</value>
+  </data>
+  <data name="Link_GroupFilters" xml:space="preserve">
+    <value>http://japanesemediamanager.github.io/jmmdesktop/collection.html#group-filters</value>
+  </data>
+  <data name="Link_ImportFolders" xml:space="preserve">
+    <value>http://japanesemediamanager.github.io/jmmserver/import.html</value>
+  </data>
+  <data name="Link_MAL" xml:space="preserve">
+    <value>http://japanesemediamanager.github.io/jmmdesktop/settings.html#mal</value>
+  </data>
+  <data name="Link_MPC" xml:space="preserve">
+    <value>http://japanesemediamanager.github.io/jmmdesktop/settings.html#mpc</value>
+  </data>
+  <data name="Link_PotPlayer" xml:space="preserve">
+    <value>http://japanesemediamanager.github.io/jmmdesktop/settings.html#pot-player</value>
+  </data>
+  <data name="Link_TMDb" xml:space="preserve">
+    <value>http://japanesemediamanager.github.io/jmmdesktop/settings.html#tmdb</value>
+  </data>
+  <data name="Link_Trakt" xml:space="preserve">
+    <value>http://japanesemediamanager.github.io/jmmdesktop/settings.html#trakt</value>
+  </data>
+  <data name="Link_TvDB" xml:space="preserve">
+    <value>http://japanesemediamanager.github.io/jmmdesktop/settings.html#tvdb</value>
+  </data>
+  <data name="Link_uTorrent" xml:space="preserve">
+    <value>http://japanesemediamanager.github.io/jmmdesktop/downloads.html#utorrent</value>
+  </data>
+  <data name="Link_VLC" xml:space="preserve">
+    <value>http://japanesemediamanager.github.io/jmmdesktop/settings.html#vlc</value>
+  </data>
+  <data name="Link_WebCache" xml:space="preserve">
+    <value>http://japanesemediamanager.github.io/jmmdesktop/settings.html#web-cache</value>
   </data>
 </root>
