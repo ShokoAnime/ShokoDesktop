@@ -1767,7 +1767,7 @@
     <value>http://japanesemediamanager.github.io/jmmserver/import.html</value>
   </data>
   <data name="Link_MAL" xml:space="preserve">
-    <value>http://japanesemediamanager.github.io/jmmdesktop/settings.html#mal</value>
+    <value>http://japanesemediamanager.github.io/jmmdesktop/settings.html#community-sites</value>
   </data>
   <data name="Link_MPC" xml:space="preserve">
     <value>http://japanesemediamanager.github.io/jmmdesktop/settings.html#mpc</value>
@@ -1776,13 +1776,13 @@
     <value>http://japanesemediamanager.github.io/jmmdesktop/settings.html#pot-player</value>
   </data>
   <data name="Link_TMDb" xml:space="preserve">
-    <value>http://japanesemediamanager.github.io/jmmdesktop/settings.html#tmdb</value>
+    <value>http://japanesemediamanager.github.io/jmmdesktop/settings.html#community-sites</value>
   </data>
   <data name="Link_Trakt" xml:space="preserve">
-    <value>http://japanesemediamanager.github.io/jmmdesktop/settings.html#trakt</value>
+    <value>http://japanesemediamanager.github.io/jmmdesktop/settings.html#community-sites</value>
   </data>
   <data name="Link_TvDB" xml:space="preserve">
-    <value>http://japanesemediamanager.github.io/jmmdesktop/settings.html#tvdb</value>
+    <value>http://japanesemediamanager.github.io/jmmdesktop/settings.html#community-sites</value>
   </data>
   <data name="Link_uTorrent" xml:space="preserve">
     <value>http://japanesemediamanager.github.io/jmmdesktop/downloads.html#utorrent</value>
