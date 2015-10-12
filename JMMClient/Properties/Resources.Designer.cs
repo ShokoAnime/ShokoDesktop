@@ -2230,7 +2230,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to All the settings on this page should be populated. Make sure to test and save the OMM Server and AniDB details before proceeding. If this is your first time running the application enter at least one import folder and the press the Run Import button..
+        ///   Looks up a localized string similar to All the settings on this page should be populated. Make sure to test and save the JMM Server and AniDB details before proceeding. If this is your first time running the application enter at least one import folder and the press the Run Import button..
         /// </summary>
         public static string INFO_SettingsEssential {
             get {
@@ -2401,7 +2401,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/jmmdesktop/settings.html#community-sites.
+        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/jmmdesktop/settings.html#mal.
         /// </summary>
         public static string Link_MAL {
             get {
@@ -2428,7 +2428,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/jmmdesktop/settings.html#community-sites.
+        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/jmmdesktop/settings.html#tmdb.
         /// </summary>
         public static string Link_TMDb {
             get {
@@ -2437,7 +2437,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/jmmdesktop/settings.html#community-sites.
+        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/jmmdesktop/settings.html#trakt.
         /// </summary>
         public static string Link_Trakt {
             get {
@@ -2446,7 +2446,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/jmmdesktop/settings.html#community-sites.
+        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/jmmdesktop/settings.html#tvdb.
         /// </summary>
         public static string Link_TvDB {
             get {
