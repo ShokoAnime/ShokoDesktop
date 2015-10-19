@@ -840,11 +840,6 @@
                         <usercontrols:RankingsControl x:Name="rankings"/>
                     </TabItem>
 
-                    <TabItem Header="Logs" Name="tabLogs">
-
-                        <usercontrols:LogsControl x:Name="uclogs"/>
-                    </TabItem>
-
                 </TabControl>
 
 

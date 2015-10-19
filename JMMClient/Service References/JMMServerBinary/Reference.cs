@@ -399,8 +399,6 @@ namespace JMMClient.JMMServerBinary {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AniDBVote))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDB_Recommendation>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AniDB_Recommendation))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_LogMessage>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_LogMessage))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AnimeSearch>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_AnimeSearch))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AniDB_Episode>))]
@@ -9159,99 +9157,6 @@ namespace JMMClient.JMMServerBinary {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_LogMessage", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
-    [System.SerializableAttribute()]
-    public partial class Contract_LogMessage : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string LogContentField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime LogDateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int LogMessageIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string LogTypeField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string LogContent {
-            get {
-                return this.LogContentField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.LogContentField, value) != true)) {
-                    this.LogContentField = value;
-                    this.RaisePropertyChanged("LogContent");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime LogDate {
-            get {
-                return this.LogDateField;
-            }
-            set {
-                if ((this.LogDateField.Equals(value) != true)) {
-                    this.LogDateField = value;
-                    this.RaisePropertyChanged("LogDate");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int LogMessageID {
-            get {
-                return this.LogMessageIDField;
-            }
-            set {
-                if ((this.LogMessageIDField.Equals(value) != true)) {
-                    this.LogMessageIDField = value;
-                    this.RaisePropertyChanged("LogMessageID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string LogType {
-            get {
-                return this.LogTypeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.LogTypeField, value) != true)) {
-                    this.LogTypeField = value;
-                    this.RaisePropertyChanged("LogType");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Contract_AnimeSearch", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
     [System.SerializableAttribute()]
     public partial class Contract_AnimeSearch : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -16124,9 +16029,6 @@ namespace JMMClient.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/RescanManuallyLinkedFiles", ReplyAction="http://tempuri.org/IJMMServer/RescanManuallyLinkedFilesResponse")]
         void RescanManuallyLinkedFiles();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetLogMessages", ReplyAction="http://tempuri.org/IJMMServer/GetLogMessagesResponse")]
-        System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_LogMessage> GetLogMessages(string logType);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/OnlineAnimeTitleSearch", ReplyAction="http://tempuri.org/IJMMServer/OnlineAnimeTitleSearchResponse")]
         System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AnimeSearch> OnlineAnimeTitleSearch(string titleQuery);
         
@@ -16909,10 +16811,6 @@ namespace JMMClient.JMMServerBinary {
         
         public void RescanManuallyLinkedFiles() {
             base.Channel.RescanManuallyLinkedFiles();
-        }
-        
-        public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_LogMessage> GetLogMessages(string logType) {
-            return base.Channel.GetLogMessages(logType);
         }
         
         public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_AnimeSearch> OnlineAnimeTitleSearch(string titleQuery) {
