@@ -23,20 +23,7 @@ namespace JMMClient.UserControls
 		{
 			InitializeComponent();
 
-			cboUpdateFrequency.Items.Clear();
-			cboUpdateFrequency.Items.Add(Properties.Resources.UpdateFrequency_Daily);
-			cboUpdateFrequency.Items.Add(Properties.Resources.UpdateFrequency_12Hours);
-			cboUpdateFrequency.Items.Add(Properties.Resources.UpdateFrequency_6Hours);
-			cboUpdateFrequency.Items.Add(Properties.Resources.UpdateFrequency_Never);
-
-			switch (JMMServerVM.Instance.Trakt_UpdateFrequency)
-			{
-				case ScheduledUpdateFrequency.Daily: cboUpdateFrequency.SelectedIndex = 0; break;
-				case ScheduledUpdateFrequency.HoursTwelve: cboUpdateFrequency.SelectedIndex = 1; break;
-				case ScheduledUpdateFrequency.HoursSix: cboUpdateFrequency.SelectedIndex = 2; break;
-				case ScheduledUpdateFrequency.Never: cboUpdateFrequency.SelectedIndex = 3; break;
-			}
-
+            Utils.PopulateScheduledComboBox(cboUpdateFrequency, JMMServerVM.Instance.Trakt_UpdateFrequency);
 			cboUpdateFrequency.SelectionChanged += new SelectionChangedEventHandler(cboUpdateFrequency_SelectionChanged);
 
             EvaulateVisibility();
@@ -64,10 +51,12 @@ namespace JMMClient.UserControls
 		{
 			switch (cboUpdateFrequency.SelectedIndex)
 			{
-				case 0: JMMServerVM.Instance.Trakt_UpdateFrequency = ScheduledUpdateFrequency.Daily; break;
-				case 1: JMMServerVM.Instance.Trakt_UpdateFrequency = ScheduledUpdateFrequency.HoursTwelve; break;
-				case 2: JMMServerVM.Instance.Trakt_UpdateFrequency = ScheduledUpdateFrequency.HoursSix; break;
-				case 3: JMMServerVM.Instance.Trakt_UpdateFrequency = ScheduledUpdateFrequency.Never; break;
+                case 0: JMMServerVM.Instance.Trakt_UpdateFrequency = ScheduledUpdateFrequency.HoursSix; break;
+                case 1: JMMServerVM.Instance.Trakt_UpdateFrequency = ScheduledUpdateFrequency.HoursTwelve; break;
+                case 2: JMMServerVM.Instance.Trakt_UpdateFrequency = ScheduledUpdateFrequency.Daily; break;
+                case 3: JMMServerVM.Instance.Trakt_UpdateFrequency = ScheduledUpdateFrequency.WeekOne; break;
+                case 4: JMMServerVM.Instance.Trakt_UpdateFrequency = ScheduledUpdateFrequency.MonthOne; break;
+                case 5: JMMServerVM.Instance.Trakt_UpdateFrequency = ScheduledUpdateFrequency.Never; break;
 			}
 
 			JMMServerVM.Instance.SaveServerSettingsAsync();

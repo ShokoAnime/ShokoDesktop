@@ -23,100 +23,34 @@ namespace JMMClient.UserControls
 		{
 			InitializeComponent();
 
-			cboUpdateFrequencyCalendar.Items.Clear();
-			cboUpdateFrequencyCalendar.Items.Add(Properties.Resources.UpdateFrequency_Daily);
-			cboUpdateFrequencyCalendar.Items.Add(Properties.Resources.UpdateFrequency_12Hours);
-			cboUpdateFrequencyCalendar.Items.Add(Properties.Resources.UpdateFrequency_6Hours);
-			cboUpdateFrequencyCalendar.Items.Add(Properties.Resources.UpdateFrequency_Never);
-
-			switch (JMMServerVM.Instance.AniDB_Calendar_UpdateFrequency)
-			{
-				case ScheduledUpdateFrequency.Daily: cboUpdateFrequencyCalendar.SelectedIndex = 0; break;
-				case ScheduledUpdateFrequency.HoursTwelve: cboUpdateFrequencyCalendar.SelectedIndex = 1; break;
-				case ScheduledUpdateFrequency.HoursSix: cboUpdateFrequencyCalendar.SelectedIndex = 2; break;
-				case ScheduledUpdateFrequency.Never: cboUpdateFrequencyCalendar.SelectedIndex = 3; break;
-			}
-
+            Utils.PopulateScheduledComboBox(cboUpdateFrequencyCalendar, JMMServerVM.Instance.AniDB_Calendar_UpdateFrequency);
 			cboUpdateFrequencyCalendar.SelectionChanged += new SelectionChangedEventHandler(cboUpdateFrequencyCalendar_SelectionChanged);
 
-
-			cboUpdateFrequencyAnime.Items.Clear();
-			cboUpdateFrequencyAnime.Items.Add(Properties.Resources.UpdateFrequency_Daily);
-			cboUpdateFrequencyAnime.Items.Add(Properties.Resources.UpdateFrequency_12Hours);
-			cboUpdateFrequencyAnime.Items.Add(Properties.Resources.UpdateFrequency_6Hours);
-			cboUpdateFrequencyAnime.Items.Add(Properties.Resources.UpdateFrequency_Never);
-
-			switch (JMMServerVM.Instance.AniDB_Anime_UpdateFrequency)
-			{
-				case ScheduledUpdateFrequency.Daily: cboUpdateFrequencyAnime.SelectedIndex = 0; break;
-				case ScheduledUpdateFrequency.HoursTwelve: cboUpdateFrequencyAnime.SelectedIndex = 1; break;
-				case ScheduledUpdateFrequency.HoursSix: cboUpdateFrequencyAnime.SelectedIndex = 2; break;
-				case ScheduledUpdateFrequency.Never: cboUpdateFrequencyAnime.SelectedIndex = 3; break;
-			}
-
+            Utils.PopulateScheduledComboBox(cboUpdateFrequencyAnime, JMMServerVM.Instance.AniDB_Anime_UpdateFrequency);
 			cboUpdateFrequencyAnime.SelectionChanged += new SelectionChangedEventHandler(cboUpdateFrequencyAnime_SelectionChanged);
 
-			cboUpdateFrequencyMyList.Items.Clear();
-			cboUpdateFrequencyMyList.Items.Add(Properties.Resources.UpdateFrequency_Daily);
-			cboUpdateFrequencyMyList.Items.Add(Properties.Resources.UpdateFrequency_12Hours);
-			cboUpdateFrequencyMyList.Items.Add(Properties.Resources.UpdateFrequency_6Hours);
-			cboUpdateFrequencyMyList.Items.Add(Properties.Resources.UpdateFrequency_Never);
-
-			switch (JMMServerVM.Instance.AniDB_MyList_UpdateFrequency)
-			{
-				case ScheduledUpdateFrequency.Daily: cboUpdateFrequencyMyList.SelectedIndex = 0; break;
-				case ScheduledUpdateFrequency.HoursTwelve: cboUpdateFrequencyMyList.SelectedIndex = 1; break;
-				case ScheduledUpdateFrequency.HoursSix: cboUpdateFrequencyMyList.SelectedIndex = 2; break;
-				case ScheduledUpdateFrequency.Never: cboUpdateFrequencyMyList.SelectedIndex = 3; break;
-			}
-
+            Utils.PopulateScheduledComboBox(cboUpdateFrequencyMyList, JMMServerVM.Instance.AniDB_MyList_UpdateFrequency);
 			cboUpdateFrequencyMyList.SelectionChanged += new SelectionChangedEventHandler(cboUpdateFrequencyMyList_SelectionChanged);
 
-
-
-
-			cboUpdateFrequencyMyListStats.Items.Clear();
-			cboUpdateFrequencyMyListStats.Items.Add(Properties.Resources.UpdateFrequency_Daily);
-			cboUpdateFrequencyMyListStats.Items.Add(Properties.Resources.UpdateFrequency_12Hours);
-			cboUpdateFrequencyMyListStats.Items.Add(Properties.Resources.UpdateFrequency_6Hours);
-			cboUpdateFrequencyMyListStats.Items.Add(Properties.Resources.UpdateFrequency_Never);
-
-			switch (JMMServerVM.Instance.AniDB_MyListStats_UpdateFrequency)
-			{
-				case ScheduledUpdateFrequency.Daily: cboUpdateFrequencyMyListStats.SelectedIndex = 0; break;
-				case ScheduledUpdateFrequency.HoursTwelve: cboUpdateFrequencyMyListStats.SelectedIndex = 1; break;
-				case ScheduledUpdateFrequency.HoursSix: cboUpdateFrequencyMyListStats.SelectedIndex = 2; break;
-				case ScheduledUpdateFrequency.Never: cboUpdateFrequencyMyListStats.SelectedIndex = 3; break;
-			}
-
+            Utils.PopulateScheduledComboBox(cboUpdateFrequencyMyListStats, JMMServerVM.Instance.AniDB_MyListStats_UpdateFrequency);
 			cboUpdateFrequencyMyListStats.SelectionChanged += new SelectionChangedEventHandler(cboUpdateFrequencyMyListStats_SelectionChanged);
 
-			cboUpdateFrequencyAniDBFiles.Items.Clear();
-
-			cboUpdateFrequencyAniDBFiles.Items.Add(Properties.Resources.UpdateFrequency_Daily);
-			cboUpdateFrequencyAniDBFiles.Items.Add(Properties.Resources.UpdateFrequency_12Hours);
-			cboUpdateFrequencyAniDBFiles.Items.Add(Properties.Resources.UpdateFrequency_6Hours);
-			cboUpdateFrequencyAniDBFiles.Items.Add(Properties.Resources.UpdateFrequency_Never);
-
-			switch (JMMServerVM.Instance.AniDB_File_UpdateFrequency)
-			{
-				case ScheduledUpdateFrequency.Daily: cboUpdateFrequencyAniDBFiles.SelectedIndex = 0; break;
-				case ScheduledUpdateFrequency.HoursTwelve: cboUpdateFrequencyAniDBFiles.SelectedIndex = 1; break;
-				case ScheduledUpdateFrequency.HoursSix: cboUpdateFrequencyAniDBFiles.SelectedIndex = 2; break;
-				case ScheduledUpdateFrequency.Never: cboUpdateFrequencyAniDBFiles.SelectedIndex = 3; break;
-			}
-
+            Utils.PopulateScheduledComboBox(cboUpdateFrequencyAniDBFiles, JMMServerVM.Instance.AniDB_File_UpdateFrequency);
 			cboUpdateFrequencyAniDBFiles.SelectionChanged += new SelectionChangedEventHandler(cboUpdateFrequencyAniDBFiles_SelectionChanged);
 		}
+
+        
 
 		void cboUpdateFrequencyAniDBFiles_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			switch (cboUpdateFrequencyAniDBFiles.SelectedIndex)
 			{
-				case 0: JMMServerVM.Instance.AniDB_File_UpdateFrequency = ScheduledUpdateFrequency.Daily; break;
-				case 1: JMMServerVM.Instance.AniDB_File_UpdateFrequency = ScheduledUpdateFrequency.HoursTwelve; break;
-				case 2: JMMServerVM.Instance.AniDB_File_UpdateFrequency = ScheduledUpdateFrequency.HoursSix; break;
-				case 3: JMMServerVM.Instance.AniDB_File_UpdateFrequency = ScheduledUpdateFrequency.Never; break;
+				case 0: JMMServerVM.Instance.AniDB_File_UpdateFrequency = ScheduledUpdateFrequency.HoursSix; break;
+                case 1: JMMServerVM.Instance.AniDB_File_UpdateFrequency = ScheduledUpdateFrequency.HoursTwelve; break;
+                case 2: JMMServerVM.Instance.AniDB_File_UpdateFrequency = ScheduledUpdateFrequency.Daily; break;
+                case 3: JMMServerVM.Instance.AniDB_File_UpdateFrequency = ScheduledUpdateFrequency.WeekOne; break;
+                case 4: JMMServerVM.Instance.AniDB_File_UpdateFrequency = ScheduledUpdateFrequency.MonthOne; break;
+                case 5: JMMServerVM.Instance.AniDB_File_UpdateFrequency = ScheduledUpdateFrequency.Never; break;
 			}
 
 			JMMServerVM.Instance.SaveServerSettingsAsync();
@@ -126,11 +60,13 @@ namespace JMMClient.UserControls
 		{
 			switch (cboUpdateFrequencyMyListStats.SelectedIndex)
 			{
-				case 0: JMMServerVM.Instance.AniDB_MyListStats_UpdateFrequency = ScheduledUpdateFrequency.Daily; break;
-				case 1: JMMServerVM.Instance.AniDB_MyListStats_UpdateFrequency = ScheduledUpdateFrequency.HoursTwelve; break;
-				case 2: JMMServerVM.Instance.AniDB_MyListStats_UpdateFrequency = ScheduledUpdateFrequency.HoursSix; break;
-				case 3: JMMServerVM.Instance.AniDB_MyListStats_UpdateFrequency = ScheduledUpdateFrequency.Never; break;
-			}
+                case 0: JMMServerVM.Instance.AniDB_MyListStats_UpdateFrequency = ScheduledUpdateFrequency.HoursSix; break;
+                case 1: JMMServerVM.Instance.AniDB_MyListStats_UpdateFrequency = ScheduledUpdateFrequency.HoursTwelve; break;
+                case 2: JMMServerVM.Instance.AniDB_MyListStats_UpdateFrequency = ScheduledUpdateFrequency.Daily; break;
+                case 3: JMMServerVM.Instance.AniDB_MyListStats_UpdateFrequency = ScheduledUpdateFrequency.WeekOne; break;
+                case 4: JMMServerVM.Instance.AniDB_MyListStats_UpdateFrequency = ScheduledUpdateFrequency.MonthOne; break;
+                case 5: JMMServerVM.Instance.AniDB_MyListStats_UpdateFrequency = ScheduledUpdateFrequency.Never; break;
+            }
 
 			JMMServerVM.Instance.SaveServerSettingsAsync();
 		}
@@ -139,10 +75,12 @@ namespace JMMClient.UserControls
 		{
 			switch (cboUpdateFrequencyMyList.SelectedIndex)
 			{
-				case 0: JMMServerVM.Instance.AniDB_MyList_UpdateFrequency = ScheduledUpdateFrequency.Daily; break;
-				case 1: JMMServerVM.Instance.AniDB_MyList_UpdateFrequency = ScheduledUpdateFrequency.HoursTwelve; break;
-				case 2: JMMServerVM.Instance.AniDB_MyList_UpdateFrequency = ScheduledUpdateFrequency.HoursSix; break;
-				case 3: JMMServerVM.Instance.AniDB_MyList_UpdateFrequency = ScheduledUpdateFrequency.Never; break;
+                case 0: JMMServerVM.Instance.AniDB_MyList_UpdateFrequency = ScheduledUpdateFrequency.HoursSix; break;
+                case 1: JMMServerVM.Instance.AniDB_MyList_UpdateFrequency = ScheduledUpdateFrequency.HoursTwelve; break;
+                case 2: JMMServerVM.Instance.AniDB_MyList_UpdateFrequency = ScheduledUpdateFrequency.Daily; break;
+                case 3: JMMServerVM.Instance.AniDB_MyList_UpdateFrequency = ScheduledUpdateFrequency.WeekOne; break;
+                case 4: JMMServerVM.Instance.AniDB_MyList_UpdateFrequency = ScheduledUpdateFrequency.MonthOne; break;
+                case 5: JMMServerVM.Instance.AniDB_MyList_UpdateFrequency = ScheduledUpdateFrequency.Never; break;
 			}
 
 			JMMServerVM.Instance.SaveServerSettingsAsync();
@@ -152,10 +90,12 @@ namespace JMMClient.UserControls
 		{
 			switch (cboUpdateFrequencyAnime.SelectedIndex)
 			{
-				case 0: JMMServerVM.Instance.AniDB_Anime_UpdateFrequency = ScheduledUpdateFrequency.Daily; break;
-				case 1: JMMServerVM.Instance.AniDB_Anime_UpdateFrequency = ScheduledUpdateFrequency.HoursTwelve; break;
-				case 2: JMMServerVM.Instance.AniDB_Anime_UpdateFrequency = ScheduledUpdateFrequency.HoursSix; break;
-				case 3: JMMServerVM.Instance.AniDB_Anime_UpdateFrequency = ScheduledUpdateFrequency.Never; break;
+                case 0: JMMServerVM.Instance.AniDB_Anime_UpdateFrequency = ScheduledUpdateFrequency.HoursSix; break;
+                case 1: JMMServerVM.Instance.AniDB_Anime_UpdateFrequency = ScheduledUpdateFrequency.HoursTwelve; break;
+                case 2: JMMServerVM.Instance.AniDB_Anime_UpdateFrequency = ScheduledUpdateFrequency.Daily; break;
+                case 3: JMMServerVM.Instance.AniDB_Anime_UpdateFrequency = ScheduledUpdateFrequency.WeekOne; break;
+                case 4: JMMServerVM.Instance.AniDB_Anime_UpdateFrequency = ScheduledUpdateFrequency.MonthOne; break;
+                case 5: JMMServerVM.Instance.AniDB_Anime_UpdateFrequency = ScheduledUpdateFrequency.Never; break;
 			}
 
 			JMMServerVM.Instance.SaveServerSettingsAsync();
@@ -165,10 +105,12 @@ namespace JMMClient.UserControls
 		{
 			switch (cboUpdateFrequencyCalendar.SelectedIndex)
 			{
-				case 0: JMMServerVM.Instance.AniDB_Calendar_UpdateFrequency = ScheduledUpdateFrequency.Daily; break;
-				case 1: JMMServerVM.Instance.AniDB_Calendar_UpdateFrequency = ScheduledUpdateFrequency.HoursTwelve; break;
-				case 2: JMMServerVM.Instance.AniDB_Calendar_UpdateFrequency = ScheduledUpdateFrequency.HoursSix; break;
-				case 3: JMMServerVM.Instance.AniDB_Calendar_UpdateFrequency = ScheduledUpdateFrequency.Never; break;
+                case 0: JMMServerVM.Instance.AniDB_Calendar_UpdateFrequency = ScheduledUpdateFrequency.HoursSix; break;
+                case 1: JMMServerVM.Instance.AniDB_Calendar_UpdateFrequency = ScheduledUpdateFrequency.HoursTwelve; break;
+                case 2: JMMServerVM.Instance.AniDB_Calendar_UpdateFrequency = ScheduledUpdateFrequency.Daily; break;
+                case 3: JMMServerVM.Instance.AniDB_Calendar_UpdateFrequency = ScheduledUpdateFrequency.WeekOne; break;
+                case 4: JMMServerVM.Instance.AniDB_Calendar_UpdateFrequency = ScheduledUpdateFrequency.MonthOne; break;
+                case 5: JMMServerVM.Instance.AniDB_Calendar_UpdateFrequency = ScheduledUpdateFrequency.Never; break;
 			}
 
 			JMMServerVM.Instance.SaveServerSettingsAsync();

@@ -55,6 +55,28 @@ namespace JMMClient
                 if (element is ScrollViewer) yield return element as ScrollViewer;
         }
 
+        public static void PopulateScheduledComboBox(System.Windows.Controls.ComboBox cbo, ScheduledUpdateFrequency curFrequency)
+        {
+            cbo.Items.Clear();
+            cbo.Items.Add(Properties.Resources.UpdateFrequency_6Hours);
+            cbo.Items.Add(Properties.Resources.UpdateFrequency_12Hours);
+            cbo.Items.Add(Properties.Resources.UpdateFrequency_Daily);
+            cbo.Items.Add(Properties.Resources.UpdateFrequency_OneWeek);
+            cbo.Items.Add(Properties.Resources.UpdateFrequency_OneMonth);
+            cbo.Items.Add(Properties.Resources.UpdateFrequency_Never);
+
+            switch (curFrequency)
+            {
+                case ScheduledUpdateFrequency.HoursSix: cbo.SelectedIndex = 0; break;
+                case ScheduledUpdateFrequency.HoursTwelve: cbo.SelectedIndex = 1; break;
+                case ScheduledUpdateFrequency.Daily: cbo.SelectedIndex = 2; break;
+                case ScheduledUpdateFrequency.WeekOne: cbo.SelectedIndex = 3; break;
+                case ScheduledUpdateFrequency.MonthOne: cbo.SelectedIndex = 4; break;
+                case ScheduledUpdateFrequency.Never: cbo.SelectedIndex = 5; break;
+            }
+
+        }
+
         public static string GetTempFilePathWithExtension(string extension)
 		{
 			var path = Path.GetTempPath();

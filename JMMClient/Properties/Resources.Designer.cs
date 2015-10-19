@@ -4759,6 +4759,24 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Once a Month.
+        /// </summary>
+        public static string UpdateFrequency_OneMonth {
+            get {
+                return ResourceManager.GetString("UpdateFrequency_OneMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Once a Week.
+        /// </summary>
+        public static string UpdateFrequency_OneWeek {
+            get {
+                return ResourceManager.GetString("UpdateFrequency_OneWeek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Update Info.
         /// </summary>
         public static string UpdateInfo {

@@ -1793,4 +1793,10 @@
   <data name="Link_WebCache" xml:space="preserve">
     <value>http://japanesemediamanager.github.io/jmmdesktop/settings.html#web-cache</value>
   </data>
+  <data name="UpdateFrequency_OneMonth" xml:space="preserve">
+    <value>Once a Month</value>
+  </data>
+  <data name="UpdateFrequency_OneWeek" xml:space="preserve">
+    <value>Once a Week</value>
+  </data>
 </root>

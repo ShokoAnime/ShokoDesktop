@@ -33,20 +33,7 @@ namespace JMMClient.UserControls
 			udMaxPosters.ValueChanged += new RoutedPropertyChangedEventHandler<object>(udMaxPosters_ValueChanged);
 			udMaxWideBanners.ValueChanged += new RoutedPropertyChangedEventHandler<object>(udMaxWideBanners_ValueChanged);
 
-			cboUpdateFrequency.Items.Clear();
-			cboUpdateFrequency.Items.Add(Properties.Resources.UpdateFrequency_Daily);
-			cboUpdateFrequency.Items.Add(Properties.Resources.UpdateFrequency_12Hours);
-			cboUpdateFrequency.Items.Add(Properties.Resources.UpdateFrequency_6Hours);
-			cboUpdateFrequency.Items.Add(Properties.Resources.UpdateFrequency_Never);
-
-			switch (JMMServerVM.Instance.TvDB_UpdateFrequency)
-			{
-				case ScheduledUpdateFrequency.Daily: cboUpdateFrequency.SelectedIndex = 0; break;
-				case ScheduledUpdateFrequency.HoursTwelve: cboUpdateFrequency.SelectedIndex = 1; break;
-				case ScheduledUpdateFrequency.HoursSix: cboUpdateFrequency.SelectedIndex = 2; break;
-				case ScheduledUpdateFrequency.Never: cboUpdateFrequency.SelectedIndex = 3; break;
-			}
-
+            Utils.PopulateScheduledComboBox(cboUpdateFrequency, JMMServerVM.Instance.TvDB_UpdateFrequency);
 			cboUpdateFrequency.SelectionChanged += new SelectionChangedEventHandler(cboUpdateFrequency_SelectionChanged);
 
 			btnChangeLanguage.Click += new RoutedEventHandler(btnChangeLanguage_Click);
@@ -88,10 +75,12 @@ namespace JMMClient.UserControls
 		{
 			switch (cboUpdateFrequency.SelectedIndex)
 			{
-				case 0: JMMServerVM.Instance.TvDB_UpdateFrequency = ScheduledUpdateFrequency.Daily; break;
-				case 1: JMMServerVM.Instance.TvDB_UpdateFrequency = ScheduledUpdateFrequency.HoursTwelve; break;
-				case 2: JMMServerVM.Instance.TvDB_UpdateFrequency = ScheduledUpdateFrequency.HoursSix; break;
-				case 3: JMMServerVM.Instance.TvDB_UpdateFrequency = ScheduledUpdateFrequency.Never; break;
+                case 0: JMMServerVM.Instance.TvDB_UpdateFrequency = ScheduledUpdateFrequency.HoursSix; break;
+                case 1: JMMServerVM.Instance.TvDB_UpdateFrequency = ScheduledUpdateFrequency.HoursTwelve; break;
+                case 2: JMMServerVM.Instance.TvDB_UpdateFrequency = ScheduledUpdateFrequency.Daily; break;
+                case 3: JMMServerVM.Instance.TvDB_UpdateFrequency = ScheduledUpdateFrequency.WeekOne; break;
+                case 4: JMMServerVM.Instance.TvDB_UpdateFrequency = ScheduledUpdateFrequency.MonthOne; break;
+                case 5: JMMServerVM.Instance.TvDB_UpdateFrequency = ScheduledUpdateFrequency.Never; break;
 			}
 
 			JMMServerVM.Instance.SaveServerSettingsAsync();

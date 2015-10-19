@@ -52,8 +52,8 @@ using System.Security;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("3.4.5.1")]
-[assembly: AssemblyFileVersion("3.4.5.1")]
+[assembly: AssemblyVersion("3.4.5.2")]
+[assembly: AssemblyFileVersion("3.4.5.2")]
 [assembly: AllowPartiallyTrustedCallers]
 [assembly: AssemblyKeyFile("JMMDesktop.snk")]
 [assembly: SecurityRules(SecurityRuleSet.Level1)]
