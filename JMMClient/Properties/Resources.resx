@@ -1799,4 +1799,10 @@
   <data name="UpdateFrequency_OneWeek" xml:space="preserve">
     <value>Once a Week</value>
   </data>
+  <data name="SettingAlwaysAniDBPoster" xml:space="preserve">
+    <value>Always use the AniDB Poster</value>
+  </data>
+  <data name="Tooltip_SettingAlwaysAniDBPoster" xml:space="preserve">
+    <value>This setting will over-ride any other Poster settings so that only the AniDB Poster is used. This is generally faster than using random posters</value>
+  </data>
 </root>

@@ -924,7 +924,17 @@ namespace JMMClient
 			}
 		}
 
-		public bool UseFanartOnPlaylistHeader
+        public bool AlwaysUseAniDBPoster
+        {
+            get { return AppSettings.AlwaysUseAniDBPoster; }
+            set
+            {
+                AppSettings.AlwaysUseAniDBPoster = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("AlwaysUseAniDBPoster"));
+            }
+        }
+
+        public bool UseFanartOnPlaylistHeader
 		{
 			get { return AppSettings.UseFanartOnPlaylistHeader; }
 			set

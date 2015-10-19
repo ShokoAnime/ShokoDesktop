@@ -503,7 +503,25 @@ namespace JMMClient
 			}
 		}
 
-		public static bool UseFanartOnPlaylistHeader
+        public static bool AlwaysUseAniDBPoster
+        {
+            get
+            {
+                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                string val = appSettings["AlwaysUseAniDBPoster"];
+                bool bval = true;
+                if (bool.TryParse(val, out bval))
+                    return bval;
+                else
+                    return true; // default value
+            }
+            set
+            {
+                UpdateSetting("AlwaysUseAniDBPoster", value.ToString());
+            }
+        }
+
+        public static bool UseFanartOnPlaylistHeader
 		{
 			get
 			{

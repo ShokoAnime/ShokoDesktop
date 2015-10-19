@@ -390,6 +390,8 @@ namespace JMMClient
         {
             get
             {
+                if (UserSettingsVM.Instance.AlwaysUseAniDBPoster) return PosterPath;
+
                 if (DefaultPoster == null)
                 {
                     if (!string.IsNullOrEmpty(posterPathWithRandoms)) return posterPathWithRandoms;
@@ -435,7 +437,9 @@ namespace JMMClient
 		{
 			get
 			{
-				if (DefaultPoster == null)
+                if (UserSettingsVM.Instance.AlwaysUseAniDBPoster) return PosterPath;
+
+                if (DefaultPoster == null)
 					return PosterPath;
 				else
 				{

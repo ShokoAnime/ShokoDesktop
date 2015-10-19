@@ -3319,6 +3319,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Always use the AniDB Poster.
+        /// </summary>
+        public static string SettingAlwaysAniDBPoster {
+            get {
+                return ResourceManager.GetString("SettingAlwaysAniDBPoster", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
         public static string Settings {
@@ -4332,6 +4341,15 @@ namespace JMMClient.Properties {
         public static string Tooltip_SeriesOverviewSourceStyle {
             get {
                 return ResourceManager.GetString("Tooltip_SeriesOverviewSourceStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This setting will over-ride any other Poster settings so that only the AniDB Poster is used. This is generally faster than using random posters.
+        /// </summary>
+        public static string Tooltip_SettingAlwaysAniDBPoster {
+            get {
+                return ResourceManager.GetString("Tooltip_SettingAlwaysAniDBPoster", resourceCulture);
             }
         }
         
