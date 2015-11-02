@@ -855,13 +855,24 @@ namespace JMMClient
 				OnPropertyChanged(new PropertyChangedEventArgs("ApplicationVersion"));
 			}
 		}
-		
 
-		#endregion
+        private string applicationVersionLatest = "";
+        public string ApplicationVersionLatest
+        {
+            get { return applicationVersionLatest; }
+            set
+            {
+                applicationVersionLatest = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("ApplicationVersionLatest"));
+            }
+        }
 
-		#region Server Settings
 
-		private string aniDB_Username = "";
+        #endregion
+
+        #region Server Settings
+
+        private string aniDB_Username = "";
 		public string AniDB_Username
 		{
 			get { return aniDB_Username; }

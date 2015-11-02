@@ -4,7 +4,6 @@
         xmlns:local="clr-namespace:JMMClient"
         xmlns:downloads="clr-namespace:JMMClient.Downloads"
         xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
-        xmlns:my="clr-namespace:wyDay.Controls;assembly=AutomaticUpdaterWPF"
         WindowStartupLocation="CenterScreen" UseLayoutRounding="True"
         Title="JMM Desktop" Height="700" Width="1350" x:Name="mainWindow" Icon="/JMMDesktop;component/Web%20Database.ico" >
 
@@ -1691,10 +1690,6 @@
                         </StackPanel>
                     </Button>
 
-                    <!-- automatic updater and new version message-->
-                    <my:AutomaticUpdater Margin="20,0,0,0" Height="100" Name="automaticUpdater" Width="200" GUID="JMM-JMMDesktop" DaysBetweenChecks="1" UpdateType="OnlyCheck"/>
-
-                   
 
                     <!--banned message-->
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,4,0,4"

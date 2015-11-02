@@ -92,10 +92,6 @@
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutomaticUpdaterWPF, Version=2.6.18.4, Culture=neutral, PublicKeyToken=3dbca7c1b6b9ada2, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Dependencies\AutomaticUpdaterWPF.dll</HintPath>
-    </Reference>
     <Reference Include="DevExpress.Data.v12.2">
       <Private>True</Private>
     </Reference>
@@ -186,6 +182,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AutoUpdates\JMMAutoUpdatesHelper.cs" />
+    <Compile Include="AutoUpdates\JMMVersions.cs" />
+    <Compile Include="AutoUpdates\Update.cs" />
+    <Compile Include="AutoUpdates\Updates.cs" />
+    <Compile Include="AutoUpdates\Versions.cs" />
     <Compile Include="BindableObject.cs" />
     <Compile Include="DataTemplateSelectors\BreadCrumbTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\CharacterTemplateSelector.cs" />
@@ -222,6 +223,9 @@
     </Compile>
     <Compile Include="Forms\AdminMessagesForm.xaml.cs">
       <DependentUpon>AdminMessagesForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UpdateForm.xaml.cs">
+      <DependentUpon>UpdateForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\ViewCommentForm.xaml.cs">
       <DependentUpon>ViewCommentForm.xaml</DependentUpon>
@@ -841,6 +845,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\SelectTvDBSeasonForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UpdateForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
