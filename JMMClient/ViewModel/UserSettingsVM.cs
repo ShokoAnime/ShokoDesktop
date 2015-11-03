@@ -327,22 +327,6 @@ namespace JMMClient
 			get { return !AppSettings.SeriesNextEpisodeExpanded; }
 		}
 
-		public bool SeriesFileSummaryExpanded
-		{
-			get { return AppSettings.SeriesFileSummaryExpanded; }
-			set
-			{
-				AppSettings.SeriesFileSummaryExpanded = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("SeriesFileSummaryExpanded"));
-				OnPropertyChanged(new PropertyChangedEventArgs("SeriesFileSummaryCollapsed"));
-			}
-		}
-
-		public bool SeriesFileSummaryCollapsed
-		{
-			get { return !AppSettings.SeriesFileSummaryExpanded; }
-		}
-
 		public bool SeriesGroupExpanded
 		{
 			get { return AppSettings.SeriesGroupExpanded; }

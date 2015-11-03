@@ -749,7 +749,34 @@ namespace JMMClient
 			}
 		}
 
-		public bool FanartExists
+        public List<VideoLocalVM> AllVideoLocals
+        {
+            get
+            {
+                List<VideoLocalVM> vids = new List<VideoLocalVM>();
+                try
+                {
+                    DateTime start = DateTime.Now;
+                    List<JMMServerBinary.Contract_VideoLocal> raws = JMMServerVM.Instance.clientBinaryHTTP.GetVideoLocalsForAnime(AnimeID,
+                        JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+                    TimeSpan ts = DateTime.Now - start;
+                    logger.Trace("Got vids for anime from service: {0} in {1} ms", AnimeID, ts.TotalMilliseconds);
+
+                    foreach (JMMServerBinary.Contract_VideoLocal raw in raws)
+                    {
+                        VideoLocalVM vid = new VideoLocalVM(raw);
+                        vids.Add(vid);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Utils.ShowErrorMessage(ex);
+                }
+                return vids;
+            }
+        }
+
+        public bool FanartExists
 		{
 			get
 			{

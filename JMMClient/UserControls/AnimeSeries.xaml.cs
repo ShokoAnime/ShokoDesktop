@@ -91,15 +91,6 @@ namespace JMMClient.UserControls
 			set { SetValue(SeriesPos_PlayNextEpisodeProperty, value); }
 		}
 
-		public static readonly DependencyProperty SeriesPos_FileSummaryProperty = DependencyProperty.Register("SeriesPos_FileSummary",
-			typeof(int), typeof(AnimeSeries), new UIPropertyMetadata((int)6, null));
-
-		public int SeriesPos_FileSummary
-		{
-			get { return (int)GetValue(SeriesPos_FileSummaryProperty); }
-			set { SetValue(SeriesPos_FileSummaryProperty, value); }
-		}
-
 		public static readonly DependencyProperty SeriesPos_TitlesProperty = DependencyProperty.Register("SeriesPos_Titles",
 			typeof(int), typeof(AnimeSeries), new UIPropertyMetadata((int)6, null));
 
@@ -164,7 +155,6 @@ namespace JMMClient.UserControls
 
 			this.Loaded += new RoutedEventHandler(AnimeSeries_Loaded);
 			btnAnimeGroupShow.Click += new RoutedEventHandler(btnAnimeGroupShow_Click);
-			btnFileSummary.Click += new RoutedEventHandler(btnFileSummary_Click);
 			btnTvDBLinks.Click += new RoutedEventHandler(btnTvDBLinks_Click);
 			//btnPlayNextEpisode.Click += new RoutedEventHandler(btnPlayNextEpisode_Click);
 			btnGetRelMissingInfo.Click += new RoutedEventHandler(btnGetRelMissingInfo_Click);
@@ -572,7 +562,6 @@ namespace JMMClient.UserControls
 
 			SeriesPos_PlayNextEpisode = UserSettingsVM.Instance.GetSeriesWidgetPosition(SeriesWidgets.PlayNextEpisode) + 4;
 			SeriesPos_TvDBLinks = UserSettingsVM.Instance.GetSeriesWidgetPosition(SeriesWidgets.TvDBLinks) + 4;
-			SeriesPos_FileSummary = UserSettingsVM.Instance.GetSeriesWidgetPosition(SeriesWidgets.FileSummary) + 4;
 			SeriesPos_Titles = UserSettingsVM.Instance.GetSeriesWidgetPosition(SeriesWidgets.Titles) + 4;
 			SeriesPos_Tags = UserSettingsVM.Instance.GetSeriesWidgetPosition(SeriesWidgets.Tags) + 4;
             SeriesPos_CustomTags = UserSettingsVM.Instance.GetSeriesWidgetPosition(SeriesWidgets.CustomTags) + 4;
@@ -1011,8 +1000,14 @@ namespace JMMClient.UserControls
 					ucTraktShouts.RefreshComments();
 					this.Cursor = Cursors.Arrow;
 				}
+                else if (tab.SelectedIndex == 5) // files
+                {
+                    this.Cursor = Cursors.Wait;
+                    ShowFileSummary();
+                    this.Cursor = Cursors.Arrow;
+                }
 
-			}
+            }
 		}
 
 		private void RefreshImagesData()
@@ -1252,8 +1247,14 @@ namespace JMMClient.UserControls
 				ucTraktShouts.RefreshComments();
 				this.Cursor = Cursors.Arrow;
 			}
+            else if (tabContainer.SelectedIndex == 5) // files
+            {
+                this.Cursor = Cursors.Wait;
+                ShowFileSummary();
+                this.Cursor = Cursors.Arrow;
+            }
 
-			cboVoteType.Items.Clear();
+            cboVoteType.Items.Clear();
 			cboVoteType.Items.Add(Properties.Resources.VoteTypeAnimeTemporary);
 			if (ser.AniDB_Anime.FinishedAiring)
 				cboVoteType.Items.Add(Properties.Resources.VoteTypeAnimePermanent);
@@ -1274,22 +1275,15 @@ namespace JMMClient.UserControls
 			LoadSeries();
 		}
 
-		
-
-		void btnFileSummary_Click(object sender, RoutedEventArgs e)
-		{
-			UserSettingsVM.Instance.SeriesFileSummaryExpanded = !UserSettingsVM.Instance.SeriesFileSummaryExpanded;
-
-			ShowFileSummary();
-		}
 
 		private void ShowFileSummary()
 		{
-			if (UserSettingsVM.Instance.SeriesFileSummaryExpanded)
+			if (tabContainer.SelectedIndex == 5)
 			{
 				AnimeSeriesVM ser = this.DataContext as AnimeSeriesVM;
 				if (ser == null) return;
 				ucFileSummary.DataContext = ser.AniDB_Anime;
+                ucFolderSummary.DataContext = ser.AniDB_Anime;
 			}
 		}
 

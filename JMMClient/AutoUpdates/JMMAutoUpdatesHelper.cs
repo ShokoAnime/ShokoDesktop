@@ -33,7 +33,7 @@ namespace JMMClient.AutoUpdates
 
                 XmlSerializer x = new XmlSerializer(typeof(AutoUpdates.JMMVersions));
                 AutoUpdates.JMMVersions myTest = (AutoUpdates.JMMVersions)x.Deserialize(new StringReader(xml));
-                JMMServerVM.Instance.ApplicationVersionLatest = myTest.versions.ServerVersionFriendly;
+                JMMServerVM.Instance.ApplicationVersionLatest = myTest.versions.DesktopVersionFriendly;
 
                 return myTest;
 

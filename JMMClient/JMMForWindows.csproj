@@ -230,6 +230,9 @@
     <Compile Include="Forms\ViewCommentForm.xaml.cs">
       <DependentUpon>ViewCommentForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\AnimeFolderSummaryControl.xaml.cs">
+      <DependentUpon>AnimeFolderSummaryControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\AnimeSeriesSimple.xaml.cs">
       <DependentUpon>AnimeSeriesSimple.xaml</DependentUpon>
     </Compile>
@@ -893,6 +896,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\AnimeFileSummaryControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\AnimeFolderSummaryControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -787,24 +787,6 @@ namespace JMMClient
 			}
 		}
 
-		public static bool SeriesFileSummaryExpanded
-		{
-			get
-			{
-				NameValueCollection appSettings = ConfigurationManager.AppSettings;
-				string val = appSettings["SeriesFileSummaryExpanded"];
-				bool bval = true;
-				if (bool.TryParse(val, out bval))
-					return bval;
-				else
-					return false; // default value
-			}
-			set
-			{
-				UpdateSetting("SeriesFileSummaryExpanded", value.ToString());
-			}
-		}
-
 		public static bool SeriesGroupExpanded
 		{
 			get
