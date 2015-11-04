@@ -102,7 +102,7 @@
 
                     <TextBlock Padding="5,10,5,10" FontWeight="Heavy" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VoteNow}" VerticalAlignment="Center"/>
 
-                    <usercontrols:RatingControl x:Name="cRating" Width="175" Height="16" RatingValue="7.5" />
+                    <usercontrols:RatingControl x:Name="cRating" Width="195" Height="16" RatingValue="7.5" />
 
                     <ComboBox Grid.Row="0" Name="cboVoteType" VerticalAlignment="Center"></ComboBox>
 
