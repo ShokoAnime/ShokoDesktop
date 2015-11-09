@@ -3585,6 +3585,9 @@ namespace JMMClient.JMMServerBinary {
         private string DefaultAudioLanguageField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DefaultFolderField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string DefaultSubtitleLanguageField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -3765,6 +3768,19 @@ namespace JMMClient.JMMServerBinary {
                 if ((object.ReferenceEquals(this.DefaultAudioLanguageField, value) != true)) {
                     this.DefaultAudioLanguageField = value;
                     this.RaisePropertyChanged("DefaultAudioLanguage");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DefaultFolder {
+            get {
+                return this.DefaultFolderField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DefaultFolderField, value) != true)) {
+                    this.DefaultFolderField = value;
+                    this.RaisePropertyChanged("DefaultFolder");
                 }
             }
         }
@@ -13875,6 +13891,9 @@ namespace JMMClient.JMMServerBinary {
         private string DefaultAudioLanguageField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DefaultFolderField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string DefaultSubtitleLanguageField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -13938,6 +13957,19 @@ namespace JMMClient.JMMServerBinary {
                 if ((object.ReferenceEquals(this.DefaultAudioLanguageField, value) != true)) {
                     this.DefaultAudioLanguageField = value;
                     this.RaisePropertyChanged("DefaultAudioLanguage");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DefaultFolder {
+            get {
+                return this.DefaultFolderField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DefaultFolderField, value) != true)) {
+                    this.DefaultFolderField = value;
+                    this.RaisePropertyChanged("DefaultFolder");
                 }
             }
         }

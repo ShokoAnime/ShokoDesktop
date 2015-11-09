@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -64,6 +65,7 @@ namespace JMMClient.UserControls
             }
         }
 
+        private AnimeSeriesVM thisSeries = null;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         public ObservableCollection<AnimeFolderSummary> AnimeFolderSummaryRecords { get; set; }
@@ -76,8 +78,25 @@ namespace JMMClient.UserControls
             AnimeFolderSummaryRecords = new ObservableCollection<AnimeFolderSummary>();
             ViewFolderSummary = CollectionViewSource.GetDefaultView(AnimeFolderSummaryRecords);
 
+            //btnChooseFolder.Click += BtnChooseFolder_Click;
+
             this.DataContextChanged += new DependencyPropertyChangedEventHandler(AnimeFolderSummaryControl_DataContextChanged);
         }
+
+        /*private void BtnChooseFolder_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
+
+            if (thisSeries!= null && !string.IsNullOrEmpty(thisSeries.DefaultFolder) && Directory.Exists(thisSeries.DefaultFolder))
+                dialog.SelectedPath = thisSeries.DefaultFolder;
+
+            if (thisSeries != null && dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                thisSeries.DefaultFolder = dialog.SelectedPath;
+                thisSeries.Save();
+                RefreshRecords();
+            }
+        }*/
 
         void AnimeFolderSummaryControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
@@ -113,6 +132,12 @@ namespace JMMClient.UserControls
                 AniDB_AnimeVM anime = this.DataContext as AniDB_AnimeVM;
                 if (anime == null) return;
 
+                JMMServerBinary.Contract_AnimeSeries contract = JMMServerVM.Instance.clientBinaryHTTP.GetSeriesForAnime(anime.AnimeID,
+                        JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+
+                if (contract == null) return;
+                thisSeries = new AnimeSeriesVM(contract);
+
                 Dictionary<string, AnimeFolderSummary> folders = new Dictionary<string, AnimeFolderSummary>();
 
                 foreach (VideoLocalVM vid in anime.AllVideoLocals)
@@ -132,10 +157,35 @@ namespace JMMClient.UserControls
                     folders[vid.FileDirectory].TotalFileSize = folders[vid.FileDirectory].TotalFileSize + vid.FileSize;
                 }
 
+                bool foundDefault = false;
                 foreach (AnimeFolderSummary afs in folders.Values)
-                    AnimeFolderSummaryRecords.Add(afs);
+                {
+                    afs.IsDefaultFolder = false;
 
-                //ViewFolderSummary.Refresh();
+                    if(!string.IsNullOrEmpty(thisSeries.DefaultFolder))
+                    {
+                        if (thisSeries.DefaultFolder.Equals(afs.FolderName, StringComparison.InvariantCultureIgnoreCase))
+                        {
+                            afs.IsDefaultFolder = true;
+                            foundDefault = true;
+                        }
+                    }
+                    AnimeFolderSummaryRecords.Add(afs);
+                }
+
+                /*if (!foundDefault)
+                {
+                    if (!string.IsNullOrEmpty(thisSeries.DefaultFolder))
+                    {
+                        AnimeFolderSummary afs = new AnimeFolderSummary();
+                        afs.FolderName = thisSeries.DefaultFolder;
+                        afs.FileCount = 0;
+                        afs.TotalFileSize = 0;
+                        afs.IsDefaultFolder = true;
+                        AnimeFolderSummaryRecords.Add(afs);
+                    }
+                }*/
+                
 
                 TotalFileSize = Utils.FormatFileSize(fileSize);
 
@@ -148,10 +198,39 @@ namespace JMMClient.UserControls
                 Utils.ShowErrorMessage(ex);
             }
         }
+
+        private void CommandBinding_OpenFolder(object sender, ExecutedRoutedEventArgs e)
+        {
+            object obj = e.Parameter;
+            if (obj == null) return;
+
+            try
+            {
+                if (obj.GetType() == typeof(AnimeFolderSummary))
+                {
+                    AnimeFolderSummary afs = obj as AnimeFolderSummary;
+                    Utils.OpenFolder(afs.FolderName);
+                }
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+        }
     }
 
-    public class AnimeFolderSummary
+    public class AnimeFolderSummary : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                var args = new PropertyChangedEventArgs(propertyName);
+                PropertyChanged(this, args);
+            }
+        }
+
         public string FolderName { get; set; }
 
         public int FileCount { get; set; }
@@ -163,6 +242,29 @@ namespace JMMClient.UserControls
             get
             {
                 return Utils.FormatFileSize(TotalFileSize);
+            }
+        }
+
+        private bool isDefaultFolder = false;
+        public bool IsDefaultFolder
+        {
+            get { return isDefaultFolder; }
+            set
+            {
+                isDefaultFolder = value;
+                IsNotDefaultFolder = !isDefaultFolder;
+                NotifyPropertyChanged("IsDefaultFolder");
+            }
+        }
+
+        private bool isNotDefaultFolder = true;
+        public bool IsNotDefaultFolder
+        {
+            get { return isNotDefaultFolder; }
+            set
+            {
+                isNotDefaultFolder = value;
+                NotifyPropertyChanged("IsNotDefaultFolder");
             }
         }
 

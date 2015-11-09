@@ -275,6 +275,7 @@
       <xs:element minOccurs="0" name="DateTimeCreated" type="xs:dateTime" />
       <xs:element minOccurs="0" name="DateTimeUpdated" type="xs:dateTime" />
       <xs:element minOccurs="0" name="DefaultAudioLanguage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DefaultFolder" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="DefaultSubtitleLanguage" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="EpisodeAddedDate" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="LatestLocalEpisodeNumber" type="xs:int" />
@@ -1454,6 +1455,7 @@
       <xs:element minOccurs="0" name="AnimeGroupID" type="xs:int" />
       <xs:element minOccurs="0" name="AnimeSeriesID" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="DefaultAudioLanguage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DefaultFolder" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="DefaultSubtitleLanguage" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="SeriesNameOverride" nillable="true" type="xs:string" />
     </xs:sequence>

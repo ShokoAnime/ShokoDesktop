@@ -551,13 +551,28 @@ namespace JMMClient
 			}
 		}
 
-		/// <summary>
-		/// Compute Levenshtein distance --- http://www.merriampark.com/ldcsharp.htm
-		/// </summary>
-		/// <param name="s"></param>
-		/// <param name="t"></param>
-		/// <returns></returns>
-		public static int LevenshteinDistance(string s, string t)
+        public static void OpenFolder(string fullPath)
+        {
+            try
+            {
+                if (Directory.Exists(fullPath))
+                {
+                    Process.Start(new ProcessStartInfo(fullPath));
+                }
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+        }
+
+        /// <summary>
+        /// Compute Levenshtein distance --- http://www.merriampark.com/ldcsharp.htm
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="t"></param>
+        /// <returns></returns>
+        public static int LevenshteinDistance(string s, string t)
 		{
 			int n = s.Length; //length of s
 			int m = t.Length; //length of t
