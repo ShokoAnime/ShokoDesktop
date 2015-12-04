@@ -525,10 +525,10 @@ namespace JMMClient.UserControls
                                 client.DownloadFileAsync(new Uri(torLink.TorrentDownloadLink), AppSettings.TorrentBlackholeFolder + "\\" + torLink.TorrentName + ".torrent");
                             }
                         }
+					}
 
-                        parentWindow.Cursor = Cursors.Arrow;
-                        this.IsEnabled = true;
-                    }
+                    parentWindow.Cursor = Cursors.Arrow;
+                    this.IsEnabled = true;
 				}
 			}
 			catch (Exception ex)
