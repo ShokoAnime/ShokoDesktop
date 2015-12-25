@@ -43,7 +43,10 @@ namespace JMMClient
 	{
 		Delete = 0,
 		MarkDeleted = 1,
-        MarkExternalStorage = 2
+        MarkExternalStorage = 2,
+        MarkUnknown = 3,
+        DeleteLocalOnly = 4
+		
 	}
 
 	public enum RatingCollectionState
