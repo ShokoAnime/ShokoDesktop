@@ -245,6 +245,9 @@
     <Compile Include="UserControls\Custom ToolTips\EpisodeDetailsToolTip.xaml.cs">
       <DependentUpon>EpisodeDetailsToolTip.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Downloads\DownloadsTorrentBlackHole.xaml.cs">
+      <DependentUpon>DownloadsTorrentBlackHole.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\PlayNextEpisodeControlV2.xaml.cs">
       <DependentUpon>PlayNextEpisodeControlV2.xaml</DependentUpon>
     </Compile>
@@ -988,6 +991,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Downloads\DownloadsSettingsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Downloads\DownloadsTorrentBlackHole.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

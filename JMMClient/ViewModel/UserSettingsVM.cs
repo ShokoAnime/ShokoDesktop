@@ -938,7 +938,28 @@ namespace JMMClient
 			}
 		}
 
-		public string UTorrentAddress
+        public bool TorrentBlackhole
+        {
+            get { return AppSettings.TorrentBlackhole; }
+            set
+            {
+                AppSettings.TorrentBlackhole = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("TorrentBlackhole"));
+            }
+        }
+
+        public string TorrentBlackholeFolder
+        {
+            get { return AppSettings.TorrentBlackholeFolder; }
+            set
+            {
+                AppSettings.TorrentBlackholeFolder = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("TorrentBlackholeFolder"));
+            }
+        }
+
+
+        public string UTorrentAddress
 		{
 			get { return AppSettings.UTorrentAddress; }
 			set
@@ -1007,8 +1028,8 @@ namespace JMMClient
 				OnPropertyChanged(new PropertyChangedEventArgs("TorrentSearchPreferOwnGroups"));
 			}
 		}
-
-		public string BakaBTUsername
+       
+        public string BakaBTUsername
 		{
 			get { return AppSettings.BakaBTUsername; }
 			set
