@@ -1501,8 +1501,8 @@
                                         <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,5,0" Grid.Column="0" VerticalAlignment="Top"/>
                                         <TextBlock VerticalAlignment="Center" Text="This uses the uTorrent WebUI API, which you need to enable in your uTorrent client first" Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1"/>
 
-                                        <usercontrols:HyperLinkStandard Margin="5,0,20,0" VerticalAlignment="Center" DisplayText="More Info"  Grid.Column="2"
-                                                                        URL="http://japanesemediamanager.github.io/wiki_usermanual_jmmdownloads.html"/>
+                                        <usercontrols:HyperLinkStandard Margin="5,0,20,0" VerticalAlignment="Center" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=MoreInfo}"  Grid.Column="2"
+                                                                        URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_uTorrent}"/>
                                     </Grid>
                                 </Border>
 
