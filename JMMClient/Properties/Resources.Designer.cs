@@ -3940,7 +3940,12 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to What action to take for a file when you delete it from you local collection, DELETE FILE means to permanently remove it from your list, MARK DELETED means to leave the file on your list, but change the state to deleted, MARK EXTERNAL (CD/DVD) means to leave the file on your list, but change the state to external storage.
+        ///   Looks up a localized string similar to What action to take for a file when you delete it from you local collection.
+        ///Delete File (AniDB) - Removes file from your AniDB MyList.
+        ///Delete File (Local DB) - Remove file from your local DB only.
+        ///Mark Deleted -  Leaves the file on your list, but changes the state to deleted.
+        ///Mark External (CD/DVD) - Leaves the file on your list, but changes the state to external storage.
+        ///Mark Unknown - Leaves the file on your list, but changes the state to unkown..
         /// </summary>
         public static string Tooltip_AniDBMyListDeleteAction {
             get {

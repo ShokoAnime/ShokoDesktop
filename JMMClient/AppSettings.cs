@@ -1602,7 +1602,47 @@ namespace JMMClient
 			ConfigurationManager.RefreshSection("appSettings");
 		}
 
-		public static string UTorrentAddress
+        public static bool TorrentBlackhole
+        {
+            get
+            {
+                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+
+                string val = appSettings["TorrentBlackhole"];
+                bool bval = false;
+                if (bool.TryParse(val, out bval))
+                    return bval;
+                else
+                    return false; // default value
+            }
+            set
+            {
+                UpdateSetting("TorrentBlackhole", value.ToString());
+            }
+        }
+
+        public static string TorrentBlackholeFolder
+        {
+            get
+            {
+                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+
+                string val = appSettings["TorrentBlackholeFolder"];
+                if (string.IsNullOrEmpty(val))
+                {
+                    // default value
+                    val = "";
+                    UpdateSetting("TorrentBlackholeFolder", val);
+                }
+                return val;
+            }
+            set
+            {
+                UpdateSetting("TorrentBlackholeFolder", value);
+            }
+        }
+
+        public static string UTorrentAddress
 		{
 			get
 			{
