@@ -53,7 +53,7 @@
                         <StackPanel Height="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=Dash_WatchNext_Height}"
                                     Orientation="Horizontal">
                             <Border BorderThickness="1" BorderBrush="DarkGray" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                <Image Source="{Binding Path=AniDB_Anime.DefaultPosterPath}" Style="{StaticResource DashAnimePoster}"
+                                <Image Source="{Binding Path=AniDB_Anime.PosterPathWithRandoms}" Style="{StaticResource DashAnimePoster}"
                                        MaxWidth="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=Dash_WatchNext_Height}">
                                     <Image.ToolTip>
                                         <local:CustomToolTip>
@@ -113,7 +113,7 @@
                                     Height="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=Dash_WatchNext_Height}">
                             <!-- Anime image -->
                             <Border BorderThickness="1" BorderBrush="DarkGray" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                <Image Source="{Binding Path=AniDB_Anime.DefaultPosterPath}" Style="{StaticResource DashAnimePoster}"
+                                <Image Source="{Binding Path=AniDB_Anime.PosterPathWithRandoms}" Style="{StaticResource DashAnimePoster}"
                                        MaxWidth="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=Dash_WatchNext_Height}"/>
                             </Border>
 
@@ -190,7 +190,7 @@
                         <StackPanel Orientation="Horizontal" Height="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=Dash_RecentlyWatchedEp_Height}">
                             <!-- Anime image -->
                             <Border BorderThickness="1" BorderBrush="DarkGray" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                <Image Source="{Binding Path=AniDB_Anime.DefaultPosterPath}" Style="{StaticResource DashAnimePoster}"
+                                <Image Source="{Binding Path=AniDB_Anime.PosterPathWithRandoms}" Style="{StaticResource DashAnimePoster}"
                                        MaxWidth="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=Dash_RecentlyWatchedEp_Height}"/>
                             </Border>
                             
@@ -245,7 +245,7 @@
                             <StackPanel Orientation="Horizontal" Margin="0,5,0,5"
                                         Height="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=Dash_MissingEps_Height}">
                                 <Border BorderThickness="1" BorderBrush="DarkGray" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                    <Image Source="{Binding Path=AniDB_Anime.DefaultPosterPath}" Style="{StaticResource DashAnimePoster}"
+                                    <Image Source="{Binding Path=AniDB_Anime.PosterPathWithRandoms}" Style="{StaticResource DashAnimePoster}"
                                            MaxWidth="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=Dash_MissingEps_Height}"/>
                                 </Border>
                             </StackPanel>
@@ -704,7 +704,7 @@
                                     Height="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=Dash_RecentAdditions_Height}">
                             <!-- Anime image -->
                             <Border BorderThickness="1" BorderBrush="DarkGray" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                <Image Source="{Binding Path=AniDB_Anime.DefaultPosterPath}" Style="{StaticResource DashAnimePoster}"
+                                <Image Source="{Binding Path=AniDB_Anime.PosterPathWithRandoms}" Style="{StaticResource DashAnimePoster}"
                                        MaxWidth="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=Dash_RecentAdditions_Height}"/>
                             </Border>
 
@@ -784,7 +784,7 @@
                                     Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_RecentAdditions_Height}">
                             <!-- Anime image -->
                             <Border BorderThickness="1" BorderBrush="DarkGray" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                <Image Source="{Binding Path=AniDB_Anime.DefaultPosterPath}" Style="{StaticResource DashAnimePoster}"
+                                <Image Source="{Binding Path=AniDB_Anime.PosterPathWithRandoms}" Style="{StaticResource DashAnimePoster}"
                                        MaxWidth="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=Dash_RecentAdditions_Height}"/>
                             </Border>
 

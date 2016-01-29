@@ -92,10 +92,6 @@
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutomaticUpdaterWPF, Version=2.6.18.4, Culture=neutral, PublicKeyToken=3dbca7c1b6b9ada2, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Dependencies\AutomaticUpdaterWPF.dll</HintPath>
-    </Reference>
     <Reference Include="DevExpress.Data.v12.2">
       <Private>True</Private>
     </Reference>
@@ -186,14 +182,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AutoUpdates\JMMAutoUpdatesHelper.cs" />
+    <Compile Include="AutoUpdates\JMMVersions.cs" />
+    <Compile Include="AutoUpdates\Update.cs" />
+    <Compile Include="AutoUpdates\Updates.cs" />
+    <Compile Include="AutoUpdates\Versions.cs" />
     <Compile Include="BindableObject.cs" />
     <Compile Include="DataTemplateSelectors\BreadCrumbTemplateSelector.cs" />
+    <Compile Include="DataTemplateSelectors\CharacterTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\DashRecentAdditionsTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\DashWatchNextTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\PeopleSayingTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\PlaylistTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\RecDownloadTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\RecWatchTemplateSelector.cs" />
+    <Compile Include="DataTemplateSelectors\WatchingEpisodeTemplateSelector.cs" />
     <Compile Include="Downloads\CsvParser.cs" />
     <Compile Include="Downloads\CsvStream.cs" />
     <Compile Include="Downloads\DownloadHelper.cs" />
@@ -221,9 +224,33 @@
     <Compile Include="Forms\AdminMessagesForm.xaml.cs">
       <DependentUpon>AdminMessagesForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UpdateForm.xaml.cs">
+      <DependentUpon>UpdateForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ViewCommentForm.xaml.cs">
       <DependentUpon>ViewCommentForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\AnimeFolderSummaryControl.xaml.cs">
+      <DependentUpon>AnimeFolderSummaryControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\AnimeSeriesSimple.xaml.cs">
+      <DependentUpon>AnimeSeriesSimple.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Community\CommunityMaint.xaml.cs">
+      <DependentUpon>CommunityMaint.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Custom ToolTips\CharacterSeiyuuToolTip.xaml.cs">
+      <DependentUpon>CharacterSeiyuuToolTip.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Custom ToolTips\EpisodeDetailsToolTip.xaml.cs">
+      <DependentUpon>EpisodeDetailsToolTip.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PlayNextEpisodeControlV2.xaml.cs">
+      <DependentUpon>PlayNextEpisodeControlV2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\AniDB_CharacterVM.cs" />
+    <Compile Include="ViewModel\AniDB_SeiyuuVM.cs" />
+    <Compile Include="ViewModel\AnimeEpisodeDisplayVM.cs" />
     <Compile Include="ViewModel\AzureAnimeLink.cs" />
     <Compile Include="Forms\ChangePasswordForm.xaml.cs">
       <DependentUpon>ChangePasswordForm.xaml</DependentUpon>
@@ -362,9 +389,6 @@
     <Compile Include="UserControls\AnimeSeries.xaml.cs">
       <DependentUpon>AnimeSeries.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\AnimeSeries_Hulu.xaml.cs">
-      <DependentUpon>AnimeSeries_Hulu.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\AvdumpBatchControl.xaml.cs">
       <DependentUpon>AvdumpBatchControl.xaml</DependentUpon>
     </Compile>
@@ -381,11 +405,11 @@
     <Compile Include="UserControls\ContinueWatchingTileControl.xaml.cs">
       <DependentUpon>ContinueWatchingTileControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\CustomToolTip.cs" />
+    <Compile Include="UserControls\Custom ToolTips\CustomToolTip.cs" />
     <Compile Include="UserControls\DashboardControl.xaml.cs">
       <DependentUpon>DashboardControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\DashboardEpisodeOverviewTooltipContent.xaml.cs">
+    <Compile Include="UserControls\Custom ToolTips\DashboardEpisodeOverviewTooltipContent.xaml.cs">
       <DependentUpon>DashboardEpisodeOverviewTooltipContent.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\DashboardMetroDXControl.xaml.cs">
@@ -457,9 +481,6 @@
     <Compile Include="UserControls\Info.cs" />
     <Compile Include="UserControls\InfoPopup.xaml.cs">
       <DependentUpon>InfoPopup.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\LogsControl.xaml.cs">
-      <DependentUpon>LogsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\ManuallyLinkedFilesControl.xaml.cs">
       <DependentUpon>ManuallyLinkedFilesControl.xaml</DependentUpon>
@@ -539,8 +560,8 @@
     <Compile Include="UserControls\Settings\MovieDBSettings.xaml.cs">
       <DependentUpon>MovieDBSettings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Settings\MPCSettingsControl.xaml.cs">
-      <DependentUpon>MPCSettingsControl.xaml</DependentUpon>
+    <Compile Include="UserControls\Settings\VideoPlayerSettingsControl.xaml.cs">
+      <DependentUpon>VideoPlayerSettingsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Settings\TraktSettings.xaml.cs">
       <DependentUpon>TraktSettings.xaml</DependentUpon>
@@ -649,7 +670,6 @@
     <Compile Include="ViewModel\GroupVideoQualityVM.cs" />
     <Compile Include="ViewModel\IgnoreAnimeVM.cs" />
     <Compile Include="ViewModel\JMMUserVM.cs" />
-    <Compile Include="ViewModel\LogMessageVM.cs" />
     <Compile Include="ViewModel\MainListHelperVM.cs" />
     <Compile Include="ViewModel\AnimeSeriesVM.cs" />
     <Compile Include="AppSettings.cs" />
@@ -677,7 +697,7 @@
     <Compile Include="ViewModel\Trakt_ImageFanartVM.cs" />
     <Compile Include="ViewModel\Trakt_ImagePosterVM.cs" />
     <Compile Include="ViewModel\Trakt_SeasonVM.cs" />
-    <Compile Include="ViewModel\Trakt_ShoutPost.cs" />
+    <Compile Include="ViewModel\Trakt_CommentPost.cs" />
     <Compile Include="ViewModel\Trakt_ShoutUserVM.cs" />
     <Compile Include="ViewModel\Trakt_ShoutVM.cs" />
     <Compile Include="ViewModel\Trakt_ShowVM.cs" />
@@ -831,6 +851,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Forms\UpdateForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Forms\ViewCommentForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -875,6 +899,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\AnimeFolderSummaryControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\AnimeGroupControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -883,7 +911,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\AnimeSeries_Hulu.xaml">
+    <Page Include="UserControls\AnimeSeriesSimple.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -903,7 +931,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\Community\CommunityMaint.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\ContinueWatchingTileControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Custom ToolTips\CharacterSeiyuuToolTip.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Custom ToolTips\EpisodeDetailsToolTip.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -911,7 +951,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\DashboardEpisodeOverviewTooltipContent.xaml">
+    <Page Include="UserControls\Custom ToolTips\DashboardEpisodeOverviewTooltipContent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1007,10 +1047,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\LogsControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="UserControls\ManuallyLinkedFilesControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1040,6 +1076,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\PlayNextEpisodeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\PlayNextEpisodeControlV2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1111,7 +1151,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Settings\MPCSettingsControl.xaml">
+    <Page Include="UserControls\Settings\VideoPlayerSettingsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1197,7 +1237,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
-      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.de.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -1359,9 +1399,6 @@
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_JMMUser1.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_LogMessage.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_MALAnimeResponse1.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -1410,6 +1447,9 @@
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_TraktTVShowResponse1.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_Trakt_CommentUser.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_Trakt_Episode1.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -1417,9 +1457,6 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_Trakt_ImagePoster1.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_Trakt_ShoutUser1.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_TvDBLanguage1.datasource">
@@ -2055,6 +2092,7 @@
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.Core.dll" />
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.dll" />
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.resources.dll" />
+    <Resource Include="Images\Metro\back.png" />
     <Resource Include="Images\placeholder.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

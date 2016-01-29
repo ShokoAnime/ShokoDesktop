@@ -102,7 +102,7 @@
 
                     <TextBlock Padding="5,10,5,10" FontWeight="Heavy" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VoteNow}" VerticalAlignment="Center"/>
 
-                    <usercontrols:RatingControl x:Name="cRating" Width="175" Height="16" RatingValue="7.5" />
+                    <usercontrols:RatingControl x:Name="cRating" Width="195" Height="16" RatingValue="7.5" />
 
                     <ComboBox Grid.Row="0" Name="cboVoteType" VerticalAlignment="Center"></ComboBox>
 
@@ -122,7 +122,7 @@
             </StackPanel>
         </Border>
 
-        <!-- trakt shout -->
+        <!-- trakt Comment -->
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Name="Scroller2" Grid.Row="3" Grid.Column="1" Margin="0,0,0,0"
                       Visibility="{Binding Path=TraktLinkExists, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:RateSeriesForm}}, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Border  Margin="5,5,5,5" Padding="5" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1">
@@ -131,7 +131,7 @@
 
                     <TextBlock Padding="5,10,5,10" FontWeight="Heavy" Text="Have your say on Trakt" VerticalAlignment="Center"/>
 
-                    <usercontrols:TraktShoutsShowControl x:Name="ucTraktShouts"  />
+                    <usercontrols:TraktCommentsShowControl x:Name="ucTraktComments"  />
 
                 </StackPanel>
             </Border>

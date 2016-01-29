@@ -43,7 +43,7 @@ namespace JMMClient
 		public DateTime? AniDB_AirDateWithDefault { get; set; }
 
 		public event PropertyChangedEventHandler PropertyChanged;
-		private void NotifyPropertyChanged(String propertyName)
+		protected void NotifyPropertyChanged(String propertyName)
 		{
 			if (PropertyChanged != null)
 			{
@@ -227,7 +227,41 @@ namespace JMMClient
 			}
 		}
 
-		private int localFileCount = 0;
+
+        private bool traktLinkExists = false;
+        public bool TraktLinkExists
+        {
+            get { return traktLinkExists; }
+            set
+            {
+                traktLinkExists = value;
+                NotifyPropertyChanged("TraktLinkExists");
+            }
+        }
+
+        private bool traktLinkMissing = true;
+        public bool TraktLinkMissing
+        {
+            get { return traktLinkMissing; }
+            set
+            {
+                traktLinkMissing = value;
+                NotifyPropertyChanged("TraktLinkMissing");
+            }
+        }
+
+        private string traktEpisodeURL = "";
+        public string TraktEpisodeURL
+        {
+            get { return traktEpisodeURL; }
+            set
+            {
+                traktEpisodeURL = value;
+                NotifyPropertyChanged("TraktEpisodeURL");
+            }
+        }
+
+        private int localFileCount = 0;
 		public int LocalFileCount
 		{
 			get { return localFileCount; }
@@ -673,7 +707,197 @@ namespace JMMClient
 
 		}
 
-		public bool FutureDated
+
+
+        public void SetTraktInfo()
+        {
+            //this.RefreshAnime();
+
+            TraktSummary tvSummary = AniDB_Anime.traktSummary;
+
+            SetTraktInfo(tvSummary);
+        }
+
+        public void SetTraktInfo(TraktSummary traktSummary)
+        {
+            TraktLinkExists = false;
+            TraktLinkMissing = true;
+
+            #region episode override
+            // check if this episode has a direct tvdb over-ride
+            /*if (traktSummary.DictTraktCrossRefEpisodes.ContainsKey(AniDB_EpisodeID))
+            {
+                foreach (Trakt_EpisodeVM traktEp in traktSummary.DictTraktEpisodes.Values)
+                {
+                    if (traktSummary.DictTraktCrossRefEpisodes[AniDB_EpisodeID] == traktEp.Id)
+                    {
+                        if (string.IsNullOrEmpty(traktEp.Overview))
+                            this.EpisodeOverviewLoading = "Episode Overview Not Available";
+                        else
+                            this.EpisodeOverviewLoading = traktEp.Overview;
+
+                        if (string.IsNullOrEmpty(traktEp.FullImagePathPlain) || !File.Exists(traktEp.FullImagePath))
+                        {
+                            this.EpisodeImageLoading = @"/Images/EpisodeThumb_NotFound.png";
+                            // if there is no proper image to show, we will hide it on the dashboard
+                            ShowEpisodeImageInDashboard = false;
+                        }
+                        else
+                            this.EpisodeImageLoading = traktEp.FullImagePath;
+
+                        if (JMMServerVM.Instance.EpisodeTitleSource == DataSourceType.TheTvDB && !string.IsNullOrEmpty(traktEp.EpisodeName))
+                            EpisodeName = traktEp.EpisodeName;
+
+                        TvDBLinkExists = true;
+                        TvDBLinkMissing = false;
+
+                        return;
+                    }
+                }
+            }*/
+            #endregion
+
+            //logger.Trace("SetTvDBInfo: normal episodes start");
+
+            #region normal episodes
+            // now do stuff to improve performance
+            if (this.EpisodeTypeEnum == JMMClient.EpisodeType.Episode)
+            {
+                if (traktSummary != null && traktSummary.CrossRefTraktV2 != null && traktSummary.CrossRefTraktV2.Count > 0)
+                {
+                    //logger.Trace("SetTvDBInfo: sorting TvDB cross refs: {0} records", tvSummary.CrossRefTvDBV2.Count);
+
+                    // find the xref that is right
+                    // relies on the xref's being sorted by season number and then episode number (desc)
+                    List<SortPropOrFieldAndDirection> sortCriteria = new List<SortPropOrFieldAndDirection>();
+                    sortCriteria.Add(new SortPropOrFieldAndDirection("AniDBStartEpisodeNumber", true, JMMClient.SortType.eInteger));
+                    List<CrossRef_AniDB_TraktVMV2> traktCrossRefs = Sorting.MultiSort<CrossRef_AniDB_TraktVMV2>(traktSummary.CrossRefTraktV2, sortCriteria);
+
+                    //logger.Trace("SetTvDBInfo: looking for starting points");
+
+                    bool foundStartingPoint = false;
+                    CrossRef_AniDB_TraktVMV2 xrefBase = null;
+                    foreach (CrossRef_AniDB_TraktVMV2 xrefTV in traktCrossRefs)
+                    {
+                        if (xrefTV.AniDBStartEpisodeType != (int)JMMClient.EpisodeType.Episode) continue;
+                        if (this.EpisodeNumber >= xrefTV.AniDBStartEpisodeNumber)
+                        {
+                            foundStartingPoint = true;
+                            xrefBase = xrefTV;
+                            break;
+                        }
+                    }
+
+                    //logger.Trace("SetTvDBInfo: looking for starting points - done");
+
+                    // we have found the starting epiosde numbder from AniDB
+                    // now let's check that the TvDB Season and Episode Number exist
+                    if (foundStartingPoint)
+                    {
+
+                        //logger.Trace("SetTvDBInfo: creating dictionary");
+
+                        Dictionary<int, int> dictTraktSeasons = null;
+                        Dictionary<int, Trakt_EpisodeVM> dictTraktEpisodes = null;
+                        foreach (TraktDetails det in traktSummary.traktDetails.Values)
+                        {
+                            if (det.TraktID.Equals(xrefBase.TraktID, StringComparison.InvariantCultureIgnoreCase))
+                            {
+                                dictTraktSeasons = det.DictTraktSeasons;
+                                dictTraktEpisodes = det.DictTraktEpisodes;
+                                break;
+                            }
+                        }
+
+                        //logger.Trace("SetTvDBInfo: creating dictionary - done");
+
+                        if (dictTraktSeasons.ContainsKey(xrefBase.TraktSeasonNumber))
+                        {
+                            int episodeNumber = dictTraktSeasons[xrefBase.TraktSeasonNumber] + (this.EpisodeNumber + xrefBase.TraktStartEpisodeNumber - 2) - (xrefBase.AniDBStartEpisodeNumber - 1);
+                            if (dictTraktEpisodes.ContainsKey(episodeNumber))
+                            {
+
+                                //logger.Trace("SetTvDBInfo: loading episode overview");
+                                Trakt_EpisodeVM traktEp = dictTraktEpisodes[episodeNumber];
+                                TraktLinkExists = true;
+                                TraktLinkMissing = false;
+
+                                TraktEpisodeURL = traktEp.URL;
+                            }
+                        }
+                    }
+
+
+
+
+                }
+            }
+            #endregion
+
+            //logger.Trace("SetTvDBInfo: normal episodes finish");
+
+            #region special episodes
+            if (this.EpisodeTypeEnum == JMMClient.EpisodeType.Special)
+            {
+                // find the xref that is right
+                // relies on the xref's being sorted by season number and then episode number (desc)
+                List<SortPropOrFieldAndDirection> sortCriteria = new List<SortPropOrFieldAndDirection>();
+                sortCriteria.Add(new SortPropOrFieldAndDirection("AniDBStartEpisodeNumber", true, JMMClient.SortType.eInteger));
+                List<CrossRef_AniDB_TraktVMV2> traktCrossRef = Sorting.MultiSort<CrossRef_AniDB_TraktVMV2>(traktSummary.CrossRefTraktV2, sortCriteria);
+
+                bool foundStartingPoint = false;
+                CrossRef_AniDB_TraktVMV2 xrefBase = null;
+                foreach (CrossRef_AniDB_TraktVMV2 xrefTrakt in traktCrossRef)
+                {
+                    if (xrefTrakt.AniDBStartEpisodeType != (int)JMMClient.EpisodeType.Special) continue;
+                    if (this.EpisodeNumber >= xrefTrakt.AniDBStartEpisodeNumber)
+                    {
+                        foundStartingPoint = true;
+                        xrefBase = xrefTrakt;
+                        break;
+                    }
+                }
+
+                if (traktSummary != null && traktSummary.CrossRefTraktV2 != null && traktSummary.CrossRefTraktV2.Count > 0)
+                {
+                    // we have found the starting epiosde numbder from AniDB
+                    // now let's check that the Trakt Season and Episode Number exist
+                    if (foundStartingPoint)
+                    {
+
+                        Dictionary<int, int> dictTraktSeasons = null;
+                        Dictionary<int, Trakt_EpisodeVM> dictTraktEpisodes = null;
+                        foreach (TraktDetails det in traktSummary.traktDetails.Values)
+                        {
+                            if (det.TraktID.Equals(xrefBase.TraktID, StringComparison.InvariantCultureIgnoreCase))
+                            {
+                                dictTraktSeasons = det.DictTraktSeasons;
+                                dictTraktEpisodes = det.DictTraktEpisodes;
+                                break;
+                            }
+                        }
+
+                        if (dictTraktSeasons.ContainsKey(xrefBase.TraktSeasonNumber))
+                        {
+                            int episodeNumber = dictTraktSeasons[xrefBase.TraktSeasonNumber] + (this.EpisodeNumber + xrefBase.TraktStartEpisodeNumber - 2) - (xrefBase.AniDBStartEpisodeNumber - 1);
+                            if (dictTraktEpisodes.ContainsKey(episodeNumber))
+                            {
+                                Trakt_EpisodeVM traktEp = dictTraktEpisodes[episodeNumber];
+                                TraktLinkExists = true;
+                                TraktLinkMissing = false;
+
+                                TraktEpisodeURL = traktEp.URL;
+                            }
+                        }
+                    }
+                }
+            }
+            #endregion
+
+        }
+
+
+        public bool FutureDated
 		{
 			get
 			{

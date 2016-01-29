@@ -158,8 +158,9 @@ namespace JMMClient.ViewModel
 			this.TvDBStartEpisodeNumber = contract.TvDBStartEpisodeNumber;
 			this.CrossRefSource = contract.CrossRefSource;
 			this.TvDBTitle = contract.TvDBTitle;
+            this.IsAdminApproved = 0;
 
-			SeriesURL = string.Format(Constants.URLS.TvDB_Series, TvDBID);
+            SeriesURL = string.Format(Constants.URLS.TvDB_Series, TvDBID);
             AniDBURL = string.Format(Constants.URLS.AniDB_Series, AnimeID);
 		}
 

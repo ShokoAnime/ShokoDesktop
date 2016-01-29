@@ -20,24 +20,24 @@ using JMMClient.Forms;
 
 namespace JMMClient.UserControls
 {
-	/// <summary>
-	/// Interaction logic for TraktShoutsShowControl.xaml
-	/// </summary>
-	public partial class TraktShoutsShowControl : UserControl
+    /// <summary>
+    /// Interaction logic for TraktCommentsShowControl.xaml
+    /// </summary>
+    public partial class TraktCommentsShowControl : UserControl
 	{
-        public ObservableCollection<object> CurrentShouts { get; set; }
+        public ObservableCollection<object> CurrentComments { get; set; }
 
-		public static readonly DependencyProperty NumberOfShoutsProperty = DependencyProperty.Register("NumberOfShouts",
-			typeof(int), typeof(TraktShoutsShowControl), new UIPropertyMetadata(0, null));
+		public static readonly DependencyProperty NumberOfCommentsProperty = DependencyProperty.Register("NumberOfComments",
+			typeof(int), typeof(TraktCommentsShowControl), new UIPropertyMetadata(0, null));
 
-		public int NumberOfShouts
+		public int NumberOfComments
 		{
-			get { return (int)GetValue(NumberOfShoutsProperty); }
-			set { SetValue(NumberOfShoutsProperty, value); }
+			get { return (int)GetValue(NumberOfCommentsProperty); }
+			set { SetValue(NumberOfCommentsProperty, value); }
 		}
 
 		public static readonly DependencyProperty IsLoadingProperty = DependencyProperty.Register("IsLoading",
-			typeof(bool), typeof(TraktShoutsShowControl), new UIPropertyMetadata(true, null));
+			typeof(bool), typeof(TraktCommentsShowControl), new UIPropertyMetadata(true, null));
 
 		public bool IsLoading
 		{
@@ -50,7 +50,7 @@ namespace JMMClient.UserControls
 		}
 
 		public static readonly DependencyProperty IsNotLoadingProperty = DependencyProperty.Register("IsNotLoading",
-			typeof(bool), typeof(TraktShoutsShowControl), new UIPropertyMetadata(true, null));
+			typeof(bool), typeof(TraktCommentsShowControl), new UIPropertyMetadata(true, null));
 
 		public bool IsNotLoading
 		{
@@ -59,24 +59,24 @@ namespace JMMClient.UserControls
 		}
 
 		private BackgroundWorker refreshDataWorker = new BackgroundWorker();
-		private BackgroundWorker postShoutWorker = new BackgroundWorker();
+		private BackgroundWorker postCommentWorker = new BackgroundWorker();
 
-		public TraktShoutsShowControl()
+		public TraktCommentsShowControl()
 		{
 			InitializeComponent();
 
-			CurrentShouts = new ObservableCollection<object>();
+			CurrentComments = new ObservableCollection<object>();
 
-			this.DataContextChanged += new DependencyPropertyChangedEventHandler(TraktShoutsShowControl_DataContextChanged);
+			this.DataContextChanged += new DependencyPropertyChangedEventHandler(TraktCommentsShowControl_DataContextChanged);
 
 			btnRefresh.Click += new RoutedEventHandler(btnRefresh_Click);
-			btnSubmitShout.Click += new RoutedEventHandler(btnSubmitShout_Click);
+			btnSubmitComment.Click += new RoutedEventHandler(btnSubmitComment_Click);
 
 			refreshDataWorker.DoWork += new DoWorkEventHandler(refreshDataWorker_DoWork);
 			refreshDataWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(refreshDataWorker_RunWorkerCompleted);
 
-			postShoutWorker.DoWork += new DoWorkEventHandler(postShoutWorker_DoWork);
-			postShoutWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(postShoutWorker_RunWorkerCompleted);
+			postCommentWorker.DoWork += new DoWorkEventHandler(postCommentWorker_DoWork);
+			postCommentWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(postCommentWorker_RunWorkerCompleted);
 		}
 
         private void CommandBinding_ViewComment(object sender, ExecutedRoutedEventArgs e)
@@ -99,23 +99,23 @@ namespace JMMClient.UserControls
             }
         }
 
-		void postShoutWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+		void postCommentWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
 		{
 			string msg = e.Result.ToString();
 
 			MessageBox.Show(msg, "Message", MessageBoxButton.OK, MessageBoxImage.Information);
-			txtShoutNew.Text = "";
-			RefreshShouts();
+			txtCommentNew.Text = "";
+			RefreshComments();
 		}
 
-		void postShoutWorker_DoWork(object sender, DoWorkEventArgs e)
+		void postCommentWorker_DoWork(object sender, DoWorkEventArgs e)
 		{
-			Trakt_ShoutPost shout = e.Argument as Trakt_ShoutPost;
+			Trakt_CommentPost comment = e.Argument as Trakt_CommentPost;
 
 			string msg = "";
 			try
 			{
-				JMMServerVM.Instance.clientBinaryHTTP.PostShoutShow(shout.TraktID, shout.ShoutText, shout.Spoiler, ref msg);
+				JMMServerVM.Instance.clientBinaryHTTP.PostTraktCommentShow(comment.TraktID, comment.CommentText, comment.Spoiler, ref msg);
 			}
 			catch (Exception ex)
 			{
@@ -126,19 +126,19 @@ namespace JMMClient.UserControls
 			e.Result = msg;
 		}
 
-		void btnSubmitShout_Click(object sender, RoutedEventArgs e)
+		void btnSubmitComment_Click(object sender, RoutedEventArgs e)
 		{
             if (!JMMServerVM.Instance.Trakt_IsEnabled)
             {
                 Utils.ShowErrorMessage("You have not enabled Trakt, for more info go to 'Settings - Community Sites - Trakt TV'");
-                txtShoutNew.Focus();
+                txtCommentNew.Focus();
                 return;
             }
 
             if (string.IsNullOrEmpty(JMMServerVM.Instance.Trakt_AuthToken))
             {
                 Utils.ShowErrorMessage("You have not authorized JMM to use your Trakt account, for more info go to 'Settings - Community Sites - Trakt TV'");
-                txtShoutNew.Focus();
+                txtCommentNew.Focus();
                 return;
             }
 
@@ -146,27 +146,27 @@ namespace JMMClient.UserControls
 			if (animeSeries == null)
 			{
 				Utils.ShowErrorMessage("Anime series info not found");
-				txtShoutNew.Focus();
+				txtCommentNew.Focus();
 				return;
 			}
 
-			string shoutText = txtShoutNew.Text.Trim();
-			if (string.IsNullOrEmpty(shoutText))
+			string commentText = txtCommentNew.Text.Trim();
+			if (string.IsNullOrEmpty(commentText))
 			{
-				Utils.ShowErrorMessage("Please enter text for your shout");
-				txtShoutNew.Focus();
+				Utils.ShowErrorMessage("Please enter text for your Comment");
+				txtCommentNew.Focus();
 				return;
 			}
 
-			if (shoutText.Length > 2000)
+			if (commentText.Length > 2000)
 			{
-				Utils.ShowErrorMessage(string.Format("Shout text must be less than 2000 characters ({0})", shoutText.Length));
-				txtShoutNew.Focus();
+				Utils.ShowErrorMessage(string.Format("Comment text must be less than 2000 characters ({0})", commentText.Length));
+				txtCommentNew.Focus();
 				return;
 			}
 
 			btnRefresh.IsEnabled = false;
-			btnSubmitShout.IsEnabled = false;
+			btnSubmitComment.IsEnabled = false;
 
             if (animeSeries.AniDB_Anime.traktSummary != null)
             {
@@ -176,8 +176,8 @@ namespace JMMClient.UserControls
                 if (animeSeries.AniDB_Anime.traktSummary.traktDetails == null ||
                     animeSeries.AniDB_Anime.traktSummary.traktDetails.Count == 0)
                 {
-                    Utils.ShowErrorMessage(string.Format("Cannot shout where a series does not have a Trakt show linked"));
-                    txtShoutNew.Focus();
+                    Utils.ShowErrorMessage(string.Format("Cannot Comment where a series does not have a Trakt show linked"));
+                    txtCommentNew.Focus();
                     return;
                 }
 
@@ -185,8 +185,8 @@ namespace JMMClient.UserControls
                 if (animeSeries.AniDB_Anime.traktSummary.traktDetails != null &&
                     animeSeries.AniDB_Anime.traktSummary.traktDetails.Count > 1)
                 {
-                    Utils.ShowErrorMessage(string.Format("Cannot shout where a series has more than one Trakt show linked"));
-                    txtShoutNew.Focus();
+                    Utils.ShowErrorMessage(string.Format("Cannot Comment where a series has more than one Trakt show linked"));
+                    txtCommentNew.Focus();
                     return;
                 }
 
@@ -200,34 +200,34 @@ namespace JMMClient.UserControls
                     foreach (KeyValuePair<string, TraktDetails> kvp in animeSeries.AniDB_Anime.traktSummary.traktDetails)
                     { traktID = kvp.Key; }
                     
-                    Trakt_ShoutPost shout = new Trakt_ShoutPost();
-                    shout.TraktID = traktID;
-                    shout.AnimeID = animeSeries.AniDB_ID;
-                    shout.ShoutText = shoutText;
-                    shout.Spoiler = chkSpoiler.IsChecked.Value;
+                    Trakt_CommentPost comment = new Trakt_CommentPost();
+                    comment.TraktID = traktID;
+                    comment.AnimeID = animeSeries.AniDB_ID;
+                    comment.CommentText = commentText;
+                    comment.Spoiler = chkSpoiler.IsChecked.Value;
 
-                    postShoutWorker.RunWorkerAsync(shout);
+                    postCommentWorker.RunWorkerAsync(comment);
                 }
             }
             else
             {
-                Utils.ShowErrorMessage(string.Format("Cannot shout where a series does not have a Trakt show linked"));
-                txtShoutNew.Focus();
+                Utils.ShowErrorMessage(string.Format("Cannot Comment where a series does not have a Trakt show linked"));
+                txtCommentNew.Focus();
             }
 		}
 
 		void refreshDataWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
 		{
-            List<object> tempShouts = e.Result as List<object>;
-			NumberOfShouts = tempShouts.Count;
+            List<object> tempComments = e.Result as List<object>;
+			NumberOfComments = tempComments.Count;
 			
-			foreach (object shout in tempShouts)
-				CurrentShouts.Add(shout);
+			foreach (object comment in tempComments)
+				CurrentComments.Add(comment);
 
 			IsLoading = false;
 			this.Cursor = Cursors.Arrow;
 			btnRefresh.IsEnabled = true;
-			btnSubmitShout.IsEnabled = true;
+			btnSubmitComment.IsEnabled = true;
 		}
 
 		void refreshDataWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -240,10 +240,10 @@ namespace JMMClient.UserControls
 				if (animeSeries == null) return;
 
                 // get comments from Trakt
-				List<JMMServerBinary.Contract_Trakt_ShoutUser> rawShouts = JMMServerVM.Instance.clientBinaryHTTP.GetTraktShoutsForAnime(animeSeries.AniDB_ID);
-				foreach (JMMServerBinary.Contract_Trakt_ShoutUser contract in rawShouts)
+				List<JMMServerBinary.Contract_Trakt_CommentUser> rawComments = JMMServerVM.Instance.clientBinaryHTTP.GetTraktCommentsForAnime(animeSeries.AniDB_ID);
+				foreach (JMMServerBinary.Contract_Trakt_CommentUser contract in rawComments)
 				{
-					Trakt_ShoutUserVM traktComment = new Trakt_ShoutUserVM(contract);
+					Trakt_CommentUserVM traktComment = new Trakt_CommentUserVM(contract);
 					tempComments.Add(traktComment);
 				}
 
@@ -267,28 +267,28 @@ namespace JMMClient.UserControls
 		void btnRefresh_Click(object sender, RoutedEventArgs e)
 		{
 			
-			RefreshShouts();
+			RefreshComments();
 			
 		}
 
-		void TraktShoutsShowControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+		void TraktCommentsShowControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
 		{
 
 		}
 
-		public void RefreshShouts()
+		public void RefreshComments()
 		{
 			AnimeSeriesVM animeSeries = (AnimeSeriesVM)this.DataContext;
 			if (animeSeries == null) return;
 
 			btnRefresh.IsEnabled = false;
-			btnSubmitShout.IsEnabled = false;
+			btnSubmitComment.IsEnabled = false;
 
 			this.Cursor = Cursors.Wait;
 			IsLoading = true;
-			NumberOfShouts = 0;
+			NumberOfComments = 0;
 
-			CurrentShouts.Clear();
+			CurrentComments.Clear();
 			refreshDataWorker.RunWorkerAsync(animeSeries);
 		}
 	}

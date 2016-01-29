@@ -147,10 +147,20 @@ namespace JMMClient.Forms
 				}
 
 				AniDB_EpisodeVM aniEp = cboAniDBEpisodeNumber.SelectedItem as AniDB_EpisodeVM;
+                if (aniEp == null)
+                {
+                    MessageBox.Show("There are no episodes available on AniDB", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
 				AnimeEpisodeNumber = aniEp.EpisodeNumber;
 				
 				TvDB_EpisodeVM tvep = cboEpisodeNumber.SelectedItem as TvDB_EpisodeVM;
-				TvDBEpisodeNumber = tvep.EpisodeNumber;
+                if (tvep == null)
+                {
+                    MessageBox.Show("There are no episodes available on The TvDB", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                TvDBEpisodeNumber = tvep.EpisodeNumber;
 
 				int aniEpType = (int)EpisodeType.Episode;
 				if (cboEpisodeType.SelectedIndex == 1) aniEpType = (int)EpisodeType.Special;

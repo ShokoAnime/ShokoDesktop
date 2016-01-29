@@ -238,7 +238,7 @@
     <value>Categories</value>
   </data>
   <data name="Tags" xml:space="preserve">
-    <value>Tags</value>
+    <value>Tags ( May Contain Spoilers )</value>
   </data>
   <data name="CategoryWeighting" xml:space="preserve">
     <value>Weighting</value>
@@ -586,7 +586,7 @@
     <value>Success!</value>
   </data>
   <data name="INFO_SettingsEssential" xml:space="preserve">
-    <value>All the settings on this page should be populated. Make sure to test and save the OMM Server and AniDB details before proceeding. If this is your first time running the application enter at least one import folder and the press the Run Import button.</value>
+    <value>All the settings on this page should be populated. Make sure to test and save the JMM Server and AniDB details before proceeding. If this is your first time running the application enter at least one import folder and the press the Run Import button.</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Search</value>
@@ -960,7 +960,7 @@
     <value>Preview of Filter Results</value>
   </data>
   <data name="GroupFilter_ApplyToSeries" xml:space="preserve">
-    <value>Apply these filters when viewing the series for the group as well</value>
+    <value>Apply filter at series level instead of group level</value>
   </data>
   <data name="GroupFilter_BaseCondition" xml:space="preserve">
     <value>Base Condition</value>
@@ -1726,5 +1726,83 @@
   </data>
   <data name="Tooltip_NewSeries_Search" xml:space="preserve">
     <value>Enter part of the name of the anime, or if you know the AniDB ID just enter that directly</value>
+  </data>
+  <data name="Link_CommunityRecommendation" xml:space="preserve">
+    <value>http://japanesemediamanager.github.io/general/faq.html#what-are-community-recommendations</value>
+  </data>
+  <data name="WhatsThis" xml:space="preserve">
+    <value>What's This?</value>
+  </data>
+  <data name="Override" xml:space="preserve">
+    <value>Override</value>
+  </data>
+  <data name="Tooltip_NameOverride" xml:space="preserve">
+    <value>You can manually type the preferred name or use the green arrows to the right to select a name from AniDB.</value>
+  </data>
+  <data name="Tooltip_NameOverride2" xml:space="preserve">
+    <value>Select a name from a list of AniDB names.</value>
+  </data>
+  <data name="AdminMessageTitle" xml:space="preserve">
+    <value>Admin Message</value>
+  </data>
+  <data name="CheckForUpdate" xml:space="preserve">
+    <value>Check For Updates</value>
+  </data>
+  <data name="Link_Documentation" xml:space="preserve">
+    <value>http://japanesemediamanager.github.io/documentation.html</value>
+  </data>
+  <data name="Link_AniDBBanned" xml:space="preserve">
+    <value>http://japanesemediamanager.github.io/general/faq.html#banned-from-anidb</value>
+  </data>
+  <data name="Link_AniDBSettings" xml:space="preserve">
+    <value>http://japanesemediamanager.github.io/jmmdesktop/settings.html#anidb</value>
+  </data>
+  <data name="Link_FileRenaming" xml:space="preserve">
+    <value>http://japanesemediamanager.github.io/jmmdesktop/utilities.html#renaming-overview</value>
+  </data>
+  <data name="Link_GroupFilters" xml:space="preserve">
+    <value>http://japanesemediamanager.github.io/jmmdesktop/collection.html#group-filters</value>
+  </data>
+  <data name="Link_ImportFolders" xml:space="preserve">
+    <value>http://japanesemediamanager.github.io/jmmserver/import.html</value>
+  </data>
+  <data name="Link_MAL" xml:space="preserve">
+    <value>http://japanesemediamanager.github.io/jmmdesktop/settings.html#mal</value>
+  </data>
+  <data name="Link_MPC" xml:space="preserve">
+    <value>http://japanesemediamanager.github.io/jmmdesktop/settings.html#mpc</value>
+  </data>
+  <data name="Link_PotPlayer" xml:space="preserve">
+    <value>http://japanesemediamanager.github.io/jmmdesktop/settings.html#pot-player</value>
+  </data>
+  <data name="Link_TMDb" xml:space="preserve">
+    <value>http://japanesemediamanager.github.io/jmmdesktop/settings.html#tmdb</value>
+  </data>
+  <data name="Link_Trakt" xml:space="preserve">
+    <value>http://japanesemediamanager.github.io/jmmdesktop/settings.html#trakt</value>
+  </data>
+  <data name="Link_TvDB" xml:space="preserve">
+    <value>http://japanesemediamanager.github.io/jmmdesktop/settings.html#tvdb</value>
+  </data>
+  <data name="Link_uTorrent" xml:space="preserve">
+    <value>http://japanesemediamanager.github.io/jmmdesktop/downloads.html#utorrent</value>
+  </data>
+  <data name="Link_VLC" xml:space="preserve">
+    <value>http://japanesemediamanager.github.io/jmmdesktop/settings.html#vlc</value>
+  </data>
+  <data name="Link_WebCache" xml:space="preserve">
+    <value>http://japanesemediamanager.github.io/jmmdesktop/settings.html#web-cache</value>
+  </data>
+  <data name="UpdateFrequency_OneMonth" xml:space="preserve">
+    <value>Once a Month</value>
+  </data>
+  <data name="UpdateFrequency_OneWeek" xml:space="preserve">
+    <value>Once a Week</value>
+  </data>
+  <data name="SettingAlwaysAniDBPoster" xml:space="preserve">
+    <value>Always use the AniDB Poster</value>
+  </data>
+  <data name="Tooltip_SettingAlwaysAniDBPoster" xml:space="preserve">
+    <value>This setting will over-ride any other Poster settings so that only the AniDB Poster is used. This is generally faster than using random posters</value>
   </data>
 </root>

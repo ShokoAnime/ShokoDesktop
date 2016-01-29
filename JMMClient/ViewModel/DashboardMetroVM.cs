@@ -221,7 +221,7 @@ namespace JMMClient
 						if (AppSettings.DashMetroImageType == DashboardMetroImageType.Fanart)
 							imageName = ep.AniDB_Anime.FanartPathPreferThumb;
 						else
-							imageName = ep.AniDB_Anime.DefaultPosterPath;
+							imageName = ep.AniDB_Anime.PosterPathWithRandoms;
 
 						ContinueWatching.Add(new ContinueWatchingTile() { EpisodeDetails = ep.EpisodeNumberAndName, AnimeName = ep.AnimeSeries.SeriesName,
 																		  Picture = imageName,
@@ -294,7 +294,7 @@ namespace JMMClient
 						if (AppSettings.DashMetroImageType == DashboardMetroImageType.Fanart)
 							imageName = ser.AniDB_Anime.FanartPath;
 						else
-							imageName = ser.AniDB_Anime.DefaultPosterPath;
+							imageName = ser.AniDB_Anime.PosterPathWithRandoms;
 
 						RandomSeries.Add(new RandomSeriesTile()
 						{
@@ -345,7 +345,7 @@ namespace JMMClient
 						if (AppSettings.DashMetroImageType == DashboardMetroImageType.Fanart)
 							imageName = ep.AnimeSeries.AniDB_Anime.FanartPath;
 						else
-							imageName = ep.AnimeSeries.AniDB_Anime.DefaultPosterPath;
+							imageName = ep.AnimeSeries.AniDB_Anime.PosterPathWithRandoms;
 
 						NewEpisodeTile tile = new NewEpisodeTile()
 						{

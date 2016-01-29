@@ -369,10 +369,12 @@ namespace JMMClient.ViewModel
 			if (MainListHelperVM.Instance.AllAnimeDictionary.ContainsKey(AnimeID))
 				anime = MainListHelperVM.Instance.AllAnimeDictionary[AnimeID];
 
-			
+            //AniDB
+            AllPosters.Insert(0, new PosterContainer(ImageEntityType.AniDB_Cover, anime));
 
-			// MAL
-			if (details.CrossRef_AniDB_MAL != null)
+
+            // MAL
+            if (details.CrossRef_AniDB_MAL != null)
 			{
                 CrossRef_AniDB_MAL = new ObservableCollection<CrossRef_AniDB_MALVM>();
 				foreach ( JMMServerBinary.Contract_CrossRef_AniDB_MAL contract in details.CrossRef_AniDB_MAL)

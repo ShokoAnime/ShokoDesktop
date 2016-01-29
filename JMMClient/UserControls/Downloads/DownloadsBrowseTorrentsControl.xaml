@@ -160,9 +160,9 @@
                             <StackPanel Orientation="Horizontal" Margin="0,0,0,3">
                                 <TextBlock Text="{Binding Path=SeriesName}" Foreground="Black" FontWeight="DemiBold" FontSize="14"
                                         VerticalAlignment="Center" ToolTipService.ShowDuration="60000">
-                                <TextBlock.ToolTip>
-                                    <TextBlock Text="{Binding Path=SeriesName}" Foreground="Black" FontWeight="DemiBold"/>
-                                </TextBlock.ToolTip>
+                                    <TextBlock.ToolTip>
+                                        <TextBlock Text="{Binding Path=SeriesName}" Foreground="Black" FontWeight="DemiBold"/>
+                                    </TextBlock.ToolTip>
                             </TextBlock>
 
                                 <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="{Binding Path=AniDB_Anime.AnimeID}" URL="{Binding Path=AniDB_Anime.AniDB_SiteURL}" Margin="5,0,0,0"/>
@@ -185,9 +185,9 @@
                                         VerticalAlignment="Center" ToolTipService.ShowDuration="60000"
                                         ToolTip="{usercontrols:Info Title=Wrong Series, 
                                                 Body=This is JMMs attempt to guess which series you are looking at so you can compare to your local collection. If you do not have the series in your collection it will be incorrect.}">
-                                   
+
                                 </TextBlock>
-                                
+
 
                             </StackPanel>
 
@@ -196,7 +196,7 @@
 
                         <!-- anime image  -->
                         <Image  Height="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_RecentAdditions_Height}"  Margin="5,3,10,5" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="1"
-                            HorizontalAlignment="Left" Source="{Binding Path=AniDB_Anime.DefaultPosterPath}" ToolTipService.ShowDuration="60000" VerticalAlignment="Top">
+                            HorizontalAlignment="Left" Source="{Binding Path=AniDB_Anime.PosterPathWithRandoms}" ToolTipService.ShowDuration="60000" VerticalAlignment="Top">
                             <Image.Effect>
                                 <DropShadowEffect Opacity="0.5"/>
                             </Image.Effect>
@@ -212,7 +212,7 @@
                                             <RowDefinition />
                                         </Grid.RowDefinitions>
 
-                                        <Image Grid.Column="0" Grid.Row="0" Height="400" Source="{Binding AniDB_Anime.DefaultPosterPath}" 
+                                        <Image Grid.Column="0" Grid.Row="0" Height="400" Source="{Binding AniDB_Anime.PosterPathWithRandoms}" 
                                             Margin="10,5,0,5" VerticalAlignment="Top" HorizontalAlignment="Left">
                                         </Image>
 

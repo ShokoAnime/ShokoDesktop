@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using JMMClient.Downloads;
@@ -9,7 +7,7 @@ using System.Windows;
 
 namespace JMMClient
 {
-	public class UserSettingsVM : INotifyPropertyChanged
+    public class UserSettingsVM : INotifyPropertyChanged
 	{
 		public event PropertyChangedEventHandler PropertyChanged;
 
@@ -327,22 +325,6 @@ namespace JMMClient
 		public bool SeriesNextEpisodeCollapsed
 		{
 			get { return !AppSettings.SeriesNextEpisodeExpanded; }
-		}
-
-		public bool SeriesFileSummaryExpanded
-		{
-			get { return AppSettings.SeriesFileSummaryExpanded; }
-			set
-			{
-				AppSettings.SeriesFileSummaryExpanded = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("SeriesFileSummaryExpanded"));
-				OnPropertyChanged(new PropertyChangedEventArgs("SeriesFileSummaryCollapsed"));
-			}
-		}
-
-		public bool SeriesFileSummaryCollapsed
-		{
-			get { return !AppSettings.SeriesFileSummaryExpanded; }
 		}
 
 		public bool SeriesGroupExpanded
@@ -926,7 +908,17 @@ namespace JMMClient
 			}
 		}
 
-		public bool UseFanartOnPlaylistHeader
+        public bool AlwaysUseAniDBPoster
+        {
+            get { return AppSettings.AlwaysUseAniDBPoster; }
+            set
+            {
+                AppSettings.AlwaysUseAniDBPoster = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("AlwaysUseAniDBPoster"));
+            }
+        }
+
+        public bool UseFanartOnPlaylistHeader
 		{
 			get { return AppSettings.UseFanartOnPlaylistHeader; }
 			set
@@ -1149,6 +1141,16 @@ namespace JMMClient
 				OnPropertyChanged(new PropertyChangedEventArgs("PotPlayerFolder"));
 			}
 		}
+
+        public string VLCFolder
+        {
+            get { return AppSettings.VLCFolder; }
+            set
+            {
+                AppSettings.VLCFolder = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("VLCFolder"));
+            }
+        }
 
 		public int VideoWatchedPct
 		{

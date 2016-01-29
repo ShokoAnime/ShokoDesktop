@@ -84,7 +84,7 @@ namespace JMMClient
 		Trakt_Episode = 12,
 		Trakt_Friend = 13,
 		Trakt_ActivityScrobble = 14,
-		Trakt_ShoutUser = 15,
+		Trakt_CommentUser = 15,
 		Trakt_WatchedEpisode = 16
 	}
 
@@ -371,11 +371,13 @@ namespace JMMClient
 
 	public enum ScheduledUpdateFrequency
 	{
-		Never = 1,
-		HoursSix = 2,
-		HoursTwelve = 3,
-		Daily = 4
-	}
+        Never = 1,
+        HoursSix = 2,
+        HoursTwelve = 3,
+        Daily = 4,
+        WeekOne = 5,
+        MonthOne = 6
+    }
 
 	public enum RecommendationType
 	{
@@ -398,7 +400,7 @@ namespace JMMClient
 	public enum TraktActivityAction
 	{
 		Scrobble = 1,
-		Shout = 2
+		Comment = 2
 	}
 
 	public enum TraktActivityType

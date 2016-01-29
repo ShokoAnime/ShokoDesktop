@@ -52,6 +52,15 @@
 
                     <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
 
+                        <!-- delete file -->
+                        <Button Name="btnDeleteFileEntry" Margin="0,0,2,2" Grid.Column="0" Grid.Row="3" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left"
+                                Command="{StaticResource DeleteFileCommand}" CommandParameter="{Binding}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <Image Height="16" Width="16" Source="/Images/32_trash.png" Margin="0,0,5,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Delete}" Margin="0,0,5,0"/>
+                            </StackPanel>
+                        </Button>
+                        
                         <!-- ignore file -->
                         <Button Name="btnIgnoreFileEntryMultiple" Margin="0,0,2,2" Grid.Column="0" Grid.Row="3" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left"
                                 Command="{DynamicResource IgnoreFileCommand}" CommandParameter="{Binding}">
@@ -378,7 +387,7 @@
 
                 </StackPanel>
 
-                <ListBox Name="lbSeries" BorderThickness="1" BorderBrush="LightGray" Background="White" Margin="31,0,5,5" Height="100" DockPanel.Dock="Top" 
+                <ListBox Name="lbSeries" BorderThickness="1" BorderBrush="LightGray" Background="White" Margin="31,0,5,5" Height="170" DockPanel.Dock="Top" 
                         HorizontalAlignment="Stretch" VerticalAlignment="Top"  ItemTemplate="{DynamicResource SimpleAnimeSeriesTemplate}" 
                         
                        ItemsSource="{Binding Path=ViewSeries, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:UnrecognisedVideos}}}"

@@ -41,7 +41,7 @@
                     </Grid.RowDefinitions>
 
                     <Image  Height="80"  Margin="5,3,10,5" Grid.Column="0" Grid.Row="0" Grid.RowSpan="5"
-                               HorizontalAlignment="Left" Source="{Binding Path=AniDB_Anime.DefaultPosterPath}" ToolTipService.ShowDuration="60000">
+                               HorizontalAlignment="Left" Source="{Binding Path=AniDB_Anime.PosterPathWithRandoms}" ToolTipService.ShowDuration="60000">
                         <Image.Effect>
                             <DropShadowEffect Opacity="0.5"/>
                         </Image.Effect>
@@ -57,7 +57,7 @@
                                         <RowDefinition />
                                     </Grid.RowDefinitions>
 
-                                    <Image Grid.Column="0" Grid.Row="0" Height="400" Source="{Binding AniDB_Anime.DefaultPosterPath}" 
+                                    <Image Grid.Column="0" Grid.Row="0" Height="400" Source="{Binding AniDB_Anime.PosterPathWithRandoms}" 
                                                 Margin="10,5,0,5" VerticalAlignment="Top" HorizontalAlignment="Left">
                                     </Image>
 

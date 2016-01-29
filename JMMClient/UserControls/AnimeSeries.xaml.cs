@@ -91,15 +91,6 @@ namespace JMMClient.UserControls
 			set { SetValue(SeriesPos_PlayNextEpisodeProperty, value); }
 		}
 
-		public static readonly DependencyProperty SeriesPos_FileSummaryProperty = DependencyProperty.Register("SeriesPos_FileSummary",
-			typeof(int), typeof(AnimeSeries), new UIPropertyMetadata((int)6, null));
-
-		public int SeriesPos_FileSummary
-		{
-			get { return (int)GetValue(SeriesPos_FileSummaryProperty); }
-			set { SetValue(SeriesPos_FileSummaryProperty, value); }
-		}
-
 		public static readonly DependencyProperty SeriesPos_TitlesProperty = DependencyProperty.Register("SeriesPos_Titles",
 			typeof(int), typeof(AnimeSeries), new UIPropertyMetadata((int)6, null));
 
@@ -164,7 +155,6 @@ namespace JMMClient.UserControls
 
 			this.Loaded += new RoutedEventHandler(AnimeSeries_Loaded);
 			btnAnimeGroupShow.Click += new RoutedEventHandler(btnAnimeGroupShow_Click);
-			btnFileSummary.Click += new RoutedEventHandler(btnFileSummary_Click);
 			btnTvDBLinks.Click += new RoutedEventHandler(btnTvDBLinks_Click);
 			//btnPlayNextEpisode.Click += new RoutedEventHandler(btnPlayNextEpisode_Click);
 			btnGetRelMissingInfo.Click += new RoutedEventHandler(btnGetRelMissingInfo_Click);
@@ -197,11 +187,21 @@ namespace JMMClient.UserControls
 			MainWindow.videoHandler.VideoWatchedEvent += new Utilities.VideoHandler.VideoWatchedEventHandler(videoHandler_VideoWatchedEvent);
 
 			SetSeriesWidgetOrder();
-            
+
+            this.PreviewMouseWheel += AnimeSeries_PreviewMouseWheel;
 		}
 
+        private void AnimeSeries_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            try
+            {
+                foreach (ScrollViewer sv in Utils.GetScrollViewers(this))
+                    sv.ScrollToVerticalOffset(sv.VerticalOffset - e.Delta / 3);
+            }
+            catch { }
+        }
 
-		void videoHandler_VideoWatchedEvent(Utilities.VideoWatchedEventArgs ev)
+        void videoHandler_VideoWatchedEvent(Utilities.VideoWatchedEventArgs ev)
 		{
 			if (MainWindow.CurrentMainTabIndex == MainWindow.TAB_MAIN_Collection || MainWindow.CurrentMainTabIndex == MainWindow.TAB_MAIN_Pinned)
 				ShowNextEpisode();
@@ -548,7 +548,7 @@ namespace JMMClient.UserControls
 			AnimeSeriesVM ser = this.DataContext as AnimeSeriesVM;
 			if (ser == null) return;
 
-			if (string.IsNullOrEmpty(ser.SeriesNameOverride))
+            if (string.IsNullOrEmpty(ser.SeriesNameOverride))
 				PreviousOverrideName = "";
 			else
 				PreviousOverrideName = ser.SeriesNameOverride;
@@ -562,7 +562,6 @@ namespace JMMClient.UserControls
 
 			SeriesPos_PlayNextEpisode = UserSettingsVM.Instance.GetSeriesWidgetPosition(SeriesWidgets.PlayNextEpisode) + 4;
 			SeriesPos_TvDBLinks = UserSettingsVM.Instance.GetSeriesWidgetPosition(SeriesWidgets.TvDBLinks) + 4;
-			SeriesPos_FileSummary = UserSettingsVM.Instance.GetSeriesWidgetPosition(SeriesWidgets.FileSummary) + 4;
 			SeriesPos_Titles = UserSettingsVM.Instance.GetSeriesWidgetPosition(SeriesWidgets.Titles) + 4;
 			SeriesPos_Tags = UserSettingsVM.Instance.GetSeriesWidgetPosition(SeriesWidgets.Tags) + 4;
             SeriesPos_CustomTags = UserSettingsVM.Instance.GetSeriesWidgetPosition(SeriesWidgets.CustomTags) + 4;
@@ -998,11 +997,17 @@ namespace JMMClient.UserControls
 				else if (tab.SelectedIndex == 4) // trakt shouts
 				{
 					this.Cursor = Cursors.Wait;
-					ucTraktShouts.RefreshShouts();
+					ucTraktShouts.RefreshComments();
 					this.Cursor = Cursors.Arrow;
 				}
+                else if (tab.SelectedIndex == 5) // files
+                {
+                    this.Cursor = Cursors.Wait;
+                    ShowFileSummary();
+                    this.Cursor = Cursors.Arrow;
+                }
 
-			}
+            }
 		}
 
 		private void RefreshImagesData()
@@ -1027,9 +1032,7 @@ namespace JMMClient.UserControls
 
 				SeriesTvDBWideBanners = AniDB_AnimeCrossRefs.TvDBImageWideBanners;
 
-				AniDB_AnimeCrossRefs.AllPosters.Insert(0, new PosterContainer(ImageEntityType.AniDB_Cover, ser.AniDB_Anime));
 				AllPosters = AniDB_AnimeCrossRefs.AllPosters;
-
 				AllFanarts = AniDB_AnimeCrossRefs.AllFanarts;
 			}
 			catch (Exception ex)
@@ -1241,11 +1244,17 @@ namespace JMMClient.UserControls
 			else if (tabContainer.SelectedIndex == 4) // trakt shouts
 			{
 				this.Cursor = Cursors.Wait;
-				ucTraktShouts.RefreshShouts();
+				ucTraktShouts.RefreshComments();
 				this.Cursor = Cursors.Arrow;
 			}
+            else if (tabContainer.SelectedIndex == 5) // files
+            {
+                this.Cursor = Cursors.Wait;
+                ShowFileSummary();
+                this.Cursor = Cursors.Arrow;
+            }
 
-			cboVoteType.Items.Clear();
+            cboVoteType.Items.Clear();
 			cboVoteType.Items.Add(Properties.Resources.VoteTypeAnimeTemporary);
 			if (ser.AniDB_Anime.FinishedAiring)
 				cboVoteType.Items.Add(Properties.Resources.VoteTypeAnimePermanent);
@@ -1266,22 +1275,15 @@ namespace JMMClient.UserControls
 			LoadSeries();
 		}
 
-		
-
-		void btnFileSummary_Click(object sender, RoutedEventArgs e)
-		{
-			UserSettingsVM.Instance.SeriesFileSummaryExpanded = !UserSettingsVM.Instance.SeriesFileSummaryExpanded;
-
-			ShowFileSummary();
-		}
 
 		private void ShowFileSummary()
 		{
-			if (UserSettingsVM.Instance.SeriesFileSummaryExpanded)
+			if (tabContainer.SelectedIndex == 5)
 			{
 				AnimeSeriesVM ser = this.DataContext as AnimeSeriesVM;
 				if (ser == null) return;
 				ucFileSummary.DataContext = ser.AniDB_Anime;
+                ucFolderSummary.DataContext = ser.AniDB_Anime;
 			}
 		}
 

@@ -14,8 +14,9 @@ namespace JMMClient
 	{
 		private static Logger logger = LogManager.GetCurrentClassLogger();
 		private static Random fanartRandom = new Random();
+        private static Random posterRandom = new Random();
 
-		public int AnimeID { get; set; }
+        public int AnimeID { get; set; }
 		public int EpisodeCount { get; set; }
 		public DateTime? AirDate { get; set; }
 		public DateTime? EndDate { get; set; }
@@ -368,24 +369,61 @@ namespace JMMClient
 		public string PosterPath
 		{
 			get
-			{
-				string fileName = Path.Combine(Utils.GetAniDBImagePath(AnimeID), Picname);
+            {
+                string fileName = Path.Combine(Utils.GetAniDBImagePath(AnimeID), Picname);
 
-				if (!File.Exists(fileName))
-				{
-					ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.AniDB_Cover, this, false);
-					MainWindow.imageHelper.DownloadImage(req);
-					if (File.Exists(fileName)) return fileName;
+                if (!File.Exists(fileName))
+                {
+                    ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.AniDB_Cover, this, false);
+                    MainWindow.imageHelper.DownloadImage(req);
+                    if (File.Exists(fileName)) return fileName;
 
-					//if (!string.IsNullOrEmpty(Picname))
-					//	return string.Format(Constants.URLS.AniDB_Images, Picname);
-					
-					string packUriBlank = string.Format("pack://application:,,,/{0};component/Images/blankposter.png", Constants.AssemblyName);
-					return packUriBlank;
-				}
-				return fileName;
+                    string packUriBlank = string.Format("pack://application:,,,/{0};component/Images/blankposter.png", Constants.AssemblyName);
+                    return packUriBlank;
+                }
+                return fileName;
 			}
 		}
+
+        private string posterPathWithRandoms = string.Empty;
+        public string PosterPathWithRandoms
+        {
+            get
+            {
+                if (UserSettingsVM.Instance.AlwaysUseAniDBPoster) return PosterPath;
+
+                if (DefaultPoster == null)
+                {
+                    if (!string.IsNullOrEmpty(posterPathWithRandoms)) return posterPathWithRandoms;
+                    PosterContainer poster = GetRandomPoster();
+                    if (poster != null)
+                    {
+                        posterPathWithRandoms = poster.FullImagePath;
+                        return posterPathWithRandoms;
+                    }
+                    else
+                    {
+                        return PosterPath;
+                    }
+                }
+                else
+                    return PosterPath;
+            }
+        }
+
+        public PosterContainer GetRandomPoster()
+        {
+            List<PosterContainer> enabledPosters = new List<PosterContainer>();
+            foreach (PosterContainer poster in AniDB_AnimeCrossRefs.AllPosters)
+            {
+                if (poster.IsImageEnabled && File.Exists(poster.FullImagePath)) enabledPosters.Add(poster);
+            }
+
+            if (enabledPosters.Count > 0)
+                return enabledPosters[posterRandom.Next(0, enabledPosters.Count)];
+            else
+                return null;
+        }
 
 		public string FullImagePath
 		{
@@ -399,7 +437,9 @@ namespace JMMClient
 		{
 			get
 			{
-				if (DefaultPoster == null)
+                if (UserSettingsVM.Instance.AlwaysUseAniDBPoster) return PosterPath;
+
+                if (DefaultPoster == null)
 					return PosterPath;
 				else
 				{
@@ -650,10 +690,10 @@ namespace JMMClient
 		{
 			get
 			{
-				if (!AppSettings.UseFanartOnPlaylistHeader) return DefaultPosterPath;
+				if (!AppSettings.UseFanartOnPlaylistHeader) return PosterPathWithRandoms;
 
 				if (string.IsNullOrEmpty(FanartPath))
-					return DefaultPosterPath;
+					return PosterPathWithRandoms;
 
 				return FanartPath;
 			}
@@ -663,10 +703,10 @@ namespace JMMClient
 		{
 			get
 			{
-				if (!AppSettings.UseFanartOnPlaylistItems) return DefaultPosterPath;
+				if (!AppSettings.UseFanartOnPlaylistItems) return PosterPathWithRandoms;
 
 				if (string.IsNullOrEmpty(FanartPath))
-					return DefaultPosterPath;
+					return PosterPathWithRandoms;
 
 				return FanartPath;
 			}
@@ -677,7 +717,7 @@ namespace JMMClient
 			get
 			{
 				if (string.IsNullOrEmpty(FanartPath))
-					return DefaultPosterPath;
+					return PosterPathWithRandoms;
 
 				return FanartPath;
 			}
@@ -709,7 +749,34 @@ namespace JMMClient
 			}
 		}
 
-		public bool FanartExists
+        public List<VideoLocalVM> AllVideoLocals
+        {
+            get
+            {
+                List<VideoLocalVM> vids = new List<VideoLocalVM>();
+                try
+                {
+                    DateTime start = DateTime.Now;
+                    List<JMMServerBinary.Contract_VideoLocal> raws = JMMServerVM.Instance.clientBinaryHTTP.GetVideoLocalsForAnime(AnimeID,
+                        JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+                    TimeSpan ts = DateTime.Now - start;
+                    logger.Trace("Got vids for anime from service: {0} in {1} ms", AnimeID, ts.TotalMilliseconds);
+
+                    foreach (JMMServerBinary.Contract_VideoLocal raw in raws)
+                    {
+                        VideoLocalVM vid = new VideoLocalVM(raw);
+                        vids.Add(vid);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Utils.ShowErrorMessage(ex);
+                }
+                return vids;
+            }
+        }
+
+        public bool FanartExists
 		{
 			get
 			{

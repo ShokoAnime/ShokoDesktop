@@ -58,21 +58,20 @@ namespace JMMClient.ViewModel
             }
         }
 
-        /*
-        private Dictionary<int, int> dictTraktCrossRefEpisodes = null;
-        public Dictionary<int, int> DictTraktCrossRefEpisodes
+        private Dictionary<int, string> dictTraktCrossRefEpisodes = null;
+        public Dictionary<int, string> DictTraktCrossRefEpisodes
         {
             get
             {
                 if (dictTraktCrossRefEpisodes == null)
                 {
-                    dictTraktCrossRefEpisodes = new Dictionary<int, int>();
+                    dictTraktCrossRefEpisodes = new Dictionary<int, string>();
                     foreach (CrossRef_AniDB_TraktEpisodeVM xrefEp in CrossRefTraktEpisodes)
-                        dictTraktCrossRefEpisodes[xrefEp.AniDBEpisodeID] = xrefEp.TraktEpisodeID;
+                        dictTraktCrossRefEpisodes[xrefEp.AniDBEpisodeID] = xrefEp.TraktID;
                 }
                 return dictTraktCrossRefEpisodes;
             }
-        }*/
+        }
 
         // All the episodes regardless of which cross ref they come from 
         private Dictionary<int, Trakt_EpisodeVM> dictTraktEpisodes = null;

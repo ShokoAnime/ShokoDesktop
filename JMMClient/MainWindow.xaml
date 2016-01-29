@@ -4,7 +4,6 @@
         xmlns:local="clr-namespace:JMMClient"
         xmlns:downloads="clr-namespace:JMMClient.Downloads"
         xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
-        xmlns:my="clr-namespace:wyDay.Controls;assembly=AutomaticUpdaterWPF"
         WindowStartupLocation="CenterScreen" UseLayoutRounding="True"
         Title="JMM Desktop" Height="700" Width="1350" x:Name="mainWindow" Icon="/JMMDesktop;component/Web%20Database.ico" >
 
@@ -360,12 +359,19 @@
                         </Border>
                     </StackPanel>
 
-                    <ContentControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Name="ccDetail" Grid.Column="2" Grid.Row="1"
+                    <!--Allows scrolling through filter results. However it breaks the scrolling for series and episodes. -->
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Name="ScrollerGroupFilterAdmin" Margin="0" Grid.Column="2" Grid.Row="1">
+                        <ContentControl VerticalAlignment="Stretch"  Name="ccDetail" Width="{Binding ElementName=ScrollerGroupFilterAdmin, Path=ViewportWidth}"
+                                        ContentTemplateSelector="{StaticResource myDataTemplateSelector}" >
+
+                        </ContentControl>
+                    </ScrollViewer>
+
+                    <!--<ContentControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Name="ccDetail" Grid.Column="2" Grid.Row="1"
                                     ContentTemplateSelector="{StaticResource myDataTemplateSelector}" >
+                    </ContentControl>-->
 
-                    </ContentControl>
-
-                    <DockPanel Grid.Row="1" Grid.RowSpan="3">
+                        <DockPanel Grid.Row="1" Grid.RowSpan="3">
                         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Background="#F1F1F1"
                                     Visibility="{Binding Source={x:Static local:MainListHelperVM.Instance}, Path=CurrentListWrapperIsGroup, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <!-- add sub group -->
@@ -823,14 +829,14 @@
                         <usercontrols:UpdateAniDBDataControl x:Name="updateAniDBData"/>
                     </TabItem>
 
+                    <TabItem Header="Community Data" Name="tabCommMaint">
+
+                        <usercontrols:CommunityMaint x:Name="commMaint"/>
+                    </TabItem>
+
                     <TabItem Header="My Votes" Name="tabRankings">
 
                         <usercontrols:RankingsControl x:Name="rankings"/>
-                    </TabItem>
-
-                    <TabItem Header="Logs" Name="tabLogs">
-
-                        <usercontrols:LogsControl x:Name="uclogs"/>
                     </TabItem>
 
                 </TabControl>
@@ -1126,6 +1132,8 @@
                                     <StackPanel Orientation="Horizontal">
                                         <Image Height="16" Width="16" Source="/Images/tvdb.ico" Margin="5,2,5,0" Grid.Column="0" VerticalAlignment="Center"/>
                                         <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_SettingsOnlineDB_TvDB}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                        <usercontrols:HyperLinkStandard VerticalAlignment="Center" Margin="5,0,0,0" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=WhatsThis}"
+                                                                        URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_TvDB}"/>
                                     </StackPanel>
 
                                 </Border>
@@ -1137,6 +1145,8 @@
                                     <StackPanel Orientation="Horizontal">
                                         <Image Height="16" Width="16" Source="/Images/moviedb.ico" Margin="5,2,5,0" Grid.Column="0" VerticalAlignment="Center"/>
                                         <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_SettingsOnlineDB_MovieDB}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                        <usercontrols:HyperLinkStandard VerticalAlignment="Center" Margin="5,0,0,0" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=WhatsThis}"
+                                                                        URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_TMDb}"/>
                                     </StackPanel>
 
 
@@ -1149,6 +1159,8 @@
                                     <StackPanel Orientation="Horizontal">
                                         <Image Height="16" Width="16" Source="/Images/trakttv.ico" Margin="5,2,5,0" Grid.Column="0" VerticalAlignment="Center"/>
                                         <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_SettingsOnlineDB_Trakt}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                        <usercontrols:HyperLinkStandard VerticalAlignment="Center" Margin="5,0,0,0" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=WhatsThis}"
+                                                                        URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_Trakt}"/>
                                     </StackPanel>
 
                                 </Border>
@@ -1159,6 +1171,8 @@
                                     <StackPanel Orientation="Horizontal">
                                         <Image Height="16" Width="16" Source="/Images/myanimelist.ico" Margin="5,2,5,0" Grid.Column="0" VerticalAlignment="Center"/>
                                         <TextBlock Text="MyAnimeList" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                        <usercontrols:HyperLinkStandard VerticalAlignment="Center" Margin="5,0,0,0" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=WhatsThis}"
+                                                                        URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_MAL}"/>
                                     </StackPanel>
 
                                 </Border>
@@ -1367,7 +1381,7 @@
 
 
 
-                                <usercontrols:MPCSettingsControl Grid.Column="0" Grid.Row="1" Margin="5,0,0,10"/>
+                                <usercontrols:VideoPlayerSettingsControl Grid.Column="0" Grid.Row="1" Margin="5,0,0,10"/>
 
                                 <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="2" Background="#FFE9ECEF" Margin="0,0,0,5">
                                     <TextBlock Text="Automatic File Selection" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
@@ -1392,9 +1406,8 @@
                         <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_Pinned}" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
                     </StackPanel>
                 </TabItem.Header>
-                <TabControl Name="tabPinned" VerticalAlignment="Stretch" TabStripPlacement="Left"
-                            Width="{Binding Source={x:Static local:MainListHelperVM.Instance},Path=FullScrollerWidth}"
-                             Margin="5,5,5,5"  />
+                    <TabControl Name="tabPinned" VerticalAlignment="Stretch" TabStripPlacement="Left"
+                                Width="{Binding Source={x:Static local:MainListHelperVM.Instance},Path=FullScrollerWidth}" Margin="5,5,5,5"  />
 
             </TabItem>
 
@@ -1603,19 +1616,21 @@
 
 
 
-                    <TabItem Header="Stats" Name="tabComStats">
-                        
-
-                    </TabItem>
+                    
 
                     <TabItem Header="Links" Name="tabComLinks">
                         <usercontrols:CommunityLinksControl x:Name="ucComLinks"/>
 
                     </TabItem>
 
-                    
+                    <TabItem Header="Stats" Name="tabComStats">
+                        
+                        <TextBlock Margin="10" Text="Not Yet Implemented" FontSize="20"/>
+                    </TabItem>
 
-                    
+
+
+
 
                 </TabControl>
                 
@@ -1675,10 +1690,6 @@
                         </StackPanel>
                     </Button>
 
-                    <!-- automatic updater and new version message-->
-                    <my:AutomaticUpdater Margin="20,0,0,0" Height="100" Name="automaticUpdater" Width="200" GUID="JMM-JMMDesktop" DaysBetweenChecks="1" UpdateType="OnlyCheck"/>
-
-                   
 
                     <!--banned message-->
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,4,0,4"

@@ -376,7 +376,18 @@ namespace JMMClient
 			}
 		}
 
-		public void SetSeriesNames()
+        private string defaultFolder = "";
+        public string DefaultFolder
+        {
+            get { return defaultFolder; }
+            set
+            {
+                defaultFolder = value;
+                NotifyPropertyChanged("DefaultFolder");
+            }
+        }
+
+        public void SetSeriesNames()
 		{
 			if (!string.IsNullOrEmpty(SeriesNameOverride))
 				SeriesName = SeriesNameOverride;
@@ -785,6 +796,7 @@ namespace JMMClient
 			this.DefaultAudioLanguage = contract.DefaultAudioLanguage;
 			this.DefaultSubtitleLanguage = contract.DefaultSubtitleLanguage;
 			this.SeriesNameOverride = contract.SeriesNameOverride;
+            this.DefaultFolder = contract.DefaultFolder;
 
 			IsSeriesNameOverridden = !string.IsNullOrEmpty(SeriesNameOverride);
 			IsSeriesNameNotOverridden = string.IsNullOrEmpty(SeriesNameOverride);
@@ -879,8 +891,9 @@ namespace JMMClient
 			contract.DefaultAudioLanguage = this.DefaultAudioLanguage;
 			contract.DefaultSubtitleLanguage = this.DefaultSubtitleLanguage;
 			contract.SeriesNameOverride = this.SeriesNameOverride;
+            contract.DefaultFolder = this.DefaultFolder;
 
-			return contract;
+            return contract;
 		}
 
 		/*public override List<MainListWrapper> GetDirectChildren()

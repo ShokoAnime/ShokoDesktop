@@ -14,6 +14,9 @@ using System.Windows.Shapes;
 using NLog;
 using JMMClient.ViewModel;
 using JMMClient.Forms;
+using System.ComponentModel;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace JMMClient.UserControls
 {
@@ -23,8 +26,12 @@ namespace JMMClient.UserControls
 	public partial class TvDBAndOtherLinks : UserControl
 	{
 		private static Logger logger = LogManager.GetCurrentClassLogger();
+        BackgroundWorker communityWorker = new BackgroundWorker();
 
-		public static readonly DependencyProperty AniDB_AnimeCrossRefsProperty = DependencyProperty.Register("AniDB_AnimeCrossRefs",
+        private ContextMenu commTvDBMenu;
+        private ContextMenu commTraktMenu;
+
+        public static readonly DependencyProperty AniDB_AnimeCrossRefsProperty = DependencyProperty.Register("AniDB_AnimeCrossRefs",
 			typeof(AniDB_AnimeCrossRefsVM), typeof(TvDBAndOtherLinks), new UIPropertyMetadata(null, null));
 
 		public AniDB_AnimeCrossRefsVM AniDB_AnimeCrossRefs
@@ -33,11 +40,56 @@ namespace JMMClient.UserControls
 			set { SetValue(AniDB_AnimeCrossRefsProperty, value); }
 		}
 
-		public TvDBAndOtherLinks()
+
+        public static readonly DependencyProperty CommTvDBButtonTextProperty = DependencyProperty.Register("CommTvDBButtonText",
+            typeof(string), typeof(TvDBAndOtherLinks), new UIPropertyMetadata("", null));
+
+        public string CommTvDBButtonText
+        {
+            get { return (string)GetValue(CommTvDBButtonTextProperty); }
+            set { SetValue(CommTvDBButtonTextProperty, value); }
+        }
+
+        public static readonly DependencyProperty CommTraktButtonTextProperty = DependencyProperty.Register("CommTraktButtonText",
+            typeof(string), typeof(TvDBAndOtherLinks), new UIPropertyMetadata("", null));
+
+        public string CommTraktButtonText
+        {
+            get { return (string)GetValue(CommTraktButtonTextProperty); }
+            set { SetValue(CommTraktButtonTextProperty, value); }
+        }
+
+
+        public ObservableCollection<CrossRef_AniDB_TvDBVMV2> CommunityTVDBLinks { get; set; }
+        public ICollectionView ViewCommunityTVDBLinks { get; set; }
+
+        public ObservableCollection<CrossRef_AniDB_TraktVMV2> CommunityTraktLinks { get; set; }
+        public ICollectionView ViewCommunityTraktLinks { get; set; }
+
+        public TvDBAndOtherLinks()
 		{
 			InitializeComponent();
 
-			this.DataContextChanged += new DependencyPropertyChangedEventHandler(TvDBAndOtherLinks_DataContextChanged);
+            commTvDBMenu = new ContextMenu();
+            commTraktMenu = new ContextMenu();
+
+            btnTvDBCommLinks1.ContextMenu = commTvDBMenu;
+            btnTvDBCommLinks2.ContextMenu = commTvDBMenu;
+            btnTvDBCommLinks1.Click += new RoutedEventHandler(btnTvDBCommLinks_Click);
+            btnTvDBCommLinks2.Click += new RoutedEventHandler(btnTvDBCommLinks_Click);
+
+            btnTraktCommLinks1.ContextMenu = commTraktMenu;
+            btnTraktCommLinks2.ContextMenu = commTraktMenu;
+            btnTraktCommLinks1.Click += new RoutedEventHandler(btnTraktCommLinks_Click);
+            btnTraktCommLinks2.Click += new RoutedEventHandler(btnTraktCommLinks_Click);
+
+            CommunityTVDBLinks = new ObservableCollection<CrossRef_AniDB_TvDBVMV2>();
+            CommunityTraktLinks = new ObservableCollection<CrossRef_AniDB_TraktVMV2>();
+
+            ViewCommunityTVDBLinks = CollectionViewSource.GetDefaultView(CommunityTVDBLinks);
+            ViewCommunityTraktLinks = CollectionViewSource.GetDefaultView(CommunityTraktLinks);
+
+            this.DataContextChanged += new DependencyPropertyChangedEventHandler(TvDBAndOtherLinks_DataContextChanged);
 
 			btnSearchTvDB.Click += new RoutedEventHandler(btnSearch_Click);
 			btnSearchExistingTvDB.Click += new RoutedEventHandler(btnSearchExisting_Click);
@@ -52,19 +104,329 @@ namespace JMMClient.UserControls
 
 			btnSearchExistingMAL.Click += new RoutedEventHandler(btnSearchExistingMAL_Click);
 			btnSearchMAL.Click += new RoutedEventHandler(btnSearchMAL_Click);
-		}
 
-        
+            communityWorker.WorkerSupportsCancellation = false;
+            communityWorker.WorkerReportsProgress = true;
+            communityWorker.DoWork += new DoWorkEventHandler(communityWorker_DoWork);
+            communityWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(communityWorker_RunWorkerCompleted);
+        }
 
-		
+        void btnTvDBCommLinks_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            { 
+                CommTvDBTraktMenuCommand cmd = null;
 
-		
+                // get all playlists
+                commTvDBMenu.Items.Clear();
 
-		
+                MenuItem itemSeriesAdmin = new MenuItem();
+                itemSeriesAdmin.Header = "Show Community Admin";
+                itemSeriesAdmin.Click += new RoutedEventHandler(commTvDBMenuItem_Click);
+                cmd = new CommTvDBTraktMenuCommand(CommTvDBTraktItemType.ShowCommAdmin, -1); // new playlist
+                itemSeriesAdmin.CommandParameter = cmd;
+                commTvDBMenu.Items.Add(itemSeriesAdmin);
 
-		#region MAL
+                if (AniDB_AnimeCrossRefs.TvDBCrossRefExists)
+                {
+                    MenuItem itemSeriesLinks = new MenuItem();
+                    itemSeriesLinks.Header = "Use My Links";
+                    itemSeriesLinks.Click += new RoutedEventHandler(commTvDBMenuItem_Click);
+                    cmd = new CommTvDBTraktMenuCommand(CommTvDBTraktItemType.UseMyLinks, -1); // new playlist
+                    itemSeriesLinks.CommandParameter = cmd;
+                    commTvDBMenu.Items.Add(itemSeriesLinks);
+                }
 
-		void btnSearchMAL_Click(object sender, RoutedEventArgs e)
+                commTvDBMenu.PlacementTarget = this;
+                commTvDBMenu.IsOpen = true;
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+        }
+
+        void commTvDBMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                MenuItem item = e.Source as MenuItem;
+                MenuItem itemSender = sender as MenuItem;
+
+                if (item == null || itemSender == null) return;
+                if (!item.Header.ToString().Equals(itemSender.Header.ToString())) return;
+
+                if (item != null && item.CommandParameter != null)
+                {
+                    CommTvDBTraktMenuCommand cmd = item.CommandParameter as CommTvDBTraktMenuCommand;
+                    Debug.Write("Comm TvDB Menu: " + cmd.ToString() + Environment.NewLine);
+
+                    AniDB_AnimeVM anime = this.DataContext as AniDB_AnimeVM;
+                    if (anime == null) return;
+
+
+                    this.Cursor = Cursors.Wait;
+
+                    if (cmd.MenuType == CommTvDBTraktItemType.ShowCommAdmin)
+                    {
+                        MainWindow mainwdw = (MainWindow)Window.GetWindow(this);
+                        if (mainwdw == null) return;
+                        mainwdw.ShowWebCacheAdmin(anime);
+                    }
+
+                    if (cmd.MenuType == CommTvDBTraktItemType.UseMyLinks)
+                    {
+                        if (!AniDB_AnimeCrossRefs.TvDBCrossRefExists)
+                        {
+                            MessageBox.Show("You don't have any links", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
+                        }
+
+                        string res = JMMServerVM.Instance.clientBinaryHTTP.UseMyTvDBLinksWebCache(anime.AnimeID);
+                        this.Cursor = Cursors.Arrow;
+                        MessageBox.Show(res, "Result", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+
+                    this.Cursor = Cursors.Arrow;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+        }
+
+
+        void btnTraktCommLinks_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                CommTvDBTraktMenuCommand cmd = null;
+
+                // get all playlists
+                commTraktMenu.Items.Clear();
+
+                MenuItem itemSeriesAdmin = new MenuItem();
+                itemSeriesAdmin.Header = "Show Community Admin";
+                itemSeriesAdmin.Click += new RoutedEventHandler(commTraktMenuItem_Click);
+                cmd = new CommTvDBTraktMenuCommand(CommTvDBTraktItemType.ShowCommAdmin, -1); // new playlist
+                itemSeriesAdmin.CommandParameter = cmd;
+                commTraktMenu.Items.Add(itemSeriesAdmin);
+
+                if (AniDB_AnimeCrossRefs.TraktCrossRefExists)
+                {
+                    MenuItem itemSeriesLinks = new MenuItem();
+                    itemSeriesLinks.Header = "Use My Links";
+                    itemSeriesLinks.Click += new RoutedEventHandler(commTraktMenuItem_Click);
+                    cmd = new CommTvDBTraktMenuCommand(CommTvDBTraktItemType.UseMyLinks, -1); // new playlist
+                    itemSeriesLinks.CommandParameter = cmd;
+                    commTraktMenu.Items.Add(itemSeriesLinks);
+                }
+
+                commTraktMenu.PlacementTarget = this;
+                commTraktMenu.IsOpen = true;
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+        }
+
+        void commTraktMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                MenuItem item = e.Source as MenuItem;
+                MenuItem itemSender = sender as MenuItem;
+
+                if (item == null || itemSender == null) return;
+                if (!item.Header.ToString().Equals(itemSender.Header.ToString())) return;
+
+                if (item != null && item.CommandParameter != null)
+                {
+                    CommTvDBTraktMenuCommand cmd = item.CommandParameter as CommTvDBTraktMenuCommand;
+                    Debug.Write("Comm TvDB Menu: " + cmd.ToString() + Environment.NewLine);
+
+                    AniDB_AnimeVM anime = this.DataContext as AniDB_AnimeVM;
+                    if (anime == null) return;
+
+
+                    this.Cursor = Cursors.Wait;
+
+                    if (cmd.MenuType == CommTvDBTraktItemType.ShowCommAdmin)
+                    {
+                        MainWindow mainwdw = (MainWindow)Window.GetWindow(this);
+                        if (mainwdw == null) return;
+                        mainwdw.ShowWebCacheAdmin(anime);
+                    }
+
+                    if (cmd.MenuType == CommTvDBTraktItemType.UseMyLinks)
+                    {
+                        if (!AniDB_AnimeCrossRefs.TraktCrossRefExists)
+                        {
+                            MessageBox.Show("You don't have any links", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
+                        }
+
+                        string res = JMMServerVM.Instance.clientBinaryHTTP.UseMyTraktLinksWebCache(anime.AnimeID);
+                        this.Cursor = Cursors.Arrow;
+                        MessageBox.Show(res, "Result", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+
+                    this.Cursor = Cursors.Arrow;
+
+                    RefreshAdminData();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+        }
+
+        void communityWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            
+
+
+            SearchCommunityResults res = new SearchCommunityResults();
+            res.ErrorMessage = string.Empty;
+            res.TvDBLinks = new List<CrossRef_AniDB_TvDBVMV2>();
+            res.TraktLinks = new List<CrossRef_AniDB_TraktVMV2>();
+            res.ExtraInfo = string.Empty;
+            res.AnimeID = -1;
+
+            try
+            {
+                AniDB_AnimeVM anime = e.Argument as AniDB_AnimeVM;
+                if (anime == null) return;
+
+                res.AnimeID = anime.AnimeID;
+
+                SearchCriteria crit = new SearchCriteria();
+                crit.AnimeID = anime.AnimeID;
+                crit.ExtraInfo = string.Empty;
+
+                // search for TvDB links
+                try
+                {
+                    List<JMMServerBinary.Contract_Azure_CrossRef_AniDB_TvDB> xrefs = JMMServerVM.Instance.clientBinaryHTTP.GetTVDBCrossRefWebCache(crit.AnimeID, true);
+                    if (xrefs != null && xrefs.Count > 0)
+                    {
+                        foreach (JMMServerBinary.Contract_Azure_CrossRef_AniDB_TvDB xref in xrefs)
+                        {
+                            CrossRef_AniDB_TvDBVMV2 xrefAzure = new CrossRef_AniDB_TvDBVMV2(xref);
+                            res.TvDBLinks.Add(xrefAzure);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    res.ErrorMessage = ex.Message;
+                }
+
+                // search for Trakt links
+                try
+                {
+                    List<JMMServerBinary.Contract_Azure_CrossRef_AniDB_Trakt> xrefs = JMMServerVM.Instance.clientBinaryHTTP.GetTraktCrossRefWebCache(crit.AnimeID, true);
+                    if (xrefs != null && xrefs.Count > 0)
+                    {
+                        foreach (JMMServerBinary.Contract_Azure_CrossRef_AniDB_Trakt xref in xrefs)
+                        {
+                            CrossRef_AniDB_TraktVMV2 xrefAzure = new CrossRef_AniDB_TraktVMV2(xref);
+                            res.TraktLinks.Add(xrefAzure);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    res.ErrorMessage = ex.Message;
+                }
+
+                e.Result = res;
+            }
+            catch (Exception ex)
+            {
+                res.ErrorMessage = ex.Message;
+                e.Result = res;
+            }
+        }
+
+        void communityWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            try
+            {
+                SearchCommunityResults res = e.Result as SearchCommunityResults;
+                if (res == null) return;
+
+                AniDB_AnimeVM anime = this.DataContext as AniDB_AnimeVM;
+                if (anime == null) return;
+
+                if (anime.AnimeID != res.AnimeID) return;
+
+                if (!string.IsNullOrEmpty(res.ErrorMessage))
+                {
+                    return;
+                }
+
+                foreach (CrossRef_AniDB_TvDBVMV2 tvxref in res.TvDBLinks)
+                    CommunityTVDBLinks.Add(tvxref);
+
+                foreach (CrossRef_AniDB_TraktVMV2 traktxref in res.TraktLinks)
+                    CommunityTraktLinks.Add(traktxref);
+
+                btnTvDBCommLinks1.IsEnabled = true;
+                btnTvDBCommLinks2.IsEnabled = true;
+
+                CommTvDBButtonText = "No Community Links Available";
+                if (CommunityTVDBLinks.Count > 0)
+                {
+                    CommTvDBButtonText = "Links Need Approval";
+                    foreach (CrossRef_AniDB_TvDBVMV2 xref in CommunityTVDBLinks)
+                    {
+                        if (xref.IsAdminApprovedBool)
+                        {
+                            CommTvDBButtonText = "Approval Exists";
+                            break;
+                        }
+                    }
+                }
+
+                btnTraktCommLinks1.IsEnabled = true;
+                btnTraktCommLinks2.IsEnabled = true;
+
+                CommTraktButtonText = "No Community Links Available";
+                if (CommunityTraktLinks.Count > 0)
+                {
+                    CommTraktButtonText = "Links Need Approval";
+                    foreach (CrossRef_AniDB_TraktVMV2 xref in CommunityTraktLinks)
+                    {
+                        if (xref.IsAdminApprovedBool)
+                        {
+                            CommTraktButtonText = "Approval Exists";
+                            break;
+                        }
+                    }
+                }
+
+                //SearchStatus = string.Format("{0} Anime still need TvDB approval", link.AnimeNeedingApproval);
+
+            }
+            catch (Exception ex)
+            {
+                logger.ErrorException(ex.ToString(), ex);
+            }
+        }
+
+
+
+
+
+        #region MAL
+
+        void btnSearchMAL_Click(object sender, RoutedEventArgs e)
 		{
 			SearchMAL();
 		}
@@ -877,6 +1239,36 @@ namespace JMMClient.UserControls
 			}
 		}
 
+        private void RefreshAdminData()
+        {
+            try
+            {
+                if (JMMServerVM.Instance.ShowCommunity)
+                {
+                    AniDB_AnimeVM anime = this.DataContext as AniDB_AnimeVM;
+                    if (anime == null) return;
+
+                    CommunityTVDBLinks.Clear();
+                    CommunityTraktLinks.Clear();
+
+                    btnTvDBCommLinks1.IsEnabled = false;
+                    btnTvDBCommLinks2.IsEnabled = false;
+                    CommTvDBButtonText = "Checking Online...";
+
+                    btnTraktCommLinks1.IsEnabled = false;
+                    btnTraktCommLinks2.IsEnabled = false;
+                    CommTraktButtonText = "Checking Online...";
+
+                    if (!communityWorker.IsBusy)
+                        communityWorker.RunWorkerAsync(anime);
+                }
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+        }
+
 		private void RefreshData()
 		{
 			try
@@ -893,11 +1285,58 @@ namespace JMMClient.UserControls
 				AniDB_AnimeCrossRefs.Populate(xrefDetails);
 
 				MainListHelperVM.Instance.UpdateAnime(anime.AnimeID);
-			}
+
+                RefreshAdminData();
+            }
 			catch (Exception ex)
 			{
 				Utils.ShowErrorMessage(ex);
 			}
 		}
 	}
+
+    public class CommTvDBTraktMenuCommand
+    {
+        public CommTvDBTraktItemType MenuType { get; set; }
+        public int AnimeID { get; set; }
+
+        public CommTvDBTraktMenuCommand()
+        {
+        }
+
+        public CommTvDBTraktMenuCommand(CommTvDBTraktItemType menuType, int animeID)
+        {
+            MenuType = menuType;
+            AnimeID = animeID;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0} - {1}", MenuType, AnimeID);
+        }
+    }
+
+    public enum CommTvDBTraktItemType
+    {
+        ShowCommAdmin = 1,
+        UseMyLinks = 2
+    }
+
+    public class SearchCommunityResults
+    {
+        // Use this so we know which Anime we were actually searching for
+        // In case the user changes which anime they are looking at
+        public int AnimeID { get; set; }
+
+        public string ErrorMessage { get; set; }
+        public List<CrossRef_AniDB_TvDBVMV2> TvDBLinks { get; set; }
+
+        public List<CrossRef_AniDB_TraktVMV2> TraktLinks { get; set; }
+        public string ExtraInfo { get; set; }
+
+        public SearchCommunityResults()
+        {
+
+        }
+    }
 }

@@ -135,7 +135,7 @@
 
                             <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="15,2,5,0" Grid.Column="2" VerticalAlignment="Center"/>
                             <usercontrols:HyperLinkStandard Margin="0,0,20,0" VerticalAlignment="Center" DisplayText="Help with scripting"
-                                                                        URL="http://japanesemediamanager.github.io/wiki_usermanual_filerenaming.html"/>
+                                                                        URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_FileRenaming}"/>
                         </StackPanel>
                         <CheckBox Name="chkIsUsedForImports" Margin="5" Content="Run this script when importing files into collection" Grid.Column="0" Grid.Row="2"/>
                         <TextBox Name="txtRenameScript" MinWidth="400" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="3" Margin="5" Grid.RowSpan="3" AcceptsReturn="True" FontFamily="Courier New" />

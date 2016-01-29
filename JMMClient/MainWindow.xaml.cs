@@ -400,8 +400,8 @@ namespace JMMClient
 			UTorrentHelperVM.Instance.ValidateCredentials();
 
 			postStartTimer.Start();
-		
 
+            CheckForUpdatesNew(false);
 		}
 
 		void postStartTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
@@ -410,17 +410,57 @@ namespace JMMClient
 
 			UTorrentHelperVM.Instance.Init();
 
-			System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
-			{
-				automaticUpdater.ForceCheckForUpdate(true);
-			});
-
 			if (JMMServerVM.Instance.ServerOnline)
 				DownloadAllImages();
 		}
-		
 
-		void MainWindow_LayoutUpdated(object sender, EventArgs e)
+        public void CheckForUpdatesNew(bool forceShowForm)
+        {
+            try
+            {
+                long verCurrent = 0;
+                long verNew = 0;
+
+                // get the latest version as according to the release
+                if (!forceShowForm)
+                {
+                    AutoUpdates.JMMVersions verInfo = AutoUpdates.JMMAutoUpdatesHelper.GetLatestVersionInfo();
+                    if (verInfo == null) return;
+
+                    // get the user's version
+                    System.Reflection.Assembly a = System.Reflection.Assembly.GetExecutingAssembly();
+                    if (a == null)
+                    {
+                        logger.Error("Could not get current version");
+                        return;
+                    }
+                    System.Reflection.AssemblyName an = a.GetName();
+
+                    verNew = verInfo.versions.DesktopVersionAbs;
+
+                    verCurrent = (an.Version.Revision * 100) +
+                        (an.Version.Build * 100 * 100) +
+                        (an.Version.Minor * 100 * 100 * 100) +
+                        (an.Version.Major * 100 * 100 * 100 * 100);
+                }
+
+                if (forceShowForm || verNew > verCurrent)
+                {
+                    UpdateForm frm = new UpdateForm();
+                    frm.Owner = this;
+                    frm.ShowDialog();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                logger.ErrorException(ex.ToString(), ex);
+            }
+
+        }
+
+
+        void MainWindow_LayoutUpdated(object sender, EventArgs e)
 		{
 			// Why am I doing this?
 			// Basically there is weird problem if you try and set the content control's width to the exact
@@ -1574,6 +1614,29 @@ namespace JMMClient
 			}
 		}
 
+        public void ShowWebCacheAdmin(AniDB_AnimeVM anime)
+        {
+            try
+            {
+                SearchCriteria crit = new SearchCriteria();
+
+                crit = new SearchCriteria();
+                crit.ExtraInfo = string.Empty;
+                crit.AnimeID = anime.AnimeID;
+
+                tabControl1.SelectedIndex = TAB_MAIN_Community;
+                tabcCommunity.SelectedIndex = 0;
+
+                ucComLinks.PerformTvDBSearch(crit);
+                ucComLinks.PerformTraktSearch(crit);
+
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+        }
+
         private void CommandBinding_ShowWebCacheAdmin(object sender, ExecutedRoutedEventArgs e)
         {
             object obj = e.Parameter;
@@ -1594,9 +1657,10 @@ namespace JMMClient
                 if (crit != null)
                 {
                     tabControl1.SelectedIndex = TAB_MAIN_Community;
-                    tabcCommunity.SelectedIndex = 1;
+                    tabcCommunity.SelectedIndex = 0;
 
-                    ucComLinks.PerformSearch(crit);
+                    ucComLinks.PerformTvDBSearch(crit);
+                    ucComLinks.PerformTraktSearch(crit);
                 }
 
             }
@@ -1688,7 +1752,20 @@ namespace JMMClient
 					ShowPinnedSeries(ser);
 				}
 
-			}
+                if (obj.GetType() == typeof(TraktSeriesData))
+                {
+                    TraktSeriesData trakt = (TraktSeriesData)obj;
+
+                    JMMServerBinary.Contract_AnimeSeries contract = JMMServerVM.Instance.clientBinaryHTTP.GetSeries(trakt.AnimeSeriesID,
+                        JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+
+                    if (contract == null) return;
+                    AnimeSeriesVM ser = new AnimeSeriesVM(contract);
+
+                    ShowPinnedSeries(ser);
+                }
+
+            }
 			catch (Exception ex)
 			{
 				Utils.ShowErrorMessage(ex);
@@ -3280,12 +3357,4 @@ namespace JMMClient
 		{
 		}
 	}
-
-	/*public class RefreshOptions
-	{
-		public bool TraktScrobbles { get; set; }
-		public bool TraktShouts { get; set; }
-	}*/
-
-	
 }

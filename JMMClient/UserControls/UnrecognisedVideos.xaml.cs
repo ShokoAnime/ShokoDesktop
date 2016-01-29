@@ -587,9 +587,22 @@ namespace JMMClient.UserControls
 					}
 
 				}
-                
-				
-			}
+                if (obj.GetType() == typeof(MultipleVideos))
+                {
+                    MultipleVideos mv = obj as MultipleVideos;
+                    MessageBoxResult res = MessageBox.Show(string.Format("Are you sure you want to delete the {0} selected files", mv.VideoLocalIDs.Count),
+                    "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (res == MessageBoxResult.Yes)
+                    {
+                        foreach (int id in mv.VideoLocalIDs)
+                        {
+                            JMMServerVM.Instance.clientBinaryHTTP.DeleteVideoLocalAndFile(id);
+                        }
+                    }
+                }
+
+
+            }
 			catch (Exception ex)
 			{
 				Utils.ShowErrorMessage(ex);

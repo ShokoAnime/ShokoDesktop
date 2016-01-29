@@ -1,0 +1,235 @@
+﻿<UserControl x:Class="JMMClient.UserControls.VideoPlayerSettingsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
+             xmlns:extToolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
+             xmlns:local="clr-namespace:JMMClient"
+             mc:Ignorable="d" 
+             d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- MPC Help -->
+        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Background="FloralWhite" Margin="0,0,0,5" Padding="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Grid.Row="0" Margin="5,5,5,5" VerticalAlignment="Center" Text="Media Player Classic"  Grid.ColumnSpan="2" FontSize="14" FontWeight="Bold" />
+                <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,5,0" Grid.Column="0" Grid.Row="1" VerticalAlignment="Top"/>
+                <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,0,5,0" VerticalAlignment="Center" Text="For MPC Integration you must enable two options (1) Store settings to .ini file and (2) Keep history of recently watched files. See the following screenshot for more details. The location of MPC is usually something like C:\Program Files (x86)\Combined Community Codec Pack\MPC"  TextWrapping="Wrap" />
+                <usercontrols:HyperLinkStandard Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Margin="0,5,0,0" DisplayText="MPC Options"
+                                                                        URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_MPC}"/>
+            </Grid>
+        </Border>
+
+        <!-- MPC Location -->
+        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="MPC INI Folder" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="10,10,0,0"/>
+                <TextBlock Text="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=MPCFolder}" Foreground="DarkGray" VerticalAlignment="Center" Margin="10,10,0,0" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4"/>
+
+                <Button Name="btnChooseMPCLocation" Style="{DynamicResource RoundButtonStyle}" Margin="10,5,0,0" Grid.Row="2" Grid.Column="1">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                        <Image Height="16" Width="16" Source="/Images/32_Folder.png" Margin="0,0,5,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="Select MPC INI Folder" Margin="0,0,5,0"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Name="btnTestMPCLocation" Style="{DynamicResource RoundButtonStyle}" Margin="10,5,0,0" Grid.Row="2" Grid.Column="2">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                        <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="Test MPC File" Margin="0,0,5,0"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+            
+        </Border>
+
+        <!-- Potplayer Help -->
+        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Background="FloralWhite" Margin="0,0,0,5" Padding="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Grid.Row="0" Margin="5,5,5,5" VerticalAlignment="Center" Text="PotPlayer"  Grid.ColumnSpan="2" FontSize="14" FontWeight="Bold" />
+                <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,5,0" Grid.Column="0" Grid.Row="1" VerticalAlignment="Top"/>
+                <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,0,5,0" VerticalAlignment="Center" Text="For PotPlayer Integration you must enable the following options (1) Preferences > General > Store Settings to .ini file (2) Preferences > Playback > Play from latest point. See the following screenshot for more details. The location of the PlotPlayer .ini file is usually something like C:\Users\username\AppData\Roaming\PotPlayer64\PotPlayer64.ini"  TextWrapping="Wrap" />
+                <usercontrols:HyperLinkStandard Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Margin="0,5,0,0" DisplayText="PotPlayer Options"
+                                                                        URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_PotPlayer}"/>
+            </Grid>
+        </Border>
+
+        <!-- Potplayer Location -->
+        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3" Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="PotPlayer INI Folder" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="10,10,0,0"/>
+                <TextBlock Text="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=PotPlayerFolder}" Foreground="DarkGray" VerticalAlignment="Center" Margin="10,10,0,0" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4"/>
+
+                <Button Name="btnChoosePotLocation" Style="{DynamicResource RoundButtonStyle}" Margin="10,5,0,0" Grid.Row="2" Grid.Column="1">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                        <Image Height="16" Width="16" Source="/Images/32_Folder.png" Margin="0,0,5,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="Select PotPlayer INI Folder" Margin="0,0,5,0"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Name="btnTestPotLocation" Style="{DynamicResource RoundButtonStyle}" Margin="10,5,0,0" Grid.Row="2" Grid.Column="2">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                        <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="Test PotPlayer INI File" Margin="0,0,5,0"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+
+        </Border>
+
+        <!-- VLC Help -->
+        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3" Background="FloralWhite" Margin="0,0,0,5" Padding="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Grid.Row="0" Margin="5,5,5,5" VerticalAlignment="Center" Text="VLC"  Grid.ColumnSpan="2" FontSize="14" FontWeight="Bold" />
+                <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,5,0" Grid.Column="0" Grid.Row="1" VerticalAlignment="Top"/>
+                <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,0,5,0" VerticalAlignment="Center" Text="VLC 2.2+ records recent files and timestamps by default (and disabling is an 'Advanced' option). Older versions do not support 'Resume from last position' functionality. The location of the VLC .ini file is usually something like C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini"  TextWrapping="Wrap" />
+                <usercontrols:HyperLinkStandard Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Margin="0,5,0,0" DisplayText="VLC Options"
+                                                                        URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_VLC}"/>
+            </Grid>
+        </Border>
+
+        <!-- VLC Location -->
+        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="3" Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="VLC INI Folder" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="10,10,0,0"/>
+                <TextBlock Text="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=VLCFolder}" Foreground="DarkGray" VerticalAlignment="Center" Margin="10,10,0,0" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4"/>
+
+                <Button Name="btnChooseVLCLocation" Style="{DynamicResource RoundButtonStyle}" Margin="10,5,0,0" Grid.Row="2" Grid.Column="1">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                        <Image Height="16" Width="16" Source="/Images/32_Folder.png" Margin="0,0,5,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="Select VLC INI Folder" Margin="0,0,5,0"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Name="btnTestVLCLocation" Style="{DynamicResource RoundButtonStyle}" Margin="10,5,0,0" Grid.Row="2" Grid.Column="2">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                        <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="Test VLC INI File" Margin="0,0,5,0"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+
+        </Border>
+        
+        
+        <!-- % Watched Optons -->
+        <Grid Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="3" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+
+
+            <CheckBox Name="chkAutoSetWatched" Grid.Column="0" VerticalAlignment="Center" Grid.Row="0" Content="Automatically mark files as watched when the following percentage is watched" Margin="10,0,0,5"/>
+
+            <extToolkit:IntegerUpDown Grid.Column="1" Grid.Row="0" Name="udWatchedPct" Minimum="1" Maximum="100" DefaultValue="85" VerticalAlignment="Center" Margin="5,0,0,5"
+                                      Value="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=VideoWatchedPct}" />
+            
+
+
+            
+        </Grid>
+
+    </Grid>
+</UserControl>

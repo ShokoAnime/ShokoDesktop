@@ -182,7 +182,11 @@
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal"  Margin="0,0,0,0" DockPanel.Dock="Top">
                     <Image Margin="5,0,0,0" Height="16" Width="16" Source="/Images/16_star.png" VerticalAlignment="Center"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityRecommendation}" Margin="5,0,0,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityRecommendation}" Margin="5,0,10,0"/>
+                    <TextBlock VerticalAlignment="Center">
+                        <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=WhatsThis}"
+                                                                        URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_CommunityRecommendation}"/>
+                    </TextBlock>
 
                     <!-- Use this button -->
                     <Button Name="btnUseThis" Margin="10,0,2,0" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
@@ -197,7 +201,7 @@
 
                 <ListBox Name="lbWebCache" BorderThickness="0" Background="Transparent" Margin="20,5,0,0"
                             ItemsSource="{Binding Path=CrossRef_AniDB_MALResult, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SearchMALForm}}}"
-                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="Auto" MaxHeight="100" ScrollViewer.CanContentScroll="True" 
                             ItemTemplate="{DynamicResource MALWebCacheTemplate}"
                             ItemContainerStyle="{DynamicResource ListBoxItemStylePlain}" 
                             />

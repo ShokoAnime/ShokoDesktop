@@ -26,10 +26,10 @@ namespace JMMClient.Forms
 			InitializeComponent();
 
 			btnCancel.Click += new RoutedEventHandler(btnCancel_Click);
-			btnSave.Click += new RoutedEventHandler(btnSave_Click);
-		}
+            btnSave.Click += new RoutedEventHandler(btnSave_Click);
+        }
 
-		void btnSave_Click(object sender, RoutedEventArgs e)
+        void btnSave_Click(object sender, RoutedEventArgs e)
 		{
 			try
 			{

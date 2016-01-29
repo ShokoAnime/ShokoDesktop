@@ -163,7 +163,8 @@ namespace JMMClient.ViewModel
                 AnimeTags = Sorting.MultiSort<AnimeTagVM>(AnimeTags, sortCriteria);
 
 				int i = 0;
-				foreach (AnimeTagVM tag in AnimeTags)
+                /*
+                foreach (AnimeTagVM tag in AnimeTags)
 				{
 					if (i <= 5)
 						AnimeTagsSummary.Add(tag);
@@ -171,6 +172,7 @@ namespace JMMClient.ViewModel
 						break;
 					i++;
 				}
+                */
 
                 foreach (JMMServerBinary.Contract_CustomTag ctag in contract.CustomTags)
                 {

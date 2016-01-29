@@ -28,16 +28,16 @@ namespace JMMClient.Forms
         {
             try
             {
-                if (comment.GetType() == typeof(Trakt_ShoutUserVM))
+                if (comment.GetType() == typeof(Trakt_CommentUserVM))
                 {
-                    Trakt_ShoutUserVM trakt = comment as Trakt_ShoutUserVM;
+                    Trakt_CommentUserVM trakt = comment as Trakt_CommentUserVM;
 
                     txtFrom.Text = "From Trakt";
                     txtUsername.Text = trakt.User.Username;
-                    txtDate.Text = trakt.Shout.ShoutDateString;
-                    txtComment.Text = trakt.Comment;
+                    txtDate.Text = trakt.Comment.CommentDateString;
+                    txtComment.Text = trakt.CommentText;
 
-                    urlWebsite.URL = trakt.Shout.Comment_Url;
+                    urlWebsite.URL = trakt.Comment.Comment_Url;
 
                 }
                 else if (comment.GetType() == typeof(AniDB_RecommendationVM))

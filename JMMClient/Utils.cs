@@ -15,6 +15,7 @@ using System.Runtime.InteropServices;
 using JMMClient.Forms;
 using System.Windows;
 using System.Security.Cryptography;
+using System.Windows.Controls;
 
 namespace JMMClient
 {
@@ -48,7 +49,35 @@ namespace JMMClient
 			return appPath;
 		}
 
-		public static string GetTempFilePathWithExtension(string extension)
+        public static IEnumerable<ScrollViewer> GetScrollViewers(DependencyObject control)
+        {
+            for (DependencyObject element = control; element != null; element = System.Windows.Media.VisualTreeHelper.GetParent(element))
+                if (element is ScrollViewer) yield return element as ScrollViewer;
+        }
+
+        public static void PopulateScheduledComboBox(System.Windows.Controls.ComboBox cbo, ScheduledUpdateFrequency curFrequency)
+        {
+            cbo.Items.Clear();
+            cbo.Items.Add(Properties.Resources.UpdateFrequency_6Hours);
+            cbo.Items.Add(Properties.Resources.UpdateFrequency_12Hours);
+            cbo.Items.Add(Properties.Resources.UpdateFrequency_Daily);
+            cbo.Items.Add(Properties.Resources.UpdateFrequency_OneWeek);
+            cbo.Items.Add(Properties.Resources.UpdateFrequency_OneMonth);
+            cbo.Items.Add(Properties.Resources.UpdateFrequency_Never);
+
+            switch (curFrequency)
+            {
+                case ScheduledUpdateFrequency.HoursSix: cbo.SelectedIndex = 0; break;
+                case ScheduledUpdateFrequency.HoursTwelve: cbo.SelectedIndex = 1; break;
+                case ScheduledUpdateFrequency.Daily: cbo.SelectedIndex = 2; break;
+                case ScheduledUpdateFrequency.WeekOne: cbo.SelectedIndex = 3; break;
+                case ScheduledUpdateFrequency.MonthOne: cbo.SelectedIndex = 4; break;
+                case ScheduledUpdateFrequency.Never: cbo.SelectedIndex = 5; break;
+            }
+
+        }
+
+        public static string GetTempFilePathWithExtension(string extension)
 		{
 			var path = Path.GetTempPath();
 			var fileName = Guid.NewGuid().ToString() + extension;
@@ -349,7 +378,61 @@ namespace JMMClient
 			return filePath;
 		}
 
-		public static string GetAniDBImagePath(int animeID)
+        public static string GetBaseAniDBCharacterImagesPath()
+        {
+            string filePath = Path.Combine(GetBaseImagesPath(), "AniDB_Char");
+
+            if (!Directory.Exists(filePath))
+                Directory.CreateDirectory(filePath);
+
+            return filePath;
+        }
+
+        public static string GetBaseAniDBCreatorImagesPath()
+        {
+            string filePath = Path.Combine(GetBaseImagesPath(), "AniDB_Creator");
+
+            if (!Directory.Exists(filePath))
+                Directory.CreateDirectory(filePath);
+
+            return filePath;
+        }
+
+        public static string GetAniDBCharacterImagePath(int charID)
+        {
+            string subFolder = "";
+            string sid = charID.ToString();
+            if (sid.Length == 1)
+                subFolder = sid;
+            else
+                subFolder = sid.Substring(0, 2);
+
+            string filePath = Path.Combine(GetBaseAniDBCharacterImagesPath(), subFolder);
+
+            if (!Directory.Exists(filePath))
+                Directory.CreateDirectory(filePath);
+
+            return filePath;
+        }
+
+        public static string GetAniDBCreatorImagePath(int creatorID)
+        {
+            string subFolder = "";
+            string sid = creatorID.ToString();
+            if (sid.Length == 1)
+                subFolder = sid;
+            else
+                subFolder = sid.Substring(0, 2);
+
+            string filePath = Path.Combine(GetBaseAniDBCreatorImagesPath(), subFolder);
+
+            if (!Directory.Exists(filePath))
+                Directory.CreateDirectory(filePath);
+
+            return filePath;
+        }
+
+        public static string GetAniDBImagePath(int animeID)
 		{
 			string subFolder = "";
 			string sid = animeID.ToString();
@@ -468,13 +551,28 @@ namespace JMMClient
 			}
 		}
 
-		/// <summary>
-		/// Compute Levenshtein distance --- http://www.merriampark.com/ldcsharp.htm
-		/// </summary>
-		/// <param name="s"></param>
-		/// <param name="t"></param>
-		/// <returns></returns>
-		public static int LevenshteinDistance(string s, string t)
+        public static void OpenFolder(string fullPath)
+        {
+            try
+            {
+                if (Directory.Exists(fullPath))
+                {
+                    Process.Start(new ProcessStartInfo(fullPath));
+                }
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+        }
+
+        /// <summary>
+        /// Compute Levenshtein distance --- http://www.merriampark.com/ldcsharp.htm
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="t"></param>
+        /// <returns></returns>
+        public static int LevenshteinDistance(string s, string t)
 		{
 			int n = s.Length; //length of s
 			int m = t.Length; //length of t
