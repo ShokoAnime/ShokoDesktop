@@ -1480,6 +1480,8 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
 
@@ -1499,8 +1501,8 @@
                                         <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,5,0" Grid.Column="0" VerticalAlignment="Top"/>
                                         <TextBlock VerticalAlignment="Center" Text="This uses the uTorrent WebUI API, which you need to enable in your uTorrent client first" Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1"/>
 
-                                        <usercontrols:HyperLinkStandard Margin="5,0,20,0" VerticalAlignment="Center" DisplayText="More Info"  Grid.Column="2"
-                                                                        URL="http://japanesemediamanager.github.io/wiki_usermanual_jmmdownloads.html"/>
+                                        <usercontrols:HyperLinkStandard Margin="5,0,20,0" VerticalAlignment="Center" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=MoreInfo}"  Grid.Column="2"
+                                                                        URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_uTorrent}"/>
                                     </Grid>
                                 </Border>
 
@@ -1511,16 +1513,22 @@
                                 <usercontrols:DownloadsSettingsControl Grid.Column="0" Grid.Row="2" Margin="5,0,0,10"/>
 
                                 <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="3" Background="#FFE9ECEF" Margin="0,0,0,5">
+                                    <TextBlock Text="Torrent Black Hole Settings" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                </Border>
+
+                                <usercontrols:DownloadsTorrentBlackHole Grid.Column="0" Grid.Row="4" Margin="5,0,0,10"/>
+
+                                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="5" Background="#FFE9ECEF" Margin="0,0,0,5">
                                     <TextBlock Text="Default Torrent Sources for Searching" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                                 </Border>
 
-                                <usercontrols:DownloadSettingsTorSources Grid.Column="0" Grid.Row="4" Margin="5,0,0,10"/>
+                                <usercontrols:DownloadSettingsTorSources Grid.Column="0" Grid.Row="6" Margin="5,0,0,10"/>
 
-                                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="5" Background="#FFE9ECEF" Margin="0,0,0,5">
+                                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="7" Background="#FFE9ECEF" Margin="0,0,0,5">
                                     <TextBlock Text="BakaBT Settings" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                                 </Border>
 
-                                <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="6"  Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
+                                <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="8"  Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto"></RowDefinition>
@@ -1541,13 +1549,13 @@
                                     </Grid>
                                 </Border>
 
-                                <usercontrols:DownloadSettingsBakaBT Grid.Column="0" Grid.Row="7" Margin="5,0,0,10"/>
+                                <usercontrols:DownloadSettingsBakaBT Grid.Column="0" Grid.Row="9" Margin="5,0,0,10"/>
 
-                                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="8" Background="#FFE9ECEF" Margin="0,0,0,5">
+                                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="10" Background="#FFE9ECEF" Margin="0,0,0,5">
                                     <TextBlock Text="Anime Byt.es Settings" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                                 </Border>
 
-                                <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="9"  Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
+                                <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="11"  Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto"></RowDefinition>
@@ -1568,7 +1576,7 @@
                                     </Grid>
                                 </Border>
 
-                                <usercontrols:DownloadSettingsAnimeBytes Grid.Column="0" Grid.Row="10" Margin="5,0,0,10"/>
+                                <usercontrols:DownloadSettingsAnimeBytes Grid.Column="0" Grid.Row="12" Margin="5,0,0,10"/>
 
                             </Grid>
                         </ScrollViewer>

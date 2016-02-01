@@ -379,7 +379,7 @@ namespace JMMClient.UserControls
                         AzureAnimeLink link = new AzureAnimeLink(contract);
                         SearchCriteria crit = new SearchCriteria();
                         crit.AnimeID = link.RandomAnimeID;
-                        crit.ExtraInfo = string.Format("{0} Anime still need TvDB approval", link.AnimeNeedingApproval);
+                        crit.ExtraInfo = string.Format("{0} Anime still need Trakt approval", link.AnimeNeedingApproval);
 
                         PerformTraktSearch(crit);
                     }

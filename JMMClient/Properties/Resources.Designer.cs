@@ -2338,7 +2338,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/general/faq.html#banned-from-anidb.
+        ///   Looks up a localized string similar to http://jmediamanager.org/faq/#banned-from-anidb.
         /// </summary>
         public static string Link_AniDBBanned {
             get {
@@ -2347,7 +2347,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/jmmdesktop/settings.html#anidb.
+        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/settings/#anidb.
         /// </summary>
         public static string Link_AniDBSettings {
             get {
@@ -2356,7 +2356,25 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/general/faq.html#what-are-community-recommendations.
+        ///   Looks up a localized string similar to http://jmediamanager.org/blog.
+        /// </summary>
+        public static string Link_Blog {
+            get {
+                return ResourceManager.GetString("Link_Blog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://jmediamanager.org/changelog/.
+        /// </summary>
+        public static string Link_Changelog {
+            get {
+                return ResourceManager.GetString("Link_Changelog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://jmediamanager.org/faq/#what-are-community-recommendations.
         /// </summary>
         public static string Link_CommunityRecommendation {
             get {
@@ -2365,16 +2383,16 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/documentation.html.
+        ///   Looks up a localized string similar to http://jmediamanager.org/downloads/.
         /// </summary>
-        public static string Link_Documentation {
+        public static string Link_Download {
             get {
-                return ResourceManager.GetString("Link_Documentation", resourceCulture);
+                return ResourceManager.GetString("Link_Download", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/jmmdesktop/utilities.html#renaming-overview.
+        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/utilities/file-renaming/.
         /// </summary>
         public static string Link_FileRenaming {
             get {
@@ -2383,7 +2401,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/jmmdesktop/collection.html#group-filters.
+        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/collection/#what-are-filters.
         /// </summary>
         public static string Link_GroupFilters {
             get {
@@ -2392,7 +2410,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/jmmserver/import.html.
+        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-server/configuring-jmm-server/#import-folders.
         /// </summary>
         public static string Link_ImportFolders {
             get {
@@ -2401,7 +2419,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/jmmdesktop/settings.html#mal.
+        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/settings/#community-sites.
         /// </summary>
         public static string Link_MAL {
             get {
@@ -2410,7 +2428,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/jmmdesktop/settings.html#mpc.
+        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/settings/#mpc.
         /// </summary>
         public static string Link_MPC {
             get {
@@ -2419,7 +2437,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/jmmdesktop/settings.html#pot-player.
+        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/settings/#pot-player.
         /// </summary>
         public static string Link_PotPlayer {
             get {
@@ -2428,7 +2446,16 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/jmmdesktop/settings.html#tmdb.
+        ///   Looks up a localized string similar to http://jmediamanager.org/.
+        /// </summary>
+        public static string Link_Site {
+            get {
+                return ResourceManager.GetString("Link_Site", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/settings/#community-sites.
         /// </summary>
         public static string Link_TMDb {
             get {
@@ -2437,7 +2464,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/jmmdesktop/settings.html#trakt.
+        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/settings/#community-sites.
         /// </summary>
         public static string Link_Trakt {
             get {
@@ -2446,7 +2473,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/jmmdesktop/settings.html#tvdb.
+        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/settings/#community-sites.
         /// </summary>
         public static string Link_TvDB {
             get {
@@ -2455,7 +2482,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/jmmdesktop/downloads.html#utorrent.
+        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/downloads/#utorrent.
         /// </summary>
         public static string Link_uTorrent {
             get {
@@ -2464,7 +2491,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/jmmdesktop/settings.html#vlc.
+        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/settings/#vlc.
         /// </summary>
         public static string Link_VLC {
             get {
@@ -2473,7 +2500,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://japanesemediamanager.github.io/jmmdesktop/settings.html#web-cache.
+        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/settings/#web-cache.
         /// </summary>
         public static string Link_WebCache {
             get {
@@ -2559,6 +2586,15 @@ namespace JMMClient.Properties {
         public static string MissingEpisodeCount {
             get {
                 return ResourceManager.GetString("MissingEpisodeCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to More Info.
+        /// </summary>
+        public static string MoreInfo {
+            get {
+                return ResourceManager.GetString("MoreInfo", resourceCulture);
             }
         }
         
@@ -3904,7 +3940,12 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to What action to take for a file when you delete it from you local collection, DELETE FILE means to permanently remove it from your list, MARK DELETED means to leave the file on your list, but change the state to deleted, MARK EXTERNAL (CD/DVD) means to leave the file on your list, but change the state to external storage.
+        ///   Looks up a localized string similar to What action to take for a file when you delete it from you local collection.
+        ///Delete File (AniDB) - Removes file from your AniDB MyList.
+        ///Delete File (Local DB) - Remove file from your local DB only.
+        ///Mark Deleted -  Leaves the file on your list, but changes the state to deleted.
+        ///Mark External (CD/DVD) - Leaves the file on your list, but changes the state to external storage.
+        ///Mark Unknown - Leaves the file on your list, but changes the state to unkown..
         /// </summary>
         public static string Tooltip_AniDBMyListDeleteAction {
             get {
