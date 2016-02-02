@@ -1236,7 +1236,30 @@ namespace JMMClient
 			this.Cursor = Cursors.Wait;
 
 			CloseableTabItem cti = new CloseableTabItem();
-			//TabItem cti = new TabItem();
+            //TabItem cti = new TabItem();
+
+            // if the pinned tab already has this, don't open it again.
+            int curTab = -1;
+            foreach (object obj in tabPinned.Items)
+            {
+                curTab++;
+                CloseableTabItem ctiTemp = obj as CloseableTabItem;
+                if (ctiTemp == null) continue;
+
+                AnimeSeries ctrl = ctiTemp.Content as AnimeSeries;
+                if (ctrl == null) continue;
+
+                AnimeSeriesVM ser = ctrl.DataContext as AnimeSeriesVM;
+                if (ser == null) continue;
+
+                if (ser.AnimeSeriesID == series.AnimeSeriesID)
+                {
+                    tabControl1.SelectedIndex = TAB_MAIN_Pinned;
+                    tabPinned.SelectedIndex = curTab;
+                    this.Cursor = Cursors.Arrow;
+                    return;
+                }
+            }
 
             string tabHeader = series.SeriesName;
             if (tabHeader.Length > 30)
