@@ -36,7 +36,7 @@
             <RoutedUICommand x:Key="RefreshPlaylistCommand" Text="RefreshPlaylistCommand" />
             <RoutedUICommand x:Key="DeletePlaylistItemCommand" Text="DeletePlaylistItemCommand" />
             <RoutedUICommand x:Key="ShowWebCacheAdminCommand" Text="ShowWebCacheAdminCommand" />
-            
+
 
 
 
@@ -371,7 +371,7 @@
                                     ContentTemplateSelector="{StaticResource myDataTemplateSelector}" >
                     </ContentControl>-->
 
-                        <DockPanel Grid.Row="1" Grid.RowSpan="3">
+                    <DockPanel Grid.Row="1" Grid.RowSpan="3">
                         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Background="#F1F1F1"
                                     Visibility="{Binding Source={x:Static local:MainListHelperVM.Instance}, Path=CurrentListWrapperIsGroup, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <!-- add sub group -->
@@ -1406,7 +1406,7 @@
                         <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_Pinned}" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
                     </StackPanel>
                 </TabItem.Header>
-                    <TabControl Name="tabPinned" VerticalAlignment="Stretch" TabStripPlacement="Left"
+                <TabControl Name="tabPinned" VerticalAlignment="Stretch" TabStripPlacement="Left"
                                 Width="{Binding Source={x:Static local:MainListHelperVM.Instance},Path=FullScrollerWidth}" Margin="5,5,5,5"  />
 
             </TabItem>
@@ -1624,7 +1624,7 @@
 
 
 
-                    
+
 
                     <TabItem Header="Links" Name="tabComLinks">
                         <usercontrols:CommunityLinksControl x:Name="ucComLinks"/>
@@ -1632,7 +1632,7 @@
                     </TabItem>
 
                     <TabItem Header="Stats" Name="tabComStats">
-                        
+
                         <TextBlock Margin="10" Text="Not Yet Implemented" FontSize="20"/>
                     </TabItem>
 
@@ -1641,7 +1641,7 @@
 
 
                 </TabControl>
-                
+
             </TabItem>
 
         </TabControl>
@@ -1736,9 +1736,15 @@
                 <StackPanel Orientation="Horizontal"   DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="5,0,5,0">
 
 
-                    <Button Name="btnAbout"  Margin="2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Button x:Name="btnFeed"  Margin="2,2,2,0" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Top">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                            <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="0,0,5,0"/>
+                            <Image Height="16" Width="16" Source="Images/32_feed.png" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="Feed" Margin="0,0,0,0"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="btnAbout"  Margin="2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <Image Height="16" Width="16" Source="Images/32_info.png" Margin="0,0,5,0"/>
                             <TextBlock VerticalAlignment="Center" Text="About" Margin="0,0,0,0"/>
                         </StackPanel>
                     </Button>

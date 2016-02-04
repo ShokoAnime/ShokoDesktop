@@ -224,6 +224,9 @@
     <Compile Include="Forms\AdminMessagesForm.xaml.cs">
       <DependentUpon>AdminMessagesForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FeedForm.xaml.cs">
+      <DependentUpon>FeedForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\UpdateForm.xaml.cs">
       <DependentUpon>UpdateForm.xaml</DependentUpon>
     </Compile>
@@ -757,6 +760,10 @@
     <Page Include="Forms\DialogTextMultiline.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\FeedForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Forms\GroupFilterConditionForm.xaml">
       <SubType>Designer</SubType>
@@ -2099,6 +2106,8 @@
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.Core.dll" />
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.dll" />
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.resources.dll" />
+    <Resource Include="Images\16_feed.png" />
+    <Resource Include="Images\32_feed.png" />
     <Resource Include="Images\Metro\back.png" />
     <Resource Include="Images\placeholder.png" />
   </ItemGroup>
