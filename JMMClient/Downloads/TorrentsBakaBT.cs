@@ -66,8 +66,8 @@ namespace JMMClient.Downloads
 			try
 			{
 				CookieContainer container = new CookieContainer();
-				string formUrl = "http://bakabt.me/login.php"; // NOTE: This is the URL the form POSTs to, not the URL of the form (you can find this in the "action" attribute of the HTML's form tag
-				string formParams = string.Format("username={0}&password={1}", username, password);
+				string formUrl = "https://bakabt.me/login.php"; // NOTE: This is the URL the form POSTs to, not the URL of the form (you can find this in the "action" attribute of the HTML's form tag
+                string formParams = string.Format("username={0}&password={1}&returnto=%2Findex.php", username, password);
 
 				HttpWebRequest req = (HttpWebRequest)WebRequest.Create(formUrl);
 				req.ContentType = "application/x-www-form-urlencoded";
@@ -100,13 +100,14 @@ namespace JMMClient.Downloads
 
 				logger.Trace(ShowAllCookies(container));
 
-				if (container.Count < 3) 
-					return "";
+                //if (container.Count < 3) 
+                //    return "";
 
 
 
 				//Grab the cookie we just got back for this specifc page
-				return container.GetCookieHeader(new Uri("http://www.bakabt.me/index.php"));
+                //string result = container.GetCookieHeader(new Uri("https://bakabt.me"));
+				return container.GetCookieHeader(new Uri("https://bakabt.me"));
 			}
 			catch (Exception ex)
 			{
@@ -338,7 +339,7 @@ namespace JMMClient.Downloads
 				if (string.IsNullOrEmpty(UserSettingsVM.Instance.BakaBTCookieHeader))
 					return new List<TorrentLinkVM>();
 
-				string urlBase = "http://bakabt.me/browse.php?only=0&hentai=1&incomplete=1&lossless=1&hd=1&multiaudio=1&bonus=1&c1=1&c2=1&c5=1&reorder=1&q={0}";
+				string urlBase = "https://bakabt.me/browse.php?only=0&hentai=1&incomplete=1&lossless=1&hd=1&multiaudio=1&bonus=1&c1=1&c2=1&c5=1&reorder=1&q={0}";
 
 				string searchCriteria = "";
 				foreach (string parm in searchParms)
@@ -375,7 +376,7 @@ namespace JMMClient.Downloads
 				if (string.IsNullOrEmpty(UserSettingsVM.Instance.BakaBTCookieHeader))
 					return new List<TorrentLinkVM>();
 
-				string url = "http://bakabt.me/browse.php?only=0&hentai=1&incomplete=1&lossless=1&hd=1&multiaudio=1&bonus=1&c1=1&c2=1&c5=1&reorder=1&q=";
+				string url = "https://bakabt.me/browse.php?only=0&hentai=1&incomplete=1&lossless=1&hd=1&multiaudio=1&bonus=1&c1=1&c2=1&c5=1&reorder=1&q=";
 				string output = Utils.DownloadWebPage(url, UserSettingsVM.Instance.BakaBTCookieHeader, true);
 
 				return ParseSource(output);
@@ -438,7 +439,7 @@ namespace JMMClient.Downloads
 				string output = Utils.DownloadWebPage(url, UserSettingsVM.Instance.BakaBTCookieHeader, true);
 
 				string torDownloadLink = GetTorrentLinkFromTorrentPage(output);
-				torLink.TorrentDownloadLink = string.Format("http://bakabt.me{0}", torDownloadLink);
+				torLink.TorrentDownloadLink = string.Format("https://bakabt.me/{0}", torDownloadLink);
 			}
 			catch (Exception ex)
 			{
