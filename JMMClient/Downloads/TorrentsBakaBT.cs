@@ -402,7 +402,7 @@ namespace JMMClient.Downloads
 
 		public string GetTorrentLinkFromTorrentPage(string pageSource)
 		{
-			string startBlock = "<div class=\"download_link";
+			string startBlock = "<a href=\"download";
 
 			string linkStart = "href=\"";
 			string linkEnd = "\"";
@@ -435,7 +435,7 @@ namespace JMMClient.Downloads
 				if (string.IsNullOrEmpty(UserSettingsVM.Instance.BakaBTCookieHeader))
 					return;
 
-				string url = torLink.TorrentLinkFull;
+                string url = "http://bakabt.me/"+torLink.TorrentLinkFull;
 				string output = Utils.DownloadWebPage(url, UserSettingsVM.Instance.BakaBTCookieHeader, true);
 
 				string torDownloadLink = GetTorrentLinkFromTorrentPage(output);
