@@ -82,7 +82,7 @@ namespace JMMClient.ViewModel
 				if (cat.Trim().Length == 0) continue;
 				if (cat.Trim() == ",") continue;
 
-				index = allcats.IndexOf(cat, 0, StringComparison.InvariantCultureIgnoreCase);
+				index = allcats.IndexOf(cat.Trim(), 0, StringComparison.InvariantCultureIgnoreCase);
 				if (index > -1) return false;
 			}
 
@@ -91,6 +91,9 @@ namespace JMMClient.ViewModel
 
 		public bool EvaluateGroup(AnimeGroupVM grp)
 		{
+            if (grp.AnimeGroupID.Value == 215)
+                Console.WriteLine("");
+
 			// make sure the user has not filtered this out
 			if (!string.IsNullOrEmpty(JMMServerVM.Instance.CurrentUser.HideTags))
 			{

@@ -476,7 +476,7 @@ namespace JMMClient
 							if (cat.Trim().Length == 0) continue;
 							if (cat.Trim() == ",") continue;
 
-							index = grp.Stat_AllTags.IndexOf(cat, 0, StringComparison.InvariantCultureIgnoreCase);
+							index = grp.Stat_AllTags.IndexOf(cat.Trim(), 0, StringComparison.InvariantCultureIgnoreCase);
 							if (index > -1)
 							{
 								foundCat = true;
@@ -503,7 +503,7 @@ namespace JMMClient
                             if (ctag.Trim().Length == 0) continue;
                             if (ctag.Trim() == ",") continue;
 
-                            index = grp.Stat_AllCustomTags.IndexOf(ctag, 0, StringComparison.InvariantCultureIgnoreCase);
+                            index = grp.Stat_AllCustomTags.IndexOf(ctag.Trim(), 0, StringComparison.InvariantCultureIgnoreCase);
                             if (index > -1)
                             {
                                 foundCTag = true;
@@ -822,7 +822,7 @@ namespace JMMClient
 							if (cat.Trim().Length == 0) continue;
 							if (cat.Trim() == ",") continue;
 
-							index = ser.TagsString.IndexOf(cat, 0, StringComparison.InvariantCultureIgnoreCase);
+							index = ser.TagsString.IndexOf(cat.Trim(), 0, StringComparison.InvariantCultureIgnoreCase);
 							if (index > -1)
 							{
 								foundCat = true;
@@ -849,7 +849,7 @@ namespace JMMClient
                             if (tag.Trim().Length == 0) continue;
                             if (tag.Trim() == ",") continue;
 
-                            index = ser.CustomTagsString.IndexOf(tag, 0, StringComparison.InvariantCultureIgnoreCase);
+                            index = ser.CustomTagsString.IndexOf(tag.Trim(), 0, StringComparison.InvariantCultureIgnoreCase);
                             if (index > -1)
                             {
                                 foundTag = true;
