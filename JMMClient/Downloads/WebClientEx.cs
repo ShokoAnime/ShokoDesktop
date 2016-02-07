@@ -8,11 +8,18 @@ namespace JMMClient.Downloads
 {
     public class WebClientEx : WebClient
     {
+        private System.Net.CookieContainer cookie_container;
+
         public CookieContainer CookieContainer { get; private set; }
 
         public WebClientEx()
         {
             CookieContainer = new CookieContainer();
+        }
+
+        public WebClientEx(System.Net.CookieContainer cookie_container)
+        {
+            CookieContainer = cookie_container;
         }
 
         protected override WebRequest GetWebRequest(Uri address)

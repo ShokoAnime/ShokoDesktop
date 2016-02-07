@@ -135,6 +135,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\Infralution.Localization.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="Jint, Version=2.6.0.0, Culture=neutral, PublicKeyToken=2e92ba9c8d81157f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Jint.2.7.1\lib\portable-net40+sl50+win+WindowsPhoneApp81+wp80\Jint.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MahApps.Metro">
       <HintPath>..\Dependencies\MahApps.Metro.dll</HintPath>
     </Reference>
@@ -197,6 +201,7 @@
     <Compile Include="DataTemplateSelectors\RecDownloadTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\RecWatchTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\WatchingEpisodeTemplateSelector.cs" />
+    <Compile Include="Downloads\CloudflareEvader.cs" />
     <Compile Include="Downloads\CsvParser.cs" />
     <Compile Include="Downloads\CsvStream.cs" />
     <Compile Include="Downloads\DownloadHelper.cs" />
@@ -1267,6 +1272,7 @@
     <None Include="app.manifest" />
     <None Include="default.config" />
     <None Include="JMMDesktop.snk" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

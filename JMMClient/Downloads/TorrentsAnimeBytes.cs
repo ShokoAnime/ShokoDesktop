@@ -8,6 +8,7 @@ using System.Net;
 using System.IO;
 using System.Collections;
 using System.Diagnostics;
+using System.Collections.Specialized;
 
 namespace JMMClient.Downloads
 {
@@ -66,47 +67,38 @@ namespace JMMClient.Downloads
 
 			try
 			{
-				CookieContainer container = new CookieContainer();
-				string formUrl = "http://animebyt.es/login.php"; // NOTE: This is the URL the form POSTs to, not the URL of the form (you can find this in the "action" attribute of the HTML's form tag
-				string formParams = string.Format("username={0}&password={1}", username, password);
+                WebClientEx client = null;
+                while (client == null)
+                {
+                    Console.WriteLine("Trying..");
+                    client = CloudflareEvader.CreateBypassedWebClient("http://anilinkz.tv");
+                }
 
-				HttpWebRequest req = (HttpWebRequest)WebRequest.Create(formUrl);
-				req.ContentType = "application/x-www-form-urlencoded";
-				req.Method = "POST";
-				req.CookieContainer = container;
-				req.UserAgent = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)";
-				req.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip,deflate");
-				req.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
-				byte[] bytes = Encoding.ASCII.GetBytes(formParams);
-				req.ContentLength = bytes.Length;
-				using (Stream os = req.GetRequestStream())
-				{
-					os.Write(bytes, 0, bytes.Length);
-				}
+                try
+                {
+                    using (client)
+                    {
+                        var values = new NameValueCollection
+                    {
+                        { "username", username },
+                        { "password", password },
+                    };
+                        // Authenticate
+                        client.UploadValues("https://animebytes.tv/user/login", values);
+                        // Download desired page
+                        return client.CookieContainer.GetCookieHeader(new Uri("https://animebytes.tv"));
+                    }
 
+                }
+                catch (Exception ex)
+                {
+                    logger.ErrorException(ex.ToString(), ex);
+                    return "";
+                }
 
-				HttpWebResponse WebResponse = (HttpWebResponse)req.GetResponse();
+                //Console.WriteLine("Solved! We're clear to go");
+                //Console.WriteLine(client.DownloadString("http://anilinkz.tv/anime-list"));
 
-				Stream responseStream = WebResponse.GetResponseStream();
-				String enco = WebResponse.CharacterSet;
-				Encoding encoding = null;
-				if (!String.IsNullOrEmpty(enco))
-					encoding = Encoding.GetEncoding(WebResponse.CharacterSet);
-				if (encoding == null)
-					encoding = Encoding.Default;
-				StreamReader Reader = new StreamReader(responseStream, encoding);
-
-				string output = Reader.ReadToEnd();
-
-				logger.Trace(ShowAllCookies(container));
-
-				if (container.Count < 3)
-					return "";
-
-
-
-				//Grab the cookie we just got back for this specifc page
-				return container.GetCookieHeader(new Uri("http://animebyt.es/index.php"));
 			}
 			catch (Exception ex)
 			{
