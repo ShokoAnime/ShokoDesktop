@@ -102,7 +102,14 @@ namespace JMMClient.Downloads
 				links.AddRange(ttLinks);
 			}
 
-			if (TorrentSource == TorrentSourceType.TokyoToshokanAnime)
+            if (TorrentSource == TorrentSourceType.Sukebei)
+            {
+                TorrentsSukebei sukebei = new TorrentsSukebei();
+                List<TorrentLinkVM> ttLinks = sukebei.BrowseTorrents();
+                links.AddRange(ttLinks);
+            }
+
+            if (TorrentSource == TorrentSourceType.TokyoToshokanAnime)
 			{
 				TorrentsTokyoToshokan tt = new TorrentsTokyoToshokan(TorrentSourceType.TokyoToshokanAnime);
 				List<TorrentLinkVM> ttLinks = tt.BrowseTorrents();
