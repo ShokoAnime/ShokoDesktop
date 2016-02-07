@@ -217,6 +217,9 @@
     <Compile Include="Downloads\TorrentSourceVM.cs" />
     <Compile Include="Downloads\TorrentsTokyoToshokan.cs" />
     <Compile Include="Downloads\UTorrentHelper.cs" />
+    <Compile Include="Downloads\WebClientEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Enums.cs" />
     <Compile Include="Forms\AboutForm.xaml.cs">
       <DependentUpon>AboutForm.xaml</DependentUpon>
