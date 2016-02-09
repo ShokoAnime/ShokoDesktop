@@ -197,6 +197,7 @@
     <Compile Include="DataTemplateSelectors\RecDownloadTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\RecWatchTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\WatchingEpisodeTemplateSelector.cs" />
+    <Compile Include="Downloads\TorrentsSukebei.cs" />
     <Compile Include="Downloads\CsvParser.cs" />
     <Compile Include="Downloads\CsvStream.cs" />
     <Compile Include="Downloads\DownloadHelper.cs" />
