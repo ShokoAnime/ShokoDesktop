@@ -71,7 +71,7 @@ namespace JMMClient.Downloads
                 while (client == null)
                 {
                     Console.WriteLine("Trying..");
-                    client = CloudflareEvader.CreateBypassedWebClient("http://anilinkz.tv");
+                    client = CloudflareEvader.CreateBypassedWebClient("https://animebytes.tv");
                 }
 
                 try
@@ -86,7 +86,13 @@ namespace JMMClient.Downloads
                         // Authenticate
                         client.UploadValues("https://animebytes.tv/user/login", values);
                         // Download desired page
-                        return client.CookieContainer.GetCookieHeader(new Uri("https://animebytes.tv"));
+
+                        string temp = client.CookieContainer.GetCookieHeader(new Uri("http://animebytes.tv/index.php"));
+
+                        if (ValidateCookie(temp))
+                            return client.CookieContainer.GetCookieHeader(new Uri("http://animebytes.tv/index.php"));
+                        else
+                            return "";
                     }
 
                 }
@@ -107,6 +113,15 @@ namespace JMMClient.Downloads
 			}
 		}
 
+        private bool ValidateCookie(string cookie)
+        {
+            string url = "http://animebytes.tv/torrents.php?filter_cat[1]=1&sort=time_added&way=desc";
+
+            string output = Utils.DownloadWebPage(url, cookie, true);
+
+            return ParseSource(output).Count > 1;
+        }
+
 		private List<TorrentLinkVM> ParseSource(string output)
 		{
 			List<TorrentLinkVM> torLinks = new List<TorrentLinkVM>();
@@ -114,7 +129,7 @@ namespace JMMClient.Downloads
 			char q = (char)34;
 			string quote = q.ToString();
 
-			string nameStart = "<a href=" + quote + "series.php?id=";
+			string nameStart = "<a href=" + quote + "/series.php?id=";
 			string nameStart2 = quote + ">";
 			string nameEnd = "</a>";
 
@@ -231,7 +246,7 @@ namespace JMMClient.Downloads
 					string torLeech = output.Substring(posTorLeechStart + torLeechStart.Length, posTorLeechEnd - posTorLeechStart - torLeechStart.Length);
 
 					TorrentLinkVM torrentLink = new TorrentLinkVM(TorrentSourceType.AnimeBytes);
-					torrentLink.TorrentDownloadLink = string.Format(@"http://animebyt.es/{0}", torDownloadLink);
+					torrentLink.TorrentDownloadLink = string.Format(@"http://animebytes.tv/{0}", torDownloadLink);
 					torrentLink.TorrentLink = "";
 					torrentLink.AnimeType = torType;
 					torrentLink.TorrentName = torName + " - " + torInfo;
@@ -267,7 +282,7 @@ namespace JMMClient.Downloads
 				if (string.IsNullOrEmpty(UserSettingsVM.Instance.AnimeBytesCookieHeader))
 					return new List<TorrentLinkVM>();
 
-				string urlBase = "http://animebyt.es/torrents.php?filter_cat%5B1%5D=1&searchstr={0}&action=advanced&search_type=title&year=&year2=&tags=&tags_type=0&sort=time_added&way=desc&hentai=2&releasegroup=&epcount=&epcount2=&artbooktitle=";
+				string urlBase = "http://animebytes.tv/torrents.php?filter_cat%5B1%5D=1&searchstr={0}&action=advanced&search_type=title&year=&year2=&tags=&tags_type=0&sort=time_added&way=desc&hentai=2&releasegroup=&epcount=&epcount2=&artbooktitle=";
 
 				string searchCriteria = "";
 				foreach (string parm in searchParms)
@@ -304,7 +319,7 @@ namespace JMMClient.Downloads
 				if (string.IsNullOrEmpty(UserSettingsVM.Instance.AnimeBytesCookieHeader))
 					return new List<TorrentLinkVM>();
 
-				string url = "http://animebyt.es/torrents.php?filter_cat[1]=1&sort=time_added&way=desc";
+				string url = "http://animebytes.tv/torrents.php?filter_cat[1]=1&sort=time_added&way=desc";
 				string output = Utils.DownloadWebPage(url, UserSettingsVM.Instance.AnimeBytesCookieHeader, true);
 
 				return ParseSource(output);
