@@ -75,8 +75,10 @@ namespace JMMClient.Downloads
                     };
                     // Authenticate
                     client.UploadValues("https://bakabt.me/login.php", values);
-                    // Download desired page
-                    return client.CookieContainer.GetCookieHeader(new Uri("https://bakabt.me"));
+                    if (ValidateCookie(client.CookieContainer.GetCookieHeader(new Uri("https://bakabt.me"))))
+                        return client.CookieContainer.GetCookieHeader(new Uri("https://bakabt.me"));
+                    else
+                        return "";
                 }
 
 			}
@@ -87,6 +89,19 @@ namespace JMMClient.Downloads
 			}
 		}
 
+        private bool ValidateCookie(string cookie)
+        {
+            string urlBase = "https://bakabt.me/browse.php?only=0&hentai=1&incomplete=1&lossless=1&hd=1&multiaudio=1&bonus=1&c1=1&c2=1&c5=1&reorder=1&q={0}";
+
+            string searchCriteria = "saint";
+
+            string url = string.Format(urlBase, searchCriteria);
+            string output = Utils.DownloadWebPage(url, cookie, true);
+
+            return ParseSource(output).Count > 1;
+        }
+
+        internal int count = 0;
 		private List<TorrentLinkVM> ParseSource(string output)
 		{
 			List<TorrentLinkVM> torLinks = new List<TorrentLinkVM>();
@@ -291,6 +306,7 @@ namespace JMMClient.Downloads
 			}
 			//Console.ReadLine();
 
+            count = torLinks.Count;
 			return torLinks;
 		}
 
@@ -406,7 +422,7 @@ namespace JMMClient.Downloads
 				if (string.IsNullOrEmpty(UserSettingsVM.Instance.BakaBTCookieHeader))
 					return;
 
-                string url = "http://bakabt.me/"+torLink.TorrentLinkFull;
+                string url = torLink.TorrentLinkFull;
 				string output = Utils.DownloadWebPage(url, UserSettingsVM.Instance.BakaBTCookieHeader, true);
 
 				string torDownloadLink = GetTorrentLinkFromTorrentPage(output);
@@ -450,5 +466,5 @@ namespace JMMClient.Downloads
 		}
 
 		#endregion
-	}
+    }
 }
