@@ -53,7 +53,8 @@ namespace JMMClient
 			sources.Add(new TorrentSourceVM(TorrentSourceType.TokyoToshokanAnime, true));
 			sources.Add(new TorrentSourceVM(TorrentSourceType.TokyoToshokanAll, true));
 			sources.Add(new TorrentSourceVM(TorrentSourceType.Nyaa, true));
-			sources.Add(new TorrentSourceVM(TorrentSourceType.AnimeSuki, true));
+            sources.Add(new TorrentSourceVM(TorrentSourceType.Sukebei, true));
+            sources.Add(new TorrentSourceVM(TorrentSourceType.AnimeSuki, true));
 			sources.Add(new TorrentSourceVM(TorrentSourceType.BakaBT, true));
 			sources.Add(new TorrentSourceVM(TorrentSourceType.AnimeBytes, true));
 

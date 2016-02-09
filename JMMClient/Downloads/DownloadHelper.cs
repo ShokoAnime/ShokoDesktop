@@ -117,7 +117,44 @@ namespace JMMClient.Downloads
 					links.AddRange(dictLinks.Values);
 				}
 
-				if (src.TorrentSource == TorrentSourceType.AnimeSuki)
+                if (src.TorrentSource == TorrentSourceType.Sukebei)
+                {
+                    TorrentsSukebei sukebei = new TorrentsSukebei();
+                    List<TorrentLinkVM> ttLinks = null;
+                    Dictionary<string, TorrentLinkVM> dictLinks = new Dictionary<string, TorrentLinkVM>();
+
+                    foreach (string grp in episodeGroupParms)
+                    {
+                        List<string> tempParms = new List<string>();
+                        foreach (string parmTemp in parms)
+                            tempParms.Add(parmTemp);
+                        tempParms.Insert(0, grp);
+                        ttLinks = sukebei.GetTorrents(tempParms);
+
+                        logger.Trace("Searching for: " + search.ToString() + "(" + grp + ")");
+
+                        // only use the first 10
+                        int x = 0;
+                        foreach (TorrentLinkVM link in ttLinks)
+                        {
+                            if (x == 10) break;
+                            dictLinks[link.TorrentDownloadLink] = link;
+                            logger.Trace("Adding link: " + link.ToString());
+                        }
+                    }
+
+                    logger.Trace("Searching for: " + search.ToString());
+                    ttLinks = sukebei.GetTorrents(parms);
+                    foreach (TorrentLinkVM link in ttLinks)
+                    {
+                        dictLinks[link.TorrentDownloadLink] = link;
+                        //logger.Trace("Adding link: " + link.ToString());
+                    }
+
+                    links.AddRange(dictLinks.Values);
+                }
+
+                if (src.TorrentSource == TorrentSourceType.AnimeSuki)
 				{
 					TorrentsAnimeSuki suki = new TorrentsAnimeSuki();
 					List<TorrentLinkVM> sukiLinks = suki.GetTorrents(parms);

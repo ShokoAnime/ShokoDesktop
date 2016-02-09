@@ -201,7 +201,11 @@
     <Compile Include="DataTemplateSelectors\RecDownloadTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\RecWatchTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\WatchingEpisodeTemplateSelector.cs" />
+<<<<<<< HEAD
     <Compile Include="Downloads\CloudflareEvader.cs" />
+=======
+    <Compile Include="Downloads\TorrentsSukebei.cs" />
+>>>>>>> refs/remotes/japanesemediamanager/master
     <Compile Include="Downloads\CsvParser.cs" />
     <Compile Include="Downloads\CsvStream.cs" />
     <Compile Include="Downloads\DownloadHelper.cs" />
