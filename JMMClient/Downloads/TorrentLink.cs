@@ -86,7 +86,7 @@ namespace JMMClient.Downloads
 			{
 				switch (Source.TorrentSource)
 				{
-					case TorrentSourceType.BakaBT: return string.Format(@"http://bakabt.me{0} ", TorrentLink);
+					case TorrentSourceType.BakaBT: return string.Format(@"https://bakabt.me/{0} ", TorrentLink);
 					case TorrentSourceType.AnimeBytes: return string.Format(@"http://animebyt.es/{0}", TorrentLink);
 				}
 				return TorrentLink;

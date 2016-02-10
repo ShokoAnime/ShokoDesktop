@@ -54,6 +54,7 @@ namespace JMMClient.UserControls
 
 			UserSettingsVM.Instance.BakaBTCookieHeader = bakaBT.Login(UserSettingsVM.Instance.BakaBTUsername, UserSettingsVM.Instance.BakaBTPassword);
 
+
 			parentWindow.Cursor = Cursors.Arrow;
 			this.IsEnabled = true;
 
