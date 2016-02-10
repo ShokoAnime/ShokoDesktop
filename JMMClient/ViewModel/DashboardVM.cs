@@ -226,7 +226,11 @@ namespace JMMClient
 						{
 							AnimeEpisodeVM ep = new AnimeEpisodeVM(contract);
 							ep.RefreshAnime();
-							if (ep.AniDB_Anime != null)
+
+                            if (ep.AniDB_Anime == null)
+                                ep.RefreshAnime(true); // this might be a new series
+
+                            if (ep.AniDB_Anime != null)
 							{
 								ep.SetTvDBInfo();
 								RecentAdditions.Add(ep);
@@ -433,6 +437,9 @@ namespace JMMClient
 					AnimeEpisodeVM ep = new AnimeEpisodeVM(contract);
 					string animename = ep.AnimeName; // just do this to force anidb anime detail record to be loaded
 
+                    if (ep.AniDB_Anime == null)
+                        ep.RefreshAnime(true); // this might be a new series
+
                     ts = DateTime.Now - start;
                     logger.Trace("Dashboard Time: RefreshEpsWatchNext_Recent: episode details: Stage 1: {0}", ts.TotalMilliseconds);
 
@@ -488,7 +495,9 @@ namespace JMMClient
 					{
 						AnimeEpisodeVM ep = new AnimeEpisodeVM(contract);
 						ep.RefreshAnime();
-						if (ep.AniDB_Anime != null && JMMServerVM.Instance.CurrentUser.EvaluateAnime(ep.AniDB_Anime))
+                        if (ep.AniDB_Anime == null)
+                            ep.RefreshAnime(true); // this might be a new series
+                        if (ep.AniDB_Anime != null && JMMServerVM.Instance.CurrentUser.EvaluateAnime(ep.AniDB_Anime))
 						{
 							ep.SetTvDBInfo();
 							EpsWatchedRecently.Add(ep);

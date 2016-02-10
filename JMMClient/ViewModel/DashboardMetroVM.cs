@@ -207,7 +207,8 @@ namespace JMMClient
 					AnimeEpisodeVM ep = new AnimeEpisodeVM(contract);
 					string animename = ep.AnimeName; // just do this to force anidb anime detail record to be loaded
 					ep.RefreshAnime();
-					//ep.SetTvDBInfo();
+                    if (ep.AniDB_Anime == null)
+                        ep.RefreshAnime(true); // this might be a new series
 					epList.Add(ep);
 				}
 				ts = DateTime.Now - start;
@@ -337,7 +338,9 @@ namespace JMMClient
 				{
 					AnimeEpisodeVM ep = new AnimeEpisodeVM(contract);
 					ep.RefreshAnime();
-					if (ep.AniDB_Anime != null)
+                    if (ep.AniDB_Anime == null)
+                        ep.RefreshAnime(true); // this might be a new series
+                    if (ep.AniDB_Anime != null)
 					{
 						//ep.SetTvDBInfo();
 

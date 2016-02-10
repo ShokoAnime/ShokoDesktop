@@ -43,6 +43,7 @@ Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\DevExpress.Xpf.Print
 Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\DevExpress.Xpf.Printing.v12.2.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\GongSolutions.Wpf.DragDrop.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\Infralution.Localization.Wpf.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\Jint.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\JMMDesktop.pdb"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\JMMDesktop.vshost.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\JMMDesktop.vshost.exe.manifest"; DestDir: "{app}"; Flags: ignoreversion
