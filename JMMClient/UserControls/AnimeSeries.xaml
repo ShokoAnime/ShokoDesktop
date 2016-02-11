@@ -231,7 +231,7 @@
                 <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
                     <Button Margin="5,2,2,2" Style="{DynamicResource LinkButton}" Command="{DynamicResource SearchCommand}" CommandParameter="{Binding}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <TextBlock Text="{Binding Path=TagName}">
+                            <TextBlock Text="{Binding Path=TagName}" ToolTipService.ShowDuration="60000">
                                 <TextBlock.ToolTip>
                                     <StackPanel Orientation="Vertical">
                                         <StackPanel Orientation="Horizontal">
@@ -241,7 +241,7 @@
                                             <TextBlock Margin="4,0,0,0" Text="Weighting"></TextBlock>
                                             <TextBlock Text=")"></TextBlock>
                                         </StackPanel>
-                                        <TextBlock Text="{Binding Path=TagDescription}"></TextBlock>
+                                        <TextBlock Text="{Binding Path=TagDescription}" Width="600" TextWrapping="Wrap"></TextBlock>
                                     </StackPanel>
                                 </TextBlock.ToolTip>
                             </TextBlock>
@@ -299,16 +299,14 @@
                         <RowDefinition />
                     </Grid.RowDefinitions>
 
-                    <TextBlock VerticalAlignment="Center" Text="{Binding Path=TagName}" Margin="0" Grid.Column="0" Grid.Row="0">
-
-                    </TextBlock>
+                    <TextBlock VerticalAlignment="Center" Text="{Binding Path=TagName}" Margin="0" Grid.Column="0" Grid.Row="0"/>
 
                     <Grid.ToolTip>
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock FontWeight="Bold" Text="{Binding Path=TagName}"></TextBlock>
                             </StackPanel>
-                            <TextBlock Text="{Binding Path=TagDescription}"></TextBlock>
+                            <TextBlock Text="{Binding Path=TagDescription}" Width="400" TextWrapping="Wrap"></TextBlock>
                         </StackPanel>
                     </Grid.ToolTip>
                 </Grid>
