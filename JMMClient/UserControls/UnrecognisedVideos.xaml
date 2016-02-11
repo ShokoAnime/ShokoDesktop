@@ -294,10 +294,37 @@
 
                 </StackPanel>
 
-                <ListBox DockPanel.Dock="Top" Name="lbVideos" BorderThickness="0" Background="Transparent" Margin="5,5,5,5" 
-                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemTemplate="{DynamicResource SimpleVideoLocalTemplate}" 
-                        ItemContainerStyle="{DynamicResource ListBoxItemStyle}" 
-                        ItemsSource="{Binding Path=ViewFiles, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:UnrecognisedVideos}}}" SelectionMode="Extended" />
+                <!-- grid for files -->
+                <DataGrid DockPanel.Dock="Top" Name="dgVideos" ItemsSource="{Binding Path=ViewFiles, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:UnrecognisedVideos}}}"
+                          HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                            AutoGenerateColumns="False" CanUserReorderColumns="True" CanUserResizeColumns="True" CanUserResizeRows="False" CanUserSortColumns="True" 
+                                  AlternatingRowBackground="Cornsilk"  AlternationCount="2" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="LightGray" 
+                                  AreRowDetailsFrozen="False" CanUserAddRows="False" CanUserDeleteRows="False">
+                    <DataGrid.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Padding" Value="3,3,6,3"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                        <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                            <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGrid.CellStyle>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Folder" Binding="{Binding FileDirectory}" IsReadOnly="True" Width="100" />
+                        <DataGridTextColumn Header="File Name" Binding="{Binding FileName}" IsReadOnly="True" Width="300" />
+                        <DataGridTextColumn Header="Size" Binding="{Binding FileSize}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Hash" Binding="{Binding Hash}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="CRC" Binding="{Binding CRC32}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Date" Binding="{Binding DateTimeUpdated}" IsReadOnly="True" />
+
+                    </DataGrid.Columns>
+                </DataGrid>
+                
             </DockPanel>
 
 
