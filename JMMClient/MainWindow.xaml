@@ -228,7 +228,7 @@
                 <Grid>
                     <usercontrols:DashboardControl x:Name="dash" Margin="0,0,0,0" Visibility="Collapsed"/>
                     <usercontrols:DashboardMetroDXControl x:Name="dashMetro" Margin="0,0,0,0" Visibility="Collapsed"/>
-                    <usercontrols:ContinueWatchingTileControl x:Name="tileContinueWatching" Margin="0,0,0,0" Visibility="Collapsed"/>
+                    <usercontrols:AnimeSeriesSimplifiedControl x:Name="tileContinueWatching" Margin="0,0,0,0" Visibility="Collapsed"/>
                 </Grid>
             </TabItem>
 

@@ -159,6 +159,7 @@ namespace JMMClient.UserControls
 			//btnPlayNextEpisode.Click += new RoutedEventHandler(btnPlayNextEpisode_Click);
 			btnGetRelMissingInfo.Click += new RoutedEventHandler(btnGetRelMissingInfo_Click);
 			btnGetSimMissingInfo.Click += new RoutedEventHandler(btnGetSimMissingInfo_Click);
+            btnSwitchView.Click += BtnSwitchView_Click;
 
 			this.DataContextChanged += new DependencyPropertyChangedEventHandler(AnimeSeries_DataContextChanged);
 
@@ -190,6 +191,37 @@ namespace JMMClient.UserControls
 
             this.PreviewMouseWheel += AnimeSeries_PreviewMouseWheel;
 		}
+
+        private void BtnSwitchView_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                AppSettings.DisplaySeriesSimple = true;
+                // check if this control is part of the series container
+                DependencyObject parentObject = VisualTreeHelper.GetParent(this);
+                while (parentObject != null)
+                {
+                    parentObject = VisualTreeHelper.GetParent(parentObject);
+                    AnimeSeriesContainerControl containerCtrl = parentObject as AnimeSeriesContainerControl;
+                    if (containerCtrl != null)
+                    {
+                        // show the simple view
+                        AnimeSeriesVM ser = this.DataContext as AnimeSeriesVM;
+                        if (ser == null) return;
+
+                        AnimeSeriesSimplifiedControl seriesControl = new AnimeSeriesSimplifiedControl();
+                        seriesControl.DataContext = ser;
+
+                        containerCtrl.DataContext = seriesControl;
+                        return;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+        }
 
         private void AnimeSeries_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {

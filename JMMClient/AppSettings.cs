@@ -485,7 +485,25 @@ namespace JMMClient
 			}
 		}
 
-		public static bool UseFanartOnSeries
+        public static bool DisplaySeriesSimple
+        {
+            get
+            {
+                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                string val = appSettings["DisplaySeriesSimple"];
+                bool bval = true;
+                if (bool.TryParse(val, out bval))
+                    return bval;
+                else
+                    return true; // default value
+            }
+            set
+            {
+                UpdateSetting("DisplaySeriesSimple", value.ToString());
+            }
+        }
+
+        public static bool UseFanartOnSeries
 		{
 			get
 			{

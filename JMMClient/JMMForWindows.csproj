@@ -245,8 +245,8 @@
     <Compile Include="UserControls\AnimeFolderSummaryControl.xaml.cs">
       <DependentUpon>AnimeFolderSummaryControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\AnimeSeriesSimple.xaml.cs">
-      <DependentUpon>AnimeSeriesSimple.xaml</DependentUpon>
+    <Compile Include="UserControls\AnimeSeriesContainerControl.xaml.cs">
+      <DependentUpon>AnimeSeriesContainerControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Community\CommunityMaint.xaml.cs">
       <DependentUpon>CommunityMaint.xaml</DependentUpon>
@@ -417,8 +417,8 @@
     <Compile Include="UserControls\Community\CommunityLinksControl.xaml.cs">
       <DependentUpon>CommunityLinksControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\ContinueWatchingTileControl.xaml.cs">
-      <DependentUpon>ContinueWatchingTileControl.xaml</DependentUpon>
+    <Compile Include="UserControls\AnimeSeriesSimplifiedControl.xaml.cs">
+      <DependentUpon>AnimeSeriesSimplifiedControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Custom ToolTips\CustomToolTip.cs" />
     <Compile Include="UserControls\DashboardControl.xaml.cs">
@@ -930,7 +930,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\AnimeSeriesSimple.xaml">
+    <Page Include="UserControls\AnimeSeriesContainerControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -954,7 +954,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\ContinueWatchingTileControl.xaml">
+    <Page Include="UserControls\AnimeSeriesSimplifiedControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -2116,6 +2116,7 @@
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.Core.dll" />
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.dll" />
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.resources.dll" />
+    <Resource Include="Images\Metro\details.png" />
     <Resource Include="Images\16_feed.png" />
     <Resource Include="Images\32_feed.png" />
     <Resource Include="Images\Metro\back.png" />
