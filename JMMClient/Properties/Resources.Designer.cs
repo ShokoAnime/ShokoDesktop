@@ -61,7 +61,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to NewSubGroup.
+        ///   Looks up a localized string similar to New Sub Group.
         /// </summary>
         public static string AddSubGroup {
             get {
@@ -2437,15 +2437,6 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://www.computerhope.com/issues/ch000549.htm.
-        /// </summary>
-        public static string Link_PATH {
-            get {
-                return ResourceManager.GetString("Link_PATH", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/settings/#pot-player.
         /// </summary>
         public static string Link_PotPlayer {
@@ -3414,15 +3405,6 @@ namespace JMMClient.Properties {
         public static string StartingEpisodeNumber {
             get {
                 return ResourceManager.GetString("StartingEpisodeNumber", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to http://www.computerhope.com/issues/ch000549.htm.
-        /// </summary>
-        public static string String1 {
-            get {
-                return ResourceManager.GetString("String1", resourceCulture);
             }
         }
         

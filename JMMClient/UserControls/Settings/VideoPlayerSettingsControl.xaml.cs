@@ -31,32 +31,7 @@ namespace JMMClient.UserControls
             chkAutoSetWatched.IsChecked = UserSettingsVM.Instance.VideoAutoSetWatched;
 
 			chkAutoSetWatched.Click += new RoutedEventHandler(chkAutoSetWatched_Click);
-
-            cboDefaultPlayer.Items.Clear();
-            cboDefaultPlayer.Items.Add("MPC");
-            cboDefaultPlayer.Items.Add("PotPlayer");
-            cboDefaultPlayer.Items.Add("VLC");
-            switch (AppSettings.DefaultPlayer_GroupList)
-            {
-                case 1:
-                    cboDefaultPlayer.SelectedIndex = 1;
-                    break;
-
-                case 2:
-                    cboDefaultPlayer.SelectedIndex = 2;
-                    break;
-
-                case 3:
-                    cboDefaultPlayer.SelectedIndex = 3;
-                    break;
-
-                default:
-                    cboDefaultPlayer.SelectedIndex = 3;
-                    break;
-            }
-
-            cboDefaultPlayer.SelectionChanged += new SelectionChangedEventHandler(cboDefaultPlayer_SelectionChanged);
-        }
+		}
 
 		void btnTestPotLocation_Click(object sender, RoutedEventArgs e)
 		{
@@ -265,16 +240,6 @@ namespace JMMClient.UserControls
             {
                 UserSettingsVM.Instance.VLCFolder = dialog.SelectedPath;
                 MainWindow.videoHandler.Init();
-            }
-        }
-        void cboDefaultPlayer_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            switch (cboDefaultPlayer.SelectedIndex)
-            {
-                case 0: UserSettingsVM.Instance.DefaultPlayer_GroupList = 1; break;
-                case 1: UserSettingsVM.Instance.DefaultPlayer_GroupList = 2; break;
-                case 2: UserSettingsVM.Instance.DefaultPlayer_GroupList = 3; break;
-                default: UserSettingsVM.Instance.DisplayStyle_GroupList = 3; break;
             }
         }
     }

@@ -370,7 +370,7 @@
     <value>Group</value>
   </data>
   <data name="AddSubGroup" xml:space="preserve">
-    <value>NewSubGroup</value>
+    <value>New Sub Group</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
@@ -1821,11 +1821,5 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   </data>
   <data name="Link_Site" xml:space="preserve">
     <value>http://jmediamanager.org/</value>
-  </data>
-  <data name="Link_PATH" xml:space="preserve">
-    <value>http://www.computerhope.com/issues/ch000549.htm</value>
-  </data>
-  <data name="String1" xml:space="preserve">
-    <value>http://www.computerhope.com/issues/ch000549.htm</value>
   </data>
 </root>
