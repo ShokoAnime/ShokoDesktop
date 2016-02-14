@@ -1405,17 +1405,9 @@ namespace JMMClient
 			}
 		}
 
-        public int DefaultPlayer_GroupList
-        {
-            get { return AppSettings.DefaultPlayer_GroupList; }
-            set
-            {
-                AppSettings.DefaultPlayer_GroupList = value;
-                OnPropertyChanged(new PropertyChangedEventArgs("DefaultPlayer_GroupList"));
-            }
-        }
 
-        public void GetDashboardMetroSectionPosition(DashboardMetroProcessType swid, ref int pos, ref Visibility vis)
+
+		public void GetDashboardMetroSectionPosition(DashboardMetroProcessType swid, ref int pos, ref Visibility vis)
 		{
 			// read the series sections order
 			string[] sections = AppSettings.DashboardMetroSectionOrder.Split(';');

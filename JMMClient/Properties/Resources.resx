@@ -369,8 +369,8 @@
   <data name="Group" xml:space="preserve">
     <value>Group</value>
   </data>
-  <data name="Link_PATH" xml:space="preserve">
-    <value>http://www.computerhope.com/issues/ch000549.htm</value>
+  <data name="AddSubGroup" xml:space="preserve">
+    <value>New Sub Group</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>

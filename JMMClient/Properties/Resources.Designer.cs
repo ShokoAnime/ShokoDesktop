@@ -61,6 +61,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New Sub Group.
+        /// </summary>
+        public static string AddSubGroup {
+            get {
+                return ResourceManager.GetString("AddSubGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Admin Message.
         /// </summary>
         public static string AdminMessageTitle {
@@ -2424,15 +2433,6 @@ namespace JMMClient.Properties {
         public static string Link_MPC {
             get {
                 return ResourceManager.GetString("Link_MPC", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to http://www.computerhope.com/issues/ch000549.htm.
-        /// </summary>
-        public static string Link_PATH {
-            get {
-                return ResourceManager.GetString("Link_PATH", resourceCulture);
             }
         }
         

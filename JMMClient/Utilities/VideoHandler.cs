@@ -14,9 +14,8 @@ namespace JMMClient.Utilities
 		private Dictionary<int, VideoDetailedVM> recentlyPlayedFiles = null;
 		private System.Timers.Timer handleTimer = null;
 		private string iniPath = string.Empty;
-        private String defaultplayer = "3";
 
-        private List<FileSystemWatcher> watcherVids = null;
+		private List<FileSystemWatcher> watcherVids = null;
 		Dictionary<string, string> previousFilePositions = new Dictionary<string, string>();
 
 		public delegate void VideoWatchedEventHandler(VideoWatchedEventArgs ev);
@@ -31,48 +30,11 @@ namespace JMMClient.Utilities
 
 		public void PlayVideo(VideoDetailedVM vid)
 		{
-            try
-            {
-                defaultplayer = UserSettingsVM.Instance.DefaultPlayer_GroupList.ToString();
-                switch (defaultplayer)
-                {
-                    case "1":
-                        defaultplayer = "mpc-hc";
-                        break;
-                    case "2":
-                        defaultplayer = "PotPlayerMini";
-                        break;
-                    case "3":
-                        defaultplayer = "vlc";
-                        break;
-                    default:
-                        defaultplayer = "vlc";
-                        break;
-                }
-                recentlyPlayedFiles[vid.VideoLocalID] = vid;
-                if (vid.FullPath.Contains("http:")) {
-                    try
-                    {
-                        Process.Start(defaultplayer, '"' + vid.FullPath.Replace(@"\", "/") + '"');
-                    }
-                    catch(Exception e)
-                    {
-                        Process.Start(defaultplayer+"64", '"' + vid.FullPath.Replace(@"\", "/") + '"');
-                    }
-                }
-                else
-                {
-                    try
-                    {
-                        Process.Start(defaultplayer, '"' + vid.FullPath + '"');
-                    }
-                    catch (Exception e)
-                    {
-                        Process.Start(defaultplayer + "64", '"' + vid.FullPath.Replace(@"\", "/") + '"');
-                    }
-                }
-                defaultplayer = UserSettingsVM.Instance.DefaultPlayer_GroupList.ToString();
-            }
+			try
+			{
+				recentlyPlayedFiles[vid.VideoLocalID] = vid;
+				Process.Start(new ProcessStartInfo(vid.FullPath));
+			}
 			catch (Exception ex)
 			{
 				Utils.ShowErrorMessage(ex);
@@ -81,53 +43,15 @@ namespace JMMClient.Utilities
 
 		public void PlayVideo(VideoLocalVM vid)
 		{
-            try
-            {
-                defaultplayer = UserSettingsVM.Instance.DefaultPlayer_GroupList.ToString();
-                switch (defaultplayer)
-                {
-                    case "1":
-                        defaultplayer = "mpc-hc";
-                        break;
-                    case "2":
-                        defaultplayer = "PotPlayerMini";
-                        break;
-                    case "3":
-                        defaultplayer = "vlc";
-                        break;
-                    default:
-                        defaultplayer = "vlc";
-                        break;
-                }
-                if (vid.FullPath.Contains("http:"))
-                {
-                    try
-                    {
-                        Process.Start(defaultplayer, '"' + vid.FullPath.Replace(@"\", "/") + '"');
-                    }
-                    catch (Exception e)
-                    {
-                        Process.Start(defaultplayer + "64", '"' + vid.FullPath.Replace(@"\", "/") + '"');
-                    }
-                }
-                else
-                {
-                    try
-                    {
-                        Process.Start(defaultplayer, '"' + vid.FullPath + '"');
-                    }
-                    catch (Exception e)
-                    {
-                        Process.Start(defaultplayer + "64", '"' + vid.FullPath.Replace(@"\", "/") + '"');
-                    }
-                }
-                defaultplayer = UserSettingsVM.Instance.DefaultPlayer_GroupList.ToString();
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
-        }
+			try
+			{
+				Process.Start(new ProcessStartInfo(vid.FullPath));
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+		}
 
 		public void Init()
 		{
