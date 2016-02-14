@@ -2437,6 +2437,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to http://www.computerhope.com/issues/ch000549.htm.
+        /// </summary>
+        public static string Link_PATH {
+            get {
+                return ResourceManager.GetString("Link_PATH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/settings/#pot-player.
         /// </summary>
         public static string Link_PotPlayer {
