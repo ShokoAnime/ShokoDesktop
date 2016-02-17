@@ -361,8 +361,27 @@ namespace JMMClient
 				UpdateSetting("DisplayStyle_GroupList", value.ToString());
 			}
 		}
+        public static int DefaultPlayer_GroupList
+        {
+            get
+            {
+                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                string val = appSettings["DefaultPlayer_GroupList"];
+                int ival = 0;
+                if (int.TryParse(val, out ival))
+                {
+                    return ival;
+                }
+                else
+                    return 3; // default value
+            }
+            set
+            {
+                UpdateSetting("DefaultPlayer_GroupList", value.ToString());
+            }
+        }
 
-		public static int DisplayHeight_DashImage
+        public static int DisplayHeight_DashImage
 		{
 			get
 			{
