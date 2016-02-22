@@ -101,7 +101,7 @@
                         <Image Height="24" Width="24" Source="/Images/32_play2.png" Margin="0,0,0,0"/>
                     </StackPanel>
                     <Button.ToolTip>
-                        <TextBlock Text="Play"/>
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Play}"/>
                     </Button.ToolTip>
                 </Button>
             </StackPanel>

@@ -117,7 +117,7 @@
                             <Button Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource ToggleFileDetailsCommand}" 
                                 CommandParameter="{Binding}" Visibility="{Binding Path=ShowLessDetails, Converter={StaticResource BooleanToVisibilityConverter}}" >
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                    <TextBlock VerticalAlignment="Center" Text="More Info.." Margin="5,0,5,0" Foreground="Black"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_MoreInfo}" Margin="5,0,5,0" Foreground="Black"/>
                                 </StackPanel>
                             </Button>
 
@@ -125,7 +125,7 @@
                             <Button Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource ToggleFileDetailsCommand}" 
                                 CommandParameter="{Binding}" Visibility="{Binding Path=ShowMoreDetails, Converter={StaticResource BooleanToVisibilityConverter}}" >
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                    <TextBlock VerticalAlignment="Center" Text="Less Info.." Margin="5,0,5,0" Foreground="Black"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_LessInfo}" Margin="5,0,5,0" Foreground="Black"/>
                                 </StackPanel>
                             </Button>
 
@@ -153,7 +153,7 @@
 
                         <TextBlock Text="{Binding Path=AniDB_Anime_GroupNameShort}" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0"
                                    Visibility="{Binding Path=IsAutoAssociation, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <TextBlock Text="MANUAL LINK" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0"
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_Manual}" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0"
                                    Visibility="{Binding Path=IsManualAssociation, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                         <TextBlock Text="{Binding Path=FormattedFileSize}" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0" />
@@ -228,7 +228,7 @@
                                         <TextBlock VerticalAlignment="Center" Text="Update Info" Margin="5,0,5,0" Foreground="Black"/>
                                     </StackPanel>
                                     <Button.ToolTip>
-                                        <TextBlock Text="Force update information from AniDB"/>
+                                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_ForceAniDBUpdate}"/>
                                     </Button.ToolTip>
                                 </Button>
 
@@ -240,7 +240,7 @@
                                         <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Rehash}" Margin="0,0,5,0"/>
                                     </StackPanel>
                                     <Button.ToolTip>
-                                        <TextBlock Text="Re-calculate hashes"/>
+                                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_RecalculateHash}"/>
                                     </Button.ToolTip>
                                 </Button>
 
@@ -249,13 +249,13 @@
                                          Visibility="{Binding Path=HasAniDBFile, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                             </StackPanel >
                         </Border>
-                            
-                        
 
-                        <TextBlock Text="Hash" FontWeight="Bold" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="0" Grid.Row="1"/>
-                        <TextBlock Text="CRC32" FontWeight="Bold" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="0" Grid.Row="2"/>
-                        <TextBlock Text="SHA1" FontWeight="Bold" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="0" Grid.Row="3"/>
-                        <TextBlock Text="MD5" FontWeight="Bold" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="0" Grid.Row="4"/>
+
+
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_Hash}" FontWeight="Bold" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="0" Grid.Row="1"/>
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_CRC32}" FontWeight="Bold" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="0" Grid.Row="2"/>
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_SHA1}" FontWeight="Bold" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="0" Grid.Row="3"/>
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_MD5}" FontWeight="Bold" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="0" Grid.Row="4"/>
 
                         <TextBox Text="{Binding Path=VideoLocal_Hash}" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="1" Grid.Row="1"/>
                         <TextBox Text="{Binding Path=VideoLocal_CRC32}" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="1" Grid.Row="2"/>
@@ -352,7 +352,7 @@
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                     <Image Height="16" Width="16" Source="/Images/24_download3.png" Margin="2,0,2,0">
                         <Image.ToolTip>
-                            <TextBlock Text="Search downloads for this episode"/>
+                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_DownloadSearch}"/>
                         </Image.ToolTip>
                     </Image>
 
@@ -364,7 +364,7 @@
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                     <Image Height="16" Width="16" Source="/Images/32_playlist_add.png" Margin="2,0,2,0">
                         <Image.ToolTip>
-                            <TextBlock Text="Add to Playlist"/>
+                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_PlaylistAdd}"/>
                         </Image.ToolTip>
                     </Image>
 
@@ -378,7 +378,7 @@
                     <Image Height="16" Width="16" Source="/Images/16_switch.png" Margin="2,0,2,0"/>
                 </StackPanel>
                 <Button.ToolTip>
-                    <TextBlock Text="Override the TvDB link for this episode"/>
+                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_TvDBOverride}"/>
                 </Button.ToolTip>
             </Button>
 
@@ -389,7 +389,7 @@
                     <Image Height="16" Width="16" Source="/Images/32_delete.png" Margin="2,0,2,0"/>
                 </StackPanel>
                 <Button.ToolTip>
-                    <TextBlock Text="Remove the TvDB link for this episode"/>
+                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_TvDBRemove}"/>
                 </Button.ToolTip>
             </Button>
 
@@ -399,7 +399,7 @@
                     <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="2,0,2,0"/>
                 </StackPanel>
                 <Button.ToolTip>
-                    <TextBlock Text="Force update information from AniDB"/>
+                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_AniDBForceUpdate}"/>
                 </Button.ToolTip>
             </Button>
 

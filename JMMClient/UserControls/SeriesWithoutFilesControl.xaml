@@ -37,7 +37,7 @@
                             <Image Height="16" Width="16" Source="/Images/32_Delete.png" Margin="0,0,0,0"/>
                         </StackPanel>
                         <Button.ToolTip>
-                            <TextBlock Text="Delete this series from the database"/>
+                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesWithoutFiles_Delete}"/>
                         </Button.ToolTip>
                     </Button>
                     
@@ -119,7 +119,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,5,0" Grid.Column="0" VerticalAlignment="Top"/>
-                        <TextBlock VerticalAlignment="Center" Text="This utility will show you all the series which do not have any files. Deleting the series will also delete the group if no other series in that group have files." Margin="0,0,5,5" TextWrapping="Wrap" Grid.Column="1"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesWithoutFiles_Note}" Margin="0,0,5,5" TextWrapping="Wrap" Grid.Column="1"/>
                     </Grid>
                 </Border>
 

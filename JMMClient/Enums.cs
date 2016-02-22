@@ -530,7 +530,7 @@ namespace JMMClient
 				case TorrentSourceType.Nyaa: return "Nyaa";
                 case TorrentSourceType.Sukebei: return "Sukebei Nyaa";
                 case TorrentSourceType.AnimeSuki: return "Anime Suki";
-				case TorrentSourceType.AnimeBytes: return "Anime Byt.es";
+				case TorrentSourceType.AnimeBytes: return "AnimeBytes";
 				default: return "Tokyo Toshokan (Anime)";
 			}
 		}
@@ -558,7 +558,7 @@ namespace JMMClient
 			if (tsType == "Nyaa") return TorrentSourceType.Nyaa;
             if (tsType == "Sukebei Nyaa") return TorrentSourceType.Sukebei;
             if (tsType == "Anime Suki") return TorrentSourceType.AnimeSuki;
-			if (tsType == "Anime Byt.es") return TorrentSourceType.AnimeBytes;
+			if (tsType == "AnimeBytes") return TorrentSourceType.AnimeBytes;
 
 			return TorrentSourceType.TokyoToshokanAnime;
 		}

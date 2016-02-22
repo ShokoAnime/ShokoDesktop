@@ -41,10 +41,10 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" Grid.Row="0" Margin="5,5,5,5" VerticalAlignment="Center" Text="Media Player Classic"  Grid.ColumnSpan="2" FontSize="14" FontWeight="Bold" />
+                <TextBlock Grid.Column="0" Grid.Row="0" Margin="5,5,5,5" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPC}"  Grid.ColumnSpan="2" FontSize="14" FontWeight="Bold" />
                 <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,5,0" Grid.Column="0" Grid.Row="1" VerticalAlignment="Top"/>
-                <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,0,5,0" VerticalAlignment="Center" Text="For MPC Integration you must enable two options (1) Store settings to .ini file and (2) Keep history of recently watched files. See the following screenshot for more details. The location of MPC is usually something like C:\Program Files (x86)\Combined Community Codec Pack\MPC"  TextWrapping="Wrap" />
-                <usercontrols:HyperLinkStandard Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Margin="0,5,0,0" DisplayText="MPC Options"
+                <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,0,5,0" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPCNote}"  TextWrapping="Wrap" />
+                <usercontrols:HyperLinkStandard Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Margin="0,5,0,0" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPCOptions}"
                                                                         URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_MPC}"/>
             </Grid>
         </Border>
@@ -65,20 +65,20 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Text="MPC INI Folder" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="10,10,0,0"/>
+                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPCFolder}" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="10,10,0,0"/>
                 <TextBlock Text="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=MPCFolder}" Foreground="DarkGray" VerticalAlignment="Center" Margin="10,10,0,0" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4"/>
 
                 <Button Name="btnChooseMPCLocation" Style="{DynamicResource RoundButtonStyle}" Margin="10,5,0,0" Grid.Row="2" Grid.Column="1">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                         <Image Height="16" Width="16" Source="/Images/32_Folder.png" Margin="0,0,5,0"/>
-                        <TextBlock VerticalAlignment="Center" Text="Select MPC INI Folder" Margin="0,0,5,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPCINI}" Margin="0,0,5,0"/>
                     </StackPanel>
                 </Button>
 
                 <Button Name="btnTestMPCLocation" Style="{DynamicResource RoundButtonStyle}" Margin="10,5,0,0" Grid.Row="2" Grid.Column="2">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                         <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
-                        <TextBlock VerticalAlignment="Center" Text="Test MPC File" Margin="0,0,5,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPCTest}" Margin="0,0,5,0"/>
                     </StackPanel>
                 </Button>
             </Grid>
@@ -99,10 +99,10 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" Grid.Row="0" Margin="5,5,5,5" VerticalAlignment="Center" Text="PotPlayer"  Grid.ColumnSpan="2" FontSize="14" FontWeight="Bold" />
+                <TextBlock Grid.Column="0" Grid.Row="0" Margin="5,5,5,5" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_PotPlayer}"  Grid.ColumnSpan="2" FontSize="14" FontWeight="Bold" />
                 <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,5,0" Grid.Column="0" Grid.Row="1" VerticalAlignment="Top"/>
-                <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,0,5,0" VerticalAlignment="Center" Text="For PotPlayer Integration you must enable the following options (1) Preferences > General > Store Settings to .ini file (2) Preferences > Playback > Play from latest point. See the following screenshot for more details. The location of the PlotPlayer .ini file is usually something like C:\Users\username\AppData\Roaming\PotPlayer64\PotPlayer64.ini"  TextWrapping="Wrap" />
-                <usercontrols:HyperLinkStandard Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Margin="0,5,0,0" DisplayText="PotPlayer Options"
+                <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,0,5,0" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_PotPlayerNote}"  TextWrapping="Wrap" />
+                <usercontrols:HyperLinkStandard Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Margin="0,5,0,0" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_PotPlayerOptions}"
                                                                         URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_PotPlayer}"/>
             </Grid>
         </Border>
@@ -123,20 +123,20 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Text="PotPlayer INI Folder" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="10,10,0,0"/>
+                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_PotPlayerFolder}" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="10,10,0,0"/>
                 <TextBlock Text="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=PotPlayerFolder}" Foreground="DarkGray" VerticalAlignment="Center" Margin="10,10,0,0" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4"/>
 
                 <Button Name="btnChoosePotLocation" Style="{DynamicResource RoundButtonStyle}" Margin="10,5,0,0" Grid.Row="2" Grid.Column="1">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                         <Image Height="16" Width="16" Source="/Images/32_Folder.png" Margin="0,0,5,0"/>
-                        <TextBlock VerticalAlignment="Center" Text="Select PotPlayer INI Folder" Margin="0,0,5,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_PotPlayerINI}" Margin="0,0,5,0"/>
                     </StackPanel>
                 </Button>
 
                 <Button Name="btnTestPotLocation" Style="{DynamicResource RoundButtonStyle}" Margin="10,5,0,0" Grid.Row="2" Grid.Column="2">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                         <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
-                        <TextBlock VerticalAlignment="Center" Text="Test PotPlayer INI File" Margin="0,0,5,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_PotPlayerTest}" Margin="0,0,5,0"/>
                     </StackPanel>
                 </Button>
             </Grid>
@@ -157,10 +157,10 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" Grid.Row="0" Margin="5,5,5,5" VerticalAlignment="Center" Text="VLC"  Grid.ColumnSpan="2" FontSize="14" FontWeight="Bold" />
+                <TextBlock Grid.Column="0" Grid.Row="0" Margin="5,5,5,5" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_VLC}"  Grid.ColumnSpan="2" FontSize="14" FontWeight="Bold" />
                 <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,5,0" Grid.Column="0" Grid.Row="1" VerticalAlignment="Top"/>
-                <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,0,5,0" VerticalAlignment="Center" Text="VLC 2.2+ records recent files and timestamps by default (and disabling is an 'Advanced' option). Older versions do not support 'Resume from last position' functionality. The location of the VLC .ini file is usually something like C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini"  TextWrapping="Wrap" />
-                <usercontrols:HyperLinkStandard Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Margin="0,5,0,0" DisplayText="VLC Options"
+                <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,0,5,0" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_VLCNote}"  TextWrapping="Wrap" />
+                <usercontrols:HyperLinkStandard Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Margin="0,5,0,0" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_VLCOptions}"
                                                                         URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_VLC}"/>
             </Grid>
         </Border>
@@ -181,20 +181,20 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Text="VLC INI Folder" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="10,10,0,0"/>
+                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_VLCFolder}" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="10,10,0,0"/>
                 <TextBlock Text="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=VLCFolder}" Foreground="DarkGray" VerticalAlignment="Center" Margin="10,10,0,0" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4"/>
 
                 <Button Name="btnChooseVLCLocation" Style="{DynamicResource RoundButtonStyle}" Margin="10,5,0,0" Grid.Row="2" Grid.Column="1">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                         <Image Height="16" Width="16" Source="/Images/32_Folder.png" Margin="0,0,5,0"/>
-                        <TextBlock VerticalAlignment="Center" Text="Select VLC INI Folder" Margin="0,0,5,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_VLCINI}" Margin="0,0,5,0"/>
                     </StackPanel>
                 </Button>
 
                 <Button Name="btnTestVLCLocation" Style="{DynamicResource RoundButtonStyle}" Margin="10,5,0,0" Grid.Row="2" Grid.Column="2">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                         <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
-                        <TextBlock VerticalAlignment="Center" Text="Test VLC INI File" Margin="0,0,5,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_VLCTest}" Margin="0,0,5,0"/>
                     </StackPanel>
                 </Button>
             </Grid>
@@ -221,7 +221,7 @@
 
 
 
-            <CheckBox Name="chkAutoSetWatched" Grid.Column="0" VerticalAlignment="Center" Grid.Row="0" Content="Automatically mark files as watched when the following percentage is watched" Margin="10,0,0,5"/>
+            <CheckBox Name="chkAutoSetWatched" Grid.Column="0" VerticalAlignment="Center" Grid.Row="0" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_AutoMark}" Margin="10,0,0,5"/>
 
             <extToolkit:IntegerUpDown Grid.Column="1" Grid.Row="0" Name="udWatchedPct" Minimum="1" Maximum="100" DefaultValue="85" VerticalAlignment="Center" Margin="5,0,0,5"
                                       Value="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=VideoWatchedPct}" />

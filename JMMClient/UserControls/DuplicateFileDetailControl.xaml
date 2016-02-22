@@ -63,7 +63,7 @@
                     <Image Height="16" Width="16" Source="/Images/32_play2.png" Margin="2,0,2,0"/>
                 </StackPanel>
                 <Button.ToolTip>
-                    <TextBlock Text="Play Video"/>
+                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=PlayVideo}"/>
                 </Button.ToolTip>
             </Button>
             
@@ -101,7 +101,7 @@
                     <Image Height="16" Width="16" Source="/Images/32_play2.png" Margin="2,0,2,0"/>
                 </StackPanel>
                 <Button.ToolTip>
-                    <TextBlock Text="Play Video"/>
+                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=PlayVideo}"/>
                 </Button.ToolTip>
             </Button>
             

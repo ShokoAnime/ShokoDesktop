@@ -55,7 +55,7 @@
 
                 <StackPanel Orientation="Horizontal"  Margin="0,0,0,0" DockPanel.Dock="Top">
                     <Image Margin="5,0,0,0" Height="16" Width="16" Source="/Images/myanimelist.ico" VerticalAlignment="Center"/>
-                    <TextBlock VerticalAlignment="Center" Text="MyAnimeList" Margin="5,0,0,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Select_MyAnimeList}" Margin="5,0,0,0"/>
                     <TextBlock VerticalAlignment="Center" Text="[" Margin="5,0,0,0"/>
                     <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=MALTitle, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SelectMALStartForm}}}" Margin="5,0,0,0"/>
                     <TextBlock VerticalAlignment="Center" Text="]" Margin="5,0,0,0"/>
@@ -64,10 +64,10 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal"  Margin="0,5,0,0" DockPanel.Dock="Top">
-                    
-                    <TextBlock VerticalAlignment="Center" Text="Episode Type:" Margin="25,0,0,0"/>
+
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Select_EpisodeType}" Margin="25,0,0,0"/>
                     <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" Name="cboEpisodeType"></ComboBox>
-                    <TextBlock VerticalAlignment="Center" Text="Starting Episode #" Margin="5,0,0,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Select_StartingEpisode}" Margin="5,0,0,0"/>
                     <TextBox VerticalAlignment="Center" Name="txtEpNumber" Width="50" Margin="5,2,2,0" BorderThickness="1" Text="1" />
 
 

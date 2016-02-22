@@ -123,10 +123,2143 @@
   <data name="GroupFilter_Favorites" xml:space="preserve">
     <value>Favourites</value>
   </data>
-  <data name="SortName" xml:space="preserve">
-    <value>Sorted By</value>
-  </data>
   <data name="TAB_UnrecognisedFiles" xml:space="preserve">
     <value>Unrecognised Files</value>
+  </data>
+  <data name="AniDBRating" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AniDBVoteCount" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Episodes" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="EpisodeType" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="EpisodeType_Credits" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="EpisodeType_Normal" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="EpisodeType_Other" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="EpisodeType_Parody" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="EpisodeType_Specials" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="EpisodeType_Trailer" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilter_All" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="IsWatched" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MyRating" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="RunTime" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Series" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TAB_Config" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TAB_Episodes" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TAB_FileManager" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TAB_Images" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TAB_Relations" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TAB_SeriesEpisodes" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TAB_Server" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TAB_TvDB" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="ViewLabel" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="RunImport" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AnimeTitles" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AnimeTitlesMain" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AnimeTitlesOfficial" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AnimeTitlesShort" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AnimeTitlesSynonym" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Categories" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="CategoryWeighting" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TagApproval" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Episodes_AvAll" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Episodes_AvMissing" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Episodes_AvOnly" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Episodes_Watched_All" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Episodes_Watched_Unwatched" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Episodes_Watched_Watched" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Play" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_FileFound" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_FileNotFound" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_FutureDated" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_Unwatched" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_Watched" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_ZeroFiles" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Unwatched" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Watched" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Votes" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AnimeType_Movie" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AnimeType_Other" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AnimeType_OVA" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AnimeType_TVSeries" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AnimeType_TVSpecial" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AnimeType_Web" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Ongoing" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LastWatched" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupsAvailableFrom" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Missing" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_MissingEps" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_MissingEpsGroups" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_QueueImages" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Specials" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilter_Missing" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="RemoveMissingFiles" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="ServerActions" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="NewGroup" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AllFilters" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AddSubGroup" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SubGroup" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="NewSeries" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MoveSeries" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MoveToGroup" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="QueueGeneral" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="QueueHasher" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_QueueGeneral" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_QueueHasher" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Pause" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Resume" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Video_Bluray" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Video_DVD" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Video_FullHD" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Video_HD" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="NewFolder" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="DropDestination" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="DropSource" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="ImportFolderName" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="ImportFolderPath" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LocalMapping" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LocalPath" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="ServerDetails" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MSG_ERR_DropSourceDestCheck" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MSG_ERR_ImportFolderLocationCheck" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="NothingSelected" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SelectSeriesEp" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AssociateFile" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Ignore" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="OpenFolder" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MSG_ERR_FileNotFound" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="FilesSelected" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="StartingEpisodeNumber" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Existing" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SelectGroup" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SelectAnime" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupName" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AniDBID" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MSG_ERR_AnimeIDRequired" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MSG_ERR_AnimeSelectionRequired" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MSG_ERR_GroupNameRequired" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MSG_ERR_GroupSelectionRequired" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MSG_ERR_InvalidEpGetAnime" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MSG_ERR_InvalidEp" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="DeleteLink" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_DeleteLink" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TAB_IgnoredFiles" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Restore" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TAB_ManuallyLinked" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AniDBLogin" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Client" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="ImportFolders" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="JMMServer" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Server" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="ServerPath" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TAB_SettingsAniDB" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TAB_SettingsDisplay" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TAB_SettingsEssential" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TAB_SettingsOnlineDB" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Test" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TestAndSave" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="INFO_SettingsEssential" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_GroupSearch" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AniDBDownloadChar" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AniDBDownloadOptions" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AniDBDownloadRelated" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AniDBDownloadReleaseGroups" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AniDBDownloadReviews" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AniDBDownloadSimilar" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AniDBMyListAddFiles" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AniDBMylistOptions" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AniDBMyListReadUnwatched" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AniDBMyListReadWatched" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AniDBMyListSetUnwatched" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AniDBMyListSetWatched" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AniDBMyListState" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_AniDBDownloadChar" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_AniDBDownloadRelated" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_AniDBDownloadReleaseGroups" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_AniDBDownloadReviews" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_AniDBDownloadSimilar" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_AniDBMyListAddFiles" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_AniDBMyListReadUnwatched" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_AniDBMyListReadWatched" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_AniDBMyListSetUnwatched" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_AniDBMyListSetWatched" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_AniDBMyListState" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SyncMyList" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Rehash" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MSG_INFO_AddedQueueCmds" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MultiTypeRange" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MultiTypeSingle" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AniDBScheduleCalendar" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AniDBScheduleHTTP" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AniDBScheduleMyList" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AniDBScheduleOptions" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_AniDBScheduleCalendar" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_AniDBScheduleHTTP" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_AniDBScheduleMyList" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TAB_SettingsWebCache" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="DetailedInformationLink" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Get" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="INFO_SettingsWebCache" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_WebCache_Anonymous" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_WebCache_FileEpisodes" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_WebCache_FileHashes" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_WebCache_TvDBAssociations" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TvDB_FanartAutoDownload" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TvDB_FanartCount" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TvDB_PosterAutoDownload" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TvDB_WideBannerAutoDownload" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="WebCache_Anonymous" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="WebCache_FileEpisodes" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="WebCache_FileHashes" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="WebCache_TvDBAssociations" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TAB_SettingsOnlineDB_MovieDB" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TAB_SettingsOnlineDB_TvDB" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_TvDB_FanartAutoDownload" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_TvDB_FanartCount" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_TvDB_PosterAutoDownload" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_TvDB_WideBannerAutoDownload" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="ImportSettings_HashCRC32" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="ImportSettings_HashMD5" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="ImportSettings_ImportOnStart" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="ImportSettings_SHA1" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="ImportSettings_VideoExtensions" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="ImportSettings_WatchFiles" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MovieDB_FanartAutoDownload" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MovieDB_FanartCount" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MovieDB_PosterAutoDownload" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TAB_Settings_ImportSettings" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_MovieDB_FanartAutoDownload" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_MovieDB_FanartCount" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_MovieDB_PosterAutoDownload" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Down" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LanguageUseSynonyms" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TAB_Settings_Language" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_LanguageUseSynonyms" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Up" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterConditions" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterConditionType" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterConditionType_AirDate" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterConditionType_AllEpisodesWatched" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterConditionType_AnimeGroup" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterConditionType_AnimeType" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterConditionType_AssignedTvDBInfo" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterConditionType_Category" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterConditionType_CompletedSeries" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterConditionType_Favourite" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterConditionType_HasUnwatchedEpisodes" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterConditionType_MissingEpisodes" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterConditionType_ReleaseGroup" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterConditionType_Studio" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterConditionType_Tag" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterConditionType_UserVoted" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterConditionType_VideoQuality" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterOperator" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterOperator_Equals" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterOperator_Exclude" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterOperator_GreaterThan" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterOperator_Include" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterOperator_LessThan" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterOperator_NotEquals" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterSorting" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="ImageSize_GroupList" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="ImageSize_SeriesPoster" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="ImageSize_SubGroupList" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="INFO_SettingsDisplayStyle" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MSG_ERR_SelectDate" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="NewGroupFilter" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="RenameGroups" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Style_GroupList" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Style_GroupList_MediumDetail" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Style_GroupList_Simple" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TAB_SettingsImageSizes" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TAB_SettingsStyle" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_ImageSize_GroupList" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_ImageSize_SeriesPoster" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_ImageSize_SubGroupList" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_Style_GroupList" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="FilterValue" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MSG_ERR_EnterValue" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="PreviewFilter" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilter_ApplyToSeries" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilter_BaseCondition" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilter_BaseCondition_ExcludeAll" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilter_BaseCondition_IncludeAll" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_GroupFilter_BaseCondition" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterOperator_In" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterOperator_NotIn" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilter_Category_Help" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterConditionType_AniDBRating" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterConditionType_UserRating" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MSG_ERR_RatingValue" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="ScanFolder" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterConditionType_EpisodeAddedDate" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterConditionType_EpisodeWatchedDate" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterConditionType_SeriesDate" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterOperator_LastXDays" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SelectDate" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MSG_ERR_DaysValue" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SyncVotes" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="UserVote" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="VoteNow" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="VoteRevoke" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterConditionType_FinishedAiring" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="VoteTypeAnimePermanent" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="VoteTypeAnimeTemporary" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AniDBMyListLocalActions" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AniDBMyListSyncAndImport" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="EpisodeMarkAllUnwatched" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="EpisodeMarkAllWatched" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="EpisodeMarkAllWatchedPrevious" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilter_VideoQuality_Help" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterConditionType_MissingEpisodesCollecting" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterOperator_InAllEpisodes" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterOperator_NotInAllEpisodes" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterConditionType_AudioLanguage" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterConditionType_SubtitleLanguage" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterSortDirection_Asc" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterSortDirection_Desc" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterSorting_AniDBRating" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterSorting_EpisodeAddedDate" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterSorting_EpisodeAirDate" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterSorting_EpisodeWatchedDate" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterSorting_GroupName" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterSorting_MissingEpisodeCount" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterSorting_SeriesAddedDate" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterSorting_SeriesCount" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterSorting_UnwatchedEpisodeCount" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterSorting_UserRating" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterSorting_Year" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterDirection" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterSortType" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="QuickSort" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TAB_DuplicateFiles" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="INFO_DuplicateFiles" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_DeleteDuplicateFileAll" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_DeleteDuplicateFileEntry" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Files" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="ReevaluateDuplicateFiles" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_ReevaluateDuplicateFiles" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TAB_MultipleFiles" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="INFO_MultipleFiles" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TotalFileCount" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="ImportSettings_UseEpisodeStatus" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_TvDB_Schedule_Updates" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TvDB_Schedule_Updates" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="RescanAll" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="DeleteAll" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="CrossRefSummary" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="FileSummary" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TheTvDB" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SeasonNumber" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="CommunityRecommendation" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TvDBSearchPrompt" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TvDBShow" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="UseThis" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SwitchSeason" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AniDB" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="UpdateAniDBInfo" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="UpdateInfo" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="ImageSize_EpisodeImage" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_ImageSize_EpisodeImage" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="EpisodeDetailStyle" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="EpisodeDetailStyle_Option1" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="EpisodeDetailStyle_Option2" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="EpisodeDetailStyle_Option3" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="HideEpisodeImageWhenUnwatched" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="HideEpisodeOverviewWhenUnwatched" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_HideEpisodeImageWhenUnwatched" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_HideEpisodeOverviewWhenUnwatched" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Fanart" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Images" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Image_Disabled" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Image_Dynamic" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Image_Enabled" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Image_Static" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Image_View" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Posters" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="WideBanners" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TheMovieDB" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MovieDBShow" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MovieDBSearchPrompt" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterConditionType_AssignedTvDBOrMovieDBInfo" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterConditionType_AssignedMovieDBInfo" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Image_Default" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Image_NotDefault" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="PlayNextEpisode" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AllEpisodesWatched" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="FinishEditing" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TAB_Dashboard" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Dash_WatchNextEp_Recent" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="DeleteSeries" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="DeleteSeriesConfirm" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="DeleteSeriesConfirm_Files" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Dash_SeriesMissingEps" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LatestEp_Anime" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LatestEp_Yours" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MissingEpisodeCount" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Dash_MiniCalendar" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="ImageSize" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="INFO_SettingsUserAdmin" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TAB_SettingsUsers" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="User_HideCategories" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="User_IsAdmin" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="User_Password" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="User_Username" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Items" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Days" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="DashWatchNextStyle_Detailed" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="DashWatchNextStyle_Simple" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TAB_SettingsOnlineDB_Trakt" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Trakt_Password" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Trakt_Username" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="UpdateFrequency" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="UpdateFrequency_12Hours" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="UpdateFrequency_6Hours" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="UpdateFrequency_Daily" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="UpdateFrequency_Never" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TraktSyncFrequency" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TraktSearchPrompt" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TraktShow" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TAB_Pinned" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_ViewSeries" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterConditionType_UserVotedAny" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_User_IsAniDB" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="User_IsAniDB" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="User_IsTrakt" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="ERROR_SeriesExists" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_CreateSeries" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SimilarAnime" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="RelatedAndSimilar" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GetMissingData" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="NoSimilarAnime" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="NoRelatedAnime" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="RelatedAnime" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Dash_RecWatch" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Dash_RecDownload" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="ImportSettings_AutoGroupSeries" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterConditionType_HasWatchedEpisodes" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MyList" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_MyList" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TAB_MissingFiles" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TAB_Utilities" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TAB_SeriesWithoutFiles" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="DeleteSeriesConfirm_Groups" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TAB_MissingEpisodes" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MyGroupsOnly" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="RegularEpisodesOnly" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Dash_TraktFriends" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_IgnoreAnimeDownload" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_IgnoreAnimeWatch" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="VisitWebsite" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AniDBSignup" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AvdumpHeader" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AvdumpInfoLink" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AvdumpKey" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AvdumpKeyEditLink" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Avdump" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AvdumpRequiredFilesLink" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AvdumpSettingsError" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AvdumpAddRelease" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="CopyED2KClipboard" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_CopyED2KClipboard" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TAB_IgnoredAnime" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Anime" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="RemoveDefaultSeries" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SetDefaultSeries" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="DefSeries1" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="DefSeries2" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="DefSeries3" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="ChangeLanguage" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="EpisodeTitleSourceStyle" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SeriesNameSourceStyle" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SeriesOverviewSourceStyle" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_EpisodeTitleSourceStyle" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_SeriesNameSourceStyle" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_SeriesOverviewSourceStyle" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="User_EditSettings" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_RemoveMissingFiles" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_UpdateMediaInfo" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="UpdateMediaInfo" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Video_Hi10P" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_TraktAnimeOnly" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TraktAnimeOnly" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="ForceRefresh" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TraktFriendNotes" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Dash_RecentEpisodes" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="PromptRateSeries" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_PromptRateSeries" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MALSearchPrompt" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MALShow" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_WebCache_MALAssociations" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="WebCache_MALAssociations" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_MAL_UpdateFrequency" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterConditionType_AssignedMALInfo" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_UseFanartOnSeries" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="UseFanartOnSeries" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MAL_NeverDecrease" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_MAL_NeverDecrease" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilterConditionType_EpisodeCount" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SyncMalDown" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SeriesSimple_Episodes" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SeriesSimple_MyVote" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SeriesSimple_PlayNext" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SeriesSimple_PlayUnWatched" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SeriesSimple_YourSay" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SeriesSimple_Spoiler" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SeriesSimple_CommentTrakt" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SeriesSimple_Characters" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SeriesSimple_AlsoLike" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SeriesSimple_PeopleSaying" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SeriesSimple_Loading" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AvDump_Remove" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AvDump_Clear" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AvDump_Dump" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Bookmarks_Downloading" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Bookmarks_NotDownloading" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Dashboard_YourVote" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Dashboard_Bookmark" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Dashboard_Download" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Dashboard_NoRecommend" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Dashboard_DownloadVotes" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Dashboard_SyncVotes" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Dashboard_Added" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Dashboard_Metro" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Dashboard_UpdateCalendar" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Dashboard_Recent" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Metro_Options" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Metro_General" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Metro_ImageType" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Metro_Sections" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Metro_Items" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Metro_Refresh" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="PlayVideo" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Episode_MoreInfo" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Episode_LessInfo" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Episode_Manual" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Episode_ForceAniDBUpdate" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Episode_RecalculateHash" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Episode_Hash" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Episode_CRC32" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Episode_SHA1" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Episode_MD5" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Episode_DownloadSearch" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Episode_PlaylistAdd" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Episode_TvDBOverride" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Episode_TvDBRemove" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Episode_AniDBForceUpdate" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Episode_Type" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Episode_Availability" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Episode_WatchedState" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Rename_Script" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Rename_New" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Rename_Save" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Rename_Delete" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Rename_Tag" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Rename_Add" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Rename_Test" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Rename_ScriptingHelp" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Rename_ImportRun" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Rename_Filter" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Rename_Clear" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Rename_AddFiles" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Rename_Rename" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Rename_Preview" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="FileSearch_Rescan" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="FileSearch_AniDBForceUpdate" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilter_RandomSeries" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GroupFilter_RandomEpisode" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="IgnoredAnime_Delete" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="IgnoredAnime_Note" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="ImportFolder_Watched" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MissingEpisodes_SelectColumns" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MissingEpisodes_AiringState" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="RefreshWait" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MissingEpisodes_Note" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MissingMyList_Missing" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MissingMyList_RemoveAll" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MissingMyList_Note" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Episode" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Playlist_Random" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Playlist_Default" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Playlist_Items" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="PlayNext_Hidden" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Rankings_Overall" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Rankings_GroupedByYear" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Rankings_CollectionState" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Rankings_Voted" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Rankings_Completed" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Rankings_Anime" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Rankings_AniDB" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Rankings_User" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Rankings_Year" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Rankings_View" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Rankings_MyVote" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Related_Bookmark" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Related_Search" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SeriesWithoutFiles_Delete" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SeriesWithoutFiles_Note" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TraktShouts_View" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TraktShouts_FromAniDB" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TraktShouts_Spoiler" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TraktShouts_Loading" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TraktShouts_Comments" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="CommunityLinks_Start" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="CommunityLinks_Edit" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="CommunityLinks_AniDBStart" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="CommunityLinks_TvDB" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="CommunityLinks_Trakt" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="CommunityLinks_TMDb" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="CommunityLinks_MAL" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="CommunityLinks_AutoLink" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_DeleteTitle" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_DeleteInfo" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_EditTitle" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_EditInfo" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_UpdateTitle" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_UpdateTvDB" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_ReportLinkTitle" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_ReportLinkInfo" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_UpdateTrakt" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_Sync" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_SyncTrakt" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_AutoLinkDisabledTitle" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_AutoLinkDisabledTvDB" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_AutoLinkEnabledTitle" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_AutoLinkEnabledTvDB" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_AutoLinkEnabledTMDb" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_CommunityAdminTitle" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_CommunityAdminInfo" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Unrecognized_Rescan" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Unrecognized_ForceAniDB" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Unrecognized_Hash" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Unrecognized_CRC32" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Unrecognized_Rehash" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Unrecognized_Logs" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Unrecognized_NA" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Unrecognized_RefreshSeries" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Unrecognized_To" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="UpdateAniDB_UpdateLocal" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="UpdateAniDB_Info1" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="UpdateAniDB_MissingInfo" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="UpdateAniDB_Info2" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="UpdateAniDB_Version" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="UpdateAniDB_Info3" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="UpdateAniDB_Info4" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="UpdateAniDB_HowManyQueued" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="UpdateAniDB_Queued" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="User_ChangePassword" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Anime_GroupName" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Anime_SortName" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Anime_GotVids" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Anime_GotEpisodes" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Anime_In" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Anime_Contracts" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Anime_Sorted" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AVDump_ToBe" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Group_Groups" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Group_FilterName" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Ignore_RecDown" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Ignore_RecWatch" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Ignore_AnimeID" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="JMMServer_TraktAuth" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="JMMServer_Success" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="JMMServer_Error" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Missing_Episode" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Missing_File" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Playlist_Name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Playlist_NameBlank" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Recommendation_Missing" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Recommendation_NoOverview" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="uTorrent_NotConnected" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="uTorrent_Connecting" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Constants_Continue" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Constants_MainCharacter" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Group_GroupCount" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tab_Playlists" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Playlist_NewPlaylist" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tab_Bookmarks" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="JMMServer_ImportFolders" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="JMMServer_ServerStatus" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_ClearHash" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="JMMServer_Running" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="JMMServer_Paused" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_ClearGeneral" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tooltip_ClearImages" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="JMMServer_ServerImage" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tab_AniDBAVDump" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tab_FileSearch" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tab_FileRename" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tab_UpdateAniDB" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tab_CommunityData" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tab_MyVotes" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="VideoPlayer_MPCI" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="VideoPlayer_AutoFile" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TAB_SettingsOnlineDB_MAL" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tab_Downloads" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Downloads_uTorrentInfo" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Downloads_uTorrentWebUI" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Downloads_TorrentBlackHole" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Downloads_TorrentDefault" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Downloads_BakaBT" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Downloads_AnimeBytes" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Downloads_BakaBTInfo" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Downloads_AnimeBytesInfo" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Downloads_GoTo" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tab_Search" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Tab_Community" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Main_Messages" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Main_Paused" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Main_User" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Main_Feed" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Main_About" xml:space="preserve">
+    <value></value>
   </data>
 </root>

@@ -78,7 +78,7 @@
 
                         <TextBlock Text="{Binding Path=AniDB_Anime_GroupNameShort}" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0"
                                    Visibility="{Binding Path=IsAutoAssociation, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <TextBlock Text="MANUAL LINK" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0"
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ManualLink}" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0"
                                    Visibility="{Binding Path=IsManualAssociation, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                         <TextBlock Text="{Binding Path=FormattedFileSize}" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0" />
@@ -212,7 +212,7 @@
                    Visibility="{Binding Path=FullOverview, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:PlayNextEpisodeControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
         </TextBlock>
 
-        <TextBlock Grid.Column="1" Grid.Row="1" Text="Hidden to prevent spoilers" HorizontalAlignment="Stretch" Margin="10,0,0,0" 
+        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=PlayNext_Hidden}" HorizontalAlignment="Stretch" Margin="10,0,0,0" 
                    VerticalAlignment="Top"  TextWrapping="Wrap"
                    Visibility="{Binding Path=HideOverview, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:PlayNextEpisodeControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
         </TextBlock>

@@ -43,7 +43,7 @@ namespace JMMClient
 				case "EN": return @"/Images/Flags/uk_unitedkingdom.gif";
 				case "X-JAT": return @"/Images/Flags/jp.gif";
 				case "JA": return @"/Images/Flags/jp.gif";
-				case "AR": return @"/Images/Flags/ar.gif"; // arabic
+				case "AR": return @"/Images/Flags/ar.gif"; // Arabic
 				case "BD": return @"/Images/Flags/bd.gif"; // Bangladesh
 				case "BG": return @"/Images/Flags/bg.gif"; // Bulgarian
 				case "CA": return @"/Images/Flags/ca.gif"; // Canadian
@@ -51,9 +51,9 @@ namespace JMMClient
 				case "CZ": return @"/Images/Flags/cz.gif"; // Czech
 				case "DA": return @"/Images/Flags/dk.gif"; // Danish
 				case "DK": return @"/Images/Flags/dk.gif"; // Danish
-				case "DE": return @"/Images/Flags/de_germany.gif"; // german
+				case "DE": return @"/Images/Flags/de_germany.gif"; // German
 				case "EL": return @"/Images/Flags/gr.gif"; // Greek
-				case "ES": return @"/Images/Flags/es.gif"; // spanish
+				case "ES": return @"/Images/Flags/es.gif"; // Spanish
 				case "ET": return @"/Images/Flags/et.gif"; // Estonian
 				case "FI": return @"/Images/Flags/fi.gif"; // Finnish
 				case "FR": return @"/Images/Flags/fr.gif"; // french
@@ -85,10 +85,10 @@ namespace JMMClient
 				case "UK": return @"/Images/Flags/ua.gif"; // Ukrainian
 				case "UA": return @"/Images/Flags/ua.gif"; // Ukrainian
 				case "VI": return @"/Images/Flags/vi.gif"; // Vietnamese
-				case "ZH": return @"/Images/Flags/cn.gif"; // chinese
-				case "ZH-HANS": return @"/Images/Flags/cn.gif"; // chinese
-				case "ZH-HANT": return @"/Images/Flags/cn.gif"; // chinese
-				default: return @"/Images/32_warning.png";
+				case "ZH": return @"/Images/Flags/cn.gif"; // Chinese
+				case "ZH-HANS": return @"/Images/Flags/cn.gif"; // Chinese (Simplified)
+                case "ZH-HANT": return @"/Images/Flags/cn.gif"; // Chinese (Traditional)
+                default: return @"/Images/32_warning.png";
 
 			}
 		}
