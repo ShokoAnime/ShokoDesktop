@@ -3176,4 +3176,13 @@
   <data name="Search_TitleOnly" xml:space="preserve">
     <value>Только название</value>
   </data>
+  <data name="Tooltip_User_PlexUsers" xml:space="preserve">
+    <value>Сопоставляет пользователей этой запятой от плекса этой модели памяти JMM пользователя. Если пользователь plex является друг (не домашних пользователей), используйте «Внешние» как Plex пользователя</value>
+  </data>
+  <data name="User_Hide_Tags" xml:space="preserve">
+    <value>Скрыть Теги</value>
+  </data>
+  <data name="User_PlexUsers" xml:space="preserve">
+    <value>Plex пользователей</value>
+  </data>
 </root>

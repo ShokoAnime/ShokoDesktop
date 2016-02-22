@@ -3176,4 +3176,13 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   <data name="Search_TitleOnly" xml:space="preserve">
     <value>TEST TEST TEST</value>
   </data>
+  <data name="Tooltip_User_PlexUsers" xml:space="preserve">
+    <value>Ordnet diese durch Kommas getrennte Benutzer aus Plex an diesen JMM-Benutzer. Wenn der Plex-Benutzer ein Freund (nicht home-User), verwenden Sie "Externe" als Plex-Benutzer</value>
+  </data>
+  <data name="User_Hide_Tags" xml:space="preserve">
+    <value>Tags ausblenden</value>
+  </data>
+  <data name="User_PlexUsers" xml:space="preserve">
+    <value>Plex-Benutzer</value>
+  </data>
 </root>

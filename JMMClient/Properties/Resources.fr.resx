@@ -3176,4 +3176,13 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   <data name="Search_TitleOnly" xml:space="preserve">
     <value>Titre uniquement</value>
   </data>
+  <data name="Tooltip_User_PlexUsers" xml:space="preserve">
+    <value>Mappe cette utilisateurs séparés par des virgules de plex à cet utilisateur de JMM. Si l'utilisateur plex est un ami (utilisateur non domestique), utilisez « Externe » en tant qu'utilisateur de Plex</value>
+  </data>
+  <data name="User_Hide_Tags" xml:space="preserve">
+    <value>Masquer les Tags</value>
+  </data>
+  <data name="User_PlexUsers" xml:space="preserve">
+    <value>Utilisateurs de plex</value>
+  </data>
 </root>

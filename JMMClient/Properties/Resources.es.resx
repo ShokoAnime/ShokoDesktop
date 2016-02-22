@@ -3176,4 +3176,13 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
   <data name="Search_TitleOnly" xml:space="preserve">
     <value>Sólo título</value>
   </data>
+  <data name="Tooltip_User_PlexUsers" xml:space="preserve">
+    <value>Mapas de los usuarios de esta separada por comas de plex a este usuario de JMM. Si el usuario de plex es un amigo (usuario no doméstico), utilice 'Externa' como usuario de Plex</value>
+  </data>
+  <data name="User_Hide_Tags" xml:space="preserve">
+    <value>Ocultar etiquetas</value>
+  </data>
+  <data name="User_PlexUsers" xml:space="preserve">
+    <value>Usuarios de Plex</value>
+  </data>
 </root>
