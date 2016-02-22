@@ -22,7 +22,7 @@
 
 
                 <RoutedUICommand x:Key="DeleteUserCommand" Text="DeleteUserCommand" />
-                
+
                 <!-- UserTemplate -->
                 <DataTemplate x:Key="UserTemplate">
 
@@ -66,34 +66,32 @@
             <CommandBinding Command="{StaticResource DeleteUserCommand}" Executed="CommandBinding_DeleteUser" />
         </StackPanel.CommandBindings>
 
-                <!-- Group Filter Conditions and Sorting  -->
+        <!-- Group Filter Conditions and Sorting  -->
         <StackPanel Orientation="Horizontal">
 
             <!-- User List -->
             <Border Margin="0,0,0,0" Padding="7" Background="Transparent" BorderBrush="DarkGray" BorderThickness="1">
-            <StackPanel Orientation="Vertical">
-                
-                <ListBox Margin="0,0,0,0" Name="lbUsers" BorderThickness="0" Background="AntiqueWhite"
+                <StackPanel Orientation="Vertical">
+
+                    <ListBox Margin="0,0,0,0" Name="lbUsers" BorderThickness="0" Background="AntiqueWhite"
                                  HorizontalAlignment="Left" VerticalAlignment="Top" ItemTemplate="{DynamicResource UserTemplate}" ItemContainerStyle="{DynamicResource ListBoxItemStyleFolders}"
                                  ItemsSource="{Binding Source={x:Static local:JMMServerVM.Instance},Path=AllUsers}">
 
 
-                </ListBox>
+                    </ListBox>
 
-                <!-- New User -->
-                <Button Name="btnNewUser" Margin="0,10,2,2" Style="{DynamicResource RoundButtonStyle}" Command="{DynamicResource NewUserCommand}">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                        <Image Height="16" Width="16" Source="/Images/32_add.png" Margin="0,0,3,0"/>
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=New}" Margin="0,0,0,0"/>
-                    </StackPanel>
-                </Button>
-            </StackPanel>
+                    <!-- New User -->
+                    <Button Name="btnNewUser" Margin="0,10,2,2" Style="{DynamicResource RoundButtonStyle}" Command="{DynamicResource NewUserCommand}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                            <Image Height="16" Width="16" Source="/Images/32_add.png" Margin="0,0,3,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=New}" Margin="0,0,0,0"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
             </Border>
-            
-            <!-- Selected User Details -->
-            <Border Margin="10,0,0,0" Padding="7" Background="FloralWhite" BorderBrush="DarkGray" BorderThickness="1">
+            <Border Margin="10,0,0,0" Padding="7" Background="FloralWhite" BorderBrush="DarkGray" BorderThickness="1" Height="368">
                 <StackPanel Orientation="Vertical" 
-                            Visibility="{Binding Path=IsUserSelected, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:UserAdminControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+            		Visibility="{Binding IsUserSelected, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:UserAdminControl}}}">
 
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -112,51 +110,53 @@
                             <RowDefinition />
                         </Grid.RowDefinitions>
 
-                        <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" FontWeight="Bold" Margin="0,10,15,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=User_Username}"/>
-                        <TextBox Grid.Row="0" Grid.Column="1"  VerticalAlignment="Center" MinWidth="200" Margin="0,10,0,0" Text="{Binding Path=SortName}" Name="txtUsername"/>
-                        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" FontWeight="Bold" Margin="0,5,15,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=User_IsAdmin}"/>
-                        <CheckBox Grid.Row="1" Grid.Column="1" Name="chkIsAdmin" VerticalAlignment="Center" />
+                        <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" FontWeight="Bold" Margin="0,10,15,0" Text="{Resx Key=User_Username, ResxName=JMMClient.Properties.Resources}"/>
+                        <TextBox Grid.Row="0" Grid.Column="1"  VerticalAlignment="Center" MinWidth="200" Margin="0,10,0,0" Text="{Binding SortName}" x:Name="txtUsername"/>
+                        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" FontWeight="Bold" Margin="0,5,15,0" Text="{Resx Key=User_IsAdmin, ResxName=JMMClient.Properties.Resources}"/>
+                        <CheckBox Grid.Row="1" Grid.Column="1" x:Name="chkIsAdmin" VerticalAlignment="Center" />
 
                         <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" FontWeight="Bold" Margin="0,5,15,0" 
-                                   Text="{Resx ResxName=JMMClient.Properties.Resources, Key=User_IsAniDB}"
-                                   ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=User_IsAniDB}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_User_IsAniDB}}"/>
-                        <CheckBox Grid.Row="2" Grid.Column="1" Name="chkIsAniDB" VerticalAlignment="Center" />
+            				Text="{Resx Key=User_IsAniDB, ResxName=JMMClient.Properties.Resources}"
+            				ToolTip="{usercontrols:Info Body={Resx Key=Tooltip_User_IsAniDB, ResxName=JMMClient.Properties.Resources}, Title={Resx Key=User_IsAniDB, ResxName=JMMClient.Properties.Resources}}"/>
+                        <CheckBox Grid.Row="2" Grid.Column="1" x:Name="chkIsAniDB" VerticalAlignment="Center" />
 
                         <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" FontWeight="Bold" Margin="0,5,15,0" 
-                                   Text="{Resx ResxName=JMMClient.Properties.Resources, Key=User_IsTrakt}"/>
-                        <CheckBox Grid.Row="3" Grid.Column="1" Name="chkIsTrakt" VerticalAlignment="Center" />
+            				Text="{Resx Key=User_IsTrakt, ResxName=JMMClient.Properties.Resources}"/>
+                        <CheckBox Grid.Row="3" Grid.Column="1" x:Name="chkIsTrakt" VerticalAlignment="Center" />
 
                         <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" FontWeight="Bold" Margin="0,5,15,0" 
-                                   Text="{Resx ResxName=JMMClient.Properties.Resources, Key=User_EditSettings}"/>
-                        <CheckBox Grid.Row="4" Grid.Column="1" Name="chkEditSettings" VerticalAlignment="Center" />
+            				Text="{Resx Key=User_EditSettings, ResxName=JMMClient.Properties.Resources}"/>
+                        <CheckBox Grid.Row="4" Grid.Column="1" x:Name="chkEditSettings" VerticalAlignment="Center" />
 
-                        <TextBlock Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" FontWeight="Bold" Margin="0,5,15,0" Text="Hide Tags"/>
-                        <TextBox Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="300" Margin="0,5,0,0" Text="{Binding Path=SortName}" Name="txtTags"/>
+                        <TextBlock Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" FontWeight="Bold" Margin="0,6,15,1" Text="{Resx Key=User_Hide_Tags, ResxName=JMMClient.Properties.Resources}"/>
+                        <TextBox Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="300" Margin="0,5,0,0" Text="{Binding SortName}" x:Name="txtTags"/>
 
 
-                        <ListBox Name="lbTags" Grid.Row="6" Grid.Column="1" BorderThickness="1" BorderBrush="LightGray" Background="White" Margin="0,0,5,5" Height="130" 
-                            HorizontalAlignment="Left" VerticalAlignment="Top" Width="300"
-                            ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                            ItemsSource="{Binding Source={x:Static local:JMMServerVM.Instance},Path=AllTags}"
+                        <ListBox x:Name="lbTags" Grid.Row="6" Grid.Column="1" BorderThickness="1" BorderBrush="LightGray" Background="White" Margin="0,0,5,5" Height="130" 
+            				HorizontalAlignment="Left" VerticalAlignment="Top" Width="300"
+            				ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+            				ItemsSource="{Binding AllTags, Source={x:Static local:JMMServerVM.Instance}}"
                              />
+                        <TextBlock Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" FontWeight="Bold" Margin="0,5,15,0" Text="{Resx Key=User_PlexUsers, ResxName=JMMClient.Properties.Resources}"
+            				ToolTip="{usercontrols:Info Body={Resx Key=Tooltip_User_PlexUsers, ResxName=JMMClient.Properties.Resources}, Title={Resx Key=User_PlexUsers, ResxName=JMMClient.Properties.Resources}}"/>
+                        <TextBox Grid.Row="7" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="300" Margin="0,5,0,0" x:Name="txtPlexUsers"/>
 
 
                     </Grid>
 
-                    
+
 
                     <StackPanel Orientation="Horizontal" Margin="0,10,2,2">
                         <!-- Save User -->
-                        <Button Name="btnSave" Margin="0,2,2,2" Style="{DynamicResource RoundButtonStyle}">
+                        <Button x:Name="btnSave" Margin="0,2,2,2" Style="{DynamicResource RoundButtonStyle}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                 <Image Height="16" Width="16" Source="/Images/32_save.png" Margin="0,0,3,0"/>
-                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Save}" Margin="0,0,0,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx Key=Save, ResxName=JMMClient.Properties.Resources}" Margin="0,0,0,0"/>
                             </StackPanel>
                         </Button>
 
                         <!-- Change Password -->
-                        <Button Name="btnChangePassword" Margin="10,2,2,2" Style="{DynamicResource RoundButtonStyle}">
+                        <Button x:Name="btnChangePassword" Margin="10,2,2,2" Style="{DynamicResource RoundButtonStyle}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                 <Image Height="16" Width="16" Source="/Images/16_key.png" Margin="0,0,3,0"/>
                                 <TextBlock VerticalAlignment="Center" Text="Change Password" Margin="0,0,0,0"/>
@@ -164,11 +164,13 @@
                         </Button>
 
                     </StackPanel>
-            </StackPanel>
+                </StackPanel>
             </Border>
+
+            <!-- Selected User Details -->
         </StackPanel>
 
-        
+
 
     </StackPanel>
 </UserControl>
