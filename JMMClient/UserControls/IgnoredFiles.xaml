@@ -89,7 +89,7 @@
                                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Play}" Margin="5,0,5,0"/>
                             </StackPanel>
                             <Button.ToolTip>
-                                <TextBlock Text="Play Video"/>
+                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=PlayVideo}"/>
                             </Button.ToolTip>
                         </Button>
                         

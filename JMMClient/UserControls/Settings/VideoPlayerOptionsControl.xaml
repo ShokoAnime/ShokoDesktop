@@ -45,9 +45,9 @@
                 </Grid.ColumnDefinitions>
 
                 <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,5,0" Grid.Column="0" VerticalAlignment="Top"/>
-                <TextBlock Grid.Column="1" Grid.Row="0" Margin="0,0,5,0" VerticalAlignment="Center" Text="Automatic File Selection Preferences - this refers to when you have more than file for an episode"  TextWrapping="Wrap" />
-                <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,5,5,0" VerticalAlignment="Center" Text="For a playlist it needs to choose one file, which will be based on you preferences below."  TextWrapping="Wrap" />
-                <TextBlock Grid.Column="1" Grid.Row="2" Margin="0,5,5,0" VerticalAlignment="Center" Text="For a single episode you can enable auto file selection or have JMM prompt you to select a file whenever you have more than one"  TextWrapping="Wrap" />
+                <TextBlock Grid.Column="1" Grid.Row="0" Margin="0,0,5,0" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_AutoFileNote1}"  TextWrapping="Wrap" />
+                <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,5,5,0" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_AutoFileNote2}"  TextWrapping="Wrap" />
+                <TextBlock Grid.Column="1" Grid.Row="2" Margin="0,5,5,0" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_AutoFileNote3}"  TextWrapping="Wrap" />
 
             </Grid>
         </Border>
@@ -72,10 +72,10 @@
             </Grid.RowDefinitions>
 
 
-            <TextBlock Grid.Column="0" VerticalAlignment="Center" Grid.Row="0" Text="Automatic File Selection - First episode in series" Margin="10,0,0,5"/>
+            <TextBlock Grid.Column="0" VerticalAlignment="Center" Grid.Row="0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_AutoFileFirstEpisode}" Margin="10,0,0,5"/>
             <ComboBox Name="cboAutoFileFirst" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Margin="10,0,0,5"/>
 
-            <TextBlock Grid.Column="0" VerticalAlignment="Center" Grid.Row="1" Text="Automatic File Selection - Subsequent episodes in series" Margin="10,0,0,5"/>
+            <TextBlock Grid.Column="0" VerticalAlignment="Center" Grid.Row="1" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_AutoFileNextEpisode}" Margin="10,0,0,5"/>
             <ComboBox Name="cboAutoFileSubsequent" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="10,0,0,5"/>
 
             <!-- Info 2 -->
@@ -93,14 +93,14 @@
                     </Grid.ColumnDefinitions>
 
                     <Image Height="16" Width="16" Source="/Images/16_exclamation.png" Margin="5,2,5,0" Grid.Column="0" VerticalAlignment="Top"/>
-                    <TextBlock Grid.Column="1" Grid.Row="0" Margin="0,0,5,0" VerticalAlignment="Center" Text="If you select 'Release Group From Previously Played Episode' in the above setting you also need to do the following "  TextWrapping="Wrap" />
-                    <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,5,5,0" VerticalAlignment="Center" Text="Uncheck 'Set file as watched if episode is watched' Under Settings - Essential - Import Settings"  TextWrapping="Wrap" />
-                    <TextBlock Grid.Column="1" Grid.Row="2" Margin="0,5,5,0" VerticalAlignment="Center" Text="Always Mark a File as watched and not an episode"  TextWrapping="Wrap" />
+                    <TextBlock Grid.Column="1" Grid.Row="0" Margin="0,0,5,0" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_AutoFileNote4}"  TextWrapping="Wrap" />
+                    <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,5,5,0" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_AutoFileNote5}"  TextWrapping="Wrap" />
+                    <TextBlock Grid.Column="1" Grid.Row="2" Margin="0,5,5,0" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_AutoFileNote6}"  TextWrapping="Wrap" />
 
                 </Grid>
             </Border>
 
-            <CheckBox Name="chkAutoSelectFile" Grid.Column="0" VerticalAlignment="Center" Grid.Row="3" Grid.ColumnSpan="2" Content="Enable auto file selection on single episodes" Margin="10,0,0,5"/>
+            <CheckBox Name="chkAutoSelectFile" Grid.Column="0" VerticalAlignment="Center" Grid.Row="3" Grid.ColumnSpan="2" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_AutoFileEnable}" Margin="10,0,0,5"/>
 
 
 

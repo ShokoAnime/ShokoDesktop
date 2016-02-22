@@ -70,11 +70,11 @@
 
                             <usercontrols:HyperLinkStandard DisplayText="{Binding Path=TvDBTitle}" VerticalAlignment="Center" URL="{Binding Path=SeriesURL}" Margin="5,0,0,0"/>
 
-                            <TextBlock VerticalAlignment="Center" Text="AniDB Start:" Margin="10,0,0,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search_AniDBStart}" Margin="10,0,0,0"/>
                             <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=AniDBStartEpisodeTypeString}" Margin="5,0,0,0"/>
                             <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=AniDBStartEpisodeNumber}" Margin="5,0,0,0"/>
 
-                            <TextBlock VerticalAlignment="Center" Text="TvDB: " Margin="10,0,0,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search_TvDB}" Margin="10,0,0,0"/>
                             <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=TvDBSeasonNumberString}" Margin="5,0,0,0"/>
                             <TextBlock VerticalAlignment="Center" Text="/" Margin="5,0,0,0"/>
                             <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=TvDBStartEpisodeNumberString}" Margin="5,0,0,0"/>

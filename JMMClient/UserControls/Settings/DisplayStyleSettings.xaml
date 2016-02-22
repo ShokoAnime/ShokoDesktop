@@ -62,7 +62,7 @@
 
         <!-- Episode Download button - hide -->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="3" Margin="0,5,15,0">
-            <TextBlock Text="Hide Episode Download Button When You Already Have Files"  VerticalAlignment="Top"></TextBlock>
+            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Settings_HideDownloadButton}"  VerticalAlignment="Top"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3" Margin="0,5,5,0">

@@ -180,10 +180,10 @@
                 </StackPanel>
             </Button>
 
-            <CheckBox Name="chkDownloading" Content="Downloading" VerticalAlignment="Center" Margin="10,5,0,5"
+            <CheckBox Name="chkDownloading" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Bookmarks_Downloading}" VerticalAlignment="Center" Margin="10,5,0,5"
                                   IsChecked="True"/>
 
-            <CheckBox Name="chkNotDownloading" Content="Not Downloading" VerticalAlignment="Center" Margin="10,5,0,5"
+            <CheckBox Name="chkNotDownloading" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Bookmarks_NotDownloading}" VerticalAlignment="Center" Margin="10,5,0,5"
                                   IsChecked="True"/>
         </StackPanel>
         <ListBox DockPanel.Dock="Top" Name="lbBookmarks" BorderThickness="0" Background="Transparent" Grid.Row="1"

@@ -45,7 +45,7 @@
                         <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" Margin="10,10,5,5" Grid.Column="1" Grid.Row="0" VerticalAlignment="Top">
 
                             <TextBlock Text="{Binding Path=MessageDateAsDate}" FontWeight="Bold" FontSize="14" Foreground="DarkBlue" VerticalAlignment="Center"/>
-                            <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="More Information" URL="{Binding Path=MessageURL}" Margin="10,0,0,0"
+                            <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=MoreInformation}" URL="{Binding Path=MessageURL}" Margin="10,0,0,0"
                                                      Visibility="{Binding Path=HasMessageURL, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                         </StackPanel>

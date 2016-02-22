@@ -52,7 +52,7 @@
                         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1"
                                     Visibility="{Binding Path=SeriesExists, Converter={StaticResource BooleanToVisibilityConverter}}">
 
-                            <TextBlock Text="A series is already attached to this anime:" FontSize="12" HorizontalAlignment="Left"  Margin="7,0,0,0" Foreground="DarkRed" VerticalAlignment="Center" />
+                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=NewSeries_AlreadyAttached}" FontSize="12" HorizontalAlignment="Left"  Margin="7,0,0,0" Foreground="DarkRed" VerticalAlignment="Center" />
                             <TextBlock Text="{Binding Path=AnimeSeriesName}" FontSize="12" HorizontalAlignment="Left"  Margin="7,0,0,0" Foreground="DarkRed" VerticalAlignment="Center" />
 
                         </StackPanel>
@@ -101,7 +101,7 @@
             <DockPanel >
 
                 <StackPanel Orientation="Horizontal"  Margin="0,0,0,5" DockPanel.Dock="Top">
-                    <TextBlock VerticalAlignment="Center" Text="Step 1 - Select an Anime" Margin="5,0,0,0" FontWeight="Bold" FontSize="14" />
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=NewSeries_Step1}" Margin="5,0,0,0" FontWeight="Bold" FontSize="14" />
                 </StackPanel>
 
                 <StackPanel x:Name="pnlAnime1"  Orientation="Horizontal"  Margin="0,0,0,5" DockPanel.Dock="Top"
@@ -109,7 +109,7 @@
 
 
 
-                    <TextBlock VerticalAlignment="Center" Text="Search by title or ID" Margin="5,0,0,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=NewSeries_SearchBy}" Margin="5,0,0,0"/>
                     <TextBox Name="txtAnimeSearch" Width="180" Margin="5,2,2,0" BorderThickness="1" VerticalAlignment="Center"
                              ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=NewSeries_Search}, 
                                                 Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_NewSeries_Search}}"/>
@@ -118,7 +118,7 @@
 
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                             <Image Height="16" Width="16" Source="/Images/MagnifyingGlass7.png" Margin="0,0,3,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="Search" Margin="0,0,0,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search}" Margin="0,0,0,0"/>
                         </StackPanel>
 
 
@@ -150,7 +150,7 @@
             <DockPanel >
 
                 <StackPanel Orientation="Horizontal"  Margin="0,0,0,10" DockPanel.Dock="Top">
-                    <TextBlock VerticalAlignment="Center" Text="Step 2 - Select a Local Group" Margin="5,0,0,0" FontWeight="Bold" FontSize="14" />
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=NewSeries_Step2}" Margin="5,0,0,0" FontWeight="Bold" FontSize="14" />
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal"  Margin="0,0,0,5" DockPanel.Dock="Top" VerticalAlignment="Center"
@@ -164,7 +164,7 @@
 
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                             <Image Height="16" Width="16" Source="/Images/32_redo.png" Margin="0,0,3,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="Back To Step 1" Margin="0,0,0,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=NewSeries_BackToStep1}" Margin="0,0,0,0"/>
                         </StackPanel>
 
 

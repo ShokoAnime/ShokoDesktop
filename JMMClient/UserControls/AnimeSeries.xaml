@@ -335,7 +335,7 @@
     </UserControl.CommandBindings>
 
     <TabControl Grid.Column="0" Grid.Row="1" x:Name="tabContainer" Padding="0" Margin="2,0,2,0" SelectedIndex="0">
-        <TabItem Header="Series Info" x:Name="tabSeries">
+        <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Tab_SeriesInfo}" x:Name="tabSeries">
             <DockPanel LastChildFill="True">
                 <!-- Toolbar -->
                 <Border x:Name="panelGroupReadOnlyToolbar" Style="{DynamicResource ToolbarBorderControlStyle}" DockPanel.Dock="Top">
@@ -346,7 +346,7 @@
                         <Button x:Name="btnSwitchView" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center">
                             <Image Height="16" Width="16" Source="/Images/16_columns.png" Margin="2,0,2,0">
                                 <Image.ToolTip>
-                                    <TextBlock Text="Show Simplified View"/>
+                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=PinnedSeries_Simple}"/>
                                 </Image.ToolTip>
                             </Image>
                         </Button>
@@ -366,7 +366,7 @@
                                 Command="{DynamicResource RefreshSeriesCommand}" CommandParameter="{Binding}">
                             <Image Height="16" Width="16" Source="/Images/16_refresh.png" Margin="2,0,2,0">
                                 <Image.ToolTip>
-                                    <TextBlock Text="Refresh"/>
+                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Refresh}"/>
                                 </Image.ToolTip>
                             </Image>
                         </Button>
@@ -375,7 +375,7 @@
                         <Button Margin="0,2,2,2" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Name="btnPlaylistAdd" >
                             <Image Height="16" Width="16" Source="/Images/32_playlist_add.png" Margin="2,0,2,0">
                                 <Image.ToolTip>
-                                    <TextBlock Text="Add to Playlist"/>
+                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Playlist_Add}"/>
                                 </Image.ToolTip>
                             </Image>
                         </Button>
@@ -438,7 +438,7 @@
                         <Button x:Name="btnRandomEpisode" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}" >
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                 <Image Height="16" Width="16" Source="/Images/32_dice.png" Margin="0,0,3,0"/>
-                                <TextBlock VerticalAlignment="Center" Text="Random Episode" Margin="0,0,0,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AnimeGroup_Random}" Margin="0,0,0,0"/>
                             </StackPanel>
                         </Button>
                     </WrapPanel>
@@ -703,7 +703,7 @@
 
                             <!-- Overview Header -->
                             <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Padding="6" Background="#F1F1F1">
-                                <TextBlock Text="Overview" FontSize="16" Foreground="DarkGray"/>
+                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Series_Overview}" FontSize="16" Foreground="DarkGray"/>
                             </Border>
 
                             <!-- Description -->
@@ -719,7 +719,7 @@
 
                             <!-- More Info Header -->
                             <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Padding="6" Background="#F1F1F1">
-                                <TextBlock Text="More Information" FontSize="16" Foreground="DarkGray"/>
+                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Series_MoreInfo}" FontSize="16" Foreground="DarkGray"/>
                             </Border>
 
                             <!-- Tags -->
@@ -909,7 +909,7 @@
                                         </Button>
                                     </StackPanel>
 
-                                    <TextBlock VerticalAlignment="Center" Text="Custom Tags" FontWeight="Bold" Margin="8,0,0,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Series_CustomTags}" FontWeight="Bold" Margin="8,0,0,0"/>
 
                                     <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled"  VerticalAlignment="Top"
                                              Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=CustomTagsCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}"
@@ -938,13 +938,13 @@
                                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                                 <Image Height="16" Width="16" Source="/Images/32_settings2.png" Margin="0,0,5,0">
                                                     <Image.ToolTip>
-                                                        <TextBlock Margin="5,0,0,0" Text="Manage Custom Tags" VerticalAlignment="Center" />
+                                                        <TextBlock Margin="5,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Series_ManageCustom}" VerticalAlignment="Center" />
                                                     </Image.ToolTip>
                                                 </Image>
                                             </StackPanel>
                                         </Button>
 
-                                        <TextBlock VerticalAlignment="Center" Text="Tag" Margin="2,0,5,0"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Series_Tag}" Margin="2,0,5,0"/>
                                         <ComboBox Name="cboCustomTag" Margin="3,3,5,3" Height="Auto" VerticalAlignment="Center"
                                             ItemTemplate="{StaticResource SimpleTagTemplate}"
                                             ItemsSource="{Binding Source={x:Static local:JMMServerVM.Instance},Path=ViewCustomTagsAll}"/>
@@ -952,7 +952,7 @@
                                         <Button Name="btnAddCustomTag" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}">
                                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                                 <Image Height="16" Width="16" Source="/Images/16_plus.png" Margin="0,0,5,0"/>
-                                                <TextBlock VerticalAlignment="Center" Text="Add" Margin="0,0,5,0"/>
+                                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Series_Add}" Margin="0,0,5,0"/>
                                             </StackPanel>
                                         </Button>
 
@@ -1095,11 +1095,11 @@
             </ScrollViewer>
         </TabItem>
 
-        <TabItem x:Name="tabTraktShouts" Header="Comments From Users">
+        <TabItem x:Name="tabTraktShouts" Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Tab_Comments}">
             <usercontrols:TraktCommentsShowControl x:Name="ucTraktShouts"  />
         </TabItem>
 
-        <TabItem x:Name="tabFiles" Header="Files">
+        <TabItem x:Name="tabFiles" Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Tab_Files}">
 
             <Grid>
                 <Grid.RowDefinitions>
@@ -1124,7 +1124,7 @@
 
                 <!-- Files -->
                 <Border BorderBrush="LightGray" BorderThickness="1" Background="#FFE9ECEF" Margin="0,0,0,5" Grid.Row="0" Grid.ColumnSpan="2">
-                    <TextBlock Text="Files" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Series_Files}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                 </Border>
 
                 <Border Background="FloralWhite" BorderBrush="DarkGray" BorderThickness="1" Padding="5" Margin="5" Grid.Row="1" Grid.ColumnSpan="2">
@@ -1133,7 +1133,7 @@
 
                 <!-- Folders -->
                 <Border BorderBrush="LightGray" BorderThickness="1" Background="#FFE9ECEF" Margin="0,0,0,5" Grid.Row="2" Grid.ColumnSpan="2">
-                    <TextBlock Text="Folders" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Series_Folders}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                 </Border>
 
                 <Border Background="FloralWhite" BorderBrush="DarkGray" BorderThickness="1" Padding="5" Margin="5" Grid.Row="3" Grid.ColumnSpan="2">

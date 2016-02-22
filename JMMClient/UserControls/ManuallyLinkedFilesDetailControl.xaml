@@ -39,7 +39,7 @@
                                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Play}" Margin="5,0,5,0"/>
                             </StackPanel>
                             <Button.ToolTip>
-                                <TextBlock Text="Play Video"/>
+                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=PlayVideo}"/>
                             </Button.ToolTip>
                         </Button>
 
@@ -48,10 +48,10 @@
                                 Command="{StaticResource RescanFileCommand}" CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="0,0,5,0"/>
-                                <TextBlock VerticalAlignment="Center" Text="Rescan" Margin="0,0,5,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=FileSearch_Rescan}" Margin="0,0,5,0"/>
                             </StackPanel>
                             <Button.ToolTip>
-                                <TextBlock Text="Force update information from AniDB"/>
+                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_AniDBForceUpdate}"/>
                             </Button.ToolTip>
                         </Button>
 

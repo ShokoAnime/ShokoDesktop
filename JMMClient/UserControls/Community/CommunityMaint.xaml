@@ -36,7 +36,7 @@
         <TabControl Grid.Row="0" Grid.Column="0" Margin="5" Name="tabCommMaint" TabStripPlacement="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
 
 
-            <TabItem Header="Trakt">
+            <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Trakt}">
 
                 <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                     <Grid>
@@ -55,13 +55,13 @@
                         <Border DockPanel.Dock="Top" Background="FloralWhite" BorderBrush="DarkGray" BorderThickness="1" Grid.Column="0" Grid.Row="0" Padding="2"  Grid.ColumnSpan="3">
                             <StackPanel Orientation="Vertical">
 
-                                <CheckBox Name="chkTraktValid" Margin="5" Content="Check my links are still valid on Trakt" IsChecked="True"/>
-                                <CheckBox Name="chkTraktValidCleanup" Margin="25,5,5,5" Content="Automatically remove bad information from the database (highly recommended)" IsChecked="True"/>
-                                <CheckBox Name="chkCommRec" Margin="5" Content="Check if my links are different from the community recommendations" IsChecked="True"/>
+                                <CheckBox Name="chkTraktValid" Margin="5" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Community_TraktValid}" IsChecked="True"/>
+                                <CheckBox Name="chkTraktValidCleanup" Margin="25,5,5,5" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Community_TraktRemoveBad}" IsChecked="True"/>
+                                <CheckBox Name="chkCommRec" Margin="5" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Community_CommunityCheck}" IsChecked="True"/>
 
                                 <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" Margin="0">
 
-                                    <CheckBox Name="chkLimitSeries" Margin="5" Content="Stop after finding this many problems " IsChecked="True"/>
+                                    <CheckBox Name="chkLimitSeries" Margin="5" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Community_ProblemStop}" IsChecked="True"/>
                                     <extToolkit:IntegerUpDown Name="udLimitSeries" Minimum="1" Maximum="99999" DefaultValue="50" Value="50" VerticalAlignment="Center"/>
 
 
@@ -79,7 +79,7 @@
                                             AncestorType={x:Type usercontrols:CommunityMaint}}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                             <Image Height="16" Width="16" Source="/Images/32_play2.png" Margin="0,0,5,0"/>
-                                            <TextBlock VerticalAlignment="Center" Text="Start" Margin="0,0,5,0"/>
+                                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Start}" Margin="0,0,5,0"/>
                                         </StackPanel>
                                     </Button>
 
@@ -89,7 +89,7 @@
                                             AncestorType={x:Type usercontrols:CommunityMaint}}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                             <Image Height="16" Width="16" Source="/Images/Pause.png" Margin="0,0,5,0"/>
-                                            <TextBlock VerticalAlignment="Center" Text="Pause" Margin="0,0,5,0"/>
+                                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Pause}" Margin="0,0,5,0"/>
                                         </StackPanel>
                                     </Button>
 
@@ -99,7 +99,7 @@
                                             AncestorType={x:Type usercontrols:CommunityMaint}}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                             <Image Height="16" Width="16" Source="/Images/32_cancel.png" Margin="0,0,5,0"/>
-                                            <TextBlock VerticalAlignment="Center" Text="Stop" Margin="0,0,5,0"/>
+                                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Stop}" Margin="0,0,5,0"/>
                                         </StackPanel>
                                     </Button>
 
@@ -127,7 +127,7 @@
             <Border DockPanel.Dock="Top" Background="#F1F1F1" BorderBrush="DarkGray" BorderThickness="1" Padding="5">
                 <StackPanel Orientation="Horizontal">
 
-                    <TextBlock VerticalAlignment="Center" Text="Filter:" Margin="10,0,0,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Community_Filter}" Margin="10,0,0,0"/>
 
                     <ComboBox Name="cboFilterType" Margin="3,3,5,3" Height="24" VerticalAlignment="Center"/>
 
@@ -160,11 +160,11 @@
                     </Style>
                 </DataGrid.CellStyle>
                 <DataGrid.Columns>
-                    
-                    <DataGridTextColumn Header="Series Name" Binding="{Binding SeriesName}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="Status" Binding="{Binding Status}" IsReadOnly="True" />
 
-                    <DataGridTemplateColumn Header="Valid Trakt Link" IsReadOnly="True">
+                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Community_SeriesName}" Binding="{Binding SeriesName}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Community_Status}" Binding="{Binding Status}" IsReadOnly="True" />
+
+                    <DataGridTemplateColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Community_ValidTraktLink}" IsReadOnly="True">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Image Source="{Binding IsTraktLinkValidImage}" Width="16" Height="16" />
@@ -172,7 +172,7 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTemplateColumn Header="Has Trakt Link" IsReadOnly="True">
+                    <DataGridTemplateColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Community_HasTraktLink}" IsReadOnly="True">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Image Source="{Binding HasTraktLinkImage}" Width="16" Height="16" />
@@ -180,7 +180,7 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTemplateColumn Header="Community Link" IsReadOnly="True">
+                    <DataGridTemplateColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Community_CommunityLink}" IsReadOnly="True">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Image Source="{Binding HasTraktCommLinkImage}" Width="16" Height="16" />
@@ -188,7 +188,7 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTemplateColumn Header="Links Match?" IsReadOnly="True">
+                    <DataGridTemplateColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Community_Match}" IsReadOnly="True">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Image Source="{Binding UserTraktLinkMatchImage}" Width="16" Height="16" />
@@ -220,7 +220,7 @@
                                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                             <Image Height="16" Width="16" Source="/Images/16_refresh.png" Margin="2,0,2,0">
                                                 <Image.ToolTip>
-                                                    <TextBlock Text="Refresh data for this series"/>
+                                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Community_Refresh}"/>
                                                 </Image.ToolTip>
                                             </Image>
 
