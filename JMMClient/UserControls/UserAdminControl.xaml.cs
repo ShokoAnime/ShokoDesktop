@@ -83,14 +83,39 @@ namespace JMMClient.UserControls
 				txtUsername.Focus();
 				return;
 			}
+		    string[] plexusers = txtPlexUsers.Text.Split(',');
+		    foreach (string n in plexusers)
+		    {
+		        foreach (JMMUserVM us in lbUsers.Items)
+		        {
+		            if (us != lbUsers.SelectedItem)
+		            {
+		                if (!string.IsNullOrEmpty(us.PlexUsers))
+		                {
+		                    string[] splexusers= us.PlexUsers.Split(',');
+		                    foreach (string m in splexusers)
+		                    {
+		                        if (n.Trim().ToLower() == m.Trim().ToLower())
+		                        {
+                                    MessageBox.Show(string.Format("The Plex User '{0}' is already asigned to the JMM User '{1}'",n.Trim(),us.Username), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                    txtPlexUsers.Focus();
+                                    return;
+                                }
+		                    }
+                        }
+		            }
+		        }
 
-			SelectedUser.Username = txtUsername.Text.Trim();
+            }
+            SelectedUser = lbUsers.SelectedItem as JMMUserVM;
+
+            SelectedUser.Username = txtUsername.Text.Trim();
 			SelectedUser.HideTags = txtTags.Text.Trim();
 			SelectedUser.IsAdmin = chkIsAdmin.IsChecked.Value ? 1 : 0;
 			SelectedUser.IsAniDBUser = chkIsAniDB.IsChecked.Value ? 1 : 0;
 			SelectedUser.IsTraktUser = chkIsTrakt.IsChecked.Value ? 1 : 0;
 			SelectedUser.CanEditServerSettings = chkEditSettings.IsChecked.Value ? 1 : 0;
-			
+		    SelectedUser.PlexUsers = txtPlexUsers.Text.Trim();
 
 			try
 			{
@@ -221,7 +246,7 @@ namespace JMMClient.UserControls
 			chkIsAniDB.IsChecked = false;
 			chkIsTrakt.IsChecked = false;
 			chkEditSettings.IsChecked = false;
-
+		    txtPlexUsers.Text = "";
 			txtUsername.Focus();
 
 			if (SelectedUser == null || !SelectedUser.JMMUserID.HasValue) return;
@@ -233,6 +258,7 @@ namespace JMMClient.UserControls
 			chkIsAniDB.IsChecked = SelectedUser.IsAniDBUserBool;
 			chkIsTrakt.IsChecked = SelectedUser.IsTraktUserBool;
 			chkEditSettings.IsChecked = SelectedUser.CanEditSettings;
+		    txtPlexUsers.Text = SelectedUser.PlexUsers;
 		}
 
 		void UserAdminControl_Loaded(object sender, RoutedEventArgs e)
