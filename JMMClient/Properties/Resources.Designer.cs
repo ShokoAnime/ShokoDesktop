@@ -4521,6 +4521,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Maps this comma separated users from plex to this JMM User. if the plex user is a friend (not home user), use &apos;External&apos; as Plex User.
+        /// </summary>
+        public static string Tooltip_User_PlexUsers {
+            get {
+                return ResourceManager.GetString("Tooltip_User_PlexUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open this Anime Series in a new window.
         /// </summary>
         public static string Tooltip_ViewSeries {
@@ -4881,6 +4890,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hide Tags.
+        /// </summary>
+        public static string User_Hide_Tags {
+            get {
+                return ResourceManager.GetString("User_Hide_Tags", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hide Categories.
         /// </summary>
         public static string User_HideCategories {
@@ -4922,6 +4940,15 @@ namespace JMMClient.Properties {
         public static string User_Password {
             get {
                 return ResourceManager.GetString("User_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Plex Users.
+        /// </summary>
+        public static string User_PlexUsers {
+            get {
+                return ResourceManager.GetString("User_PlexUsers", resourceCulture);
             }
         }
         
