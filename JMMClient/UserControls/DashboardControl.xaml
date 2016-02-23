@@ -145,7 +145,7 @@
                             <!-- Play all episodes button -->
                             <Button x:Name="btnPlayAll" Margin="5,0,0,0" Style="{StaticResource RoundButtonStyle}" Command="{StaticResource PlayAllUnwatchedEpisodeCommand}" CommandParameter="{Binding}"
                                     VerticalAlignment="Center" Visibility="{Binding Path=MultipleUnwatchedEpsSeries, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                    ToolTip="Play all episodes (sent as a playlist to the default player)">
+                                    ToolTip="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_PlayAll}">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="16" Width="16" Source="/Images/32_play2_all.png" Margin="0,0,5,0"/>
                                     <TextBlock VerticalAlignment="Center" Text="{Binding Path=UnwatchedEpCountSeries}" Foreground="Black"  Margin="0,0,5,0"/>

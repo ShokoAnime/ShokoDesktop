@@ -1546,7 +1546,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Click for detailed explanation of options.
+        ///   Looks up a localized string similar to Click here for detailed explanation of options.
         /// </summary>
         public static string DetailedExplanation {
             get {
@@ -3810,6 +3810,15 @@ namespace JMMClient.Properties {
         public static string Link_MPC {
             get {
                 return ResourceManager.GetString("Link_MPC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://www.computerhope.com/issues/ch000549.htm.
+        /// </summary>
+        public static string Link_Path {
+            get {
+                return ResourceManager.GetString("Link_Path", resourceCulture);
             }
         }
         
@@ -7482,6 +7491,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Play all episodes (sent as a playlist to the default player).
+        /// </summary>
+        public static string Tooltip_PlayAll {
+            get {
+                return ResourceManager.GetString("Tooltip_PlayAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Whenever you watch the final episode in a series, a prompt will appear to ask you for a rating.
         /// </summary>
         public static string Tooltip_PromptRateSeries {
@@ -8859,6 +8877,33 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Default Video Player.
+        /// </summary>
+        public static string VideoPlayer_Default {
+            get {
+                return ResourceManager.GetString("VideoPlayer_Default", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select from supported players, location of executable must be in the Path environment variable..
+        /// </summary>
+        public static string VideoPlayer_DefaultNote {
+            get {
+                return ResourceManager.GetString("VideoPlayer_DefaultNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default Player.
+        /// </summary>
+        public static string VideoPlayer_DefaultPlayer {
+            get {
+                return ResourceManager.GetString("VideoPlayer_DefaultPlayer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Media Player Classic.
         /// </summary>
         public static string VideoPlayer_MPC {
@@ -8873,15 +8918,6 @@ namespace JMMClient.Properties {
         public static string VideoPlayer_MPCFolder {
             get {
                 return ResourceManager.GetString("VideoPlayer_MPCFolder", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Media Player Classic Integration.
-        /// </summary>
-        public static string VideoPlayer_MPCI {
-            get {
-                return ResourceManager.GetString("VideoPlayer_MPCI", resourceCulture);
             }
         }
         
@@ -8972,6 +9008,15 @@ namespace JMMClient.Properties {
         public static string VideoPlayer_PotPlayerTest {
             get {
                 return ResourceManager.GetString("VideoPlayer_PotPlayerTest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Video Player.
+        /// </summary>
+        public static string VideoPlayer_VideoPlayer {
+            get {
+                return ResourceManager.GetString("VideoPlayer_VideoPlayer", resourceCulture);
             }
         }
         

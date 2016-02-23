@@ -1376,7 +1376,7 @@
                                 <!-- Media Player Classic -->
 
                                 <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="0" Background="#FFE9ECEF" Margin="0,0,0,5">
-                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPCI}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_VideoPlayer}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                                 </Border>
 
 

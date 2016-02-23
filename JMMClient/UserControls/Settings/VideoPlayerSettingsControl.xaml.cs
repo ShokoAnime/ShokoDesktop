@@ -38,6 +38,10 @@ namespace JMMClient.UserControls
             cboDefaultPlayer.Items.Add("VLC");
             switch (AppSettings.DefaultPlayer_GroupList)
             {
+                case 0:
+                    cboDefaultPlayer.SelectedIndex = 0;
+                    break;
+
                 case 1:
                     cboDefaultPlayer.SelectedIndex = 1;
                     break;
@@ -46,12 +50,8 @@ namespace JMMClient.UserControls
                     cboDefaultPlayer.SelectedIndex = 2;
                     break;
 
-                case 3:
-                    cboDefaultPlayer.SelectedIndex = 3;
-                    break;
-
                 default:
-                    cboDefaultPlayer.SelectedIndex = 3;
+                    cboDefaultPlayer.SelectedIndex = 2;
                     break;
             }
 
@@ -271,10 +271,10 @@ namespace JMMClient.UserControls
         {
             switch (cboDefaultPlayer.SelectedIndex)
             {
-                case 0: UserSettingsVM.Instance.DefaultPlayer_GroupList = 1; break;
-                case 1: UserSettingsVM.Instance.DefaultPlayer_GroupList = 2; break;
-                case 2: UserSettingsVM.Instance.DefaultPlayer_GroupList = 3; break;
-                default: UserSettingsVM.Instance.DisplayStyle_GroupList = 3; break;
+                case 0: UserSettingsVM.Instance.DefaultPlayer_GroupList = 0; break;
+                case 1: UserSettingsVM.Instance.DefaultPlayer_GroupList = 1; break;
+                case 2: UserSettingsVM.Instance.DefaultPlayer_GroupList = 2; break;
+                default: UserSettingsVM.Instance.DisplayStyle_GroupList = 2; break;
             }
         }
     }

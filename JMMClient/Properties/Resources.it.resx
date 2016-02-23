@@ -1832,9 +1832,6 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   <data name="WhatDoesThisMean" xml:space="preserve">
     <value>Cosa significa?</value>
   </data>
-  <data name="DetailedExplanation" xml:space="preserve">
-    <value>Clicca per una spiegazione dettagliata delle opzioni</value>
-  </data>
   <data name="CustomTag_Name" xml:space="preserve">
     <value>Nome del tag</value>
   </data>
@@ -3086,7 +3083,7 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   <data name="Tab_MyVotes" xml:space="preserve">
     <value>I miei voti</value>
   </data>
-  <data name="VideoPlayer_MPCI" xml:space="preserve">
+  <data name="VideoPlayer_VideoPlayer" xml:space="preserve">
     <value>Integrazione di Media Player Classic</value>
   </data>
   <data name="VideoPlayer_AutoFile" xml:space="preserve">
@@ -3184,5 +3181,23 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   </data>
   <data name="User_PlexUsers" xml:space="preserve">
     <value>Utenti di Plex</value>
+  </data>
+  <data name="Tooltip_PlayAll" xml:space="preserve">
+    <value>Giocare tutti gli episodi (inviati come una playlist al lettore predefinito)</value>
+  </data>
+  <data name="VideoPlayer_Default" xml:space="preserve">
+    <value>Lettore Video predefinito</value>
+  </data>
+  <data name="VideoPlayer_DefaultNote" xml:space="preserve">
+    <value>Scegliere tra i giocatori supportati, percorso del file eseguibile deve essere nella variabile di ambiente Path.</value>
+  </data>
+  <data name="VideoPlayer_DefaultPlayer" xml:space="preserve">
+    <value>Lettore predefinito</value>
+  </data>
+  <data name="Link_Path" xml:space="preserve">
+    <value>http://www.computerhope.com/issues/ch000549.htm</value>
+  </data>
+  <data name="DetailedExplanation" xml:space="preserve">
+    <value>Clicca qui per una spiegazione dettagliata delle opzioni</value>
   </data>
 </root>

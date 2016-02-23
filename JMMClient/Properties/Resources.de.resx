@@ -1523,9 +1523,6 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   <data name="WhatDoesThisMean" xml:space="preserve">
     <value>Was bedeutet das?</value>
   </data>
-  <data name="DetailedExplanation" xml:space="preserve">
-    <value>Ausführliche Erläuterung der Optionen klicken</value>
-  </data>
   <data name="CustomTag_Name" xml:space="preserve">
     <value>Tag-Namen</value>
   </data>
@@ -2777,7 +2774,7 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   <data name="Tab_MyVotes" xml:space="preserve">
     <value>Meine Stimmen</value>
   </data>
-  <data name="VideoPlayer_MPCI" xml:space="preserve">
+  <data name="VideoPlayer_VideoPlayer" xml:space="preserve">
     <value>Media Player Classic Integration</value>
   </data>
   <data name="VideoPlayer_AutoFile" xml:space="preserve">
@@ -3184,5 +3181,23 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   </data>
   <data name="User_PlexUsers" xml:space="preserve">
     <value>Plex-Benutzer</value>
+  </data>
+  <data name="Tooltip_PlayAll" xml:space="preserve">
+    <value>Spielen Sie alle Episoden (als Wiedergabeliste an dem Standardplayer gesendet)</value>
+  </data>
+  <data name="VideoPlayer_Default" xml:space="preserve">
+    <value>Standard-Player</value>
+  </data>
+  <data name="VideoPlayer_DefaultNote" xml:space="preserve">
+    <value>Wählen Sie aus unterstützten Spieler, muss Speicherort der ausführbaren Datei in der Path-Umgebungsvariablen.</value>
+  </data>
+  <data name="VideoPlayer_DefaultPlayer" xml:space="preserve">
+    <value>Standard-Player</value>
+  </data>
+  <data name="Link_Path" xml:space="preserve">
+    <value>http://www.computerhope.com/issues/ch000549.htm</value>
+  </data>
+  <data name="DetailedExplanation" xml:space="preserve">
+    <value>Klicken Sie hier für ausführliche Erläuterung der Optionen</value>
   </data>
 </root>

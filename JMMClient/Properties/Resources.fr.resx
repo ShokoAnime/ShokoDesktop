@@ -1832,9 +1832,6 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   <data name="WhatDoesThisMean" xml:space="preserve">
     <value>Que cela signifie-t-il ?</value>
   </data>
-  <data name="DetailedExplanation" xml:space="preserve">
-    <value>Cliquez ici pour une explication détaillée des options</value>
-  </data>
   <data name="CustomTag_Name" xml:space="preserve">
     <value>Nom de la balise</value>
   </data>
@@ -3086,7 +3083,7 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   <data name="Tab_MyVotes" xml:space="preserve">
     <value>Mes Votes</value>
   </data>
-  <data name="VideoPlayer_MPCI" xml:space="preserve">
+  <data name="VideoPlayer_VideoPlayer" xml:space="preserve">
     <value>Media Player Classic intégration</value>
   </data>
   <data name="VideoPlayer_AutoFile" xml:space="preserve">
@@ -3184,5 +3181,23 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   </data>
   <data name="User_PlexUsers" xml:space="preserve">
     <value>Utilisateurs de plex</value>
+  </data>
+  <data name="Tooltip_PlayAll" xml:space="preserve">
+    <value>Jouer tous les épisodes (envoyés comme une liste de lecture vers le lecteur par défaut)</value>
+  </data>
+  <data name="VideoPlayer_Default" xml:space="preserve">
+    <value>Lecteur vidéo par défaut</value>
+  </data>
+  <data name="VideoPlayer_DefaultNote" xml:space="preserve">
+    <value>Choisissez parmi les joueurs pris en charge, l'emplacement du fichier exécutable doit être dans la variable d'environnement Path.</value>
+  </data>
+  <data name="VideoPlayer_DefaultPlayer" xml:space="preserve">
+    <value>Lecteur par défaut</value>
+  </data>
+  <data name="Link_Path" xml:space="preserve">
+    <value>http://www.computerhope.com/issues/ch000549.htm</value>
+  </data>
+  <data name="DetailedExplanation" xml:space="preserve">
+    <value>Cliquez ici pour une explication détaillée des options</value>
   </data>
 </root>

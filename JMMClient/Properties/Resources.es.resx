@@ -1832,9 +1832,6 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
   <data name="WhatDoesThisMean" xml:space="preserve">
     <value>¿Qué significa esto?</value>
   </data>
-  <data name="DetailedExplanation" xml:space="preserve">
-    <value>Para una explicación detallada de opciones, haga clic en</value>
-  </data>
   <data name="CustomTag_Name" xml:space="preserve">
     <value>Nombre de la etiqueta</value>
   </data>
@@ -3086,7 +3083,7 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
   <data name="Tab_MyVotes" xml:space="preserve">
     <value>Mis votos</value>
   </data>
-  <data name="VideoPlayer_MPCI" xml:space="preserve">
+  <data name="VideoPlayer_VideoPlayer" xml:space="preserve">
     <value>Media Player Classic integración</value>
   </data>
   <data name="VideoPlayer_AutoFile" xml:space="preserve">
@@ -3184,5 +3181,23 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
   </data>
   <data name="User_PlexUsers" xml:space="preserve">
     <value>Usuarios de Plex</value>
+  </data>
+  <data name="Tooltip_PlayAll" xml:space="preserve">
+    <value>Jugar todos los episodios (enviados como una lista de reproducción al reproductor por defecto)</value>
+  </data>
+  <data name="VideoPlayer_Default" xml:space="preserve">
+    <value>Reproductor de vídeo por defecto</value>
+  </data>
+  <data name="VideoPlayer_DefaultNote" xml:space="preserve">
+    <value>Selección de reproductores compatibles, ubicación del archivo ejecutable debe estar en la variable de entorno Path.</value>
+  </data>
+  <data name="VideoPlayer_DefaultPlayer" xml:space="preserve">
+    <value>Reproductor predeterminado</value>
+  </data>
+  <data name="Link_Path" xml:space="preserve">
+    <value>http://www.computerhope.com/issues/ch000549.htm</value>
+  </data>
+  <data name="DetailedExplanation" xml:space="preserve">
+    <value>Haga clic aquí para una explicación detallada de opciones</value>
   </data>
 </root>

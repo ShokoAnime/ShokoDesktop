@@ -1832,9 +1832,6 @@
   <data name="WhatDoesThisMean" xml:space="preserve">
     <value>Что это значит?</value>
   </data>
-  <data name="DetailedExplanation" xml:space="preserve">
-    <value>Нажмите для подробное объяснение параметров</value>
-  </data>
   <data name="CustomTag_Name" xml:space="preserve">
     <value>Имя тега</value>
   </data>
@@ -3086,7 +3083,7 @@
   <data name="Tab_MyVotes" xml:space="preserve">
     <value>Мои голоса</value>
   </data>
-  <data name="VideoPlayer_MPCI" xml:space="preserve">
+  <data name="VideoPlayer_VideoPlayer" xml:space="preserve">
     <value>Media Player Классический интеграции</value>
   </data>
   <data name="VideoPlayer_AutoFile" xml:space="preserve">
@@ -3184,5 +3181,23 @@
   </data>
   <data name="User_PlexUsers" xml:space="preserve">
     <value>Plex пользователей</value>
+  </data>
+  <data name="Tooltip_PlayAll" xml:space="preserve">
+    <value>Играть все эпизоды (отправлена как список воспроизведения проигрывателя по умолчанию)</value>
+  </data>
+  <data name="VideoPlayer_Default" xml:space="preserve">
+    <value>Видео проигрыватель по умолчанию</value>
+  </data>
+  <data name="VideoPlayer_DefaultNote" xml:space="preserve">
+    <value>Выберите один из поддерживаемых игроков, расположение исполняемого файла должен быть в переменной среды Path.</value>
+  </data>
+  <data name="VideoPlayer_DefaultPlayer" xml:space="preserve">
+    <value>Проигрыватель по умолчанию</value>
+  </data>
+  <data name="Link_Path" xml:space="preserve">
+    <value>http://www.computerhope.com/issues/ch000549.htm</value>
+  </data>
+  <data name="DetailedExplanation" xml:space="preserve">
+    <value>Нажмите здесь для подробного объяснения параметров</value>
   </data>
 </root>
