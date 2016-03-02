@@ -2,7 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Configuration;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -65,10 +68,9 @@ namespace JMMClient.UserControls
         private bool stopWorker = false;
         BackgroundWorker dataWorker = new BackgroundWorker();
 
-        private readonly string FilterTypeAll = "All";
-        private readonly string FilterTypeMissing = "Missing a Link";
-        private readonly string FilterTypeDifferent = "Link is Different to Approved Link";
-
+        private readonly string FilterTypeAll = JMMClient.Properties.Resources.Random_All;
+        private readonly string FilterTypeMissing = JMMClient.Properties.Resources.Community_LinkMissing;
+        private readonly string FilterTypeDifferent = JMMClient.Properties.Resources.Community_LinkDifferent;
 
         public CommunityMaint()
         {
@@ -82,11 +84,15 @@ namespace JMMClient.UserControls
             btnPause.Click += BtnPause_Click;
             btnStop.Click += BtnStop_Click;
 
+            NameValueCollection appSettings = ConfigurationManager.AppSettings;
+            string cult = appSettings["Culture"];
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(cult);
+
             cboFilterType.Items.Clear();
-            cboFilterType.Items.Add(FilterTypeAll);
-            cboFilterType.Items.Add(FilterTypeMissing);
+            cboFilterType.Items.Add(JMMClient.Properties.Resources.Random_All);
+            cboFilterType.Items.Add(JMMClient.Properties.Resources.Community_LinkMissing);
             //cboFilterType.Items.Add(FilterTypeIncorrect);
-            cboFilterType.Items.Add(FilterTypeDifferent);
+            cboFilterType.Items.Add(JMMClient.Properties.Resources.Community_LinkDifferent);
             cboFilterType.SelectionChanged += new SelectionChangedEventHandler(cboFilterType_SelectionChanged);
             cboFilterType.SelectedIndex = 0;
 
@@ -140,7 +146,7 @@ namespace JMMClient.UserControls
             ShowStopButton = true;
             //ShowPauseButton = true;
 
-            WorkerStatus = "Getting all series data...";
+            WorkerStatus = JMMClient.Properties.Resources.Community_GettingData;
 
             TraktResults.Clear();
 
@@ -168,7 +174,7 @@ namespace JMMClient.UserControls
         {
             ViewTrakt.Refresh();
             TraktWorkerStatusContainer status = e.UserState as TraktWorkerStatusContainer;
-            WorkerStatus = string.Format("{0}: {1} of {2} - {3}", status.CurrentAction, status.CurrentSeries, status.TotalSeriesCount, status.CurrentSeriesString);
+            WorkerStatus = string.Format(JMMClient.Properties.Resources.Community_TraktProgress, status.CurrentAction, status.CurrentSeries, status.TotalSeriesCount, status.CurrentSeriesString);
         }
 
         void dataWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -179,7 +185,7 @@ namespace JMMClient.UserControls
             ShowStopButton = false;
             //ShowPauseButton = false;
 
-            WorkerStatus = "Complete!";
+            WorkerStatus = JMMClient.Properties.Resources.Complete;
 
             stopWorker = false;
             EnableDisableControls(true);
@@ -228,7 +234,7 @@ namespace JMMClient.UserControls
 
             System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()
             {
-                WorkerStatus = "Getting all Trakt Cross Ref data...";
+                WorkerStatus = JMMClient.Properties.Resources.Community_TraktRef;
             });
 
             // get all the trakt links
@@ -248,7 +254,7 @@ namespace JMMClient.UserControls
                 counter++;
                 //Thread.Sleep(200);
 
-                dataWorker.ReportProgress(0, new TraktWorkerStatusContainer("Populating series data", allSeries.Count, counter, ser.SeriesName));
+                dataWorker.ReportProgress(0, new TraktWorkerStatusContainer(JMMClient.Properties.Resources.Community_TraktPopulating, allSeries.Count, counter, ser.SeriesName));
 
                 TraktSeriesData trakt = new TraktSeriesData(ser);
 
@@ -275,12 +281,12 @@ namespace JMMClient.UserControls
                 if (problemCount == job.MaxProblems) return;
 
                 curFile++;
-                dataWorker.ReportProgress(0, new TraktWorkerStatusContainer("Checking series", job.TraktData.Count, curFile, data.SeriesName));
+                dataWorker.ReportProgress(0, new TraktWorkerStatusContainer(JMMClient.Properties.Resources.Community_TraktSeriesCheck, job.TraktData.Count, curFile, data.SeriesName));
 
                 if (stopWorker) return;
                 if (job.CheckTraktLinks)
                 {
-                    data.Status = "Checking if Trakt data is valid...";
+                    data.Status = JMMClient.Properties.Resources.Community_TraktDataCheck;
                     bool valid = true;
 
                     if (data.HasUserTraktLink)
@@ -301,7 +307,7 @@ namespace JMMClient.UserControls
                 if (stopWorker) return;
                 if (job.CheckCommunityLinks)
                 {
-                    data.Status = "Checking Trakt link against community recommendation...";
+                    data.Status = JMMClient.Properties.Resources.Community_TraktCompare;
 
                     List<JMMServerBinary.Contract_Azure_CrossRef_AniDB_Trakt> xrefs = JMMServerVM.Instance.clientBinaryHTTP.GetTraktCrossRefWebCache(data.AnimeID, false);
                     List<CrossRef_AniDB_TraktVMV2> commTraktLinks = new List<CrossRef_AniDB_TraktVMV2>();

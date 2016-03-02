@@ -555,9 +555,6 @@
   <data name="Port" xml:space="preserve">
     <value>Porta</value>
   </data>
-  <data name="Server" xml:space="preserve">
-    <value>Server</value>
-  </data>
   <data name="ServerPath" xml:space="preserve">
     <value>Percorso del server</value>
   </data>
@@ -2588,10 +2585,10 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   <data name="Rename_Preview" xml:space="preserve">
     <value>Anteprima</value>
   </data>
-  <data name="FileSearch_Rescan" xml:space="preserve">
+  <data name="Search_Rescan" xml:space="preserve">
     <value>Ripetizione dell'analisi</value>
   </data>
-  <data name="FileSearch_AniDBForceUpdate" xml:space="preserve">
+  <data name="Search_AniDBForceUpdate" xml:space="preserve">
     <value>Informazioni sull'aggiornamento di forza da AniDB</value>
   </data>
   <data name="GroupFilter_RandomSeries" xml:space="preserve">
@@ -3194,10 +3191,223 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   <data name="VideoPlayer_DefaultPlayer" xml:space="preserve">
     <value>Lettore predefinito</value>
   </data>
+  <data name="DetailedExplanation" xml:space="preserve">
+    <value>Clicca qui per una spiegazione dettagliata delle opzioni</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Errore</value>
+  </data>
+  <data name="TvDB_NoSeasons" xml:space="preserve">
+    <value>Nessun stagioni disponibili, controllare nuovamente l'ID TvDB</value>
+  </data>
   <data name="Link_Path" xml:space="preserve">
     <value>http://www.computerhope.com/issues/ch000549.htm</value>
   </data>
-  <data name="DetailedExplanation" xml:space="preserve">
-    <value>Clicca qui per una spiegazione dettagliata delle opzioni</value>
+  <data name="Search_Everything" xml:space="preserve">
+    <value>Tutto</value>
+  </data>
+  <data name="TvDB_NoAniDB" xml:space="preserve">
+    <value>Non ci sono nessun episodi disponibili su AniDB</value>
+  </data>
+  <data name="TvDB_NoTvDB" xml:space="preserve">
+    <value>Non ci sono nessun episodio disponibile su The TvDB</value>
+  </data>
+  <data name="Trakt_NoSeasons" xml:space="preserve">
+    <value>Nessun stagioni disponibili, controllare nuovamente l'ID Trakt</value>
+  </data>
+  <data name="Filter_New" xml:space="preserve">
+    <value>Nuovo filtro</value>
+  </data>
+  <data name="Import_Running" xml:space="preserve">
+    <value>È in corso</value>
+  </data>
+  <data name="Filter_DeleteGroup" xml:space="preserve">
+    <value>Sei sicuro di voler eliminare il filtro del gruppo: {0}</value>
+  </data>
+  <data name="Filter_DeleteCondition" xml:space="preserve">
+    <value>Sei sicuro di voler eliminare la condizione di filtro: {0}</value>
+  </data>
+  <data name="Filter_DeleteSort" xml:space="preserve">
+    <value>Sei sicuro di che voler eliminare l'ordinamento?</value>
+  </data>
+  <data name="Playlist_Delete" xml:space="preserve">
+    <value>Sei sicuro di voler cancellare la playlist: {0}</value>
+  </data>
+  <data name="Filter_PlaylistMissing" xml:space="preserve">
+    <value>Non riusciva a trovare playlist</value>
+  </data>
+  <data name="Process_Running" xml:space="preserve">
+    <value>È in corso</value>
+  </data>
+  <data name="Process_Queued" xml:space="preserve">
+    <value>Processo viene accodata</value>
+  </data>
+  <data name="Server" xml:space="preserve">
+    <value>Server</value>
+  </data>
+  <data name="MultipleFiles_Ignore" xml:space="preserve">
+    <value>Ignorare le variazioni</value>
+  </data>
+  <data name="MultipleFiles_Finished" xml:space="preserve">
+    <value>Solo rifinito la ventilazione</value>
+  </data>
+  <data name="Playlist_PlayAll" xml:space="preserve">
+    <value>Riprodurre tutti i</value>
+  </data>
+  <data name="Playlist_PlayWatched" xml:space="preserve">
+    <value>Ho guardato giocare</value>
+  </data>
+  <data name="Playlist_PlayUnwatched" xml:space="preserve">
+    <value>Giocare non custodito</value>
+  </data>
+  <data name="Playlist_UseFanart" xml:space="preserve">
+    <value>Utilizzare Fanart</value>
+  </data>
+  <data name="Random_Any" xml:space="preserve">
+    <value>Qualsiasi</value>
+  </data>
+  <data name="Random_All" xml:space="preserve">
+    <value>Tutti i</value>
+  </data>
+  <data name="Rankings_InCollection" xml:space="preserve">
+    <value>Nella mia collezione</value>
+  </data>
+  <data name="Rankings_AllEpisodes" xml:space="preserve">
+    <value>Tutti gli episodi nella mia collezione</value>
+  </data>
+  <data name="Rankings_NotInCollection" xml:space="preserve">
+    <value>Non nella mia collezione</value>
+  </data>
+  <data name="Rankings_AllWatched" xml:space="preserve">
+    <value>Ho guardati tutti gli episodi</value>
+  </data>
+  <data name="Rankings_NotWatched" xml:space="preserve">
+    <value>Non ho guardato</value>
+  </data>
+  <data name="Rankings_Votes" xml:space="preserve">
+    <value>Votato</value>
+  </data>
+  <data name="Rankings_NotVoted" xml:space="preserve">
+    <value>Non votato</value>
+  </data>
+  <data name="Rankings_AnimeNotInCollection" xml:space="preserve">
+    <value>Questo anime non è nella vostra collezione</value>
+  </data>
+  <data name="MissingEpisodes_StillAiring" xml:space="preserve">
+    <value>Ancora Aring</value>
+  </data>
+  <data name="MissingEpisodes_FinishedAiring" xml:space="preserve">
+    <value>Finito in onda</value>
+  </data>
+  <data name="Exporting" xml:space="preserve">
+    <value>Esportazione di...</value>
+  </data>
+  <data name="Rename_Files" xml:space="preserve">
+    <value>File di {0}</value>
+  </data>
+  <data name="Rename_Random" xml:space="preserve">
+    <value>Casuale</value>
+  </data>
+  <data name="Rename_Series" xml:space="preserve">
+    <value>Serie</value>
+  </data>
+  <data name="Rename_All" xml:space="preserve">
+    <value>Tutta la collezione</value>
+  </data>
+  <data name="Rename_Failed" xml:space="preserve">
+    <value>Non riuscita</value>
+  </data>
+  <data name="Rename_Passed" xml:space="preserve">
+    <value>Passato</value>
+  </data>
+  <data name="Rename_DeleteScript" xml:space="preserve">
+    <value>Sei sicuro di voler eliminare lo script: {0}</value>
+  </data>
+  <data name="Rename_EnterScriptName" xml:space="preserve">
+    <value>Immettere il nome dello Script:</value>
+  </data>
+  <data name="Rename_BlankScript" xml:space="preserve">
+    <value>Si prega di inserire un nome di script</value>
+  </data>
+  <data name="Rename_Changed" xml:space="preserve">
+    <value>{0} di {1}</value>
+  </data>
+  <data name="Rename_Confirm" xml:space="preserve">
+    <value>Sei sicuro che si desidera rinominare i file qui sotto?</value>
+  </data>
+  <data name="Community_LinkMissing" xml:space="preserve">
+    <value>Manca un Link</value>
+  </data>
+  <data name="Community_LinkDifferent" xml:space="preserve">
+    <value>Collegamento è differente al Link approvato</value>
+  </data>
+  <data name="Community_GettingData" xml:space="preserve">
+    <value>Ottenere tutti i dati della serie...</value>
+  </data>
+  <data name="Complete" xml:space="preserve">
+    <value>Completa!</value>
+  </data>
+  <data name="Community_TraktProgress" xml:space="preserve">
+    <value>{0}: {1} di {2} - {3}</value>
+  </data>
+  <data name="Community_TraktRef" xml:space="preserve">
+    <value>Ottenere tutti i dati di Trakt Cross Ref...</value>
+  </data>
+  <data name="Community_TraktPopulating" xml:space="preserve">
+    <value>Compilazione di dati di serie</value>
+  </data>
+  <data name="Community_TraktSeriesCheck" xml:space="preserve">
+    <value>Il controllo di serie</value>
+  </data>
+  <data name="Community_TraktDataCheck" xml:space="preserve">
+    <value>Verifica se i dati Trakt sono validi...</value>
+  </data>
+  <data name="Community_TraktCompare" xml:space="preserve">
+    <value>Controllo link Trakt contro la raccomandazione comunitaria...</value>
+  </data>
+  <data name="Tooltip_RecreateAllGroups" xml:space="preserve">
+    <value>Questo cancellerà tutti i tuoi gruppi di correnti e quindi ri-organizzare tutte le vostre serie in nuovi gruppi in base alle impostazioni di importazione</value>
+  </data>
+  <data name="Rename_Title" xml:space="preserve">
+    <value>Regole di ridenominazione</value>
+  </data>
+  <data name="Search_FileName" xml:space="preserve">
+    <value>Nome del file</value>
+  </data>
+  <data name="Search_Hash" xml:space="preserve">
+    <value>Hash</value>
+  </data>
+  <data name="Search_Last100" xml:space="preserve">
+    <value>Ultimi 100</value>
+  </data>
+  <data name="Search_FileSize" xml:space="preserve">
+    <value>Dimensione del file</value>
+  </data>
+  <data name="JMMServer_ProcessRunning" xml:space="preserve">
+    <value>Processo è in esecuzione sul server, per favore provare rinfrescante quando ha finito</value>
+  </data>
+  <data name="JMMServer_ProcessQueued" xml:space="preserve">
+    <value>Processo è in coda sul server, prova ad aggiornare in pochi secondi</value>
+  </data>
+  <data name="Downloads_Details" xml:space="preserve">
+    <value>Dettagli</value>
+  </data>
+  <data name="Anime_QualityRanking" xml:space="preserve">
+    <value>Di qualità Ranking</value>
+  </data>
+  <data name="Anime_ReleaseGroup" xml:space="preserve">
+    <value>Dal gruppo di rilascio</value>
+  </data>
+  <data name="Anime_GroupDetails" xml:space="preserve">
+    <value>Qualità/Release gruppo dettagli</value>
+  </data>
+  <data name="Anime_GroupSummary" xml:space="preserve">
+    <value>Comunicato Gruppo sintesi</value>
+  </data>
+  <data name="ImportSettings_Default" xml:space="preserve">
+    <value>Impostazione predefinita</value>
+  </data>
+  <data name="ImportSettings_Custom" xml:space="preserve">
+    <value>Su ordinazione</value>
   </data>
 </root>

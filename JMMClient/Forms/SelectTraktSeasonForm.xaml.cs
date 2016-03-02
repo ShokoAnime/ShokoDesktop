@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Configuration;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -140,7 +144,7 @@ namespace JMMClient.Forms
 			{
                 if (cboSeasonNumber.Items.Count == 0)
                 {
-                    MessageBox.Show("No seasons available, check the Trakt ID again", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(JMMClient.Properties.Resources.Trakt_NoSeasons, JMMClient.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
@@ -161,7 +165,7 @@ namespace JMMClient.Forms
                 string res = JMMServerVM.Instance.clientBinaryHTTP.LinkAniDBTrakt(AnimeID, AnimeEpisodeType, AnimeEpisodeNumber,
                     TraktID, TraktSeason, TraktEpisodeNumber, CrossRef_AniDB_TraktV2ID);
                 if (res.Length > 0)
-                    MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(res, JMMClient.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                 else
                 {
                     this.DialogResult = true;
@@ -211,8 +215,8 @@ namespace JMMClient.Forms
             }
 
             cboEpisodeType.Items.Clear();
-            cboEpisodeType.Items.Add("Episodes");
-            if (hasSpecials) cboEpisodeType.Items.Add("Specials");
+            cboEpisodeType.Items.Add(JMMClient.Properties.Resources.Episodes);
+            if (hasSpecials) cboEpisodeType.Items.Add(JMMClient.Properties.Resources.Specials);
 
             cboEpisodeType.SelectionChanged += new SelectionChangedEventHandler(cboEpisodeType_SelectionChanged);
 

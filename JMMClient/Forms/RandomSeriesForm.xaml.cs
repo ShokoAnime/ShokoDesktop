@@ -91,7 +91,7 @@ namespace JMMClient.Forms
 		}
 
         public static readonly DependencyProperty SelectedTagsFilterProperty = DependencyProperty.Register("SelectedTagsFilter",
-			typeof(string), typeof(RandomSeriesForm), new UIPropertyMetadata("Any", null));
+			typeof(string), typeof(RandomSeriesForm), new UIPropertyMetadata(JMMClient.Properties.Resources.Random_Any, null));
 
 		public string SelectedTagsFilter
 		{
@@ -111,8 +111,8 @@ namespace JMMClient.Forms
             lbTags.MouseDoubleClick += new MouseButtonEventHandler(lbTags_MouseDoubleClick);
 
 			cboCatFilter.Items.Clear();
-			cboCatFilter.Items.Add("Any");
-			cboCatFilter.Items.Add("All");
+			cboCatFilter.Items.Add(JMMClient.Properties.Resources.Random_Any);
+			cboCatFilter.Items.Add(JMMClient.Properties.Resources.Random_All);
 			cboCatFilter.SelectedIndex = 0;
 		}
 
@@ -154,7 +154,7 @@ namespace JMMClient.Forms
 			TagsExpanded = true;
 
             txtSelectedTags.Text = SelectedTags;
-			if (SelectedTagsFilter.Equals("Any"))
+			if (SelectedTagsFilter.Equals(JMMClient.Properties.Resources.Random_Any))
 				cboCatFilter.SelectedIndex = 0;
 			else
 				cboCatFilter.SelectedIndex = 1;

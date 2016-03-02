@@ -13,6 +13,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Configuration;
+using System.Globalization;
 using JMMClient.ViewModel;
 using System.Threading;
 using JMMClient.Forms;
@@ -45,7 +48,7 @@ namespace JMMClient.UserControls
 			set 
 			{ 
 				SetValue(FileCountProperty, value);
-				FileCountStatus = string.Format("{0} Files", value);
+				FileCountStatus = string.Format(JMMClient.Properties.Resources.Rename_Files, value);
 			}
 		}
 
@@ -112,13 +115,13 @@ namespace JMMClient.UserControls
 			set { SetValue(WorkerStatusProperty, value); }
 		}
 
-		private readonly string LoadTypeRandom = "Random";
-		private readonly string LoadTypeSeries = "Series";
-		private readonly string LoadTypeAll = "Entire Collection";
+		private readonly string LoadTypeRandom = JMMClient.Properties.Resources.Rename_Random;
+		private readonly string LoadTypeSeries = JMMClient.Properties.Resources.Rename_Series;
+		private readonly string LoadTypeAll = JMMClient.Properties.Resources.Rename_All;
 
-		private readonly string FilterTypeAll = "All";
-		private readonly string FilterTypeFailed = "Failed";
-		private readonly string FilterTypePassed = "Passed";
+		private readonly string FilterTypeAll = JMMClient.Properties.Resources.Random_All;
+		private readonly string FilterTypeFailed = JMMClient.Properties.Resources.Rename_Failed;
+		private readonly string FilterTypePassed = JMMClient.Properties.Resources.Rename_Passed;
 
 		private int? defaultScriptID = null;
 
@@ -187,18 +190,22 @@ namespace JMMClient.UserControls
 			btnSaveScript.Click += new RoutedEventHandler(btnSaveScript_Click);
 			btnDeleteScript.Click += new RoutedEventHandler(btnDeleteScript_Click);
 
-			cboLoadType.Items.Clear();
-			cboLoadType.Items.Add(LoadTypeRandom);
-			cboLoadType.Items.Add(LoadTypeSeries);
-			cboLoadType.Items.Add(LoadTypeAll);
+            NameValueCollection appSettings = ConfigurationManager.AppSettings;
+            string cult = appSettings["Culture"];
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(cult);
+
+            cboLoadType.Items.Clear();
+			cboLoadType.Items.Add(JMMClient.Properties.Resources.Rename_Random);
+			cboLoadType.Items.Add(JMMClient.Properties.Resources.Rename_Series);
+			cboLoadType.Items.Add(JMMClient.Properties.Resources.Rename_All);
 			cboLoadType.SelectedIndex = 0;
 
 			cboLoadType.SelectionChanged += new SelectionChangedEventHandler(cboLoadType_SelectionChanged);
 
 			cboFilterType.Items.Clear();
-			cboFilterType.Items.Add(FilterTypeAll);
-			cboFilterType.Items.Add(FilterTypeFailed);
-			cboFilterType.Items.Add(FilterTypePassed);
+			cboFilterType.Items.Add(JMMClient.Properties.Resources.Random_All);
+			cboFilterType.Items.Add(JMMClient.Properties.Resources.Rename_Failed);
+			cboFilterType.Items.Add(JMMClient.Properties.Resources.Rename_Passed);
 			cboFilterType.SelectionChanged += new SelectionChangedEventHandler(cboFilterType_SelectionChanged);
 			cboFilterType.SelectedIndex = 0;
 
@@ -234,8 +241,8 @@ namespace JMMClient.UserControls
 				if (cboScript.SelectedItem == null) return;
 				RenameScriptVM script = cboScript.SelectedItem as RenameScriptVM;
 
-				string msg = string.Format("Are you sure you want to delete the script: {0}", script.ScriptName);
-				MessageBoxResult res = MessageBox.Show(msg, "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+				string msg = string.Format(JMMClient.Properties.Resources.Rename_DeleteScript, script.ScriptName);
+				MessageBoxResult res = MessageBox.Show(msg, JMMClient.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
 				if (res == MessageBoxResult.Yes)
 				{
@@ -290,14 +297,14 @@ namespace JMMClient.UserControls
 			try
 			{
 				DialogText dlg = new DialogText();
-				dlg.Init("Enter script name: ", "");
+				dlg.Init(JMMClient.Properties.Resources.Rename_EnterScriptName, "");
 				dlg.Owner = Window.GetWindow(this);
 				bool? res = dlg.ShowDialog();
 				if (res.HasValue && res.Value)
 				{
 					if (string.IsNullOrEmpty(dlg.EnteredText))
 					{
-						Utils.ShowErrorMessage("Please enter a script name");
+						Utils.ShowErrorMessage(JMMClient.Properties.Resources.Rename_BlankScript);
 						return;
 					}
 
@@ -455,7 +462,7 @@ namespace JMMClient.UserControls
 		{
 			ViewFiles.Refresh();
 			WorkerStatusContainer status = e.UserState as WorkerStatusContainer;
-			WorkerStatus = string.Format("{0} of {1}", status.CurrentFile, status.TotalFileCount);
+			WorkerStatus = string.Format(JMMClient.Properties.Resources.Rename_Changed, status.CurrentFile, status.TotalFileCount);
 		}
 
 		void renameWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -504,8 +511,8 @@ namespace JMMClient.UserControls
 
 		void btnRenameFiles_Click(object sender, RoutedEventArgs e)
 		{
-			string msg = string.Format("Are you sure you want to rename the files below?");
-			MessageBoxResult res = MessageBox.Show(msg, "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+			string msg = string.Format(JMMClient.Properties.Resources.Rename_Confirm);
+			MessageBoxResult res = MessageBox.Show(msg, JMMClient.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
 			if (res != MessageBoxResult.Yes) return;
 
@@ -526,7 +533,7 @@ namespace JMMClient.UserControls
 		{
 			ViewFiles.Refresh();
 			WorkerStatusContainer status = e.UserState as WorkerStatusContainer;
-			WorkerStatus = string.Format("{0} of {1}", status.CurrentFile, status.TotalFileCount);
+			WorkerStatus = string.Format(JMMClient.Properties.Resources.Rename_Changed, status.CurrentFile, status.TotalFileCount);
 		}
 
 		void previewWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

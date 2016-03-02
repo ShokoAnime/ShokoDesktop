@@ -142,14 +142,14 @@ namespace JMMClient.Forms
 			{
 				if (cboSeasonNumber.Items.Count == 0)
 				{
-					MessageBox.Show("No seasons available, check the TvDB ID again", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					MessageBox.Show(JMMClient.Properties.Resources.TvDB_NoSeasons, JMMClient.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 					return;
 				}
 
 				AniDB_EpisodeVM aniEp = cboAniDBEpisodeNumber.SelectedItem as AniDB_EpisodeVM;
                 if (aniEp == null)
                 {
-                    MessageBox.Show("There are no episodes available on AniDB", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(JMMClient.Properties.Resources.TvDB_NoAniDB, JMMClient.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 				AnimeEpisodeNumber = aniEp.EpisodeNumber;
@@ -157,7 +157,7 @@ namespace JMMClient.Forms
 				TvDB_EpisodeVM tvep = cboEpisodeNumber.SelectedItem as TvDB_EpisodeVM;
                 if (tvep == null)
                 {
-                    MessageBox.Show("There are no episodes available on The TvDB", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(JMMClient.Properties.Resources.TvDB_NoTvDB, JMMClient.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
                 TvDBEpisodeNumber = tvep.EpisodeNumber;
@@ -173,7 +173,7 @@ namespace JMMClient.Forms
 				string res = JMMServerVM.Instance.clientBinaryHTTP.LinkAniDBTvDB(AnimeID, AnimeEpisodeType, AnimeEpisodeNumber, 
 					TvDBID, TvDBSeason, TvDBEpisodeNumber, CrossRef_AniDB_TvDBV2ID);
 				if (res.Length > 0)
-					MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					MessageBox.Show(res, JMMClient.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 				else
 				{
 					this.DialogResult = true;
@@ -223,8 +223,8 @@ namespace JMMClient.Forms
 			}
 
 			cboEpisodeType.Items.Clear();
-			cboEpisodeType.Items.Add("Episodes");
-			if (hasSpecials) cboEpisodeType.Items.Add("Specials");
+			cboEpisodeType.Items.Add(JMMClient.Properties.Resources.Episodes);
+			if (hasSpecials) cboEpisodeType.Items.Add(JMMClient.Properties.Resources.Specials);
 
 			cboEpisodeType.SelectionChanged += new SelectionChangedEventHandler(cboEpisodeType_SelectionChanged);
 

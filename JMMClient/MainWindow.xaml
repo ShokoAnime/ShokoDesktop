@@ -1707,7 +1707,7 @@
                         <TextBlock VerticalAlignment="Center" Text="{Binding Source={x:Static local:JMMServerVM.Instance},Path=BanOrigin}" FontWeight="Bold"/>
                         <TextBlock VerticalAlignment="Center" Margin="0,0,0,0" Text=")" FontWeight="Bold"/>
                         <TextBlock VerticalAlignment="Center" Margin="10,0,0,0" Text="{Binding Source={x:Static local:JMMServerVM.Instance},Path=BanReason}"/>
-                        <usercontrols:HyperLinkStandard VerticalAlignment="Center" Margin="10,0,0,0" DisplayText="What does this mean?" Grid.Column="1"
+                        <usercontrols:HyperLinkStandard VerticalAlignment="Center" Margin="10,0,0,0" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=WhatDoesThisMean}" Grid.Column="1"
                                                                         URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_AniDBBanned}"/>
                     </StackPanel>
 

@@ -24,12 +24,12 @@ namespace JMMClient
 			{
 				switch (SectionType)
 				{
-					case DashboardMetroProcessType.ContinueWatching: return "Continue Watching";
-					case DashboardMetroProcessType.NewEpisodes: return "New Episodes";
-					case DashboardMetroProcessType.RandomSeries: return "Random Series";
-					case DashboardMetroProcessType.TraktActivity: return "Trakt Activity";
+					case DashboardMetroProcessType.ContinueWatching: return JMMClient.Properties.Resources.Metro_Continue;
+					case DashboardMetroProcessType.NewEpisodes: return JMMClient.Properties.Resources.Metro_New;
+					case DashboardMetroProcessType.RandomSeries: return JMMClient.Properties.Resources.Metro_Random;
+					case DashboardMetroProcessType.TraktActivity: return JMMClient.Properties.Resources.Metro_Trakt;
 				}
-				return "Continue Watching";
+				return JMMClient.Properties.Resources.Metro_Continue;
 			}
 		}
 	}

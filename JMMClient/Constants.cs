@@ -21,8 +21,9 @@ namespace JMMClient
 
         public struct GroupFilterName
 		{
-			public static readonly string ContinueWatching = "Continue Watching (SYSTEM)";
-		}
+			public static readonly string ContinueWatching = JMMClient.Properties.Resources.Constants_Continue;
+
+        }
 
 		public struct DBLogType
 		{

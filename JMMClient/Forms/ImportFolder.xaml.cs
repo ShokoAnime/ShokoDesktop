@@ -36,7 +36,7 @@ namespace JMMClient.Forms
 				// An import folder cannot be both the drop source and the drop destination
 				if (chkDropDestination.IsChecked.HasValue && chkDropSource.IsChecked.HasValue && chkDropDestination.IsChecked.Value && chkDropSource.IsChecked.Value)
 				{
-					MessageBox.Show(Properties.Resources.MSG_ERR_DropSourceDestCheck, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					MessageBox.Show(Properties.Resources.MSG_ERR_DropSourceDestCheck, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 					return;
 				}
 

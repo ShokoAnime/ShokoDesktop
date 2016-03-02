@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -13,8 +14,11 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using JMMClient.Forms;
 using System.ComponentModel;
+using System.Configuration;
 using JMMClient.ViewModel;
 using System.Diagnostics;
+using System.Globalization;
+using System.Threading;
 
 namespace JMMClient.UserControls
 {
@@ -178,7 +182,11 @@ namespace JMMClient.UserControls
 		{
 			InitializeComponent();
 
-			cboDashWatchNextStyle.Items.Clear();
+            NameValueCollection appSettings = ConfigurationManager.AppSettings;
+            string cult = appSettings["Culture"];
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(cult);
+
+            cboDashWatchNextStyle.Items.Clear();
 			cboDashWatchNextStyle.Items.Add(Properties.Resources.DashWatchNextStyle_Simple);
 			cboDashWatchNextStyle.Items.Add(Properties.Resources.DashWatchNextStyle_Detailed);
 
@@ -190,8 +198,8 @@ namespace JMMClient.UserControls
 			cboDashWatchNextStyle.SelectionChanged += new SelectionChangedEventHandler(cboDashWatchNextStyle_SelectionChanged);
 
 			cboDashRecentAdditionsType.Items.Clear();
-			cboDashRecentAdditionsType.Items.Add("Episodes");
-			cboDashRecentAdditionsType.Items.Add("Series");
+			cboDashRecentAdditionsType.Items.Add(JMMClient.Properties.Resources.Episodes);
+			cboDashRecentAdditionsType.Items.Add(JMMClient.Properties.Resources.Series);
 			cboDashRecentAdditionsType.SelectedIndex = AppSettings.DashRecentAdditionsType;
 			cboDashRecentAdditionsType.SelectionChanged += new SelectionChangedEventHandler(cboDashRecentAdditionsType_SelectionChanged);
 
@@ -569,7 +577,7 @@ namespace JMMClient.UserControls
         {
             JMMServerVM.Instance.clientBinaryHTTP.UpdateCalendarData();
 
-            MessageBox.Show("Process is queued on server, please try refreshing in a few seconds", "Running", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show(JMMClient.Properties.Resources.JMMServer_ProcessQueued, JMMClient.Properties.Resources.JMMServer_Running, MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
 		private void CommandBinding_ToggleWatchedStatus(object sender, ExecutedRoutedEventArgs e)
@@ -605,7 +613,7 @@ namespace JMMClient.UserControls
 						newStatus, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
 					if (!string.IsNullOrEmpty(response.ErrorMessage))
 					{
-						MessageBox.Show(response.ErrorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+						MessageBox.Show(response.ErrorMessage, JMMClient.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 						return;
 					}
 
@@ -758,7 +766,7 @@ namespace JMMClient.UserControls
 				{
 
 					JMMServerVM.Instance.SyncVotes();
-					MessageBox.Show("Process is Running on server, please try refreshing when it has finished", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+					MessageBox.Show(JMMClient.Properties.Resources.JMMServer_ProcessRunning, JMMClient.Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
 				}
 			}
 			catch (Exception ex)

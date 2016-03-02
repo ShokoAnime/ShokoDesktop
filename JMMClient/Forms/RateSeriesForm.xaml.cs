@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Configuration;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -52,7 +56,11 @@ namespace JMMClient.Forms
 			AnimeSeriesVM ser = this.DataContext as AnimeSeriesVM;
 			if (ser == null) return;
 
-			cboVoteType.Items.Clear();
+            NameValueCollection appSettings = ConfigurationManager.AppSettings;
+            string cult = appSettings["Culture"];
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(cult);
+
+            cboVoteType.Items.Clear();
 			cboVoteType.Items.Add(Properties.Resources.VoteTypeAnimeTemporary);
 			if (ser.AniDB_Anime.FinishedAiring)
 				cboVoteType.Items.Add(Properties.Resources.VoteTypeAnimePermanent);

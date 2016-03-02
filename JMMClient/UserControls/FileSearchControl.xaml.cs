@@ -13,8 +13,12 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Configuration;
+using System.Globalization;
 using JMMClient.ViewModel;
 using System.IO;
+using System.Threading;
 
 namespace JMMClient.UserControls
 {
@@ -35,10 +39,11 @@ namespace JMMClient.UserControls
 			set { SetValue(FileCountProperty, value); }
 		}
 
-		private readonly string SearchTypeFileName = "File Name";
-		private readonly string SearchTypeHash = "Hash";
-		private readonly string SearchTypeTopOneHundred = "Last 100";
-		private readonly string SearchTypeFileSize = "File Size";
+		private readonly string SearchTypeFileName = JMMClient.Properties.Resources.Search_FileName;
+		private readonly string SearchTypeHash = JMMClient.Properties.Resources.Search_Hash;
+		private readonly string SearchTypeTopOneHundred = JMMClient.Properties.Resources.Search_Last100;
+
+        private readonly string SearchTypeFileSize = JMMClient.Properties.Resources.Search_FileSize;
 
 		BackgroundWorker getDetailsWorker = new BackgroundWorker();
 		private int displayingVidID = 0;
@@ -53,10 +58,14 @@ namespace JMMClient.UserControls
 			btnSearch.Click += new RoutedEventHandler(btnSearch_Click);
 			lbVideos.SelectionChanged += new SelectionChangedEventHandler(lbVideos_SelectionChanged);
 
-			cboSearchType.Items.Clear();
-			cboSearchType.Items.Add(SearchTypeFileName);
-			cboSearchType.Items.Add(SearchTypeHash);
-			cboSearchType.Items.Add(SearchTypeTopOneHundred);
+            NameValueCollection appSettings = ConfigurationManager.AppSettings;
+            string cult = appSettings["Culture"];
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(cult);
+
+            cboSearchType.Items.Clear();
+			cboSearchType.Items.Add(JMMClient.Properties.Resources.Search_FileName);
+			cboSearchType.Items.Add(JMMClient.Properties.Resources.Search_Hash);
+			cboSearchType.Items.Add(JMMClient.Properties.Resources.Search_Last100);
 			cboSearchType.SelectedIndex = 0;
 
 			cboSearchType.SelectionChanged += new SelectionChangedEventHandler(cboSearchType_SelectionChanged);

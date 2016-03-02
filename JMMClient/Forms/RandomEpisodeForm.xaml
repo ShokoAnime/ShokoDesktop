@@ -4,7 +4,7 @@
         xmlns:local="clr-namespace:JMMClient"
         xmlns:forms="clr-namespace:JMMClient.Forms"
         xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
-        Title="Random Episode" Height="550" Width="700" ShowInTaskbar="True" WindowStyle="ToolWindow" Icon="/JMMDesktop;component/Images/32_dice.png"
+        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=GroupFilter_RandomEpisode}" Height="550" Width="700" ShowInTaskbar="True" WindowStyle="ToolWindow" Icon="/JMMDesktop;component/Images/32_dice.png"
         WindowStartupLocation="CenterOwner" Topmost="False" SizeToContent="WidthAndHeight">
     <Window.Resources>
         <ResourceDictionary>

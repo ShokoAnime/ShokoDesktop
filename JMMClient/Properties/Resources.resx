@@ -2593,10 +2593,10 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="Rename_Preview" xml:space="preserve">
     <value>Preview</value>
   </data>
-  <data name="FileSearch_Rescan" xml:space="preserve">
+  <data name="Search_Rescan" xml:space="preserve">
     <value>Rescan</value>
   </data>
-  <data name="FileSearch_AniDBForceUpdate" xml:space="preserve">
+  <data name="Search_AniDBForceUpdate" xml:space="preserve">
     <value>Force update information from AniDB</value>
   </data>
   <data name="GroupFilter_RandomSeries" xml:space="preserve">
@@ -3201,5 +3201,215 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   </data>
   <data name="Link_Path" xml:space="preserve">
     <value>http://www.computerhope.com/issues/ch000549.htm</value>
+  </data>
+  <data name="Search_Everything" xml:space="preserve">
+    <value>Everything</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="TvDB_NoSeasons" xml:space="preserve">
+    <value>No seasons available, check the TvDB ID again</value>
+  </data>
+  <data name="TvDB_NoAniDB" xml:space="preserve">
+    <value>There are no episodes available on AniDB</value>
+  </data>
+  <data name="TvDB_NoTvDB" xml:space="preserve">
+    <value>There are no episodes available on The TvDB</value>
+  </data>
+  <data name="Trakt_NoSeasons" xml:space="preserve">
+    <value>No seasons available, check the Trakt ID again</value>
+  </data>
+  <data name="Filter_New" xml:space="preserve">
+    <value>New Filter</value>
+  </data>
+  <data name="Import_Running" xml:space="preserve">
+    <value>Process is Running</value>
+  </data>
+  <data name="Filter_DeleteGroup" xml:space="preserve">
+    <value>Are you sure you want to delete the Group Filter: {0}</value>
+  </data>
+  <data name="Filter_DeleteCondition" xml:space="preserve">
+    <value>Are you sure you want to delete the Filter Condition: {0}</value>
+  </data>
+  <data name="Filter_DeleteSort" xml:space="preserve">
+    <value>Are you sure you want to delete the sorting?</value>
+  </data>
+  <data name="Playlist_Delete" xml:space="preserve">
+    <value>Are you sure you want to delete the playlist: {0}</value>
+  </data>
+  <data name="Filter_PlaylistMissing" xml:space="preserve">
+    <value>Could not find playlist</value>
+  </data>
+  <data name="Process_Running" xml:space="preserve">
+    <value>Process is Running</value>
+  </data>
+  <data name="Process_Queued" xml:space="preserve">
+    <value>Process is Queued</value>
+  </data>
+  <data name="MultipleFiles_Ignore" xml:space="preserve">
+    <value>Ignore Variations</value>
+  </data>
+  <data name="MultipleFiles_Finished" xml:space="preserve">
+    <value>Only Finished Airing</value>
+  </data>
+  <data name="Playlist_PlayAll" xml:space="preserve">
+    <value>Play All</value>
+  </data>
+  <data name="Playlist_PlayWatched" xml:space="preserve">
+    <value>Play Watched</value>
+  </data>
+  <data name="Playlist_PlayUnwatched" xml:space="preserve">
+    <value>Play UnWatched</value>
+  </data>
+  <data name="Playlist_UseFanart" xml:space="preserve">
+    <value>Use Fanart</value>
+  </data>
+  <data name="Random_Any" xml:space="preserve">
+    <value>Any</value>
+  </data>
+  <data name="Random_All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Rankings_InCollection" xml:space="preserve">
+    <value>In My Collection</value>
+  </data>
+  <data name="Rankings_AllEpisodes" xml:space="preserve">
+    <value>All Episodes In My Collection</value>
+  </data>
+  <data name="Rankings_NotInCollection" xml:space="preserve">
+    <value>Not In My Collection</value>
+  </data>
+  <data name="Rankings_AllWatched" xml:space="preserve">
+    <value>All Episodes Watched</value>
+  </data>
+  <data name="Rankings_NotWatched" xml:space="preserve">
+    <value>Not Watched</value>
+  </data>
+  <data name="Rankings_Votes" xml:space="preserve">
+    <value>Voted</value>
+  </data>
+  <data name="Rankings_NotVoted" xml:space="preserve">
+    <value>Not Voted</value>
+  </data>
+  <data name="Rankings_AnimeNotInCollection" xml:space="preserve">
+    <value>This anime is not in your collection</value>
+  </data>
+  <data name="MissingEpisodes_StillAiring" xml:space="preserve">
+    <value>Still Aring</value>
+  </data>
+  <data name="MissingEpisodes_FinishedAiring" xml:space="preserve">
+    <value>Finished Airing</value>
+  </data>
+  <data name="Exporting" xml:space="preserve">
+    <value>Exporting...</value>
+  </data>
+  <data name="Rename_Files" xml:space="preserve">
+    <value>{0} Files</value>
+  </data>
+  <data name="Rename_Random" xml:space="preserve">
+    <value>Random</value>
+  </data>
+  <data name="Rename_Series" xml:space="preserve">
+    <value>Series</value>
+  </data>
+  <data name="Rename_All" xml:space="preserve">
+    <value>Entire Collection</value>
+  </data>
+  <data name="Rename_Failed" xml:space="preserve">
+    <value>Failed</value>
+  </data>
+  <data name="Rename_Passed" xml:space="preserve">
+    <value>Passed</value>
+  </data>
+  <data name="Rename_DeleteScript" xml:space="preserve">
+    <value>Are you sure you want to delete the script: {0}</value>
+  </data>
+  <data name="Rename_EnterScriptName" xml:space="preserve">
+    <value>Enter Script Name:</value>
+  </data>
+  <data name="Rename_BlankScript" xml:space="preserve">
+    <value>Please enter a script name</value>
+  </data>
+  <data name="Rename_Changed" xml:space="preserve">
+    <value>{0} of {1}</value>
+  </data>
+  <data name="Rename_Confirm" xml:space="preserve">
+    <value>Are you sure you want to rename the files below?</value>
+  </data>
+  <data name="Community_LinkMissing" xml:space="preserve">
+    <value>Missing a Link</value>
+  </data>
+  <data name="Community_LinkDifferent" xml:space="preserve">
+    <value>Link is Different to Approved Link</value>
+  </data>
+  <data name="Community_GettingData" xml:space="preserve">
+    <value>Getting all series data...</value>
+  </data>
+  <data name="Complete" xml:space="preserve">
+    <value>Complete!</value>
+  </data>
+  <data name="Community_TraktProgress" xml:space="preserve">
+    <value>{0}: {1} of {2} - {3}</value>
+  </data>
+  <data name="Community_TraktRef" xml:space="preserve">
+    <value>Getting all Trakt Cross Ref data...</value>
+  </data>
+  <data name="Community_TraktPopulating" xml:space="preserve">
+    <value>Populating series data</value>
+  </data>
+  <data name="Community_TraktSeriesCheck" xml:space="preserve">
+    <value>Checking series</value>
+  </data>
+  <data name="Community_TraktDataCheck" xml:space="preserve">
+    <value>Checking if Trakt data is valid...</value>
+  </data>
+  <data name="Community_TraktCompare" xml:space="preserve">
+    <value>Checking Trakt link against community recommendation...</value>
+  </data>
+  <data name="Tooltip_RecreateAllGroups" xml:space="preserve">
+    <value>This will delete all your current groups and then re-organize all your series into new groups based on your import settings</value>
+  </data>
+  <data name="Rename_Title" xml:space="preserve">
+    <value>Renaming Rules</value>
+  </data>
+  <data name="Search_FileName" xml:space="preserve">
+    <value>File Name</value>
+  </data>
+  <data name="Search_Hash" xml:space="preserve">
+    <value>Hash</value>
+  </data>
+  <data name="Search_Last100" xml:space="preserve">
+    <value>Last 100</value>
+  </data>
+  <data name="Search_FileSize" xml:space="preserve">
+    <value>File Size</value>
+  </data>
+  <data name="JMMServer_ProcessRunning" xml:space="preserve">
+    <value>Process is Running on server, please try refreshing when it has finished</value>
+  </data>
+  <data name="JMMServer_ProcessQueued" xml:space="preserve">
+    <value>Process is queued on server, please try refreshing in a few seconds</value>
+  </data>
+  <data name="Downloads_Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="Anime_QualityRanking" xml:space="preserve">
+    <value>By Quality Ranking</value>
+  </data>
+  <data name="Anime_ReleaseGroup" xml:space="preserve">
+    <value>By Release Group</value>
+  </data>
+  <data name="Anime_GroupDetails" xml:space="preserve">
+    <value>Quality/Release Group Details</value>
+  </data>
+  <data name="Anime_GroupSummary" xml:space="preserve">
+    <value>Release Group Summary</value>
+  </data>
+  <data name="ImportSettings_Default" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="ImportSettings_Custom" xml:space="preserve">
+    <value>Custom</value>
   </data>
 </root>
