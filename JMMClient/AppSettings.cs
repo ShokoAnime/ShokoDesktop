@@ -1845,7 +1845,7 @@ namespace JMMClient
 				// just in case the user has manually edited the config, or is using an old config
 				string[] sources = val.Split(';');
 				bool invalidSource = false;
-				int maxEnum = 6;
+				int maxEnum = 7;
 				foreach (string src in sources)
 				{
 					int iSrc = 0;
