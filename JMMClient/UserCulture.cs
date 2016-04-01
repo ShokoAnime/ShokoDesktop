@@ -30,9 +30,13 @@ namespace JMMClient
 
 				userLanguages.Add(new UserCulture("en", "English (US)", @"Images/Flags/us.gif"));
 				userLanguages.Add(new UserCulture("en-gb", "English (United Kingdom)", @"Images/Flags/uk_unitedkingdom.gif"));
-				userLanguages.Add(new UserCulture("de", "German", @"Images/Flags/de_germany.gif"));
+                userLanguages.Add(new UserCulture("fr", "French", @"Images/Flags/fr.gif"));
+                userLanguages.Add(new UserCulture("de", "German", @"Images/Flags/de_germany.gif"));
+                userLanguages.Add(new UserCulture("it", "Italian", @"Images/Flags/it.gif"));
+                userLanguages.Add(new UserCulture("ru", "Russian", @"Images/Flags/ru.gif"));
+                userLanguages.Add(new UserCulture("es", "Spanish", @"Images/Flags/es.gif"));
 
-				return userLanguages;
+                return userLanguages;
 			}
 		}
 

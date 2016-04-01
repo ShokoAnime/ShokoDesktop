@@ -52,7 +52,7 @@
 
                         <usercontrols:HyperLinkStandard DisplayText="{Binding Path=MALTitle}" VerticalAlignment="Center" URL="{Binding Path=SiteURL}" Margin="10,0,0,0"/>
 
-                        <TextBlock VerticalAlignment="Center" Text="Start:" Margin="10,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_Start}" Margin="10,0,0,0"/>
                         <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=StartEpisodeTypeString}" Margin="5,0,0,0"/>
                         <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=StartEpisodeNumber}" Margin="5,0,0,0"/>
 
@@ -70,7 +70,7 @@
                                 Command="{DynamicResource EditMALLinkCommand}" CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Image Height="16" Width="16" Source="/Images/16_switch.png" Margin="0,0,5,0"/>
-                                <TextBlock VerticalAlignment="Center" Text="Edit Details" Margin="0,0,5,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_Edit}" Margin="0,0,5,0"/>
                             </StackPanel>
                         </Button>
 
@@ -94,11 +94,11 @@
 
                         <usercontrols:HyperLinkStandard DisplayText="{Binding Path=TvDBTitle}" VerticalAlignment="Center" URL="{Binding Path=SeriesURL}" Margin="5,0,0,0"/>
 
-                        <TextBlock VerticalAlignment="Center" Text="AniDB Start:" Margin="10,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AniDBStart}" Margin="10,0,0,0"/>
                         <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=AniDBStartEpisodeTypeString}" Margin="5,0,0,0"/>
                         <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=AniDBStartEpisodeNumber}" Margin="5,0,0,0"/>
 
-                        <TextBlock VerticalAlignment="Center" Text="TvDB: " Margin="10,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_TvDB}" Margin="10,0,0,0"/>
                         <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=TvDBSeasonNumberString}" Margin="5,0,0,0"/>
                         <TextBlock VerticalAlignment="Center" Text="/" Margin="5,0,0,0"/>
                         <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=TvDBStartEpisodeNumberString}" Margin="5,0,0,0"/>
@@ -106,8 +106,8 @@
                         <!-- delete link button -->
                         <Button Margin="8,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                                 Command="{StaticResource DeleteTvDBLinkCommand}" CommandParameter="{Binding}"
-                                ToolTip="{usercontrols:Info Title=Delete, 
-                                Body=Delete this Link}">
+                                ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_DeleteTitle}, 
+                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_DeleteInfo}}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Image Height="16" Width="16" Source="/Images/32_delete.png" Margin="0,0,0,0"/>
                             </StackPanel>
@@ -116,8 +116,8 @@
                         <!-- Edit TvDB Details button -->
                         <Button Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                                 Command="{StaticResource EditTvDBLinkCommand}" CommandParameter="{Binding}"
-                                ToolTip="{usercontrols:Info Title=Edit, 
-                                Body=Edit the details of this Link}">
+                                ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_EditTitle}, 
+                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_EditInfo}}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Image Height="16" Width="16" Source="/Images/16_switch.png" Margin="0,0,0,0"/>
                             </StackPanel>
@@ -126,8 +126,8 @@
                         <!-- Update TvDB Info button -->
                         <Button Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                                 Command="{StaticResource UpdateTvDBLinkCommand}" CommandParameter="{Binding}"
-                                ToolTip="{usercontrols:Info Title=Update, 
-                                Body=Download fresh data from The TvDB and update the local database}">
+                                ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_UpdateTitle}, 
+                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_UpdateTvDB}}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Image Height="16" Width="16" Source="/Images/32_import.png" Margin="0,0,0,0"/>
                             </StackPanel>
@@ -136,8 +136,8 @@
                         <!-- Report incorrect links -->
                         <Button Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                             Command="{StaticResource ReportTvDBLinkCommand}" CommandParameter="{Binding}"  Visibility="Collapsed"
-                            ToolTip="{usercontrols:Info Title=Report Linking Error, 
-                            Body=If this is linked to the wrong series click here to let the developers know}">
+                            ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_ReportLinkTitle}, 
+                            Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_ReportLinkInfo}}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Image Height="16" Width="16" Source="/Images/vote_down2.png" Margin="0,0,0,0"/>
                             </StackPanel>
@@ -164,11 +164,11 @@
 
                         <usercontrols:HyperLinkStandard DisplayText="{Binding Path=TraktTitle}" VerticalAlignment="Center" URL="{Binding Path=ShowURL}" Margin="5,0,0,0"/>
 
-                        <TextBlock VerticalAlignment="Center" Text="AniDB Start:" Margin="10,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AniDBStart}" Margin="10,0,0,0"/>
                         <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=AniDBStartEpisodeTypeString}" Margin="5,0,0,0"/>
                         <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=AniDBStartEpisodeNumber}" Margin="5,0,0,0"/>
 
-                        <TextBlock VerticalAlignment="Center" Text="Trakt: " Margin="10,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_Trakt}" Margin="10,0,0,0"/>
                         <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=TraktSeasonNumberString}" Margin="5,0,0,0"/>
                         <TextBlock VerticalAlignment="Center" Text="/" Margin="5,0,0,0"/>
                         <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=TraktStartEpisodeNumberString}" Margin="5,0,0,0"/>
@@ -176,8 +176,8 @@
                         <!-- delete link button -->
                         <Button Margin="8,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                                 Command="{StaticResource DeleteTraktLinkCommand}" CommandParameter="{Binding}"
-                                ToolTip="{usercontrols:Info Title=Delete, 
-                                Body=Delete this Link}">
+                                ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_DeleteTitle}, 
+                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_DeleteInfo}}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Image Height="16" Width="16" Source="/Images/32_delete.png" Margin="0,0,0,0"/>
                             </StackPanel>
@@ -186,8 +186,8 @@
                         <!-- Edit Trakt Details button -->
                         <Button Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                                 Command="{StaticResource EditTraktLinkCommand}" CommandParameter="{Binding}"
-                                ToolTip="{usercontrols:Info Title=Edit, 
-                                Body=Edit the details of this Link}">
+                                ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_EditTitle}, 
+                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_EditInfo}}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Image Height="16" Width="16" Source="/Images/16_switch.png" Margin="0,0,0,0"/>
                             </StackPanel>
@@ -196,8 +196,8 @@
                         <!-- Update Trakt Info button -->
                         <Button Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                                 Command="{StaticResource UpdateTraktLinkCommand}" CommandParameter="{Binding}"
-                                ToolTip="{usercontrols:Info Title=Update, 
-                                Body=Download fresh data from Trakt and update the local database}">
+                                ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_UpdateTitle}, 
+                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_UpdateTrakt}}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Image Height="16" Width="16" Source="/Images/32_import.png" Margin="0,0,0,0"/>
                             </StackPanel>
@@ -206,8 +206,8 @@
                         <!-- Sync Trakt Info button -->
                         <Button Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                                 Command="{StaticResource SyncTraktLinkCommand}" CommandParameter="{Binding}"
-                                ToolTip="{usercontrols:Info Title=Sync, 
-                                Body=Sync your collection and history data with Trakt}">
+                                ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_SyncTitle}, 
+                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_SyncTrakt}}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="0,0,0,0"/>
                             </StackPanel>
@@ -216,8 +216,8 @@
                         <!-- Report incorrect links -->
                         <Button Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                             Command="{StaticResource ReportTraktLinkCommand}" CommandParameter="{Binding}" Visibility="Collapsed"
-                            ToolTip="{usercontrols:Info Title=Report Linking Error, 
-                            Body=If this is linked to the wrong series click here to let the developers know}">
+                            ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_ReportLinkTitle}, 
+                            Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_ReportLinkInfo}}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Image Height="16" Width="16" Source="/Images/vote_down2.png" Margin="0,0,0,0"/>
                             </StackPanel>
@@ -296,11 +296,11 @@
                     <Button Name="btnTvDBAutoLinkEnable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                             Command="{StaticResource ToggleAutoLinkTvDBCommand}" CommandParameter="{Binding}"
                             Visibility="{Binding Path=IsTvDBLinkDisabled, Converter={StaticResource BooleanToVisibilityConverter}}" 
-                            ToolTip="{usercontrols:Info Title=Auto Linking Disabled, 
-                            Body=Auto linking from this anime to a TvDB series is currently disabled}">
+                            ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkDisabledTitle}, 
+                            Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkDisabledTvDB}}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/32_cancel.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
@@ -308,11 +308,11 @@
                     <Button Name="btnTvDBAutoLinkDisable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                             Command="{StaticResource ToggleAutoLinkTvDBCommand}" CommandParameter="{Binding}"
                             Visibility="{Binding Path=IsTvDBLinkEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-                            ToolTip="{usercontrols:Info Title=Auto Linking Enabled, 
-                            Body=Auto linking from this anime to a TvDB series is currently enabled. If JMM Server finds a close match or community recommendation it will automatically create a link}">
+                            ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkEnabledTitle}, 
+                            Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkEnabledTvDB}}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
@@ -357,11 +357,11 @@
             <Button Name="btnTvDBAutoLinkEnable2" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                             Command="{StaticResource ToggleAutoLinkTvDBCommand}" CommandParameter="{Binding}"
                             Visibility="{Binding Path=IsTvDBLinkDisabled, Converter={StaticResource BooleanToVisibilityConverter}}" 
-                            ToolTip="{usercontrols:Info Title=Auto Linking Disabled, 
-                            Body=Auto linking from this anime to a TvDB series is currently disabled}">
+                            ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkDisabledTitle}, 
+                            Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkDisabledTvDB}}">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/32_cancel.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
 
@@ -369,11 +369,11 @@
             <Button Name="btnTvDBAutoLinkDisable2" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                             Command="{StaticResource ToggleAutoLinkTvDBCommand}" CommandParameter="{Binding}"
                             Visibility="{Binding Path=IsTvDBLinkEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-                            ToolTip="{usercontrols:Info Title=Auto Linking Enabled, 
-                            Body=Auto linking from this anime to a TvDB series is currently enabled. If JMM Server finds a close match or community recommendation it will automatically create a link}">
+                            ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkEnabledTitle}, 
+                            Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkEnabledTvDB}}">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
 
@@ -398,7 +398,7 @@
                 <StackPanel Orientation="Horizontal">
 
                     <Image Height="16" Width="16" Source="/Images/trakttv.ico" Margin="0,0,10,2" VerticalAlignment="Center"/>
-                    <TextBlock Text="Trakt TV" Width="120" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_TraktTV}" Width="120" VerticalAlignment="Center"/>
                     <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,0,2" VerticalAlignment="Center"/>
 
                     <!-- search button -->
@@ -413,11 +413,11 @@
                     <Button Name="btnTraktAutoLinkEnable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                                     Command="{StaticResource ToggleAutoLinkTraktCommand}" CommandParameter="{Binding}"
                                     Visibility="{Binding Path=IsTraktLinkDisabled, Converter={StaticResource BooleanToVisibilityConverter}}" 
-                                    ToolTip="{usercontrols:Info Title=Auto Linking Disabled, 
-                                    Body=Auto linking from this anime to a Trakt series is currently disabled}">
+                                    ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkDisabledTitle}, 
+                                    Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkDisabledTrakt}}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/32_cancel.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ComminityLinks_AutoLink}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
@@ -425,11 +425,11 @@
                     <Button Name="btnTraktAutoLinkDisable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                                     Command="{StaticResource ToggleAutoLinkTraktCommand}" CommandParameter="{Binding}"
                                     Visibility="{Binding Path=IsTraktLinkEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                    ToolTip="{usercontrols:Info Title=Auto Linking Enabled, 
-                                    Body=Auto linking from this anime to a Trakt series is currently enabled. If JMM Server finds a close match or community recommendation it will automatically create a link}">
+                                    ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkEnabledTitle}, 
+                                    Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkEnabledTrakt}}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
@@ -459,7 +459,7 @@
         <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10,10,0,0" VerticalAlignment="Center" 
                     Visibility="{Binding Path=AniDB_AnimeCrossRefs.TraktCrossRefMissing, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Image Height="16" Width="16" Source="/Images/trakttv.ico" Margin="0,0,10,2" VerticalAlignment="Center"/>
-            <TextBlock Text="Trakt TV" Width="120" VerticalAlignment="Center"/>
+            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_TraktTV}" Width="120" VerticalAlignment="Center"/>
             <Image Height="16" Width="16" Source="/Images/32_warning.png" Margin="0,0,0,2" VerticalAlignment="Center"/>
 
             <!-- search button -->
@@ -474,11 +474,11 @@
             <Button Name="btnTraktAutoLinkEnable2" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                             Command="{StaticResource ToggleAutoLinkTraktCommand}" CommandParameter="{Binding}"
                             Visibility="{Binding Path=IsTraktLinkDisabled, Converter={StaticResource BooleanToVisibilityConverter}}" 
-                            ToolTip="{usercontrols:Info Title=Auto Linking Disabled, 
-                            Body=Auto linking from this anime to a Trakt series is currently disabled}">
+                            ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkDisabledTitle}, 
+                            Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkDisabledTrakt}}">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/32_cancel.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
 
@@ -486,11 +486,11 @@
             <Button Name="btnTraktAutoLinkDisable2" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                             Command="{StaticResource ToggleAutoLinkTraktCommand}" CommandParameter="{Binding}"
                             Visibility="{Binding Path=IsTraktLinkEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-                            ToolTip="{usercontrols:Info Title=Auto Linking Enabled, 
-                            Body=Auto linking from this anime to a Trakt series is currently enabled. If JMM Server finds a close match or community recommendation it will automatically create a link}">
+                            ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkEnabledTitle}, 
+                            Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkEnabledTrakt}}">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
 
@@ -514,7 +514,7 @@
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
                     <Image Height="16" Width="16" Source="/Images/myanimelist.ico" Margin="0,0,10,2" VerticalAlignment="Center"/>
-                    <TextBlock Text="MyAnimeList" Width="120" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_MAL}" Width="120" VerticalAlignment="Center"/>
                     <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,0,2" VerticalAlignment="Center"/>
 
                     <!-- search button -->
@@ -529,11 +529,11 @@
                     <Button Name="btnMALAutoLinkEnable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                             Command="{StaticResource ToggleAutoLinkMALCommand}" CommandParameter="{Binding}"
                             Visibility="{Binding Path=IsMALLinkDisabled, Converter={StaticResource BooleanToVisibilityConverter}}" 
-                            ToolTip="{usercontrols:Info Title=Auto Linking Disabled, 
-                            Body=Auto linking from this anime to a MAL series is currently disabled}">
+                            ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkDisabledTitle}, 
+                            Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkDisabledMAL}}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/32_cancel.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
@@ -541,11 +541,11 @@
                     <Button Name="btnMALAutoLinkDisable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                             Command="{StaticResource ToggleAutoLinkMALCommand}" CommandParameter="{Binding}"
                             Visibility="{Binding Path=IsMALLinkEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-                            ToolTip="{usercontrols:Info Title=Auto Linking Enabled, 
-                            Body=Auto linking from this anime to a MAL series is currently enabled. If JMM Server finds a close match or community recommendation it will automatically create a link}">
+                            ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkEnabledTitle}, 
+                            Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkEnabledMAL}}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
@@ -566,7 +566,7 @@
         <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="10,10,0,0" VerticalAlignment="Center" 
                     Visibility="{Binding Path=AniDB_AnimeCrossRefs.MALCrossRefMissing, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Image Height="16" Width="16" Source="/Images/myanimelist.ico" Margin="0,0,10,2" VerticalAlignment="Center"/>
-            <TextBlock Text="MyAnimeList" Width="120" VerticalAlignment="Center"/>
+            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_MAL}" Width="120" VerticalAlignment="Center"/>
             <Image Height="16" Width="16" Source="/Images/32_warning.png" Margin="0,0,0,2" VerticalAlignment="Center"/>
 
             <!-- search button -->
@@ -627,11 +627,11 @@
                     <Button Name="btnMovieDBAutoLinkEnable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                             Command="{StaticResource ToggleAutoLinkMovieDBCommand}" CommandParameter="{Binding}"
                             Visibility="{Binding Path=IsMovieDBLinkDisabled, Converter={StaticResource BooleanToVisibilityConverter}}" 
-                            ToolTip="{usercontrols:Info Title=Auto Linking Disabled, 
-                            Body=Auto linking from this anime to a MovieDB series is currently disabled}">
+                            ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkDisabledTitle}, 
+                            Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkDisabledTMDb}}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/32_cancel.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
@@ -639,11 +639,11 @@
                     <Button Name="btnMovieDBAutoLinkDisable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                             Command="{StaticResource ToggleAutoLinkMovieDBCommand}" CommandParameter="{Binding}"
                             Visibility="{Binding Path=IsMovieDBLinkEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-                            ToolTip="{usercontrols:Info Title=Auto Linking Enabled, 
-                            Body=Auto linking from this anime to a MovieDB series is currently enabled. If JMM Server finds a close match or community recommendation it will automatically create a link}">
+                            ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkEnabledTitle}, 
+                            Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkEnabledTMDb}}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
@@ -651,11 +651,11 @@
                     <Button Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                     Command="{DynamicResource ShowWebCacheAdminCommand}" CommandParameter="{Binding}"
                     Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ShowCommunity, Converter={StaticResource BooleanToVisibilityConverter}}"
-                    ToolTip="{usercontrols:Info Title=Community Admin, 
-                    Body=Go to the Community admin tab and edit the recommended links for this anime}">
+                    ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_CommunityAdminTitle}, 
+                    Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_CommunityAdminInfo}}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/16_Star.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="Community Admin" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_CommunityAdminTitle}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
@@ -683,11 +683,11 @@
             <Button Name="btnMovieDBAutoLinkEnable2" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                             Command="{StaticResource ToggleAutoLinkMovieDBCommand}" CommandParameter="{Binding}"
                             Visibility="{Binding Path=IsMovieDBLinkDisabled, Converter={StaticResource BooleanToVisibilityConverter}}" 
-                            ToolTip="{usercontrols:Info Title=Auto Linking Disabled, 
-                            Body=Auto linking from this anime to a TvDB series is currently disabled}">
+                            ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkDisabledTitle}, 
+                            Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkDisabledTMDb}}">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/32_cancel.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
 
@@ -695,11 +695,11 @@
             <Button Name="btnMovieDBAutoLinkDisable2" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                             Command="{StaticResource ToggleAutoLinkMovieDBCommand}" CommandParameter="{Binding}"
                             Visibility="{Binding Path=IsMovieDBLinkEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-                            ToolTip="{usercontrols:Info Title=Auto Linking Enabled, 
-                            Body=Auto linking from this anime to a TvDB series is currently enabled. If JMM Server finds a close match or community recommendation it will automatically create a link}">
+                            ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkEnabledTitle}, 
+                            Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkEnabledTMDb}}">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="Auto Link" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
 
@@ -713,11 +713,11 @@
             <!-- Community Admin -->
             <Button Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                             Command="{DynamicResource ShowWebCacheAdminCommand}" CommandParameter="{Binding}"
-                            ToolTip="{usercontrols:Info Title=Community Admin, 
-                            Body=Go to the Community admin tab and edit the recommended links for this anime}">
+                            ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_CommunityAdminTitle}, 
+                            Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_CommunityAdminInfo}}">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/16_Star.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="Community Admin" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_CommunityAdminTitle}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
         </StackPanel>

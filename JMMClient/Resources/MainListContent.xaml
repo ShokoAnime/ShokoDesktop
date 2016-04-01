@@ -29,7 +29,7 @@
 
     <!-- seriesDetailTemplate-->
     <DataTemplate x:Key="seriesDetailTemplate">
-        <usercontrols:AnimeSeries DataContext="{Binding}" />
+        <usercontrols:AnimeSeriesContainerControl DataContext="{Binding}" />
     </DataTemplate>
 
 

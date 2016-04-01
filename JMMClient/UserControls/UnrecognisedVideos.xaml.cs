@@ -131,7 +131,7 @@ namespace JMMClient.UserControls
 
 			lbSeries.SelectionChanged += new SelectionChangedEventHandler(lbSeries_SelectionChanged);
 			cboEpisodes.SelectionChanged += new SelectionChangedEventHandler(cboEpisodes_SelectionChanged);
-			lbVideos.SelectionChanged += new SelectionChangedEventHandler(lbVideos_SelectionChanged);
+            dgVideos.SelectionChanged += DgVideos_SelectionChanged;
 			txtStartEpNum.TextChanged += new TextChangedEventHandler(txtStartEpNum_TextChanged);
 			txtEndEpNumSingle.TextChanged += new TextChangedEventHandler(txtEndEpNumSingle_TextChanged);
 
@@ -143,8 +143,8 @@ namespace JMMClient.UserControls
 
 			SetConfirmDetails();
 
-			OneVideoSelected = lbVideos.SelectedItems.Count == 1;
-			MultipleVideosSelected = lbVideos.SelectedItems.Count > 1;
+			OneVideoSelected = dgVideos.SelectedItems.Count == 1;
+			MultipleVideosSelected = dgVideos.SelectedItems.Count > 1;
 
 			btnClearSearch.Click += new RoutedEventHandler(btnClearSearch_Click);
 			txtFileSearch.TextChanged += new TextChangedEventHandler(txtFileSearch_TextChanged);
@@ -153,9 +153,54 @@ namespace JMMClient.UserControls
 			btnRefreshSeriesList.Click += new RoutedEventHandler(btnRefreshSeriesList_Click);
 		}
 
-        
+        private void DgVideos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                ccDetail.Content = null;
+                ccDetailMultiple.Content = null;
 
-		void btnRefreshSeriesList_Click(object sender, RoutedEventArgs e)
+                AnyVideosSelected = dgVideos.SelectedItems.Count > 0;
+                OneVideoSelected = dgVideos.SelectedItems.Count == 1;
+                MultipleVideosSelected = dgVideos.SelectedItems.Count > 1;
+
+                MultipleTypeRange = cboMultiType.SelectedIndex == 0;
+                MultipleTypeSingle = cboMultiType.SelectedIndex == 1;
+
+                // if only one video selected
+                if (OneVideoSelected)
+                {
+                    VideoLocalVM vid = dgVideos.SelectedItem as VideoLocalVM;
+                    ccDetail.Content = vid;
+                }
+
+                // if only one video selected
+                if (MultipleVideosSelected)
+                {
+                    MultipleVideos mv = new MultipleVideos();
+                    mv.SelectedCount = dgVideos.SelectedItems.Count;
+                    mv.VideoLocalIDs = new List<int>();
+                    mv.VideoLocals = new List<VideoLocalVM>();
+
+                    foreach (object obj in dgVideos.SelectedItems)
+                    {
+                        VideoLocalVM vid = obj as VideoLocalVM;
+                        mv.VideoLocalIDs.Add(vid.VideoLocalID);
+                        mv.VideoLocals.Add(vid);
+                    }
+
+                    ccDetailMultiple.Content = mv;
+                }
+
+                SetConfirmDetails();
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+        }
+
+        void btnRefreshSeriesList_Click(object sender, RoutedEventArgs e)
 		{
 			try
 			{
@@ -299,7 +344,7 @@ namespace JMMClient.UserControls
 		private void EnableDisableControls(bool val)
 		{
 			lbSeries.IsEnabled = val;
-			lbVideos.IsEnabled = val;
+			dgVideos.IsEnabled = val;
 			btnAddSeries.IsEnabled = val;
 			btnConfirm.IsEnabled = val;
 			btnRefresh.IsEnabled = val;
@@ -321,7 +366,7 @@ namespace JMMClient.UserControls
 				{
 					EnableDisableControls(false);
 
-					VideoLocalVM vid = lbVideos.SelectedItem as VideoLocalVM;
+					VideoLocalVM vid = dgVideos.SelectedItem as VideoLocalVM;
 
 					if (cboMultiType.SelectedIndex == 0)
 					{
@@ -406,7 +451,7 @@ namespace JMMClient.UserControls
 					int.TryParse(txtStartEpNum.Text, out startEpNum);
 
 					if (MultipleTypeRange)
-						endEpNum = startEpNum + lbVideos.SelectedItems.Count - 1;
+						endEpNum = startEpNum + dgVideos.SelectedItems.Count - 1;
 					else
 						endEpNum = startEpNum;
 
@@ -447,7 +492,7 @@ namespace JMMClient.UserControls
 
 					// get all the selected videos
 					List<int> vidIDs = new List<int>();
-					foreach (object obj in lbVideos.SelectedItems)
+					foreach (object obj in dgVideos.SelectedItems)
 					{
 						VideoLocalVM vid = obj as VideoLocalVM;
 						vidIDs.Add(vid.VideoLocalID);
@@ -680,53 +725,6 @@ namespace JMMClient.UserControls
 		}
 
 
-		void lbVideos_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			try
-			{
-				ccDetail.Content = null;
-				ccDetailMultiple.Content = null;
-
-				AnyVideosSelected = lbVideos.SelectedItems.Count > 0;
-				OneVideoSelected = lbVideos.SelectedItems.Count == 1;
-				MultipleVideosSelected = lbVideos.SelectedItems.Count > 1;
-
-				MultipleTypeRange = cboMultiType.SelectedIndex == 0;
-				MultipleTypeSingle = cboMultiType.SelectedIndex == 1;
-
-				// if only one video selected
-				if (OneVideoSelected)
-				{
-					VideoLocalVM vid = lbVideos.SelectedItem as VideoLocalVM;
-					ccDetail.Content = vid;
-				}
-
-				// if only one video selected
-				if (MultipleVideosSelected)
-				{
-					MultipleVideos mv = new MultipleVideos();
-					mv.SelectedCount = lbVideos.SelectedItems.Count;
-					mv.VideoLocalIDs = new List<int>();
-					mv.VideoLocals = new List<VideoLocalVM>();
-
-					foreach (object obj in lbVideos.SelectedItems)
-					{
-						VideoLocalVM vid = obj as VideoLocalVM;
-						mv.VideoLocalIDs.Add(vid.VideoLocalID);
-						mv.VideoLocals.Add(vid);
-					}
-
-					ccDetailMultiple.Content = mv;
-				}
-
-				SetConfirmDetails();
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-		}
-
 		void cboEpisodes_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			SetConfirmDetails();
@@ -770,7 +768,7 @@ namespace JMMClient.UserControls
 				btnConfirm.Visibility = System.Windows.Visibility.Hidden;
 				cboEpisodes.Visibility = System.Windows.Visibility.Visible;
 
-				if (lbVideos.SelectedItems.Count == 0)
+				if (dgVideos.SelectedItems.Count == 0)
 					btnConfirm.Visibility = System.Windows.Visibility.Hidden;
 
 				// evaluate selected single file
@@ -789,7 +787,7 @@ namespace JMMClient.UserControls
 					else
 					{
 						// single episode
-						if (lbVideos.SelectedItem != null && cboEpisodes.SelectedItem != null)
+						if (dgVideos.SelectedItem != null && cboEpisodes.SelectedItem != null)
 							btnConfirm.Visibility = System.Windows.Visibility.Visible;
 					}
 				}
@@ -805,7 +803,7 @@ namespace JMMClient.UserControls
 						if (startEpNum > 0)
 						{
 							btnConfirm.Visibility = System.Windows.Visibility.Visible;
-							int endEpNum = startEpNum + lbVideos.SelectedItems.Count - 1;
+							int endEpNum = startEpNum + dgVideos.SelectedItems.Count - 1;
 							txtEndEpNum.Text = endEpNum.ToString();
 						}
 					}
@@ -888,7 +886,11 @@ namespace JMMClient.UserControls
 
 			int index = vid.FilePath.IndexOf(txtFileSearch.Text.Trim(), 0, StringComparison.InvariantCultureIgnoreCase);
 			if (index > -1) return true;
-			return false;
+
+            index = vid.FileDirectory.IndexOf(txtFileSearch.Text.Trim(), 0, StringComparison.InvariantCultureIgnoreCase);
+            if (index > -1) return true;
+
+            return false;
 		}
 	}
 }

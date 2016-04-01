@@ -30,9 +30,11 @@ namespace JMMClient.UserControls
 			cboStorageState.SelectedIndex = 0;
 
 			cboDeleteAction.Items.Clear();
-			cboDeleteAction.Items.Add("Delete File");
-			cboDeleteAction.Items.Add("Mark Deleted");
+			cboDeleteAction.Items.Add("Delete File (AniDB)");
+            cboDeleteAction.Items.Add("Delete File (Local DB)");
+            cboDeleteAction.Items.Add("Mark Deleted");
             cboDeleteAction.Items.Add("Mark External (CD/DVD)");
+			cboDeleteAction.Items.Add("Mark Unknown");
 			cboDeleteAction.SelectedIndex = 0;
 
 			this.Loaded += new RoutedEventHandler(AniDBMyListSettings_Loaded);

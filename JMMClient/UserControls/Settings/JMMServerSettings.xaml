@@ -28,7 +28,7 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Right" Visibility="Collapsed">
-            <TextBlock Text="File Port" Margin="10,5,5,0" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Settings_FilePort}" Margin="10,5,5,0" VerticalAlignment="Center"></TextBlock>
             <TextBox Name="txtFilePort" Width="50" Margin="0,5,5,0" VerticalAlignment="Center"/>
         </StackPanel>
 

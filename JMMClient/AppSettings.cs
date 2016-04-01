@@ -361,8 +361,27 @@ namespace JMMClient
 				UpdateSetting("DisplayStyle_GroupList", value.ToString());
 			}
 		}
+        public static int DefaultPlayer_GroupList
+        {
+            get
+            {
+                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                string val = appSettings["DefaultPlayer_GroupList"];
+                int ival = 0;
+                if (int.TryParse(val, out ival))
+                {
+                    return ival;
+                }
+                else
+                    return 3; // default value
+            }
+            set
+            {
+                UpdateSetting("DefaultPlayer_GroupList", value.ToString());
+            }
+        }
 
-		public static int DisplayHeight_DashImage
+        public static int DisplayHeight_DashImage
 		{
 			get
 			{
@@ -485,7 +504,25 @@ namespace JMMClient
 			}
 		}
 
-		public static bool UseFanartOnSeries
+        public static bool DisplaySeriesSimple
+        {
+            get
+            {
+                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                string val = appSettings["DisplaySeriesSimple"];
+                bool bval = true;
+                if (bool.TryParse(val, out bval))
+                    return bval;
+                else
+                    return true; // default value
+            }
+            set
+            {
+                UpdateSetting("DisplaySeriesSimple", value.ToString());
+            }
+        }
+
+        public static bool UseFanartOnSeries
 		{
 			get
 			{
@@ -1602,7 +1639,47 @@ namespace JMMClient
 			ConfigurationManager.RefreshSection("appSettings");
 		}
 
-		public static string UTorrentAddress
+        public static bool TorrentBlackhole
+        {
+            get
+            {
+                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+
+                string val = appSettings["TorrentBlackhole"];
+                bool bval = false;
+                if (bool.TryParse(val, out bval))
+                    return bval;
+                else
+                    return false; // default value
+            }
+            set
+            {
+                UpdateSetting("TorrentBlackhole", value.ToString());
+            }
+        }
+
+        public static string TorrentBlackholeFolder
+        {
+            get
+            {
+                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+
+                string val = appSettings["TorrentBlackholeFolder"];
+                if (string.IsNullOrEmpty(val))
+                {
+                    // default value
+                    val = "";
+                    UpdateSetting("TorrentBlackholeFolder", val);
+                }
+                return val;
+            }
+            set
+            {
+                UpdateSetting("TorrentBlackholeFolder", value);
+            }
+        }
+
+        public static string UTorrentAddress
 		{
 			get
 			{

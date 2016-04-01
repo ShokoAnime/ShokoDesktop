@@ -76,7 +76,7 @@
                                 Command="{DynamicResource RescanFileCommand}" CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="0,0,5,0"/>
-                                <TextBlock VerticalAlignment="Center" Text="Rescan" Margin="0,0,5,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Unrecognized_Rescan}" Margin="0,0,5,0"/>
                             </StackPanel>
                         </Button>
                         
@@ -159,10 +159,10 @@
                                 Command="{StaticResource RescanFileCommand}" CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="0,0,5,0"/>
-                                <TextBlock VerticalAlignment="Center" Text="Rescan" Margin="0,0,5,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Unrecognized_Rescan}" Margin="0,0,5,0"/>
                             </StackPanel>
                             <Button.ToolTip>
-                                <TextBlock Text="Force update information from AniDB"/>
+                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Unrecognize_ForceAniDB}"/>
                             </Button.ToolTip>
                         </Button>
 
@@ -199,10 +199,10 @@
                     <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Path=FileDirectory}" Margin="3" />
                     <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Path=FormattedFileSize}" Margin="3" />
 
-                    <TextBlock Grid.Row="4" Grid.Column="0" Text="Hash" Margin="3" FontWeight="DemiBold" />
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Unrecognized_Hash}" Margin="3" FontWeight="DemiBold" />
                     <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Path=Hash}" Margin="10,3,3,3" />
 
-                    <TextBlock Grid.Row="5" Grid.Column="0" Text="CRC32" Margin="3" FontWeight="DemiBold" />
+                    <TextBlock Grid.Row="5" Grid.Column="0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Unrecognized_CRC32}" Margin="3" FontWeight="DemiBold" />
                     <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Path=CRC32}" Margin="10,3,3,3" />
 
                 </Grid>
@@ -280,7 +280,7 @@
                     <Button Name="btnRehash" Margin="10,2,2,2" Style="{DynamicResource FlatButtonStyle}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                             <Image Height="16" Width="16" Source="/Images/32_redo.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="Re-hash All" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Unrecognized_Rehash}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
@@ -288,16 +288,43 @@
                     <Button Name="btnLogs" Margin="20,2,2,2" Style="{DynamicResource FlatButtonStyle}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                             <Image Height="16" Width="16" Source="/Images/32_folder.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="Logs" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Unrecognized_Logs}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
                 </StackPanel>
 
-                <ListBox DockPanel.Dock="Top" Name="lbVideos" BorderThickness="0" Background="Transparent" Margin="5,5,5,5" 
-                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemTemplate="{DynamicResource SimpleVideoLocalTemplate}" 
-                        ItemContainerStyle="{DynamicResource ListBoxItemStyle}" 
-                        ItemsSource="{Binding Path=ViewFiles, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:UnrecognisedVideos}}}" SelectionMode="Extended" />
+                <!-- grid for files -->
+                <DataGrid DockPanel.Dock="Top" Name="dgVideos" ItemsSource="{Binding Path=ViewFiles, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:UnrecognisedVideos}}}"
+                          HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                            AutoGenerateColumns="False" CanUserReorderColumns="True" CanUserResizeColumns="True" CanUserResizeRows="False" CanUserSortColumns="True" 
+                                  AlternatingRowBackground="Cornsilk"  AlternationCount="2" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="LightGray" 
+                                  AreRowDetailsFrozen="False" CanUserAddRows="False" CanUserDeleteRows="False">
+                    <DataGrid.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Padding" Value="3,3,6,3"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                        <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                            <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGrid.CellStyle>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Folder" Binding="{Binding FileDirectory}" IsReadOnly="True" Width="100" />
+                        <DataGridTextColumn Header="File Name" Binding="{Binding FileName}" IsReadOnly="True" Width="300" />
+                        <DataGridTextColumn Header="Size" Binding="{Binding FileSize}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Hash" Binding="{Binding Hash}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="CRC" Binding="{Binding CRC32}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Date" Binding="{Binding DateTimeUpdated}" IsReadOnly="True" />
+
+                    </DataGrid.Columns>
+                </DataGrid>
+                
             </DockPanel>
 
 
@@ -334,7 +361,7 @@
                 <!-- single series and episode -->
                 <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Margin="0,0,0,5">
                     <Image Source="/Images/16_television.png" Width="16" Height="16" Margin="5,0,0,0" VerticalAlignment="Center" ></Image>
-                    <TextBlock Name="txtSelectedSeriesDetails" Margin="5,0,0,0"  Text="NA"  VerticalAlignment="Center"/>
+                    <TextBlock Name="txtSelectedSeriesDetails" Margin="5,0,0,0"  Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Unrecognized_NA}"  VerticalAlignment="Center"/>
                 </StackPanel>
 
 
@@ -365,7 +392,7 @@
                         <Button  Name="btnRefreshSeriesList" Margin="20,2,2,2" Style="{DynamicResource FlatButtonStyle}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                 <Image Height="16" Width="16" Source="/Images/16_refresh.png" Margin="0,0,3,0"/>
-                                <TextBlock VerticalAlignment="Center" Text="Refresh Series List" Margin="0,0,0,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Unrecognized_RefreshSeries}" Margin="0,0,0,0"/>
                             </StackPanel>
                         </Button>
                     </StackPanel>
@@ -407,7 +434,7 @@
                     <StackPanel Orientation="Horizontal"
                                 Visibility="{Binding Path=MultipleTypeRange, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:UnrecognisedVideos}}, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <TextBox Name="txtStartEpNum" Margin="5,0,0,0" Width="40" VerticalAlignment="Center" Text="1"/>
-                        <TextBlock Margin="5,0,0,0" VerticalAlignment="Center" Text="to"/>
+                        <TextBlock Margin="5,0,0,0" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Unrecognized_To}"/>
                         <TextBlock Name="txtEndEpNum" Margin="5,0,0,0" VerticalAlignment="Center" Text="??" FontWeight="Bold"
                                    Visibility="{Binding Path=MultipleVideosSelected, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:UnrecognisedVideos}}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         <TextBox Name="txtEndEpNumSingle" Margin="5,0,0,0" Width="40" VerticalAlignment="Center" Text="1"

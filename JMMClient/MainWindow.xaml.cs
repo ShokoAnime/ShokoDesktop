@@ -179,7 +179,8 @@ namespace JMMClient
 				this.AddHandler(CloseableTabItem.CloseTabEvent, new RoutedEventHandler(this.CloseTab));
 
 				btnUpdateMediaInfo.Click += new RoutedEventHandler(btnUpdateMediaInfo_Click);
-				btnAbout.Click += new RoutedEventHandler(btnAbout_Click);
+                btnFeed.Click += new RoutedEventHandler(btnFeed_Click);
+                btnAbout.Click += new RoutedEventHandler(btnAbout_Click);
 				btnClearHasherQueue.Click += new RoutedEventHandler(btnClearHasherQueue_Click);
 				btnClearGeneralQueue.Click += new RoutedEventHandler(btnClearGeneralQueue_Click);
 				btnClearServerImageQueue.Click += new RoutedEventHandler(btnClearServerImageQueue_Click);
@@ -291,7 +292,14 @@ namespace JMMClient
 			this.Cursor = Cursors.Arrow;
 		}
 
-		void btnAbout_Click(object sender, RoutedEventArgs e)
+        void btnFeed_Click(object sender, RoutedEventArgs e)
+        {
+            FeedForm frm = new FeedForm();
+            frm.Owner = this;
+            frm.ShowDialog();
+        }
+
+        void btnAbout_Click(object sender, RoutedEventArgs e)
 		{
 			AboutForm frm = new AboutForm();
 			frm.Owner = this;
@@ -1231,12 +1239,35 @@ namespace JMMClient
 			}
 		}
 
-		public void ShowPinnedSeries(AnimeSeriesVM series)
+		public void ShowPinnedSeriesOld(AnimeSeriesVM series)
 		{
 			this.Cursor = Cursors.Wait;
 
 			CloseableTabItem cti = new CloseableTabItem();
-			//TabItem cti = new TabItem();
+            //TabItem cti = new TabItem();
+
+            // if the pinned tab already has this, don't open it again.
+            int curTab = -1;
+            foreach (object obj in tabPinned.Items)
+            {
+                curTab++;
+                CloseableTabItem ctiTemp = obj as CloseableTabItem;
+                if (ctiTemp == null) continue;
+
+                AnimeSeries ctrl = ctiTemp.Content as AnimeSeries;
+                if (ctrl == null) continue;
+
+                AnimeSeriesVM ser = ctrl.DataContext as AnimeSeriesVM;
+                if (ser == null) continue;
+
+                if (ser.AnimeSeriesID == series.AnimeSeriesID)
+                {
+                    tabControl1.SelectedIndex = TAB_MAIN_Pinned;
+                    tabPinned.SelectedIndex = curTab;
+                    this.Cursor = Cursors.Arrow;
+                    return;
+                }
+            }
 
             string tabHeader = series.SeriesName;
             if (tabHeader.Length > 30)
@@ -1256,7 +1287,75 @@ namespace JMMClient
 			this.Cursor = Cursors.Arrow;
 		}
 
-		private void SetColours()
+        public void ShowPinnedSeries(AnimeSeriesVM series, bool isMetroDash = false)
+        {
+            this.Cursor = Cursors.Wait;
+
+            CloseableTabItem cti = new CloseableTabItem();
+            //TabItem cti = new TabItem();
+
+            // if the pinned tab already has this, don't open it again.
+            int curTab = -1;
+            foreach (object obj in tabPinned.Items)
+            {
+                curTab++;
+                CloseableTabItem ctiTemp = obj as CloseableTabItem;
+                if (ctiTemp == null) continue;
+
+                AnimeSeries ctrl = ctiTemp.Content as AnimeSeries;
+                if (ctrl == null) continue;
+
+                AnimeSeriesVM ser = ctrl.DataContext as AnimeSeriesVM;
+                if (ser == null) continue;
+
+                if (ser.AnimeSeriesID == series.AnimeSeriesID)
+                {
+                    tabControl1.SelectedIndex = TAB_MAIN_Pinned;
+                    tabPinned.SelectedIndex = curTab;
+                    this.Cursor = Cursors.Arrow;
+                    return;
+                }
+            }
+
+            string tabHeader = series.SeriesName;
+            if (tabHeader.Length > 30)
+                tabHeader = tabHeader.Substring(0, 30) + "...";
+            cti.Header = tabHeader;
+
+            if (AppSettings.DisplaySeriesSimple)
+            {
+                AnimeSeriesSimplifiedControl ctrl = new AnimeSeriesSimplifiedControl();
+                ctrl.DataContext = series;
+
+                AnimeSeriesContainerControl cont = new AnimeSeriesContainerControl();
+                cont.IsMetroDash = false;
+                cont.DataContext = ctrl;
+
+                cti.Content = cont;
+
+                tabPinned.Items.Add(cti);
+            }
+            else
+            {
+                AnimeSeries seriesControl = new AnimeSeries();
+                seriesControl.DataContext = series;
+
+                AnimeSeriesContainerControl cont = new AnimeSeriesContainerControl();
+                cont.IsMetroDash = false;
+                cont.DataContext = seriesControl;
+
+                cti.Content = cont;
+
+                tabPinned.Items.Add(cti);
+            }
+
+            tabControl1.SelectedIndex = TAB_MAIN_Pinned;
+            tabPinned.SelectedIndex = tabPinned.Items.Count - 1;
+
+            this.Cursor = Cursors.Arrow;
+        }
+
+        private void SetColours()
 		{
 			if (tabControl1.SelectedIndex == TAB_MAIN_Dashboard)
 			{
@@ -3314,8 +3413,36 @@ namespace JMMClient
 		{
 			try
 			{
-				//BindingOperations.ClearBinding(ccDetail, ContentControl.ContentProperty);
-				Binding b = new Binding();
+                //BindingOperations.ClearBinding(ccDetail, ContentControl.ContentProperty);
+
+                if (objToBind.GetType().Equals(typeof(AnimeSeriesVM)))
+                {
+                    AnimeSeriesVM ser = objToBind as AnimeSeriesVM;
+                    if (AppSettings.DisplaySeriesSimple)
+                    {
+                        AnimeSeriesSimplifiedControl ctrl = new AnimeSeriesSimplifiedControl();
+                        ctrl.DataContext = ser;
+
+                        AnimeSeriesContainerControl cont = new AnimeSeriesContainerControl();
+                        cont.IsMetroDash = false;
+                        cont.DataContext = ctrl;
+
+                        objToBind = cont;
+                    }
+                    else
+                    {
+                        AnimeSeries ctrl = new AnimeSeries();
+                        ctrl.DataContext = ser;
+
+                        AnimeSeriesContainerControl cont = new AnimeSeriesContainerControl();
+                        cont.IsMetroDash = false;
+                        cont.DataContext = ctrl;
+
+                        objToBind = cont;
+                    }
+                }
+
+                Binding b = new Binding();
 				b.Source = objToBind;
 				b.UpdateSourceTrigger = UpdateSourceTrigger.Explicit;
 				ccDetail.SetBinding(ContentControl.ContentProperty, b);

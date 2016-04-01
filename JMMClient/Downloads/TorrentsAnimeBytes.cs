@@ -8,6 +8,7 @@ using System.Net;
 using System.IO;
 using System.Collections;
 using System.Diagnostics;
+using System.Collections.Specialized;
 
 namespace JMMClient.Downloads
 {
@@ -66,47 +67,44 @@ namespace JMMClient.Downloads
 
 			try
 			{
-				CookieContainer container = new CookieContainer();
-				string formUrl = "http://animebyt.es/login.php"; // NOTE: This is the URL the form POSTs to, not the URL of the form (you can find this in the "action" attribute of the HTML's form tag
-				string formParams = string.Format("username={0}&password={1}", username, password);
+                WebClientEx client = null;
+                while (client == null)
+                {
+                    Console.WriteLine("Trying..");
+                    client = CloudflareEvader.CreateBypassedWebClient("https://animebytes.tv");
+                }
 
-				HttpWebRequest req = (HttpWebRequest)WebRequest.Create(formUrl);
-				req.ContentType = "application/x-www-form-urlencoded";
-				req.Method = "POST";
-				req.CookieContainer = container;
-				req.UserAgent = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)";
-				req.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip,deflate");
-				req.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
-				byte[] bytes = Encoding.ASCII.GetBytes(formParams);
-				req.ContentLength = bytes.Length;
-				using (Stream os = req.GetRequestStream())
-				{
-					os.Write(bytes, 0, bytes.Length);
-				}
+                try
+                {
+                    using (client)
+                    {
+                        var values = new NameValueCollection
+                    {
+                        { "username", username },
+                        { "password", password },
+                    };
+                        // Authenticate
+                        client.UploadValues("https://animebytes.tv/user/login", values);
+                        // Download desired page
 
+                        string temp = client.CookieContainer.GetCookieHeader(new Uri("http://animebytes.tv/index.php"));
 
-				HttpWebResponse WebResponse = (HttpWebResponse)req.GetResponse();
+                        if (ValidateCookie(temp))
+                            return client.CookieContainer.GetCookieHeader(new Uri("http://animebytes.tv/index.php"));
+                        else
+                            return "";
+                    }
 
-				Stream responseStream = WebResponse.GetResponseStream();
-				String enco = WebResponse.CharacterSet;
-				Encoding encoding = null;
-				if (!String.IsNullOrEmpty(enco))
-					encoding = Encoding.GetEncoding(WebResponse.CharacterSet);
-				if (encoding == null)
-					encoding = Encoding.Default;
-				StreamReader Reader = new StreamReader(responseStream, encoding);
+                }
+                catch (Exception ex)
+                {
+                    logger.ErrorException(ex.ToString(), ex);
+                    return "";
+                }
 
-				string output = Reader.ReadToEnd();
+                //Console.WriteLine("Solved! We're clear to go");
+                //Console.WriteLine(client.DownloadString("http://anilinkz.tv/anime-list"));
 
-				logger.Trace(ShowAllCookies(container));
-
-				if (container.Count < 3)
-					return "";
-
-
-
-				//Grab the cookie we just got back for this specifc page
-				return container.GetCookieHeader(new Uri("http://animebyt.es/index.php"));
 			}
 			catch (Exception ex)
 			{
@@ -115,6 +113,15 @@ namespace JMMClient.Downloads
 			}
 		}
 
+        private bool ValidateCookie(string cookie)
+        {
+            string url = "http://animebytes.tv/torrents.php?filter_cat[1]=1&sort=time_added&way=desc";
+
+            string output = Utils.DownloadWebPage(url, cookie, true);
+
+            return ParseSource(output).Count > 1;
+        }
+
 		private List<TorrentLinkVM> ParseSource(string output)
 		{
 			List<TorrentLinkVM> torLinks = new List<TorrentLinkVM>();
@@ -122,7 +129,7 @@ namespace JMMClient.Downloads
 			char q = (char)34;
 			string quote = q.ToString();
 
-			string nameStart = "<a href=" + quote + "series.php?id=";
+			string nameStart = "<a href=" + quote + "/series.php?id=";
 			string nameStart2 = quote + ">";
 			string nameEnd = "</a>";
 
@@ -239,7 +246,7 @@ namespace JMMClient.Downloads
 					string torLeech = output.Substring(posTorLeechStart + torLeechStart.Length, posTorLeechEnd - posTorLeechStart - torLeechStart.Length);
 
 					TorrentLinkVM torrentLink = new TorrentLinkVM(TorrentSourceType.AnimeBytes);
-					torrentLink.TorrentDownloadLink = string.Format(@"http://animebyt.es/{0}", torDownloadLink);
+					torrentLink.TorrentDownloadLink = string.Format(@"http://animebytes.tv/{0}", torDownloadLink);
 					torrentLink.TorrentLink = "";
 					torrentLink.AnimeType = torType;
 					torrentLink.TorrentName = torName + " - " + torInfo;
@@ -275,7 +282,7 @@ namespace JMMClient.Downloads
 				if (string.IsNullOrEmpty(UserSettingsVM.Instance.AnimeBytesCookieHeader))
 					return new List<TorrentLinkVM>();
 
-				string urlBase = "http://animebyt.es/torrents.php?filter_cat%5B1%5D=1&searchstr={0}&action=advanced&search_type=title&year=&year2=&tags=&tags_type=0&sort=time_added&way=desc&hentai=2&releasegroup=&epcount=&epcount2=&artbooktitle=";
+				string urlBase = "http://animebytes.tv/torrents.php?filter_cat%5B1%5D=1&searchstr={0}&action=advanced&search_type=title&year=&year2=&tags=&tags_type=0&sort=time_added&way=desc&hentai=2&releasegroup=&epcount=&epcount2=&artbooktitle=";
 
 				string searchCriteria = "";
 				foreach (string parm in searchParms)
@@ -312,7 +319,7 @@ namespace JMMClient.Downloads
 				if (string.IsNullOrEmpty(UserSettingsVM.Instance.AnimeBytesCookieHeader))
 					return new List<TorrentLinkVM>();
 
-				string url = "http://animebyt.es/torrents.php?filter_cat[1]=1&sort=time_added&way=desc";
+				string url = "http://animebytes.tv/torrents.php?filter_cat[1]=1&sort=time_added&way=desc";
 				string output = Utils.DownloadWebPage(url, UserSettingsVM.Instance.AnimeBytesCookieHeader, true);
 
 				return ParseSource(output);

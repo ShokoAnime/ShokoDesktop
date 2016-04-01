@@ -70,7 +70,7 @@
                         <Button Name="btnSortOverall" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                 <Image Height="16" Width="16" Source="/Images/32_sort.png" Margin="0,0,5,0"/>
-                                <TextBlock VerticalAlignment="Center" Text="By Overall User Rating" Margin="0,0,5,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Rankings_Overall}" Margin="0,0,5,0"/>
                             </StackPanel>
                         </Button>
 
@@ -78,7 +78,7 @@
                         <Button Name="btnSortYear" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                 <Image Height="16" Width="16" Source="/Images/32_sort.png" Margin="0,0,5,0"/>
-                                <TextBlock VerticalAlignment="Center" Text="Grouped By Year" Margin="0,0,5,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Rankings_GroupedByYear}" Margin="0,0,5,0"/>
                             </StackPanel>
                         </Button>
 
@@ -86,13 +86,13 @@
 
                     <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" Margin="5,0,5,5">
 
-                        <TextBlock VerticalAlignment="Center" Text="Collection State" Margin="10,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Rankings_CollectionState}" Margin="10,0,0,0"/>
                         <ComboBox Margin="7,0,0,0" Name="cboCollection" VerticalAlignment="Center"></ComboBox>
 
-                        <TextBlock VerticalAlignment="Center" Text="Completed" Margin="10,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Rankings_Completed}" Margin="10,0,0,0"/>
                         <ComboBox Margin="7,0,0,0" Name="cboWatched" VerticalAlignment="Center"></ComboBox>
 
-                        <TextBlock VerticalAlignment="Center" Text="Voted" Margin="10,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Rankings_Voted}" Margin="10,0,0,0"/>
                         <ComboBox Margin="7,0,0,0" Name="cboVoted" VerticalAlignment="Center"></ComboBox>
 
                     </StackPanel>
@@ -125,7 +125,7 @@
                                                     <StackPanel Orientation="Horizontal">
                                                         <TextBlock Text="{Binding Path=Name}" FontWeight="Bold" />
                                                         <TextBlock Text="{Binding Path=ItemCount}" Margin="10,0,0,0"/>
-                                                        <TextBlock Text=" Anime"/>
+                                                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Rankings_Anime}"/>
                                                     </StackPanel>
                                                 </Expander.Header>
                                                 <ItemsPresenter />
@@ -152,9 +152,9 @@
                     </Style>
                 </DataGrid.CellStyle>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Anime" Binding="{Binding AnimeName}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="AniDB Rating" Binding="{Binding Rating}" IsReadOnly="True" />
-                    <DataGridTemplateColumn Header="Your Rating" IsReadOnly="False">
+                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Anime}" Binding="{Binding AnimeName}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Rankings_AniDB}" Binding="{Binding Rating}" IsReadOnly="True" />
+                    <DataGridTemplateColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Rankings_User}" IsReadOnly="False">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -166,7 +166,7 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTextColumn Header="Year" Binding="{Binding Year}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Rankings_Year}" Binding="{Binding Year}" IsReadOnly="True" />
                 </DataGrid.Columns>
             </DataGrid>
 
@@ -197,7 +197,7 @@
                             Visibility="{Binding Path=IsNotLoading, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:RankingsControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="16" Width="16" Source="/Images/16_windows.png" Margin="0,0,5,0"/>
-                                    <TextBlock VerticalAlignment="Center" Text="View Series"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Rankings_View}"/>
                                 </StackPanel>
                             </Button>
                         </StackPanel>
@@ -208,7 +208,7 @@
                 <StackPanel Orientation="Horizontal" Margin="5"
                             Visibility="{Binding Path=AnimeHasSeries, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:RankingsControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
 
-                    <TextBlock Margin="0,0,5,0"  FontWeight="Heavy" Foreground="DarkGray"  Text="My Vote" VerticalAlignment="Center"/>
+                    <TextBlock Margin="0,0,5,0"  FontWeight="Heavy" Foreground="DarkGray"  Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Rankings_MyVote}" VerticalAlignment="Center"/>
 
                     <usercontrols:RatingControl x:Name="cRating" Width="280" Height="24" RatingValue="{Binding Path=AnimeDetailed.AniDB_Anime.Detail.UserRating}" />
 

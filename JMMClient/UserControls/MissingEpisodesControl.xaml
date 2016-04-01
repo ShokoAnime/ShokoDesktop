@@ -52,7 +52,7 @@
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                             <Image Height="16" Width="16" Source="/Images/32_bookmark.png" Margin="1,0,1,0" ToolTipService.ShowDuration="60000">
                                 <Image.ToolTip>
-                                    <TextBlock Text="Bookmark this anime to download later"/>
+                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Dashboard_Bookmark}"/>
                                 </Image.ToolTip>
                             </Image>
 
@@ -65,7 +65,7 @@
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                             <Image Height="16" Width="16" Source="/Images/24_download3.png" Margin="2,0,2,0">
                                 <Image.ToolTip>
-                                    <TextBlock Text="Search for downloads for this episode"/>
+                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_DownloadSearch}"/>
                                 </Image.ToolTip>
                             </Image>
 
@@ -135,7 +135,7 @@
                                 <Image Height="16" Width="16" Source="/Images/16_Columns.png" Margin="0,0,5,0"/>
                             </StackPanel>
                             <Button.ToolTip>
-                                <TextBlock Text="Select the columns to be used in the import"/>
+                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=MissingEpisodes_SelectColumns}"/>
                             </Button.ToolTip>
                         </Button>
                     </StackPanel>
@@ -148,7 +148,7 @@
                     <CheckBox Name="chkRegularEpisodesOnly" IsChecked="True" VerticalAlignment="Center" Margin="12,0,2,0"/>
                     <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=RegularEpisodesOnly}" VerticalAlignment="Center"></TextBlock>
 
-                    <TextBlock VerticalAlignment="Center" Text="Airing State:" Margin="10,0,0,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=MissingEpisodes_AiringState}" Margin="10,0,0,0"/>
 
                     <ComboBox Name="cboAiringFilter" Margin="3,3,5,3" Height="24" VerticalAlignment="Center"/>
 
@@ -169,8 +169,8 @@
                         </Grid.ColumnDefinitions>
 
                         <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,5,0" Grid.Column="0" VerticalAlignment="Top"/>
-                        <TextBlock VerticalAlignment="Center" Text="Pressing the refresh button can take several minutes, so please be patient" Margin="0,0,5,5" TextWrapping="Wrap" Grid.Column="1"/>
-                        <TextBlock VerticalAlignment="Center" Text="This utility will show you a summary of all your missing episodes." Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1" Grid.Row="1"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=RefreshWait}" Margin="0,0,5,5" TextWrapping="Wrap" Grid.Column="1"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=MissingEpisodes_Note}" Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1" Grid.Row="1"/>
                     </Grid>
                 </Border>
 

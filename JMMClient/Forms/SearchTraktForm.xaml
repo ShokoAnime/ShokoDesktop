@@ -71,18 +71,18 @@
                             
                             <usercontrols:HyperLinkStandard DisplayText="{Binding Path=TraktTitle}" VerticalAlignment="Center" URL="{Binding Path=ShowURL}" Margin="5,0,0,0"/>
 
-                            <TextBlock VerticalAlignment="Center" Text="AniDB Start:" Margin="10,0,0,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search_AniDBStart}" Margin="10,0,0,0"/>
                             <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=AniDBStartEpisodeTypeString}" Margin="5,0,0,0"/>
                             <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=AniDBStartEpisodeNumber}" Margin="5,0,0,0"/>
 
-                            <TextBlock VerticalAlignment="Center" Text="Trakt: " Margin="10,0,0,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search_Trakt}" Margin="10,0,0,0"/>
                             <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=TraktSeasonNumberString}" Margin="5,0,0,0"/>
                             <TextBlock VerticalAlignment="Center" Text="/" Margin="5,0,0,0"/>
                             <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=TraktStartEpisodeNumberString}" Margin="5,0,0,0"/>
 
                             <StackPanel Orientation="Horizontal" Visibility="{Binding Path=AdminApproved, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <Image Margin="25,0,0,0" Height="16" Width="16" Source="/Images/vote_up2.png" VerticalAlignment="Center"/>
-                                <TextBlock VerticalAlignment="Center" Text="Admin Approved" Margin="5,0,0,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search_Approved}" Margin="5,0,0,0"/>
                             </StackPanel>
 
                         </StackPanel>

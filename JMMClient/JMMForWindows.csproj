@@ -135,6 +135,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\Infralution.Localization.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="Jint, Version=2.6.0.0, Culture=neutral, PublicKeyToken=2e92ba9c8d81157f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Jint.2.7.1\lib\portable-net40+sl50+win+WindowsPhoneApp81+wp80\Jint.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MahApps.Metro">
       <HintPath>..\Dependencies\MahApps.Metro.dll</HintPath>
     </Reference>
@@ -197,6 +201,8 @@
     <Compile Include="DataTemplateSelectors\RecDownloadTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\RecWatchTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\WatchingEpisodeTemplateSelector.cs" />
+    <Compile Include="Downloads\CloudflareEvader.cs" />
+    <Compile Include="Downloads\TorrentsSukebei.cs" />
     <Compile Include="Downloads\CsvParser.cs" />
     <Compile Include="Downloads\CsvStream.cs" />
     <Compile Include="Downloads\DownloadHelper.cs" />
@@ -217,12 +223,18 @@
     <Compile Include="Downloads\TorrentSourceVM.cs" />
     <Compile Include="Downloads\TorrentsTokyoToshokan.cs" />
     <Compile Include="Downloads\UTorrentHelper.cs" />
+    <Compile Include="Downloads\WebClientEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Enums.cs" />
     <Compile Include="Forms\AboutForm.xaml.cs">
       <DependentUpon>AboutForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\AdminMessagesForm.xaml.cs">
       <DependentUpon>AdminMessagesForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FeedForm.xaml.cs">
+      <DependentUpon>FeedForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\UpdateForm.xaml.cs">
       <DependentUpon>UpdateForm.xaml</DependentUpon>
@@ -233,8 +245,8 @@
     <Compile Include="UserControls\AnimeFolderSummaryControl.xaml.cs">
       <DependentUpon>AnimeFolderSummaryControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\AnimeSeriesSimple.xaml.cs">
-      <DependentUpon>AnimeSeriesSimple.xaml</DependentUpon>
+    <Compile Include="UserControls\AnimeSeriesContainerControl.xaml.cs">
+      <DependentUpon>AnimeSeriesContainerControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Community\CommunityMaint.xaml.cs">
       <DependentUpon>CommunityMaint.xaml</DependentUpon>
@@ -244,6 +256,9 @@
     </Compile>
     <Compile Include="UserControls\Custom ToolTips\EpisodeDetailsToolTip.xaml.cs">
       <DependentUpon>EpisodeDetailsToolTip.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Downloads\DownloadsTorrentBlackHole.xaml.cs">
+      <DependentUpon>DownloadsTorrentBlackHole.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\PlayNextEpisodeControlV2.xaml.cs">
       <DependentUpon>PlayNextEpisodeControlV2.xaml</DependentUpon>
@@ -402,8 +417,8 @@
     <Compile Include="UserControls\Community\CommunityLinksControl.xaml.cs">
       <DependentUpon>CommunityLinksControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\ContinueWatchingTileControl.xaml.cs">
-      <DependentUpon>ContinueWatchingTileControl.xaml</DependentUpon>
+    <Compile Include="UserControls\AnimeSeriesSimplifiedControl.xaml.cs">
+      <DependentUpon>AnimeSeriesSimplifiedControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Custom ToolTips\CustomToolTip.cs" />
     <Compile Include="UserControls\DashboardControl.xaml.cs">
@@ -755,6 +770,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Forms\FeedForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Forms\GroupFilterConditionForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -911,7 +930,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\AnimeSeriesSimple.xaml">
+    <Page Include="UserControls\AnimeSeriesContainerControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -935,7 +954,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\ContinueWatchingTileControl.xaml">
+    <Page Include="UserControls\AnimeSeriesSimplifiedControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -988,6 +1007,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Downloads\DownloadsSettingsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Downloads\DownloadsTorrentBlackHole.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1234,6 +1257,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Properties\Resources.es.resx" />
+    <EmbeddedResource Include="Properties\Resources.fr.resx" />
+    <EmbeddedResource Include="Properties\Resources.it.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -1243,13 +1269,17 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.de.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.en-gb.resx" />
+    <EmbeddedResource Include="Properties\Resources.en-gb.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.ru.resx" />
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="app.manifest" />
     <None Include="default.config" />
     <None Include="JMMDesktop.snk" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1497,6 +1527,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\JMMServerBinary\JMMServerBinary3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMServerBinary4.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\JMMServerBinary\JMMServiceImplementation.wsdl" />
@@ -2092,6 +2125,9 @@
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.Core.dll" />
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.dll" />
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.resources.dll" />
+    <Resource Include="Images\Metro\details.png" />
+    <Resource Include="Images\16_feed.png" />
+    <Resource Include="Images\32_feed.png" />
     <Resource Include="Images\Metro\back.png" />
     <Resource Include="Images\placeholder.png" />
   </ItemGroup>

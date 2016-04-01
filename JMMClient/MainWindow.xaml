@@ -36,7 +36,7 @@
             <RoutedUICommand x:Key="RefreshPlaylistCommand" Text="RefreshPlaylistCommand" />
             <RoutedUICommand x:Key="DeletePlaylistItemCommand" Text="DeletePlaylistItemCommand" />
             <RoutedUICommand x:Key="ShowWebCacheAdminCommand" Text="ShowWebCacheAdminCommand" />
-            
+
 
 
 
@@ -108,7 +108,7 @@
             <DataTemplate x:Key="groupCountTemplate">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="{Binding Path=GroupCount}" />
-                    <TextBlock Text=" Groups" />
+                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Group_GroupCount}" />
                 </StackPanel>
             </DataTemplate>
 
@@ -228,7 +228,7 @@
                 <Grid>
                     <usercontrols:DashboardControl x:Name="dash" Margin="0,0,0,0" Visibility="Collapsed"/>
                     <usercontrols:DashboardMetroDXControl x:Name="dashMetro" Margin="0,0,0,0" Visibility="Collapsed"/>
-                    <usercontrols:ContinueWatchingTileControl x:Name="tileContinueWatching" Margin="0,0,0,0" Visibility="Collapsed"/>
+                    <usercontrols:AnimeSeriesSimplifiedControl x:Name="tileContinueWatching" Margin="0,0,0,0" Visibility="Collapsed"/>
                 </Grid>
             </TabItem>
 
@@ -371,7 +371,7 @@
                                     ContentTemplateSelector="{StaticResource myDataTemplateSelector}" >
                     </ContentControl>-->
 
-                        <DockPanel Grid.Row="1" Grid.RowSpan="3">
+                    <DockPanel Grid.Row="1" Grid.RowSpan="3">
                         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Background="#F1F1F1"
                                     Visibility="{Binding Source={x:Static local:MainListHelperVM.Instance}, Path=CurrentListWrapperIsGroup, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <!-- add sub group -->
@@ -407,7 +407,7 @@
                      Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Playlists" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tab_Playlists}" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
                     </StackPanel>
                 </TabItem.Header>
 
@@ -456,7 +456,7 @@
                             <Button  Name="btnAddPlaylist" Margin="3,2,2,2" Style="{DynamicResource FlatButtonStyle}" Command="{DynamicResource AddPlaylistCommand}">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="16" Width="16" Source="/Images/32_folder_add.png" Margin="0,0,3,0"/>
-                                    <TextBlock VerticalAlignment="Center" Text="New Playlist" Margin="0,0,0,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Playlist_NewPlaylist}" Margin="0,0,0,0"/>
                                 </StackPanel>
                             </Button>
 
@@ -480,7 +480,7 @@
                      Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Bookmarks" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tab_Bookmarks}" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
                     </StackPanel>
                 </TabItem.Header>
 
@@ -533,13 +533,13 @@
                         </Grid.RowDefinitions>
 
                         <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6" Background="#FFE9ECEF" Margin="0,0,0,5">
-                            <TextBlock Text="Import Folders" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=JMMServer_ImportFolders}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                         </Border>
 
                         <usercontrols:ImportFolderAdmin Grid.Row="1" Grid.ColumnSpan="6"/>
 
                         <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="6" Background="#FFE9ECEF" Margin="0,10,0,5">
-                            <TextBlock Text="Server Status" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=JMMServer_ServerStatus}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                         </Border>
 
 
@@ -549,7 +549,7 @@
                                 <Image Height="16" Width="16" Source="/Images/32_delete.png" Margin="0,0,0,0"/>
                             </StackPanel>
                             <Button.ToolTip>
-                                <TextBlock Text="Clear all queued hash commands" Foreground="Black" FontWeight="DemiBold"/>
+                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_ClearHash}" Foreground="Black" FontWeight="DemiBold"/>
                             </Button.ToolTip>
                         </Button>
 
@@ -573,9 +573,9 @@
                             <Image Height="16" Width="16" Source="Images/16_server_hash.png" Margin="10,0,5,0" VerticalAlignment="Center"/>
                             <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=QueueHasher}" Margin="0,0,0,0"/>
                             <TextBlock VerticalAlignment="Center" Text=" - " Margin="0,0,0,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="Running" Margin="0,0,5,0"
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=JMMServer_Running}" Margin="0,0,5,0"
                                         Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=HasherQueueRunning, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                            <TextBlock VerticalAlignment="Center" Text="Paused" Margin="0,0,5,0"
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=JMMServer_Paused}" Margin="0,0,5,0"
                                        Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=HasherQueuePaused, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         </StackPanel>
 
@@ -592,7 +592,7 @@
                                 <Image Height="16" Width="16" Source="/Images/32_delete.png" Margin="0,0,0,0"/>
                             </StackPanel>
                             <Button.ToolTip>
-                                <TextBlock Text="Clear all queued general commands" Foreground="Black" FontWeight="DemiBold"/>
+                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_ClearGeneral}" Foreground="Black" FontWeight="DemiBold"/>
                             </Button.ToolTip>
                         </Button>
 
@@ -616,9 +616,9 @@
                             <Image Height="16" Width="16" Source="Images/16_server_connect.png" Margin="10,0,5,0" VerticalAlignment="Center"/>
                             <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=QueueGeneral}" Margin="0,0,0,0"/>
                             <TextBlock VerticalAlignment="Center" Text=" - " Margin="0,0,0,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="Running" Margin="0,0,5,0"
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=JMMServer_Running}" Margin="0,0,5,0"
                                     Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=GeneralQueueRunning, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                            <TextBlock VerticalAlignment="Center" Text="Paused" Margin="0,0,5,0"
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=JMMServer_Paused}" Margin="0,0,5,0"
                                     Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=GeneralQueuePaused, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         </StackPanel>
 
@@ -635,7 +635,7 @@
                                 <Image Height="16" Width="16" Source="/Images/32_delete.png" Margin="0,0,0,0"/>
                             </StackPanel>
                             <Button.ToolTip>
-                                <TextBlock Text="Clear all queued server image download commands" Foreground="Black" FontWeight="DemiBold"/>
+                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_ClearGeneral}" Foreground="Black" FontWeight="DemiBold"/>
                             </Button.ToolTip>
                         </Button>
 
@@ -657,11 +657,11 @@
                         <!-- Server Images status -->
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="2" Grid.Row="5">
                             <Image Height="16" Width="16" Source="Images/32_Image.png" Margin="10,0,5,0" VerticalAlignment="Center"/>
-                            <TextBlock VerticalAlignment="Center" Text="Server Images Queue" Margin="0,0,0,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=JMMServer_ServerImage}" Margin="0,0,0,0"/>
                             <TextBlock VerticalAlignment="Center" Text=" - " Margin="0,0,0,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="Running" Margin="0,0,5,0"
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=JMMServer_Running}" Margin="0,0,5,0"
                                 Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ServerImageQueueRunning, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                            <TextBlock VerticalAlignment="Center" Text="Paused" Margin="0,0,5,0"
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=JMMServer_Paused}" Margin="0,0,5,0"
                                 Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ServerImageQueuePaused, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         </StackPanel>
 
@@ -809,32 +809,32 @@
                         <usercontrols:IgnoredAnimeControl x:Name="ignoredAnime"/>
                     </TabItem>
 
-                    <TabItem Header="AniDB AV Dump" Name="tabAvdump">
+                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Tab_AniDBAVDump}" Name="tabAvdump">
 
                         <usercontrols:AvdumpBatchControl x:Name="avdumpBatch"/>
                     </TabItem>
 
-                    <TabItem Header="File Search" Name="tabFileSearch">
+                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Tab_FileSearch}" Name="tabFileSearch">
 
                         <usercontrols:FileSearchControl x:Name="fileSearch"/>
                     </TabItem>
 
-                    <TabItem Header="File Renaming" Name="tabFileRenaming">
+                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Tab_FileRename}" Name="tabFileRenaming">
 
                         <usercontrols:FileRenameControl x:Name="fileRenaming"/>
                     </TabItem>
 
-                    <TabItem Header="Update AniDB Data" Name="tabUpdateAniDBData">
+                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Tab_UpdateAniDB}" Name="tabUpdateAniDBData">
 
                         <usercontrols:UpdateAniDBDataControl x:Name="updateAniDBData"/>
                     </TabItem>
 
-                    <TabItem Header="Community Data" Name="tabCommMaint">
+                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Tab_CommunityData}" Name="tabCommMaint">
 
                         <usercontrols:CommunityMaint x:Name="commMaint"/>
                     </TabItem>
 
-                    <TabItem Header="My Votes" Name="tabRankings">
+                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Tab_MyVotes}" Name="tabRankings">
 
                         <usercontrols:RankingsControl x:Name="rankings"/>
                     </TabItem>
@@ -1063,7 +1063,7 @@
 
                                         <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,5,0" Grid.Column="0" VerticalAlignment="Top"/>
                                         <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=DetailedInformationLink}" Grid.Column="1"
-                                                                        URL="http://japanesemediamanager.github.io/wiki_usermanual.html"/>
+                                                                        URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_AniDBSettings}"/>
                                     </Grid>
                                 </Border>
 
@@ -1170,7 +1170,7 @@
                                 <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="6" Background="#FFE9ECEF" Padding="5" Margin="0,0,0,5">
                                     <StackPanel Orientation="Horizontal">
                                         <Image Height="16" Width="16" Source="/Images/myanimelist.ico" Margin="5,2,5,0" Grid.Column="0" VerticalAlignment="Center"/>
-                                        <TextBlock Text="MyAnimeList" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_SettingsOnlineDB_MAL}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                                         <usercontrols:HyperLinkStandard VerticalAlignment="Center" Margin="5,0,0,0" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=WhatsThis}"
                                                                         URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_MAL}"/>
                                     </StackPanel>
@@ -1240,7 +1240,7 @@
 
                                         <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,5,0" Grid.Column="0" VerticalAlignment="Top"/>
                                         <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=DetailedInformationLink}" Grid.Column="1"
-                                                                        URL="http://japanesemediamanager.github.io/wiki_usermanual.html"/>
+                                                                        URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_WebCache}"/>
                                     </Grid>
                                 </Border>
 
@@ -1376,7 +1376,7 @@
                                 <!-- Media Player Classic -->
 
                                 <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="0" Background="#FFE9ECEF" Margin="0,0,0,5">
-                                    <TextBlock Text="Media Player Classic Integration" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPCI}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                                 </Border>
 
 
@@ -1384,7 +1384,7 @@
                                 <usercontrols:VideoPlayerSettingsControl Grid.Column="0" Grid.Row="1" Margin="5,0,0,10"/>
 
                                 <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="2" Background="#FFE9ECEF" Margin="0,0,0,5">
-                                    <TextBlock Text="Automatic File Selection" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_AutoFile}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                                 </Border>
 
 
@@ -1406,7 +1406,7 @@
                         <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_Pinned}" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
                     </StackPanel>
                 </TabItem.Header>
-                    <TabControl Name="tabPinned" VerticalAlignment="Stretch" TabStripPlacement="Left"
+                <TabControl Name="tabPinned" VerticalAlignment="Stretch" TabStripPlacement="Left"
                                 Width="{Binding Source={x:Static local:MainListHelperVM.Instance},Path=FullScrollerWidth}" Margin="5,5,5,5"  />
 
             </TabItem>
@@ -1417,7 +1417,7 @@
 
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Downloads" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tab_Downloads}" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
                     </StackPanel>
                 </TabItem.Header>
 
@@ -1432,32 +1432,32 @@
 
 
 
-                    <TabItem Header="uTorrent" Name="tabuTorrent">
+                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Tab_uTorrent}" Name="tabuTorrent">
                         <usercontrols:DownloadsTorrentMonitorControl/>
 
                     </TabItem>
 
-                    <TabItem Header="Search Torrents" Name="tabSearchTorrents">
+                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Tab_SearchTorrents}" Name="tabSearchTorrents">
                         <usercontrols:DownloadsSearchTorrentsControl x:Name="ucTorrentSearch"/>
 
                     </TabItem>
 
-                    <TabItem Header="Browse Torrents" Name="tabBrowseTorrents">
+                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Tab_BrowseTorrents}" Name="tabBrowseTorrents">
                         <usercontrols:DownloadsBrowseTorrentsControl/>
 
                     </TabItem>
 
-                    <TabItem Header="Missing Episodes" Name="tabDownloadsMissingEpisodes">
+                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_MissingEpisodes}" Name="tabDownloadsMissingEpisodes">
                         <usercontrols:MissingEpisodesControl/>
 
                     </TabItem>
 
-                    <TabItem Header="Recommendations" Name="tabRecommendations">
+                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Tab_Recommendations}" Name="tabRecommendations">
                         <usercontrols:DownloadRecommendationsControl Width="{Binding Source={x:Static local:MainListHelperVM.Instance},Path=DownloadRecScrollerWidth}"/>
 
                     </TabItem>
 
-                    <TabItem Header="Settings" Name="tabDownloadSettings">
+                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Tab_Settings}" Name="tabDownloadSettings">
 
                         <ScrollViewer>
                             <Grid>
@@ -1466,6 +1466,8 @@
                                 </Grid.ColumnDefinitions>
 
                                 <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
@@ -1497,30 +1499,36 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,5,0" Grid.Column="0" VerticalAlignment="Top"/>
-                                        <TextBlock VerticalAlignment="Center" Text="This uses the uTorrent WebUI API, which you need to enable in your uTorrent client first" Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Downloads_uTorrentInfo}" Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1"/>
 
-                                        <usercontrols:HyperLinkStandard Margin="5,0,20,0" VerticalAlignment="Center" DisplayText="More Info"  Grid.Column="2"
-                                                                        URL="http://japanesemediamanager.github.io/wiki_usermanual_jmmdownloads.html"/>
+                                        <usercontrols:HyperLinkStandard Margin="5,0,20,0" VerticalAlignment="Center" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=MoreInfo}"  Grid.Column="2"
+                                                                        URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_uTorrent}"/>
                                     </Grid>
                                 </Border>
 
                                 <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="1" Background="#FFE9ECEF" Margin="0,0,0,5">
-                                    <TextBlock Text="uTorrent WebUI details" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Downloads_uTorrentWebUI}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                                 </Border>
 
                                 <usercontrols:DownloadsSettingsControl Grid.Column="0" Grid.Row="2" Margin="5,0,0,10"/>
 
                                 <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="3" Background="#FFE9ECEF" Margin="0,0,0,5">
-                                    <TextBlock Text="Default Torrent Sources for Searching" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Downloads_TorrentBlackHole}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                                 </Border>
 
-                                <usercontrols:DownloadSettingsTorSources Grid.Column="0" Grid.Row="4" Margin="5,0,0,10"/>
+                                <usercontrols:DownloadsTorrentBlackHole Grid.Column="0" Grid.Row="4" Margin="5,0,0,10"/>
 
                                 <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="5" Background="#FFE9ECEF" Margin="0,0,0,5">
-                                    <TextBlock Text="BakaBT Settings" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Downloads_TorrentDefault}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                                 </Border>
 
-                                <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="6"  Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
+                                <usercontrols:DownloadSettingsTorSources Grid.Column="0" Grid.Row="6" Margin="5,0,0,10"/>
+
+                                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="7" Background="#FFE9ECEF" Margin="0,0,0,5">
+                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Downloads_BakaBT}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                </Border>
+
+                                <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="8"  Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto"></RowDefinition>
@@ -1534,20 +1542,20 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,5,0" Grid.Column="0" VerticalAlignment="Top"/>
-                                        <TextBlock VerticalAlignment="Center" Text="BakaBT is  an anime torrent site which specializes in full series downloads, however it requires an account first" Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Downloads_BakaBTInfo}" Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1"/>
 
-                                        <usercontrols:HyperLinkStandard Margin="5,0,20,0" VerticalAlignment="Center" DisplayText="Go to Website"  Grid.Column="2"
+                                        <usercontrols:HyperLinkStandard Margin="5,0,20,0" VerticalAlignment="Center" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=Downloads_GoTo}"  Grid.Column="2"
                                                                         URL="http://bakabt.me"/>
                                     </Grid>
                                 </Border>
 
-                                <usercontrols:DownloadSettingsBakaBT Grid.Column="0" Grid.Row="7" Margin="5,0,0,10"/>
+                                <usercontrols:DownloadSettingsBakaBT Grid.Column="0" Grid.Row="9" Margin="5,0,0,10"/>
 
-                                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="8" Background="#FFE9ECEF" Margin="0,0,0,5">
-                                    <TextBlock Text="Anime Byt.es Settings" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="10" Background="#FFE9ECEF" Margin="0,0,0,5">
+                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Downloads_AnimeBytes}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                                 </Border>
 
-                                <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="9"  Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
+                                <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="11"  Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto"></RowDefinition>
@@ -1561,14 +1569,14 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,5,0" Grid.Column="0" VerticalAlignment="Top"/>
-                                        <TextBlock VerticalAlignment="Center" Text="Anime Byt.es is an anime torrent site which specializes in full series downloads, however it requires an account first" Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Downloads_AnimeBytesInfo}" Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1"/>
 
-                                        <usercontrols:HyperLinkStandard Margin="5,0,20,0" VerticalAlignment="Center" DisplayText="Go to Website"  Grid.Column="2"
-                                                                        URL="http://animebyt.es"/>
+                                        <usercontrols:HyperLinkStandard Margin="5,0,20,0" VerticalAlignment="Center" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=Downloads_GoTo}"  Grid.Column="2"
+                                                                        URL="http://animebytes.tv"/>
                                     </Grid>
                                 </Border>
 
-                                <usercontrols:DownloadSettingsAnimeBytes Grid.Column="0" Grid.Row="10" Margin="5,0,0,10"/>
+                                <usercontrols:DownloadSettingsAnimeBytes Grid.Column="0" Grid.Row="12" Margin="5,0,0,10"/>
 
                             </Grid>
                         </ScrollViewer>
@@ -1588,7 +1596,7 @@
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
                         <Image Height="20" Source="/Images/MagnifyingGlass6.png" Margin="0,0,0,0"/>
-                        <TextBlock Text="Search" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tab_Search}" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
                     </StackPanel>
                 </TabItem.Header>
 
@@ -1601,7 +1609,7 @@
                      Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ShowCommunity, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
-                        <TextBlock Text="Community" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tab_Community}" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
                     </StackPanel>
                 </TabItem.Header>
 
@@ -1616,7 +1624,7 @@
 
 
 
-                    
+
 
                     <TabItem Header="Links" Name="tabComLinks">
                         <usercontrols:CommunityLinksControl x:Name="ucComLinks"/>
@@ -1624,7 +1632,7 @@
                     </TabItem>
 
                     <TabItem Header="Stats" Name="tabComStats">
-                        
+
                         <TextBlock Margin="10" Text="Not Yet Implemented" FontSize="20"/>
                     </TabItem>
 
@@ -1633,7 +1641,7 @@
 
 
                 </TabControl>
-                
+
             </TabItem>
 
         </TabControl>
@@ -1686,7 +1694,7 @@
                         Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=AdminMessagesAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                             <Image Height="16" Width="16" Source="/Images/32_mail.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="Messages" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Main_Messages}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
@@ -1695,12 +1703,12 @@
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,4,0,4"
                                 Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=IsBanned, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <Image Height="16" Width="16" Source="/Images/16_exclamation.png" Margin="0,0,5,0"/>
-                        <TextBlock VerticalAlignment="Center" Text="Paused due to BAN from AniDB (" Margin="0,0,0,0" FontWeight="Bold"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Main_Paused}" Margin="0,0,0,0" FontWeight="Bold"/>
                         <TextBlock VerticalAlignment="Center" Text="{Binding Source={x:Static local:JMMServerVM.Instance},Path=BanOrigin}" FontWeight="Bold"/>
                         <TextBlock VerticalAlignment="Center" Margin="0,0,0,0" Text=")" FontWeight="Bold"/>
                         <TextBlock VerticalAlignment="Center" Margin="10,0,0,0" Text="{Binding Source={x:Static local:JMMServerVM.Instance},Path=BanReason}"/>
                         <usercontrols:HyperLinkStandard VerticalAlignment="Center" Margin="10,0,0,0" DisplayText="What does this mean?" Grid.Column="1"
-                                                                        URL="http://japanesemediamanager.github.io/wiki_usermanual.html"/>
+                                                                        URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_AniDBBanned}"/>
                     </StackPanel>
 
 
@@ -1714,7 +1722,7 @@
                     <Button Name="btnSwitchUser"  Margin="2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/64_user.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="User" FontWeight="Bold" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Main_User}" FontWeight="Bold" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
@@ -1728,10 +1736,16 @@
                 <StackPanel Orientation="Horizontal"   DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="5,0,5,0">
 
 
-                    <Button Name="btnAbout"  Margin="2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Button x:Name="btnFeed"  Margin="2,2,2,0" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Top">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                            <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="About" Margin="0,0,0,0"/>
+                            <Image Height="16" Width="16" Source="Images/32_feed.png" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Main_Feed}" Margin="0,0,0,0"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="btnAbout"  Margin="2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <Image Height="16" Width="16" Source="Images/32_info.png" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Main_About}" Margin="0,0,0,0"/>
                         </StackPanel>
                     </Button>
 

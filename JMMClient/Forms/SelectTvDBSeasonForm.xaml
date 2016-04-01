@@ -94,9 +94,9 @@
 
                 <StackPanel Orientation="Horizontal"  Margin="0,5,0,0" DockPanel.Dock="Top">
 
-                    <TextBlock VerticalAlignment="Center" Text="Episode Type:" Margin="25,0,0,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Select_EpisodeType}" Margin="25,0,0,0"/>
                     <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" Name="cboEpisodeType"></ComboBox>
-                    <TextBlock VerticalAlignment="Center" Text="Starting Episode #" Margin="5,0,0,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Select_StartingEpisode}" Margin="5,0,0,0"/>
                     <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" Name="cboAniDBEpisodeNumber"
                               ItemTemplate="{StaticResource AniDBEpisodeTemplate}"/>
                 </StackPanel>
@@ -126,7 +126,7 @@
 
                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeasonNumber}" Margin="25,0,0,0"/>
                     <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" Name="cboSeasonNumber"></ComboBox>
-                    <TextBlock VerticalAlignment="Center" Text="Starting Episode #" Margin="5,0,0,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Select_StartingEpisode}" Margin="5,0,0,0"/>
                     <ComboBox VerticalAlignment="Center" Margin="5,0,0,0" Name="cboEpisodeNumber"
                               ItemTemplate="{StaticResource EpisodeTemplate}"/>
 

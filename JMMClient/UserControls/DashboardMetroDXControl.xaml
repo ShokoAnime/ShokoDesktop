@@ -313,9 +313,9 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" IsHitTestVisible="False" Text="Options" Foreground="Black" FontSize="24" FontWeight="Bold" />
+                <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" IsHitTestVisible="False" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Metro_Options}" Foreground="Black" FontSize="24" FontWeight="Bold" />
 
-                <TextBlock Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4" IsHitTestVisible="False" Text="General" Foreground="DarkBlue" FontSize="16" FontWeight="Bold" Margin="0,10,0,0"/>
+                <TextBlock Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4" IsHitTestVisible="False" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Metro_General}" Foreground="DarkBlue" FontSize="16" FontWeight="Bold" Margin="0,10,0,0"/>
 
                 <!-- Height Buttons -->
                 <StackPanel Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4" Orientation="Horizontal" Margin="10,2,2,2" >
@@ -336,7 +336,7 @@
 
                 <!-- Posters or fanart -->
                 <StackPanel Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4" Orientation="Horizontal" Margin="10,2,2,2" >
-                    <TextBlock VerticalAlignment="Center" Text="Image Type" Margin="0,0,3,0" Foreground="Black"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Metro_ImageType}" Margin="0,0,3,0" Foreground="Black"/>
 
                     <ComboBox Name="cboImageType" VerticalAlignment="Center">
                     </ComboBox>
@@ -344,7 +344,7 @@
 
 
                 <!-- Number of Items - Continue Watching -->
-                <TextBlock Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="1" IsHitTestVisible="False" Text="Continue Watching" Foreground="DarkBlue" FontSize="16" FontWeight="Bold" Margin="0,10,0,0"/>
+                <TextBlock Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="1" IsHitTestVisible="False" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Metro_Continue}" Foreground="DarkBlue" FontSize="16" FontWeight="Bold" Margin="0,10,0,0"/>
 
                 
                 <StackPanel Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="4" Orientation="Horizontal" Margin="10,10,2,2" >
@@ -354,7 +354,7 @@
                 </StackPanel>
 
                 <!-- Number of Items - Random Series -->
-                <TextBlock Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="1" IsHitTestVisible="False" Text="Random Series" Foreground="DarkBlue" FontSize="16" FontWeight="Bold" Margin="0,10,0,0"/>
+                <TextBlock Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="1" IsHitTestVisible="False" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Metro_Random}" Foreground="DarkBlue" FontSize="16" FontWeight="Bold" Margin="0,10,0,0"/>
 
                
                 <StackPanel Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="4" Orientation="Horizontal" Margin="10,10,2,2" >
@@ -364,17 +364,17 @@
                 </StackPanel>
 
                 <!-- Number of Items - New Episodes -->
-                <TextBlock Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="1" IsHitTestVisible="False" Text="New Episodes" Foreground="DarkBlue" FontSize="16" FontWeight="Bold" Margin="0,10,0,0"/>
+                <TextBlock Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="1" IsHitTestVisible="False" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Metro_New}" Foreground="DarkBlue" FontSize="16" FontWeight="Bold" Margin="0,10,0,0"/>
 
                 
                 <StackPanel Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="4" Orientation="Horizontal" Margin="10,10,2,2" >
-                    <TextBlock VerticalAlignment="Center" Text="Items" Margin="0,0,5,0" Foreground="Black"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Metro_Items}" Margin="0,0,5,0" Foreground="Black"/>
                     <extToolkit:IntegerUpDown Name="udItemsNewEpisodes" Minimum="1" Maximum="100" DefaultValue="5" VerticalAlignment="Center" 
                                       Value="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=DashMetro_NewEpisodes_Items}" />
                 </StackPanel>
 
                 <!-- Sections -->
-                <TextBlock Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="6" IsHitTestVisible="False" Text="Sections" Foreground="DarkBlue" FontSize="16" FontWeight="Bold" Margin="0,10,0,0"/>
+                <TextBlock Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="6" IsHitTestVisible="False" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Metro_Sections}" Foreground="DarkBlue" FontSize="16" FontWeight="Bold" Margin="0,10,0,0"/>
 
                 <ListBox Margin="10,10,0,10" BorderThickness="0" Background="Transparent" Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="4"
                          HorizontalAlignment="Left" VerticalAlignment="Top" 
@@ -420,7 +420,7 @@
                         Grid.Column="{Binding Path=Dash_ContinueWatching_Column, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" 
                         Visibility="{Binding Path=Dash_ContinueWatching_Visibility, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}"
                         Grid.Row="1" Margin="10,5,0,17">
-                <TextBlock IsHitTestVisible="False"  Text="Continue Watching" Foreground="Black" FontSize="24" FontFamily="Segoe UI" FontWeight="Bold"  VerticalAlignment="Center"/>
+                <TextBlock IsHitTestVisible="False"  Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Metro_Continue}" Foreground="Black" FontSize="24" FontFamily="Segoe UI" FontWeight="Bold"  VerticalAlignment="Center"/>
 
                 <!-- Refresh -->
                 <Button Name="btnRefresh" Margin="12,2,2,2" Style="{DynamicResource FlatButtonStyle}">
@@ -428,7 +428,7 @@
                         <Image Height="24" Width="24" Source="/Images/Metro/refresh.png" Margin="0,0,0,0"/>
                     </StackPanel>
                     <Button.ToolTip>
-                        <TextBlock Text="Refresh"/>
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Metro_Refresh}"/>
                     </Button.ToolTip>
                 </Button>
 
@@ -477,7 +477,7 @@
                         Grid.Column="{Binding Path=Dash_RandomSeries_Column, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" 
                         Visibility="{Binding Path=Dash_RandomSeries_Visibility, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}"
                         Grid.Row="1" Margin="10,5,0,17">
-                <TextBlock  IsHitTestVisible="False" Text="Random Series" 
+                <TextBlock  IsHitTestVisible="False" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Metro_Random}" 
                        Foreground="Black" FontSize="24" FontFamily="Segoe UI" FontWeight="Bold"   />
 
                 <!-- Refresh -->
@@ -486,7 +486,7 @@
                         <Image Height="24" Width="24" Source="/Images/Metro/refresh.png" Margin="0,0,0,0"/>
                     </StackPanel>
                     <Button.ToolTip>
-                        <TextBlock Text="Refresh"/>
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Metro_Refresh}"/>
                     </Button.ToolTip>
                 </Button>
             </StackPanel>
@@ -535,7 +535,7 @@
                         Grid.Column="{Binding Path=Dash_NewEpisodes_Column, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" 
                         Visibility="{Binding Path=Dash_NewEpisodes_Visibility, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}"
                         Grid.Row="1" Margin="10,5,0,17">
-                <TextBlock  IsHitTestVisible="False" Text="New Episodes" 
+                <TextBlock  IsHitTestVisible="False" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Metro_New}" 
                        Foreground="Black" FontSize="24" FontFamily="Segoe UI" FontWeight="Bold"   />
 
                 <!-- Refresh -->
@@ -544,7 +544,7 @@
                         <Image Height="24" Width="24" Source="/Images/Metro/refresh.png" Margin="0,0,0,0"/>
                     </StackPanel>
                     <Button.ToolTip>
-                        <TextBlock Text="Refresh"/>
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Metro_Refresh}"/>
                     </Button.ToolTip>
                 </Button>
             </StackPanel>

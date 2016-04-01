@@ -17,6 +17,7 @@ using JMMClient.Downloads;
 using JMMClient.ViewModel;
 using System.Diagnostics;
 using System.Net;
+using System.Text.RegularExpressions;
 
 namespace JMMClient.UserControls
 {
@@ -490,6 +491,13 @@ namespace JMMClient.UserControls
 			}
 		}
 
+        private static string GetValidFileName(string fileName)
+        {
+            Regex illegalInFileName = new Regex(@"[\\/:*?""<>|]");
+            return illegalInFileName.Replace(fileName, "");
+        }
+
+
 		void torrentDownload(object sender, RoutedEventArgs e)
 		{
 			try
@@ -512,11 +520,23 @@ namespace JMMClient.UserControls
 					TorrentLinkVM torLink = item.CommandParameter as TorrentLinkVM;
 					torLink.Source.PopulateTorrentDownloadLink(ref torLink);
 
-					UTorrentHelperVM.Instance.AddTorrentFromURL(torLink.TorrentDownloadLink);
+                    if (!AppSettings.TorrentBlackhole)
+                    {
+                        UTorrentHelperVM.Instance.AddTorrentFromURL(torLink.TorrentDownloadLink);
+                    }
+                    else
+                    {
+                        if (!string.IsNullOrEmpty(AppSettings.TorrentBlackholeFolder))
+                        {
+                            using (WebClient client = new WebClient())
+                            {
+                                client.DownloadFileAsync(new Uri(torLink.TorrentDownloadLink), AppSettings.TorrentBlackholeFolder + "\\" + GetValidFileName(torLink.TorrentName + ".torrent"));
+                            }
+                        }
+					}
 
-					parentWindow.Cursor = Cursors.Arrow;
-					this.IsEnabled = true;
-
+                    parentWindow.Cursor = Cursors.Arrow;
+                    this.IsEnabled = true;
 				}
 			}
 			catch (Exception ex)

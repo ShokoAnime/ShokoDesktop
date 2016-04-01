@@ -100,17 +100,17 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="Hash" Binding="{Binding Hash}" IsReadOnly="True" Visibility="Hidden" />
-                    <DataGridTextColumn Header="#" Binding="{Binding TorrentQueueOrder}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="Size" Binding="{Binding SizeFormatted}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="Done" Binding="{Binding PercentProgressFormatted}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="Status" Binding="{Binding StatusFormatted}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="Seeds" Binding="{Binding SeedsFormatted}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="Peers" Binding="{Binding PeersFormatted}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="Down Speed" Binding="{Binding DownloadSpeedFormatted}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="Up Speed" Binding="{Binding UploadSpeedFormatted}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="Ratio" Binding="{Binding RatioFormatted}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Name}" Binding="{Binding Name}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Hash}" Binding="{Binding Hash}" IsReadOnly="True" Visibility="Hidden" />
+                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Queue}" Binding="{Binding TorrentQueueOrder}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Size}" Binding="{Binding SizeFormatted}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Done}" Binding="{Binding PercentProgressFormatted}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Status}" Binding="{Binding StatusFormatted}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Seeds}" Binding="{Binding SeedsFormatted}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Peers}" Binding="{Binding PeersFormatted}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_DownSpeed}" Binding="{Binding DownloadSpeedFormatted}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_UpSpeed}" Binding="{Binding UploadSpeedFormatted}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Ratio}" Binding="{Binding RatioFormatted}" IsReadOnly="True" />
 
                 </DataGrid.Columns>
             </DataGrid>
@@ -138,7 +138,7 @@
 
                 <StackPanel Orientation="Horizontal" Margin="10,10,10,5">
                     <Image Height="16" Width="16" Source="/Images/32_Info.png" Margin="0,0,5,0"/>
-                    <TextBlock Text="You haven't specified valid uTorrent credentials" FontWeight="Bold" VerticalAlignment="Center" Foreground="Black"/>
+                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_InvalidCred}" FontWeight="Bold" VerticalAlignment="Center" Foreground="Black"/>
                 </StackPanel>
             </Border>
 
@@ -146,7 +146,7 @@
                             Background="FloralWhite">
 
                 <StackPanel Orientation="Horizontal" Margin="10,10,10,10">
-                    <TextBlock Text="Please enter your credentials on the setting tab and then return " VerticalAlignment="Center" Foreground="Black"/>
+                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_EnterCred}" VerticalAlignment="Center" Foreground="Black"/>
 
                 </StackPanel>
             </Border>
@@ -205,10 +205,10 @@
                                 </Button>
 
                                 <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="15,0,5,0" ToolTipService.ShowDuration="60000"/>
-                                <TextBlock Text="Wrong Series?" Foreground="Black" FontWeight="DemiBold" 
+                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_WrongSeries}" Foreground="Black" FontWeight="DemiBold" 
                                         VerticalAlignment="Center" ToolTipService.ShowDuration="60000"
                                         ToolTip="{usercontrols:Info Title=Wrong Series, 
-                                                Body=This is JMMs attempt to guess which series you are looking at so you can compare to your local collection. If you do not have the series in your collection it will be incorrect.}">
+                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_WrongSeries}}">
 
                                 </TextBlock>
 
@@ -277,10 +277,10 @@
                         </Style>
                     </DataGrid.CellStyle>
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Name" Binding="{Binding FileName}" IsReadOnly="True" />
-                        <DataGridTextColumn Header="Size" Binding="{Binding FileSizeFormatted}" IsReadOnly="True" />
-                        <DataGridTextColumn Header="Downloaded" Binding="{Binding DownloadedFormatted}" IsReadOnly="True" />
-                        <DataGridTextColumn Header="Priority" Binding="{Binding PriorityFormatted}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Name}" Binding="{Binding FileName}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Size}" Binding="{Binding FileSizeFormatted}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Downloaded}" Binding="{Binding DownloadedFormatted}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Priority}" Binding="{Binding PriorityFormatted}" IsReadOnly="True" />
 
                     </DataGrid.Columns>
                 </DataGrid>
