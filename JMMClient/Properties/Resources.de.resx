@@ -199,7 +199,7 @@
     <value>Verwandte</value>
   </data>
   <data name="TAB_SeriesEpisodes" xml:space="preserve">
-    <value>zu vermeiden.</value>
+    <value>Sammlung</value>
   </data>
   <data name="TAB_Server" xml:space="preserve">
     <value>Server</value>
@@ -349,13 +349,13 @@
     <value>Aktionsware:</value>
   </data>
   <data name="GroupFilter_Missing" xml:space="preserve">
-    <value>Fehlende Episoden!</value>
+    <value>Fehlende Episoden</value>
   </data>
   <data name="RemoveMissingFiles" xml:space="preserve">
-    <value>Entfernen von Dateien fehlen!</value>
+    <value>Entfernen von fehlenden Dateien</value>
   </data>
   <data name="ServerActions" xml:space="preserve">
-    <value>Server Aktionen!</value>
+    <value>Server Aktionen</value>
   </data>
   <data name="NewGroup" xml:space="preserve">
     <value>Gruppe</value>
@@ -397,16 +397,16 @@
     <value>OK</value>
   </data>
   <data name="QueueGeneral" xml:space="preserve">
-    <value>AniDB Warteschlange!</value>
+    <value>AniDB Warteschlange</value>
   </data>
   <data name="QueueHasher" xml:space="preserve">
-    <value>Hasher Warteschlange!</value>
+    <value>Hasher Warteschlange</value>
   </data>
   <data name="Tooltip_QueueGeneral" xml:space="preserve">
-    <value>AniDB Befehle in der Warteschlange!</value>
+    <value>AniDB Befehle in der Warteschlange</value>
   </data>
   <data name="Tooltip_QueueHasher" xml:space="preserve">
-    <value>Dateien darauf warten, dass Hash!</value>
+    <value>Dateien, die darauf warten gehashed zu werden</value>
   </data>
   <data name="Pause" xml:space="preserve">
     <value>Pause</value>
@@ -436,25 +436,25 @@
     <value>Source</value>
   </data>
   <data name="ImportFolderName" xml:space="preserve">
-    <value>Import Ordnername!</value>
+    <value>Import Ordnername</value>
   </data>
   <data name="ImportFolderPath" xml:space="preserve">
-    <value>Import Ordnerpfad!</value>
+    <value>Import Ordnerpfad</value>
   </data>
   <data name="LocalMapping" xml:space="preserve">
-    <value>Lokale Mapping!</value>
+    <value>Lokaler Pfad</value>
   </data>
   <data name="LocalPath" xml:space="preserve">
-    <value>Regional</value>
+    <value>Lokaler Pfad</value>
   </data>
   <data name="ServerDetails" xml:space="preserve">
     <value>Server Details</value>
   </data>
   <data name="MSG_ERR_DropSourceDestCheck" xml:space="preserve">
-    <value>Ein Import-Ordner können nicht gleichzeitig die Fall Quelle und der Tropfen Ziel sein!</value>
+    <value>Ein Importordner kann nicht gleichzeitig die Quelle und das Ziel sein</value>
   </data>
   <data name="MSG_ERR_ImportFolderLocationCheck" xml:space="preserve">
-    <value>Der Import Ordner kann nicht leer sein. Geben Sie einen gültigen Pfad auf OMM Server!</value>
+    <value>Der Importordner kann nicht leer sein. Geben Sie einen gültigen Pfad auf dem OMM Server an.</value>
   </data>
   <data name="TAB_UnrecognisedFiles" xml:space="preserve">
     <value>Unerkannt!</value>
@@ -559,10 +559,10 @@
     <value>Server</value>
   </data>
   <data name="ServerPath" xml:space="preserve">
-    <value>Pfad am Server</value>
+    <value>Pfad auf dem Server</value>
   </data>
   <data name="TAB_SettingsAniDB" xml:space="preserve">
-    <value>AniDB!</value>
+    <value>AniDB</value>
   </data>
   <data name="TAB_SettingsDisplay" xml:space="preserve">
     <value>Display</value>
@@ -988,7 +988,7 @@
     <value>Dashboard</value>
   </data>
   <data name="Dash_WatchNextEp_Recent" xml:space="preserve">
-    <value>Weiter beobachten... (Kürzlich gesehen)</value>
+    <value>Weiter ansehen... (Kürzlich gesehen)</value>
   </data>
   <data name="DeleteSeries" xml:space="preserve">
     <value>Löschen der Serie</value>
@@ -1258,7 +1258,7 @@
     <value>Servereinstellungen bearbeiten</value>
   </data>
   <data name="Tooltip_RemoveMissingFiles" xml:space="preserve">
-    <value>Dies entfernt alle Videodateien-Einträge aus der Datenbank, wo die Datei physisch nicht gefunden werden kann. Stellen Sie sicher alle Ihre Netzwerkfreigaben stehen oder USB-Laufwerke angeschlossen, bevor Sie diese ausführen.</value>
+    <value>Dies entfernt alle Videodateien-Einträge aus der Datenbank, wo die Datei physisch nicht gefunden werden kann. Stellen Sie sicher, dass alle Ihre Netzwerkfreigaben verfügbar und Ihre USB-Laufwerke angeschlossen sind, bevor Sie diesen Befehl ausführen.</value>
   </data>
   <data name="Tooltip_UpdateMediaInfo" xml:space="preserve">
     <value>Die Media-Info ist die Informationen über Ihre Dateien wie Bitrate, Auflösung Codecs etc. die wird gelesen und gespeichert das erste Mal Sie eine Datei importieren</value>
@@ -1701,7 +1701,7 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
     <value>Weitere Informationen</value>
   </data>
   <data name="Metro_Continue" xml:space="preserve">
-    <value>Weiter beobachten</value>
+    <value>Weiter ansehen</value>
   </data>
   <data name="Metro_New" xml:space="preserve">
     <value>Neue Episoden</value>
@@ -2718,7 +2718,7 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
     <value>Verbindung wird hergestellt...</value>
   </data>
   <data name="Constants_Continue" xml:space="preserve">
-    <value>Weiter beobachten (SYSTEM)</value>
+    <value>Weiter ansehen (SYSTEM)</value>
   </data>
   <data name="Constants_MainCharacter" xml:space="preserve">
     <value>Hauptfigur in</value>
@@ -2742,7 +2742,7 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
     <value>Server-Status</value>
   </data>
   <data name="Tooltip_ClearHash" xml:space="preserve">
-    <value>Deaktivieren Sie alle in der Warteschlange Hash-Befehle</value>
+    <value>Deaktivieren Sie alle Hash-Befehle in der Warteschlange</value>
   </data>
   <data name="JMMServer_Running" xml:space="preserve">
     <value>Ausführen</value>
@@ -2751,10 +2751,10 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
     <value>Angehalten</value>
   </data>
   <data name="Tooltip_ClearGeneral" xml:space="preserve">
-    <value>Deaktivieren Sie alle in der Warteschlange allgemeine Befehle</value>
+    <value>Deaktivieren Sie alle allgemeine Befehle in der Warteschlange</value>
   </data>
   <data name="Tooltip_ClearImages" xml:space="preserve">
-    <value>Deaktivieren Sie alle in der Warteschlange Bild herunterladen Serverbefehle</value>
+    <value>Deaktivieren Sie alle "Bild herunterladen" Serverbefehle in der Warteschlange</value>
   </data>
   <data name="JMMServer_ServerImage" xml:space="preserve">
     <value>Server-Images-Warteschlange</value>
