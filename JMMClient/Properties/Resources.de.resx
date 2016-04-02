@@ -457,7 +457,7 @@
     <value>Der Importordner kann nicht leer sein. Geben Sie einen gültigen Pfad auf dem OMM Server an.</value>
   </data>
   <data name="TAB_UnrecognisedFiles" xml:space="preserve">
-    <value>Unerkannt!</value>
+    <value>Nicht identifiziert</value>
   </data>
   <data name="Confirm" xml:space="preserve">
     <value>Bestätigen</value>
@@ -529,13 +529,13 @@
     <value>Entfernen Verbindung zwischen dieser Datei und die Folge.!</value>
   </data>
   <data name="TAB_IgnoredFiles" xml:space="preserve">
-    <value>Ignoriert!</value>
+    <value>Ignoriert</value>
   </data>
   <data name="Restore" xml:space="preserve">
     <value>Wiederherstellen</value>
   </data>
   <data name="TAB_ManuallyLinked" xml:space="preserve">
-    <value>Manuelles Linked!</value>
+    <value>Manuelle Verknüpft</value>
   </data>
   <data name="AniDBLogin" xml:space="preserve">
     <value>AniDB Anmeldung!</value>
@@ -1144,7 +1144,7 @@
     <value>Fügen Sie diese Datei mit Nachdruck zu Ihrer Liste auf AniDB</value>
   </data>
   <data name="TAB_MissingFiles" xml:space="preserve">
-    <value>MyList Dateien fehlen</value>
+    <value>Fehlende MyList Dateien</value>
   </data>
   <data name="TAB_Utilities" xml:space="preserve">
     <value>Dienstprogramme</value>
@@ -1159,7 +1159,7 @@
     <value>Export</value>
   </data>
   <data name="TAB_MissingEpisodes" xml:space="preserve">
-    <value>Fehlende Episoden!</value>
+    <value>Fehlende Episoden</value>
   </data>
   <data name="MyGroupsOnly" xml:space="preserve">
     <value>Freigeben Sie Teilnehmergruppen, die ich gesammelt, bin nur</value>
@@ -1324,16 +1324,16 @@
     <value>Folge Graf</value>
   </data>
   <data name="SyncMalDown" xml:space="preserve">
-    <value>Laden Sie überwachte Staaten von MAL</value>
+    <value>Laden Sie den Fortschritt von MAL herunter</value>
   </data>
   <data name="SyncMalUp" xml:space="preserve">
-    <value>Überwachte Staaten auf MAL hochladen</value>
+    <value>Laden Sie den Fortschritt zu MAL hoch</value>
   </data>
   <data name="Tooltip_SyncMalDown" xml:space="preserve">
-    <value>Herunterladen Sie überwachte Staaten von MAL und aktualisieren Sie Ihre lokalen Sammlung und AniDB.</value>
+    <value>Laden Sie den aktuellen Fortschritt von MAL herunter und aktualisieren Sie Ihre lokalen Sammlung und AniDB.</value>
   </data>
   <data name="Tooltip_SyncMalUp" xml:space="preserve">
-    <value>Update MAL mit der beobachteten Statistik aus Ihrer lokalen Sammlung</value>
+    <value>Update MAL mit dem Fortschritt aus Ihrer lokalen Sammlung</value>
   </data>
   <data name="Tooltip_WebCache_AniDB_File" xml:space="preserve">
     <value>Dies ist jede einzelne Datei zugeordneten Daten. Empfohlen für große Sammlungen</value>
@@ -2775,7 +2775,7 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
     <value>Gemeinschaft-Daten</value>
   </data>
   <data name="Tab_MyVotes" xml:space="preserve">
-    <value>Meine Stimmen</value>
+    <value>Meine Bewertungen</value>
   </data>
   <data name="VideoPlayer_MPCI" xml:space="preserve">
     <value>Media Player Classic Integration</value>
