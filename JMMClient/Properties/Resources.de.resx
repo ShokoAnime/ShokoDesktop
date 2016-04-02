@@ -535,7 +535,7 @@
     <value>Wiederherstellen</value>
   </data>
   <data name="TAB_ManuallyLinked" xml:space="preserve">
-    <value>Manuelle Verknüpft</value>
+    <value>Manuell Verknüpft</value>
   </data>
   <data name="AniDBLogin" xml:space="preserve">
     <value>AniDB Anmeldung!</value>
