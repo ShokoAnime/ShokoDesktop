@@ -49,7 +49,7 @@
         <TabControl Grid.Row="0" Grid.Column="0" Margin="5" Name="tabTorrentDetails" TabStripPlacement="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
 
 
-            <TabItem Header="Renaming Rules">
+            <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Rename_Title}">
 
                 <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                     <Grid>

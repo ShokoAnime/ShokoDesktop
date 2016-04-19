@@ -14,7 +14,7 @@ namespace JMMClient.Utilities
 		private Dictionary<int, VideoDetailedVM> recentlyPlayedFiles = null;
 		private System.Timers.Timer handleTimer = null;
 		private string iniPath = string.Empty;
-        private String defaultplayer = "3";
+        private String defaultplayer = "2";
 
         private List<FileSystemWatcher> watcherVids = null;
 		Dictionary<string, string> previousFilePositions = new Dictionary<string, string>();

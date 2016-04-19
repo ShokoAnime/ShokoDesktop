@@ -111,8 +111,8 @@
                 <StackPanel Orientation="Horizontal"  Margin="0,0,0,5" DockPanel.Dock="Top">
                     <Image Height="16" Width="16" Source="/Images/32_folder.png" Margin="5,0,5,0"/>
                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SelectGroupSeries_Select}" Margin="0,0,0,0"/>
-                    <RadioButton Name="rbGroup" Content="Group" Margin="5,0,0,0"/>
-                    <RadioButton Name="rbSeries" Content="Series" Margin="5,0,0,0"/>
+                    <RadioButton Name="rbGroup" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Group}" Margin="5,0,0,0"/>
+                    <RadioButton Name="rbSeries" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Series}" Margin="5,0,0,0"/>
                 </StackPanel>
 
                 <!-- group -->

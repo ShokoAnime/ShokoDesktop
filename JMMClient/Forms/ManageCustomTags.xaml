@@ -4,7 +4,7 @@
         xmlns:local="clr-namespace:JMMClient"
         xmlns:forms="clr-namespace:JMMClient.Forms"
         xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
-        Title="Manage Custom Tags" Height="450" Width="700" ShowInTaskbar="False" WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner" Topmost="False">
+        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=Series_ManageCustom}" Height="450" Width="700" ShowInTaskbar="False" WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner" Topmost="False">
     <Grid>
         <Grid.Resources>
 

@@ -930,6 +930,7 @@
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="24" Width="24" Source="/Images/32_play2.png" Margin="2,0,2,0" VerticalAlignment="Center"/>
                                     <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_PlayUnWatched}" FontSize="14" VerticalAlignment="Center" Margin="2,0,0,0"/>
+                                    <TextBlock Text="(" FontSize="14" VerticalAlignment="Center" Margin="0,0,8,0"/>
                                     <TextBlock Text="{Binding Path=UnwatchedEpisodeCount, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeSeriesSimplifiedControl}}}" FontSize="14" VerticalAlignment="Center" Margin="0,0,0,0"/>
                                     <TextBlock Text=")" FontSize="14" VerticalAlignment="Center" Margin="0,0,8,0"/>
                                 </StackPanel>
@@ -948,7 +949,7 @@
 
                                         <Border BorderThickness="0" BorderBrush="Navy" Background="{StaticResource GreenGradientBrush}" Padding="6,3,3,3" CornerRadius="4">
                                             <StackPanel Orientation="Horizontal">
-                                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_TraktComment}" Foreground="White" FontWeight="Bold" FontSize="12" VerticalAlignment="Center"/>
+                                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_CommentTrakt}" Foreground="White" FontWeight="Bold" FontSize="12" VerticalAlignment="Center"/>
                                                 <Image Height="16" Width="16" Source="/Images/trakt-icon-shouts.png" Margin="10,0,4,0" VerticalAlignment="Center"/>
                                             </StackPanel>
 

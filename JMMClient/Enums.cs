@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Configuration;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace JMMClient
 {
@@ -160,7 +164,11 @@ namespace JMMClient
 
 		public static List<WatchedStatusContainer> GetAll()
 		{
-			List<WatchedStatusContainer> statuses = new List<WatchedStatusContainer>();
+            NameValueCollection appSettings = ConfigurationManager.AppSettings;
+            string cult = appSettings["Culture"];
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(cult);
+
+            List<WatchedStatusContainer> statuses = new List<WatchedStatusContainer>();
 			statuses.Add(new WatchedStatusContainer(WatchedStatus.All, JMMClient.Properties.Resources.Episodes_Watched_All));
 			statuses.Add(new WatchedStatusContainer(WatchedStatus.Unwatched, JMMClient.Properties.Resources.Episodes_Watched_Unwatched));
 			statuses.Add(new WatchedStatusContainer(WatchedStatus.Watched, JMMClient.Properties.Resources.Episodes_Watched_Watched));
@@ -220,6 +228,12 @@ namespace JMMClient
 		EpisodeCount = 30,
         CustomTags = 31
 	}
+
+    public enum GroupFilterType
+    {
+         UserDefined = 1,
+         ContinueWatching = 2
+    }
 
     public enum GroupFilterType
     {
@@ -294,7 +308,11 @@ namespace JMMClient
 
 		public static List<AvailableEpisodeTypeContainer> GetAll()
 		{
-			List<AvailableEpisodeTypeContainer> eptypes = new List<AvailableEpisodeTypeContainer>();
+            NameValueCollection appSettings = ConfigurationManager.AppSettings;
+            string cult = appSettings["Culture"];
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(cult);
+
+            List<AvailableEpisodeTypeContainer> eptypes = new List<AvailableEpisodeTypeContainer>();
 			eptypes.Add(new AvailableEpisodeTypeContainer(AvailableEpisodeType.All, JMMClient.Properties.Resources.Episodes_AvAll));
 			eptypes.Add(new AvailableEpisodeTypeContainer(AvailableEpisodeType.Available, JMMClient.Properties.Resources.Episodes_AvOnly));
 			eptypes.Add(new AvailableEpisodeTypeContainer(AvailableEpisodeType.NoFiles, JMMClient.Properties.Resources.Episodes_AvMissing));
@@ -494,7 +512,12 @@ namespace JMMClient
 	{
 		public static string EpisodeTypeTranslated(EpisodeType epType)
 		{
-			switch (epType)
+
+            NameValueCollection appSettings = ConfigurationManager.AppSettings;
+            string cult = appSettings["Culture"];
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(cult);
+
+            switch (epType)
 			{
 				case EpisodeType.Credits:
 					return JMMClient.Properties.Resources.EpisodeType_Credits;
@@ -516,7 +539,11 @@ namespace JMMClient
 
 		public static EpisodeType EpisodeTypeTranslatedReverse(string epType)
 		{
-			if (epType == JMMClient.Properties.Resources.EpisodeType_Credits) return EpisodeType.Credits;
+            NameValueCollection appSettings = ConfigurationManager.AppSettings;
+            string cult = appSettings["Culture"];
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(cult);
+
+            if (epType == JMMClient.Properties.Resources.EpisodeType_Credits) return EpisodeType.Credits;
 			if (epType == JMMClient.Properties.Resources.EpisodeType_Normal) return EpisodeType.Episode;
 			if (epType == JMMClient.Properties.Resources.EpisodeType_Other) return EpisodeType.Other;
 			if (epType == JMMClient.Properties.Resources.EpisodeType_Parody) return EpisodeType.Parody;
@@ -549,7 +576,7 @@ namespace JMMClient
 				case TorrentSourceType.TokyoToshokanAll: return "TT";
 				case TorrentSourceType.BakaBT: return "BakaBT";
 				case TorrentSourceType.Nyaa: return "Nyaa";
-                case TorrentSourceType.Sukebei: return "Suke Nyaa";
+                case TorrentSourceType.Sukebei: return "SukeNyaa";
                 case TorrentSourceType.AnimeSuki: return "Suki";
 				case TorrentSourceType.AnimeBytes: return "AByt.es";
 				default: return "TT";

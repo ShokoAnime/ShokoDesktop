@@ -1832,9 +1832,6 @@
   <data name="WhatDoesThisMean" xml:space="preserve">
     <value>Что это значит?</value>
   </data>
-  <data name="DetailedExplanation" xml:space="preserve">
-    <value>Нажмите для подробное объяснение параметров</value>
-  </data>
   <data name="CustomTag_Name" xml:space="preserve">
     <value>Имя тега</value>
   </data>
@@ -2408,9 +2405,6 @@
   <data name="SeriesSimple_PlayNext" xml:space="preserve">
     <value>Играть в следующем эпизоде</value>
   </data>
-  <data name="SeriesSimple_PlayUnWatched" xml:space="preserve">
-    <value>Играть все непросмотренные)</value>
-  </data>
   <data name="SeriesSimple_YourSay" xml:space="preserve">
     <value>Сказать свое слово...</value>
   </data>
@@ -2591,10 +2585,10 @@
   <data name="Rename_Preview" xml:space="preserve">
     <value>Предварительный просмотр</value>
   </data>
-  <data name="FileSearch_Rescan" xml:space="preserve">
+  <data name="Search_Rescan" xml:space="preserve">
     <value>Проверка (Rescan)</value>
   </data>
-  <data name="FileSearch_AniDBForceUpdate" xml:space="preserve">
+  <data name="Search_AniDBForceUpdate" xml:space="preserve">
     <value>Сведения об обновлении силы от AniDB</value>
   </data>
   <data name="GroupFilter_RandomSeries" xml:space="preserve">
@@ -3086,7 +3080,7 @@
   <data name="Tab_MyVotes" xml:space="preserve">
     <value>Мои голоса</value>
   </data>
-  <data name="VideoPlayer_MPCI" xml:space="preserve">
+  <data name="VideoPlayer_VideoPlayer" xml:space="preserve">
     <value>Media Player Классический интеграции</value>
   </data>
   <data name="VideoPlayer_AutoFile" xml:space="preserve">
@@ -3133,9 +3127,6 @@
   </data>
   <data name="Main_Messages" xml:space="preserve">
     <value>Сообщения</value>
-  </data>
-  <data name="Main_Paused" xml:space="preserve">
-    <value>Приостановлено из-за ЗАПРЕТА от AniDB (</value>
   </data>
   <data name="Main_User" xml:space="preserve">
     <value>Пользователь</value>
@@ -3184,5 +3175,233 @@
   </data>
   <data name="User_PlexUsers" xml:space="preserve">
     <value>Plex пользователей</value>
+  </data>
+  <data name="Tooltip_PlayAll" xml:space="preserve">
+    <value>Играть все эпизоды (отправлена как список воспроизведения проигрывателя по умолчанию)</value>
+  </data>
+  <data name="VideoPlayer_Default" xml:space="preserve">
+    <value>Видео проигрыватель по умолчанию</value>
+  </data>
+  <data name="VideoPlayer_DefaultNote" xml:space="preserve">
+    <value>Выберите один из поддерживаемых игроков, расположение исполняемого файла должен быть в переменной среды Path.</value>
+  </data>
+  <data name="VideoPlayer_DefaultPlayer" xml:space="preserve">
+    <value>Проигрыватель по умолчанию</value>
+  </data>
+  <data name="Link_Path" xml:space="preserve">
+    <value>http://www.computerhope.com/issues/ch000549.htm</value>
+  </data>
+  <data name="DetailedExplanation" xml:space="preserve">
+    <value>Нажмите здесь для подробного объяснения параметров</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="TvDB_NoSeasons" xml:space="preserve">
+    <value>Не сезонов доступны, снова проверьте TvDB ID</value>
+  </data>
+  <data name="Search_Everything" xml:space="preserve">
+    <value>Все</value>
+  </data>
+  <data name="TvDB_NoAniDB" xml:space="preserve">
+    <value>Существует нет эпизодов на AniDB</value>
+  </data>
+  <data name="TvDB_NoTvDB" xml:space="preserve">
+    <value>Существует нет эпизодов на TvDB</value>
+  </data>
+  <data name="Trakt_NoSeasons" xml:space="preserve">
+    <value>Не сезонов доступны, снова проверьте идентификатор тракт</value>
+  </data>
+  <data name="Filter_New" xml:space="preserve">
+    <value>Новый фильтр</value>
+  </data>
+  <data name="Import_Running" xml:space="preserve">
+    <value>Выполняется процесс</value>
+  </data>
+  <data name="Filter_DeleteGroup" xml:space="preserve">
+    <value>Вы уверены, что вы хотите удалить фильтр группы: {0}</value>
+  </data>
+  <data name="Filter_DeleteCondition" xml:space="preserve">
+    <value>Вы уверены, что вы хотите удалить условие фильтра: {0}</value>
+  </data>
+  <data name="Filter_DeleteSort" xml:space="preserve">
+    <value>Вы уверены, что вы хотите удалить сортировка?</value>
+  </data>
+  <data name="Playlist_Delete" xml:space="preserve">
+    <value>Вы уверены, что вы хотите удалить плейлист: {0}</value>
+  </data>
+  <data name="Filter_PlaylistMissing" xml:space="preserve">
+    <value>Не удалось найти плейлист</value>
+  </data>
+  <data name="Process_Running" xml:space="preserve">
+    <value>Выполняется процесс</value>
+  </data>
+  <data name="Process_Queued" xml:space="preserve">
+    <value>Процесс помещается в очередь</value>
+  </data>
+  <data name="MultipleFiles_Ignore" xml:space="preserve">
+    <value>Игнорировать изменения</value>
+  </data>
+  <data name="MultipleFiles_Finished" xml:space="preserve">
+    <value>Только закончил проветривания</value>
+  </data>
+  <data name="Playlist_PlayAll" xml:space="preserve">
+    <value>Играть все</value>
+  </data>
+  <data name="Playlist_PlayWatched" xml:space="preserve">
+    <value>Смотрел игры</value>
+  </data>
+  <data name="Playlist_PlayUnwatched" xml:space="preserve">
+    <value>Играть непросмотренные</value>
+  </data>
+  <data name="Playlist_UseFanart" xml:space="preserve">
+    <value>Использование фанарт</value>
+  </data>
+  <data name="Random_Any" xml:space="preserve">
+    <value>Любой</value>
+  </data>
+  <data name="Random_All" xml:space="preserve">
+    <value>Все</value>
+  </data>
+  <data name="Rankings_InCollection" xml:space="preserve">
+    <value>В моей коллекции</value>
+  </data>
+  <data name="Rankings_AllEpisodes" xml:space="preserve">
+    <value>Все эпизоды в моей коллекции</value>
+  </data>
+  <data name="Rankings_NotInCollection" xml:space="preserve">
+    <value>Не в моей коллекции</value>
+  </data>
+  <data name="Rankings_AllWatched" xml:space="preserve">
+    <value>Все эпизоды смотрел</value>
+  </data>
+  <data name="Rankings_NotWatched" xml:space="preserve">
+    <value>Не смотрел</value>
+  </data>
+  <data name="Rankings_Votes" xml:space="preserve">
+    <value>Проголосовали</value>
+  </data>
+  <data name="Rankings_NotVoted" xml:space="preserve">
+    <value>Не голосовал</value>
+  </data>
+  <data name="Rankings_AnimeNotInCollection" xml:space="preserve">
+    <value>Это аниме не находится в вашей коллекции</value>
+  </data>
+  <data name="MissingEpisodes_StillAiring" xml:space="preserve">
+    <value>До сих пор Aring</value>
+  </data>
+  <data name="MissingEpisodes_FinishedAiring" xml:space="preserve">
+    <value>Готовые проветривания</value>
+  </data>
+  <data name="Exporting" xml:space="preserve">
+    <value>Экспорт...</value>
+  </data>
+  <data name="Rename_Files" xml:space="preserve">
+    <value>{0} файлов</value>
+  </data>
+  <data name="Rename_Random" xml:space="preserve">
+    <value>Случайный</value>
+  </data>
+  <data name="Rename_Series" xml:space="preserve">
+    <value>Серия</value>
+  </data>
+  <data name="Rename_All" xml:space="preserve">
+    <value>Вся коллекция</value>
+  </data>
+  <data name="Rename_Failed" xml:space="preserve">
+    <value>Не удалось</value>
+  </data>
+  <data name="Rename_Passed" xml:space="preserve">
+    <value>Прошло</value>
+  </data>
+  <data name="Rename_DeleteScript" xml:space="preserve">
+    <value>Вы уверены, что вы хотите удалить сценарий: {0}</value>
+  </data>
+  <data name="Rename_EnterScriptName" xml:space="preserve">
+    <value>Введите имя сценария:</value>
+  </data>
+  <data name="Rename_BlankScript" xml:space="preserve">
+    <value>Пожалуйста, введите имя сценария</value>
+  </data>
+  <data name="Rename_Changed" xml:space="preserve">
+    <value>{0} из {1}</value>
+  </data>
+  <data name="Rename_Confirm" xml:space="preserve">
+    <value>Вы уверены, что вы хотите переименовать файлы ниже?</value>
+  </data>
+  <data name="Community_LinkMissing" xml:space="preserve">
+    <value>Отсутствует связь</value>
+  </data>
+  <data name="Community_LinkDifferent" xml:space="preserve">
+    <value>Ссылка отличается одобрил ссылку</value>
+  </data>
+  <data name="Community_GettingData" xml:space="preserve">
+    <value>Получение всех рядов данных...</value>
+  </data>
+  <data name="Complete" xml:space="preserve">
+    <value>Полная!</value>
+  </data>
+  <data name="Community_TraktProgress" xml:space="preserve">
+    <value>{0}: {1} {2} - {3}</value>
+  </data>
+  <data name="Community_TraktRef" xml:space="preserve">
+    <value>Получение всех данных Ref крест тракт...</value>
+  </data>
+  <data name="Community_TraktPopulating" xml:space="preserve">
+    <value>Заполнение данных ряда</value>
+  </data>
+  <data name="Community_TraktSeriesCheck" xml:space="preserve">
+    <value>Проверка серии</value>
+  </data>
+  <data name="Community_TraktDataCheck" xml:space="preserve">
+    <value>Проверка, если тракт данных является допустимым...</value>
+  </data>
+  <data name="Community_TraktCompare" xml:space="preserve">
+    <value>Проверка тракт ссылка против рекомендацию сообщества...</value>
+  </data>
+  <data name="Tooltip_RecreateAllGroups" xml:space="preserve">
+    <value>Это будет удалить все ваши текущие группы и затем повторно организовать все ваши серии в новые группы, на основе ваших параметров импорта</value>
+  </data>
+  <data name="Rename_Title" xml:space="preserve">
+    <value>Переименование правила</value>
+  </data>
+  <data name="Search_FileName" xml:space="preserve">
+    <value>Имя файла</value>
+  </data>
+  <data name="Search_Hash" xml:space="preserve">
+    <value>Хэш</value>
+  </data>
+  <data name="Search_Last100" xml:space="preserve">
+    <value>Последние 100</value>
+  </data>
+  <data name="Search_FileSize" xml:space="preserve">
+    <value>Размер файла</value>
+  </data>
+  <data name="JMMServer_ProcessRunning" xml:space="preserve">
+    <value>Процесс работает на сервере, пожалуйста попробуйте освежающий после завершения</value>
+  </data>
+  <data name="JMMServer_ProcessQueued" xml:space="preserve">
+    <value>Процесс помещается в очередь на сервере, пожалуйста попробуйте обновить в течение нескольких секунд</value>
+  </data>
+  <data name="Downloads_Details" xml:space="preserve">
+    <value>Детали</value>
+  </data>
+  <data name="Anime_QualityRanking" xml:space="preserve">
+    <value>От качества ранжирования</value>
+  </data>
+  <data name="Anime_ReleaseGroup" xml:space="preserve">
+    <value>Релиз группа</value>
+  </data>
+  <data name="Anime_GroupDetails" xml:space="preserve">
+    <value>Информация о группе качества/выпуска</value>
+  </data>
+  <data name="Anime_GroupSummary" xml:space="preserve">
+    <value>Релиз группа резюме</value>
+  </data>
+  <data name="ImportSettings_Default" xml:space="preserve">
+    <value>По умолчанию</value>
+  </data>
+  <data name="ImportSettings_Custom" xml:space="preserve">
+    <value>Пользовательские</value>
   </data>
 </root>

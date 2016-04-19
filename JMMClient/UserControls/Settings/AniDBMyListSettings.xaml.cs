@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Configuration;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -23,7 +27,11 @@ namespace JMMClient.UserControls
 		{
 			InitializeComponent();
 
-			cboStorageState.Items.Clear();
+            NameValueCollection appSettings = ConfigurationManager.AppSettings;
+            string cult = appSettings["Culture"];
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(cult);
+
+            cboStorageState.Items.Clear();
 			cboStorageState.Items.Add("Unknown");
 			cboStorageState.Items.Add("HDD");
 			cboStorageState.Items.Add("CD/DVD");

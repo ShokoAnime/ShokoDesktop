@@ -162,7 +162,7 @@
         <TabControl Grid.Row="2" Grid.Column="0" Margin="5" Padding="5" Name="tabTorrentDetails" TabStripPlacement="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
 
 
-            <TabItem Header="Details">
+            <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Downloads_Detials}">
 
                 <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                     <Grid Visibility="{Binding Path=HasAttachedSeries, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DownloadsTorrentMonitorControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
@@ -257,7 +257,7 @@
                 </ScrollViewer>
             </TabItem>
 
-            <TabItem Header="Files">
+            <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Files}">
 
                 <DataGrid Name="dgTorrentFiles" AutoGenerateColumns="False" CanUserReorderColumns="True" CanUserResizeColumns="True" CanUserResizeRows="False" CanUserSortColumns="True" 
                                   AlternatingRowBackground="Cornsilk"  AlternationCount="2" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="LightGray" 

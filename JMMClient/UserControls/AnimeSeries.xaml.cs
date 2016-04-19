@@ -17,6 +17,10 @@ using JMMClient.ViewModel;
 using System.Diagnostics;
 using JMMClient.Forms;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Configuration;
+using System.Globalization;
+using System.Threading;
 
 namespace JMMClient.UserControls
 {
@@ -149,7 +153,11 @@ namespace JMMClient.UserControls
 		{
 			InitializeComponent();
 
-			playlistMenu = new ContextMenu();
+            NameValueCollection appSettings = ConfigurationManager.AppSettings;
+            string cult = appSettings["Culture"];
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(cult);
+
+            playlistMenu = new ContextMenu();
 
 			cRating.OnRatingValueChangedEvent += new RatingControl.RatingValueChangedHandler(cRating_OnRatingValueChangedEvent);
 

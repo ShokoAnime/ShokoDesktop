@@ -44,7 +44,7 @@
                                 </TextBlock.ToolTip>
                             </TextBlock>
                             <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Approval}" Foreground="DarkGreen" FontWeight="Medium" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Approval}" Foreground="DarkGreen" FontWeight="Medium" VerticalAlignment="Center"/>
                                 <TextBlock Text="{Binding Path=ApprovalRating}" Foreground="Black" VerticalAlignment="Center" Margin="5,0,0,0"/>
                             </StackPanel>
 

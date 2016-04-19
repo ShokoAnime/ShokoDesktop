@@ -53,8 +53,8 @@
         </StackPanel>
 
         <Button HorizontalAlignment="Left" Name="btnRecreateGroups" Margin="-5,5,0,0" Style="{DynamicResource RoundButtonStyle}" Width="Auto" Grid.Column="2" Grid.Row="2"
-                ToolTip="{usercontrols:Info Title=Recreate All Groups, 
-                Body=This will delete all your current groups and then re-organize all your series into new groups based on your import settings}">
+                ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Settings_RecreateGroups}, 
+                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_RecreateAllGroups}}">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                 <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="0,0,5,0"/>
                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Settings_RecreateGroups}" Margin="0,0,5,0"/>

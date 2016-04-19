@@ -103,9 +103,9 @@ namespace JMMClient.UserControls
 			btnSelectColumns.Click += new RoutedEventHandler(btnSelectColumns_Click);
 
 			cboAiringFilter.Items.Clear();
-			cboAiringFilter.Items.Add("All");
-			cboAiringFilter.Items.Add("Still Airing");
-			cboAiringFilter.Items.Add("Finished Airing");
+			cboAiringFilter.Items.Add(JMMClient.Properties.Resources.Random_All);
+			cboAiringFilter.Items.Add(JMMClient.Properties.Resources.MissingEpisodes_StillAiring);
+			cboAiringFilter.Items.Add(JMMClient.Properties.Resources.MissingEpisodes_FinishedAiring);
 			cboAiringFilter.SelectedIndex = 0;
 		}
 
@@ -126,7 +126,7 @@ namespace JMMClient.UserControls
 				ReadyToExport = false;
 				this.Cursor = Cursors.Wait;
 
-				StatusMessage = "Exporting...";
+				StatusMessage = JMMClient.Properties.Resources.Exporting;
 
 				string appPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 				string logName = System.IO.Path.Combine(appPath, "AnimeEpisodes.txt");
@@ -209,7 +209,7 @@ namespace JMMClient.UserControls
 
 			AiringState state = (AiringState)cboAiringFilter.SelectedIndex;
 
-			StatusMessage = "Loading...";
+			StatusMessage = JMMClient.Properties.Resources.Loading;
 			WorkRequest wr = new WorkRequest(chkMyGroupsOnly.IsChecked.Value, chkRegularEpisodesOnly.IsChecked.Value, state);
 
 			workerFiles.RunWorkerAsync(wr);
