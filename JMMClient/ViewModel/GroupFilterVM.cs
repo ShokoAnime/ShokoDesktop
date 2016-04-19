@@ -105,12 +105,12 @@ namespace JMMClient
             get { return filterType; }
             set
             {
-               filterType = value;
-               NotifyPropertyChanged("FilterType");
+                filterType = value;
+                NotifyPropertyChanged("FilterType");
             }
         }
 
-		private int applyToSeries = 0;
+        private int applyToSeries = 0;
 		public int ApplyToSeries
 		{
 			get { return applyToSeries; }
@@ -1124,7 +1124,6 @@ namespace JMMClient
 			contract.ApplyToSeries = this.ApplyToSeries;
 			contract.BaseCondition = this.BaseCondition;
 			contract.Locked = this.Locked;
-
             contract.FilterType = this.FilterType;
 
             contract.FilterConditions = new List<JMMServerBinary.Contract_GroupFilterCondition>();
@@ -1151,15 +1150,17 @@ namespace JMMClient
 			this.ApplyToSeries = contract.ApplyToSeries;
 			this.BaseCondition = contract.BaseCondition;
 			this.Locked = contract.Locked;
-			this.PredefinedCriteria = "";
+            this.FilterType = contract.FilterType;
+            this.PredefinedCriteria = "";
 
 			this.AllowDeletion = true;
-			if (this.Locked.HasValue && this.Locked == 1) this.AllowDeletion = false;
+            if (this.Locked.HasValue && this.Locked == 1) this.AllowDeletion = false;
+            if (this.FilterType == (int)GroupFilterType.ContinueWatching) this.AllowDeletion = false;
 
-			this.IsSystemGroupFilter = false;
+            this.IsSystemGroupFilter = false;
 			this.IsNotSystemGroupFilter = true;
 
-			if (this.FilterName.Equals(Constants.GroupFilterName.ContinueWatching, StringComparison.InvariantCultureIgnoreCase))
+			if (this.FilterType == (int)GroupFilterType.ContinueWatching)
 			{
 				this.IsSystemGroupFilter = true;
 				this.IsNotSystemGroupFilter = false;
