@@ -221,7 +221,13 @@ namespace JMMClient
         CustomTags = 31
 	}
 
-	public enum GroupFilterOperator
+    public enum GroupFilterType
+    {
+        UserDefined = 1,
+        ContinueWatching = 2
+    }
+
+    public enum GroupFilterOperator
 	{
 		Include = 1,
 		Exclude = 2,

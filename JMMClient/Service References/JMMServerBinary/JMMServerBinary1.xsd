@@ -1223,6 +1223,7 @@
       <xs:element minOccurs="0" name="ApplyToSeries" type="xs:int" />
       <xs:element minOccurs="0" name="BaseCondition" type="xs:int" />
       <xs:element minOccurs="0" name="FilterConditions" nillable="true" type="tns:ArrayOfContract_GroupFilterCondition" />
+      <xs:element minOccurs="0" name="FilterType" type="xs:int" />
       <xs:element minOccurs="0" name="GroupFilterID" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="GroupFilterName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Locked" nillable="true" type="xs:int" />

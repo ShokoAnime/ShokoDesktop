@@ -12226,6 +12226,9 @@ namespace JMMClient.JMMServerBinary {
         private System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_GroupFilterCondition> FilterConditionsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int FilterTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> GroupFilterIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -12282,6 +12285,19 @@ namespace JMMClient.JMMServerBinary {
                 if ((object.ReferenceEquals(this.FilterConditionsField, value) != true)) {
                     this.FilterConditionsField = value;
                     this.RaisePropertyChanged("FilterConditions");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int FilterType {
+            get {
+                return this.FilterTypeField;
+            }
+            set {
+                if ((this.FilterTypeField.Equals(value) != true)) {
+                    this.FilterTypeField = value;
+                    this.RaisePropertyChanged("FilterType");
                 }
             }
         }
