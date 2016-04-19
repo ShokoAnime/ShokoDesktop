@@ -2402,9 +2402,6 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   <data name="SeriesSimple_PlayNext" xml:space="preserve">
     <value>Giocare il prossimo episodio</value>
   </data>
-  <data name="SeriesSimple_PlayUnWatched" xml:space="preserve">
-    <value>Gioca tutto incustodito (</value>
-  </data>
   <data name="SeriesSimple_YourSay" xml:space="preserve">
     <value>Dite la vostra...</value>
   </data>
@@ -3127,9 +3124,6 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   </data>
   <data name="Main_Messages" xml:space="preserve">
     <value>Messaggi</value>
-  </data>
-  <data name="Main_Paused" xml:space="preserve">
-    <value>In pausa a causa di BAN da AniDB (</value>
   </data>
   <data name="Main_User" xml:space="preserve">
     <value>Utente</value>

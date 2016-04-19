@@ -2411,7 +2411,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Play Next Episode</value>
   </data>
   <data name="SeriesSimple_PlayUnWatched" xml:space="preserve">
-    <value>Play All UnWatched (</value>
+    <value>Play All UnWatched</value>
   </data>
   <data name="SeriesSimple_YourSay" xml:space="preserve">
     <value>Have Your Say...</value>
@@ -3137,7 +3137,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Messages</value>
   </data>
   <data name="Main_Paused" xml:space="preserve">
-    <value>Paused due to BAN from AniDB (</value>
+    <value>Paused due to BAN from AniDB</value>
   </data>
   <data name="Main_User" xml:space="preserve">
     <value>User</value>

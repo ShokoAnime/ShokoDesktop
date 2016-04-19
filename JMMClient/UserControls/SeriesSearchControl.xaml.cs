@@ -29,6 +29,7 @@ namespace JMMClient.UserControls
             string cult = appSettings["Culture"];
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(cult);
 
+
             cboSearchType.Items.Add(JMMClient.Properties.Resources.Search_TitleOnly);
             cboSearchType.Items.Add(JMMClient.Properties.Resources.Search_Everything);
             cboSearchType.SelectedIndex = 0;

@@ -2399,9 +2399,6 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   <data name="SeriesSimple_PlayNext" xml:space="preserve">
     <value>Volgende aflevering spelen</value>
   </data>
-  <data name="SeriesSimple_PlayUnWatched" xml:space="preserve">
-    <value>Spelen van alle onbekeken)</value>
-  </data>
   <data name="SeriesSimple_YourSay" xml:space="preserve">
     <value>Laat uw stem horen...</value>
   </data>
@@ -3124,9 +3121,6 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   </data>
   <data name="Main_Messages" xml:space="preserve">
     <value>Berichten</value>
-  </data>
-  <data name="Main_Paused" xml:space="preserve">
-    <value>Onderbroken vanwege het verbod van AniDB)</value>
   </data>
   <data name="Main_User" xml:space="preserve">
     <value>Gebruiker</value>

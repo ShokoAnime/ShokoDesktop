@@ -2405,9 +2405,6 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   <data name="SeriesSimple_PlayNext" xml:space="preserve">
     <value>Jouer le prochain épisode</value>
   </data>
-  <data name="SeriesSimple_PlayUnWatched" xml:space="preserve">
-    <value>Jouer tout sans surveillance)</value>
-  </data>
   <data name="SeriesSimple_YourSay" xml:space="preserve">
     <value>Avoir votre mot à dire...</value>
   </data>
@@ -3130,9 +3127,6 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   </data>
   <data name="Main_Messages" xml:space="preserve">
     <value>Messages</value>
-  </data>
-  <data name="Main_Paused" xml:space="preserve">
-    <value>Suspendu en raison de l'interdiction de AniDB (</value>
   </data>
   <data name="Main_User" xml:space="preserve">
     <value>Utilisateur</value>

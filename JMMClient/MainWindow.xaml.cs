@@ -785,7 +785,7 @@ namespace JMMClient
 		void cboLanguages_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			SetCulture();
-		}
+        }
 
 		private void InitCulture()
 		{
@@ -826,7 +826,8 @@ namespace JMMClient
 				CultureManager.UICulture = ci;
 
 				AppSettings.Culture = ul.Culture;
-			}
+                ConfigurationManager.RefreshSection("appSettings");
+            }
 			catch (Exception ex)
 			{
 				Utils.ShowErrorMessage(ex);

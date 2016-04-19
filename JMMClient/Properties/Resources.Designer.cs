@@ -4183,7 +4183,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Paused due to BAN from AniDB (.
+        ///   Looks up a localized string similar to Paused due to BAN from AniDB.
         /// </summary>
         public static string Main_Paused {
             get {
@@ -6487,7 +6487,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Play All UnWatched (.
+        ///   Looks up a localized string similar to Play All UnWatched.
         /// </summary>
         public static string SeriesSimple_PlayUnWatched {
             get {

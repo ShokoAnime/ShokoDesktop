@@ -1635,9 +1635,6 @@
   <data name="SeriesSimple_PlayNext" xml:space="preserve">
     <value>Play Next Episode</value>
   </data>
-  <data name="SeriesSimple_PlayUnWatched" xml:space="preserve">
-    <value>Play All UnWatched (</value>
-  </data>
   <data name="SeriesSimple_YourSay" xml:space="preserve">
     <value>Have Your Say...</value>
   </data>
@@ -2249,9 +2246,6 @@
   </data>
   <data name="Main_Messages" xml:space="preserve">
     <value>Messages</value>
-  </data>
-  <data name="Main_Paused" xml:space="preserve">
-    <value>Paused due to BAN from AniDB (</value>
   </data>
   <data name="Main_User" xml:space="preserve">
     <value>User</value>

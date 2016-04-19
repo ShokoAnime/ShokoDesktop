@@ -2405,9 +2405,6 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
   <data name="SeriesSimple_PlayNext" xml:space="preserve">
     <value>Jugar próximo episodio</value>
   </data>
-  <data name="SeriesSimple_PlayUnWatched" xml:space="preserve">
-    <value>Jugar (todos</value>
-  </data>
   <data name="SeriesSimple_YourSay" xml:space="preserve">
     <value>Dar su opinión...</value>
   </data>
@@ -3130,9 +3127,6 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
   </data>
   <data name="Main_Messages" xml:space="preserve">
     <value>Mensajes</value>
-  </data>
-  <data name="Main_Paused" xml:space="preserve">
-    <value>Hizo una pausa debido a la prohibición de (AniDB</value>
   </data>
   <data name="Main_User" xml:space="preserve">
     <value>Usuario</value>

@@ -2084,9 +2084,6 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   <data name="SeriesSimple_PlayNext" xml:space="preserve">
     <value>Nächste Episode zu spielen</value>
   </data>
-  <data name="SeriesSimple_PlayUnWatched" xml:space="preserve">
-    <value>Spielen Sie alle unbewacht)</value>
-  </data>
   <data name="SeriesSimple_YourSay" xml:space="preserve">
     <value>Haben Sie Ihr sagen...</value>
   </data>
@@ -2809,9 +2806,6 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   </data>
   <data name="Main_Messages" xml:space="preserve">
     <value>Nachrichten</value>
-  </data>
-  <data name="Main_Paused" xml:space="preserve">
-    <value>Angehalten wegen Verbot von AniDB)</value>
   </data>
   <data name="Main_User" xml:space="preserve">
     <value>Benutzer</value>

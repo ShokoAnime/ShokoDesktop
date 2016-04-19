@@ -99,6 +99,17 @@ namespace JMMClient
 			}
 		}
 
+        private int filterType = (int)GroupFilterType.UserDefined;
+        public int FilterType
+        {
+            get { return filterType; }
+            set
+            {
+               filterType = value;
+               NotifyPropertyChanged("FilterType");
+            }
+        }
+
 		private int applyToSeries = 0;
 		public int ApplyToSeries
 		{
@@ -1113,8 +1124,10 @@ namespace JMMClient
 			contract.ApplyToSeries = this.ApplyToSeries;
 			contract.BaseCondition = this.BaseCondition;
 			contract.Locked = this.Locked;
-			
-			contract.FilterConditions = new List<JMMServerBinary.Contract_GroupFilterCondition>();
+
+            contract.FilterType = this.FilterType;
+
+            contract.FilterConditions = new List<JMMServerBinary.Contract_GroupFilterCondition>();
 			foreach (GroupFilterConditionVM gfc in FilterConditions)
 				contract.FilterConditions.Add(gfc.ToContract());
 
