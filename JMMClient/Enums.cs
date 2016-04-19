@@ -235,12 +235,6 @@ namespace JMMClient
          ContinueWatching = 2
     }
 
-    public enum GroupFilterType
-    {
-        UserDefined = 1,
-        ContinueWatching = 2
-    }
-
     public enum GroupFilterOperator
 	{
 		Include = 1,
