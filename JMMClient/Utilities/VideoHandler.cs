@@ -371,11 +371,15 @@ namespace JMMClient.Utilities
 
                     long mpcPos = 0;
                     long.TryParse(position, out mpcPos);
-                    
-                    // if mpcPos == 0, it means that file has finished played completely
 
-                    // MPC position is in 10^-7 s
+                    // if mpcPos == 0, it means that file either finished playing or have been stopped or re/started
+                    // please note that mpc does not trigger *.ini file update at all times or at least periodically
+                    // manual change of file position via clicks modify the file as well as starting playback and swiching file
+                    // using arrows to navigate forward and backwards however do not as well regular playback
+
+                    // MPC position is in 10^-7 s		                      
                     // convert to milli-seconds (10^-3 s)
+
                     // dont worry about remainder, as we're checking against 1 s precision later anyway
                     filePositions[fileName] = mpcPos / 10000;
                 }
@@ -502,7 +506,7 @@ namespace JMMClient.Utilities
 
                 foreach (KeyValuePair<int, VideoDetailedVM> kvpVid in recentlyPlayedFiles)
                 {
-                    if (kvpVid.Value.FullPath.Equals(kvp.Key, StringComparison.InvariantCultureIgnoreCase))
+                    if (kvpVid.Value.FullPath.Equals(Path.GetFullPath(kvp.Key), StringComparison.InvariantCultureIgnoreCase))
                     {
                         // we don't care about files that are already watched
                         if (kvpVid.Value.Watched) continue;
@@ -513,7 +517,7 @@ namespace JMMClient.Utilities
                         double fileDurationMS = (double)kvpVid.Value.VideoInfo_Duration;
 
                         double progress = mpcPosMS / fileDurationMS * 100.0d;
-                        if (progress > (double)AppSettings.VideoWatchedPct || mpcPosMS == 0)
+                        if (progress > (double)AppSettings.VideoWatchedPct)
                         {
                             VideoDetailedVM vid = kvpVid.Value;
 
