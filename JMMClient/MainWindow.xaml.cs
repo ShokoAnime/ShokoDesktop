@@ -3422,7 +3422,7 @@ namespace JMMClient
 			{
                 //BindingOperations.ClearBinding(ccDetail, ContentControl.ContentProperty);
 
-                if (objToBind.GetType().Equals(typeof(AnimeSeriesVM)))
+                if (objToBind != null && objToBind.GetType().Equals(typeof(AnimeSeriesVM)))
                 {
                     AnimeSeriesVM ser = objToBind as AnimeSeriesVM;
                     if (AppSettings.DisplaySeriesSimple)
