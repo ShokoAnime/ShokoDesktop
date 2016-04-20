@@ -129,19 +129,29 @@
                          HorizontalAlignment="Left"/>
                     </StackPanel >
 
-                    <StackPanel Orientation="Vertical" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"  Margin="5,0,2,2"
-                                Visibility="{Binding Path=DumpMultiple, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AvdumpFileControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
-                        
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,5,0,0">
+                    <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"  Margin="5,0,2,2"
+                          Visibility="{Binding Path=DumpMultiple, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AvdumpFileControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,5,0,0" Grid.Column="0" Grid.Row="0">
                             <TextBlock Text="{Binding Path=SelectedCount}" VerticalAlignment="Center" FontWeight="Bold"/>
                             <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Files}" Margin="5,0,0,0" VerticalAlignment="Center" FontWeight="Bold"/>
                         </StackPanel>
 
-                        <TextBlock Text="{Binding Path=AvDumpText, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AvdumpFileControl}}}" 
-                                   Margin="0,5,0,0" TextWrapping="WrapWithOverflow" />
 
-                        
-                    </StackPanel >
+
+                        <TextBox Text="{Binding Path=AvDumpText, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AvdumpFileControl}}}" 
+                                   Grid.Column="0" Grid.Row="1"
+                                   Margin="0,5,0,0" Height="130" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+
+                    </Grid>
 
                 </Grid>
 
