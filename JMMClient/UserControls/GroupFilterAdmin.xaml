@@ -194,6 +194,7 @@
             </StackPanel>
         </Border>
 
+        <!-- Filter name when in editing mode -->
         <StackPanel Grid.Column="0" Grid.Row="3"  Orientation="Vertical" Name="panelGroupFilterEditing" Margin="10,10,0,0"
                     Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}">
 

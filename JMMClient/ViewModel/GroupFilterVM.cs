@@ -1160,12 +1160,6 @@ namespace JMMClient
             this.IsSystemGroupFilter = false;
 			this.IsNotSystemGroupFilter = true;
 
-			if (this.FilterType == (int)GroupFilterType.ContinueWatching)
-			{
-				this.IsSystemGroupFilter = true;
-				this.IsNotSystemGroupFilter = false;
-			}
-
 			//this.FilterConditions = new ObservableCollection<GroupFilterConditionVM>();
 			this.FilterConditions.Clear();
 
