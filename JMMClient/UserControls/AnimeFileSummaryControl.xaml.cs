@@ -136,9 +136,7 @@ namespace JMMClient.UserControls
 
 			ViewGroupSummary.SortDescriptions.Add(new SortDescription("GroupName", ListSortDirection.Ascending));
 
-            NameValueCollection appSettings = ConfigurationManager.AppSettings;
-            string cult = appSettings["Culture"];
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(cult);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
             cboSortGroupQual.Items.Clear();
 			cboSortGroupQual.Items.Add(JMMClient.Properties.Resources.Anime_QualityRanking);

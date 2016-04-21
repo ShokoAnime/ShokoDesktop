@@ -154,9 +154,7 @@ namespace JMMClient.UserControls
 
 			btnOptions.Click += new RoutedEventHandler(btnOptions_Click);
 
-            NameValueCollection appSettings = ConfigurationManager.AppSettings;
-            string cult = appSettings["Culture"];
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(cult);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
             cboImageType.Items.Clear();
 			cboImageType.Items.Add(JMMClient.Properties.Resources.Fanart);

@@ -37,9 +37,7 @@ namespace JMMClient.UserControls
 			chkImportSettings_AutoGroupSeries.Click += new RoutedEventHandler(settingChanged);
 			chkImportSettings_ScanDropOnStart.Click += new RoutedEventHandler(settingChanged);
 
-            NameValueCollection appSettings = ConfigurationManager.AppSettings;
-            string cult = appSettings["Culture"];
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(cult);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
             cboImagesPath.Items.Clear();
 			cboImagesPath.Items.Add(JMMClient.Properties.Resources.ImportSettings_Default);

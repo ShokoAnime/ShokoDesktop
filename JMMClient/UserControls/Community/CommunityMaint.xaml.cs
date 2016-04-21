@@ -84,9 +84,7 @@ namespace JMMClient.UserControls
             btnPause.Click += BtnPause_Click;
             btnStop.Click += BtnStop_Click;
 
-            NameValueCollection appSettings = ConfigurationManager.AppSettings;
-            string cult = appSettings["Culture"];
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(cult);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
             cboFilterType.Items.Clear();
             cboFilterType.Items.Add(JMMClient.Properties.Resources.Random_All);

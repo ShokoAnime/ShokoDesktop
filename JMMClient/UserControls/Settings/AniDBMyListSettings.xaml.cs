@@ -27,9 +27,7 @@ namespace JMMClient.UserControls
 		{
 			InitializeComponent();
 
-            NameValueCollection appSettings = ConfigurationManager.AppSettings;
-            string cult = appSettings["Culture"];
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(cult);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
             cboStorageState.Items.Clear();
 			cboStorageState.Items.Add("Unknown");

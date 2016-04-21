@@ -102,9 +102,7 @@ namespace JMMClient.UserControls
 			dgRankings.SelectionChanged += new SelectionChangedEventHandler(dgRankings_SelectionChanged);
 			cRating.OnRatingValueChangedEvent += new RatingControl.RatingValueChangedHandler(cRating_OnRatingValueChangedEvent);
 
-            NameValueCollection appSettings = ConfigurationManager.AppSettings;
-            string cult = appSettings["Culture"];
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(cult);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
             cboCollection.Items.Add(JMMClient.Properties.Resources.Random_All);
 			cboCollection.Items.Add(JMMClient.Properties.Resources.Rankings_InCollection);

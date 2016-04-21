@@ -190,9 +190,7 @@ namespace JMMClient.UserControls
 			btnSaveScript.Click += new RoutedEventHandler(btnSaveScript_Click);
 			btnDeleteScript.Click += new RoutedEventHandler(btnDeleteScript_Click);
 
-            NameValueCollection appSettings = ConfigurationManager.AppSettings;
-            string cult = appSettings["Culture"];
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(cult);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
             cboLoadType.Items.Clear();
 			cboLoadType.Items.Add(JMMClient.Properties.Resources.Rename_Random);

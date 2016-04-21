@@ -25,9 +25,7 @@ namespace JMMClient.UserControls
 
             this.GotFocus += new RoutedEventHandler(SeriesSearchControl_GotFocus);
 
-            NameValueCollection appSettings = ConfigurationManager.AppSettings;
-            string cult = appSettings["Culture"];
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(cult);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
 
             cboSearchType.Items.Add(JMMClient.Properties.Resources.Search_TitleOnly);

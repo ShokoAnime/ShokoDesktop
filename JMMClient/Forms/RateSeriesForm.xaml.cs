@@ -56,9 +56,7 @@ namespace JMMClient.Forms
 			AnimeSeriesVM ser = this.DataContext as AnimeSeriesVM;
 			if (ser == null) return;
 
-            NameValueCollection appSettings = ConfigurationManager.AppSettings;
-            string cult = appSettings["Culture"];
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(cult);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
             cboVoteType.Items.Clear();
 			cboVoteType.Items.Add(Properties.Resources.VoteTypeAnimeTemporary);

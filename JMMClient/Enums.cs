@@ -164,9 +164,7 @@ namespace JMMClient
 
 		public static List<WatchedStatusContainer> GetAll()
 		{
-            NameValueCollection appSettings = ConfigurationManager.AppSettings;
-            string cult = appSettings["Culture"];
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(cult);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
             List<WatchedStatusContainer> statuses = new List<WatchedStatusContainer>();
 			statuses.Add(new WatchedStatusContainer(WatchedStatus.All, JMMClient.Properties.Resources.Episodes_Watched_All));
@@ -302,9 +300,7 @@ namespace JMMClient
 
 		public static List<AvailableEpisodeTypeContainer> GetAll()
 		{
-            NameValueCollection appSettings = ConfigurationManager.AppSettings;
-            string cult = appSettings["Culture"];
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(cult);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
             List<AvailableEpisodeTypeContainer> eptypes = new List<AvailableEpisodeTypeContainer>();
 			eptypes.Add(new AvailableEpisodeTypeContainer(AvailableEpisodeType.All, JMMClient.Properties.Resources.Episodes_AvAll));
@@ -507,9 +503,7 @@ namespace JMMClient
 		public static string EpisodeTypeTranslated(EpisodeType epType)
 		{
 
-            NameValueCollection appSettings = ConfigurationManager.AppSettings;
-            string cult = appSettings["Culture"];
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(cult);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
             switch (epType)
 			{
@@ -533,9 +527,7 @@ namespace JMMClient
 
 		public static EpisodeType EpisodeTypeTranslatedReverse(string epType)
 		{
-            NameValueCollection appSettings = ConfigurationManager.AppSettings;
-            string cult = appSettings["Culture"];
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(cult);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
             if (epType == JMMClient.Properties.Resources.EpisodeType_Credits) return EpisodeType.Credits;
 			if (epType == JMMClient.Properties.Resources.EpisodeType_Normal) return EpisodeType.Episode;

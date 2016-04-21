@@ -58,9 +58,7 @@ namespace JMMClient.UserControls
 			btnSearch.Click += new RoutedEventHandler(btnSearch_Click);
 			lbVideos.SelectionChanged += new SelectionChangedEventHandler(lbVideos_SelectionChanged);
 
-            NameValueCollection appSettings = ConfigurationManager.AppSettings;
-            string cult = appSettings["Culture"];
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(cult);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
             cboSearchType.Items.Clear();
 			cboSearchType.Items.Add(JMMClient.Properties.Resources.Search_FileName);
