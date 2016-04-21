@@ -216,7 +216,6 @@
     <Compile Include="Downloads\TorrentLink.cs" />
     <Compile Include="Downloads\TorrentList.cs" />
     <Compile Include="Downloads\TorrentsAnimeBytes.cs" />
-    <Compile Include="Downloads\TorrentsAnimeSuki.cs" />
     <Compile Include="Downloads\TorrentsBakaBT.cs" />
     <Compile Include="Downloads\TorrentsNyaa.cs" />
     <Compile Include="Downloads\TorrentSourceVM.cs" />

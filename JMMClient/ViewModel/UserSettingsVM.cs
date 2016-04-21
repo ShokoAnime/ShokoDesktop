@@ -54,7 +54,6 @@ namespace JMMClient
 			sources.Add(new TorrentSourceVM(TorrentSourceType.TokyoToshokanAll, true));
 			sources.Add(new TorrentSourceVM(TorrentSourceType.Nyaa, true));
             sources.Add(new TorrentSourceVM(TorrentSourceType.Sukebei, true));
-            sources.Add(new TorrentSourceVM(TorrentSourceType.AnimeSuki, true));
 			sources.Add(new TorrentSourceVM(TorrentSourceType.BakaBT, true));
 			sources.Add(new TorrentSourceVM(TorrentSourceType.AnimeBytes, true));
 
@@ -79,7 +78,8 @@ namespace JMMClient
 
 
 					TorrentSourceVM selSource = new TorrentSourceVM((TorrentSourceType)iSrc, true);
-					SelectedTorrentSources.Add(selSource);
+                    if ((TorrentSourceType)iSrc != TorrentSourceType.AnimeSuki)
+					    SelectedTorrentSources.Add(selSource);
 				}
 
 				foreach (TorrentSourceVM src in GetAllTorrentSources())

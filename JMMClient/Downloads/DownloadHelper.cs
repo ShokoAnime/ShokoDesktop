@@ -154,13 +154,6 @@ namespace JMMClient.Downloads
                     links.AddRange(dictLinks.Values);
                 }
 
-                if (src.TorrentSource == TorrentSourceType.AnimeSuki)
-				{
-					TorrentsAnimeSuki suki = new TorrentsAnimeSuki();
-					List<TorrentLinkVM> sukiLinks = suki.GetTorrents(parms);
-					links.AddRange(sukiLinks);
-				}
-
 				if (src.TorrentSource == TorrentSourceType.BakaBT)
 				{
 					TorrentsBakaBT bakaBT = new TorrentsBakaBT();
