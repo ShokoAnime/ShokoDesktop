@@ -107,6 +107,7 @@ namespace JMMClient.Downloads
 
                 string torLink = output.Substring(posTorStart + torStart.Length, posTorEnd - posTorStart - torStart.Length);
                 torLink = DownloadHelper.FixNyaaTorrentLink(torLink);
+                torLink = "http:" + torLink;
 
                 // remove html codes
                 torLink = HttpUtility.HtmlDecode(torLink);
@@ -232,6 +233,7 @@ namespace JMMClient.Downloads
 
                 string torLink = output.Substring(posTorStart + torStart.Length, posTorEnd - posTorStart - torStart.Length);
                 torLink = DownloadHelper.FixNyaaTorrentLink(torLink);
+                torLink = "http:" + torLink;
 
                 // remove html codes
                 torLink = HttpUtility.HtmlDecode(torLink);
