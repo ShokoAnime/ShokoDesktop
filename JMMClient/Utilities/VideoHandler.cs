@@ -14,7 +14,6 @@ namespace JMMClient.Utilities
 		private Dictionary<int, VideoDetailedVM> recentlyPlayedFiles = null;
 		private System.Timers.Timer handleTimer = null;
 		private string iniPath = string.Empty;
-        private String defaultplayer = "2";
 
         private List<FileSystemWatcher> watcherVids = null;
 		Dictionary<string, string> previousFilePositions = new Dictionary<string, string>();
@@ -33,16 +32,16 @@ namespace JMMClient.Utilities
 		{
             try
             {
-                defaultplayer = UserSettingsVM.Instance.DefaultPlayer_GroupList.ToString();
-                switch (defaultplayer)
+                string defaultplayer;
+                switch (UserSettingsVM.Instance.DefaultPlayer_GroupList)
                 {
-                    case "1":
+                    case 0:
                         defaultplayer = "mpc-hc";
                         break;
-                    case "2":
+                    case 1:
                         defaultplayer = "PotPlayerMini";
                         break;
-                    case "3":
+                    case 2:
                         defaultplayer = "vlc";
                         break;
                     default:
@@ -83,16 +82,16 @@ namespace JMMClient.Utilities
 		{
             try
             {
-                defaultplayer = UserSettingsVM.Instance.DefaultPlayer_GroupList.ToString();
-                switch (defaultplayer)
+                string defaultplayer;
+                switch (UserSettingsVM.Instance.DefaultPlayer_GroupList)
                 {
-                    case "1":
+                    case 0:
                         defaultplayer = "mpc-hc";
                         break;
-                    case "2":
+                    case 1:
                         defaultplayer = "PotPlayerMini";
                         break;
-                    case "3":
+                    case 2:
                         defaultplayer = "vlc";
                         break;
                     default:
