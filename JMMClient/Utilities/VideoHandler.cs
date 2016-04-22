@@ -35,17 +35,17 @@ namespace JMMClient.Utilities
                 string defaultplayer;
                 switch (UserSettingsVM.Instance.DefaultPlayer_GroupList)
                 {
-                    case 0:
+                    case (int)DefaultVideoPlayer.MPC:
                         defaultplayer = "mpc-hc";
                         break;
-                    case 1:
+                    case (int)DefaultVideoPlayer.PotPlayer:
                         defaultplayer = "PotPlayerMini";
                         break;
-                    case 2:
+                    case (int)DefaultVideoPlayer.VLC:
                         defaultplayer = "vlc";
                         break;
                     default:
-                        defaultplayer = "vlc";
+                        defaultplayer = "";
                         break;
                 }
                 recentlyPlayedFiles[vid.VideoLocalID] = vid;
@@ -63,14 +63,17 @@ namespace JMMClient.Utilities
                 {
                     try
                     {
-                        Process.Start(defaultplayer, '"' + vid.FullPath + '"');
+                        if (string.IsNullOrEmpty(defaultplayer))
+                            Process.Start(new ProcessStartInfo(vid.FullPath));
+                        else
+                            Process.Start(defaultplayer, '"' + vid.FullPath + '"');
                     }
                     catch (Exception e)
                     {
                         Process.Start(defaultplayer + "64", '"' + vid.FullPath.Replace(@"\", "/") + '"');
                     }
                 }
-                defaultplayer = UserSettingsVM.Instance.DefaultPlayer_GroupList.ToString();
+                
             }
 			catch (Exception ex)
 			{
@@ -85,17 +88,17 @@ namespace JMMClient.Utilities
                 string defaultplayer;
                 switch (UserSettingsVM.Instance.DefaultPlayer_GroupList)
                 {
-                    case 0:
+                    case (int)DefaultVideoPlayer.MPC:
                         defaultplayer = "mpc-hc";
                         break;
-                    case 1:
+                    case (int)DefaultVideoPlayer.PotPlayer:
                         defaultplayer = "PotPlayerMini";
                         break;
-                    case 2:
+                    case (int)DefaultVideoPlayer.VLC:
                         defaultplayer = "vlc";
                         break;
                     default:
-                        defaultplayer = "vlc";
+                        defaultplayer = "";
                         break;
                 }
                 if (vid.FullPath.Contains("http:"))
@@ -113,14 +116,18 @@ namespace JMMClient.Utilities
                 {
                     try
                     {
-                        Process.Start(defaultplayer, '"' + vid.FullPath + '"');
+                        if (string.IsNullOrEmpty(defaultplayer))
+                            Process.Start(new ProcessStartInfo(vid.FullPath));
+                        else
+                            Process.Start(defaultplayer, '"' + vid.FullPath + '"');
+
                     }
                     catch (Exception e)
                     {
                         Process.Start(defaultplayer + "64", '"' + vid.FullPath.Replace(@"\", "/") + '"');
                     }
                 }
-                defaultplayer = UserSettingsVM.Instance.DefaultPlayer_GroupList.ToString();
+                
             }
             catch (Exception ex)
             {

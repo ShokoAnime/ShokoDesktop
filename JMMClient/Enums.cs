@@ -498,7 +498,17 @@ namespace JMMClient
 		ED2KHash = 4
 	}
 
-	public class EnumTranslator
+    public enum DefaultVideoPlayer
+    {
+        MPC = 0,
+        PotPlayer = 1,
+        VLC = 2,
+        WindowsDefault = 999
+    }
+
+    
+
+    public class EnumTranslator
 	{
 		public static string EpisodeTypeTranslated(EpisodeType epType)
 		{

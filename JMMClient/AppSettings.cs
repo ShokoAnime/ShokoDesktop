@@ -374,7 +374,7 @@ namespace JMMClient
                     return ival;
                 }
                 else
-                    return 3; // default value
+                    return (int)DefaultVideoPlayer.WindowsDefault; // default value
             }
             set
             {
