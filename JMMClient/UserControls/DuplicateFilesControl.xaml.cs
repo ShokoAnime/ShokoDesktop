@@ -16,6 +16,8 @@ using System.Collections.ObjectModel;
 using JMMClient.ViewModel;
 using System.IO;
 using System.Diagnostics;
+using System.Threading;
+using System.Globalization;
 
 namespace JMMClient.UserControls
 {
@@ -42,7 +44,9 @@ namespace JMMClient.UserControls
 		{
 			InitializeComponent();
 
-			DuplicateFilesCollection = new ObservableCollection<DuplicateFileVM>();
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            DuplicateFilesCollection = new ObservableCollection<DuplicateFileVM>();
 			ViewFiles = CollectionViewSource.GetDefaultView(DuplicateFilesCollection);
 			ViewFiles.SortDescriptions.Add(new SortDescription("AnimeName", ListSortDirection.Ascending));
 			ViewFiles.SortDescriptions.Add(new SortDescription("EpisodeNumber", ListSortDirection.Ascending));
@@ -136,7 +140,7 @@ namespace JMMClient.UserControls
 					if (File.Exists(df.FullPath1))
 						Utils.OpenFolderAndSelectFile(df.FullPath1);
 					else
-						MessageBox.Show(Properties.Resources.MSG_ERR_FileNotFound, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+						MessageBox.Show(Properties.Resources.MSG_ERR_FileNotFound, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 					
 				}
 			}
@@ -159,7 +163,7 @@ namespace JMMClient.UserControls
 					if (File.Exists(df.FullPath2))
 						Utils.OpenFolderAndSelectFile(df.FullPath2);
 					else
-						MessageBox.Show(Properties.Resources.MSG_ERR_FileNotFound, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+						MessageBox.Show(Properties.Resources.MSG_ERR_FileNotFound, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 					
 				}
 			}
@@ -226,15 +230,15 @@ namespace JMMClient.UserControls
 				{
 					DuplicateFileVM df = obj as DuplicateFileVM;
 
-					MessageBoxResult res = MessageBox.Show(string.Format("Are you sure you want to delete this file, the physical video file will also be deleted"),
-						"Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+					MessageBoxResult res = MessageBox.Show(string.Format(Properties.Resources.DuplicateFiles_ConfirmDelete),
+                        Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
 					if (res == MessageBoxResult.Yes)
 					{
 						this.Cursor = Cursors.Wait;
 						string result = JMMServerVM.Instance.clientBinaryHTTP.DeleteDuplicateFile(df.DuplicateFileID, 1);
 						if (result.Length > 0)
-							MessageBox.Show(result, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+							MessageBox.Show(result, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 						else
 						{
 							DuplicateFilesCollection.Remove(df);
@@ -266,15 +270,15 @@ namespace JMMClient.UserControls
 				{
 					DuplicateFileVM df = obj as DuplicateFileVM;
 
-					MessageBoxResult res = MessageBox.Show(string.Format("Are you sure you want to delete this file, the physical video file will also be deleted"),
-						"Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+					MessageBoxResult res = MessageBox.Show(string.Format(Properties.Resources.DuplicateFiles_ConfirmDelete),
+                        Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
 					if (res == MessageBoxResult.Yes)
 					{
 						this.Cursor = Cursors.Wait;
 						string result = JMMServerVM.Instance.clientBinaryHTTP.DeleteDuplicateFile(df.DuplicateFileID, 2);
 						if (result.Length > 0)
-							MessageBox.Show(result, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+							MessageBox.Show(result, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 						else
 						{
 							DuplicateFilesCollection.Remove(df);
@@ -306,15 +310,15 @@ namespace JMMClient.UserControls
 				{
 					DuplicateFileVM df = obj as DuplicateFileVM;
 
-					MessageBoxResult res = MessageBox.Show(string.Format("Are you sure you want to delete this entry?"),
-						"Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
+					MessageBoxResult res = MessageBox.Show(string.Format(Properties.Resources.DuplicateFiles_DeleteEntry),
+						Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
 
 					if (res == MessageBoxResult.Yes)
 					{
 						this.Cursor = Cursors.Wait;
 						string result = JMMServerVM.Instance.clientBinaryHTTP.DeleteDuplicateFile(df.DuplicateFileID, 0);
 						if (result.Length > 0)
-							MessageBox.Show(result, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+							MessageBox.Show(result, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 						else
 						{
 							DuplicateFilesCollection.Remove(df);

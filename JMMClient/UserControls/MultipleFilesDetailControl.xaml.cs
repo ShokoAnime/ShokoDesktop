@@ -13,6 +13,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using JMMClient.ViewModel;
 using System.IO;
+using System.Threading;
+using System.Globalization;
 
 namespace JMMClient.UserControls
 {
@@ -55,7 +57,9 @@ namespace JMMClient.UserControls
 		{
 			InitializeComponent();
 
-			btnToggleExpander.Click += new RoutedEventHandler(btnToggleExpander_Click);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            btnToggleExpander.Click += new RoutedEventHandler(btnToggleExpander_Click);
 		}
 
 		private void CommandBinding_DeleteFile(object sender, ExecutedRoutedEventArgs e)
@@ -71,15 +75,15 @@ namespace JMMClient.UserControls
 				{
 					VideoDetailedVM vid = obj as VideoDetailedVM;
 
-					MessageBoxResult res = MessageBox.Show(string.Format("Are you sure you want to delete this file, the physical video file will also be deleted"),
-						"Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+					MessageBoxResult res = MessageBox.Show(string.Format(Properties.Resources.MultipleFiles_ConfirmDelete),
+                        Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
 					if (res == MessageBoxResult.Yes)
 					{
 						this.Cursor = Cursors.Wait;
 						string result = JMMServerVM.Instance.clientBinaryHTTP.DeleteVideoLocalAndFile(vid.VideoLocalID);
 						if (result.Length > 0)
-							MessageBox.Show(result, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+							MessageBox.Show(result, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 						else
 						{
 							// find the entry and remove it
@@ -121,7 +125,7 @@ namespace JMMClient.UserControls
 
 					string result = JMMServerVM.Instance.clientBinaryHTTP.SetVariationStatusOnFile(vid.VideoLocalID, vid.Variation);
 					if (result.Length > 0)
-						MessageBox.Show(result, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+						MessageBox.Show(result, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 				}
 			}
 			catch (Exception ex)

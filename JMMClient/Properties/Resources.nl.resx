@@ -3176,9 +3176,6 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   <data name="VideoPlayer_Default" xml:space="preserve">
     <value>Standaard videospeler</value>
   </data>
-  <data name="VideoPlayer_DefaultNote" xml:space="preserve">
-    <value>Selecteer een van de ondersteunde spelers, locatie van uitvoerbaar bestand moet in de omgevingsvariabele Path.</value>
-  </data>
   <data name="VideoPlayer_DefaultPlayer" xml:space="preserve">
     <value>Standaardspeler</value>
   </data>
@@ -3403,5 +3400,146 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   </data>
   <data name="ImportSettings_Custom" xml:space="preserve">
     <value>Aangepaste</value>
+  </data>
+  <data name="SeriesSimple_PlayUnWatched" xml:space="preserve">
+    <value>Speel alle onbekeken</value>
+  </data>
+  <data name="Main_Paused" xml:space="preserve">
+    <value>Onderbroken vanwege het verbod van AniDB</value>
+  </data>
+  <data name="VideoPlayer_PotPlayerNotFound" xml:space="preserve">
+    <value>Pot speler map bestaat niet</value>
+  </data>
+  <data name="VideoPlayer_PotPlayerNotSelected" xml:space="preserve">
+    <value>Pot-map van de Player niet geselecteerd</value>
+  </data>
+  <data name="VideoPlayer_VLCNotFound" xml:space="preserve">
+    <value>VLC map bestaat niet</value>
+  </data>
+  <data name="VideoPlayer_MPCNotFound" xml:space="preserve">
+    <value>MPC map bestaat niet</value>
+  </data>
+  <data name="VideoPlayer_VLCNotSelected" xml:space="preserve">
+    <value>VLC map niet geselecteerd</value>
+  </data>
+  <data name="VideoPlayer_MPCNotSelected" xml:space="preserve">
+    <value>MPC-map niet geselecteerd</value>
+  </data>
+  <data name="VideoPlayer_PotPlayerINIMissing" xml:space="preserve">
+    <value>Geen ini-bestanden gevonden in de map van de Player Pot</value>
+  </data>
+  <data name="VideoPlayer_VLCINIMissing" xml:space="preserve">
+    <value>Geen ini-bestanden gevonden in de VLC map</value>
+  </data>
+  <data name="VideoPlayer_MPCINIMissing" xml:space="preserve">
+    <value>Geen ini-bestanden gevonden in de MPC-map</value>
+  </data>
+  <data name="VideoPlayer_INIFound" xml:space="preserve">
+    <value>INI bestand gevonden, maar geen geschiedenis gevonden voor vorige keek naar bestanden</value>
+  </data>
+  <data name="VideoPlayer_INIFoundHistory" xml:space="preserve">
+    <value>INI-bestand gevonden. Voorbeeld van onlangs bekeken-bestand...</value>
+  </data>
+  <data name="VideoPlayer_DefaultNote" xml:space="preserve">
+    <value>JMM gebruikt automatisch de standaard videospeler voor Windows. Als u gebruiken een andere videospeler willen zou, u moet de video-speler uitvoerbare bestand toevoegen aan de systeemvariabele PATH. </value>
+  </data>
+  <data name="AniDBMyListDeleteLocal" xml:space="preserve">
+    <value>Verwijder bestand (lokale DB)</value>
+  </data>
+  <data name="AniDBMyListMarkDeleted" xml:space="preserve">
+    <value>Mark verwijderd</value>
+  </data>
+  <data name="AniDBMyListMarkUnknown" xml:space="preserve">
+    <value>Merk onbekend</value>
+  </data>
+  <data name="AniDBMyListMarkExternal" xml:space="preserve">
+    <value>Mark externe (CD/DVD)</value>
+  </data>
+  <data name="AniDBMyListHDD" xml:space="preserve">
+    <value>HDD</value>
+  </data>
+  <data name="AniDBMyListUnknown" xml:space="preserve">
+    <value>Onbekend</value>
+  </data>
+  <data name="AniDBMyListDVD" xml:space="preserve">
+    <value>CD/DVD</value>
+  </data>
+  <data name="AniDBMyListDelete" xml:space="preserve">
+    <value>Verwijder bestand (AniDB)</value>
+  </data>
+  <data name="Delete File (AniDB)" xml:space="preserve">
+    <value>Verwijder bestand (AniDB)</value>
+  </data>
+  <data name="DeleteFiles_Name" xml:space="preserve">
+    <value>Bestanden verwijderen</value>
+  </data>
+  <data name="DeleteFiles_ManualLink" xml:space="preserve">
+    <value>HANDMATIGE KOPPELING</value>
+  </data>
+  <data name="Done" xml:space="preserve">
+    <value>Gedaan!</value>
+  </data>
+  <data name="DeleteFiles_Deleting" xml:space="preserve">
+    <value>Verwijderen bestand {0} van {1}</value>
+  </data>
+  <data name="DeleteFiles_Wait" xml:space="preserve">
+    <value>Wacht tot het proces voltooid is</value>
+  </data>
+  <data name="DeleteFiles_Confirm" xml:space="preserve">
+    <value>Bent u zeker dat u wilt verwijderen van deze {0} bestand/s, de fysieke videobestanden zal ook worden verwijderd</value>
+  </data>
+  <data name="DuplicateFiles_ConfirmDelete" xml:space="preserve">
+    <value>Bent u zeker dat u wilt verwijderen van dit bestand, de fysieke video bestand zal ook worden verwijderd</value>
+  </data>
+  <data name="DuplicateFiles_DeleteEntry" xml:space="preserve">
+    <value>Weet u zeker dat u wilt verwijderen van dit bericht?</value>
+  </data>
+  <data name="Unrecognized_AniDBQueue" xml:space="preserve">
+    <value>Bestanden in de wachtrij voor AniDB gewarmd kost</value>
+  </data>
+  <data name="Unrecognized_AniDBScan" xml:space="preserve">
+    <value>Bestanden in de wachtrij voor AniDB scan</value>
+  </data>
+  <data name="Unrecognized_ConfirmDelete" xml:space="preserve">
+    <value>Weet u zeker dat u wilt verwijderen van dit bestand: {0}</value>
+  </data>
+  <data name="Unrecognized_DeleteSelected" xml:space="preserve">
+    <value>Weet u zeker dat u wilt verwijderen van de bestanden van {0} geselecteerd</value>
+  </data>
+  <data name="MultipleFiles_ConfirmDelete" xml:space="preserve">
+    <value>Bent u zeker dat u wilt verwijderen van dit bestand, de fysieke video bestand zal ook worden verwijderd</value>
+  </data>
+  <data name="EpisodeDetail_TvDBLink" xml:space="preserve">
+    <value>De serie moet worden gekoppeld aan een reeks TvDB eerst</value>
+  </data>
+  <data name="EpisodeDetail_NewPlaylist" xml:space="preserve">
+    <value>Nieuwe afspeellijst</value>
+  </data>
+  <data name="EpisodeDetail_PlaylistMenu" xml:space="preserve">
+    <value>Afspeellijst-Menu: </value>
+  </data>
+  <data name="EpisodeDetail_PlaylistMissing" xml:space="preserve">
+    <value>Konden niet vondst afspeellijst</value>
+  </data>
+  <data name="EpisodeDetail_ConfirmDelete" xml:space="preserve">
+    <value>Bent u zeker dat u wilt verwijderen van dit bestand, de fysieke video bestand zal ook worden verwijderd</value>
+  </data>
+  <data name="EpisodeDetail_CommandQueued" xml:space="preserve">
+    <value>Opdracht in de wachtrij is gezet voor verwerking op de server</value>
+  </data>
+  <data name="Unrecognized_Folder" xml:space="preserve">
+    <value>Map</value>
+  </data>
+  <data name="Unrecognized_Date" xml:space="preserve">
+    <value>Datum</value>
+  </data>
+  <data name="Unrecognized_FileName" xml:space="preserve">
+    <value>Bestandsnaam</value>
+  </data>
+  <data name="Unrecognized_Size" xml:space="preserve">
+    <value>Grootte</value>
+  </data>
+  <data name="Unrecognized_CRC" xml:space="preserve">
+    <value>CRC</value>
   </data>
 </root>

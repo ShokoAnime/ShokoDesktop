@@ -17,6 +17,8 @@ using System.ComponentModel;
 using System.IO;
 using System.Diagnostics;
 using JMMClient.Forms;
+using System.Globalization;
+using System.Threading;
 
 namespace JMMClient.UserControls
 {
@@ -109,7 +111,9 @@ namespace JMMClient.UserControls
 		{
 			InitializeComponent();
 
-			UnrecognisedFiles = new ObservableCollection<VideoLocalVM>();
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            UnrecognisedFiles = new ObservableCollection<VideoLocalVM>();
 			ViewFiles = CollectionViewSource.GetDefaultView(UnrecognisedFiles);
 			ViewFiles.SortDescriptions.Add(new SortDescription("FileName", ListSortDirection.Ascending));
 			ViewFiles.Filter = FileSearchFilter;
@@ -251,7 +255,7 @@ namespace JMMClient.UserControls
                 }
                 this.Cursor = Cursors.Arrow;
 
-                MessageBox.Show("Files queued for AniDB rehash", "Complete", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(Properties.Resources.Unrecognized_AniDBQueue, Properties.Resources.Complete, MessageBoxButton.OK, MessageBoxImage.Information);
 
             }
             catch (Exception ex)
@@ -274,7 +278,7 @@ namespace JMMClient.UserControls
 				JMMServerVM.Instance.clientBinaryHTTP.RescanUnlinkedFiles();
 				this.Cursor = Cursors.Arrow;
 
-				MessageBox.Show("Files queued for AniDB scan", "Complete", MessageBoxButton.OK, MessageBoxImage.Information);
+				MessageBox.Show(Properties.Resources.Unrecognized_AniDBScan, Properties.Resources.Complete, MessageBoxButton.OK, MessageBoxImage.Information);
 
 			}
 			catch (Exception ex)
@@ -391,7 +395,7 @@ namespace JMMClient.UserControls
 								result = JMMServerVM.Instance.clientBinaryHTTP.UpdateAnimeData(series.AniDB_ID);
 								if (result.Length > 0)
 								{
-									MessageBox.Show(result, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+									MessageBox.Show(result, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 									EnableDisableControls(true);
 									return;
 								}
@@ -400,7 +404,7 @@ namespace JMMClient.UserControls
 									// check again
 									if (series.LatestRegularEpisodeNumber < endEpNum)
 									{
-										MessageBox.Show(Properties.Resources.MSG_ERR_InvalidEp, "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+										MessageBox.Show(Properties.Resources.MSG_ERR_InvalidEp, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Exclamation);
 										EnableDisableControls(true);
 										return;
 									}
@@ -417,7 +421,7 @@ namespace JMMClient.UserControls
 						result = JMMServerVM.Instance.clientBinaryHTTP.AssociateSingleFileWithMultipleEpisodes(vid.VideoLocalID, series.AnimeSeriesID.Value, startEpNum, endEpNum);
 						if (result.Length > 0)
 						{
-							MessageBox.Show(result, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+							MessageBox.Show(result, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 						}
 						else
 						{
@@ -432,7 +436,7 @@ namespace JMMClient.UserControls
 						string result = JMMServerVM.Instance.clientBinaryHTTP.AssociateSingleFile(vid.VideoLocalID, ep.AnimeEpisodeID);
 						if (result.Length > 0)
 						{
-							MessageBox.Show(result, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+							MessageBox.Show(result, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 						}
 						else
 						{
@@ -466,7 +470,7 @@ namespace JMMClient.UserControls
 							string result = JMMServerVM.Instance.clientBinaryHTTP.UpdateAnimeData(series.AniDB_ID);
 							if (result.Length > 0)
 							{
-								MessageBox.Show(result, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+								MessageBox.Show(result, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 								EnableDisableControls(true);
 								return;
 							}
@@ -475,7 +479,7 @@ namespace JMMClient.UserControls
 								// check again
 								if (series.LatestRegularEpisodeNumber < endEpNum)
 								{
-									MessageBox.Show(Properties.Resources.MSG_ERR_InvalidEp, "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+									MessageBox.Show(Properties.Resources.MSG_ERR_InvalidEp, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Exclamation);
 									EnableDisableControls(true);
 									return;
 								}
@@ -501,7 +505,7 @@ namespace JMMClient.UserControls
 					string msg = JMMServerVM.Instance.clientBinaryHTTP.AssociateMultipleFiles(vidIDs, series.AnimeSeriesID.Value, startEpNum, MultipleTypeSingle);
 					if (msg.Length > 0)
 					{
-						MessageBox.Show(msg, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+						MessageBox.Show(msg, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 					}
 					else
 					{
@@ -540,7 +544,7 @@ namespace JMMClient.UserControls
 				}
 				else
 				{
-					MessageBox.Show(Properties.Resources.MSG_ERR_FileNotFound, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					MessageBox.Show(Properties.Resources.MSG_ERR_FileNotFound, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 				}
 			}
 		}
@@ -561,7 +565,7 @@ namespace JMMClient.UserControls
 
 					string result = JMMServerVM.Instance.clientBinaryHTTP.SetIgnoreStatusOnFile(vid.VideoLocalID, true);
 					if (result.Length > 0)
-						MessageBox.Show(result, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+						MessageBox.Show(result, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 					else
 						RefreshUnrecognisedFiles();
 					
@@ -573,7 +577,7 @@ namespace JMMClient.UserControls
 					{
 						string result = JMMServerVM.Instance.clientBinaryHTTP.SetIgnoreStatusOnFile(id, true);
 						if (result.Length > 0)
-							MessageBox.Show(result, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+							MessageBox.Show(result, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 					}
 					RefreshUnrecognisedFiles();
 				}
@@ -620,13 +624,13 @@ namespace JMMClient.UserControls
 				{
 					VideoLocalVM vid = obj as VideoLocalVM;
 
-					MessageBoxResult res = MessageBox.Show(string.Format("Are you sure you want to delete this file: {0}", vid.FullPath),
-					"Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
+					MessageBoxResult res = MessageBox.Show(string.Format(Properties.Resources.Unrecognized_ConfirmDelete, vid.FullPath),
+                    Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
 					if (res == MessageBoxResult.Yes)
 					{
 						string result = JMMServerVM.Instance.clientBinaryHTTP.DeleteVideoLocalAndFile(vid.VideoLocalID);
 						if (result.Length > 0)
-							MessageBox.Show(result, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+							MessageBox.Show(result, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 						else
 							RefreshUnrecognisedFiles();
 					}
@@ -635,8 +639,8 @@ namespace JMMClient.UserControls
                 if (obj.GetType() == typeof(MultipleVideos))
                 {
                     MultipleVideos mv = obj as MultipleVideos;
-                    MessageBoxResult res = MessageBox.Show(string.Format("Are you sure you want to delete the {0} selected files", mv.VideoLocalIDs.Count),
-                    "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    MessageBoxResult res = MessageBox.Show(string.Format(Properties.Resources.Unrecognized_DeleteSelected, mv.VideoLocalIDs.Count),
+                    Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
                     if (res == MessageBoxResult.Yes)
                     {
                         foreach (int id in mv.VideoLocalIDs)
@@ -714,7 +718,7 @@ namespace JMMClient.UserControls
                     }
                 }
 
-				MessageBox.Show(Properties.Resources.MSG_INFO_AddedQueueCmds, "Done", MessageBoxButton.OK, MessageBoxImage.Information);
+				MessageBox.Show(Properties.Resources.MSG_INFO_AddedQueueCmds, Properties.Resources.Done, MessageBoxButton.OK, MessageBoxImage.Information);
 			}
 			catch (Exception ex)
 			{

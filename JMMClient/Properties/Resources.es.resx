@@ -3182,9 +3182,6 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
   <data name="VideoPlayer_Default" xml:space="preserve">
     <value>Reproductor de vídeo por defecto</value>
   </data>
-  <data name="VideoPlayer_DefaultNote" xml:space="preserve">
-    <value>Selección de reproductores compatibles, ubicación del archivo ejecutable debe estar en la variable de entorno Path.</value>
-  </data>
   <data name="VideoPlayer_DefaultPlayer" xml:space="preserve">
     <value>Reproductor predeterminado</value>
   </data>
@@ -3403,5 +3400,146 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
   </data>
   <data name="ImportSettings_Custom" xml:space="preserve">
     <value>Custom</value>
+  </data>
+  <data name="SeriesSimple_PlayUnWatched" xml:space="preserve">
+    <value>Jugar todos</value>
+  </data>
+  <data name="Main_Paused" xml:space="preserve">
+    <value>Hizo una pausa debido a la prohibición de AniDB</value>
+  </data>
+  <data name="VideoPlayer_PotPlayerNotFound" xml:space="preserve">
+    <value>Olla reproductor de carpeta no existe</value>
+  </data>
+  <data name="VideoPlayer_PotPlayerNotSelected" xml:space="preserve">
+    <value>Olla reproductor carpeta no</value>
+  </data>
+  <data name="VideoPlayer_VLCNotFound" xml:space="preserve">
+    <value>No existe la carpeta VLC</value>
+  </data>
+  <data name="VideoPlayer_MPCNotFound" xml:space="preserve">
+    <value>No existe la carpeta MPC</value>
+  </data>
+  <data name="VideoPlayer_VLCNotSelected" xml:space="preserve">
+    <value>Carpeta de VLC no seleccionado</value>
+  </data>
+  <data name="VideoPlayer_MPCNotSelected" xml:space="preserve">
+    <value>Carpeta de MPC no seleccionado</value>
+  </data>
+  <data name="VideoPlayer_PotPlayerINIMissing" xml:space="preserve">
+    <value>No hay archivos ini encontradas la carpeta de Player Pot</value>
+  </data>
+  <data name="VideoPlayer_VLCINIMissing" xml:space="preserve">
+    <value>No hay archivos ini encontradas la carpeta VLC</value>
+  </data>
+  <data name="VideoPlayer_MPCINIMissing" xml:space="preserve">
+    <value>No hay archivos ini encontradas la carpeta MPC</value>
+  </data>
+  <data name="VideoPlayer_INIFound" xml:space="preserve">
+    <value>Encuentra el archivo INI, pero ninguna historia encontró para anterior visto archivos</value>
+  </data>
+  <data name="VideoPlayer_INIFoundHistory" xml:space="preserve">
+    <value>Encontró el archivo INI. Muestra de archivo recientemente visto...</value>
+  </data>
+  <data name="VideoPlayer_DefaultNote" xml:space="preserve">
+    <value>JMM utiliza automáticamente el reproductor de vídeo por defecto de Windows. Si desea utilizar un reproductor de vídeo diferentes, que necesitará agregar el ejecutable del reproductor de vídeo a la variable de sistema PATH. </value>
+  </data>
+  <data name="AniDBMyListDeleteLocal" xml:space="preserve">
+    <value>Eliminar archivo (Local DB)</value>
+  </data>
+  <data name="AniDBMyListMarkDeleted" xml:space="preserve">
+    <value>Borra marca</value>
+  </data>
+  <data name="AniDBMyListMarkUnknown" xml:space="preserve">
+    <value>Marca desconocida</value>
+  </data>
+  <data name="AniDBMyListMarkExternal" xml:space="preserve">
+    <value>Marca externa (CD/DVD)</value>
+  </data>
+  <data name="AniDBMyListHDD" xml:space="preserve">
+    <value>DISCO DURO</value>
+  </data>
+  <data name="AniDBMyListUnknown" xml:space="preserve">
+    <value>Desconocido</value>
+  </data>
+  <data name="AniDBMyListDVD" xml:space="preserve">
+    <value>CD/DVD</value>
+  </data>
+  <data name="AniDBMyListDelete" xml:space="preserve">
+    <value>Eliminar archivo (AniDB)</value>
+  </data>
+  <data name="Delete File (AniDB)" xml:space="preserve">
+    <value>Eliminar archivo (AniDB)</value>
+  </data>
+  <data name="DeleteFiles_Name" xml:space="preserve">
+    <value>Eliminar archivos de</value>
+  </data>
+  <data name="DeleteFiles_ManualLink" xml:space="preserve">
+    <value>ENLACE MANUAL</value>
+  </data>
+  <data name="Done" xml:space="preserve">
+    <value>Hecho!</value>
+  </data>
+  <data name="DeleteFiles_Deleting" xml:space="preserve">
+    <value>Eliminar archivo {0} de {1}</value>
+  </data>
+  <data name="DeleteFiles_Wait" xml:space="preserve">
+    <value>Por favor, espere hasta que finalice el proceso</value>
+  </data>
+  <data name="DeleteFiles_Confirm" xml:space="preserve">
+    <value>Está seguro que desea eliminar estos {0} archivo/s, la voluntad física de archivos de vídeo también se borró</value>
+  </data>
+  <data name="DuplicateFiles_ConfirmDelete" xml:space="preserve">
+    <value>Está seguro que desea eliminar este archivo, de la voluntad física de archivo de vídeo también se borró</value>
+  </data>
+  <data name="DuplicateFiles_DeleteEntry" xml:space="preserve">
+    <value>¿Está seguro que desea eliminar esta entrada?</value>
+  </data>
+  <data name="Unrecognized_AniDBQueue" xml:space="preserve">
+    <value>Archivos en cola para AniDB refrito</value>
+  </data>
+  <data name="Unrecognized_AniDBScan" xml:space="preserve">
+    <value>Archivos en cola para exploración AniDB</value>
+  </data>
+  <data name="Unrecognized_ConfirmDelete" xml:space="preserve">
+    <value>Está seguro que desea eliminar este archivo: {0}</value>
+  </data>
+  <data name="Unrecognized_DeleteSelected" xml:space="preserve">
+    <value>Está seguro que desea eliminar los archivos seleccionados {0}</value>
+  </data>
+  <data name="MultipleFiles_ConfirmDelete" xml:space="preserve">
+    <value>Está seguro que desea eliminar este archivo, de la voluntad física de archivo de vídeo también se borró</value>
+  </data>
+  <data name="EpisodeDetail_TvDBLink" xml:space="preserve">
+    <value>La serie debe estar ligada a una serie de TvDB primero</value>
+  </data>
+  <data name="EpisodeDetail_NewPlaylist" xml:space="preserve">
+    <value>Nueva lista de reproducción</value>
+  </data>
+  <data name="EpisodeDetail_PlaylistMenu" xml:space="preserve">
+    <value>Menú de lista de reproducción: </value>
+  </data>
+  <data name="EpisodeDetail_PlaylistMissing" xml:space="preserve">
+    <value>No se pudo encontrar lista de reproducción</value>
+  </data>
+  <data name="EpisodeDetail_ConfirmDelete" xml:space="preserve">
+    <value>Está seguro que desea eliminar este archivo, de la voluntad física de archivo de vídeo también se borró</value>
+  </data>
+  <data name="EpisodeDetail_CommandQueued" xml:space="preserve">
+    <value>Comando ha sido cola de procesamiento en el servidor</value>
+  </data>
+  <data name="Unrecognized_Folder" xml:space="preserve">
+    <value>Carpeta de</value>
+  </data>
+  <data name="Unrecognized_Date" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="Unrecognized_FileName" xml:space="preserve">
+    <value>Nombre de archivo</value>
+  </data>
+  <data name="Unrecognized_Size" xml:space="preserve">
+    <value>Tamaño</value>
+  </data>
+  <data name="Unrecognized_CRC" xml:space="preserve">
+    <value>CRC</value>
   </data>
 </root>

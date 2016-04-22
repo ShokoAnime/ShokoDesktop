@@ -315,12 +315,12 @@
                         </Style>
                     </DataGrid.CellStyle>
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Folder" Binding="{Binding FileDirectory}" IsReadOnly="True" Width="100" />
-                        <DataGridTextColumn Header="File Name" Binding="{Binding FileName}" IsReadOnly="True" Width="300" />
-                        <DataGridTextColumn Header="Size" Binding="{Binding FileSize}" IsReadOnly="True" />
-                        <DataGridTextColumn Header="Hash" Binding="{Binding Hash}" IsReadOnly="True" />
-                        <DataGridTextColumn Header="CRC" Binding="{Binding CRC32}" IsReadOnly="True" />
-                        <DataGridTextColumn Header="Date" Binding="{Binding DateTimeUpdated}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Unrecognized_Folder}" Binding="{Binding FileDirectory}" IsReadOnly="True" Width="100" />
+                        <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Unrecognized_FileName}" Binding="{Binding FileName}" IsReadOnly="True" Width="300" />
+                        <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Unrecognized_Size}" Binding="{Binding FileSize}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Unrecognized_Hash}" Binding="{Binding Hash}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Unrecognized_CRC}" Binding="{Binding CRC32}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Unrecognized_Date}" Binding="{Binding DateTimeUpdated}" IsReadOnly="True" />
 
                     </DataGrid.Columns>
                 </DataGrid>

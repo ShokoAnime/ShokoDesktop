@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using JMMClient.ViewModel;
 using System.ComponentModel;
 using System.Threading;
+using System.Globalization;
 
 namespace JMMClient.Forms
 {
@@ -93,7 +94,9 @@ namespace JMMClient.Forms
 		{
 			InitializeComponent();
 
-			deleteFilesWorker.WorkerReportsProgress = true;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            deleteFilesWorker.WorkerReportsProgress = true;
 
 			deleteFilesWorker.DoWork += new DoWorkEventHandler(deleteFilesWorker_DoWork);
 			deleteFilesWorker.ProgressChanged += new ProgressChangedEventHandler(deleteFilesWorker_ProgressChanged);
@@ -109,7 +112,7 @@ namespace JMMClient.Forms
 			if (inProgress)
 			{
 				e.Cancel = true;
-				MessageBox.Show("Please wait until the process is complete", "Stop", MessageBoxButton.OK, MessageBoxImage.Information);
+				MessageBox.Show(Properties.Resources.DeleteFiles_Wait, Properties.Resources.Stop, MessageBoxButton.OK, MessageBoxImage.Information);
 				return;
 			}
 
@@ -118,8 +121,8 @@ namespace JMMClient.Forms
 
 		void btnOK_Click(object sender, RoutedEventArgs e)
 		{
-			string msg = string.Format("Are you sure you want to delete these {0} file/s, the physical video files will also be deleted", vids.Count);
-			MessageBoxResult res = MessageBox.Show(msg, "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+			string msg = string.Format(Properties.Resources.DeleteFiles_Confirm, vids.Count);
+			MessageBoxResult res = MessageBox.Show(msg, Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
 			if (res == MessageBoxResult.Yes)
 			{
@@ -152,7 +155,7 @@ namespace JMMClient.Forms
 			foreach (VideoDetailedVM vid in vids)
 			{
 				i++;
-				string msg = string.Format("Deleting file {0} of {1}", i, vids.Count);
+				string msg = string.Format(Properties.Resources.DeleteFiles_Deleting, i, vids.Count);
 				deleteFilesWorker.ReportProgress(0, msg);
 				//Thread.Sleep(500);
 
@@ -166,7 +169,7 @@ namespace JMMClient.Forms
 				
 			}
 
-			deleteFilesWorker.ReportProgress(100, "Done!");
+			deleteFilesWorker.ReportProgress(100, Properties.Resources.Done);
 		}
 
 		public void Init(int animeID, GroupVideoQualityVM gvq)

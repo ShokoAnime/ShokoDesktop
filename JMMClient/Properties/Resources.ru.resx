@@ -3182,9 +3182,6 @@
   <data name="VideoPlayer_Default" xml:space="preserve">
     <value>Видео проигрыватель по умолчанию</value>
   </data>
-  <data name="VideoPlayer_DefaultNote" xml:space="preserve">
-    <value>Выберите один из поддерживаемых игроков, расположение исполняемого файла должен быть в переменной среды Path.</value>
-  </data>
   <data name="VideoPlayer_DefaultPlayer" xml:space="preserve">
     <value>Проигрыватель по умолчанию</value>
   </data>
@@ -3403,5 +3400,146 @@
   </data>
   <data name="ImportSettings_Custom" xml:space="preserve">
     <value>Пользовательские</value>
+  </data>
+  <data name="SeriesSimple_PlayUnWatched" xml:space="preserve">
+    <value>Играть все непросмотренные</value>
+  </data>
+  <data name="Main_Paused" xml:space="preserve">
+    <value>Приостановлено из-за ЗАПРЕТА от AniDB</value>
+  </data>
+  <data name="VideoPlayer_PotPlayerNotFound" xml:space="preserve">
+    <value>Пот плеер папка не существует</value>
+  </data>
+  <data name="VideoPlayer_PotPlayerNotSelected" xml:space="preserve">
+    <value>Пот плеер папка не выбрана</value>
+  </data>
+  <data name="VideoPlayer_VLCNotFound" xml:space="preserve">
+    <value>VLC папка не существует</value>
+  </data>
+  <data name="VideoPlayer_MPCNotFound" xml:space="preserve">
+    <value>MPC папка не существует</value>
+  </data>
+  <data name="VideoPlayer_VLCNotSelected" xml:space="preserve">
+    <value>VLC папка не выбрана</value>
+  </data>
+  <data name="VideoPlayer_MPCNotSelected" xml:space="preserve">
+    <value>MPC папка не выбрана</value>
+  </data>
+  <data name="VideoPlayer_PotPlayerINIMissing" xml:space="preserve">
+    <value>Не ini-файлы в папке игрок горшок</value>
+  </data>
+  <data name="VideoPlayer_VLCINIMissing" xml:space="preserve">
+    <value>Не ini файлы, найденные в папке VLC</value>
+  </data>
+  <data name="VideoPlayer_MPCINIMissing" xml:space="preserve">
+    <value>Не ini-файлы в папке MPC</value>
+  </data>
+  <data name="VideoPlayer_INIFound" xml:space="preserve">
+    <value>INI файл найден, но история не найдено для предыдущих смотрел файлов</value>
+  </data>
+  <data name="VideoPlayer_INIFoundHistory" xml:space="preserve">
+    <value>INI файл найден. Образец файла недавно смотрел...</value>
+  </data>
+  <data name="VideoPlayer_DefaultNote" xml:space="preserve">
+    <value>Модель памяти JMM автоматически использует видео проигрыватель Windows по умолчанию. Если вы хотите использовать другой проигрыватель, вам будет нужно добавить исполняемый файл видео-плеер в системной переменной PATH. </value>
+  </data>
+  <data name="AniDBMyListDeleteLocal" xml:space="preserve">
+    <value>Удалить файл (местные дБ)</value>
+  </data>
+  <data name="AniDBMyListMarkDeleted" xml:space="preserve">
+    <value>Марк удалены</value>
+  </data>
+  <data name="AniDBMyListMarkUnknown" xml:space="preserve">
+    <value>Марк неизвестно</value>
+  </data>
+  <data name="AniDBMyListMarkExternal" xml:space="preserve">
+    <value>Марк внешние (CD/DVD)</value>
+  </data>
+  <data name="AniDBMyListHDD" xml:space="preserve">
+    <value>ЖЕСТКИЙ ДИСК</value>
+  </data>
+  <data name="AniDBMyListUnknown" xml:space="preserve">
+    <value>Неизвестно</value>
+  </data>
+  <data name="AniDBMyListDVD" xml:space="preserve">
+    <value>CD/DVD</value>
+  </data>
+  <data name="AniDBMyListDelete" xml:space="preserve">
+    <value>Удалить файл (AniDB)</value>
+  </data>
+  <data name="Delete File (AniDB)" xml:space="preserve">
+    <value>Удалить файл (AniDB)</value>
+  </data>
+  <data name="DeleteFiles_Name" xml:space="preserve">
+    <value>Удаление файлов</value>
+  </data>
+  <data name="DeleteFiles_ManualLink" xml:space="preserve">
+    <value>МЕХАНИЧЕСКАЯ СВЯЗЬ</value>
+  </data>
+  <data name="Done" xml:space="preserve">
+    <value>Договорились!</value>
+  </data>
+  <data name="DeleteFiles_Deleting" xml:space="preserve">
+    <value>Удаление файла {0} из {1}</value>
+  </data>
+  <data name="DeleteFiles_Wait" xml:space="preserve">
+    <value>Пожалуйста, подождите, пока процесс завершится</value>
+  </data>
+  <data name="DeleteFiles_Confirm" xml:space="preserve">
+    <value>Вы уверены, что вы хотите удалить эти {0} файлов/сек, физический видео файлы будут также удалены</value>
+  </data>
+  <data name="DuplicateFiles_ConfirmDelete" xml:space="preserve">
+    <value>Вы уверены, что хотите удалить этот файл, физический файл видео будет также быть удалены</value>
+  </data>
+  <data name="DuplicateFiles_DeleteEntry" xml:space="preserve">
+    <value>Вы уверены, что вы хотите удалить эту запись?</value>
+  </data>
+  <data name="Unrecognized_AniDBQueue" xml:space="preserve">
+    <value>Файлы в очереди перепев AniDB</value>
+  </data>
+  <data name="Unrecognized_AniDBScan" xml:space="preserve">
+    <value>Файлы в очереди для проверки AniDB</value>
+  </data>
+  <data name="Unrecognized_ConfirmDelete" xml:space="preserve">
+    <value>Вы уверены, что вы хотите удалить этот файл: {0}</value>
+  </data>
+  <data name="Unrecognized_DeleteSelected" xml:space="preserve">
+    <value>Вы уверены, что вы хотите удалить {0} выбранных файлов</value>
+  </data>
+  <data name="MultipleFiles_ConfirmDelete" xml:space="preserve">
+    <value>Вы уверены, что хотите удалить этот файл, физический файл видео будет также быть удалены</value>
+  </data>
+  <data name="EpisodeDetail_TvDBLink" xml:space="preserve">
+    <value>Серия должна быть связана с TvDB серии сначала</value>
+  </data>
+  <data name="EpisodeDetail_NewPlaylist" xml:space="preserve">
+    <value>Новый список воспроизведения</value>
+  </data>
+  <data name="EpisodeDetail_PlaylistMenu" xml:space="preserve">
+    <value>Меню плейлистов: </value>
+  </data>
+  <data name="EpisodeDetail_PlaylistMissing" xml:space="preserve">
+    <value>Не удалось найти плейлист</value>
+  </data>
+  <data name="EpisodeDetail_ConfirmDelete" xml:space="preserve">
+    <value>Вы уверены, что хотите удалить этот файл, физический файл видео будет также быть удалены</value>
+  </data>
+  <data name="EpisodeDetail_CommandQueued" xml:space="preserve">
+    <value>Команда был поставлен в очередь для обработки на сервере</value>
+  </data>
+  <data name="Unrecognized_Folder" xml:space="preserve">
+    <value>Папка</value>
+  </data>
+  <data name="Unrecognized_Date" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="Unrecognized_FileName" xml:space="preserve">
+    <value>Имя файла</value>
+  </data>
+  <data name="Unrecognized_Size" xml:space="preserve">
+    <value>Размер</value>
+  </data>
+  <data name="Unrecognized_CRC" xml:space="preserve">
+    <value>CRC</value>
   </data>
 </root>
