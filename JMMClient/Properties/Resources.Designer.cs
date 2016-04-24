@@ -1600,6 +1600,24 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Regular Dashboard.
+        /// </summary>
+        public static string Dashboard_Regular {
+            get {
+                return ResourceManager.GetString("Dashboard_Regular", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string Dashboard_Settings {
+            get {
+                return ResourceManager.GetString("Dashboard_Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sync Votes.
         /// </summary>
         public static string Dashboard_SyncVotes {

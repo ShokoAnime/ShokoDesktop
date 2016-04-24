@@ -1350,7 +1350,7 @@
                     </TabItem>
 
                     <!-- Video Player tab -->
-                    <TabItem Header="Video Player" Name="tabSettingVideoPlayer"
+                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_VideoPlayer}" Name="tabSettingVideoPlayer"
                              Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <ScrollViewer>
                             <Grid>

@@ -3074,9 +3074,6 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   <data name="Tab_MyVotes" xml:space="preserve">
     <value>Mijn stemmen</value>
   </data>
-  <data name="VideoPlayer_VideoPlayer" xml:space="preserve">
-    <value>Video-speler</value>
-  </data>
   <data name="VideoPlayer_AutoFile" xml:space="preserve">
     <value>Automatische bestandsselectie</value>
   </data>
@@ -3541,5 +3538,14 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   </data>
   <data name="Unrecognized_CRC" xml:space="preserve">
     <value>CRC</value>
+  </data>
+  <data name="VideoPlayer_VideoPlayer" xml:space="preserve">
+    <value>Video-speler</value>
+  </data>
+  <data name="Dashboard_Regular" xml:space="preserve">
+    <value>Regelmatige Dashboard</value>
+  </data>
+  <data name="Dashboard_Settings" xml:space="preserve">
+    <value>Instellingen</value>
   </data>
 </root>

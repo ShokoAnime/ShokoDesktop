@@ -3080,9 +3080,6 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   <data name="Tab_MyVotes" xml:space="preserve">
     <value>Mes Votes</value>
   </data>
-  <data name="VideoPlayer_VideoPlayer" xml:space="preserve">
-    <value>Media Player Classic intégration</value>
-  </data>
   <data name="VideoPlayer_AutoFile" xml:space="preserve">
     <value>Sélection automatique des fichiers</value>
   </data>
@@ -3541,5 +3538,14 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   </data>
   <data name="Unrecognized_CRC" xml:space="preserve">
     <value>CRC</value>
+  </data>
+  <data name="VideoPlayer_VideoPlayer" xml:space="preserve">
+    <value>Lecteur vidéo</value>
+  </data>
+  <data name="Dashboard_Regular" xml:space="preserve">
+    <value>Tableau de bord régulier</value>
+  </data>
+  <data name="Dashboard_Settings" xml:space="preserve">
+    <value>Paramètres</value>
   </data>
 </root>

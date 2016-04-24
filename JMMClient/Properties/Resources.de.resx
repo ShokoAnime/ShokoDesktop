@@ -2759,9 +2759,6 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   <data name="Tab_MyVotes" xml:space="preserve">
     <value>Meine Bewertungen</value>
   </data>
-  <data name="VideoPlayer_VideoPlayer" xml:space="preserve">
-    <value>Media Player Classic Integration</value>
-  </data>
   <data name="VideoPlayer_AutoFile" xml:space="preserve">
     <value>Automatische Datei-Auswahl</value>
   </data>
@@ -3541,5 +3538,14 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   </data>
   <data name="Unrecognized_CRC" xml:space="preserve">
     <value>CRC</value>
+  </data>
+  <data name="VideoPlayer_VideoPlayer" xml:space="preserve">
+    <value>Video-Player</value>
+  </data>
+  <data name="Dashboard_Regular" xml:space="preserve">
+    <value>Regelmäßige Auswertung</value>
+  </data>
+  <data name="Dashboard_Settings" xml:space="preserve">
+    <value>Einstellungen</value>
   </data>
 </root>
