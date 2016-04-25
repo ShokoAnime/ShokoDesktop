@@ -270,7 +270,7 @@
                                 <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_WrongSeries}" Foreground="Black" FontWeight="DemiBold" 
                                         VerticalAlignment="Center" ToolTipService.ShowDuration="60000"
                                         ToolTip="{usercontrols:Info Title=Wrong Series, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_WrongSeries}}">
+                                                Body=Tooltip_WrongSeries}">
 
                                 </TextBlock>
 

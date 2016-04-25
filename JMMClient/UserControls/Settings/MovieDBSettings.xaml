@@ -31,8 +31,8 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Margin="0,5,5,0">
             <CheckBox Name="chkMovieDB_FanartAutoDownload" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=MovieDB_AutoFanart}" VerticalAlignment="Center"
-                      ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=MovieDB_FanartAutoDownload}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_MovieDB_FanartAutoDownload}}"/>
+                      ToolTip="{usercontrols:Info Title=MovieDB_FanartAutoDownload, 
+                                                Body=Tooltip_MovieDB_FanartAutoDownload}"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="0" Margin="0,5,15,0">
@@ -41,8 +41,8 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="0" Margin="0,5,5,0">
             <extToolkit:IntegerUpDown Name="udMaxFanarts" Minimum="1" Maximum="999" DefaultValue="5" VerticalAlignment="Center" 
-                                      ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=MovieDB_FanartCount}, 
-                                       Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_MovieDB_FanartCount}}" Value="{Binding Source={x:Static local:JMMServerVM.Instance},Path=MovieDB_AutoFanartAmount}" />
+                                      ToolTip="{usercontrols:Info Title=MovieDB_FanartCount, 
+                                       Body=Tooltip_MovieDB_FanartCount}" Value="{Binding Source={x:Static local:JMMServerVM.Instance},Path=MovieDB_AutoFanartAmount}" />
         </StackPanel>
 
         <!-- Poster Auto Download-->
@@ -52,8 +52,8 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Margin="0,5,5,0">
             <CheckBox Name="chkMovieDB_PosterAutoDownload" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=MovieDB_AutoPosters}" VerticalAlignment="Center"
-                      ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=MovieDB_PosterAutoDownload}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_MovieDB_PosterAutoDownload}}"/>
+                      ToolTip="{usercontrols:Info Title=MovieDB_PosterAutoDownload, 
+                                                Body=Tooltip_MovieDB_PosterAutoDownload}"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="2" Margin="0,5,15,0">

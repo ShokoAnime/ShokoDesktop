@@ -108,8 +108,8 @@
                             <!-- Is Variation-->
                             <CheckBox Content="{Resx ResxName=JMMClient.Properties.Resources, Key=IsVariation}" IsChecked="{Binding Path=Variation, Mode=OneWay}" Command="{StaticResource ToggleVariationCommand}" 
                                 CommandParameter="{Binding}" VerticalAlignment="Center"
-                                       ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=IsVariation}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_IsVariation}}">
+                                       ToolTip="{usercontrols:Info Title=IsVariation, 
+                                                Body=Tooltip_IsVariation}">
 
                             </CheckBox>
 
