@@ -43,8 +43,8 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" Margin="0,5,5,0">
             <extToolkit:IntegerUpDown Name="udImageSize_GroupList" Minimum="30" Maximum="300" DefaultValue="80" Increment="10" VerticalAlignment="Top" 
-                                      ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=ImageSize_GroupList}, 
-                                       Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_ImageSize_GroupList}}" Value="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=DisplayHeight_GroupList}"  />
+                                      ToolTip="{usercontrols:Info Title=ImageSize_GroupList, 
+                                       Body=Tooltip_ImageSize_GroupList}" Value="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=DisplayHeight_GroupList}"  />
         </StackPanel>
 
         <Border BorderThickness="1,1,1,1" BorderBrush="DarkGray" Grid.Row="0" Grid.Column="2">
@@ -62,8 +62,8 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" Margin="0,5,5,0">
             <extToolkit:IntegerUpDown Name="udImageSize_SeriesPoster" Minimum="30" Maximum="300" DefaultValue="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=DisplayHeight_SeriesInfo}" Increment="10" VerticalAlignment="Top" 
-                                      ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=ImageSize_SeriesPoster}, 
-                                       Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_ImageSize_SeriesPoster}}" Value="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=DisplayHeight_SeriesInfo}"  />
+                                      ToolTip="{usercontrols:Info Title=ImageSize_SeriesPoster, 
+                                       Body=Tooltip_ImageSize_SeriesPoster}" Value="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=DisplayHeight_SeriesInfo}"  />
         </StackPanel>
 
         <Border BorderThickness="1,1,1,1" BorderBrush="DarkGray" Grid.Row="1" Grid.Column="2" >
@@ -81,8 +81,8 @@
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Margin="0,5,5,0">
             <extToolkit:IntegerUpDown Name="udImageSize_EpisodeImage" Minimum="10" Maximum="400" 
                  DefaultValue="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=DisplayWidth_EpisodeImage}" Increment="10" VerticalAlignment="Top"
-                 ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=ImageSize_EpisodeImage}, 
-                 Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_ImageSize_EpisodeImage}}" Value="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=DisplayWidth_EpisodeImage}"/>
+                 ToolTip="{usercontrols:Info Title=ImageSize_EpisodeImage, 
+                 Body=Tooltip_ImageSize_EpisodeImage}" Value="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=DisplayWidth_EpisodeImage}"/>
         </StackPanel>
 
         <Border BorderThickness="1,1,1,1" BorderBrush="DarkGray" Grid.Row="2" Grid.Column="2" >

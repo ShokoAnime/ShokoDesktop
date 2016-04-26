@@ -32,8 +32,8 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Margin="0,5,5,0">
             <CheckBox Name="chkTvDB_FanartAutoDownload" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=TvDB_AutoFanart}" VerticalAlignment="Center"
-                      ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=TvDB_FanartAutoDownload}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_TvDB_FanartAutoDownload}}"/>
+                      ToolTip="{usercontrols:Info Title=TvDB_FanartAutoDownload, 
+                                                Body=Tooltip_TvDB_FanartAutoDownload}"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="0" Margin="0,5,15,0">
@@ -42,8 +42,8 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="0" Margin="0,5,5,0">
             <extToolkit:IntegerUpDown Name="udMaxFanarts" Minimum="1" Maximum="999" DefaultValue="5" VerticalAlignment="Center" 
-                                      ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=TvDB_FanartCount}, 
-                                       Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_TvDB_FanartCount}}" Value="{Binding Source={x:Static local:JMMServerVM.Instance},Path=TvDB_AutoFanartAmount}" />
+                                      ToolTip="{usercontrols:Info Title=TvDB_FanartCount, 
+                                       Body=Tooltip_TvDB_FanartCount}" Value="{Binding Source={x:Static local:JMMServerVM.Instance},Path=TvDB_AutoFanartAmount}" />
         </StackPanel>
 
         <!-- Wide Banner Auto Download-->
@@ -54,8 +54,8 @@
         
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Margin="0,5,5,0">
             <CheckBox Name="chkTvDB_WideBannerAutoDownload" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=TvDB_AutoWideBanners}" VerticalAlignment="Center"
-                      ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=TvDB_WideBannerAutoDownload}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_TvDB_WideBannerAutoDownload}}"/>
+                      ToolTip="{usercontrols:Info Title=TvDB_WideBannerAutoDownload, 
+                                                Body=Tooltip_TvDB_WideBannerAutoDownload}"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="2" Margin="0,5,15,0">
@@ -74,8 +74,8 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3" Margin="0,5,5,0">
             <CheckBox Name="chkTvDB_PosterAutoDownload" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=TvDB_AutoPosters}" VerticalAlignment="Center"
-                      ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=TvDB_PosterAutoDownload}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_TvDB_PosterAutoDownload}}"/>
+                      ToolTip="{usercontrols:Info Title=TvDB_PosterAutoDownload, 
+                                                Body=Tooltip_TvDB_PosterAutoDownload}"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="3" Margin="0,5,15,0">

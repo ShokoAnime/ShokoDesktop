@@ -423,13 +423,10 @@
                 <TextBlock IsHitTestVisible="False"  Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Metro_Continue}" Foreground="Black" FontSize="24" FontFamily="Segoe UI" FontWeight="Bold"  VerticalAlignment="Center"/>
 
                 <!-- Refresh -->
-                <Button Name="btnRefresh" Margin="12,2,2,2" Style="{DynamicResource FlatButtonStyle}">
+                <Button Name="btnRefresh" Margin="12,2,2,2" Style="{DynamicResource FlatButtonStyle}" ToolTip="{Resx ResxName=JMMClient.Properties.Resources, Key=Metro_Refresh}">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                         <Image Height="24" Width="24" Source="/Images/Metro/refresh.png" Margin="0,0,0,0"/>
                     </StackPanel>
-                    <Button.ToolTip>
-                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Metro_Refresh}"/>
-                    </Button.ToolTip>
                 </Button>
 
             </StackPanel>
@@ -481,13 +478,10 @@
                        Foreground="Black" FontSize="24" FontFamily="Segoe UI" FontWeight="Bold"   />
 
                 <!-- Refresh -->
-                <Button Name="btnRefreshRandomSeries" Margin="12,2,2,2" Style="{DynamicResource FlatButtonStyle}">
+                <Button Name="btnRefreshRandomSeries" Margin="12,2,2,2" Style="{DynamicResource FlatButtonStyle}" ToolTip="{Resx ResxName=JMMClient.Properties.Resources, Key=Metro_Refresh}">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                         <Image Height="24" Width="24" Source="/Images/Metro/refresh.png" Margin="0,0,0,0"/>
                     </StackPanel>
-                    <Button.ToolTip>
-                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Metro_Refresh}"/>
-                    </Button.ToolTip>
                 </Button>
             </StackPanel>
 
@@ -539,13 +533,10 @@
                        Foreground="Black" FontSize="24" FontFamily="Segoe UI" FontWeight="Bold"   />
 
                 <!-- Refresh -->
-                <Button Name="btnRefreshNewEpisodes" Margin="12,2,2,2" Style="{DynamicResource FlatButtonStyle}">
+                <Button Name="btnRefreshNewEpisodes" Margin="12,2,2,2" Style="{DynamicResource FlatButtonStyle}" ToolTip="{Resx ResxName=JMMClient.Properties.Resources, Key=Metro_Refresh}">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                         <Image Height="24" Width="24" Source="/Images/Metro/refresh.png" Margin="0,0,0,0"/>
                     </StackPanel>
-                    <Button.ToolTip>
-                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Metro_Refresh}"/>
-                    </Button.ToolTip>
                 </Button>
             </StackPanel>
 

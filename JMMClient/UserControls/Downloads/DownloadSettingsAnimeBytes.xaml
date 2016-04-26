@@ -66,8 +66,8 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="5" Margin="0,5,5,0">
             <CheckBox Name="chkOnlyUseForSeriesSearches" IsChecked="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=AnimeBytesOnlyUseForSeriesSearches}" VerticalAlignment="Center"
-                       ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=AnimeBytesSeriesTitle}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=AnimeBytesSeriesBody}}"/>
+                       ToolTip="{usercontrols:Info Title=AnimeBytesSeriesTitle, 
+                                                Body=AnimeBytesSeriesBody}"/>
         </StackPanel>
 
         <Button Name="btnTest" Margin="0,8,2,2" Grid.Column="0" Grid.Row="6"  HorizontalAlignment="Left" Style="{DynamicResource RoundButtonStyle}">
@@ -79,8 +79,8 @@
 
         <Button Name="btnResetCookie" Margin="0,8,2,2" Grid.Column="1" Grid.Row="6"  HorizontalAlignment="Left" Style="{DynamicResource RoundButtonStyle}"
                 Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=AnimeBytesCookieHeaderSet, Converter={StaticResource BooleanToVisibilityConverter}}"
-                ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=AnimeBytesResetTitle}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=AnimeBytesResetBody}}">
+                ToolTip="{usercontrols:Info Title=AnimeBytesResetTitle, 
+                                                Body=AnimeBytesResetBody}">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                 <Image Height="16" Width="16" Source="/Images/32_redo.png" Margin="0,0,5,0"/>
                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_ResetCookie}" Margin="0,0,5,0"/>

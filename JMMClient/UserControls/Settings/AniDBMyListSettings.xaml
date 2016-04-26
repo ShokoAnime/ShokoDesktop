@@ -31,8 +31,8 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Margin="0,5,5,0">
             <CheckBox Name="chkMyListAdd" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=AniDB_MyList_AddFiles}" VerticalAlignment="Center"
-                      ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=AniDBMyListAddFiles}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AniDBMyListAddFiles}}"/>
+                      ToolTip="{usercontrols:Info Title=AniDBMyListAddFiles, 
+                                                Body=Tooltip_AniDBMyListAddFiles}"/>
         </StackPanel>
 
         <!-- storage state -->
@@ -42,8 +42,8 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" Margin="0,5,5,0">
             <ComboBox Grid.Row="0" Name="cboStorageState" VerticalAlignment="Center"
-                              ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=AniDBMyListState}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AniDBMyListState}}"></ComboBox>
+                              ToolTip="{usercontrols:Info Title=AniDBMyListState, 
+                                                Body=Tooltip_AniDBMyListState}"></ComboBox>
         </StackPanel>
 
         <!-- delete action -->
@@ -53,8 +53,8 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Margin="0,5,5,0">
             <ComboBox Grid.Row="0" x:Name="cboDeleteAction" VerticalAlignment="Center"
-                              ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=AniDBMyListDeleteAction}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AniDBMyListDeleteAction}}"></ComboBox>
+                              ToolTip="{usercontrols:Info Title=AniDBMyListDeleteAction, 
+                                                Body=Tooltip_AniDBMyListDeleteAction}"></ComboBox>
         </StackPanel>
 
 
@@ -70,8 +70,8 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="4" Margin="0,5,5,0">
             <CheckBox Name="chkMyListReadWatched" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=AniDB_MyList_ReadWatched}" VerticalAlignment="Center"
-                      ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=AniDBMyListReadWatched}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AniDBMyListReadWatched}}"/>
+                      ToolTip="{usercontrols:Info Title=AniDBMyListReadWatched, 
+                                                Body=Tooltip_AniDBMyListReadWatched}"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="5" Margin="0,5,15,0">
@@ -80,8 +80,8 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="5" Margin="0,5,5,0">
             <CheckBox Name="chkMyListReadUnwatched" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=AniDB_MyList_ReadUnwatched}" VerticalAlignment="Center"
-                      ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=AniDBMyListReadUnwatched}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AniDBMyListReadUnwatched}}"/>
+                      ToolTip="{usercontrols:Info Title=AniDBMyListReadUnwatched, 
+                                                Body=Tooltip_AniDBMyListReadUnwatched}"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="6" Margin="0,10,15,0">
@@ -94,8 +94,8 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="7" Margin="0,5,5,0">
             <CheckBox Name="chkMyListSetWatched" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=AniDB_MyList_SetWatched}" VerticalAlignment="Center"
-                      ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=AniDBMyListSetWatched}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AniDBMyListSetWatched}}"/>
+                      ToolTip="{usercontrols:Info Title=AniDBMyListSetWatched, 
+                                                Body=Tooltip_AniDBMyListSetWatched}"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="8" Margin="0,5,15,0">
@@ -104,8 +104,8 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="8" Margin="0,5,5,0">
             <CheckBox Name="chkMyListSetUnwatched" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=AniDB_MyList_SetUnwatched}" VerticalAlignment="Center"
-                      ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=AniDBMyListSetUnwatched}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AniDBMyListSetUnwatched}}"/>
+                      ToolTip="{usercontrols:Info Title=AniDBMyListSetUnwatched, 
+                                                Body=Tooltip_AniDBMyListSetUnwatched}"/>
         </StackPanel>
 
     </Grid>

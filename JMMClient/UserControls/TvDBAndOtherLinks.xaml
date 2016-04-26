@@ -106,8 +106,8 @@
                         <!-- delete link button -->
                         <Button Margin="8,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                                 Command="{StaticResource DeleteTvDBLinkCommand}" CommandParameter="{Binding}"
-                                ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_DeleteTitle}, 
-                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_DeleteInfo}}">
+                                ToolTip="{usercontrols:Info Title=Tooltip_DeleteTitle, 
+                                Body=Tooltip_DeleteInfo}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Image Height="16" Width="16" Source="/Images/32_delete.png" Margin="0,0,0,0"/>
                             </StackPanel>
@@ -116,8 +116,8 @@
                         <!-- Edit TvDB Details button -->
                         <Button Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                                 Command="{StaticResource EditTvDBLinkCommand}" CommandParameter="{Binding}"
-                                ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_EditTitle}, 
-                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_EditInfo}}">
+                                ToolTip="{usercontrols:Info Title=Tooltip_EditTitle, 
+                                Body=Tooltip_EditInfo}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Image Height="16" Width="16" Source="/Images/16_switch.png" Margin="0,0,0,0"/>
                             </StackPanel>
@@ -126,8 +126,8 @@
                         <!-- Update TvDB Info button -->
                         <Button Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                                 Command="{StaticResource UpdateTvDBLinkCommand}" CommandParameter="{Binding}"
-                                ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_UpdateTitle}, 
-                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_UpdateTvDB}}">
+                                ToolTip="{usercontrols:Info Title=Tooltip_UpdateTitle, 
+                                Body=Tooltip_UpdateTvDB}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Image Height="16" Width="16" Source="/Images/32_import.png" Margin="0,0,0,0"/>
                             </StackPanel>
@@ -136,8 +136,8 @@
                         <!-- Report incorrect links -->
                         <Button Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                             Command="{StaticResource ReportTvDBLinkCommand}" CommandParameter="{Binding}"  Visibility="Collapsed"
-                            ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_ReportLinkTitle}, 
-                            Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_ReportLinkInfo}}">
+                            ToolTip="{usercontrols:Info Title=Tooltip_ReportLinkTitle, 
+                            Body=Tooltip_ReportLinkInfo}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Image Height="16" Width="16" Source="/Images/vote_down2.png" Margin="0,0,0,0"/>
                             </StackPanel>
@@ -176,8 +176,8 @@
                         <!-- delete link button -->
                         <Button Margin="8,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                                 Command="{StaticResource DeleteTraktLinkCommand}" CommandParameter="{Binding}"
-                                ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_DeleteTitle}, 
-                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_DeleteInfo}}">
+                                ToolTip="{usercontrols:Info Title=Tooltip_DeleteTitle, 
+                                Body=Tooltip_DeleteInfo}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Image Height="16" Width="16" Source="/Images/32_delete.png" Margin="0,0,0,0"/>
                             </StackPanel>
@@ -186,8 +186,8 @@
                         <!-- Edit Trakt Details button -->
                         <Button Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                                 Command="{StaticResource EditTraktLinkCommand}" CommandParameter="{Binding}"
-                                ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_EditTitle}, 
-                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_EditInfo}}">
+                                ToolTip="{usercontrols:Info Title=Tooltip_EditTitle, 
+                                Body=Tooltip_EditInfo}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Image Height="16" Width="16" Source="/Images/16_switch.png" Margin="0,0,0,0"/>
                             </StackPanel>
@@ -196,8 +196,8 @@
                         <!-- Update Trakt Info button -->
                         <Button Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                                 Command="{StaticResource UpdateTraktLinkCommand}" CommandParameter="{Binding}"
-                                ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_UpdateTitle}, 
-                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_UpdateTrakt}}">
+                                ToolTip="{usercontrols:Info Title=Tooltip_UpdateTitle, 
+                                Body=Tooltip_UpdateTrakt}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Image Height="16" Width="16" Source="/Images/32_import.png" Margin="0,0,0,0"/>
                             </StackPanel>
@@ -206,8 +206,8 @@
                         <!-- Sync Trakt Info button -->
                         <Button Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                                 Command="{StaticResource SyncTraktLinkCommand}" CommandParameter="{Binding}"
-                                ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_SyncTitle}, 
-                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_SyncTrakt}}">
+                                ToolTip="{usercontrols:Info Title=Tooltip_SyncTitle, 
+                                Body=Tooltip_SyncTrakt}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="0,0,0,0"/>
                             </StackPanel>
@@ -216,8 +216,8 @@
                         <!-- Report incorrect links -->
                         <Button Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                             Command="{StaticResource ReportTraktLinkCommand}" CommandParameter="{Binding}" Visibility="Collapsed"
-                            ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_ReportLinkTitle}, 
-                            Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_ReportLinkInfo}}">
+                            ToolTip="{usercontrols:Info Title=Tooltip_ReportLinkTitle, 
+                            Body=Tooltip_ReportLinkInfo}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Image Height="16" Width="16" Source="/Images/vote_down2.png" Margin="0,0,0,0"/>
                             </StackPanel>
@@ -296,8 +296,8 @@
                     <Button Name="btnTvDBAutoLinkEnable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                             Command="{StaticResource ToggleAutoLinkTvDBCommand}" CommandParameter="{Binding}"
                             Visibility="{Binding Path=IsTvDBLinkDisabled, Converter={StaticResource BooleanToVisibilityConverter}}" 
-                            ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkDisabledTitle}, 
-                            Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkDisabledTvDB}}">
+                            ToolTip="{usercontrols:Info Title=Tooltip_AutoLinkDisabledTitle, 
+                            Body=Tooltip_AutoLinkDisabledTvDB}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/32_cancel.png" Margin="0,0,5,0"/>
                             <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
@@ -308,8 +308,8 @@
                     <Button Name="btnTvDBAutoLinkDisable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                             Command="{StaticResource ToggleAutoLinkTvDBCommand}" CommandParameter="{Binding}"
                             Visibility="{Binding Path=IsTvDBLinkEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-                            ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkEnabledTitle}, 
-                            Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkEnabledTvDB}}">
+                            ToolTip="{usercontrols:Info Title=Tooltip_AutoLinkEnabledTitle, 
+                            Body=Tooltip_AutoLinkEnabledTvDB}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
                             <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
@@ -357,8 +357,8 @@
             <Button Name="btnTvDBAutoLinkEnable2" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                             Command="{StaticResource ToggleAutoLinkTvDBCommand}" CommandParameter="{Binding}"
                             Visibility="{Binding Path=IsTvDBLinkDisabled, Converter={StaticResource BooleanToVisibilityConverter}}" 
-                            ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkDisabledTitle}, 
-                            Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkDisabledTvDB}}">
+                            ToolTip="{usercontrols:Info Title=Tooltip_AutoLinkDisabledTitle, 
+                            Body=Tooltip_AutoLinkDisabledTvDB}">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/32_cancel.png" Margin="0,0,5,0"/>
                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
@@ -369,8 +369,8 @@
             <Button Name="btnTvDBAutoLinkDisable2" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                             Command="{StaticResource ToggleAutoLinkTvDBCommand}" CommandParameter="{Binding}"
                             Visibility="{Binding Path=IsTvDBLinkEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-                            ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkEnabledTitle}, 
-                            Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkEnabledTvDB}}">
+                            ToolTip="{usercontrols:Info Title=Tooltip_AutoLinkEnabledTitle, 
+                            Body=Tooltip_AutoLinkEnabledTvDB}">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
@@ -413,8 +413,8 @@
                     <Button Name="btnTraktAutoLinkEnable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                                     Command="{StaticResource ToggleAutoLinkTraktCommand}" CommandParameter="{Binding}"
                                     Visibility="{Binding Path=IsTraktLinkDisabled, Converter={StaticResource BooleanToVisibilityConverter}}" 
-                                    ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkDisabledTitle}, 
-                                    Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkDisabledTrakt}}">
+                                    ToolTip="{usercontrols:Info Title=Tooltip_AutoLinkDisabledTitle, 
+                                    Body=Tooltip_AutoLinkDisabledTrakt}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/32_cancel.png" Margin="0,0,5,0"/>
                             <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ComminityLinks_AutoLink}" Margin="0,0,5,0"/>
@@ -425,8 +425,8 @@
                     <Button Name="btnTraktAutoLinkDisable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                                     Command="{StaticResource ToggleAutoLinkTraktCommand}" CommandParameter="{Binding}"
                                     Visibility="{Binding Path=IsTraktLinkEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                    ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkEnabledTitle}, 
-                                    Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkEnabledTrakt}}">
+                                    ToolTip="{usercontrols:Info Title=Tooltip_AutoLinkEnabledTitle, 
+                                    Body=Tooltip_AutoLinkEnabledTrakt}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
                             <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
@@ -474,8 +474,8 @@
             <Button Name="btnTraktAutoLinkEnable2" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                             Command="{StaticResource ToggleAutoLinkTraktCommand}" CommandParameter="{Binding}"
                             Visibility="{Binding Path=IsTraktLinkDisabled, Converter={StaticResource BooleanToVisibilityConverter}}" 
-                            ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkDisabledTitle}, 
-                            Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkDisabledTrakt}}">
+                            ToolTip="{usercontrols:Info Title=Tooltip_AutoLinkDisabledTitle, 
+                            Body=Tooltip_AutoLinkDisabledTrakt}">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/32_cancel.png" Margin="0,0,5,0"/>
                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
@@ -486,8 +486,8 @@
             <Button Name="btnTraktAutoLinkDisable2" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                             Command="{StaticResource ToggleAutoLinkTraktCommand}" CommandParameter="{Binding}"
                             Visibility="{Binding Path=IsTraktLinkEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-                            ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkEnabledTitle}, 
-                            Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkEnabledTrakt}}">
+                            ToolTip="{usercontrols:Info Title=Tooltip_AutoLinkEnabledTitle, 
+                            Body=Tooltip_AutoLinkEnabledTrakt}">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
@@ -529,8 +529,8 @@
                     <Button Name="btnMALAutoLinkEnable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                             Command="{StaticResource ToggleAutoLinkMALCommand}" CommandParameter="{Binding}"
                             Visibility="{Binding Path=IsMALLinkDisabled, Converter={StaticResource BooleanToVisibilityConverter}}" 
-                            ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkDisabledTitle}, 
-                            Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkDisabledMAL}}">
+                            ToolTip="{usercontrols:Info Title=Tooltip_AutoLinkDisabledTitle, 
+                            Body=Tooltip_AutoLinkDisabledMAL}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/32_cancel.png" Margin="0,0,5,0"/>
                             <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
@@ -541,8 +541,8 @@
                     <Button Name="btnMALAutoLinkDisable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                             Command="{StaticResource ToggleAutoLinkMALCommand}" CommandParameter="{Binding}"
                             Visibility="{Binding Path=IsMALLinkEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-                            ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkEnabledTitle}, 
-                            Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkEnabledMAL}}">
+                            ToolTip="{usercontrols:Info Title=Tooltip_AutoLinkEnabledTitle, 
+                            Body=Tooltip_AutoLinkEnabledMAL}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
                             <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
@@ -627,8 +627,8 @@
                     <Button Name="btnMovieDBAutoLinkEnable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                             Command="{StaticResource ToggleAutoLinkMovieDBCommand}" CommandParameter="{Binding}"
                             Visibility="{Binding Path=IsMovieDBLinkDisabled, Converter={StaticResource BooleanToVisibilityConverter}}" 
-                            ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkDisabledTitle}, 
-                            Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkDisabledTMDb}}">
+                            ToolTip="{usercontrols:Info Title=Tooltip_AutoLinkDisabledTitle, 
+                            Body=Tooltip_AutoLinkDisabledTMDb}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/32_cancel.png" Margin="0,0,5,0"/>
                             <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
@@ -639,8 +639,8 @@
                     <Button Name="btnMovieDBAutoLinkDisable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                             Command="{StaticResource ToggleAutoLinkMovieDBCommand}" CommandParameter="{Binding}"
                             Visibility="{Binding Path=IsMovieDBLinkEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-                            ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkEnabledTitle}, 
-                            Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkEnabledTMDb}}">
+                            ToolTip="{usercontrols:Info Title=Tooltip_AutoLinkEnabledTitle, 
+                            Body=Tooltip_AutoLinkEnabledTMDb}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
                             <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
@@ -651,8 +651,8 @@
                     <Button Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                     Command="{DynamicResource ShowWebCacheAdminCommand}" CommandParameter="{Binding}"
                     Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ShowCommunity, Converter={StaticResource BooleanToVisibilityConverter}}"
-                    ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_CommunityAdminTitle}, 
-                    Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_CommunityAdminInfo}}">
+                    ToolTip="{usercontrols:Info Title=Tooltip_CommunityAdminTitle, 
+                    Body=Tooltip_CommunityAdminInfo}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/16_Star.png" Margin="0,0,5,0"/>
                             <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_CommunityAdminTitle}" Margin="0,0,5,0"/>
@@ -683,8 +683,8 @@
             <Button Name="btnMovieDBAutoLinkEnable2" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                             Command="{StaticResource ToggleAutoLinkMovieDBCommand}" CommandParameter="{Binding}"
                             Visibility="{Binding Path=IsMovieDBLinkDisabled, Converter={StaticResource BooleanToVisibilityConverter}}" 
-                            ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkDisabledTitle}, 
-                            Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkDisabledTMDb}}">
+                            ToolTip="{usercontrols:Info Title=Tooltip_AutoLinkDisabledTitle, 
+                            Body=Tooltip_AutoLinkDisabledTMDb}">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/32_cancel.png" Margin="0,0,5,0"/>
                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
@@ -695,8 +695,8 @@
             <Button Name="btnMovieDBAutoLinkDisable2" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                             Command="{StaticResource ToggleAutoLinkMovieDBCommand}" CommandParameter="{Binding}"
                             Visibility="{Binding Path=IsMovieDBLinkEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-                            ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkEnabledTitle}, 
-                            Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AutoLinkEnabledTMDb}}">
+                            ToolTip="{usercontrols:Info Title=Tooltip_AutoLinkEnabledTitle, 
+                            Body=Tooltip_AutoLinkEnabledTMDb}">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
@@ -713,8 +713,8 @@
             <!-- Community Admin -->
             <Button Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                             Command="{DynamicResource ShowWebCacheAdminCommand}" CommandParameter="{Binding}"
-                            ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_CommunityAdminTitle}, 
-                            Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_CommunityAdminInfo}}">
+                            ToolTip="{usercontrols:Info Title=Tooltip_CommunityAdminTitle, 
+                            Body=Tooltip_CommunityAdminInfo}">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/16_Star.png" Margin="0,0,5,0"/>
                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_CommunityAdminTitle}" Margin="0,0,5,0"/>

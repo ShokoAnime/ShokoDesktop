@@ -42,8 +42,8 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" Margin="0,5,5,0" Grid.ColumnSpan="2">
             <CheckBox Name="chkWebCache_Anonymous" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=WebCache_Anonymous}" VerticalAlignment="Center"
-                      ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=WebCache_Anonymous}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_WebCache_Anonymous}}"/>
+                      ToolTip="{usercontrols:Info Title=WebCache_Anonymous, 
+                                                Body=Tooltip_WebCache_Anonymous}"/>
         </StackPanel>
 
 
@@ -55,15 +55,15 @@
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Margin="0,5,5,0">
             <CheckBox Name="chkWebCache_TvDBAssociations_Get" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Get}" 
                       IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=WebCache_TvDB_Get}" VerticalAlignment="Center"
-                      ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=WebCache_TvDBAssociations}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_WebCache_TvDBAssociations}}"/>
+                      ToolTip="{usercontrols:Info Title=WebCache_TvDBAssociations, 
+                                                Body=Tooltip_WebCache_TvDBAssociations}"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="2" Margin="0,5,5,0">
             <CheckBox Name="chkWebCache_TvDBAssociations_Send" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Send}" 
                       IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=WebCache_TvDB_Send}" VerticalAlignment="Center"
-                      ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=WebCache_TvDBAssociations}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_WebCache_TvDBAssociations}}"/>
+                      ToolTip="{usercontrols:Info Title=WebCache_TvDBAssociations, 
+                                                Body=Tooltip_WebCache_TvDBAssociations}"/>
         </StackPanel>
 
         <!-- Trakt Links -->
@@ -91,15 +91,15 @@
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="4" Margin="0,5,5,0">
             <CheckBox Name="chkWebCache_MALAssociations_Get" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Get}" 
                       IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=WebCache_MAL_Get}" VerticalAlignment="Center"
-                      ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=WebCache_MALAssociations}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_WebCache_MALAssociations}}"/>
+                      ToolTip="{usercontrols:Info Title=WebCache_MALAssociations, 
+                                                Body=Tooltip_WebCache_MALAssociations}"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="4" Margin="0,5,5,0">
             <CheckBox Name="chkWebCache_MALAssociations_Send" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Send}" 
                       IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=WebCache_MAL_Send}" VerticalAlignment="Center"
-                      ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=WebCache_MALAssociations}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_WebCache_MALAssociations}}"/>
+                      ToolTip="{usercontrols:Info Title=WebCache_MALAssociations, 
+                                                Body=Tooltip_WebCache_MALAssociations}"/>
         </StackPanel>
 
         <!-- File Episodes -->
@@ -110,15 +110,15 @@
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="5" Margin="0,5,5,0">
             <CheckBox Name="chkWebCache_FileEpisodes_Get" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Get}" 
                       IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=WebCache_XRefFileEpisode_Get}" VerticalAlignment="Center"
-                      ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=WebCache_FileEpisodes}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_WebCache_FileEpisodes}}"/>
+                      ToolTip="{usercontrols:Info Title=WebCache_FileEpisodes, 
+                                                Body=Tooltip_WebCache_FileEpisodes}"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="5" Margin="0,5,5,0">
             <CheckBox Name="chkWebCache_FileEpisodes_Send" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Send}" 
                       IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=WebCache_XRefFileEpisode_Send}" VerticalAlignment="Center"
-                      ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=WebCache_FileEpisodes}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_WebCache_FileEpisodes}}"/>
+                      ToolTip="{usercontrols:Info Title=WebCache_FileEpisodes, 
+                                                Body=Tooltip_WebCache_FileEpisodes}"/>
         </StackPanel>
 
         <!-- Usage Stats -->
@@ -128,8 +128,8 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="6" Margin="0,5,5,0" Grid.ColumnSpan="2">
             <CheckBox Name="chkWebCache_UserInfo" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=WebCache_UserInfo}" VerticalAlignment="Center"
-                      ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=WebCache_UserInfo}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_WebCache_UserInfo}}"/>
+                      ToolTip="{usercontrols:Info Title=WebCache_UserInfo, 
+                                                Body=Tooltip_WebCache_UserInfo}"/>
         </StackPanel>
 
 
