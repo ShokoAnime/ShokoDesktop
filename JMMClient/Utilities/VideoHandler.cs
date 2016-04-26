@@ -523,6 +523,11 @@ namespace JMMClient.Utilities
                         double fileDurationMS = (double)kvpVid.Value.VideoInfo_Duration;
 
                         double progress = mpcPosMS / fileDurationMS * 100.0d;
+
+                        // handle the case of PotPlayer having a psoition of 0, which means 100% watched
+                        if (mpcPosMS == 0)
+                            progress = (double)100;
+
                         if (progress > (double)AppSettings.VideoWatchedPct)
                         {
                             VideoDetailedVM vid = kvpVid.Value;
