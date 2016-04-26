@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -101,6 +103,8 @@ namespace JMMClient.UserControls
 		public InfoPopup()
 		{
 			InitializeComponent();
-		}
+
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+        }
 	}
 }

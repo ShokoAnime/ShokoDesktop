@@ -3194,7 +3194,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Default Video Player</value>
   </data>
   <data name="VideoPlayer_DefaultNote" xml:space="preserve">
-    <value>Select from supported players, location of executable must be in the Path environment variable.</value>
+    <value>JMM automatically uses the default Windows video player. If you'd like to use a different video player you'll need to add the video player's executable to the PATH system variable. </value>
   </data>
   <data name="VideoPlayer_DefaultPlayer" xml:space="preserve">
     <value>Default Player</value>
@@ -3411,5 +3411,143 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   </data>
   <data name="ImportSettings_Custom" xml:space="preserve">
     <value>Custom</value>
+  </data>
+  <data name="VideoPlayer_PotPlayerNotFound" xml:space="preserve">
+    <value>Pot Player Folder does not exist</value>
+  </data>
+  <data name="VideoPlayer_PotPlayerNotSelected" xml:space="preserve">
+    <value>Pot Player Folder not selected</value>
+  </data>
+  <data name="VideoPlayer_VLCNotFound" xml:space="preserve">
+    <value>VLC Folder does not exist</value>
+  </data>
+  <data name="VideoPlayer_MPCNotFound" xml:space="preserve">
+    <value>MPC Folder does not exist</value>
+  </data>
+  <data name="VideoPlayer_VLCNotSelected" xml:space="preserve">
+    <value>VLC Folder not selected</value>
+  </data>
+  <data name="VideoPlayer_MPCNotSelected" xml:space="preserve">
+    <value>MPC Folder not selected</value>
+  </data>
+  <data name="VideoPlayer_PotPlayerINIMissing" xml:space="preserve">
+    <value>No ini files found in the Pot Player Folder</value>
+  </data>
+  <data name="VideoPlayer_VLCINIMissing" xml:space="preserve">
+    <value>No ini files found in the VLC Folder</value>
+  </data>
+  <data name="VideoPlayer_MPCINIMissing" xml:space="preserve">
+    <value>No ini files found in the MPC Folder</value>
+  </data>
+  <data name="VideoPlayer_INIFound" xml:space="preserve">
+    <value>INI file found, but no history found for previous watched files</value>
+  </data>
+  <data name="VideoPlayer_INIFoundHistory" xml:space="preserve">
+    <value>INI file found. Sample of recently watched file...</value>
+  </data>
+  <data name="AniDBMyListDeleteLocal" xml:space="preserve">
+    <value>Delete File (Local DB)</value>
+  </data>
+  <data name="AniDBMyListMarkDeleted" xml:space="preserve">
+    <value>Mark Deleted</value>
+  </data>
+  <data name="AniDBMyListMarkUnknown" xml:space="preserve">
+    <value>Mark Unknown</value>
+  </data>
+  <data name="AniDBMyListMarkExternal" xml:space="preserve">
+    <value>Mark External (CD/DVD)</value>
+  </data>
+  <data name="AniDBMyListHDD" xml:space="preserve">
+    <value>HDD</value>
+  </data>
+  <data name="AniDBMyListUnknown" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="AniDBMyListDVD" xml:space="preserve">
+    <value>CD/DVD</value>
+  </data>
+  <data name="AniDBMyListDelete" xml:space="preserve">
+    <value>Delete File (AniDB)</value>
+  </data>
+  <data name="Delete File (AniDB)" xml:space="preserve">
+    <value>Delete File (AniDB)</value>
+  </data>
+  <data name="DeleteFiles_Name" xml:space="preserve">
+    <value>Delete Files</value>
+  </data>
+  <data name="DeleteFiles_ManualLink" xml:space="preserve">
+    <value>MANUAL LINK</value>
+  </data>
+  <data name="Done" xml:space="preserve">
+    <value>Done!</value>
+  </data>
+  <data name="DeleteFiles_Deleting" xml:space="preserve">
+    <value>Deleting file {0} of {1}</value>
+  </data>
+  <data name="DeleteFiles_Wait" xml:space="preserve">
+    <value>Please wait until the process is complete</value>
+  </data>
+  <data name="DeleteFiles_Confirm" xml:space="preserve">
+    <value>Are you sure you want to delete these {0} file/s, the physical video files will also be deleted</value>
+  </data>
+  <data name="DuplicateFiles_ConfirmDelete" xml:space="preserve">
+    <value>Are you sure you want to delete this file, the physical video file will also be deleted</value>
+  </data>
+  <data name="DuplicateFiles_DeleteEntry" xml:space="preserve">
+    <value>Are you sure you want to delete this entry?</value>
+  </data>
+  <data name="Unrecognized_AniDBQueue" xml:space="preserve">
+    <value>Files queued for AniDB rehash</value>
+  </data>
+  <data name="Unrecognized_AniDBScan" xml:space="preserve">
+    <value>Files queued for AniDB scan</value>
+  </data>
+  <data name="Unrecognized_ConfirmDelete" xml:space="preserve">
+    <value>Are you sure you want to delete this file: {0}</value>
+  </data>
+  <data name="Unrecognized_DeleteSelected" xml:space="preserve">
+    <value>Are you sure you want to delete the {0} selected files</value>
+  </data>
+  <data name="MultipleFiles_ConfirmDelete" xml:space="preserve">
+    <value>Are you sure you want to delete this file, the physical video file will also be deleted</value>
+  </data>
+  <data name="EpisodeDetail_TvDBLink" xml:space="preserve">
+    <value>The series must be linked to a TvDB series first</value>
+  </data>
+  <data name="EpisodeDetail_NewPlaylist" xml:space="preserve">
+    <value>New Playlist</value>
+  </data>
+  <data name="EpisodeDetail_PlaylistMenu" xml:space="preserve">
+    <value>Playlist Menu: </value>
+  </data>
+  <data name="EpisodeDetail_PlaylistMissing" xml:space="preserve">
+    <value>Could not find playlist</value>
+  </data>
+  <data name="EpisodeDetail_ConfirmDelete" xml:space="preserve">
+    <value>Are you sure you want to delete this file, the physical video file will also be deleted</value>
+  </data>
+  <data name="EpisodeDetail_CommandQueued" xml:space="preserve">
+    <value>Command has been queued for processing on the server</value>
+  </data>
+  <data name="Unrecognized_Folder" xml:space="preserve">
+    <value>Folder</value>
+  </data>
+  <data name="Unrecognized_Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Unrecognized_FileName" xml:space="preserve">
+    <value>File Name</value>
+  </data>
+  <data name="Unrecognized_Size" xml:space="preserve">
+    <value>Size</value>
+  </data>
+  <data name="Unrecognized_CRC" xml:space="preserve">
+    <value>CRC</value>
+  </data>
+  <data name="Dashboard_Regular" xml:space="preserve">
+    <value>Regular Dashboard</value>
+  </data>
+  <data name="Dashboard_Settings" xml:space="preserve">
+    <value>Settings</value>
   </data>
 </root>

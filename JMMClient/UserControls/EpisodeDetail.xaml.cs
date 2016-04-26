@@ -15,6 +15,8 @@ using JMMClient.ViewModel;
 using System.IO;
 using System.Diagnostics;
 using JMMClient.Forms;
+using System.Threading;
+using System.Globalization;
 
 namespace JMMClient.UserControls
 {
@@ -135,7 +137,9 @@ namespace JMMClient.UserControls
 		{
 			InitializeComponent();
 
-			playlistMenu = new ContextMenu();
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            playlistMenu = new ContextMenu();
 
 			btnToggleExpander.Click += new RoutedEventHandler(btnToggleExpander_Click);
 			this.DataContextChanged += new DependencyPropertyChangedEventHandler(EpisodeDetail_DataContextChanged);
@@ -227,7 +231,7 @@ namespace JMMClient.UserControls
 				if (ep.AniDB_Anime == null || ep.AniDB_Anime.TvSummary == null || ep.AniDB_Anime.TvSummary.CrossRefTvDBV2 == null || 
 					ep.AniDB_Anime.TvSummary.CrossRefTvDBV2.Count == 0)
 				{
-					Utils.ShowErrorMessage("The series must be linked to a TvDB series first");
+					Utils.ShowErrorMessage(Properties.Resources.EpisodeDetail_TvDBLink);
 					return;
 				}
 
@@ -274,7 +278,7 @@ namespace JMMClient.UserControls
 				Separator sep = new Separator();
 
 				MenuItem itemNew = new MenuItem();
-				itemNew.Header = "New Playlist";
+				itemNew.Header = Properties.Resources.EpisodeDetail_NewPlaylist;
 				itemNew.Click += new RoutedEventHandler(playlistMenuItem_Click);
 				cmd = new PlaylistMenuCommand(PlaylistItemType.SingleEpisode, -1); // new playlist
 				itemNew.CommandParameter = cmd;
@@ -313,7 +317,7 @@ namespace JMMClient.UserControls
 				if (item != null && item.CommandParameter != null)
 				{
 					PlaylistMenuCommand cmd = item.CommandParameter as PlaylistMenuCommand;
-					Debug.Write("Playlist Menu: " + cmd.ToString() + Environment.NewLine);
+					Debug.Write(Properties.Resources.EpisodeDetail_PlaylistMenu + cmd.ToString() + Environment.NewLine);
 
 					AnimeEpisodeVM ep = this.DataContext as AnimeEpisodeVM;
 					if (ep == null) return;
@@ -330,7 +334,7 @@ namespace JMMClient.UserControls
 						JMMServerBinary.Contract_Playlist plContract = JMMServerVM.Instance.clientBinaryHTTP.GetPlaylist(cmd.PlaylistID);
 						if (plContract == null)
 						{
-							MessageBox.Show("Could not find playlist", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+							MessageBox.Show(Properties.Resources.EpisodeDetail_PlaylistMissing, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 							return;
 						}
 						pl = new PlaylistVM(plContract);
@@ -392,7 +396,7 @@ namespace JMMClient.UserControls
 					}
 					else
 					{
-						MessageBox.Show(Properties.Resources.MSG_ERR_FileNotFound, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+						MessageBox.Show(Properties.Resources.MSG_ERR_FileNotFound, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 					}
 				}
 			}
@@ -420,7 +424,7 @@ namespace JMMClient.UserControls
 					string res = JMMServerVM.Instance.clientBinaryHTTP.RemoveAssociationOnFile(vid.VideoLocalID, ep.AniDB_EpisodeID);
 					if (res.Length > 0)
 					{
-						MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+						MessageBox.Show(res, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 					}
 					else
 					{
@@ -452,7 +456,7 @@ namespace JMMClient.UserControls
 					VideoDetailedVM vid = obj as VideoDetailedVM;
 					AnimeEpisodeVM ep = this.DataContext as AnimeEpisodeVM;
 
-					MessageBoxResult res = MessageBox.Show(string.Format("Are you sure you want to delete this file, the physical video file will also be deleted"),
+					MessageBoxResult res = MessageBox.Show(string.Format(Properties.Resources.EpisodeDetail_ConfirmDelete),
 						"Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
 					if (res == MessageBoxResult.Yes)
@@ -460,7 +464,7 @@ namespace JMMClient.UserControls
 						this.Cursor = Cursors.Wait;
 						string result = JMMServerVM.Instance.clientBinaryHTTP.DeleteVideoLocalAndFile(vid.VideoLocalID);
 						if (result.Length > 0)
-							MessageBox.Show(result, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+							MessageBox.Show(result, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 						else
 						{
 							// find the entry and remove it
@@ -567,7 +571,7 @@ namespace JMMClient.UserControls
 				}
 				
 
-				MessageBox.Show(Properties.Resources.MSG_INFO_AddedQueueCmds, "Done", MessageBoxButton.OK, MessageBoxImage.Information);
+				MessageBox.Show(Properties.Resources.MSG_INFO_AddedQueueCmds, Properties.Resources.Done, MessageBoxButton.OK, MessageBoxImage.Information);
 			}
 			catch (Exception ex)
 			{
@@ -590,7 +594,7 @@ namespace JMMClient.UserControls
 
 					JMMServerVM.Instance.clientBinaryHTTP.ForceAddFileToMyList(vid.VideoLocal_Hash);
 					
-					MessageBox.Show("Command has been queued for processing on the server", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+					MessageBox.Show(Properties.Resources.EpisodeDetail_CommandQueued, Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
 					
 				}
 
@@ -622,7 +626,7 @@ namespace JMMClient.UserControls
 
 					JMMServerVM.Instance.clientBinaryHTTP.UpdateFileData(vid.VideoLocalID);
 
-					MessageBox.Show("Command has been queued for processing on the server", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+					MessageBox.Show(Properties.Resources.EpisodeDetail_CommandQueued, Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
 
 				}
 
@@ -654,7 +658,7 @@ namespace JMMClient.UserControls
 
 					string result = JMMServerVM.Instance.clientBinaryHTTP.SetVariationStatusOnFile(vid.VideoLocalID, vid.Variation);
 					if (result.Length > 0)
-						MessageBox.Show(result, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+						MessageBox.Show(result, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 				}
 			}
 			catch (Exception ex)

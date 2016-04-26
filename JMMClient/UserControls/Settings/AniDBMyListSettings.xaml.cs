@@ -30,17 +30,17 @@ namespace JMMClient.UserControls
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
             cboStorageState.Items.Clear();
-			cboStorageState.Items.Add("Unknown");
-			cboStorageState.Items.Add("HDD");
-			cboStorageState.Items.Add("CD/DVD");
+			cboStorageState.Items.Add(Properties.Resources.AniDBMyListUnknown);
+			cboStorageState.Items.Add(Properties.Resources.AniDBMyListHDD);
+			cboStorageState.Items.Add(Properties.Resources.AniDBMyListDVD);
 			cboStorageState.SelectedIndex = 0;
 
 			cboDeleteAction.Items.Clear();
-			cboDeleteAction.Items.Add("Delete File (AniDB)");
-            cboDeleteAction.Items.Add("Delete File (Local DB)");
-            cboDeleteAction.Items.Add("Mark Deleted");
-            cboDeleteAction.Items.Add("Mark External (CD/DVD)");
-			cboDeleteAction.Items.Add("Mark Unknown");
+			cboDeleteAction.Items.Add(Properties.Resources.AniDBMyListDelete);
+            cboDeleteAction.Items.Add(Properties.Resources.AniDBMyListDeleteLocal);
+            cboDeleteAction.Items.Add(Properties.Resources.AniDBMyListMarkDeleted);
+            cboDeleteAction.Items.Add(Properties.Resources.AniDBMyListMarkExternal);
+			cboDeleteAction.Items.Add(Properties.Resources.AniDBMyListMarkUnknown);
 			cboDeleteAction.SelectedIndex = 0;
 
 			this.Loaded += new RoutedEventHandler(AniDBMyListSettings_Loaded);

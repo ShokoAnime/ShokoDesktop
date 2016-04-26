@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -23,7 +25,9 @@ namespace JMMClient.UserControls
 		{
 			InitializeComponent();
 
-			txtServer.Text = AppSettings.JMMServer_Address;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            txtServer.Text = AppSettings.JMMServer_Address;
 			txtPort.Text = AppSettings.JMMServer_Port;
 			//txtFilePort.Text = AppSettings.JMMServer_FilePort;
 			
@@ -54,7 +58,7 @@ namespace JMMClient.UserControls
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				MessageBox.Show(ex.Message, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 		}
 	}

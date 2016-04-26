@@ -304,6 +304,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete File (AniDB).
+        /// </summary>
+        public static string AniDBMyListDelete {
+            get {
+                return ResourceManager.GetString("AniDBMyListDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete Action.
         /// </summary>
         public static string AniDBMyListDeleteAction {
@@ -313,11 +322,65 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete File (Local DB).
+        /// </summary>
+        public static string AniDBMyListDeleteLocal {
+            get {
+                return ResourceManager.GetString("AniDBMyListDeleteLocal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CD/DVD.
+        /// </summary>
+        public static string AniDBMyListDVD {
+            get {
+                return ResourceManager.GetString("AniDBMyListDVD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HDD.
+        /// </summary>
+        public static string AniDBMyListHDD {
+            get {
+                return ResourceManager.GetString("AniDBMyListHDD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Local Actions.
         /// </summary>
         public static string AniDBMyListLocalActions {
             get {
                 return ResourceManager.GetString("AniDBMyListLocalActions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mark Deleted.
+        /// </summary>
+        public static string AniDBMyListMarkDeleted {
+            get {
+                return ResourceManager.GetString("AniDBMyListMarkDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mark External (CD/DVD).
+        /// </summary>
+        public static string AniDBMyListMarkExternal {
+            get {
+                return ResourceManager.GetString("AniDBMyListMarkExternal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mark Unknown.
+        /// </summary>
+        public static string AniDBMyListMarkUnknown {
+            get {
+                return ResourceManager.GetString("AniDBMyListMarkUnknown", resourceCulture);
             }
         }
         
@@ -381,6 +444,15 @@ namespace JMMClient.Properties {
         public static string AniDBMyListSyncAndImport {
             get {
                 return ResourceManager.GetString("AniDBMyListSyncAndImport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown.
+        /// </summary>
+        public static string AniDBMyListUnknown {
+            get {
+                return ResourceManager.GetString("AniDBMyListUnknown", resourceCulture);
             }
         }
         
@@ -1528,6 +1600,24 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Regular Dashboard.
+        /// </summary>
+        public static string Dashboard_Regular {
+            get {
+                return ResourceManager.GetString("Dashboard_Regular", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string Dashboard_Settings {
+            get {
+                return ResourceManager.GetString("Dashboard_Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sync Votes.
         /// </summary>
         public static string Dashboard_SyncVotes {
@@ -1618,11 +1708,65 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete File (AniDB).
+        /// </summary>
+        public static string Delete_File__AniDB_ {
+            get {
+                return ResourceManager.GetString("Delete File (AniDB)", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete All.
         /// </summary>
         public static string DeleteAll {
             get {
                 return ResourceManager.GetString("DeleteAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete these {0} file/s, the physical video files will also be deleted.
+        /// </summary>
+        public static string DeleteFiles_Confirm {
+            get {
+                return ResourceManager.GetString("DeleteFiles_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deleting file {0} of {1}.
+        /// </summary>
+        public static string DeleteFiles_Deleting {
+            get {
+                return ResourceManager.GetString("DeleteFiles_Deleting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MANUAL LINK.
+        /// </summary>
+        public static string DeleteFiles_ManualLink {
+            get {
+                return ResourceManager.GetString("DeleteFiles_ManualLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Files.
+        /// </summary>
+        public static string DeleteFiles_Name {
+            get {
+                return ResourceManager.GetString("DeleteFiles_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please wait until the process is complete.
+        /// </summary>
+        public static string DeleteFiles_Wait {
+            get {
+                return ResourceManager.GetString("DeleteFiles_Wait", resourceCulture);
             }
         }
         
@@ -1686,6 +1830,15 @@ namespace JMMClient.Properties {
         public static string DetailedInformationLink {
             get {
                 return ResourceManager.GetString("DetailedInformationLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Done!.
+        /// </summary>
+        public static string Done {
+            get {
+                return ResourceManager.GetString("Done", resourceCulture);
             }
         }
         
@@ -2095,6 +2248,24 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete this file, the physical video file will also be deleted.
+        /// </summary>
+        public static string DuplicateFiles_ConfirmDelete {
+            get {
+                return ResourceManager.GetString("DuplicateFiles_ConfirmDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete this entry?.
+        /// </summary>
+        public static string DuplicateFiles_DeleteEntry {
+            get {
+                return ResourceManager.GetString("DuplicateFiles_DeleteEntry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
         public static string Edit {
@@ -2262,6 +2433,60 @@ namespace JMMClient.Properties {
         public static string Episode_WatchedState {
             get {
                 return ResourceManager.GetString("Episode_WatchedState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Command has been queued for processing on the server.
+        /// </summary>
+        public static string EpisodeDetail_CommandQueued {
+            get {
+                return ResourceManager.GetString("EpisodeDetail_CommandQueued", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete this file, the physical video file will also be deleted.
+        /// </summary>
+        public static string EpisodeDetail_ConfirmDelete {
+            get {
+                return ResourceManager.GetString("EpisodeDetail_ConfirmDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Playlist.
+        /// </summary>
+        public static string EpisodeDetail_NewPlaylist {
+            get {
+                return ResourceManager.GetString("EpisodeDetail_NewPlaylist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Playlist Menu: .
+        /// </summary>
+        public static string EpisodeDetail_PlaylistMenu {
+            get {
+                return ResourceManager.GetString("EpisodeDetail_PlaylistMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not find playlist.
+        /// </summary>
+        public static string EpisodeDetail_PlaylistMissing {
+            get {
+                return ResourceManager.GetString("EpisodeDetail_PlaylistMissing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The series must be linked to a TvDB series first.
+        /// </summary>
+        public static string EpisodeDetail_TvDBLink {
+            get {
+                return ResourceManager.GetString("EpisodeDetail_TvDBLink", resourceCulture);
             }
         }
         
@@ -4728,6 +4953,15 @@ namespace JMMClient.Properties {
         public static string MSG_INFO_AddedQueueCmds {
             get {
                 return ResourceManager.GetString("MSG_INFO_AddedQueueCmds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete this file, the physical video file will also be deleted.
+        /// </summary>
+        public static string MultipleFiles_ConfirmDelete {
+            get {
+                return ResourceManager.GetString("MultipleFiles_ConfirmDelete", resourceCulture);
             }
         }
         
@@ -8805,11 +9039,83 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Files queued for AniDB rehash.
+        /// </summary>
+        public static string Unrecognized_AniDBQueue {
+            get {
+                return ResourceManager.GetString("Unrecognized_AniDBQueue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Files queued for AniDB scan.
+        /// </summary>
+        public static string Unrecognized_AniDBScan {
+            get {
+                return ResourceManager.GetString("Unrecognized_AniDBScan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete this file: {0}.
+        /// </summary>
+        public static string Unrecognized_ConfirmDelete {
+            get {
+                return ResourceManager.GetString("Unrecognized_ConfirmDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CRC.
+        /// </summary>
+        public static string Unrecognized_CRC {
+            get {
+                return ResourceManager.GetString("Unrecognized_CRC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CRC32.
         /// </summary>
         public static string Unrecognized_CRC32 {
             get {
                 return ResourceManager.GetString("Unrecognized_CRC32", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        public static string Unrecognized_Date {
+            get {
+                return ResourceManager.GetString("Unrecognized_Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete the {0} selected files.
+        /// </summary>
+        public static string Unrecognized_DeleteSelected {
+            get {
+                return ResourceManager.GetString("Unrecognized_DeleteSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File Name.
+        /// </summary>
+        public static string Unrecognized_FileName {
+            get {
+                return ResourceManager.GetString("Unrecognized_FileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Folder.
+        /// </summary>
+        public static string Unrecognized_Folder {
+            get {
+                return ResourceManager.GetString("Unrecognized_Folder", resourceCulture);
             }
         }
         
@@ -8873,6 +9179,15 @@ namespace JMMClient.Properties {
         public static string Unrecognized_Rescan {
             get {
                 return ResourceManager.GetString("Unrecognized_Rescan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size.
+        /// </summary>
+        public static string Unrecognized_Size {
+            get {
+                return ResourceManager.GetString("Unrecognized_Size", resourceCulture);
             }
         }
         
@@ -9516,7 +9831,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select from supported players, location of executable must be in the Path environment variable..
+        ///   Looks up a localized string similar to JMM automatically uses the default Windows video player. If you&apos;d like to use a different video player you&apos;ll need to add the video player&apos;s executable to the PATH system variable. .
         /// </summary>
         public static string VideoPlayer_DefaultNote {
             get {
@@ -9530,6 +9845,24 @@ namespace JMMClient.Properties {
         public static string VideoPlayer_DefaultPlayer {
             get {
                 return ResourceManager.GetString("VideoPlayer_DefaultPlayer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INI file found, but no history found for previous watched files.
+        /// </summary>
+        public static string VideoPlayer_INIFound {
+            get {
+                return ResourceManager.GetString("VideoPlayer_INIFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INI file found. Sample of recently watched file....
+        /// </summary>
+        public static string VideoPlayer_INIFoundHistory {
+            get {
+                return ResourceManager.GetString("VideoPlayer_INIFoundHistory", resourceCulture);
             }
         }
         
@@ -9561,11 +9894,38 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No ini files found in the MPC Folder.
+        /// </summary>
+        public static string VideoPlayer_MPCINIMissing {
+            get {
+                return ResourceManager.GetString("VideoPlayer_MPCINIMissing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to For MPC Integration you must enable two options (1) Store settings to .ini file and (2) Keep history of recently watched files. See the following screenshot for more details. The location of MPC is usually something like C:\Program Files (x86)\Combined Community Codec Pack\MPC.
         /// </summary>
         public static string VideoPlayer_MPCNote {
             get {
                 return ResourceManager.GetString("VideoPlayer_MPCNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MPC Folder does not exist.
+        /// </summary>
+        public static string VideoPlayer_MPCNotFound {
+            get {
+                return ResourceManager.GetString("VideoPlayer_MPCNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MPC Folder not selected.
+        /// </summary>
+        public static string VideoPlayer_MPCNotSelected {
+            get {
+                return ResourceManager.GetString("VideoPlayer_MPCNotSelected", resourceCulture);
             }
         }
         
@@ -9615,11 +9975,38 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No ini files found in the Pot Player Folder.
+        /// </summary>
+        public static string VideoPlayer_PotPlayerINIMissing {
+            get {
+                return ResourceManager.GetString("VideoPlayer_PotPlayerINIMissing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to For PotPlayer Integration you must enable the following options (1) Preferences &gt; General &gt; Store Settings to .ini file (2) Preferences &gt; Playback &gt; Play from latest point. See the following screenshot for more details. The location of the PlotPlayer .ini file is usually something like C:\Users\username\AppData\Roaming\PotPlayer64\PotPlayer64.ini.
         /// </summary>
         public static string VideoPlayer_PotPlayerNote {
             get {
                 return ResourceManager.GetString("VideoPlayer_PotPlayerNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pot Player Folder does not exist.
+        /// </summary>
+        public static string VideoPlayer_PotPlayerNotFound {
+            get {
+                return ResourceManager.GetString("VideoPlayer_PotPlayerNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pot Player Folder not selected.
+        /// </summary>
+        public static string VideoPlayer_PotPlayerNotSelected {
+            get {
+                return ResourceManager.GetString("VideoPlayer_PotPlayerNotSelected", resourceCulture);
             }
         }
         
@@ -9678,11 +10065,38 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No ini files found in the VLC Folder.
+        /// </summary>
+        public static string VideoPlayer_VLCINIMissing {
+            get {
+                return ResourceManager.GetString("VideoPlayer_VLCINIMissing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to VLC 2.2+ records recent files and timestamps by default (and disabling is an &apos;Advanced&apos; option). Older versions do not support &apos;Resume from last position&apos; functionality. The location of the VLC .ini file is usually something like C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini.
         /// </summary>
         public static string VideoPlayer_VLCNote {
             get {
                 return ResourceManager.GetString("VideoPlayer_VLCNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VLC Folder does not exist.
+        /// </summary>
+        public static string VideoPlayer_VLCNotFound {
+            get {
+                return ResourceManager.GetString("VideoPlayer_VLCNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VLC Folder not selected.
+        /// </summary>
+        public static string VideoPlayer_VLCNotSelected {
+            get {
+                return ResourceManager.GetString("VideoPlayer_VLCNotSelected", resourceCulture);
             }
         }
         

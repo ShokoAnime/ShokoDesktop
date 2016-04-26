@@ -27,7 +27,9 @@ namespace JMMClient.UserControls
 		{
 			InitializeComponent();
 
-			btnSave.Click += new RoutedEventHandler(btnSave_Click);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            btnSave.Click += new RoutedEventHandler(btnSave_Click);
 
 			chkImportSettings_HashCRC32.Click += new RoutedEventHandler(settingChanged);
 			chkImportSettings_HashMD5.Click += new RoutedEventHandler(settingChanged);

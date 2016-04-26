@@ -14,6 +14,8 @@ using System.Windows.Shapes;
 using Microsoft.Windows.Controls;
 using JMMClient.Forms;
 using JMMClient.ViewModel;
+using System.Threading;
+using System.Globalization;
 
 namespace JMMClient.UserControls
 {
@@ -26,7 +28,9 @@ namespace JMMClient.UserControls
 		{
 			InitializeComponent();
 
-			chkTvDB_FanartAutoDownload.Click += new RoutedEventHandler(settingChanged);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            chkTvDB_FanartAutoDownload.Click += new RoutedEventHandler(settingChanged);
 			chkTvDB_PosterAutoDownload.Click += new RoutedEventHandler(settingChanged);
 			chkTvDB_WideBannerAutoDownload.Click += new RoutedEventHandler(settingChanged);
 			udMaxFanarts.ValueChanged += new RoutedPropertyChangedEventHandler<object>(udMaxFanarts_ValueChanged);
