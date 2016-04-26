@@ -19,11 +19,6 @@ namespace JMMClient
             public static readonly string MAIN = "main character in";
         }
 
-        public struct GroupFilterName
-		{
-			public static readonly string ContinueWatching = "Continue Watching (SYSTEM)";
-		}
-
 		public struct DBLogType
 		{
 			public static readonly string APIAniDBHTTP = "AniDB HTTP";

@@ -53,7 +53,7 @@ namespace JMMClient
 			sources.Add(new TorrentSourceVM(TorrentSourceType.TokyoToshokanAnime, true));
 			sources.Add(new TorrentSourceVM(TorrentSourceType.TokyoToshokanAll, true));
 			sources.Add(new TorrentSourceVM(TorrentSourceType.Nyaa, true));
-			sources.Add(new TorrentSourceVM(TorrentSourceType.AnimeSuki, true));
+            sources.Add(new TorrentSourceVM(TorrentSourceType.Sukebei, true));
 			sources.Add(new TorrentSourceVM(TorrentSourceType.BakaBT, true));
 			sources.Add(new TorrentSourceVM(TorrentSourceType.AnimeBytes, true));
 
@@ -78,7 +78,8 @@ namespace JMMClient
 
 
 					TorrentSourceVM selSource = new TorrentSourceVM((TorrentSourceType)iSrc, true);
-					SelectedTorrentSources.Add(selSource);
+                    if ((TorrentSourceType)iSrc != TorrentSourceType.AnimeSuki)
+					    SelectedTorrentSources.Add(selSource);
 				}
 
 				foreach (TorrentSourceVM src in GetAllTorrentSources())
@@ -938,7 +939,28 @@ namespace JMMClient
 			}
 		}
 
-		public string UTorrentAddress
+        public bool TorrentBlackhole
+        {
+            get { return AppSettings.TorrentBlackhole; }
+            set
+            {
+                AppSettings.TorrentBlackhole = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("TorrentBlackhole"));
+            }
+        }
+
+        public string TorrentBlackholeFolder
+        {
+            get { return AppSettings.TorrentBlackholeFolder; }
+            set
+            {
+                AppSettings.TorrentBlackholeFolder = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("TorrentBlackholeFolder"));
+            }
+        }
+
+
+        public string UTorrentAddress
 		{
 			get { return AppSettings.UTorrentAddress; }
 			set
@@ -1007,8 +1029,8 @@ namespace JMMClient
 				OnPropertyChanged(new PropertyChangedEventArgs("TorrentSearchPreferOwnGroups"));
 			}
 		}
-
-		public string BakaBTUsername
+       
+        public string BakaBTUsername
 		{
 			get { return AppSettings.BakaBTUsername; }
 			set
@@ -1383,9 +1405,17 @@ namespace JMMClient
 			}
 		}
 
+        public int DefaultPlayer_GroupList
+        {
+            get { return AppSettings.DefaultPlayer_GroupList; }
+            set
+            {
+                AppSettings.DefaultPlayer_GroupList = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("DefaultPlayer_GroupList"));
+            }
+        }
 
-
-		public void GetDashboardMetroSectionPosition(DashboardMetroProcessType swid, ref int pos, ref Visibility vis)
+        public void GetDashboardMetroSectionPosition(DashboardMetroProcessType swid, ref int pos, ref Visibility vis)
 		{
 			// read the series sections order
 			string[] sections = AppSettings.DashboardMetroSectionOrder.Split(';');

@@ -15,7 +15,7 @@ namespace JMMClient.ViewModel
 		public int IsTraktUser { get; set; }
 		public string HideTags { get; set; }
 		public int? CanEditServerSettings { get; set; }
-
+        public string PlexUsers { get; set; }
 		public bool IsAdminUser
 		{
 			get { return IsAdmin == 1; }
@@ -50,6 +50,7 @@ namespace JMMClient.ViewModel
 			this.IsTraktUser = contract.IsTraktUser;
 			this.HideTags = contract.HideCategories;
 			this.CanEditServerSettings = contract.CanEditServerSettings;
+		    this.PlexUsers = contract.PlexUsers;
 		}
 
 		public JMMServerBinary.Contract_JMMUser ToContract()
@@ -63,6 +64,7 @@ namespace JMMClient.ViewModel
 			contract.IsTraktUser = this.IsTraktUser;
 			contract.HideCategories = this.HideTags;
 			contract.CanEditServerSettings = this.CanEditServerSettings;
+		    contract.PlexUsers = this.PlexUsers;
 			return contract;
 		}
 
@@ -82,7 +84,7 @@ namespace JMMClient.ViewModel
 				if (cat.Trim().Length == 0) continue;
 				if (cat.Trim() == ",") continue;
 
-				index = allcats.IndexOf(cat, 0, StringComparison.InvariantCultureIgnoreCase);
+				index = allcats.IndexOf(cat.Trim(), 0, StringComparison.InvariantCultureIgnoreCase);
 				if (index > -1) return false;
 			}
 
@@ -91,6 +93,9 @@ namespace JMMClient.ViewModel
 
 		public bool EvaluateGroup(AnimeGroupVM grp)
 		{
+            if (grp.AnimeGroupID.Value == 215)
+                Console.WriteLine("");
+
 			// make sure the user has not filtered this out
 			if (!string.IsNullOrEmpty(JMMServerVM.Instance.CurrentUser.HideTags))
 			{

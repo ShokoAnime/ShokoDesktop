@@ -34,8 +34,8 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" Margin="0,5,5,0">
             <ComboBox Grid.Row="0" Name="cboStyleGroupList" VerticalAlignment="Center"
-                              ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=Style_GroupList}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_Style_GroupList}}" IsEnabled="False"></ComboBox>
+                              ToolTip="{usercontrols:Info Title=Style_GroupList, 
+                                                Body=Tooltip_Style_GroupList}" IsEnabled="False"></ComboBox>
         </StackPanel>
 
         <!-- Episode Image - Spoiler hide -->
@@ -45,8 +45,8 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" Margin="0,5,5,0">
             <CheckBox Name="chkHideEpisodeImage" IsChecked="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=HideEpisodeImageWhenUnwatched}" VerticalAlignment="Center"
-                      ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=HideEpisodeImageWhenUnwatched}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_HideEpisodeImageWhenUnwatched}}"/>
+                      ToolTip="{usercontrols:Info Title=HideEpisodeImageWhenUnwatched, 
+                                                Body=Tooltip_HideEpisodeImageWhenUnwatched}"/>
         </StackPanel>
 
         <!-- Episode Overview - Spoiler hide -->
@@ -56,13 +56,13 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Margin="0,5,5,0">
             <CheckBox Name="chkHideEpisodeOverview" IsChecked="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=HideEpisodeOverviewWhenUnwatched}" VerticalAlignment="Center"
-                      ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=HideEpisodeOverviewWhenUnwatched}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_HideEpisodeOverviewWhenUnwatched}}"/>
+                      ToolTip="{usercontrols:Info Title=HideEpisodeOverviewWhenUnwatched, 
+                                                Body=Tooltip_HideEpisodeOverviewWhenUnwatched}"/>
         </StackPanel>
 
         <!-- Episode Download button - hide -->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="3" Margin="0,5,15,0">
-            <TextBlock Text="Hide Episode Download Button When You Already Have Files"  VerticalAlignment="Top"></TextBlock>
+            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Settings_HideDownloadButton}"  VerticalAlignment="Top"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3" Margin="0,5,5,0">
@@ -79,8 +79,8 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="4" Margin="0,5,5,0">
             <CheckBox Name="chkPromptRating" IsChecked="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=DisplayRatingDialogOnCompletion}" VerticalAlignment="Center"
-                      ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=PromptRateSeries}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_PromptRateSeries}}"/>
+                      ToolTip="{usercontrols:Info Title=PromptRateSeries, 
+                                                Body=Tooltip_PromptRateSeries}"/>
         </StackPanel>
 
         <!-- Always use the AniDB Poster -->
@@ -90,8 +90,8 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="5" Margin="0,5,5,0">
             <CheckBox Name="chkAlwyasAniDBPoster" IsChecked="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=AlwaysUseAniDBPoster}" VerticalAlignment="Center"
-                      ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=SettingAlwaysAniDBPoster}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_SettingAlwaysAniDBPoster}}"/>
+                      ToolTip="{usercontrols:Info Title=SettingAlwaysAniDBPoster, 
+                                                Body=Tooltip_SettingAlwaysAniDBPoster}"/>
         </StackPanel>
 
         <!-- User fanart on series -->
@@ -101,8 +101,8 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="6" Margin="0,5,5,0">
             <CheckBox Name="chkSeriesFanart" IsChecked="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=UseFanartOnSeries}" VerticalAlignment="Center"
-                      ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=UseFanartOnSeries}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_UseFanartOnSeries}}"/>
+                      ToolTip="{usercontrols:Info Title=UseFanartOnSeries, 
+                                                Body=Tooltip_UseFanartOnSeries}"/>
         </StackPanel>
 
 
@@ -114,8 +114,8 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="7" Margin="0,5,5,0">
             <ComboBox Grid.Row="0" Name="cboStyleEpisodeDetail" VerticalAlignment="Center"
-                              ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=EpisodeDetailStyle}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=EpisodeDetailStyle}}"></ComboBox>
+                              ToolTip="{usercontrols:Info Title=EpisodeDetailStyle, 
+                                                Body=EpisodeDetailStyle}"></ComboBox>
         </StackPanel>
 
         <!-- Episode Title source -->
@@ -125,8 +125,8 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="8" Margin="0,5,5,0">
             <ComboBox Grid.Row="0" Name="cboStyleEpisodeTitle" VerticalAlignment="Center"
-                              ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=EpisodeTitleSourceStyle}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_EpisodeTitleSourceStyle}}"></ComboBox>
+                              ToolTip="{usercontrols:Info Title=EpisodeTitleSourceStyle, 
+                                                Body=Tooltip_EpisodeTitleSourceStyle}"></ComboBox>
         </StackPanel>
 
         <!-- Series Overview source -->
@@ -136,8 +136,8 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="9" Margin="0,5,5,0">
             <ComboBox Grid.Row="0" Name="cboStyleSeriesOverview" VerticalAlignment="Center"
-                              ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=SeriesOverviewSourceStyle}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_SeriesOverviewSourceStyle}}"></ComboBox>
+                              ToolTip="{usercontrols:Info Title=SeriesOverviewSourceStyle, 
+                                                Body=Tooltip_SeriesOverviewSourceStyle}"></ComboBox>
         </StackPanel>
 
         <!-- Series Name source -->
@@ -147,8 +147,8 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="10" Margin="0,5,5,0">
             <ComboBox Grid.Row="0" Name="cboStyleSeriesName" VerticalAlignment="Center"
-                              ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=SeriesNameSourceStyle}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_SeriesNameSourceStyle}}"></ComboBox>
+                              ToolTip="{usercontrols:Info Title=SeriesNameSourceStyle, 
+                                                Body=Tooltip_SeriesNameSourceStyle}"></ComboBox>
         </StackPanel>
 
 

@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Configuration;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -23,16 +27,20 @@ namespace JMMClient.UserControls
 		{
 			InitializeComponent();
 
-			cboStorageState.Items.Clear();
-			cboStorageState.Items.Add("Unknown");
-			cboStorageState.Items.Add("HDD");
-			cboStorageState.Items.Add("CD/DVD");
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            cboStorageState.Items.Clear();
+			cboStorageState.Items.Add(Properties.Resources.AniDBMyListUnknown);
+			cboStorageState.Items.Add(Properties.Resources.AniDBMyListHDD);
+			cboStorageState.Items.Add(Properties.Resources.AniDBMyListDVD);
 			cboStorageState.SelectedIndex = 0;
 
 			cboDeleteAction.Items.Clear();
-			cboDeleteAction.Items.Add("Delete File");
-			cboDeleteAction.Items.Add("Mark Deleted");
-            cboDeleteAction.Items.Add("Mark External (CD/DVD)");
+			cboDeleteAction.Items.Add(Properties.Resources.AniDBMyListDelete);
+            cboDeleteAction.Items.Add(Properties.Resources.AniDBMyListDeleteLocal);
+            cboDeleteAction.Items.Add(Properties.Resources.AniDBMyListMarkDeleted);
+            cboDeleteAction.Items.Add(Properties.Resources.AniDBMyListMarkExternal);
+			cboDeleteAction.Items.Add(Properties.Resources.AniDBMyListMarkUnknown);
 			cboDeleteAction.SelectedIndex = 0;
 
 			this.Loaded += new RoutedEventHandler(AniDBMyListSettings_Loaded);

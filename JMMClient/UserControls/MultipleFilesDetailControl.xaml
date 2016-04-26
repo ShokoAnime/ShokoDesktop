@@ -41,7 +41,7 @@
                                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Play}" Margin="5,0,5,0"/>
                                 </StackPanel>
                                 <Button.ToolTip>
-                                    <TextBlock Text="Play Video"/>
+                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=PlayVideo}"/>
                                 </Button.ToolTip>
                             </Button>
 
@@ -66,15 +66,15 @@
                                 </StackPanel>
                             </Button>
 
-                            <CheckBox Content="Is Variation" IsChecked="{Binding Path=Variation, Mode=OneWay}" Command="{StaticResource ToggleVariationCommand}" 
+                            <CheckBox Content="{Resx ResxName=JMMClient.Properties.Resources, Key=IsVariation}" IsChecked="{Binding Path=Variation, Mode=OneWay}" Command="{StaticResource ToggleVariationCommand}" 
                                 CommandParameter="{Binding}" VerticalAlignment="Center"
-                                       ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=IsVariation}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_IsVariation}}">
+                                       ToolTip="{usercontrols:Info Title=IsVariation, 
+                                                Body=Tooltip_IsVariation}">
                                 
                             </CheckBox>
 
                             <!-- Link to AniDB -->
-                            <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="AniDB" URL="{Binding Path=AniDB_SiteURL}" Margin="10,0,0,0"
+                            <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=AniDB}" URL="{Binding Path=AniDB_SiteURL}" Margin="10,0,0,0"
                                          Visibility="{Binding Path=HasAniDBFile, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                             
                         </StackPanel>
@@ -102,7 +102,7 @@
 
                         <TextBlock Text="{Binding Path=AniDB_Anime_GroupNameShort}" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0"
                                    Visibility="{Binding Path=IsAutoAssociation, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <TextBlock Text="MANUAL LINK" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0"
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_Manual}" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0"
                                    Visibility="{Binding Path=IsManualAssociation, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         <TextBlock Text="{Binding Path=FormattedFileSize}" FontWeight="DemiBold" VerticalAlignment="Center" Margin="0,0,10,0" />
                         

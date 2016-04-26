@@ -47,7 +47,7 @@
 
                         <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,5,0" Grid.Column="0" VerticalAlignment="Top"/>
 
-                        <usercontrols:HyperLinkStandard Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin="0,3,5,5" DisplayText="Detailed explanation of options"
+                        <usercontrols:HyperLinkStandard Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin="0,3,5,5" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=DetailedExplanation}"
                                                                         URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_ImportFolders}"/>
                     </Grid>
                 </Border>
@@ -62,7 +62,7 @@
                 <TextBlock Grid.Column="0" Grid.Row="4" Margin="0,0,10,5" FontWeight="DemiBold" Padding="5" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=DropDestination}"/>
                 <CheckBox Name="chkDropDestination" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center"></CheckBox>
 
-                <TextBlock Grid.Column="0" Grid.Row="5" Margin="0,0,10,5" FontWeight="DemiBold" Padding="5" Text="Watch For New Files"/>
+                <TextBlock Grid.Column="0" Grid.Row="5" Margin="0,0,10,5" FontWeight="DemiBold" Padding="5" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ImportSettings_WatchFiles}"/>
                 <CheckBox Name="chkIsWatched" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center"></CheckBox>
 
             </Grid>

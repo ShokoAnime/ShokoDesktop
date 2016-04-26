@@ -27,7 +27,7 @@
                         <TextBlock Margin="0,0,10,0" FontWeight="DemiBold" Text="{Binding Path=FolderName}" VerticalAlignment="Center" MinWidth="70"/>
 
                         <TextBlock Margin="3,0,0,0" Text="{Binding Path=FileCount}" VerticalAlignment="Center"/>
-                        <TextBlock Margin="2,0,10,0" Text="Files" VerticalAlignment="Center"/>
+                        <TextBlock Margin="2,0,10,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Files}" VerticalAlignment="Center"/>
                         
 
                         <TextBlock Padding="5,5,0,5" Text="(" VerticalAlignment="Center" />

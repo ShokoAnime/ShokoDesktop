@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Configuration;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -23,7 +27,9 @@ namespace JMMClient.UserControls
 		{
 			InitializeComponent();
 
-			btnSave.Click += new RoutedEventHandler(btnSave_Click);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            btnSave.Click += new RoutedEventHandler(btnSave_Click);
 
 			chkImportSettings_HashCRC32.Click += new RoutedEventHandler(settingChanged);
 			chkImportSettings_HashMD5.Click += new RoutedEventHandler(settingChanged);
@@ -33,9 +39,11 @@ namespace JMMClient.UserControls
 			chkImportSettings_AutoGroupSeries.Click += new RoutedEventHandler(settingChanged);
 			chkImportSettings_ScanDropOnStart.Click += new RoutedEventHandler(settingChanged);
 
-			cboImagesPath.Items.Clear();
-			cboImagesPath.Items.Add("Default");
-			cboImagesPath.Items.Add("Custom");
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            cboImagesPath.Items.Clear();
+			cboImagesPath.Items.Add(JMMClient.Properties.Resources.ImportSettings_Default);
+			cboImagesPath.Items.Add(JMMClient.Properties.Resources.ImportSettings_Custom);
 			cboImagesPath.SelectionChanged += new System.Windows.Controls.SelectionChangedEventHandler(cboImagesPath_SelectionChanged);
 			btnChooseImagesFolder.Click += new RoutedEventHandler(btnChooseImagesFolder_Click);
 

@@ -44,7 +44,7 @@
                                 </TextBlock.ToolTip>
                             </TextBlock>
                             <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-                                <TextBlock Text="Approval" Foreground="DarkGreen" FontWeight="Medium" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Approval}" Foreground="DarkGreen" FontWeight="Medium" VerticalAlignment="Center"/>
                                 <TextBlock Text="{Binding Path=ApprovalRating}" Foreground="Black" VerticalAlignment="Center" Margin="5,0,0,0"/>
                             </StackPanel>
 
@@ -84,7 +84,7 @@
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                         <Image Height="16" Width="16" Source="/Images/32_bookmark.png" Margin="1,0,1,0" ToolTipService.ShowDuration="60000">
                                             <Image.ToolTip>
-                                                <TextBlock Text="Bookmark this anime to download later"/>
+                                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Related_Bookmark}"/>
                                             </Image.ToolTip>
                                         </Image>
 
@@ -98,7 +98,7 @@
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                         <Image Height="16" Width="16" Source="/Images/24_download3.png" Margin="2,0,2,0">
                                             <Image.ToolTip>
-                                                <TextBlock Text="Search for downloads for this series"/>
+                                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Related_Search}"/>
                                             </Image.ToolTip>
                                         </Image>
                                     </StackPanel>

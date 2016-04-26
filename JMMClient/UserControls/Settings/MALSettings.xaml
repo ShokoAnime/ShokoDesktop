@@ -56,8 +56,8 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Margin="0,5,5,0">
             <ComboBox Grid.Row="0" Name="cboUpdateFrequency" VerticalAlignment="Center"
-                      ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=UpdateFrequency}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_MAL_UpdateFrequency}}"/>
+                      ToolTip="{usercontrols:Info Title=UpdateFrequency, 
+                                                Body=Tooltip_MAL_UpdateFrequency}"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="3" Margin="0,5,15,0">
@@ -66,8 +66,8 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3" Margin="0,5,5,0">
             <CheckBox Name="chkNeverDecrease" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=MAL_NeverDecreaseWatchedNums}" VerticalAlignment="Center"
-                      ToolTip="{usercontrols:Info Title={Resx ResxName=JMMClient.Properties.Resources, Key=MAL_NeverDecrease}, 
-                                                Body={Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_MAL_NeverDecrease}}"/>
+                      ToolTip="{usercontrols:Info Title=MAL_NeverDecrease, 
+                                                Body=Tooltip_MAL_NeverDecrease}"/>
         </StackPanel>
 
 

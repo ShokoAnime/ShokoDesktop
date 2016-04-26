@@ -15,7 +15,7 @@ namespace JMMClient.Utilities
 		private System.Timers.Timer handleTimer = null;
 		private string iniPath = string.Empty;
 
-		private List<FileSystemWatcher> watcherVids = null;
+        private List<FileSystemWatcher> watcherVids = null;
 		Dictionary<string, string> previousFilePositions = new Dictionary<string, string>();
 
 		public delegate void VideoWatchedEventHandler(VideoWatchedEventArgs ev);
@@ -30,11 +30,51 @@ namespace JMMClient.Utilities
 
 		public void PlayVideo(VideoDetailedVM vid)
 		{
-			try
-			{
-				recentlyPlayedFiles[vid.VideoLocalID] = vid;
-				Process.Start(new ProcessStartInfo(vid.FullPath));
-			}
+            try
+            {
+                string defaultplayer;
+                switch (UserSettingsVM.Instance.DefaultPlayer_GroupList)
+                {
+                    case (int)DefaultVideoPlayer.MPC:
+                        defaultplayer = "mpc-hc";
+                        break;
+                    case (int)DefaultVideoPlayer.PotPlayer:
+                        defaultplayer = "PotPlayerMini";
+                        break;
+                    case (int)DefaultVideoPlayer.VLC:
+                        defaultplayer = "vlc";
+                        break;
+                    default:
+                        defaultplayer = "";
+                        break;
+                }
+                recentlyPlayedFiles[vid.VideoLocalID] = vid;
+                if (vid.FullPath.Contains("http:")) {
+                    try
+                    {
+                        Process.Start(defaultplayer, '"' + vid.FullPath.Replace(@"\", "/") + '"');
+                    }
+                    catch(Exception e)
+                    {
+                        Process.Start(defaultplayer+"64", '"' + vid.FullPath.Replace(@"\", "/") + '"');
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        if (string.IsNullOrEmpty(defaultplayer))
+                            Process.Start(new ProcessStartInfo(vid.FullPath));
+                        else
+                            Process.Start(defaultplayer, '"' + vid.FullPath + '"');
+                    }
+                    catch (Exception e)
+                    {
+                        Process.Start(defaultplayer + "64", '"' + vid.FullPath.Replace(@"\", "/") + '"');
+                    }
+                }
+                
+            }
 			catch (Exception ex)
 			{
 				Utils.ShowErrorMessage(ex);
@@ -43,15 +83,57 @@ namespace JMMClient.Utilities
 
 		public void PlayVideo(VideoLocalVM vid)
 		{
-			try
-			{
-				Process.Start(new ProcessStartInfo(vid.FullPath));
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-		}
+            try
+            {
+                string defaultplayer;
+                switch (UserSettingsVM.Instance.DefaultPlayer_GroupList)
+                {
+                    case (int)DefaultVideoPlayer.MPC:
+                        defaultplayer = "mpc-hc";
+                        break;
+                    case (int)DefaultVideoPlayer.PotPlayer:
+                        defaultplayer = "PotPlayerMini";
+                        break;
+                    case (int)DefaultVideoPlayer.VLC:
+                        defaultplayer = "vlc";
+                        break;
+                    default:
+                        defaultplayer = "";
+                        break;
+                }
+                if (vid.FullPath.Contains("http:"))
+                {
+                    try
+                    {
+                        Process.Start(defaultplayer, '"' + vid.FullPath.Replace(@"\", "/") + '"');
+                    }
+                    catch (Exception e)
+                    {
+                        Process.Start(defaultplayer + "64", '"' + vid.FullPath.Replace(@"\", "/") + '"');
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        if (string.IsNullOrEmpty(defaultplayer))
+                            Process.Start(new ProcessStartInfo(vid.FullPath));
+                        else
+                            Process.Start(defaultplayer, '"' + vid.FullPath + '"');
+
+                    }
+                    catch (Exception e)
+                    {
+                        Process.Start(defaultplayer + "64", '"' + vid.FullPath.Replace(@"\", "/") + '"');
+                    }
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+        }
 
 		public void Init()
 		{
@@ -295,11 +377,15 @@ namespace JMMClient.Utilities
 
                     long mpcPos = 0;
                     long.TryParse(position, out mpcPos);
-                    
-                    // if mpcPos == 0, it means that file has finished played completely
 
-                    // MPC position is in 10^-7 s
+                    // if mpcPos == 0, it means that file either finished playing or have been stopped or re/started
+                    // please note that mpc does not trigger *.ini file update at all times or at least periodically
+                    // manual change of file position via clicks modify the file as well as starting playback and swiching file
+                    // using arrows to navigate forward and backwards however do not as well regular playback
+
+                    // MPC position is in 10^-7 s		                      
                     // convert to milli-seconds (10^-3 s)
+
                     // dont worry about remainder, as we're checking against 1 s precision later anyway
                     filePositions[fileName] = mpcPos / 10000;
                 }
@@ -426,7 +512,7 @@ namespace JMMClient.Utilities
 
                 foreach (KeyValuePair<int, VideoDetailedVM> kvpVid in recentlyPlayedFiles)
                 {
-                    if (kvpVid.Value.FullPath.Equals(kvp.Key, StringComparison.InvariantCultureIgnoreCase))
+                    if (kvpVid.Value.FullPath.Equals(Path.GetFullPath(kvp.Key), StringComparison.InvariantCultureIgnoreCase))
                     {
                         // we don't care about files that are already watched
                         if (kvpVid.Value.Watched) continue;
@@ -437,7 +523,12 @@ namespace JMMClient.Utilities
                         double fileDurationMS = (double)kvpVid.Value.VideoInfo_Duration;
 
                         double progress = mpcPosMS / fileDurationMS * 100.0d;
-                        if (progress > (double)AppSettings.VideoWatchedPct || mpcPosMS == 0)
+
+                        // handle the case of PotPlayer having a psoition of 0, which means 100% watched
+                        if (mpcPosMS == 0)
+                            progress = (double)100;
+
+                        if (progress > (double)AppSettings.VideoWatchedPct)
                         {
                             VideoDetailedVM vid = kvpVid.Value;
 

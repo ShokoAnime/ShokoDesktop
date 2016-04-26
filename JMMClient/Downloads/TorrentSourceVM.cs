@@ -102,7 +102,14 @@ namespace JMMClient.Downloads
 				links.AddRange(ttLinks);
 			}
 
-			if (TorrentSource == TorrentSourceType.TokyoToshokanAnime)
+            if (TorrentSource == TorrentSourceType.Sukebei)
+            {
+                TorrentsSukebei sukebei = new TorrentsSukebei();
+                List<TorrentLinkVM> ttLinks = sukebei.BrowseTorrents();
+                links.AddRange(ttLinks);
+            }
+
+            if (TorrentSource == TorrentSourceType.TokyoToshokanAnime)
 			{
 				TorrentsTokyoToshokan tt = new TorrentsTokyoToshokan(TorrentSourceType.TokyoToshokanAnime);
 				List<TorrentLinkVM> ttLinks = tt.BrowseTorrents();
@@ -115,15 +122,6 @@ namespace JMMClient.Downloads
 				List<TorrentLinkVM> ttLinks = tt.BrowseTorrents();
 				links.AddRange(ttLinks);
 			}
-
-			if (TorrentSource == TorrentSourceType.AnimeSuki)
-			{
-				TorrentsAnimeSuki suki = new TorrentsAnimeSuki();
-				List<TorrentLinkVM> sukiLinks = suki.BrowseTorrents();
-				links.AddRange(sukiLinks);
-			}
-
-
 
 			if (TorrentSource == TorrentSourceType.BakaBT)
 			{

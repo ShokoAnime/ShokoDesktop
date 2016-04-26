@@ -964,7 +964,14 @@ namespace JMMClient
 
 			if (forced && aniDB_Anime != null)
 				MainListHelperVM.Instance.UpdateAnime(aniDB_Anime.AnimeID);
-		}
+
+            if (forced && aniDB_Anime == null)
+            {
+                MainListHelperVM.Instance.UpdateAnime(AnimeSeries.AniDB_Anime.AnimeID);
+                if (AnimeSeries != null && AnimeSeries.AniDB_Anime != null)
+                    aniDB_Anime = AnimeSeries.AniDB_Anime;
+            }
+        }
 
 		private AnimeSeriesVM animeSeries = null;
 		public AnimeSeriesVM AnimeSeries

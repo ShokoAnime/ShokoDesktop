@@ -118,7 +118,7 @@
                         <Button Margin="2,2,2,2" Style="{DynamicResource RoundButtonStyle}" Name="btnSearch" IsDefault="True">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                 <Image Height="16" Width="16" Source="/Images/MagnifyingGlass7.png" Margin="0,0,5,0"/>
-                                <TextBlock VerticalAlignment="Center" Text="Search" Margin="0,0,5,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
                             </StackPanel>
                         </Button>
 
@@ -144,7 +144,7 @@
                         
                         <StackPanel Orientation="Horizontal" >
 
-                            <TextBlock VerticalAlignment="Center" Text="Filter" Margin="5,0,0,0" Foreground="DarkGray"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Filter}" Margin="5,0,0,0" Foreground="DarkGray"/>
                             
 
                             <TextBox Name="txtFileSearch" Width="180" Margin="10,3,0,3" BorderThickness="1">
@@ -203,12 +203,12 @@
                     </Style>
                 </DataGrid.CellStyle>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Source" Binding="{Binding Source.TorrentSourceName}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="Name" Binding="{Binding TorrentName}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="Size" Binding="{Binding Size}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="Seeders" Binding="{Binding Seeders}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="Leechers" Binding="{Binding Leechers}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="Extra Info" Binding="{Binding ExtraInfo}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Source}" Binding="{Binding Source.TorrentSourceName}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Name}" Binding="{Binding TorrentName}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Size}" Binding="{Binding Size}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Seeders}" Binding="{Binding Seeders}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Leechers}" Binding="{Binding Leechers}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_ExtraInfo}" Binding="{Binding ExtraInfo}" IsReadOnly="True" />
                 </DataGrid.Columns>
             </DataGrid>
         </DockPanel >
@@ -224,7 +224,7 @@
         <TabControl Grid.Row="2" Grid.Column="0" Margin="5" Padding="5" Name="tabTorrentDetails" TabStripPlacement="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
 
 
-            <TabItem Header="Details">
+            <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Downloads_Details}">
 
                 <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                     <Grid Visibility="{Binding Path=HasAttachedSeries, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DownloadsSearchTorrentsControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
@@ -267,10 +267,10 @@
                                 </Button>
 
                                 <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="15,0,5,0" ToolTipService.ShowDuration="60000"/>
-                                <TextBlock Text="Wrong Series?" Foreground="Black" FontWeight="DemiBold" 
+                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_WrongSeries}" Foreground="Black" FontWeight="DemiBold" 
                                         VerticalAlignment="Center" ToolTipService.ShowDuration="60000"
                                         ToolTip="{usercontrols:Info Title=Wrong Series, 
-                                                Body=This is JMMs attempt to guess which series you are looking at so you can compare to your local collection. If you do not have the series in your collection it will be incorrect.}">
+                                                Body=Tooltip_WrongSeries}">
 
                                 </TextBlock>
 

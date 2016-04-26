@@ -13,7 +13,11 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using JMMClient.ViewModel;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Configuration;
+using System.Globalization;
+using System.Threading;
 using NLog;
 
 namespace JMMClient.UserControls
@@ -98,20 +102,22 @@ namespace JMMClient.UserControls
 			dgRankings.SelectionChanged += new SelectionChangedEventHandler(dgRankings_SelectionChanged);
 			cRating.OnRatingValueChangedEvent += new RatingControl.RatingValueChangedHandler(cRating_OnRatingValueChangedEvent);
 
-			cboCollection.Items.Add("All");
-			cboCollection.Items.Add("In My Collection");
-			cboCollection.Items.Add("All Episodes In My Collection");
-			cboCollection.Items.Add("Not In My Collection");
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            cboCollection.Items.Add(JMMClient.Properties.Resources.Random_All);
+			cboCollection.Items.Add(JMMClient.Properties.Resources.Rankings_InCollection);
+			cboCollection.Items.Add(JMMClient.Properties.Resources.Rankings_AllEpisodes);
+			cboCollection.Items.Add(JMMClient.Properties.Resources.Rankings_NotWatched);
 			cboCollection.SelectedIndex = 1;
 
-			cboWatched.Items.Add("All");
-			cboWatched.Items.Add("All Episodes Watched");
-			cboWatched.Items.Add("Not Watched");
+			cboWatched.Items.Add(JMMClient.Properties.Resources.Random_All);
+			cboWatched.Items.Add(JMMClient.Properties.Resources.Rankings_AllWatched);
+			cboWatched.Items.Add(JMMClient.Properties.Resources.Rankings_NotWatched);
 			cboWatched.SelectedIndex = 0;
 
-			cboVoted.Items.Add("All");
-			cboVoted.Items.Add("Voted");
-			cboVoted.Items.Add("Not Voted");
+			cboVoted.Items.Add(JMMClient.Properties.Resources.Random_All);
+			cboVoted.Items.Add(JMMClient.Properties.Resources.Rankings_Voted);
+			cboVoted.Items.Add(JMMClient.Properties.Resources.Rankings_NotVoted);
 			cboVoted.SelectedIndex = 0;
 
 			workerFiles.DoWork += new DoWorkEventHandler(workerFiles_DoWork);
@@ -147,7 +153,7 @@ namespace JMMClient.UserControls
 
 				if (animeRanking.AnimeSeries == null)
 				{
-					MessageBox.Show("This anime is not in your collection");
+					MessageBox.Show(JMMClient.Properties.Resources.Rankings_AnimeNotInCollection);
 					return;
 				}
 
@@ -176,7 +182,7 @@ namespace JMMClient.UserControls
 			btnRefresh.IsEnabled = false;
 			AllRankings.Clear();
 
-			StatusMessage = "Loading...";
+			StatusMessage = JMMClient.Properties.Resources.Loading;
 
 			RankingRefreshOptions opt = new RankingRefreshOptions()
 			{

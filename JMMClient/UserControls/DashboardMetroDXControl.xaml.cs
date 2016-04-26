@@ -15,8 +15,12 @@ using DevExpress.Xpf.LayoutControl;
 using System.ComponentModel;
 using NLog;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Configuration;
 using DevExpress.Xpf.Core;
 using System.Diagnostics;
+using System.Globalization;
+using System.Threading;
 
 namespace JMMClient.UserControls
 {
@@ -150,9 +154,11 @@ namespace JMMClient.UserControls
 
 			btnOptions.Click += new RoutedEventHandler(btnOptions_Click);
 
-			cboImageType.Items.Clear();
-			cboImageType.Items.Add("Fanart");
-			cboImageType.Items.Add("Posters");
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            cboImageType.Items.Clear();
+			cboImageType.Items.Add(JMMClient.Properties.Resources.Fanart);
+			cboImageType.Items.Add(JMMClient.Properties.Resources.Posters);
 
 			if (AppSettings.DashMetroImageType == DashboardMetroImageType.Fanart)
 				cboImageType.SelectedIndex = 0;

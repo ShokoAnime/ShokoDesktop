@@ -87,7 +87,7 @@
                             Visibility="{Binding Path=IsNotLoading, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MissingMyListFilesControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                             <Image Height="16" Width="16" Source="/Images/16_Refresh.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="View Missing Files" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=MissingMyList_Missing}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
@@ -101,7 +101,7 @@
                             Visibility="{Binding Path=ReadyToRemoveFiles, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MissingMyListFilesControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                             <Image Height="16" Width="16" Source="/Images/32_trash.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="Remove All Entries From AniDB" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=MissingMyList_RemoveAll}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
@@ -122,8 +122,8 @@
                         </Grid.ColumnDefinitions>
 
                         <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,5,0" Grid.Column="0" VerticalAlignment="Top"/>
-                        <TextBlock VerticalAlignment="Center" Text="Pressing the refresh button can take several minutes, so please be patient" Margin="0,0,5,5" TextWrapping="Wrap" Grid.Column="1"/>
-                        <TextBlock VerticalAlignment="Center" Text="This utility will download your list of files from AniDB, and compare it to the files locally. You will then have the chance to remove those files from AniDB if they don't exist." Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1" Grid.Row="1"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=RefreshWait}" Margin="0,0,5,5" TextWrapping="Wrap" Grid.Column="1"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=MissingMyList_Note}" Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1" Grid.Row="1"/>
                     </Grid>
                 </Border>
 

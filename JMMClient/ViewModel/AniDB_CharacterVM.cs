@@ -47,6 +47,15 @@ namespace JMMClient.ViewModel
             }
         }
 
+        public string CharNameShort
+        {
+            get
+            {
+                if (CharName.Length <= 25) return CharName;
+                return CharName.Substring(0, 24) + "...";
+            }
+        }
+
         public string ImagePath
         {
             get

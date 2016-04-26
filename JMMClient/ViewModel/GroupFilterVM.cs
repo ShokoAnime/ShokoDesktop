@@ -99,7 +99,18 @@ namespace JMMClient
 			}
 		}
 
-		private int applyToSeries = 0;
+        private int filterType = (int)GroupFilterType.UserDefined;
+        public int FilterType
+        {
+            get { return filterType; }
+            set
+            {
+                filterType = value;
+                NotifyPropertyChanged("FilterType");
+            }
+        }
+
+        private int applyToSeries = 0;
 		public int ApplyToSeries
 		{
 			get { return applyToSeries; }
@@ -476,7 +487,7 @@ namespace JMMClient
 							if (cat.Trim().Length == 0) continue;
 							if (cat.Trim() == ",") continue;
 
-							index = grp.Stat_AllTags.IndexOf(cat, 0, StringComparison.InvariantCultureIgnoreCase);
+							index = grp.Stat_AllTags.IndexOf(cat.Trim(), 0, StringComparison.InvariantCultureIgnoreCase);
 							if (index > -1)
 							{
 								foundCat = true;
@@ -503,7 +514,7 @@ namespace JMMClient
                             if (ctag.Trim().Length == 0) continue;
                             if (ctag.Trim() == ",") continue;
 
-                            index = grp.Stat_AllCustomTags.IndexOf(ctag, 0, StringComparison.InvariantCultureIgnoreCase);
+                            index = grp.Stat_AllCustomTags.IndexOf(ctag.Trim(), 0, StringComparison.InvariantCultureIgnoreCase);
                             if (index > -1)
                             {
                                 foundCTag = true;
@@ -822,7 +833,7 @@ namespace JMMClient
 							if (cat.Trim().Length == 0) continue;
 							if (cat.Trim() == ",") continue;
 
-							index = ser.TagsString.IndexOf(cat, 0, StringComparison.InvariantCultureIgnoreCase);
+							index = ser.TagsString.IndexOf(cat.Trim(), 0, StringComparison.InvariantCultureIgnoreCase);
 							if (index > -1)
 							{
 								foundCat = true;
@@ -849,7 +860,7 @@ namespace JMMClient
                             if (tag.Trim().Length == 0) continue;
                             if (tag.Trim() == ",") continue;
 
-                            index = ser.CustomTagsString.IndexOf(tag, 0, StringComparison.InvariantCultureIgnoreCase);
+                            index = ser.CustomTagsString.IndexOf(tag.Trim(), 0, StringComparison.InvariantCultureIgnoreCase);
                             if (index > -1)
                             {
                                 foundTag = true;
@@ -1113,8 +1124,9 @@ namespace JMMClient
 			contract.ApplyToSeries = this.ApplyToSeries;
 			contract.BaseCondition = this.BaseCondition;
 			contract.Locked = this.Locked;
-			
-			contract.FilterConditions = new List<JMMServerBinary.Contract_GroupFilterCondition>();
+            contract.FilterType = this.FilterType;
+
+            contract.FilterConditions = new List<JMMServerBinary.Contract_GroupFilterCondition>();
 			foreach (GroupFilterConditionVM gfc in FilterConditions)
 				contract.FilterConditions.Add(gfc.ToContract());
 
@@ -1138,19 +1150,15 @@ namespace JMMClient
 			this.ApplyToSeries = contract.ApplyToSeries;
 			this.BaseCondition = contract.BaseCondition;
 			this.Locked = contract.Locked;
-			this.PredefinedCriteria = "";
+            this.FilterType = contract.FilterType;
+            this.PredefinedCriteria = "";
 
 			this.AllowDeletion = true;
-			if (this.Locked.HasValue && this.Locked == 1) this.AllowDeletion = false;
+            if (this.Locked.HasValue && this.Locked == 1) this.AllowDeletion = false;
+            if (this.FilterType == (int)GroupFilterType.ContinueWatching) this.AllowDeletion = false;
 
-			this.IsSystemGroupFilter = false;
+            this.IsSystemGroupFilter = false;
 			this.IsNotSystemGroupFilter = true;
-
-			if (this.FilterName.Equals(Constants.GroupFilterName.ContinueWatching, StringComparison.InvariantCultureIgnoreCase))
-			{
-				this.IsSystemGroupFilter = true;
-				this.IsNotSystemGroupFilter = false;
-			}
 
 			//this.FilterConditions = new ObservableCollection<GroupFilterConditionVM>();
 			this.FilterConditions.Clear();

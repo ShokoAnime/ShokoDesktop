@@ -331,6 +331,8 @@ namespace JMMClient.JMMServerBinary {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Contract_Trakt_User", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
     [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<int>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<string>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_Trakt_CommentUser>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_Trakt_CommentUser))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_Trakt_Comment))]
@@ -479,8 +481,8 @@ namespace JMMClient.JMMServerBinary {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_GroupFilter_SaveResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_DuplicateFile>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Contract_DuplicateFile))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<int>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<string>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<JMMClient.JMMServerBinary.Character>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(JMMClient.JMMServerBinary.Character))]
     public partial class Contract_Trakt_User : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -731,6 +733,9 @@ namespace JMMClient.JMMServerBinary {
         private int BeginYearField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<JMMClient.JMMServerBinary.Character> CharactersField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime DateTimeDescUpdatedField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -977,6 +982,19 @@ namespace JMMClient.JMMServerBinary {
                 if ((this.BeginYearField.Equals(value) != true)) {
                     this.BeginYearField = value;
                     this.RaisePropertyChanged("BeginYear");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<JMMClient.JMMServerBinary.Character> Characters {
+            get {
+                return this.CharactersField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CharactersField, value) != true)) {
+                    this.CharactersField = value;
+                    this.RaisePropertyChanged("Characters");
                 }
             }
         }
@@ -1651,6 +1669,131 @@ namespace JMMClient.JMMServerBinary {
                 if ((object.ReferenceEquals(this.TraktPosterField, value) != true)) {
                     this.TraktPosterField = value;
                     this.RaisePropertyChanged("TraktPoster");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Character", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts.KodiContracts")]
+    [System.SerializableAttribute()]
+    public partial class Character : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CharIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CharNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PictureField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SeiyuuNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SeiyuuPicField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CharID {
+            get {
+                return this.CharIDField;
+            }
+            set {
+                if ((this.CharIDField.Equals(value) != true)) {
+                    this.CharIDField = value;
+                    this.RaisePropertyChanged("CharID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CharName {
+            get {
+                return this.CharNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CharNameField, value) != true)) {
+                    this.CharNameField = value;
+                    this.RaisePropertyChanged("CharName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Picture {
+            get {
+                return this.PictureField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PictureField, value) != true)) {
+                    this.PictureField = value;
+                    this.RaisePropertyChanged("Picture");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string SeiyuuName {
+            get {
+                return this.SeiyuuNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SeiyuuNameField, value) != true)) {
+                    this.SeiyuuNameField = value;
+                    this.RaisePropertyChanged("SeiyuuName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string SeiyuuPic {
+            get {
+                return this.SeiyuuPicField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SeiyuuPicField, value) != true)) {
+                    this.SeiyuuPicField = value;
+                    this.RaisePropertyChanged("SeiyuuPic");
                 }
             }
         }
@@ -11483,6 +11626,9 @@ namespace JMMClient.JMMServerBinary {
         private string PasswordField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PlexUsersField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string UsernameField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -11582,6 +11728,19 @@ namespace JMMClient.JMMServerBinary {
                 if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
                     this.PasswordField = value;
                     this.RaisePropertyChanged("Password");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PlexUsers {
+            get {
+                return this.PlexUsersField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PlexUsersField, value) != true)) {
+                    this.PlexUsersField = value;
+                    this.RaisePropertyChanged("PlexUsers");
                 }
             }
         }
@@ -12067,6 +12226,9 @@ namespace JMMClient.JMMServerBinary {
         private System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_GroupFilterCondition> FilterConditionsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int FilterTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> GroupFilterIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -12123,6 +12285,19 @@ namespace JMMClient.JMMServerBinary {
                 if ((object.ReferenceEquals(this.FilterConditionsField, value) != true)) {
                     this.FilterConditionsField = value;
                     this.RaisePropertyChanged("FilterConditions");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int FilterType {
+            get {
+                return this.FilterTypeField;
+            }
+            set {
+                if ((this.FilterTypeField.Equals(value) != true)) {
+                    this.FilterTypeField = value;
+                    this.RaisePropertyChanged("FilterType");
                 }
             }
         }

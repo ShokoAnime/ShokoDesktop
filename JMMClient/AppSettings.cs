@@ -32,16 +32,17 @@ namespace JMMClient
 		{
 			get
 			{
-				string osCulture = Thread.CurrentThread.CurrentUICulture.ToString();
-
 				NameValueCollection appSettings = ConfigurationManager.AppSettings;
 				string cult = appSettings["Culture"];
 				if (!string.IsNullOrEmpty(cult))
 					return cult;
 				else
 				{
-					return UserCulture.GetClosestMatch(osCulture); // default
-				}
+                    // default value
+                    cult = "en";
+                    UpdateSetting("Culture", cult);
+                    return cult;
+                }
 			}
 			set
 			{
@@ -361,8 +362,27 @@ namespace JMMClient
 				UpdateSetting("DisplayStyle_GroupList", value.ToString());
 			}
 		}
+        public static int DefaultPlayer_GroupList
+        {
+            get
+            {
+                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                string val = appSettings["DefaultPlayer_GroupList"];
+                int ival = 0;
+                if (int.TryParse(val, out ival))
+                {
+                    return ival;
+                }
+                else
+                    return (int)DefaultVideoPlayer.WindowsDefault; // default value
+            }
+            set
+            {
+                UpdateSetting("DefaultPlayer_GroupList", value.ToString());
+            }
+        }
 
-		public static int DisplayHeight_DashImage
+        public static int DisplayHeight_DashImage
 		{
 			get
 			{
@@ -485,7 +505,25 @@ namespace JMMClient
 			}
 		}
 
-		public static bool UseFanartOnSeries
+        public static bool DisplaySeriesSimple
+        {
+            get
+            {
+                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                string val = appSettings["DisplaySeriesSimple"];
+                bool bval = true;
+                if (bool.TryParse(val, out bval))
+                    return bval;
+                else
+                    return true; // default value
+            }
+            set
+            {
+                UpdateSetting("DisplaySeriesSimple", value.ToString());
+            }
+        }
+
+        public static bool UseFanartOnSeries
 		{
 			get
 			{
@@ -1808,7 +1846,7 @@ namespace JMMClient
 				// just in case the user has manually edited the config, or is using an old config
 				string[] sources = val.Split(';');
 				bool invalidSource = false;
-				int maxEnum = 6;
+				int maxEnum = 7;
 				foreach (string src in sources)
 				{
 					int iSrc = 0;

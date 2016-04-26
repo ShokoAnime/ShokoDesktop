@@ -27,6 +27,7 @@ using JMMClient.Forms;
 using System.IO;
 using NLog;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using JMMClient.UserControls;
 using JMMClient.Downloads;
 using JMMClient.Utilities;
@@ -100,9 +101,12 @@ namespace JMMClient
 		{
 			try
 			{
-				InitializeComponent();
-			}
-            catch(Exception ex)
+                InitializeComponent();
+
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            }
+            catch (Exception ex)
             {
                 File.WriteAllText(@"C:\jmmerror.txt", ex.ToString());
             }
@@ -153,11 +157,11 @@ namespace JMMClient
 				imageHelper.Init();
 
 				videoHandler.Init();
-				//videoHandler.HandleFileChange(AppSettings.MPCFolder + "\\mpc-hc.ini");
+                //videoHandler.HandleFileChange(AppSettings.MPCFolder + "\\mpc-hc.ini");
 
-				InitCulture();
+                InitCulture();
 
-				imageHelper.QueueUpdateEvent += new ImageDownloader.QueueUpdateEventHandler(imageHelper_QueueUpdateEvent);
+                imageHelper.QueueUpdateEvent += new ImageDownloader.QueueUpdateEventHandler(imageHelper_QueueUpdateEvent);
 
 				cboGroupSort.Items.Clear();
 				foreach (string sType in GroupFilterHelper.GetAllSortTypes())
@@ -179,7 +183,8 @@ namespace JMMClient
 				this.AddHandler(CloseableTabItem.CloseTabEvent, new RoutedEventHandler(this.CloseTab));
 
 				btnUpdateMediaInfo.Click += new RoutedEventHandler(btnUpdateMediaInfo_Click);
-				btnAbout.Click += new RoutedEventHandler(btnAbout_Click);
+                btnFeed.Click += new RoutedEventHandler(btnFeed_Click);
+                btnAbout.Click += new RoutedEventHandler(btnAbout_Click);
 				btnClearHasherQueue.Click += new RoutedEventHandler(btnClearHasherQueue_Click);
 				btnClearGeneralQueue.Click += new RoutedEventHandler(btnClearGeneralQueue_Click);
 				btnClearServerImageQueue.Click += new RoutedEventHandler(btnClearServerImageQueue_Click);
@@ -291,7 +296,14 @@ namespace JMMClient
 			this.Cursor = Cursors.Arrow;
 		}
 
-		void btnAbout_Click(object sender, RoutedEventArgs e)
+        void btnFeed_Click(object sender, RoutedEventArgs e)
+        {
+            FeedForm frm = new FeedForm();
+            frm.Owner = this;
+            frm.ShowDialog();
+        }
+
+        void btnAbout_Click(object sender, RoutedEventArgs e)
 		{
 			AboutForm frm = new AboutForm();
 			frm.Owner = this;
@@ -771,7 +783,7 @@ namespace JMMClient
 		void cboLanguages_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			SetCulture();
-		}
+        }
 
 		private void InitCulture()
 		{
@@ -812,7 +824,8 @@ namespace JMMClient
 				CultureManager.UICulture = ci;
 
 				AppSettings.Culture = ul.Culture;
-			}
+                ConfigurationManager.RefreshSection("appSettings");
+            }
 			catch (Exception ex)
 			{
 				Utils.ShowErrorMessage(ex);
@@ -1231,12 +1244,35 @@ namespace JMMClient
 			}
 		}
 
-		public void ShowPinnedSeries(AnimeSeriesVM series)
+		public void ShowPinnedSeriesOld(AnimeSeriesVM series)
 		{
 			this.Cursor = Cursors.Wait;
 
 			CloseableTabItem cti = new CloseableTabItem();
-			//TabItem cti = new TabItem();
+            //TabItem cti = new TabItem();
+
+            // if the pinned tab already has this, don't open it again.
+            int curTab = -1;
+            foreach (object obj in tabPinned.Items)
+            {
+                curTab++;
+                CloseableTabItem ctiTemp = obj as CloseableTabItem;
+                if (ctiTemp == null) continue;
+
+                AnimeSeries ctrl = ctiTemp.Content as AnimeSeries;
+                if (ctrl == null) continue;
+
+                AnimeSeriesVM ser = ctrl.DataContext as AnimeSeriesVM;
+                if (ser == null) continue;
+
+                if (ser.AnimeSeriesID == series.AnimeSeriesID)
+                {
+                    tabControl1.SelectedIndex = TAB_MAIN_Pinned;
+                    tabPinned.SelectedIndex = curTab;
+                    this.Cursor = Cursors.Arrow;
+                    return;
+                }
+            }
 
             string tabHeader = series.SeriesName;
             if (tabHeader.Length > 30)
@@ -1256,7 +1292,75 @@ namespace JMMClient
 			this.Cursor = Cursors.Arrow;
 		}
 
-		private void SetColours()
+        public void ShowPinnedSeries(AnimeSeriesVM series, bool isMetroDash = false)
+        {
+            this.Cursor = Cursors.Wait;
+
+            CloseableTabItem cti = new CloseableTabItem();
+            //TabItem cti = new TabItem();
+
+            // if the pinned tab already has this, don't open it again.
+            int curTab = -1;
+            foreach (object obj in tabPinned.Items)
+            {
+                curTab++;
+                CloseableTabItem ctiTemp = obj as CloseableTabItem;
+                if (ctiTemp == null) continue;
+
+                AnimeSeries ctrl = ctiTemp.Content as AnimeSeries;
+                if (ctrl == null) continue;
+
+                AnimeSeriesVM ser = ctrl.DataContext as AnimeSeriesVM;
+                if (ser == null) continue;
+
+                if (ser.AnimeSeriesID == series.AnimeSeriesID)
+                {
+                    tabControl1.SelectedIndex = TAB_MAIN_Pinned;
+                    tabPinned.SelectedIndex = curTab;
+                    this.Cursor = Cursors.Arrow;
+                    return;
+                }
+            }
+
+            string tabHeader = series.SeriesName;
+            if (tabHeader.Length > 30)
+                tabHeader = tabHeader.Substring(0, 30) + "...";
+            cti.Header = tabHeader;
+
+            if (AppSettings.DisplaySeriesSimple)
+            {
+                AnimeSeriesSimplifiedControl ctrl = new AnimeSeriesSimplifiedControl();
+                ctrl.DataContext = series;
+
+                AnimeSeriesContainerControl cont = new AnimeSeriesContainerControl();
+                cont.IsMetroDash = false;
+                cont.DataContext = ctrl;
+
+                cti.Content = cont;
+
+                tabPinned.Items.Add(cti);
+            }
+            else
+            {
+                AnimeSeries seriesControl = new AnimeSeries();
+                seriesControl.DataContext = series;
+
+                AnimeSeriesContainerControl cont = new AnimeSeriesContainerControl();
+                cont.IsMetroDash = false;
+                cont.DataContext = seriesControl;
+
+                cti.Content = cont;
+
+                tabPinned.Items.Add(cti);
+            }
+
+            tabControl1.SelectedIndex = TAB_MAIN_Pinned;
+            tabPinned.SelectedIndex = tabPinned.Items.Count - 1;
+
+            this.Cursor = Cursors.Arrow;
+        }
+
+        private void SetColours()
 		{
 			if (tabControl1.SelectedIndex == TAB_MAIN_Dashboard)
 			{
@@ -1328,7 +1432,7 @@ namespace JMMClient
 					bool seriesExists = JMMServerVM.Instance.clientBinaryHTTP.GetSeriesExistingForAnime(anime.AnimeID);
 					if (seriesExists)
 					{
-						MessageBox.Show(Properties.Resources.ERROR_SeriesExists, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+						MessageBox.Show(Properties.Resources.ERROR_SeriesExists, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 						return;
 					}
 
@@ -1975,7 +2079,7 @@ namespace JMMClient
 					ImportFolderVM fldr = (ImportFolderVM)obj;
 
 					JMMServerVM.Instance.clientBinaryHTTP.ScanFolder(fldr.ImportFolderID.Value);
-					MessageBox.Show("Process is Running", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+					MessageBox.Show(JMMClient.Properties.Resources.Import_Running, JMMClient.Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
 				}
 			}
 			catch (Exception ex)
@@ -1998,8 +2102,8 @@ namespace JMMClient
 				{
 					GroupFilterVM gf = (GroupFilterVM)obj;
 
-					MessageBoxResult res = MessageBox.Show(string.Format("Are you sure you want to delete the Group Filter: {0}", gf.FilterName),
-					"Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
+					MessageBoxResult res = MessageBox.Show(string.Format(JMMClient.Properties.Resources.Filter_DeleteGroup, gf.FilterName),
+                    JMMClient.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
 					if (res == MessageBoxResult.Yes)
 					{
 						// remove from group list
@@ -2166,7 +2270,7 @@ namespace JMMClient
 				gfNew.IsBeingEdited = true;
 				gfNew.IsLocked = false;
                 gfNew.IsSystemGroupFilter = false;
-				gfNew.FilterName = "New Filter";
+				gfNew.FilterName = JMMClient.Properties.Resources.Filter_New;
 				gfNew.ApplyToSeries = 0;
 				gfNew.BaseCondition = (int)GroupFilterBaseCondition.Include;
 				gfNew.FilterConditions = new ObservableCollection<GroupFilterConditionVM>();
@@ -2196,8 +2300,8 @@ namespace JMMClient
 				{
 					GroupFilterConditionVM gfc = (GroupFilterConditionVM)obj;
 
-					MessageBoxResult res = MessageBox.Show(string.Format("Are you sure you want to delete the Filter Condition: {0}", gfc.NiceDescription),
-					"Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
+					MessageBoxResult res = MessageBox.Show(string.Format(JMMClient.Properties.Resources.Filter_DeleteCondition, gfc.NiceDescription),
+                    JMMClient.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
 					if (res == MessageBoxResult.Yes)
 					{
 						// remove from group list
@@ -2397,8 +2501,8 @@ namespace JMMClient
 				{
 					GroupFilterSortingCriteria gfsc = (GroupFilterSortingCriteria)obj;
 
-					MessageBoxResult res = MessageBox.Show(string.Format("Are you sure you want to delete the sorting?"),
-					"Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
+					MessageBoxResult res = MessageBox.Show(string.Format(JMMClient.Properties.Resources.Filter_DeleteSort),
+                    JMMClient.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
 					if (res == MessageBoxResult.Yes)
 					{
 						// find the sorting condition
@@ -2538,8 +2642,8 @@ namespace JMMClient
 
 			try
 			{
-				MessageBoxResult res = MessageBox.Show(string.Format("Are you sure you want to delete the playlist: {0}", pl.PlaylistName),
-					"Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
+				MessageBoxResult res = MessageBox.Show(string.Format(JMMClient.Properties.Resources.Playlist_Delete, pl.PlaylistName),
+                    JMMClient.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
 				if (res == MessageBoxResult.Yes)
 				{
 					this.Cursor = Cursors.Wait;
@@ -2584,7 +2688,7 @@ namespace JMMClient
 				if (plContract == null)
 				{
 					this.Cursor = Cursors.Arrow;
-					MessageBox.Show("Could not find playlist", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					MessageBox.Show(JMMClient.Properties.Resources.Filter_PlaylistMissing, JMMClient.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 					return;
 				}
 				PlaylistVM pl = new PlaylistVM(plContract);
@@ -2739,7 +2843,7 @@ namespace JMMClient
 			try
 			{
 				JMMServerVM.Instance.RunImport();
-				MessageBox.Show("Import is Running", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+				MessageBox.Show(JMMClient.Properties.Resources.Import_Running, JMMClient.Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
 			}
 			catch (Exception ex)
 			{
@@ -2753,11 +2857,11 @@ namespace JMMClient
 			try
 			{
 				MessageBoxResult res = MessageBox.Show(string.Format("Are you sure you want run this process?"),
-					"Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    JMMClient.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
 				if (res == MessageBoxResult.Yes)
 				{
 					JMMServerVM.Instance.RemoveMissingFiles();
-					MessageBox.Show("Process is Running", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+					MessageBox.Show(JMMClient.Properties.Resources.Process_Running, JMMClient.Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
 				}
 			}
 			catch (Exception ex)
@@ -2771,7 +2875,7 @@ namespace JMMClient
 			try
 			{
 				JMMServerVM.Instance.SyncMyList();
-				MessageBox.Show("Process is Running", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+				MessageBox.Show(JMMClient.Properties.Resources.Process_Running, JMMClient.Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
 			}
 			catch (Exception ex)
 			{
@@ -2784,7 +2888,7 @@ namespace JMMClient
 			try
 			{
 				JMMServerVM.Instance.SyncVotes();
-				MessageBox.Show("Process is Running", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+				MessageBox.Show(JMMClient.Properties.Resources.Process_Running, JMMClient.Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
 			}
 			catch (Exception ex)
 			{
@@ -2797,7 +2901,7 @@ namespace JMMClient
 			try
 			{
 				JMMServerVM.Instance.clientBinaryHTTP.SyncMALUpload();
-				MessageBox.Show("Process is Queued", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+				MessageBox.Show(JMMClient.Properties.Resources.Process_Queued, JMMClient.Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
 			}
 			catch (Exception ex)
 			{
@@ -2810,7 +2914,7 @@ namespace JMMClient
 			try
 			{
 				JMMServerVM.Instance.clientBinaryHTTP.SyncMALDownload();
-				MessageBox.Show("Process is Queued", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+				MessageBox.Show(JMMClient.Properties.Resources.Process_Queued, JMMClient.Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
 			}
 			catch (Exception ex)
 			{
@@ -3314,8 +3418,36 @@ namespace JMMClient
 		{
 			try
 			{
-				//BindingOperations.ClearBinding(ccDetail, ContentControl.ContentProperty);
-				Binding b = new Binding();
+                //BindingOperations.ClearBinding(ccDetail, ContentControl.ContentProperty);
+
+                if (objToBind != null && objToBind.GetType().Equals(typeof(AnimeSeriesVM)))
+                {
+                    AnimeSeriesVM ser = objToBind as AnimeSeriesVM;
+                    if (AppSettings.DisplaySeriesSimple)
+                    {
+                        AnimeSeriesSimplifiedControl ctrl = new AnimeSeriesSimplifiedControl();
+                        ctrl.DataContext = ser;
+
+                        AnimeSeriesContainerControl cont = new AnimeSeriesContainerControl();
+                        cont.IsMetroDash = false;
+                        cont.DataContext = ctrl;
+
+                        objToBind = cont;
+                    }
+                    else
+                    {
+                        AnimeSeries ctrl = new AnimeSeries();
+                        ctrl.DataContext = ser;
+
+                        AnimeSeriesContainerControl cont = new AnimeSeriesContainerControl();
+                        cont.IsMetroDash = false;
+                        cont.DataContext = ctrl;
+
+                        objToBind = cont;
+                    }
+                }
+
+                Binding b = new Binding();
 				b.Source = objToBind;
 				b.UpdateSourceTrigger = UpdateSourceTrigger.Explicit;
 				ccDetail.SetBinding(ContentControl.ContentProperty, b);

@@ -7,6 +7,7 @@ using System.Web;
 using System.Net;
 using System.IO;
 using System.Collections;
+using System.Collections.Specialized;
 
 namespace JMMClient.Downloads
 {
@@ -65,48 +66,21 @@ namespace JMMClient.Downloads
 
 			try
 			{
-				CookieContainer container = new CookieContainer();
-				string formUrl = "http://bakabt.me/login.php"; // NOTE: This is the URL the form POSTs to, not the URL of the form (you can find this in the "action" attribute of the HTML's form tag
-				string formParams = string.Format("username={0}&password={1}", username, password);
+                using (var client = new WebClientEx())
+                {
+                    var values = new NameValueCollection
+                    {
+                        { "username", username },
+                        { "password", password },
+                    };
+                    // Authenticate
+                    client.UploadValues("https://bakabt.me/login.php", values);
+                    if (ValidateCookie(client.CookieContainer.GetCookieHeader(new Uri("https://bakabt.me"))))
+                        return client.CookieContainer.GetCookieHeader(new Uri("https://bakabt.me"));
+                    else
+                        return "";
+                }
 
-				HttpWebRequest req = (HttpWebRequest)WebRequest.Create(formUrl);
-				req.ContentType = "application/x-www-form-urlencoded";
-				req.Method = "POST";
-				//req.AllowAutoRedirect = false;
-				req.CookieContainer = container;
-				req.UserAgent = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)";
-				req.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip,deflate");
-				req.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
-				byte[] bytes = Encoding.ASCII.GetBytes(formParams);
-				req.ContentLength = bytes.Length;
-				using (Stream os = req.GetRequestStream())
-				{
-					os.Write(bytes, 0, bytes.Length);
-				}
-
-
-				HttpWebResponse WebResponse = (HttpWebResponse)req.GetResponse();
-
-				Stream responseStream = WebResponse.GetResponseStream();
-				String enco = WebResponse.CharacterSet;
-				Encoding encoding = null;
-				if (!String.IsNullOrEmpty(enco))
-					encoding = Encoding.GetEncoding(WebResponse.CharacterSet);
-				if (encoding == null)
-					encoding = Encoding.Default;
-				StreamReader Reader = new StreamReader(responseStream, encoding);
-
-				string output = Reader.ReadToEnd();
-
-				logger.Trace(ShowAllCookies(container));
-
-				if (container.Count < 3) 
-					return "";
-
-
-
-				//Grab the cookie we just got back for this specifc page
-				return container.GetCookieHeader(new Uri("http://www.bakabt.me/index.php"));
 			}
 			catch (Exception ex)
 			{
@@ -115,6 +89,19 @@ namespace JMMClient.Downloads
 			}
 		}
 
+        private bool ValidateCookie(string cookie)
+        {
+            string urlBase = "https://bakabt.me/browse.php?only=0&hentai=1&incomplete=1&lossless=1&hd=1&multiaudio=1&bonus=1&c1=1&c2=1&c5=1&reorder=1&q={0}";
+
+            string searchCriteria = "saint";
+
+            string url = string.Format(urlBase, searchCriteria);
+            string output = Utils.DownloadWebPage(url, cookie, true);
+
+            return ParseSource(output).Count > 1;
+        }
+
+        internal int count = 0;
 		private List<TorrentLinkVM> ParseSource(string output)
 		{
 			List<TorrentLinkVM> torLinks = new List<TorrentLinkVM>();
@@ -319,6 +306,7 @@ namespace JMMClient.Downloads
 			}
 			//Console.ReadLine();
 
+            count = torLinks.Count;
 			return torLinks;
 		}
 
@@ -338,7 +326,7 @@ namespace JMMClient.Downloads
 				if (string.IsNullOrEmpty(UserSettingsVM.Instance.BakaBTCookieHeader))
 					return new List<TorrentLinkVM>();
 
-				string urlBase = "http://bakabt.me/browse.php?only=0&hentai=1&incomplete=1&lossless=1&hd=1&multiaudio=1&bonus=1&c1=1&c2=1&c5=1&reorder=1&q={0}";
+				string urlBase = "https://bakabt.me/browse.php?only=0&hentai=1&incomplete=1&lossless=1&hd=1&multiaudio=1&bonus=1&c1=1&c2=1&c5=1&reorder=1&q={0}";
 
 				string searchCriteria = "";
 				foreach (string parm in searchParms)
@@ -375,7 +363,7 @@ namespace JMMClient.Downloads
 				if (string.IsNullOrEmpty(UserSettingsVM.Instance.BakaBTCookieHeader))
 					return new List<TorrentLinkVM>();
 
-				string url = "http://bakabt.me/browse.php?only=0&hentai=1&incomplete=1&lossless=1&hd=1&multiaudio=1&bonus=1&c1=1&c2=1&c5=1&reorder=1&q=";
+				string url = "https://bakabt.me/browse.php?only=0&hentai=1&incomplete=1&lossless=1&hd=1&multiaudio=1&bonus=1&c1=1&c2=1&c5=1&reorder=1&q=";
 				string output = Utils.DownloadWebPage(url, UserSettingsVM.Instance.BakaBTCookieHeader, true);
 
 				return ParseSource(output);
@@ -401,7 +389,7 @@ namespace JMMClient.Downloads
 
 		public string GetTorrentLinkFromTorrentPage(string pageSource)
 		{
-			string startBlock = "<div class=\"download_link";
+			string startBlock = "<a href=\"download";
 
 			string linkStart = "href=\"";
 			string linkEnd = "\"";
@@ -434,11 +422,11 @@ namespace JMMClient.Downloads
 				if (string.IsNullOrEmpty(UserSettingsVM.Instance.BakaBTCookieHeader))
 					return;
 
-				string url = torLink.TorrentLinkFull;
+                string url = torLink.TorrentLinkFull;
 				string output = Utils.DownloadWebPage(url, UserSettingsVM.Instance.BakaBTCookieHeader, true);
 
 				string torDownloadLink = GetTorrentLinkFromTorrentPage(output);
-				torLink.TorrentDownloadLink = string.Format("http://bakabt.me{0}", torDownloadLink);
+				torLink.TorrentDownloadLink = string.Format("https://bakabt.me/{0}", torDownloadLink);
 			}
 			catch (Exception ex)
 			{
@@ -478,5 +466,5 @@ namespace JMMClient.Downloads
 		}
 
 		#endregion
-	}
+    }
 }
