@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -22,6 +24,8 @@ namespace JMMClient.UserControls
 		public TraktSettings()
 		{
 			InitializeComponent();
+
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
             Utils.PopulateScheduledComboBox(cboUpdateFrequency, JMMServerVM.Instance.Trakt_UpdateFrequency);
 			cboUpdateFrequency.SelectionChanged += new SelectionChangedEventHandler(cboUpdateFrequency_SelectionChanged);
@@ -104,15 +108,15 @@ namespace JMMClient.UserControls
                     DateTime? validDate = Utils.GetUTCDate(validUntil);
                     if (validDate.HasValue && DateTime.Now < validDate.Value)
                     {
-                        tbValidity.Text = string.Format("Current token is valid until: {0}", validDate.ToString());
+                        tbValidity.Text = string.Format(Properties.Resources.Trakt_TokenValid, validDate.ToString());
                         validToken = true;
                     }
                     else
-                        tbValidity.Text = "Your token has expired, please get a new one.";
+                        tbValidity.Text = Properties.Resources.Trakt_TokenExpired;
                 }
             }
             else
-                tbValidity.Text = "You have not authorized JMM to access your Trakt account!";
+                tbValidity.Text = Properties.Resources.Trakt_JMMNotAuth;
 
             /*
             if (validToken)

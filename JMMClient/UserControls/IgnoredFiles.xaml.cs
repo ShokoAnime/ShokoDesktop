@@ -15,6 +15,8 @@ using System.ComponentModel;
 using System.Collections.ObjectModel;
 using JMMClient.ViewModel;
 using System.IO;
+using System.Threading;
+using System.Globalization;
 
 namespace JMMClient.UserControls
 {
@@ -57,7 +59,9 @@ namespace JMMClient.UserControls
 		{
 			InitializeComponent();
 
-			IgnoredFilesCollection = new ObservableCollection<VideoLocalVM>();
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            IgnoredFilesCollection = new ObservableCollection<VideoLocalVM>();
 			ViewFiles = CollectionViewSource.GetDefaultView(IgnoredFilesCollection);
 			ViewFiles.SortDescriptions.Add(new SortDescription("FileName", ListSortDirection.Ascending));
 
@@ -145,7 +149,7 @@ namespace JMMClient.UserControls
 					}
 					else
 					{
-						MessageBox.Show(Properties.Resources.MSG_ERR_FileNotFound, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+						MessageBox.Show(Properties.Resources.MSG_ERR_FileNotFound, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 					}
 				}
 			}
@@ -179,7 +183,7 @@ namespace JMMClient.UserControls
 
 					string result = JMMServerVM.Instance.clientBinaryHTTP.SetIgnoreStatusOnFile(vid.VideoLocalID, false);
 					if (result.Length > 0)
-						MessageBox.Show(result, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+						MessageBox.Show(result, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 					else
 						RefreshIgnoredFiles();
 
@@ -191,7 +195,7 @@ namespace JMMClient.UserControls
 					{
 						string result = JMMServerVM.Instance.clientBinaryHTTP.SetIgnoreStatusOnFile(id, false);
 						if (result.Length > 0)
-							MessageBox.Show(result, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+							MessageBox.Show(result, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 					}
 					RefreshIgnoredFiles();
 				}

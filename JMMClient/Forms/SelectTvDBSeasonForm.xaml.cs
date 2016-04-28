@@ -12,6 +12,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using NLog;
 using JMMClient.ViewModel;
+using System.Threading;
+using System.Globalization;
 
 namespace JMMClient.Forms
 {
@@ -132,7 +134,9 @@ namespace JMMClient.Forms
 		{
 			InitializeComponent();
 
-			btnClose.Click += new RoutedEventHandler(btnClose_Click);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            btnClose.Click += new RoutedEventHandler(btnClose_Click);
 			btnUpdate.Click += new RoutedEventHandler(btnUpdate_Click);
 		}
 

@@ -108,6 +108,7 @@
             <DataTemplate x:Key="groupCountTemplate">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="{Binding Path=GroupCount}" />
+                    <TextBlock Text=" " />
                     <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Group_GroupCount}" />
                 </StackPanel>
             </DataTemplate>

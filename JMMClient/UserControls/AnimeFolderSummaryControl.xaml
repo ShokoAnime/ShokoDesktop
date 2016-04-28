@@ -39,7 +39,7 @@
                                 CommandParameter="{Binding}" >
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                 <Image Height="16" Width="16" Source="/Images/32_folder.png" Margin="2,0,2,0"/>
-                                <TextBlock VerticalAlignment="Center" Text="Open" Margin="5,0,5,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Files_Open}" Margin="5,0,5,0"/>
                             </StackPanel>
                         </Button>
 
@@ -48,7 +48,7 @@
                                 Visibility="Collapsed" >
                             <Image Height="16" Width="16" Source="/Images/16_heart_empty.png" Margin="2,0,2,0"/>
                             <Button.ToolTip>
-                                <TextBlock Text="Set this folder as your default folder, where all new files will be moved to on import"/>
+                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Files_SetDefault}"/>
                             </Button.ToolTip>
                         </Button>
 
@@ -57,7 +57,7 @@
                             Visibility="Collapsed" >
                             <Image Height="16" Width="16" Source="/Images/16_heart.png" Margin="2,0,2,0"/>
                             <Button.ToolTip>
-                                <TextBlock Text="Removed this folder as your default"/>
+                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Files_DefaultRemoved}"/>
                             </Button.ToolTip>
                         </Button>
 
@@ -126,7 +126,7 @@
             <Button x:Name="btnChooseFolder" Margin="0,0,10,0" Style="{DynamicResource RoundButtonStyle}" VerticalAlignment="Center">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                     <Image Height="16" Width="16" Source="/Images/32_folder.png" Margin="2,0,2,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="Select a default Folder" Margin="5,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Files_SelectDefault}" Margin="5,0,5,0"/>
                 </StackPanel>
             </Button>
         </StackPanel>

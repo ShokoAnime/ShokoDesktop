@@ -14,6 +14,7 @@ using JMMClient.ViewModel;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Threading;
 
 namespace JMMClient.Forms
 {
@@ -160,7 +161,9 @@ namespace JMMClient.Forms
 		{
 			InitializeComponent();
 
-			txtGroupSearch.TextChanged += new TextChangedEventHandler(txtGroupSearch_TextChanged);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            txtGroupSearch.TextChanged += new TextChangedEventHandler(txtGroupSearch_TextChanged);
 			btnClearGroupSearch.Click += new RoutedEventHandler(btnClearGroupSearch_Click);
 
             txtTagSearch.TextChanged += new TextChangedEventHandler(txtTagSearch_TextChanged);
@@ -201,7 +204,7 @@ namespace JMMClient.Forms
 			{
 				if (dpDate.SelectedDate == null)
 				{
-					MessageBox.Show(Properties.Resources.MSG_ERR_SelectDate, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					MessageBox.Show(Properties.Resources.MSG_ERR_SelectDate, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 					dpDate.Focus();
 					return;
 				}
@@ -216,7 +219,7 @@ namespace JMMClient.Forms
 			{
 				if (txtParameter.Text.Trim().Length == 0)
 				{
-					MessageBox.Show(Properties.Resources.MSG_ERR_EnterValue, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					MessageBox.Show(Properties.Resources.MSG_ERR_EnterValue, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 					txtParameter.Focus();
 					return;
 				}
@@ -226,7 +229,7 @@ namespace JMMClient.Forms
 					decimal.TryParse(txtParameter.Text, style, culture, out dRating);
 					if (dRating <= 0 || dRating > 10)
 					{
-						MessageBox.Show(Properties.Resources.MSG_ERR_RatingValue, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+						MessageBox.Show(Properties.Resources.MSG_ERR_RatingValue, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 						txtParameter.Focus();
 						return;
 					}
@@ -240,7 +243,7 @@ namespace JMMClient.Forms
 			{
 				if (txtParameter.Text.Trim().Length == 0)
 				{
-					MessageBox.Show(Properties.Resources.MSG_ERR_EnterValue, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					MessageBox.Show(Properties.Resources.MSG_ERR_EnterValue, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 					txtParameter.Focus();
 					return;
 				}
@@ -249,7 +252,7 @@ namespace JMMClient.Forms
 					int parmInt = -1;
 					if (!int.TryParse(txtParameter.Text, out parmInt))
 					{
-						MessageBox.Show("Please enter an integer value only", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+						MessageBox.Show(Properties.Resources.GroupFilter_IntegerOnly, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 						txtParameter.Focus();
 						return;
 					}
@@ -263,7 +266,7 @@ namespace JMMClient.Forms
 			{
 				if (txtParameter.Text.Trim().Length == 0)
 				{
-					MessageBox.Show(Properties.Resources.MSG_ERR_EnterValue, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					MessageBox.Show(Properties.Resources.MSG_ERR_EnterValue, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 					txtParameter.Focus();
 					return;
 				}
@@ -273,7 +276,7 @@ namespace JMMClient.Forms
 					int.TryParse(txtParameter.Text, out days);
 					if (days < 1 || days > int.MaxValue)
 					{
-						MessageBox.Show(Properties.Resources.MSG_ERR_DaysValue, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+						MessageBox.Show(Properties.Resources.MSG_ERR_DaysValue, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 						txtParameter.Focus();
 						return;
 					}
@@ -288,7 +291,7 @@ namespace JMMClient.Forms
 			{
                 if (txtSelectedTags.Text.Trim().Length == 0)
 				{
-					MessageBox.Show(Properties.Resources.MSG_ERR_EnterValue, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					MessageBox.Show(Properties.Resources.MSG_ERR_EnterValue, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 					txtParameter.Focus();
 					return;
 				}
@@ -314,7 +317,7 @@ namespace JMMClient.Forms
             {
                 if (txtSelectedCustomTags.Text.Trim().Length == 0)
                 {
-                    MessageBox.Show(Properties.Resources.MSG_ERR_EnterValue, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Properties.Resources.MSG_ERR_EnterValue, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     txtSelectedCustomTags.Focus();
                     return;
                 }
@@ -341,7 +344,7 @@ namespace JMMClient.Forms
 
 				if (txtSelectedVideoQuality.Text.Trim().Length == 0)
 				{
-					MessageBox.Show(Properties.Resources.MSG_ERR_EnterValue, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					MessageBox.Show(Properties.Resources.MSG_ERR_EnterValue, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 					txtParameter.Focus();
 					return;
 				}
@@ -368,7 +371,7 @@ namespace JMMClient.Forms
 
 				if (txtSelectedAudioLanguages.Text.Trim().Length == 0)
 				{
-					MessageBox.Show(Properties.Resources.MSG_ERR_EnterValue, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					MessageBox.Show(Properties.Resources.MSG_ERR_EnterValue, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 					txtParameter.Focus();
 					return;
 				}
@@ -395,7 +398,7 @@ namespace JMMClient.Forms
 
 				if (txtSelectedSubtitleLanguages.Text.Trim().Length == 0)
 				{
-					MessageBox.Show(Properties.Resources.MSG_ERR_EnterValue, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					MessageBox.Show(Properties.Resources.MSG_ERR_EnterValue, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 					txtParameter.Focus();
 					return;
 				}
@@ -423,7 +426,7 @@ namespace JMMClient.Forms
 
 				if (txtSelectedAnimeTypes.Text.Trim().Length == 0)
 				{
-					MessageBox.Show(Properties.Resources.MSG_ERR_EnterValue, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					MessageBox.Show(Properties.Resources.MSG_ERR_EnterValue, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 					txtParameter.Focus();
 					return;
 				}
@@ -449,7 +452,7 @@ namespace JMMClient.Forms
 			{
 				if (lbGroups.SelectedItem == null)
 				{
-					MessageBox.Show(Properties.Resources.MSG_ERR_GroupSelectionRequired, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					MessageBox.Show(Properties.Resources.MSG_ERR_GroupSelectionRequired, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 					lbGroups.Focus();
 					return;
 				}
@@ -464,7 +467,7 @@ namespace JMMClient.Forms
 			{
 				if (txtParameter.Text.Trim().Length == 0)
 				{
-					MessageBox.Show(Properties.Resources.MSG_ERR_EnterValue, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					MessageBox.Show(Properties.Resources.MSG_ERR_EnterValue, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 					txtParameter.Focus();
 					return;
 				}

@@ -250,8 +250,8 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Old Name" Binding="{Binding VideoLocal.FullPath}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="New Name" Binding="{Binding NewFileName}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Rename_OldName}" Binding="{Binding VideoLocal.FullPath}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Rename_NewName}" Binding="{Binding NewFileName}" IsReadOnly="True" />
 
                 </DataGrid.Columns>
             </DataGrid>

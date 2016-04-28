@@ -45,7 +45,9 @@ namespace JMMClient.Forms
 		{
 			InitializeComponent();
 
-			cRating.OnRatingValueChangedEvent += new RatingControl.RatingValueChangedHandler(cRating_OnRatingValueChangedEvent);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            cRating.OnRatingValueChangedEvent += new RatingControl.RatingValueChangedHandler(cRating_OnRatingValueChangedEvent);
 			this.DataContextChanged += new DependencyPropertyChangedEventHandler(RateSeriesForm_DataContextChanged);
 
 			this.Loaded += new RoutedEventHandler(RateSeriesForm_Loaded);

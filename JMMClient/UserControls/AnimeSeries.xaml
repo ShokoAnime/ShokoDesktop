@@ -1133,7 +1133,7 @@
 
                 <!-- Folders -->
                 <Border BorderBrush="LightGray" BorderThickness="1" Background="#FFE9ECEF" Margin="0,0,0,5" Grid.Row="2" Grid.ColumnSpan="2">
-                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Series_Folders}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Series_Folder}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                 </Border>
 
                 <Border Background="FloralWhite" BorderBrush="DarkGray" BorderThickness="1" Padding="5" Margin="5" Grid.Row="3" Grid.ColumnSpan="2">

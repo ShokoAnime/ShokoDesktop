@@ -18,6 +18,8 @@ using JMMClient.ViewModel;
 using System.Diagnostics;
 using System.Net;
 using System.Text.RegularExpressions;
+using System.Threading;
+using System.Globalization;
 
 namespace JMMClient.UserControls
 {
@@ -82,7 +84,9 @@ namespace JMMClient.UserControls
 		{
 			InitializeComponent();
 
-			TorrentLinks = new ObservableCollection<TorrentLinkVM>();
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            TorrentLinks = new ObservableCollection<TorrentLinkVM>();
 			ViewTorrentLinks = CollectionViewSource.GetDefaultView(TorrentLinks);
 			ViewTorrentLinks.Filter = LinkSearchFilter;
 
@@ -218,7 +222,7 @@ namespace JMMClient.UserControls
 
 				ShowSubGroupSuggestions(vidQualListTemp);
 
-				TorrentSearchStatus = string.Format("{0} Results", links.Count);
+				TorrentSearchStatus = string.Format(Properties.Resources.Downloads_Results, links.Count);
 			}
 			catch (Exception ex)
 			{
@@ -269,7 +273,7 @@ namespace JMMClient.UserControls
 		public void PerformSearch(DownloadSearchCriteria crit)
 		{
 			this.Cursor = Cursors.Wait;
-			TorrentSearchStatus = string.Format("Searching...");
+			TorrentSearchStatus = string.Format(Properties.Resources.Downloads_Searching);
 
 			try
 			{
@@ -441,7 +445,7 @@ namespace JMMClient.UserControls
 			if (torLink == null) return;
 
 			MenuItem itemStart = new MenuItem();
-			itemStart.Header = "Download";
+			itemStart.Header = Properties.Resources.Downloads_Download;
 			itemStart.Click += new RoutedEventHandler(torrentDownload);
 			itemStart.CommandParameter = torLink;
 			m.Items.Add(itemStart);
@@ -449,7 +453,7 @@ namespace JMMClient.UserControls
 			if (!string.IsNullOrEmpty(torLink.TorrentLink))
 			{
 				MenuItem itemLink = new MenuItem();
-				itemLink.Header = "Go to Website";
+				itemLink.Header = Properties.Resources.Downloads_GoWebsite;
 				itemLink.Click += new RoutedEventHandler(torrentBrowseWebsite);
 				itemLink.CommandParameter = torLink;
 				m.Items.Add(itemLink);

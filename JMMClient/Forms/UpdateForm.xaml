@@ -8,7 +8,7 @@
         ShowInTaskbar="False" WindowStyle="ToolWindow"
         WindowStartupLocation="CenterScreen" Topmost="False" SizeToContent="WidthAndHeight"
         mc:Ignorable="d"
-        Title="JMM Desktop Updates" MinHeight="200" MinWidth="500" Icon="/JMMDesktop;component/Web%20Database.ico">
+        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=Update_JMMDesktop}" MinHeight="200" MinWidth="500" Icon="/JMMDesktop;component/Web%20Database.ico">
     <Grid>
         <Grid.Resources>
 
@@ -62,7 +62,7 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" Margin="10,6"  Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Update_DownloadPage}"  VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="0" Grid.Column="0" Margin="10,6"  Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Update_UpdatePage}"  VerticalAlignment="Center"/>
                 <usercontrols:HyperLinkStandard Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin="10,6,10,5" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_Download}"
                                                                         URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_Download}"/>
 

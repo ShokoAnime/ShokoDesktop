@@ -5,7 +5,7 @@
         xmlns:local="clr-namespace:JMMClient"
         ShowInTaskbar="False" WindowStyle="ToolWindow"
         WindowStartupLocation="CenterScreen" Topmost="False" SizeToContent="WidthAndHeight"
-        Title="JMM Desktop" MinHeight="250" MinWidth="500" Name="aboutWindow" Icon="/JMMDesktop;component/Web%20Database.ico">
+        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=JMMDesktop}" MinHeight="250" MinWidth="500" Name="aboutWindow" Icon="/JMMDesktop;component/Web%20Database.ico">
 
     <Grid>
         <Grid.Resources>
@@ -63,19 +63,19 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" Margin="5,6"  Text="Home Page"  VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="0" Grid.Column="0" Margin="5,6"  Text="{Resx ResxName=JMMClient.Properties.Resources, Key=About_Home}"  VerticalAlignment="Center"/>
                 <usercontrols:HyperLinkStandard Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin="5,6,5,5" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_Site}"
                                                                         URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_Site}"/>
-                
-                <TextBlock Grid.Row="1" Grid.Column="0" Margin="5,4.864,5,6"  Text="Project Page"  VerticalAlignment="Center"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Margin="5,4.864,5,6"  Text="{Resx ResxName=JMMClient.Properties.Resources, Key=About_Project}"  VerticalAlignment="Center"/>
                 <usercontrols:HyperLinkStandard Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="5,4.864,5,5" DisplayText="https://github.com/japanesemediamanager"
                                                                         URL="https://github.com/japanesemediamanager"/>
-               
-                <TextBlock Grid.Row="2" Grid.Column="0" Margin="5,6"  Text="JMM Blog"  VerticalAlignment="Center"/>
+
+                <TextBlock Grid.Row="2" Grid.Column="0" Margin="5,6"  Text="{Resx ResxName=JMMClient.Properties.Resources, Key=About_Blog}"  VerticalAlignment="Center"/>
                 <usercontrols:HyperLinkStandard Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="5,5,5,6" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_Blog}" 
                                                                         URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_Blog}"/>
 
-                <TextBlock Grid.Row="3" Grid.Column="0" Margin="5,2,5,46"  Text="MediaPortal Forum"  VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="3" Grid.Column="0" Margin="5,2,5,46"  Text="{Resx ResxName=JMMClient.Properties.Resources, Key=About_MediaPortal}"  VerticalAlignment="Center"/>
                 <usercontrols:HyperLinkStandard Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Margin="5,2,5,47" DisplayText="MyAnime 3"
                                                                         URL="http://forum.team-mediaportal.com/threads/my-anime-3.107475/"/>
 

@@ -16,6 +16,7 @@ using System.IO;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Threading;
+using System.Globalization;
 
 namespace JMMClient.UserControls
 {
@@ -67,7 +68,9 @@ namespace JMMClient.UserControls
 		{
 			InitializeComponent();
 
-			lbVideos.SelectionChanged += new SelectionChangedEventHandler(lbVideos_SelectionChanged);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            lbVideos.SelectionChanged += new SelectionChangedEventHandler(lbVideos_SelectionChanged);
 			btnClearList.Click += new RoutedEventHandler(btnClearList_Click);
 			btnDumpFiles.Click += new RoutedEventHandler(btnDumpFiles_Click);
 			btnDumpStop.Click += new RoutedEventHandler(btnDumpStop_Click);
@@ -85,7 +88,7 @@ namespace JMMClient.UserControls
 		{
 			if (workerAvdump.IsBusy)
 			{
-				Utils.ShowErrorMessage("Worker is already running");
+				Utils.ShowErrorMessage(Properties.Resources.AVDump_WorkerRunning);
 				return;
 			}
 
@@ -144,7 +147,7 @@ namespace JMMClient.UserControls
 					if (tempDump == null) continue;
 
 					tempDump.IsBeingDumped = true;
-					tempDump.DumpStatus = "Processing...";
+					tempDump.DumpStatus = Properties.Resources.AVDump_Processing;
 
 					//Create process
 					System.Diagnostics.Process pProcess = new System.Diagnostics.Process();
@@ -155,10 +158,10 @@ namespace JMMClient.UserControls
 
 					if (!File.Exists(filePath))
 					{
-						tempDump.AVDumpFullResult = "Could not find AvDump2 CLI: " + filePath;
+						tempDump.AVDumpFullResult = Properties.Resources.AVDump_Missing + " " + filePath;
 						tempDump.ED2KDump = Utils.GetED2KDump(tempDump.AVDumpFullResult);
 						tempDump.IsBeingDumped = false;
-						tempDump.DumpStatus = "Error!";
+						tempDump.DumpStatus = Properties.Resources.AVDump_Error;
 						tempDump.HasBeenDumped = false;
 
 						continue;
@@ -166,10 +169,10 @@ namespace JMMClient.UserControls
 
 					if (!File.Exists(dump.VideoLocal.FullPath))
 					{
-						tempDump.AVDumpFullResult = "Could not find Video File: " + dump.VideoLocal.FullPath;
+						tempDump.AVDumpFullResult = Properties.Resources.AVDump_VideoMissing + " " + dump.VideoLocal.FullPath;
 						tempDump.ED2KDump = Utils.GetED2KDump(tempDump.AVDumpFullResult);
 						tempDump.IsBeingDumped = false;
-						tempDump.DumpStatus = "Error!";
+						tempDump.DumpStatus = Properties.Resources.AVDump_Error;
 						tempDump.HasBeenDumped = false;
 
 						return;
@@ -200,13 +203,13 @@ namespace JMMClient.UserControls
 					if (string.IsNullOrEmpty(tempDump.ED2KDump))
 					{
 						tempDump.IsBeingDumped = false;
-						tempDump.DumpStatus = "Error!";
+						tempDump.DumpStatus = Properties.Resources.AVDump_Error;
 						tempDump.HasBeenDumped = false;
 					}
 					else
 					{
 						tempDump.IsBeingDumped = false;
-						tempDump.DumpStatus = "Complete!";
+						tempDump.DumpStatus = Properties.Resources.AVDump_Complete;
 						tempDump.HasBeenDumped = true;
 					}
 				}
@@ -279,7 +282,7 @@ namespace JMMClient.UserControls
 				}
 				else
 				{
-					MessageBox.Show(Properties.Resources.MSG_ERR_FileNotFound, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					MessageBox.Show(Properties.Resources.MSG_ERR_FileNotFound, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 				}
 			}
 		}

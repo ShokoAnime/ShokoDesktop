@@ -17,6 +17,8 @@ using JMMClient.Forms;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Threading;
+using System.Globalization;
 
 namespace JMMClient.UserControls
 {
@@ -70,6 +72,8 @@ namespace JMMClient.UserControls
 		{
 			InitializeComponent();
 
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
             commTvDBMenu = new ContextMenu();
             commTraktMenu = new ContextMenu();
 
@@ -121,7 +125,7 @@ namespace JMMClient.UserControls
                 commTvDBMenu.Items.Clear();
 
                 MenuItem itemSeriesAdmin = new MenuItem();
-                itemSeriesAdmin.Header = "Show Community Admin";
+                itemSeriesAdmin.Header = Properties.Resources.CommunityLinks_ShowAdmin;
                 itemSeriesAdmin.Click += new RoutedEventHandler(commTvDBMenuItem_Click);
                 cmd = new CommTvDBTraktMenuCommand(CommTvDBTraktItemType.ShowCommAdmin, -1); // new playlist
                 itemSeriesAdmin.CommandParameter = cmd;
@@ -130,7 +134,7 @@ namespace JMMClient.UserControls
                 if (AniDB_AnimeCrossRefs.TvDBCrossRefExists)
                 {
                     MenuItem itemSeriesLinks = new MenuItem();
-                    itemSeriesLinks.Header = "Use My Links";
+                    itemSeriesLinks.Header = Properties.Resources.CommunityLins_UseMyLinks;
                     itemSeriesLinks.Click += new RoutedEventHandler(commTvDBMenuItem_Click);
                     cmd = new CommTvDBTraktMenuCommand(CommTvDBTraktItemType.UseMyLinks, -1); // new playlist
                     itemSeriesLinks.CommandParameter = cmd;
@@ -178,13 +182,13 @@ namespace JMMClient.UserControls
                     {
                         if (!AniDB_AnimeCrossRefs.TvDBCrossRefExists)
                         {
-                            MessageBox.Show("You don't have any links", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(Properties.Resources.CommunityLinks_NoLinks, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                             return;
                         }
 
                         string res = JMMServerVM.Instance.clientBinaryHTTP.UseMyTvDBLinksWebCache(anime.AnimeID);
                         this.Cursor = Cursors.Arrow;
-                        MessageBox.Show(res, "Result", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show(res, Properties.Resources.Result, MessageBoxButton.OK, MessageBoxImage.Information);
                     }
 
                     this.Cursor = Cursors.Arrow;
@@ -208,7 +212,7 @@ namespace JMMClient.UserControls
                 commTraktMenu.Items.Clear();
 
                 MenuItem itemSeriesAdmin = new MenuItem();
-                itemSeriesAdmin.Header = "Show Community Admin";
+                itemSeriesAdmin.Header = Properties.Resources.CommunityLinks_ShowAdmin;
                 itemSeriesAdmin.Click += new RoutedEventHandler(commTraktMenuItem_Click);
                 cmd = new CommTvDBTraktMenuCommand(CommTvDBTraktItemType.ShowCommAdmin, -1); // new playlist
                 itemSeriesAdmin.CommandParameter = cmd;
@@ -217,7 +221,7 @@ namespace JMMClient.UserControls
                 if (AniDB_AnimeCrossRefs.TraktCrossRefExists)
                 {
                     MenuItem itemSeriesLinks = new MenuItem();
-                    itemSeriesLinks.Header = "Use My Links";
+                    itemSeriesLinks.Header = Properties.Resources.CommunityLins_UseMyLinks;
                     itemSeriesLinks.Click += new RoutedEventHandler(commTraktMenuItem_Click);
                     cmd = new CommTvDBTraktMenuCommand(CommTvDBTraktItemType.UseMyLinks, -1); // new playlist
                     itemSeriesLinks.CommandParameter = cmd;
@@ -265,13 +269,13 @@ namespace JMMClient.UserControls
                     {
                         if (!AniDB_AnimeCrossRefs.TraktCrossRefExists)
                         {
-                            MessageBox.Show("You don't have any links", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(Properties.Resources.CommunityLinks_NoLinks, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                             return;
                         }
 
                         string res = JMMServerVM.Instance.clientBinaryHTTP.UseMyTraktLinksWebCache(anime.AnimeID);
                         this.Cursor = Cursors.Arrow;
-                        MessageBox.Show(res, "Result", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show(res, Properties.Resources.Result, MessageBoxButton.OK, MessageBoxImage.Information);
                     }
 
                     this.Cursor = Cursors.Arrow;
@@ -380,15 +384,15 @@ namespace JMMClient.UserControls
                 btnTvDBCommLinks1.IsEnabled = true;
                 btnTvDBCommLinks2.IsEnabled = true;
 
-                CommTvDBButtonText = "No Community Links Available";
+                CommTvDBButtonText = Properties.Resources.CommunityLinks_NoLinksAvailable;
                 if (CommunityTVDBLinks.Count > 0)
                 {
-                    CommTvDBButtonText = "Links Need Approval";
+                    CommTvDBButtonText = Properties.Resources.CommunityLinks_NeedApproval;
                     foreach (CrossRef_AniDB_TvDBVMV2 xref in CommunityTVDBLinks)
                     {
                         if (xref.IsAdminApprovedBool)
                         {
-                            CommTvDBButtonText = "Approval Exists";
+                            CommTvDBButtonText = Properties.Resources.CommunityLinks_ApprovalExists;
                             break;
                         }
                     }
@@ -397,15 +401,15 @@ namespace JMMClient.UserControls
                 btnTraktCommLinks1.IsEnabled = true;
                 btnTraktCommLinks2.IsEnabled = true;
 
-                CommTraktButtonText = "No Community Links Available";
+                CommTraktButtonText = Properties.Resources.CommunityLinks_NoLinksAvailable;
                 if (CommunityTraktLinks.Count > 0)
                 {
-                    CommTraktButtonText = "Links Need Approval";
+                    CommTraktButtonText = Properties.Resources.CommunityLinks_NeedApproval;
                     foreach (CrossRef_AniDB_TraktVMV2 xref in CommunityTraktLinks)
                     {
                         if (xref.IsAdminApprovedBool)
                         {
-                            CommTraktButtonText = "Approval Exists";
+                            CommTraktButtonText = Properties.Resources.CommunityLinks_ApprovalExists;
                             break;
                         }
                     }
@@ -537,8 +541,8 @@ namespace JMMClient.UserControls
                     // prompt to select details
                     Window wdw = Window.GetWindow(this);
 
-                    string msg = string.Format("Are you sure you want to delete this link?");
-                    MessageBoxResult result = MessageBox.Show(msg, "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    string msg = string.Format(Properties.Resources.CommunityLinks_DeleteLink);
+                    MessageBoxResult result = MessageBox.Show(msg, Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
                     if (result == MessageBoxResult.Yes)
                     {
@@ -546,7 +550,7 @@ namespace JMMClient.UserControls
 
                         string res = JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBMAL(anime.AnimeID, malLink.StartEpisodeType, malLink.StartEpisodeNumber);
                         if (res.Length > 0)
-                            MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(res, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         else
                         {
                             // update info
@@ -672,8 +676,8 @@ namespace JMMClient.UserControls
 
                     Window wdw = Window.GetWindow(this);
 
-                    string msg = string.Format("Are you sure you want to delete this link?");
-                    MessageBoxResult result = MessageBox.Show(msg, "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    string msg = string.Format(Properties.Resources.CommunityLinks_DeleteLink);
+                    MessageBoxResult result = MessageBox.Show(msg, Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
                     if (result == MessageBoxResult.Yes)
                     {
@@ -681,7 +685,7 @@ namespace JMMClient.UserControls
                         string res = JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBTrakt(link.AnimeID, link.AniDBStartEpisodeType, link.AniDBStartEpisodeNumber,
                             link.TraktID, link.TraktSeasonNumber, link.TraktStartEpisodeNumber);
                         if (res.Length > 0)
-                            MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(res, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         else
                         {
                             // update info
@@ -801,9 +805,9 @@ namespace JMMClient.UserControls
 
                     string response = JMMServerVM.Instance.clientBinaryHTTP.SyncTraktSeries(anime.AnimeID);
                     if (!string.IsNullOrEmpty(response))
-                        MessageBox.Show(response, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(response, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     else
-                        MessageBox.Show("Command has been queued", "Done", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show(Properties.Resources.CommunityLinks_CommandQueued, Properties.Resources.Done, MessageBoxButton.OK, MessageBoxImage.Information);
 
                 }
 
@@ -1036,8 +1040,8 @@ namespace JMMClient.UserControls
 
                     Window wdw = Window.GetWindow(this);
 
-                    string msg = string.Format("Are you sure you want to delete this link?");
-                    MessageBoxResult result = MessageBox.Show(msg, "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    string msg = string.Format(Properties.Resources.CommunityLinks_DeleteLink);
+                    MessageBoxResult result = MessageBox.Show(msg, Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
                     if (result == MessageBoxResult.Yes)
                     {
@@ -1045,7 +1049,7 @@ namespace JMMClient.UserControls
                         string res = JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBTvDB(link.AnimeID, link.AniDBStartEpisodeType, link.AniDBStartEpisodeNumber,
                             link.TvDBID, link.TvDBSeasonNumber, link.TvDBStartEpisodeNumber);
                         if (res.Length > 0)
-                            MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(res, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         else
                         {
                             // update info
@@ -1165,7 +1169,7 @@ namespace JMMClient.UserControls
                 this.Cursor = Cursors.Wait;
                 string res = JMMServerVM.Instance.clientBinaryHTTP.UpdateMovieDBData(AniDB_AnimeCrossRefs.MovieDB_Movie.MovieId);
                 if (res.Length > 0)
-                    MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(res, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                 else
                 {
                     // update info
@@ -1193,15 +1197,15 @@ namespace JMMClient.UserControls
 
 				Window wdw = Window.GetWindow(this);
 
-				string msg = string.Format("Are you sure you want to delete this link?");
-				MessageBoxResult result = MessageBox.Show(msg, "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+				string msg = string.Format(Properties.Resources.CommunityLinks_DeleteLink);
+				MessageBoxResult result = MessageBox.Show(msg, Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
 				if (result == MessageBoxResult.Yes)
 				{
 					this.Cursor = Cursors.Wait;
 					string res = JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBOther(anime.AnimeID, (int)CrossRefType.MovieDB);
 					if (res.Length > 0)
-						MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+						MessageBox.Show(res, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 					else
 					{
 						// update info
@@ -1253,11 +1257,11 @@ namespace JMMClient.UserControls
 
                     btnTvDBCommLinks1.IsEnabled = false;
                     btnTvDBCommLinks2.IsEnabled = false;
-                    CommTvDBButtonText = "Checking Online...";
+                    CommTvDBButtonText = Properties.Resources.CommunityLinks_CheckingOnline;
 
                     btnTraktCommLinks1.IsEnabled = false;
                     btnTraktCommLinks2.IsEnabled = false;
-                    CommTraktButtonText = "Checking Online...";
+                    CommTraktButtonText = Properties.Resources.CommunityLinks_CheckingOnline;
 
                     if (!communityWorker.IsBusy)
                         communityWorker.RunWorkerAsync(anime);

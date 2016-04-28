@@ -13,6 +13,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using JMMClient.ViewModel;
 using JMMClient.Forms;
+using System.Threading;
+using System.Globalization;
 
 namespace JMMClient.UserControls
 {
@@ -38,7 +40,9 @@ namespace JMMClient.UserControls
 		{
 			InitializeComponent();
 
-			PlaylistHelperVM.Instance.OnPlaylistModifiedEvent += new PlaylistHelperVM.PlaylistModifiedHandler(Instance_OnPlaylistModifiedEvent);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            PlaylistHelperVM.Instance.OnPlaylistModifiedEvent += new PlaylistHelperVM.PlaylistModifiedHandler(Instance_OnPlaylistModifiedEvent);
 			btnEditPlaylist.Click += new RoutedEventHandler(btnEditPlaylist_Click);
 			btnEditPlaylistFinish.Click += new RoutedEventHandler(btnEditPlaylistFinish_Click);
 
@@ -308,7 +312,7 @@ namespace JMMClient.UserControls
 						newStatus, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
 					if (!string.IsNullOrEmpty(response.ErrorMessage))
 					{
-						MessageBox.Show(response.ErrorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+						MessageBox.Show(response.ErrorMessage, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 						return;
 					}
 
@@ -327,7 +331,7 @@ namespace JMMClient.UserControls
 						newStatus, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
 					if (!string.IsNullOrEmpty(response.ErrorMessage))
 					{
-						MessageBox.Show(response.ErrorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+						MessageBox.Show(response.ErrorMessage, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 						return;
 					}
 
