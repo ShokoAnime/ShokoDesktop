@@ -208,7 +208,7 @@
                     <Button HorizontalAlignment="Left" Name="btnEnable" Margin="5,0,0,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto"
                             Visibility="{Binding Path=Disabled, Converter={StaticResource BooleanToVisibilityConverter}}"
                             Command="{StaticResource EnableSectionCommand}" CommandParameter="{Binding}" 
-                            ToolTip="Enable Section">
+                            ToolTip="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_MetroEnable}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                             <Image Height="26" Width="26" Source="/Images/Metro/check_false.png" Margin="0,0,0,0"/>
 
@@ -218,7 +218,7 @@
                     <Button HorizontalAlignment="Left" Name="btnDisable" Margin="5,0,0,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto"
                             Visibility="{Binding Path=Enabled, Converter={StaticResource BooleanToVisibilityConverter}}"
                             Command="{StaticResource DisableSectionCommand}" CommandParameter="{Binding}" 
-                            ToolTip="Enable Section">
+                            ToolTip="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_MetroEnable}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                             <Image Height="26" Width="26" Source="/Images/Metro/check_true.png" Margin="0,0,0,0"/>
 

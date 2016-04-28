@@ -14,6 +14,7 @@ using System.Diagnostics;
 using NLog;
 using JMMClient.ViewModel;
 using System.Threading;
+using System.Globalization;
 
 namespace JMMClient.Forms
 {
@@ -87,7 +88,9 @@ namespace JMMClient.Forms
 		{
 			InitializeComponent();
 
-			CrossRef_AniDB_TvDBResult = new List<CrossRef_AniDB_TvDBVMV2>();
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            CrossRef_AniDB_TvDBResult = new List<CrossRef_AniDB_TvDBVMV2>();
 
 			rbExisting.Checked += new RoutedEventHandler(rbExisting_Checked);
 			rbSearch.Checked += new RoutedEventHandler(rbSearch_Checked);
@@ -111,7 +114,7 @@ namespace JMMClient.Forms
 				int.TryParse(txtSeriesID.Text, out id);
 				if (id <= 0)
 				{
-					MessageBox.Show("Please enter a valid number as the series ID", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					MessageBox.Show(Properties.Resources.Search_InvalidTvDB, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 					txtSeriesID.Focus();
 					return;
 				}
@@ -154,7 +157,7 @@ namespace JMMClient.Forms
 				string res = JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBTvDBForAnime(this.AnimeID);
 				if (res.Length > 0)
 				{
-					MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					MessageBox.Show(res, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 					this.Cursor = Cursors.Arrow;
 					return;
 				}
@@ -167,7 +170,7 @@ namespace JMMClient.Forms
 						xref.TvDBID, xref.TvDBSeasonNumber, xref.TvDBStartEpisodeNumber, null);
 					if (res.Length > 0)
 					{
-						MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+						MessageBox.Show(res, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 						this.Cursor = Cursors.Arrow;
 						return;
 					}

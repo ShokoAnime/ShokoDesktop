@@ -8,6 +8,8 @@ using JMMClient.ViewModel;
 using System.Collections.ObjectModel;
 using System.Windows.Data;
 using System.ComponentModel;
+using System.Threading;
+using System.Globalization;
 
 namespace JMMClient.Forms
 {
@@ -72,6 +74,8 @@ namespace JMMClient.Forms
 		{
 			InitializeComponent();
 
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
             TraktSeriesSearchResults = new ObservableCollection<TraktTVShowResponseVM>();
             ViewTraktSeriesSearchResults = CollectionViewSource.GetDefaultView(TraktSeriesSearchResults);
 
@@ -134,7 +138,7 @@ namespace JMMClient.Forms
                 string res = JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBTraktForAnime(this.AnimeID);
                 if (res.Length > 0)
                 {
-                    MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(res, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     this.Cursor = Cursors.Arrow;
                     return;
                 }
@@ -146,7 +150,7 @@ namespace JMMClient.Forms
                         xref.TraktID, xref.TraktSeasonNumber, xref.TraktStartEpisodeNumber, null);
                     if (res.Length > 0)
                     {
-                        MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(res, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         this.Cursor = Cursors.Arrow;
                         return;
                     }

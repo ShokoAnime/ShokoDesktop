@@ -13,6 +13,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Globalization;
 using System.Windows.Controls.Primitives;
+using System.Threading;
 
 namespace JMMClient.UserControls
 {
@@ -103,7 +104,9 @@ namespace JMMClient.UserControls
 		public RatingControl()
 		{
 			InitializeComponent();
-		}
+
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+        }
 
 		
 

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace JMMClient.ViewModel
 {
@@ -46,10 +48,10 @@ namespace JMMClient.ViewModel
 			{
 				switch (RecommendationTypeEnum)
 				{
-					case AniDBRecommendationType.ForFans: return "For Fans";
-					case AniDBRecommendationType.Recommended: return "Recommended";
-					case AniDBRecommendationType.MustSee: return "Must See";
-					default: return "Recommended";
+					case AniDBRecommendationType.ForFans: return Properties.Resources.AniDB_ForFans;
+					case AniDBRecommendationType.Recommended: return Properties.Resources.AniDB_Recommended;
+					case AniDBRecommendationType.MustSee: return Properties.Resources.AniDB_MustSee;
+					default: return Properties.Resources.AniDB_Recommended;
 				}
 			}
 		}

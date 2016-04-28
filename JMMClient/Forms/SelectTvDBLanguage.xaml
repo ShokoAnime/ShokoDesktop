@@ -4,7 +4,7 @@
         xmlns:local="clr-namespace:JMMClient"
         xmlns:forms="clr-namespace:JMMClient.Forms"
         xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
-        Title="Select TvDB Language" Height="450" Width="700" ShowInTaskbar="False" WindowStyle="ToolWindow" Icon="/JMMDesktop;component/Images/tvdb.ico"
+        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=Select_TvDBLanguage}" Height="450" Width="700" ShowInTaskbar="False" WindowStyle="ToolWindow" Icon="/JMMDesktop;component/Images/tvdb.ico"
         WindowStartupLocation="CenterOwner" Topmost="False">
     <Grid>
         <Grid.Resources>

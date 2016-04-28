@@ -331,14 +331,14 @@ namespace JMMClient.UserControls
 				playlistMenu.Items.Clear();
 
 				MenuItem itemSeries = new MenuItem();
-				itemSeries.Header = "Add Series";
+				itemSeries.Header = Properties.Resources.Anime_AddSeries;
 				itemSeries.Click += new RoutedEventHandler(playlistMenuItem_Click);
 				playlistMenu.Items.Add(itemSeries);
 
 				Separator sep = new Separator();
 
 				MenuItem itemSeriesNew = new MenuItem();
-				itemSeriesNew.Header = "New Playlist";
+				itemSeriesNew.Header = Properties.Resources.Anime_NewPlaylists;
 				itemSeriesNew.Click += new RoutedEventHandler(playlistMenuItem_Click);
 				cmd = new PlaylistMenuCommand(PlaylistItemType.Series, -1); // new playlist
 				itemSeriesNew.CommandParameter = cmd;
@@ -356,13 +356,13 @@ namespace JMMClient.UserControls
 				}
 
 				MenuItem itemAllEpisodes = new MenuItem();
-				itemAllEpisodes.Header = "Add All Episodes";
+				itemAllEpisodes.Header = Properties.Resources.Anime_AddAllEpisodes;
 				playlistMenu.Items.Add(itemAllEpisodes);
 
 				Separator sep2 = new Separator();
 
 				MenuItem itemAllEpisodesNew = new MenuItem();
-				itemAllEpisodesNew.Header = "New Playlist";
+				itemAllEpisodesNew.Header = Properties.Resources.Anime_NewPlaylists;
 				itemAllEpisodesNew.Click += new RoutedEventHandler(playlistMenuItem_Click);
 				cmd = new PlaylistMenuCommand(PlaylistItemType.AllEpisodes, -1); // new playlist
 				itemAllEpisodesNew.CommandParameter = cmd;
@@ -381,13 +381,13 @@ namespace JMMClient.UserControls
 
 
 				MenuItem itemUnwatchedEpisodes = new MenuItem();
-				itemUnwatchedEpisodes.Header = "Add Unwatched Episodes";
+				itemUnwatchedEpisodes.Header = Properties.Resources.Anime_AddUnwatched;
 				playlistMenu.Items.Add(itemUnwatchedEpisodes);
 
 				Separator sep3 = new Separator();
 
 				MenuItem itemUnwatchedEpisodesNew = new MenuItem();
-				itemUnwatchedEpisodesNew.Header = "New Playlist";
+				itemUnwatchedEpisodesNew.Header = Properties.Resources.Anime_NewPlaylists;
 				itemUnwatchedEpisodesNew.Click += new RoutedEventHandler(playlistMenuItem_Click);
 				cmd = new PlaylistMenuCommand(PlaylistItemType.UnwatchedEpisodes, -1); // new playlist
 				itemUnwatchedEpisodesNew.CommandParameter = cmd;
@@ -428,7 +428,7 @@ namespace JMMClient.UserControls
 				if (item != null && item.CommandParameter != null)
 				{
 					PlaylistMenuCommand cmd = item.CommandParameter as PlaylistMenuCommand;
-					Debug.Write("Playlist Menu: " + cmd.ToString() + Environment.NewLine);
+					Debug.Write(Properties.Resources.Anime_PlaylistMenu + " " + cmd.ToString() + Environment.NewLine);
 
 					AnimeSeriesVM ser = this.DataContext as AnimeSeriesVM;
 					if (ser == null) return;
@@ -445,7 +445,7 @@ namespace JMMClient.UserControls
 						JMMServerBinary.Contract_Playlist plContract = JMMServerVM.Instance.clientBinaryHTTP.GetPlaylist(cmd.PlaylistID);
 						if (plContract == null)
 						{
-							MessageBox.Show("Could not find playlist", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+							MessageBox.Show(Properties.Resources.Anime_PlaylistMissing, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 							return;
 						}
 						pl = new PlaylistVM(plContract);
@@ -560,8 +560,8 @@ namespace JMMClient.UserControls
 				ser.Save();
 
 				// prompt to change parent group name
-				MessageBoxResult res = MessageBox.Show("Do you also want to rename the parent group?",
-					"Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
+				MessageBoxResult res = MessageBox.Show(Properties.Resources.Anime_RenameParent,
+                    Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
 				if (res == MessageBoxResult.Yes)
 				{
 					AnimeGroupVM thisGrp = MainListHelperVM.Instance.AllGroupsDictionary[ser.AnimeGroupID];
@@ -805,7 +805,7 @@ namespace JMMClient.UserControls
 
 				if (res.Length > 0)
 				{
-					MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					MessageBox.Show(res, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 				}
 				else
 				{
@@ -854,7 +854,7 @@ namespace JMMClient.UserControls
 				this.Cursor = Cursors.Wait;
 				string res = "";
 
-				string disabledMessage = "Cannot set a disabled image as the default";
+				string disabledMessage = Properties.Resources.Anime_DisabledImage;
 
 				if (img.GetType() == typeof(PosterContainer))
 				{
@@ -862,7 +862,7 @@ namespace JMMClient.UserControls
 
 					if (isDefault && poster.IsImageDisabled)
 					{
-						MessageBox.Show(disabledMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+						MessageBox.Show(disabledMessage, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 						return;
 					}
 
@@ -910,7 +910,7 @@ namespace JMMClient.UserControls
 
 					if (isDefault && fanart.IsImageDisabled)
 					{
-						MessageBox.Show(disabledMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+						MessageBox.Show(disabledMessage, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 						return;
 					}
 
@@ -950,7 +950,7 @@ namespace JMMClient.UserControls
 
 					if (isDefault && banner.IsImageDisabled)
 					{
-						MessageBox.Show(disabledMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+						MessageBox.Show(disabledMessage, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 						return;
 					}
 
@@ -963,7 +963,7 @@ namespace JMMClient.UserControls
 
 				if (res.Length > 0)
 				{
-					MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					MessageBox.Show(res, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 				}
 				else
 				{
@@ -1191,7 +1191,7 @@ namespace JMMClient.UserControls
 
                 if (res.Length > 0)
                 {
-                    MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(res, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
                 {
@@ -1432,7 +1432,7 @@ namespace JMMClient.UserControls
 						newStatus, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
 					if (!string.IsNullOrEmpty(response.ErrorMessage))
 					{
-						MessageBox.Show(response.ErrorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+						MessageBox.Show(response.ErrorMessage, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 						return;
 					}
 

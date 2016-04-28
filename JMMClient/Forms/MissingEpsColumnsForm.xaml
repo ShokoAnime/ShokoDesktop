@@ -4,7 +4,7 @@
         xmlns:local="clr-namespace:JMMClient"
         xmlns:forms="clr-namespace:JMMClient.Forms"
         xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
-        Title="Select Columns" Height="350" Width="300" MinWidth="300" ShowInTaskbar="False" WindowStyle="ToolWindow" Icon="/JMMDesktop;component/Images/16_columns.png"
+        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=MissingEpisodes_Column}" Height="350" Width="300" MinWidth="300" ShowInTaskbar="False" WindowStyle="ToolWindow" Icon="/JMMDesktop;component/Images/16_columns.png"
         WindowStartupLocation="CenterOwner" Topmost="False" SizeToContent="WidthAndHeight">
     <Grid>
         <Grid.ColumnDefinitions>

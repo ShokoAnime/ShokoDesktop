@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
+using System.Threading;
+using System.Globalization;
 
 namespace JMMClient.ViewModel 
 {
@@ -154,7 +156,9 @@ namespace JMMClient.ViewModel
 			}
 			else
 			{
-				DisplayName = "Data Missing";
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+                DisplayName = Properties.Resources.AniDB_DataMissing;
 				AnimeInfoExists = false;
 				PosterPath = string.Format("pack://application:,,,/{0};component/Images/blankposter.png", Constants.AssemblyName);
 			}

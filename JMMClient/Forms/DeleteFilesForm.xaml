@@ -50,7 +50,7 @@
 
                             <TextBlock Text="{Binding Path=AniDB_Anime_GroupNameShort}" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0"
                                    Visibility="{Binding Path=IsAutoAssociation, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=DeleteFiles_ManualLink}" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0"
+                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ManualLink}" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0"
                                    Visibility="{Binding Path=IsManualAssociation, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                             <TextBlock Text="{Binding Path=FormattedFileSize}" FontWeight="DemiBold" VerticalAlignment="Center" Margin="0,0,10,0" />
 

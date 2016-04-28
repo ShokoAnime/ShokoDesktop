@@ -134,7 +134,9 @@ namespace JMMClient.Forms
 		{
 			InitializeComponent();
 
-			btnClose.Click += new RoutedEventHandler(btnClose_Click);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            btnClose.Click += new RoutedEventHandler(btnClose_Click);
 			btnUpdate.Click += new RoutedEventHandler(btnUpdate_Click);
 		}
 

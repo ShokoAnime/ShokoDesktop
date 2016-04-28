@@ -39,7 +39,6 @@ namespace JMMClient
 			allTags.Add(new RenameTag(Constants.FileRenameTag_Name.OriginalFileName, Constants.FileRenameTag_Tag.OriginalFileName));
 			allTags.Add(new RenameTag(Constants.FileRenameTag_Name.Censored, Constants.FileRenameTag_Tag.Censored));
 			allTags.Add(new RenameTag(Constants.FileRenameTag_Name.Deprecated, Constants.FileRenameTag_Tag.Deprecated));
-
 			return allTags;
 		}
 
@@ -64,8 +63,6 @@ namespace JMMClient
 			allTests.Add(new RenameTest(Constants.FileRenameTest_Name.VideoResolutionHeight, Constants.FileRenameTest_Test.VideoResolutionHeight));
 			allTests.Add(new RenameTest(Constants.FileRenameTest_Name.ManuallyLinked, Constants.FileRenameTest_Test.ManuallyLinked));
 			allTests.Add(new RenameTest(Constants.FileRenameTest_Name.HasEpisodes, Constants.FileRenameTest_Test.HasEpisodes));
-			
-
 			return allTests;
 		}
 	}

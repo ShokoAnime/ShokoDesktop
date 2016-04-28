@@ -11,6 +11,8 @@ using System.ServiceModel.Channels;
 using System.Xml;
 using System.ServiceModel.Description;
 using JMMClient.Forms;
+using System.Threading;
+using System.Globalization;
 
 namespace JMMClient
 {
@@ -519,8 +521,10 @@ namespace JMMClient
 			{
 				SaveServerSettings();
 
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
                 string response = _clientBinaryHTTP.EnterTraktPIN(pin);
-                MessageBox.Show(response, "Trakt Auth", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(response, Properties.Resources.JMMServer_TraktAuth, MessageBoxButton.OK, MessageBoxImage.Information);
 				
 			}
 			catch (Exception ex)
@@ -537,9 +541,9 @@ namespace JMMClient
 
 				string response = _clientBinaryHTTP.TestMALLogin();
 				if (string.IsNullOrEmpty(response))
-					MessageBox.Show("Success", "", MessageBoxButton.OK, MessageBoxImage.Information);
+					MessageBox.Show(Properties.Resources.Success, "", MessageBoxButton.OK, MessageBoxImage.Information);
 				else
-					MessageBox.Show(response, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					MessageBox.Show(response, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 			catch (Exception ex)
 			{
@@ -2028,9 +2032,11 @@ namespace JMMClient
 			if (!ServerOnline) return;
 			try
 			{
-				string msg = Instance.clientBinaryHTTP.RenameAllGroups();
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+                string msg = Instance.clientBinaryHTTP.RenameAllGroups();
 				if (string.IsNullOrEmpty(msg))
-					MessageBox.Show("Complete!");
+					MessageBox.Show(Properties.Resources.JMMServer_Complete);
 				else
 					Utils.ShowErrorMessage(msg);
 			}

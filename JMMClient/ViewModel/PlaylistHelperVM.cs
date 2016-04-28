@@ -9,6 +9,8 @@ using System.Windows.Data;
 using JMMClient.ViewModel;
 using JMMClient.Forms;
 using System.Windows;
+using System.Threading;
+using System.Globalization;
 
 namespace JMMClient
 {
@@ -118,15 +120,17 @@ namespace JMMClient
 		{
 			try
 			{
-				DialogText dlg = new DialogText();
-				dlg.Init("Enter playlist name: ", "");
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+                DialogText dlg = new DialogText();
+				dlg.Init(Properties.Resources.Playlist_Name + " ", "");
 				dlg.Owner = owner;
 				bool? res = dlg.ShowDialog();
 				if (res.HasValue && res.Value)
 				{
 					if (string.IsNullOrEmpty(dlg.EnteredText))
 					{
-						Utils.ShowErrorMessage("Please enter a playlist name");
+						Utils.ShowErrorMessage(Properties.Resources.Playlist_NameBlank);
 						return null;
 					}
 

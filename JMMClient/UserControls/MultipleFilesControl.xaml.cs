@@ -15,6 +15,8 @@ using System.ComponentModel;
 using System.Collections.ObjectModel;
 using NLog;
 using System.IO;
+using System.Threading;
+using System.Globalization;
 
 namespace JMMClient.UserControls
 {
@@ -75,7 +77,9 @@ namespace JMMClient.UserControls
 		{
 			InitializeComponent();
 
-			IsLoading = false;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            IsLoading = false;
 
 			CurrentEpisodes = new ObservableCollection<AnimeEpisodeVM>();
 			ViewEpisodes = CollectionViewSource.GetDefaultView(CurrentEpisodes);
@@ -141,7 +145,7 @@ namespace JMMClient.UserControls
 			CurrentEpisodes.Clear();
 			EpisodeCount = 0;
 
-			StatusMessage = "Loading...";
+			StatusMessage = Properties.Resources.Loading;
 
 			
 			MultipleFilesRefreshOptions opt = new MultipleFilesRefreshOptions()
@@ -175,7 +179,7 @@ namespace JMMClient.UserControls
 					}
 					else
 					{
-						MessageBox.Show(Properties.Resources.MSG_ERR_FileNotFound, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+						MessageBox.Show(Properties.Resources.MSG_ERR_FileNotFound, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 					}
 				}
 			}

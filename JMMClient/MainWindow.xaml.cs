@@ -161,6 +161,8 @@ namespace JMMClient
 
                 InitCulture();
 
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
                 imageHelper.QueueUpdateEvent += new ImageDownloader.QueueUpdateEventHandler(imageHelper_QueueUpdateEvent);
 
 				cboGroupSort.Items.Clear();
@@ -322,7 +324,7 @@ namespace JMMClient
 			try
 			{
 				JMMServerVM.Instance.clientBinaryHTTP.RefreshAllMediaInfo();
-				MessageBox.Show("Process is Running", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+				MessageBox.Show(Properties.Resources.Main_ProcessRunning, Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
 			}
 			catch (Exception ex)
 			{
@@ -963,7 +965,7 @@ namespace JMMClient
 						newStatus, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
 					if (!string.IsNullOrEmpty(response.ErrorMessage))
 					{
-						MessageBox.Show(response.ErrorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+						MessageBox.Show(response.ErrorMessage, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 						return;
 					}
 
@@ -2856,12 +2858,12 @@ namespace JMMClient
 		{
 			try
 			{
-				MessageBoxResult res = MessageBox.Show(string.Format("Are you sure you want run this process?"),
-                    JMMClient.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
+				MessageBoxResult res = MessageBox.Show(string.Format(Properties.Resources.Main_RunProcess),
+                    Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
 				if (res == MessageBoxResult.Yes)
 				{
 					JMMServerVM.Instance.RemoveMissingFiles();
-					MessageBox.Show(JMMClient.Properties.Resources.Process_Running, JMMClient.Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
+					MessageBox.Show(Properties.Resources.Process_Running, JMMClient.Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
 				}
 			}
 			catch (Exception ex)
