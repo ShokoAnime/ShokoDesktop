@@ -10776,7 +10776,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Data relating to files is downloaded from AniDB and then stored in your local database when you first import a file. In some cases this data may not be complete when you first download it. Or extra data may be downloaded but newer versions of JMM. This utility will allow you to get a fresh copy of that information from AniDB.
+        ///   Looks up a localized string similar to Data that&apos;s related to files in your collection is automatically downloaded and stored in your local database when JMM first imports files. This process is only run once so if specific file data is missing on AniDB at the time of download, if will be missing in your database. Additionally, it&apos;s possible that future versions of JMM might use additional file data that’s available but was not downloaded when JMM initially imported your files. This utility will update and replace all stored file data with what&apos; [rest of string was truncated]&quot;;.
         /// </summary>
         public static string UpdateAniDB_Info1 {
             get {

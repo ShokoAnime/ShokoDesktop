@@ -2819,9 +2819,6 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   <data name="UpdateAniDB_UpdateLocal" xml:space="preserve">
     <value>Mise à jour de données de fichier AniDB Local</value>
   </data>
-  <data name="UpdateAniDB_Info1" xml:space="preserve">
-    <value>Les données relatives aux fichiers sont téléchargées depuis AniDB et puis stockées dans votre base de données locale lorsque vous tout d'abord importez un fichier. Dans certains cas ces données ne peuvent être terminées lorsque vous commencez par le télécharger. Ou des données supplémentaires peuvent être téléchargées mais plus récentes versions de JMM. Cet utilitaire vous permettra d'obtenir une nouvelle copie de cette information de AniDB</value>
-  </data>
   <data name="UpdateAniDB_MissingInfo" xml:space="preserve">
     <value>Mise à jour des fichiers avec des informations manquantes</value>
   </data>
@@ -4069,5 +4066,8 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   </data>
   <data name="Rename_AnimeNameRomaji" xml:space="preserve">
     <value>Nom de l'anime - Romaji</value>
+  </data>
+  <data name="UpdateAniDB_Info1" xml:space="preserve">
+    <value>Données qui sont liées aux fichiers dans votre collection sont automatiquement téléchargées et stockées dans votre base de données locale quand JMM il importe tout d'abord des fichiers. Ce processus est exécuté seulement une fois donc, si des fichiers spécifiques, des données sont manquantes sur AniDB au moment du téléchargement, si sera absent dans votre base de données. En outre, il est possible que les versions futures de JMM peuvent utiliser les données de fichier additionnel sont disponible, mais n'était pas téléchargées quand JMM a initialement été importé vos fichiers. Cet utilitaire va mettre à jour et remplacer toutes les données de fichier stocké avec ce qui est actuellement disponible sur AniDB.</value>
   </data>
 </root>

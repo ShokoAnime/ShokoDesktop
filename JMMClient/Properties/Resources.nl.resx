@@ -2813,9 +2813,6 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   <data name="UpdateAniDB_UpdateLocal" xml:space="preserve">
     <value>Lokaal bestand van AniDB gegevens bijwerken</value>
   </data>
-  <data name="UpdateAniDB_Info1" xml:space="preserve">
-    <value>Gegevens met betrekking tot bestanden gedownload van AniDB en vervolgens opgeslagen in uw lokale database wanneer u een bestand voor het eerst importeren. In sommige gevallen kan deze gegevens niet worden voltooid wanneer u het eerst downloadt. Of extra gegevens kunnen worden gedownload maar nieuwere versies van JMM. Deze tool zal u toestaan om een verse kopie van die informatie opvragen AniDB</value>
-  </data>
   <data name="UpdateAniDB_MissingInfo" xml:space="preserve">
     <value>Bestanden bijwerken met ontbrekende Info</value>
   </data>
@@ -4069,5 +4066,8 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   </data>
   <data name="Rename_AnimeNameRomaji" xml:space="preserve">
     <value>Anime naam - Romaji</value>
+  </data>
+  <data name="UpdateAniDB_Info1" xml:space="preserve">
+    <value>Gegevens die betrekking heeft op de bestanden in uw collectie wordt automatisch gedownload en opgeslagen in uw lokale database wanneer JMM eerst bestanden importeert. Dit proces wordt alleen uitgevoerd zodra dus als specifiek bestand gegevens op AniDB op het moment van downloaden, ontbreekt als missen in uw database zullen. Bovendien is het mogelijk dat toekomstige versies van JMM aanvullende bestandsgegevens is beschikbaar, maar was niet gedownload wanneer JMM in eerste instantie uw bestanden geïmporteerde kunnen gebruiken. Deze tool zal bijwerken en vervangen alle gegevens uit een opgeslagen bestand met wat momenteel beschikbaar op AniDB is.</value>
   </data>
 </root>
