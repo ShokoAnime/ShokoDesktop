@@ -11,6 +11,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using NLog;
+using System.Threading;
+using System.Globalization;
 
 namespace JMMClient.Forms
 {
@@ -80,7 +82,9 @@ namespace JMMClient.Forms
 		{
 			InitializeComponent();
 
-			btnClose.Click += new RoutedEventHandler(btnClose_Click);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            btnClose.Click += new RoutedEventHandler(btnClose_Click);
 			btnUpdate.Click += new RoutedEventHandler(btnUpdate_Click);
 		}
 
@@ -100,7 +104,7 @@ namespace JMMClient.Forms
 				int.TryParse(txtEpNumber.Text, out epNumber);
 				if (epNumber <= 0 || epNumber > 2500)
 				{
-					MessageBox.Show("Please enter a valid episode number", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					MessageBox.Show(Properties.Resources.Select_ValidEpisode, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 					txtEpNumber.Focus();
 					return;
 				}
@@ -111,7 +115,7 @@ namespace JMMClient.Forms
 				else
 					res = JMMServerVM.Instance.clientBinaryHTTP.LinkAniDBMAL(AnimeID, MALID, MALTitle, epType, epNumber);
 				if (res.Length > 0)
-					MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					MessageBox.Show(res, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 				else
 				{
 					this.DialogResult = true;

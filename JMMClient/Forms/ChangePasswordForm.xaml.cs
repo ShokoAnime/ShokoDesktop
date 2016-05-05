@@ -11,6 +11,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using JMMClient.ViewModel;
+using System.Threading;
+using System.Globalization;
 
 namespace JMMClient.Forms
 {
@@ -25,14 +27,16 @@ namespace JMMClient.Forms
 		{
 			InitializeComponent();
 
-			btnSave.Click += new RoutedEventHandler(btnSave_Click);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            btnSave.Click += new RoutedEventHandler(btnSave_Click);
 		}
 
 		void btnSave_Click(object sender, RoutedEventArgs e)
 		{
 			if (!txtPassword.Password.Equals(txtPasswordConfirm.Password))
 			{
-				MessageBox.Show("Passwords must match", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				MessageBox.Show(Properties.Resources.User_PasswordMatch, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 				txtPassword.Focus();
 				return;
 			}

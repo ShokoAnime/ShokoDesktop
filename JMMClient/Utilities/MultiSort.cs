@@ -3,6 +3,7 @@ using System.Threading;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
+using System.Globalization;
 
 // Source code by Owen Emlen (owene_1998@yahoo.com, owen@binarynorthwest.com)
 // http://www.braintechllc.com/owen.aspx, http://www.binarynorthwest.com
@@ -56,8 +57,10 @@ namespace JMMClient
             }
             catch (Exception ex)
             {
-                throw new Exception("Error trying to sort list of " + typeof(T).Name + " using " +
-                  (sortBy.NameIsPropertyName ? "property " : "field ") + sortBy.sPropertyOrFieldName, ex);
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(JMMClient.AppSettings.Culture);
+
+                throw new Exception(JMMClient.Properties.Resources.Sort_Error + " " + typeof(T).Name + " " + JMMClient.Properties.Resources.Sort_Using +
+                  (sortBy.NameIsPropertyName ? JMMClient.Properties.Resources.Sort_Property + " " : JMMClient.Properties.Resources.Sort_Field + " ") + sortBy.sPropertyOrFieldName, ex);
             }
         }
 
@@ -104,9 +107,11 @@ namespace JMMClient
                 // methods of sorting a list using multiple criteria.
                 for (int i = 0; i < sortByCount; i++)
                 {
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(JMMClient.AppSettings.Culture);
+
                     SortPropOrFieldAndDirection sortBy = rgSortBy[i];
                     if (string.IsNullOrEmpty(sortBy.sPropertyOrFieldName)) throw new Exception(
-                        "MultiSort parameter rgSortBy was passed an empty field name in rgSortBy[" + i.ToString() + "]"
+                        JMMClient.Properties.Resources.Sort_PassedEmpty + i.ToString() + "]"
                         );
 
                     // Retrieve an IComparer that contains logic for sorting this specific business object
@@ -194,7 +199,9 @@ namespace JMMClient
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception in MultiSort while sorting a list of " + typeof(T).Name, ex);
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(JMMClient.AppSettings.Culture);
+
+                throw new Exception(JMMClient.Properties.Resources.Sort_Exception + " " + typeof(T).Name, ex);
             }
         }
 

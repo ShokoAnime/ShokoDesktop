@@ -1,7 +1,7 @@
 ﻿<Window x:Class="JMMClient.Forms.DialogTextMultiline"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Height="200" Width="450" SizeToContent="Manual"  WindowStartupLocation="CenterOwner" Topmost="False" Title="">
+        Height="200" Width="450" SizeToContent="Manual"  WindowStartupLocation="CenterOwner" Topmost="False" Title="{Resx ResxName=JMMClient.Properties.Resources, Key=Input_Text}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />

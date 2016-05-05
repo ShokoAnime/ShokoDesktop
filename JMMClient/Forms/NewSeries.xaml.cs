@@ -15,6 +15,8 @@ using System.Collections.ObjectModel;
 using JMMClient.ViewModel;
 using System.Diagnostics;
 using System.IO;
+using System.Threading;
+using System.Globalization;
 
 namespace JMMClient.Forms
 {
@@ -85,7 +87,9 @@ namespace JMMClient.Forms
 		{
 			InitializeComponent();
 
-			AnimeSeries = null;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            AnimeSeries = null;
 
 			txtGroupSearch.TextChanged +=new TextChangedEventHandler(txtGroupSearch_TextChanged);
 
@@ -239,7 +243,7 @@ namespace JMMClient.Forms
 
 				if (IsAnimeNotSelected)
 				{
-					MessageBox.Show("Please select an anime first", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					MessageBox.Show(Properties.Resources.NewSeries_SelectAnime, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 					txtAnimeSearch.Focus();
 					return;
 				}
@@ -248,7 +252,7 @@ namespace JMMClient.Forms
 				{
 					if (lbGroups.SelectedItem == null)
 					{
-						MessageBox.Show(Properties.Resources.MSG_ERR_GroupSelectionRequired, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+						MessageBox.Show(Properties.Resources.MSG_ERR_GroupSelectionRequired, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 						lbGroups.Focus();
 						return;
 					}
@@ -263,7 +267,7 @@ namespace JMMClient.Forms
 				{
 					if (txtGroupName.Text.Trim().Length == 0)
 					{
-						MessageBox.Show(Properties.Resources.MSG_ERR_GroupNameRequired, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+						MessageBox.Show(Properties.Resources.MSG_ERR_GroupNameRequired, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 						txtGroupName.Focus();
 						return;
 					}
@@ -307,7 +311,7 @@ namespace JMMClient.Forms
 				if (response.ErrorMessage.Length > 0)
 				{
 					this.Cursor = Cursors.Arrow;
-					MessageBox.Show(response.ErrorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					MessageBox.Show(response.ErrorMessage, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 					return;
 				}
 

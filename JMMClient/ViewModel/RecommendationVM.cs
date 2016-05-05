@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
+using System.Threading;
+using System.Globalization;
 
 namespace JMMClient.ViewModel
 {
@@ -238,10 +240,12 @@ namespace JMMClient.ViewModel
 			}
 			else
 			{
-				Recommended_DisplayName = "Data Missing";
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+                Recommended_DisplayName = Properties.Resources.Recommendation_Missing;
 				Recommended_AnimeInfoExists = false;
 				Recommended_PosterPath = string.Format("pack://application:,,,/{0};component/Images/blankposter.png", Constants.AssemblyName);
-				Recommended_Description = "Overview not available";
+				Recommended_Description = Properties.Resources.Recommendation_Overview;
 			}
 
 			Recommended_AnimeInfoNotExists = !Recommended_AnimeInfoExists;

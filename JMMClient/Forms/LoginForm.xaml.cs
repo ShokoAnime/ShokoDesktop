@@ -11,6 +11,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using JMMClient.ViewModel;
+using System.Threading;
+using System.Globalization;
 
 namespace JMMClient.Forms
 {
@@ -25,7 +27,9 @@ namespace JMMClient.Forms
 		{
 			InitializeComponent();
 
-			btnLogin.Click += new RoutedEventHandler(btnLogin_Click);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            btnLogin.Click += new RoutedEventHandler(btnLogin_Click);
 
 			ThisUser = null;
 
@@ -69,7 +73,7 @@ namespace JMMClient.Forms
 				else
 				{
 					txtPassword.Focus();
-					txtStatus.Text = "Incorrect Password";
+					txtStatus.Text = Properties.Resources.Login_IncorrectPassword;
 				}
 			}
 		}

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 using System.ComponentModel;
+using System.Threading;
+using System.Globalization;
 
 // Source code by Owen Emlen (owene_1998@yahoo.com, owen@binarynorthwest.com)
 
@@ -88,6 +90,8 @@ namespace BinaryNorthwest
         /// </summary>
         public void Initialize()
         {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(JMMClient.AppSettings.Culture);
+
             if (fFoundProperty == false)
             {
                 fFoundProperty = true;
@@ -99,8 +103,8 @@ namespace BinaryNorthwest
 
                     if (pi == null)
                     {
-                        throw new Exception("Property name " + sPropertyName +
-                          " not found while trying to compare objects of type " + typeof(T).Name);
+                        throw new Exception(JMMClient.Properties.Resources.ValueCompare_PropertyName + " " + sPropertyName +
+                          " " + JMMClient.Properties.Resources.ValueCompare_NotFound + " " + typeof(T).Name);
                     }
                 }
                 typ = pi.PropertyType;
@@ -407,6 +411,8 @@ namespace BinaryNorthwest
         /// </summary>
         public void Initialize()
         {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(JMMClient.AppSettings.Culture);
+
             if (fFoundField == false)
             {
                 fFoundField = true;
@@ -421,8 +427,8 @@ namespace BinaryNorthwest
                     fi = typeof(T).GetField(sFieldName);
                     if (fi == null)
                     {
-                        throw new Exception("Field name " + sFieldName +
-                          " not found while trying to compare objects of type " + typeof(T).Name);
+                        throw new Exception(JMMClient.Properties.Resources.ValueCompare_FieldName + " " + sFieldName +
+                          " " + JMMClient.Properties.Resources.ValueCompare_NotFound + " " + typeof(T).Name);
                     }
                 }
                 typ = fi.FieldType;

@@ -14,6 +14,8 @@ using System.Diagnostics;
 using NLog;
 using JMMClient.ViewModel;
 using System.Threading;
+using System.Globalization;
+
 namespace JMMClient.Forms
 {
 	/// <summary>
@@ -75,7 +77,9 @@ namespace JMMClient.Forms
 		{
 			InitializeComponent();
 
-			rbExisting.Checked += new RoutedEventHandler(rbExisting_Checked);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            rbExisting.Checked += new RoutedEventHandler(rbExisting_Checked);
 			rbSearch.Checked += new RoutedEventHandler(rbSearch_Checked);
 
 			hlURL.Click += new RoutedEventHandler(hlURL_Click);
@@ -98,7 +102,7 @@ namespace JMMClient.Forms
 				int.TryParse(txtMovieID.Text, out id);
 				if (id <= 0)
 				{
-					MessageBox.Show("Please enter a valid number as the movie ID", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					MessageBox.Show(Properties.Resources.Search_InvalidMovieID, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 					txtMovieID.Focus();
 					return;
 				}
@@ -144,7 +148,7 @@ namespace JMMClient.Forms
 		{
 			string res = JMMServerVM.Instance.clientBinaryHTTP.LinkAniDBOther(AnimeID, movieID, (int)CrossRefType.MovieDB);
 			if (res.Length > 0)
-				MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				MessageBox.Show(res, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 			else
 			{
 				this.DialogResult = true;

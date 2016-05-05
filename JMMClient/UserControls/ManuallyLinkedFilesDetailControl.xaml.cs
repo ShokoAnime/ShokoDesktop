@@ -12,6 +12,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using JMMClient.ViewModel;
+using System.Threading;
+using System.Globalization;
 
 namespace JMMClient.UserControls
 {
@@ -54,7 +56,9 @@ namespace JMMClient.UserControls
 		{
 			InitializeComponent();
 
-			btnToggleExpander.Click += new RoutedEventHandler(btnToggleExpander_Click);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            btnToggleExpander.Click += new RoutedEventHandler(btnToggleExpander_Click);
 		}
 
 		public void DisplayEpisodes()
@@ -123,7 +127,7 @@ namespace JMMClient.UserControls
 					JMMServerVM.Instance.clientBinaryHTTP.RescanFile(vid.VideoLocalID);
 				}
 
-				MessageBox.Show(Properties.Resources.MSG_INFO_AddedQueueCmds, "Done", MessageBoxButton.OK, MessageBoxImage.Information);
+				MessageBox.Show(Properties.Resources.MSG_INFO_AddedQueueCmds, Properties.Resources.Done, MessageBoxButton.OK, MessageBoxImage.Information);
 			}
 			catch (Exception ex)
 			{
@@ -169,7 +173,7 @@ namespace JMMClient.UserControls
 					string res = JMMServerVM.Instance.clientBinaryHTTP.RemoveAssociationOnFile(vid.VideoLocalID, ep.AniDB_EpisodeID);
 					if (res.Length > 0)
 					{
-						MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+						MessageBox.Show(res, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 					}
 					else
 					{

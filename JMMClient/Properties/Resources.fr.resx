@@ -1946,9 +1946,6 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   <data name="SelectAniDBTitle_SelectName" xml:space="preserve">
     <value>Sélectionnez un nom de remplacement</value>
   </data>
-  <data name="SelectGroupSeries_Select" xml:space="preserve">
-    <value>Sélectionnez un </value>
-  </data>
   <data name="Select_MyAnimeList" xml:space="preserve">
     <value>MyAnimeList</value>
   </data>
@@ -2354,9 +2351,6 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   <data name="Series_Files" xml:space="preserve">
     <value>Fichiers</value>
   </data>
-  <data name="Series_Folder" xml:space="preserve">
-    <value>Dossier</value>
-  </data>
   <data name="SeriesSimple_TraktLink" xml:space="preserve">
     <value>Aller cet épisode sur Trakt.TV</value>
   </data>
@@ -2657,9 +2651,6 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   <data name="Rankings_Completed" xml:space="preserve">
     <value>Terminé</value>
   </data>
-  <data name="Rankings_Anime" xml:space="preserve">
-    <value> Anime</value>
-  </data>
   <data name="Rankings_AniDB" xml:space="preserve">
     <value>AniDB Rating</value>
   </data>
@@ -2828,9 +2819,6 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   <data name="UpdateAniDB_UpdateLocal" xml:space="preserve">
     <value>Mise à jour de données de fichier AniDB Local</value>
   </data>
-  <data name="UpdateAniDB_Info1" xml:space="preserve">
-    <value>Les données relatives aux fichiers sont téléchargées depuis AniDB et puis stockées dans votre base de données locale lorsque vous tout d'abord importez un fichier. Dans certains cas ces données ne peuvent être terminées lorsque vous commencez par le télécharger. Ou des données supplémentaires peuvent être téléchargées mais plus récentes versions de JMM. Cet utilitaire vous permettra d'obtenir une nouvelle copie de cette information de AniDB</value>
-  </data>
   <data name="UpdateAniDB_MissingInfo" xml:space="preserve">
     <value>Mise à jour des fichiers avec des informations manquantes</value>
   </data>
@@ -2861,32 +2849,11 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   <data name="Sort_Error" xml:space="preserve">
     <value>Erreur en essayant de trier la liste des </value>
   </data>
-  <data name="Sort_Using" xml:space="preserve">
-    <value> à l'aide </value>
-  </data>
-  <data name="Sort_Property" xml:space="preserve">
-    <value>propriété </value>
-  </data>
-  <data name="Sort_Field" xml:space="preserve">
-    <value>domaine </value>
-  </data>
-  <data name="Sort_Exception" xml:space="preserve">
-    <value>Exception dans MultiSort lors du tri d'une liste de </value>
-  </data>
   <data name="Sort_PassedEmpty" xml:space="preserve">
     <value>MultiSort paramètre rgSortBy a été adopté un nom de champ vide en rgSortBy [</value>
   </data>
   <data name="Selected_DoesNotExist" xml:space="preserve">
     <value>Le fichier spécifié ou le dossier n'existe pas : </value>
-  </data>
-  <data name="ValueCompare_PropertyName" xml:space="preserve">
-    <value>Nom de la propriété </value>
-  </data>
-  <data name="ValueCompare_NotFound" xml:space="preserve">
-    <value> pas trouvé en essayant de comparer des objets de type </value>
-  </data>
-  <data name="ValueCompare_FieldName" xml:space="preserve">
-    <value>Nom de domaine </value>
   </data>
   <data name="Video_VLCError1" xml:space="preserve">
     <value>Impossible d'analyser des URI dans le fichier ini VLC</value>
@@ -2987,9 +2954,6 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   <data name="Ignore_AnimeID" xml:space="preserve">
     <value>ID de l'anime :</value>
   </data>
-  <data name="JMMServer_TraktAuth" xml:space="preserve">
-    <value>Trakt Auth</value>
-  </data>
   <data name="JMMServer_Success" xml:space="preserve">
     <value>Succès</value>
   </data>
@@ -3025,9 +2989,6 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   </data>
   <data name="Constants_MainCharacter" xml:space="preserve">
     <value>personnage principal</value>
-  </data>
-  <data name="Group_GroupCount" xml:space="preserve">
-    <value> Groupes</value>
   </data>
   <data name="Tab_Playlists" xml:space="preserve">
     <value>Listes de lecture</value>
@@ -3470,7 +3431,7 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   <data name="DeleteFiles_Name" xml:space="preserve">
     <value>Supprimer des fichiers</value>
   </data>
-  <data name="DeleteFiles_ManualLink" xml:space="preserve">
+  <data name="ManualLink" xml:space="preserve">
     <value>LIEN MANUEL</value>
   </data>
   <data name="Done" xml:space="preserve">
@@ -3547,5 +3508,566 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   </data>
   <data name="Dashboard_Settings" xml:space="preserve">
     <value>Paramètres</value>
+  </data>
+  <data name="Rankings_Anime" xml:space="preserve">
+    <value>Anime</value>
+  </data>
+  <data name="ValueCompare_PropertyName" xml:space="preserve">
+    <value>Nom de la propriété</value>
+  </data>
+  <data name="ValueCompare_NotFound" xml:space="preserve">
+    <value>pas trouvé en essayant de comparer des objets de type</value>
+  </data>
+  <data name="ValueCompare_FieldName" xml:space="preserve">
+    <value>Nom de domaine </value>
+  </data>
+  <data name="SelectGroupSeries_Select" xml:space="preserve">
+    <value>Sélectionnez un</value>
+  </data>
+  <data name="Series_Folder" xml:space="preserve">
+    <value>Dossiers</value>
+  </data>
+  <data name="RateSeries_Title" xml:space="preserve">
+    <value>Taux de série</value>
+  </data>
+  <data name="NewSeries_CreateNew" xml:space="preserve">
+    <value>Créer nouvelle série</value>
+  </data>
+  <data name="NewSeries_SelectAnime" xml:space="preserve">
+    <value>Veuillez d'abord sélectionner une adaptation en anime</value>
+  </data>
+  <data name="MissingEpisodes_Columns" xml:space="preserve">
+    <value>Sélectionner les colonnes</value>
+  </data>
+  <data name="GroupFilter_Sorting" xml:space="preserve">
+    <value>Groupe filtre tri</value>
+  </data>
+  <data name="GroupFilter_Condition" xml:space="preserve">
+    <value>Condition de filtre de groupe</value>
+  </data>
+  <data name="GroupFilter_IntegerOnly" xml:space="preserve">
+    <value>Veuillez entrer une valeur entière uniquement</value>
+  </data>
+  <data name="Recommendation_Overview" xml:space="preserve">
+    <value>Aperçu non disponible</value>
+  </data>
+  <data name="Sort_Using" xml:space="preserve">
+    <value>à l'aide</value>
+  </data>
+  <data name="Sort_Property" xml:space="preserve">
+    <value>propriété</value>
+  </data>
+  <data name="Sort_Field" xml:space="preserve">
+    <value>domaine</value>
+  </data>
+  <data name="Sort_Exception" xml:space="preserve">
+    <value>Exception dans MultiSort lors du tri d'une liste de</value>
+  </data>
+  <data name="JMMServer_TraktAuth" xml:space="preserve">
+    <value>Trakt autorisation </value>
+  </data>
+  <data name="Group_GroupCount" xml:space="preserve">
+    <value>Groupes</value>
+  </data>
+  <data name="Login_UserLogin" xml:space="preserve">
+    <value>Connexion de l'utilisateur</value>
+  </data>
+  <data name="Login_IncorrectPassword" xml:space="preserve">
+    <value>Mot de passe incorrect</value>
+  </data>
+  <data name="ImportFolder" xml:space="preserve">
+    <value>Dossier d'importation</value>
+  </data>
+  <data name="DeleteSeriesGroup" xml:space="preserve">
+    <value>Supprimer la série/groupe</value>
+  </data>
+  <data name="About_Home" xml:space="preserve">
+    <value>Page d'accueil</value>
+  </data>
+  <data name="About_Project" xml:space="preserve">
+    <value>Page du projet</value>
+  </data>
+  <data name="About_Blog" xml:space="preserve">
+    <value>Blog JMM</value>
+  </data>
+  <data name="About_MediaPortal" xml:space="preserve">
+    <value>MediaPortal Forum</value>
+  </data>
+  <data name="ViewComment_Comment" xml:space="preserve">
+    <value>Voir commentaire</value>
+  </data>
+  <data name="ViewComment_FromTrakt" xml:space="preserve">
+    <value>De Trakt</value>
+  </data>
+  <data name="ViewComment_FromAniDB" xml:space="preserve">
+    <value>De AniDB</value>
+  </data>
+  <data name="CommunityLinks_ShowAdmin" xml:space="preserve">
+    <value>Voir la communauté Admin</value>
+  </data>
+  <data name="CommunityLins_UseMyLinks" xml:space="preserve">
+    <value>Utiliser mes liens</value>
+  </data>
+  <data name="Result" xml:space="preserve">
+    <value>Résultat</value>
+  </data>
+  <data name="CommunityLinks_NoLinks" xml:space="preserve">
+    <value>Vous n'avez pas tous les liens</value>
+  </data>
+  <data name="CommunityLinks_NoLinksAvailable" xml:space="preserve">
+    <value>Aucune communauté liens disponibles</value>
+  </data>
+  <data name="CommunityLinks_NeedApproval" xml:space="preserve">
+    <value>Liens nécessitent une approbation</value>
+  </data>
+  <data name="CommunityLinks_ApprovalExists" xml:space="preserve">
+    <value>Approbation existe</value>
+  </data>
+  <data name="CommunityLinks_DeleteLink" xml:space="preserve">
+    <value>Êtes-vous sûr de que vouloir supprimer ce lien ?</value>
+  </data>
+  <data name="CommunityLinks_CommandQueued" xml:space="preserve">
+    <value>Commande a été mis en attente</value>
+  </data>
+  <data name="CommunityLinks_CheckingOnline" xml:space="preserve">
+    <value>Vérification en ligne...</value>
+  </data>
+  <data name="Update_JMMDesktop" xml:space="preserve">
+    <value>Mises à jour du Bureau de JMM</value>
+  </data>
+  <data name="Select_TvDBSeason" xml:space="preserve">
+    <value>Interrupteur TvDB saison</value>
+  </data>
+  <data name="Select_TvDBLanguage" xml:space="preserve">
+    <value>Sélectionnez la langue de TvDB</value>
+  </data>
+  <data name="Select_TvDBEpisode" xml:space="preserve">
+    <value>Recherche épisode</value>
+  </data>
+  <data name="Select_TraktSeason" xml:space="preserve">
+    <value>Interrupteur Trakt saison</value>
+  </data>
+  <data name="Select_MALStart" xml:space="preserve">
+    <value>Changement MAL commencer épisode</value>
+  </data>
+  <data name="Select_ValidEpisode" xml:space="preserve">
+    <value>Veuillez entrer un numéro valide épisode</value>
+  </data>
+  <data name="Select_DefaultSeries" xml:space="preserve">
+    <value>Sélectionnez la série par défaut</value>
+  </data>
+  <data name="Select_Title" xml:space="preserve">
+    <value>Sélectionnez le titre</value>
+  </data>
+  <data name="Search_TraktForm" xml:space="preserve">
+    <value>Recherche Trakt TV</value>
+  </data>
+  <data name="Search_TMDBForm" xml:space="preserve">
+    <value>Rechercher la MovieDB</value>
+  </data>
+  <data name="Search_InvalidMovieID" xml:space="preserve">
+    <value>Veuillez entrer un numéro valide comme l'ID du film</value>
+  </data>
+  <data name="JMMServer_Complete" xml:space="preserve">
+    <value>Complet !</value>
+  </data>
+  <data name="Trakt_TokenValid" xml:space="preserve">
+    <value>Jeton en cours est valable jusqu'au : {0}</value>
+  </data>
+  <data name="Trakt_TokenExpired" xml:space="preserve">
+    <value>Votre jeton a expiré, veuillez obtenir un nouveau.</value>
+  </data>
+  <data name="Trakt_JMMNotAuth" xml:space="preserve">
+    <value>Vous n'avez pas autorisé JMM pour accéder à votre compte Trakt !</value>
+  </data>
+  <data name="User_EnterUsername" xml:space="preserve">
+    <value>Veuillez entrer un nom d'utilisateur</value>
+  </data>
+  <data name="User_PlexAssigned" xml:space="preserve">
+    <value>L'utilisateur de Plex « {0} » est déjà asigned à l'utilisateur de JMM « {1} »</value>
+  </data>
+  <data name="User_Delete" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir supprimer l'utilisateur : {0}</value>
+  </data>
+  <data name="User_DeleteError" xml:space="preserve">
+    <value>Impossible de supprimer l'utilisateur actuellement connecté</value>
+  </data>
+  <data name="Seach_Criteria" xml:space="preserve">
+    <value>Veuillez entrer les critères de recherche</value>
+  </data>
+  <data name="Downloads_uTorrentDetails" xml:space="preserve">
+    <value>Veuillez saisir tous les détails d'uTorrent</value>
+  </data>
+  <data name="Downloads_Connected" xml:space="preserve">
+    <value>Connecté avec succès</value>
+  </data>
+  <data name="Downloads_Failed" xml:space="preserve">
+    <value>A échoué ! Consultez le journal pour plus de détails si nécessaire</value>
+  </data>
+  <data name="Community_Searching" xml:space="preserve">
+    <value>La recherche...</value>
+  </data>
+  <data name="Community_TvDBApproval" xml:space="preserve">
+    <value>{0} Anime encore besoin d'approbation TvDB</value>
+  </data>
+  <data name="Community_TraktApproval" xml:space="preserve">
+    <value>{0} Anime encore besoin d'approbation Trakt</value>
+  </data>
+  <data name="Community_AniDBID" xml:space="preserve">
+    <value>ID AniDB</value>
+  </data>
+  <data name="Community_Search" xml:space="preserve">
+    <value>Recherche</value>
+  </data>
+  <data name="Community_Random" xml:space="preserve">
+    <value>Anime au hasard</value>
+  </data>
+  <data name="Community_Filters" xml:space="preserve">
+    <value>Filtres</value>
+  </data>
+  <data name="Community_StartEp" xml:space="preserve">
+    <value>Type de démarrage Ep</value>
+  </data>
+  <data name="Community_StartEpNumber" xml:space="preserve">
+    <value>Commencer à Ep #</value>
+  </data>
+  <data name="Community_TvDBID" xml:space="preserve">
+    <value>ID TvDB</value>
+  </data>
+  <data name="Community_TvDBTitle" xml:space="preserve">
+    <value>TvDB titre</value>
+  </data>
+  <data name="Community_SeasonNumber" xml:space="preserve">
+    <value>Saison #</value>
+  </data>
+  <data name="Community_Username" xml:space="preserve">
+    <value>Nom d'utilisateur</value>
+  </data>
+  <data name="Community_AdminApproved" xml:space="preserve">
+    <value>Admin a approuvé</value>
+  </data>
+  <data name="Community_Approve" xml:space="preserve">
+    <value>Approuver les</value>
+  </data>
+  <data name="Community_Revoke" xml:space="preserve">
+    <value>Revoke</value>
+  </data>
+  <data name="Community_Trakt" xml:space="preserve">
+    <value>Trakt</value>
+  </data>
+  <data name="Community_TraktID" xml:space="preserve">
+    <value>Trakt ID</value>
+  </data>
+  <data name="Community_TraktTitle" xml:space="preserve">
+    <value>Trakt titre</value>
+  </data>
+  <data name="Bookmarks_Delete" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir supprimer ce signet : {0}</value>
+  </data>
+  <data name="Bookmarks_Notes" xml:space="preserve">
+    <value>Notes :</value>
+  </data>
+  <data name="Bookmarks_Priority" xml:space="preserve">
+    <value>Priorité :</value>
+  </data>
+  <data name="Bookmarks_DownloadNow" xml:space="preserve">
+    <value>Télécharger maintenant</value>
+  </data>
+  <data name="Bookmarks_CurrentlyDownloading" xml:space="preserve">
+    <value>En cours de téléchargement</value>
+  </data>
+  <data name="Bookmarks_EditNotes" xml:space="preserve">
+    <value>Modifier les Notes</value>
+  </data>
+  <data name="Input_Number" xml:space="preserve">
+    <value>Nombre d'entrée</value>
+  </data>
+  <data name="Input_Text" xml:space="preserve">
+    <value>Saisie de texte</value>
+  </data>
+  <data name="Downloads_BakaBTDetails" xml:space="preserve">
+    <value>Veuillez entrer les informations de connexion BakaBT</value>
+  </data>
+  <data name="Downloads_AnimeBytesDetails" xml:space="preserve">
+    <value>Veuillez entrer les identifiants Anime octets</value>
+  </data>
+  <data name="Anime_Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="Anime_TraktNotEnabled" xml:space="preserve">
+    <value>Vous n'avez pas activé Trakt, pour plus d'informations, allez à « Paramètres - Sites communautaires - Trakt TV »</value>
+  </data>
+  <data name="Anime_JMMAuth" xml:space="preserve">
+    <value>Vous n'avez pas autorisé JMM à utiliser votre compte Trakt, pour plus d'informations, allez à « Paramètres - Sites communautaires - Trakt TV »</value>
+  </data>
+  <data name="Anime_SeriesNotFound" xml:space="preserve">
+    <value>Infos de série anime ne pas trouvé</value>
+  </data>
+  <data name="Anime_EnterText" xml:space="preserve">
+    <value>S'il vous plaît entrer du texte pour votre commentaire</value>
+  </data>
+  <data name="Anime_CommentText" xml:space="preserve">
+    <value>Commentaire de texte doit être à moins de 2 000 caractères ({0})</value>
+  </data>
+  <data name="Anime_NoTrakt" xml:space="preserve">
+    <value>Impossible d'afficher commentaire où une série n'a pas un Trakt lié</value>
+  </data>
+  <data name="Anime_MultiTrakt" xml:space="preserve">
+    <value>Impossible d'afficher commentaire où une série a plusieurs Trakt lié</value>
+  </data>
+  <data name="Anime_YourSay" xml:space="preserve">
+    <value>Avoir votre mot à dire...</value>
+  </data>
+  <data name="AVDump_WorkerRunning" xml:space="preserve">
+    <value>Travailleur est déjà en cours d'exécution</value>
+  </data>
+  <data name="AVDump_Processing" xml:space="preserve">
+    <value>Traitement des...</value>
+  </data>
+  <data name="AVDump_Missing" xml:space="preserve">
+    <value>N'a pas trouvé AvDump2 CLI :</value>
+  </data>
+  <data name="AVDump_Error" xml:space="preserve">
+    <value>Erreur !</value>
+  </data>
+  <data name="AVDump_VideoMissing" xml:space="preserve">
+    <value>A pas trouvé de fichier de la vidéo :</value>
+  </data>
+  <data name="AVDump_Complete" xml:space="preserve">
+    <value>Complet !</value>
+  </data>
+  <data name="Anime_AddSeries" xml:space="preserve">
+    <value>Ajouter la série</value>
+  </data>
+  <data name="Anime_NewPlaylists" xml:space="preserve">
+    <value>Nouvelle liste de lecture</value>
+  </data>
+  <data name="Anime_AddAllEpisodes" xml:space="preserve">
+    <value>Ajouter tous les épisodes</value>
+  </data>
+  <data name="Anime_AddUnwatched" xml:space="preserve">
+    <value>Ajouter des épisodes sans surveillance</value>
+  </data>
+  <data name="Anime_PlaylistMenu" xml:space="preserve">
+    <value>Menu de la playlist :</value>
+  </data>
+  <data name="Anime_PlaylistMissing" xml:space="preserve">
+    <value>Playlist est introuvable</value>
+  </data>
+  <data name="Anime_RenameParent" xml:space="preserve">
+    <value>Vous voulez vous aussi renommer le groupe parent ?</value>
+  </data>
+  <data name="Anime_DisabledImage" xml:space="preserve">
+    <value>Impossible de définir une image désactivée par défaut</value>
+  </data>
+  <data name="Main_ProcessRunning" xml:space="preserve">
+    <value>Processus est en cours d'exécution</value>
+  </data>
+  <data name="Main_RunProcess" xml:space="preserve">
+    <value>Êtes-vous certain de que vouloir exécuter ce processus ?</value>
+  </data>
+  <data name="Search_InvalidTvDB" xml:space="preserve">
+    <value>Veuillez entrer un numéro valide comme l'ID de série</value>
+  </data>
+  <data name="Search_InvalidMAL" xml:space="preserve">
+    <value>Veuillez entrer un numéro valide comme l'ID du MAL</value>
+  </data>
+  <data name="Search_EnterTitle" xml:space="preserve">
+    <value>Veuillez entrer un titre pour le spectacle</value>
+  </data>
+  <data name="Search_MyAnimeList" xml:space="preserve">
+    <value>Recherche MyAnimeList</value>
+  </data>
+  <data name="CustomTag_EnterName" xml:space="preserve">
+    <value>Veuillez entrer un nom de balise</value>
+  </data>
+  <data name="User_PasswordMatch" xml:space="preserve">
+    <value>Mots de passe doivent correspondre</value>
+  </data>
+  <data name="Search_TheTVDB" xml:space="preserve">
+    <value>Rechercher la TvDB</value>
+  </data>
+  <data name="Files_Open" xml:space="preserve">
+    <value>Ouvert</value>
+  </data>
+  <data name="Files_SetDefault" xml:space="preserve">
+    <value>Définir ce dossier comme dossier par défaut, où tous les nouveaux fichiers seront déplacés vers lors de l'importation</value>
+  </data>
+  <data name="Files_DefaultRemoved" xml:space="preserve">
+    <value>Supprimé ce dossier comme un défaut</value>
+  </data>
+  <data name="Files_SelectDefault" xml:space="preserve">
+    <value>Sélectionnez un dossier par défaut</value>
+  </data>
+  <data name="Downloads_Searching" xml:space="preserve">
+    <value>La recherche...</value>
+  </data>
+  <data name="Downloads_Results" xml:space="preserve">
+    <value>{0} résultats</value>
+  </data>
+  <data name="Downloads_Download" xml:space="preserve">
+    <value>Télécharger</value>
+  </data>
+  <data name="Downloads_GoWebsite" xml:space="preserve">
+    <value>Accédez au site Web</value>
+  </data>
+  <data name="Tooltip_BookmarksSearch" xml:space="preserve">
+    <value>Recherche de téléchargements pour cette série</value>
+  </data>
+  <data name="Tooltip_BookmarksToggle" xml:space="preserve">
+    <value>Activer/désactiver le statut téléchargement</value>
+  </data>
+  <data name="Tooltip_BookmarksPriority" xml:space="preserve">
+    <value>Modifier la priorité</value>
+  </data>
+  <data name="Tooltip_StylesCloseTab" xml:space="preserve">
+    <value>Fermer l'onglet</value>
+  </data>
+  <data name="Tooltip_StylesFullScreen" xml:space="preserve">
+    <value>Plein écran</value>
+  </data>
+  <data name="Tooltip_StylesMinimize" xml:space="preserve">
+    <value>Réduire au minimum</value>
+  </data>
+  <data name="Tooltip_StylesNormal" xml:space="preserve">
+    <value>Fenêtre normale</value>
+  </data>
+  <data name="Tooltip_StylesExit" xml:space="preserve">
+    <value>Sortie JMM Desktop</value>
+  </data>
+  <data name="Tooltip_AnimeFull" xml:space="preserve">
+    <value>Voir toute la série</value>
+  </data>
+  <data name="Tooltip_AnimeView" xml:space="preserve">
+    <value>Série vue</value>
+  </data>
+  <data name="Tooltip_AnimeUpdateAniDBInfo" xml:space="preserve">
+    <value>Mise à jour Info de AniDB et actualisation</value>
+  </data>
+  <data name="Tooltip_MetroEnable" xml:space="preserve">
+    <value>Activez la Section</value>
+  </data>
+  <data name="Rename_OldName" xml:space="preserve">
+    <value>Ancien nom</value>
+  </data>
+  <data name="Rename_NewName" xml:space="preserve">
+    <value>Nouveau nom</value>
+  </data>
+  <data name="Rename_AnimeID" xml:space="preserve">
+    <value>ID de l'anime</value>
+  </data>
+  <data name="Rename_GroupID" xml:space="preserve">
+    <value>ID de groupe</value>
+  </data>
+  <data name="Rename_FileVersion" xml:space="preserve">
+    <value>Version du fichier</value>
+  </data>
+  <data name="Rename_EpisodeNumber" xml:space="preserve">
+    <value>Numéro de l'épisode</value>
+  </data>
+  <data name="Rename_EpisodeCount" xml:space="preserve">
+    <value>Nombre d'épisode</value>
+  </data>
+  <data name="Rename_RipSource" xml:space="preserve">
+    <value>Source de RIP</value>
+  </data>
+  <data name="Rename_AnimeType" xml:space="preserve">
+    <value>Type d'anime</value>
+  </data>
+  <data name="Rename_Year" xml:space="preserve">
+    <value>Année</value>
+  </data>
+  <data name="Rename_DubLanguage" xml:space="preserve">
+    <value>Langue de Dub</value>
+  </data>
+  <data name="Rename_SubLanguage" xml:space="preserve">
+    <value>Void langue</value>
+  </data>
+  <data name="Rename_Codec" xml:space="preserve">
+    <value>Codec</value>
+  </data>
+  <data name="Rename_VideoBitDepth" xml:space="preserve">
+    <value>Profondeur de bits vidéo</value>
+  </data>
+  <data name="Rename_VideoResolutionWidth" xml:space="preserve">
+    <value>Largeur de Res vidéo</value>
+  </data>
+  <data name="Rename_VideoResolutionHeight" xml:space="preserve">
+    <value>Hauteur de Res vidéo</value>
+  </data>
+  <data name="Rename_ManuallyLinked" xml:space="preserve">
+    <value>Est liés manuellement</value>
+  </data>
+  <data name="Rename_HasEpisodes" xml:space="preserve">
+    <value>A des épisodes</value>
+  </data>
+  <data name="Rename_Deprecated" xml:space="preserve">
+    <value>Déconseillée</value>
+  </data>
+  <data name="Rename_Censored" xml:space="preserve">
+    <value>Censuré</value>
+  </data>
+  <data name="Rename_OriginalFileName" xml:space="preserve">
+    <value>Nom de fichier sup groupe</value>
+  </data>
+  <data name="Rename_AudioCodec" xml:space="preserve">
+    <value>Codecs audio</value>
+  </data>
+  <data name="Rename_VideoCodec" xml:space="preserve">
+    <value>Codecs vidéo</value>
+  </data>
+  <data name="Rename_EpisodeID" xml:space="preserve">
+    <value>ID de l'épisode</value>
+  </data>
+  <data name="Rename_FileID" xml:space="preserve">
+    <value>ID du fichier</value>
+  </data>
+  <data name="Rename_Type" xml:space="preserve">
+    <value>Type d'anime</value>
+  </data>
+  <data name="Rename_Episodes" xml:space="preserve">
+    <value>Nombre d'épisode</value>
+  </data>
+  <data name="Rename_Resolution" xml:space="preserve">
+    <value>Résolution vidéo</value>
+  </data>
+  <data name="Rename_Source" xml:space="preserve">
+    <value>Source vidéo</value>
+  </data>
+  <data name="Rename_CRCUpper" xml:space="preserve">
+    <value>CRC - supérieur</value>
+  </data>
+  <data name="Rename_CRCLower" xml:space="preserve">
+    <value>CRC - basse</value>
+  </data>
+  <data name="Rename_ED2KUpper" xml:space="preserve">
+    <value>Ed2k - supérieur</value>
+  </data>
+  <data name="Rename_ED2KLower" xml:space="preserve">
+    <value>Ed2k - basse</value>
+  </data>
+  <data name="Rename_GroupLongName" xml:space="preserve">
+    <value>Le groupe nom - Long</value>
+  </data>
+  <data name="Rename_GroupShortName" xml:space="preserve">
+    <value>Bref le groupe nom-</value>
+  </data>
+  <data name="Rename_EpisodeNameEnglish" xml:space="preserve">
+    <value>Nom de l'épisode - anglais</value>
+  </data>
+  <data name="Rename_EpisodeNameRomaji" xml:space="preserve">
+    <value>Nom de l'épisode - Romaji</value>
+  </data>
+  <data name="Rename_AnimeNameEnglish" xml:space="preserve">
+    <value>Nom de l'anime - anglais</value>
+  </data>
+  <data name="Rename_AnimeNameKanji" xml:space="preserve">
+    <value>Nom de l'anime - Kanji</value>
+  </data>
+  <data name="Rename_AnimeNameRomaji" xml:space="preserve">
+    <value>Nom de l'anime - Romaji</value>
+  </data>
+  <data name="UpdateAniDB_Info1" xml:space="preserve">
+    <value>Données qui sont liées aux fichiers dans votre collection sont automatiquement téléchargées et stockées dans votre base de données locale quand JMM il importe tout d'abord des fichiers. Ce processus est exécuté seulement une fois donc, si des fichiers spécifiques, des données sont manquantes sur AniDB au moment du téléchargement, si sera absent dans votre base de données. En outre, il est possible que les versions futures de JMM peuvent utiliser les données de fichier additionnel sont disponible, mais n'était pas téléchargées quand JMM a initialement été importé vos fichiers. Cet utilitaire va mettre à jour et remplacer toutes les données de fichier stocké avec ce qui est actuellement disponible sur AniDB.</value>
   </data>
 </root>
