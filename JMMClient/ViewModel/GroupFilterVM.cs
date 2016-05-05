@@ -727,8 +727,28 @@ namespace JMMClient
 							if (!ser.AniDB_Anime.AirDate.HasValue || ser.AniDB_Anime.AirDate.Value > filterDate) return false;
 						
 						break;
-					
-					case GroupFilterConditionType.SeriesCreatedDate:
+
+                    case GroupFilterConditionType.LatestEpisodeAirDate:
+                        DateTime filterDate2;
+                        if (gfc.ConditionOperatorEnum == GroupFilterOperator.LastXDays)
+                        {
+                            int days = 0;
+                            int.TryParse(gfc.ConditionParameter, out days);
+                            filterDate2 = DateTime.Today.AddDays(0 - days);
+                        }
+                        else
+                            filterDate2 = GroupFilterHelper.GetDateFromString(gfc.ConditionParameter);
+
+
+                        if (gfc.ConditionOperatorEnum == GroupFilterOperator.GreaterThan || gfc.ConditionOperatorEnum == GroupFilterOperator.LastXDays)
+                            if (!ser.LatestEpisodeAirDate.HasValue || ser.LatestEpisodeAirDate.Value < filterDate2) return false;
+
+                        if (gfc.ConditionOperatorEnum == GroupFilterOperator.LessThan)
+                            if (!ser.LatestEpisodeAirDate.HasValue || ser.LatestEpisodeAirDate.Value > filterDate2) return false;
+
+                        break;
+
+                    case GroupFilterConditionType.SeriesCreatedDate:
 						DateTime filterDateSeries;
 						if (gfc.ConditionOperatorEnum == GroupFilterOperator.LastXDays)
 						{

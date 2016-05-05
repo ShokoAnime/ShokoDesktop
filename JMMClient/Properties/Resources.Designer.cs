@@ -3931,6 +3931,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Latest Episode Air Date.
+        /// </summary>
+        public static string GroupFilterConditionType_LatestEpisodeAirDate {
+            get {
+                return ResourceManager.GetString("GroupFilterConditionType_LatestEpisodeAirDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Missing Episodes.
         /// </summary>
         public static string GroupFilterConditionType_MissingEpisodes {

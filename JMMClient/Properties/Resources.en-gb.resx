@@ -4070,4 +4070,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="Rename_AnimeNameRomaji" xml:space="preserve">
     <value>Anime Name - Romaji</value>
   </data>
+  <data name="GroupFilterConditionType_LatestEpisodeAirDate" xml:space="preserve">
+    <value>Latest Episode Air Date</value>
+  </data>
 </root>
