@@ -107,7 +107,7 @@ namespace JMMClient.UserControls
                 }
 
             }
-            SelectedUser = lbUsers.SelectedItem as JMMUserVM;
+            //SelectedUser = lbUsers.SelectedItem as JMMUserVM;
 
             SelectedUser.Username = txtUsername.Text.Trim();
             SelectedUser.HideTags = txtTags.Text.Trim();
