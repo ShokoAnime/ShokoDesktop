@@ -33,9 +33,9 @@ namespace JMMClient
 		public int StoppedCount { get; set; }
 		public int LatestLocalEpisodeNumber { get; set; }
 
-                #endregion
+               #endregion
 
-        public DateTime? Stat_EndDate { get; set; }
+                public DateTime? Stat_EndDate { get; set; }
 		public decimal? Stat_UserVotePermanent { get; set; }
 		public decimal? Stat_UserVoteTemporary { get; set; }
 		
