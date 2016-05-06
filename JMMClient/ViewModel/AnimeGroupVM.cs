@@ -261,7 +261,7 @@ namespace JMMClient
 			}
 		}
 
-        private DateTime? LatestEpisodeAirDate;
+        public DateTime? LatestEpisodeAirDate;
 
         private DateTime? watchedDate;
 		public DateTime? WatchedDate

@@ -339,117 +339,44 @@ namespace JMMClient.ViewModel
 			switch (conditionType)
 			{
 				case GroupFilterConditionType.AirDate:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.GreaterThan));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.LessThan));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.LastXDays));
-					break;
 				case GroupFilterConditionType.SeriesCreatedDate:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.GreaterThan));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.LessThan));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.LastXDays));
-					break;
 				case GroupFilterConditionType.EpisodeWatchedDate:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.GreaterThan));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.LessThan));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.LastXDays));
-					break;
 				case GroupFilterConditionType.EpisodeAddedDate:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.GreaterThan));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.LessThan));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.LastXDays));
-					break;
                 case GroupFilterConditionType.LatestEpisodeAirDate:
                     ops.Add(GetTextForEnum_Operator(GroupFilterOperator.GreaterThan));
                     ops.Add(GetTextForEnum_Operator(GroupFilterOperator.LessThan));
                     ops.Add(GetTextForEnum_Operator(GroupFilterOperator.LastXDays));
                     break;
                 case GroupFilterConditionType.AllEpisodesWatched:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Include));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Exclude));
-					break;
-				case GroupFilterConditionType.AnimeGroup:
+                case GroupFilterConditionType.CompletedSeries:
+                case GroupFilterConditionType.FinishedAiring:
+                case GroupFilterConditionType.HasWatchedEpisodes:
+                case GroupFilterConditionType.HasUnwatchedEpisodes:
+                case GroupFilterConditionType.MissingEpisodes:
+                case GroupFilterConditionType.MissingEpisodesCollecting:
+                case GroupFilterConditionType.UserVoted:
+                case GroupFilterConditionType.UserVotedAny:
+                case GroupFilterConditionType.Favourite:
+                case GroupFilterConditionType.AssignedTvDBInfo:
+                case GroupFilterConditionType.AssignedMALInfo:
+                case GroupFilterConditionType.AssignedMovieDBInfo:
+                case GroupFilterConditionType.AssignedTvDBOrMovieDBInfo:
+                    ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Include));
+                    ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Exclude));
+                    break;
+                case GroupFilterConditionType.AnimeGroup:
 					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Equals));
 					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.NotEquals));
 					break;
 				case GroupFilterConditionType.AnimeType:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.In));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.NotIn));
-					break;
-				case GroupFilterConditionType.AssignedTvDBInfo:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Include));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Exclude));
-					break;
-				case GroupFilterConditionType.AssignedMALInfo:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Include));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Exclude));
-					break;
-				case GroupFilterConditionType.AssignedMovieDBInfo:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Include));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Exclude));
-					break;
-				case GroupFilterConditionType.AssignedTvDBOrMovieDBInfo:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Include));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Exclude));
-					break;
 				case GroupFilterConditionType.Tag:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.In));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.NotIn));
-					break;
                 case GroupFilterConditionType.CustomTags:
+                case GroupFilterConditionType.AudioLanguage:
+                case GroupFilterConditionType.SubtitleLanguage:
+                case GroupFilterConditionType.ReleaseGroup:
+                case GroupFilterConditionType.Studio:
                     ops.Add(GetTextForEnum_Operator(GroupFilterOperator.In));
-                    ops.Add(GetTextForEnum_Operator(GroupFilterOperator.NotIn));
-                    break;
-				case GroupFilterConditionType.AudioLanguage:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.In));
 					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.NotIn));
-					break;
-				case GroupFilterConditionType.SubtitleLanguage:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.In));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.NotIn));
-					break;
-				case GroupFilterConditionType.CompletedSeries:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Include));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Exclude));
-					break;
-				case GroupFilterConditionType.FinishedAiring:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Include));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Exclude));
-					break;
-				case GroupFilterConditionType.Favourite:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Include));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Exclude));
-					break;
-				case GroupFilterConditionType.HasUnwatchedEpisodes:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Include));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Exclude));
-					break;
-				case GroupFilterConditionType.HasWatchedEpisodes:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Include));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Exclude));
-					break;
-				case GroupFilterConditionType.MissingEpisodes:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Include));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Exclude));
-					break;
-				case GroupFilterConditionType.MissingEpisodesCollecting:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Include));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Exclude));
-					break;
-				case GroupFilterConditionType.ReleaseGroup:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.In));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.NotIn));
-					break;
-				case GroupFilterConditionType.Studio:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.In));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.NotIn));
-					break;
-				case GroupFilterConditionType.UserVoted:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Include));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Exclude));
-					break;
-				case GroupFilterConditionType.UserVotedAny:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Include));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.Exclude));
 					break;
 				case GroupFilterConditionType.VideoQuality:
 					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.In));
@@ -458,13 +385,7 @@ namespace JMMClient.ViewModel
 					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.NotInAllEpisodes));
 					break;
 				case GroupFilterConditionType.AniDBRating:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.GreaterThan));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.LessThan));
-					break;
 				case GroupFilterConditionType.UserRating:
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.GreaterThan));
-					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.LessThan));
-					break;
 				case GroupFilterConditionType.EpisodeCount:
 					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.GreaterThan));
 					ops.Add(GetTextForEnum_Operator(GroupFilterOperator.LessThan));

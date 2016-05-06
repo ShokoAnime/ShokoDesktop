@@ -32,7 +32,6 @@ namespace JMMClient
 		//public int WatchedCount { get; set; }
 		public int StoppedCount { get; set; }
 		public int LatestLocalEpisodeNumber { get; set; }
-        public DateTime? LatestEpisodeAirDate { get; set; }
 
         #endregion
 
@@ -803,7 +802,6 @@ namespace JMMClient
 			IsSeriesNameNotOverridden = string.IsNullOrEmpty(SeriesNameOverride);
 
 			this.LatestLocalEpisodeNumber = contract.LatestLocalEpisodeNumber;
-            this.LatestEpisodeAirDate = contract.LatestEpisodeAirDate;
             this.PlayedCount = contract.PlayedCount;
 			this.StoppedCount = contract.StoppedCount;
 			this.UnwatchedEpisodeCount = contract.UnwatchedEpisodeCount;
