@@ -4678,7 +4678,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add or edit users here. Users are stored in the database, and shared across different clients. You must always have at least one admin user..
+        ///   Looks up a localized string similar to Users are stored in your database and can be accessed by any client that connects to your database. When adding a new user or updating an existing one, you must click the Save button otherwise your changes will not take effect. JMM requires at least one user with administrator rights selected..
         /// </summary>
         public static string INFO_SettingsUserAdmin {
             get {

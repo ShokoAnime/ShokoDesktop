@@ -1005,9 +1005,6 @@
   <data name="ImageSize" xml:space="preserve">
     <value>Bildgröße</value>
   </data>
-  <data name="INFO_SettingsUserAdmin" xml:space="preserve">
-    <value>Hinzufügen oder Bearbeiten von Benutzern hier. Benutzer sind in der Datenbank gespeichert und für verschiedene Clients freigegeben. Sie muss immer mindestens ein Administratorbenutzer.</value>
-  </data>
   <data name="TAB_SettingsUsers" xml:space="preserve">
     <value>Benutzer</value>
   </data>
@@ -4069,5 +4066,8 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   </data>
   <data name="UpdateAniDB_Info1" xml:space="preserve">
     <value>Die Dateien in Ihrer Sammlung bezogenen Daten werden automatisch heruntergeladen und gespeichert in Ihrer lokalen Datenbank Wenn JMM zunächst Dateien importiert. Dieser Prozess wird nur ausgeführt, wenn also, wenn bestimmte Datei, die Daten auf AniDB zum Zeitpunkt des Downloads, wenn fehlt in der Datenbank fehlen wird. Darüber hinaus ist es möglich, dass zukünftige Versionen von JMM zusätzliche Dateidaten verwenden könnte, die steht aber beim Import von JMM zunächst Ihre Dateien nicht heruntergeladen wurde. Dieses Dienstprogramm aktualisiert und alle gespeicherten Daten mit dem, was derzeit auf AniDB zu ersetzen.</value>
+  </data>
+  <data name="INFO_SettingsUserAdmin" xml:space="preserve">
+    <value>Benutzer werden in der Datenbank gespeichert und können von jedem Client, der Verbindung zu Ihrer Datenbank zugegriffen werden. Beim Hinzufügen eines neuen Benutzers oder Aktualisierung einer bestehenden, Sie müssen klicken Schaltfläche Speichern sonst Ihre Änderungen nicht werden wirksam. JMM erfordert mindestens einen Benutzer mit Administrator-rechten ausgewählt.</value>
   </data>
 </root>

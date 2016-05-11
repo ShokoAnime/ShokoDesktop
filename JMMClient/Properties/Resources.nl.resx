@@ -1320,9 +1320,6 @@
   <data name="ImageSize" xml:space="preserve">
     <value>Beeldgrootte</value>
   </data>
-  <data name="INFO_SettingsUserAdmin" xml:space="preserve">
-    <value>Toevoegen of bewerken van de gebruikers hier. Gebruikers zijn opgeslagen in de database, en door de verschillende clients gedeeld. U moet altijd ten minste één beheerder hebben.</value>
-  </data>
   <data name="TAB_SettingsUsers" xml:space="preserve">
     <value>Gebruikers</value>
   </data>
@@ -4069,5 +4066,8 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   </data>
   <data name="UpdateAniDB_Info1" xml:space="preserve">
     <value>Gegevens die betrekking heeft op de bestanden in uw collectie wordt automatisch gedownload en opgeslagen in uw lokale database wanneer JMM eerst bestanden importeert. Dit proces wordt alleen uitgevoerd zodra dus als specifiek bestand gegevens op AniDB op het moment van downloaden, ontbreekt als missen in uw database zullen. Bovendien is het mogelijk dat toekomstige versies van JMM aanvullende bestandsgegevens is beschikbaar, maar was niet gedownload wanneer JMM in eerste instantie uw bestanden geïmporteerde kunnen gebruiken. Deze tool zal bijwerken en vervangen alle gegevens uit een opgeslagen bestand met wat momenteel beschikbaar op AniDB is.</value>
+  </data>
+  <data name="INFO_SettingsUserAdmin" xml:space="preserve">
+    <value>Gebruikers worden opgeslagen in uw database en kunnen worden benaderd door een client die verbinding met de database maakt. Wanneer een nieuwe gebruiker toe te voegen of een bestaande sjabloon bijwerken, u moet klikken sparen knoop anders uw wijzigingen niet zullen van kracht. JMM moet ten minste één gebruiker met beheerdersrechten geselecteerd.</value>
   </data>
 </root>
