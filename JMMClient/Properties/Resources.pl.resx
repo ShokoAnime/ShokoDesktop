@@ -4070,4 +4070,7 @@ Mark Unknown - pozostawia plik na liście, ale zmienia stan nieznany.</value>
   <data name="INFO_SettingsUserAdmin" xml:space="preserve">
     <value>Użytkowników są przechowywane w bazie danych i mogą być udostępniane przez każdego klienta, który łączy się z bazą danych. Kiedy Dodawanie nowego użytkownika lub aktualizacji istniejącej, należy kliknij przycisk Zapisz inaczej zmiany nie będą obowiązywać. JMM wymaga co najmniej jeden użytkownik z prawami administratora zaznaczone.</value>
   </data>
+  <data name="MAL_LoginCorrect" xml:space="preserve">
+    <value>MAL logowanie udane, zapisane ustawienia.</value>
+  </data>
 </root>

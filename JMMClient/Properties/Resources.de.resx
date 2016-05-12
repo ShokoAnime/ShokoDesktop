@@ -4070,4 +4070,7 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   <data name="INFO_SettingsUserAdmin" xml:space="preserve">
     <value>Benutzer werden in der Datenbank gespeichert und können von jedem Client, der Verbindung zu Ihrer Datenbank zugegriffen werden. Beim Hinzufügen eines neuen Benutzers oder Aktualisierung einer bestehenden, Sie müssen klicken Schaltfläche Speichern sonst Ihre Änderungen nicht werden wirksam. JMM erfordert mindestens einen Benutzer mit Administrator-rechten ausgewählt.</value>
   </data>
+  <data name="MAL_LoginCorrect" xml:space="preserve">
+    <value>MAL erfolgreich, für die Anmeldung gespeichert.</value>
+  </data>
 </root>

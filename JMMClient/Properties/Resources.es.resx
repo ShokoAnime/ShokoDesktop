@@ -4070,4 +4070,7 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
   <data name="INFO_SettingsUserAdmin" xml:space="preserve">
     <value>Los usuarios se almacenan en la base de datos y pueden accederse a cualquier cliente que se conecta a la base de datos. Cuando añadiendo un usuario nuevo o actualizar uno ya existente, usted debe hacer clic en el botón Guardar si no no lo harán los cambios surtan efecto. JMM requiere al menos un usuario con derechos de administrador seleccionados.</value>
   </data>
+  <data name="MAL_LoginCorrect" xml:space="preserve">
+    <value>MAL inicio de sesión exitoso configuración guardada.</value>
+  </data>
 </root>

@@ -4070,4 +4070,7 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   <data name="INFO_SettingsUserAdmin" xml:space="preserve">
     <value>Les utilisateurs sont stockées dans votre base de données et sont accessibles par n'importe quel client qui se connecte à votre base de données. Quand ajouter un nouvel utilisateur ou mettre à jour un existant, vous devez cliquer sur le bouton "sauvegarder" sinon vos modifications ne seront pas en vigueur. JMM nécessite au moins un utilisateur disposant de droits administrateur sélectionnés.</value>
   </data>
+  <data name="MAL_LoginCorrect" xml:space="preserve">
+    <value>Connexion MAL réussie, les paramètres enregistrés.</value>
+  </data>
 </root>

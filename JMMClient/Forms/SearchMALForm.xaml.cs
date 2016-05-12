@@ -101,7 +101,9 @@ namespace JMMClient.Forms
 			btnUseThis.Click += new RoutedEventHandler(btnUseThis_Click);
 			btnUseThisExisting.Click += new RoutedEventHandler(btnUseThisExisting_Click);
 
-			CrossRef_AniDB_MALResult = new List<CrossRef_AniDB_MALResultVM>();
+            btnChkCred.Click += new RoutedEventHandler(btnChkCred_Click);
+
+            CrossRef_AniDB_MALResult = new List<CrossRef_AniDB_MALResultVM>();
 		}
 
 		void btnUseThisExisting_Click(object sender, RoutedEventArgs e)
@@ -310,5 +312,19 @@ namespace JMMClient.Forms
 			AnimeName_MAL = animeName;
 			txtSearch.Text = searchCriteria;
 		}
-	}
+
+        private void btnChkCred_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            UserControls.MALSettings OP = new UserControls.MALSettings();
+            var host = new Window();
+            host.Content = OP;
+            host.Title = Properties.Resources.MAL_CheckCred;
+            host.Width = 465;
+            host.Height = 180;
+            host.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            host.ShowDialog();
+        }
+    }
 }

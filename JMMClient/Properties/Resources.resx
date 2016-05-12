@@ -2996,7 +2996,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Anime ID:</value>
   </data>
   <data name="JMMServer_TraktAuth" xml:space="preserve">
-    <value>Trakt Authorization </value>
+    <value>Trakt Authorization Status </value>
   </data>
   <data name="JMMServer_Success" xml:space="preserve">
     <value>Success</value>
@@ -4071,5 +4071,17 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   </data>
   <data name="Rename_AnimeNameRomaji" xml:space="preserve">
     <value>Anime Name - Romaji</value>
+  </data>
+  <data name="MAL_LoginCorrect" xml:space="preserve">
+    <value>MAL login successful, settings saved.</value>
+  </data>
+  <data name="MAL_SearchInfo" xml:space="preserve">
+    <value>Valid MAL credentials are required in order to use this feature</value>
+  </data>
+  <data name="CheckCred" xml:space="preserve">
+    <value>Check Credentials</value>
+  </data>
+  <data name="MAL_CheckCred" xml:space="preserve">
+    <value>Check MAL Credentials</value>
   </data>
 </root>

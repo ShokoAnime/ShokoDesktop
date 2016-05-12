@@ -4070,4 +4070,7 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   <data name="INFO_SettingsUserAdmin" xml:space="preserve">
     <value>Gebruikers worden opgeslagen in uw database en kunnen worden benaderd door een client die verbinding met de database maakt. Wanneer een nieuwe gebruiker toe te voegen of een bestaande sjabloon bijwerken, u moet klikken sparen knoop anders uw wijzigingen niet zullen van kracht. JMM moet ten minste één gebruiker met beheerdersrechten geselecteerd.</value>
   </data>
+  <data name="MAL_LoginCorrect" xml:space="preserve">
+    <value>MAL succesvolle, inloginstellingen opgeslagen.</value>
+  </data>
 </root>

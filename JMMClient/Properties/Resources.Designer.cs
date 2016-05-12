@@ -1384,6 +1384,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check Credentials.
+        /// </summary>
+        public static string CheckCred {
+            get {
+                return ResourceManager.GetString("CheckCred", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check For Updates.
         /// </summary>
         public static string CheckForUpdate {
@@ -4849,7 +4858,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Trakt Authorization .
+        ///   Looks up a localized string similar to Trakt Authorization Status .
         /// </summary>
         public static string JMMServer_TraktAuth {
             get {
@@ -5200,11 +5209,38 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check MAL Credentials.
+        /// </summary>
+        public static string MAL_CheckCred {
+            get {
+                return ResourceManager.GetString("MAL_CheckCred", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MAL login successful, settings saved..
+        /// </summary>
+        public static string MAL_LoginCorrect {
+            get {
+                return ResourceManager.GetString("MAL_LoginCorrect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Never Decrease Watched Counts.
         /// </summary>
         public static string MAL_NeverDecrease {
             get {
                 return ResourceManager.GetString("MAL_NeverDecrease", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Valid MAL credentials are required in order to use this feature.
+        /// </summary>
+        public static string MAL_SearchInfo {
+            get {
+                return ResourceManager.GetString("MAL_SearchInfo", resourceCulture);
             }
         }
         
