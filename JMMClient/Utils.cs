@@ -221,19 +221,19 @@ namespace JMMClient
 
 		public static void ShowErrorMessage(string msg, Exception ex)
 		{
-			System.Windows.Forms.MessageBox.Show(msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			System.Windows.Forms.MessageBox.Show(msg, Properties.Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
 			logger.ErrorException(ex.ToString(), ex);
 		}
 
 		public static void ShowErrorMessage(Exception ex)
 		{
-			System.Windows.Forms.MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			System.Windows.Forms.MessageBox.Show(ex.Message, Properties.Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
 			logger.ErrorException(ex.ToString(), ex);
 		}
 
 		public static void ShowErrorMessage(string msg)
 		{
-			System.Windows.Forms.MessageBox.Show(msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			System.Windows.Forms.MessageBox.Show(msg, Properties.Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
 			logger.Error(msg);
 		}
 

@@ -20,6 +20,8 @@ using JMMClient.ImageDownload;
 using NLog;
 using System.Net;
 using System.Diagnostics;
+using System.Threading;
+using System.Globalization;
 
 namespace JMMClient.UserControls
 {
@@ -93,7 +95,9 @@ namespace JMMClient.UserControls
 		{
 			InitializeComponent();
 
-			UnwatchedEpisodes = new ObservableCollection<AnimeEpisodeDisplayVM>();
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            UnwatchedEpisodes = new ObservableCollection<AnimeEpisodeDisplayVM>();
 			ViewUnwatchedEpisodes = CollectionViewSource.GetDefaultView(UnwatchedEpisodes);
 
             Characters = new ObservableCollection<AniDB_CharacterVM>();
@@ -268,7 +272,7 @@ namespace JMMClient.UserControls
 			string msg = e.Result.ToString();
 			this.Cursor = Cursors.Arrow;
 
-			MessageBox.Show(msg, "Message", MessageBoxButton.OK, MessageBoxImage.Information);
+			MessageBox.Show(msg, Properties.Resources.Anime_Message, MessageBoxButton.OK, MessageBoxImage.Information);
             txtCommentNew.Text = "";
             btnSubmitComment.IsEnabled = true;
 
@@ -300,14 +304,14 @@ namespace JMMClient.UserControls
 		{
             if (!JMMServerVM.Instance.Trakt_IsEnabled)
             {
-                Utils.ShowErrorMessage("You have not enabled Trakt, for more info go to 'Settings - Community Sites - Trakt TV'");
+                Utils.ShowErrorMessage(Properties.Resources.Anime_TraktNotEnabled);
                 txtCommentNew.Focus();
                 return;
             }
 
             if (string.IsNullOrEmpty(JMMServerVM.Instance.Trakt_AuthToken))
             {
-                Utils.ShowErrorMessage("You have not authorized JMM to use your Trakt account, for more info go to 'Settings - Community Sites - Trakt TV'");
+                Utils.ShowErrorMessage(Properties.Resources.Anime_JMMAuth);
                 txtCommentNew.Focus();
                 return;
             }
@@ -315,7 +319,7 @@ namespace JMMClient.UserControls
 			AnimeSeriesVM animeSeries = (AnimeSeriesVM)this.DataContext;
 			if (animeSeries == null)
 			{
-				Utils.ShowErrorMessage("Anime series info not found");
+				Utils.ShowErrorMessage(Properties.Resources.Anime_SeriesNotFound);
                 txtCommentNew.Focus();
 				return;
 			}
@@ -323,14 +327,14 @@ namespace JMMClient.UserControls
 			string commentText = txtCommentNew.Text.Trim();
 			if (string.IsNullOrEmpty(commentText))
 			{
-				Utils.ShowErrorMessage("Please enter text for your comment");
+				Utils.ShowErrorMessage(Properties.Resources.Anime_EnterText);
                 txtCommentNew.Focus();
 				return;
 			}
 
 			if (commentText.Length > 2000)
 			{
-				Utils.ShowErrorMessage(string.Format("Comment text must be less than 2000 characters ({0})", commentText.Length));
+				Utils.ShowErrorMessage(string.Format(Properties.Resources.Anime_CommentText, commentText.Length));
                 txtCommentNew.Focus();
 				return;
 			}
@@ -345,7 +349,7 @@ namespace JMMClient.UserControls
                 if (animeSeries.AniDB_Anime.traktSummary.traktDetails == null ||
                     animeSeries.AniDB_Anime.traktSummary.traktDetails.Count == 0)
                 {
-                    Utils.ShowErrorMessage(string.Format("Cannot comment where a series does not have a Trakt show linked"));
+                    Utils.ShowErrorMessage(string.Format(Properties.Resources.Anime_NoTrakt));
                     txtCommentNew.Focus();
                     btnSubmitComment.IsEnabled = true;
                     return;
@@ -355,7 +359,7 @@ namespace JMMClient.UserControls
                 if (animeSeries.AniDB_Anime.traktSummary.traktDetails != null &&
                     animeSeries.AniDB_Anime.traktSummary.traktDetails.Count > 1)
                 {
-                    Utils.ShowErrorMessage(string.Format("Cannot comment where a series has more than one Trakt show linked"));
+                    Utils.ShowErrorMessage(string.Format(Properties.Resources.Anime_MultiTrakt));
                     txtCommentNew.Focus();
                     btnSubmitComment.IsEnabled = true;
                     return;
@@ -381,7 +385,7 @@ namespace JMMClient.UserControls
             }
             else
             {
-                Utils.ShowErrorMessage(string.Format("Cannot comment where a series does not have a Trakt show linked"));
+                Utils.ShowErrorMessage(string.Format(Properties.Resources.Anime_NoTrakt));
                 txtCommentNew.Focus();
                 btnSubmitComment.IsEnabled = true;
             }
@@ -433,12 +437,12 @@ namespace JMMClient.UserControls
             txtCommentNew.Foreground = Brushes.DarkGray;
 
 			if (txtCommentNew.Text.Trim().Length == 0)
-                txtCommentNew.Text = "Have Your Say...";
+                txtCommentNew.Text = Properties.Resources.Anime_YourSay;
 		}
 
 		void txtCommentNew_GotFocus(object sender, RoutedEventArgs e)
 		{
-			if (txtCommentNew.Text.Equals("Have Your Say...", StringComparison.InvariantCultureIgnoreCase))
+			if (txtCommentNew.Text.Equals(Properties.Resources.Anime_YourSay, StringComparison.InvariantCultureIgnoreCase))
 				txtCommentNew.Text = "";
 
 			txtCommentNew.Foreground = Brushes.Black;
@@ -937,7 +941,7 @@ namespace JMMClient.UserControls
 						newStatus, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
 					if (!string.IsNullOrEmpty(response.ErrorMessage))
 					{
-						MessageBox.Show(response.ErrorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+						MessageBox.Show(response.ErrorMessage, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 						return;
 					}
 

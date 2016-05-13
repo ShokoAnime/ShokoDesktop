@@ -959,7 +959,7 @@
                     <Grid SnapsToDevicePixels="true">
                         <Border x:Name="Bd" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1,1,1,0" >
                             <DockPanel x:Name="ContentPanel">
-                                <Button x:Name="PART_Close" HorizontalAlignment="Center" Margin="3,0,3,0" VerticalAlignment="Center" Width="16" Height="16" DockPanel.Dock="Right" Style="{DynamicResource CloseableTabItemButtonStyle}" ToolTip="Close Tab">
+                                <Button x:Name="PART_Close" HorizontalAlignment="Center" Margin="3,0,3,0" VerticalAlignment="Center" Width="16" Height="16" DockPanel.Dock="Right" Style="{DynamicResource CloseableTabItemButtonStyle}" ToolTip="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_StylesCloseTab}">
                                     <Path x:Name="Path" Stretch="Fill" StrokeThickness="0.5" Stroke="#FF333333" Fill="#FF969696" Data="F1 M 2.28484e-007,1.33331L 1.33333,0L 4.00001,2.66669L 6.66667,6.10352e-005L 8,1.33331L 5.33334,4L 8,6.66669L 6.66667,8L 4,5.33331L 1.33333,8L 1.086e-007,6.66669L 2.66667,4L 2.28484e-007,1.33331 Z " HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
                                 </Button>
                                 <ContentPresenter x:Name="Content" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" ContentSource="Header" RecognizesAccessKey="True" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="{TemplateBinding Padding}"/>
@@ -1071,8 +1071,8 @@
                         <!-- Buttons - normal -->
                         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center"
                                     Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=WindowNormal, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            
-                            <Button Margin="0,2,2,2" Style="{DynamicResource FlatButtonStyle}" ToolTip="Full Screen" Command="{DynamicResource WindowFullScreenCommand}">
+
+                            <Button Margin="0,2,2,2" Style="{DynamicResource FlatButtonStyle}" ToolTip="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_StylesFullScreen}" Command="{DynamicResource WindowFullScreenCommand}">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="24" Width="24" Source="/Images/Metro/fullscreen.png" Margin="0,0,0,0"/>
                                 </StackPanel>
@@ -1084,19 +1084,19 @@
                         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center"
                                     Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=WindowFullScreen, Converter={StaticResource BooleanToVisibilityConverter}}">
 
-                            <Button Margin="0,2,2,2" Style="{DynamicResource FlatButtonStyle}" ToolTip="Minimize" Command="{DynamicResource WindowMinimizeCommand}">
+                            <Button Margin="0,2,2,2" Style="{DynamicResource FlatButtonStyle}" ToolTip="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_StylesMinimize}" Command="{DynamicResource WindowMinimizeCommand}">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="24" Width="24" Source="/Images/Metro/minimize.png" Margin="0,0,0,0"/>
                                 </StackPanel>
                             </Button>
 
-                            <Button Margin="0,2,2,2" Style="{DynamicResource FlatButtonStyle}" ToolTip="Normal Window" Command="{DynamicResource WindowNormalCommand}">
+                            <Button Margin="0,2,2,2" Style="{DynamicResource FlatButtonStyle}" ToolTip="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_StylesNormal}" Command="{DynamicResource WindowNormalCommand}">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="24" Width="24" Source="/Images/Metro/maximize.png" Margin="0,0,0,0"/>
                                 </StackPanel>
                             </Button>
 
-                            <Button Margin="0,2,2,2" Style="{DynamicResource FlatButtonStyle}" ToolTip="Exit JMM Desktop" Command="{DynamicResource WindowCloseCommand}">
+                            <Button Margin="0,2,2,2" Style="{DynamicResource FlatButtonStyle}" ToolTip="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_StylesExit}" Command="{DynamicResource WindowCloseCommand}">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="24" Width="24" Source="/Images/Metro/close.png" Margin="0,0,0,0"/>
                                 </StackPanel>

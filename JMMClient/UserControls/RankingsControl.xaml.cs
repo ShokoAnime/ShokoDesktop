@@ -90,7 +90,9 @@ namespace JMMClient.UserControls
 		{
 			InitializeComponent();
 
-			AllAnime = new List<AniDB_AnimeDetailedVM>();
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            AllAnime = new List<AniDB_AnimeDetailedVM>();
 			AllRankings = new ObservableCollection<AnimeRatingVM>();
 
 			ViewUserRankings = new ListCollectionView(AllRankings);

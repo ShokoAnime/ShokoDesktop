@@ -13,6 +13,8 @@ using System.Windows.Shapes;
 using NLog;
 using JMMClient.ViewModel;
 using System.Diagnostics;
+using System.Globalization;
+using System.Threading;
 
 namespace JMMClient.Forms
 {
@@ -84,7 +86,9 @@ namespace JMMClient.Forms
 		{
 			InitializeComponent();
 
-			rbExisting.Checked += new RoutedEventHandler(rbExisting_Checked);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            rbExisting.Checked += new RoutedEventHandler(rbExisting_Checked);
 			rbSearch.Checked += new RoutedEventHandler(rbSearch_Checked);
 
 			hlURL.Click += new RoutedEventHandler(hlURL_Click);
@@ -108,14 +112,14 @@ namespace JMMClient.Forms
 				int.TryParse(txtMALID.Text, out id);
 				if (id <= 0)
 				{
-					MessageBox.Show("Please enter a valid number as the MAL ID", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					MessageBox.Show(Properties.Resources.Search_InvalidMAL, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 					txtMALID.Focus();
 					return;
 				}
 
 				if (string.IsNullOrEmpty(txtMALTitle.Text.Trim()))
 				{
-					MessageBox.Show("Please enter a title for the show", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					MessageBox.Show(Properties.Resources.Search_EnterTitle, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 					txtMALTitle.Focus();
 					return;
 				}
@@ -178,7 +182,7 @@ namespace JMMClient.Forms
 		{
 			string res = JMMServerVM.Instance.clientBinaryHTTP.LinkAniDBMAL(AnimeID, malID, malTitle, epType, epNumber);
 			if (res.Length > 0)
-				MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				MessageBox.Show(res, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 			else
 			{
 				this.DialogResult = true;

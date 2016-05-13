@@ -12,6 +12,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.ComponentModel;
 using System.Collections;
+using System.Threading;
+using System.Globalization;
 
 namespace JMMClient.Forms
 {
@@ -50,7 +52,9 @@ namespace JMMClient.Forms
 		{
 			InitializeComponent();
 
-			txtGroupSearch.TextChanged += new TextChangedEventHandler(txtGroupSearch_TextChanged);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            txtGroupSearch.TextChanged += new TextChangedEventHandler(txtGroupSearch_TextChanged);
 			btnClearSearch.Click += new RoutedEventHandler(btnClearSearch_Click);
 			btnOK.Click += new RoutedEventHandler(btnOK_Click);
 
@@ -116,7 +120,7 @@ namespace JMMClient.Forms
 			{
 				if (lbGroups.SelectedItem == null)
 				{
-					MessageBox.Show(Properties.Resources.MSG_ERR_GroupSelectionRequired, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					MessageBox.Show(Properties.Resources.MSG_ERR_GroupSelectionRequired, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 					lbGroups.Focus();
 					return;
 				}
@@ -133,7 +137,7 @@ namespace JMMClient.Forms
 			{
 				if (txtGroupName.Text.Trim().Length == 0)
 				{
-					MessageBox.Show(Properties.Resources.MSG_ERR_GroupNameRequired, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					MessageBox.Show(Properties.Resources.MSG_ERR_GroupNameRequired, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 					txtGroupName.Focus();
 					return;
 				}

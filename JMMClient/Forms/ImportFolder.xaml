@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:JMMClient"
         xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
-        Title="Import Folder" Height="Auto" Width="Auto" Icon="/JMMDesktop;component/Images/32_folder_edit.png" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" SizeToContent="WidthAndHeight">
+        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=ImportFolder}" Height="Auto" Width="Auto" Icon="/JMMDesktop;component/Images/32_folder_edit.png" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" SizeToContent="WidthAndHeight">
 
 
     <StackPanel Orientation="Vertical">

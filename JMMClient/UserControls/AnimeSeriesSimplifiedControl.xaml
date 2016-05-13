@@ -761,7 +761,7 @@
 
                 </Button>
 
-                <Button Name="btnSwitchView" Margin="0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" ToolTip="Full Series View" Visibility="Collapsed">
+                <Button Name="btnSwitchView" Margin="0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" ToolTip="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AnimeFull}" Visibility="Collapsed">
                     <Image Height="32" Width="32" Source="/Images/Metro/details.png" Margin="2,0,2,0"/>
 
                 </Button>
@@ -770,7 +770,7 @@
 
 
                 <!-- show pinned series button -->
-                <Button Margin="10,2,2,2" Style="{StaticResource FlatButtonStyle}" VerticalAlignment="Center" ToolTip="View Series"
+                <Button Margin="10,2,2,2" Style="{StaticResource FlatButtonStyle}" VerticalAlignment="Center" ToolTip="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AnimeView}"
                                         Command="{DynamicResource ShowPinnedSeriesCommand}" CommandParameter="{Binding}">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                         <Image Height="16" Width="16" Source="/Images/16_windows.png" Margin="2,0,2,0">
@@ -1049,7 +1049,7 @@
                     <TextBlock VerticalAlignment="Top" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_PeopleSaying}" Foreground="DarkBlue" FontFamily="Segoe UI"  FontSize="20" Margin="0,0,10,0" />
 
                     <!-- refresh comments button -->
-                    <Button x:Name="btnRefreshComments"  Margin="0,0,2,2" Style="{StaticResource FlatButtonStyle}" VerticalAlignment="Center" ToolTip="Update Info from AniDB and Refresh"
+                    <Button x:Name="btnRefreshComments"  Margin="0,0,2,2" Style="{StaticResource FlatButtonStyle}" VerticalAlignment="Center" ToolTip="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AnimeUpdateAniDBInfo}"
                         Visibility="{Binding Path=IsNotLoadingComments, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeSeriesSimplifiedControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                             <Image Height="22" Width="22" Source="/Images/Metro/refresh.png" Margin="2,0,2,0"/>

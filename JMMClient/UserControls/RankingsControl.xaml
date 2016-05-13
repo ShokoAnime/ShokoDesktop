@@ -27,9 +27,9 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="600*" />
+            <ColumnDefinition Width="550*" />
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="300*" />
+            <ColumnDefinition Width="350*" />
         </Grid.ColumnDefinitions>
 
 
@@ -125,6 +125,7 @@
                                                     <StackPanel Orientation="Horizontal">
                                                         <TextBlock Text="{Binding Path=Name}" FontWeight="Bold" />
                                                         <TextBlock Text="{Binding Path=ItemCount}" Margin="10,0,0,0"/>
+                                                        <TextBlock Text=" "/>
                                                         <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Rankings_Anime}"/>
                                                     </StackPanel>
                                                 </Expander.Header>

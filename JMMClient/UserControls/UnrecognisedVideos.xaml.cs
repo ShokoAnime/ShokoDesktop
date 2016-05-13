@@ -389,7 +389,7 @@ namespace JMMClient.UserControls
 						if (series.LatestRegularEpisodeNumber < endEpNum || startEpNum <= 0 && endEpNum <= 0 && endEpNum <= startEpNum)
 						{
 							// otherwise allow the user to refresh it from anidb
-							MessageBoxResult res = MessageBox.Show(Properties.Resources.MSG_ERR_InvalidEpGetAnime, "Error", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
+							MessageBoxResult res = MessageBox.Show(Properties.Resources.MSG_ERR_InvalidEpGetAnime, Properties.Resources.Error, MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
 							if (res == MessageBoxResult.Yes)
 							{
 								result = JMMServerVM.Instance.clientBinaryHTTP.UpdateAnimeData(series.AniDB_ID);
@@ -464,7 +464,7 @@ namespace JMMClient.UserControls
 					if (series.LatestRegularEpisodeNumber < endEpNum && startEpNum > 0)
 					{
 						// otherwise allow the user to refresh it from anidb
-						MessageBoxResult res = MessageBox.Show(Properties.Resources.MSG_ERR_InvalidEpGetAnime, "Error", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
+						MessageBoxResult res = MessageBox.Show(Properties.Resources.MSG_ERR_InvalidEpGetAnime, Properties.Resources.Error, MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
 						if (res == MessageBoxResult.Yes)
 						{
 							string result = JMMServerVM.Instance.clientBinaryHTTP.UpdateAnimeData(series.AniDB_ID);
@@ -683,7 +683,7 @@ namespace JMMClient.UserControls
 					}
 				}
 
-				MessageBox.Show(Properties.Resources.MSG_INFO_AddedQueueCmds, "Done", MessageBoxButton.OK, MessageBoxImage.Information);
+				MessageBox.Show(Properties.Resources.MSG_INFO_AddedQueueCmds, Properties.Resources.Done, MessageBoxButton.OK, MessageBoxImage.Information);
 			}
 			catch (Exception ex)
 			{

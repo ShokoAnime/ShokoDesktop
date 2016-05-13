@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
+using System.Threading;
+using System.Globalization;
 
 namespace JMMClient.ViewModel
 {
@@ -166,7 +168,9 @@ namespace JMMClient.ViewModel
 			}
 			else
 			{
-				DisplayName = "Data Missing";
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+                DisplayName = Properties.Resources.Recommendation_Missing;
 				AnimeInfoExists = false;
 				PosterPath = string.Format("pack://application:,,,/{0};component/Images/blankposter.png", Constants.AssemblyName);
 			}
@@ -195,7 +199,9 @@ namespace JMMClient.ViewModel
 			if (this.Total > 0)
 				ApprovalPercentage = (double)Approval / (double)Total * (double)100;
 
-			ApprovalRating = string.Format("{0} ({1} Votes)", Utils.FormatPercentage(ApprovalPercentage), this.Total);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            ApprovalRating = string.Format("{0} ({1})" + " " + Properties.Resources.Votes, Utils.FormatPercentage(ApprovalPercentage), this.Total);
 
 			PopulateAnime(details.AniDB_Anime);
 			PopulateSeries(details.AnimeSeries);

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -23,7 +25,9 @@ namespace JMMClient.UserControls
 		{
 			InitializeComponent();
 
-			btnTest.Click += new RoutedEventHandler(btnTest_Click);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            btnTest.Click += new RoutedEventHandler(btnTest_Click);
 
 			udRefreshInterval.ValueChanged += new RoutedPropertyChangedEventHandler<object>(udRefreshInterval_ValueChanged);
 		}
@@ -37,7 +41,7 @@ namespace JMMClient.UserControls
 		{
 			if (!UTorrentHelperVM.Instance.AreCredentialsValid())
 			{
-				MessageBox.Show("Please enter all uTorrent details", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				MessageBox.Show(Properties.Resources.Downloads_uTorrentDetails, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 				txtServer.Focus();
 				return;
 			}
@@ -52,10 +56,10 @@ namespace JMMClient.UserControls
 			this.IsEnabled = true;
 
 			if (success)
-				MessageBox.Show("Connected sucessfully", "Sucess", MessageBoxButton.OK, MessageBoxImage.Information);
+				MessageBox.Show(Properties.Resources.Downloads_Connected, Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
 			else
 			{
-				MessageBox.Show("Failed! See log for more details if needed", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				MessageBox.Show(Properties.Resources.Downloads_Failed, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 				txtServer.Focus();
 				return;
 			}

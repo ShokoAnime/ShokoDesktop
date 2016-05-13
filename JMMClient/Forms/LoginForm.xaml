@@ -5,7 +5,7 @@
         xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
         ShowInTaskbar="True" WindowStyle="SingleBorderWindow"
         WindowStartupLocation="CenterScreen" Topmost="False" SizeToContent="WidthAndHeight"
-        Title="JMM Login" Height="300" Width="300" Name="loginWindow" Icon="/JMMDesktop;component/Web%20Database.ico">
+        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=Login_UserLogin}" Height="300" Width="300" Name="loginWindow" Icon="/JMMDesktop;component/Web%20Database.ico">
 
     <Grid Margin="10">
         <Grid.Resources>

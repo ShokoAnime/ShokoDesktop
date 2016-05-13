@@ -130,7 +130,9 @@ namespace JMMClient.UserControls
 		{
 			InitializeComponent();
 
-			refreshDataWorker.DoWork += new DoWorkEventHandler(refreshDataWorker_DoWork);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            refreshDataWorker.DoWork += new DoWorkEventHandler(refreshDataWorker_DoWork);
 			refreshDataWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(refreshDataWorker_RunWorkerCompleted);
 
 			refreshContinueWatchingWorker.DoWork += new DoWorkEventHandler(refreshContinueWatchingWorker_DoWork);

@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using JMMClient.ViewModel;
+using System.Globalization;
 
 namespace JMMClient.UserControls
 {
@@ -50,6 +51,8 @@ namespace JMMClient.UserControls
         public CommunityLinksControl()
         {
             InitializeComponent();
+
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
             TVDBResults = new ObservableCollection<CrossRef_AniDB_TvDBVMV2>();
             ViewTVDBResults = CollectionViewSource.GetDefaultView(TVDBResults);
@@ -186,7 +189,7 @@ namespace JMMClient.UserControls
             if (!JMMServerVM.Instance.ServerOnline) return;
 
             this.Cursor = Cursors.Wait;
-            SearchStatus = string.Format("Searching...");
+            SearchStatus = string.Format(Properties.Resources.Community_Searching);
 
             txtSearch.Text = crit.AnimeID.ToString();
 
@@ -288,7 +291,7 @@ namespace JMMClient.UserControls
             if (!JMMServerVM.Instance.ServerOnline) return;
 
             this.Cursor = Cursors.Wait;
-            SearchStatus = string.Format("Searching...");
+            SearchStatus = string.Format(Properties.Resources.Community_Searching);
 
             txtSearch.Text = crit.AnimeID.ToString();
 
@@ -346,7 +349,7 @@ namespace JMMClient.UserControls
         {
             if (!JMMServerVM.Instance.ServerOnline) return;
 
-            SearchStatus = "Searching...";
+            SearchStatus = Properties.Resources.Community_Searching;
 
             btnRandomAnime.IsEnabled = false;
             btnSearch.IsEnabled = false;
@@ -364,7 +367,7 @@ namespace JMMClient.UserControls
                         AzureAnimeLink link = new AzureAnimeLink(contract);
                         SearchCriteria crit = new SearchCriteria();
                         crit.AnimeID = link.RandomAnimeID;
-                        crit.ExtraInfo = string.Format("{0} Anime still need TvDB approval", link.AnimeNeedingApproval);
+                        crit.ExtraInfo = string.Format(Properties.Resources.Community_TvDBApproval, link.AnimeNeedingApproval);
 
                         PerformTvDBSearch(crit);
                     }
@@ -379,7 +382,7 @@ namespace JMMClient.UserControls
                         AzureAnimeLink link = new AzureAnimeLink(contract);
                         SearchCriteria crit = new SearchCriteria();
                         crit.AnimeID = link.RandomAnimeID;
-                        crit.ExtraInfo = string.Format("{0} Anime still need Trakt approval", link.AnimeNeedingApproval);
+                        crit.ExtraInfo = string.Format(Properties.Resources.Community_TraktApproval, link.AnimeNeedingApproval);
 
                         PerformTraktSearch(crit);
                     }
@@ -428,7 +431,7 @@ namespace JMMClient.UserControls
                     if (string.IsNullOrEmpty(res))
                         xref.IsAdminApproved = 1;
                     else
-                        MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(res, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     
                 }
                 if (obj.GetType() == typeof(CrossRef_AniDB_TraktVMV2))
@@ -439,7 +442,7 @@ namespace JMMClient.UserControls
                     if (string.IsNullOrEmpty(res))
                         xref.IsAdminApproved = 1;
                     else
-                        MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(res, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 
                 }
             }
@@ -466,7 +469,7 @@ namespace JMMClient.UserControls
                     if (string.IsNullOrEmpty(res))
                         xref.IsAdminApproved = 0;
                     else
-                        MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(res, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 
                 }
                 if (obj.GetType() == typeof(CrossRef_AniDB_TraktVMV2))
@@ -477,7 +480,7 @@ namespace JMMClient.UserControls
                     if (string.IsNullOrEmpty(res))
                         xref.IsAdminApproved = 0;
                     else
-                        MessageBox.Show(res, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(res, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 
                 }
             }

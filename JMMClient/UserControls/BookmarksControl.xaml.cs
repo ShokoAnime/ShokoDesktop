@@ -13,6 +13,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using JMMClient.ViewModel;
 using JMMClient.Forms;
+using System.Globalization;
+using System.Threading;
 
 namespace JMMClient.UserControls
 {
@@ -25,7 +27,9 @@ namespace JMMClient.UserControls
 		{
 			InitializeComponent();
 
-			chkDownloading.Click += new RoutedEventHandler(chkDownloading_Click);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            chkDownloading.Click += new RoutedEventHandler(chkDownloading_Click);
 			chkNotDownloading.Click += new RoutedEventHandler(chkNotDownloading_Click);
 		}
 
@@ -75,7 +79,7 @@ namespace JMMClient.UserControls
 				if (ba == null) return;
 
 				DialogTextMultiline dlg = new DialogTextMultiline();
-				dlg.Init("Notes: ", ba.Notes);
+				dlg.Init(Properties.Resources.Bookmarks_Notes + " ", ba.Notes);
 				dlg.Owner = Window.GetWindow(this);
 				bool? res = dlg.ShowDialog();
 				if (res.HasValue && res.Value)
@@ -104,7 +108,7 @@ namespace JMMClient.UserControls
 				if (ba == null) return;
 
 				DialogInteger dlg = new DialogInteger();
-				dlg.Init("Priority: ", ba.Priority, 1, 100);
+				dlg.Init(Properties.Resources.Bookmarks_Priority + " ", ba.Priority, 1, 100);
 				dlg.Owner = Window.GetWindow(this);
 				bool? res = dlg.ShowDialog();
 				if (res.HasValue && res.Value)
@@ -132,15 +136,15 @@ namespace JMMClient.UserControls
 				BookmarkedAnimeVM ba = obj as BookmarkedAnimeVM;
 				if (ba == null) return;
 
-				MessageBoxResult res = MessageBox.Show(string.Format("Are you sure you want to delete this bookmark: {0}", ba.AniDB_Anime.FormattedTitle),
-						"Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+				MessageBoxResult res = MessageBox.Show(string.Format(Properties.Resources.Bookmarks_Delete, ba.AniDB_Anime.FormattedTitle),
+                        Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
 				if (res == MessageBoxResult.Yes)
 				{
 					this.Cursor = Cursors.Wait;
 					string result = JMMServerVM.Instance.clientBinaryHTTP.DeleteBookmarkedAnime(ba.BookmarkedAnimeID.Value);
 					if (result.Length > 0)
-						MessageBox.Show(result, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+						MessageBox.Show(result, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 					else
 					{
 						MainListHelperVM.Instance.BookmarkedAnime.Remove(ba);

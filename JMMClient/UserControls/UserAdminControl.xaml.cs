@@ -15,6 +15,8 @@ using JMMClient.ViewModel;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using JMMClient.Forms;
+using System.Threading;
+using System.Globalization;
 
 namespace JMMClient.UserControls
 {
@@ -44,6 +46,8 @@ namespace JMMClient.UserControls
         public UserAdminControl()
         {
             InitializeComponent();
+
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
             IsUserSelected = false;
             SelectedUser = null;
@@ -79,7 +83,7 @@ namespace JMMClient.UserControls
         {
             if (string.IsNullOrEmpty(txtUsername.Text.Trim()))
             {
-                MessageBox.Show("Please enter a username", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.User_EnterUsername, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                 txtUsername.Focus();
                 return;
             }
@@ -97,7 +101,7 @@ namespace JMMClient.UserControls
                             {
                                 if (n.Trim().ToLower() == m.Trim().ToLower())
                                 {
-                                    MessageBox.Show(string.Format("The Plex User '{0}' is already asigned to the JMM User '{1}'", n.Trim(), us.Username), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                    MessageBox.Show(string.Format(Properties.Resources.User_PlexAssigned, n.Trim(), us.Username), Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                                     txtPlexUsers.Focus();
                                     return;
                                 }
@@ -107,7 +111,7 @@ namespace JMMClient.UserControls
                 }
 
             }
-            SelectedUser = lbUsers.SelectedItem as JMMUserVM;
+            //SelectedUser = lbUsers.SelectedItem as JMMUserVM;
 
             SelectedUser.Username = txtUsername.Text.Trim();
             SelectedUser.HideTags = txtTags.Text.Trim();
@@ -124,7 +128,7 @@ namespace JMMClient.UserControls
                 this.Cursor = Cursors.Arrow;
                 if (ret.Length > 0)
                 {
-                    MessageBox.Show(ret, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(ret, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     txtUsername.Focus();
                 }
 
@@ -153,7 +157,7 @@ namespace JMMClient.UserControls
                 {
                     JMMUserVM user = (JMMUserVM)obj;
 
-                    MessageBoxResult res = MessageBox.Show(string.Format("Are you sure you want to delete the User: {0}", user.Username),
+                    MessageBoxResult res = MessageBox.Show(string.Format(Properties.Resources.User_Delete, user.Username),
                     "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
                     if (res == MessageBoxResult.Yes)
                     {
@@ -161,7 +165,7 @@ namespace JMMClient.UserControls
                         {
                             if (user.JMMUserID.Value == JMMServerVM.Instance.CurrentUser.JMMUserID.Value)
                             {
-                                MessageBox.Show("Cannot delete currently logged in user", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                MessageBox.Show(Properties.Resources.User_DeleteError, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                                 return;
                             }
                         }
@@ -170,7 +174,7 @@ namespace JMMClient.UserControls
                         string ret = JMMServerVM.Instance.clientBinaryHTTP.DeleteUser(user.JMMUserID.Value);
                         this.Cursor = Cursors.Arrow;
                         if (ret.Length > 0)
-                            MessageBox.Show(ret, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(ret, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 
                         JMMServerVM.Instance.RefreshAllUsers();
 

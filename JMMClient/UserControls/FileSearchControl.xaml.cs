@@ -52,7 +52,9 @@ namespace JMMClient.UserControls
 		{
 			InitializeComponent();
 
-			FileResults = new ObservableCollection<VideoLocalVM>();
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            FileResults = new ObservableCollection<VideoLocalVM>();
 			ViewFiles = CollectionViewSource.GetDefaultView(FileResults);
 
 			btnSearch.Click += new RoutedEventHandler(btnSearch_Click);
@@ -150,7 +152,7 @@ namespace JMMClient.UserControls
 
 				if (txtFileSearch.Text.Trim().Length == 0 && searchType != FileSearchCriteria.LastOneHundred)
 				{
-					MessageBox.Show("Please enter search criteria", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					MessageBox.Show(Properties.Resources.Seach_Criteria, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 					txtFileSearch.Focus();
 					return;
 				}
@@ -206,7 +208,7 @@ namespace JMMClient.UserControls
 				}
 				else
 				{
-					MessageBox.Show(Properties.Resources.MSG_ERR_FileNotFound, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					MessageBox.Show(Properties.Resources.MSG_ERR_FileNotFound, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 				}
 			}
 		}
@@ -257,7 +259,7 @@ namespace JMMClient.UserControls
 					JMMServerVM.Instance.clientBinaryHTTP.RescanFile(vid.VideoLocalID);
 				}
 
-				MessageBox.Show(Properties.Resources.MSG_INFO_AddedQueueCmds, "Done", MessageBoxButton.OK, MessageBoxImage.Information);
+				MessageBox.Show(Properties.Resources.MSG_INFO_AddedQueueCmds, Properties.Resources.Done, MessageBoxButton.OK, MessageBoxImage.Information);
 			}
 			catch (Exception ex)
 			{

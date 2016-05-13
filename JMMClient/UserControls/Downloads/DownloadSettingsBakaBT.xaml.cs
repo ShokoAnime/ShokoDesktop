@@ -12,6 +12,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using JMMClient.Downloads;
+using System.Threading;
+using System.Globalization;
 
 namespace JMMClient.UserControls
 {
@@ -24,7 +26,9 @@ namespace JMMClient.UserControls
 		{
 			InitializeComponent();
 
-			btnTest.Click += new RoutedEventHandler(btnTest_Click);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            btnTest.Click += new RoutedEventHandler(btnTest_Click);
 			btnResetCookie.Click += new RoutedEventHandler(btnResetCookie_Click);
 		}
 
@@ -39,7 +43,7 @@ namespace JMMClient.UserControls
 
 			if (string.IsNullOrEmpty(txtUsername.Text))
 			{
-				MessageBox.Show("Please enter BakaBT login details", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				MessageBox.Show(Properties.Resources.Downloads_BakaBTDetails, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 				txtUsername.Focus();
 				return;
 			}
@@ -59,10 +63,10 @@ namespace JMMClient.UserControls
 			this.IsEnabled = true;
 
 			if (!string.IsNullOrEmpty(UserSettingsVM.Instance.BakaBTCookieHeader))
-				MessageBox.Show("Connected sucessfully", "Sucess", MessageBoxButton.OK, MessageBoxImage.Information);
+				MessageBox.Show(Properties.Resources.Downloads_Connected, Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
 			else
 			{
-				MessageBox.Show("Failed! See log for more details if needed", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				MessageBox.Show(Properties.Resources.Downloads_Failed, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 				txtUsername.Focus();
 				return;
 			}

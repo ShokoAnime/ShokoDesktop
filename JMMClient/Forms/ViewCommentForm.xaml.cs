@@ -11,6 +11,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using JMMClient.ViewModel;
+using System.Threading;
+using System.Globalization;
 
 namespace JMMClient.Forms
 {
@@ -22,6 +24,8 @@ namespace JMMClient.Forms
         public ViewCommentForm()
         {
             InitializeComponent();
+
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
         }
 
         public void Init(object comment)
@@ -32,7 +36,7 @@ namespace JMMClient.Forms
                 {
                     Trakt_CommentUserVM trakt = comment as Trakt_CommentUserVM;
 
-                    txtFrom.Text = "From Trakt";
+                    txtFrom.Text = Properties.Resources.ViewComment_FromTrakt;
                     txtUsername.Text = trakt.User.Username;
                     txtDate.Text = trakt.Comment.CommentDateString;
                     txtComment.Text = trakt.CommentText;
@@ -44,7 +48,7 @@ namespace JMMClient.Forms
                 {
                     AniDB_RecommendationVM anidb = comment as AniDB_RecommendationVM;
 
-                    txtFrom.Text = "From AniDB";
+                    txtFrom.Text = Properties.Resources.ViewComment_FromAniDB;
                     txtUsername.Text = anidb.UserID.ToString();
                     txtDate.Text = anidb.RecommendationTypeText;
                     txtComment.Text = anidb.Comment;

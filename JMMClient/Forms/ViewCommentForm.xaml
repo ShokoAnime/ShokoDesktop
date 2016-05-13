@@ -4,7 +4,7 @@
         xmlns:local="clr-namespace:JMMClient"
         xmlns:forms="clr-namespace:JMMClient.Forms"
         xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
-        Title="Comment View" Height="400" Width="500"  Icon="/Images/trakt-icon-shouts.png" SizeToContent="Height" 
+        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=ViewComment_Comment}" Height="400" Width="500"  Icon="/Images/trakt-icon-shouts.png" SizeToContent="Height" 
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False">
     <Grid>
         <Grid.Resources>

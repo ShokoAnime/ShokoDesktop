@@ -11,6 +11,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using JMMClient.ViewModel;
+using System.Threading;
+using System.Globalization;
 
 namespace JMMClient.Forms
 {
@@ -25,7 +27,9 @@ namespace JMMClient.Forms
 		{
 			InitializeComponent();
 
-			btnCancel.Click += new RoutedEventHandler(btnCancel_Click);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            btnCancel.Click += new RoutedEventHandler(btnCancel_Click);
             btnSave.Click += new RoutedEventHandler(btnSave_Click);
         }
 
@@ -43,7 +47,7 @@ namespace JMMClient.Forms
 				// The import folder location cannot be blank. Enter a valid path on OMM Server
 				if (string.IsNullOrEmpty(txtImportFolderLocation.Text))
 				{
-					MessageBox.Show(Properties.Resources.MSG_ERR_ImportFolderLocationCheck, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					MessageBox.Show(Properties.Resources.MSG_ERR_ImportFolderLocationCheck, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 					txtImportFolderLocation.Focus();
 					return;
 				}
