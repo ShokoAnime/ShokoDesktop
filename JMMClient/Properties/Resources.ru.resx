@@ -4073,4 +4073,19 @@
   <data name="MAL_LoginCorrect" xml:space="preserve">
     <value>MAL Логин успешным, параметры сохраняются.</value>
   </data>
+  <data name="MAL_SearchInfo" xml:space="preserve">
+    <value>Действительные MAL учетные данные требуются для того, чтобы использовать эту функцию</value>
+  </data>
+  <data name="CheckCred" xml:space="preserve">
+    <value>Проверка учетных данных</value>
+  </data>
+  <data name="MAL_CheckCred" xml:space="preserve">
+    <value>Проверьте полномочия MAL</value>
+  </data>
+  <data name="Trakt_SearchInfo" xml:space="preserve">
+    <value>Действительные тракт учетные данные требуются для того, чтобы использовать эту функцию</value>
+  </data>
+  <data name="Trakt_CheckCred" xml:space="preserve">
+    <value>Проверьте полномочия тракт</value>
+  </data>
 </root>

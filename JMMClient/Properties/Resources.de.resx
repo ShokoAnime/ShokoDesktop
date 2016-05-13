@@ -4073,4 +4073,19 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   <data name="MAL_LoginCorrect" xml:space="preserve">
     <value>MAL erfolgreich, für die Anmeldung gespeichert.</value>
   </data>
+  <data name="MAL_SearchInfo" xml:space="preserve">
+    <value>Um diese Funktion nutzen zu können, sind gültige MAL Anmeldeinformationen erforderlich.</value>
+  </data>
+  <data name="CheckCred" xml:space="preserve">
+    <value>Überprüfen Sie die Anmeldeinformationen</value>
+  </data>
+  <data name="MAL_CheckCred" xml:space="preserve">
+    <value>Überprüfen Sie MAL Anmeldeinformationen</value>
+  </data>
+  <data name="Trakt_SearchInfo" xml:space="preserve">
+    <value>Um diese Funktion nutzen zu können, sind gültige Trakt Anmeldeinformationen erforderlich.</value>
+  </data>
+  <data name="Trakt_CheckCred" xml:space="preserve">
+    <value>Trakt Anmeldeinformationen überprüfen</value>
+  </data>
 </root>

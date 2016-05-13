@@ -10263,6 +10263,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check Trakt Credentials.
+        /// </summary>
+        public static string Trakt_CheckCred {
+            get {
+                return ResourceManager.GetString("Trakt_CheckCred", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current token is valid until:.
         /// </summary>
         public static string Trakt_CurrentToken {
@@ -10322,6 +10331,15 @@ namespace JMMClient.Properties {
         public static string Trakt_PIN {
             get {
                 return ResourceManager.GetString("Trakt_PIN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Valid Trakt credentials are required in order to use this feature.
+        /// </summary>
+        public static string Trakt_SearchInfo {
+            get {
+                return ResourceManager.GetString("Trakt_SearchInfo", resourceCulture);
             }
         }
         

@@ -4073,4 +4073,19 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
   <data name="MAL_LoginCorrect" xml:space="preserve">
     <value>MAL inicio de sesión exitoso configuración guardada.</value>
   </data>
+  <data name="MAL_SearchInfo" xml:space="preserve">
+    <value>Credenciales válidas de MAL están necesario para poder utilizar esta función</value>
+  </data>
+  <data name="CheckCred" xml:space="preserve">
+    <value>Compruebe las credenciales</value>
+  </data>
+  <data name="MAL_CheckCred" xml:space="preserve">
+    <value>Compruebe las credenciales MAL</value>
+  </data>
+  <data name="Trakt_SearchInfo" xml:space="preserve">
+    <value>Credenciales de Trakt válidas se requieren para poder utilizar esta función</value>
+  </data>
+  <data name="Trakt_CheckCred" xml:space="preserve">
+    <value>Compruebe las credenciales de Trakt</value>
+  </data>
 </root>

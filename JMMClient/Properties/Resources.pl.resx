@@ -4073,4 +4073,19 @@ Mark Unknown - pozostawia plik na liście, ale zmienia stan nieznany.</value>
   <data name="MAL_LoginCorrect" xml:space="preserve">
     <value>MAL logowanie udane, zapisane ustawienia.</value>
   </data>
+  <data name="MAL_SearchInfo" xml:space="preserve">
+    <value>Ważne MAL poświadczenia są wymagane w celu wykorzystania tej funkcji</value>
+  </data>
+  <data name="CheckCred" xml:space="preserve">
+    <value>Sprawdź poświadczenia</value>
+  </data>
+  <data name="MAL_CheckCred" xml:space="preserve">
+    <value>Sprawdź poświadczenia MAL</value>
+  </data>
+  <data name="Trakt_SearchInfo" xml:space="preserve">
+    <value>Ważny Trakt poświadczenia są wymagane w celu wykorzystania tej funkcji</value>
+  </data>
+  <data name="Trakt_CheckCred" xml:space="preserve">
+    <value>Sprawdź poświadczenia Trakt</value>
+  </data>
 </root>

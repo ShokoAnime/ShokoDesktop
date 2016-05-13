@@ -4073,4 +4073,19 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   <data name="MAL_LoginCorrect" xml:space="preserve">
     <value>Connexion MAL réussie, les paramètres enregistrés.</value>
   </data>
+  <data name="MAL_SearchInfo" xml:space="preserve">
+    <value>Informations d’identification valides de MAL sont requis pour pouvoir utiliser cette fonctionnalité</value>
+  </data>
+  <data name="CheckCred" xml:space="preserve">
+    <value>Vérifiez les informations d’identification</value>
+  </data>
+  <data name="MAL_CheckCred" xml:space="preserve">
+    <value>Vérifiez les informations d’identification de MAL</value>
+  </data>
+  <data name="Trakt_SearchInfo" xml:space="preserve">
+    <value>Informations d’identification Trakt valides sont requis pour pouvoir utiliser cette fonctionnalité</value>
+  </data>
+  <data name="Trakt_CheckCred" xml:space="preserve">
+    <value>Vérifier les informations d’identification Trakt</value>
+  </data>
 </root>

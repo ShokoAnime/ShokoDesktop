@@ -4073,4 +4073,19 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   <data name="MAL_LoginCorrect" xml:space="preserve">
     <value>Accesso è MAL riuscito correttamente, le impostazioni salvate.</value>
   </data>
+  <data name="MAL_SearchInfo" xml:space="preserve">
+    <value>Credenziali valide MAL sono necessari per poter utilizzare questa funzione</value>
+  </data>
+  <data name="CheckCred" xml:space="preserve">
+    <value>Verifica le credenziali</value>
+  </data>
+  <data name="MAL_CheckCred" xml:space="preserve">
+    <value>Controllare le credenziali di MAL</value>
+  </data>
+  <data name="Trakt_SearchInfo" xml:space="preserve">
+    <value>Credenziali valide Trakt sono necessari per poter utilizzare questa funzione</value>
+  </data>
+  <data name="Trakt_CheckCred" xml:space="preserve">
+    <value>Controllare le credenziali Trakt</value>
+  </data>
 </root>

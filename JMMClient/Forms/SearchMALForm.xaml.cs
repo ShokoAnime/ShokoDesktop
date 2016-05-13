@@ -321,9 +321,11 @@ namespace JMMClient.Forms
             var host = new Window();
             host.Content = OP;
             host.Title = Properties.Resources.MAL_CheckCred;
-            host.Width = 465;
-            host.Height = 180;
+            host.Width = 475;
+            host.Height = 190;
             host.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            OP.Margin = new Thickness(5);
+            host.ResizeMode = ResizeMode.NoResize;
             host.ShowDialog();
         }
     }
