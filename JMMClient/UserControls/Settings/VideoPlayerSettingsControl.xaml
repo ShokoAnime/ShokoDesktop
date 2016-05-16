@@ -24,7 +24,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
         <!-- Default Player Help -->
@@ -83,18 +83,25 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="25"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="211*"/>
+                    <ColumnDefinition Width="552*"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" Grid.Row="0" Margin="5,5,5,5" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPC}"  Grid.ColumnSpan="2" FontSize="14" FontWeight="Bold" />
-                <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,5,0" Grid.Column="0" Grid.Row="1" VerticalAlignment="Top"/>
-                <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,0,5,0" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPCNote}"  TextWrapping="Wrap" />
-                <usercontrols:HyperLinkStandard Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Margin="0,5,0,0" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPCOptions}"
-                                                                        URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_MPC}"/>
+                <TextBlock Grid.Column="0" Grid.Row="0" Margin="5,5,5,4" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPC}"  Grid.ColumnSpan="3" FontSize="14" FontWeight="Bold" Height="19" />
+                <Image Height="16" Source="/Images/32_info.png" Margin="5,1,4,0" Grid.Column="0" Grid.Row="2" VerticalAlignment="Top"/>
+                <TextBlock Grid.Column="1" Grid.Row="2" Margin="0,0,5,3" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPCNote1}"  TextWrapping="Wrap" Grid.ColumnSpan="2" />
+                <usercontrols:HyperLinkStandard Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" Margin="1,5,-1,5" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPCOptions}"
+                                                                        URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_MPC}" Grid.ColumnSpan="2" Height="16"/>
+                <Image Height="16" Source="/JMMDesktop;component/Images/32_info.png" Margin="5,4,4,0" Grid.Column="0" Grid.Row="3" VerticalAlignment="Top" RenderTransformOrigin="0.25,2.812"/>
+                <TextBlock Grid.Column="1" Grid.Row="3" Margin="0,4,5,2" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPCNote2}"  TextWrapping="Wrap" Grid.ColumnSpan="2" />
+                <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,7,5,6" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPCIntegrationTypeNote}"  TextWrapping="Wrap" Grid.ColumnSpan="2" Height="16" />
             </Grid>
         </Border>
 
@@ -103,33 +110,37 @@
             <Grid>
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="131"/>
+                    <ColumnDefinition Width="Auto" MinWidth="159"/>
+                    <ColumnDefinition Width="Auto" MinWidth="114"/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPCFolder}" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="10,10,0,0"/>
-                <TextBlock Text="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=MPCFolder}" Foreground="DarkGray" VerticalAlignment="Center" Margin="10,10,0,0" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4"/>
+                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPCFolder}" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="10,12,0,3" Height="16"/>
+                <TextBlock Text="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=MPCFolder}" Foreground="DarkGray" VerticalAlignment="Center" Margin="10,12,0,3" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Height="16"/>
 
-                <Button Name="btnChooseMPCLocation" Style="{DynamicResource RoundButtonStyle}" Margin="10,5,0,0" Grid.Row="2" Grid.Column="1">
+                <Button Name="btnChooseMPCLocation" Style="{DynamicResource RoundButtonStyle}" Margin="10,0,0,19" Grid.Row="2" Grid.Column="1">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                         <Image Height="16" Width="16" Source="/Images/32_Folder.png" Margin="0,0,5,0"/>
                         <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPCINI}" Margin="0,0,5,0"/>
                     </StackPanel>
                 </Button>
 
-                <Button Name="btnTestMPCLocation" Style="{DynamicResource RoundButtonStyle}" Margin="10,5,0,0" Grid.Row="2" Grid.Column="2">
+                <Button Name="btnTestMPCLocation" Style="{DynamicResource RoundButtonStyle}" Margin="10,0,0,19" Grid.Row="2" Grid.Column="2">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                         <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
                         <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPCTest}" Margin="0,0,5,0"/>
                     </StackPanel>
                 </Button>
+                <TextBlock VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" Margin="10,27,0,0" Height="16" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPCWebUIPort}"></TextBlock>
+                <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="20" Margin="10,2,0,0" Grid.Row="3" TextWrapping="Wrap" Text="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=MPCWebUIPort}" VerticalAlignment="Top" Width="56"/>
             </Grid>
 
         </Border>

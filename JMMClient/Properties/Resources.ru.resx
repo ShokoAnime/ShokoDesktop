@@ -2201,7 +2201,7 @@
   <data name="VideoPlayer_MPC" xml:space="preserve">
     <value>Media Player Classic</value>
   </data>
-  <data name="VideoPlayer_MPCNote" xml:space="preserve">
+  <data name="VideoPlayer_MPCNote1" xml:space="preserve">
     <value>Для интеграции MPC, которую вы должны включить два варианта (1) хранить параметры INI-файла и истории (2) хранить недавно смотрел файлов. Смотрите скриншот ниже для более подробной информации. MPC расположен обычно что-то вроде C:\Program Files (x 86) \Combined Community Codec Pack\MPC</value>
   </data>
   <data name="VideoPlayer_MPCOptions" xml:space="preserve">
@@ -4069,5 +4069,14 @@
   </data>
   <data name="UpdateAniDB_Info1" xml:space="preserve">
     <value>Данные, относящиеся к файлам в вашей коллекции автоматически загружается и хранится в локальной базе данных, когда модель памяти JMM сначала импортирует файлы. Этот процесс выполняется только один раз так что если конкретный файл, когда отсутствуют данные о AniDB во время загрузки, если будет отсутствовать в вашей базе данных. Кроме того вполне возможно, что будущие версии модели памяти JMM может использовать дополнительный файл данных, который доступен, но не был загружен, когда модель памяти JMM первоначально импортированных файлов. Эта утилита будет обновить и заменить все данные сохраненного файла с тем, что в настоящее время доступна на AniDB.</value>
+  </data>
+  <data name="VideoPlayer_MPCIntegrationTypeNote" xml:space="preserve">
+    <value>There are 2 types of MPC Integrations:</value>
+  </data>
+  <data name="VideoPlayer_MPCNote2" xml:space="preserve">
+    <value>For Web UI type you must enable Listen on port and type appropriate port or leave it as it is. Listening port defaults to 13579. Please note that if you change default port you need to set it also in options below.</value>
+  </data>
+  <data name="VideoPlayer_MPCWebUIPort" xml:space="preserve">
+    <value>MPC Web UI Port</value>
   </data>
 </root>

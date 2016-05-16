@@ -1154,7 +1154,16 @@ namespace JMMClient
 			}
 		}
 
-		public string PotPlayerFolder
+        public string MPCWebUIPort {
+            get { return AppSettings.MPCWebUIPort; }
+            set
+            {
+                AppSettings.MPCWebUIPort = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("MPCWebUIPort"));
+            }
+        }
+
+        public string PotPlayerFolder
 		{
 			get { return AppSettings.PotPlayerFolder; }
 			set

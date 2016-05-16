@@ -2020,6 +2020,48 @@ namespace JMMClient
 			}
 		}
 
+        public static string MPCWebUIUrl
+        {
+            get
+            {
+                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+
+                string value = appSettings["MPCWebUIUrl"];
+                if (string.IsNullOrEmpty(value))
+                {
+                    // default value
+                    value = "localhost";
+                    UpdateSetting("MPCWebUIUrl", value);
+                }
+                return value;
+            }
+            set
+            {
+                UpdateSetting("MPCWebUIUrl", value);
+            }
+        }
+
+        public static string MPCWebUIPort
+        {
+            get
+            {
+                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+
+                string value = appSettings["MPCWebUIPort"];
+                if(string.IsNullOrEmpty(value))
+                {
+                    // default value
+                    value = "13579";
+                    UpdateSetting("MPCWebUIPort", value);
+                }
+                return value;
+            }
+            set
+            {
+                UpdateSetting("MPCWebUIPort", value);
+            }
+        }
+
 		public static string PotPlayerFolder
 		{
 			get

@@ -1877,7 +1877,7 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   <data name="VideoPlayer_MPC" xml:space="preserve">
     <value>Media Player Classic</value>
   </data>
-  <data name="VideoPlayer_MPCNote" xml:space="preserve">
+  <data name="VideoPlayer_MPCNote1" xml:space="preserve">
     <value>MPC-Integration, die Sie, zwei Optionen (1) Shop-Einstellungen ini-Datei und (2) halten Sie Geschichte der kürzlich aktivieren müssen beobachtete Dateien. Siehe folgenden Screenshot für weitere Details. Die Lage des MPC ist in der Regel so etwas wie C:\Program Files (X 86) \Combined Community Codec Pack\MPC</value>
   </data>
   <data name="VideoPlayer_MPCOptions" xml:space="preserve">
@@ -4069,5 +4069,14 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   </data>
   <data name="UpdateAniDB_Info1" xml:space="preserve">
     <value>Die Dateien in Ihrer Sammlung bezogenen Daten werden automatisch heruntergeladen und gespeichert in Ihrer lokalen Datenbank Wenn JMM zunächst Dateien importiert. Dieser Prozess wird nur ausgeführt, wenn also, wenn bestimmte Datei, die Daten auf AniDB zum Zeitpunkt des Downloads, wenn fehlt in der Datenbank fehlen wird. Darüber hinaus ist es möglich, dass zukünftige Versionen von JMM zusätzliche Dateidaten verwenden könnte, die steht aber beim Import von JMM zunächst Ihre Dateien nicht heruntergeladen wurde. Dieses Dienstprogramm aktualisiert und alle gespeicherten Daten mit dem, was derzeit auf AniDB zu ersetzen.</value>
+  </data>
+  <data name="VideoPlayer_MPCIntegrationTypeNote" xml:space="preserve">
+    <value>There are 2 types of MPC Integrations:</value>
+  </data>
+  <data name="VideoPlayer_MPCNote2" xml:space="preserve">
+    <value>For Web UI type you must enable Listen on port and type appropriate port or leave it as it is. Listening port defaults to 13579. Please note that if you change default port you need to set it also in options below.</value>
+  </data>
+  <data name="VideoPlayer_MPCWebUIPort" xml:space="preserve">
+    <value>MPC Web UI Port</value>
   </data>
 </root>

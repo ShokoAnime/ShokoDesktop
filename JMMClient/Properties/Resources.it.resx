@@ -2198,7 +2198,7 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   <data name="VideoPlayer_MPC" xml:space="preserve">
     <value>Media Player Classic</value>
   </data>
-  <data name="VideoPlayer_MPCNote" xml:space="preserve">
+  <data name="VideoPlayer_MPCNote1" xml:space="preserve">
     <value>Per l'integrazione di MPC che è necessario attivare due opzioni impostazioni (1) archivio di file ini e (2) mantenere la storia di recente ho guardato i file. Vedere la schermata riportata di seguito per ulteriori dettagli. La posizione di MPC è di solito qualcosa di simile a C:\Program Files (x86) \Combined Community Codec Pack\MPC</value>
   </data>
   <data name="VideoPlayer_MPCOptions" xml:space="preserve">
@@ -4069,5 +4069,14 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   </data>
   <data name="UpdateAniDB_Info1" xml:space="preserve">
     <value>I dati relativi ai file nella vostra collezione viene automaticamente scaricati e memorizzati nel database locale quando JMM prima importa i file. Questo processo viene eseguito solo una volta quindi se specifici file dati sono mancanti su AniDB al momento del download, se verrà a mancare nel vostro database. Inoltre, è possibile che le versioni future di JMM potrebbero utilizzare ulteriori file di dati che è disponibile ma non è stato scaricato quando JMM inizialmente importato i file. Questa utility verrà aggiornare e sostituire tutti i file archiviati dati con ciò che è attualmente disponibile su AniDB.</value>
+  </data>
+  <data name="VideoPlayer_MPCIntegrationTypeNote" xml:space="preserve">
+    <value>There are 2 types of MPC Integrations:</value>
+  </data>
+  <data name="VideoPlayer_MPCNote2" xml:space="preserve">
+    <value>For Web UI type you must enable Listen on port and type appropriate port or leave it as it is. Listening port defaults to 13579. Please note that if you change default port you need to set it also in options below.</value>
+  </data>
+  <data name="VideoPlayer_MPCWebUIPort" xml:space="preserve">
+    <value>MPC Web UI Port</value>
   </data>
 </root>
