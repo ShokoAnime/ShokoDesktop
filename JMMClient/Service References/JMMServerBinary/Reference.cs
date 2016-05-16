@@ -16158,8 +16158,8 @@ namespace JMMClient.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetPreviousEpisodeForUnwatched", ReplyAction="http://tempuri.org/IJMMServer/GetPreviousEpisodeForUnwatchedResponse")]
         JMMClient.JMMServerBinary.Contract_AnimeEpisode GetPreviousEpisodeForUnwatched(int animeSeriesID, int userID);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetEpisodeByAniDBEpisodeID", ReplyAction="http://tempuri.org/IJMMServer/GetEpisodeByAniDBEpisodeIDResponse")]
-        JMMClient.JMMServerBinary.Contract_AnimeEpisode GetEpisodeByAniDBEpisodeID(int episodeID, int userID);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetEpisodeByAniDBEpisodeAndSerie", ReplyAction="http://tempuri.org/IJMMServer/GetEpisodeByAniDBEpisodeAndSerieResponse")]
+        JMMClient.JMMServerBinary.Contract_AnimeEpisode GetEpisodeByAniDBEpisodeAndSerie(int episodeID, int animeid, int userID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetFFDPreset", ReplyAction="http://tempuri.org/IJMMServer/GetFFDPresetResponse")]
         JMMClient.JMMServerBinary.Contract_FileFfdshowPreset GetFFDPreset(int videoLocalID);
@@ -16916,8 +16916,8 @@ namespace JMMClient.JMMServerBinary {
             return base.Channel.GetPreviousEpisodeForUnwatched(animeSeriesID, userID);
         }
         
-        public JMMClient.JMMServerBinary.Contract_AnimeEpisode GetEpisodeByAniDBEpisodeID(int episodeID, int userID) {
-            return base.Channel.GetEpisodeByAniDBEpisodeID(episodeID, userID);
+        public JMMClient.JMMServerBinary.Contract_AnimeEpisode GetEpisodeByAniDBEpisodeAndSerie(int episodeID, int animeid, int userID) {
+            return base.Channel.GetEpisodeByAniDBEpisodeAndSerie(episodeID, animeid, userID);
         }
         
         public JMMClient.JMMServerBinary.Contract_FileFfdshowPreset GetFFDPreset(int videoLocalID) {

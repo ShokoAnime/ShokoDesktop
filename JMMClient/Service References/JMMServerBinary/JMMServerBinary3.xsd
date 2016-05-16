@@ -484,18 +484,19 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetEpisodeByAniDBEpisodeID">
+  <xs:element name="GetEpisodeByAniDBEpisodeAndSerie">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="episodeID" type="xs:int" />
+        <xs:element minOccurs="0" name="animeid" type="xs:int" />
         <xs:element minOccurs="0" name="userID" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetEpisodeByAniDBEpisodeIDResponse">
+  <xs:element name="GetEpisodeByAniDBEpisodeAndSerieResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetEpisodeByAniDBEpisodeIDResult" nillable="true" type="q21:Contract_AnimeEpisode" />
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/JMMContracts" minOccurs="0" name="GetEpisodeByAniDBEpisodeAndSerieResult" nillable="true" type="q21:Contract_AnimeEpisode" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
