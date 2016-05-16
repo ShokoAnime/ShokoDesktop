@@ -713,13 +713,20 @@ namespace JMMClient
 					AllGroupsDictionary.Clear();
 					AllSeriesDictionary.Clear();
 					AllAnimeDictionary.Clear();
-
 					// must series before groups the binding is based on the groups, and will refresh when that is changed
 					foreach (JMMServerBinary.Contract_AnimeSeries ser in seriesRaw)
 					{
-						AnimeSeriesVM serNew = new AnimeSeriesVM(ser);
-						AllSeries.Add(serNew);
-						AllSeriesDictionary[serNew.AnimeSeriesID.Value] = serNew;
+                        try
+                        {
+                            AnimeSeriesVM serNew = new AnimeSeriesVM(ser);
+                            AllSeries.Add(serNew);
+                            AllSeriesDictionary[serNew.AnimeSeriesID.Value] = serNew;
+                        }
+                        catch (Exception e)
+                        {
+                            int bbbb = 1;
+                        }
+
 					}
 
 					ViewSeriesSearch.Refresh();

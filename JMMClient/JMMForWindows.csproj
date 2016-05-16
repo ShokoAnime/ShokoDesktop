@@ -1341,12 +1341,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Service References\JMMImageServer\JMMClient.JMMImageServer.Contract_Test.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\JMMImageServer\JMMServerImage.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AdminMessage.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
