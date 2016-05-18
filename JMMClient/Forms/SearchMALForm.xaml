@@ -4,7 +4,7 @@
         xmlns:local="clr-namespace:JMMClient"
         xmlns:forms="clr-namespace:JMMClient.Forms"
         xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
-        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=Search_MyAnimeList}" Height="450" Width="700" ShowInTaskbar="False" WindowStyle="ToolWindow" Icon="/JMMDesktop;component/Images/myanimelist.ico"
+        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=Search_MyAnimeList}" Height="520" Width="700" ShowInTaskbar="False" WindowStyle="ToolWindow" Icon="/JMMDesktop;component/Images/myanimelist.ico"
         WindowStartupLocation="CenterOwner" Topmost="False">
     <Grid>
         <Grid.Resources>
@@ -116,6 +116,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
@@ -134,8 +135,25 @@
             </StackPanel>
         </Border>
 
+        <!-- Info Message -->
+        <Border Grid.Row="1" Grid.Column="0" Margin="5,5,5,5" Padding="5" Background="#F1F1F1" BorderBrush="LightGray" BorderThickness="1">
+            <StackPanel Orientation="Horizontal"  Margin="0,0,0,5" DockPanel.Dock="Top">
+                <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,0,5,-5"/>
+                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=MAL_SearchInfo}" Margin="0,0,10,-5"/>
+
+                <!-- Check Cred button -->
+                <Button Name="btnChkCred" Margin="5,0,0,-5" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                        <Image Height="16" Width="16" Source="/Images/32_settings2.png" Margin="0,0,5,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CheckCred}" Margin="0,0,5,0"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+            
+        </Border>
+
         <!-- Search block -->
-        <Border Grid.Row="1" Grid.Column="0" Margin="5,5,5,5" Padding="5" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1"
+        <Border Grid.Row="2" Grid.Column="0" Margin="5,5,5,5" Padding="5" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1"
                 Visibility="{Binding Path=IsSearch, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SearchMALForm}}, Converter={StaticResource BooleanToVisibilityConverter}}">
             <StackPanel Orientation="Horizontal"  Margin="0,0,0,0" DockPanel.Dock="Top">
                 <TextBox Name="txtSearch" Width="180" Margin="10,2,2,0" BorderThickness="1" />
@@ -150,12 +168,12 @@
         </Border>
 
         <!-- Existing ID block -->
-        <Border Grid.Row="1" Grid.Column="0" Margin="5,5,5,5" Padding="5" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1"
+        <Border Grid.Row="2" Grid.Column="0" Margin="5,5,5,5" Padding="5" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1"
                 Visibility="{Binding Path=IsExisting, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SearchMALForm}}, Converter={StaticResource BooleanToVisibilityConverter}}">
             <StackPanel Orientation="Horizontal"  Margin="0,0,0,0" DockPanel.Dock="Top">
                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search_ID}" Margin="5,0,0,0"/>
                 <TextBox Name="txtMALID" Width="70" Margin="5,2,2,0" BorderThickness="1" />
-                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Seatch_Title}" Margin="5,0,0,0"/>
+                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search_Title}" Margin="5,0,0,0"/>
                 <TextBox Name="txtMALTitle" Width="200" Margin="5,2,2,0" BorderThickness="1" />
                 <StackPanel Orientation="Horizontal" Margin="5,0,5,0" VerticalAlignment="Center">
                     <TextBlock VerticalAlignment="Center">
@@ -177,7 +195,7 @@
         </Border>
 
         <!-- Web Cache Recommendation -->
-        <Border Grid.Row="2" Grid.Column="0" Margin="5,5,5,5" Padding="5" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1"
+        <Border Grid.Row="3" Grid.Column="0" Margin="5,5,5,5" Padding="5" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1"
                 Visibility="{Binding Path=HasWebCacheRec, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SearchMALForm}}, Converter={StaticResource BooleanToVisibilityConverter}}">
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal"  Margin="0,0,0,0" DockPanel.Dock="Top">
@@ -211,16 +229,16 @@
         </Border>
 
         <!-- Search results -->
-        <Border Grid.Row="3" Grid.Column="0" Margin="5,5,5,5" Background="White" BorderBrush="LightGray" BorderThickness="1">
+        <Border Grid.Row="4" Grid.Column="0" Margin="5,5,5,5" Background="White" BorderBrush="LightGray" BorderThickness="1">
             <ListBox Name="lbFiles" BorderThickness="0" Background="Transparent" 
                             ItemsSource="{Binding Path=MALSearchResults, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SearchMALForm}}}"
-                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ScrollViewer.CanContentScroll="False"
                             ItemTemplate="{DynamicResource MALSearchResultTemplate}"
                             ItemContainerStyle="{DynamicResource ListBoxItemStyle}" 
                             />
         </Border>
 
-        <DockPanel Grid.Row="4" Grid.Column="0"  Margin="5,5,5,5">
+        <DockPanel Grid.Row="5" Grid.Column="0"  Margin="5,5,5,5">
 
             <Button Name="btnClose" Margin="2,2,2,2" Style="{DynamicResource RoundButtonStyle}" DockPanel.Dock="Right" HorizontalAlignment="Right">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
