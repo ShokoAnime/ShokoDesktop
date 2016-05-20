@@ -56,7 +56,7 @@
 
 
         <!-- Video Player Optons -->
-        <Grid Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" Margin="5">
+        <Grid Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" Margin="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -79,7 +79,7 @@
             <ComboBox Name="cboAutoFileSubsequent" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="10,0,0,5"/>
 
             <!-- Info 2 -->
-            <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Background="FloralWhite" Margin="20,0,0,5" Padding="5">
+            <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Background="FloralWhite" Margin="0,0,0,5" Padding="5">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"></RowDefinition>
@@ -100,7 +100,7 @@
                 </Grid>
             </Border>
 
-            <CheckBox Name="chkAutoSelectFile" Grid.Column="0" VerticalAlignment="Center" Grid.Row="3" Grid.ColumnSpan="2" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_AutoFileEnable}" Margin="10,0,0,5"/>
+            <CheckBox Name="chkAutoSelectFile" Grid.Column="0" VerticalAlignment="Center" Grid.Row="3" Grid.ColumnSpan="2" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_AutoFileEnable}" Margin="10,0,0,0"/>
 
 
 

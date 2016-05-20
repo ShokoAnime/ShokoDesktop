@@ -1326,9 +1326,6 @@
   <data name="ImageSize" xml:space="preserve">
     <value>Dimensione dell'immagine</value>
   </data>
-  <data name="INFO_SettingsUserAdmin" xml:space="preserve">
-    <value>Aggiungere o modificare gli utenti qui. Gli utenti sono memorizzati nel database e condivisi tra client diversi. Deve sempre avere almeno un utente admin.</value>
-  </data>
   <data name="TAB_SettingsUsers" xml:space="preserve">
     <value>Utenti</value>
   </data>
@@ -4069,5 +4066,26 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   </data>
   <data name="UpdateAniDB_Info1" xml:space="preserve">
     <value>I dati relativi ai file nella vostra collezione viene automaticamente scaricati e memorizzati nel database locale quando JMM prima importa i file. Questo processo viene eseguito solo una volta quindi se specifici file dati sono mancanti su AniDB al momento del download, se verrà a mancare nel vostro database. Inoltre, è possibile che le versioni future di JMM potrebbero utilizzare ulteriori file di dati che è disponibile ma non è stato scaricato quando JMM inizialmente importato i file. Questa utility verrà aggiornare e sostituire tutti i file archiviati dati con ciò che è attualmente disponibile su AniDB.</value>
+  </data>
+  <data name="INFO_SettingsUserAdmin" xml:space="preserve">
+    <value>Gli utenti sono archiviati in un database e sono accessibili da qualsiasi client che si connette al database. Quando aggiungendo un nuovo utente o l'aggiornamento di uno esistente, deve fare clic sul pulsante Salva altrimenti le modifiche non saranno rendere effettive. JMM richiede almeno un utente con diritti di amministratore selezionati.</value>
+  </data>
+  <data name="MAL_LoginCorrect" xml:space="preserve">
+    <value>Accesso è MAL riuscito correttamente, le impostazioni salvate.</value>
+  </data>
+  <data name="MAL_SearchInfo" xml:space="preserve">
+    <value>Credenziali valide MAL sono necessari per poter utilizzare questa funzione</value>
+  </data>
+  <data name="CheckCred" xml:space="preserve">
+    <value>Verifica le credenziali</value>
+  </data>
+  <data name="MAL_CheckCred" xml:space="preserve">
+    <value>Controllare le credenziali di MAL</value>
+  </data>
+  <data name="Trakt_SearchInfo" xml:space="preserve">
+    <value>Credenziali valide Trakt sono necessari per poter utilizzare questa funzione</value>
+  </data>
+  <data name="Trakt_CheckCred" xml:space="preserve">
+    <value>Controllare le credenziali Trakt</value>
   </data>
 </root>

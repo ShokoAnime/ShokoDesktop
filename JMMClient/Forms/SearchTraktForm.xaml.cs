@@ -95,7 +95,9 @@ namespace JMMClient.Forms
 			btnClose.Click += new RoutedEventHandler(btnClose_Click);
 			btnUseThis.Click += new RoutedEventHandler(btnUseThis_Click);
 			btnUseThisExisting.Click += new RoutedEventHandler(btnUseThisExisting_Click);
-		}
+
+            btnChkCred.Click += new RoutedEventHandler(btnChkCred_Click);
+        }
 
 		void btnUseThisExisting_Click(object sender, RoutedEventArgs e)
 		{
@@ -300,5 +302,21 @@ namespace JMMClient.Forms
 			ExistingTraktID = existingTraktID;
 			txtSearch.Text = searchCriteria;
 		}
-	}
+
+        private void btnChkCred_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            UserControls.TraktSettings OP = new UserControls.TraktSettings();
+            var host = new Window();
+            host.Content = OP;
+            host.Title = Properties.Resources.Trakt_CheckCred;
+            host.Width = 630;
+            host.Height = 240;
+            host.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            OP.Margin = new Thickness(5);
+            host.ResizeMode = ResizeMode.NoResize;
+            host.ShowDialog();
+        }
+    }
 }
