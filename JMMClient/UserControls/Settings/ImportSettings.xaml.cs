@@ -31,13 +31,12 @@ namespace JMMClient.UserControls
 
             btnSave.Click += new RoutedEventHandler(btnSave_Click);
 
-			chkImportSettings_HashCRC32.Click += new RoutedEventHandler(settingChanged);
+            chkImportSettings_ImportOnStart.Click += new RoutedEventHandler(settingChanged);
+            chkImportSettings_ScanDropOnStart.Click += new RoutedEventHandler(settingChanged);
+            chkImportSettings_UseEpisodeStatus.Click += new RoutedEventHandler(settingChanged);
+            chkImportSettings_HashCRC32.Click += new RoutedEventHandler(settingChanged);
 			chkImportSettings_HashMD5.Click += new RoutedEventHandler(settingChanged);
-			chkImportSettings_ImportOnStart.Click += new RoutedEventHandler(settingChanged);
 			chkImportSettings_SHA1.Click += new RoutedEventHandler(settingChanged);
-			chkImportSettings_UseEpisodeStatus.Click += new RoutedEventHandler(settingChanged);
-			chkImportSettings_AutoGroupSeries.Click += new RoutedEventHandler(settingChanged);
-			chkImportSettings_ScanDropOnStart.Click += new RoutedEventHandler(settingChanged);
 
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
@@ -51,27 +50,7 @@ namespace JMMClient.UserControls
 				cboImagesPath.SelectedIndex = 0;
 			else
 				cboImagesPath.SelectedIndex = 1;
-
-			btnRecreateGroups.Click += new RoutedEventHandler(btnRecreateGroups_Click);
-		}
-
-		void btnRecreateGroups_Click(object sender, RoutedEventArgs e)
-		{
-			try
-			{
-				Window parentWindow = Window.GetWindow(this);
-				parentWindow.Cursor = Cursors.Wait;
-
-				JMMServerVM.Instance.clientBinaryHTTP.RecreateAllGroups();
-				MainListHelperVM.Instance.RefreshGroupsSeriesData();
-				MainListHelperVM.Instance.ShowChildWrappers(null);
-
-				parentWindow.Cursor = Cursors.Arrow;
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
+		
 		}
 
 		void btnChooseImagesFolder_Click(object sender, RoutedEventArgs e)

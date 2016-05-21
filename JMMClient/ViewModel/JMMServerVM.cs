@@ -335,7 +335,8 @@ namespace JMMClient
 			// Import settings
 			this.VideoExtensions = contract.VideoExtensions;
 			this.AutoGroupSeries = contract.AutoGroupSeries;
-			this.UseEpisodeStatus = contract.Import_UseExistingFileWatchedStatus;
+            this.AutoGroupSeriesRelationExclusions = contract.AutoGroupSeriesRelationExclusions;
+            this.UseEpisodeStatus = contract.Import_UseExistingFileWatchedStatus;
 			this.RunImportOnStart = contract.RunImportOnStart;
 			this.ScanDropFoldersOnStart = contract.ScanDropFoldersOnStart;
 			this.Hash_CRC32 = contract.Hash_CRC32;
@@ -456,7 +457,8 @@ namespace JMMClient
 				contract.Import_UseExistingFileWatchedStatus = this.UseEpisodeStatus;
 				contract.AutoGroupSeries = this.AutoGroupSeries;
 				contract.RunImportOnStart = this.RunImportOnStart;
-				contract.ScanDropFoldersOnStart = this.ScanDropFoldersOnStart;
+                contract.AutoGroupSeriesRelationExclusions = this.AutoGroupSeriesRelationExclusions;
+                contract.ScanDropFoldersOnStart = this.ScanDropFoldersOnStart;
 				contract.Hash_CRC32 = this.Hash_CRC32;
 				contract.Hash_MD5 = this.Hash_MD5;
 				contract.Hash_SHA1 = this.Hash_SHA1;
@@ -1431,8 +1433,365 @@ namespace JMMClient
 			}
 		}
 
+        // The actual server setting
+        private string autoGroupSeriesRelationExclusions = "";
+        private string AutoGroupSeriesRelationExclusions
+        {
+            get
+            {
+                return autoGroupSeriesRelationExclusions;
+            }
+            set
+            {
+                autoGroupSeriesRelationExclusions = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("AutoGroupSeriesRelationExclusions"));
+            }
+        }
 
-		private bool useEpisodeStatus = false;
+        private bool isRelationInExclusion(string relation)
+        {
+            foreach (string a in AutoGroupSeriesRelationExclusions.Split('|'))
+            {
+                // relation will always be lowercase, but a may not be yet
+                if (a.ToLowerInvariant().Equals(relation)) return true;
+            }
+            return false;
+        }
+
+        public bool RelationExcludeSameSetting
+        {
+            get
+            {
+                return isRelationInExclusion("same setting");
+            }
+            set
+            {
+                if (value)
+                {
+                    if (!isRelationInExclusion("same setting"))
+                    {
+                        AutoGroupSeriesRelationExclusions = AutoGroupSeriesRelationExclusions + "|same setting";
+                    }
+                }
+                else
+                {
+                    if (isRelationInExclusion("same setting"))
+                    {
+                        string final = "";
+                        foreach (string a in AutoGroupSeriesRelationExclusions.Split('|'))
+                        {
+                            // add all except value and fix any uppercase
+                            if (!a.ToLowerInvariant().Equals("same setting")) final += a.ToLowerInvariant() + "|";
+                        }
+                        // this will be "" if all are unchecked
+                        // remove last '|' added in previous loop
+                        if (!final.Equals(""))
+                        {
+                            final.TrimEnd('|');
+                        }
+                        AutoGroupSeriesRelationExclusions = final;
+                    }
+                }
+            }
+        }
+
+        public bool RelationExcludeAltSetting
+        {
+            get
+            {
+                return isRelationInExclusion("alternate setting");
+            }
+            set
+            {
+                if (value)
+                {
+                    if (!isRelationInExclusion("alternate setting"))
+                    {
+                        AutoGroupSeriesRelationExclusions = AutoGroupSeriesRelationExclusions + "|alternate setting";
+                    }
+                }
+                else
+                {
+                    if (isRelationInExclusion("alternate setting"))
+                    {
+                        string final = "";
+                        foreach (string a in AutoGroupSeriesRelationExclusions.Split('|'))
+                        {
+                            // add all except value and fix any uppercase
+                            if (!a.ToLowerInvariant().Equals("alternate setting")) final += a.ToLowerInvariant() + "|";
+                        }
+                        // this will be "" if all are unchecked
+                        // remove last '|' added in previous loop
+                        if (!final.Equals(""))
+                        {
+                            final.TrimEnd('|');
+                        }
+                        AutoGroupSeriesRelationExclusions = final;
+                    }
+                }
+            }
+        }
+
+        public bool RelationExcludeAltVersion
+        {
+            get
+            {
+                return isRelationInExclusion("alternate version");
+            }
+            set
+            {
+                if (value)
+                {
+                    if (!isRelationInExclusion("alternate version"))
+                    {
+                        AutoGroupSeriesRelationExclusions = AutoGroupSeriesRelationExclusions + "|alternate version";
+                    }
+                }
+                else
+                {
+                    if (isRelationInExclusion("alternate version"))
+                    {
+                        string final = "";
+                        foreach (string a in AutoGroupSeriesRelationExclusions.Split('|'))
+                        {
+                            // add all except value and fix any uppercase
+                            if (!a.ToLowerInvariant().Equals("alternate version")) final += a.ToLowerInvariant() + "|";
+                        }
+                        // this will be "" if all are unchecked
+                        // remove last '|' added in previous loop
+                        if (!final.Equals(""))
+                        {
+                            final.TrimEnd('|');
+                        }
+                        AutoGroupSeriesRelationExclusions = final;
+                    }
+                }
+            }
+        }
+
+        public bool RelationExcludeCharacter
+        {
+            get
+            {
+                return isRelationInExclusion("character");
+            }
+            set
+            {
+                if (value)
+                {
+                    if (!isRelationInExclusion("character"))
+                    {
+                        AutoGroupSeriesRelationExclusions = AutoGroupSeriesRelationExclusions + "|character";
+                    }
+                }
+                else
+                {
+                    if (isRelationInExclusion("character"))
+                    {
+                        string final = "";
+                        foreach (string a in AutoGroupSeriesRelationExclusions.Split('|'))
+                        {
+                            // add all except value and fix any uppercase
+                            if (!a.ToLowerInvariant().Equals("character")) final += a.ToLowerInvariant() + "|";
+                        }
+                        // this will be "" if all are unchecked
+                        // remove last '|' added in previous loop
+                        if (!final.Equals(""))
+                        {
+                            final.TrimEnd('|');
+                        }
+                        AutoGroupSeriesRelationExclusions = final;
+                    }
+                }
+            }
+        }
+
+        public bool RelationExcludeSideStory
+        {
+            get
+            {
+                return isRelationInExclusion("side story");
+            }
+            set
+            {
+                if (value)
+                {
+                    if (!isRelationInExclusion("side story"))
+                    {
+                        AutoGroupSeriesRelationExclusions = AutoGroupSeriesRelationExclusions + "|side story";
+                    }
+                }
+                else
+                {
+                    if (isRelationInExclusion("side story"))
+                    {
+                        string final = "";
+                        foreach (string a in AutoGroupSeriesRelationExclusions.Split('|'))
+                        {
+                            // add all except value and fix any uppercase
+                            if (!a.ToLowerInvariant().Equals("side story")) final += a.ToLowerInvariant() + "|";
+                        }
+                        // this will be "" if all are unchecked
+                        // remove last '|' added in previous loop
+                        if (!final.Equals(""))
+                        {
+                            final.TrimEnd('|');
+                        }
+                        AutoGroupSeriesRelationExclusions = final;
+                    }
+                }
+            }
+        }
+
+        public bool RelationExcludeParentStory
+        {
+            get
+            {
+                return isRelationInExclusion("parent story");
+            }
+            set
+            {
+                if (value)
+                {
+                    if (!isRelationInExclusion("parent story"))
+                    {
+                        AutoGroupSeriesRelationExclusions = AutoGroupSeriesRelationExclusions + "|parent story";
+                    }
+                }
+                else
+                {
+                    if (isRelationInExclusion("parent story"))
+                    {
+                        string final = "";
+                        foreach (string a in AutoGroupSeriesRelationExclusions.Split('|'))
+                        {
+                            // add all except value and fix any uppercase
+                            if (!a.ToLowerInvariant().Equals("parent story")) final += a.ToLowerInvariant() + "|";
+                        }
+                        // this will be "" if all are unchecked
+                        // remove last '|' added in previous loop
+                        if (!final.Equals(""))
+                        {
+                            final.TrimEnd('|');
+                        }
+                        AutoGroupSeriesRelationExclusions = final;
+                    }
+                }
+            }
+        }
+
+        public bool RelationExcludeSummary
+        {
+            get
+            {
+                return isRelationInExclusion("summary");
+            }
+            set
+            {
+                if (value)
+                {
+                    if (!isRelationInExclusion("summary"))
+                    {
+                        AutoGroupSeriesRelationExclusions = AutoGroupSeriesRelationExclusions + "|summary";
+                    }
+                }
+                else
+                {
+                    if (isRelationInExclusion("summary"))
+                    {
+                        string final = "";
+                        foreach (string a in AutoGroupSeriesRelationExclusions.Split('|'))
+                        {
+                            // add all except value and fix any uppercase
+                            if (!a.ToLowerInvariant().Equals("summary")) final += a.ToLowerInvariant() + "|";
+                        }
+                        // this will be "" if all are unchecked
+                        // remove last '|' added in previous loop
+                        if (!final.Equals(""))
+                        {
+                            final.TrimEnd('|');
+                        }
+                        AutoGroupSeriesRelationExclusions = final;
+                    }
+                }
+            }
+        }
+
+        public bool RelationExcludeFullStory
+        {
+            get
+            {
+                return isRelationInExclusion("full story");
+            }
+            set
+            {
+                if (value)
+                {
+                    if (!isRelationInExclusion("full story"))
+                    {
+                        AutoGroupSeriesRelationExclusions = AutoGroupSeriesRelationExclusions + "|full story";
+                    }
+                }
+                else
+                {
+                    if (isRelationInExclusion("full story"))
+                    {
+                        string final = "";
+                        foreach (string a in AutoGroupSeriesRelationExclusions.Split('|'))
+                        {
+                            // add all except value and fix any uppercase
+                            if (!a.ToLowerInvariant().Equals("full story")) final += a.ToLowerInvariant() + "|";
+                        }
+                        // this will be "" if all are unchecked
+                        // remove last '|' added in previous loop
+                        if (!final.Equals(""))
+                        {
+                            final.TrimEnd('|');
+                        }
+                        AutoGroupSeriesRelationExclusions = final;
+                    }
+                }
+            }
+        }
+
+        public bool RelationExcludeOther
+        {
+            get
+            {
+                return isRelationInExclusion("other");
+            }
+            set
+            {
+                if (value)
+                {
+                    if (!isRelationInExclusion("other"))
+                    {
+                        AutoGroupSeriesRelationExclusions = AutoGroupSeriesRelationExclusions + "|other";
+                    }
+                }
+                else
+                {
+                    if (isRelationInExclusion("other"))
+                    {
+                        string final = "";
+                        foreach (string a in AutoGroupSeriesRelationExclusions.Split('|'))
+                        {
+                            // add all except value and fix any uppercase
+                            if (!a.ToLowerInvariant().Equals("other")) final += a.ToLowerInvariant() + "|";
+                        }
+                        // this will be "" if all are unchecked
+                        // remove last '|' added in previous loop
+                        if (!final.Equals(""))
+                        {
+                            final.TrimEnd('|');
+                        }
+                        AutoGroupSeriesRelationExclusions = final;
+                    }
+                }
+            }
+        }
+
+        private bool useEpisodeStatus = false;
 		public bool UseEpisodeStatus
 		{
 			get { return useEpisodeStatus; }
