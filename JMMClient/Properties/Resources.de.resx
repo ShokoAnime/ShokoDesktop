@@ -4088,4 +4088,40 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   <data name="Trakt_CheckCred" xml:space="preserve">
     <value>Trakt Anmeldeinformationen überprüfen</value>
   </data>
+  <data name="RelationSetting_AltSetting" xml:space="preserve">
+    <value>Alternative Einstellung</value>
+  </data>
+  <data name="RelationSetting_SameSetting" xml:space="preserve">
+    <value>Dieselbe Einstellung</value>
+  </data>
+  <data name="RelationSetting_Character" xml:space="preserve">
+    <value>Charakter</value>
+  </data>
+  <data name="RelationSetting_Other" xml:space="preserve">
+    <value>Sonstiges</value>
+  </data>
+  <data name="RelationSetting_ParentStory" xml:space="preserve">
+    <value>Übergeordnete Geschichte</value>
+  </data>
+  <data name="RelationSetting_SideStory" xml:space="preserve">
+    <value>Side Story</value>
+  </data>
+  <data name="RelationSetting_Summary" xml:space="preserve">
+    <value>Zusammenfassung</value>
+  </data>
+  <data name="RelationSetting_FullStory" xml:space="preserve">
+    <value>Ganze Geschichte</value>
+  </data>
+  <data name="RelationSetting_AltVersion" xml:space="preserve">
+    <value>Alternative Version</value>
+  </data>
+  <data name="TAB_Settings_RelationSettings" xml:space="preserve">
+    <value>Relation-Einstellungen</value>
+  </data>
+  <data name="RelationSettings_Info" xml:space="preserve">
+    <value>Wählen Sie die folgenden, von der Gruppierung auszuschließen</value>
+  </data>
+  <data name="Link_RelationSettings" xml:space="preserve">
+    <value>http://jmediamanager.org/JMM-Desktop/Settings/#Essential</value>
+  </data>
 </root>

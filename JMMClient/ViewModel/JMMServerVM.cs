@@ -335,7 +335,8 @@ namespace JMMClient
 			// Import settings
 			this.VideoExtensions = contract.VideoExtensions;
 			this.AutoGroupSeries = contract.AutoGroupSeries;
-            this.UseEpisodeStatus = contract.Import_UseExistingFileWatchedStatus;
+            this.AutoGroupSeriesRelationExclusions = contract.AutoGroupSeriesRelationExclusions;
+			this.UseEpisodeStatus = contract.Import_UseExistingFileWatchedStatus;
 			this.RunImportOnStart = contract.RunImportOnStart;
 			this.ScanDropFoldersOnStart = contract.ScanDropFoldersOnStart;
 			this.Hash_CRC32 = contract.Hash_CRC32;
@@ -456,7 +457,8 @@ namespace JMMClient
 				contract.Import_UseExistingFileWatchedStatus = this.UseEpisodeStatus;
 				contract.AutoGroupSeries = this.AutoGroupSeries;
 				contract.RunImportOnStart = this.RunImportOnStart;
-                contract.ScanDropFoldersOnStart = this.ScanDropFoldersOnStart;
+                contract.AutoGroupSeriesRelationExclusions = this.AutoGroupSeriesRelationExclusions;
+				contract.ScanDropFoldersOnStart = this.ScanDropFoldersOnStart;
 				contract.Hash_CRC32 = this.Hash_CRC32;
 				contract.Hash_MD5 = this.Hash_MD5;
 				contract.Hash_SHA1 = this.Hash_SHA1;
@@ -1605,7 +1607,7 @@ namespace JMMClient
             }
         }
 
-        private bool useEpisodeStatus = false;
+		private bool useEpisodeStatus = false;
 		public bool UseEpisodeStatus
 		{
 			get { return useEpisodeStatus; }
