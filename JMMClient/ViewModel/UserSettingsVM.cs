@@ -1144,7 +1144,33 @@ namespace JMMClient
 			}
 		}
 
-		public string MPCFolder
+        public bool MPCIniIntegration
+        {
+            get
+            {
+                return AppSettings.MPCIniIntegration;
+            }
+            set
+            {
+                AppSettings.MPCIniIntegration = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("MPCIniIntegration"));
+            }
+        }
+
+        public bool MPCWebUiIntegration
+        {
+            get
+            {
+                return AppSettings.MPCWebUiIntegration;
+            }
+            set
+            {
+                AppSettings.MPCWebUiIntegration = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("MPCWebUiIntegration"));
+            }
+        }
+
+        public string MPCFolder
 		{
 			get { return AppSettings.MPCFolder; }
 			set

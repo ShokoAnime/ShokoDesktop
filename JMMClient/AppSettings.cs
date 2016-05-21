@@ -2151,7 +2151,41 @@ namespace JMMClient
 			}
 		}
 
-		public static bool MultipleFilesOnlyFinished
+        public static bool MPCIniIntegration
+        {
+            get
+            {
+                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                string stringValue = appSettings["MPCIniIntegration"];
+                bool booleanValue = false;
+                bool.TryParse(stringValue, out booleanValue);
+                    
+                return booleanValue;
+            }
+            set
+            {
+                UpdateSetting("MPCIniIntegration", value.ToString());
+            }
+        }
+
+        public static bool MPCWebUiIntegration
+        {
+            get
+            {
+                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                string stringValue = appSettings["MPCWebUiIntegration"];
+                bool booleanValue = false;
+                bool.TryParse(stringValue, out booleanValue);
+
+                return booleanValue;
+            }
+            set
+            {
+                UpdateSetting("MPCWebUiIntegration", value.ToString());
+            }
+        }
+
+        public static bool MultipleFilesOnlyFinished
 		{
 			get
 			{

@@ -32,6 +32,12 @@ namespace JMMClient.UserControls
 
 			chkAutoSetWatched.Click += new RoutedEventHandler(chkAutoSetWatched_Click);
 
+            chkMpcIniIntegration.IsChecked = UserSettingsVM.Instance.MPCIniIntegration;
+            chkMpcWebUiIntegration.IsChecked = UserSettingsVM.Instance.MPCWebUiIntegration;
+
+            chkMpcIniIntegration.Click += new RoutedEventHandler(chkMpcIniIntegration_Click);
+            chkMpcWebUiIntegration.Click += new RoutedEventHandler(chkMpcWebUiIntegration_Click);
+
             cboDefaultPlayer.Items.Clear();
             cboDefaultPlayer.Items.Add("Windows Default");
             cboDefaultPlayer.Items.Add("MPC");
@@ -284,6 +290,21 @@ namespace JMMClient.UserControls
                 MainWindow.videoHandler.Init();
             }
         }
-        
+
+        void chkMpcIniIntegration_Click(object sender, RoutedEventArgs e)
+        {
+            UserSettingsVM.Instance.MPCWebUiIntegration = false;
+            chkMpcWebUiIntegration.IsChecked = false;
+            UserSettingsVM.Instance.MPCIniIntegration = chkMpcIniIntegration.IsChecked.Value;
+            MainWindow.videoHandler.Init();
+        }
+
+        void chkMpcWebUiIntegration_Click(object sender, RoutedEventArgs e)
+        {
+            UserSettingsVM.Instance.MPCIniIntegration = false;
+            chkMpcIniIntegration.IsChecked = false;
+            UserSettingsVM.Instance.MPCWebUiIntegration = chkMpcWebUiIntegration.IsChecked.Value;
+            MainWindow.videoHandler.Init();
+        }
     }
 }

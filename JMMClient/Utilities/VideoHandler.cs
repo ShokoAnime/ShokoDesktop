@@ -152,14 +152,6 @@ namespace JMMClient.Utilities
 				StopWatchingFiles();
 				watcherVids = new List<FileSystemWatcher>();
 
-				if (!string.IsNullOrEmpty(AppSettings.MPCFolder) && Directory.Exists(AppSettings.MPCFolder))
-				{
-					FileSystemWatcher fsw = new FileSystemWatcher(AppSettings.MPCFolder, "*.ini");
-					fsw.IncludeSubdirectories = false;
-					fsw.Changed += new FileSystemEventHandler(fsw_Changed);
-					fsw.EnableRaisingEvents = true;
-				}
-
 				if (!string.IsNullOrEmpty(AppSettings.PotPlayerFolder) && Directory.Exists(AppSettings.PotPlayerFolder))
 				{
 					FileSystemWatcher fsw = new FileSystemWatcher(AppSettings.PotPlayerFolder, "*.ini");
@@ -176,7 +168,15 @@ namespace JMMClient.Utilities
                     fsw.EnableRaisingEvents = true;
                 }
 
-                if(!string.IsNullOrEmpty(AppSettings.MPCWebUIUrl) && !string.IsNullOrEmpty(AppSettings.MPCWebUIPort))
+                if (AppSettings.MPCIniIntegration && !string.IsNullOrEmpty(AppSettings.MPCFolder) && Directory.Exists(AppSettings.MPCFolder))
+                {
+                    FileSystemWatcher fsw = new FileSystemWatcher(AppSettings.MPCFolder, "*.ini");
+                    fsw.IncludeSubdirectories = false;
+                    fsw.Changed += new FileSystemEventHandler(fsw_Changed);
+                    fsw.EnableRaisingEvents = true;
+                }
+
+                if (AppSettings.MPCWebUiIntegration && !string.IsNullOrEmpty(AppSettings.MPCWebUIUrl) && !string.IsNullOrEmpty(AppSettings.MPCWebUIPort))
                 {
                     playerWebUiTimer = new System.Timers.Timer();
                     playerWebUiTimer.Elapsed += new System.Timers.ElapsedEventHandler(HandleWebUIRequest);
