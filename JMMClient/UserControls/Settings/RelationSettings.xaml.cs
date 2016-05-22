@@ -62,8 +62,6 @@ namespace JMMClient.UserControls
             visRelations_Row3.Visibility = vis;
             visRelations_Info.Visibility = vis;
 
-            btnRecreateGroups.Visibility = vis;
-
         }
 
         void btnRecreateGroups_Click(object sender, RoutedEventArgs e)
