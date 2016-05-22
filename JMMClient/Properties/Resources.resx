@@ -1332,7 +1332,7 @@
     <value>Image Size</value>
   </data>
   <data name="INFO_SettingsUserAdmin" xml:space="preserve">
-    <value>Add or edit users here. Users are stored in the database, and shared across different clients. You must always have at least one admin user.</value>
+    <value>Users are stored in your database and can be accessed by any client that connects to your database. When adding a new user or updating an existing one, you must click the Save button otherwise your changes will not take effect. JMM requires at least one user with administrator rights selected.</value>
   </data>
   <data name="TAB_SettingsUsers" xml:space="preserve">
     <value>Users</value>
@@ -2996,7 +2996,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Anime ID:</value>
   </data>
   <data name="JMMServer_TraktAuth" xml:space="preserve">
-    <value>Trakt Authorization </value>
+    <value>Trakt Authorization Status </value>
   </data>
   <data name="JMMServer_Success" xml:space="preserve">
     <value>Success</value>
@@ -4071,5 +4071,23 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   </data>
   <data name="Rename_AnimeNameRomaji" xml:space="preserve">
     <value>Anime Name - Romaji</value>
+  </data>
+  <data name="MAL_LoginCorrect" xml:space="preserve">
+    <value>MAL login successful, settings saved.</value>
+  </data>
+  <data name="MAL_SearchInfo" xml:space="preserve">
+    <value>Valid MAL credentials are required in order to use this feature</value>
+  </data>
+  <data name="CheckCred" xml:space="preserve">
+    <value>Check Credentials</value>
+  </data>
+  <data name="MAL_CheckCred" xml:space="preserve">
+    <value>Check MAL Credentials</value>
+  </data>
+  <data name="Trakt_SearchInfo" xml:space="preserve">
+    <value>Valid Trakt credentials are required in order to use this feature</value>
+  </data>
+  <data name="Trakt_CheckCred" xml:space="preserve">
+    <value>Check Trakt Credentials</value>
   </data>
 </root>
