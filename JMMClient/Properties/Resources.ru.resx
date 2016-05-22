@@ -4088,4 +4088,40 @@
   <data name="Trakt_CheckCred" xml:space="preserve">
     <value>Проверьте полномочия тракт</value>
   </data>
+  <data name="RelationSetting_AltSetting" xml:space="preserve">
+    <value>Альтернативная настройка</value>
+  </data>
+  <data name="RelationSetting_SameSetting" xml:space="preserve">
+    <value>Же настройки</value>
+  </data>
+  <data name="RelationSetting_Character" xml:space="preserve">
+    <value>Персонаж</value>
+  </data>
+  <data name="RelationSetting_Other" xml:space="preserve">
+    <value>Другие</value>
+  </data>
+  <data name="RelationSetting_ParentStory" xml:space="preserve">
+    <value>Родительский история</value>
+  </data>
+  <data name="RelationSetting_SideStory" xml:space="preserve">
+    <value>История</value>
+  </data>
+  <data name="RelationSetting_Summary" xml:space="preserve">
+    <value>Резюме</value>
+  </data>
+  <data name="RelationSetting_FullStory" xml:space="preserve">
+    <value>Полная история</value>
+  </data>
+  <data name="RelationSetting_AltVersion" xml:space="preserve">
+    <value>Альтернативная версия</value>
+  </data>
+  <data name="TAB_Settings_RelationSettings" xml:space="preserve">
+    <value>Параметры связи</value>
+  </data>
+  <data name="RelationSettings_Info" xml:space="preserve">
+    <value>Выберите следующие действия, чтобы исключить из группировки</value>
+  </data>
+  <data name="Link_RelationSettings" xml:space="preserve">
+    <value>http://JMediaManager.org/JMM-Desktop/Settings/#Essential</value>
+  </data>
 </root>

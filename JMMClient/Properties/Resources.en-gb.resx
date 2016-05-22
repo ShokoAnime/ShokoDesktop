@@ -4088,4 +4088,40 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="Trakt_CheckCred" xml:space="preserve">
     <value>Check Trakt Credentials</value>
   </data>
+  <data name="RelationSetting_AltSetting" xml:space="preserve">
+    <value>Alternative Setting</value>
+  </data>
+  <data name="RelationSetting_SameSetting" xml:space="preserve">
+    <value>Same Setting</value>
+  </data>
+  <data name="RelationSetting_Character" xml:space="preserve">
+    <value>Character</value>
+  </data>
+  <data name="RelationSetting_Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="RelationSetting_ParentStory" xml:space="preserve">
+    <value>Parent Story</value>
+  </data>
+  <data name="RelationSetting_SideStory" xml:space="preserve">
+    <value>Side Story</value>
+  </data>
+  <data name="RelationSetting_Summary" xml:space="preserve">
+    <value>Summary</value>
+  </data>
+  <data name="RelationSetting_FullStory" xml:space="preserve">
+    <value>Full Story</value>
+  </data>
+  <data name="RelationSetting_AltVersion" xml:space="preserve">
+    <value>Alternative Version</value>
+  </data>
+  <data name="TAB_Settings_RelationSettings" xml:space="preserve">
+    <value>Relation Settings</value>
+  </data>
+  <data name="RelationSettings_Info" xml:space="preserve">
+    <value>Select the following to exclude from grouping</value>
+  </data>
+  <data name="Link_RelationSettings" xml:space="preserve">
+    <value>http://jmediamanager.org/jmm-desktop/settings/#essential</value>
+  </data>
 </root>
