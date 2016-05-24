@@ -66,9 +66,9 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_DefaultPlayer}" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="10,10,0,0"/>
+                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_DefaultPlayer}" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="10,0,0,0"/>
 
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,10,0,0" Grid.Row="0" Grid.Column="1">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0" Grid.Row="0" Grid.Column="1">
                     <ComboBox Grid.Row="0" Name="cboDefaultPlayer" VerticalAlignment="Center">
                     </ComboBox>
                 </StackPanel>
@@ -262,7 +262,7 @@
 
 
         <!-- % Watched Optons -->
-        <Grid Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="3" Margin="5">
+        <Grid Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="3" Margin="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>

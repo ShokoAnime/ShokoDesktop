@@ -1332,11 +1332,11 @@
                                         </Grid.RowDefinitions>
 
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="40"/>
+                                            <ColumnDefinition Width="25"/>
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <Image Height="24" Width="24" Source="/Images/64_user.png" Margin="5,2,5,0" Grid.Column="0" VerticalAlignment="Top"/>
+                                        <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,5,0" Grid.Column="0" VerticalAlignment="Top"/>
                                         <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=INFO_SettingsUserAdmin}" Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1"/>
                                     </Grid>
                                 </Border>

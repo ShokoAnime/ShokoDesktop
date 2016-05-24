@@ -504,9 +504,11 @@ namespace JMMClient
 			{
 				SaveServerSettings();
 
-				string response = _clientBinaryHTTP.TestAniDBConnection();
-				MessageBox.Show(response);
-			}
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+                string response = _clientBinaryHTTP.TestAniDBConnection();
+                MessageBox.Show(response, Properties.Resources.AniDBLogin, MessageBoxButton.OK, MessageBoxImage.Information);
+            }
 			catch (Exception ex)
 			{
 				Utils.ShowErrorMessage(ex);
@@ -541,7 +543,7 @@ namespace JMMClient
 
 				string response = _clientBinaryHTTP.TestMALLogin();
 				if (string.IsNullOrEmpty(response))
-					MessageBox.Show(Properties.Resources.Success, "", MessageBoxButton.OK, MessageBoxImage.Information);
+					MessageBox.Show(Properties.Resources.MAL_LoginCorrect, Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
 				else
 					MessageBox.Show(response, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 			}
