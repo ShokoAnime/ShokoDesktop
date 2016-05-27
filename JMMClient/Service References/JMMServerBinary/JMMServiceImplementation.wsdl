@@ -214,11 +214,11 @@
   <wsdl:message name="IJMMServer_GetPreviousEpisodeForUnwatched_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetPreviousEpisodeForUnwatchedResponse" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_GetEpisodeByAniDBEpisodeID_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetEpisodeByAniDBEpisodeID" />
+  <wsdl:message name="IJMMServer_GetEpisodeByAniDBEpisodeAndSerie_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEpisodeByAniDBEpisodeAndSerie" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_GetEpisodeByAniDBEpisodeID_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetEpisodeByAniDBEpisodeIDResponse" />
+  <wsdl:message name="IJMMServer_GetEpisodeByAniDBEpisodeAndSerie_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEpisodeByAniDBEpisodeAndSerieResponse" />
   </wsdl:message>
   <wsdl:message name="IJMMServer_GetFFDPreset_InputMessage">
     <wsdl:part name="parameters" element="tns:GetFFDPreset" />
@@ -1539,9 +1539,9 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetPreviousEpisodeForUnwatched" message="tns:IJMMServer_GetPreviousEpisodeForUnwatched_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetPreviousEpisodeForUnwatchedResponse" message="tns:IJMMServer_GetPreviousEpisodeForUnwatched_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetEpisodeByAniDBEpisodeID">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetEpisodeByAniDBEpisodeID" message="tns:IJMMServer_GetEpisodeByAniDBEpisodeID_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetEpisodeByAniDBEpisodeIDResponse" message="tns:IJMMServer_GetEpisodeByAniDBEpisodeID_OutputMessage" />
+    <wsdl:operation name="GetEpisodeByAniDBEpisodeAndSerie">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetEpisodeByAniDBEpisodeAndSerie" message="tns:IJMMServer_GetEpisodeByAniDBEpisodeAndSerie_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetEpisodeByAniDBEpisodeAndSerieResponse" message="tns:IJMMServer_GetEpisodeByAniDBEpisodeAndSerie_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetFFDPreset">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetFFDPreset" message="tns:IJMMServer_GetFFDPreset_InputMessage" />

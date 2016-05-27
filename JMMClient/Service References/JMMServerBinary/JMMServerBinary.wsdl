@@ -323,8 +323,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetEpisodeByAniDBEpisodeID">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetEpisodeByAniDBEpisodeID" style="document" />
+    <wsdl:operation name="GetEpisodeByAniDBEpisodeAndSerie">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetEpisodeByAniDBEpisodeAndSerie" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
