@@ -1653,8 +1653,8 @@ namespace JMMClient
 					MissingEpisodeVM rec = obj as MissingEpisodeVM;
 					if (rec == null) return;
 
-					JMMServerBinary.Contract_AnimeEpisode contract = JMMServerVM.Instance.clientBinaryHTTP.GetEpisodeByAniDBEpisodeAndSerie(rec.EpisodeID,rec.AnimeID, 
-						JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+					JMMServerBinary.Contract_AnimeEpisode contract = JMMServerVM.Instance.clientBinaryHTTP.GetEpisode(rec.EpisodeID, 
+                        JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
 					if (contract != null)
 					{
 						DownloadSearchCriteria crit = new DownloadSearchCriteria(DownloadSearchType.Episode, new AnimeEpisodeVM(contract));
