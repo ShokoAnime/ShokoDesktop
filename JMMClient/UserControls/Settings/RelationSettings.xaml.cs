@@ -42,8 +42,6 @@ namespace JMMClient.UserControls
             chkRelationSettings_Summary.Click += new RoutedEventHandler(settingChanged);
             chkRelationSettings_FullStory.Click += new RoutedEventHandler(settingChanged);
             chkRelationSettings_Other.Click += new RoutedEventHandler(settingChanged);
-
-            btnRecreateGroups.Click += new RoutedEventHandler(btnRecreateGroups_Click);
         }
 
         void chkRelationSettings_AutoGroupSeries_Click(object sender, RoutedEventArgs e)
@@ -61,9 +59,6 @@ namespace JMMClient.UserControls
             visRelations_Row2.Visibility = vis;
             visRelations_Row3.Visibility = vis;
             visRelations_Info.Visibility = vis;
-
-            btnRecreateGroups.Visibility = vis;
-
         }
 
         void btnRecreateGroups_Click(object sender, RoutedEventArgs e)
