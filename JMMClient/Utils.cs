@@ -55,6 +55,27 @@ namespace JMMClient
                 if (element is ScrollViewer) yield return element as ScrollViewer;
         }
 
+        /// <summary>
+        /// Looks for the give list of exes in the sys path.
+        /// </summary>
+        /// <param name="files">An array of exes</param>
+        /// <returns>The full path to the first occurance of an exe in the path.</returns>
+        public static string CheckSysPath(string[] files)
+        {
+            string sysPath = Environment.GetEnvironmentVariable("PATH");
+            string playerPath = null;
+            foreach (var path in sysPath.Split(';'))
+            {
+                foreach (string file in files)
+                {
+                    playerPath = Path.Combine(path, file);
+                    if (File.Exists(playerPath))
+                        return playerPath;
+                }
+            }
+            return null;
+        }
+
         public static void PopulateScheduledComboBox(System.Windows.Controls.ComboBox cbo, ScheduledUpdateFrequency curFrequency)
         {
             cbo.Items.Clear();
