@@ -13,12 +13,14 @@ using System.ServiceModel.Description;
 using JMMClient.Forms;
 using System.Threading;
 using System.Globalization;
+using NLog;
 
 namespace JMMClient
 {
 	public class JMMServerVM : INotifyPropertyChanged
 	{
-		private static JMMServerVM _instance;
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static JMMServerVM _instance;
 		private System.Timers.Timer serverStatusTimer = null;
 		private System.Timers.Timer saveTimer = null;
 		private static DateTime lastVersionCheck = DateTime.Now.AddDays(-5);
@@ -206,7 +208,8 @@ namespace JMMClient
 			}
 			catch (Exception ex)
 			{
-				Utils.ShowErrorMessage(ex);
+                logger.Trace("Unable to connect to JMM Server. Internal exception given: " + ex.Message);
+				//Utils.ShowErrorMessage(ex);
 				return false;
 			}
 
@@ -493,7 +496,8 @@ namespace JMMClient
 			}
 			catch (Exception ex)
 			{
-				Utils.ShowErrorMessage(ex);
+                logger.Trace("Error saving server JMM Server Settings. Internal exception given: " + ex.Message);
+				//Utils.ShowErrorMessage(ex);
 				return false;
 			}
 		}
