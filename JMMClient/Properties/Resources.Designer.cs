@@ -10317,7 +10317,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Total File Count.
+        ///   Looks up a localized string similar to Total File Count:.
         /// </summary>
         public static string TotalFileCount {
             get {
@@ -11379,11 +11379,29 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 8bit.
+        /// </summary>
+        public static string Video_Hi08P {
+            get {
+                return ResourceManager.GetString("Video_Hi08P", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 10bit.
         /// </summary>
         public static string Video_Hi10P {
             get {
                 return ResourceManager.GetString("Video_Hi10P", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12bit.
+        /// </summary>
+        public static string Video_Hi12P {
+            get {
+                return ResourceManager.GetString("Video_Hi12P", resourceCulture);
             }
         }
         

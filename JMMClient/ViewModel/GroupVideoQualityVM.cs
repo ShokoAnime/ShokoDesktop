@@ -115,7 +115,15 @@ namespace JMMClient.ViewModel
 			}
 		}
 
-		public bool IsHi10P
+        public bool IsHi08P
+        {
+            get
+            {
+                return VideoBitDepth == 8;
+            }
+        }
+
+        public bool IsHi10P
 		{
 			get
 			{
@@ -123,7 +131,15 @@ namespace JMMClient.ViewModel
 			}
 		}
 
-		private int GetVideoWidth()
+        public bool IsHi12P
+        {
+            get
+            {
+                return VideoBitDepth == 12;
+            }
+        }
+
+        private int GetVideoWidth()
 		{
 			int videoWidth = 0;
 			if (Resolution.Trim().Length > 0)

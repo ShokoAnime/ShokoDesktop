@@ -412,7 +412,18 @@ namespace JMMClient
 			}
 		}
 
-		public bool IsHi10P
+        public bool IsHi08P
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(VideoInfo_VideoBitDepth)) return false;
+                int bitDepth = 0;
+                int.TryParse(VideoInfo_VideoBitDepth, out bitDepth);
+                return bitDepth == 8;
+            }
+        }
+
+        public bool IsHi10P
 		{
 			get
 			{
@@ -423,7 +434,18 @@ namespace JMMClient
 			}
 		}
 
-		private int GetVideoWidth()
+        public bool IsHi12P
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(VideoInfo_VideoBitDepth)) return false;
+                int bitDepth = 0;
+                int.TryParse(VideoInfo_VideoBitDepth, out bitDepth);
+                return bitDepth == 12;
+            }
+        }
+
+        private int GetVideoWidth()
 		{
 			int videoWidth = 0;
 			if (AniDB_File_VideoResolution.Trim().Length > 0)
