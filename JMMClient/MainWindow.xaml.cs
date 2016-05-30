@@ -115,7 +115,10 @@ namespace JMMClient
 			{
 				UnhandledExceptionManager.AddHandler();
 
-				//AppSettings.DebugSettingsToLog();
+                //AppSettings.DebugSettingsToLog();
+
+                //TODO Create option for user to choose if JMM Server is started or not.
+                Utils.StartJMMServer();
 
 				lbGroupsSeries.MouseDoubleClick += new MouseButtonEventHandler(lbGroupsSeries_MouseDoubleClick);
 				lbGroupsSeries.SelectionChanged += new SelectionChangedEventHandler(lbGroupsSeries_SelectionChanged);
