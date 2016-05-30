@@ -13,7 +13,7 @@ AppPublisher=JMM
 AppPublisherURL=https://github.com/japanesemediamanager
 AppSupportURL=https://github.com/japanesemediamanager
 AppUpdatesURL=https://github.com/japanesemediamanager
-DefaultDirName={pf}\JMM Desktop
+DefaultDirName={pf}\JMM\JMM Desktop
 DefaultGroupName=JMM Desktop
 AllowNoIcons=yes
 OutputBaseFilename=JMM_Desktop_Setup
@@ -28,44 +28,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; OnlyBelowVersion: 0,6.1
 
 [Files]
-Source: "..\JMMClient\bin\Release\JMMDesktop.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\DevExpress.Data.v12.2.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\DevExpress.PivotGrid.v12.2.Core.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\DevExpress.Printing.v12.2.Core.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\DevExpress.Xpf.Core.v12.2.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\DevExpress.Xpf.Core.v12.2.Extensions.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\DevExpress.Xpf.Grid.v12.2.Core.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\DevExpress.Xpf.Grid.v12.2.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\DevExpress.Xpf.Layout.v12.2.Core.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\DevExpress.Xpf.LayoutControl.v12.2.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\DevExpress.Xpf.PivotGrid.v12.2.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\DevExpress.Xpf.Printing.v12.2.Core.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\DevExpress.Xpf.Printing.v12.2.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\GongSolutions.Wpf.DragDrop.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\Infralution.Localization.Wpf.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\Jint.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\JMMDesktop.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\JMMDesktop.vshost.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\JMMDesktop.vshost.exe.manifest"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\MahApps.Metro.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\MahApps.Metro.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\MahApps.Metro.Resources.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\MahApps.Metro.Resources.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\NLog.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\ReuxablesLegacy.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\System.Windows.Interactivity.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\WPFToolkit.Extended.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\de\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "..\JMMClient\bin\Release\en\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "..\JMMClient\bin\Release\en-gb\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "..\JMMClient\bin\Release\es\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "..\JMMClient\bin\Release\fr\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "..\JMMClient\bin\Release\it\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "..\JMMClient\bin\Release\ja\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "..\JMMClient\bin\Release\ko\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "..\JMMClient\bin\Release\zh-Hans\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "..\JMMClient\bin\Release\zh-Hant\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "..\JMMClient\bin\Release\JMMDesktop.exe.Config"; DestDir: "{app}"; Flags: ignoreversion onlyifdoesntexist; Permissions: users-full
+Source: "..\JMMClient\bin\Release\*"; Excludes: "JMMDesktop.exe.Config";DestDir: "{app}"; Flags: ignoreversion recursesubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
@@ -79,3 +42,7 @@ Filename: "{app}\JMMDesktop.exe"; Description: "{cm:LaunchProgram,JMM Desktop}";
 
 [Dirs]
 Name: "{app}"; Permissions: users-full
+
+[UninstallDelete]
+Type: filesandordirs; Name: "{app}"
+
