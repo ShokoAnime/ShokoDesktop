@@ -16,6 +16,7 @@ using JMMClient.Forms;
 using System.Windows;
 using System.Security.Cryptography;
 using System.Windows.Controls;
+using Microsoft.Win32;
 
 namespace JMMClient
 {
@@ -53,6 +54,27 @@ namespace JMMClient
         {
             for (DependencyObject element = control; element != null; element = System.Windows.Media.VisualTreeHelper.GetParent(element))
                 if (element is ScrollViewer) yield return element as ScrollViewer;
+        }
+
+        /// <summary>
+        /// Looks for the given list of exes in the sys path.
+        /// </summary>
+        /// <param name="files">An array of exes</param>
+        /// <returns>The full path to the first occurance of an exe in the path.</returns>
+        public static string CheckSysPath(string[] files)
+        {
+            string sysPath = Environment.GetEnvironmentVariable("PATH");
+            string playerPath = null;
+            foreach (var path in sysPath.Split(';'))
+            {
+                foreach (string file in files)
+                {
+                    playerPath = Path.Combine(path, file);
+                    if (File.Exists(playerPath))
+                        return playerPath;
+                }
+            }
+            return null;
         }
 
         public static void PopulateScheduledComboBox(System.Windows.Controls.ComboBox cbo, ScheduledUpdateFrequency curFrequency)
@@ -107,6 +129,46 @@ namespace JMMClient
 
 			return "";
 		}
+
+        /// <summary>
+        /// Looks to see if JMM Server is installed on the local machine, and starts it.
+        /// </summary>
+        /// <returns>Returns true if jmm server is local.</returns>
+        public static bool StartJMMServer()
+        {
+            //TODO Check 32bit registry logic
+            //TODO Wait a little bit for jmm server to start (just enough for the window to load)
+            //TODO Let the client know that the server is initalising.
+
+            string JMMServerPath = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{898530ED-CFC7-4744-B2B8-A8D98A2FA06C}_is1", "InstallLocation", null);
+
+            if (string.IsNullOrEmpty(JMMServerPath))
+                return false;
+
+            logger.Info("Found JMM Server install path in reg");
+
+            Process proc = new Process();
+            proc.StartInfo.ErrorDialog = false;
+            JMMServerPath = Path.Combine(JMMServerPath, "JMMServer.exe");
+            proc.StartInfo.FileName = JMMServerPath;
+            proc.StartInfo.UseShellExecute = false;
+            if (!File.Exists(JMMServerPath))
+            {
+                logger.Info("No file found at reg path given for JMMServer");
+                return false;
+            }
+
+            try
+            {
+                logger.Info("Starting JMM Server");
+                return proc.Start();
+            }
+            catch (Exception ex)
+            {
+                logger.Error("Error starting JMM Server", ex);
+                return false;
+            }
+        }
 
         public static DateTime? GetAniDBDateAsDate(int secs)
         {

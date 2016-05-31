@@ -5,6 +5,7 @@ using System.IO;
 using System.Diagnostics;
 using NLog;
 using JMMClient.ViewModel;
+using Microsoft.Win32;
 
 namespace JMMClient.Utilities
 {
@@ -32,45 +33,30 @@ namespace JMMClient.Utilities
 		{
             try
             {
-                string defaultplayer;
-                switch (UserSettingsVM.Instance.DefaultPlayer_GroupList)
-                {
-                    case (int)DefaultVideoPlayer.MPC:
-                        defaultplayer = "mpc-hc";
-                        break;
-                    case (int)DefaultVideoPlayer.PotPlayer:
-                        defaultplayer = "PotPlayerMini";
-                        break;
-                    case (int)DefaultVideoPlayer.VLC:
-                        defaultplayer = "vlc";
-                        break;
-                    default:
-                        defaultplayer = "";
-                        break;
-                }
                 recentlyPlayedFiles[vid.VideoLocalID] = vid;
                 if (vid.FullPath.Contains("http:")) {
                     try
                     {
-                        Process.Start(defaultplayer, '"' + vid.FullPath.Replace(@"\", "/") + '"');
+                        Process.Start(GetPlayerExe(), '"' + vid.FullPath.Replace(@"\", "/") + '"');
                     }
-                    catch(Exception e)
+                    catch(Exception ex)
                     {
-                        Process.Start(defaultplayer+"64", '"' + vid.FullPath.Replace(@"\", "/") + '"');
+                        logger.ErrorException(ex.ToString(), ex);
                     }
                 }
                 else
                 {
                     try
                     {
-                        if (string.IsNullOrEmpty(defaultplayer))
+                        string playerPath = GetPlayerExe();
+                        if (string.IsNullOrEmpty(playerPath))
                             Process.Start(new ProcessStartInfo(vid.FullPath));
                         else
-                            Process.Start(defaultplayer, '"' + vid.FullPath + '"');
+                            Process.Start(playerPath, '"' + vid.FullPath + '"');
                     }
-                    catch (Exception e)
+                    catch (Exception ex)
                     {
-                        Process.Start(defaultplayer + "64", '"' + vid.FullPath.Replace(@"\", "/") + '"');
+                        logger.ErrorException(ex.ToString(), ex);
                     }
                 }
                 
@@ -85,46 +71,31 @@ namespace JMMClient.Utilities
 		{
             try
             {
-                string defaultplayer;
-                switch (UserSettingsVM.Instance.DefaultPlayer_GroupList)
-                {
-                    case (int)DefaultVideoPlayer.MPC:
-                        defaultplayer = "mpc-hc";
-                        break;
-                    case (int)DefaultVideoPlayer.PotPlayer:
-                        defaultplayer = "PotPlayerMini";
-                        break;
-                    case (int)DefaultVideoPlayer.VLC:
-                        defaultplayer = "vlc";
-                        break;
-                    default:
-                        defaultplayer = "";
-                        break;
-                }
                 if (vid.FullPath.Contains("http:"))
                 {
                     try
                     {
-                        Process.Start(defaultplayer, '"' + vid.FullPath.Replace(@"\", "/") + '"');
+                        Process.Start(GetPlayerExe(), '"' + vid.FullPath.Replace(@"\", "/") + '"');
                     }
-                    catch (Exception e)
+                    catch(Exception ex)
                     {
-                        Process.Start(defaultplayer + "64", '"' + vid.FullPath.Replace(@"\", "/") + '"');
+                        logger.ErrorException(ex.ToString(), ex);
                     }
                 }
                 else
                 {
                     try
                     {
-                        if (string.IsNullOrEmpty(defaultplayer))
+                        string playerPath = GetPlayerExe();
+                        if (string.IsNullOrEmpty(playerPath))
                             Process.Start(new ProcessStartInfo(vid.FullPath));
                         else
-                            Process.Start(defaultplayer, '"' + vid.FullPath + '"');
+                            Process.Start(playerPath, '"' + vid.FullPath + '"');
 
                     }
-                    catch (Exception e)
+                    catch(Exception ex)
                     {
-                        Process.Start(defaultplayer + "64", '"' + vid.FullPath.Replace(@"\", "/") + '"');
+                        logger.ErrorException(ex.ToString(), ex);
                     }
                 }
                 
@@ -709,6 +680,65 @@ namespace JMMClient.Utilities
 
 			return null;
 		}
+
+
+
+        /// <summary>
+        /// Finds the path to the users set video player's executable. Checkes the sys path first, then for 64bit versions, followed lastly by 32 bit.
+        /// </summary>
+        /// <returns>A string of the full path to the default player otherwise returns a null if cant be found.</returns>
+        public string GetPlayerExe()
+        {
+            //TODO check 32bit registry logic
+
+            string playerPath = null;
+
+            switch (UserSettingsVM.Instance.DefaultPlayer_GroupList)
+            {                
+                case (int)DefaultVideoPlayer.MPC:
+
+                    //Check if Media Player Classic is available from PATH.
+                    playerPath = Utils.CheckSysPath(new string[] { "mpc-hc64.exe", "mpc-hc.exe" });
+                    if (!string.IsNullOrEmpty(playerPath))
+                        return playerPath;
+
+                    //Look for 64bit
+                    playerPath = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Combined Community Codec Pack 64bit_is1", "InstallLocation", null);
+                    if (!string.IsNullOrEmpty(playerPath))
+                        playerPath = Path.Combine(playerPath, @"MPC\mpc-hc64.exe");
+                    else // could not find 64, look for 32
+                    {
+                        playerPath = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Combined Community Codec Pack_is1", "InstallLocation", null);
+                        if (!string.IsNullOrEmpty(playerPath))
+                            playerPath = Path.Combine(playerPath, @"MPC\mpc-hc.exe");
+                    }
+                    return playerPath;
+                case (int)DefaultVideoPlayer.PotPlayer:
+                    //Check if PotPlayer is available from PATH.
+                    playerPath = Utils.CheckSysPath(new string[] { "PotPlayerMini64.exe", "PotPlayerMini.exe" });
+                    if (!string.IsNullOrEmpty(playerPath))
+                        return playerPath;
+
+                    playerPath = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\PotPlayer64", "DisplayIcon", null);
+                    if (!string.IsNullOrEmpty(playerPath))
+                        return playerPath;
+
+                    playerPath = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\PotPlayer", "DisplayIcon", null);
+                    if (!string.IsNullOrEmpty(playerPath))
+                        return playerPath;
+                    return playerPath;
+                case (int)DefaultVideoPlayer.VLC:
+                    //Check if VLC is available from PATH.
+                    playerPath = Utils.CheckSysPath(new string[] { "vlc.exe" });
+                    if (!string.IsNullOrEmpty(playerPath))
+                        return playerPath;
+
+                    playerPath = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\VLC media player", "DisplayIcon", null);
+                    return playerPath;
+                default:
+                    return playerPath;
+            }
+        }
 	}
 
 	public class VideoWatchedEventArgs : EventArgs

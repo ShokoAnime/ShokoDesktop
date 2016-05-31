@@ -13,12 +13,14 @@ using System.ServiceModel.Description;
 using JMMClient.Forms;
 using System.Threading;
 using System.Globalization;
+using NLog;
 
 namespace JMMClient
 {
 	public class JMMServerVM : INotifyPropertyChanged
 	{
-		private static JMMServerVM _instance;
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static JMMServerVM _instance;
 		private System.Timers.Timer serverStatusTimer = null;
 		private System.Timers.Timer saveTimer = null;
 		private static DateTime lastVersionCheck = DateTime.Now.AddDays(-5);
@@ -206,7 +208,8 @@ namespace JMMClient
 			}
 			catch (Exception ex)
 			{
-				Utils.ShowErrorMessage(ex);
+                logger.Trace("Unable to connect to JMM Server. Internal exception given: " + ex.Message);
+				//Utils.ShowErrorMessage(ex);
 				return false;
 			}
 
@@ -493,7 +496,8 @@ namespace JMMClient
 			}
 			catch (Exception ex)
 			{
-				Utils.ShowErrorMessage(ex);
+                logger.Trace("Error saving server JMM Server Settings. Internal exception given: " + ex.Message);
+				//Utils.ShowErrorMessage(ex);
 				return false;
 			}
 		}
@@ -504,9 +508,11 @@ namespace JMMClient
 			{
 				SaveServerSettings();
 
-				string response = _clientBinaryHTTP.TestAniDBConnection();
-				MessageBox.Show(response);
-			}
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+                string response = _clientBinaryHTTP.TestAniDBConnection();
+                MessageBox.Show(response, Properties.Resources.AniDBLogin, MessageBoxButton.OK, MessageBoxImage.Information);
+            }
 			catch (Exception ex)
 			{
 				Utils.ShowErrorMessage(ex);
@@ -541,7 +547,7 @@ namespace JMMClient
 
 				string response = _clientBinaryHTTP.TestMALLogin();
 				if (string.IsNullOrEmpty(response))
-					MessageBox.Show(Properties.Resources.Success, "", MessageBoxButton.OK, MessageBoxImage.Information);
+					MessageBox.Show(Properties.Resources.MAL_LoginCorrect, Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
 				else
 					MessageBox.Show(response, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 			}

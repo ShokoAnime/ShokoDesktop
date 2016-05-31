@@ -1384,6 +1384,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check Credentials.
+        /// </summary>
+        public static string CheckCred {
+            get {
+                return ResourceManager.GetString("CheckCred", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check For Updates.
         /// </summary>
         public static string CheckForUpdate {
@@ -4687,7 +4696,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add or edit users here. Users are stored in the database, and shared across different clients. You must always have at least one admin user..
+        ///   Looks up a localized string similar to Users are stored in your database and can be accessed by any client that connects to your database. When adding a new user or updating an existing one, you must click the Save button otherwise your changes will not take effect. JMM requires at least one user with administrator rights selected..
         /// </summary>
         public static string INFO_SettingsUserAdmin {
             get {
@@ -4858,7 +4867,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Trakt Authorization .
+        ///   Looks up a localized string similar to Trakt Authorization Status .
         /// </summary>
         public static string JMMServer_TraktAuth {
             get {
@@ -5209,11 +5218,38 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check MAL Credentials.
+        /// </summary>
+        public static string MAL_CheckCred {
+            get {
+                return ResourceManager.GetString("MAL_CheckCred", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MAL login successful, settings saved..
+        /// </summary>
+        public static string MAL_LoginCorrect {
+            get {
+                return ResourceManager.GetString("MAL_LoginCorrect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Never Decrease Watched Counts.
         /// </summary>
         public static string MAL_NeverDecrease {
             get {
                 return ResourceManager.GetString("MAL_NeverDecrease", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Valid MAL credentials are required in order to use this feature.
+        /// </summary>
+        public static string MAL_SearchInfo {
+            get {
+                return ResourceManager.GetString("MAL_SearchInfo", resourceCulture);
             }
         }
         
@@ -10236,6 +10272,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check Trakt Credentials.
+        /// </summary>
+        public static string Trakt_CheckCred {
+            get {
+                return ResourceManager.GetString("Trakt_CheckCred", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current token is valid until:.
         /// </summary>
         public static string Trakt_CurrentToken {
@@ -10295,6 +10340,15 @@ namespace JMMClient.Properties {
         public static string Trakt_PIN {
             get {
                 return ResourceManager.GetString("Trakt_PIN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Valid Trakt credentials are required in order to use this feature.
+        /// </summary>
+        public static string Trakt_SearchInfo {
+            get {
+                return ResourceManager.GetString("Trakt_SearchInfo", resourceCulture);
             }
         }
         
