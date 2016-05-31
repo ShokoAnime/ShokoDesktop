@@ -1473,6 +1473,24 @@ namespace JMMClient
 			}
 		}
 
+        public static bool AutoStartLocalJMMServer
+        {
+            get
+            {
+                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                string val = appSettings["AutoStartLocalJMMServer"];
+                bool bval = true;
+                if (bool.TryParse(val, out bval))
+                    return bval;
+                else
+                    return true; //default value
+            }
+            set
+            {
+                UpdateSetting("AutoStartLocalJMMServer", value.ToString());
+            }
+        }
+
 		public static int SeriesGroup_Image_Height
 		{
 			get

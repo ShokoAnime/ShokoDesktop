@@ -158,8 +158,8 @@ namespace JMMClient
                 return false;
             }
 
-            Process[] pname = Process.GetProcessesByName("JMMServer.exe");
-            if (pname.Length == 0) return true;
+            Process[] pname = Process.GetProcessesByName("JMMServer");
+            if (pname.Length != 0) return true;
 
             try
             {
