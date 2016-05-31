@@ -1211,8 +1211,8 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Settings\RelationSettings.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Settings\VideoPlayerSettingsControl.xaml">
       <SubType>Designer</SubType>
@@ -1300,6 +1300,7 @@
     <EmbeddedResource Include="Properties\Resources.es.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.es.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
