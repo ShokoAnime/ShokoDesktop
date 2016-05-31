@@ -689,6 +689,8 @@ namespace JMMClient.Utilities
         /// <returns>A string of the full path to the default player otherwise returns a null if cant be found.</returns>
         public string GetPlayerExe()
         {
+            //TODO check 32bit registry logic
+
             string playerPath = null;
 
             switch (UserSettingsVM.Instance.DefaultPlayer_GroupList)
