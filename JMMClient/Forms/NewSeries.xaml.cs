@@ -168,8 +168,8 @@ namespace JMMClient.Forms
 				SearchResults.Clear();
 				ViewSearchResults.Refresh();
 
-				List<JMMServerBinary.Contract_AnimeSearch> searchResults = JMMServerVM.Instance.clientBinaryHTTP.OnlineAnimeTitleSearch(txtAnimeSearch.Text.Trim());
-				foreach (JMMServerBinary.Contract_AnimeSearch res in searchResults)
+                List<JMMServerBinary.Contract_AnimeSearch> searchResults = JMMServerVM.Instance.clientBinaryHTTP.OnlineAnimeTitleSearch(txtAnimeSearch.Text.Replace("'", "`").Trim());
+                foreach (JMMServerBinary.Contract_AnimeSearch res in searchResults)
 				{
 					AnimeSearchVM ser = new AnimeSearchVM(res);
 					SearchResults.Add(ser);

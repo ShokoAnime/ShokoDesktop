@@ -786,7 +786,7 @@ namespace JMMClient.Forms
 			if (grpvm == null) return true;
 			
 
-			return GroupSearchFilterHelper.EvaluateGroupTextSearch(grpvm, txtGroupSearch.Text);
+			return GroupSearchFilterHelper.EvaluateGroupTextSearch(grpvm, txtGroupSearch.Text.Replace("'", "`"));
 		}
 
 		private bool TagFilter(object obj)

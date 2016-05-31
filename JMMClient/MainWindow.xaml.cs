@@ -872,7 +872,7 @@ namespace JMMClient
 				AnimeGroupVM grpvm = obj as AnimeGroupVM;
 				//if (!GroupSearchFilterHelper.EvaluateGroupFilter(MainListHelperVM.Instance.CurrentGroupFilter, grpvm)) return false;
 
-				return GroupSearchFilterHelper.EvaluateGroupTextSearch(grpvm, txtGroupSearch.Text);
+				return GroupSearchFilterHelper.EvaluateGroupTextSearch(grpvm, txtGroupSearch.Text.Replace("'","`"));
 			}
 
 			if (obj.GetType() == typeof(AnimeSeriesVM))
@@ -880,7 +880,7 @@ namespace JMMClient
 				AnimeSeriesVM ser = obj as AnimeSeriesVM;
 				//if (!GroupSearchFilterHelper.EvaluateGroupFilter(MainListHelperVM.Instance.CurrentGroupFilter, ser)) return false;
 
-				return GroupSearchFilterHelper.EvaluateSeriesTextSearch(ser, txtGroupSearch.Text);
+				return GroupSearchFilterHelper.EvaluateSeriesTextSearch(ser, txtGroupSearch.Text.Replace("'", "`"));
 			}
 
 			return true;

@@ -828,7 +828,7 @@ namespace JMMClient.UserControls
 
 		void txtSeriesSearch_TextChanged(object sender, TextChangedEventArgs e)
 		{
-			ViewSeries.Refresh();
+            ViewSeries.Refresh();
 		}
 
 		void btnRefresh_Click(object sender, RoutedEventArgs e)
@@ -880,7 +880,7 @@ namespace JMMClient.UserControls
 			AnimeSeriesVM servm = obj as AnimeSeriesVM;
 			if (servm == null) return true;
 
-			return GroupSearchFilterHelper.EvaluateSeriesTextSearch(servm, txtSeriesSearch.Text);
+			return GroupSearchFilterHelper.EvaluateSeriesTextSearch(servm, txtSeriesSearch.Text.Replace("'","`"));
 		}
 
 		private bool FileSearchFilter(object obj)
