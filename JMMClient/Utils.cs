@@ -158,6 +158,9 @@ namespace JMMClient
                 return false;
             }
 
+            Process[] pname = Process.GetProcessesByName("JMMServer");
+            if (pname.Length != 0) return true;
+
             try
             {
                 logger.Info("Starting JMM Server");

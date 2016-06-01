@@ -242,7 +242,9 @@ namespace JMMClient.Utilities
                     long mpcPos = 0;
                     long.TryParse(position, out mpcPos);
 
-                    // if mpcPos == 0, it means that file has finished played completely
+                    // handle the case of PotPlayer having a psoition of 0, which means 100% watched
+                    if (mpcPos == 0)
+                        mpcPos = (long)100;
 
                     filePositions[fileName] = mpcPos;
 				}
@@ -494,10 +496,6 @@ namespace JMMClient.Utilities
                         double fileDurationMS = (double)kvpVid.Value.VideoInfo_Duration;
 
                         double progress = mpcPosMS / fileDurationMS * 100.0d;
-
-                        // handle the case of PotPlayer having a psoition of 0, which means 100% watched
-                        if (mpcPosMS == 0)
-                            progress = (double)100;
 
                         if (progress > (double)AppSettings.VideoWatchedPct)
                         {
