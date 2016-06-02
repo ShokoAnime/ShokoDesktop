@@ -29,7 +29,8 @@ namespace JMMClient.UserControls
 
             txtServer.Text = AppSettings.JMMServer_Address;
 			txtPort.Text = AppSettings.JMMServer_Port;
-			//txtFilePort.Text = AppSettings.JMMServer_FilePort;
+            //txtFilePort.Text = AppSettings.JMMServer_FilePort;
+            btnAutoStartLocalJMMServer.IsChecked = AppSettings.AutoStartLocalJMMServer;
 			
 
 			btnTest.Click += new RoutedEventHandler(btnTest_Click);
@@ -61,5 +62,10 @@ namespace JMMClient.UserControls
 				MessageBox.Show(ex.Message, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 		}
-	}
+
+        private void btnAutoStartLocalJMMServer_Click(object sender, RoutedEventArgs e)
+        {
+            AppSettings.AutoStartLocalJMMServer = (bool)btnAutoStartLocalJMMServer.IsChecked;
+        }
+    }
 }
