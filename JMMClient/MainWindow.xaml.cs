@@ -1189,7 +1189,9 @@ namespace JMMClient
 					DownloadAllImages();
 
 					MainListHelperVM.Instance.ShowChildWrappers(MainListHelperVM.Instance.CurrentWrapper);
-				}
+
+                    this.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (Action)HighlightMainListItem);
+                }
 
 				// we are inside one of the group filters, groups or series
 				if (MainListHelperVM.Instance.CurrentWrapper != null)
@@ -3209,7 +3211,10 @@ namespace JMMClient
 					series.RefreshBase();
 					MainListHelperVM.Instance.LastAnimeSeriesID = series.AnimeSeriesID.Value;
 					MainListHelperVM.Instance.CurrentSeries = series;
-				}
+
+                    if (MainListHelperVM.Instance.LastGroupFilterID != 0 && lbGroupsSeries.SelectedItem != null)
+                        MainListHelperVM.Instance.LastGroupForGF[MainListHelperVM.Instance.LastGroupFilterID] = lbGroupsSeries.SelectedIndex;
+                }
 
 				if (obj.GetType() == typeof(AnimeGroupVM))
 				{
