@@ -613,14 +613,24 @@ namespace JMMClient.ViewModel
 
                 if ((PlaylistItemType)objType == PlaylistItemType.AnimeSeries)
                 {
-                    // get the series
-                    JMMServerBinary.Contract_AnimeSeries serContract = JMMServerVM.Instance.clientBinaryHTTP.GetSeries(objID,
-                        JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
-                    if (serContract != null)
+                    AnimeSeriesVM ser;
+                    if (MainListHelperVM.Instance.AllSeriesDictionary.TryGetValue(objID, out ser) == false)
                     {
-                        AnimeSeriesVM ser = new AnimeSeriesVM(serContract);
-                        PlaylistObjects.Add(new PlaylistItemVM(this.PlaylistID.Value, PlaylistItemType.AnimeSeries, ser));
+                        // get the series
+                        JMMServerBinary.Contract_AnimeSeries serContract = JMMServerVM.Instance.clientBinaryHTTP.GetSeries(objID, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+                        if (serContract != null)
+                        {
+                            ser = new AnimeSeriesVM(serContract);
+
+                            if (MainListHelperVM.Instance.AllSeries.Contains(ser) == false)
+                                MainListHelperVM.Instance.AllSeries.Add(ser);
+
+                            MainListHelperVM.Instance.AllSeriesDictionary[objID] = ser;
+                        }
                     }
+
+                    if (ser != null)
+                        PlaylistObjects.Add(new PlaylistItemVM(this.PlaylistID.Value, PlaylistItemType.AnimeSeries, ser));
                 }
                 else
                 {

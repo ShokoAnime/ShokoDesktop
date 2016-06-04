@@ -1789,91 +1789,99 @@ namespace JMMClient
 
             try
             {
+                int? objID = null;
+
                 if (obj.GetType() == typeof(AnimeEpisodeVM))
                 {
                     AnimeEpisodeVM ep = (AnimeEpisodeVM)obj;
-                    if (MainListHelperVM.Instance.AllSeriesDictionary.ContainsKey(ep.AnimeSeriesID))
-                    {
-                        ShowPinnedSeries(MainListHelperVM.Instance.AllSeriesDictionary[ep.AnimeSeriesID]);
-                    }
+                    objID = ep.AnimeSeriesID;
                 }
 
                 if (obj.GetType() == typeof(AnimeSeriesVM))
                 {
                     AnimeSeriesVM ser = (AnimeSeriesVM)obj;
-                    ShowPinnedSeries(ser);
+                    objID = ser.AnimeSeriesID;
                 }
 
                 if (obj.GetType() == typeof(AniDB_Anime_SimilarVM))
                 {
                     AniDB_Anime_SimilarVM sim = (AniDB_Anime_SimilarVM)obj;
-                    ShowPinnedSeries(sim.AnimeSeries);
+                    objID = sim.AnimeSeries.AnimeSeriesID;
                 }
 
                 if (obj.GetType() == typeof(AniDB_Anime_RelationVM))
                 {
                     AniDB_Anime_RelationVM rel = (AniDB_Anime_RelationVM)obj;
-                    ShowPinnedSeries(rel.AnimeSeries);
+                    objID = rel.AnimeSeries.AnimeSeriesID;
                 }
 
                 if (obj.GetType() == typeof(RecommendationVM))
                 {
                     RecommendationVM rec = (RecommendationVM)obj;
-                    ShowPinnedSeries(rec.Recommended_AnimeSeries);
+                    objID = rec.Recommended_AnimeSeries.AnimeSeriesID;
                 }
 
                 if (obj.GetType() == typeof(MissingFileVM))
                 {
                     MissingFileVM mis = (MissingFileVM)obj;
-                    ShowPinnedSeries(mis.AnimeSeries);
+                    objID = mis.AnimeSeries.AnimeSeriesID;
                 }
 
                 if (obj.GetType() == typeof(MissingEpisodeVM))
                 {
                     MissingEpisodeVM misEp = (MissingEpisodeVM)obj;
-                    ShowPinnedSeries(misEp.AnimeSeries);
+                    objID = misEp.AnimeSeries.AnimeSeriesID;
                 }
 
                 if (obj.GetType() == typeof(PlaylistItemVM))
                 {
                     PlaylistItemVM pli = (PlaylistItemVM)obj;
                     if (pli.ItemType == PlaylistItemType.AnimeSeries)
-                        ShowPinnedSeries(pli.PlaylistItem as AnimeSeriesVM);
-
-                    if (pli.ItemType == PlaylistItemType.Episode)
+                    {
+                        var ser = (AnimeSeriesVM)pli.PlaylistItem;
+                        objID = ser.AnimeSeriesID;
+                    }
+                    else if (pli.ItemType == PlaylistItemType.Episode)
                     {
                         AnimeEpisodeVM ep = pli.PlaylistItem as AnimeEpisodeVM;
-                        if (MainListHelperVM.Instance.AllSeriesDictionary.ContainsKey(ep.AnimeSeriesID))
-                            ShowPinnedSeries(MainListHelperVM.Instance.AllSeriesDictionary[ep.AnimeSeriesID]);
-
+                        objID = ep.AnimeSeriesID;
                     }
                 }
 
                 if (obj.GetType() == typeof(AnimeSearchVM))
                 {
                     AnimeSearchVM search = (AnimeSearchVM)obj;
-                    if (!search.AnimeSeriesID.HasValue) return;
-
-                    JMMServerBinary.Contract_AnimeSeries contract = JMMServerVM.Instance.clientBinaryHTTP.GetSeries(search.AnimeSeriesID.Value,
-                        JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
-
-                    if (contract == null) return;
-                    AnimeSeriesVM ser = new AnimeSeriesVM(contract);
-
-                    ShowPinnedSeries(ser);
+                    objID = search.AnimeSeriesID;
                 }
 
                 if (obj.GetType() == typeof(TraktSeriesData))
                 {
                     TraktSeriesData trakt = (TraktSeriesData)obj;
+                    objID = trakt.AnimeSeriesID;
+                }
 
-                    JMMServerBinary.Contract_AnimeSeries contract = JMMServerVM.Instance.clientBinaryHTTP.GetSeries(trakt.AnimeSeriesID,
-                        JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+                if (objID != null)
+                {
+                    var valObjID = objID.Value;
 
-                    if (contract == null) return;
-                    AnimeSeriesVM ser = new AnimeSeriesVM(contract);
+                    AnimeSeriesVM ser;
+                    if (MainListHelperVM.Instance.AllSeriesDictionary.TryGetValue(valObjID, out ser) == false)
+                    {
+                        // get the series
+                        JMMServerBinary.Contract_AnimeSeries serContract = JMMServerVM.Instance.clientBinaryHTTP.GetSeries(valObjID, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+                        if (serContract != null)
+                        {
+                            ser = new AnimeSeriesVM(serContract);
 
-                    ShowPinnedSeries(ser);
+                            if (MainListHelperVM.Instance.AllSeries.Contains(ser) == false)
+                                MainListHelperVM.Instance.AllSeries.Add(ser);
+
+                            MainListHelperVM.Instance.AllSeriesDictionary[valObjID] = ser;
+                        }
+                    }
+
+                    if (ser != null)
+                        ShowPinnedSeries(ser);
                 }
 
             }

@@ -131,12 +131,11 @@
                             <Button Name="btnToggleWatched" Margin="0,0,0,0" Style="{StaticResource FlatButtonStyle}" VerticalAlignment="Center"
                             Command="{StaticResource ToggleWatchedStatusCommand}" CommandParameter="{Binding}">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                    <Image Height="24" Width="24" Source="/Images/16_eye2.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000">
+                                    <Image Height="24" Width="24" Source="/Images/16_eye.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000">
                                         <Image.ToolTip>
-                                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_Unwatched}"/>
+                                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_Watched}"/>
                                         </Image.ToolTip>
                                     </Image>
-
                                 </StackPanel>
                             </Button>
 
