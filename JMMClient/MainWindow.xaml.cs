@@ -96,6 +96,7 @@ namespace JMMClient
         BackgroundWorker showDashboardWorker = new BackgroundWorker();
 
         public static VideoHandler videoHandler = new VideoHandler();
+        private bool _blockTabControlChanged;
 
         public MainWindow()
         {
@@ -214,8 +215,8 @@ namespace JMMClient
                 else
                     dashMetro.Visibility = System.Windows.Visibility.Visible;
 
-
                 UserSettingsVM.Instance.SetDashMetro_Image_Width();
+                MainListHelperVM.Instance.Refreshed += Instance_Refreshed;
             }
             catch (Exception ex)
             {
@@ -223,6 +224,36 @@ namespace JMMClient
             }
         }
 
+        private void CollView_CurrentChanging(object sender, CurrentChangingEventArgs e)
+        {
+            if (_blockTabControlChanged)
+            {
+                int previousIndex = tabControl1.Items.IndexOf(tabControl1.SelectedContent);
+                tabControl1.SelectedIndex = previousIndex;
+
+                e.Cancel = true;
+            }
+        }
+
+        private void Instance_Refreshed(object sender, EventArgs e)
+        {
+            _blockTabControlChanged = true;
+
+            var oldMainIndex = tabControl1.SelectedIndex;
+
+            RefreshPinnedSeries();
+            RefreshPlayList();
+
+            this.Dispatcher.BeginInvoke(DispatcherPriority.ApplicationIdle, (Action)(() =>
+            {
+                var curMainIndex = tabControl1.SelectedIndex;
+
+                if (oldMainIndex != curMainIndex)
+                    tabControl1.SelectedIndex = oldMainIndex;
+
+                _blockTabControlChanged = false;
+            }));
+        }
         void btnSwitchUser_Click(object sender, RoutedEventArgs e)
         {
             // authenticate user
@@ -419,6 +450,9 @@ namespace JMMClient
             postStartTimer.Start();
 
             CheckForUpdatesNew(false);
+
+            var collView = CollectionViewSource.GetDefaultView(tabControl1.Items);
+            collView.CurrentChanging += CollView_CurrentChanging;
         }
 
         void postStartTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
@@ -1314,10 +1348,31 @@ namespace JMMClient
                 CloseableTabItem ctiTemp = obj as CloseableTabItem;
                 if (ctiTemp == null) continue;
 
-                AnimeSeries ctrl = ctiTemp.Content as AnimeSeries;
-                if (ctrl == null) continue;
+                AnimeSeriesVM ser = null;
+                ContentControl ctrl = ctiTemp.Content as AnimeSeriesContainerControl;
+                if (ctrl == null)
+                {
+                    ContentControl subControl = ctrl.Content as AnimeSeriesSimplifiedControl;
+                    if (subControl == null)
+                        subControl = ctrl.Content as AnimeSeries;
 
-                AnimeSeriesVM ser = ctrl.DataContext as AnimeSeriesVM;
+                    if (subControl != null)
+                        ctrl = subControl;
+                }
+                else
+                {
+                    ContentControl subControl = ctrl.DataContext as AnimeSeriesSimplifiedControl;
+                    if (subControl == null)
+                        subControl = ctrl.DataContext as AnimeSeries;
+
+                    if (subControl != null)
+                        ctrl = subControl;
+                }
+
+                if (ctrl == null)
+                    continue;
+
+                ser = ctrl.DataContext as AnimeSeriesVM;
                 if (ser == null) continue;
 
                 if (ser.AnimeSeriesID == series.AnimeSeriesID)
@@ -1363,6 +1418,91 @@ namespace JMMClient
 
             tabControl1.SelectedIndex = TAB_MAIN_Pinned;
             tabPinned.SelectedIndex = tabPinned.Items.Count - 1;
+
+            this.Cursor = Cursors.Arrow;
+        }
+
+        public void RefreshPinnedSeries()
+        {
+            this.Cursor = Cursors.Wait;
+
+            foreach (object obj in tabPinned.Items)
+            {
+                CloseableTabItem ctiTemp = obj as CloseableTabItem;
+                if (ctiTemp == null) continue;
+
+                AnimeSeriesVM ser = null;
+                ContentControl ctrl = ctiTemp.Content as AnimeSeriesContainerControl;
+                if (ctrl == null)
+                {
+                    ContentControl subControl = ctrl.Content as AnimeSeriesSimplifiedControl;
+                    if (subControl == null)
+                        subControl = ctrl.Content as AnimeSeries;
+
+                    if (subControl != null)
+                        ctrl = subControl;
+                }
+                else
+                {
+                    ContentControl subControl = ctrl.DataContext as AnimeSeriesSimplifiedControl;
+                    if (subControl == null)
+                        subControl = ctrl.DataContext as AnimeSeries;
+
+                    if (subControl != null)
+                        ctrl = subControl;
+                }
+
+                if (ctrl == null)
+                    continue;
+
+                ser = ctrl.DataContext as AnimeSeriesVM;
+                if (ser == null) continue;
+
+                if (ser.AnimeSeriesID.HasValue)
+                    if (MainListHelperVM.Instance.AllSeriesDictionary.TryGetValue(ser.AnimeSeriesID.Value, out ser))
+                        ctrl.DataContext = ser;
+            }
+
+            this.Cursor = Cursors.Arrow;
+        }
+        public void RefreshPlayList()
+        {
+            this.Cursor = Cursors.Wait;
+
+            foreach (object obj in lbPlaylists.Items)
+            {
+                var playListVM = obj as PlaylistVM;
+                if (playListVM == null)
+                    continue;
+
+                var playListObjects = playListVM.PlaylistObjects;
+                if (playListObjects != null)
+                {
+                    foreach (var item in playListObjects)
+                    {
+                        if (item.ItemType == PlaylistItemType.AnimeSeries)
+                        {
+                            var itemSer = item.Series;
+                            if (itemSer == null) continue;
+                            if (!itemSer.AnimeSeriesID.HasValue) continue;
+
+                            var itemSeriesId = itemSer.AnimeSeriesID.Value;
+                            if (MainListHelperVM.Instance.AllSeriesDictionary.TryGetValue(itemSeriesId, out itemSer))
+                                item.Series = itemSer;
+                        }
+                    }
+                }
+
+                var ser = playListVM.Series;
+                if (ser == null) continue;
+                if (!playListVM.Series.AnimeSeriesID.HasValue) continue;
+
+                var seriesId = playListVM.Series.AnimeSeriesID.Value;
+                if (MainListHelperVM.Instance.AllSeriesDictionary.TryGetValue(seriesId, out ser))
+                    playListVM.Series = ser;
+
+                //if (playListVM.ite)
+            }
 
             this.Cursor = Cursors.Arrow;
         }

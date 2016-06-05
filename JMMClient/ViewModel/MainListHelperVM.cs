@@ -282,6 +282,8 @@ namespace JMMClient
 			}
 		}
 
+        public event EventHandler Refreshed;
+
 		public static MainListHelperVM Instance
 		{
 			get
@@ -689,7 +691,8 @@ namespace JMMClient
 			AllAnimeDictionary.Clear();
 
 			ViewSeriesSearch.Refresh();
-		}
+            OnRefreshed();
+        }
 
 		public void RefreshGroupsSeriesData()
 		{
@@ -731,7 +734,7 @@ namespace JMMClient
 						AllGroupsDictionary[grpNew.AnimeGroupID.Value] = grpNew;
 					}
 
-
+                    OnRefreshed();
 				});
 			}
 			catch (Exception ex)
@@ -1117,5 +1120,11 @@ namespace JMMClient
 				Utils.ShowErrorMessage(ex);
 			}
 		}
+        private void OnRefreshed()
+        {
+            var handler = this.Refreshed;
+            if (handler != null)
+                handler(null, EventArgs.Empty);
+        }
 	}
 }
