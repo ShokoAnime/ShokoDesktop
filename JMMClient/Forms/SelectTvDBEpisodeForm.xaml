@@ -33,9 +33,9 @@
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
 
-                        <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Margin="10,5,10,5" VerticalAlignment="Top">
+                        <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Margin="10,5,10,5" VerticalAlignment="Top" Height="80">
                             <Image.Source>
-                                <BitmapImage UriSource="{Binding Path=ImagePath}" DecodePixelHeight="80"/>
+                                <BitmapImage UriSource="{Binding Path=ImagePath}" DecodePixelHeight="80" />
                             </Image.Source>
                         </Image>
 
