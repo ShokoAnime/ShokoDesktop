@@ -191,4 +191,26 @@ namespace JMMClient.UserControls
 
 		
 	}
+
+    public class ContentAwareScrollViewer : ScrollViewer
+    {
+        protected override void OnMouseWheel(MouseWheelEventArgs e)
+        {
+            var parentElement = Parent as UIElement;
+            if (parentElement != null)
+            {
+                if ((e.Delta > 0 && VerticalOffset == 0) ||
+                    (e.Delta < 0 && VerticalOffset == ScrollableHeight))
+                {
+                    e.Handled = true;
+
+                    var routedArgs = new MouseWheelEventArgs(e.MouseDevice, e.Timestamp, e.Delta);
+                    routedArgs.RoutedEvent = UIElement.MouseWheelEvent;
+                    parentElement.RaiseEvent(routedArgs);
+                }
+            }
+
+            base.OnMouseWheel(e);
+        }
+    }
 }
