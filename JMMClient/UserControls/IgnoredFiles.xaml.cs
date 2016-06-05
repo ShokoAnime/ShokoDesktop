@@ -208,7 +208,60 @@ namespace JMMClient.UserControls
 			EnableDisableControls(true);
 		}
 
-		void btnRefresh_Click(object sender, RoutedEventArgs e)
+        private void CommandBinding_DeleteFile(object sender, ExecutedRoutedEventArgs e)
+        {
+            try
+            {
+                Window parentWindow = Window.GetWindow(this);
+
+                object obj = e.Parameter;
+                if (obj == null) return;
+
+                if (obj.GetType() == typeof(VideoLocalVM))
+                {
+                    VideoLocalVM vid = obj as VideoLocalVM;
+
+                    MessageBoxResult res = MessageBox.Show(string.Format(Properties.Resources.Unrecognized_ConfirmDelete, vid.FullPath),
+                    Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (res == MessageBoxResult.Yes)
+                    {
+                        EnableDisableControls(false);
+
+                        string result = JMMServerVM.Instance.clientBinaryHTTP.DeleteVideoLocalAndFile(vid.VideoLocalID);
+                        if (result.Length > 0)
+                            MessageBox.Show(result, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        else
+                            RefreshIgnoredFiles();
+                    }
+                }
+
+                if (obj.GetType() == typeof(MultipleVideos))
+                {
+                    MultipleVideos mv = obj as MultipleVideos;
+                    MessageBoxResult res = MessageBox.Show(string.Format(Properties.Resources.Unrecognized_DeleteSelected, mv.VideoLocalIDs.Count),
+                    Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (res == MessageBoxResult.Yes)
+                    {
+                        EnableDisableControls(false);
+
+                        foreach (int id in mv.VideoLocalIDs)
+                            JMMServerVM.Instance.clientBinaryHTTP.DeleteVideoLocalAndFile(id);
+
+                        RefreshIgnoredFiles();
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+
+            EnableDisableControls(true);
+        }
+
+        void btnRefresh_Click(object sender, RoutedEventArgs e)
 		{
 			RefreshIgnoredFiles();
 		}

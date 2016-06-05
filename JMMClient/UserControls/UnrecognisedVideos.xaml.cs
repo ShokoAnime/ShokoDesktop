@@ -647,6 +647,8 @@ namespace JMMClient.UserControls
                         {
                             JMMServerVM.Instance.clientBinaryHTTP.DeleteVideoLocalAndFile(id);
                         }
+
+                        RefreshUnrecognisedFiles();
                     }
                 }
 
