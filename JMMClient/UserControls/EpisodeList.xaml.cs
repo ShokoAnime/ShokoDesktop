@@ -16,6 +16,7 @@ using JMMClient.ViewModel;
 using System.Collections.ObjectModel;
 using NLog;
 using JMMClient.Forms;
+using System.Globalization;
 
 namespace JMMClient.UserControls
 {
@@ -545,4 +546,61 @@ namespace JMMClient.UserControls
 
 
 	}
+
+    public class HideMassWatchedConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            //[0] = selected type
+            //[1] = animeseries
+            //[2] = treeview selected item (selected episode)
+            //[3] = unwatchedepisodecount - basically just there to get notifications when watched state changes
+            //[4] = IsEpisodeSelected - basically just there to get notifications selection changes
+
+            //return visibility if mark all episodes as watched should be visible or not...
+
+            try
+            {
+                var selType = values[0] as AnimeEpisodeTypeVM;
+                var ser = values[1] as AnimeSeriesVM;
+
+                if (selType == null || ser == null)
+                    return Visibility.Collapsed;
+
+                bool visible;
+
+                var strParameter = System.Convert.ToString(parameter);
+                if (strParameter == "1")
+                    visible = ser.AllEpisodes.Any(x => x.EpisodeTypeEnum == selType.EpisodeType && x.HasFiles);
+                else if (strParameter == "2")
+                    visible = ser.AllEpisodes.Any(x => x.Unwatched && x.EpisodeTypeEnum == selType.EpisodeType && x.HasFiles);
+                else if (strParameter == "3")
+                {
+                    var ep = values[2] as AnimeEpisodeVM;
+                    if (ep == null)
+                        visible = false;
+                    else
+                    {
+                        if (ep.EpisodeTypeEnum == EpisodeType.Episode)
+                            visible = ser.AllEpisodes.Any(x => x.Unwatched && x.EpisodeTypeEnum == selType.EpisodeType && x.HasFiles && x.EpisodeNumber <= ep.EpisodeNumber);
+                        else
+                            visible = false;
+                    }
+                }
+                else
+                    visible = false;
+
+                return visible ? Visibility.Visible : Visibility.Collapsed;
+            }
+            catch (Exception)
+            {
+                return Visibility.Visible;
+            }
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

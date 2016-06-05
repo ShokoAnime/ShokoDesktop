@@ -33,6 +33,8 @@
                 <TextBlock Text="{Binding Path=WatchedStatusDescription}" />
             </DataTemplate>
 
+            <usercontrols:HideMassWatchedConverter x:Key="HideMassWatchedConverter"/>
+
         </ResourceDictionary>
 
 
@@ -72,11 +74,22 @@
             </StackPanel>
         </Border>
 
-        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Margin="0,0,0,0" Background="#2D2D2D" Padding="3" BorderThickness="0" Grid.Row="1">
+        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Margin="0,0,0,0" Background="#2D2D2D" Padding="3" BorderThickness="0" Grid.Row="1" MinHeight="34">
             <StackPanel Orientation="Horizontal" >
 
                 <!-- Mark all as watched -->
                 <Button Name="btnMarkAllWatched" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyleDark}">
+                    <Button.Visibility>
+                        <MultiBinding Converter="{StaticResource HideMassWatchedConverter}" ConverterParameter="2">
+                            <MultiBinding.Bindings>
+                                <Binding Path="SelectedItem" ElementName="cboEpisodeTypeFilter" />
+                                <Binding Path="." />
+                                <Binding Path="SelectedItem" ElementName="lbEpisodes" />
+                                <Binding Path="UnwatchedEpisodeCount" />
+                                <Binding Path="IsEpisodeSelected" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type usercontrols:EpisodeList}}" />
+                            </MultiBinding.Bindings>
+                        </MultiBinding>
+                    </Button.Visibility>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                         <Image Height="16" Width="16" Source="/Images/16_eye.png" Margin="0,0,5,0"/>
                         <TextBlock VerticalAlignment="Center" Foreground="White" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=EpisodeMarkAllWatched}" Margin="0,0,5,0"/>
@@ -87,6 +100,17 @@
 
                 <!-- Mark all as un-watched -->
                 <Button Name="btnMarkAllUnwatched" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyleDark}">
+                    <Button.Visibility>
+                        <MultiBinding Converter="{StaticResource HideMassWatchedConverter}" ConverterParameter="1">
+                            <MultiBinding.Bindings>
+                                <Binding Path="SelectedItem" ElementName="cboEpisodeTypeFilter" />
+                                <Binding Path="." />
+                                <Binding Path="SelectedItem" ElementName="lbEpisodes" />
+                                <Binding Path="UnwatchedEpisodeCount" />
+                                <Binding Path="IsEpisodeSelected" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type usercontrols:EpisodeList}}" />
+                            </MultiBinding.Bindings>
+                        </MultiBinding>
+                    </Button.Visibility>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                         <Image Height="16" Width="16" Source="/Images/16_eye2.png" Margin="0,0,5,0"/>
                         <TextBlock VerticalAlignment="Center" Foreground="White" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=EpisodeMarkAllUnwatched}" Margin="0,0,5,0"/>
@@ -94,8 +118,19 @@
                 </Button>
 
                 <!-- Mark all previous as watched -->
-                <Button Name="btnMarkAllPreviousWatched" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyleDark}"
-                        Visibility="{Binding Path=IsEpisodeSelected, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:EpisodeList}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <!--Visibility="{Binding Path=IsEpisodeSelected, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:EpisodeList}}, Converter={StaticResource BooleanToVisibilityConverter}}"-->
+                <Button Name="btnMarkAllPreviousWatched" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyleDark}">
+                    <Button.Visibility>
+                        <MultiBinding Converter="{StaticResource HideMassWatchedConverter}" ConverterParameter="3">
+                            <MultiBinding.Bindings>
+                                <Binding Path="SelectedItem" ElementName="cboEpisodeTypeFilter" />
+                                <Binding Path="." />
+                                <Binding Path="SelectedItem" ElementName="lbEpisodes" />
+                                <Binding Path="UnwatchedEpisodeCount" />
+                                <Binding Path="IsEpisodeSelected" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type usercontrols:EpisodeList}}" />
+                            </MultiBinding.Bindings>
+                        </MultiBinding>
+                    </Button.Visibility>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                         <Image Height="16" Width="16" Source="/Images/16_eye.png" Margin="0,0,5,0"/>
                         <TextBlock VerticalAlignment="Center" Foreground="White" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=EpisodeMarkAllWatchedPrevious}" Margin="0,0,5,0"/>
@@ -110,16 +145,16 @@
                     ItemsSource="{Binding Path=CurrentEpisodes, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:EpisodeList}}}" 
                     Background="Transparent" ItemContainerStyle="{DynamicResource TreeViewItemStyleSimple}" VerticalAlignment="Stretch"
                     VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" x:Name="lbEpisodes" >
-                    <TreeView.ItemTemplate>
-                        <DataTemplate>
+            <TreeView.ItemTemplate>
+                <DataTemplate>
                     <usercontrols:EpisodeDetail/>
-                        </DataTemplate>
-                    </TreeView.ItemTemplate>
-                    <TreeView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <VirtualizingStackPanel/>
-                        </ItemsPanelTemplate>
-                    </TreeView.ItemsPanel>
-                </TreeView>
+                </DataTemplate>
+            </TreeView.ItemTemplate>
+            <TreeView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel/>
+                </ItemsPanelTemplate>
+            </TreeView.ItemsPanel>
+        </TreeView>
     </Grid>
 </UserControl>
