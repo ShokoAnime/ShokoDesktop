@@ -34,6 +34,7 @@
             </DataTemplate>
 
             <usercontrols:HideMassWatchedConverter x:Key="HideMassWatchedConverter"/>
+            <usercontrols:HideAllConverter x:Key="HideAllConverter"/>            
 
         </ResourceDictionary>
 
@@ -75,6 +76,13 @@
         </Border>
 
         <Border Style="{DynamicResource ToolbarBorderControlStyle}" Margin="0,0,0,0" Background="#2D2D2D" Padding="3" BorderThickness="0" Grid.Row="1" MinHeight="34">
+            <Border.Visibility>
+                <MultiBinding Converter="{StaticResource HideAllConverter}">
+                    <Binding Path="Visibility" ElementName="btnMarkAllWatched"/>
+                    <Binding Path="Visibility" ElementName="btnMarkAllUnwatched"/>
+                    <Binding Path="Visibility" ElementName="btnMarkAllPreviousWatched"/>
+                </MultiBinding>
+            </Border.Visibility>
             <StackPanel Orientation="Horizontal" >
 
                 <!-- Mark all as watched -->

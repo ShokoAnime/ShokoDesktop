@@ -603,4 +603,30 @@ namespace JMMClient.UserControls
             throw new NotImplementedException();
         }
     }
+
+    public class HideAllConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            try
+            {
+                foreach (var value in values)
+                {
+                    if (object.Equals(value, Visibility.Visible))
+                        return Visibility.Visible;
+                }
+
+                return Visibility.Collapsed;
+            }
+            catch (Exception)
+            {
+                return Visibility.Visible;
+            }
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
