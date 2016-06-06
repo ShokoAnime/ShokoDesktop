@@ -208,8 +208,9 @@ namespace JMMClient
 
 			NumberStyles style = NumberStyles.Number;
 			CultureInfo culture = CultureInfo.CreateSpecificCulture("en-GB");
+            //Debug.WriteLine("Evaluating group filter for " + grp.GroupName);
 
-			if (this.GroupFilterID.HasValue && this.GroupFilterID.Value < 0)
+            if (this.GroupFilterID.HasValue && this.GroupFilterID.Value < 0)
 			{
 				if (this.GroupFilterID.Value == Constants.StaticGF.Predefined ||
 					this.GroupFilterID.Value == Constants.StaticGF.Predefined_Tags ||
@@ -269,7 +270,8 @@ namespace JMMClient
 			// now check other conditions
 			foreach (GroupFilterConditionVM gfc in FilterConditions)
 			{
-				switch (gfc.ConditionTypeEnum)
+                //Debug.WriteLine("Group Filter has - " + gfc.ConditionTypeEnum + ", " + gfc.ConditionTypeString);
+                switch (gfc.ConditionTypeEnum)
 				{
 					case GroupFilterConditionType.Favourite:
 						if (gfc.ConditionOperatorEnum == GroupFilterOperator.Include && grp.IsFave == 0) return false;
@@ -441,7 +443,30 @@ namespace JMMClient
 						}
 						break;
 
-					case GroupFilterConditionType.AniDBRating:
+                    case GroupFilterConditionType.LatestEpisodeAirDate:
+                        DateTime filterDateLatestAired;
+                        if (gfc.ConditionOperatorEnum == GroupFilterOperator.LastXDays)
+                        {
+                            int days = 0;
+                            int.TryParse(gfc.ConditionParameter, out days);
+                            filterDateLatestAired = DateTime.Today.AddDays(0 - days);
+                        }
+                        else
+                            filterDateLatestAired = GroupFilterHelper.GetDateFromString(gfc.ConditionParameter);
+
+                        if (gfc.ConditionOperatorEnum == GroupFilterOperator.GreaterThan || gfc.ConditionOperatorEnum == GroupFilterOperator.LastXDays)
+                        {
+                            if (!grp.LatestEpisodeAirDate.HasValue) return false;
+                            if (grp.LatestEpisodeAirDate.Value < filterDateLatestAired) return false;
+                        }
+                        if (gfc.ConditionOperatorEnum == GroupFilterOperator.LessThan)
+                        {
+                            if (!grp.LatestEpisodeAirDate.HasValue) return false;
+                            if (grp.LatestEpisodeAirDate.Value > filterDateLatestAired) return false;
+                        }
+                        break;
+
+                    case GroupFilterConditionType.AniDBRating:
 
 						decimal dRating = -1;
 						decimal.TryParse(gfc.ConditionParameter, style, culture, out dRating);
@@ -637,9 +662,10 @@ namespace JMMClient
 			NumberStyles style = NumberStyles.Number;
 			CultureInfo culture = CultureInfo.CreateSpecificCulture("en-GB");
 
-
-			foreach (GroupFilterConditionVM gfc in FilterConditions)
+            //Debug.WriteLine("Evaluating group filter for " + ser.SeriesName);
+            foreach (GroupFilterConditionVM gfc in FilterConditions)
 			{
+                //Debug.WriteLine("Group Filter has - " + gfc.ConditionTypeEnum + ", " + gfc.ConditionTypeString);
 				switch (gfc.ConditionTypeEnum)
 				{
 
@@ -727,8 +753,28 @@ namespace JMMClient
 							if (!ser.AniDB_Anime.AirDate.HasValue || ser.AniDB_Anime.AirDate.Value > filterDate) return false;
 						
 						break;
-					
-					case GroupFilterConditionType.SeriesCreatedDate:
+
+                    case GroupFilterConditionType.LatestEpisodeAirDate:
+                        DateTime filterDate2;
+                        if (gfc.ConditionOperatorEnum == GroupFilterOperator.LastXDays)
+                        {
+                            int days = 0;
+                            int.TryParse(gfc.ConditionParameter, out days);
+                            filterDate2 = DateTime.Today.AddDays(0 - days);
+                        }
+                        else
+                            filterDate2 = GroupFilterHelper.GetDateFromString(gfc.ConditionParameter);
+
+
+                        if (gfc.ConditionOperatorEnum == GroupFilterOperator.GreaterThan || gfc.ConditionOperatorEnum == GroupFilterOperator.LastXDays)
+                            if (!ser.AniDB_Anime.LatestEpisodeAirDate.HasValue || ser.AniDB_Anime.LatestEpisodeAirDate.Value < filterDate2) return false;
+
+                        if (gfc.ConditionOperatorEnum == GroupFilterOperator.LessThan)
+                            if (!ser.AniDB_Anime.LatestEpisodeAirDate.HasValue || ser.AniDB_Anime.LatestEpisodeAirDate.Value > filterDate2) return false;
+
+                        break;
+
+                    case GroupFilterConditionType.SeriesCreatedDate:
 						DateTime filterDateSeries;
 						if (gfc.ConditionOperatorEnum == GroupFilterOperator.LastXDays)
 						{

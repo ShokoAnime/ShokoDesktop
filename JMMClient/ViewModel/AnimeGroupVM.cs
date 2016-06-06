@@ -261,7 +261,9 @@ namespace JMMClient
 			}
 		}
 
-		private DateTime? watchedDate;
+        public DateTime? LatestEpisodeAirDate;
+
+        private DateTime? watchedDate;
 		public DateTime? WatchedDate
 		{
 			get { return watchedDate; }
@@ -778,7 +780,8 @@ namespace JMMClient
 			this.UnwatchedEpisodeCount = contract.UnwatchedEpisodeCount;
 			this.WatchedCount = contract.WatchedCount;
 			this.EpisodeAddedDate = contract.EpisodeAddedDate;
-			this.WatchedDate = contract.WatchedDate;
+            this.LatestEpisodeAirDate = contract.LatestEpisodeAirDate;
+            this.WatchedDate = contract.WatchedDate;
 			this.WatchedEpisodeCount = contract.WatchedEpisodeCount;
 
 			

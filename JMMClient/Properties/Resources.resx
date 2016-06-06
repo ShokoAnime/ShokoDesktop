@@ -4090,4 +4090,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="Trakt_CheckCred" xml:space="preserve">
     <value>Check Trakt Credentials</value>
   </data>
+  <data name="GroupFilterConditionType_LatestEpisodeAirDate" xml:space="preserve">
+    <value>Latest Episode Air Date</value>
+  </data>
 </root>
