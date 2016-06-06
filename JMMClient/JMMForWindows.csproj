@@ -275,6 +275,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.pl.resx</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.pt.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.pt.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.ru.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
