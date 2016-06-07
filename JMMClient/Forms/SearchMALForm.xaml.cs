@@ -256,7 +256,7 @@ namespace JMMClient.Forms
 
 				// now search MAL
 				MALSearchResults = new List<MALSearchResultVM>();
-				List<JMMServerBinary.Contract_MALAnimeResponse> malResults = JMMServerVM.Instance.clientBinaryHTTP.SearchMAL(txtSearch.Text.Trim());
+				List<JMMServerBinary.Contract_MALAnimeResponse> malResults = JMMServerVM.Instance.clientBinaryHTTP.SearchMAL(txtSearch.Text.Replace("`", "'").Trim());
 				foreach (JMMServerBinary.Contract_MALAnimeResponse malResult in malResults)
 					MALSearchResults.Add(new MALSearchResultVM(malResult));
 			}
