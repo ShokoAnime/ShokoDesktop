@@ -264,7 +264,7 @@ namespace JMMClient.Forms
 
 				// now search the TvDB
 				TVDBSeriesSearchResults = new List<TVDBSeriesSearchResultVM>();
-				List<JMMServerBinary.Contract_TVDBSeriesSearchResult> tvResults = JMMServerVM.Instance.clientBinaryHTTP.SearchTheTvDB(txtSearch.Text.Trim());
+				List<JMMServerBinary.Contract_TVDBSeriesSearchResult> tvResults = JMMServerVM.Instance.clientBinaryHTTP.SearchTheTvDB(txtSearch.Text.Replace("`", "'").Trim());
 				foreach (JMMServerBinary.Contract_TVDBSeriesSearchResult tvResult in tvResults)
 					TVDBSeriesSearchResults.Add(new TVDBSeriesSearchResultVM(tvResult));
 			}

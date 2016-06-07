@@ -93,13 +93,13 @@
 
         <Border Grid.Row="0" BorderBrush="DarkGray" BorderThickness="0,0,0,1" Margin="0,0,0,5">
             <StackPanel Orientation="Horizontal">
-                <TextBlock Margin="5" FontWeight="Bold" Padding="5" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TotalFileCount}" VerticalAlignment="Center" />
-                <TextBlock Padding="5" Text="{Binding Path=TotalFileCount, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeFolderSummaryControl}}}" 
+                <TextBlock Margin="5,5,0,0" FontWeight="Bold" Padding="5" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TotalFileCount}" VerticalAlignment="Center" />
+                <TextBlock Padding="2,5,2,0" Text="{Binding Path=TotalFileCount, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeFolderSummaryControl}}}" 
                            VerticalAlignment="Center" />
-                <TextBlock Padding="5,5,0,5" Text="(" VerticalAlignment="Center" />
-                <TextBlock Padding="2,5,2,5" Text="{Binding Path=TotalFileSize, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeFolderSummaryControl}}}" 
+                <TextBlock Padding="5,5,0,0" Text="(" VerticalAlignment="Center" />
+                <TextBlock Padding="2,5,2,0" Text="{Binding Path=TotalFileSize, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeFolderSummaryControl}}}" 
                            VerticalAlignment="Center" />
-                <TextBlock Padding="0,5,5,5" Text=")" VerticalAlignment="Center" />
+                <TextBlock Padding="0,5,5,0" Text=")" VerticalAlignment="Center" />
                 
                 
             </StackPanel>

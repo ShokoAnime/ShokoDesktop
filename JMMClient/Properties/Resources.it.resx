@@ -1144,7 +1144,7 @@
     <value>Caricamento...</value>
   </data>
   <data name="TotalFileCount" xml:space="preserve">
-    <value>Conteggio totale dei File</value>
+    <value>Conteggio totale dei File:</value>
   </data>
   <data name="ImportSettings_UseEpisodeStatus" xml:space="preserve">
     <value>Impostare il file come ho guardato se è guardato episodio</value>
@@ -4087,5 +4087,47 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   </data>
   <data name="Trakt_CheckCred" xml:space="preserve">
     <value>Controllare le credenziali Trakt</value>
+  </data>
+  <data name="RelationSetting_AltSetting" xml:space="preserve">
+    <value>Impostazione alternativa</value>
+  </data>
+  <data name="RelationSetting_SameSetting" xml:space="preserve">
+    <value>Stessa impostazione</value>
+  </data>
+  <data name="RelationSetting_Character" xml:space="preserve">
+    <value>Carattere</value>
+  </data>
+  <data name="RelationSetting_Other" xml:space="preserve">
+    <value>Altri</value>
+  </data>
+  <data name="RelationSetting_ParentStory" xml:space="preserve">
+    <value>Padre la storia</value>
+  </data>
+  <data name="RelationSetting_SideStory" xml:space="preserve">
+    <value>Side Story</value>
+  </data>
+  <data name="RelationSetting_Summary" xml:space="preserve">
+    <value>Riepilogo</value>
+  </data>
+  <data name="RelationSetting_FullStory" xml:space="preserve">
+    <value>Full Story</value>
+  </data>
+  <data name="RelationSetting_AltVersion" xml:space="preserve">
+    <value>Versione alternativa</value>
+  </data>
+  <data name="TAB_Settings_RelationSettings" xml:space="preserve">
+    <value>Impostazioni di relazione</value>
+  </data>
+  <data name="RelationSettings_Info" xml:space="preserve">
+    <value>Selezionare le opzioni seguenti per escludere dal raggruppamento</value>
+  </data>
+  <data name="Link_RelationSettings" xml:space="preserve">
+    <value>http://jmediamanager.org/JMM-desktop/Settings/#Essential</value>
+  </data>
+  <data name="Video_Hi08P" xml:space="preserve">
+    <value>8 bit</value>
+  </data>
+  <data name="Video_Hi12P" xml:space="preserve">
+    <value>12 bit</value>
   </data>
 </root>

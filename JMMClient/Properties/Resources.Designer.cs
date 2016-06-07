@@ -5029,6 +5029,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/settings/#essential.
+        /// </summary>
+        public static string Link_RelationSettings {
+            get {
+                return ResourceManager.GetString("Link_RelationSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to http://jmediamanager.org/.
         /// </summary>
         public static string Link_Site {
@@ -6699,6 +6708,96 @@ namespace JMMClient.Properties {
         public static string RelatedAnime {
             get {
                 return ResourceManager.GetString("RelatedAnime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alternative Setting.
+        /// </summary>
+        public static string RelationSetting_AltSetting {
+            get {
+                return ResourceManager.GetString("RelationSetting_AltSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alternative Version.
+        /// </summary>
+        public static string RelationSetting_AltVersion {
+            get {
+                return ResourceManager.GetString("RelationSetting_AltVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Character.
+        /// </summary>
+        public static string RelationSetting_Character {
+            get {
+                return ResourceManager.GetString("RelationSetting_Character", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Full Story.
+        /// </summary>
+        public static string RelationSetting_FullStory {
+            get {
+                return ResourceManager.GetString("RelationSetting_FullStory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other.
+        /// </summary>
+        public static string RelationSetting_Other {
+            get {
+                return ResourceManager.GetString("RelationSetting_Other", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parent Story.
+        /// </summary>
+        public static string RelationSetting_ParentStory {
+            get {
+                return ResourceManager.GetString("RelationSetting_ParentStory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Same Setting.
+        /// </summary>
+        public static string RelationSetting_SameSetting {
+            get {
+                return ResourceManager.GetString("RelationSetting_SameSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Side Story.
+        /// </summary>
+        public static string RelationSetting_SideStory {
+            get {
+                return ResourceManager.GetString("RelationSetting_SideStory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Summary.
+        /// </summary>
+        public static string RelationSetting_Summary {
+            get {
+                return ResourceManager.GetString("RelationSetting_Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the following to exclude from grouping.
+        /// </summary>
+        public static string RelationSettings_Info {
+            get {
+                return ResourceManager.GetString("RelationSettings_Info", resourceCulture);
             }
         }
         
@@ -8854,6 +8953,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Relation Settings.
+        /// </summary>
+        public static string TAB_Settings_RelationSettings {
+            get {
+                return ResourceManager.GetString("TAB_Settings_RelationSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AniDB.
         /// </summary>
         public static string TAB_SettingsAniDB {
@@ -10209,7 +10317,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Total File Count.
+        ///   Looks up a localized string similar to Total File Count:.
         /// </summary>
         public static string TotalFileCount {
             get {
@@ -11271,11 +11379,29 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 8bit.
+        /// </summary>
+        public static string Video_Hi08P {
+            get {
+                return ResourceManager.GetString("Video_Hi08P", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 10bit.
         /// </summary>
         public static string Video_Hi10P {
             get {
                 return ResourceManager.GetString("Video_Hi10P", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12bit.
+        /// </summary>
+        public static string Video_Hi12P {
+            get {
+                return ResourceManager.GetString("Video_Hi12P", resourceCulture);
             }
         }
         

@@ -249,7 +249,7 @@ namespace JMMClient.Forms
                 // now search Trakt
                 
 
-                List<JMMServerBinary.Contract_TraktTVShowResponse> traktResults = JMMServerVM.Instance.clientBinaryHTTP.SearchTrakt(txtSearch.Text.Trim());
+                List<JMMServerBinary.Contract_TraktTVShowResponse> traktResults = JMMServerVM.Instance.clientBinaryHTTP.SearchTrakt(txtSearch.Text.Replace("`", "'").Trim());
 				foreach (JMMServerBinary.Contract_TraktTVShowResponse traktResult in traktResults)
 					TraktSeriesSearchResults.Add(new TraktTVShowResponseVM(traktResult));
 			}

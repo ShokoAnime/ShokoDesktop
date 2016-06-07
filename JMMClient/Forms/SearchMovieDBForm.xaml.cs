@@ -202,7 +202,7 @@ namespace JMMClient.Forms
 
 				// now search the TvDB
 				MovieDBSearchResults = new List<MovieDBMovieSearchResultVM>();
-				List<JMMServerBinary.Contract_MovieDBMovieSearchResult> movieResults = JMMServerVM.Instance.clientBinaryHTTP.SearchTheMovieDB(txtSearch.Text.Trim());
+				List<JMMServerBinary.Contract_MovieDBMovieSearchResult> movieResults = JMMServerVM.Instance.clientBinaryHTTP.SearchTheMovieDB(txtSearch.Text.Replace("`", "'").Trim());
 				foreach (JMMServerBinary.Contract_MovieDBMovieSearchResult movieResult in movieResults)
 					MovieDBSearchResults.Add(new MovieDBMovieSearchResultVM(movieResult));
 			}

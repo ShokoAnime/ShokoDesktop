@@ -275,6 +275,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.pl.resx</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.pt.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.pt.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.ru.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -300,6 +305,9 @@
     </Compile>
     <Compile Include="UserControls\PlayNextEpisodeControlV2.xaml.cs">
       <DependentUpon>PlayNextEpisodeControlV2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Settings\RelationSettings.xaml.cs">
+      <DependentUpon>RelationSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AniDB_CharacterVM.cs" />
     <Compile Include="ViewModel\AniDB_SeiyuuVM.cs" />
@@ -1207,6 +1215,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\Settings\RelationSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\Settings\VideoPlayerSettingsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1293,6 +1305,7 @@
     <EmbeddedResource Include="Properties\Resources.es.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.es.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -1309,6 +1322,10 @@
     <EmbeddedResource Include="Properties\Resources.pl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.pl.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.pt.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.pt.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
