@@ -111,7 +111,6 @@ namespace JMMClient.ViewModel
 				case GroupFilterConditionType.SeriesCreatedDate:
 				case GroupFilterConditionType.EpisodeAddedDate:
 				case GroupFilterConditionType.EpisodeWatchedDate:
-                case GroupFilterConditionType.LatestEpisodeAirDate:
 
 					if (ConditionOperatorEnum == GroupFilterOperator.LastXDays)
 						ConditionParameterString += ConditionParameter;

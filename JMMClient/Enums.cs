@@ -224,8 +224,7 @@ namespace JMMClient
 		HasWatchedEpisodes = 28,
 		AssignedMALInfo = 29,
 		EpisodeCount = 30,
-        CustomTags = 31,
-        LatestEpisodeAirDate = 32
+        CustomTags = 31
 	}
 
     public enum GroupFilterType
