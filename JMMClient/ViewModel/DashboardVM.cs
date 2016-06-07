@@ -1,441 +1,433 @@
-﻿using System;
+﻿using JMMClient.UserControls;
+using JMMClient.ViewModel;
+using NLog;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Data;
-using System.Windows.Controls;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.IO;
-using JMMClient.ViewModel;
-using System.Windows;
-using JMMClient.UserControls;
-using System.Threading;
-using JMMClient.ImageDownload;
-using NLog;
 
 namespace JMMClient
 {
-	public class DashboardVM : INotifyPropertyChanged
-	{
-		private static Logger logger = LogManager.GetCurrentClassLogger();
+    public class DashboardVM : INotifyPropertyChanged
+    {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
 
-		private static DashboardVM _instance;
-		//public ICollectionView ViewGroups { get; set; }
-		public ObservableCollection<AnimeEpisodeVM> EpsWatchNext_Recent { get; set; }
-		public ICollectionView ViewEpsWatchNext_Recent { get; set; }
+        private static DashboardVM _instance;
+        //public ICollectionView ViewGroups { get; set; }
+        public ObservableCollection<AnimeEpisodeVM> EpsWatchNext_Recent { get; set; }
+        public ICollectionView ViewEpsWatchNext_Recent { get; set; }
 
-		public ObservableCollection<AnimeEpisodeVM> EpsWatchedRecently { get; set; }
-		public ICollectionView ViewEpsWatchedRecently { get; set; }
+        public ObservableCollection<AnimeEpisodeVM> EpsWatchedRecently { get; set; }
+        public ICollectionView ViewEpsWatchedRecently { get; set; }
 
-		public ObservableCollection<AnimeSeriesVM> SeriesMissingEps { get; set; }
-		public ICollectionView ViewSeriesMissingEps { get; set; }
+        public ObservableCollection<AnimeSeriesVM> SeriesMissingEps { get; set; }
+        public ICollectionView ViewSeriesMissingEps { get; set; }
 
-		public ObservableCollection<AniDB_AnimeVM> MiniCalendar { get; set; }
-		public ICollectionView ViewMiniCalendar { get; set; }
+        public ObservableCollection<AniDB_AnimeVM> MiniCalendar { get; set; }
+        public ICollectionView ViewMiniCalendar { get; set; }
 
-		public ObservableCollection<object> RecommendationsWatch { get; set; }
-		public ICollectionView ViewRecommendationsWatch { get; set; }
+        public ObservableCollection<object> RecommendationsWatch { get; set; }
+        public ICollectionView ViewRecommendationsWatch { get; set; }
 
-		public ObservableCollection<object> RecommendationsDownload { get; set; }
-		public ICollectionView ViewRecommendationsDownload { get; set; }
+        public ObservableCollection<object> RecommendationsDownload { get; set; }
+        public ICollectionView ViewRecommendationsDownload { get; set; }
 
-		public ObservableCollection<object> RecentAdditions { get; set; }
-		public ICollectionView ViewRecentAdditions { get; set; }
+        public ObservableCollection<object> RecentAdditions { get; set; }
+        public ICollectionView ViewRecentAdditions { get; set; }
 
-		public event PropertyChangedEventHandler PropertyChanged;
-		private void NotifyPropertyChanged(String propertyName)
-		{
-			if (PropertyChanged != null)
-			{
-				var args = new PropertyChangedEventArgs(propertyName);
-				PropertyChanged(this, args);
-			}
-		}
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                var args = new PropertyChangedEventArgs(propertyName);
+                PropertyChanged(this, args);
+            }
+        }
 
-		public static DashboardVM Instance
-		{
-			get
-			{
-				if (_instance == null)
-				{
-					_instance = new DashboardVM();
-				}
-				return _instance;
-			}
-		}
+        public static DashboardVM Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new DashboardVM();
+                }
+                return _instance;
+            }
+        }
 
-		private Boolean isReadOnly = true;
-		public Boolean IsReadOnly
-		{
-			get { return isReadOnly; }
-			set
-			{
-				isReadOnly = value;
-				NotifyPropertyChanged("IsReadOnly");
-			}
-		}
+        private Boolean isReadOnly = true;
+        public Boolean IsReadOnly
+        {
+            get { return isReadOnly; }
+            set
+            {
+                isReadOnly = value;
+                NotifyPropertyChanged("IsReadOnly");
+            }
+        }
 
-		private Boolean isBeingEdited = false;
-		public Boolean IsBeingEdited
-		{
-			get { return isBeingEdited; }
-			set
-			{
-				isBeingEdited = value;
-				NotifyPropertyChanged("IsBeingEdited");
-			}
-		}
+        private Boolean isBeingEdited = false;
+        public Boolean IsBeingEdited
+        {
+            get { return isBeingEdited; }
+            set
+            {
+                isBeingEdited = value;
+                NotifyPropertyChanged("IsBeingEdited");
+            }
+        }
 
-		private Boolean isLoadingData = true;
-		public Boolean IsLoadingData
-		{
-			get { return isLoadingData; }
-			set
-			{
-				isLoadingData = value;
-				NotifyPropertyChanged("IsLoadingData");
-			}
-		}
+        private Boolean isLoadingData = true;
+        public Boolean IsLoadingData
+        {
+            get { return isLoadingData; }
+            set
+            {
+                isLoadingData = value;
+                NotifyPropertyChanged("IsLoadingData");
+            }
+        }
 
-		private DashboardVM()
-		{
-			IsLoadingData = false;
+        private DashboardVM()
+        {
+            IsLoadingData = false;
 
-			EpsWatchNext_Recent = new ObservableCollection<AnimeEpisodeVM>();
-			ViewEpsWatchNext_Recent = CollectionViewSource.GetDefaultView(EpsWatchNext_Recent);
+            EpsWatchNext_Recent = new ObservableCollection<AnimeEpisodeVM>();
+            ViewEpsWatchNext_Recent = CollectionViewSource.GetDefaultView(EpsWatchNext_Recent);
 
-			EpsWatchedRecently = new ObservableCollection<AnimeEpisodeVM>();
-			ViewEpsWatchedRecently = CollectionViewSource.GetDefaultView(EpsWatchedRecently);
+            EpsWatchedRecently = new ObservableCollection<AnimeEpisodeVM>();
+            ViewEpsWatchedRecently = CollectionViewSource.GetDefaultView(EpsWatchedRecently);
 
-			SeriesMissingEps = new ObservableCollection<AnimeSeriesVM>();
-			ViewSeriesMissingEps = CollectionViewSource.GetDefaultView(SeriesMissingEps);
+            SeriesMissingEps = new ObservableCollection<AnimeSeriesVM>();
+            ViewSeriesMissingEps = CollectionViewSource.GetDefaultView(SeriesMissingEps);
 
-			MiniCalendar = new ObservableCollection<AniDB_AnimeVM>();
-			ViewMiniCalendar = CollectionViewSource.GetDefaultView(MiniCalendar);
+            MiniCalendar = new ObservableCollection<AniDB_AnimeVM>();
+            ViewMiniCalendar = CollectionViewSource.GetDefaultView(MiniCalendar);
 
-			RecommendationsWatch = new ObservableCollection<object>();
-			ViewRecommendationsWatch = CollectionViewSource.GetDefaultView(RecommendationsWatch);
+            RecommendationsWatch = new ObservableCollection<object>();
+            ViewRecommendationsWatch = CollectionViewSource.GetDefaultView(RecommendationsWatch);
 
-			RecommendationsDownload = new ObservableCollection<object>();
-			ViewRecommendationsDownload = CollectionViewSource.GetDefaultView(RecommendationsDownload);
+            RecommendationsDownload = new ObservableCollection<object>();
+            ViewRecommendationsDownload = CollectionViewSource.GetDefaultView(RecommendationsDownload);
 
-			RecentAdditions = new ObservableCollection<object>();
-			ViewRecentAdditions = CollectionViewSource.GetDefaultView(RecentAdditions);
-			
-		}
+            RecentAdditions = new ObservableCollection<object>();
+            ViewRecentAdditions = CollectionViewSource.GetDefaultView(RecentAdditions);
+
+        }
 
 
 
-		public void RefreshData(bool refreshContinueWatching, bool refreshRecentAdditions, bool refreshOtherWidgets, RecentAdditionsType addType)
-		{
-			try
-			{
-				IsLoadingData = true;
+        public void RefreshData(bool refreshContinueWatching, bool refreshRecentAdditions, bool refreshOtherWidgets, RecentAdditionsType addType)
+        {
+            try
+            {
+                IsLoadingData = true;
 
-				// clear all displayed data
-				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
-				{
-					if (refreshContinueWatching) EpsWatchNext_Recent.Clear();
-					if (refreshRecentAdditions) RecentAdditions.Clear();
+                // clear all displayed data
+                System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()
+                {
+                    if (refreshContinueWatching) EpsWatchNext_Recent.Clear();
+                    if (refreshRecentAdditions) RecentAdditions.Clear();
 
-					if (refreshOtherWidgets)
-					{
-						SeriesMissingEps.Clear();
-						EpsWatchedRecently.Clear();
-						MiniCalendar.Clear();
-						RecommendationsWatch.Clear();
-						RecommendationsDownload.Clear();
-					}
+                    if (refreshOtherWidgets)
+                    {
+                        SeriesMissingEps.Clear();
+                        EpsWatchedRecently.Clear();
+                        MiniCalendar.Clear();
+                        RecommendationsWatch.Clear();
+                        RecommendationsDownload.Clear();
+                    }
 
-					if (refreshOtherWidgets)
-					{
-						ViewEpsWatchedRecently.Refresh();
-						ViewSeriesMissingEps.Refresh();
-						ViewMiniCalendar.Refresh();
-						ViewRecommendationsWatch.Refresh();
-						ViewRecommendationsDownload.Refresh();
-						ViewRecentAdditions.Refresh();
-					}
+                    if (refreshOtherWidgets)
+                    {
+                        ViewEpsWatchedRecently.Refresh();
+                        ViewSeriesMissingEps.Refresh();
+                        ViewMiniCalendar.Refresh();
+                        ViewRecommendationsWatch.Refresh();
+                        ViewRecommendationsDownload.Refresh();
+                        ViewRecentAdditions.Refresh();
+                    }
 
-					if (refreshContinueWatching) ViewEpsWatchNext_Recent.Refresh();
-					if (refreshRecentAdditions) ViewRecentAdditions.Refresh();
-				});
+                    if (refreshContinueWatching) ViewEpsWatchNext_Recent.Refresh();
+                    if (refreshRecentAdditions) ViewRecentAdditions.Refresh();
+                });
 
-				DateTime start = DateTime.Now;
-				MainListHelperVM.Instance.RefreshGroupsSeriesData();
-				TimeSpan ts = DateTime.Now - start;
+                DateTime start = DateTime.Now;
+                MainListHelperVM.Instance.RefreshGroupsSeriesData();
+                TimeSpan ts = DateTime.Now - start;
 
-				logger.Trace("Dashboard Time: RefreshGroupsSeriesData: {0}", ts.TotalMilliseconds);
+                logger.Trace("Dashboard Time: RefreshGroupsSeriesData: {0}", ts.TotalMilliseconds);
 
-				if (refreshContinueWatching && UserSettingsVM.Instance.DashWatchNextEpExpanded)
-					RefreshEpsWatchNext_Recent();
+                if (refreshContinueWatching && UserSettingsVM.Instance.DashWatchNextEpExpanded)
+                    RefreshEpsWatchNext_Recent();
 
-				if (refreshRecentAdditions && UserSettingsVM.Instance.DashRecentAdditionsExpanded)
-					RefreshRecentAdditions(addType);
+                if (refreshRecentAdditions && UserSettingsVM.Instance.DashRecentAdditionsExpanded)
+                    RefreshRecentAdditions(addType);
 
-				if (refreshOtherWidgets)
-				{
-					if (UserSettingsVM.Instance.DashRecentlyWatchEpsExpanded)
-						RefreshRecentlyWatchedEps();
+                if (refreshOtherWidgets)
+                {
+                    if (UserSettingsVM.Instance.DashRecentlyWatchEpsExpanded)
+                        RefreshRecentlyWatchedEps();
 
-					if (UserSettingsVM.Instance.DashSeriesMissingEpisodesExpanded)
-						RefreshSeriesMissingEps();
+                    if (UserSettingsVM.Instance.DashSeriesMissingEpisodesExpanded)
+                        RefreshSeriesMissingEps();
 
-					if (UserSettingsVM.Instance.DashMiniCalendarExpanded)
-						RefreshMiniCalendar();
+                    if (UserSettingsVM.Instance.DashMiniCalendarExpanded)
+                        RefreshMiniCalendar();
 
-					if (UserSettingsVM.Instance.DashRecommendationsWatchExpanded)
-						RefreshRecommendationsWatch();
+                    if (UserSettingsVM.Instance.DashRecommendationsWatchExpanded)
+                        RefreshRecommendationsWatch();
 
-					if (UserSettingsVM.Instance.DashRecommendationsDownloadExpanded)
-						RefreshRecommendationsDownload();
+                    if (UserSettingsVM.Instance.DashRecommendationsDownloadExpanded)
+                        RefreshRecommendationsDownload();
 
-				}
+                }
 
-				IsLoadingData = false;
-				
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-			finally
-			{
-			}
-		}
+                IsLoadingData = false;
 
-		public void RefreshRecentAdditions(RecentAdditionsType addType)
-		{
-			try
-			{
-				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
-				{
-					RecentAdditions.Clear();
-				});
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+            finally
+            {
+            }
+        }
 
-				if (addType == RecentAdditionsType.Episode)
-				{
-					List<JMMServerBinary.Contract_AnimeEpisode> epContracts =
-						JMMServerVM.Instance.clientBinaryHTTP.GetEpisodesRecentlyAdded(UserSettingsVM.Instance.Dash_RecentAdditions_Items, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+        public void RefreshRecentAdditions(RecentAdditionsType addType)
+        {
+            try
+            {
+                System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()
+                {
+                    RecentAdditions.Clear();
+                });
 
-					System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
-					{
-						foreach (JMMServerBinary.Contract_AnimeEpisode contract in epContracts)
-						{
-							AnimeEpisodeVM ep = new AnimeEpisodeVM(contract);
-							ep.RefreshAnime();
+                if (addType == RecentAdditionsType.Episode)
+                {
+                    List<JMMServerBinary.Contract_AnimeEpisode> epContracts =
+                        JMMServerVM.Instance.clientBinaryHTTP.GetEpisodesRecentlyAdded(UserSettingsVM.Instance.Dash_RecentAdditions_Items, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+
+                    System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()
+                    {
+                        foreach (JMMServerBinary.Contract_AnimeEpisode contract in epContracts)
+                        {
+                            AnimeEpisodeVM ep = new AnimeEpisodeVM(contract);
+                            ep.RefreshAnime();
 
                             if (ep.AniDB_Anime == null)
                                 ep.RefreshAnime(true); // this might be a new series
 
                             if (ep.AniDB_Anime != null)
-							{
-								ep.SetTvDBInfo();
-								RecentAdditions.Add(ep);
-							}
-						}
-						ViewRecentAdditions.Refresh();
-					});
-				}
-				else
-				{
-					List<JMMServerBinary.Contract_AnimeSeries> serContracts =
-						JMMServerVM.Instance.clientBinaryHTTP.GetSeriesRecentlyAdded(UserSettingsVM.Instance.Dash_RecentAdditions_Items, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+                            {
+                                ep.SetTvDBInfo();
+                                RecentAdditions.Add(ep);
+                            }
+                        }
+                        ViewRecentAdditions.Refresh();
+                    });
+                }
+                else
+                {
+                    List<JMMServerBinary.Contract_AnimeSeries> serContracts =
+                        JMMServerVM.Instance.clientBinaryHTTP.GetSeriesRecentlyAdded(UserSettingsVM.Instance.Dash_RecentAdditions_Items, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
 
-					System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
-					{
-						foreach (JMMServerBinary.Contract_AnimeSeries contract in serContracts)
-						{
-							AnimeSeriesVM ser = new AnimeSeriesVM(contract);
-							RecentAdditions.Add(ser);
-						}
-						ViewRecentAdditions.Refresh();
-					});
-				}
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-			finally
-			{
-			}
-		}
-		
+                    System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()
+                    {
+                        foreach (JMMServerBinary.Contract_AnimeSeries contract in serContracts)
+                        {
+                            AnimeSeriesVM ser = new AnimeSeriesVM(contract);
+                            RecentAdditions.Add(ser);
+                        }
+                        ViewRecentAdditions.Refresh();
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+            finally
+            {
+            }
+        }
 
-		public void RefreshRecommendationsWatch()
-		{
-			try
-			{
-				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
-				{
-					RecommendationsWatch.Clear();
-				});
 
-				List<JMMServerBinary.Contract_Recommendation> contracts =
-					JMMServerVM.Instance.clientBinaryHTTP.GetRecommendations(UserSettingsVM.Instance.Dash_RecWatch_Items, JMMServerVM.Instance.CurrentUser.JMMUserID.Value,
-					(int)RecommendationType.Watch);
+        public void RefreshRecommendationsWatch()
+        {
+            try
+            {
+                System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()
+                {
+                    RecommendationsWatch.Clear();
+                });
 
-				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
-				{
-					foreach (JMMServerBinary.Contract_Recommendation contract in contracts)
-					{
-						RecommendationVM rec = new RecommendationVM();
-						rec.Populate(contract);
-						RecommendationsWatch.Add(rec);
-					}
+                List<JMMServerBinary.Contract_Recommendation> contracts =
+                    JMMServerVM.Instance.clientBinaryHTTP.GetRecommendations(UserSettingsVM.Instance.Dash_RecWatch_Items, JMMServerVM.Instance.CurrentUser.JMMUserID.Value,
+                    (int)RecommendationType.Watch);
 
-					// add a dummy object so that we can display a prompt
-					// for the user to sync thier votes
-					if (RecommendationsWatch.Count == 0)
-						RecommendationsWatch.Add(new SyncVotesDummy());
+                System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()
+                {
+                    foreach (JMMServerBinary.Contract_Recommendation contract in contracts)
+                    {
+                        RecommendationVM rec = new RecommendationVM();
+                        rec.Populate(contract);
+                        RecommendationsWatch.Add(rec);
+                    }
 
-					ViewRecommendationsWatch.Refresh();
-				});
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-			finally
-			{
-			}
-		}
+                    // add a dummy object so that we can display a prompt
+                    // for the user to sync thier votes
+                    if (RecommendationsWatch.Count == 0)
+                        RecommendationsWatch.Add(new SyncVotesDummy());
 
-		public void RefreshRecommendationsDownload()
-		{
-			try
-			{
-				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
-				{
-					RecommendationsDownload.Clear();
-				});
+                    ViewRecommendationsWatch.Refresh();
+                });
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+            finally
+            {
+            }
+        }
 
-				List<JMMServerBinary.Contract_Recommendation> contracts =
-					JMMServerVM.Instance.clientBinaryHTTP.GetRecommendations(UserSettingsVM.Instance.Dash_RecDownload_Items, JMMServerVM.Instance.CurrentUser.JMMUserID.Value,
-					(int)RecommendationType.Download);
+        public void RefreshRecommendationsDownload()
+        {
+            try
+            {
+                System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()
+                {
+                    RecommendationsDownload.Clear();
+                });
 
-				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
-				{
-					foreach (JMMServerBinary.Contract_Recommendation contract in contracts)
-					{
-						RecommendationVM rec = new RecommendationVM();
-						rec.Populate(contract);
-						RecommendationsDownload.Add(rec);
-					}
+                List<JMMServerBinary.Contract_Recommendation> contracts =
+                    JMMServerVM.Instance.clientBinaryHTTP.GetRecommendations(UserSettingsVM.Instance.Dash_RecDownload_Items, JMMServerVM.Instance.CurrentUser.JMMUserID.Value,
+                    (int)RecommendationType.Download);
 
-					// add a dummy object so that we can display a prompt
-					// for the user to sync thier votes
-					if (RecommendationsDownload.Count == 0)
-						RecommendationsDownload.Add(new SyncVotesDummy());
+                System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()
+                {
+                    foreach (JMMServerBinary.Contract_Recommendation contract in contracts)
+                    {
+                        RecommendationVM rec = new RecommendationVM();
+                        rec.Populate(contract);
+                        RecommendationsDownload.Add(rec);
+                    }
 
-					ViewRecommendationsDownload.Refresh();
-				});
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-			finally
-			{
-			}
-		}
+                    // add a dummy object so that we can display a prompt
+                    // for the user to sync thier votes
+                    if (RecommendationsDownload.Count == 0)
+                        RecommendationsDownload.Add(new SyncVotesDummy());
 
-		public void GetMissingRecommendationsDownload()
-		{
-			try
-			{
-				IsLoadingData = true;
+                    ViewRecommendationsDownload.Refresh();
+                });
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+            finally
+            {
+            }
+        }
 
-				foreach (object obj in RecommendationsDownload)
-				{
+        public void GetMissingRecommendationsDownload()
+        {
+            try
+            {
+                IsLoadingData = true;
+
+                foreach (object obj in RecommendationsDownload)
+                {
                     RecommendationVM rec = obj as RecommendationVM;
                     if (rec == null) continue;
 
-					if (rec.Recommended_AnimeInfoNotExists)
-					{
-						string result = JMMServerVM.Instance.clientBinaryHTTP.UpdateAnimeData(rec.RecommendedAnimeID);
-						if (string.IsNullOrEmpty(result))
-						{
-							JMMServerBinary.Contract_AniDBAnime animeContract = JMMServerVM.Instance.clientBinaryHTTP.GetAnime(rec.RecommendedAnimeID);
-							System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Send, (Action)delegate()
-							{
-								rec.PopulateRecommendedAnime(animeContract);
-								ViewRecommendationsDownload.Refresh();
-							});
-						}
-					}
-				}
+                    if (rec.Recommended_AnimeInfoNotExists)
+                    {
+                        string result = JMMServerVM.Instance.clientBinaryHTTP.UpdateAnimeData(rec.RecommendedAnimeID);
+                        if (string.IsNullOrEmpty(result))
+                        {
+                            JMMServerBinary.Contract_AniDBAnime animeContract = JMMServerVM.Instance.clientBinaryHTTP.GetAnime(rec.RecommendedAnimeID);
+                            System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Send, (Action)delegate ()
+                            {
+                                rec.PopulateRecommendedAnime(animeContract);
+                                ViewRecommendationsDownload.Refresh();
+                            });
+                        }
+                    }
+                }
 
-				IsLoadingData = false;
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-			finally
-			{
-			}
-		}
+                IsLoadingData = false;
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+            finally
+            {
+            }
+        }
 
-		public void RefreshSeriesMissingEps()
-		{
-			try
-			{
-				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
-				{
-					SeriesMissingEps.Clear();
-				});
+        public void RefreshSeriesMissingEps()
+        {
+            try
+            {
+                System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()
+                {
+                    SeriesMissingEps.Clear();
+                });
 
-				List<JMMServerBinary.Contract_AnimeSeries> epSeries =
-					JMMServerVM.Instance.clientBinaryHTTP.GetSeriesWithMissingEpisodes(UserSettingsVM.Instance.Dash_MissingEps_Items, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+                List<JMMServerBinary.Contract_AnimeSeries> epSeries =
+                    JMMServerVM.Instance.clientBinaryHTTP.GetSeriesWithMissingEpisodes(UserSettingsVM.Instance.Dash_MissingEps_Items, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
 
-				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
-				{
-					
-					foreach (JMMServerBinary.Contract_AnimeSeries contract in epSeries)
-					{
-						AnimeSeriesVM ser = new AnimeSeriesVM(contract);
-						if (JMMServerVM.Instance.CurrentUser.EvaluateSeries(ser))
-							SeriesMissingEps.Add(ser);
-					}
-					ViewSeriesMissingEps.Refresh();
-				});
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-			finally
-			{
-			}
-		}
+                System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()
+                {
 
-		public void RefreshEpsWatchNext_Recent()
-		{
-			try
-			{
-				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
-				{
-					EpsWatchNext_Recent.Clear();
-				});
+                    foreach (JMMServerBinary.Contract_AnimeSeries contract in epSeries)
+                    {
+                        AnimeSeriesVM ser = new AnimeSeriesVM(contract);
+                        if (JMMServerVM.Instance.CurrentUser.EvaluateSeries(ser))
+                            SeriesMissingEps.Add(ser);
+                    }
+                    ViewSeriesMissingEps.Refresh();
+                });
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+            finally
+            {
+            }
+        }
 
-				DateTime start = DateTime.Now;
+        public void RefreshEpsWatchNext_Recent()
+        {
+            try
+            {
+                System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()
+                {
+                    EpsWatchNext_Recent.Clear();
+                });
 
-				List<JMMServerBinary.Contract_AnimeEpisode> epContracts =
-					JMMServerVM.Instance.clientBinaryHTTP.GetContinueWatchingFilter(JMMServerVM.Instance.CurrentUser.JMMUserID.Value, UserSettingsVM.Instance.Dash_WatchNext_Items);
+                DateTime start = DateTime.Now;
 
-				TimeSpan ts = DateTime.Now - start;
-				logger.Trace("Dashboard Time: RefreshEpsWatchNext_Recent: contracts: {0}", ts.TotalMilliseconds);
+                List<JMMServerBinary.Contract_AnimeEpisode> epContracts =
+                    JMMServerVM.Instance.clientBinaryHTTP.GetContinueWatchingFilter(JMMServerVM.Instance.CurrentUser.JMMUserID.Value, UserSettingsVM.Instance.Dash_WatchNext_Items);
 
-				start = DateTime.Now;
-				List<AnimeEpisodeVM> epList = new List<AnimeEpisodeVM>();
-				foreach (JMMServerBinary.Contract_AnimeEpisode contract in epContracts)
-				{
-					AnimeEpisodeVM ep = new AnimeEpisodeVM(contract);
-					string animename = ep.AnimeName; // just do this to force anidb anime detail record to be loaded
+                TimeSpan ts = DateTime.Now - start;
+                logger.Trace("Dashboard Time: RefreshEpsWatchNext_Recent: contracts: {0}", ts.TotalMilliseconds);
+
+                start = DateTime.Now;
+                List<AnimeEpisodeVM> epList = new List<AnimeEpisodeVM>();
+                foreach (JMMServerBinary.Contract_AnimeEpisode contract in epContracts)
+                {
+                    AnimeEpisodeVM ep = new AnimeEpisodeVM(contract);
+                    string animename = ep.AnimeName; // just do this to force anidb anime detail record to be loaded
 
                     if (ep.AniDB_Anime == null)
                         ep.RefreshAnime(true); // this might be a new series
@@ -443,100 +435,100 @@ namespace JMMClient
                     ts = DateTime.Now - start;
                     logger.Trace("Dashboard Time: RefreshEpsWatchNext_Recent: episode details: Stage 1: {0}", ts.TotalMilliseconds);
 
-					ep.RefreshAnime();
+                    ep.RefreshAnime();
 
                     ts = DateTime.Now - start;
                     logger.Trace("Dashboard Time: RefreshEpsWatchNext_Recent: episode details: Stage 2: {0}", ts.TotalMilliseconds);
 
-					ep.SetTvDBInfo();
+                    ep.SetTvDBInfo();
 
                     ts = DateTime.Now - start;
                     logger.Trace("Dashboard Time: RefreshEpsWatchNext_Recent: episode details: Stage 3: {0}", ts.TotalMilliseconds);
 
-					epList.Add(ep);
-				}
-				ts = DateTime.Now - start;
-				logger.Trace("Dashboard Time: RefreshEpsWatchNext_Recent: episode details: {0}", ts.TotalMilliseconds);
+                    epList.Add(ep);
+                }
+                ts = DateTime.Now - start;
+                logger.Trace("Dashboard Time: RefreshEpsWatchNext_Recent: episode details: {0}", ts.TotalMilliseconds);
 
-				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
-				{
-					foreach (AnimeEpisodeVM ep in epList)
-					{
-						EpsWatchNext_Recent.Add(ep);
-					}
-					
-					ViewEpsWatchNext_Recent.Refresh();
-				});
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-			finally
-			{
-			}
-		}
+                System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()
+                {
+                    foreach (AnimeEpisodeVM ep in epList)
+                    {
+                        EpsWatchNext_Recent.Add(ep);
+                    }
 
-		public void RefreshRecentlyWatchedEps()
-		{
-			try
-			{
-				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
-				{
-					EpsWatchedRecently.Clear();
-				});
+                    ViewEpsWatchNext_Recent.Refresh();
+                });
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+            finally
+            {
+            }
+        }
 
-				List<JMMServerBinary.Contract_AnimeEpisode> epContracts =
-					JMMServerVM.Instance.clientBinaryHTTP.GetEpisodesRecentlyWatched(UserSettingsVM.Instance.Dash_RecentlyWatchedEp_Items, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+        public void RefreshRecentlyWatchedEps()
+        {
+            try
+            {
+                System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()
+                {
+                    EpsWatchedRecently.Clear();
+                });
 
-				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
-				{
-					foreach (JMMServerBinary.Contract_AnimeEpisode contract in epContracts)
-					{
-						AnimeEpisodeVM ep = new AnimeEpisodeVM(contract);
-						ep.RefreshAnime();
+                List<JMMServerBinary.Contract_AnimeEpisode> epContracts =
+                    JMMServerVM.Instance.clientBinaryHTTP.GetEpisodesRecentlyWatched(UserSettingsVM.Instance.Dash_RecentlyWatchedEp_Items, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+
+                System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()
+                {
+                    foreach (JMMServerBinary.Contract_AnimeEpisode contract in epContracts)
+                    {
+                        AnimeEpisodeVM ep = new AnimeEpisodeVM(contract);
+                        ep.RefreshAnime();
                         if (ep.AniDB_Anime == null)
                             ep.RefreshAnime(true); // this might be a new series
                         if (ep.AniDB_Anime != null && JMMServerVM.Instance.CurrentUser.EvaluateAnime(ep.AniDB_Anime))
-						{
-							ep.SetTvDBInfo();
-							EpsWatchedRecently.Add(ep);
-						}
-					}
-					ViewEpsWatchedRecently.Refresh();
-				});
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-			finally
-			{
-			}
-		}
+                        {
+                            ep.SetTvDBInfo();
+                            EpsWatchedRecently.Add(ep);
+                        }
+                    }
+                    ViewEpsWatchedRecently.Refresh();
+                });
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+            finally
+            {
+            }
+        }
 
-		public void RefreshMiniCalendar()
-		{
-			try
-			{
-				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
-				{
-					MiniCalendar.Clear();
+        public void RefreshMiniCalendar()
+        {
+            try
+            {
+                System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()
+                {
+                    MiniCalendar.Clear();
                     ViewMiniCalendar.SortDescriptions.Clear();
                     if (UserSettingsVM.Instance.Dash_MiniCalendarUpcomingOnly)
                         ViewMiniCalendar.SortDescriptions.Add(new SortDescription("AirDate", ListSortDirection.Ascending));
                     else
                         ViewMiniCalendar.SortDescriptions.Add(new SortDescription("AirDate", ListSortDirection.Descending));
-				});
+                });
 
-				List<JMMServerBinary.Contract_AniDBAnime> contracts = 
-					JMMServerVM.Instance.clientBinaryHTTP.GetMiniCalendar(JMMServerVM.Instance.CurrentUser.JMMUserID.Value, UserSettingsVM.Instance.Dash_MiniCalendarDays);
+                List<JMMServerBinary.Contract_AniDBAnime> contracts =
+                    JMMServerVM.Instance.clientBinaryHTTP.GetMiniCalendar(JMMServerVM.Instance.CurrentUser.JMMUserID.Value, UserSettingsVM.Instance.Dash_MiniCalendarDays);
 
-				System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
-				{
+                System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()
+                {
                     DateTime yesterday = DateTime.Now.AddDays(-1);
-					foreach (JMMServerBinary.Contract_AniDBAnime contract in contracts)
-					{
+                    foreach (JMMServerBinary.Contract_AniDBAnime contract in contracts)
+                    {
                         bool useAnime = true;
                         if (UserSettingsVM.Instance.Dash_MiniCalendarUpcomingOnly && contract.AirDate < yesterday) useAnime = false;
 
@@ -546,22 +538,22 @@ namespace JMMClient
                             if (JMMServerVM.Instance.CurrentUser.EvaluateAnime(anime))
                                 MiniCalendar.Add(anime);
                         }
-					}
+                    }
 
                     ViewMiniCalendar.Refresh();
-				});
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-			finally
-			{
-			}
-		}
+                });
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+            finally
+            {
+            }
+        }
 
-		
-	}
+
+    }
 
 
 }

@@ -1,282 +1,280 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace JMMClient.ViewModel
 {
-	public class AniDB_AnimeCrossRefsVM : INotifyPropertyChanged
-	{
-		public int AnimeID { get; set; }
+    public class AniDB_AnimeCrossRefsVM : INotifyPropertyChanged
+    {
+        public int AnimeID { get; set; }
 
-		public event PropertyChangedEventHandler PropertyChanged;
-		private void NotifyPropertyChanged(String propertyName)
-		{
-			if (PropertyChanged != null)
-			{
-				var args = new PropertyChangedEventArgs(propertyName);
-				PropertyChanged(this, args);
-			}
-		}
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                var args = new PropertyChangedEventArgs(propertyName);
+                PropertyChanged(this, args);
+            }
+        }
 
-		public AniDB_AnimeCrossRefsVM()
-		{
-            
-		}
+        public AniDB_AnimeCrossRefsVM()
+        {
+
+        }
 
         #region TvDB
 
         private bool tvDBCrossRefExists = false;
-		public bool TvDBCrossRefExists
-		{
-			get { return tvDBCrossRefExists; }
-			set
-			{
-				tvDBCrossRefExists = value;
-				NotifyPropertyChanged("TvDBCrossRefExists");
-			}
-		}
+        public bool TvDBCrossRefExists
+        {
+            get { return tvDBCrossRefExists; }
+            set
+            {
+                tvDBCrossRefExists = value;
+                NotifyPropertyChanged("TvDBCrossRefExists");
+            }
+        }
 
-		private bool tvDBCrossRefMissing = false;
-		public bool TvDBCrossRefMissing
-		{
-			get { return tvDBCrossRefMissing; }
-			set
-			{
-				tvDBCrossRefMissing = value;
-				NotifyPropertyChanged("TvDBCrossRefMissing");
-			}
-		}
+        private bool tvDBCrossRefMissing = false;
+        public bool TvDBCrossRefMissing
+        {
+            get { return tvDBCrossRefMissing; }
+            set
+            {
+                tvDBCrossRefMissing = value;
+                NotifyPropertyChanged("TvDBCrossRefMissing");
+            }
+        }
 
-		private List<TvDB_SeriesVM> tvDBSeriesV2 = null;
-		public List<TvDB_SeriesVM> TvDBSeriesV2
-		{
-			get { return tvDBSeriesV2; }
-			set
-			{
-				tvDBSeriesV2 = value;
-				NotifyPropertyChanged("TvDBSeriesV2");
-			}
-		}
+        private List<TvDB_SeriesVM> tvDBSeriesV2 = null;
+        public List<TvDB_SeriesVM> TvDBSeriesV2
+        {
+            get { return tvDBSeriesV2; }
+            set
+            {
+                tvDBSeriesV2 = value;
+                NotifyPropertyChanged("TvDBSeriesV2");
+            }
+        }
 
         private ObservableCollection<CrossRef_AniDB_TvDBVMV2> crossRef_AniDB_TvDBV2 = null;
         public ObservableCollection<CrossRef_AniDB_TvDBVMV2> CrossRef_AniDB_TvDBV2
-		{
-			get { return crossRef_AniDB_TvDBV2; }
-			set
-			{
-				crossRef_AniDB_TvDBV2 = value;
-				NotifyPropertyChanged("CrossRef_AniDB_TvDBV2");
-			}
-		}
+        {
+            get { return crossRef_AniDB_TvDBV2; }
+            set
+            {
+                crossRef_AniDB_TvDBV2 = value;
+                NotifyPropertyChanged("CrossRef_AniDB_TvDBV2");
+            }
+        }
 
-		private List<TvDB_EpisodeVM> tvDBEpisodes = null;
-		public List<TvDB_EpisodeVM> TvDBEpisodes
-		{
-			get { return tvDBEpisodes; }
-			set
-			{
-				tvDBEpisodes = value;
-				NotifyPropertyChanged("TvDBEpisodes");
-			}
-		}
+        private List<TvDB_EpisodeVM> tvDBEpisodes = null;
+        public List<TvDB_EpisodeVM> TvDBEpisodes
+        {
+            get { return tvDBEpisodes; }
+            set
+            {
+                tvDBEpisodes = value;
+                NotifyPropertyChanged("TvDBEpisodes");
+            }
+        }
 
-		private List<TvDB_ImageFanartVM> tvDBImageFanarts = null;
-		public List<TvDB_ImageFanartVM> TvDBImageFanarts
-		{
-			get { return tvDBImageFanarts; }
-			set
-			{
-				tvDBImageFanarts = value;
-				NotifyPropertyChanged("TvDBImageFanarts");
-			}
-		}
+        private List<TvDB_ImageFanartVM> tvDBImageFanarts = null;
+        public List<TvDB_ImageFanartVM> TvDBImageFanarts
+        {
+            get { return tvDBImageFanarts; }
+            set
+            {
+                tvDBImageFanarts = value;
+                NotifyPropertyChanged("TvDBImageFanarts");
+            }
+        }
 
-		private List<TvDB_ImagePosterVM> tvDBImagePosters = null;
-		public List<TvDB_ImagePosterVM> TvDBImagePosters
-		{
-			get { return tvDBImagePosters; }
-			set
-			{
-				tvDBImagePosters = value;
-				NotifyPropertyChanged("TvDBImagePosters");
-			}
-		}
+        private List<TvDB_ImagePosterVM> tvDBImagePosters = null;
+        public List<TvDB_ImagePosterVM> TvDBImagePosters
+        {
+            get { return tvDBImagePosters; }
+            set
+            {
+                tvDBImagePosters = value;
+                NotifyPropertyChanged("TvDBImagePosters");
+            }
+        }
 
-		private List<TvDB_ImageWideBannerVM> tvDBImageWideBanners = null;
-		public List<TvDB_ImageWideBannerVM> TvDBImageWideBanners
-		{
-			get { return tvDBImageWideBanners; }
-			set
-			{
-				tvDBImageWideBanners = value;
-				NotifyPropertyChanged("TvDBImageWideBanners");
-			}
-		}
+        private List<TvDB_ImageWideBannerVM> tvDBImageWideBanners = null;
+        public List<TvDB_ImageWideBannerVM> TvDBImageWideBanners
+        {
+            get { return tvDBImageWideBanners; }
+            set
+            {
+                tvDBImageWideBanners = value;
+                NotifyPropertyChanged("TvDBImageWideBanners");
+            }
+        }
 
         #endregion
 
         #region MovieDB
 
         private bool movieDBCrossRefExists = false;
-		public bool MovieDBCrossRefExists
-		{
-			get { return movieDBCrossRefExists; }
-			set
-			{
-				movieDBCrossRefExists = value;
-				NotifyPropertyChanged("MovieDBCrossRefExists");
-			}
-		}
+        public bool MovieDBCrossRefExists
+        {
+            get { return movieDBCrossRefExists; }
+            set
+            {
+                movieDBCrossRefExists = value;
+                NotifyPropertyChanged("MovieDBCrossRefExists");
+            }
+        }
 
-		private bool movieDBCrossRefMissing = false;
-		public bool MovieDBCrossRefMissing
-		{
-			get { return movieDBCrossRefMissing; }
-			set
-			{
-				movieDBCrossRefMissing = value;
-				NotifyPropertyChanged("MovieDBCrossRefMissing");
-			}
-		}
+        private bool movieDBCrossRefMissing = false;
+        public bool MovieDBCrossRefMissing
+        {
+            get { return movieDBCrossRefMissing; }
+            set
+            {
+                movieDBCrossRefMissing = value;
+                NotifyPropertyChanged("MovieDBCrossRefMissing");
+            }
+        }
 
-		private MovieDB_MovieVM movieDB_Movie = null;
-		public MovieDB_MovieVM MovieDB_Movie
-		{
-			get { return movieDB_Movie; }
-			set
-			{
-				movieDB_Movie = value;
-				NotifyPropertyChanged("MovieDB_Movie");
-			}
-		}
+        private MovieDB_MovieVM movieDB_Movie = null;
+        public MovieDB_MovieVM MovieDB_Movie
+        {
+            get { return movieDB_Movie; }
+            set
+            {
+                movieDB_Movie = value;
+                NotifyPropertyChanged("MovieDB_Movie");
+            }
+        }
 
-		private CrossRef_AniDB_OtherVM crossRef_AniDB_MovieDB = null;
-		public CrossRef_AniDB_OtherVM CrossRef_AniDB_MovieDB
-		{
-			get { return crossRef_AniDB_MovieDB; }
-			set
-			{
-				crossRef_AniDB_MovieDB = value;
-				NotifyPropertyChanged("CrossRef_AniDB_MovieDB");
-			}
-		}
+        private CrossRef_AniDB_OtherVM crossRef_AniDB_MovieDB = null;
+        public CrossRef_AniDB_OtherVM CrossRef_AniDB_MovieDB
+        {
+            get { return crossRef_AniDB_MovieDB; }
+            set
+            {
+                crossRef_AniDB_MovieDB = value;
+                NotifyPropertyChanged("CrossRef_AniDB_MovieDB");
+            }
+        }
 
-		private List<MovieDB_FanartVM> movieDBFanarts = null;
-		public List<MovieDB_FanartVM> MovieDBFanarts
-		{
-			get { return movieDBFanarts; }
-			set
-			{
-				movieDBFanarts = value;
-				NotifyPropertyChanged("MovieDBFanarts");
-			}
-		}
+        private List<MovieDB_FanartVM> movieDBFanarts = null;
+        public List<MovieDB_FanartVM> MovieDBFanarts
+        {
+            get { return movieDBFanarts; }
+            set
+            {
+                movieDBFanarts = value;
+                NotifyPropertyChanged("MovieDBFanarts");
+            }
+        }
 
-		private List<MovieDB_PosterVM> movieDBPosters = null;
-		public List<MovieDB_PosterVM> MovieDBPosters
-		{
-			get { return movieDBPosters; }
-			set
-			{
-				movieDBPosters = value;
-				NotifyPropertyChanged("MovieDBPosters");
-			}
-		}
+        private List<MovieDB_PosterVM> movieDBPosters = null;
+        public List<MovieDB_PosterVM> MovieDBPosters
+        {
+            get { return movieDBPosters; }
+            set
+            {
+                movieDBPosters = value;
+                NotifyPropertyChanged("MovieDBPosters");
+            }
+        }
 
         #endregion
 
         private List<PosterContainer> allPosters = null;
-		public List<PosterContainer> AllPosters
-		{
-			get { return allPosters; }
-			set
-			{
-				allPosters = value;
-				NotifyPropertyChanged("AllPosters");
-			}
-		}
+        public List<PosterContainer> AllPosters
+        {
+            get { return allPosters; }
+            set
+            {
+                allPosters = value;
+                NotifyPropertyChanged("AllPosters");
+            }
+        }
 
-		private List<FanartContainer> allFanarts = null;
-		public List<FanartContainer> AllFanarts
-		{
-			get { return allFanarts; }
-			set
-			{
-				allFanarts = value;
-				NotifyPropertyChanged("AllFanarts");
-			}
-		}
+        private List<FanartContainer> allFanarts = null;
+        public List<FanartContainer> AllFanarts
+        {
+            get { return allFanarts; }
+            set
+            {
+                allFanarts = value;
+                NotifyPropertyChanged("AllFanarts");
+            }
+        }
 
         #region Trakt
 
         private bool traktCrossRefExists = false;
-		public bool TraktCrossRefExists
-		{
-			get { return traktCrossRefExists; }
-			set
-			{
-				traktCrossRefExists = value;
-				NotifyPropertyChanged("TraktCrossRefExists");
-			}
-		}
+        public bool TraktCrossRefExists
+        {
+            get { return traktCrossRefExists; }
+            set
+            {
+                traktCrossRefExists = value;
+                NotifyPropertyChanged("TraktCrossRefExists");
+            }
+        }
 
-		private bool traktCrossRefMissing = false;
-		public bool TraktCrossRefMissing
-		{
-			get { return traktCrossRefMissing; }
-			set
-			{
-				traktCrossRefMissing = value;
-				NotifyPropertyChanged("TraktCrossRefMissing");
-			}
-		}
+        private bool traktCrossRefMissing = false;
+        public bool TraktCrossRefMissing
+        {
+            get { return traktCrossRefMissing; }
+            set
+            {
+                traktCrossRefMissing = value;
+                NotifyPropertyChanged("TraktCrossRefMissing");
+            }
+        }
 
         private ObservableCollection<CrossRef_AniDB_TraktVMV2> crossRef_AniDB_TraktV2 = null;
         public ObservableCollection<CrossRef_AniDB_TraktVMV2> CrossRef_AniDB_TraktV2
-		{
+        {
             get { return crossRef_AniDB_TraktV2; }
-			set
-			{
+            set
+            {
                 crossRef_AniDB_TraktV2 = value;
                 NotifyPropertyChanged("CrossRef_AniDB_TraktV2");
-			}
-		}
+            }
+        }
 
         private List<Trakt_ShowVM> traktShowV2 = null;
         public List<Trakt_ShowVM> TraktShowV2
-		{
+        {
             get { return traktShowV2; }
-			set
-			{
+            set
+            {
                 traktShowV2 = value;
                 NotifyPropertyChanged("TraktShowV2");
-			}
-		}
+            }
+        }
 
-		private List<Trakt_ImageFanartVM> traktImageFanarts = null;
-		public List<Trakt_ImageFanartVM> TraktImageFanarts
-		{
-			get { return traktImageFanarts; }
-			set
-			{
-				traktImageFanarts = value;
-				NotifyPropertyChanged("TraktImageFanarts");
-			}
-		}
+        private List<Trakt_ImageFanartVM> traktImageFanarts = null;
+        public List<Trakt_ImageFanartVM> TraktImageFanarts
+        {
+            get { return traktImageFanarts; }
+            set
+            {
+                traktImageFanarts = value;
+                NotifyPropertyChanged("TraktImageFanarts");
+            }
+        }
 
-		private List<Trakt_ImagePosterVM> traktImagePosters = null;
-		public List<Trakt_ImagePosterVM> TraktImagePosters
-		{
-			get { return traktImagePosters; }
-			set
-			{
-				traktImagePosters = value;
-				NotifyPropertyChanged("TraktImagePosters");
-			}
-		}
+        private List<Trakt_ImagePosterVM> traktImagePosters = null;
+        public List<Trakt_ImagePosterVM> TraktImagePosters
+        {
+            get { return traktImagePosters; }
+            set
+            {
+                traktImagePosters = value;
+                NotifyPropertyChanged("TraktImagePosters");
+            }
+        }
 
         #endregion
 
@@ -284,42 +282,42 @@ namespace JMMClient.ViewModel
 
         private ObservableCollection<CrossRef_AniDB_MALVM> crossRef_AniDB_MAL = null;
         public ObservableCollection<CrossRef_AniDB_MALVM> CrossRef_AniDB_MAL
-		{
-			get { return crossRef_AniDB_MAL; }
-			set
-			{
-				crossRef_AniDB_MAL = value;
-				NotifyPropertyChanged("CrossRef_AniDB_MAL");
-			}
-		}
+        {
+            get { return crossRef_AniDB_MAL; }
+            set
+            {
+                crossRef_AniDB_MAL = value;
+                NotifyPropertyChanged("CrossRef_AniDB_MAL");
+            }
+        }
 
-		private bool mALCrossRefExists = false;
-		public bool MALCrossRefExists
-		{
-			get { return mALCrossRefExists; }
-			set
-			{
-				mALCrossRefExists = value;
-				NotifyPropertyChanged("MALCrossRefExists");
-			}
-		}
+        private bool mALCrossRefExists = false;
+        public bool MALCrossRefExists
+        {
+            get { return mALCrossRefExists; }
+            set
+            {
+                mALCrossRefExists = value;
+                NotifyPropertyChanged("MALCrossRefExists");
+            }
+        }
 
-		private bool mALCrossRefMissing = false;
-		public bool MALCrossRefMissing
-		{
-			get { return mALCrossRefMissing; }
-			set
-			{
-				mALCrossRefMissing = value;
-				NotifyPropertyChanged("MALCrossRefMissing");
-			}
-		}
+        private bool mALCrossRefMissing = false;
+        public bool MALCrossRefMissing
+        {
+            get { return mALCrossRefMissing; }
+            set
+            {
+                mALCrossRefMissing = value;
+                NotifyPropertyChanged("MALCrossRefMissing");
+            }
+        }
 
         #endregion
 
         public void Populate(JMMServerBinary.Contract_AniDB_AnimeCrossRefs details)
-		{
-			AnimeID = details.AnimeID;
+        {
+            AnimeID = details.AnimeID;
 
             CrossRef_AniDB_TvDBV2 = new ObservableCollection<CrossRef_AniDB_TvDBVMV2>();
             TvDBSeriesV2 = new List<TvDB_SeriesVM>();
@@ -365,9 +363,9 @@ namespace JMMClient.ViewModel
             AllPosters.Clear();
             AllFanarts.Clear();*/
 
-			AniDB_AnimeVM anime = null;
-			if (MainListHelperVM.Instance.AllAnimeDictionary.ContainsKey(AnimeID))
-				anime = MainListHelperVM.Instance.AllAnimeDictionary[AnimeID];
+            AniDB_AnimeVM anime = null;
+            if (MainListHelperVM.Instance.AllAnimeDictionary.ContainsKey(AnimeID))
+                anime = MainListHelperVM.Instance.AllAnimeDictionary[AnimeID];
 
             //AniDB
             AllPosters.Insert(0, new PosterContainer(ImageEntityType.AniDB_Cover, anime));
@@ -375,25 +373,25 @@ namespace JMMClient.ViewModel
 
             // MAL
             if (details.CrossRef_AniDB_MAL != null)
-			{
+            {
                 CrossRef_AniDB_MAL = new ObservableCollection<CrossRef_AniDB_MALVM>();
-				foreach ( JMMServerBinary.Contract_CrossRef_AniDB_MAL contract in details.CrossRef_AniDB_MAL)
-					CrossRef_AniDB_MAL.Add(new CrossRef_AniDB_MALVM(contract));
-			}
+                foreach (JMMServerBinary.Contract_CrossRef_AniDB_MAL contract in details.CrossRef_AniDB_MAL)
+                    CrossRef_AniDB_MAL.Add(new CrossRef_AniDB_MALVM(contract));
+            }
 
-			if (CrossRef_AniDB_MAL == null || CrossRef_AniDB_MAL.Count == 0)
-			{
-				MALCrossRefExists = false;
-				MALCrossRefMissing = true;
-			}
-			else
-			{
-				MALCrossRefExists = true;
-				MALCrossRefMissing = false;
-			}
+            if (CrossRef_AniDB_MAL == null || CrossRef_AniDB_MAL.Count == 0)
+            {
+                MALCrossRefExists = false;
+                MALCrossRefMissing = true;
+            }
+            else
+            {
+                MALCrossRefExists = true;
+                MALCrossRefMissing = false;
+            }
 
-			// Trakt
-			if (details.CrossRef_AniDB_Trakt != null)
+            // Trakt
+            if (details.CrossRef_AniDB_Trakt != null)
             {
                 foreach (JMMServerBinary.Contract_CrossRef_AniDB_TraktV2 contract in details.CrossRef_AniDB_Trakt)
                     CrossRef_AniDB_TraktV2.Add(new CrossRef_AniDB_TraktVMV2(contract));
@@ -440,445 +438,445 @@ namespace JMMClient.ViewModel
             }
 
             if (CrossRef_AniDB_TraktV2 == null || CrossRef_AniDB_TraktV2.Count == 0 || TraktShowV2 == null || TraktShowV2.Count == 0)
-			{
-				TraktCrossRefExists = false;
-				TraktCrossRefMissing = true;
-			}
-			else
-			{
-				TraktCrossRefExists = true;
-				TraktCrossRefMissing = false;
-			}
+            {
+                TraktCrossRefExists = false;
+                TraktCrossRefMissing = true;
+            }
+            else
+            {
+                TraktCrossRefExists = true;
+                TraktCrossRefMissing = false;
+            }
 
-			// TvDB
-			if (details.CrossRef_AniDB_TvDB != null)
-			{
-				foreach (JMMServerBinary.Contract_CrossRef_AniDB_TvDBV2 contract in details.CrossRef_AniDB_TvDB)
-				{
-					CrossRef_AniDB_TvDBV2.Add(new CrossRef_AniDB_TvDBVMV2(contract));
-				}
-			}
+            // TvDB
+            if (details.CrossRef_AniDB_TvDB != null)
+            {
+                foreach (JMMServerBinary.Contract_CrossRef_AniDB_TvDBV2 contract in details.CrossRef_AniDB_TvDB)
+                {
+                    CrossRef_AniDB_TvDBV2.Add(new CrossRef_AniDB_TvDBVMV2(contract));
+                }
+            }
 
-			if (details.TvDBSeries != null)
-			{
-				foreach (JMMServerBinary.Contract_TvDB_Series contract in details.TvDBSeries)
-				{
-					TvDBSeriesV2.Add(new TvDB_SeriesVM(contract));
-				}
-			}
+            if (details.TvDBSeries != null)
+            {
+                foreach (JMMServerBinary.Contract_TvDB_Series contract in details.TvDBSeries)
+                {
+                    TvDBSeriesV2.Add(new TvDB_SeriesVM(contract));
+                }
+            }
 
-			foreach (JMMServerBinary.Contract_TvDB_Episode contract in details.TvDBEpisodes)
-				TvDBEpisodes.Add(new TvDB_EpisodeVM(contract));
+            foreach (JMMServerBinary.Contract_TvDB_Episode contract in details.TvDBEpisodes)
+                TvDBEpisodes.Add(new TvDB_EpisodeVM(contract));
 
-			foreach (JMMServerBinary.Contract_TvDB_ImageFanart contract in details.TvDBImageFanarts)
-			{
-				bool isDefault = false;
-				if (anime != null && anime.DefaultFanart != null && anime.DefaultFanart.ImageParentType == (int)ImageEntityType.TvDB_FanArt
-					&& anime.DefaultFanart.ImageParentID == contract.TvDB_ImageFanartID)
-				{
-					isDefault = true;
-				}
+            foreach (JMMServerBinary.Contract_TvDB_ImageFanart contract in details.TvDBImageFanarts)
+            {
+                bool isDefault = false;
+                if (anime != null && anime.DefaultFanart != null && anime.DefaultFanart.ImageParentType == (int)ImageEntityType.TvDB_FanArt
+                    && anime.DefaultFanart.ImageParentID == contract.TvDB_ImageFanartID)
+                {
+                    isDefault = true;
+                }
 
-				TvDB_ImageFanartVM tvFanart = new TvDB_ImageFanartVM(contract);
-				tvFanart.IsImageDefault = isDefault;
-				tvFanart.IsImageNotDefault = !isDefault;
-				TvDBImageFanarts.Add(tvFanart);
+                TvDB_ImageFanartVM tvFanart = new TvDB_ImageFanartVM(contract);
+                tvFanart.IsImageDefault = isDefault;
+                tvFanart.IsImageNotDefault = !isDefault;
+                TvDBImageFanarts.Add(tvFanart);
 
-				AllFanarts.Add(new FanartContainer(ImageEntityType.TvDB_FanArt, tvFanart));
-			}
+                AllFanarts.Add(new FanartContainer(ImageEntityType.TvDB_FanArt, tvFanart));
+            }
 
-			foreach (JMMServerBinary.Contract_TvDB_ImagePoster contract in details.TvDBImagePosters)
-			{
-				bool isDefault = false;
-				if (anime != null && anime.DefaultPoster != null && anime.DefaultPoster.ImageParentType == (int)ImageEntityType.TvDB_Cover
-					&& anime.DefaultPoster.ImageParentID == contract.TvDB_ImagePosterID)
-				{
-					isDefault = true;
-				}
+            foreach (JMMServerBinary.Contract_TvDB_ImagePoster contract in details.TvDBImagePosters)
+            {
+                bool isDefault = false;
+                if (anime != null && anime.DefaultPoster != null && anime.DefaultPoster.ImageParentType == (int)ImageEntityType.TvDB_Cover
+                    && anime.DefaultPoster.ImageParentID == contract.TvDB_ImagePosterID)
+                {
+                    isDefault = true;
+                }
 
-				TvDB_ImagePosterVM tvPoster = new TvDB_ImagePosterVM(contract);
-				tvPoster.IsImageDefault = isDefault;
-				tvPoster.IsImageNotDefault = !isDefault;
-				TvDBImagePosters.Add(tvPoster);
-				AllPosters.Add(new PosterContainer(ImageEntityType.TvDB_Cover, tvPoster));
-			}
+                TvDB_ImagePosterVM tvPoster = new TvDB_ImagePosterVM(contract);
+                tvPoster.IsImageDefault = isDefault;
+                tvPoster.IsImageNotDefault = !isDefault;
+                TvDBImagePosters.Add(tvPoster);
+                AllPosters.Add(new PosterContainer(ImageEntityType.TvDB_Cover, tvPoster));
+            }
 
-			foreach (JMMServerBinary.Contract_TvDB_ImageWideBanner contract in details.TvDBImageWideBanners)
-			{
-				bool isDefault = false;
-				if (anime != null && anime.DefaultWideBanner != null && anime.DefaultWideBanner.ImageParentType == (int)ImageEntityType.TvDB_Banner
-					&& anime.DefaultWideBanner.ImageParentID == contract.TvDB_ImageWideBannerID)
-				{
-					isDefault = true;
-				}
+            foreach (JMMServerBinary.Contract_TvDB_ImageWideBanner contract in details.TvDBImageWideBanners)
+            {
+                bool isDefault = false;
+                if (anime != null && anime.DefaultWideBanner != null && anime.DefaultWideBanner.ImageParentType == (int)ImageEntityType.TvDB_Banner
+                    && anime.DefaultWideBanner.ImageParentID == contract.TvDB_ImageWideBannerID)
+                {
+                    isDefault = true;
+                }
 
-				TvDB_ImageWideBannerVM tvBanner = new TvDB_ImageWideBannerVM(contract);
-				tvBanner.IsImageDefault = isDefault;
-				tvBanner.IsImageNotDefault = !isDefault;
-				TvDBImageWideBanners.Add(tvBanner);
-			}
+                TvDB_ImageWideBannerVM tvBanner = new TvDB_ImageWideBannerVM(contract);
+                tvBanner.IsImageDefault = isDefault;
+                tvBanner.IsImageNotDefault = !isDefault;
+                TvDBImageWideBanners.Add(tvBanner);
+            }
 
-			if (CrossRef_AniDB_TvDBV2.Count == 0 || TvDBSeriesV2.Count == 0)
-			{
-				TvDBCrossRefExists = false;
-				TvDBCrossRefMissing = true;
-			}
-			else
-			{
-				TvDBCrossRefExists = true;
-				TvDBCrossRefMissing = false;
-			}
+            if (CrossRef_AniDB_TvDBV2.Count == 0 || TvDBSeriesV2.Count == 0)
+            {
+                TvDBCrossRefExists = false;
+                TvDBCrossRefMissing = true;
+            }
+            else
+            {
+                TvDBCrossRefExists = true;
+                TvDBCrossRefMissing = false;
+            }
 
-			// MovieDB
-			if (details.CrossRef_AniDB_MovieDB != null)
-				CrossRef_AniDB_MovieDB = new CrossRef_AniDB_OtherVM(details.CrossRef_AniDB_MovieDB);
+            // MovieDB
+            if (details.CrossRef_AniDB_MovieDB != null)
+                CrossRef_AniDB_MovieDB = new CrossRef_AniDB_OtherVM(details.CrossRef_AniDB_MovieDB);
 
-			if (details.MovieDBMovie != null)
-				MovieDB_Movie = new MovieDB_MovieVM(details.MovieDBMovie);
+            if (details.MovieDBMovie != null)
+                MovieDB_Movie = new MovieDB_MovieVM(details.MovieDBMovie);
 
-			foreach (JMMServerBinary.Contract_MovieDB_Fanart contract in details.MovieDBFanarts)
-			{
-				bool isDefault = false;
-				if (anime != null && anime.DefaultFanart != null && anime.DefaultFanart.ImageParentType == (int)ImageEntityType.MovieDB_FanArt
-					&& anime.DefaultFanart.ImageParentID == contract.MovieDB_FanartID)
-				{
-					isDefault = true;
-				}
+            foreach (JMMServerBinary.Contract_MovieDB_Fanart contract in details.MovieDBFanarts)
+            {
+                bool isDefault = false;
+                if (anime != null && anime.DefaultFanart != null && anime.DefaultFanart.ImageParentType == (int)ImageEntityType.MovieDB_FanArt
+                    && anime.DefaultFanart.ImageParentID == contract.MovieDB_FanartID)
+                {
+                    isDefault = true;
+                }
 
-				MovieDB_FanartVM movieFanart = new MovieDB_FanartVM(contract);
-				movieFanart.IsImageDefault = isDefault;
-				movieFanart.IsImageNotDefault = !isDefault;
-				MovieDBFanarts.Add(movieFanart);
-				AllFanarts.Add(new FanartContainer(ImageEntityType.MovieDB_FanArt, movieFanart));
-			}
+                MovieDB_FanartVM movieFanart = new MovieDB_FanartVM(contract);
+                movieFanart.IsImageDefault = isDefault;
+                movieFanart.IsImageNotDefault = !isDefault;
+                MovieDBFanarts.Add(movieFanart);
+                AllFanarts.Add(new FanartContainer(ImageEntityType.MovieDB_FanArt, movieFanart));
+            }
 
-			foreach (JMMServerBinary.Contract_MovieDB_Poster contract in details.MovieDBPosters)
-			{
-				bool isDefault = false;
-				if (anime != null && anime.DefaultPoster != null && anime.DefaultPoster.ImageParentType == (int)ImageEntityType.MovieDB_Poster
-					&& anime.DefaultPoster.ImageParentID == contract.MovieDB_PosterID)
-				{
-					isDefault = true;
-				}
+            foreach (JMMServerBinary.Contract_MovieDB_Poster contract in details.MovieDBPosters)
+            {
+                bool isDefault = false;
+                if (anime != null && anime.DefaultPoster != null && anime.DefaultPoster.ImageParentType == (int)ImageEntityType.MovieDB_Poster
+                    && anime.DefaultPoster.ImageParentID == contract.MovieDB_PosterID)
+                {
+                    isDefault = true;
+                }
 
-				MovieDB_PosterVM moviePoster = new MovieDB_PosterVM(contract);
-				moviePoster.IsImageDefault = isDefault;
-				moviePoster.IsImageNotDefault = !isDefault;
-				MovieDBPosters.Add(moviePoster);
-				AllPosters.Add(new PosterContainer(ImageEntityType.MovieDB_Poster, moviePoster));
-			}
+                MovieDB_PosterVM moviePoster = new MovieDB_PosterVM(contract);
+                moviePoster.IsImageDefault = isDefault;
+                moviePoster.IsImageNotDefault = !isDefault;
+                MovieDBPosters.Add(moviePoster);
+                AllPosters.Add(new PosterContainer(ImageEntityType.MovieDB_Poster, moviePoster));
+            }
 
-			if (CrossRef_AniDB_MovieDB == null || MovieDB_Movie == null)
-			{
-				MovieDBCrossRefExists = false;
-				MovieDBCrossRefMissing = true;
-			}
-			else
-			{
-				MovieDBCrossRefExists = true;
-				MovieDBCrossRefMissing = false;
-			}
+            if (CrossRef_AniDB_MovieDB == null || MovieDB_Movie == null)
+            {
+                MovieDBCrossRefExists = false;
+                MovieDBCrossRefMissing = true;
+            }
+            else
+            {
+                MovieDBCrossRefExists = true;
+                MovieDBCrossRefMissing = false;
+            }
 
-		}
-	}
+        }
+    }
 
-	public class PosterContainer : INotifyPropertyChanged
-	{
-		public ImageEntityType ImageType { get; set; }
-		public object PosterObject { get; set; }
+    public class PosterContainer : INotifyPropertyChanged
+    {
+        public ImageEntityType ImageType { get; set; }
+        public object PosterObject { get; set; }
 
-		public PosterContainer(ImageEntityType imageType, object poster)
-		{
-			ImageType = imageType;
-			PosterObject = poster;
+        public PosterContainer(ImageEntityType imageType, object poster)
+        {
+            ImageType = imageType;
+            PosterObject = poster;
 
-			switch (ImageType)
-			{
-				case ImageEntityType.AniDB_Cover:
-					AniDB_AnimeVM anime = PosterObject as AniDB_AnimeVM;
-					IsImageEnabled = anime.IsImageEnabled;
-					IsImageDisabled = anime.IsImageDisabled;
-					IsImageDefault = anime.IsImageDefault;
-					IsImageNotDefault = anime.IsImageNotDefault;
-					PosterSource = "AniDB";
-					break;
+            switch (ImageType)
+            {
+                case ImageEntityType.AniDB_Cover:
+                    AniDB_AnimeVM anime = PosterObject as AniDB_AnimeVM;
+                    IsImageEnabled = anime.IsImageEnabled;
+                    IsImageDisabled = anime.IsImageDisabled;
+                    IsImageDefault = anime.IsImageDefault;
+                    IsImageNotDefault = anime.IsImageNotDefault;
+                    PosterSource = "AniDB";
+                    break;
 
-				case ImageEntityType.TvDB_Cover:
-					TvDB_ImagePosterVM tvPoster = PosterObject as TvDB_ImagePosterVM;
-					IsImageEnabled = tvPoster.IsImageEnabled;
-					IsImageDisabled = tvPoster.IsImageDisabled;
-					IsImageDefault = tvPoster.IsImageDefault;
-					IsImageNotDefault = tvPoster.IsImageNotDefault;
-					PosterSource = "TvDB";
-					break;
+                case ImageEntityType.TvDB_Cover:
+                    TvDB_ImagePosterVM tvPoster = PosterObject as TvDB_ImagePosterVM;
+                    IsImageEnabled = tvPoster.IsImageEnabled;
+                    IsImageDisabled = tvPoster.IsImageDisabled;
+                    IsImageDefault = tvPoster.IsImageDefault;
+                    IsImageNotDefault = tvPoster.IsImageNotDefault;
+                    PosterSource = "TvDB";
+                    break;
 
-				case ImageEntityType.MovieDB_Poster:
-					MovieDB_PosterVM moviePoster = PosterObject as MovieDB_PosterVM;
-					IsImageEnabled = moviePoster.IsImageEnabled;
-					IsImageDisabled = moviePoster.IsImageDisabled;
-					IsImageDefault = moviePoster.IsImageDefault;
-					IsImageNotDefault = moviePoster.IsImageNotDefault;
-					PosterSource = "MovieDB";
-					break;
+                case ImageEntityType.MovieDB_Poster:
+                    MovieDB_PosterVM moviePoster = PosterObject as MovieDB_PosterVM;
+                    IsImageEnabled = moviePoster.IsImageEnabled;
+                    IsImageDisabled = moviePoster.IsImageDisabled;
+                    IsImageDefault = moviePoster.IsImageDefault;
+                    IsImageNotDefault = moviePoster.IsImageNotDefault;
+                    PosterSource = "MovieDB";
+                    break;
 
-				case ImageEntityType.Trakt_Poster:
-					Trakt_ImagePosterVM traktPoster = PosterObject as Trakt_ImagePosterVM;
-					IsImageEnabled = traktPoster.IsImageEnabled;
-					IsImageDisabled = traktPoster.IsImageDisabled;
-					IsImageDefault = traktPoster.IsImageDefault;
-					IsImageNotDefault = traktPoster.IsImageNotDefault;
-					PosterSource = "Trakt";
-					break;
-			}
-		}
+                case ImageEntityType.Trakt_Poster:
+                    Trakt_ImagePosterVM traktPoster = PosterObject as Trakt_ImagePosterVM;
+                    IsImageEnabled = traktPoster.IsImageEnabled;
+                    IsImageDisabled = traktPoster.IsImageDisabled;
+                    IsImageDefault = traktPoster.IsImageDefault;
+                    IsImageNotDefault = traktPoster.IsImageNotDefault;
+                    PosterSource = "Trakt";
+                    break;
+            }
+        }
 
-		public event PropertyChangedEventHandler PropertyChanged;
-		private void NotifyPropertyChanged(String propertyName)
-		{
-			if (PropertyChanged != null)
-			{
-				var args = new PropertyChangedEventArgs(propertyName);
-				PropertyChanged(this, args);
-			}
-		}
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                var args = new PropertyChangedEventArgs(propertyName);
+                PropertyChanged(this, args);
+            }
+        }
 
-		public string FullImagePath
-		{
-			get
-			{
-				switch (ImageType)
-				{
-					case ImageEntityType.AniDB_Cover:
-						AniDB_AnimeVM anime = PosterObject as AniDB_AnimeVM;
-						return anime.PosterPath;
+        public string FullImagePath
+        {
+            get
+            {
+                switch (ImageType)
+                {
+                    case ImageEntityType.AniDB_Cover:
+                        AniDB_AnimeVM anime = PosterObject as AniDB_AnimeVM;
+                        return anime.PosterPath;
 
-					case ImageEntityType.TvDB_Cover:
-						TvDB_ImagePosterVM tvPoster = PosterObject as TvDB_ImagePosterVM;
-						return tvPoster.FullImagePath;
+                    case ImageEntityType.TvDB_Cover:
+                        TvDB_ImagePosterVM tvPoster = PosterObject as TvDB_ImagePosterVM;
+                        return tvPoster.FullImagePath;
 
-					case ImageEntityType.MovieDB_Poster:
-						MovieDB_PosterVM moviePoster = PosterObject as MovieDB_PosterVM;
-						return moviePoster.FullImagePath;
+                    case ImageEntityType.MovieDB_Poster:
+                        MovieDB_PosterVM moviePoster = PosterObject as MovieDB_PosterVM;
+                        return moviePoster.FullImagePath;
 
-					case ImageEntityType.Trakt_Poster:
-						Trakt_ImagePosterVM traktPoster = PosterObject as Trakt_ImagePosterVM;
-						return traktPoster.FullImagePath;
-				}
+                    case ImageEntityType.Trakt_Poster:
+                        Trakt_ImagePosterVM traktPoster = PosterObject as Trakt_ImagePosterVM;
+                        return traktPoster.FullImagePath;
+                }
 
-				return "";
-			}
-		}
+                return "";
+            }
+        }
 
-		private bool isImageEnabled = false;
-		public bool IsImageEnabled
-		{
-			get { return isImageEnabled; }
-			set
-			{
-				isImageEnabled = value;
-				NotifyPropertyChanged("IsImageEnabled");
-			}
-		}
+        private bool isImageEnabled = false;
+        public bool IsImageEnabled
+        {
+            get { return isImageEnabled; }
+            set
+            {
+                isImageEnabled = value;
+                NotifyPropertyChanged("IsImageEnabled");
+            }
+        }
 
-		private bool isImageDisabled = false;
-		public bool IsImageDisabled
-		{
-			get { return isImageDisabled; }
-			set
-			{
-				isImageDisabled = value;
-				NotifyPropertyChanged("IsImageDisabled");
-			}
-		}
+        private bool isImageDisabled = false;
+        public bool IsImageDisabled
+        {
+            get { return isImageDisabled; }
+            set
+            {
+                isImageDisabled = value;
+                NotifyPropertyChanged("IsImageDisabled");
+            }
+        }
 
-		private bool isImageDefault = false;
-		public bool IsImageDefault
-		{
-			get { return isImageDefault; }
-			set
-			{
-				isImageDefault = value;
-				NotifyPropertyChanged("IsImageDefault");
-			}
-		}
+        private bool isImageDefault = false;
+        public bool IsImageDefault
+        {
+            get { return isImageDefault; }
+            set
+            {
+                isImageDefault = value;
+                NotifyPropertyChanged("IsImageDefault");
+            }
+        }
 
-		private bool isImageNotDefault = false;
-		public bool IsImageNotDefault
-		{
-			get { return isImageNotDefault; }
-			set
-			{
-				isImageNotDefault = value;
-				NotifyPropertyChanged("IsImageNotDefault");
-			}
-		}
+        private bool isImageNotDefault = false;
+        public bool IsImageNotDefault
+        {
+            get { return isImageNotDefault; }
+            set
+            {
+                isImageNotDefault = value;
+                NotifyPropertyChanged("IsImageNotDefault");
+            }
+        }
 
-		private string posterSource = "";
-		public string PosterSource
-		{
-			get { return posterSource; }
-			set
-			{
-				posterSource = value;
-				NotifyPropertyChanged("PosterType");
-			}
-		}
-	}
+        private string posterSource = "";
+        public string PosterSource
+        {
+            get { return posterSource; }
+            set
+            {
+                posterSource = value;
+                NotifyPropertyChanged("PosterType");
+            }
+        }
+    }
 
-	public class FanartContainer : INotifyPropertyChanged
-	{
-		public ImageEntityType ImageType { get; set; }
-		public object FanartObject { get; set; }
+    public class FanartContainer : INotifyPropertyChanged
+    {
+        public ImageEntityType ImageType { get; set; }
+        public object FanartObject { get; set; }
 
-		public FanartContainer(ImageEntityType imageType, object poster)
-		{
-			ImageType = imageType;
-			FanartObject = poster;
+        public FanartContainer(ImageEntityType imageType, object poster)
+        {
+            ImageType = imageType;
+            FanartObject = poster;
 
-			switch (ImageType)
-			{
-				case ImageEntityType.TvDB_FanArt:
-					TvDB_ImageFanartVM tvFanart = FanartObject as TvDB_ImageFanartVM;
-					IsImageEnabled = tvFanart.IsImageEnabled;
-					IsImageDisabled = tvFanart.IsImageDisabled;
-					IsImageDefault = tvFanart.IsImageDefault;
-					IsImageNotDefault = tvFanart.IsImageNotDefault;
-					FanartSource = "TvDB";
-					break;
+            switch (ImageType)
+            {
+                case ImageEntityType.TvDB_FanArt:
+                    TvDB_ImageFanartVM tvFanart = FanartObject as TvDB_ImageFanartVM;
+                    IsImageEnabled = tvFanart.IsImageEnabled;
+                    IsImageDisabled = tvFanart.IsImageDisabled;
+                    IsImageDefault = tvFanart.IsImageDefault;
+                    IsImageNotDefault = tvFanart.IsImageNotDefault;
+                    FanartSource = "TvDB";
+                    break;
 
-				case ImageEntityType.MovieDB_FanArt:
-					MovieDB_FanartVM movieFanart = FanartObject as MovieDB_FanartVM;
-					IsImageEnabled = movieFanart.IsImageEnabled;
-					IsImageDisabled = movieFanart.IsImageDisabled;
-					IsImageDefault = movieFanart.IsImageDefault;
-					IsImageNotDefault = movieFanart.IsImageNotDefault;
-					FanartSource = "MovieDB";
-					break;
+                case ImageEntityType.MovieDB_FanArt:
+                    MovieDB_FanartVM movieFanart = FanartObject as MovieDB_FanartVM;
+                    IsImageEnabled = movieFanart.IsImageEnabled;
+                    IsImageDisabled = movieFanart.IsImageDisabled;
+                    IsImageDefault = movieFanart.IsImageDefault;
+                    IsImageNotDefault = movieFanart.IsImageNotDefault;
+                    FanartSource = "MovieDB";
+                    break;
 
-				case ImageEntityType.Trakt_Fanart:
-					Trakt_ImageFanartVM traktFanart = FanartObject as Trakt_ImageFanartVM;
-					IsImageEnabled = traktFanart.IsImageEnabled;
-					IsImageDisabled = traktFanart.IsImageDisabled;
-					IsImageDefault = traktFanart.IsImageDefault;
-					IsImageNotDefault = traktFanart.IsImageNotDefault;
-					FanartSource = "Trakt";
-					break;
-			}
+                case ImageEntityType.Trakt_Fanart:
+                    Trakt_ImageFanartVM traktFanart = FanartObject as Trakt_ImageFanartVM;
+                    IsImageEnabled = traktFanart.IsImageEnabled;
+                    IsImageDisabled = traktFanart.IsImageDisabled;
+                    IsImageDefault = traktFanart.IsImageDefault;
+                    IsImageNotDefault = traktFanart.IsImageNotDefault;
+                    FanartSource = "Trakt";
+                    break;
+            }
 
-			
-		}
 
-		public event PropertyChangedEventHandler PropertyChanged;
-		private void NotifyPropertyChanged(String propertyName)
-		{
-			if (PropertyChanged != null)
-			{
-				var args = new PropertyChangedEventArgs(propertyName);
-				PropertyChanged(this, args);
-			}
-		}
+        }
 
-		public string FullImagePath
-		{
-			get
-			{
-				switch (ImageType)
-				{
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                var args = new PropertyChangedEventArgs(propertyName);
+                PropertyChanged(this, args);
+            }
+        }
 
-					case ImageEntityType.TvDB_FanArt:
-						TvDB_ImageFanartVM tvFanart = FanartObject as TvDB_ImageFanartVM;
-						return tvFanart.FullImagePath;
+        public string FullImagePath
+        {
+            get
+            {
+                switch (ImageType)
+                {
 
-					case ImageEntityType.MovieDB_FanArt:
-						MovieDB_FanartVM movieFanart = FanartObject as MovieDB_FanartVM;
-						return movieFanart.FullImagePath;
+                    case ImageEntityType.TvDB_FanArt:
+                        TvDB_ImageFanartVM tvFanart = FanartObject as TvDB_ImageFanartVM;
+                        return tvFanart.FullImagePath;
 
-					case ImageEntityType.Trakt_Fanart:
-						Trakt_ImageFanartVM traktFanart = FanartObject as Trakt_ImageFanartVM;
-						return traktFanart.FullImagePath;
-				}
+                    case ImageEntityType.MovieDB_FanArt:
+                        MovieDB_FanartVM movieFanart = FanartObject as MovieDB_FanartVM;
+                        return movieFanart.FullImagePath;
 
-				return "";
-			}
-		}
+                    case ImageEntityType.Trakt_Fanart:
+                        Trakt_ImageFanartVM traktFanart = FanartObject as Trakt_ImageFanartVM;
+                        return traktFanart.FullImagePath;
+                }
 
-		public string FullThumbnailPath
-		{
-			get
-			{
-				switch (ImageType)
-				{
+                return "";
+            }
+        }
 
-					case ImageEntityType.TvDB_FanArt:
-						TvDB_ImageFanartVM tvFanart = FanartObject as TvDB_ImageFanartVM;
-						return tvFanart.FullThumbnailPath;
+        public string FullThumbnailPath
+        {
+            get
+            {
+                switch (ImageType)
+                {
 
-					case ImageEntityType.MovieDB_FanArt:
-						MovieDB_FanartVM movieFanart = FanartObject as MovieDB_FanartVM;
-						return movieFanart.FullImagePath;
+                    case ImageEntityType.TvDB_FanArt:
+                        TvDB_ImageFanartVM tvFanart = FanartObject as TvDB_ImageFanartVM;
+                        return tvFanart.FullThumbnailPath;
 
-					case ImageEntityType.Trakt_Fanart:
-						Trakt_ImageFanartVM traktFanart = FanartObject as Trakt_ImageFanartVM;
-						return traktFanart.FullImagePath;
-				}
+                    case ImageEntityType.MovieDB_FanArt:
+                        MovieDB_FanartVM movieFanart = FanartObject as MovieDB_FanartVM;
+                        return movieFanart.FullImagePath;
 
-				return "";
-			}
-		}
+                    case ImageEntityType.Trakt_Fanart:
+                        Trakt_ImageFanartVM traktFanart = FanartObject as Trakt_ImageFanartVM;
+                        return traktFanart.FullImagePath;
+                }
 
-		private bool isImageEnabled = false;
-		public bool IsImageEnabled
-		{
-			get { return isImageEnabled; }
-			set
-			{
-				isImageEnabled = value;
-				NotifyPropertyChanged("IsImageEnabled");
-			}
-		}
+                return "";
+            }
+        }
 
-		private bool isImageDisabled = false;
-		public bool IsImageDisabled
-		{
-			get { return isImageDisabled; }
-			set
-			{
-				isImageDisabled = value;
-				NotifyPropertyChanged("IsImageDisabled");
-			}
-		}
+        private bool isImageEnabled = false;
+        public bool IsImageEnabled
+        {
+            get { return isImageEnabled; }
+            set
+            {
+                isImageEnabled = value;
+                NotifyPropertyChanged("IsImageEnabled");
+            }
+        }
 
-		private bool isImageDefault = false;
-		public bool IsImageDefault
-		{
-			get { return isImageDefault; }
-			set
-			{
-				isImageDefault = value;
-				NotifyPropertyChanged("IsImageDefault");
-			}
-		}
+        private bool isImageDisabled = false;
+        public bool IsImageDisabled
+        {
+            get { return isImageDisabled; }
+            set
+            {
+                isImageDisabled = value;
+                NotifyPropertyChanged("IsImageDisabled");
+            }
+        }
 
-		private bool isImageNotDefault = false;
-		public bool IsImageNotDefault
-		{
-			get { return isImageNotDefault; }
-			set
-			{
-				isImageNotDefault = value;
-				NotifyPropertyChanged("IsImageNotDefault");
-			}
-		}
+        private bool isImageDefault = false;
+        public bool IsImageDefault
+        {
+            get { return isImageDefault; }
+            set
+            {
+                isImageDefault = value;
+                NotifyPropertyChanged("IsImageDefault");
+            }
+        }
 
-		private string fanartSource = "";
-		public string FanartSource
-		{
-			get { return fanartSource; }
-			set
-			{
-				fanartSource = value;
-				NotifyPropertyChanged("FanartSource");
-			}
-		}
-	}
+        private bool isImageNotDefault = false;
+        public bool IsImageNotDefault
+        {
+            get { return isImageNotDefault; }
+            set
+            {
+                isImageNotDefault = value;
+                NotifyPropertyChanged("IsImageNotDefault");
+            }
+        }
+
+        private string fanartSource = "";
+        public string FanartSource
+        {
+            get { return fanartSource; }
+            set
+            {
+                fanartSource = value;
+                NotifyPropertyChanged("FanartSource");
+            }
+        }
+    }
 }

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.ComponentModel;
+using System.Reflection;
 
 // Source code by Owen Emlen (owene_1998@yahoo.com, owen@binarynorthwest.com)
 
@@ -33,21 +33,21 @@ namespace BinaryNorthwest
             sortType = sortTyp;
         }
 
-		public SortPropOrFieldAndDirection(string sPropOrFieldNameToSort, bool fDescendingSort, SortType sortTyp)
-		{
-			sPropertyOrFieldName = sPropOrFieldNameToSort;
-			fSortDescending = fDescendingSort;
-			sortType = sortTyp;
-		}
+        public SortPropOrFieldAndDirection(string sPropOrFieldNameToSort, bool fDescendingSort, SortType sortTyp)
+        {
+            sPropertyOrFieldName = sPropOrFieldNameToSort;
+            fSortDescending = fDescendingSort;
+            sortType = sortTyp;
+        }
 
-		public SortPropOrFieldAndDirection(string sPropOrFieldNameToSort, bool fDescendingSort, SortType sortTyp, StringComparison stringComp)
-		{
-			sPropertyOrFieldName = sPropOrFieldNameToSort;
-			fSortDescending = fDescendingSort;
-			sortType = sortTyp;
-			stringComparison = stringComp;
-		}
-		#endregion
+        public SortPropOrFieldAndDirection(string sPropOrFieldNameToSort, bool fDescendingSort, SortType sortTyp, StringComparison stringComp)
+        {
+            sPropertyOrFieldName = sPropOrFieldNameToSort;
+            fSortDescending = fDescendingSort;
+            sortType = sortTyp;
+            stringComparison = stringComp;
+        }
+        #endregion
 
         /// <summary>
         /// Retrieves a IComparer of type T, depending on whether the instance of this
@@ -56,13 +56,13 @@ namespace BinaryNorthwest
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         public IComparer<T> GetComparer<T>() where T : class
-        {            
+        {
             if (NameIsPropertyName)
             {
                 CompareProperties<T> comp = new CompareProperties<T>(sPropertyOrFieldName, fSortDescending, sortType);
                 comp.pi = pi;
                 comp.Initialize();
-				comp.SetStringComparisonType(stringComparison);
+                comp.SetStringComparisonType(stringComparison);
                 return comp;
             }
             else
@@ -70,8 +70,8 @@ namespace BinaryNorthwest
                 CompareFields<T> comp = new CompareFields<T>(sPropertyOrFieldName, fSortDescending, sortType);
                 comp.fi = fi;
                 comp.Initialize();
-				comp.SetStringComparisonType(stringComparison);
-				return comp;
+                comp.SetStringComparisonType(stringComparison);
+                return comp;
             }
         }
 
@@ -85,16 +85,16 @@ namespace BinaryNorthwest
         public string sPropertyOrFieldName;
         public bool fSortDescending;
         public SortType sortType = SortType.eUsePropertyOrFieldType;
-		public StringComparison stringComparison = StringComparison.OrdinalIgnoreCase;
-        
+        public StringComparison stringComparison = StringComparison.OrdinalIgnoreCase;
+
         /// <summary>
         /// (Cached PropertyInfo or FieldInfo)
         /// These fields are made available to avoid repeat reflection (GetProperty/GetField) if the caller has 
         /// already obtained the PropertyInfo or FieldInfo class instances for the property/field
         /// </summary>
         public PropertyInfo pi;
-        
-        
+
+
         public PropertyDescriptor property;
 
         public FieldInfo fi;

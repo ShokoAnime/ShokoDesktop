@@ -1,44 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace JMMClient.UserControls
 {
-	/// <summary>
-	/// Interaction logic for TraktSettings.xaml
-	/// </summary>
-	public partial class TraktSettings : UserControl
-	{
-		public TraktSettings()
-		{
-			InitializeComponent();
+    /// <summary>
+    /// Interaction logic for TraktSettings.xaml
+    /// </summary>
+    public partial class TraktSettings : UserControl
+    {
+        public TraktSettings()
+        {
+            InitializeComponent();
 
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
             Utils.PopulateScheduledComboBox(cboUpdateFrequency, JMMServerVM.Instance.Trakt_UpdateFrequency);
-			cboUpdateFrequency.SelectionChanged += new SelectionChangedEventHandler(cboUpdateFrequency_SelectionChanged);
+            cboUpdateFrequency.SelectionChanged += new SelectionChangedEventHandler(cboUpdateFrequency_SelectionChanged);
 
             EvaulateVisibility();
 
-			btnTest.Click += new RoutedEventHandler(btnTest_Click);
+            btnTest.Click += new RoutedEventHandler(btnTest_Click);
 
-			chkTrakt_EpisodeAutoDownload.Click += new RoutedEventHandler(settingChanged);
-			chkTrakt_FanartAutoDownload.Click += new RoutedEventHandler(settingChanged);
-			chkTrakt_PostersAutoDownload.Click += new RoutedEventHandler(settingChanged);
+            chkTrakt_EpisodeAutoDownload.Click += new RoutedEventHandler(settingChanged);
+            chkTrakt_FanartAutoDownload.Click += new RoutedEventHandler(settingChanged);
+            chkTrakt_PostersAutoDownload.Click += new RoutedEventHandler(settingChanged);
             chkTrakt_Enabled.Click += chkTrakt_Enabled_Click;
-		}
+        }
 
         void chkTrakt_Enabled_Click(object sender, RoutedEventArgs e)
         {
@@ -46,32 +36,32 @@ namespace JMMClient.UserControls
             EvaulateVisibility();
         }
 
-		void settingChanged(object sender, RoutedEventArgs e)
-		{
-			JMMServerVM.Instance.SaveServerSettingsAsync();
-		}
+        void settingChanged(object sender, RoutedEventArgs e)
+        {
+            JMMServerVM.Instance.SaveServerSettingsAsync();
+        }
 
-		void cboUpdateFrequency_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			switch (cboUpdateFrequency.SelectedIndex)
-			{
+        void cboUpdateFrequency_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (cboUpdateFrequency.SelectedIndex)
+            {
                 case 0: JMMServerVM.Instance.Trakt_UpdateFrequency = ScheduledUpdateFrequency.HoursSix; break;
                 case 1: JMMServerVM.Instance.Trakt_UpdateFrequency = ScheduledUpdateFrequency.HoursTwelve; break;
                 case 2: JMMServerVM.Instance.Trakt_UpdateFrequency = ScheduledUpdateFrequency.Daily; break;
                 case 3: JMMServerVM.Instance.Trakt_UpdateFrequency = ScheduledUpdateFrequency.WeekOne; break;
                 case 4: JMMServerVM.Instance.Trakt_UpdateFrequency = ScheduledUpdateFrequency.MonthOne; break;
                 case 5: JMMServerVM.Instance.Trakt_UpdateFrequency = ScheduledUpdateFrequency.Never; break;
-			}
+            }
 
-			JMMServerVM.Instance.SaveServerSettingsAsync();
-		}
+            JMMServerVM.Instance.SaveServerSettingsAsync();
+        }
 
-		void btnTest_Click(object sender, RoutedEventArgs e)
-		{
-			JMMServerVM.Instance.AuthorizeTraktPIN(txtTraktPIN.Text.Trim());
+        void btnTest_Click(object sender, RoutedEventArgs e)
+        {
+            JMMServerVM.Instance.AuthorizeTraktPIN(txtTraktPIN.Text.Trim());
             JMMServerVM.Instance.GetServerSettings();
             EvaulateVisibility();
-		}
+        }
 
         private void EvaulateVisibility()
         {
@@ -124,5 +114,5 @@ namespace JMMClient.UserControls
             else
                 tbValidity.Visibility = System.Windows.Visibility.Collapsed;*/
         }
-	}
+    }
 }

@@ -1,8 +1,5 @@
-﻿using System;
+﻿using NLog;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NLog;
 using System.Web;
 
 namespace JMMClient.Downloads

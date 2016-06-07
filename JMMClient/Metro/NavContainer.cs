@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace JMMClient.Metro
+﻿namespace JMMClient.Metro
 {
-	public class NavContainer
-	{
-		public MetroViews NavView { get; set; }
-		public object NavContent { get; set; }
-	}
+    public class NavContainer
+    {
+        public MetroViews NavView { get; set; }
+        public object NavContent { get; set; }
+    }
 }

@@ -1,10 +1,9 @@
-﻿using System;
+﻿using NLog;
+using System;
+using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using NLog;
 
 namespace JMMClient.UserControls
 {
@@ -12,25 +11,25 @@ namespace JMMClient.UserControls
     /// Interaction logic for VideoPlayerSettingsControl.xaml
     /// </summary>
     public partial class VideoPlayerSettingsControl : UserControl
-	{
+    {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         public VideoPlayerSettingsControl()
-		{
-			InitializeComponent();
+        {
+            InitializeComponent();
 
-			btnChooseMPCLocation.Click += new RoutedEventHandler(btnChooseMPCLocation_Click);
-			btnTestMPCLocation.Click += new RoutedEventHandler(btnTestMPCLocation_Click);
+            btnChooseMPCLocation.Click += new RoutedEventHandler(btnChooseMPCLocation_Click);
+            btnTestMPCLocation.Click += new RoutedEventHandler(btnTestMPCLocation_Click);
 
-			btnChoosePotLocation.Click += new RoutedEventHandler(btnChoosePotLocation_Click);
-			btnTestPotLocation.Click += new RoutedEventHandler(btnTestPotLocation_Click);
+            btnChoosePotLocation.Click += new RoutedEventHandler(btnChoosePotLocation_Click);
+            btnTestPotLocation.Click += new RoutedEventHandler(btnTestPotLocation_Click);
 
             btnChooseVLCLocation.Click += new RoutedEventHandler(btnChooseVLCLocation_Click);
             btnTestVLCLocation.Click += new RoutedEventHandler(btnTestVLCLocation_Click);
 
             chkAutoSetWatched.IsChecked = UserSettingsVM.Instance.VideoAutoSetWatched;
 
-			chkAutoSetWatched.Click += new RoutedEventHandler(chkAutoSetWatched_Click);
+            chkAutoSetWatched.Click += new RoutedEventHandler(chkAutoSetWatched_Click);
 
             cboDefaultPlayer.Items.Clear();
             cboDefaultPlayer.Items.Add("Windows Default");
@@ -284,6 +283,6 @@ namespace JMMClient.UserControls
                 MainWindow.videoHandler.Init();
             }
         }
-        
+
     }
 }

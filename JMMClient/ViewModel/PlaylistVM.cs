@@ -1,11 +1,9 @@
-﻿using System;
+﻿using GongSolutions.Wpf.DragDrop;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Collections.ObjectModel;
-using GongSolutions.Wpf.DragDrop;
-using System.Windows;
 using System.ComponentModel;
+using System.Windows;
 
 namespace JMMClient.ViewModel
 {

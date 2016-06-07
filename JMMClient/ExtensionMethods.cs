@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Controls;
-
-namespace JMMClient
+﻿namespace JMMClient
 {
-	static class ExtensionMethods
-	{
-		/*static public bool SetSelectedItem(this TreeView treeView, object item)
+    static class ExtensionMethods
+    {
+        /*static public bool SetSelectedItem(this TreeView treeView, object item)
 		{
 			return SetSelected(treeView, item);
 		}
@@ -43,5 +37,5 @@ namespace JMMClient
 
 			return false;
 		}*/
-	}
+    }
 }

@@ -1,18 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using JMMClient.ViewModel;
-using System.Threading;
+﻿using JMMClient.ViewModel;
+using System;
 using System.Globalization;
+using System.Threading;
+using System.Windows;
 
 namespace JMMClient.Forms
 {
@@ -55,7 +45,7 @@ namespace JMMClient.Forms
 
                     urlWebsite.URL = string.Format("http://anidb.net/perl-bin/animedb.pl?show=threads&do=anime&id={0}", anidb.AnimeID);
 
-                    
+
                 }
             }
             catch (Exception ex)

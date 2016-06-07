@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace JMMClient.AutoUpdates
+﻿namespace JMMClient.AutoUpdates
 {
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     public partial class Versions
