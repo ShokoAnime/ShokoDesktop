@@ -1,164 +1,161 @@
-﻿using System;
+﻿using NLog;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Web;
-using NLog;
 
 namespace JMMClient.Downloads
 {
-	public class TorrentsTokyoToshokan : ITorrentSource
-	{
-		private static Logger logger = LogManager.GetCurrentClassLogger();
-		private TorrentSourceType SourceType = TorrentSourceType.TokyoToshokanAnime;
+    public class TorrentsTokyoToshokan : ITorrentSource
+    {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private TorrentSourceType SourceType = TorrentSourceType.TokyoToshokanAnime;
 
-		#region ITorrentSource Members
+        #region ITorrentSource Members
 
-		public string TorrentSourceName
-		{
-			get
-			{
-				return EnumTranslator.TorrentSourceTranslated(SourceType);
-			}
-		}
+        public string TorrentSourceName
+        {
+            get
+            {
+                return EnumTranslator.TorrentSourceTranslated(SourceType);
+            }
+        }
 
-		public string TorrentSourceNameShort
-		{
-			get
-			{
-				return EnumTranslator.TorrentSourceTranslatedShort(SourceType);
-			}
-		}
+        public string TorrentSourceNameShort
+        {
+            get
+            {
+                return EnumTranslator.TorrentSourceTranslatedShort(SourceType);
+            }
+        }
 
-		public string GetSourceName()
-		{
-			return TorrentSourceName;
-		}
+        public string GetSourceName()
+        {
+            return TorrentSourceName;
+        }
 
-		public string GetSourceNameShort()
-		{
-			return TorrentSourceNameShort;
-		}
+        public string GetSourceNameShort()
+        {
+            return TorrentSourceNameShort;
+        }
 
-		public bool SupportsSearching()
-		{
-			return true;
-		}
+        public bool SupportsSearching()
+        {
+            return true;
+        }
 
-		public bool SupportsBrowsing()
-		{
-			return true;
-		}
+        public bool SupportsBrowsing()
+        {
+            return true;
+        }
 
-		public bool SupportsCRCMatching()
-		{
-			return true;
-		}
+        public bool SupportsCRCMatching()
+        {
+            return true;
+        }
 
-		public TorrentsTokyoToshokan()
-		{
-		}
+        public TorrentsTokyoToshokan()
+        {
+        }
 
-		public TorrentsTokyoToshokan(TorrentSourceType tsType)
-		{
-			SourceType = tsType;
-		}
+        public TorrentsTokyoToshokan(TorrentSourceType tsType)
+        {
+            SourceType = tsType;
+        }
 
-		private List<TorrentLinkVM> ParseSource(string output)
-		{
-			List<TorrentLinkVM> torLinks = new List<TorrentLinkVM>();
+        private List<TorrentLinkVM> ParseSource(string output)
+        {
+            List<TorrentLinkVM> torLinks = new List<TorrentLinkVM>();
 
-			char q = (char)34;
-			string quote = q.ToString();
+            char q = (char)34;
+            string quote = q.ToString();
 
-			string startBlock = "<a rel=" + quote + "nofollow" + quote + " type=" + quote + "application/x-bittorrent" + quote;
+            string startBlock = "<a rel=" + quote + "nofollow" + quote + " type=" + quote + "application/x-bittorrent" + quote;
 
-			string torStart = "href=" + quote;
-			string torEnd = quote;
+            string torStart = "href=" + quote;
+            string torEnd = quote;
 
-			string nameStart = ">";
-			string nameEnd = "</a>";
+            string nameStart = ">";
+            string nameEnd = "</a>";
 
-			string sizeStart = "Size:";
-			string sizeEnd = "|";
+            string sizeStart = "Size:";
+            string sizeEnd = "|";
 
-			int pos = output.IndexOf(startBlock, 0);
-			while (pos > 0)
-			{
+            int pos = output.IndexOf(startBlock, 0);
+            while (pos > 0)
+            {
 
-				if (pos <= 0) break;
+                if (pos <= 0) break;
 
-				int posTorStart = output.IndexOf(torStart, pos + 1);
-				int posTorEnd = output.IndexOf(torEnd, posTorStart + torStart.Length + 1);
+                int posTorStart = output.IndexOf(torStart, pos + 1);
+                int posTorEnd = output.IndexOf(torEnd, posTorStart + torStart.Length + 1);
 
-				//Console.WriteLine("{0} - {1}", posTorStart, posTorEnd);
+                //Console.WriteLine("{0} - {1}", posTorStart, posTorEnd);
 
-				string torLink = output.Substring(posTorStart + torStart.Length, posTorEnd - posTorStart - torStart.Length);
-				torLink = DownloadHelper.FixNyaaTorrentLink(torLink);
+                string torLink = output.Substring(posTorStart + torStart.Length, posTorEnd - posTorStart - torStart.Length);
+                torLink = DownloadHelper.FixNyaaTorrentLink(torLink);
 
-				// remove html codes
-				//torLink = torLink.Replace("amp;", "");
-				torLink = HttpUtility.HtmlDecode(torLink);
+                // remove html codes
+                //torLink = torLink.Replace("amp;", "");
+                torLink = HttpUtility.HtmlDecode(torLink);
 
-				int posNameStart = output.IndexOf(nameStart, posTorEnd);
-				int posNameEnd = output.IndexOf(nameEnd, posNameStart + nameStart.Length + 1);
+                int posNameStart = output.IndexOf(nameStart, posTorEnd);
+                int posNameEnd = output.IndexOf(nameEnd, posNameStart + nameStart.Length + 1);
 
 
-				string torName = output.Substring(posNameStart + nameStart.Length, posNameEnd - posNameStart - nameStart.Length);
+                string torName = output.Substring(posNameStart + nameStart.Length, posNameEnd - posNameStart - nameStart.Length);
 
-				string torSize = "";
-				int posSizeStart = output.IndexOf(sizeStart, posNameEnd);
-				if (posSizeStart > 0)
-				{
-					int posSizeEnd = output.IndexOf(sizeEnd, posSizeStart + sizeStart.Length + 1);
+                string torSize = "";
+                int posSizeStart = output.IndexOf(sizeStart, posNameEnd);
+                if (posSizeStart > 0)
+                {
+                    int posSizeEnd = output.IndexOf(sizeEnd, posSizeStart + sizeStart.Length + 1);
 
-					torSize = output.Substring(posSizeStart + sizeStart.Length, posSizeEnd - posSizeStart - sizeStart.Length);
-				}
+                    torSize = output.Substring(posSizeStart + sizeStart.Length, posSizeEnd - posSizeStart - sizeStart.Length);
+                }
 
-				TorrentLinkVM torrentLink = new TorrentLinkVM(SourceType);
-				torrentLink.TorrentDownloadLink = torLink;
-				torrentLink.TorrentName = torName;
-				torrentLink.Size = torSize.Trim();
-				torLinks.Add(torrentLink);
+                TorrentLinkVM torrentLink = new TorrentLinkVM(SourceType);
+                torrentLink.TorrentDownloadLink = torLink;
+                torrentLink.TorrentName = torName;
+                torrentLink.Size = torSize.Trim();
+                torLinks.Add(torrentLink);
 
-				pos = output.IndexOf(startBlock, pos + 1);
+                pos = output.IndexOf(startBlock, pos + 1);
 
-			}
+            }
 
-			return torLinks;
-		}
+            return torLinks;
+        }
 
-		public List<TorrentLinkVM> GetTorrents(List<string> searchParms)
-		{
-			string urlBase = "http://www.tokyotosho.info/search.php?terms={0}&type=1";
-			if (SourceType == TorrentSourceType.TokyoToshokanAll)
-				urlBase = "http://www.tokyotosho.info/search.php?terms={0}";
+        public List<TorrentLinkVM> GetTorrents(List<string> searchParms)
+        {
+            string urlBase = "http://www.tokyotosho.info/search.php?terms={0}&type=1";
+            if (SourceType == TorrentSourceType.TokyoToshokanAll)
+                urlBase = "http://www.tokyotosho.info/search.php?terms={0}";
 
-			string searchCriteria = "";
-			foreach (string parm in searchParms)
-			{
-				if (searchCriteria.Length > 0) searchCriteria += "+";
-				searchCriteria += parm.Trim();
-			}
+            string searchCriteria = "";
+            foreach (string parm in searchParms)
+            {
+                if (searchCriteria.Length > 0) searchCriteria += "+";
+                searchCriteria += parm.Trim();
+            }
 
-			string url = string.Format(urlBase, searchCriteria);
-			string output = Utils.DownloadWebPage(url);
+            string url = string.Format(urlBase, searchCriteria);
+            string output = Utils.DownloadWebPage(url);
 
-			logger.Trace("GetTorrents Search: " + url);
+            logger.Trace("GetTorrents Search: " + url);
 
-			return ParseSource(output);
-		}
+            return ParseSource(output);
+        }
 
-		public List<TorrentLinkVM> BrowseTorrents()
-		{
-			string url = "http://www.tokyotosho.info/?cat=1";
-			if (SourceType == TorrentSourceType.TokyoToshokanAll)
-				url = "http://www.tokyotosho.info/";
-			string output = Utils.DownloadWebPage(url);
+        public List<TorrentLinkVM> BrowseTorrents()
+        {
+            string url = "http://www.tokyotosho.info/?cat=1";
+            if (SourceType == TorrentSourceType.TokyoToshokanAll)
+                url = "http://www.tokyotosho.info/";
+            string output = Utils.DownloadWebPage(url);
 
-			return ParseSource(output);
-		}
+            return ParseSource(output);
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

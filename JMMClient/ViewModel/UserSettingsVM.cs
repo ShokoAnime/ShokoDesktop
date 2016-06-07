@@ -1,268 +1,268 @@
-﻿using System;
+﻿using JMMClient.Downloads;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Collections.ObjectModel;
-using JMMClient.Downloads;
+using System.ComponentModel;
 using System.Windows;
 
 namespace JMMClient
 {
     public class UserSettingsVM : INotifyPropertyChanged
-	{
-		public event PropertyChangedEventHandler PropertyChanged;
+    {
+        public event PropertyChangedEventHandler PropertyChanged;
 
-		protected virtual void OnPropertyChanged(PropertyChangedEventArgs e)
-		{
-			PropertyChangedEventHandler handler = PropertyChanged;
-			if (handler != null)
-			{
-				handler(this, e);
-			}
-		}
+        protected virtual void OnPropertyChanged(PropertyChangedEventArgs e)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
 
-		private static UserSettingsVM _instance;
-		public static UserSettingsVM Instance
-		{
-			get
-			{
-				if (_instance == null)
-				{
-					_instance = new UserSettingsVM();
-				}
-				return _instance;
-			}
-		}
+        private static UserSettingsVM _instance;
+        public static UserSettingsVM Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new UserSettingsVM();
+                }
+                return _instance;
+            }
+        }
 
-		public ObservableCollection<TorrentSourceVM> UnselectedTorrentSources { get; set; }
-		public ObservableCollection<TorrentSourceVM> SelectedTorrentSources { get; set; }
-		public ObservableCollection<TorrentSourceVM> AllTorrentSources { get; set; }
-		public ObservableCollection<TorrentSourceVM> CurrentSearchTorrentSources { get; set; }
+        public ObservableCollection<TorrentSourceVM> UnselectedTorrentSources { get; set; }
+        public ObservableCollection<TorrentSourceVM> SelectedTorrentSources { get; set; }
+        public ObservableCollection<TorrentSourceVM> AllTorrentSources { get; set; }
+        public ObservableCollection<TorrentSourceVM> CurrentSearchTorrentSources { get; set; }
 
-		public UserSettingsVM()
-		{
-			UnselectedTorrentSources = new ObservableCollection<TorrentSourceVM>();
-			SelectedTorrentSources = new ObservableCollection<TorrentSourceVM>();
-			AllTorrentSources = new ObservableCollection<TorrentSourceVM>(GetAllTorrentSources());
-			CurrentSearchTorrentSources = new ObservableCollection<TorrentSourceVM>();
-		}
+        public UserSettingsVM()
+        {
+            UnselectedTorrentSources = new ObservableCollection<TorrentSourceVM>();
+            SelectedTorrentSources = new ObservableCollection<TorrentSourceVM>();
+            AllTorrentSources = new ObservableCollection<TorrentSourceVM>(GetAllTorrentSources());
+            CurrentSearchTorrentSources = new ObservableCollection<TorrentSourceVM>();
+        }
 
-		public List<TorrentSourceVM> GetAllTorrentSources()
-		{
-			List<TorrentSourceVM> sources = new List<TorrentSourceVM>();
+        public List<TorrentSourceVM> GetAllTorrentSources()
+        {
+            List<TorrentSourceVM> sources = new List<TorrentSourceVM>();
 
-			sources.Add(new TorrentSourceVM(TorrentSourceType.TokyoToshokanAnime, true));
-			sources.Add(new TorrentSourceVM(TorrentSourceType.TokyoToshokanAll, true));
-			sources.Add(new TorrentSourceVM(TorrentSourceType.Nyaa, true));
+            sources.Add(new TorrentSourceVM(TorrentSourceType.TokyoToshokanAnime, true));
+            sources.Add(new TorrentSourceVM(TorrentSourceType.TokyoToshokanAll, true));
+            sources.Add(new TorrentSourceVM(TorrentSourceType.Nyaa, true));
             sources.Add(new TorrentSourceVM(TorrentSourceType.Sukebei, true));
-			sources.Add(new TorrentSourceVM(TorrentSourceType.BakaBT, true));
-			sources.Add(new TorrentSourceVM(TorrentSourceType.AnimeBytes, true));
+            sources.Add(new TorrentSourceVM(TorrentSourceType.BakaBT, true));
+            sources.Add(new TorrentSourceVM(TorrentSourceType.AnimeBytes, true));
 
-			return sources;
-		}
+            return sources;
+        }
 
-		public void RefreshTorrentSources()
-		{
-			UnselectedTorrentSources.Clear();
-			SelectedTorrentSources.Clear();
+        public void RefreshTorrentSources()
+        {
+            UnselectedTorrentSources.Clear();
+            SelectedTorrentSources.Clear();
 
-			try
-			{
+            try
+            {
 
-				string[] sources = AppSettings.TorrentSources.Split(';');
+                string[] sources = AppSettings.TorrentSources.Split(';');
 
-				foreach (string src in sources)
-				{
-					if (string.IsNullOrEmpty(src)) continue;
-					int iSrc = 0;
-					int.TryParse(src, out iSrc);
+                foreach (string src in sources)
+                {
+                    if (string.IsNullOrEmpty(src)) continue;
+                    int iSrc = 0;
+                    int.TryParse(src, out iSrc);
 
 
-					TorrentSourceVM selSource = new TorrentSourceVM((TorrentSourceType)iSrc, true);
+                    TorrentSourceVM selSource = new TorrentSourceVM((TorrentSourceType)iSrc, true);
                     if ((TorrentSourceType)iSrc != TorrentSourceType.AnimeSuki)
-					    SelectedTorrentSources.Add(selSource);
-				}
+                        SelectedTorrentSources.Add(selSource);
+                }
 
-				foreach (TorrentSourceVM src in GetAllTorrentSources())
-				{
-					bool inSelected = false;
-					foreach (TorrentSourceVM selSource in SelectedTorrentSources)
-					{
-						if (src.TorrentSource == selSource.TorrentSource)
-						{
-							inSelected = true;
-							break;
-						}
-					}
-					if (!inSelected)
-						UnselectedTorrentSources.Add(src);
-				}
+                foreach (TorrentSourceVM src in GetAllTorrentSources())
+                {
+                    bool inSelected = false;
+                    foreach (TorrentSourceVM selSource in SelectedTorrentSources)
+                    {
+                        if (src.TorrentSource == selSource.TorrentSource)
+                        {
+                            inSelected = true;
+                            break;
+                        }
+                    }
+                    if (!inSelected)
+                        UnselectedTorrentSources.Add(src);
+                }
 
 
-				CurrentSearchTorrentSources.Clear();
-				foreach (TorrentSourceVM src in GetAllTorrentSources())
-				{
-					bool inSelected = false;
-					foreach (TorrentSourceVM selSource in SelectedTorrentSources)
-					{
-						if (src.TorrentSource == selSource.TorrentSource)
-						{
-							inSelected = true;
-							break;
-						}
-					}
+                CurrentSearchTorrentSources.Clear();
+                foreach (TorrentSourceVM src in GetAllTorrentSources())
+                {
+                    bool inSelected = false;
+                    foreach (TorrentSourceVM selSource in SelectedTorrentSources)
+                    {
+                        if (src.TorrentSource == selSource.TorrentSource)
+                        {
+                            inSelected = true;
+                            break;
+                        }
+                    }
 
-					TorrentSourceVM newSource = new TorrentSourceVM(src.TorrentSource, inSelected);
-					CurrentSearchTorrentSources.Add(newSource);
-				}
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-		}
+                    TorrentSourceVM newSource = new TorrentSourceVM(src.TorrentSource, inSelected);
+                    CurrentSearchTorrentSources.Add(newSource);
+                }
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+        }
 
-		public void RemoveTorrentSource(TorrentSourceType tsType)
-		{
-			string[] sources = AppSettings.TorrentSources.Split(';');
+        public void RemoveTorrentSource(TorrentSourceType tsType)
+        {
+            string[] sources = AppSettings.TorrentSources.Split(';');
 
-			string newSetting = string.Empty;
-			
+            string newSetting = string.Empty;
 
-			string sType = ((int)tsType).ToString();
 
-			foreach (string src in sources)
-			{
-				if (string.IsNullOrEmpty(src)) continue;
-				if (src.Trim() == sType) continue;
+            string sType = ((int)tsType).ToString();
 
-				if (!string.IsNullOrEmpty(newSetting))
-					newSetting += ";";
+            foreach (string src in sources)
+            {
+                if (string.IsNullOrEmpty(src)) continue;
+                if (src.Trim() == sType) continue;
 
-				newSetting += src;
-			}
+                if (!string.IsNullOrEmpty(newSetting))
+                    newSetting += ";";
 
-			AppSettings.TorrentSources = newSetting;
-			RefreshTorrentSources();
-		}
+                newSetting += src;
+            }
 
-		public int MoveUpTorrentSource(TorrentSourceType tsType)
-		{
-			string[] sources = AppSettings.TorrentSources.Split(';');
-			string sType = ((int)tsType).ToString();
+            AppSettings.TorrentSources = newSetting;
+            RefreshTorrentSources();
+        }
 
-			List<string> sourcesList = new List<string>();
+        public int MoveUpTorrentSource(TorrentSourceType tsType)
+        {
+            string[] sources = AppSettings.TorrentSources.Split(';');
+            string sType = ((int)tsType).ToString();
 
-			// get a list of valid sources
-			foreach (string src in sources)
-			{
-				if (string.IsNullOrEmpty(src)) continue;
-				sourcesList.Add(src);
-			}
+            List<string> sourcesList = new List<string>();
 
-			// find the position of the source to be moved
-			int pos = -1;
-			for (int i = 0; i < sourcesList.Count; i++)
-			{
-				if (sourcesList[i].Trim() == sType) pos = i;
-			}
+            // get a list of valid sources
+            foreach (string src in sources)
+            {
+                if (string.IsNullOrEmpty(src)) continue;
+                sourcesList.Add(src);
+            }
 
-			if (pos == -1) return -1; // not found
-			if (pos == 0) return -1; // already at top
+            // find the position of the source to be moved
+            int pos = -1;
+            for (int i = 0; i < sourcesList.Count; i++)
+            {
+                if (sourcesList[i].Trim() == sType) pos = i;
+            }
 
-			string lan1 = sourcesList[pos - 1];
-			sourcesList[pos - 1] = sType;
-			sourcesList[pos] = lan1;
+            if (pos == -1) return -1; // not found
+            if (pos == 0) return -1; // already at top
 
-			string newSetting = string.Empty;
-			
-			foreach (string src in sourcesList)
-			{
-				if (!string.IsNullOrEmpty(newSetting))
-					newSetting += ";";
+            string lan1 = sourcesList[pos - 1];
+            sourcesList[pos - 1] = sType;
+            sourcesList[pos] = lan1;
 
-				newSetting += src;
-			}
+            string newSetting = string.Empty;
 
-			AppSettings.TorrentSources = newSetting;
-			RefreshTorrentSources();
+            foreach (string src in sourcesList)
+            {
+                if (!string.IsNullOrEmpty(newSetting))
+                    newSetting += ";";
 
-			return pos - 1;
-		}
+                newSetting += src;
+            }
 
-		public int MoveDownTorrentSource(TorrentSourceType tsType)
-		{
-			string[] sources = AppSettings.TorrentSources.Split(';');
-			string sType = ((int)tsType).ToString();
+            AppSettings.TorrentSources = newSetting;
+            RefreshTorrentSources();
 
-			List<string> sourcesList = new List<string>();
+            return pos - 1;
+        }
 
-			// get a list of valid sources
-			foreach (string src in sources)
-			{
-				if (string.IsNullOrEmpty(src)) continue;
-				sourcesList.Add(src);
-			}
+        public int MoveDownTorrentSource(TorrentSourceType tsType)
+        {
+            string[] sources = AppSettings.TorrentSources.Split(';');
+            string sType = ((int)tsType).ToString();
 
-			// find the position of the source to be moved
-			int pos = -1;
-			for (int i = 0; i < sourcesList.Count; i++)
-			{
-				if (sourcesList[i].Trim() == sType) pos = i;
-			}
+            List<string> sourcesList = new List<string>();
 
-			if (pos == -1) return -1; // not found
-			if (pos == sourcesList.Count - 1) return -1; // already at bottom
+            // get a list of valid sources
+            foreach (string src in sources)
+            {
+                if (string.IsNullOrEmpty(src)) continue;
+                sourcesList.Add(src);
+            }
 
-			string lan1 = sourcesList[pos + 1];
-			sourcesList[pos + 1] = sType;
-			sourcesList[pos] = lan1;
+            // find the position of the source to be moved
+            int pos = -1;
+            for (int i = 0; i < sourcesList.Count; i++)
+            {
+                if (sourcesList[i].Trim() == sType) pos = i;
+            }
 
-			string newSetting = string.Empty;
-			
-			foreach (string lan in sourcesList)
-			{
-				if (!string.IsNullOrEmpty(newSetting))
-					newSetting += ";";
+            if (pos == -1) return -1; // not found
+            if (pos == sourcesList.Count - 1) return -1; // already at bottom
 
-				newSetting += lan;
-			}
+            string lan1 = sourcesList[pos + 1];
+            sourcesList[pos + 1] = sType;
+            sourcesList[pos] = lan1;
 
-			AppSettings.TorrentSources = newSetting;
-			RefreshTorrentSources();
+            string newSetting = string.Empty;
 
-			return pos + 1;
-		}
+            foreach (string lan in sourcesList)
+            {
+                if (!string.IsNullOrEmpty(newSetting))
+                    newSetting += ";";
 
-		public void AddTorrentSource(TorrentSourceType tsType)
-		{
-			string sType = ((int)tsType).ToString();
+                newSetting += lan;
+            }
 
-			string newSetting = AppSettings.TorrentSources;
+            AppSettings.TorrentSources = newSetting;
+            RefreshTorrentSources();
 
-			if (!string.IsNullOrEmpty(newSetting))
-				newSetting += ";";
+            return pos + 1;
+        }
 
-			newSetting += sType;
-			AppSettings.TorrentSources = newSetting;
+        public void AddTorrentSource(TorrentSourceType tsType)
+        {
+            string sType = ((int)tsType).ToString();
 
-			RefreshTorrentSources();
-		}
+            string newSetting = AppSettings.TorrentSources;
 
-		public bool TagsExpanded
-		{
-			get { return AppSettings.TagsExpanded; }
-			set
-			{
-				AppSettings.TagsExpanded = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("TagsExpanded"));
-				OnPropertyChanged(new PropertyChangedEventArgs("TagsCollapsed"));
-			}
-		}
+            if (!string.IsNullOrEmpty(newSetting))
+                newSetting += ";";
 
-		public bool TagsCollapsed
-		{
-			get { return !AppSettings.TagsExpanded; }
-		}
+            newSetting += sType;
+            AppSettings.TorrentSources = newSetting;
+
+            RefreshTorrentSources();
+        }
+
+        public bool TagsExpanded
+        {
+            get { return AppSettings.TagsExpanded; }
+            set
+            {
+                AppSettings.TagsExpanded = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("TagsExpanded"));
+                OnPropertyChanged(new PropertyChangedEventArgs("TagsCollapsed"));
+            }
+        }
+
+        public bool TagsCollapsed
+        {
+            get { return !AppSettings.TagsExpanded; }
+        }
 
         public bool CustomTagsExpanded
         {
@@ -280,508 +280,508 @@ namespace JMMClient
             get { return !AppSettings.CustomTagsExpanded; }
         }
 
-		public bool TitlesExpanded
-		{
-			get { return AppSettings.TitlesExpanded; }
-			set
-			{
-				AppSettings.TitlesExpanded = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("TitlesExpanded"));
-				OnPropertyChanged(new PropertyChangedEventArgs("TitlesCollapsed"));
-			}
-		}
-
-		public bool TitlesCollapsed
-		{
-			get { return !AppSettings.TitlesExpanded; }
-		}
-
-		public bool SeriesTvDBLinksExpanded
-		{
-			get { return AppSettings.SeriesTvDBLinksExpanded; }
-			set
-			{
-				AppSettings.SeriesTvDBLinksExpanded = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("SeriesTvDBLinksExpanded"));
-				OnPropertyChanged(new PropertyChangedEventArgs("SeriesTvDBLinksCollapsed"));
-			}
-		}
-
-		public bool SeriesTvDBLinksCollapsed
-		{
-			get { return !AppSettings.SeriesTvDBLinksExpanded; }
-		}
-
-		public bool SeriesNextEpisodeExpanded
-		{
-			get { return AppSettings.SeriesNextEpisodeExpanded; }
-			set
-			{
-				AppSettings.SeriesNextEpisodeExpanded = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("SeriesNextEpisodeExpanded"));
-				OnPropertyChanged(new PropertyChangedEventArgs("SeriesNextEpisodeCollapsed"));
-			}
-		}
-
-		public bool SeriesNextEpisodeCollapsed
-		{
-			get { return !AppSettings.SeriesNextEpisodeExpanded; }
-		}
-
-		public bool SeriesGroupExpanded
-		{
-			get { return AppSettings.SeriesGroupExpanded; }
-			set
-			{
-				AppSettings.SeriesGroupExpanded = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("SeriesGroupExpanded"));
-				OnPropertyChanged(new PropertyChangedEventArgs("SeriesGroupCollapsed"));
-			}
-		}
-
-		public bool SeriesGroupCollapsed
-		{
-			get { return !AppSettings.SeriesGroupExpanded; }
-		}
-
-		public bool DashWatchNextEpExpanded
-		{
-			get { return AppSettings.DashWatchNextEpExpanded; }
-			set
-			{
-				AppSettings.DashWatchNextEpExpanded = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("DashWatchNextEpExpanded"));
-				OnPropertyChanged(new PropertyChangedEventArgs("DashWatchNextEpCollapsed"));
-			}
-		}
-
-		public bool DashWatchNextEpCollapsed
-		{
-			get { return !AppSettings.DashWatchNextEpExpanded; }
-		}
-
-
-
-
-		public bool DashRecentlyWatchEpsExpanded
-		{
-			get { return AppSettings.DashRecentlyWatchEpsExpanded; }
-			set
-			{
-				AppSettings.DashRecentlyWatchEpsExpanded = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("DashRecentlyWatchEpsExpanded"));
-				OnPropertyChanged(new PropertyChangedEventArgs("DashRecentlyWatchEpsCollapsed"));
-			}
-		}
-
-		public bool DashRecentlyWatchEpsCollapsed
-		{
-			get { return !AppSettings.DashRecentlyWatchEpsExpanded; }
-		}
-
-
-
+        public bool TitlesExpanded
+        {
+            get { return AppSettings.TitlesExpanded; }
+            set
+            {
+                AppSettings.TitlesExpanded = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("TitlesExpanded"));
+                OnPropertyChanged(new PropertyChangedEventArgs("TitlesCollapsed"));
+            }
+        }
+
+        public bool TitlesCollapsed
+        {
+            get { return !AppSettings.TitlesExpanded; }
+        }
+
+        public bool SeriesTvDBLinksExpanded
+        {
+            get { return AppSettings.SeriesTvDBLinksExpanded; }
+            set
+            {
+                AppSettings.SeriesTvDBLinksExpanded = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("SeriesTvDBLinksExpanded"));
+                OnPropertyChanged(new PropertyChangedEventArgs("SeriesTvDBLinksCollapsed"));
+            }
+        }
+
+        public bool SeriesTvDBLinksCollapsed
+        {
+            get { return !AppSettings.SeriesTvDBLinksExpanded; }
+        }
+
+        public bool SeriesNextEpisodeExpanded
+        {
+            get { return AppSettings.SeriesNextEpisodeExpanded; }
+            set
+            {
+                AppSettings.SeriesNextEpisodeExpanded = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("SeriesNextEpisodeExpanded"));
+                OnPropertyChanged(new PropertyChangedEventArgs("SeriesNextEpisodeCollapsed"));
+            }
+        }
+
+        public bool SeriesNextEpisodeCollapsed
+        {
+            get { return !AppSettings.SeriesNextEpisodeExpanded; }
+        }
+
+        public bool SeriesGroupExpanded
+        {
+            get { return AppSettings.SeriesGroupExpanded; }
+            set
+            {
+                AppSettings.SeriesGroupExpanded = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("SeriesGroupExpanded"));
+                OnPropertyChanged(new PropertyChangedEventArgs("SeriesGroupCollapsed"));
+            }
+        }
+
+        public bool SeriesGroupCollapsed
+        {
+            get { return !AppSettings.SeriesGroupExpanded; }
+        }
+
+        public bool DashWatchNextEpExpanded
+        {
+            get { return AppSettings.DashWatchNextEpExpanded; }
+            set
+            {
+                AppSettings.DashWatchNextEpExpanded = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("DashWatchNextEpExpanded"));
+                OnPropertyChanged(new PropertyChangedEventArgs("DashWatchNextEpCollapsed"));
+            }
+        }
+
+        public bool DashWatchNextEpCollapsed
+        {
+            get { return !AppSettings.DashWatchNextEpExpanded; }
+        }
+
+
+
+
+        public bool DashRecentlyWatchEpsExpanded
+        {
+            get { return AppSettings.DashRecentlyWatchEpsExpanded; }
+            set
+            {
+                AppSettings.DashRecentlyWatchEpsExpanded = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("DashRecentlyWatchEpsExpanded"));
+                OnPropertyChanged(new PropertyChangedEventArgs("DashRecentlyWatchEpsCollapsed"));
+            }
+        }
+
+        public bool DashRecentlyWatchEpsCollapsed
+        {
+            get { return !AppSettings.DashRecentlyWatchEpsExpanded; }
+        }
+
+
+
 
-		public bool DashSeriesMissingEpisodesExpanded
-		{
-			get { return AppSettings.DashSeriesMissingEpisodesExpanded; }
-			set
-			{
-				AppSettings.DashSeriesMissingEpisodesExpanded = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("DashSeriesMissingEpisodesExpanded"));
-				OnPropertyChanged(new PropertyChangedEventArgs("DashSeriesMissingEpisodesCollapsed"));
-			}
-		}
-
-		public bool DashSeriesMissingEpisodesCollapsed
-		{
-			get { return !AppSettings.DashSeriesMissingEpisodesExpanded; }
-		}
-
-		public bool DashMiniCalendarExpanded
-		{
-			get { return AppSettings.DashMiniCalendarExpanded; }
-			set
-			{
-				AppSettings.DashMiniCalendarExpanded = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("DashMiniCalendarExpanded"));
-				OnPropertyChanged(new PropertyChangedEventArgs("DashMiniCalendarCollapsed"));
-			}
-		}
-
-		public bool DashRecommendationsWatchCollapsed
-		{
-			get { return !AppSettings.DashRecommendationsWatchExpanded; }
-		}
-
-		public bool DashRecommendationsWatchExpanded
-		{
-			get { return AppSettings.DashRecommendationsWatchExpanded; }
-			set
-			{
-				AppSettings.DashRecommendationsWatchExpanded = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("DashRecommendationsWatchExpanded"));
-				OnPropertyChanged(new PropertyChangedEventArgs("DashRecommendationsWatchCollapsed"));
-			}
-		}
-
-		public bool DashRecommendationsDownloadCollapsed
-		{
-			get { return !AppSettings.DashRecommendationsDownloadExpanded; }
-		}
-
-		public bool DashRecommendationsDownloadExpanded
-		{
-			get { return AppSettings.DashRecommendationsDownloadExpanded; }
-			set
-			{
-				AppSettings.DashRecommendationsDownloadExpanded = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("DashRecommendationsDownloadExpanded"));
-				OnPropertyChanged(new PropertyChangedEventArgs("DashRecommendationsDownloadCollapsed"));
-			}
-		}
-
-		public bool DashRecentAdditionsCollapsed
-		{
-			get { return !AppSettings.DashRecentAdditionsExpanded; }
-		}
-
-		public bool DashRecentAdditionsExpanded
-		{
-			get { return AppSettings.DashRecentAdditionsExpanded; }
-			set
-			{
-				AppSettings.DashRecentAdditionsExpanded = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("DashRecentAdditionsExpanded"));
-				OnPropertyChanged(new PropertyChangedEventArgs("DashRecentAdditionsCollapsed"));
-			}
-		}
-
-		public int DashRecentAdditionsType
-		{
-			get { return AppSettings.DashRecentAdditionsType; }
-			set
-			{
-				AppSettings.DashRecentAdditionsType = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("DashRecentAdditionsType"));
-			}
-		}
-
-
-
-		public bool DashMiniCalendarCollapsed
-		{
-			get { return !AppSettings.DashMiniCalendarExpanded; }
-		}
-
-		public int DisplayHeight_GroupList
-		{
-			get { return AppSettings.DisplayHeight_GroupList; }
-			set
-			{
-				AppSettings.DisplayHeight_GroupList = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("DisplayHeight_GroupList"));	
-			}
-		}
-
-		
-
-		public int DisplayHeight_SeriesInfo
-		{
-			get { return AppSettings.DisplayHeight_SeriesInfo; }
-			set
-			{
-				AppSettings.DisplayHeight_SeriesInfo = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("DisplayHeight_SeriesInfo"));
-			}
-		}
-
-		public int DisplayWidth_EpisodeImage
-		{
-			get { return AppSettings.DisplayWidth_EpisodeImage; }
-			set
-			{
-				AppSettings.DisplayWidth_EpisodeImage = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("DisplayWidth_EpisodeImage"));
-			}
-		}
-
-		public int DisplayStyle_GroupList
-		{
-			get { return AppSettings.DisplayStyle_GroupList; }
-			set
-			{
-				AppSettings.DisplayStyle_GroupList = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("DisplayStyle_GroupList"));
-			}
-		}
-
-		public int DisplayHeight_DashImage
-		{
-			get { return AppSettings.DisplayHeight_DashImage; }
-			set
-			{
-				AppSettings.DisplayHeight_DashImage = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("DisplayHeight_DashImage"));
-			}
-		}
-
-		public int Dash_WatchNext_Items
-		{
-			get { return AppSettings.Dash_WatchNext_Items; }
-			set
-			{
-				AppSettings.Dash_WatchNext_Items = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("Dash_WatchNext_Items"));
-			}
-		}
-
-		public int Dash_RecentAdditions_Items
-		{
-			get { return AppSettings.Dash_RecentAdditions_Items; }
-			set
-			{
-				AppSettings.Dash_RecentAdditions_Items = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("Dash_RecentAdditions_Items"));
-			}
-		}
-
-		public int Dash_WatchNext_Height
-		{
-			get { return AppSettings.Dash_WatchNext_Height; }
-			set
-			{
-				AppSettings.Dash_WatchNext_Height = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("Dash_WatchNext_Height"));
-			}
-		}
-
-
-
-
-		public int DashMetro_WatchNext_Items
-		{
-			get { return AppSettings.DashMetro_WatchNext_Items; }
-			set
-			{
-				AppSettings.DashMetro_WatchNext_Items = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("DashMetro_WatchNext_Items"));
-			}
-		}
-
-		public int DashMetro_RandomSeries_Items
-		{
-			get { return AppSettings.DashMetro_RandomSeries_Items; }
-			set
-			{
-				AppSettings.DashMetro_RandomSeries_Items = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("DashMetro_RandomSeries_Items"));
-			}
-		}
-
-
-		public int DashMetro_NewEpisodes_Items
-		{
-			get { return AppSettings.DashMetro_NewEpisodes_Items; }
-			set
-			{
-				AppSettings.DashMetro_NewEpisodes_Items = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("DashMetro_NewEpisodes_Items"));
-			}
-		}
-
-		public int DashMetro_Image_Height
-		{
-			get { return AppSettings.DashMetro_Image_Height; }
-			set
-			{
-				AppSettings.DashMetro_Image_Height = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("DashMetro_Image_Height"));
-				SetDashMetro_Image_Width();
-			}
-		}
-
-		public void SetDashMetro_Image_Width()
-		{
-			if (AppSettings.DashMetroImageType == DashboardMetroImageType.Fanart)
-			{
-				DashMetro_Image_Width = (int)((double)DashMetro_Image_Height * 1.777777777777778);
-			}
-			else
-			{
-				DashMetro_Image_Width = (int)((double)DashMetro_Image_Height * 0.68);
-			}
-		}
-
-		private int dashMetro_Image_Width = 200;
-		public int DashMetro_Image_Width
-		{
-			get { return dashMetro_Image_Width; }
-			set
-			{
-				dashMetro_Image_Width = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("DashMetro_Image_Width"));
-			}
-		}
-
-
-		public int Dash_RecentAdditions_Height
-		{
-			get { return AppSettings.Dash_RecentAdditions_Height; }
-			set
-			{
-				AppSettings.Dash_RecentAdditions_Height = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("Dash_RecentAdditions_Height"));
-			}
-		}
-
-
-		public int SeriesGroup_Image_Height
-		{
-			get { return AppSettings.SeriesGroup_Image_Height; }
-			set
-			{
-				AppSettings.SeriesGroup_Image_Height = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("SeriesGroup_Image_Height"));
-				int width = (int)(SeriesGroup_Image_Height * 1.77777777);
-				SeriesGroup_Image_Width = width;
-			}
-		}
-
-		public int SeriesGroup_Image_Width
-		{
-			get 
-			{
-				int width = (int)(SeriesGroup_Image_Height * 1.77777777);
-				return width; 
-			}
-			set
-			{
-				OnPropertyChanged(new PropertyChangedEventArgs("SeriesGroup_Image_Width"));
-			}
-		}
-
-		public int PlaylistHeader_Image_Height
-		{
-			get { return AppSettings.PlaylistHeader_Image_Height; }
-			set
-			{
-				AppSettings.PlaylistHeader_Image_Height = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("PlaylistHeader_Image_Height"));
-				int width = (int)(PlaylistHeader_Image_Height * 1.77777777);
-				PlaylistHeader_Image_Width = width;
-			}
-		}
-
-		public int PlaylistHeader_Image_Width
-		{
-			get
-			{
-				int width = (int)(PlaylistHeader_Image_Height * 1.77777777);
-				return width;
-			}
-			set
-			{
-				OnPropertyChanged(new PropertyChangedEventArgs("PlaylistHeader_Image_Width"));
-			}
-		}
-
-		public int PlaylistItems_Image_Height
-		{
-			get { return AppSettings.PlaylistItems_Image_Height; }
-			set
-			{
-				AppSettings.PlaylistItems_Image_Height = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("PlaylistItems_Image_Height"));
-			}
-		}
-
-		public int PlaylistEpisode_Image_Width
-		{
-			get { return AppSettings.PlaylistEpisode_Image_Width; }
-			set
-			{
-				AppSettings.PlaylistEpisode_Image_Width = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("PlaylistEpisode_Image_Width"));
-			}
-		}
-
-		public bool PlaylistItems_ShowDetails
-		{
-			get { return AppSettings.PlaylistItems_ShowDetails; }
-			set
-			{
-				AppSettings.PlaylistItems_ShowDetails = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("PlaylistItems_ShowDetails"));
-			}
-		}
-
-
-		public int Dash_RecentlyWatchedEp_Items
-		{
-			get { return AppSettings.Dash_RecentlyWatchedEp_Items; }
-			set
-			{
-				AppSettings.Dash_RecentlyWatchedEp_Items = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("Dash_RecentlyWatchedEp_Items"));
-			}
-		}
-
-		public int Dash_RecentlyWatchedEp_Height
-		{
-			get { return AppSettings.Dash_RecentlyWatchedEp_Height; }
-			set
-			{
-				AppSettings.Dash_RecentlyWatchedEp_Height = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("Dash_RecentlyWatchedEp_Height"));
-			}
-		}
-
-
-
-
-
-
-
-		public DashWatchNextStyle Dash_WatchNext_Style
-		{
-			get { return AppSettings.Dash_WatchNext_Style; }
-			set
-			{
-				AppSettings.Dash_WatchNext_Style = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("Dash_WatchNext_Style"));
-			}
-		}
-
-		public int Dash_MissingEps_Items
-		{
-			get { return AppSettings.Dash_MissingEps_Items; }
-			set
-			{
-				AppSettings.Dash_MissingEps_Items = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("Dash_MissingEps_Items"));
-			}
-		}
-
-		public int Dash_MissingEps_Height
-		{
-			get { return AppSettings.Dash_MissingEps_Height; }
-			set
-			{
-				AppSettings.Dash_MissingEps_Height = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("Dash_MissingEps_Height"));
-			}
-		}
-
-		public int Dash_MiniCalendarDays
-		{
-			get { return AppSettings.Dash_MiniCalendarDays; }
-			set
-			{
-				AppSettings.Dash_MiniCalendarDays = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("Dash_MiniCalendarDays"));
-			}
-		}
+        public bool DashSeriesMissingEpisodesExpanded
+        {
+            get { return AppSettings.DashSeriesMissingEpisodesExpanded; }
+            set
+            {
+                AppSettings.DashSeriesMissingEpisodesExpanded = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("DashSeriesMissingEpisodesExpanded"));
+                OnPropertyChanged(new PropertyChangedEventArgs("DashSeriesMissingEpisodesCollapsed"));
+            }
+        }
+
+        public bool DashSeriesMissingEpisodesCollapsed
+        {
+            get { return !AppSettings.DashSeriesMissingEpisodesExpanded; }
+        }
+
+        public bool DashMiniCalendarExpanded
+        {
+            get { return AppSettings.DashMiniCalendarExpanded; }
+            set
+            {
+                AppSettings.DashMiniCalendarExpanded = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("DashMiniCalendarExpanded"));
+                OnPropertyChanged(new PropertyChangedEventArgs("DashMiniCalendarCollapsed"));
+            }
+        }
+
+        public bool DashRecommendationsWatchCollapsed
+        {
+            get { return !AppSettings.DashRecommendationsWatchExpanded; }
+        }
+
+        public bool DashRecommendationsWatchExpanded
+        {
+            get { return AppSettings.DashRecommendationsWatchExpanded; }
+            set
+            {
+                AppSettings.DashRecommendationsWatchExpanded = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("DashRecommendationsWatchExpanded"));
+                OnPropertyChanged(new PropertyChangedEventArgs("DashRecommendationsWatchCollapsed"));
+            }
+        }
+
+        public bool DashRecommendationsDownloadCollapsed
+        {
+            get { return !AppSettings.DashRecommendationsDownloadExpanded; }
+        }
+
+        public bool DashRecommendationsDownloadExpanded
+        {
+            get { return AppSettings.DashRecommendationsDownloadExpanded; }
+            set
+            {
+                AppSettings.DashRecommendationsDownloadExpanded = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("DashRecommendationsDownloadExpanded"));
+                OnPropertyChanged(new PropertyChangedEventArgs("DashRecommendationsDownloadCollapsed"));
+            }
+        }
+
+        public bool DashRecentAdditionsCollapsed
+        {
+            get { return !AppSettings.DashRecentAdditionsExpanded; }
+        }
+
+        public bool DashRecentAdditionsExpanded
+        {
+            get { return AppSettings.DashRecentAdditionsExpanded; }
+            set
+            {
+                AppSettings.DashRecentAdditionsExpanded = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("DashRecentAdditionsExpanded"));
+                OnPropertyChanged(new PropertyChangedEventArgs("DashRecentAdditionsCollapsed"));
+            }
+        }
+
+        public int DashRecentAdditionsType
+        {
+            get { return AppSettings.DashRecentAdditionsType; }
+            set
+            {
+                AppSettings.DashRecentAdditionsType = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("DashRecentAdditionsType"));
+            }
+        }
+
+
+
+        public bool DashMiniCalendarCollapsed
+        {
+            get { return !AppSettings.DashMiniCalendarExpanded; }
+        }
+
+        public int DisplayHeight_GroupList
+        {
+            get { return AppSettings.DisplayHeight_GroupList; }
+            set
+            {
+                AppSettings.DisplayHeight_GroupList = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("DisplayHeight_GroupList"));
+            }
+        }
+
+
+
+        public int DisplayHeight_SeriesInfo
+        {
+            get { return AppSettings.DisplayHeight_SeriesInfo; }
+            set
+            {
+                AppSettings.DisplayHeight_SeriesInfo = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("DisplayHeight_SeriesInfo"));
+            }
+        }
+
+        public int DisplayWidth_EpisodeImage
+        {
+            get { return AppSettings.DisplayWidth_EpisodeImage; }
+            set
+            {
+                AppSettings.DisplayWidth_EpisodeImage = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("DisplayWidth_EpisodeImage"));
+            }
+        }
+
+        public int DisplayStyle_GroupList
+        {
+            get { return AppSettings.DisplayStyle_GroupList; }
+            set
+            {
+                AppSettings.DisplayStyle_GroupList = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("DisplayStyle_GroupList"));
+            }
+        }
+
+        public int DisplayHeight_DashImage
+        {
+            get { return AppSettings.DisplayHeight_DashImage; }
+            set
+            {
+                AppSettings.DisplayHeight_DashImage = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("DisplayHeight_DashImage"));
+            }
+        }
+
+        public int Dash_WatchNext_Items
+        {
+            get { return AppSettings.Dash_WatchNext_Items; }
+            set
+            {
+                AppSettings.Dash_WatchNext_Items = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("Dash_WatchNext_Items"));
+            }
+        }
+
+        public int Dash_RecentAdditions_Items
+        {
+            get { return AppSettings.Dash_RecentAdditions_Items; }
+            set
+            {
+                AppSettings.Dash_RecentAdditions_Items = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("Dash_RecentAdditions_Items"));
+            }
+        }
+
+        public int Dash_WatchNext_Height
+        {
+            get { return AppSettings.Dash_WatchNext_Height; }
+            set
+            {
+                AppSettings.Dash_WatchNext_Height = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("Dash_WatchNext_Height"));
+            }
+        }
+
+
+
+
+        public int DashMetro_WatchNext_Items
+        {
+            get { return AppSettings.DashMetro_WatchNext_Items; }
+            set
+            {
+                AppSettings.DashMetro_WatchNext_Items = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("DashMetro_WatchNext_Items"));
+            }
+        }
+
+        public int DashMetro_RandomSeries_Items
+        {
+            get { return AppSettings.DashMetro_RandomSeries_Items; }
+            set
+            {
+                AppSettings.DashMetro_RandomSeries_Items = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("DashMetro_RandomSeries_Items"));
+            }
+        }
+
+
+        public int DashMetro_NewEpisodes_Items
+        {
+            get { return AppSettings.DashMetro_NewEpisodes_Items; }
+            set
+            {
+                AppSettings.DashMetro_NewEpisodes_Items = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("DashMetro_NewEpisodes_Items"));
+            }
+        }
+
+        public int DashMetro_Image_Height
+        {
+            get { return AppSettings.DashMetro_Image_Height; }
+            set
+            {
+                AppSettings.DashMetro_Image_Height = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("DashMetro_Image_Height"));
+                SetDashMetro_Image_Width();
+            }
+        }
+
+        public void SetDashMetro_Image_Width()
+        {
+            if (AppSettings.DashMetroImageType == DashboardMetroImageType.Fanart)
+            {
+                DashMetro_Image_Width = (int)((double)DashMetro_Image_Height * 1.777777777777778);
+            }
+            else
+            {
+                DashMetro_Image_Width = (int)((double)DashMetro_Image_Height * 0.68);
+            }
+        }
+
+        private int dashMetro_Image_Width = 200;
+        public int DashMetro_Image_Width
+        {
+            get { return dashMetro_Image_Width; }
+            set
+            {
+                dashMetro_Image_Width = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("DashMetro_Image_Width"));
+            }
+        }
+
+
+        public int Dash_RecentAdditions_Height
+        {
+            get { return AppSettings.Dash_RecentAdditions_Height; }
+            set
+            {
+                AppSettings.Dash_RecentAdditions_Height = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("Dash_RecentAdditions_Height"));
+            }
+        }
+
+
+        public int SeriesGroup_Image_Height
+        {
+            get { return AppSettings.SeriesGroup_Image_Height; }
+            set
+            {
+                AppSettings.SeriesGroup_Image_Height = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("SeriesGroup_Image_Height"));
+                int width = (int)(SeriesGroup_Image_Height * 1.77777777);
+                SeriesGroup_Image_Width = width;
+            }
+        }
+
+        public int SeriesGroup_Image_Width
+        {
+            get
+            {
+                int width = (int)(SeriesGroup_Image_Height * 1.77777777);
+                return width;
+            }
+            set
+            {
+                OnPropertyChanged(new PropertyChangedEventArgs("SeriesGroup_Image_Width"));
+            }
+        }
+
+        public int PlaylistHeader_Image_Height
+        {
+            get { return AppSettings.PlaylistHeader_Image_Height; }
+            set
+            {
+                AppSettings.PlaylistHeader_Image_Height = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("PlaylistHeader_Image_Height"));
+                int width = (int)(PlaylistHeader_Image_Height * 1.77777777);
+                PlaylistHeader_Image_Width = width;
+            }
+        }
+
+        public int PlaylistHeader_Image_Width
+        {
+            get
+            {
+                int width = (int)(PlaylistHeader_Image_Height * 1.77777777);
+                return width;
+            }
+            set
+            {
+                OnPropertyChanged(new PropertyChangedEventArgs("PlaylistHeader_Image_Width"));
+            }
+        }
+
+        public int PlaylistItems_Image_Height
+        {
+            get { return AppSettings.PlaylistItems_Image_Height; }
+            set
+            {
+                AppSettings.PlaylistItems_Image_Height = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("PlaylistItems_Image_Height"));
+            }
+        }
+
+        public int PlaylistEpisode_Image_Width
+        {
+            get { return AppSettings.PlaylistEpisode_Image_Width; }
+            set
+            {
+                AppSettings.PlaylistEpisode_Image_Width = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("PlaylistEpisode_Image_Width"));
+            }
+        }
+
+        public bool PlaylistItems_ShowDetails
+        {
+            get { return AppSettings.PlaylistItems_ShowDetails; }
+            set
+            {
+                AppSettings.PlaylistItems_ShowDetails = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("PlaylistItems_ShowDetails"));
+            }
+        }
+
+
+        public int Dash_RecentlyWatchedEp_Items
+        {
+            get { return AppSettings.Dash_RecentlyWatchedEp_Items; }
+            set
+            {
+                AppSettings.Dash_RecentlyWatchedEp_Items = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("Dash_RecentlyWatchedEp_Items"));
+            }
+        }
+
+        public int Dash_RecentlyWatchedEp_Height
+        {
+            get { return AppSettings.Dash_RecentlyWatchedEp_Height; }
+            set
+            {
+                AppSettings.Dash_RecentlyWatchedEp_Height = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("Dash_RecentlyWatchedEp_Height"));
+            }
+        }
+
+
+
+
+
+
+
+        public DashWatchNextStyle Dash_WatchNext_Style
+        {
+            get { return AppSettings.Dash_WatchNext_Style; }
+            set
+            {
+                AppSettings.Dash_WatchNext_Style = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("Dash_WatchNext_Style"));
+            }
+        }
+
+        public int Dash_MissingEps_Items
+        {
+            get { return AppSettings.Dash_MissingEps_Items; }
+            set
+            {
+                AppSettings.Dash_MissingEps_Items = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("Dash_MissingEps_Items"));
+            }
+        }
+
+        public int Dash_MissingEps_Height
+        {
+            get { return AppSettings.Dash_MissingEps_Height; }
+            set
+            {
+                AppSettings.Dash_MissingEps_Height = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("Dash_MissingEps_Height"));
+            }
+        }
+
+        public int Dash_MiniCalendarDays
+        {
+            get { return AppSettings.Dash_MiniCalendarDays; }
+            set
+            {
+                AppSettings.Dash_MiniCalendarDays = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("Dash_MiniCalendarDays"));
+            }
+        }
 
         public bool Dash_MiniCalendarUpcomingOnly
         {
@@ -793,121 +793,121 @@ namespace JMMClient
             }
         }
 
-		public int Dash_MiniCalendar_Height
-		{
-			get { return AppSettings.Dash_MiniCalendar_Height; }
-			set
-			{
-				AppSettings.Dash_MiniCalendar_Height = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("Dash_MiniCalendar_Height"));
-			}
-		}
+        public int Dash_MiniCalendar_Height
+        {
+            get { return AppSettings.Dash_MiniCalendar_Height; }
+            set
+            {
+                AppSettings.Dash_MiniCalendar_Height = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("Dash_MiniCalendar_Height"));
+            }
+        }
 
-		public int Dash_RecWatch_Height
-		{
-			get { return AppSettings.Dash_RecWatch_Height; }
-			set
-			{
-				AppSettings.Dash_RecWatch_Height = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("Dash_RecWatch_Height"));
-			}
-		}
+        public int Dash_RecWatch_Height
+        {
+            get { return AppSettings.Dash_RecWatch_Height; }
+            set
+            {
+                AppSettings.Dash_RecWatch_Height = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("Dash_RecWatch_Height"));
+            }
+        }
 
-		public int Dash_RecWatch_Items
-		{
-			get { return AppSettings.Dash_RecWatch_Items; }
-			set
-			{
-				AppSettings.Dash_RecWatch_Items = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("Dash_RecWatch_Items"));
-			}
-		}
+        public int Dash_RecWatch_Items
+        {
+            get { return AppSettings.Dash_RecWatch_Items; }
+            set
+            {
+                AppSettings.Dash_RecWatch_Items = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("Dash_RecWatch_Items"));
+            }
+        }
 
-		public int Dash_RecDownload_Height
-		{
-			get { return AppSettings.Dash_RecDownload_Height; }
-			set
-			{
-				AppSettings.Dash_RecDownload_Height = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("Dash_RecDownload_Height"));
-			}
-		}
+        public int Dash_RecDownload_Height
+        {
+            get { return AppSettings.Dash_RecDownload_Height; }
+            set
+            {
+                AppSettings.Dash_RecDownload_Height = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("Dash_RecDownload_Height"));
+            }
+        }
 
-		public int Dash_RecDownload_Items
-		{
-			get { return AppSettings.Dash_RecDownload_Items; }
-			set
-			{
-				AppSettings.Dash_RecDownload_Items = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("Dash_RecDownload_Items"));
-			}
-		}
+        public int Dash_RecDownload_Items
+        {
+            get { return AppSettings.Dash_RecDownload_Items; }
+            set
+            {
+                AppSettings.Dash_RecDownload_Items = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("Dash_RecDownload_Items"));
+            }
+        }
 
-		public int EpisodeImageOverviewStyle
-		{
-			get { return AppSettings.EpisodeImageOverviewStyle; }
-			set
-			{
-				AppSettings.EpisodeImageOverviewStyle = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("EpisodeImageOverviewStyle"));
-			}
-		}
+        public int EpisodeImageOverviewStyle
+        {
+            get { return AppSettings.EpisodeImageOverviewStyle; }
+            set
+            {
+                AppSettings.EpisodeImageOverviewStyle = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("EpisodeImageOverviewStyle"));
+            }
+        }
 
-		public bool HideEpisodeImageWhenUnwatched
-		{
-			get { return AppSettings.HideEpisodeImageWhenUnwatched; }
-			set
-			{
-				AppSettings.HideEpisodeImageWhenUnwatched = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("HideEpisodeImageWhenUnwatched"));
-			}
-		}
+        public bool HideEpisodeImageWhenUnwatched
+        {
+            get { return AppSettings.HideEpisodeImageWhenUnwatched; }
+            set
+            {
+                AppSettings.HideEpisodeImageWhenUnwatched = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("HideEpisodeImageWhenUnwatched"));
+            }
+        }
 
-		public bool HideEpisodeOverviewWhenUnwatched
-		{
-			get { return AppSettings.HideEpisodeOverviewWhenUnwatched; }
-			set
-			{
-				AppSettings.HideEpisodeOverviewWhenUnwatched = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("HideEpisodeOverviewWhenUnwatched"));
-			}
-		}
+        public bool HideEpisodeOverviewWhenUnwatched
+        {
+            get { return AppSettings.HideEpisodeOverviewWhenUnwatched; }
+            set
+            {
+                AppSettings.HideEpisodeOverviewWhenUnwatched = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("HideEpisodeOverviewWhenUnwatched"));
+            }
+        }
 
-		public bool ShowDownloadButtonWhenFilesExist
-		{
-			get { return !AppSettings.HideDownloadButtonWhenFilesExist; }
-		}
+        public bool ShowDownloadButtonWhenFilesExist
+        {
+            get { return !AppSettings.HideDownloadButtonWhenFilesExist; }
+        }
 
-		public bool HideDownloadButtonWhenFilesExist
-		{
-			get { return AppSettings.HideDownloadButtonWhenFilesExist; }
-			set
-			{
-				AppSettings.HideDownloadButtonWhenFilesExist = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("HideDownloadButtonWhenFilesExist"));
-				OnPropertyChanged(new PropertyChangedEventArgs("ShowDownloadButtonWhenFilesExist"));
-			}
-		}
+        public bool HideDownloadButtonWhenFilesExist
+        {
+            get { return AppSettings.HideDownloadButtonWhenFilesExist; }
+            set
+            {
+                AppSettings.HideDownloadButtonWhenFilesExist = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("HideDownloadButtonWhenFilesExist"));
+                OnPropertyChanged(new PropertyChangedEventArgs("ShowDownloadButtonWhenFilesExist"));
+            }
+        }
 
-		public bool DisplayRatingDialogOnCompletion
-		{
-			get { return AppSettings.DisplayRatingDialogOnCompletion; }
-			set
-			{
-				AppSettings.DisplayRatingDialogOnCompletion = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("DisplayRatingDialogOnCompletion"));
-			}
-		}
+        public bool DisplayRatingDialogOnCompletion
+        {
+            get { return AppSettings.DisplayRatingDialogOnCompletion; }
+            set
+            {
+                AppSettings.DisplayRatingDialogOnCompletion = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("DisplayRatingDialogOnCompletion"));
+            }
+        }
 
-		public bool UseFanartOnSeries
-		{
-			get { return AppSettings.UseFanartOnSeries; }
-			set
-			{
-				AppSettings.UseFanartOnSeries = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("UseFanartOnSeries"));
-			}
-		}
+        public bool UseFanartOnSeries
+        {
+            get { return AppSettings.UseFanartOnSeries; }
+            set
+            {
+                AppSettings.UseFanartOnSeries = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("UseFanartOnSeries"));
+            }
+        }
 
         public bool AlwaysUseAniDBPoster
         {
@@ -920,24 +920,24 @@ namespace JMMClient
         }
 
         public bool UseFanartOnPlaylistHeader
-		{
-			get { return AppSettings.UseFanartOnPlaylistHeader; }
-			set
-			{
-				AppSettings.UseFanartOnPlaylistHeader = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("UseFanartOnPlaylistHeader"));
-			}
-		}
+        {
+            get { return AppSettings.UseFanartOnPlaylistHeader; }
+            set
+            {
+                AppSettings.UseFanartOnPlaylistHeader = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("UseFanartOnPlaylistHeader"));
+            }
+        }
 
-		public bool UseFanartOnPlaylistItems
-		{
-			get { return AppSettings.UseFanartOnPlaylistItems; }
-			set
-			{
-				AppSettings.UseFanartOnPlaylistItems = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("UseFanartOnPlaylistItems"));
-			}
-		}
+        public bool UseFanartOnPlaylistItems
+        {
+            get { return AppSettings.UseFanartOnPlaylistItems; }
+            set
+            {
+                AppSettings.UseFanartOnPlaylistItems = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("UseFanartOnPlaylistItems"));
+            }
+        }
 
         public bool TorrentBlackhole
         {
@@ -961,208 +961,208 @@ namespace JMMClient
 
 
         public string UTorrentAddress
-		{
-			get { return AppSettings.UTorrentAddress; }
-			set
-			{
-				AppSettings.UTorrentAddress = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("UTorrentAddress"));
-			}
-		}
+        {
+            get { return AppSettings.UTorrentAddress; }
+            set
+            {
+                AppSettings.UTorrentAddress = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("UTorrentAddress"));
+            }
+        }
 
-		public string UTorrentPort
-		{
-			get { return AppSettings.UTorrentPort; }
-			set
-			{
-				AppSettings.UTorrentPort = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("UTorrentPort"));
-			}
-		}
+        public string UTorrentPort
+        {
+            get { return AppSettings.UTorrentPort; }
+            set
+            {
+                AppSettings.UTorrentPort = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("UTorrentPort"));
+            }
+        }
 
-		public string UTorrentUsername
-		{
-			get { return AppSettings.UTorrentUsername; }
-			set
-			{
-				AppSettings.UTorrentUsername = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("UTorrentUsername"));
-			}
-		}
+        public string UTorrentUsername
+        {
+            get { return AppSettings.UTorrentUsername; }
+            set
+            {
+                AppSettings.UTorrentUsername = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("UTorrentUsername"));
+            }
+        }
 
-		public string UTorrentPassword
-		{
-			get { return AppSettings.UTorrentPassword; }
-			set
-			{
-				AppSettings.UTorrentPassword = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("UTorrentPassword"));
-			}
-		}
+        public string UTorrentPassword
+        {
+            get { return AppSettings.UTorrentPassword; }
+            set
+            {
+                AppSettings.UTorrentPassword = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("UTorrentPassword"));
+            }
+        }
 
-		public int UTorrentRefreshInterval
-		{
-			get { return AppSettings.UTorrentRefreshInterval; }
-			set
-			{
-				AppSettings.UTorrentRefreshInterval = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("UTorrentRefreshInterval"));
-			}
-		}
+        public int UTorrentRefreshInterval
+        {
+            get { return AppSettings.UTorrentRefreshInterval; }
+            set
+            {
+                AppSettings.UTorrentRefreshInterval = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("UTorrentRefreshInterval"));
+            }
+        }
 
-		public bool UTorrentAutoRefresh
-		{
-			get { return AppSettings.UTorrentAutoRefresh; }
-			set
-			{
-				AppSettings.UTorrentAutoRefresh = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("UTorrentAutoRefresh"));
-			}
-		}
+        public bool UTorrentAutoRefresh
+        {
+            get { return AppSettings.UTorrentAutoRefresh; }
+            set
+            {
+                AppSettings.UTorrentAutoRefresh = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("UTorrentAutoRefresh"));
+            }
+        }
 
-		public bool TorrentSearchPreferOwnGroups
-		{
-			get { return AppSettings.TorrentSearchPreferOwnGroups; }
-			set
-			{
-				AppSettings.TorrentSearchPreferOwnGroups = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("TorrentSearchPreferOwnGroups"));
-			}
-		}
-       
+        public bool TorrentSearchPreferOwnGroups
+        {
+            get { return AppSettings.TorrentSearchPreferOwnGroups; }
+            set
+            {
+                AppSettings.TorrentSearchPreferOwnGroups = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("TorrentSearchPreferOwnGroups"));
+            }
+        }
+
         public string BakaBTUsername
-		{
-			get { return AppSettings.BakaBTUsername; }
-			set
-			{
-				AppSettings.BakaBTUsername = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("BakaBTUsername"));
-			}
-		}
+        {
+            get { return AppSettings.BakaBTUsername; }
+            set
+            {
+                AppSettings.BakaBTUsername = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("BakaBTUsername"));
+            }
+        }
 
-		public string BakaBTPassword
-		{
-			get { return AppSettings.BakaBTPassword; }
-			set
-			{
-				AppSettings.BakaBTPassword = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("BakaBTPassword"));
-			}
-		}
+        public string BakaBTPassword
+        {
+            get { return AppSettings.BakaBTPassword; }
+            set
+            {
+                AppSettings.BakaBTPassword = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("BakaBTPassword"));
+            }
+        }
 
-		public bool BakaBTOnlyUseForSeriesSearches
-		{
-			get { return AppSettings.BakaBTOnlyUseForSeriesSearches; }
-			set
-			{
-				AppSettings.BakaBTOnlyUseForSeriesSearches = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("BakaBTOnlyUseForSeriesSearches"));
-			}
-		}
+        public bool BakaBTOnlyUseForSeriesSearches
+        {
+            get { return AppSettings.BakaBTOnlyUseForSeriesSearches; }
+            set
+            {
+                AppSettings.BakaBTOnlyUseForSeriesSearches = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("BakaBTOnlyUseForSeriesSearches"));
+            }
+        }
 
-		private string bakaBTCookieHeader = "";
-		public string BakaBTCookieHeader
-		{
-			get { return bakaBTCookieHeader; }
-			set
-			{
-				bakaBTCookieHeader = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("BakaBTCookieHeader"));
-				BakaBTCookieHeaderSet = !string.IsNullOrEmpty(value);
-			}
-		}
+        private string bakaBTCookieHeader = "";
+        public string BakaBTCookieHeader
+        {
+            get { return bakaBTCookieHeader; }
+            set
+            {
+                bakaBTCookieHeader = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("BakaBTCookieHeader"));
+                BakaBTCookieHeaderSet = !string.IsNullOrEmpty(value);
+            }
+        }
 
-		private bool bakaBTCookieHeaderSet = false;
-		public bool BakaBTCookieHeaderSet
-		{
-			get { return bakaBTCookieHeaderSet; }
-			set
-			{
-				bakaBTCookieHeaderSet = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("BakaBTCookieHeaderSet"));
-			}
-		}
-
-
+        private bool bakaBTCookieHeaderSet = false;
+        public bool BakaBTCookieHeaderSet
+        {
+            get { return bakaBTCookieHeaderSet; }
+            set
+            {
+                bakaBTCookieHeaderSet = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("BakaBTCookieHeaderSet"));
+            }
+        }
 
 
 
 
-		public string AnimeBytesUsername
-		{
-			get { return AppSettings.AnimeBytesUsername; }
-			set
-			{
-				AppSettings.AnimeBytesUsername = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("AnimeBytesUsername"));
-			}
-		}
-
-		public string AnimeBytesPassword
-		{
-			get { return AppSettings.AnimeBytesPassword; }
-			set
-			{
-				AppSettings.AnimeBytesPassword = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("AnimeBytesPassword"));
-			}
-		}
-
-		public bool AnimeBytesOnlyUseForSeriesSearches
-		{
-			get { return AppSettings.AnimeBytesOnlyUseForSeriesSearches; }
-			set
-			{
-				AppSettings.AnimeBytesOnlyUseForSeriesSearches = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("AnimeBytesOnlyUseForSeriesSearches"));
-			}
-		}
 
 
+        public string AnimeBytesUsername
+        {
+            get { return AppSettings.AnimeBytesUsername; }
+            set
+            {
+                AppSettings.AnimeBytesUsername = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("AnimeBytesUsername"));
+            }
+        }
+
+        public string AnimeBytesPassword
+        {
+            get { return AppSettings.AnimeBytesPassword; }
+            set
+            {
+                AppSettings.AnimeBytesPassword = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("AnimeBytesPassword"));
+            }
+        }
+
+        public bool AnimeBytesOnlyUseForSeriesSearches
+        {
+            get { return AppSettings.AnimeBytesOnlyUseForSeriesSearches; }
+            set
+            {
+                AppSettings.AnimeBytesOnlyUseForSeriesSearches = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("AnimeBytesOnlyUseForSeriesSearches"));
+            }
+        }
 
 
-		private string animeBytesCookieHeader = "";
-		public string AnimeBytesCookieHeader
-		{
-			get { return animeBytesCookieHeader; }
-			set
-			{
-				animeBytesCookieHeader = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("AnimeBytesCookieHeader"));
-				AnimeBytesCookieHeaderSet = !string.IsNullOrEmpty(value);
-			}
-		}
 
-		private bool animeBytesCookieHeaderSet = false;
-		public bool AnimeBytesCookieHeaderSet
-		{
-			get { return animeBytesCookieHeaderSet; }
-			set
-			{
-				animeBytesCookieHeaderSet = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("AnimeBytesCookieHeaderSet"));
-			}
-		}
 
-		public string MPCFolder
-		{
-			get { return AppSettings.MPCFolder; }
-			set
-			{
-				AppSettings.MPCFolder = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("MPCFolder"));
-			}
-		}
+        private string animeBytesCookieHeader = "";
+        public string AnimeBytesCookieHeader
+        {
+            get { return animeBytesCookieHeader; }
+            set
+            {
+                animeBytesCookieHeader = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("AnimeBytesCookieHeader"));
+                AnimeBytesCookieHeaderSet = !string.IsNullOrEmpty(value);
+            }
+        }
 
-		public string PotPlayerFolder
-		{
-			get { return AppSettings.PotPlayerFolder; }
-			set
-			{
-				AppSettings.PotPlayerFolder = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("PotPlayerFolder"));
-			}
-		}
+        private bool animeBytesCookieHeaderSet = false;
+        public bool AnimeBytesCookieHeaderSet
+        {
+            get { return animeBytesCookieHeaderSet; }
+            set
+            {
+                animeBytesCookieHeaderSet = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("AnimeBytesCookieHeaderSet"));
+            }
+        }
+
+        public string MPCFolder
+        {
+            get { return AppSettings.MPCFolder; }
+            set
+            {
+                AppSettings.MPCFolder = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("MPCFolder"));
+            }
+        }
+
+        public string PotPlayerFolder
+        {
+            get { return AppSettings.PotPlayerFolder; }
+            set
+            {
+                AppSettings.PotPlayerFolder = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("PotPlayerFolder"));
+            }
+        }
 
         public string VLCFolder
         {
@@ -1174,236 +1174,236 @@ namespace JMMClient
             }
         }
 
-		public int VideoWatchedPct
-		{
-			get { return AppSettings.VideoWatchedPct; }
-			set
-			{
-				AppSettings.VideoWatchedPct = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("VideoWatchedPct"));
-			}
-		}
+        public int VideoWatchedPct
+        {
+            get { return AppSettings.VideoWatchedPct; }
+            set
+            {
+                AppSettings.VideoWatchedPct = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("VideoWatchedPct"));
+            }
+        }
 
-		public bool VideoAutoSetWatched
-		{
-			get { return AppSettings.VideoAutoSetWatched; }
-			set
-			{
-				AppSettings.VideoAutoSetWatched = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("VideoAutoSetWatched"));
-			}
-		}
+        public bool VideoAutoSetWatched
+        {
+            get { return AppSettings.VideoAutoSetWatched; }
+            set
+            {
+                AppSettings.VideoAutoSetWatched = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("VideoAutoSetWatched"));
+            }
+        }
 
-		public int DownloadsRecItems
-		{
-			get { return AppSettings.DownloadsRecItems; }
-			set
-			{
-				AppSettings.DownloadsRecItems = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("DownloadsRecItems"));
-			}
-		}
+        public int DownloadsRecItems
+        {
+            get { return AppSettings.DownloadsRecItems; }
+            set
+            {
+                AppSettings.DownloadsRecItems = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("DownloadsRecItems"));
+            }
+        }
 
-		public int GetSeriesWidgetPosition(SeriesWidgets swid)
-		{
-			// read the series widgets order
-			string[] widgets = AppSettings.SeriesWidgetsOrder.Split(';');
+        public int GetSeriesWidgetPosition(SeriesWidgets swid)
+        {
+            // read the series widgets order
+            string[] widgets = AppSettings.SeriesWidgetsOrder.Split(';');
 
-			int i = 1;
-			foreach (string widget in widgets)
-			{
-				SeriesWidgets thisswid = (SeriesWidgets)int.Parse(widget);
+            int i = 1;
+            foreach (string widget in widgets)
+            {
+                SeriesWidgets thisswid = (SeriesWidgets)int.Parse(widget);
 
-				if (thisswid == swid)
-					return i;
-				else
-					i++;
-			}
+                if (thisswid == swid)
+                    return i;
+                else
+                    i++;
+            }
 
-			return 1;
-		}
-
-
-		public int MoveUpSeriesWidget(SeriesWidgets swid)
-		{
-			// read the series widgets order
-			string[] widgets = AppSettings.SeriesWidgetsOrder.Split(';');
-
-			string moveWidget = ((int)swid).ToString();
-
-			// find the position of the language to be moved
-			int pos = -1;
-			for (int i = 0; i < widgets.Length; i++)
-			{
-				if (widgets[i].Trim().ToUpper() == moveWidget.Trim().ToUpper()) pos = i;
-			}
-
-			if (pos == -1) return -1; // not found
-			if (pos == 0) return -1; // already at top
-
-			string wid1 = widgets[pos - 1];
-			widgets[pos - 1] = moveWidget;
-			widgets[pos] = wid1;
-
-			string newWidgetOrder = string.Empty;
-			foreach (string wid in widgets)
-			{
-				if (!string.IsNullOrEmpty(newWidgetOrder))
-					newWidgetOrder += ";";
-
-				newWidgetOrder += wid;
-			}
-
-			AppSettings.SeriesWidgetsOrder = newWidgetOrder;
-
-			return pos - 1;
-		}
-
-		public int MoveDownSeriesWidget(SeriesWidgets swid)
-		{
-			// read the series widgets order
-			string[] widgets = AppSettings.SeriesWidgetsOrder.Split(';');
-			string moveWidget = ((int)swid).ToString();
-
-			// find the position of the language to be moved
-			int pos = -1;
-			for (int i = 0; i < widgets.Length; i++)
-			{
-				if (widgets[i].Trim().ToUpper() == moveWidget.Trim().ToUpper()) pos = i;
-			}
-
-			if (pos == -1) return -1; // not found
-			if (pos == widgets.Length - 1) return -1; // already at bottom
-
-			string lan1 = widgets[pos + 1];
-			widgets[pos + 1] = moveWidget;
-			widgets[pos] = lan1;
-
-			string newWidgetOrder = string.Empty;
-			foreach (string wid in widgets)
-			{
-				if (!string.IsNullOrEmpty(newWidgetOrder))
-					newWidgetOrder += ";";
-
-				newWidgetOrder += wid;
-			}
-
-			AppSettings.SeriesWidgetsOrder = newWidgetOrder;
-
-			return pos + 1;
-		}
-
-		public int GetDashboardWidgetPosition(DashboardWidgets swid)
-		{
-			// read the series widgets order
-			string[] widgets = AppSettings.DashboardWidgetsOrder.Split(';');
-
-			int i = 1;
-			foreach (string widget in widgets)
-			{
-				DashboardWidgets thisswid = (DashboardWidgets)int.Parse(widget);
-
-				if (thisswid == swid)
-					return i;
-				else
-					i++;
-			}
-
-			return 1;
-		}
-
-		public int MoveUpDashboardWidget(DashboardWidgets swid)
-		{
-			// read the series widgets order
-			string[] widgets = AppSettings.DashboardWidgetsOrder.Split(';');
-
-			string moveWidget = ((int)swid).ToString();
-
-			// find the position of the language to be moved
-			int pos = -1;
-			for (int i = 0; i < widgets.Length; i++)
-			{
-				if (widgets[i].Trim().ToUpper() == moveWidget.Trim().ToUpper()) pos = i;
-			}
-
-			if (pos == -1) return -1; // not found
-			if (pos == 0) return -1; // already at top
-
-			string wid1 = widgets[pos - 1];
-			widgets[pos - 1] = moveWidget;
-			widgets[pos] = wid1;
-
-			string newWidgetOrder = string.Empty;
-			foreach (string wid in widgets)
-			{
-
-				if (!string.IsNullOrEmpty(newWidgetOrder))
-					newWidgetOrder += ";";
-
-				newWidgetOrder += wid;
-			}
-
-			AppSettings.DashboardWidgetsOrder = newWidgetOrder;
-
-			return pos - 1;
-		}
-
-		public int MoveDownDashboardWidget(DashboardWidgets swid)
-		{
-			// read the series widgets order
-			string[] widgets = AppSettings.DashboardWidgetsOrder.Split(';');
-			string moveWidget = ((int)swid).ToString();
-
-			// find the position of the language to be moved
-			int pos = -1;
-			for (int i = 0; i < widgets.Length; i++)
-			{
-				if (widgets[i].Trim().ToUpper() == moveWidget.Trim().ToUpper()) pos = i;
-			}
-
-			if (pos == -1) return -1; // not found
-			if (pos == widgets.Length - 1) return -1; // already at bottom
-
-			string lan1 = widgets[pos + 1];
-			widgets[pos + 1] = moveWidget;
-			widgets[pos] = lan1;
-
-			string newWidgetOrder = string.Empty;
-			foreach (string wid in widgets)
-			{
-				if (!string.IsNullOrEmpty(newWidgetOrder))
-					newWidgetOrder += ";";
-
-				newWidgetOrder += wid;
-			}
-
-			AppSettings.DashboardWidgetsOrder = newWidgetOrder;
-
-			return pos + 1;
-		}
+            return 1;
+        }
 
 
+        public int MoveUpSeriesWidget(SeriesWidgets swid)
+        {
+            // read the series widgets order
+            string[] widgets = AppSettings.SeriesWidgetsOrder.Split(';');
+
+            string moveWidget = ((int)swid).ToString();
+
+            // find the position of the language to be moved
+            int pos = -1;
+            for (int i = 0; i < widgets.Length; i++)
+            {
+                if (widgets[i].Trim().ToUpper() == moveWidget.Trim().ToUpper()) pos = i;
+            }
+
+            if (pos == -1) return -1; // not found
+            if (pos == 0) return -1; // already at top
+
+            string wid1 = widgets[pos - 1];
+            widgets[pos - 1] = moveWidget;
+            widgets[pos] = wid1;
+
+            string newWidgetOrder = string.Empty;
+            foreach (string wid in widgets)
+            {
+                if (!string.IsNullOrEmpty(newWidgetOrder))
+                    newWidgetOrder += ";";
+
+                newWidgetOrder += wid;
+            }
+
+            AppSettings.SeriesWidgetsOrder = newWidgetOrder;
+
+            return pos - 1;
+        }
+
+        public int MoveDownSeriesWidget(SeriesWidgets swid)
+        {
+            // read the series widgets order
+            string[] widgets = AppSettings.SeriesWidgetsOrder.Split(';');
+            string moveWidget = ((int)swid).ToString();
+
+            // find the position of the language to be moved
+            int pos = -1;
+            for (int i = 0; i < widgets.Length; i++)
+            {
+                if (widgets[i].Trim().ToUpper() == moveWidget.Trim().ToUpper()) pos = i;
+            }
+
+            if (pos == -1) return -1; // not found
+            if (pos == widgets.Length - 1) return -1; // already at bottom
+
+            string lan1 = widgets[pos + 1];
+            widgets[pos + 1] = moveWidget;
+            widgets[pos] = lan1;
+
+            string newWidgetOrder = string.Empty;
+            foreach (string wid in widgets)
+            {
+                if (!string.IsNullOrEmpty(newWidgetOrder))
+                    newWidgetOrder += ";";
+
+                newWidgetOrder += wid;
+            }
+
+            AppSettings.SeriesWidgetsOrder = newWidgetOrder;
+
+            return pos + 1;
+        }
+
+        public int GetDashboardWidgetPosition(DashboardWidgets swid)
+        {
+            // read the series widgets order
+            string[] widgets = AppSettings.DashboardWidgetsOrder.Split(';');
+
+            int i = 1;
+            foreach (string widget in widgets)
+            {
+                DashboardWidgets thisswid = (DashboardWidgets)int.Parse(widget);
+
+                if (thisswid == swid)
+                    return i;
+                else
+                    i++;
+            }
+
+            return 1;
+        }
+
+        public int MoveUpDashboardWidget(DashboardWidgets swid)
+        {
+            // read the series widgets order
+            string[] widgets = AppSettings.DashboardWidgetsOrder.Split(';');
+
+            string moveWidget = ((int)swid).ToString();
+
+            // find the position of the language to be moved
+            int pos = -1;
+            for (int i = 0; i < widgets.Length; i++)
+            {
+                if (widgets[i].Trim().ToUpper() == moveWidget.Trim().ToUpper()) pos = i;
+            }
+
+            if (pos == -1) return -1; // not found
+            if (pos == 0) return -1; // already at top
+
+            string wid1 = widgets[pos - 1];
+            widgets[pos - 1] = moveWidget;
+            widgets[pos] = wid1;
+
+            string newWidgetOrder = string.Empty;
+            foreach (string wid in widgets)
+            {
+
+                if (!string.IsNullOrEmpty(newWidgetOrder))
+                    newWidgetOrder += ";";
+
+                newWidgetOrder += wid;
+            }
+
+            AppSettings.DashboardWidgetsOrder = newWidgetOrder;
+
+            return pos - 1;
+        }
+
+        public int MoveDownDashboardWidget(DashboardWidgets swid)
+        {
+            // read the series widgets order
+            string[] widgets = AppSettings.DashboardWidgetsOrder.Split(';');
+            string moveWidget = ((int)swid).ToString();
+
+            // find the position of the language to be moved
+            int pos = -1;
+            for (int i = 0; i < widgets.Length; i++)
+            {
+                if (widgets[i].Trim().ToUpper() == moveWidget.Trim().ToUpper()) pos = i;
+            }
+
+            if (pos == -1) return -1; // not found
+            if (pos == widgets.Length - 1) return -1; // already at bottom
+
+            string lan1 = widgets[pos + 1];
+            widgets[pos + 1] = moveWidget;
+            widgets[pos] = lan1;
+
+            string newWidgetOrder = string.Empty;
+            foreach (string wid in widgets)
+            {
+                if (!string.IsNullOrEmpty(newWidgetOrder))
+                    newWidgetOrder += ";";
+
+                newWidgetOrder += wid;
+            }
+
+            AppSettings.DashboardWidgetsOrder = newWidgetOrder;
+
+            return pos + 1;
+        }
 
 
-		public bool WindowFullScreen
-		{
-			get { return AppSettings.WindowFullScreen; }
-			set
-			{
-				AppSettings.WindowFullScreen = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("WindowFullScreen"));
-			}
-		}
 
-		public bool WindowNormal
-		{
-			get { return AppSettings.WindowNormal; }
-			set
-			{
-				AppSettings.WindowNormal = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("WindowNormal"));
-			}
-		}
+
+        public bool WindowFullScreen
+        {
+            get { return AppSettings.WindowFullScreen; }
+            set
+            {
+                AppSettings.WindowFullScreen = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("WindowFullScreen"));
+            }
+        }
+
+        public bool WindowNormal
+        {
+            get { return AppSettings.WindowNormal; }
+            set
+            {
+                AppSettings.WindowNormal = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("WindowNormal"));
+            }
+        }
 
         public int DefaultPlayer_GroupList
         {
@@ -1416,160 +1416,160 @@ namespace JMMClient
         }
 
         public void GetDashboardMetroSectionPosition(DashboardMetroProcessType swid, ref int pos, ref Visibility vis)
-		{
-			// read the series sections order
-			string[] sections = AppSettings.DashboardMetroSectionOrder.Split(';');
+        {
+            // read the series sections order
+            string[] sections = AppSettings.DashboardMetroSectionOrder.Split(';');
 
-			int i = 1;
-			foreach (string section in sections)
-			{
-				string[] vals = section.Split(':');
-				DashboardMetroProcessType thisswid = (DashboardMetroProcessType)int.Parse(vals[0]);
+            int i = 1;
+            foreach (string section in sections)
+            {
+                string[] vals = section.Split(':');
+                DashboardMetroProcessType thisswid = (DashboardMetroProcessType)int.Parse(vals[0]);
 
-				if (thisswid == swid)
-				{
-					bool v = bool.Parse(vals[1]);
-					pos = i;
-					vis = v ? Visibility.Visible : Visibility.Collapsed;
-					return;
-				}
-				else
-					i++;
-			}
-		}
+                if (thisswid == swid)
+                {
+                    bool v = bool.Parse(vals[1]);
+                    pos = i;
+                    vis = v ? Visibility.Visible : Visibility.Collapsed;
+                    return;
+                }
+                else
+                    i++;
+            }
+        }
 
-		public List<MetroDashSection> GetMetroDashSections()
-		{
-			List<MetroDashSection> sectionsRet = new List<MetroDashSection>();
+        public List<MetroDashSection> GetMetroDashSections()
+        {
+            List<MetroDashSection> sectionsRet = new List<MetroDashSection>();
 
-			string[] sections = AppSettings.DashboardMetroSectionOrder.Split(';');
+            string[] sections = AppSettings.DashboardMetroSectionOrder.Split(';');
 
-			foreach (string section in sections)
-			{
-				string[] vals = section.Split(':');
-				bool enabled = bool.Parse(vals[1]);
+            foreach (string section in sections)
+            {
+                string[] vals = section.Split(':');
+                bool enabled = bool.Parse(vals[1]);
 
                 // skip Trakt as this has been deprecated
                 DashboardMetroProcessType sectionType = (DashboardMetroProcessType)int.Parse(vals[0]);
                 if (sectionType == DashboardMetroProcessType.TraktActivity) continue;
 
-				MetroDashSection dashSect = new MetroDashSection()
-				{
+                MetroDashSection dashSect = new MetroDashSection()
+                {
                     SectionType = sectionType,
-					Enabled = enabled,
-					WinVisibility = enabled ? Visibility.Visible : Visibility.Collapsed
-				};
+                    Enabled = enabled,
+                    WinVisibility = enabled ? Visibility.Visible : Visibility.Collapsed
+                };
 
-				sectionsRet.Add(dashSect);
-			}
+                sectionsRet.Add(dashSect);
+            }
 
-			return sectionsRet;
-		}
+            return sectionsRet;
+        }
 
-		public int MoveUpDashboardMetroSection(DashboardMetroProcessType swid)
-		{
-			// read the series sections order
-			string[] sections = AppSettings.DashboardMetroSectionOrder.Split(';');
+        public int MoveUpDashboardMetroSection(DashboardMetroProcessType swid)
+        {
+            // read the series sections order
+            string[] sections = AppSettings.DashboardMetroSectionOrder.Split(';');
 
-			string moveSectionType = ((int)swid).ToString();
-			string moveSection = "";
+            string moveSectionType = ((int)swid).ToString();
+            string moveSection = "";
 
-			// find the position of the language to be moved
-			int pos = -1;
-			for (int i = 0; i < sections.Length; i++)
-			{
-				string[] vals = sections[i].Split(':');
-				if (vals[0].Trim().ToUpper() == moveSectionType.Trim().ToUpper())
-				{
-					pos = i;
-					moveSection = sections[i];
-				}
-			}
+            // find the position of the language to be moved
+            int pos = -1;
+            for (int i = 0; i < sections.Length; i++)
+            {
+                string[] vals = sections[i].Split(':');
+                if (vals[0].Trim().ToUpper() == moveSectionType.Trim().ToUpper())
+                {
+                    pos = i;
+                    moveSection = sections[i];
+                }
+            }
 
-			if (pos == -1) return -1; // not found
-			if (pos == 0) return -1; // already at top
+            if (pos == -1) return -1; // not found
+            if (pos == 0) return -1; // already at top
 
-			string wid1 = sections[pos - 1];
-			sections[pos - 1] = moveSection;
-			sections[pos] = wid1;
+            string wid1 = sections[pos - 1];
+            sections[pos - 1] = moveSection;
+            sections[pos] = wid1;
 
-			string newSectionOrder = string.Empty;
-			foreach (string wid in sections)
-			{
-				if (!string.IsNullOrEmpty(newSectionOrder))
-					newSectionOrder += ";";
+            string newSectionOrder = string.Empty;
+            foreach (string wid in sections)
+            {
+                if (!string.IsNullOrEmpty(newSectionOrder))
+                    newSectionOrder += ";";
 
-				newSectionOrder += wid;
-			}
+                newSectionOrder += wid;
+            }
 
-			AppSettings.DashboardMetroSectionOrder = newSectionOrder;
+            AppSettings.DashboardMetroSectionOrder = newSectionOrder;
 
-			return pos - 1;
-		}
+            return pos - 1;
+        }
 
-		public int MoveDownDashboardMetroSection(DashboardMetroProcessType swid)
-		{
-			// read the series sections order
-			string[] sections = AppSettings.DashboardMetroSectionOrder.Split(';');
-			string moveSectionType = ((int)swid).ToString();
-			string moveSection = "";
+        public int MoveDownDashboardMetroSection(DashboardMetroProcessType swid)
+        {
+            // read the series sections order
+            string[] sections = AppSettings.DashboardMetroSectionOrder.Split(';');
+            string moveSectionType = ((int)swid).ToString();
+            string moveSection = "";
 
-			// find the position of the language to be moved
-			int pos = -1;
-			for (int i = 0; i < sections.Length; i++)
-			{
-				string[] vals = sections[i].Split(':');
-				if (vals[0].Trim().ToUpper() == moveSectionType.Trim().ToUpper())
-				{
-					pos = i;
-					moveSection = sections[i];
-				}
-			}
+            // find the position of the language to be moved
+            int pos = -1;
+            for (int i = 0; i < sections.Length; i++)
+            {
+                string[] vals = sections[i].Split(':');
+                if (vals[0].Trim().ToUpper() == moveSectionType.Trim().ToUpper())
+                {
+                    pos = i;
+                    moveSection = sections[i];
+                }
+            }
 
-			if (pos == -1) return -1; // not found
-			if (pos == sections.Length - 1) return -1; // already at bottom
+            if (pos == -1) return -1; // not found
+            if (pos == sections.Length - 1) return -1; // already at bottom
 
-			string lan1 = sections[pos + 1];
-			sections[pos + 1] = moveSection;
-			sections[pos] = lan1;
+            string lan1 = sections[pos + 1];
+            sections[pos + 1] = moveSection;
+            sections[pos] = lan1;
 
-			string newSectionOrder = string.Empty;
-			foreach (string wid in sections)
-			{
-				if (!string.IsNullOrEmpty(newSectionOrder))
-					newSectionOrder += ";";
+            string newSectionOrder = string.Empty;
+            foreach (string wid in sections)
+            {
+                if (!string.IsNullOrEmpty(newSectionOrder))
+                    newSectionOrder += ";";
 
-				newSectionOrder += wid;
-			}
+                newSectionOrder += wid;
+            }
 
-			AppSettings.DashboardMetroSectionOrder = newSectionOrder;
+            AppSettings.DashboardMetroSectionOrder = newSectionOrder;
 
-			return pos + 1;
-		}
+            return pos + 1;
+        }
 
-		public void EnableDisableDashboardMetroSection(DashboardMetroProcessType swid, bool enabled)
-		{
-			// read the series sections order
-			string[] sections = AppSettings.DashboardMetroSectionOrder.Split(';');
-			string moveSectionType = ((int)swid).ToString();
+        public void EnableDisableDashboardMetroSection(DashboardMetroProcessType swid, bool enabled)
+        {
+            // read the series sections order
+            string[] sections = AppSettings.DashboardMetroSectionOrder.Split(';');
+            string moveSectionType = ((int)swid).ToString();
 
-			string newSectionOrder = string.Empty;
-			foreach (string sect in sections)
-			{
-				string thisSect = sect;
-				string[] vals = sect.Split(':');
-				if (vals[0].Trim().Equals(moveSectionType.Trim(), StringComparison.InvariantCultureIgnoreCase))
-				{
-					thisSect = string.Format("{0}:{1}", moveSectionType, enabled.ToString());
-				}
+            string newSectionOrder = string.Empty;
+            foreach (string sect in sections)
+            {
+                string thisSect = sect;
+                string[] vals = sect.Split(':');
+                if (vals[0].Trim().Equals(moveSectionType.Trim(), StringComparison.InvariantCultureIgnoreCase))
+                {
+                    thisSect = string.Format("{0}:{1}", moveSectionType, enabled.ToString());
+                }
 
-				if (!string.IsNullOrEmpty(newSectionOrder))
-					newSectionOrder += ";";
+                if (!string.IsNullOrEmpty(newSectionOrder))
+                    newSectionOrder += ";";
 
-				newSectionOrder += thisSect;
-			}
+                newSectionOrder += thisSect;
+            }
 
-			AppSettings.DashboardMetroSectionOrder = newSectionOrder;
-		}
-	}
+            AppSettings.DashboardMetroSectionOrder = newSectionOrder;
+        }
+    }
 }

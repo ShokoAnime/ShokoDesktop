@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel;
-using System.Windows.Data;
-using System.Windows.Controls;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.IO;
+﻿using JMMClient.UserControls;
 using JMMClient.ViewModel;
-using System.Windows;
-using JMMClient.UserControls;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace JMMClient
 {
@@ -284,17 +279,17 @@ namespace JMMClient
 
         public event EventHandler Refreshed;
 
-		public static MainListHelperVM Instance
-		{
-			get
-			{
-				if (_instance == null)
-				{
-					_instance = new MainListHelperVM();
-				}
-				return _instance;
-			}
-		}
+        public static MainListHelperVM Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new MainListHelperVM();
+                }
+                return _instance;
+            }
+        }
 
         private MainListHelperVM()
         {
@@ -690,7 +685,7 @@ namespace JMMClient
             AllSeriesDictionary.Clear();
             AllAnimeDictionary.Clear();
 
-			ViewSeriesSearch.Refresh();
+            ViewSeriesSearch.Refresh();
             OnRefreshed();
         }
 
@@ -735,13 +730,13 @@ namespace JMMClient
                     }
 
                     OnRefreshed();
-				});
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-			
+                });
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+
 
         }
 
@@ -1113,18 +1108,18 @@ namespace JMMClient
                         }
                     }
 
-				}
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-		}
+                }
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+        }
         private void OnRefreshed()
         {
             var handler = this.Refreshed;
             if (handler != null)
                 handler(null, EventArgs.Empty);
         }
-	}
+    }
 }

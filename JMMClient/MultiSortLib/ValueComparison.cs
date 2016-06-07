@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Reflection;
-using System.Text;
 using System.ComponentModel;
-using System.Threading;
 using System.Globalization;
+using System.Reflection;
+using System.Threading;
 
 // Source code by Owen Emlen (owene_1998@yahoo.com, owen@binarynorthwest.com)
 
@@ -284,7 +283,7 @@ namespace BinaryNorthwest
         /// <param name="y"></param>
         /// <returns></returns>
         public int FastCompareEnumsAsc(T x, T y)
-        {            
+        {
             int oX = (int)property.GetValue(x);
             int oY = (int)property.GetValue(y);
             string s1, s2;

@@ -1,29 +1,21 @@
-﻿using System;
+﻿using JMMClient.ViewModel;
+using NLog;
+using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Configuration;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using JMMClient.ViewModel;
-using NLog;
 
 namespace JMMClient.Forms
 {
-	/// <summary>
-	/// Interaction logic for SelectTraktSeasonForm.xaml
-	/// </summary>
-	public partial class SelectTraktSeasonForm : Window
-	{
+    /// <summary>
+    /// Interaction logic for SelectTraktSeasonForm.xaml
+    /// </summary>
+    public partial class SelectTraktSeasonForm : Window
+    {
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private AniDB_AnimeVM Anime = null;
         private List<AniDB_EpisodeVM> AniDBEpisodes = null;
@@ -31,23 +23,23 @@ namespace JMMClient.Forms
         private int? CrossRef_AniDB_TraktV2ID = null;
         private TraktDetails traktDetails = null;
 
-		public static readonly DependencyProperty AnimeIDProperty = DependencyProperty.Register("AnimeID",
-			typeof(int), typeof(SelectTraktSeasonForm), new UIPropertyMetadata(0, null));
+        public static readonly DependencyProperty AnimeIDProperty = DependencyProperty.Register("AnimeID",
+            typeof(int), typeof(SelectTraktSeasonForm), new UIPropertyMetadata(0, null));
 
-		public int AnimeID
-		{
-			get { return (int)GetValue(AnimeIDProperty); }
-			set { SetValue(AnimeIDProperty, value); }
-		}
+        public int AnimeID
+        {
+            get { return (int)GetValue(AnimeIDProperty); }
+            set { SetValue(AnimeIDProperty, value); }
+        }
 
-		public static readonly DependencyProperty AnimeNameProperty = DependencyProperty.Register("AnimeName",
-			typeof(string), typeof(SelectTraktSeasonForm), new UIPropertyMetadata("", null));
+        public static readonly DependencyProperty AnimeNameProperty = DependencyProperty.Register("AnimeName",
+            typeof(string), typeof(SelectTraktSeasonForm), new UIPropertyMetadata("", null));
 
-		public string AnimeName
-		{
-			get { return (string)GetValue(AnimeNameProperty); }
-			set { SetValue(AnimeNameProperty, value); }
-		}
+        public string AnimeName
+        {
+            get { return (string)GetValue(AnimeNameProperty); }
+            set { SetValue(AnimeNameProperty, value); }
+        }
 
         public static readonly DependencyProperty AnimeEpisodeTypeProperty = DependencyProperty.Register("AnimeEpisodeType",
             typeof(int), typeof(SelectTraktSeasonForm), new UIPropertyMetadata(0, null));
@@ -67,32 +59,32 @@ namespace JMMClient.Forms
             set { SetValue(AnimeEpisodeNumberProperty, value); }
         }
 
-		public static readonly DependencyProperty AnimeURLProperty = DependencyProperty.Register("AnimeURL",
-			typeof(string), typeof(SelectTraktSeasonForm), new UIPropertyMetadata("", null));
+        public static readonly DependencyProperty AnimeURLProperty = DependencyProperty.Register("AnimeURL",
+            typeof(string), typeof(SelectTraktSeasonForm), new UIPropertyMetadata("", null));
 
-		public string AnimeURL
-		{
-			get { return (string)GetValue(AnimeURLProperty); }
-			set { SetValue(AnimeURLProperty, value); }
-		}
+        public string AnimeURL
+        {
+            get { return (string)GetValue(AnimeURLProperty); }
+            set { SetValue(AnimeURLProperty, value); }
+        }
 
-		public static readonly DependencyProperty TraktIDProperty = DependencyProperty.Register("TraktID",
-			typeof(string), typeof(SelectTraktSeasonForm), new UIPropertyMetadata("", null));
+        public static readonly DependencyProperty TraktIDProperty = DependencyProperty.Register("TraktID",
+            typeof(string), typeof(SelectTraktSeasonForm), new UIPropertyMetadata("", null));
 
-		public string TraktID
-		{
-			get { return (string)GetValue(TraktIDProperty); }
-			set { SetValue(TraktIDProperty, value); }
-		}
+        public string TraktID
+        {
+            get { return (string)GetValue(TraktIDProperty); }
+            set { SetValue(TraktIDProperty, value); }
+        }
 
-		public static readonly DependencyProperty TraktSeasonProperty = DependencyProperty.Register("TraktSeason",
-			typeof(int), typeof(SelectTraktSeasonForm), new UIPropertyMetadata(0, null));
+        public static readonly DependencyProperty TraktSeasonProperty = DependencyProperty.Register("TraktSeason",
+            typeof(int), typeof(SelectTraktSeasonForm), new UIPropertyMetadata(0, null));
 
-		public int TraktSeason
-		{
-			get { return (int)GetValue(TraktSeasonProperty); }
-			set { SetValue(TraktSeasonProperty, value); }
-		}
+        public int TraktSeason
+        {
+            get { return (int)GetValue(TraktSeasonProperty); }
+            set { SetValue(TraktSeasonProperty, value); }
+        }
 
         public static readonly DependencyProperty TraktEpisodeNumberProperty = DependencyProperty.Register("TraktEpisodeNumber",
             typeof(int), typeof(SelectTraktSeasonForm), new UIPropertyMetadata(0, null));
@@ -103,23 +95,23 @@ namespace JMMClient.Forms
             set { SetValue(TraktEpisodeNumberProperty, value); }
         }
 
-		public static readonly DependencyProperty TraktSeriesNameProperty = DependencyProperty.Register("TraktSeriesName",
-			typeof(string), typeof(SelectTraktSeasonForm), new UIPropertyMetadata("", null));
+        public static readonly DependencyProperty TraktSeriesNameProperty = DependencyProperty.Register("TraktSeriesName",
+            typeof(string), typeof(SelectTraktSeasonForm), new UIPropertyMetadata("", null));
 
-		public string TraktSeriesName
-		{
-			get { return (string)GetValue(TraktSeriesNameProperty); }
-			set { SetValue(TraktSeriesNameProperty, value); }
-		}
+        public string TraktSeriesName
+        {
+            get { return (string)GetValue(TraktSeriesNameProperty); }
+            set { SetValue(TraktSeriesNameProperty, value); }
+        }
 
-		public static readonly DependencyProperty TraktURLProperty = DependencyProperty.Register("TraktURL",
-			typeof(string), typeof(SelectTraktSeasonForm), new UIPropertyMetadata("", null));
+        public static readonly DependencyProperty TraktURLProperty = DependencyProperty.Register("TraktURL",
+            typeof(string), typeof(SelectTraktSeasonForm), new UIPropertyMetadata("", null));
 
-		public string TraktURL
-		{
-			get { return (string)GetValue(TraktURLProperty); }
-			set { SetValue(TraktURLProperty, value); }
-		}
+        public string TraktURL
+        {
+            get { return (string)GetValue(TraktURLProperty); }
+            set { SetValue(TraktURLProperty, value); }
+        }
 
         public static readonly DependencyProperty SelectedEpisodeProperty = DependencyProperty.Register("SelectedEpisode",
             typeof(Trakt_EpisodeVM), typeof(SelectTraktSeasonForm), new UIPropertyMetadata(null, null));
@@ -130,20 +122,20 @@ namespace JMMClient.Forms
             set { SetValue(SelectedEpisodeProperty, value); }
         }
 
-		public SelectTraktSeasonForm()
-		{
-			InitializeComponent();
+        public SelectTraktSeasonForm()
+        {
+            InitializeComponent();
 
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
             btnClose.Click += new RoutedEventHandler(btnClose_Click);
-			btnUpdate.Click += new RoutedEventHandler(btnUpdate_Click);
-		}
+            btnUpdate.Click += new RoutedEventHandler(btnUpdate_Click);
+        }
 
-		void btnUpdate_Click(object sender, RoutedEventArgs e)
-		{
-			try
-			{
+        void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
                 if (cboSeasonNumber.Items.Count == 0)
                 {
                     MessageBox.Show(JMMClient.Properties.Resources.Trakt_NoSeasons, JMMClient.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
@@ -172,27 +164,27 @@ namespace JMMClient.Forms
                 {
                     this.DialogResult = true;
                     this.Close();
-                }	
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-			finally
-			{
-				this.Cursor = Cursors.Arrow;
-			}
-		}
+                }
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Arrow;
+            }
+        }
 
-		void btnClose_Click(object sender, RoutedEventArgs e)
-		{
-			this.DialogResult = false;
-			this.Close();
-		}
+        void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = false;
+            this.Close();
+        }
 
         public void Init(int animeID, string animeName, EpisodeType aniEpType, int aniEpNumber, string traktID, int traktSeason, int traktEpNumber, string trakSeriesName,
             AniDB_AnimeVM anime, int? crossRef_AniDB_TraktV2ID)
-		{
+        {
             Anime = anime;
             AnimeID = animeID;
             AnimeName = animeName;
@@ -204,8 +196,8 @@ namespace JMMClient.Forms
             TraktSeriesName = trakSeriesName;
             CrossRef_AniDB_TraktV2ID = crossRef_AniDB_TraktV2ID;
 
-			AnimeURL = string.Format(Constants.URLS.AniDB_Series, AnimeID);
-			TraktURL = string.Format(Constants.URLS.Trakt_Series, TraktID);
+            AnimeURL = string.Format(Constants.URLS.AniDB_Series, AnimeID);
+            TraktURL = string.Format(Constants.URLS.Trakt_Series, TraktID);
 
             bool hasSpecials = false;
             AniDBEpisodes = new List<AniDB_EpisodeVM>();
@@ -267,7 +259,7 @@ namespace JMMClient.Forms
             {
                 Utils.ShowErrorMessage(ex);
             }
-		}
+        }
 
         void cboEpisodeType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -339,5 +331,5 @@ namespace JMMClient.Forms
                 cboEpisodeNumber.SelectedIndex = idx;
             }
         }
-	}
+    }
 }
