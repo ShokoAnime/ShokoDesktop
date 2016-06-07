@@ -1462,6 +1462,47 @@ namespace JMMClient
             return false;
         }
 
+        private void setRelationinExclusion(string setting, bool value)
+        {
+            string final = AutoGroupSeriesRelationExclusions;
+            if (value)
+            {
+                if (!isRelationInExclusion(setting))
+                {
+                    // remove all trailing bars that may have been added
+                    do
+                    {
+                        if (final.EndsWith("|"))
+                            final = final.Substring(0, final.Length - 1);
+                        else
+                            break;
+                    } while (true);
+                    // if not empty, add a single bar to separate
+                    if (final.Length > 0) final = final + "|";
+                    final = final + setting;
+                    AutoGroupSeriesRelationExclusions = final;
+                }
+            }
+            else
+            {
+                if (isRelationInExclusion(setting))
+                {
+                    final = "";
+                    foreach (string a in AutoGroupSeriesRelationExclusions.Split('|'))
+                    {
+                        if (a.Length == 0) continue;
+                        // add all except value and fix any uppercase
+                        if (!a.ToLowerInvariant().Equals(setting)) final += a.ToLowerInvariant() + "|";
+                    }
+                    // this will be "" if all are unchecked
+                    // remove last '|' added in previous loop
+                    if (final.EndsWith("|"))
+                        final = final.Substring(0, final.Length - 1);
+                    AutoGroupSeriesRelationExclusions = final;
+                }
+            }
+        }
+
         public bool RelationExcludeSameSetting
         {
             get
@@ -1470,32 +1511,7 @@ namespace JMMClient
             }
             set
             {
-                if (value)
-                {
-                    if (!isRelationInExclusion("same setting"))
-                    {
-                        AutoGroupSeriesRelationExclusions = AutoGroupSeriesRelationExclusions + "|same setting";
-                    }
-                }
-                else
-                {
-                    if (isRelationInExclusion("same setting"))
-                    {
-                        string final = "";
-                        foreach (string a in AutoGroupSeriesRelationExclusions.Split('|'))
-                        {
-                            // add all except value and fix any uppercase
-                            if (!a.ToLowerInvariant().Equals("same setting")) final += a.ToLowerInvariant() + "|";
-                        }
-                        // this will be "" if all are unchecked
-                        // remove last '|' added in previous loop
-                        if (!final.Equals(""))
-                        {
-                            final.TrimEnd('|');
-                        }
-                        AutoGroupSeriesRelationExclusions = final;
-                    }
-                }
+                setRelationinExclusion("same setting", value);
             }
         }
 
@@ -1507,32 +1523,7 @@ namespace JMMClient
             }
             set
             {
-                if (value)
-                {
-                    if (!isRelationInExclusion("alternate setting"))
-                    {
-                        AutoGroupSeriesRelationExclusions = AutoGroupSeriesRelationExclusions + "|alternate setting";
-                    }
-                }
-                else
-                {
-                    if (isRelationInExclusion("alternate setting"))
-                    {
-                        string final = "";
-                        foreach (string a in AutoGroupSeriesRelationExclusions.Split('|'))
-                        {
-                            // add all except value and fix any uppercase
-                            if (!a.ToLowerInvariant().Equals("alternate setting")) final += a.ToLowerInvariant() + "|";
-                        }
-                        // this will be "" if all are unchecked
-                        // remove last '|' added in previous loop
-                        if (!final.Equals(""))
-                        {
-                            final.TrimEnd('|');
-                        }
-                        AutoGroupSeriesRelationExclusions = final;
-                    }
-                }
+                setRelationinExclusion("alternate setting", value);
             }
         }
 
@@ -1544,32 +1535,7 @@ namespace JMMClient
             }
             set
             {
-                if (value)
-                {
-                    if (!isRelationInExclusion("alternate version"))
-                    {
-                        AutoGroupSeriesRelationExclusions = AutoGroupSeriesRelationExclusions + "|alternate version";
-                    }
-                }
-                else
-                {
-                    if (isRelationInExclusion("alternate version"))
-                    {
-                        string final = "";
-                        foreach (string a in AutoGroupSeriesRelationExclusions.Split('|'))
-                        {
-                            // add all except value and fix any uppercase
-                            if (!a.ToLowerInvariant().Equals("alternate version")) final += a.ToLowerInvariant() + "|";
-                        }
-                        // this will be "" if all are unchecked
-                        // remove last '|' added in previous loop
-                        if (!final.Equals(""))
-                        {
-                            final.TrimEnd('|');
-                        }
-                        AutoGroupSeriesRelationExclusions = final;
-                    }
-                }
+                setRelationinExclusion("alternate version", value);
             }
         }
 
@@ -1581,32 +1547,7 @@ namespace JMMClient
             }
             set
             {
-                if (value)
-                {
-                    if (!isRelationInExclusion("character"))
-                    {
-                        AutoGroupSeriesRelationExclusions = AutoGroupSeriesRelationExclusions + "|character";
-                    }
-                }
-                else
-                {
-                    if (isRelationInExclusion("character"))
-                    {
-                        string final = "";
-                        foreach (string a in AutoGroupSeriesRelationExclusions.Split('|'))
-                        {
-                            // add all except value and fix any uppercase
-                            if (!a.ToLowerInvariant().Equals("character")) final += a.ToLowerInvariant() + "|";
-                        }
-                        // this will be "" if all are unchecked
-                        // remove last '|' added in previous loop
-                        if (!final.Equals(""))
-                        {
-                            final.TrimEnd('|');
-                        }
-                        AutoGroupSeriesRelationExclusions = final;
-                    }
-                }
+                setRelationinExclusion("character", value);
             }
         }
 
@@ -1618,32 +1559,7 @@ namespace JMMClient
             }
             set
             {
-                if (value)
-                {
-                    if (!isRelationInExclusion("side story"))
-                    {
-                        AutoGroupSeriesRelationExclusions = AutoGroupSeriesRelationExclusions + "|side story";
-                    }
-                }
-                else
-                {
-                    if (isRelationInExclusion("side story"))
-                    {
-                        string final = "";
-                        foreach (string a in AutoGroupSeriesRelationExclusions.Split('|'))
-                        {
-                            // add all except value and fix any uppercase
-                            if (!a.ToLowerInvariant().Equals("side story")) final += a.ToLowerInvariant() + "|";
-                        }
-                        // this will be "" if all are unchecked
-                        // remove last '|' added in previous loop
-                        if (!final.Equals(""))
-                        {
-                            final.TrimEnd('|');
-                        }
-                        AutoGroupSeriesRelationExclusions = final;
-                    }
-                }
+                setRelationinExclusion("side story", value);
             }
         }
 
@@ -1655,32 +1571,7 @@ namespace JMMClient
             }
             set
             {
-                if (value)
-                {
-                    if (!isRelationInExclusion("parent story"))
-                    {
-                        AutoGroupSeriesRelationExclusions = AutoGroupSeriesRelationExclusions + "|parent story";
-                    }
-                }
-                else
-                {
-                    if (isRelationInExclusion("parent story"))
-                    {
-                        string final = "";
-                        foreach (string a in AutoGroupSeriesRelationExclusions.Split('|'))
-                        {
-                            // add all except value and fix any uppercase
-                            if (!a.ToLowerInvariant().Equals("parent story")) final += a.ToLowerInvariant() + "|";
-                        }
-                        // this will be "" if all are unchecked
-                        // remove last '|' added in previous loop
-                        if (!final.Equals(""))
-                        {
-                            final.TrimEnd('|');
-                        }
-                        AutoGroupSeriesRelationExclusions = final;
-                    }
-                }
+                setRelationinExclusion("parent story", value);
             }
         }
 
@@ -1692,32 +1583,7 @@ namespace JMMClient
             }
             set
             {
-                if (value)
-                {
-                    if (!isRelationInExclusion("summary"))
-                    {
-                        AutoGroupSeriesRelationExclusions = AutoGroupSeriesRelationExclusions + "|summary";
-                    }
-                }
-                else
-                {
-                    if (isRelationInExclusion("summary"))
-                    {
-                        string final = "";
-                        foreach (string a in AutoGroupSeriesRelationExclusions.Split('|'))
-                        {
-                            // add all except value and fix any uppercase
-                            if (!a.ToLowerInvariant().Equals("summary")) final += a.ToLowerInvariant() + "|";
-                        }
-                        // this will be "" if all are unchecked
-                        // remove last '|' added in previous loop
-                        if (!final.Equals(""))
-                        {
-                            final.TrimEnd('|');
-                        }
-                        AutoGroupSeriesRelationExclusions = final;
-                    }
-                }
+                setRelationinExclusion("summary", value);
             }
         }
 
@@ -1729,32 +1595,7 @@ namespace JMMClient
             }
             set
             {
-                if (value)
-                {
-                    if (!isRelationInExclusion("full story"))
-                    {
-                        AutoGroupSeriesRelationExclusions = AutoGroupSeriesRelationExclusions + "|full story";
-                    }
-                }
-                else
-                {
-                    if (isRelationInExclusion("full story"))
-                    {
-                        string final = "";
-                        foreach (string a in AutoGroupSeriesRelationExclusions.Split('|'))
-                        {
-                            // add all except value and fix any uppercase
-                            if (!a.ToLowerInvariant().Equals("full story")) final += a.ToLowerInvariant() + "|";
-                        }
-                        // this will be "" if all are unchecked
-                        // remove last '|' added in previous loop
-                        if (!final.Equals(""))
-                        {
-                            final.TrimEnd('|');
-                        }
-                        AutoGroupSeriesRelationExclusions = final;
-                    }
-                }
+                setRelationinExclusion("full story", value);
             }
         }
 
@@ -1766,32 +1607,7 @@ namespace JMMClient
             }
             set
             {
-                if (value)
-                {
-                    if (!isRelationInExclusion("other"))
-                    {
-                        AutoGroupSeriesRelationExclusions = AutoGroupSeriesRelationExclusions + "|other";
-                    }
-                }
-                else
-                {
-                    if (isRelationInExclusion("other"))
-                    {
-                        string final = "";
-                        foreach (string a in AutoGroupSeriesRelationExclusions.Split('|'))
-                        {
-                            // add all except value and fix any uppercase
-                            if (!a.ToLowerInvariant().Equals("other")) final += a.ToLowerInvariant() + "|";
-                        }
-                        // this will be "" if all are unchecked
-                        // remove last '|' added in previous loop
-                        if (!final.Equals(""))
-                        {
-                            final.TrimEnd('|');
-                        }
-                        AutoGroupSeriesRelationExclusions = final;
-                    }
-                }
+                setRelationinExclusion("other", value);
             }
         }
 
