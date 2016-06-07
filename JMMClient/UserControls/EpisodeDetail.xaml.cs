@@ -364,14 +364,12 @@ namespace JMMClient.UserControls
 			{
 				parentObject = VisualTreeHelper.GetParent(parentObject);
 				AnimeSeries seriesControl = parentObject as AnimeSeries;
-				if (seriesControl != null)
-				{
-					double gridWidth = seriesControl.ActualWidth - 40;
-					if (gridWidth > 0)
-						epDetailMainGrid.Width = gridWidth;
-					return;
-				}
-			}
+                if (seriesControl != null)
+                {
+                    this.SetBinding(UserControl.WidthProperty, new Binding("ActualWidth") { Source = seriesControl, Converter = ArithmeticConverter.Instance, ConverterParameter = 40, IsAsync = true });
+                    return;
+                }
+            }
 		}
 
 		void EpisodeDetail_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -715,4 +713,50 @@ namespace JMMClient.UserControls
 			}
 		}
 	}
+
+    public class ArithmeticConverter : IValueConverter
+    {
+        private double _parsedParameter = 0;
+        private bool _isParsedParameter = false;
+        private static ArithmeticConverter _instance = new ArithmeticConverter();
+
+        public static ArithmeticConverter Instance
+        {
+            get
+            {
+                return _instance;
+            }
+        }
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (parameter == null)
+                return value;
+
+            try
+            {
+                var doubleValue = (double)value;
+
+                if (_isParsedParameter == false)
+                {
+                    _isParsedParameter = true;
+                    var strParameter = System.Convert.ToString(parameter);
+                    double.TryParse(strParameter, out _parsedParameter);
+                }
+
+                return doubleValue - _parsedParameter;
+            }
+            catch (Exception)
+            {
+
+            }
+
+            return value;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

@@ -5,14 +5,17 @@ using System.Text;
 using System.IO;
 using System.Text.RegularExpressions;
 using NLog;
+using System.Globalization;
 
 namespace JMMClient.Downloads
 {
 	public class TorrentLinkVM
 	{
 		private static Logger logger = LogManager.GetCurrentClassLogger();
+        private string _size;
+        private long _sortableSize;
 
-		public TorrentSourceVM Source { get; set; }
+        public TorrentSourceVM Source { get; set; }
 
 		private string torrentName;
 		public string TorrentName
@@ -48,9 +51,88 @@ namespace JMMClient.Downloads
 		public string TorrentDownloadLink { get; set; }
 		public string TorrentLink { get; set; }
 		public string AnimeType { get; set; }
-		public string Size { get; set; }
-		public string Seeders { get; set; }
-		public string Leechers { get; set; }
+		public string Size
+        {
+            get
+            {
+                return _size;
+            }
+            set
+            {
+                _size = value;
+
+                var strSize = _size.Trim();
+                var index = strSize.IndexOf(" ");
+                var secondPart = "";
+                if (index >= 0)
+                {
+                    secondPart = strSize.Substring(index + 1).Trim();
+                    strSize = strSize.Substring(0, index).Trim();
+                }
+                else
+                {
+                    index = -1;
+
+                    var charArray = _size.ToCharArray();
+                    for (int i = 0; i < charArray.Length; i++)
+                    {
+                        if (char.IsLetter(_size[i]))
+                        {
+                            index = i;
+                            break;
+                        }
+                    }
+
+                    if (index != -1)
+                    {
+                        secondPart = strSize.Substring(index);
+                        strSize = strSize.Substring(0, index);
+                    }
+                }
+
+                double doubleSize = double.NaN;
+                if (double.TryParse(strSize, NumberStyles.Any, new CultureInfo("en-US"), out doubleSize) == false)
+                    doubleSize = double.NaN;
+
+                if (double.IsNaN(doubleSize) == false)
+                {
+                    int muliplier = 0;
+                    secondPart = secondPart.ToLower();
+
+                    if (secondPart == "pib" || secondPart == "pb")
+                        muliplier = 5;
+                    else if (secondPart == "tib" || secondPart == "tb")
+                        muliplier = 4;
+                    else if (secondPart == "gib" || secondPart == "gb")
+                        muliplier = 3;
+                    else if (secondPart == "mib" || secondPart == "mb")
+                        muliplier = 2;
+                    else if (secondPart == "kib" || secondPart == "kb")
+                        muliplier = 1;
+
+                    for (int i = 0; i < muliplier; i++)
+                        doubleSize = doubleSize * 1024;
+
+                    this.SortableSize = (long)doubleSize;
+                }                    
+                else
+                    this.SortableSize = 0;
+            }
+        }
+        public long SortableSize
+        {
+            get
+            {
+                return _sortableSize;
+            }
+            set
+            {
+                _sortableSize = value;
+            }
+        }
+
+        public double Seeders { get; set; }
+		public double Leechers { get; set; }
 		public string RawTorrentName { get; set; }
 
 		public TorrentLinkVM()

@@ -96,6 +96,7 @@ namespace JMMClient
         BackgroundWorker showDashboardWorker = new BackgroundWorker();
 
         public static VideoHandler videoHandler = new VideoHandler();
+        private bool _blockTabControlChanged;
 
         public MainWindow()
         {
@@ -117,8 +118,8 @@ namespace JMMClient
 
                 //AppSettings.DebugSettingsToLog();
 
-                //TODO Create option for user to choose if JMM Server is started or not.
-                Utils.StartJMMServer();
+                if (AppSettings.AutoStartLocalJMMServer)
+                    Utils.StartJMMServer();
 
                 lbGroupsSeries.MouseDoubleClick += new MouseButtonEventHandler(lbGroupsSeries_MouseDoubleClick);
                 lbGroupsSeries.SelectionChanged += new SelectionChangedEventHandler(lbGroupsSeries_SelectionChanged);
@@ -214,8 +215,8 @@ namespace JMMClient
                 else
                     dashMetro.Visibility = System.Windows.Visibility.Visible;
 
-
                 UserSettingsVM.Instance.SetDashMetro_Image_Width();
+                MainListHelperVM.Instance.Refreshed += Instance_Refreshed;
             }
             catch (Exception ex)
             {
@@ -223,6 +224,36 @@ namespace JMMClient
             }
         }
 
+        private void CollView_CurrentChanging(object sender, CurrentChangingEventArgs e)
+        {
+            if (_blockTabControlChanged)
+            {
+                int previousIndex = tabControl1.Items.IndexOf(tabControl1.SelectedContent);
+                tabControl1.SelectedIndex = previousIndex;
+
+                e.Cancel = true;
+            }
+        }
+
+        private void Instance_Refreshed(object sender, EventArgs e)
+        {
+            _blockTabControlChanged = true;
+
+            var oldMainIndex = tabControl1.SelectedIndex;
+
+            RefreshPinnedSeries();
+            RefreshPlayList();
+
+            this.Dispatcher.BeginInvoke(DispatcherPriority.ApplicationIdle, (Action)(() =>
+            {
+                var curMainIndex = tabControl1.SelectedIndex;
+
+                if (oldMainIndex != curMainIndex)
+                    tabControl1.SelectedIndex = oldMainIndex;
+
+                _blockTabControlChanged = false;
+            }));
+        }
         void btnSwitchUser_Click(object sender, RoutedEventArgs e)
         {
             // authenticate user
@@ -419,6 +450,9 @@ namespace JMMClient
             postStartTimer.Start();
 
             CheckForUpdatesNew(false);
+
+            var collView = CollectionViewSource.GetDefaultView(tabControl1.Items);
+            collView.CurrentChanging += CollView_CurrentChanging;
         }
 
         void postStartTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
@@ -872,7 +906,7 @@ namespace JMMClient
                 AnimeGroupVM grpvm = obj as AnimeGroupVM;
                 //if (!GroupSearchFilterHelper.EvaluateGroupFilter(MainListHelperVM.Instance.CurrentGroupFilter, grpvm)) return false;
 
-                return GroupSearchFilterHelper.EvaluateGroupTextSearch(grpvm, txtGroupSearch.Text.Replace("'", "`"));
+                return GroupSearchFilterHelper.EvaluateGroupTextSearch(grpvm, txtGroupSearch.Text);
             }
 
             if (obj.GetType() == typeof(AnimeSeriesVM))
@@ -880,7 +914,7 @@ namespace JMMClient
                 AnimeSeriesVM ser = obj as AnimeSeriesVM;
                 //if (!GroupSearchFilterHelper.EvaluateGroupFilter(MainListHelperVM.Instance.CurrentGroupFilter, ser)) return false;
 
-                return GroupSearchFilterHelper.EvaluateSeriesTextSearch(ser, txtGroupSearch.Text.Replace("'", "`"));
+                return GroupSearchFilterHelper.EvaluateSeriesTextSearch(ser, txtGroupSearch.Text);
             }
 
             return true;
@@ -1189,6 +1223,8 @@ namespace JMMClient
                     DownloadAllImages();
 
                     MainListHelperVM.Instance.ShowChildWrappers(MainListHelperVM.Instance.CurrentWrapper);
+
+                    this.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (Action)HighlightMainListItem);
                 }
 
                 // we are inside one of the group filters, groups or series
@@ -1312,10 +1348,31 @@ namespace JMMClient
                 CloseableTabItem ctiTemp = obj as CloseableTabItem;
                 if (ctiTemp == null) continue;
 
-                AnimeSeries ctrl = ctiTemp.Content as AnimeSeries;
-                if (ctrl == null) continue;
+                AnimeSeriesVM ser = null;
+                ContentControl ctrl = ctiTemp.Content as AnimeSeriesContainerControl;
+                if (ctrl == null)
+                {
+                    ContentControl subControl = ctrl.Content as AnimeSeriesSimplifiedControl;
+                    if (subControl == null)
+                        subControl = ctrl.Content as AnimeSeries;
 
-                AnimeSeriesVM ser = ctrl.DataContext as AnimeSeriesVM;
+                    if (subControl != null)
+                        ctrl = subControl;
+                }
+                else
+                {
+                    ContentControl subControl = ctrl.DataContext as AnimeSeriesSimplifiedControl;
+                    if (subControl == null)
+                        subControl = ctrl.DataContext as AnimeSeries;
+
+                    if (subControl != null)
+                        ctrl = subControl;
+                }
+
+                if (ctrl == null)
+                    continue;
+
+                ser = ctrl.DataContext as AnimeSeriesVM;
                 if (ser == null) continue;
 
                 if (ser.AnimeSeriesID == series.AnimeSeriesID)
@@ -1361,6 +1418,91 @@ namespace JMMClient
 
             tabControl1.SelectedIndex = TAB_MAIN_Pinned;
             tabPinned.SelectedIndex = tabPinned.Items.Count - 1;
+
+            this.Cursor = Cursors.Arrow;
+        }
+
+        public void RefreshPinnedSeries()
+        {
+            this.Cursor = Cursors.Wait;
+
+            foreach (object obj in tabPinned.Items)
+            {
+                CloseableTabItem ctiTemp = obj as CloseableTabItem;
+                if (ctiTemp == null) continue;
+
+                AnimeSeriesVM ser = null;
+                ContentControl ctrl = ctiTemp.Content as AnimeSeriesContainerControl;
+                if (ctrl == null)
+                {
+                    ContentControl subControl = ctrl.Content as AnimeSeriesSimplifiedControl;
+                    if (subControl == null)
+                        subControl = ctrl.Content as AnimeSeries;
+
+                    if (subControl != null)
+                        ctrl = subControl;
+                }
+                else
+                {
+                    ContentControl subControl = ctrl.DataContext as AnimeSeriesSimplifiedControl;
+                    if (subControl == null)
+                        subControl = ctrl.DataContext as AnimeSeries;
+
+                    if (subControl != null)
+                        ctrl = subControl;
+                }
+
+                if (ctrl == null)
+                    continue;
+
+                ser = ctrl.DataContext as AnimeSeriesVM;
+                if (ser == null) continue;
+
+                if (ser.AnimeSeriesID.HasValue)
+                    if (MainListHelperVM.Instance.AllSeriesDictionary.TryGetValue(ser.AnimeSeriesID.Value, out ser))
+                        ctrl.DataContext = ser;
+            }
+
+            this.Cursor = Cursors.Arrow;
+        }
+        public void RefreshPlayList()
+        {
+            this.Cursor = Cursors.Wait;
+
+            foreach (object obj in lbPlaylists.Items)
+            {
+                var playListVM = obj as PlaylistVM;
+                if (playListVM == null)
+                    continue;
+
+                var playListObjects = playListVM.PlaylistObjects;
+                if (playListObjects != null)
+                {
+                    foreach (var item in playListObjects)
+                    {
+                        if (item.ItemType == PlaylistItemType.AnimeSeries)
+                        {
+                            var itemSer = item.Series;
+                            if (itemSer == null) continue;
+                            if (!itemSer.AnimeSeriesID.HasValue) continue;
+
+                            var itemSeriesId = itemSer.AnimeSeriesID.Value;
+                            if (MainListHelperVM.Instance.AllSeriesDictionary.TryGetValue(itemSeriesId, out itemSer))
+                                item.Series = itemSer;
+                        }
+                    }
+                }
+
+                var ser = playListVM.Series;
+                if (ser == null) continue;
+                if (!playListVM.Series.AnimeSeriesID.HasValue) continue;
+
+                var seriesId = playListVM.Series.AnimeSeriesID.Value;
+                if (MainListHelperVM.Instance.AllSeriesDictionary.TryGetValue(seriesId, out ser))
+                    playListVM.Series = ser;
+
+                //if (playListVM.ite)
+            }
 
             this.Cursor = Cursors.Arrow;
         }
@@ -1787,91 +1929,99 @@ namespace JMMClient
 
             try
             {
+                int? objID = null;
+
                 if (obj.GetType() == typeof(AnimeEpisodeVM))
                 {
                     AnimeEpisodeVM ep = (AnimeEpisodeVM)obj;
-                    if (MainListHelperVM.Instance.AllSeriesDictionary.ContainsKey(ep.AnimeSeriesID))
-                    {
-                        ShowPinnedSeries(MainListHelperVM.Instance.AllSeriesDictionary[ep.AnimeSeriesID]);
-                    }
+                    objID = ep.AnimeSeriesID;
                 }
 
                 if (obj.GetType() == typeof(AnimeSeriesVM))
                 {
                     AnimeSeriesVM ser = (AnimeSeriesVM)obj;
-                    ShowPinnedSeries(ser);
+                    objID = ser.AnimeSeriesID;
                 }
 
                 if (obj.GetType() == typeof(AniDB_Anime_SimilarVM))
                 {
                     AniDB_Anime_SimilarVM sim = (AniDB_Anime_SimilarVM)obj;
-                    ShowPinnedSeries(sim.AnimeSeries);
+                    objID = sim.AnimeSeries.AnimeSeriesID;
                 }
 
                 if (obj.GetType() == typeof(AniDB_Anime_RelationVM))
                 {
                     AniDB_Anime_RelationVM rel = (AniDB_Anime_RelationVM)obj;
-                    ShowPinnedSeries(rel.AnimeSeries);
+                    objID = rel.AnimeSeries.AnimeSeriesID;
                 }
 
                 if (obj.GetType() == typeof(RecommendationVM))
                 {
                     RecommendationVM rec = (RecommendationVM)obj;
-                    ShowPinnedSeries(rec.Recommended_AnimeSeries);
+                    objID = rec.Recommended_AnimeSeries.AnimeSeriesID;
                 }
 
                 if (obj.GetType() == typeof(MissingFileVM))
                 {
                     MissingFileVM mis = (MissingFileVM)obj;
-                    ShowPinnedSeries(mis.AnimeSeries);
+                    objID = mis.AnimeSeries.AnimeSeriesID;
                 }
 
                 if (obj.GetType() == typeof(MissingEpisodeVM))
                 {
                     MissingEpisodeVM misEp = (MissingEpisodeVM)obj;
-                    ShowPinnedSeries(misEp.AnimeSeries);
+                    objID = misEp.AnimeSeries.AnimeSeriesID;
                 }
 
                 if (obj.GetType() == typeof(PlaylistItemVM))
                 {
                     PlaylistItemVM pli = (PlaylistItemVM)obj;
                     if (pli.ItemType == PlaylistItemType.AnimeSeries)
-                        ShowPinnedSeries(pli.PlaylistItem as AnimeSeriesVM);
-
-                    if (pli.ItemType == PlaylistItemType.Episode)
+                    {
+                        var ser = (AnimeSeriesVM)pli.PlaylistItem;
+                        objID = ser.AnimeSeriesID;
+                    }
+                    else if (pli.ItemType == PlaylistItemType.Episode)
                     {
                         AnimeEpisodeVM ep = pli.PlaylistItem as AnimeEpisodeVM;
-                        if (MainListHelperVM.Instance.AllSeriesDictionary.ContainsKey(ep.AnimeSeriesID))
-                            ShowPinnedSeries(MainListHelperVM.Instance.AllSeriesDictionary[ep.AnimeSeriesID]);
-
+                        objID = ep.AnimeSeriesID;
                     }
                 }
 
                 if (obj.GetType() == typeof(AnimeSearchVM))
                 {
                     AnimeSearchVM search = (AnimeSearchVM)obj;
-                    if (!search.AnimeSeriesID.HasValue) return;
-
-                    JMMServerBinary.Contract_AnimeSeries contract = JMMServerVM.Instance.clientBinaryHTTP.GetSeries(search.AnimeSeriesID.Value,
-                        JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
-
-                    if (contract == null) return;
-                    AnimeSeriesVM ser = new AnimeSeriesVM(contract);
-
-                    ShowPinnedSeries(ser);
+                    objID = search.AnimeSeriesID;
                 }
 
                 if (obj.GetType() == typeof(TraktSeriesData))
                 {
                     TraktSeriesData trakt = (TraktSeriesData)obj;
+                    objID = trakt.AnimeSeriesID;
+                }
 
-                    JMMServerBinary.Contract_AnimeSeries contract = JMMServerVM.Instance.clientBinaryHTTP.GetSeries(trakt.AnimeSeriesID,
-                        JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+                if (objID != null)
+                {
+                    var valObjID = objID.Value;
 
-                    if (contract == null) return;
-                    AnimeSeriesVM ser = new AnimeSeriesVM(contract);
+                    AnimeSeriesVM ser;
+                    if (MainListHelperVM.Instance.AllSeriesDictionary.TryGetValue(valObjID, out ser) == false)
+                    {
+                        // get the series
+                        JMMServerBinary.Contract_AnimeSeries serContract = JMMServerVM.Instance.clientBinaryHTTP.GetSeries(valObjID, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+                        if (serContract != null)
+                        {
+                            ser = new AnimeSeriesVM(serContract);
 
-                    ShowPinnedSeries(ser);
+                            if (MainListHelperVM.Instance.AllSeries.Contains(ser) == false)
+                                MainListHelperVM.Instance.AllSeries.Add(ser);
+
+                            MainListHelperVM.Instance.AllSeriesDictionary[valObjID] = ser;
+                        }
+                    }
+
+                    if (ser != null)
+                        ShowPinnedSeries(ser);
                 }
 
             }
@@ -3209,6 +3359,9 @@ namespace JMMClient
                     series.RefreshBase();
                     MainListHelperVM.Instance.LastAnimeSeriesID = series.AnimeSeriesID.Value;
                     MainListHelperVM.Instance.CurrentSeries = series;
+
+                    if (MainListHelperVM.Instance.LastGroupFilterID != 0 && lbGroupsSeries.SelectedItem != null)
+                        MainListHelperVM.Instance.LastGroupForGF[MainListHelperVM.Instance.LastGroupFilterID] = lbGroupsSeries.SelectedIndex;
                 }
 
                 if (obj.GetType() == typeof(AnimeGroupVM))

@@ -282,17 +282,19 @@ namespace JMMClient
             }
         }
 
-        public static MainListHelperVM Instance
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = new MainListHelperVM();
-                }
-                return _instance;
-            }
-        }
+        public event EventHandler Refreshed;
+
+		public static MainListHelperVM Instance
+		{
+			get
+			{
+				if (_instance == null)
+				{
+					_instance = new MainListHelperVM();
+				}
+				return _instance;
+			}
+		}
 
         private MainListHelperVM()
         {
@@ -688,7 +690,8 @@ namespace JMMClient
             AllSeriesDictionary.Clear();
             AllAnimeDictionary.Clear();
 
-            ViewSeriesSearch.Refresh();
+			ViewSeriesSearch.Refresh();
+            OnRefreshed();
         }
 
         public void RefreshGroupsSeriesData()
@@ -731,14 +734,14 @@ namespace JMMClient
                         AllGroupsDictionary[grpNew.AnimeGroupID.Value] = grpNew;
                     }
 
-
-                });
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
-
+                    OnRefreshed();
+				});
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+			
 
         }
 
@@ -1110,12 +1113,18 @@ namespace JMMClient
                         }
                     }
 
-                }
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
+				}
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
+		}
+        private void OnRefreshed()
+        {
+            var handler = this.Refreshed;
+            if (handler != null)
+                handler(null, EventArgs.Empty);
         }
-    }
+	}
 }

@@ -209,9 +209,24 @@ namespace JMMClient.Downloads
 				torrentLink.AnimeType = cat;
 				torrentLink.TorrentName = string.Format("[MAIN] {0}", torName.Trim());
 				torrentLink.Size = torSize.Trim();
-				torrentLink.Seeders = torSeed.Trim();
-				torrentLink.Leechers = torLeech.Trim();
-				torLinks.Add(torrentLink);
+
+                var strSeeders = torSeed.Trim();
+
+                double dblSeeders;
+                if (double.TryParse(strSeeders, out dblSeeders))
+                    torrentLink.Seeders = dblSeeders;
+                else
+                    torrentLink.Seeders = double.NaN;
+
+                var strLeechers = torLeech.Trim();
+
+                double dblLeechers;
+                if (double.TryParse(strLeechers, out dblLeechers))
+                    torrentLink.Leechers = dblLeechers;
+                else
+                    torrentLink.Leechers = double.NaN;
+
+                torLinks.Add(torrentLink);
 
 				// now we have the main link provided by BakaBT
 				// BakaBT also provides alternative links, so lets include those as well
@@ -291,9 +306,24 @@ namespace JMMClient.Downloads
 					torrentLinkAlt.AnimeType = cat;
 					torrentLinkAlt.TorrentName = string.Format("[ALT] {0}", torNameAlt.Trim());
 					torrentLinkAlt.Size = torSizeAlt.Trim();
-					torrentLinkAlt.Seeders = torSeedAlt.Trim();
-					torrentLinkAlt.Leechers = torLeechAlt.Trim();
-					torLinks.Add(torrentLinkAlt);
+
+                    var strSeedersAlt = torSeedAlt.Trim();
+
+                    double dblSeedersAlt;
+                    if (double.TryParse(strSeedersAlt, out dblSeedersAlt))
+                        torrentLinkAlt.Seeders = dblSeedersAlt;
+                    else
+                        torrentLinkAlt.Seeders = double.NaN;
+
+                    var strLeechersAlt = torLeechAlt.Trim();
+
+                    double dblLeechersAlt;
+                    if (double.TryParse(strLeechersAlt, out dblLeechersAlt))
+                        torrentLinkAlt.Leechers = dblLeechersAlt;
+                    else
+                        torrentLinkAlt.Leechers = double.NaN;
+
+                    torLinks.Add(torrentLinkAlt);
 
 					altpos = output.IndexOf(altBlock, posLeechEndAlt + 1);
 				}

@@ -37,7 +37,8 @@
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
-                        <Button Name="btnDeleteFileEntryMultiple" Margin="0,0,2,2" Grid.Column="0" Grid.Row="3" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left">
+                        <Button Name="btnDeleteFileEntryMultiple" Margin="0,0,2,2" Grid.Column="0" Grid.Row="3" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left"
+                                Command="{DynamicResource DeleteFileCommand}" CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Image Height="16" Width="16" Source="/Images/32_delete.png" Margin="0,0,5,0"/>
                                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Delete}" Margin="0,0,5,0"/>
@@ -93,7 +94,8 @@
                             </Button.ToolTip>
                         </Button>
                         
-                        <Button Name="btnDeleteFileEntrySingle" Margin="0,0,2,2" Grid.Column="0" Grid.Row="3" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left">
+                        <Button Name="btnDeleteFileEntrySingle" Margin="0,0,2,2" Grid.Column="0" Grid.Row="3" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left"
+                                Command="{DynamicResource DeleteFileCommand}" CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Image Height="16" Width="16" Source="/Images/32_delete.png" Margin="0,0,5,0"/>
                                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Delete}" Margin="0,0,5,0"/>
@@ -136,6 +138,7 @@
     <UserControl.CommandBindings>
         <CommandBinding Command="{StaticResource OpenFolderCommand}" Executed="CommandBinding_OpenFolder" />
         <CommandBinding Command="{StaticResource RestoreFileCommand}" Executed="CommandBinding_RestoreFile" />
+        <CommandBinding Command="{StaticResource DeleteFileCommand}" Executed="CommandBinding_DeleteFile" />
         <CommandBinding Command="{StaticResource PlayVideoCommand}" Executed="CommandBinding_PlayVideo" />
     </UserControl.CommandBindings>
 
