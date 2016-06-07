@@ -374,24 +374,6 @@ namespace JMMClient
                 " " + suffixes[suffixes.Length - 1];
         }
 
-        public static string FormatBitRate(double bytes)
-        {
-            string[] suffixes = { "bytes", "kbps" };
-            for (int i = 0; i < suffixes.Length; i++)
-            {
-                if (bytes <= (Math.Pow(1024, i + 1)))
-                {
-                    return ThreeNonZeroDigits(bytes /
-                        Math.Pow(1024, i)) +
-                        " " + suffixes[i];
-                }
-            }
-
-            return ThreeNonZeroDigits(bytes /
-                Math.Pow(1024, suffixes.Length - 1)) +
-                " " + suffixes[suffixes.Length - 1];
-        }
-
         private static string ThreeNonZeroDigits(double value)
         {
             if (value >= 100)

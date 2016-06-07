@@ -883,8 +883,6 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
 
@@ -964,14 +962,6 @@
                                 </Border>
 
                                 <usercontrols:ImportSettings Grid.Column="0" Grid.Row="9" Margin="0,0,0,10"
-                                        Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-
-                                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="10" Background="#FFE9ECEF" Margin="0,0,0,5"
-                                        Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                    <TextBlock  Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_Settings_RelationSettings}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
-                                </Border>
-
-                                <usercontrols:RelationSettings Grid.Column="0" Grid.Row="11" Margin="0,0,0,10"
                                         Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                             </Grid>

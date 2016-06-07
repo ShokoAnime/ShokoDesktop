@@ -49,7 +49,8 @@ namespace JMMClient
 		public int? AllCinemaID { get; set; }
 		public int? AnimeNfo { get; set; }
 		public int? LatestEpisodeNumber { get; set; }
-		public int DisableExternalLinksFlag { get; set; }
+        public DateTime? LatestEpisodeAirDate { get; set; }
+        public int DisableExternalLinksFlag { get; set; }
 
 
 		public AniDB_Anime_DefaultImageVM DefaultPoster { get; set; }
@@ -117,7 +118,8 @@ namespace JMMClient
 			this.EpisodeCountSpecial = contract.EpisodeCountSpecial;
 			this.ImageEnabled = contract.ImageEnabled;
 			this.LatestEpisodeNumber = contract.LatestEpisodeNumber;
-			this.MainTitle = contract.MainTitle;
+            this.LatestEpisodeAirDate = contract.LatestEpisodeAirDate;
+            this.MainTitle = contract.MainTitle;
 			this.Picname = contract.Picname;
 			this.Rating = contract.Rating;
 			this.Restricted = contract.Restricted;

@@ -46,7 +46,7 @@ namespace JMMClient.ViewModel
                 if (TotalRunningTime <= 0) return "N/A";
 
                 double avgBitRate = TotalFileSize / TotalRunningTime;
-                return Utils.FormatBitRate(avgBitRate);
+                return Utils.FormatFileSize(avgBitRate) + "/sec";
             }
         }
 
@@ -115,15 +115,7 @@ namespace JMMClient.ViewModel
 			}
 		}
 
-        public bool IsHi08P
-        {
-            get
-            {
-                return VideoBitDepth == 8;
-            }
-        }
-
-        public bool IsHi10P
+		public bool IsHi10P
 		{
 			get
 			{
@@ -131,15 +123,7 @@ namespace JMMClient.ViewModel
 			}
 		}
 
-        public bool IsHi12P
-        {
-            get
-            {
-                return VideoBitDepth == 12;
-            }
-        }
-
-        private int GetVideoWidth()
+		private int GetVideoWidth()
 		{
 			int videoWidth = 0;
 			if (Resolution.Trim().Length > 0)
