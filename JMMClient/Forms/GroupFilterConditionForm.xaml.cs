@@ -515,8 +515,7 @@ namespace JMMClient.Forms
 				case GroupFilterConditionType.SeriesCreatedDate:
 				case GroupFilterConditionType.EpisodeAddedDate:
 				case GroupFilterConditionType.EpisodeWatchedDate:
-                case GroupFilterConditionType.LatestEpisodeAirDate:
-                    if (opType == GroupFilterOperator.LastXDays)
+					if (opType == GroupFilterOperator.LastXDays)
 					{
 						IsParameterLastXDays = true;
 						IsParameterText = true;
@@ -744,9 +743,8 @@ namespace JMMClient.Forms
 					case GroupFilterConditionType.SeriesCreatedDate:
 					case GroupFilterConditionType.EpisodeAddedDate:
 					case GroupFilterConditionType.EpisodeWatchedDate:
-                    case GroupFilterConditionType.LatestEpisodeAirDate:
 
-                        if (opType == GroupFilterOperator.LastXDays)
+						if (opType == GroupFilterOperator.LastXDays)
 							txtParameter.Text = gfc.ConditionParameter;
 						else
 						{

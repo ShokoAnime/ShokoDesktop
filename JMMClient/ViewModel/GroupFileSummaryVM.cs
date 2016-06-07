@@ -42,7 +42,7 @@ namespace JMMClient.ViewModel
                 if (TotalRunningTime <= 0) return "N/A";
 
                 double avgBitRate = TotalFileSize / TotalRunningTime;
-                return Utils.FormatFileSize(avgBitRate) + "/sec";
+                return Utils.FormatBitRate(avgBitRate);
             }
         }
 
