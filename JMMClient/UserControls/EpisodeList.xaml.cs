@@ -349,6 +349,11 @@ namespace JMMClient.UserControls
                 }
 
                 HighlightEpisode();
+
+                //kick off the property change after the episodes got refreshed
+                var origUnwatchedCount = animeSeries.UnwatchedEpisodeCount;
+                animeSeries.UnwatchedEpisodeCount = origUnwatchedCount + 1;
+                animeSeries.UnwatchedEpisodeCount = origUnwatchedCount;
             }
             catch (Exception ex)
             {
