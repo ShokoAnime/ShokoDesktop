@@ -1144,25 +1144,60 @@ namespace JMMClient
             }
         }
 
-        public string MPCFolder
+        public bool MPCIniIntegration
         {
-            get { return AppSettings.MPCFolder; }
+            get
+            {
+                return AppSettings.MPCIniIntegration;
+            }
             set
             {
-                AppSettings.MPCFolder = value;
-                OnPropertyChanged(new PropertyChangedEventArgs("MPCFolder"));
+                AppSettings.MPCIniIntegration = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("MPCIniIntegration"));
+            }
+        }
+
+        public bool MPCWebUiIntegration
+        {
+            get
+            {
+                return AppSettings.MPCWebUiIntegration;
+            }
+            set
+            {
+                AppSettings.MPCWebUiIntegration = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("MPCWebUiIntegration"));
+            }
+        }
+
+        public string MPCFolder
+		{
+			get { return AppSettings.MPCFolder; }
+			set
+			{
+				AppSettings.MPCFolder = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("MPCFolder"));
+			}
+		}
+
+        public string MPCWebUIPort {
+            get { return AppSettings.MPCWebUIPort; }
+            set
+            {
+                AppSettings.MPCWebUIPort = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("MPCWebUIPort"));
             }
         }
 
         public string PotPlayerFolder
-        {
-            get { return AppSettings.PotPlayerFolder; }
-            set
-            {
-                AppSettings.PotPlayerFolder = value;
-                OnPropertyChanged(new PropertyChangedEventArgs("PotPlayerFolder"));
-            }
-        }
+		{
+			get { return AppSettings.PotPlayerFolder; }
+			set
+			{
+				AppSettings.PotPlayerFolder = value;
+				OnPropertyChanged(new PropertyChangedEventArgs("PotPlayerFolder"));
+			}
+		}
 
         public string VLCFolder
         {
