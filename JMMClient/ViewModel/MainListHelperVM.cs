@@ -82,11 +82,12 @@ namespace JMMClient
             }
         }
 
-        public int LastAnimeGroupID { get; set; }
-        public int LastAnimeSeriesID { get; set; }
-        public int LastGroupFilterID { get; set; }
+        //public int LastAnimeGroupID { get; set; }
+        //public int LastAnimeSeriesID { get; set; }
+        //public int LastGroupFilterID { get; set; }
+        public string CurrentOpenGroupFilter { get; set; }
 
-        public Dictionary<int, int> LastGroupForGF { get; set; } // GroupFilterID, position in list of last selected group
+        public Dictionary<string, int> LastGroupForGF { get; set; } // GroupFilterID, position in list of last selected group
 
         public GroupFilterVM AllGroupFilter
         {
@@ -319,10 +320,11 @@ namespace JMMClient
 
             BreadCrumbs = new ObservableCollection<MainListWrapper>();
 
-            LastAnimeGroupID = 0;
-            LastAnimeSeriesID = 0;
-            LastGroupFilterID = 0;
-            LastGroupForGF = new Dictionary<int, int>();
+            //LastAnimeGroupID = 0;
+            //LastAnimeSeriesID = 0;
+            //LastGroupFilterID = 0;
+            CurrentOpenGroupFilter = "";
+            LastGroupForGF = new Dictionary<string, int>();
             LastEpisodeForSeries = new Dictionary<int, int>();
         }
 
@@ -481,20 +483,28 @@ namespace JMMClient
                 CurrentWrapperIsGroup = wrapper is GroupFilterVM;
                 CurrentListWrapperIsGroup = wrapper is AnimeGroupVM;
 
-                if (wrapper is AnimeGroupVM) LastAnimeGroupID = ((AnimeGroupVM)wrapper).AnimeGroupID.Value;
+                if (wrapper is AnimeGroupVM)
+                {
+                    //LastAnimeGroupID = ((AnimeGroupVM)wrapper).AnimeGroupID.Value;
+                    MainListHelperVM.Instance.CurrentOpenGroupFilter = "AnimeGroupVM|" + ((AnimeGroupVM)wrapper).AnimeGroupID.Value;
+                }
                 if (wrapper is GroupFilterVM)
                 {
                     CurrentGroupFilter = (GroupFilterVM)wrapper;
-                    LastGroupFilterID = ((GroupFilterVM)wrapper).GroupFilterID.Value;
+                    //LastGroupFilterID = ((GroupFilterVM)wrapper).GroupFilterID.Value;
+
+                    MainListHelperVM.Instance.CurrentOpenGroupFilter = "GroupFilterVM|" + ((GroupFilterVM)wrapper).GroupFilterID.Value;
                 }
                 if (wrapper is AnimeSeriesVM)
                 {
                     CurrentSeries = wrapper as AnimeSeriesVM;
-                    LastAnimeSeriesID = ((AnimeSeriesVM)wrapper).AnimeSeriesID.Value;
+                    //LastAnimeSeriesID = ((AnimeSeriesVM)wrapper).AnimeSeriesID.Value;
+
+                    MainListHelperVM.Instance.CurrentOpenGroupFilter = "NoGroup";
                 }
 
-
-
+                if (wrapper == null)
+                    MainListHelperVM.Instance.CurrentOpenGroupFilter = "Init";
 
 
                 System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()

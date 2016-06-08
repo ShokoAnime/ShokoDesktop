@@ -2163,7 +2163,7 @@ namespace JMMClient
                             MainListHelperVM.Instance.AllGroups.Add(grp);
                             MainListHelperVM.Instance.AllGroupsDictionary[grp.AnimeGroupID.Value] = grp;
                             MainListHelperVM.Instance.ViewGroups.Refresh();
-                            MainListHelperVM.Instance.LastAnimeGroupID = grp.AnimeGroupID.Value;
+                            //MainListHelperVM.Instance.LastAnimeGroupID = grp.AnimeGroupID.Value;
 
                             if (!grp.AnimeGroupParentID.HasValue)
                             {
@@ -2198,7 +2198,7 @@ namespace JMMClient
                         if (gf.Save() && isnew)
                         {
                             MainListHelperVM.Instance.AllGroupFilters.Add(gf);
-                            MainListHelperVM.Instance.LastGroupFilterID = gf.GroupFilterID.Value;
+                            //MainListHelperVM.Instance.LastGroupFilterID = gf.GroupFilterID.Value;
                             showChildWrappersWorker.RunWorkerAsync(null);
                         }
                         //showChildWrappersWorker.RunWorkerAsync(null);
@@ -2339,7 +2339,7 @@ namespace JMMClient
 
                         MainListHelperVM.Instance.ViewGroups.Refresh();
                         EnableDisableGroupControls(true);
-                        MainListHelperVM.Instance.LastAnimeGroupID = grp.AnimeGroupID.Value;
+                        //MainListHelperVM.Instance.LastAnimeGroupID = grp.AnimeGroupID.Value;
                         HighlightMainListItem();
                     }
                     else
@@ -2386,7 +2386,7 @@ namespace JMMClient
                             gf.SortCriteriaList.Add(gfsc);
                         }
 
-                        MainListHelperVM.Instance.LastGroupFilterID = gf.GroupFilterID.Value;
+                        //MainListHelperVM.Instance.LastGroupFilterID = gf.GroupFilterID.Value;
                     }
                     else
                     {
@@ -3348,32 +3348,28 @@ namespace JMMClient
 
                     AnimeSeriesVM series = obj as AnimeSeriesVM;
                     series.RefreshBase();
-                    MainListHelperVM.Instance.LastAnimeSeriesID = series.AnimeSeriesID.Value;
+                    //MainListHelperVM.Instance.LastAnimeSeriesID = series.AnimeSeriesID.Value;
                     MainListHelperVM.Instance.CurrentSeries = series;
-
-                    if (MainListHelperVM.Instance.LastGroupFilterID != 0 && lbGroupsSeries.SelectedItem != null)
-                        MainListHelperVM.Instance.LastGroupForGF[MainListHelperVM.Instance.LastGroupFilterID] = lbGroupsSeries.SelectedIndex;
                 }
 
                 if (obj.GetType() == typeof(AnimeGroupVM))
                 {
                     AnimeGroupVM grp = obj as AnimeGroupVM;
-                    MainListHelperVM.Instance.LastAnimeGroupID = grp.AnimeGroupID.Value;
-
-                    if (MainListHelperVM.Instance.LastGroupFilterID != 0 && lbGroupsSeries.SelectedItem != null)
-                        MainListHelperVM.Instance.LastGroupForGF[MainListHelperVM.Instance.LastGroupFilterID] = lbGroupsSeries.SelectedIndex;
-
+                    //MainListHelperVM.Instance.LastAnimeGroupID = grp.AnimeGroupID.Value;
                 }
 
                 if (obj.GetType() == typeof(GroupFilterVM))
                 {
                     GroupFilterVM gf = obj as GroupFilterVM;
-                    MainListHelperVM.Instance.LastGroupFilterID = gf.GroupFilterID.Value;
+                    //MainListHelperVM.Instance.LastGroupFilterID = gf.GroupFilterID.Value;
 
                     groupFilterVM = gf;
                     MainListHelperVM.Instance.ViewGroupsForms.Filter = GroupFilter_GroupSearch;
                     MainListHelperVM.Instance.SetGroupFilterSortingOnForms(gf);
                 }
+
+                if (!string.IsNullOrEmpty(MainListHelperVM.Instance.CurrentOpenGroupFilter) && lbGroupsSeries.SelectedItem != null)
+                    MainListHelperVM.Instance.LastGroupForGF[MainListHelperVM.Instance.CurrentOpenGroupFilter] = lbGroupsSeries.SelectedIndex;
 
                 //SetDetailBinding(MainListHelperVM.Instance.AllGroups[0]);
                 SetDetailBinding(obj);
@@ -3399,7 +3395,7 @@ namespace JMMClient
                 // this is the last supported drill down
                 if (lbGroupsSeries.SelectedItem.GetType() == typeof(AnimeSeriesVM)) return;
 
-                MainListHelperVM.Instance.LastAnimeSeriesID = ser.AnimeSeriesID.Value;
+                //MainListHelperVM.Instance.LastAnimeSeriesID = ser.AnimeSeriesID.Value;
 
                 EnableDisableGroupControls(false);
                 showChildWrappersWorker.RunWorkerAsync(lbGroupsSeries.SelectedItem);
@@ -3408,15 +3404,30 @@ namespace JMMClient
 
         void lbGroupsSeries_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            var originalSource = e.OriginalSource as FrameworkElement;
+            var source = e.Source as FrameworkElement;
+
+            if (object.Equals(originalSource.DataContext, source.DataContext)) //both null, or both what ever the scrollbar and the listview/treeview
+                return;
+
             try
             {
-                if (lbGroupsSeries.SelectedItem == null) return;
+                var selItem = lbGroupsSeries.SelectedItem;
+                if (selItem == null) return;
 
-                if (lbGroupsSeries.SelectedItem is MainListWrapper)
+                var animeGroup = selItem as AnimeGroupVM;
+                if (animeGroup != null)
+                    MainListHelperVM.Instance.CurrentOpenGroupFilter = "AnimeGroupVM|" + animeGroup.AnimeGroupID.GetValueOrDefault(int.MinValue);
+
+                var groupFilter = selItem as GroupFilterVM;
+                if (groupFilter != null)
+                    MainListHelperVM.Instance.CurrentOpenGroupFilter = "GroupFilterVM|" + groupFilter.GroupFilterID.GetValueOrDefault(int.MinValue);
+
+                if (selItem is MainListWrapper)
                 {
                     //SetDetailBinding(null);
                     // this is the last supported drill down
-                    if (lbGroupsSeries.SelectedItem.GetType() == typeof(AnimeSeriesVM)) return;
+                    if (selItem.GetType() == typeof(AnimeSeriesVM)) return;
 
                     EnableDisableGroupControls(false);
                     showChildWrappersWorker.RunWorkerAsync(lbGroupsSeries.SelectedItem);
@@ -3433,116 +3444,45 @@ namespace JMMClient
         {
             try
             {
-                int wrapperID = 0;
-                if (MainListHelperVM.Instance.CurrentWrapper == null)
-                    wrapperID = MainListHelperVM.Instance.LastGroupFilterID;
-                else if (MainListHelperVM.Instance.CurrentWrapper is GroupFilterVM)
-                    wrapperID = MainListHelperVM.Instance.LastAnimeGroupID;
-                else if (MainListHelperVM.Instance.CurrentWrapper is AnimeGroupVM)
-                    wrapperID = MainListHelperVM.Instance.LastAnimeSeriesID;
-
-                if (wrapperID == 0)
+                if (MainListHelperVM.Instance.LastGroupForGF.ContainsKey(MainListHelperVM.Instance.CurrentOpenGroupFilter))
                 {
-                    if (lbGroupsSeries.Items != null && lbGroupsSeries.Items.Count > 0)
+                    int lastSelIndex = MainListHelperVM.Instance.LastGroupForGF[MainListHelperVM.Instance.CurrentOpenGroupFilter];
+                    if (lastSelIndex < lbGroupsSeries.Items.Count)
                     {
-                        lbGroupsSeries.SelectedIndex = 0;
+                        lbGroupsSeries.SelectedItem = lbGroupsSeries.Items[lastSelIndex];
                         lbGroupsSeries.Focus();
-                    }
-                }
-                else
-                {
-                    if (MainListHelperVM.Instance.CurrentWrapper is GroupFilterVM)
-                    {
-                        // if we are looking at a list of groups
-                        // move to the next item
-                        if (MainListHelperVM.Instance.LastGroupFilterID != 0
-                            && MainListHelperVM.Instance.LastGroupForGF.ContainsKey(MainListHelperVM.Instance.LastGroupFilterID))
-                        {
-                            int lastSelIndex = MainListHelperVM.Instance.LastGroupForGF[MainListHelperVM.Instance.LastGroupFilterID];
-                            if (lastSelIndex < lbGroupsSeries.Items.Count)
-                            {
-                                lbGroupsSeries.SelectedItem = lbGroupsSeries.Items[lastSelIndex];
-                                lbGroupsSeries.Focus();
-                                lbGroupsSeries.ScrollIntoView(lbGroupsSeries.Items[lastSelIndex]);
-                                SetDetailBinding(lbGroupsSeries.SelectedItem);
-                            }
-                            else
-                            {
-                                // move to the previous item
-                                if (lastSelIndex - 1 <= lbGroupsSeries.Items.Count)
-                                {
-                                    if (lastSelIndex > 0)
-                                    {
-                                        lbGroupsSeries.SelectedItem = lbGroupsSeries.Items[lastSelIndex - 1];
-                                        lbGroupsSeries.Focus();
-                                        lbGroupsSeries.ScrollIntoView(lbGroupsSeries.Items[lastSelIndex - 1]);
-                                        SetDetailBinding(lbGroupsSeries.SelectedItem);
-                                    }
-                                }
-                            }
-                        }
+                        lbGroupsSeries.ScrollIntoView(lbGroupsSeries.Items[lastSelIndex]);
+                        SetDetailBinding(lbGroupsSeries.SelectedItem);
+
                         return;
                     }
                     else
                     {
-                        foreach (var lbItem in lbGroupsSeries.Items)
+                        // move to the previous item
+                        if (lastSelIndex - 1 <= lbGroupsSeries.Items.Count)
                         {
-                            if (lbItem is GroupFilterVM)
+                            if (lastSelIndex > 0)
                             {
-                                GroupFilterVM gf = lbItem as GroupFilterVM;
-                                if (gf.GroupFilterID == wrapperID)
-                                {
-                                    lbGroupsSeries.SelectedItem = lbItem;
-                                    lbGroupsSeries.Focus();
-                                    lbGroupsSeries.ScrollIntoView(lbItem);
-                                    SetDetailBinding(gf);
-                                    return;
-                                }
-                            }
-                            /*if (lbItem is AnimeGroupVM)
-							{
-								AnimeGroupVM ag = lbItem as AnimeGroupVM;
-								if (ag.AnimeGroupID == wrapperID)
-								{
-									lbGroupsSeries.SelectedItem = lbItem;
-									lbGroupsSeries.Focus();
-									lbGroupsSeries.ScrollIntoView(lbItem);
-									SetDetailBinding(ag);
-									return;
-								}
-							}*/
-                            if (lbItem is AnimeSeriesVM)
-                            {
-                                AnimeSeriesVM series = lbItem as AnimeSeriesVM;
-                                if (series.AnimeSeriesID == wrapperID)
-                                {
-                                    lbGroupsSeries.SelectedItem = lbItem;
-                                    lbGroupsSeries.Focus();
-                                    lbGroupsSeries.ScrollIntoView(lbItem);
-                                    SetDetailBinding(series);
-                                    return;
-                                }
-                            }
-                            if (lbItem is AnimeEpisodeVM)
-                            {
-                                AnimeEpisodeVM ep = lbItem as AnimeEpisodeVM;
-                                if (ep.AnimeEpisodeID == wrapperID)
-                                {
-                                    lbGroupsSeries.SelectedItem = lbItem;
-                                    lbGroupsSeries.Focus();
-                                    lbGroupsSeries.ScrollIntoView(lbItem);
-                                    return;
-                                }
+                                lbGroupsSeries.SelectedItem = lbGroupsSeries.Items[lastSelIndex - 1];
+                                lbGroupsSeries.Focus();
+                                lbGroupsSeries.ScrollIntoView(lbGroupsSeries.Items[lastSelIndex - 1]);
+                                SetDetailBinding(lbGroupsSeries.SelectedItem);
+
+                                return;
                             }
                         }
                     }
                 }
+
                 if (lbGroupsSeries.Items != null && lbGroupsSeries.Items.Count > 0)
                 {
                     lbGroupsSeries.SelectedIndex = 0;
                     lbGroupsSeries.Focus();
-
+                    lbGroupsSeries.ScrollIntoView(lbGroupsSeries.SelectedItem);
+                    SetDetailBinding(lbGroupsSeries.SelectedItem);
                 }
+
+                return;                
             }
             catch (Exception ex)
             {
