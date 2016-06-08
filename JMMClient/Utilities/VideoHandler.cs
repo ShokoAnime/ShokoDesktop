@@ -4,10 +4,11 @@ using NLog;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Text.RegularExpressions;
-using NLog;
-using JMMClient.ViewModel;
+
 
 namespace JMMClient.Utilities
 {
@@ -24,15 +25,15 @@ namespace JMMClient.Utilities
         // Timer for MPC HC Web UI Requests
         private System.Timers.Timer playerWebUiTimer = null;
 
-		public delegate void VideoWatchedEventHandler(VideoWatchedEventArgs ev);
-		public event VideoWatchedEventHandler VideoWatchedEvent;
-		protected void OnVideoWatchedEvent(VideoWatchedEventArgs ev)
-		{
-			if (VideoWatchedEvent != null)
-			{
-				VideoWatchedEvent(ev);
-			}
-		}
+        public delegate void VideoWatchedEventHandler(VideoWatchedEventArgs ev);
+        public event VideoWatchedEventHandler VideoWatchedEvent;
+        protected void OnVideoWatchedEvent(VideoWatchedEventArgs ev)
+        {
+            if (VideoWatchedEvent != null)
+            {
+                VideoWatchedEvent(ev);
+            }
+        }
 
         public void PlayVideo(VideoDetailedVM vid)
         {
@@ -124,13 +125,13 @@ namespace JMMClient.Utilities
                 StopWatchingFiles();
                 watcherVids = new List<FileSystemWatcher>();
 
-				if (!string.IsNullOrEmpty(AppSettings.PotPlayerFolder) && Directory.Exists(AppSettings.PotPlayerFolder))
-				{
-					FileSystemWatcher fsw = new FileSystemWatcher(AppSettings.PotPlayerFolder, "*.ini");
-					fsw.IncludeSubdirectories = false;
-					fsw.Changed += new FileSystemEventHandler(fsw_Changed);
-					fsw.EnableRaisingEvents = true;
-				}
+                if (!string.IsNullOrEmpty(AppSettings.PotPlayerFolder) && Directory.Exists(AppSettings.PotPlayerFolder))
+                {
+                    FileSystemWatcher fsw = new FileSystemWatcher(AppSettings.PotPlayerFolder, "*.ini");
+                    fsw.IncludeSubdirectories = false;
+                    fsw.Changed += new FileSystemEventHandler(fsw_Changed);
+                    fsw.EnableRaisingEvents = true;
+                }
 
                 if (!string.IsNullOrEmpty(AppSettings.VLCFolder) && Directory.Exists(AppSettings.VLCFolder))
                 {
@@ -156,11 +157,11 @@ namespace JMMClient.Utilities
                     playerWebUiTimer.Enabled = true;
                 }
             }
-			catch (Exception ex)
-			{
-				logger.ErrorException(ex.ToString(), ex);
-			}
-		}
+            catch (Exception ex)
+            {
+                logger.ErrorException(ex.ToString(), ex);
+            }
+        }
 
         // Make and handle MPC-HC Web UI request
         public async void HandleWebUIRequest(object source, System.Timers.ElapsedEventArgs e)
@@ -187,7 +188,7 @@ namespace JMMClient.Utilities
                 using (HttpContent content = response.Content)
                 {
                     // Check if request was ok
-                    if(response.StatusCode == System.Net.HttpStatusCode.OK)
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
                         // Read the string
                         responseString = await content.ReadAsStringAsync();
@@ -224,7 +225,7 @@ namespace JMMClient.Utilities
                                         MainListHelperVM.Instance.UpdateHeirarchy(vid);
                                         MainListHelperVM.Instance.GetSeriesForVideo(vid.VideoLocalID);
 
-                                        System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
+                                        System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()
                                         {
                                             // Trigger OnVideoWatchedEvent
                                             OnVideoWatchedEvent(new VideoWatchedEventArgs(vid.VideoLocalID, vid));
@@ -237,7 +238,7 @@ namespace JMMClient.Utilities
                     }
                     // Start timer again
                     playerWebUiTimer.Start();
-                }   
+                }
             }
             catch (Exception exception)
             {
@@ -246,9 +247,9 @@ namespace JMMClient.Utilities
             }
         }
 
-		public void StopWatchingFiles()
-		{
-			if (watcherVids == null) return;
+        public void StopWatchingFiles()
+        {
+            if (watcherVids == null) return;
 
             foreach (FileSystemWatcher fsw in watcherVids)
             {
