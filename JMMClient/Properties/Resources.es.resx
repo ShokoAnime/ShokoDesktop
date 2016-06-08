@@ -2198,7 +2198,7 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
   <data name="VideoPlayer_MPC" xml:space="preserve">
     <value>Media Player Classic</value>
   </data>
-  <data name="VideoPlayer_MPCNote" xml:space="preserve">
+  <data name="VideoPlayer_MPCNote1" xml:space="preserve">
     <value>Para la integración de MPC que debe habilitar las dos opciones (1) tienda configuración al archivo .ini y (2) mantener historia de recientemente visto archivos. Ver la siguiente captura de pantalla para más detalles. La ubicación del MPC es generalmente algo como C:\Program Files (x 86) \Combined Community Codec Pack\MPC</value>
   </data>
   <data name="VideoPlayer_MPCOptions" xml:space="preserve">
@@ -4129,5 +4129,14 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
   </data>
   <data name="Video_Hi12P" xml:space="preserve">
     <value>12 bits</value>
+  </data>
+  <data name="VideoPlayer_MPCIntegrationTypeNote" xml:space="preserve">
+    <value>There are 2 types of MPC Integrations:</value>
+  </data>
+  <data name="VideoPlayer_MPCNote2" xml:space="preserve">
+    <value>For Web UI type you must enable Listen on port and type appropriate port or leave it as it is. Listening port defaults to 13579. Please note that if you change default port you need to set it also in options below.</value>
+  </data>
+  <data name="VideoPlayer_MPCWebUIPort" xml:space="preserve">
+    <value>MPC Web UI Port</value>
   </data>
 </root>

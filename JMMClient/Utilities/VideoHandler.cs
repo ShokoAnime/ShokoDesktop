@@ -4,8 +4,10 @@ using NLog;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
+using System.Net.Http;
+using System.Text.RegularExpressions;
+using NLog;
+using JMMClient.ViewModel;
 
 namespace JMMClient.Utilities
 {
@@ -19,15 +21,18 @@ namespace JMMClient.Utilities
         private List<FileSystemWatcher> watcherVids = null;
         Dictionary<string, string> previousFilePositions = new Dictionary<string, string>();
 
-        public delegate void VideoWatchedEventHandler(VideoWatchedEventArgs ev);
-        public event VideoWatchedEventHandler VideoWatchedEvent;
-        protected void OnVideoWatchedEvent(VideoWatchedEventArgs ev)
-        {
-            if (VideoWatchedEvent != null)
-            {
-                VideoWatchedEvent(ev);
-            }
-        }
+        // Timer for MPC HC Web UI Requests
+        private System.Timers.Timer playerWebUiTimer = null;
+
+		public delegate void VideoWatchedEventHandler(VideoWatchedEventArgs ev);
+		public event VideoWatchedEventHandler VideoWatchedEvent;
+		protected void OnVideoWatchedEvent(VideoWatchedEventArgs ev)
+		{
+			if (VideoWatchedEvent != null)
+			{
+				VideoWatchedEvent(ev);
+			}
+		}
 
         public void PlayVideo(VideoDetailedVM vid)
         {
@@ -119,21 +124,13 @@ namespace JMMClient.Utilities
                 StopWatchingFiles();
                 watcherVids = new List<FileSystemWatcher>();
 
-                if (!string.IsNullOrEmpty(AppSettings.MPCFolder) && Directory.Exists(AppSettings.MPCFolder))
-                {
-                    FileSystemWatcher fsw = new FileSystemWatcher(AppSettings.MPCFolder, "*.ini");
-                    fsw.IncludeSubdirectories = false;
-                    fsw.Changed += new FileSystemEventHandler(fsw_Changed);
-                    fsw.EnableRaisingEvents = true;
-                }
-
-                if (!string.IsNullOrEmpty(AppSettings.PotPlayerFolder) && Directory.Exists(AppSettings.PotPlayerFolder))
-                {
-                    FileSystemWatcher fsw = new FileSystemWatcher(AppSettings.PotPlayerFolder, "*.ini");
-                    fsw.IncludeSubdirectories = false;
-                    fsw.Changed += new FileSystemEventHandler(fsw_Changed);
-                    fsw.EnableRaisingEvents = true;
-                }
+				if (!string.IsNullOrEmpty(AppSettings.PotPlayerFolder) && Directory.Exists(AppSettings.PotPlayerFolder))
+				{
+					FileSystemWatcher fsw = new FileSystemWatcher(AppSettings.PotPlayerFolder, "*.ini");
+					fsw.IncludeSubdirectories = false;
+					fsw.Changed += new FileSystemEventHandler(fsw_Changed);
+					fsw.EnableRaisingEvents = true;
+				}
 
                 if (!string.IsNullOrEmpty(AppSettings.VLCFolder) && Directory.Exists(AppSettings.VLCFolder))
                 {
@@ -142,16 +139,116 @@ namespace JMMClient.Utilities
                     fsw.Changed += new FileSystemEventHandler(fsw_Changed);
                     fsw.EnableRaisingEvents = true;
                 }
+
+                if (AppSettings.MPCIniIntegration && !string.IsNullOrEmpty(AppSettings.MPCFolder) && Directory.Exists(AppSettings.MPCFolder))
+                {
+                    FileSystemWatcher fsw = new FileSystemWatcher(AppSettings.MPCFolder, "*.ini");
+                    fsw.IncludeSubdirectories = false;
+                    fsw.Changed += new FileSystemEventHandler(fsw_Changed);
+                    fsw.EnableRaisingEvents = true;
+                }
+
+                if (AppSettings.MPCWebUiIntegration && !string.IsNullOrEmpty(AppSettings.MPCWebUIUrl) && !string.IsNullOrEmpty(AppSettings.MPCWebUIPort))
+                {
+                    playerWebUiTimer = new System.Timers.Timer();
+                    playerWebUiTimer.Elapsed += new System.Timers.ElapsedEventHandler(HandleWebUIRequest);
+                    playerWebUiTimer.Interval = 1000;
+                    playerWebUiTimer.Enabled = true;
+                }
             }
-            catch (Exception ex)
+			catch (Exception ex)
+			{
+				logger.ErrorException(ex.ToString(), ex);
+			}
+		}
+
+        // Make and handle MPC-HC Web UI request
+        public async void HandleWebUIRequest(object source, System.Timers.ElapsedEventArgs e)
+        {
+            // Stop timer for the time request is processed
+            playerWebUiTimer.Stop();
+            // Request
+            string mpcUIFullUrl = "http://" + AppSettings.MPCWebUIUrl + ":" + AppSettings.MPCWebUIPort + "/variables.html";
+            // Helper variables
+            string responseString = "";
+            string nowPlayingFile = "";
+            string nowPlayingFilePosition = "";
+            string nowPlayingFileDuration = "";
+            // Regex for extracting relevant information
+            Regex fileRegex = new Regex("<p id=\"filepath\">(.*?)</p>");
+            Regex filePositionRegex = new Regex("<p id=\"position\">(.*?)</p>");
+            Regex fileDurationRegex = new Regex("<p id=\"duration\">(.*?)</p>");
+
+            try
             {
-                logger.ErrorException(ex.ToString(), ex);
+                // Make HTTP request to Web UI
+                using (HttpClient client = new HttpClient())
+                using (HttpResponseMessage response = await client.GetAsync(mpcUIFullUrl))
+                using (HttpContent content = response.Content)
+                {
+                    // Check if request was ok
+                    if(response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        // Read the string
+                        responseString = await content.ReadAsStringAsync();
+                        // Parse result
+                        if (responseString != null)
+                        {
+                            // extract currently playing video informations
+                            nowPlayingFile = fileRegex.Match(responseString).Groups[1].ToString();
+                            nowPlayingFilePosition = filePositionRegex.Match(responseString).Groups[1].ToString();
+                            nowPlayingFileDuration = fileDurationRegex.Match(responseString).Groups[1].ToString();
+                            // Parse number values for future aritmetics
+                            double filePosition;
+                            double fileDuration;
+                            Double.TryParse(nowPlayingFilePosition, out filePosition);
+                            Double.TryParse(nowPlayingFileDuration, out fileDuration);
+                            // Iterate over recently played files to find currently playing file
+                            foreach (KeyValuePair<int, VideoDetailedVM> kvpVid in recentlyPlayedFiles)
+                            {
+                                if (kvpVid.Value.FullPath.Equals(Path.GetFullPath(nowPlayingFile), StringComparison.InvariantCultureIgnoreCase))
+                                {
+                                    // Skip if file is already marked as watched
+                                    if (kvpVid.Value.Watched) continue;
+                                    // Calculate file progress in %
+                                    double progress = filePosition / fileDuration * 100.0d;
+                                    // Check if file should be considered watched 
+                                    if (progress >= (double)AppSettings.VideoWatchedPct)
+                                    {
+                                        // Get detailed video object
+                                        VideoDetailedVM vid = kvpVid.Value;
+                                        // Log file state change
+                                        logger.Info(string.Format("Updating to watched by media player: {0}", Path.GetFullPath(nowPlayingFile)));
+                                        // Mark file as watched
+                                        JMMServerVM.Instance.clientBinaryHTTP.ToggleWatchedStatusOnVideo(vid.VideoLocalID, true, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+                                        MainListHelperVM.Instance.UpdateHeirarchy(vid);
+                                        MainListHelperVM.Instance.GetSeriesForVideo(vid.VideoLocalID);
+
+                                        System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
+                                        {
+                                            // Trigger OnVideoWatchedEvent
+                                            OnVideoWatchedEvent(new VideoWatchedEventArgs(vid.VideoLocalID, vid));
+                                            Debug.WriteLine("complete");
+                                        });
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    // Start timer again
+                    playerWebUiTimer.Start();
+                }   
+            }
+            catch (Exception exception)
+            {
+                logger.ErrorException(exception.ToString(), exception);
+                playerWebUiTimer.Start();
             }
         }
 
-        public void StopWatchingFiles()
-        {
-            if (watcherVids == null) return;
+		public void StopWatchingFiles()
+		{
+			if (watcherVids == null) return;
 
             foreach (FileSystemWatcher fsw in watcherVids)
             {

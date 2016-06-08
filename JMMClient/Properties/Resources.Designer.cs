@@ -11622,11 +11622,29 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to For MPC Integration you must enable two options (1) Store settings to .ini file and (2) Keep history of recently watched files. See the following screenshot for more details. The location of MPC is usually something like C:\Program Files (x86)\Combined Community Codec Pack\MPC.
+        ///   Looks up a localized string similar to There are 2 types of MPC Integrations:.
         /// </summary>
-        public static string VideoPlayer_MPCNote {
+        public static string VideoPlayer_MPCIntegrationTypeNote {
             get {
-                return ResourceManager.GetString("VideoPlayer_MPCNote", resourceCulture);
+                return ResourceManager.GetString("VideoPlayer_MPCIntegrationTypeNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For INI type you must enable two options (1) Store settings to .ini file and (2) Keep history of recently watched files. See the following screenshot for more details. The location of MPC is usually something like C:\Program Files (x86)\Combined Community Codec Pack\MPC.
+        /// </summary>
+        public static string VideoPlayer_MPCNote1 {
+            get {
+                return ResourceManager.GetString("VideoPlayer_MPCNote1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For Web UI type you must enable Listen on port and type appropriate port or leave it as it is. Listening port defaults to 13579. Please note that if you change default port you need to set it also in options below..
+        /// </summary>
+        public static string VideoPlayer_MPCNote2 {
+            get {
+                return ResourceManager.GetString("VideoPlayer_MPCNote2", resourceCulture);
             }
         }
         
@@ -11663,6 +11681,15 @@ namespace JMMClient.Properties {
         public static string VideoPlayer_MPCTest {
             get {
                 return ResourceManager.GetString("VideoPlayer_MPCTest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MPC Web UI Port.
+        /// </summary>
+        public static string VideoPlayer_MPCWebUIPort {
+            get {
+                return ResourceManager.GetString("VideoPlayer_MPCWebUIPort", resourceCulture);
             }
         }
         

@@ -2209,8 +2209,8 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="VideoPlayer_MPC" xml:space="preserve">
     <value>Media Player Classic</value>
   </data>
-  <data name="VideoPlayer_MPCNote" xml:space="preserve">
-    <value>For MPC Integration you must enable two options (1) Store settings to .ini file and (2) Keep history of recently watched files. See the following screenshot for more details. The location of MPC is usually something like C:\Program Files (x86)\Combined Community Codec Pack\MPC</value>
+  <data name="VideoPlayer_MPCNote1" xml:space="preserve">
+    <value>For INI type you must enable two options (1) Store settings to .ini file and (2) Keep history of recently watched files. See the following screenshot for more details. The location of MPC is usually something like C:\Program Files (x86)\Combined Community Codec Pack\MPC</value>
   </data>
   <data name="VideoPlayer_MPCOptions" xml:space="preserve">
     <value>MPC Options</value>
@@ -3177,7 +3177,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   </data>
   <data name="Search_TitleOnly" xml:space="preserve">
     <value>Title Only</value>
- </data>
+  </data>
   <data name="Tooltip_User_PlexUsers" xml:space="preserve">
     <value>Maps this comma separated users from plex to this JMM User. if the plex user is a friend (not home user), use 'External' as Plex User</value>
   </data>
@@ -4131,5 +4131,14 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   </data>
   <data name="Video_Hi12P" xml:space="preserve">
     <value>12bit</value>
+  </data>
+  <data name="VideoPlayer_MPCIntegrationTypeNote" xml:space="preserve">
+    <value>There are 2 types of MPC Integrations:</value>
+  </data>
+  <data name="VideoPlayer_MPCNote2" xml:space="preserve">
+    <value>For Web UI type you must enable Listen on port and type appropriate port or leave it as it is. Listening port defaults to 13579. Please note that if you change default port you need to set it also in options below.</value>
+  </data>
+  <data name="VideoPlayer_MPCWebUIPort" xml:space="preserve">
+    <value>MPC Web UI Port</value>
   </data>
 </root>
