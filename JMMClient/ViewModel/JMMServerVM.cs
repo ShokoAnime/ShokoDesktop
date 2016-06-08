@@ -1451,6 +1451,9 @@ namespace JMMClient
 
         private bool isRelationInExclusion(string relation)
         {
+            if (AutoGroupSeriesRelationExclusions == null)
+                return false;
+
             foreach (string a in AutoGroupSeriesRelationExclusions.Split('|'))
             {
                 // relation will always be lowercase, but a may not be yet
