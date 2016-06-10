@@ -2198,26 +2198,17 @@ Mark Unknown - pozostawia plik na liście, ale zmienia stan nieznany.</value>
   <data name="VideoPlayer_MPC" xml:space="preserve">
     <value>Media Player Classic</value>
   </data>
-  <data name="VideoPlayer_MPCNote1" xml:space="preserve">
-    <value>Integracji MPC, które należy włączyć dwie opcje (1) sklep ustawienia do pliku .ini i (2) zachować historię niedawno oglądałem plików. Zobacz poniższy zrzut ekranu więcej szczegółów. Lokalizacja MPC jest zazwyczaj coś w C:\Program Files (x 86) \Combined Community Codec Pack\MPC</value>
-  </data>
   <data name="VideoPlayer_MPCOptions" xml:space="preserve">
     <value>RPP opcje</value>
   </data>
   <data name="VideoPlayer_VLC" xml:space="preserve">
     <value>VLC</value>
   </data>
-  <data name="VideoPlayer_VLCNote" xml:space="preserve">
-    <value>VLC 2.2 + nagrywa ostatnio używanych plików i sygnatury czasowe domyślnie (i wyłączenie jest opcja "Zaawansowane"). Starsze wersje nie obsługują funkcji "Życiorys z ostatniej pozycji". Lokalizacja pliku .ini VLC jest zazwyczaj coś w stylu C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini</value>
-  </data>
   <data name="VideoPlayer_VLCOptions" xml:space="preserve">
     <value>VLC opcje</value>
   </data>
   <data name="VideoPlayer_PotPlayer" xml:space="preserve">
     <value>PotPlayer</value>
-  </data>
-  <data name="VideoPlayer_PotPlayerNote" xml:space="preserve">
-    <value>PotPlayer integracji należy włączyć następujące opcje (1) Preferencje &gt; ogólne &gt; ustawienia magazynu do ini plików (2) preferencje &gt; odtwarzania &gt; grać od ostatni punkt. Zobacz poniższy zrzut ekranu więcej szczegółów. Lokalizację pliku ini PlotPlayer zazwyczaj jest coś takiego jak C:\Users\username\AppData\Roaming\PotPlayer64\PotPlayer64.ini</value>
   </data>
   <data name="VideoPlayer_PotPlayerOptions" xml:space="preserve">
     <value>PotPlayer opcje</value>
@@ -2230,15 +2221,6 @@ Mark Unknown - pozostawia plik na liście, ale zmienia stan nieznany.</value>
   </data>
   <data name="VideoPlayer_PotPlayerINI" xml:space="preserve">
     <value>Wybierz Folder PotPlayer INI</value>
-  </data>
-  <data name="VideoPlayer_MPCTest" xml:space="preserve">
-    <value>MPC plik testowy</value>
-  </data>
-  <data name="VideoPlayer_VLCTest" xml:space="preserve">
-    <value>VLC plik testowy</value>
-  </data>
-  <data name="VideoPlayer_PotPlayerTest" xml:space="preserve">
-    <value>PotPlayer plik testowy</value>
   </data>
   <data name="VideoPlayer_AutoMark" xml:space="preserve">
     <value>Automatycznie zaznaczyć pliki jak oglądałem kiedy oglądałem jest następujący odsetek</value>
@@ -4133,10 +4115,37 @@ Mark Unknown - pozostawia plik na liście, ale zmienia stan nieznany.</value>
   <data name="VideoPlayer_MPCIntegrationTypeNote" xml:space="preserve">
     <value>There are 2 types of MPC Integrations:</value>
   </data>
-  <data name="VideoPlayer_MPCNote2" xml:space="preserve">
-    <value>For Web UI type you must enable Listen on port and type appropriate port or leave it as it is. Listening port defaults to 13579. Please note that if you change default port you need to set it also in options below.</value>
-  </data>
   <data name="VideoPlayer_MPCWebUIPort" xml:space="preserve">
     <value>MPC Web UI Port</value>
+  </data>
+  <data name="VideoPlayer_MPCNote1" xml:space="preserve">
+    <value>Dla INI integracji należy włączyć następujące opcje w widoku &gt; opcje &gt; gracza; (1) magazynu ustawień do pliku .ini i (2) zachować historię ostatnio oglądane pliki (3) Zapamiętaj położenie pliku. Lokalizacja pliku INI jest zazwyczaj coś w C:\Program Files (x86) \Combined Community Codec Pack\MPC</value>
+  </data>
+  <data name="VideoPlayer_PotPlayerNote" xml:space="preserve">
+    <value>PotPlayer integracji należy włączyć następujące opcje (1) Preferencje &gt; ogólne &gt; ustawienia magazynu do ini plików (2) Preferencje &gt; odtwarzania &gt; grać z najnowszego punktu. Lokalizacja pliku ini PlotPlayer zazwyczaj jest coś takiego jak C:\Users\username\AppData\Roaming\PotPlayer64\PotPlayer64.ini</value>
+  </data>
+  <data name="VideoPlayer_MPCNote2" xml:space="preserve">
+    <value>Integracji interfejsu użytkownika sieci Web należy włączyć następujące opcje w widoku &gt; Opcje &amp;gt; odtwarzacz &gt; interfejs sieci Web; Nasłuchiwać portu. Domyślny port nasłuchiwania jest 13579, którego można użyć, jeśli zdecydujesz się zmienić to upewnij się, że możesz zmienić go w polu poniżej.</value>
+  </data>
+  <data name="VideoPlayer_MPCTest" xml:space="preserve">
+    <value>Plik MPC INI testu</value>
+  </data>
+  <data name="VideoPlayer_VLCTest" xml:space="preserve">
+    <value>Plik VLC INI testu</value>
+  </data>
+  <data name="VideoPlayer_PotPlayerTest" xml:space="preserve">
+    <value>Plik PotPlayer INI testu</value>
+  </data>
+  <data name="VideoPlayer_MPCClear" xml:space="preserve">
+    <value>Wyczyścić Folder MPC INI</value>
+  </data>
+  <data name="VideoPlayer_PotPlayerClear" xml:space="preserve">
+    <value>Wyczyścić Folder INI puli gracz</value>
+  </data>
+  <data name="VideoPlayer_VLCClear" xml:space="preserve">
+    <value>Wyczyścić Folder VLC INI</value>
+  </data>
+  <data name="VideoPlayer_VLCNote" xml:space="preserve">
+    <value>Dowolna wersja VLC może służyć z JMM do odtwarzania pliku general. Jednak tylko VLC w wersji 2.2 i nowszych są w stanie skorzystać z integracji odtwarzacza wideo jako ' życiorys z ostatniej pozycji "nie jest dostępne w starszych wersjach. VLC umożliwia także wymagane ustawienia domyślnie, więc nie musisz robić żadnej dodatkowej konfiguracji. Lokalizacja pliku .ini VLC jest zazwyczaj coś w stylu C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini</value>
   </data>
 </root>

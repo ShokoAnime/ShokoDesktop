@@ -11595,6 +11595,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clear MPC INI Folder.
+        /// </summary>
+        public static string VideoPlayer_MPCClear {
+            get {
+                return ResourceManager.GetString("VideoPlayer_MPCClear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MPC INI Folder.
         /// </summary>
         public static string VideoPlayer_MPCFolder {
@@ -11631,7 +11640,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to For INI type you must enable two options (1) Store settings to .ini file and (2) Keep history of recently watched files. See the following screenshot for more details. The location of MPC is usually something like C:\Program Files (x86)\Combined Community Codec Pack\MPC.
+        ///   Looks up a localized string similar to For INI integration you must enable the following options in View &gt; Options &gt; Player; (1) Store settings to .ini file and (2) Keep history of recently watched files (3) Remember File Position. The location of the INI file is usually something like C:\Program Files (x86)\Combined Community Codec Pack\MPC.
         /// </summary>
         public static string VideoPlayer_MPCNote1 {
             get {
@@ -11640,7 +11649,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to For Web UI type you must enable Listen on port and type appropriate port or leave it as it is. Listening port defaults to 13579. Please note that if you change default port you need to set it also in options below..
+        ///   Looks up a localized string similar to For Web UI integration you must enable the following option in View &gt; Options &gt; Player &gt; Web Interface; Listen On Port. The default listening port is 13579 which you can use, if you decide to change it make sure you change it in the box below..
         /// </summary>
         public static string VideoPlayer_MPCNote2 {
             get {
@@ -11676,7 +11685,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Test MPC File.
+        ///   Looks up a localized string similar to Test MPC INI File.
         /// </summary>
         public static string VideoPlayer_MPCTest {
             get {
@@ -11699,6 +11708,15 @@ namespace JMMClient.Properties {
         public static string VideoPlayer_PotPlayer {
             get {
                 return ResourceManager.GetString("VideoPlayer_PotPlayer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear Pot Player INI Folder.
+        /// </summary>
+        public static string VideoPlayer_PotPlayerClear {
+            get {
+                return ResourceManager.GetString("VideoPlayer_PotPlayerClear", resourceCulture);
             }
         }
         
@@ -11730,7 +11748,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to For PotPlayer Integration you must enable the following options (1) Preferences &gt; General &gt; Store Settings to .ini file (2) Preferences &gt; Playback &gt; Play from latest point. See the following screenshot for more details. The location of the PlotPlayer .ini file is usually something like C:\Users\username\AppData\Roaming\PotPlayer64\PotPlayer64.ini.
+        ///   Looks up a localized string similar to For PotPlayer Integration you must enable the following options (1) Preferences &gt; General &gt; Store Settings to .ini file (2) Preferences &gt; Playback &gt; Play from latest point. The location of the PlotPlayer .ini file is usually something like C:\Users\username\AppData\Roaming\PotPlayer64\PotPlayer64.ini.
         /// </summary>
         public static string VideoPlayer_PotPlayerNote {
             get {
@@ -11766,7 +11784,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Test PotPlayer File.
+        ///   Looks up a localized string similar to Test PotPlayer INI File.
         /// </summary>
         public static string VideoPlayer_PotPlayerTest {
             get {
@@ -11789,6 +11807,15 @@ namespace JMMClient.Properties {
         public static string VideoPlayer_VLC {
             get {
                 return ResourceManager.GetString("VideoPlayer_VLC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear VLC INI Folder.
+        /// </summary>
+        public static string VideoPlayer_VLCClear {
+            get {
+                return ResourceManager.GetString("VideoPlayer_VLCClear", resourceCulture);
             }
         }
         
@@ -11820,7 +11847,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to VLC 2.2+ records recent files and timestamps by default (and disabling is an &apos;Advanced&apos; option). Older versions do not support &apos;Resume from last position&apos; functionality. The location of the VLC .ini file is usually something like C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini.
+        ///   Looks up a localized string similar to Any version of VLC can be used with JMM for general file playback. However only VLC version 2.2 and newer are able to take advantage of the video player integration as &apos;Resume from last position&quot; is not available in older versions. VLC also enables the required settings by default so you don&apos;t need to do any additional configuration. The location of the VLC .ini file is usually something like C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini.
         /// </summary>
         public static string VideoPlayer_VLCNote {
             get {
@@ -11856,7 +11883,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Test VLC File.
+        ///   Looks up a localized string similar to Test VLC INI File.
         /// </summary>
         public static string VideoPlayer_VLCTest {
             get {

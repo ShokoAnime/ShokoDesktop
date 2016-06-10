@@ -2198,26 +2198,17 @@
   <data name="VideoPlayer_MPC" xml:space="preserve">
     <value>Media Player Classic</value>
   </data>
-  <data name="VideoPlayer_MPCNote1" xml:space="preserve">
-    <value>Для интеграции MPC, которую вы должны включить два варианта (1) хранить параметры INI-файла и истории (2) хранить недавно смотрел файлов. Смотрите скриншот ниже для более подробной информации. MPC расположен обычно что-то вроде C:\Program Files (x 86) \Combined Community Codec Pack\MPC</value>
-  </data>
   <data name="VideoPlayer_MPCOptions" xml:space="preserve">
     <value>MPC опции</value>
   </data>
   <data name="VideoPlayer_VLC" xml:space="preserve">
     <value>VLC</value>
   </data>
-  <data name="VideoPlayer_VLCNote" xml:space="preserve">
-    <value>VLC 2.2 + записей последних файлов и временные метки по умолчанию (и отключение «Дополнительно» вариант). Более старые версии не поддерживают функциональность «Резюме из последней позиции». Расположение файла .ini VLC является обычно что-то вроде C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini</value>
-  </data>
   <data name="VideoPlayer_VLCOptions" xml:space="preserve">
     <value>VLC опции</value>
   </data>
   <data name="VideoPlayer_PotPlayer" xml:space="preserve">
     <value>PotPlayer</value>
-  </data>
-  <data name="VideoPlayer_PotPlayerNote" xml:space="preserve">
-    <value>Для интеграции PotPlayer, необходимо включить следующие параметры (1) предпочтения &gt; общего &gt; хранилища параметров .ini файла (2) предпочтения &gt; воспроизведение &gt; играть от последней точки. Смотрите скриншот ниже для более подробной информации. Расположение файла .ini PlotPlayer обычно это что-то вроде C:\Users\username\AppData\Roaming\PotPlayer64\PotPlayer64.ini</value>
   </data>
   <data name="VideoPlayer_PotPlayerOptions" xml:space="preserve">
     <value>PotPlayer опции</value>
@@ -2230,15 +2221,6 @@
   </data>
   <data name="VideoPlayer_PotPlayerINI" xml:space="preserve">
     <value>Выберите папку PotPlayer INI</value>
-  </data>
-  <data name="VideoPlayer_MPCTest" xml:space="preserve">
-    <value>MPC файлов теста</value>
-  </data>
-  <data name="VideoPlayer_VLCTest" xml:space="preserve">
-    <value>Тестовый файл VLC</value>
-  </data>
-  <data name="VideoPlayer_PotPlayerTest" xml:space="preserve">
-    <value>Тестовый файл PotPlayer</value>
   </data>
   <data name="VideoPlayer_AutoMark" xml:space="preserve">
     <value>Автоматическая пометка файлов как смотрел, когда смотрел следующих процент</value>
@@ -4133,10 +4115,37 @@
   <data name="VideoPlayer_MPCIntegrationTypeNote" xml:space="preserve">
     <value>There are 2 types of MPC Integrations:</value>
   </data>
-  <data name="VideoPlayer_MPCNote2" xml:space="preserve">
-    <value>For Web UI type you must enable Listen on port and type appropriate port or leave it as it is. Listening port defaults to 13579. Please note that if you change default port you need to set it also in options below.</value>
-  </data>
   <data name="VideoPlayer_MPCWebUIPort" xml:space="preserve">
     <value>MPC Web UI Port</value>
+  </data>
+  <data name="VideoPlayer_MPCNote1" xml:space="preserve">
+    <value>Для INI интеграции необходимо включить следующие параметры в поле зрения &gt; вариантов &gt; игрок; (1) хранить параметры INI-файла и (2) хранить историю недавно смотрел файлов (3) запомнить позиции файла. INI-файл расположен обычно что-то вроде C:\Program Files (x86) \Combined Community Codec Pack\MPC</value>
+  </data>
+  <data name="VideoPlayer_PotPlayerNote" xml:space="preserve">
+    <value>Для интеграции PotPlayer, необходимо включить следующие параметры (1) предпочтения &gt; общего &gt; хранилища параметров .ini файла (2) предпочтения &gt; воспроизведение &gt; играть от последней точки. Расположение файла .ini PlotPlayer обычно это что-то вроде C:\Users\username\AppData\Roaming\PotPlayer64\PotPlayer64.ini</value>
+  </data>
+  <data name="VideoPlayer_MPCNote2" xml:space="preserve">
+    <value>Для интеграции пользовательского веб-интерфейса необходимо включить следующий параметр в представлении &gt; вариантов &gt; игрок &gt; веб-интерфейс; Прослушать порт. По умолчанию, прослушивающего порта 13579, который можно использовать, если вы решите изменить это убедитесь, что вы измените его в поле ниже.</value>
+  </data>
+  <data name="VideoPlayer_MPCTest" xml:space="preserve">
+    <value>Теста MPC ini-файла</value>
+  </data>
+  <data name="VideoPlayer_VLCTest" xml:space="preserve">
+    <value>Теста VLC ini-файла</value>
+  </data>
+  <data name="VideoPlayer_PotPlayerTest" xml:space="preserve">
+    <value>Теста PotPlayer ini-файла</value>
+  </data>
+  <data name="VideoPlayer_MPCClear" xml:space="preserve">
+    <value>Очистить папку MPC INI</value>
+  </data>
+  <data name="VideoPlayer_PotPlayerClear" xml:space="preserve">
+    <value>Снимите кастрюлю игрок INI папки</value>
+  </data>
+  <data name="VideoPlayer_VLCClear" xml:space="preserve">
+    <value>Очистить папку VLC INI</value>
+  </data>
+  <data name="VideoPlayer_VLCNote" xml:space="preserve">
+    <value>Для воспроизведения общего файла с JMM может использоваться любая версия VLC. Однако только VLC версии 2.2 или новее могут воспользоваться преимуществами интеграции видео плеер как ' резюме от последней позиции "не доступен в более ранних версиях. VLC также включает необходимые параметры по умолчанию, так что вам не нужно делать любые дополнительные настройки. Расположение файла .ini VLC является обычно что-то вроде C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini</value>
   </data>
 </root>
