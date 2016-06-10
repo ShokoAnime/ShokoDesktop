@@ -4140,7 +4140,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Clear MPC INI Folder</value>
   </data>
   <data name="VideoPlayer_PotPlayerClear" xml:space="preserve">
-    <value>Clear Pot Player INI Folder</value>
+    <value>Clear PotPlayer INI Folder</value>
   </data>
   <data name="VideoPlayer_VLCClear" xml:space="preserve">
     <value>Clear VLC INI Folder</value>

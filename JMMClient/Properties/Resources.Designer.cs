@@ -11712,7 +11712,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Clear Pot Player INI Folder.
+        ///   Looks up a localized string similar to Clear PotPlayer INI Folder.
         /// </summary>
         public static string VideoPlayer_PotPlayerClear {
             get {
