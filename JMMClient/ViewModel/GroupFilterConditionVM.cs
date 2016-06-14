@@ -111,6 +111,7 @@ namespace JMMClient.ViewModel
 				case GroupFilterConditionType.SeriesCreatedDate:
 				case GroupFilterConditionType.EpisodeAddedDate:
 				case GroupFilterConditionType.EpisodeWatchedDate:
+                case GroupFilterConditionType.LatestEpisodeAirDate:
 
 					if (ConditionOperatorEnum == GroupFilterOperator.LastXDays)
 						ConditionParameterString += ConditionParameter;
@@ -142,6 +143,7 @@ namespace JMMClient.ViewModel
 				case GroupFilterConditionType.UserRating:
 				case GroupFilterConditionType.AudioLanguage:
 				case GroupFilterConditionType.SubtitleLanguage:
+                case GroupFilterConditionType.Year:
 					ConditionParameterString += ConditionParameter;
 					break;
 			}

@@ -54,8 +54,8 @@ namespace JMMClient.ViewModel
 			}
 		}
 
-		private string titles = "";
-		public string Titles
+		private HashSet<string> titles =new HashSet<string>();
+		public HashSet<string> Titles
 		{
 			get { return titles; }
 			set
@@ -123,7 +123,7 @@ namespace JMMClient.ViewModel
 			this.MainTitle = contract.MainTitle;
 			this.SeriesExists = contract.SeriesExists;
 			this.SeriesNotExists = !contract.SeriesExists;
-			this.Titles = contract.Titles;
+			this.Titles = new HashSet<string>(contract.Titles);
 		}
 	}
 }

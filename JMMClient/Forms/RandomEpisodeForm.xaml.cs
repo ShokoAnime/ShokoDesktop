@@ -349,63 +349,59 @@ namespace JMMClient.Forms
 				GroupFilterVM gf = LevelObject as GroupFilterVM;
 				if (gf == null) return serList;
 
-				List<AnimeGroupVM> grps = new List<AnimeGroupVM>(MainListHelperVM.Instance.AllGroups);
+				List<AnimeGroupVM> grps = gf.Groups[0].Select(a => MainListHelperVM.Instance.AllGroupsDictionary[a]).ToList();
+
 
 				foreach (AnimeGroupVM grp in grps)
 				{
 					// ignore sub groups
 					if (grp.AnimeGroupParentID.HasValue) continue;
 
-					if (gf.EvaluateGroupFilter(grp))
+					foreach (AnimeSeriesVM ser in grp.AllAnimeSeries)
 					{
-						foreach (AnimeSeriesVM ser in grp.AllAnimeSeries)
+						if (gf.EvaluateGroupFilter(ser))
 						{
-							if (gf.EvaluateGroupFilter(ser))
+							// tags
+							if (!string.IsNullOrEmpty(SelectedTags))
 							{
-								// tags
-								if (!string.IsNullOrEmpty(SelectedTags))
+								string filterParm = SelectedTags.Trim();
+
+								string[] cats = filterParm.Split(',');
+
+								bool foundCat = false;
+								if (cboCatFilter.SelectedIndex == 1) foundCat = true; // all
+
+								foreach (string cat in cats)
 								{
-									string filterParm = SelectedTags.Trim();
+									if (cat.Trim().Length == 0) continue;
+									if (cat.Trim() == ",") continue;
 
-									string[] cats = filterParm.Split(',');
-
-									bool foundCat = false;
-									if (cboCatFilter.SelectedIndex == 1) foundCat = true; // all
-
-									int index = 0;
-									foreach (string cat in cats)
+								    bool fnd = ser.AllTags.Contains(cat, StringComparer.InvariantCultureIgnoreCase);
+                                    
+									if (cboCatFilter.SelectedIndex == 0) // any
 									{
-										if (cat.Trim().Length == 0) continue;
-										if (cat.Trim() == ",") continue;
-
-										index = ser.TagsString.IndexOf(cat, 0, StringComparison.InvariantCultureIgnoreCase);
-
-										if (cboCatFilter.SelectedIndex == 0) // any
+										if (fnd)
 										{
-											if (index > -1)
-											{
-												foundCat = true;
-												break;
-											}
-										}
-										else //all
-										{
-											if (index < 0)
-											{
-												foundCat = false;
-												break;
-											}
+											foundCat = true;
+											break;
 										}
 									}
-									if (!foundCat) continue;
+									else //all
+									{
+										if (!fnd)
+										{
+											foundCat = false;
+											break;
+										}
+									}
 								}
-
-								serList.Add(ser);
+								if (!foundCat) continue;
 							}
+
+							serList.Add(ser);
 						}
 					}
 				}
-
 			}
 			catch (Exception ex)
 			{
@@ -443,11 +439,11 @@ namespace JMMClient.Forms
 							if (cat.Trim().Length == 0) continue;
 							if (cat.Trim() == ",") continue;
 
-							index = ser.TagsString.IndexOf(cat, 0, StringComparison.InvariantCultureIgnoreCase);
-
+						    bool fnd = ser.AllTags.Contains(cat, StringComparer.InvariantCultureIgnoreCase);
+                            
 							if (cboCatFilter.SelectedIndex == 0) // any
 							{
-								if (index > -1)
+								if (fnd)
 								{
 									foundCat = true;
 									break;
@@ -455,7 +451,7 @@ namespace JMMClient.Forms
 							}
 							else //all
 							{
-								if (index < 0)
+								if (!fnd)
 								{
 									foundCat = false;
 									break;

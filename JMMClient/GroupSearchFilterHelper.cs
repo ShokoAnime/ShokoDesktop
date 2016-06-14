@@ -26,24 +26,25 @@ namespace JMMClient
 			if (index > -1) return true;
 
 			// check the tags
-			if (grp.Stat_AllTags != null)
+			if (grp.Stat_AllTags != null && grp.Stat_AllTags.Count>0)
 			{
-				index = grp.Stat_AllTags.IndexOf(filterText, 0, StringComparison.InvariantCultureIgnoreCase);
-				if (index > -1) return true;
+
+			    if (grp.Stat_AllTags.Contains(filterText, StringComparer.InvariantCultureIgnoreCase))
+			        return true;
 			}
 
             // check the custom tags
-            if (grp.Stat_AllCustomTags != null)
+            if (grp.Stat_AllCustomTags != null && grp.Stat_AllCustomTags.Count>0)
             {
-                index = grp.Stat_AllCustomTags.IndexOf(filterText, 0, StringComparison.InvariantCultureIgnoreCase);
-                if (index > -1) return true;
+                if (grp.Stat_AllCustomTags.Contains(filterText, StringComparer.InvariantCultureIgnoreCase))
+                    return true;
             }
 
 			// search the titles (romaji name, english names) etc from anidb
-			if (grp.Stat_AllTitles != null)
-			{
-				index = grp.Stat_AllTitles.IndexOf(filterText, 0, StringComparison.InvariantCultureIgnoreCase);
-				if (index > -1) return true;
+			if (grp.Stat_AllTitles != null && grp.Stat_AllTitles.Count > 0)
+            {
+                if (grp.Stat_AllTitles.Contains(filterText, StringComparer.InvariantCultureIgnoreCase))
+                    return true;
 			}
 
 			return false;
@@ -73,24 +74,17 @@ namespace JMMClient
 			if (String.IsNullOrEmpty(filterText) || anime == null)
 				return true;
 
-			// search the romaji name, english names etc from anidb
-			int index = anime.AllTitles.IndexOf(filterText, 0, StringComparison.InvariantCultureIgnoreCase);
-			if (index > -1) return true;
+            // search the romaji name, english names etc from anidb
+            if (anime.AllTitles.Contains(filterText, StringComparer.InvariantCultureIgnoreCase))
+                return true;
+
 
 			if (searchType == SeriesSearchType.Everything)
 			{
-				// check the tags
-				index = anime.AllTags.IndexOf(filterText, 0, StringComparison.InvariantCultureIgnoreCase);
-				if (index > -1) return true;
+                // check the tags
+                if (anime.AllTags.Contains(filterText, StringComparer.InvariantCultureIgnoreCase))
+                    return true;
 			}
-
-			if (searchType == SeriesSearchType.Everything)
-			{
-				// check the tags
-				index = anime.AllTags.IndexOf(filterText, 0, StringComparison.InvariantCultureIgnoreCase);
-				if (index > -1) return true;
-			}
-
 
 			return false;
 		}

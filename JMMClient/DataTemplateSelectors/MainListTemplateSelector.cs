@@ -14,7 +14,8 @@ namespace JMMClient
 		{
 			FrameworkElement element = container as FrameworkElement;
 
-			if (element != null && item != null)
+
+            if (element != null && item != null)
 			{
 				if (item.GetType() == typeof(GroupFilterVM))
 				{

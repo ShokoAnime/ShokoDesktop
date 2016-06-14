@@ -207,10 +207,9 @@ namespace JMMClient.Forms
 
 			try
 			{
-				string[] titles = searchResult.Titles.Split('|');
 				//make sure list is unique
 				SortedDictionary<string, string> sortedTitles = new SortedDictionary<string, string>();
-				foreach (string tit in titles)
+				foreach (string tit in searchResult.Titles)
 				{
 					if (!string.IsNullOrEmpty(tit))
 					{
@@ -401,7 +400,7 @@ namespace JMMClient.Forms
 			AnimeSearchVM srch = new AnimeSearchVM();
 			srch.AnimeID = anime.AnimeID;
 			srch.MainTitle = anime.MainTitle;
-			srch.Titles = anime.AllTitles;
+			srch.Titles = new HashSet<string>(anime.AllTitles);
 
 			SetSelectedAnime(srch);
 			EvaluateRadioButtons();

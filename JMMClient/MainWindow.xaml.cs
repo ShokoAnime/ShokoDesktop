@@ -2054,6 +2054,7 @@ namespace JMMClient
 						if (gf.Save() && isnew)
 						{
 							MainListHelperVM.Instance.AllGroupFilters.Add(gf);
+						    MainListHelperVM.Instance.AllGroupFiltersDictionary[gf.GroupFilterID.Value] = gf;
 							MainListHelperVM.Instance.LastGroupFilterID = gf.GroupFilterID.Value;
 							showChildWrappersWorker.RunWorkerAsync(null);
 						}
@@ -2151,9 +2152,10 @@ namespace JMMClient
 
 						// remove from group filter list
 						MainListHelperVM.Instance.AllGroupFilters.Remove(gf);
-
-						// remove from current wrapper list
-						if (pos >= 0)
+					    if (gf.GroupFilterID.HasValue && MainListHelperVM.Instance.AllGroupFiltersDictionary.ContainsKey(gf.GroupFilterID.Value))
+					        MainListHelperVM.Instance.AllGroupFiltersDictionary.Remove(gf.GroupFilterID.Value);
+                        // remove from current wrapper list
+                        if (pos >= 0)
 						{
 							MainListHelperVM.Instance.CurrentWrapperList.RemoveAt(pos);
 							//MainListHelperVM.Instance.ViewGroups.Refresh();
@@ -3152,7 +3154,6 @@ namespace JMMClient
 		{
 			AnimeGroupVM grpvm = obj as AnimeGroupVM;
 			if (grpvm == null) return false;
-
 			return GroupSearchFilterHelper.EvaluateGroupFilter(groupFilterVM, grpvm);
 		}
 
@@ -3490,5 +3491,10 @@ namespace JMMClient
 		void grdMain_LayoutUpdated(object sender, EventArgs e)
 		{
 		}
-	}
+
+        private void tabControl1_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+    }
 }

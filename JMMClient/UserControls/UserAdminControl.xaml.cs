@@ -94,10 +94,9 @@ namespace JMMClient.UserControls
                 {
                     if (us != lbUsers.SelectedItem)
                     {
-                        if (!string.IsNullOrEmpty(us.PlexUsers))
+                        if (us.PlexUsers!=null && us.PlexUsers.Count>0)
                         {
-                            string[] splexusers = us.PlexUsers.Split(',');
-                            foreach (string m in splexusers)
+                            foreach (string m in us.PlexUsers)
                             {
                                 if (n.Trim().ToLower() == m.Trim().ToLower())
                                 {
@@ -114,12 +113,12 @@ namespace JMMClient.UserControls
             //SelectedUser = lbUsers.SelectedItem as JMMUserVM;
 
             SelectedUser.Username = txtUsername.Text.Trim();
-            SelectedUser.HideTags = txtTags.Text.Trim();
+            SelectedUser.HideTags = new HashSet<string>(txtTags.Text.Split(',').Select(a=>a.Trim()).Where(a=>!string.IsNullOrEmpty(a)));
             SelectedUser.IsAdmin = chkIsAdmin.IsChecked.Value ? 1 : 0;
             SelectedUser.IsAniDBUser = chkIsAniDB.IsChecked.Value ? 1 : 0;
             SelectedUser.IsTraktUser = chkIsTrakt.IsChecked.Value ? 1 : 0;
             SelectedUser.CanEditServerSettings = chkEditSettings.IsChecked.Value ? 1 : 0;
-            SelectedUser.PlexUsers = txtPlexUsers.Text.Trim();
+            SelectedUser.PlexUsers = new HashSet<string>(txtPlexUsers.Text.Split(',').Select(a => a.Trim()).Where(a => !string.IsNullOrEmpty(a)));
 
             try
             {
@@ -257,12 +256,12 @@ namespace JMMClient.UserControls
 
             btnChangePassword.Visibility = System.Windows.Visibility.Visible;
             txtUsername.Text = SelectedUser.Username;
-            txtTags.Text = SelectedUser.HideTags;
+            txtTags.Text = string.Join(", ",SelectedUser.HideTags);
             chkIsAdmin.IsChecked = SelectedUser.IsAdminUser;
             chkIsAniDB.IsChecked = SelectedUser.IsAniDBUserBool;
             chkIsTrakt.IsChecked = SelectedUser.IsTraktUserBool;
             chkEditSettings.IsChecked = SelectedUser.CanEditSettings;
-            txtPlexUsers.Text = SelectedUser.PlexUsers;
+            txtPlexUsers.Text = string.Join(", ",SelectedUser.PlexUsers);
         }
 
         void UserAdminControl_Loaded(object sender, RoutedEventArgs e)

@@ -235,11 +235,11 @@ namespace JMMClient.Forms
 										if (cat.Trim().Length == 0) continue;
 										if (cat.Trim() == ",") continue;
 
-										index = ser.TagsString.IndexOf(cat, 0, StringComparison.InvariantCultureIgnoreCase);
-
+									    bool fnd = ser.AllTags.Contains(cat, StringComparer.InvariantCultureIgnoreCase);
+                                        
 										if (cboCatFilter.SelectedIndex == 0) // any
 										{
-											if (index > -1)
+											if (fnd)
 											{
 												foundCat = true;
 												break;
@@ -247,7 +247,7 @@ namespace JMMClient.Forms
 										}
 										else //all
 										{
-											if (index < 0)
+											if (!fnd)
 											{
 												foundCat = false;
 												break;

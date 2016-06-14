@@ -41,16 +41,16 @@ namespace JMMClient
 		public decimal? Stat_UserVotePermanent { get; set; }
 		public decimal? Stat_UserVoteTemporary { get; set; }
 		public decimal? Stat_UserVoteOverall { get; set; }
-		public string Stat_AllTags { get; set; }
-        public string Stat_AllCustomTags { get; set; }
-		public string Stat_AllTitles { get; set; }
+		public HashSet<string> Stat_AllTags { get; set; }
+        public HashSet<string> Stat_AllCustomTags { get; set; }
+		public HashSet<string> Stat_AllTitles { get; set; }
 		public bool Stat_IsComplete { get; set; }
 		public bool Stat_HasFinishedAiring { get; set; }
 		public bool Stat_IsCurrentlyAiring { get; set; }
-		public string Stat_AllVideoQuality { get; set; }
-		public string Stat_AllVideoQualityEpisodes { get; set; }
-		public string Stat_AudioLanguages { get; set; }
-		public string Stat_SubtitleLanguages { get; set; }
+		public HashSet<string> Stat_AllVideoQuality { get; set; }
+		public HashSet<string> Stat_AllVideoQualityEpisodes { get; set; }
+		public HashSet<string> Stat_AudioLanguages { get; set; }
+		public HashSet<string> Stat_SubtitleLanguages { get; set; }
 		public bool Stat_HasTvDBLink { get; set; }
 		public bool Stat_HasMALLink { get; set; }
 		public bool Stat_HasMovieDBLink { get; set; }
@@ -327,9 +327,7 @@ namespace JMMClient
 				List<string> tagList = new List<string>();
 				foreach (AnimeSeriesVM series in AllAnimeSeries)
 				{
-					string catstemp = series.TagsString.Replace(" ", "");
-					string[] tagsArray = series.TagsString.Split('|');
-					foreach (string tag in tagsArray)
+					foreach (string tag in series.AllTags)
 					{
 						if (!tagList.Contains(tag)) tagList.Add(tag);
 					}
@@ -790,16 +788,16 @@ namespace JMMClient
 			this.Stat_UserVoteOverall = contract.Stat_UserVoteOverall;
 			this.Stat_UserVotePermanent = contract.Stat_UserVotePermanent;
 			this.Stat_UserVoteTemporary = contract.Stat_UserVoteTemporary;
-            this.Stat_AllTags = contract.Stat_AllTags;
-            this.Stat_AllCustomTags = contract.Stat_AllCustomTags;
-			this.Stat_AllTitles = contract.Stat_AllTitles;
+            this.Stat_AllTags = new HashSet<string>(contract.Stat_AllTags);
+            this.Stat_AllCustomTags = new HashSet<string>(contract.Stat_AllCustomTags);
+			this.Stat_AllTitles = new HashSet<string>(contract.Stat_AllTitles);
 			this.Stat_IsComplete = contract.Stat_IsComplete;
 			this.Stat_HasFinishedAiring = contract.Stat_HasFinishedAiring;
 			this.Stat_IsCurrentlyAiring = contract.Stat_IsCurrentlyAiring;
-			this.Stat_AllVideoQuality = contract.Stat_AllVideoQuality;
-			this.Stat_AllVideoQualityEpisodes = contract.Stat_AllVideoQuality_Episodes;
-			this.Stat_AudioLanguages = contract.Stat_AudioLanguages;
-			this.Stat_SubtitleLanguages = contract.Stat_SubtitleLanguages;
+			this.Stat_AllVideoQuality = new HashSet<string>(contract.Stat_AllVideoQuality);
+			this.Stat_AllVideoQualityEpisodes = new HashSet<string>(contract.Stat_AllVideoQuality_Episodes);
+			this.Stat_AudioLanguages = new HashSet<string>(contract.Stat_AudioLanguages);
+			this.Stat_SubtitleLanguages = new HashSet<string>(contract.Stat_SubtitleLanguages);
 			this.Stat_HasTvDBLink = contract.Stat_HasTvDBLink;
 			this.Stat_HasMALLink = contract.Stat_HasMALLink;
 			this.Stat_HasMovieDBLink = contract.Stat_HasMovieDBLink;

@@ -27,8 +27,8 @@ namespace JMMClient
 		public int AnimeType { get; set; }
 		public string MainTitle { get; set; }
 		public string FormattedTitle { get; set; }
-		public string AllTitles { get; set; }
-		public string AllTags { get; set; }
+		public HashSet<string> AllTitles { get; set; }
+		public HashSet<string> AllTags { get; set; }
 		public string Description { get; set; }
 		public string DescriptionTruncated { get; set; }
 		public int EpisodeCountNormal { get; set; }
@@ -92,8 +92,8 @@ namespace JMMClient
 		{
 			this.AirDate = contract.AirDate;
             this.AllCinemaID = contract.AllCinemaID;
-            this.AllTags = contract.AllTags;
-			this.AllTitles = contract.AllTitles;
+            this.AllTags = new HashSet<string>(contract.AllTags);
+			this.AllTitles = new HashSet<string>(contract.AllTitles);
 			this.AnimeID = contract.AnimeID;
 			this.AnimeNfo = contract.AnimeNfo;
 			this.AnimePlanetID = contract.AnimePlanetID;
@@ -1384,7 +1384,7 @@ namespace JMMClient
 		{
 			int lowestLD = int.MaxValue;
 
-			foreach (string nm in this.AllTitles.Split('|'))
+			foreach (string nm in this.AllTitles)
 			{
 				int ld = Utils.LevenshteinDistance(input, nm);
 				if (ld < lowestLD) lowestLD = ld;

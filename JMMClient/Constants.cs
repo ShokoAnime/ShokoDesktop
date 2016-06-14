@@ -144,7 +144,7 @@ namespace JMMClient
 			public static readonly string ManuallyLinked = "M()";
 			public static readonly string HasEpisodes = "N()";
 		}
-
+		/*
 		public struct StaticGF
 		{
 			public static readonly int All = -999;
@@ -157,7 +157,7 @@ namespace JMMClient
 			public static readonly int Predefined_Years_Child = -921;
 			public static readonly int Predefined_Tags_Child = -922;
 		}
-
+		*/
 		public struct URLS
 		{
 			public static readonly string MAL_Series = @"http://myanimelist.net/anime/{0}";

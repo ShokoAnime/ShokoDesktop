@@ -2266,20 +2266,20 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete File (AniDB).
-        /// </summary>
-        public static string Delete_File__AniDB_ {
-            get {
-                return ResourceManager.GetString("Delete File (AniDB)", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Delete All.
         /// </summary>
         public static string DeleteAll {
             get {
                 return ResourceManager.GetString("DeleteAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete File (AniDB).
+        /// </summary>
+        public static string DeleteFileAniDB {
+            get {
+                return ResourceManager.GetString("DeleteFileAniDB", resourceCulture);
             }
         }
         
@@ -3931,6 +3931,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Latest Episode Air Date.
+        /// </summary>
+        public static string GroupFilterConditionType_LatestEpisodeAirDate {
+            get {
+                return ResourceManager.GetString("GroupFilterConditionType_LatestEpisodeAirDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Missing Episodes.
         /// </summary>
         public static string GroupFilterConditionType_MissingEpisodes {
@@ -4026,6 +4035,15 @@ namespace JMMClient.Properties {
         public static string GroupFilterConditionType_VideoQuality {
             get {
                 return ResourceManager.GetString("GroupFilterConditionType_VideoQuality", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Year.
+        /// </summary>
+        public static string GroupFilterConditionType_Year {
+            get {
+                return ResourceManager.GetString("GroupFilterConditionType_Year", resourceCulture);
             }
         }
         
@@ -4206,6 +4224,15 @@ namespace JMMClient.Properties {
         public static string GroupFilterSorting_EpisodeWatchedDate {
             get {
                 return ResourceManager.GetString("GroupFilterSorting_EpisodeWatchedDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group Filter Name.
+        /// </summary>
+        public static string GroupFilterSorting_GroupFilter {
+            get {
+                return ResourceManager.GetString("GroupFilterSorting_GroupFilter", resourceCulture);
             }
         }
         

@@ -515,6 +515,7 @@ namespace JMMClient.Forms
 				case GroupFilterConditionType.SeriesCreatedDate:
 				case GroupFilterConditionType.EpisodeAddedDate:
 				case GroupFilterConditionType.EpisodeWatchedDate:
+                case GroupFilterConditionType.LatestEpisodeAirDate:
 					if (opType == GroupFilterOperator.LastXDays)
 					{
 						IsParameterLastXDays = true;
@@ -555,7 +556,11 @@ namespace JMMClient.Forms
 					IsParameterSubtitleLanguage = true;
 					break;
 
-				case GroupFilterConditionType.VideoQuality:
+                case GroupFilterConditionType.Year:
+                    IsParameterInNotIn = true;
+                    break;
+
+                case GroupFilterConditionType.VideoQuality:
 					IsParameterInNotIn = true;
 					IsParameterVideoQuality = true;
 					break;
@@ -743,6 +748,7 @@ namespace JMMClient.Forms
 					case GroupFilterConditionType.SeriesCreatedDate:
 					case GroupFilterConditionType.EpisodeAddedDate:
 					case GroupFilterConditionType.EpisodeWatchedDate:
+                    case GroupFilterConditionType.LatestEpisodeAirDate:
 
 						if (opType == GroupFilterOperator.LastXDays)
 							txtParameter.Text = gfc.ConditionParameter;
@@ -768,6 +774,7 @@ namespace JMMClient.Forms
 					case GroupFilterConditionType.UserRating:
 					case GroupFilterConditionType.AudioLanguage:
 					case GroupFilterConditionType.SubtitleLanguage:
+                    case GroupFilterConditionType.Year:
 						txtParameter.Text = gfc.ConditionParameter;
 						break;
 				}
