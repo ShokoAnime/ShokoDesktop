@@ -1462,31 +1462,6 @@ namespace JMMClient
             return false;
         }
 
-        // The actual server setting
-        private string autoGroupSeriesRelationExclusions = "";
-        private string AutoGroupSeriesRelationExclusions
-        {
-            get
-            {
-                return autoGroupSeriesRelationExclusions;
-            }
-            set
-            {
-                autoGroupSeriesRelationExclusions = value;
-                OnPropertyChanged(new PropertyChangedEventArgs("AutoGroupSeriesRelationExclusions"));
-            }
-        }
-
-        private bool isRelationInExclusion(string relation)
-        {
-            foreach (string a in AutoGroupSeriesRelationExclusions.Split('|'))
-            {
-                // relation will always be lowercase, but a may not be yet
-                if (a.ToLowerInvariant().Equals(relation)) return true;
-            }
-            return false;
-        }
-
         private void setRelationinExclusion(string setting, bool value)
         {
             string final = AutoGroupSeriesRelationExclusions;
@@ -1537,102 +1512,6 @@ namespace JMMClient
             set
             {
                 setRelationinExclusion("same setting", value);
-            }
-        }
-
-        public bool RelationExcludeAltSetting
-        {
-            get
-            {
-                return isRelationInExclusion("alternate setting");
-            }
-            set
-            {
-                setRelationinExclusion("alternate setting", value);
-            }
-        }
-
-        public bool RelationExcludeAltVersion
-        {
-            get
-            {
-                return isRelationInExclusion("alternate version");
-            }
-            set
-            {
-                setRelationinExclusion("alternate version", value);
-            }
-        }
-
-        public bool RelationExcludeCharacter
-        {
-            get
-            {
-                return isRelationInExclusion("character");
-            }
-            set
-            {
-                setRelationinExclusion("character", value);
-            }
-        }
-
-        public bool RelationExcludeSideStory
-        {
-            get
-            {
-                return isRelationInExclusion("side story");
-            }
-            set
-            {
-                setRelationinExclusion("side story", value);
-            }
-        }
-
-        public bool RelationExcludeParentStory
-        {
-            get
-            {
-                return isRelationInExclusion("parent story");
-            }
-            set
-            {
-                setRelationinExclusion("parent story", value);
-            }
-        }
-
-        public bool RelationExcludeSummary
-        {
-            get
-            {
-                return isRelationInExclusion("summary");
-            }
-            set
-            {
-                setRelationinExclusion("summary", value);
-            }
-        }
-
-        public bool RelationExcludeFullStory
-        {
-            get
-            {
-                return isRelationInExclusion("full story");
-            }
-            set
-            {
-                setRelationinExclusion("full story", value);
-            }
-        }
-
-        public bool RelationExcludeOther
-        {
-            get
-            {
-                return isRelationInExclusion("other");
-            }
-            set
-            {
-                setRelationinExclusion("other", value);
             }
         }
 
