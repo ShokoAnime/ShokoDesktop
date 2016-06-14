@@ -335,6 +335,7 @@ namespace JMMClient
 			// Import settings
 			this.VideoExtensions = contract.VideoExtensions;
 			this.AutoGroupSeries = contract.AutoGroupSeries;
+            this.AutoGroupSeriesRelationExclusions = contract.AutoGroupSeriesRelationExclusions;
 			this.UseEpisodeStatus = contract.Import_UseExistingFileWatchedStatus;
 			this.RunImportOnStart = contract.RunImportOnStart;
 			this.ScanDropFoldersOnStart = contract.ScanDropFoldersOnStart;
@@ -456,6 +457,7 @@ namespace JMMClient
 				contract.Import_UseExistingFileWatchedStatus = this.UseEpisodeStatus;
 				contract.AutoGroupSeries = this.AutoGroupSeries;
 				contract.RunImportOnStart = this.RunImportOnStart;
+                contract.AutoGroupSeriesRelationExclusions = this.AutoGroupSeriesRelationExclusions;
 				contract.ScanDropFoldersOnStart = this.ScanDropFoldersOnStart;
 				contract.Hash_CRC32 = this.Hash_CRC32;
 				contract.Hash_MD5 = this.Hash_MD5;
@@ -504,9 +506,11 @@ namespace JMMClient
 			{
 				SaveServerSettings();
 
-				string response = _clientBinaryHTTP.TestAniDBConnection();
-				MessageBox.Show(response);
-			}
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+                string response = _clientBinaryHTTP.TestAniDBConnection();
+                MessageBox.Show(response, Properties.Resources.AniDBLogin, MessageBoxButton.OK, MessageBoxImage.Information);
+            }
 			catch (Exception ex)
 			{
 				Utils.ShowErrorMessage(ex);
@@ -541,7 +545,7 @@ namespace JMMClient
 
 				string response = _clientBinaryHTTP.TestMALLogin();
 				if (string.IsNullOrEmpty(response))
-					MessageBox.Show(Properties.Resources.Success, "", MessageBoxButton.OK, MessageBoxImage.Information);
+					MessageBox.Show(Properties.Resources.MAL_LoginCorrect, Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
 				else
 					MessageBox.Show(response, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 			}
@@ -1429,6 +1433,179 @@ namespace JMMClient
 			}
 		}
 
+        // The actual server setting
+        private string autoGroupSeriesRelationExclusions = "";
+        private string AutoGroupSeriesRelationExclusions
+        {
+            get
+            {
+                return autoGroupSeriesRelationExclusions;
+            }
+            set
+            {
+                autoGroupSeriesRelationExclusions = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("AutoGroupSeriesRelationExclusions"));
+            }
+        }
+
+        private bool isRelationInExclusion(string relation)
+        {
+            foreach (string a in AutoGroupSeriesRelationExclusions.Split('|'))
+            {
+                // relation will always be lowercase, but a may not be yet
+                if (a.ToLowerInvariant().Equals(relation)) return true;
+            }
+            return false;
+        }
+
+        private void setRelationinExclusion(string setting, bool value)
+        {
+            string final = AutoGroupSeriesRelationExclusions;
+            if (value)
+            {
+                if (!isRelationInExclusion(setting))
+                {
+                    // remove all trailing bars that may have been added
+                    do
+                    {
+                        if (final.EndsWith("|"))
+                            final = final.Substring(0, final.Length - 1);
+                        else
+                            break;
+                    } while (true);
+                    // if not empty, add a single bar to separate
+                    if (final.Length > 0) final = final + "|";
+                    final = final + setting;
+                    AutoGroupSeriesRelationExclusions = final;
+                }
+            }
+            else
+            {
+                if (isRelationInExclusion(setting))
+                {
+                    final = "";
+                    foreach (string a in AutoGroupSeriesRelationExclusions.Split('|'))
+                    {
+                        if (a.Length == 0) continue;
+                        // add all except value and fix any uppercase
+                        if (!a.ToLowerInvariant().Equals(setting)) final += a.ToLowerInvariant() + "|";
+                    }
+                    // this will be "" if all are unchecked
+                    // remove last '|' added in previous loop
+                    if (final.EndsWith("|"))
+                        final = final.Substring(0, final.Length - 1);
+                    AutoGroupSeriesRelationExclusions = final;
+                }
+            }
+        }
+
+        public bool RelationExcludeSameSetting
+        {
+            get
+            {
+                return isRelationInExclusion("same setting");
+            }
+            set
+            {
+                setRelationinExclusion("same setting", value);
+            }
+        }
+
+        public bool RelationExcludeAltSetting
+        {
+            get
+            {
+                return isRelationInExclusion("alternate setting");
+            }
+            set
+            {
+                setRelationinExclusion("alternate setting", value);
+            }
+        }
+
+        public bool RelationExcludeAltVersion
+        {
+            get
+            {
+                return isRelationInExclusion("alternate version");
+            }
+            set
+            {
+                setRelationinExclusion("alternate version", value);
+            }
+        }
+
+        public bool RelationExcludeCharacter
+        {
+            get
+            {
+                return isRelationInExclusion("character");
+            }
+            set
+            {
+                setRelationinExclusion("character", value);
+            }
+        }
+
+        public bool RelationExcludeSideStory
+        {
+            get
+            {
+                return isRelationInExclusion("side story");
+            }
+            set
+            {
+                setRelationinExclusion("side story", value);
+            }
+        }
+
+        public bool RelationExcludeParentStory
+        {
+            get
+            {
+                return isRelationInExclusion("parent story");
+            }
+            set
+            {
+                setRelationinExclusion("parent story", value);
+            }
+        }
+
+        public bool RelationExcludeSummary
+        {
+            get
+            {
+                return isRelationInExclusion("summary");
+            }
+            set
+            {
+                setRelationinExclusion("summary", value);
+            }
+        }
+
+        public bool RelationExcludeFullStory
+        {
+            get
+            {
+                return isRelationInExclusion("full story");
+            }
+            set
+            {
+                setRelationinExclusion("full story", value);
+            }
+        }
+
+        public bool RelationExcludeOther
+        {
+            get
+            {
+                return isRelationInExclusion("other");
+            }
+            set
+            {
+                setRelationinExclusion("other", value);
+            }
+        }
 
 		private bool useEpisodeStatus = false;
 		public bool UseEpisodeStatus

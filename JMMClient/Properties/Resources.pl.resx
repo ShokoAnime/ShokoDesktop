@@ -1326,9 +1326,6 @@
   <data name="ImageSize" xml:space="preserve">
     <value>Rozmiar obrazu</value>
   </data>
-  <data name="INFO_SettingsUserAdmin" xml:space="preserve">
-    <value>Dodawanie lub edytowanie użytkowników tutaj. Użytkowników są przechowywane w bazie danych i współużytkowane przez różnych klientów. Zawsze musi mieć co najmniej jednego administratora.</value>
-  </data>
   <data name="TAB_SettingsUsers" xml:space="preserve">
     <value>Użytkownicy</value>
   </data>
@@ -4069,5 +4066,62 @@ Mark Unknown - pozostawia plik na liście, ale zmienia stan nieznany.</value>
   </data>
   <data name="UpdateAniDB_Info1" xml:space="preserve">
     <value>Dane, które jest związane z plików w swojej kolekcji jest automatycznie pobierane i przechowywane w lokalnej bazie danych, gdy JMM najpierw importuje pliki. Proces ten prowadzony jest tylko raz tak, jeśli określony plik danych jest brak AniDB w momencie pobrania, jeśli będzie brakować w bazie danych. Dodatkowo jest to możliwe, że przyszłe wersje JMM może używać dodatkowego pliku danych, który jest dostępny, ale nie został pobrany podczas JMM początkowo importowane pliki. To narzędzie będzie aktualizować i zastąpić wszystkich danych przechowywanych plików z tym, co jest obecnie dostępna na AniDB.</value>
+  </data>
+  <data name="INFO_SettingsUserAdmin" xml:space="preserve">
+    <value>Użytkowników są przechowywane w bazie danych i mogą być udostępniane przez każdego klienta, który łączy się z bazą danych. Kiedy Dodawanie nowego użytkownika lub aktualizacji istniejącej, należy kliknij przycisk Zapisz inaczej zmiany nie będą obowiązywać. JMM wymaga co najmniej jeden użytkownik z prawami administratora zaznaczone.</value>
+  </data>
+  <data name="MAL_LoginCorrect" xml:space="preserve">
+    <value>MAL logowanie udane, zapisane ustawienia.</value>
+  </data>
+  <data name="MAL_SearchInfo" xml:space="preserve">
+    <value>Ważne MAL poświadczenia są wymagane w celu wykorzystania tej funkcji</value>
+  </data>
+  <data name="CheckCred" xml:space="preserve">
+    <value>Sprawdź poświadczenia</value>
+  </data>
+  <data name="MAL_CheckCred" xml:space="preserve">
+    <value>Sprawdź poświadczenia MAL</value>
+  </data>
+  <data name="Trakt_SearchInfo" xml:space="preserve">
+    <value>Ważny Trakt poświadczenia są wymagane w celu wykorzystania tej funkcji</value>
+  </data>
+  <data name="Trakt_CheckCred" xml:space="preserve">
+    <value>Sprawdź poświadczenia Trakt</value>
+  </data>
+  <data name="RelationSetting_AltSetting" xml:space="preserve">
+    <value>Zmienić ustawienie</value>
+  </data>
+  <data name="RelationSetting_SameSetting" xml:space="preserve">
+    <value>Samo ustawienie</value>
+  </data>
+  <data name="RelationSetting_Character" xml:space="preserve">
+    <value>Znak</value>
+  </data>
+  <data name="RelationSetting_Other" xml:space="preserve">
+    <value>Inne</value>
+  </data>
+  <data name="RelationSetting_ParentStory" xml:space="preserve">
+    <value>Historia rodziców</value>
+  </data>
+  <data name="RelationSetting_SideStory" xml:space="preserve">
+    <value>Side Story</value>
+  </data>
+  <data name="RelationSetting_Summary" xml:space="preserve">
+    <value>Krótki opis</value>
+  </data>
+  <data name="RelationSetting_FullStory" xml:space="preserve">
+    <value>Pełna historia</value>
+  </data>
+  <data name="RelationSetting_AltVersion" xml:space="preserve">
+    <value>Wersja alternatywna</value>
+  </data>
+  <data name="TAB_Settings_RelationSettings" xml:space="preserve">
+    <value>Ustawienia relacji</value>
+  </data>
+  <data name="RelationSettings_Info" xml:space="preserve">
+    <value>Wybierz następujące czynności, aby wykluczyć z grupowania</value>
+  </data>
+  <data name="Link_RelationSettings" xml:space="preserve">
+    <value>http://jmediamanager.org/JMM-Desktop/Settings/#Essential</value>
   </data>
 </root>

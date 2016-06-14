@@ -1384,6 +1384,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check Credentials.
+        /// </summary>
+        public static string CheckCred {
+            get {
+                return ResourceManager.GetString("CheckCred", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check For Updates.
         /// </summary>
         public static string CheckForUpdate {
@@ -4678,7 +4687,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add or edit users here. Users are stored in the database, and shared across different clients. You must always have at least one admin user..
+        ///   Looks up a localized string similar to Users are stored in your database and can be accessed by any client that connects to your database. When adding a new user or updating an existing one, you must click the Save button otherwise your changes will not take effect. JMM requires at least one user with administrator rights selected..
         /// </summary>
         public static string INFO_SettingsUserAdmin {
             get {
@@ -4849,7 +4858,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Trakt Authorization .
+        ///   Looks up a localized string similar to Trakt Authorization Status .
         /// </summary>
         public static string JMMServer_TraktAuth {
             get {
@@ -5016,6 +5025,15 @@ namespace JMMClient.Properties {
         public static string Link_PotPlayer {
             get {
                 return ResourceManager.GetString("Link_PotPlayer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/settings/#essential.
+        /// </summary>
+        public static string Link_RelationSettings {
+            get {
+                return ResourceManager.GetString("Link_RelationSettings", resourceCulture);
             }
         }
         
@@ -5200,11 +5218,38 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check MAL Credentials.
+        /// </summary>
+        public static string MAL_CheckCred {
+            get {
+                return ResourceManager.GetString("MAL_CheckCred", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MAL login successful, settings saved..
+        /// </summary>
+        public static string MAL_LoginCorrect {
+            get {
+                return ResourceManager.GetString("MAL_LoginCorrect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Never Decrease Watched Counts.
         /// </summary>
         public static string MAL_NeverDecrease {
             get {
                 return ResourceManager.GetString("MAL_NeverDecrease", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Valid MAL credentials are required in order to use this feature.
+        /// </summary>
+        public static string MAL_SearchInfo {
+            get {
+                return ResourceManager.GetString("MAL_SearchInfo", resourceCulture);
             }
         }
         
@@ -6663,6 +6708,96 @@ namespace JMMClient.Properties {
         public static string RelatedAnime {
             get {
                 return ResourceManager.GetString("RelatedAnime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alternative Setting.
+        /// </summary>
+        public static string RelationSetting_AltSetting {
+            get {
+                return ResourceManager.GetString("RelationSetting_AltSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alternative Version.
+        /// </summary>
+        public static string RelationSetting_AltVersion {
+            get {
+                return ResourceManager.GetString("RelationSetting_AltVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Character.
+        /// </summary>
+        public static string RelationSetting_Character {
+            get {
+                return ResourceManager.GetString("RelationSetting_Character", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Full Story.
+        /// </summary>
+        public static string RelationSetting_FullStory {
+            get {
+                return ResourceManager.GetString("RelationSetting_FullStory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other.
+        /// </summary>
+        public static string RelationSetting_Other {
+            get {
+                return ResourceManager.GetString("RelationSetting_Other", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parent Story.
+        /// </summary>
+        public static string RelationSetting_ParentStory {
+            get {
+                return ResourceManager.GetString("RelationSetting_ParentStory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Same Setting.
+        /// </summary>
+        public static string RelationSetting_SameSetting {
+            get {
+                return ResourceManager.GetString("RelationSetting_SameSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Side Story.
+        /// </summary>
+        public static string RelationSetting_SideStory {
+            get {
+                return ResourceManager.GetString("RelationSetting_SideStory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Summary.
+        /// </summary>
+        public static string RelationSetting_Summary {
+            get {
+                return ResourceManager.GetString("RelationSetting_Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the following to exclude from grouping.
+        /// </summary>
+        public static string RelationSettings_Info {
+            get {
+                return ResourceManager.GetString("RelationSettings_Info", resourceCulture);
             }
         }
         
@@ -8818,6 +8953,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Relation Settings.
+        /// </summary>
+        public static string TAB_Settings_RelationSettings {
+            get {
+                return ResourceManager.GetString("TAB_Settings_RelationSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AniDB.
         /// </summary>
         public static string TAB_SettingsAniDB {
@@ -10227,6 +10371,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check Trakt Credentials.
+        /// </summary>
+        public static string Trakt_CheckCred {
+            get {
+                return ResourceManager.GetString("Trakt_CheckCred", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current token is valid until:.
         /// </summary>
         public static string Trakt_CurrentToken {
@@ -10286,6 +10439,15 @@ namespace JMMClient.Properties {
         public static string Trakt_PIN {
             get {
                 return ResourceManager.GetString("Trakt_PIN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Valid Trakt credentials are required in order to use this feature.
+        /// </summary>
+        public static string Trakt_SearchInfo {
+            get {
+                return ResourceManager.GetString("Trakt_SearchInfo", resourceCulture);
             }
         }
         

@@ -301,6 +301,7 @@
     <Compile Include="UserControls\PlayNextEpisodeControlV2.xaml.cs">
       <DependentUpon>PlayNextEpisodeControlV2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Settings\RelationSettings.xaml.cs" />
     <Compile Include="ViewModel\AniDB_CharacterVM.cs" />
     <Compile Include="ViewModel\AniDB_SeiyuuVM.cs" />
     <Compile Include="ViewModel\AnimeEpisodeDisplayVM.cs" />
@@ -1207,6 +1208,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\Settings\RelationSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="UserControls\Settings\VideoPlayerSettingsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1577,9 +1582,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\JMMServerBinary\JMMServerBinary3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\JMMServerBinary\JMMServerBinary4.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\JMMServerBinary\JMMServiceImplementation.wsdl" />
