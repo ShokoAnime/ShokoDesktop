@@ -823,7 +823,7 @@
     <value>Wird geladen...</value>
   </data>
   <data name="TotalFileCount" xml:space="preserve">
-    <value>Insgesamt Dateianzahl</value>
+    <value>Insgesamt Dateianzahl:</value>
   </data>
   <data name="ImportSettings_UseEpisodeStatus" xml:space="preserve">
     <value>Legen Sie als ansah, wenn Folge beobachtet wird</value>
@@ -1004,9 +1004,6 @@
   </data>
   <data name="ImageSize" xml:space="preserve">
     <value>Bildgröße</value>
-  </data>
-  <data name="INFO_SettingsUserAdmin" xml:space="preserve">
-    <value>Hinzufügen oder Bearbeiten von Benutzern hier. Benutzer sind in der Datenbank gespeichert und für verschiedene Clients freigegeben. Sie muss immer mindestens ein Administratorbenutzer.</value>
   </data>
   <data name="TAB_SettingsUsers" xml:space="preserve">
     <value>Benutzer</value>
@@ -1877,26 +1874,17 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   <data name="VideoPlayer_MPC" xml:space="preserve">
     <value>Media Player Classic</value>
   </data>
-  <data name="VideoPlayer_MPCNote" xml:space="preserve">
-    <value>MPC-Integration, die Sie, zwei Optionen (1) Shop-Einstellungen ini-Datei und (2) halten Sie Geschichte der kürzlich aktivieren müssen beobachtete Dateien. Siehe folgenden Screenshot für weitere Details. Die Lage des MPC ist in der Regel so etwas wie C:\Program Files (X 86) \Combined Community Codec Pack\MPC</value>
-  </data>
   <data name="VideoPlayer_MPCOptions" xml:space="preserve">
     <value>MPC-Optionen</value>
   </data>
   <data name="VideoPlayer_VLC" xml:space="preserve">
     <value>VLC</value>
   </data>
-  <data name="VideoPlayer_VLCNote" xml:space="preserve">
-    <value>VLC 2.2 + zeichnet zuletzt geöffnete Dateien und Zeitstempeln standardmäßig (und deaktivieren ist eine Option "Erweitert"). Ältere Versionen unterstützen keine 'Resume aus der letzten Position'-Funktionalität. Die Lage des VLC-ini-Datei ist in der Regel so etwas wie C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini</value>
-  </data>
   <data name="VideoPlayer_VLCOptions" xml:space="preserve">
     <value>VLC-Optionen</value>
   </data>
   <data name="VideoPlayer_PotPlayer" xml:space="preserve">
     <value>PotPlayer</value>
-  </data>
-  <data name="VideoPlayer_PotPlayerNote" xml:space="preserve">
-    <value>PotPlayer Integration müssen Sie aktivieren folgende Optionen (1) Präferenzen &gt; allgemeine &gt; Shop-Einstellungen in der INI-Datei (2) Einstellungen &gt; Wiedergabe &gt; aus der späteste Zeitpunkt spielen. Siehe folgenden Screenshot für weitere Details. Die Lage der PlotPlayer ini-Datei ist in der Regel so etwas wie C:\Users\username\AppData\Roaming\PotPlayer64\PotPlayer64.ini</value>
   </data>
   <data name="VideoPlayer_PotPlayerOptions" xml:space="preserve">
     <value>PotPlayer Optionen</value>
@@ -1909,15 +1897,6 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   </data>
   <data name="VideoPlayer_PotPlayerINI" xml:space="preserve">
     <value>PotPlayer INI-Ordner auswählen</value>
-  </data>
-  <data name="VideoPlayer_MPCTest" xml:space="preserve">
-    <value>MPC-Testdatei</value>
-  </data>
-  <data name="VideoPlayer_VLCTest" xml:space="preserve">
-    <value>VLC-Testdatei</value>
-  </data>
-  <data name="VideoPlayer_PotPlayerTest" xml:space="preserve">
-    <value>PotPlayer Testdatei</value>
   </data>
   <data name="VideoPlayer_AutoMark" xml:space="preserve">
     <value>Automatisches Markieren von Dateien wie sah beim folgende Prozentsatz beobachtet wird</value>
@@ -4069,5 +4048,104 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   </data>
   <data name="UpdateAniDB_Info1" xml:space="preserve">
     <value>Die Dateien in Ihrer Sammlung bezogenen Daten werden automatisch heruntergeladen und gespeichert in Ihrer lokalen Datenbank Wenn JMM zunächst Dateien importiert. Dieser Prozess wird nur ausgeführt, wenn also, wenn bestimmte Datei, die Daten auf AniDB zum Zeitpunkt des Downloads, wenn fehlt in der Datenbank fehlen wird. Darüber hinaus ist es möglich, dass zukünftige Versionen von JMM zusätzliche Dateidaten verwenden könnte, die steht aber beim Import von JMM zunächst Ihre Dateien nicht heruntergeladen wurde. Dieses Dienstprogramm aktualisiert und alle gespeicherten Daten mit dem, was derzeit auf AniDB zu ersetzen.</value>
+  </data>
+  <data name="INFO_SettingsUserAdmin" xml:space="preserve">
+    <value>Benutzer werden in der Datenbank gespeichert und können von jedem Client, der Verbindung zu Ihrer Datenbank zugegriffen werden. Beim Hinzufügen eines neuen Benutzers oder Aktualisierung einer bestehenden, Sie müssen klicken Schaltfläche Speichern sonst Ihre Änderungen nicht werden wirksam. JMM erfordert mindestens einen Benutzer mit Administrator-rechten ausgewählt.</value>
+  </data>
+  <data name="MAL_LoginCorrect" xml:space="preserve">
+    <value>MAL erfolgreich, für die Anmeldung gespeichert.</value>
+  </data>
+  <data name="MAL_SearchInfo" xml:space="preserve">
+    <value>Um diese Funktion nutzen zu können, sind gültige MAL Anmeldeinformationen erforderlich.</value>
+  </data>
+  <data name="CheckCred" xml:space="preserve">
+    <value>Überprüfen Sie die Anmeldeinformationen</value>
+  </data>
+  <data name="MAL_CheckCred" xml:space="preserve">
+    <value>Überprüfen Sie MAL Anmeldeinformationen</value>
+  </data>
+  <data name="Trakt_SearchInfo" xml:space="preserve">
+    <value>Um diese Funktion nutzen zu können, sind gültige Trakt Anmeldeinformationen erforderlich.</value>
+  </data>
+  <data name="Trakt_CheckCred" xml:space="preserve">
+    <value>Trakt Anmeldeinformationen überprüfen</value>
+  </data>
+  <data name="RelationSetting_AltSetting" xml:space="preserve">
+    <value>Alternative Einstellung</value>
+  </data>
+  <data name="RelationSetting_SameSetting" xml:space="preserve">
+    <value>Dieselbe Einstellung</value>
+  </data>
+  <data name="RelationSetting_Character" xml:space="preserve">
+    <value>Charakter</value>
+  </data>
+  <data name="RelationSetting_Other" xml:space="preserve">
+    <value>Sonstiges</value>
+  </data>
+  <data name="RelationSetting_ParentStory" xml:space="preserve">
+    <value>Übergeordnete Geschichte</value>
+  </data>
+  <data name="RelationSetting_SideStory" xml:space="preserve">
+    <value>Side Story</value>
+  </data>
+  <data name="RelationSetting_Summary" xml:space="preserve">
+    <value>Zusammenfassung</value>
+  </data>
+  <data name="RelationSetting_FullStory" xml:space="preserve">
+    <value>Ganze Geschichte</value>
+  </data>
+  <data name="RelationSetting_AltVersion" xml:space="preserve">
+    <value>Alternative Version</value>
+  </data>
+  <data name="TAB_Settings_RelationSettings" xml:space="preserve">
+    <value>Relation-Einstellungen</value>
+  </data>
+  <data name="RelationSettings_Info" xml:space="preserve">
+    <value>Wählen Sie die folgenden, von der Gruppierung auszuschließen</value>
+  </data>
+  <data name="Link_RelationSettings" xml:space="preserve">
+    <value>http://jmediamanager.org/JMM-Desktop/Settings/#Essential</value>
+  </data>
+  <data name="Video_Hi08P" xml:space="preserve">
+    <value>8-bit</value>
+  </data>
+  <data name="Video_Hi12P" xml:space="preserve">
+    <value>12 bit</value>
+  </data>
+  <data name="VideoPlayer_MPCIntegrationTypeNote" xml:space="preserve">
+    <value>There are 2 types of MPC Integrations:</value>
+  </data>
+  <data name="VideoPlayer_MPCWebUIPort" xml:space="preserve">
+    <value>MPC Web UI Port</value>
+  </data>
+  <data name="VideoPlayer_MPCNote1" xml:space="preserve">
+    <value>Integration müssen Sie aktivieren die folgenden Optionen für die INI im Blick &gt; Optionen &gt; Spieler; (1) Shop-Einstellungen in INI-Datei und (2) halten Geschichte der vor kurzem überwachten Dateien (3) Remember Dateiposition. Die Lage der INI-Datei ist in der Regel etwas wie C:\Program Files (x86) \Combined Community Codec Pack\MPC</value>
+  </data>
+  <data name="VideoPlayer_PotPlayerNote" xml:space="preserve">
+    <value>Die folgenden Optionen (1) die Präferenzen für PotPlayer Integration müssen Sie aktivieren &gt; allgemeine &gt; Shop-Einstellungen in INI-Datei (2) die Präferenzen &gt; Wiedergabe &gt; vom aktuellen Punkt zu spielen. Die Lage des PlotPlayer-INI-Datei ist in der Regel etwas wie C:\Users\username\AppData\Roaming\PotPlayer64\PotPlayer64.ini</value>
+  </data>
+  <data name="VideoPlayer_MPCNote2" xml:space="preserve">
+    <value>Für die Webbenutzeroberfläche Integration müssen Sie die folgende Option im Blick &gt; Optionen &gt; Spieler &gt; Web-Interface; Hören Sie auf Port. Der Standard Port hören ist 13579, die Sie verwenden können, wenn Sie ändern möchten, stellen Sie sicher Sie es in das folgende Feld ändern.</value>
+  </data>
+  <data name="VideoPlayer_MPCTest" xml:space="preserve">
+    <value>Test-MPC-INI-Datei</value>
+  </data>
+  <data name="VideoPlayer_VLCTest" xml:space="preserve">
+    <value>Test-VLC-INI-Datei</value>
+  </data>
+  <data name="VideoPlayer_PotPlayerTest" xml:space="preserve">
+    <value>PotPlayer INI Testdatei</value>
+  </data>
+  <data name="VideoPlayer_MPCClear" xml:space="preserve">
+    <value>MPC-INI-Ordner löschen</value>
+  </data>
+  <data name="VideoPlayer_PotPlayerClear" xml:space="preserve">
+    <value>Topf-Player-INI-Ordner löschen</value>
+  </data>
+  <data name="VideoPlayer_VLCClear" xml:space="preserve">
+    <value>VLC-INI-Ordner löschen</value>
+  </data>
+  <data name="VideoPlayer_VLCNote" xml:space="preserve">
+    <value>Einer beliebigen Version von VLC kann mit JMM für allgemeine Dateiwiedergabe verwendet werden. Jedoch nur VLC Version 2.2 und höher sind in der Lage zu nutzen, die Integration der video-Player als "Lebenslauf von letzter Position" ist nicht verfügbar in älteren Versionen. VLC kann die erforderlichen Einstellungen standardmäßig so brauchen Sie nicht zusätzliche Konfiguration zu tun. Die Lage des VLC-INI-Datei ist in der Regel etwas wie C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini</value>
   </data>
 </root>

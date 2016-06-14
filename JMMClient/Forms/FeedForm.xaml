@@ -3,13 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
         xmlns:local="clr-namespace:JMMClient"
+        xmlns:forms="clr-namespace:JMMClient.Forms"
         ShowInTaskbar="False" WindowStyle="ToolWindow"
         WindowStartupLocation="CenterScreen" Topmost="False"
         Title="JMM Desktop" MinHeight="250" MinWidth="500" Name="feedWindow" Icon="/JMMDesktop;component/Web%20Database.ico" ResizeMode="NoResize" Width="500" Height="250" SizeToContent="Height">
     <Window.Resources>
+        <forms:HTMLEscapedCharactersConverter x:Key="HTMLEscapedCharactersConverter" />
         <XmlDataProvider x:Key="rssData" XPath="//item" Source="http://jmediamanager.org/feed/" />
         <!--<XmlDataProvider x:Key="rssData" XPath="//item" Source="http://www.asp.net/rss/content" />-->
     </Window.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -30,8 +33,7 @@
         <StackPanel Grid.Row="1" Orientation="Vertical" DataContext="{Binding ElementName=lstItems, Path=SelectedItem}">
             <TextBlock Margin="3" FontSize="13" FontWeight="Bold" Text="{Binding XPath=title, Path=InnerText}" />
             <TextBlock Margin="3" Opacity="0.72" Text="{Binding XPath=pubDate}" />
-            <TextBlock Margin="3" FontStyle="Italic" Text="{Binding XPath=description, Path=InnerText}" 
-				   TextWrapping="Wrap"/>
+            <TextBlock Margin="3" FontStyle="Italic" Text="{Binding XPath=description, Path=InnerText, Converter={StaticResource HTMLEscapedCharactersConverter}}" TextWrapping="Wrap"/>
             <TextBlock Margin="3">
 			<Hyperlink Name="lnkGoToArt" Tag="{Binding XPath=link,Path=InnerText}" Click="lnkGoToArt_Click">
 				Go to Article                    

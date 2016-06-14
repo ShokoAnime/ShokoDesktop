@@ -1,236 +1,282 @@
-﻿using System;
+﻿using JMMClient.ViewModel;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Globalization;
+using System.IO;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.ComponentModel;
-using System.Collections.ObjectModel;
-using JMMClient.ViewModel;
-using System.IO;
-using System.Threading;
-using System.Globalization;
 
 namespace JMMClient.UserControls
 {
-	/// <summary>
-	/// Interaction logic for IgnoredFiles.xaml
-	/// </summary>
-	public partial class IgnoredFiles : UserControl
-	{
-		public ICollectionView ViewFiles { get; set; }
-		public ObservableCollection<VideoLocalVM> IgnoredFilesCollection { get; set; }
+    /// <summary>
+    /// Interaction logic for IgnoredFiles.xaml
+    /// </summary>
+    public partial class IgnoredFiles : UserControl
+    {
+        public ICollectionView ViewFiles { get; set; }
+        public ObservableCollection<VideoLocalVM> IgnoredFilesCollection { get; set; }
 
-		public static readonly DependencyProperty OneVideoSelectedProperty = DependencyProperty.Register("OneVideoSelected",
-			typeof(bool), typeof(IgnoredFiles), new UIPropertyMetadata(false, null));
+        public static readonly DependencyProperty OneVideoSelectedProperty = DependencyProperty.Register("OneVideoSelected",
+            typeof(bool), typeof(IgnoredFiles), new UIPropertyMetadata(false, null));
 
-		public static readonly DependencyProperty MultipleVideosSelectedProperty = DependencyProperty.Register("MultipleVideosSelected",
-			typeof(bool), typeof(IgnoredFiles), new UIPropertyMetadata(false, null));
+        public static readonly DependencyProperty MultipleVideosSelectedProperty = DependencyProperty.Register("MultipleVideosSelected",
+            typeof(bool), typeof(IgnoredFiles), new UIPropertyMetadata(false, null));
 
-		public static readonly DependencyProperty FileCountProperty = DependencyProperty.Register("FileCount",
-			typeof(int), typeof(IgnoredFiles), new UIPropertyMetadata(0, null));
+        public static readonly DependencyProperty FileCountProperty = DependencyProperty.Register("FileCount",
+            typeof(int), typeof(IgnoredFiles), new UIPropertyMetadata(0, null));
 
-		public int FileCount
-		{
-			get { return (int)GetValue(FileCountProperty); }
-			set { SetValue(FileCountProperty, value); }
-		}
+        public int FileCount
+        {
+            get { return (int)GetValue(FileCountProperty); }
+            set { SetValue(FileCountProperty, value); }
+        }
 
-		public bool OneVideoSelected
-		{
-			get { return (bool)GetValue(OneVideoSelectedProperty); }
-			set { SetValue(OneVideoSelectedProperty, value); }
-		}
+        public bool OneVideoSelected
+        {
+            get { return (bool)GetValue(OneVideoSelectedProperty); }
+            set { SetValue(OneVideoSelectedProperty, value); }
+        }
 
-		public bool MultipleVideosSelected
-		{
-			get { return (bool)GetValue(MultipleVideosSelectedProperty); }
-			set { SetValue(MultipleVideosSelectedProperty, value); }
-		}
+        public bool MultipleVideosSelected
+        {
+            get { return (bool)GetValue(MultipleVideosSelectedProperty); }
+            set { SetValue(MultipleVideosSelectedProperty, value); }
+        }
 
-		public IgnoredFiles()
-		{
-			InitializeComponent();
+        public IgnoredFiles()
+        {
+            InitializeComponent();
 
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
             IgnoredFilesCollection = new ObservableCollection<VideoLocalVM>();
-			ViewFiles = CollectionViewSource.GetDefaultView(IgnoredFilesCollection);
-			ViewFiles.SortDescriptions.Add(new SortDescription("FileName", ListSortDirection.Ascending));
+            ViewFiles = CollectionViewSource.GetDefaultView(IgnoredFilesCollection);
+            ViewFiles.SortDescriptions.Add(new SortDescription("FileName", ListSortDirection.Ascending));
 
-			btnRefresh.Click += new RoutedEventHandler(btnRefresh_Click);
-	
-			lbVideos.SelectionChanged += new SelectionChangedEventHandler(lbVideos_SelectionChanged);
-			OneVideoSelected = lbVideos.SelectedItems.Count == 1;
-			MultipleVideosSelected = lbVideos.SelectedItems.Count > 1;
-		}
+            btnRefresh.Click += new RoutedEventHandler(btnRefresh_Click);
 
-		void lbVideos_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			try
-			{
-				ccDetail.Content = null;
-				ccDetailMultiple.Content = null;
+            lbVideos.SelectionChanged += new SelectionChangedEventHandler(lbVideos_SelectionChanged);
+            OneVideoSelected = lbVideos.SelectedItems.Count == 1;
+            MultipleVideosSelected = lbVideos.SelectedItems.Count > 1;
+        }
 
-				OneVideoSelected = lbVideos.SelectedItems.Count == 1;
-				MultipleVideosSelected = lbVideos.SelectedItems.Count > 1;
+        void lbVideos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                ccDetail.Content = null;
+                ccDetailMultiple.Content = null;
 
-				// if only one video selected
-				if (OneVideoSelected)
-				{
-					VideoLocalVM vid = lbVideos.SelectedItem as VideoLocalVM;
-					ccDetail.Content = vid;
-				}
+                OneVideoSelected = lbVideos.SelectedItems.Count == 1;
+                MultipleVideosSelected = lbVideos.SelectedItems.Count > 1;
 
-				// if only one video selected
-				if (MultipleVideosSelected)
-				{
-					MultipleVideos mv = new MultipleVideos();
-					mv.SelectedCount = lbVideos.SelectedItems.Count;
-					mv.VideoLocalIDs = new List<int>();
+                // if only one video selected
+                if (OneVideoSelected)
+                {
+                    VideoLocalVM vid = lbVideos.SelectedItem as VideoLocalVM;
+                    ccDetail.Content = vid;
+                }
 
-					foreach (object obj in lbVideos.SelectedItems)
-					{
-						VideoLocalVM vid = obj as VideoLocalVM;
-						mv.VideoLocalIDs.Add(vid.VideoLocalID);
-					}
+                // if only one video selected
+                if (MultipleVideosSelected)
+                {
+                    MultipleVideos mv = new MultipleVideos();
+                    mv.SelectedCount = lbVideos.SelectedItems.Count;
+                    mv.VideoLocalIDs = new List<int>();
 
-					ccDetailMultiple.Content = mv;
-				}
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-		}
+                    foreach (object obj in lbVideos.SelectedItems)
+                    {
+                        VideoLocalVM vid = obj as VideoLocalVM;
+                        mv.VideoLocalIDs.Add(vid.VideoLocalID);
+                    }
 
-		private void CommandBinding_PlayVideo(object sender, ExecutedRoutedEventArgs e)
-		{
-			Window parentWindow = Window.GetWindow(this);
+                    ccDetailMultiple.Content = mv;
+                }
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+        }
 
-			object obj = e.Parameter;
-			if (obj == null) return;
+        private void CommandBinding_PlayVideo(object sender, ExecutedRoutedEventArgs e)
+        {
+            Window parentWindow = Window.GetWindow(this);
 
-			try
-			{
-				if (obj.GetType() == typeof(VideoLocalVM))
-				{
-					VideoLocalVM vid = obj as VideoLocalVM;
-					MainWindow.videoHandler.PlayVideo(vid);
-				}
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-		}
+            object obj = e.Parameter;
+            if (obj == null) return;
 
-		private void CommandBinding_OpenFolder(object sender, ExecutedRoutedEventArgs e)
-		{
-			object obj = e.Parameter;
-			if (obj == null) return;
+            try
+            {
+                if (obj.GetType() == typeof(VideoLocalVM))
+                {
+                    VideoLocalVM vid = obj as VideoLocalVM;
+                    MainWindow.videoHandler.PlayVideo(vid);
+                }
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+        }
 
-			try
-			{
-				if (obj.GetType() == typeof(VideoLocalVM))
-				{
-					VideoLocalVM vid = obj as VideoLocalVM;
+        private void CommandBinding_OpenFolder(object sender, ExecutedRoutedEventArgs e)
+        {
+            object obj = e.Parameter;
+            if (obj == null) return;
 
-					if (File.Exists(vid.FullPath))
-					{
-						Utils.OpenFolderAndSelectFile(vid.FullPath);
-					}
-					else
-					{
-						MessageBox.Show(Properties.Resources.MSG_ERR_FileNotFound, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
-					}
-				}
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-		}
+            try
+            {
+                if (obj.GetType() == typeof(VideoLocalVM))
+                {
+                    VideoLocalVM vid = obj as VideoLocalVM;
 
-		private void EnableDisableControls(bool val)
-		{
-			lbVideos.IsEnabled = val;
-			btnRefresh.IsEnabled = val;
-			ccDetail.IsEnabled = val;
-			ccDetailMultiple.IsEnabled = val;
-		}
+                    if (File.Exists(vid.FullPath))
+                    {
+                        Utils.OpenFolderAndSelectFile(vid.FullPath);
+                    }
+                    else
+                    {
+                        MessageBox.Show(Properties.Resources.MSG_ERR_FileNotFound, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+        }
 
-		private void CommandBinding_RestoreFile(object sender, ExecutedRoutedEventArgs e)
-		{
-			try
-			{
-				Window parentWindow = Window.GetWindow(this);
+        private void EnableDisableControls(bool val)
+        {
+            lbVideos.IsEnabled = val;
+            btnRefresh.IsEnabled = val;
+            ccDetail.IsEnabled = val;
+            ccDetailMultiple.IsEnabled = val;
+        }
 
-				object obj = e.Parameter;
-				if (obj == null) return;
+        private void CommandBinding_RestoreFile(object sender, ExecutedRoutedEventArgs e)
+        {
+            try
+            {
+                Window parentWindow = Window.GetWindow(this);
 
-				if (obj.GetType() == typeof(VideoLocalVM))
-				{
-					VideoLocalVM vid = obj as VideoLocalVM;
-					EnableDisableControls(false);
+                object obj = e.Parameter;
+                if (obj == null) return;
 
-					string result = JMMServerVM.Instance.clientBinaryHTTP.SetIgnoreStatusOnFile(vid.VideoLocalID, false);
-					if (result.Length > 0)
-						MessageBox.Show(result, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
-					else
-						RefreshIgnoredFiles();
+                if (obj.GetType() == typeof(VideoLocalVM))
+                {
+                    VideoLocalVM vid = obj as VideoLocalVM;
+                    EnableDisableControls(false);
 
-				}
-				if (obj.GetType() == typeof(MultipleVideos))
-				{
-					MultipleVideos mv = obj as MultipleVideos;
-					foreach (int id in mv.VideoLocalIDs)
-					{
-						string result = JMMServerVM.Instance.clientBinaryHTTP.SetIgnoreStatusOnFile(id, false);
-						if (result.Length > 0)
-							MessageBox.Show(result, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
-					}
-					RefreshIgnoredFiles();
-				}
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
+                    string result = JMMServerVM.Instance.clientBinaryHTTP.SetIgnoreStatusOnFile(vid.VideoLocalID, false);
+                    if (result.Length > 0)
+                        MessageBox.Show(result, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    else
+                        RefreshIgnoredFiles();
 
-			EnableDisableControls(true);
-		}
+                }
+                if (obj.GetType() == typeof(MultipleVideos))
+                {
+                    MultipleVideos mv = obj as MultipleVideos;
+                    foreach (int id in mv.VideoLocalIDs)
+                    {
+                        string result = JMMServerVM.Instance.clientBinaryHTTP.SetIgnoreStatusOnFile(id, false);
+                        if (result.Length > 0)
+                            MessageBox.Show(result, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    RefreshIgnoredFiles();
+                }
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
 
-		void btnRefresh_Click(object sender, RoutedEventArgs e)
-		{
-			RefreshIgnoredFiles();
-		}
+            EnableDisableControls(true);
+        }
 
-		public void RefreshIgnoredFiles()
-		{
-			try
-			{
-				IgnoredFilesCollection.Clear();
+        private void CommandBinding_DeleteFile(object sender, ExecutedRoutedEventArgs e)
+        {
+            try
+            {
+                Window parentWindow = Window.GetWindow(this);
 
-				List<JMMServerBinary.Contract_VideoLocal> vids = JMMServerVM.Instance.clientBinaryHTTP.GetIgnoredFiles(JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
-				FileCount = vids.Count;
+                object obj = e.Parameter;
+                if (obj == null) return;
 
-				foreach (JMMServerBinary.Contract_VideoLocal vid in vids)
-				{
-					IgnoredFilesCollection.Add(new VideoLocalVM(vid));
-				}
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-		}
-	}
+                if (obj.GetType() == typeof(VideoLocalVM))
+                {
+                    VideoLocalVM vid = obj as VideoLocalVM;
+
+                    MessageBoxResult res = MessageBox.Show(string.Format(Properties.Resources.Unrecognized_ConfirmDelete, vid.FullPath),
+                    Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (res == MessageBoxResult.Yes)
+                    {
+                        EnableDisableControls(false);
+
+                        string result = JMMServerVM.Instance.clientBinaryHTTP.DeleteVideoLocalAndFile(vid.VideoLocalID);
+                        if (result.Length > 0)
+                            MessageBox.Show(result, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        else
+                            RefreshIgnoredFiles();
+                    }
+                }
+
+                if (obj.GetType() == typeof(MultipleVideos))
+                {
+                    MultipleVideos mv = obj as MultipleVideos;
+                    MessageBoxResult res = MessageBox.Show(string.Format(Properties.Resources.Unrecognized_DeleteSelected, mv.VideoLocalIDs.Count),
+                    Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (res == MessageBoxResult.Yes)
+                    {
+                        EnableDisableControls(false);
+
+                        foreach (int id in mv.VideoLocalIDs)
+                            JMMServerVM.Instance.clientBinaryHTTP.DeleteVideoLocalAndFile(id);
+
+                        RefreshIgnoredFiles();
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+
+            EnableDisableControls(true);
+        }
+
+        void btnRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            RefreshIgnoredFiles();
+        }
+
+        public void RefreshIgnoredFiles()
+        {
+            try
+            {
+                IgnoredFilesCollection.Clear();
+
+                List<JMMServerBinary.Contract_VideoLocal> vids = JMMServerVM.Instance.clientBinaryHTTP.GetIgnoredFiles(JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+                FileCount = vids.Count;
+
+                foreach (JMMServerBinary.Contract_VideoLocal vid in vids)
+                {
+                    IgnoredFilesCollection.Add(new VideoLocalVM(vid));
+                }
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+        }
+    }
 }

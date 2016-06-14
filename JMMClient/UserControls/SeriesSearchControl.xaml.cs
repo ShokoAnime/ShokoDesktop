@@ -1,9 +1,7 @@
-﻿using System.Windows;
-using System.Windows.Controls;
+﻿using System.Globalization;
 using System.Threading;
-using System.Globalization;
-using System.Collections.Specialized;
-using System.Configuration;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace JMMClient.UserControls
 {

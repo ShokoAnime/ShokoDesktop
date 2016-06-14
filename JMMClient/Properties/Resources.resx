@@ -1149,7 +1149,7 @@
     <value>Loading...</value>
   </data>
   <data name="TotalFileCount" xml:space="preserve">
-    <value>Total File Count</value>
+    <value>Total File Count:</value>
   </data>
   <data name="ImportSettings_UseEpisodeStatus" xml:space="preserve">
     <value>Set file as watched if episode is watched</value>
@@ -1332,7 +1332,7 @@
     <value>Image Size</value>
   </data>
   <data name="INFO_SettingsUserAdmin" xml:space="preserve">
-    <value>Add or edit users here. Users are stored in the database, and shared across different clients. You must always have at least one admin user.</value>
+    <value>Users are stored in your database and can be accessed by any client that connects to your database. When adding a new user or updating an existing one, you must click the Save button otherwise your changes will not take effect. JMM requires at least one user with administrator rights selected.</value>
   </data>
   <data name="TAB_SettingsUsers" xml:space="preserve">
     <value>Users</value>
@@ -2209,8 +2209,8 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="VideoPlayer_MPC" xml:space="preserve">
     <value>Media Player Classic</value>
   </data>
-  <data name="VideoPlayer_MPCNote" xml:space="preserve">
-    <value>For MPC Integration you must enable two options (1) Store settings to .ini file and (2) Keep history of recently watched files. See the following screenshot for more details. The location of MPC is usually something like C:\Program Files (x86)\Combined Community Codec Pack\MPC</value>
+  <data name="VideoPlayer_MPCNote1" xml:space="preserve">
+    <value>For INI integration you must enable the following options in View &gt; Options &gt; Player; (1) Store settings to .ini file and (2) Keep history of recently watched files (3) Remember File Position. The location of the INI file is usually something like C:\Program Files (x86)\Combined Community Codec Pack\MPC</value>
   </data>
   <data name="VideoPlayer_MPCOptions" xml:space="preserve">
     <value>MPC Options</value>
@@ -2219,7 +2219,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>VLC</value>
   </data>
   <data name="VideoPlayer_VLCNote" xml:space="preserve">
-    <value>VLC 2.2+ records recent files and timestamps by default (and disabling is an 'Advanced' option). Older versions do not support 'Resume from last position' functionality. The location of the VLC .ini file is usually something like C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini</value>
+    <value>Any version of VLC can be used with JMM for general file playback. However only VLC version 2.2 and newer are able to take advantage of the video player integration as 'Resume from last position" is not available in older versions. VLC also enables the required settings by default so you don't need to do any additional configuration. The location of the VLC .ini file is usually something like C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini</value>
   </data>
   <data name="VideoPlayer_VLCOptions" xml:space="preserve">
     <value>VLC Options</value>
@@ -2228,7 +2228,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>PotPlayer</value>
   </data>
   <data name="VideoPlayer_PotPlayerNote" xml:space="preserve">
-    <value>For PotPlayer Integration you must enable the following options (1) Preferences &gt; General &gt; Store Settings to .ini file (2) Preferences &gt; Playback &gt; Play from latest point. See the following screenshot for more details. The location of the PlotPlayer .ini file is usually something like C:\Users\username\AppData\Roaming\PotPlayer64\PotPlayer64.ini</value>
+    <value>For PotPlayer Integration you must enable the following options (1) Preferences &gt; General &gt; Store Settings to .ini file (2) Preferences &gt; Playback &gt; Play from latest point. The location of the PlotPlayer .ini file is usually something like C:\Users\username\AppData\Roaming\PotPlayer64\PotPlayer64.ini</value>
   </data>
   <data name="VideoPlayer_PotPlayerOptions" xml:space="preserve">
     <value>PotPlayer Options</value>
@@ -2243,13 +2243,13 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Select PotPlayer INI Folder</value>
   </data>
   <data name="VideoPlayer_MPCTest" xml:space="preserve">
-    <value>Test MPC File</value>
+    <value>Test MPC INI File</value>
   </data>
   <data name="VideoPlayer_VLCTest" xml:space="preserve">
-    <value>Test VLC File</value>
+    <value>Test VLC INI File</value>
   </data>
   <data name="VideoPlayer_PotPlayerTest" xml:space="preserve">
-    <value>Test PotPlayer File</value>
+    <value>Test PotPlayer INI File</value>
   </data>
   <data name="VideoPlayer_AutoMark" xml:space="preserve">
     <value>Automatically mark files as watched when the following percentage is watched</value>
@@ -2996,7 +2996,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Anime ID:</value>
   </data>
   <data name="JMMServer_TraktAuth" xml:space="preserve">
-    <value>Trakt Authorization </value>
+    <value>Trakt Authorization Status </value>
   </data>
   <data name="JMMServer_Success" xml:space="preserve">
     <value>Success</value>

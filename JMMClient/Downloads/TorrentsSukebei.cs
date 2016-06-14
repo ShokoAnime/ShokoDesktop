@@ -1,8 +1,5 @@
-﻿using System;
+﻿using NLog;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NLog;
 using System.Web;
 
 namespace JMMClient.Downloads
@@ -146,8 +143,23 @@ namespace JMMClient.Downloads
                 torrentLink.TorrentDownloadLink = torLink;
                 torrentLink.TorrentName = torName;
                 torrentLink.Size = torSize.Trim();
-                torrentLink.Seeders = torSeed.Trim();
-                torrentLink.Leechers = torLeech.Trim();
+
+                var strSeeders = torSeed.Trim();
+
+                double dblSeeders;
+                if (double.TryParse(strSeeders, out dblSeeders))
+                    torrentLink.Seeders = dblSeeders;
+                else
+                    torrentLink.Seeders = double.NaN;
+
+                var strLeechers = torLeech.Trim();
+
+                double dblLeechers;
+                if (double.TryParse(strLeechers, out dblLeechers))
+                    torrentLink.Leechers = dblLeechers;
+                else
+                    torrentLink.Leechers = double.NaN;
+
                 torLinks.Add(torrentLink);
 
                 pos = output.IndexOf(nameStart1, pos + 1);
@@ -242,8 +254,23 @@ namespace JMMClient.Downloads
                 torrentLink.TorrentDownloadLink = torLink;
                 torrentLink.TorrentName = torName;
                 torrentLink.Size = torSize.Trim();
-                torrentLink.Seeders = torSeed.Trim();
-                torrentLink.Leechers = torLeech.Trim();
+
+                var strSeeders = torSeed.Trim();
+
+                double dblSeeders;
+                if (double.TryParse(strSeeders, out dblSeeders))
+                    torrentLink.Seeders = dblSeeders;
+                else
+                    torrentLink.Seeders = double.NaN;
+
+                var strLeechers = torLeech.Trim();
+
+                double dblLeechers;
+                if (double.TryParse(strLeechers, out dblLeechers))
+                    torrentLink.Leechers = dblLeechers;
+                else
+                    torrentLink.Leechers = double.NaN;
+
                 torLinks.Add(torrentLink);
 
                 pos = output.IndexOf(startBlock, pos + 1);

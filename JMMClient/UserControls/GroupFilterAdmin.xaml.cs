@@ -1,56 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using JMMClient.Forms;
+using JMMClient.ViewModel;
+using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.ComponentModel;
-using System.Collections.ObjectModel;
-using JMMClient.ViewModel;
-using JMMClient.Forms;
 
 namespace JMMClient.UserControls
 {
-	/// <summary>
-	/// Interaction logic for GroupFilterAdmin.xaml
-	/// </summary>
-	public partial class GroupFilterAdmin : UserControl
-	{
-		
-
-		public GroupFilterAdmin()
-		{
-			InitializeComponent();
+    /// <summary>
+    /// Interaction logic for GroupFilterAdmin.xaml
+    /// </summary>
+    public partial class GroupFilterAdmin : UserControl
+    {
 
 
-			cboBaseCondition.Items.Clear();
-			cboBaseCondition.Items.Add(Properties.Resources.GroupFilter_BaseCondition_IncludeAll);
-			cboBaseCondition.Items.Add(Properties.Resources.GroupFilter_BaseCondition_ExcludeAll);
-
-			cboBaseConditionEditing.SelectedIndex = 0;
-			cboBaseConditionEditing.Items.Clear();
-			cboBaseConditionEditing.Items.Add(Properties.Resources.GroupFilter_BaseCondition_IncludeAll);
-			cboBaseConditionEditing.Items.Add(Properties.Resources.GroupFilter_BaseCondition_ExcludeAll);
-
-			cboBaseConditionEditing.SelectionChanged += new SelectionChangedEventHandler(cboBaseConditionEditing_SelectionChanged);
+        public GroupFilterAdmin()
+        {
+            InitializeComponent();
 
 
-			this.DataContextChanged += new DependencyPropertyChangedEventHandler(GroupFilterAdmin_DataContextChanged);
-			cboBaseCondition.SelectedIndex = 0;
+            cboBaseCondition.Items.Clear();
+            cboBaseCondition.Items.Add(Properties.Resources.GroupFilter_BaseCondition_IncludeAll);
+            cboBaseCondition.Items.Add(Properties.Resources.GroupFilter_BaseCondition_ExcludeAll);
 
-			chkApplyToSeriesEditing.Click += new RoutedEventHandler(chkApplyToSeriesEditing_Click);
+            cboBaseConditionEditing.SelectedIndex = 0;
+            cboBaseConditionEditing.Items.Clear();
+            cboBaseConditionEditing.Items.Add(Properties.Resources.GroupFilter_BaseCondition_IncludeAll);
+            cboBaseConditionEditing.Items.Add(Properties.Resources.GroupFilter_BaseCondition_ExcludeAll);
 
-			lbFilterConditions_Editing.MouseDoubleClick += new MouseButtonEventHandler(lbFilterConditions_Editing_MouseDoubleClick);
+            cboBaseConditionEditing.SelectionChanged += new SelectionChangedEventHandler(cboBaseConditionEditing_SelectionChanged);
 
-			btnRandomSeries.Click += new RoutedEventHandler(btnRandomSeries_Click);
-			btnRandomEpisode.Click += new RoutedEventHandler(btnRandomEpisode_Click);
+
+            this.DataContextChanged += new DependencyPropertyChangedEventHandler(GroupFilterAdmin_DataContextChanged);
+            cboBaseCondition.SelectedIndex = 0;
+
+            chkApplyToSeriesEditing.Click += new RoutedEventHandler(chkApplyToSeriesEditing_Click);
+
+            lbFilterConditions_Editing.MouseDoubleClick += new MouseButtonEventHandler(lbFilterConditions_Editing_MouseDoubleClick);
+
+            btnRandomSeries.Click += new RoutedEventHandler(btnRandomSeries_Click);
+            btnRandomEpisode.Click += new RoutedEventHandler(btnRandomEpisode_Click);
 
             lbGroups.PreviewMouseWheel += LbGroups_PreviewMouseWheel;
 
@@ -66,107 +55,107 @@ namespace JMMClient.UserControls
             catch { }
         }
         void btnRandomEpisode_Click(object sender, RoutedEventArgs e)
-		{
-			GroupFilterVM gf = this.DataContext as GroupFilterVM;
-			if (gf == null) return;
+        {
+            GroupFilterVM gf = this.DataContext as GroupFilterVM;
+            if (gf == null) return;
 
-			MainWindow mainwdw = (MainWindow)Window.GetWindow(this);
+            MainWindow mainwdw = (MainWindow)Window.GetWindow(this);
 
-			RandomEpisodeForm frm = new RandomEpisodeForm();
-			frm.Owner = Window.GetWindow(this); ;
-			frm.Init(RandomSeriesEpisodeLevel.GroupFilter, gf);
-			bool? result = frm.ShowDialog();
-			
-		}
+            RandomEpisodeForm frm = new RandomEpisodeForm();
+            frm.Owner = Window.GetWindow(this); ;
+            frm.Init(RandomSeriesEpisodeLevel.GroupFilter, gf);
+            bool? result = frm.ShowDialog();
 
-		void btnRandomSeries_Click(object sender, RoutedEventArgs e)
-		{
-			GroupFilterVM gf = this.DataContext as GroupFilterVM;
-			if (gf == null) return;
+        }
 
-			MainWindow mainwdw = (MainWindow)Window.GetWindow(this);
+        void btnRandomSeries_Click(object sender, RoutedEventArgs e)
+        {
+            GroupFilterVM gf = this.DataContext as GroupFilterVM;
+            if (gf == null) return;
 
-			RandomSeriesForm frm = new RandomSeriesForm();
-			frm.Owner = Window.GetWindow(this); ;
-			frm.Init(RandomSeriesEpisodeLevel.GroupFilter, gf);
-			bool? result = frm.ShowDialog();
-			if (result.HasValue && result.Value && frm.Series != null)
-			{
-				if (mainwdw == null) return;
-				mainwdw.ShowPinnedSeries(frm.Series);
-			}
-		}
+            MainWindow mainwdw = (MainWindow)Window.GetWindow(this);
 
-		void lbFilterConditions_Editing_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-		{
-			GroupFilterVM gf = this.DataContext as GroupFilterVM;
-			if (gf == null) return;
+            RandomSeriesForm frm = new RandomSeriesForm();
+            frm.Owner = Window.GetWindow(this); ;
+            frm.Init(RandomSeriesEpisodeLevel.GroupFilter, gf);
+            bool? result = frm.ShowDialog();
+            if (result.HasValue && result.Value && frm.Series != null)
+            {
+                if (mainwdw == null) return;
+                mainwdw.ShowPinnedSeries(frm.Series);
+            }
+        }
 
-			GroupFilterConditionVM gfc = lbFilterConditions_Editing.SelectedItem as GroupFilterConditionVM;
-			if (gfc == null) return;
+        void lbFilterConditions_Editing_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            GroupFilterVM gf = this.DataContext as GroupFilterVM;
+            if (gf == null) return;
 
-			try
-			{
+            GroupFilterConditionVM gfc = lbFilterConditions_Editing.SelectedItem as GroupFilterConditionVM;
+            if (gfc == null) return;
 
-				GroupFilterConditionForm frm = new GroupFilterConditionForm();
-				frm.Owner = Window.GetWindow(this);
-				frm.Init(gf, gfc);
-				bool? result = frm.ShowDialog();
-				if (result.HasValue && result.Value == true)
-				{
+            try
+            {
 
-					Window win = Window.GetWindow(this);
-					MainWindow main = win as MainWindow;
-					//gf.FilterConditions.Add(gfc);
+                GroupFilterConditionForm frm = new GroupFilterConditionForm();
+                frm.Owner = Window.GetWindow(this);
+                frm.Init(gf, gfc);
+                bool? result = frm.ShowDialog();
+                if (result.HasValue && result.Value == true)
+                {
 
-					MainListHelperVM.Instance.ViewGroupsForms.Filter = main.GroupFilter_GroupSearch;
-					MainListHelperVM.Instance.SetGroupFilterSortingOnForms(gf);
-				}
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-		}
+                    Window win = Window.GetWindow(this);
+                    MainWindow main = win as MainWindow;
+                    //gf.FilterConditions.Add(gfc);
 
-		void chkApplyToSeriesEditing_Click(object sender, RoutedEventArgs e)
-		{
-			chkApplyToSeries.IsChecked = chkApplyToSeriesEditing.IsChecked;
+                    MainListHelperVM.Instance.ViewGroupsForms.Filter = main.GroupFilter_GroupSearch;
+                    MainListHelperVM.Instance.SetGroupFilterSortingOnForms(gf);
+                }
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+        }
 
-			GroupFilterVM gf = this.DataContext as GroupFilterVM;
-			if (gf == null) return;
+        void chkApplyToSeriesEditing_Click(object sender, RoutedEventArgs e)
+        {
+            chkApplyToSeries.IsChecked = chkApplyToSeriesEditing.IsChecked;
 
-			gf.ApplyToSeries = chkApplyToSeriesEditing.IsChecked.Value ? 1 : 0;
-		}
+            GroupFilterVM gf = this.DataContext as GroupFilterVM;
+            if (gf == null) return;
 
-		void cboBaseConditionEditing_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			GroupFilterVM gf = this.DataContext as GroupFilterVM;
-			if (gf == null) return;
+            gf.ApplyToSeries = chkApplyToSeriesEditing.IsChecked.Value ? 1 : 0;
+        }
 
-			if (cboBaseConditionEditing.SelectedIndex == 0)
-				gf.BaseCondition = 1;
-			else
-				gf.BaseCondition = 2;
+        void cboBaseConditionEditing_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            GroupFilterVM gf = this.DataContext as GroupFilterVM;
+            if (gf == null) return;
 
-			cboBaseCondition.SelectedIndex = cboBaseConditionEditing.SelectedIndex;
-		}
+            if (cboBaseConditionEditing.SelectedIndex == 0)
+                gf.BaseCondition = 1;
+            else
+                gf.BaseCondition = 2;
 
-		void GroupFilterAdmin_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-		{
-			GroupFilterVM gf = this.DataContext as GroupFilterVM;
-			if (gf == null) return;
+            cboBaseCondition.SelectedIndex = cboBaseConditionEditing.SelectedIndex;
+        }
 
-			if (gf.BaseCondition == 1)
-			{
-				cboBaseConditionEditing.SelectedIndex = 0;
-				cboBaseConditionEditing.SelectedIndex = 0;
-			}
-			else
-			{
-				cboBaseConditionEditing.SelectedIndex = 1;
-				cboBaseConditionEditing.SelectedIndex = 1;
-			}
-		}
-	}
+        void GroupFilterAdmin_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            GroupFilterVM gf = this.DataContext as GroupFilterVM;
+            if (gf == null) return;
+
+            if (gf.BaseCondition == 1)
+            {
+                cboBaseConditionEditing.SelectedIndex = 0;
+                cboBaseConditionEditing.SelectedIndex = 0;
+            }
+            else
+            {
+                cboBaseConditionEditing.SelectedIndex = 1;
+                cboBaseConditionEditing.SelectedIndex = 1;
+            }
+        }
+    }
 }

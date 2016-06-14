@@ -1138,7 +1138,7 @@
     <value>Bezig met laden...</value>
   </data>
   <data name="TotalFileCount" xml:space="preserve">
-    <value>Totaal Bestandstotaal</value>
+    <value>Totaal Bestandstotaal:</value>
   </data>
   <data name="ImportSettings_UseEpisodeStatus" xml:space="preserve">
     <value>Bestand instellen als keek als aflevering is bekeken</value>
@@ -1319,9 +1319,6 @@
   </data>
   <data name="ImageSize" xml:space="preserve">
     <value>Beeldgrootte</value>
-  </data>
-  <data name="INFO_SettingsUserAdmin" xml:space="preserve">
-    <value>Toevoegen of bewerken van de gebruikers hier. Gebruikers zijn opgeslagen in de database, en door de verschillende clients gedeeld. U moet altijd ten minste één beheerder hebben.</value>
   </data>
   <data name="TAB_SettingsUsers" xml:space="preserve">
     <value>Gebruikers</value>
@@ -2195,26 +2192,17 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   <data name="VideoPlayer_MPC" xml:space="preserve">
     <value>Media Player Classic</value>
   </data>
-  <data name="VideoPlayer_MPCNote" xml:space="preserve">
-    <value>Keek bestanden voor MPC-integratie die moet u twee opties (1) winkelinstellingen aan ini-bestand en (2) Houd geschiedenis van onlangs inschakelen. Zie de volgende screenshot voor meer details. De locatie van MPC is meestal iets als C:\Program Files (x 86) \Combined Community Codec Pack\MPC</value>
-  </data>
   <data name="VideoPlayer_MPCOptions" xml:space="preserve">
     <value>MPC opties</value>
   </data>
   <data name="VideoPlayer_VLC" xml:space="preserve">
     <value>VLC</value>
   </data>
-  <data name="VideoPlayer_VLCNote" xml:space="preserve">
-    <value>VLC 2.2 + registreert recent geopende bestanden en over tijdstempels standaard (en uitschakelen is een optie 'Geavanceerd'). Oudere versies ondersteunen geen 'Hervatten vanaf laatste positie' functionaliteit. De locatie van de VLC ini-bestand is meestal iets als C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini</value>
-  </data>
   <data name="VideoPlayer_VLCOptions" xml:space="preserve">
     <value>VLC opties</value>
   </data>
   <data name="VideoPlayer_PotPlayer" xml:space="preserve">
     <value>PotPlayer</value>
-  </data>
-  <data name="VideoPlayer_PotPlayerNote" xml:space="preserve">
-    <value>Voor PotPlayer integratie moet u inschakelen van de volgende opties (1) voorkeuren &gt; algemene &gt; winkelinstellingen aan .ini bestand (2) voorkeuren &gt; afspelen &gt; spelen vanaf het laatste punt. Zie de volgende screenshot voor meer details. De locatie van het PlotPlayer ini-bestand is meestal iets als C:\Users\username\AppData\Roaming\PotPlayer64\PotPlayer64.ini</value>
   </data>
   <data name="VideoPlayer_PotPlayerOptions" xml:space="preserve">
     <value>PotPlayer opties</value>
@@ -2227,15 +2215,6 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   </data>
   <data name="VideoPlayer_PotPlayerINI" xml:space="preserve">
     <value>Selecteer PotPlayer INI map</value>
-  </data>
-  <data name="VideoPlayer_MPCTest" xml:space="preserve">
-    <value>MPC testbestand</value>
-  </data>
-  <data name="VideoPlayer_VLCTest" xml:space="preserve">
-    <value>Testbestand VLC</value>
-  </data>
-  <data name="VideoPlayer_PotPlayerTest" xml:space="preserve">
-    <value>Testbestand PotPlayer</value>
   </data>
   <data name="VideoPlayer_AutoMark" xml:space="preserve">
     <value>Automatisch markeren bestanden als keek toen het volgende percentage is keek</value>
@@ -4069,5 +4048,104 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   </data>
   <data name="UpdateAniDB_Info1" xml:space="preserve">
     <value>Gegevens die betrekking heeft op de bestanden in uw collectie wordt automatisch gedownload en opgeslagen in uw lokale database wanneer JMM eerst bestanden importeert. Dit proces wordt alleen uitgevoerd zodra dus als specifiek bestand gegevens op AniDB op het moment van downloaden, ontbreekt als missen in uw database zullen. Bovendien is het mogelijk dat toekomstige versies van JMM aanvullende bestandsgegevens is beschikbaar, maar was niet gedownload wanneer JMM in eerste instantie uw bestanden geïmporteerde kunnen gebruiken. Deze tool zal bijwerken en vervangen alle gegevens uit een opgeslagen bestand met wat momenteel beschikbaar op AniDB is.</value>
+  </data>
+  <data name="INFO_SettingsUserAdmin" xml:space="preserve">
+    <value>Gebruikers worden opgeslagen in uw database en kunnen worden benaderd door een client die verbinding met de database maakt. Wanneer een nieuwe gebruiker toe te voegen of een bestaande sjabloon bijwerken, u moet klikken sparen knoop anders uw wijzigingen niet zullen van kracht. JMM moet ten minste één gebruiker met beheerdersrechten geselecteerd.</value>
+  </data>
+  <data name="MAL_LoginCorrect" xml:space="preserve">
+    <value>MAL succesvolle, inloginstellingen opgeslagen.</value>
+  </data>
+  <data name="MAL_SearchInfo" xml:space="preserve">
+    <value>Geldige MAL referenties nodig zijn om deze functie te gebruiken</value>
+  </data>
+  <data name="CheckCred" xml:space="preserve">
+    <value>Referenties controleren</value>
+  </data>
+  <data name="MAL_CheckCred" xml:space="preserve">
+    <value>MAL referenties controleren</value>
+  </data>
+  <data name="Trakt_SearchInfo" xml:space="preserve">
+    <value>Geldige Trakt referenties nodig zijn om deze functie te gebruiken</value>
+  </data>
+  <data name="Trakt_CheckCred" xml:space="preserve">
+    <value>Trakt referenties controleren</value>
+  </data>
+  <data name="RelationSetting_AltSetting" xml:space="preserve">
+    <value>Alternatieve instelling</value>
+  </data>
+  <data name="RelationSetting_SameSetting" xml:space="preserve">
+    <value>Dezelfde instelling</value>
+  </data>
+  <data name="RelationSetting_Character" xml:space="preserve">
+    <value>Teken</value>
+  </data>
+  <data name="RelationSetting_Other" xml:space="preserve">
+    <value>Andere</value>
+  </data>
+  <data name="RelationSetting_ParentStory" xml:space="preserve">
+    <value>Ouder Story</value>
+  </data>
+  <data name="RelationSetting_SideStory" xml:space="preserve">
+    <value>Side Story</value>
+  </data>
+  <data name="RelationSetting_Summary" xml:space="preserve">
+    <value>Samenvatting</value>
+  </data>
+  <data name="RelationSetting_FullStory" xml:space="preserve">
+    <value>Volledige verhaal</value>
+  </data>
+  <data name="RelationSetting_AltVersion" xml:space="preserve">
+    <value>Alternatieve versie</value>
+  </data>
+  <data name="TAB_Settings_RelationSettings" xml:space="preserve">
+    <value>Relatie-instellingen</value>
+  </data>
+  <data name="RelationSettings_Info" xml:space="preserve">
+    <value>Selecteer de volgende uit te sluiten van de groepering</value>
+  </data>
+  <data name="Link_RelationSettings" xml:space="preserve">
+    <value>http://jmediamanager.org/JMM-Desktop/Settings/#Essential</value>
+  </data>
+  <data name="Video_Hi08P" xml:space="preserve">
+    <value>8 bit</value>
+  </data>
+  <data name="Video_Hi12P" xml:space="preserve">
+    <value>12 bit</value>
+  </data>
+  <data name="VideoPlayer_MPCIntegrationTypeNote" xml:space="preserve">
+    <value>There are 2 types of MPC Integrations:</value>
+  </data>
+  <data name="VideoPlayer_MPCWebUIPort" xml:space="preserve">
+    <value>MPC Web UI Port</value>
+  </data>
+  <data name="VideoPlayer_MPCNote1" xml:space="preserve">
+    <value>Voor INI integratie moet u het inschakelen van de volgende opties in het licht &gt; opties &gt; speler; (1) winkelinstellingen ini-bestand en (2) Houd geschiedenis van onlangs gevolgde bestanden (3) onthouden bestandspositie. De locatie van het INI-bestand is meestal iets als C:\Program Files (x86) \Combined Community Codec Pack\MPC</value>
+  </data>
+  <data name="VideoPlayer_PotPlayerNote" xml:space="preserve">
+    <value>Voor PotPlayer integratie moet u inschakelen van de volgende opties (1) voorkeuren &gt; algemene &gt; winkelinstellingen aan .ini bestand (2) voorkeuren &gt; afspelen &gt; spelen vanaf het laatste punt. De locatie van het PlotPlayer ini-bestand is meestal iets als C:\Users\username\AppData\Roaming\PotPlayer64\PotPlayer64.ini</value>
+  </data>
+  <data name="VideoPlayer_MPCNote2" xml:space="preserve">
+    <value>Voor Web UI integratie moet u de volgende optie in de weergave inschakelen &gt; opties &gt; speler &gt; Web Interface; Luisteren op poort. De standaard poort te luisteren is 13579 die u kunt gebruiken, als u wilt wijzigen het zorg ervoor dat u het wijzigen in het vak hieronder.</value>
+  </data>
+  <data name="VideoPlayer_MPCTest" xml:space="preserve">
+    <value>Test MPC INI-bestand</value>
+  </data>
+  <data name="VideoPlayer_VLCTest" xml:space="preserve">
+    <value>Test VLC INI-bestand</value>
+  </data>
+  <data name="VideoPlayer_PotPlayerTest" xml:space="preserve">
+    <value>Test PotPlayer INI-bestand</value>
+  </data>
+  <data name="VideoPlayer_MPCClear" xml:space="preserve">
+    <value>MPC INI-map wissen</value>
+  </data>
+  <data name="VideoPlayer_PotPlayerClear" xml:space="preserve">
+    <value>Duidelijke Pot speler INI vouwblad</value>
+  </data>
+  <data name="VideoPlayer_VLCClear" xml:space="preserve">
+    <value>VLC INI-map wissen</value>
+  </data>
+  <data name="VideoPlayer_VLCNote" xml:space="preserve">
+    <value>Elke versie van VLC kan worden gebruikt met JMM voor het algemene bestand afspelen. Echter enige VLC versie 2.2 en nieuwer zijn in staat om te profiteren van de integratie van de video-speler als ' hervatten vanaf laatste positie "is niet beschikbaar in oudere versies. De vereiste instellingen schakelt VLC ook standaard zodat u niet hoeft te doen een aanvullende configuratie. De locatie van de VLC ini-bestand is meestal iets als C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini</value>
   </data>
 </root>

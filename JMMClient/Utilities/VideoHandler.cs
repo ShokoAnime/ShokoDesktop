@@ -1,133 +1,72 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.IO;
-using System.Diagnostics;
+﻿using JMMClient.ViewModel;
+using Microsoft.Win32;
 using NLog;
-using JMMClient.ViewModel;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Net.Http;
+using System.Text.RegularExpressions;
+
 
 namespace JMMClient.Utilities
 {
     public class VideoHandler
-	{
-		private static Logger logger = LogManager.GetCurrentClassLogger();
-		private Dictionary<int, VideoDetailedVM> recentlyPlayedFiles = null;
-		private System.Timers.Timer handleTimer = null;
-		private string iniPath = string.Empty;
+    {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private Dictionary<int, VideoDetailedVM> recentlyPlayedFiles = null;
+        private System.Timers.Timer handleTimer = null;
+        private string iniPath = string.Empty;
 
         private List<FileSystemWatcher> watcherVids = null;
-		Dictionary<string, string> previousFilePositions = new Dictionary<string, string>();
+        Dictionary<string, string> previousFilePositions = new Dictionary<string, string>();
 
-		public delegate void VideoWatchedEventHandler(VideoWatchedEventArgs ev);
-		public event VideoWatchedEventHandler VideoWatchedEvent;
-		protected void OnVideoWatchedEvent(VideoWatchedEventArgs ev)
-		{
-			if (VideoWatchedEvent != null)
-			{
-				VideoWatchedEvent(ev);
-			}
-		}
+        // Timer for MPC HC Web UI Requests
+        private System.Timers.Timer playerWebUiTimer = null;
 
-		public void PlayVideo(VideoDetailedVM vid)
-		{
-            try
+        public delegate void VideoWatchedEventHandler(VideoWatchedEventArgs ev);
+        public event VideoWatchedEventHandler VideoWatchedEvent;
+        protected void OnVideoWatchedEvent(VideoWatchedEventArgs ev)
+        {
+            if (VideoWatchedEvent != null)
             {
-                string defaultplayer;
-                switch (UserSettingsVM.Instance.DefaultPlayer_GroupList)
-                {
-                    case (int)DefaultVideoPlayer.MPC:
-                        defaultplayer = "mpc-hc";
-                        break;
-                    case (int)DefaultVideoPlayer.PotPlayer:
-                        defaultplayer = "PotPlayerMini";
-                        break;
-                    case (int)DefaultVideoPlayer.VLC:
-                        defaultplayer = "vlc";
-                        break;
-                    default:
-                        defaultplayer = "";
-                        break;
-                }
-                recentlyPlayedFiles[vid.VideoLocalID] = vid;
-                if (vid.FullPath.Contains("http:")) {
-                    try
-                    {
-                        Process.Start(defaultplayer, '"' + vid.FullPath.Replace(@"\", "/") + '"');
-                    }
-                    catch(Exception e)
-                    {
-                        Process.Start(defaultplayer+"64", '"' + vid.FullPath.Replace(@"\", "/") + '"');
-                    }
-                }
-                else
-                {
-                    try
-                    {
-                        if (string.IsNullOrEmpty(defaultplayer))
-                            Process.Start(new ProcessStartInfo(vid.FullPath));
-                        else
-                            Process.Start(defaultplayer, '"' + vid.FullPath + '"');
-                    }
-                    catch (Exception e)
-                    {
-                        Process.Start(defaultplayer + "64", '"' + vid.FullPath.Replace(@"\", "/") + '"');
-                    }
-                }
-                
+                VideoWatchedEvent(ev);
             }
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-		}
+        }
 
-		public void PlayVideo(VideoLocalVM vid)
-		{
+        public void PlayVideo(VideoDetailedVM vid)
+        {
             try
             {
-                string defaultplayer;
-                switch (UserSettingsVM.Instance.DefaultPlayer_GroupList)
-                {
-                    case (int)DefaultVideoPlayer.MPC:
-                        defaultplayer = "mpc-hc";
-                        break;
-                    case (int)DefaultVideoPlayer.PotPlayer:
-                        defaultplayer = "PotPlayerMini";
-                        break;
-                    case (int)DefaultVideoPlayer.VLC:
-                        defaultplayer = "vlc";
-                        break;
-                    default:
-                        defaultplayer = "";
-                        break;
-                }
+                recentlyPlayedFiles[vid.VideoLocalID] = vid;
                 if (vid.FullPath.Contains("http:"))
                 {
                     try
                     {
-                        Process.Start(defaultplayer, '"' + vid.FullPath.Replace(@"\", "/") + '"');
+                        Process.Start(GetPlayerExe(), '"' + vid.FullPath.Replace(@"\", "/") + '"');
                     }
-                    catch (Exception e)
+                    catch (Exception ex)
                     {
-                        Process.Start(defaultplayer + "64", '"' + vid.FullPath.Replace(@"\", "/") + '"');
+                        logger.ErrorException(ex.ToString(), ex);
                     }
                 }
                 else
                 {
                     try
                     {
-                        if (string.IsNullOrEmpty(defaultplayer))
+                        string playerPath = GetPlayerExe();
+                        if (string.IsNullOrEmpty(playerPath))
                             Process.Start(new ProcessStartInfo(vid.FullPath));
                         else
-                            Process.Start(defaultplayer, '"' + vid.FullPath + '"');
-
+                            Process.Start(playerPath, '"' + vid.FullPath + '"');
                     }
-                    catch (Exception e)
+                    catch (Exception ex)
                     {
-                        Process.Start(defaultplayer + "64", '"' + vid.FullPath.Replace(@"\", "/") + '"');
+                        logger.ErrorException(ex.ToString(), ex);
                     }
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -135,33 +74,64 @@ namespace JMMClient.Utilities
             }
         }
 
-		public void Init()
-		{
-			try
-			{
-				recentlyPlayedFiles = new Dictionary<int, VideoDetailedVM>();
-				previousFilePositions.Clear();
+        public void PlayVideo(VideoLocalVM vid)
+        {
+            try
+            {
+                if (vid.FullPath.Contains("http:"))
+                {
+                    try
+                    {
+                        Process.Start(GetPlayerExe(), '"' + vid.FullPath.Replace(@"\", "/") + '"');
+                    }
+                    catch (Exception ex)
+                    {
+                        logger.ErrorException(ex.ToString(), ex);
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        string playerPath = GetPlayerExe();
+                        if (string.IsNullOrEmpty(playerPath))
+                            Process.Start(new ProcessStartInfo(vid.FullPath));
+                        else
+                            Process.Start(playerPath, '"' + vid.FullPath + '"');
 
-				if (!AppSettings.VideoAutoSetWatched) return;
+                    }
+                    catch (Exception ex)
+                    {
+                        logger.ErrorException(ex.ToString(), ex);
+                    }
+                }
 
-				StopWatchingFiles();
-				watcherVids = new List<FileSystemWatcher>();
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+        }
 
-				if (!string.IsNullOrEmpty(AppSettings.MPCFolder) && Directory.Exists(AppSettings.MPCFolder))
-				{
-					FileSystemWatcher fsw = new FileSystemWatcher(AppSettings.MPCFolder, "*.ini");
-					fsw.IncludeSubdirectories = false;
-					fsw.Changed += new FileSystemEventHandler(fsw_Changed);
-					fsw.EnableRaisingEvents = true;
-				}
+        public void Init()
+        {
+            try
+            {
+                recentlyPlayedFiles = new Dictionary<int, VideoDetailedVM>();
+                previousFilePositions.Clear();
 
-				if (!string.IsNullOrEmpty(AppSettings.PotPlayerFolder) && Directory.Exists(AppSettings.PotPlayerFolder))
-				{
-					FileSystemWatcher fsw = new FileSystemWatcher(AppSettings.PotPlayerFolder, "*.ini");
-					fsw.IncludeSubdirectories = false;
-					fsw.Changed += new FileSystemEventHandler(fsw_Changed);
-					fsw.EnableRaisingEvents = true;
-				}
+                if (!AppSettings.VideoAutoSetWatched) return;
+
+                StopWatchingFiles();
+                watcherVids = new List<FileSystemWatcher>();
+
+                if (!string.IsNullOrEmpty(AppSettings.PotPlayerFolder) && Directory.Exists(AppSettings.PotPlayerFolder))
+                {
+                    FileSystemWatcher fsw = new FileSystemWatcher(AppSettings.PotPlayerFolder, "*.ini");
+                    fsw.IncludeSubdirectories = false;
+                    fsw.Changed += new FileSystemEventHandler(fsw_Changed);
+                    fsw.EnableRaisingEvents = true;
+                }
 
                 if (!string.IsNullOrEmpty(AppSettings.VLCFolder) && Directory.Exists(AppSettings.VLCFolder))
                 {
@@ -170,123 +140,225 @@ namespace JMMClient.Utilities
                     fsw.Changed += new FileSystemEventHandler(fsw_Changed);
                     fsw.EnableRaisingEvents = true;
                 }
+
+                if (AppSettings.MPCIniIntegration && !string.IsNullOrEmpty(AppSettings.MPCFolder) && Directory.Exists(AppSettings.MPCFolder))
+                {
+                    FileSystemWatcher fsw = new FileSystemWatcher(AppSettings.MPCFolder, "*.ini");
+                    fsw.IncludeSubdirectories = false;
+                    fsw.Changed += new FileSystemEventHandler(fsw_Changed);
+                    fsw.EnableRaisingEvents = true;
+                }
+
+                if (AppSettings.MPCWebUiIntegration && !string.IsNullOrEmpty(AppSettings.MPCWebUIUrl) && !string.IsNullOrEmpty(AppSettings.MPCWebUIPort))
+                {
+                    playerWebUiTimer = new System.Timers.Timer();
+                    playerWebUiTimer.Elapsed += new System.Timers.ElapsedEventHandler(HandleWebUIRequest);
+                    playerWebUiTimer.Interval = 1000;
+                    playerWebUiTimer.Enabled = true;
+                }
             }
-			catch (Exception ex)
-			{
-				logger.ErrorException(ex.ToString(), ex);
-			}
-		}
+            catch (Exception ex)
+            {
+                logger.ErrorException(ex.ToString(), ex);
+            }
+        }
 
-		public void StopWatchingFiles()
-		{
-			if (watcherVids == null) return;
+        // Make and handle MPC-HC Web UI request
+        public async void HandleWebUIRequest(object source, System.Timers.ElapsedEventArgs e)
+        {
+            // Stop timer for the time request is processed
+            playerWebUiTimer.Stop();
+            // Request
+            string mpcUIFullUrl = "http://" + AppSettings.MPCWebUIUrl + ":" + AppSettings.MPCWebUIPort + "/variables.html";
+            // Helper variables
+            string responseString = "";
+            string nowPlayingFile = "";
+            string nowPlayingFilePosition = "";
+            string nowPlayingFileDuration = "";
+            // Regex for extracting relevant information
+            Regex fileRegex = new Regex("<p id=\"filepath\">(.*?)</p>");
+            Regex filePositionRegex = new Regex("<p id=\"position\">(.*?)</p>");
+            Regex fileDurationRegex = new Regex("<p id=\"duration\">(.*?)</p>");
 
-			foreach (FileSystemWatcher fsw in watcherVids)
-			{
-				fsw.EnableRaisingEvents = false;
-			}
-		}
+            try
+            {
+                // Make HTTP request to Web UI
+                using (HttpClient client = new HttpClient())
+                using (HttpResponseMessage response = await client.GetAsync(mpcUIFullUrl))
+                using (HttpContent content = response.Content)
+                {
+                    // Check if request was ok
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        // Read the string
+                        responseString = await content.ReadAsStringAsync();
+                        // Parse result
+                        if (responseString != null)
+                        {
+                            // extract currently playing video informations
+                            nowPlayingFile = fileRegex.Match(responseString).Groups[1].ToString();
+                            nowPlayingFilePosition = filePositionRegex.Match(responseString).Groups[1].ToString();
+                            nowPlayingFileDuration = fileDurationRegex.Match(responseString).Groups[1].ToString();
+                            // Parse number values for future aritmetics
+                            double filePosition;
+                            double fileDuration;
+                            Double.TryParse(nowPlayingFilePosition, out filePosition);
+                            Double.TryParse(nowPlayingFileDuration, out fileDuration);
+                            // Iterate over recently played files to find currently playing file
+                            foreach (KeyValuePair<int, VideoDetailedVM> kvpVid in recentlyPlayedFiles)
+                            {
+                                if (kvpVid.Value.FullPath.Equals(Path.GetFullPath(nowPlayingFile), StringComparison.InvariantCultureIgnoreCase))
+                                {
+                                    // Skip if file is already marked as watched
+                                    if (kvpVid.Value.Watched) continue;
+                                    // Calculate file progress in %
+                                    double progress = filePosition / fileDuration * 100.0d;
+                                    // Check if file should be considered watched 
+                                    if (progress >= (double)AppSettings.VideoWatchedPct)
+                                    {
+                                        // Get detailed video object
+                                        VideoDetailedVM vid = kvpVid.Value;
+                                        // Log file state change
+                                        logger.Info(string.Format("Updating to watched by media player: {0}", Path.GetFullPath(nowPlayingFile)));
+                                        // Mark file as watched
+                                        JMMServerVM.Instance.clientBinaryHTTP.ToggleWatchedStatusOnVideo(vid.VideoLocalID, true, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+                                        MainListHelperVM.Instance.UpdateHeirarchy(vid);
+                                        MainListHelperVM.Instance.GetSeriesForVideo(vid.VideoLocalID);
 
-		private void fsw_Changed(object sender, FileSystemEventArgs e)
-		{
-			
-			// delay by 200ms since MPC will update the file multiple times in quick succession
-			// and also the delay allows us access to the file
-			iniPath = e.FullPath;
+                                        System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()
+                                        {
+                                            // Trigger OnVideoWatchedEvent
+                                            OnVideoWatchedEvent(new VideoWatchedEventArgs(vid.VideoLocalID, vid));
+                                            Debug.WriteLine("complete");
+                                        });
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    // Start timer again
+                    playerWebUiTimer.Start();
+                }
+            }
+            catch (Exception exception)
+            {
+                logger.ErrorException(exception.ToString(), exception);
+                playerWebUiTimer.Start();
+            }
+        }
 
-			if (handleTimer != null)
-				handleTimer.Stop();
+        public void StopWatchingFiles()
+        {
+            if (watcherVids == null) return;
 
-			handleTimer = new System.Timers.Timer();
-			handleTimer.AutoReset = false;
-			handleTimer.Interval = 200; // 200 ms
-			handleTimer.Elapsed += new System.Timers.ElapsedEventHandler(handleTimer_Elapsed);
-			handleTimer.Enabled = true;
-		}
+            foreach (FileSystemWatcher fsw in watcherVids)
+            {
+                fsw.EnableRaisingEvents = false;
+            }
+        }
 
-		void handleTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
-		{
-			System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate()
-			{
-				FileInfo fi = new FileInfo(iniPath);
-				if (fi.DirectoryName.Equals(AppSettings.MPCFolder, StringComparison.InvariantCultureIgnoreCase))
-					HandleFileChangeMPC(iniPath);
+        private void fsw_Changed(object sender, FileSystemEventArgs e)
+        {
 
-				if (fi.DirectoryName.Equals(AppSettings.PotPlayerFolder, StringComparison.InvariantCultureIgnoreCase))
-					HandleFileChangePotPlayer(iniPath);
+            // delay by 200ms since MPC will update the file multiple times in quick succession
+            // and also the delay allows us access to the file
+            iniPath = e.FullPath;
+
+            if (handleTimer != null)
+                handleTimer.Stop();
+
+            handleTimer = new System.Timers.Timer();
+            handleTimer.AutoReset = false;
+            handleTimer.Interval = 200; // 200 ms
+            handleTimer.Elapsed += new System.Timers.ElapsedEventHandler(handleTimer_Elapsed);
+            handleTimer.Enabled = true;
+        }
+
+        void handleTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()
+            {
+                FileInfo fi = new FileInfo(iniPath);
+                if (fi.DirectoryName.Equals(AppSettings.MPCFolder, StringComparison.InvariantCultureIgnoreCase))
+                    HandleFileChangeMPC(iniPath);
+
+                if (fi.DirectoryName.Equals(AppSettings.PotPlayerFolder, StringComparison.InvariantCultureIgnoreCase))
+                    HandleFileChangePotPlayer(iniPath);
 
                 if (fi.DirectoryName.Equals(AppSettings.VLCFolder, StringComparison.InvariantCultureIgnoreCase))
                     HandleFileChangeVLC(iniPath);
             });
-		}
+        }
 
-		public void HandleFileChangePotPlayer(string filePath)
-		{
-			try
-			{
-				if (!AppSettings.VideoAutoSetWatched) return;
+        public void HandleFileChangePotPlayer(string filePath)
+        {
+            try
+            {
+                if (!AppSettings.VideoAutoSetWatched) return;
 
-				List<int> allFiles = new List<int>();
+                List<int> allFiles = new List<int>();
 
-				string[] lines = File.ReadAllLines(filePath);
+                string[] lines = File.ReadAllLines(filePath);
 
-				bool foundSectionStart = false;
-				bool foundSectionEnd = false;
+                bool foundSectionStart = false;
+                bool foundSectionEnd = false;
 
-				for (int i = 0; i < lines.Length; i++)
-				{
-					string line = lines[i];
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    string line = lines[i];
 
-					if (line.ToLower().Contains("[rememberfiles]"))
-						foundSectionStart = true;
+                    if (line.ToLower().Contains("[rememberfiles]"))
+                        foundSectionStart = true;
 
-					if (foundSectionStart 
-                        && line.Trim().ToLower().StartsWith("[") 
+                    if (foundSectionStart
+                        && line.Trim().ToLower().StartsWith("[")
                         && !line.ToLower().Contains("[rememberfiles]"))
-						    foundSectionEnd = true;
+                        foundSectionEnd = true;
 
-					if (foundSectionStart 
-                        && !foundSectionEnd 
-                        && !line.ToLower().Contains("[rememberfiles]") 
+                    if (foundSectionStart
+                        && !foundSectionEnd
+                        && !line.ToLower().Contains("[rememberfiles]")
                         && !string.IsNullOrEmpty(line))
-                            allFiles.Add(i);
-				}
+                        allFiles.Add(i);
+                }
 
-				if (allFiles.Count == 0) return;
+                if (allFiles.Count == 0) return;
 
-				Dictionary<string, long> filePositions = new Dictionary<string, long>();
-				foreach (int lineNumber in allFiles)
-				{
-					// find the last file played
-					string fileNameLine = lines[lineNumber];
+                Dictionary<string, long> filePositions = new Dictionary<string, long>();
+                foreach (int lineNumber in allFiles)
+                {
+                    // find the last file played
+                    string fileNameLine = lines[lineNumber];
 
-					int iPos1 = fileNameLine.IndexOf("=");
-					int iPos2 = fileNameLine.IndexOf("=", iPos1 + 1);
+                    int iPos1 = fileNameLine.IndexOf("=");
+                    int iPos2 = fileNameLine.IndexOf("=", iPos1 + 1);
 
-					if (iPos1 <= 0 || iPos2 <= 0) continue;
+                    if (iPos1 <= 0 || iPos2 <= 0) continue;
 
-					string position = fileNameLine.Substring(iPos1 + 1, iPos2 - iPos1 - 1);
-					string fileName = fileNameLine.Substring(iPos2 + 1, fileNameLine.Length - iPos2 - 1);
+                    string position = fileNameLine.Substring(iPos1 + 1, iPos2 - iPos1 - 1);
+                    string fileName = fileNameLine.Substring(iPos2 + 1, fileNameLine.Length - iPos2 - 1);
 
                     long mpcPos = 0;
                     long.TryParse(position, out mpcPos);
 
-                    // if mpcPos == 0, it means that file has finished played completely
+                    // handle the case of PotPlayer having a psoition of 0, which means 100% watched
+                    if (mpcPos == 0)
+                        mpcPos = (long)100;
 
                     filePositions[fileName] = mpcPos;
-				}
+                }
 
                 FindChangedFiles(filePositions);
-			}
-			catch (Exception ex)
-			{
-				logger.ErrorException(ex.ToString(), ex);
-			}
-		}
+            }
+            catch (Exception ex)
+            {
+                logger.ErrorException(ex.ToString(), ex);
+            }
+        }
 
-		public void HandleFileChangeMPC(string filePath)
-		{
-			try
+        public void HandleFileChangeMPC(string filePath)
+        {
+            try
             {
                 if (!AppSettings.VideoAutoSetWatched) return;
 
@@ -393,10 +465,10 @@ namespace JMMClient.Utilities
                 FindChangedFiles(filePositions);
             }
             catch (Exception ex)
-			{
-				logger.ErrorException(ex.ToString(), ex);
-			}
-		}
+            {
+                logger.ErrorException(ex.ToString(), ex);
+            }
+        }
 
         public void HandleFileChangeVLC(string filePath)
         {
@@ -405,8 +477,8 @@ namespace JMMClient.Utilities
                 if (!AppSettings.VideoAutoSetWatched)
                     return;
 
-                List<string> filePaths     = new List<string>();
-                List<long>   positions = new List<long>();
+                List<string> filePaths = new List<string>();
+                List<long> positions = new List<long>();
 
                 // Vlc ini file looks like
                 //
@@ -437,7 +509,8 @@ namespace JMMClient.Utilities
                             line.Remove(0, 5)
                                 .Split(',')
                                 .Select(
-                                    f => {
+                                    f =>
+                                    {
                                         Uri tmp = null;
                                         if (Uri.TryCreate(f.Trim(), UriKind.Absolute, out tmp))
                                             return tmp.LocalPath;
@@ -455,7 +528,8 @@ namespace JMMClient.Utilities
                             line.Remove(0, 6)
                                 .Split(',')
                                 .Select(
-                                    p => {
+                                    p =>
+                                    {
                                         long posMs = 0;
                                         if (long.TryParse(p.Trim(), out posMs))
                                             return posMs;
@@ -524,10 +598,6 @@ namespace JMMClient.Utilities
 
                         double progress = mpcPosMS / fileDurationMS * 100.0d;
 
-                        // handle the case of PotPlayer having a psoition of 0, which means 100% watched
-                        if (mpcPosMS == 0)
-                            progress = (double)100;
-
                         if (progress > (double)AppSettings.VideoWatchedPct)
                         {
                             VideoDetailedVM vid = kvpVid.Value;
@@ -550,176 +620,235 @@ namespace JMMClient.Utilities
         }
 
         public void PlayAllUnwatchedEpisodes(int animeSeriesID)
-		{
-			try
-			{
-				List<JMMServerBinary.Contract_AnimeEpisode> rawEps = JMMServerVM.Instance.clientBinaryHTTP.GetAllUnwatchedEpisodes(animeSeriesID,
-					JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+        {
+            try
+            {
+                List<JMMServerBinary.Contract_AnimeEpisode> rawEps = JMMServerVM.Instance.clientBinaryHTTP.GetAllUnwatchedEpisodes(animeSeriesID,
+                    JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
 
-				List<AnimeEpisodeVM> episodes = new List<AnimeEpisodeVM>();
-				foreach (JMMServerBinary.Contract_AnimeEpisode raw in rawEps)
-					episodes.Add(new AnimeEpisodeVM(raw));
+                List<AnimeEpisodeVM> episodes = new List<AnimeEpisodeVM>();
+                foreach (JMMServerBinary.Contract_AnimeEpisode raw in rawEps)
+                    episodes.Add(new AnimeEpisodeVM(raw));
 
 
-				string plsPath = GenerateTemporaryPlayList(episodes);
-				if (!string.IsNullOrEmpty(plsPath))
-					Process.Start(plsPath);
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex.Message, ex);
-			}
-		}
+                string plsPath = GenerateTemporaryPlayList(episodes);
+                if (!string.IsNullOrEmpty(plsPath))
+                    Process.Start(plsPath);
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex.Message, ex);
+            }
+        }
 
-		public void PlayEpisodes(List<AnimeEpisodeVM> episodes)
-		{
-			try
-			{
-				string plsPath = GenerateTemporaryPlayList(episodes);
-				if (!string.IsNullOrEmpty(plsPath))
-					Process.Start(plsPath);
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex.Message, ex);
-			}
-		}
+        public void PlayEpisodes(List<AnimeEpisodeVM> episodes)
+        {
+            try
+            {
+                string plsPath = GenerateTemporaryPlayList(episodes);
+                if (!string.IsNullOrEmpty(plsPath))
+                    Process.Start(plsPath);
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex.Message, ex);
+            }
+        }
 
-		public string GenerateTemporaryPlayList(List<AnimeEpisodeVM> episodes)
-		{
-			try
-			{
-				List<VideoDetailedVM> vids = new List<VideoDetailedVM>();
-				foreach (AnimeEpisodeVM ep in episodes)
-				{
-					if (ep.FilesForEpisode.Count > 0)
-					{
-						VideoDetailedVM vid = GetAutoFileForEpisode(ep);
-						if (vid != null)
-						{
-							vids.Add(vid);
-							recentlyPlayedFiles[vid.VideoLocalID] = vid;
-						}
-					}
-				}
-				return GenerateTemporaryPlayList(vids);
-			}
-			catch (Exception ex)
-			{
-				logger.ErrorException(ex.ToString(), ex);
-			}
+        public string GenerateTemporaryPlayList(List<AnimeEpisodeVM> episodes)
+        {
+            try
+            {
+                List<VideoDetailedVM> vids = new List<VideoDetailedVM>();
+                foreach (AnimeEpisodeVM ep in episodes)
+                {
+                    if (ep.FilesForEpisode.Count > 0)
+                    {
+                        VideoDetailedVM vid = GetAutoFileForEpisode(ep);
+                        if (vid != null)
+                        {
+                            vids.Add(vid);
+                            recentlyPlayedFiles[vid.VideoLocalID] = vid;
+                        }
+                    }
+                }
+                return GenerateTemporaryPlayList(vids);
+            }
+            catch (Exception ex)
+            {
+                logger.ErrorException(ex.ToString(), ex);
+            }
 
-			return string.Empty;
-		}
+            return string.Empty;
+        }
 
-		public string GenerateTemporaryPlayList(List<VideoDetailedVM> vids)
-		{
-			try
-			{
-				// get a temporary file
-				string filePath = Utils.GetTempFilePathWithExtension(".pls");
+        public string GenerateTemporaryPlayList(List<VideoDetailedVM> vids)
+        {
+            try
+            {
+                // get a temporary file
+                string filePath = Utils.GetTempFilePathWithExtension(".pls");
 
-				string plsContent = "";
+                string plsContent = "";
 
-				plsContent += @"[playlist]" + Environment.NewLine;
+                plsContent += @"[playlist]" + Environment.NewLine;
 
-				for (int i=1; i<=vids.Count; i++)
-					plsContent += string.Format(@"File{0}={1}", i, vids[i-1].FullPath) + Environment.NewLine;
+                for (int i = 1; i <= vids.Count; i++)
+                    plsContent += string.Format(@"File{0}={1}", i, vids[i - 1].FullPath) + Environment.NewLine;
 
-				plsContent += @"NumberOfEntries=" + vids.Count.ToString() + Environment.NewLine;
-				plsContent += @"Version=2" + Environment.NewLine;
+                plsContent += @"NumberOfEntries=" + vids.Count.ToString() + Environment.NewLine;
+                plsContent += @"Version=2" + Environment.NewLine;
 
-				File.WriteAllText(filePath, plsContent);
+                File.WriteAllText(filePath, plsContent);
 
-				return filePath;
-			}
-			catch (Exception ex)
-			{
-				logger.ErrorException(ex.ToString(), ex);
-			}
+                return filePath;
+            }
+            catch (Exception ex)
+            {
+                logger.ErrorException(ex.ToString(), ex);
+            }
 
-			return string.Empty;
-		}
+            return string.Empty;
+        }
 
-		public VideoDetailedVM GetAutoFileForEpisode(AnimeEpisodeVM ep)
-		{
-			try
-			{
-				if (ep.FilesForEpisode == null) return null;
-				if (ep.FilesForEpisode.Count == 1) return ep.FilesForEpisode[0];
+        public VideoDetailedVM GetAutoFileForEpisode(AnimeEpisodeVM ep)
+        {
+            try
+            {
+                if (ep.FilesForEpisode == null) return null;
+                if (ep.FilesForEpisode.Count == 1) return ep.FilesForEpisode[0];
 
-				// find the previous episode
-				JMMServerBinary.Contract_AnimeEpisode raw = JMMServerVM.Instance.clientBinaryHTTP.GetPreviousEpisodeForUnwatched(ep.AnimeSeriesID,
-					JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+                // find the previous episode
+                JMMServerBinary.Contract_AnimeEpisode raw = JMMServerVM.Instance.clientBinaryHTTP.GetPreviousEpisodeForUnwatched(ep.AnimeSeriesID,
+                    JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
 
-				
-				if (raw == null)
-				{
-					List<VideoDetailedVM> vids = ep.FilesForEpisode;
-					// just use the best quality file
-					List<SortPropOrFieldAndDirection> sortCriteria = new List<SortPropOrFieldAndDirection>();
-					sortCriteria.Add(new SortPropOrFieldAndDirection("OverallVideoSourceRanking", true, SortType.eInteger));
-					vids = Sorting.MultiSort<VideoDetailedVM>(vids, sortCriteria);
 
-					return vids[0];
-				}
-				else
-				{
-					List<VideoDetailedVM> vids = ep.FilesForEpisode;
-					
-					// sort by quality
-					List<SortPropOrFieldAndDirection> sortCriteria = new List<SortPropOrFieldAndDirection>();
-					sortCriteria.Add(new SortPropOrFieldAndDirection("OverallVideoSourceRanking", true, SortType.eInteger));
-					vids = Sorting.MultiSort<VideoDetailedVM>(vids, sortCriteria);
+                if (raw == null)
+                {
+                    List<VideoDetailedVM> vids = ep.FilesForEpisode;
+                    // just use the best quality file
+                    List<SortPropOrFieldAndDirection> sortCriteria = new List<SortPropOrFieldAndDirection>();
+                    sortCriteria.Add(new SortPropOrFieldAndDirection("OverallVideoSourceRanking", true, SortType.eInteger));
+                    vids = Sorting.MultiSort<VideoDetailedVM>(vids, sortCriteria);
 
-					if (AppSettings.AutoFileSubsequent == (int)AutoFileSubsequentType.BestQuality)
-					{
-						// just use the best quality file
-						return vids[0];
-					}
-					else
-					{
-						// otherwise look at which groups files they watched previously
-						AnimeEpisodeVM previousEp = new AnimeEpisodeVM(raw);
-						List<VideoDetailedVM> vidsPrevious = previousEp.FilesForEpisode;
+                    return vids[0];
+                }
+                else
+                {
+                    List<VideoDetailedVM> vids = ep.FilesForEpisode;
 
-						foreach (VideoDetailedVM vidPrev in vidsPrevious)
-						{
-							if (vidPrev.Watched)
-							{
-								foreach (VideoDetailedVM vid in vids)
-								{
-									if (vid.AniDB_Anime_GroupName.Equals(vidPrev.AniDB_Anime_GroupName, StringComparison.InvariantCultureIgnoreCase))
-									{
-										return vid;
-									}
-								}
-							}
-						}
+                    // sort by quality
+                    List<SortPropOrFieldAndDirection> sortCriteria = new List<SortPropOrFieldAndDirection>();
+                    sortCriteria.Add(new SortPropOrFieldAndDirection("OverallVideoSourceRanking", true, SortType.eInteger));
+                    vids = Sorting.MultiSort<VideoDetailedVM>(vids, sortCriteria);
 
-						// if none played??? use the best quality
-						return vids[0];
-					}
-				}
-			}
-			catch (Exception ex)
-			{
-				logger.ErrorException(ex.ToString(), ex);
-			}
+                    if (AppSettings.AutoFileSubsequent == (int)AutoFileSubsequentType.BestQuality)
+                    {
+                        // just use the best quality file
+                        return vids[0];
+                    }
+                    else
+                    {
+                        // otherwise look at which groups files they watched previously
+                        AnimeEpisodeVM previousEp = new AnimeEpisodeVM(raw);
+                        List<VideoDetailedVM> vidsPrevious = previousEp.FilesForEpisode;
 
-			return null;
-		}
-	}
+                        foreach (VideoDetailedVM vidPrev in vidsPrevious)
+                        {
+                            if (vidPrev.Watched)
+                            {
+                                foreach (VideoDetailedVM vid in vids)
+                                {
+                                    if (vid.AniDB_Anime_GroupName.Equals(vidPrev.AniDB_Anime_GroupName, StringComparison.InvariantCultureIgnoreCase))
+                                    {
+                                        return vid;
+                                    }
+                                }
+                            }
+                        }
 
-	public class VideoWatchedEventArgs : EventArgs
-	{
-		public readonly int VideoLocalID = 0;
-		public readonly VideoDetailedVM VideoLocal = null;
+                        // if none played??? use the best quality
+                        return vids[0];
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.ErrorException(ex.ToString(), ex);
+            }
 
-		public VideoWatchedEventArgs(int videoLocalID, VideoDetailedVM vid)
-		{
-			this.VideoLocalID = videoLocalID;
-			this.VideoLocal = vid;
-		}
-	}
+            return null;
+        }
+
+
+
+        /// <summary>
+        /// Finds the path to the users set video player's executable. Checkes the sys path first, then for 64bit versions, followed lastly by 32 bit.
+        /// </summary>
+        /// <returns>A string of the full path to the default player otherwise returns a null if cant be found.</returns>
+        public string GetPlayerExe()
+        {
+            //TODO check 32bit registry logic
+
+            string playerPath = null;
+
+            switch (UserSettingsVM.Instance.DefaultPlayer_GroupList)
+            {
+                case (int)DefaultVideoPlayer.MPC:
+
+                    //Check if Media Player Classic is available from PATH.
+                    playerPath = Utils.CheckSysPath(new string[] { "mpc-hc64.exe", "mpc-hc.exe" });
+                    if (!string.IsNullOrEmpty(playerPath))
+                        return playerPath;
+
+                    //Look for 64bit
+                    playerPath = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Combined Community Codec Pack 64bit_is1", "InstallLocation", null);
+                    if (!string.IsNullOrEmpty(playerPath))
+                        playerPath = Path.Combine(playerPath, @"MPC\mpc-hc64.exe");
+                    else // could not find 64, look for 32
+                    {
+                        playerPath = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Combined Community Codec Pack_is1", "InstallLocation", null);
+                        if (!string.IsNullOrEmpty(playerPath))
+                            playerPath = Path.Combine(playerPath, @"MPC\mpc-hc.exe");
+                    }
+                    return playerPath;
+                case (int)DefaultVideoPlayer.PotPlayer:
+                    //Check if PotPlayer is available from PATH.
+                    playerPath = Utils.CheckSysPath(new string[] { "PotPlayerMini64.exe", "PotPlayerMini.exe" });
+                    if (!string.IsNullOrEmpty(playerPath))
+                        return playerPath;
+
+                    playerPath = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\PotPlayer64", "DisplayIcon", null);
+                    if (!string.IsNullOrEmpty(playerPath))
+                        return playerPath;
+
+                    playerPath = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\PotPlayer", "DisplayIcon", null);
+                    if (!string.IsNullOrEmpty(playerPath))
+                        return playerPath;
+                    return playerPath;
+                case (int)DefaultVideoPlayer.VLC:
+                    //Check if VLC is available from PATH.
+                    playerPath = Utils.CheckSysPath(new string[] { "vlc.exe" });
+                    if (!string.IsNullOrEmpty(playerPath))
+                        return playerPath;
+
+                    playerPath = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\VLC media player", "DisplayIcon", null);
+                    return playerPath;
+                default:
+                    return playerPath;
+            }
+        }
+    }
+
+    public class VideoWatchedEventArgs : EventArgs
+    {
+        public readonly int VideoLocalID = 0;
+        public readonly VideoDetailedVM VideoLocal = null;
+
+        public VideoWatchedEventArgs(int videoLocalID, VideoDetailedVM vid)
+        {
+            this.VideoLocalID = videoLocalID;
+            this.VideoLocal = vid;
+        }
+    }
 }

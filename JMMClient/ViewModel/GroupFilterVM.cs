@@ -1,34 +1,33 @@
-﻿using System;
+﻿using JMMClient.ViewModel;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using JMMClient.ViewModel;
-using System.Windows;
-using System.ComponentModel;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
+using System.Linq;
+using System.Windows;
 
 namespace JMMClient
 {
-	public class GroupFilterVM : MainListWrapper, INotifyPropertyChanged, IComparable<GroupFilterVM>
-	{
-		public event PropertyChangedEventHandler PropertyChanged;
-		private void NotifyPropertyChanged(String propertyName)
-		{
-			if (PropertyChanged != null)
-			{
-				var args = new PropertyChangedEventArgs(propertyName);
-				PropertyChanged(this, args);
-			}
-		}
+    public class GroupFilterVM : MainListWrapper, INotifyPropertyChanged, IComparable<GroupFilterVM>
+    {
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                var args = new PropertyChangedEventArgs(propertyName);
+                PropertyChanged(this, args);
+            }
+        }
 
-		public int? GroupFilterID { get; set; }
-		public bool AllowEditing { get; set; }
-		public bool AllowDeletion { get; set; }
+        public int? GroupFilterID { get; set; }
+        public bool AllowEditing { get; set; }
+        public bool AllowDeletion { get; set; }
 
-		public ObservableCollection<GroupFilterConditionVM> FilterConditions { get; set; }
-		public ObservableCollection<GroupFilterSortingCriteria> SortCriteriaList { get; set; }
+        public ObservableCollection<GroupFilterConditionVM> FilterConditions { get; set; }
+        public ObservableCollection<GroupFilterSortingCriteria> SortCriteriaList { get; set; }
 
 		public Dictionary<int, HashSet<int>> Groups { get; set; }
         public Dictionary<int, HashSet<int>> Series { get; set; }
@@ -57,51 +56,51 @@ namespace JMMClient
             }
         }
 
-        
 
-		private Boolean isLocked = true;
-		public Boolean IsLocked
-		{
-			get { return isLocked; }
-			set
-			{
-				isLocked = value;
-				NotifyPropertyChanged("IsLocked");
-			}
-		}
 
-		private Boolean isBeingEdited = false;
-		public Boolean IsBeingEdited
-		{
-			get { return isBeingEdited; }
-			set
-			{
-				isBeingEdited = value;
-				NotifyPropertyChanged("IsBeingEdited");
-			}
-		}
+        private Boolean isLocked = true;
+        public Boolean IsLocked
+        {
+            get { return isLocked; }
+            set
+            {
+                isLocked = value;
+                NotifyPropertyChanged("IsLocked");
+            }
+        }
 
-		private string filterName = "";
-		public string FilterName
-		{
-			get { return filterName; }
-			set
-			{
-				filterName = value;
-				NotifyPropertyChanged("FilterName");
-			}
-		}
+        private Boolean isBeingEdited = false;
+        public Boolean IsBeingEdited
+        {
+            get { return isBeingEdited; }
+            set
+            {
+                isBeingEdited = value;
+                NotifyPropertyChanged("IsBeingEdited");
+            }
+        }
 
-		private int? locked = null;
-		public int? Locked
-		{
-			get { return locked; }
-			set
-			{
-				locked = value;
-				NotifyPropertyChanged("Locked");
-			}
-		}
+        private string filterName = "";
+        public string FilterName
+        {
+            get { return filterName; }
+            set
+            {
+                filterName = value;
+                NotifyPropertyChanged("FilterName");
+            }
+        }
+
+        private int? locked = null;
+        public int? Locked
+        {
+            get { return locked; }
+            set
+            {
+                locked = value;
+                NotifyPropertyChanged("Locked");
+            }
+        }
 
         private int filterType = (int)GroupFilterType.UserDefined;
         public int FilterType
@@ -115,6 +114,7 @@ namespace JMMClient
         }
 
         private int applyToSeries = 0;
+
 		public int ApplyToSeries
 		{
 			get { return applyToSeries; }
@@ -247,6 +247,7 @@ namespace JMMClient
 	        int id = JMMServerVM.Instance.CurrentUser.JMMUserID.Value;
             return (Groups != null && Groups.ContainsKey(id) && Groups[id].Count > 0);            
 	    }
+
         public override List<MainListWrapper> GetDirectChildren()
         {
             List<MainListWrapper> wrappers = new List<MainListWrapper>();
@@ -267,7 +268,6 @@ namespace JMMClient
                         wrappers.Add(grp);
                 }
             }
-
 
             return wrappers;
         }
@@ -298,8 +298,6 @@ namespace JMMClient
 
             return contract;
         }
-       
-
 		public void Populate(JMMServerBinary.Contract_GroupFilter contract)
 		{
 			this.GroupFilterID = contract.GroupFilterID;
@@ -319,112 +317,112 @@ namespace JMMClient
             if (this.FilterType == (int)GroupFilterType.ContinueWatching) this.AllowDeletion = false;
 
             this.IsSystemGroupFilter = false;
-			this.IsNotSystemGroupFilter = true;
+            this.IsNotSystemGroupFilter = true;
 
-			//this.FilterConditions = new ObservableCollection<GroupFilterConditionVM>();
-			this.FilterConditions.Clear();
+            //this.FilterConditions = new ObservableCollection<GroupFilterConditionVM>();
+            this.FilterConditions.Clear();
 
-			if (contract.FilterConditions != null)
-			{
-				foreach (JMMServerBinary.Contract_GroupFilterCondition gfc_con in contract.FilterConditions)
-					FilterConditions.Add(new GroupFilterConditionVM(gfc_con));
-			}
-			//SortCriteriaList = new ObservableCollection<GroupFilterSortingCriteria>();
-			SortCriteriaList.Clear();
+            if (contract.FilterConditions != null)
+            {
+                foreach (JMMServerBinary.Contract_GroupFilterCondition gfc_con in contract.FilterConditions)
+                    FilterConditions.Add(new GroupFilterConditionVM(gfc_con));
+            }
+            //SortCriteriaList = new ObservableCollection<GroupFilterSortingCriteria>();
+            SortCriteriaList.Clear();
 
-			string sortCriteriaRaw = contract.SortingCriteria;
+            string sortCriteriaRaw = contract.SortingCriteria;
 
-			if (!string.IsNullOrEmpty(sortCriteriaRaw))
-			{
-				string[] scrit = sortCriteriaRaw.Split('|');
-				foreach (string sortpair in scrit)
-				{
-					string[] spair = sortpair.Split(';');
-					if (spair.Length != 2) continue;
+            if (!string.IsNullOrEmpty(sortCriteriaRaw))
+            {
+                string[] scrit = sortCriteriaRaw.Split('|');
+                foreach (string sortpair in scrit)
+                {
+                    string[] spair = sortpair.Split(';');
+                    if (spair.Length != 2) continue;
 
-					int stype = 0;
-					int sdir = 0;
+                    int stype = 0;
+                    int sdir = 0;
 
-					int.TryParse(spair[0], out stype);
-					int.TryParse(spair[1], out sdir);
+                    int.TryParse(spair[0], out stype);
+                    int.TryParse(spair[1], out sdir);
 
-					if (stype > 0 && sdir > 0)
-					{
-						GroupFilterSortingCriteria gfsc = new GroupFilterSortingCriteria();
-						gfsc.GroupFilterID = this.GroupFilterID;
-						gfsc.SortType = (GroupFilterSorting)stype;
-						gfsc.SortDirection = (GroupFilterSortDirection)sdir;
-						SortCriteriaList.Add(gfsc);
-					}
-				}
-			}
+                    if (stype > 0 && sdir > 0)
+                    {
+                        GroupFilterSortingCriteria gfsc = new GroupFilterSortingCriteria();
+                        gfsc.GroupFilterID = this.GroupFilterID;
+                        gfsc.SortType = (GroupFilterSorting)stype;
+                        gfsc.SortDirection = (GroupFilterSortDirection)sdir;
+                        SortCriteriaList.Add(gfsc);
+                    }
+                }
+            }
 
-			//SortCriteriaList = new ObservableCollection<GroupFilterSortingCriteria>(SortCriteriaList.OrderBy(p => p.GroupFilterSortingString));
-			FilterConditions = new ObservableCollection<GroupFilterConditionVM>(FilterConditions.OrderBy(p => p.ConditionTypeString));
-		}
+            //SortCriteriaList = new ObservableCollection<GroupFilterSortingCriteria>(SortCriteriaList.OrderBy(p => p.GroupFilterSortingString));
+            FilterConditions = new ObservableCollection<GroupFilterConditionVM>(FilterConditions.OrderBy(p => p.ConditionTypeString));
+        }
 
-		public bool Save()
-		{
-			try
-			{
-				JMMServerBinary.Contract_GroupFilter_SaveResponse response = JMMServerVM.Instance.clientBinaryHTTP.SaveGroupFilter(this.ToContract());
-				if (!string.IsNullOrEmpty(response.ErrorMessage))
-				{
-					MessageBox.Show(response.ErrorMessage);
-					return false;
-				}
-				else
-				{
-					Populate(response.GroupFilter);
-				}
+        public bool Save()
+        {
+            try
+            {
+                JMMServerBinary.Contract_GroupFilter_SaveResponse response = JMMServerVM.Instance.clientBinaryHTTP.SaveGroupFilter(this.ToContract());
+                if (!string.IsNullOrEmpty(response.ErrorMessage))
+                {
+                    MessageBox.Show(response.ErrorMessage);
+                    return false;
+                }
+                else
+                {
+                    Populate(response.GroupFilter);
+                }
 
-				return true;
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-			return false;
-		}
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+            return false;
+        }
 
-		public bool Validate()
-		{
-			if (string.IsNullOrEmpty(this.FilterName))
-			{
-				MessageBox.Show("Filter Name must be populated");
-				return false;
-			}
+        public bool Validate()
+        {
+            if (string.IsNullOrEmpty(this.FilterName))
+            {
+                MessageBox.Show("Filter Name must be populated");
+                return false;
+            }
 
-			return true;
-		}
+            return true;
+        }
 
-		public bool Delete()
-		{
-			try
-			{
-				if (!this.GroupFilterID.HasValue) return true;
+        public bool Delete()
+        {
+            try
+            {
+                if (!this.GroupFilterID.HasValue) return true;
 
-				string msg = JMMServerVM.Instance.clientBinaryHTTP.DeleteGroupFilter(this.GroupFilterID.Value);
-				if (!string.IsNullOrEmpty(msg))
-				{
-					MessageBox.Show(msg);
-					return false;
-				}
-				else
-					return true;
+                string msg = JMMServerVM.Instance.clientBinaryHTTP.DeleteGroupFilter(this.GroupFilterID.Value);
+                if (!string.IsNullOrEmpty(msg))
+                {
+                    MessageBox.Show(msg);
+                    return false;
+                }
+                else
+                    return true;
 
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-				return false;
-			}
-		}
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+                return false;
+            }
+        }
 
-		public int CompareTo(GroupFilterVM obj)
-		{
-			return FilterName.CompareTo(obj.FilterName);
-		}
+        public int CompareTo(GroupFilterVM obj)
+        {
+            return FilterName.CompareTo(obj.FilterName);
+        }
 
-	}
+    }
 }

@@ -119,9 +119,9 @@
                 </DataGrid.CellStyle>
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Name}" Binding="{Binding TorrentName}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Size}" Binding="{Binding Size}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Seeders}" Binding="{Binding Seeders}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Leechers}" Binding="{Binding Leechers}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Size}" Binding="{Binding Size}" SortMemberPath="SortableSize" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Seeders}" Binding="{Binding Seeders, StringFormat={}\{0:N0\}}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Leechers}" Binding="{Binding Leechers, StringFormat={}\{0:N0\}}" IsReadOnly="True" />
                     <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_ExtraInfo}" Binding="{Binding ExtraInfo}" IsReadOnly="True" />
                 </DataGrid.Columns>
             </DataGrid>

@@ -1,12 +1,12 @@
 ﻿<UserControl x:Class="JMMClient.UserControls.VideoPlayerSettingsControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
              xmlns:extToolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
              xmlns:local="clr-namespace:JMMClient"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -16,176 +16,292 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
         </Grid.RowDefinitions>
 
         <!-- Default Player Help -->
-        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Background="FloralWhite" Margin="0,0,0,5" Padding="5">
+        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"
+                Background="FloralWhite" Margin="0,0,0,5" Padding="5">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="25"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="25" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" Grid.Row="0" Margin="5,5,5,5" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_Default}"  Grid.ColumnSpan="2" FontSize="14" FontWeight="Bold" />
-                <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,5,0" Grid.Column="0" Grid.Row="1" VerticalAlignment="Top"/>
-                <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,0,5,0" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_DefaultNote}"  TextWrapping="Wrap" />
-                <usercontrols:HyperLinkStandard Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Margin="0,5,0,0" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=DetailedExplanation}"
-                                                                        URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_Path}"/>
+                <TextBlock Grid.Column="0" Grid.Row="0" Margin="5,5,5,5" VerticalAlignment="Center"
+                           Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_Default}"
+                           Grid.ColumnSpan="2" FontSize="14" FontWeight="Bold" />
+                <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,5,0" Grid.Column="0"
+                       Grid.Row="1" VerticalAlignment="Top" />
+                <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,0,5,0" VerticalAlignment="Center"
+                           Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_DefaultNote}"
+                           TextWrapping="Wrap" />
+                <usercontrols:HyperLinkStandard Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"
+                                                Margin="0,5,0,0"
+                                                DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=DetailedExplanation}"
+                                                URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_Path}" />
             </Grid>
         </Border>
 
         <!-- Default Player-->
 
-        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
+        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3"
+                Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
             <Grid>
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_DefaultPlayer}" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="10,10,0,0"/>
+                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_DefaultPlayer}"
+                           VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="10,0,0,0" />
 
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,10,0,0" Grid.Row="0" Grid.Column="1">
-                    <ComboBox Grid.Row="0" Name="cboDefaultPlayer" VerticalAlignment="Center">
-                    </ComboBox>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0" Grid.Row="0"
+                            Grid.Column="1">
+                    <ComboBox Grid.Row="0" Name="cboDefaultPlayer" VerticalAlignment="Center" />
                 </StackPanel>
             </Grid>
 
         </Border>
 
+        <!-- Marked As Watched-->
+        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3"
+                Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <CheckBox Name="chkAutoSetWatched" Grid.Column="0" VerticalAlignment="Center" Grid.Row="0"
+                          Content="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_AutoMark}"
+                          Margin="10,0,0,0" />
+
+                <extToolkit:IntegerUpDown Grid.Column="1" Grid.Row="0" Name="udWatchedPct" Minimum="1" Maximum="100"
+                                          DefaultValue="85" VerticalAlignment="Center" Margin="5,0,0,0"
+                                          Value="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=VideoWatchedPct}" />
+            </Grid>
+
+        </Border>
+
         <!-- MPC Help -->
-        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Background="FloralWhite" Margin="0,0,0,5" Padding="5">
+        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3"
+                Background="FloralWhite" Margin="0,0,0,5" Padding="5">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="25"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="25" />
+                    <ColumnDefinition Width="211*" />
+                    <ColumnDefinition Width="552*" />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" Grid.Row="0" Margin="5,5,5,5" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPC}"  Grid.ColumnSpan="2" FontSize="14" FontWeight="Bold" />
-                <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,5,0" Grid.Column="0" Grid.Row="1" VerticalAlignment="Top"/>
-                <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,0,5,0" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPCNote}"  TextWrapping="Wrap" />
-                <usercontrols:HyperLinkStandard Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Margin="0,5,0,0" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPCOptions}"
-                                                                        URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_MPC}"/>
+                <TextBlock Grid.Column="0" Grid.Row="0" Margin="5,5,5,4" VerticalAlignment="Center"
+                           Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPC}"
+                           Grid.ColumnSpan="3" FontSize="14" FontWeight="Bold" Height="19" />
+                <TextBlock Grid.Column="1" Grid.Row="2" Margin="0,5,5,5" VerticalAlignment="Center"
+                           Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPCNote1}"
+                           TextWrapping="Wrap" Grid.ColumnSpan="2" />
+                <usercontrols:HyperLinkStandard Grid.Column="1" Grid.Row="4" VerticalAlignment="Center"
+                                                Margin="1,5,-1,5"
+                                                DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPCOptions}"
+                                                URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_MPC}"
+                                                Grid.ColumnSpan="2" Height="16" />
+                <TextBlock Grid.Column="1" Grid.Row="3" Margin="0,0,5,0" VerticalAlignment="Center"
+                           Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPCNote2}"
+                           TextWrapping="Wrap" Grid.ColumnSpan="2" />
+                <Image Height="16" Source="/Images/32_info.png" Margin="5,2,5,0" Grid.Column="0" Grid.Row="1"
+                       VerticalAlignment="Top" />
+                <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,0,5,0" VerticalAlignment="Center"
+                           Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPCIntegrationTypeNote}"
+                           TextWrapping="Wrap" Grid.ColumnSpan="2" Height="16" />
             </Grid>
         </Border>
 
         <!-- MPC Location -->
-        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
+        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3"
+                Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
             <Grid>
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
+                <TextBlock Text="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=MPCFolder}"
+                           Foreground="DarkGray" VerticalAlignment="Center" Margin="-40,10,0,0" Grid.Row="0"
+                           Grid.Column="1" Grid.ColumnSpan="3" Height="16" />
 
-                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPCFolder}" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="10,10,0,0"/>
-                <TextBlock Text="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=MPCFolder}" Foreground="DarkGray" VerticalAlignment="Center" Margin="10,10,0,0" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4"/>
-
-                <Button Name="btnChooseMPCLocation" Style="{DynamicResource RoundButtonStyle}" Margin="10,5,0,0" Grid.Row="2" Grid.Column="1">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                        <Image Height="16" Width="16" Source="/Images/32_Folder.png" Margin="0,0,5,0"/>
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPCINI}" Margin="0,0,5,0"/>
+                <Button Name="btnChooseMPCLocation" Style="{DynamicResource RoundButtonStyle}" Margin="10,10,0,10"
+                        Grid.Row="2" Grid.Column="0">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Image Height="16" Width="16" Source="/Images/32_Folder.png" Margin="0,0,5,0" />
+                        <TextBlock VerticalAlignment="Center"
+                                   Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPCINI}"
+                                   Margin="0,0,5,0" />
                     </StackPanel>
                 </Button>
 
-                <Button Name="btnTestMPCLocation" Style="{DynamicResource RoundButtonStyle}" Margin="10,5,0,0" Grid.Row="2" Grid.Column="2">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                        <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPCTest}" Margin="0,0,5,0"/>
+                <Button Name="btnTestMPCLocation" Style="{DynamicResource RoundButtonStyle}" Margin="10,10,0,10"
+                        Grid.Row="2" Grid.Column="1">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0" />
+                        <TextBlock VerticalAlignment="Center"
+                                   Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPCTest}"
+                                   Margin="0,0,5,0" />
                     </StackPanel>
                 </Button>
+
+                <Button Name="btnClearMPCLocation" Style="{DynamicResource RoundButtonStyle}" Margin="10,10,0,10"
+                        Grid.Row="2" Grid.Column="2">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Image Height="16" Width="16" Source="/Images/32_delete.png" Margin="0,0,5,0" />
+                        <TextBlock VerticalAlignment="Center"
+                                   Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPCClear}"
+                                   Margin="0,0,5,0" />
+                    </StackPanel>
+                </Button>
+
+                <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="20" Margin="-20,-5,0,0" Grid.Row="3"
+                         TextWrapping="Wrap"
+                         Text="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=MPCWebUIPort}"
+                         VerticalAlignment="Top" Width="50" />
+                <CheckBox x:Name="chkMpcIniIntegration"
+                          Content="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPCFolder}"
+                          HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" />
+                <CheckBox x:Name="chkMpcWebUiIntegration"
+                          Content="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPCWebUIPort}"
+                          HorizontalAlignment="Left" Margin="10,-2,0,0" Grid.Column="0" Grid.Row="3" VerticalAlignment="Top"/>
             </Grid>
 
         </Border>
 
         <!-- Potplayer Help -->
-        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3" Background="FloralWhite" Margin="0,0,0,5" Padding="5">
+        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3"
+                Background="FloralWhite" Margin="0,0,0,5" Padding="5">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="25"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="25" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" Grid.Row="0" Margin="5,5,5,5" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_PotPlayer}"  Grid.ColumnSpan="2" FontSize="14" FontWeight="Bold" />
-                <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,5,0" Grid.Column="0" Grid.Row="1" VerticalAlignment="Top"/>
-                <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,0,5,0" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_PotPlayerNote}"  TextWrapping="Wrap" />
-                <usercontrols:HyperLinkStandard Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Margin="0,5,0,0" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_PotPlayerOptions}"
-                                                                        URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_PotPlayer}"/>
+                <TextBlock Grid.Column="0" Grid.Row="0" Margin="5,5,5,5" VerticalAlignment="Center"
+                           Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_PotPlayer}"
+                           Grid.ColumnSpan="2" FontSize="14" FontWeight="Bold" />
+                <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,5,0" Grid.Column="0"
+                       Grid.Row="1" VerticalAlignment="Top" />
+                <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,0,5,0" VerticalAlignment="Center"
+                           Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_PotPlayerNote}"
+                           TextWrapping="Wrap" />
+                <usercontrols:HyperLinkStandard Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"
+                                                Margin="0,5,0,0"
+                                                DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_PotPlayerOptions}"
+                                                URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_PotPlayer}" />
             </Grid>
         </Border>
 
         <!-- Potplayer Location -->
-        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="4" Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
+        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="4"
+                Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
             <Grid>
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_PotPlayerFolder}" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="10,10,0,0"/>
-                <TextBlock Text="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=PotPlayerFolder}" Foreground="DarkGray" VerticalAlignment="Center" Margin="10,10,0,0" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4"/>
+                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_PotPlayerFolder}"
+                           VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="10,10,0,0" />
+                <TextBlock Text="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=PotPlayerFolder}"
+                           Foreground="DarkGray" VerticalAlignment="Center" Margin="-60,10,0,0" Grid.Row="0"
+                           Grid.Column="1" Grid.ColumnSpan="4" />
 
-                <Button Name="btnChoosePotLocation" Style="{DynamicResource RoundButtonStyle}" Margin="10,5,0,0" Grid.Row="2" Grid.Column="1">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                        <Image Height="16" Width="16" Source="/Images/32_Folder.png" Margin="0,0,5,0"/>
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_PotPlayerINI}" Margin="0,0,5,0"/>
+                <Button Name="btnChoosePotLocation" Style="{DynamicResource RoundButtonStyle}" Margin="10,10,0,10"
+                        Grid.Row="2" Grid.Column="0">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Image Height="16" Width="16" Source="/Images/32_Folder.png" Margin="0,0,5,0" />
+                        <TextBlock VerticalAlignment="Center"
+                                   Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_PotPlayerINI}"
+                                   Margin="0,0,5,0" />
                     </StackPanel>
                 </Button>
 
-                <Button Name="btnTestPotLocation" Style="{DynamicResource RoundButtonStyle}" Margin="10,5,0,0" Grid.Row="2" Grid.Column="2">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                        <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_PotPlayerTest}" Margin="0,0,5,0"/>
+                <Button Name="btnTestPotLocation" Style="{DynamicResource RoundButtonStyle}" Margin="10,10,0,10"
+                        Grid.Row="2" Grid.Column="1">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0" />
+                        <TextBlock VerticalAlignment="Center"
+                                   Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_PotPlayerTest}"
+                                   Margin="0,0,5,0" />
+                    </StackPanel>
+                </Button>
+
+                <Button Name="btnClearPotLocation" Style="{DynamicResource RoundButtonStyle}" Margin="10,10,0,10"
+                        Grid.Row="2" Grid.Column="2">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Image Height="16" Width="16" Source="/Images/32_delete.png" Margin="0,0,5,0" />
+                        <TextBlock VerticalAlignment="Center"
+                                   Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_PotPlayerClear}"
+                                   Margin="0,0,5,0" />
                     </StackPanel>
                 </Button>
             </Grid>
@@ -193,92 +309,93 @@
         </Border>
 
         <!-- VLC Help -->
-        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="3" Background="FloralWhite" Margin="0,0,0,5" Padding="5">
+        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="3"
+                Background="FloralWhite" Margin="0,0,0,5" Padding="5">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="25"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="25" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" Grid.Row="0" Margin="5,5,5,5" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_VLC}"  Grid.ColumnSpan="2" FontSize="14" FontWeight="Bold" />
-                <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,5,0" Grid.Column="0" Grid.Row="1" VerticalAlignment="Top"/>
-                <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,0,5,0" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_VLCNote}"  TextWrapping="Wrap" />
-                <usercontrols:HyperLinkStandard Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Margin="0,5,0,0" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_VLCOptions}"
-                                                                        URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_VLC}"/>
+                <TextBlock Grid.Column="0" Grid.Row="0" Margin="5,5,5,5" VerticalAlignment="Center"
+                           Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_VLC}"
+                           Grid.ColumnSpan="2" FontSize="14" FontWeight="Bold" />
+                <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,5,0" Grid.Column="0"
+                       Grid.Row="1" VerticalAlignment="Top" />
+                <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,0,5,0" VerticalAlignment="Center"
+                           Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_VLCNote}"
+                           TextWrapping="Wrap" />
+                <usercontrols:HyperLinkStandard Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"
+                                                Margin="0,5,0,0"
+                                                DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_VLCOptions}"
+                                                URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_VLC}" />
             </Grid>
         </Border>
 
         <!-- VLC Location -->
-        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="3" Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
+        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="3"
+                Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
             <Grid>
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_VLCFolder}" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="10,10,0,0"/>
-                <TextBlock Text="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=VLCFolder}" Foreground="DarkGray" VerticalAlignment="Center" Margin="10,10,0,0" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4"/>
+                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_VLCFolder}"
+                           VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="10,10,0,0" />
+                <TextBlock Text="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=VLCFolder}"
+                           Foreground="DarkGray" VerticalAlignment="Center" Margin="-60,10,0,0" Grid.Row="0"
+                           Grid.Column="1" Grid.ColumnSpan="4" />
 
-                <Button Name="btnChooseVLCLocation" Style="{DynamicResource RoundButtonStyle}" Margin="10,5,0,0" Grid.Row="2" Grid.Column="1">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                        <Image Height="16" Width="16" Source="/Images/32_Folder.png" Margin="0,0,5,0"/>
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_VLCINI}" Margin="0,0,5,0"/>
+                <Button Name="btnChooseVLCLocation" Style="{DynamicResource RoundButtonStyle}" Margin="10,10,0,10"
+                        Grid.Row="2" Grid.Column="0">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Image Height="16" Width="16" Source="/Images/32_Folder.png" Margin="0,0,5,0" />
+                        <TextBlock VerticalAlignment="Center"
+                                   Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_VLCINI}"
+                                   Margin="0,0,5,0" />
                     </StackPanel>
                 </Button>
 
-                <Button Name="btnTestVLCLocation" Style="{DynamicResource RoundButtonStyle}" Margin="10,5,0,0" Grid.Row="2" Grid.Column="2">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                        <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_VLCTest}" Margin="0,0,5,0"/>
+                <Button Name="btnTestVLCLocation" Style="{DynamicResource RoundButtonStyle}" Margin="10,10,0,10"
+                        Grid.Row="2" Grid.Column="1">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0" />
+                        <TextBlock VerticalAlignment="Center"
+                                   Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_VLCTest}"
+                                   Margin="0,0,5,0" />
                     </StackPanel>
                 </Button>
+
+                <Button Name="btnClearVLCLocation" Style="{DynamicResource RoundButtonStyle}" Margin="10,10,0,10"
+                        Grid.Row="2" Grid.Column="2">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Image Height="16" Width="16" Source="/Images/32_delete.png" Margin="0,0,5,0" />
+                        <TextBlock VerticalAlignment="Center"
+                                   Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_VLCClear}"
+                                   Margin="0,0,5,0" />
+                    </StackPanel>
+                </Button>
+
             </Grid>
 
         </Border>
 
-
-        <!-- % Watched Optons -->
-        <Grid Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="3" Margin="5">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-
-
-
-            <CheckBox Name="chkAutoSetWatched" Grid.Column="0" VerticalAlignment="Center" Grid.Row="0" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_AutoMark}" Margin="10,0,0,5"/>
-
-            <extToolkit:IntegerUpDown Grid.Column="1" Grid.Row="0" Name="udWatchedPct" Minimum="1" Maximum="100" DefaultValue="85" VerticalAlignment="Center" Margin="5,0,0,5"
-                                      Value="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=VideoWatchedPct}" />
-
-
-
-
-        </Grid>
-
     </Grid>
+
+
 </UserControl>

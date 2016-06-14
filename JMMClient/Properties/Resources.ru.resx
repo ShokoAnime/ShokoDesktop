@@ -1329,9 +1329,6 @@
   <data name="ImageSize" xml:space="preserve">
     <value>Размер изображения</value>
   </data>
-  <data name="INFO_SettingsUserAdmin" xml:space="preserve">
-    <value>Добавление и редактирование пользователей здесь. Пользователи хранятся в базе данных и общими для различных клиентов. Вы всегда должны иметь по крайней мере один администратор.</value>
-  </data>
   <data name="TAB_SettingsUsers" xml:space="preserve">
     <value>Пользователи</value>
   </data>
@@ -2201,26 +2198,17 @@
   <data name="VideoPlayer_MPC" xml:space="preserve">
     <value>Media Player Classic</value>
   </data>
-  <data name="VideoPlayer_MPCNote" xml:space="preserve">
-    <value>Для интеграции MPC, которую вы должны включить два варианта (1) хранить параметры INI-файла и истории (2) хранить недавно смотрел файлов. Смотрите скриншот ниже для более подробной информации. MPC расположен обычно что-то вроде C:\Program Files (x 86) \Combined Community Codec Pack\MPC</value>
-  </data>
   <data name="VideoPlayer_MPCOptions" xml:space="preserve">
     <value>MPC опции</value>
   </data>
   <data name="VideoPlayer_VLC" xml:space="preserve">
     <value>VLC</value>
   </data>
-  <data name="VideoPlayer_VLCNote" xml:space="preserve">
-    <value>VLC 2.2 + записей последних файлов и временные метки по умолчанию (и отключение «Дополнительно» вариант). Более старые версии не поддерживают функциональность «Резюме из последней позиции». Расположение файла .ini VLC является обычно что-то вроде C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini</value>
-  </data>
   <data name="VideoPlayer_VLCOptions" xml:space="preserve">
     <value>VLC опции</value>
   </data>
   <data name="VideoPlayer_PotPlayer" xml:space="preserve">
     <value>PotPlayer</value>
-  </data>
-  <data name="VideoPlayer_PotPlayerNote" xml:space="preserve">
-    <value>Для интеграции PotPlayer, необходимо включить следующие параметры (1) предпочтения &gt; общего &gt; хранилища параметров .ini файла (2) предпочтения &gt; воспроизведение &gt; играть от последней точки. Смотрите скриншот ниже для более подробной информации. Расположение файла .ini PlotPlayer обычно это что-то вроде C:\Users\username\AppData\Roaming\PotPlayer64\PotPlayer64.ini</value>
   </data>
   <data name="VideoPlayer_PotPlayerOptions" xml:space="preserve">
     <value>PotPlayer опции</value>
@@ -2233,15 +2221,6 @@
   </data>
   <data name="VideoPlayer_PotPlayerINI" xml:space="preserve">
     <value>Выберите папку PotPlayer INI</value>
-  </data>
-  <data name="VideoPlayer_MPCTest" xml:space="preserve">
-    <value>MPC файлов теста</value>
-  </data>
-  <data name="VideoPlayer_VLCTest" xml:space="preserve">
-    <value>Тестовый файл VLC</value>
-  </data>
-  <data name="VideoPlayer_PotPlayerTest" xml:space="preserve">
-    <value>Тестовый файл PotPlayer</value>
   </data>
   <data name="VideoPlayer_AutoMark" xml:space="preserve">
     <value>Автоматическая пометка файлов как смотрел, когда смотрел следующих процент</value>
@@ -4069,5 +4048,104 @@
   </data>
   <data name="UpdateAniDB_Info1" xml:space="preserve">
     <value>Данные, относящиеся к файлам в вашей коллекции автоматически загружается и хранится в локальной базе данных, когда модель памяти JMM сначала импортирует файлы. Этот процесс выполняется только один раз так что если конкретный файл, когда отсутствуют данные о AniDB во время загрузки, если будет отсутствовать в вашей базе данных. Кроме того вполне возможно, что будущие версии модели памяти JMM может использовать дополнительный файл данных, который доступен, но не был загружен, когда модель памяти JMM первоначально импортированных файлов. Эта утилита будет обновить и заменить все данные сохраненного файла с тем, что в настоящее время доступна на AniDB.</value>
+  </data>
+  <data name="INFO_SettingsUserAdmin" xml:space="preserve">
+    <value>Пользователи хранятся в вашей базе данных и могут вызываться любым клиентом, который подключается к базе данных. При добавлении нового пользователя или обновления существующего, должны нажмите кнопку Сохранить иначе ваши изменения не будут действовать. Модель памяти JMM требует по крайней мере один пользователь с правами администратора на выбранных.</value>
+  </data>
+  <data name="MAL_LoginCorrect" xml:space="preserve">
+    <value>MAL Логин успешным, параметры сохраняются.</value>
+  </data>
+  <data name="MAL_SearchInfo" xml:space="preserve">
+    <value>Действительные MAL учетные данные требуются для того, чтобы использовать эту функцию</value>
+  </data>
+  <data name="CheckCred" xml:space="preserve">
+    <value>Проверка учетных данных</value>
+  </data>
+  <data name="MAL_CheckCred" xml:space="preserve">
+    <value>Проверьте полномочия MAL</value>
+  </data>
+  <data name="Trakt_SearchInfo" xml:space="preserve">
+    <value>Действительные тракт учетные данные требуются для того, чтобы использовать эту функцию</value>
+  </data>
+  <data name="Trakt_CheckCred" xml:space="preserve">
+    <value>Проверьте полномочия тракт</value>
+  </data>
+  <data name="RelationSetting_AltSetting" xml:space="preserve">
+    <value>Альтернативная настройка</value>
+  </data>
+  <data name="RelationSetting_SameSetting" xml:space="preserve">
+    <value>Же настройки</value>
+  </data>
+  <data name="RelationSetting_Character" xml:space="preserve">
+    <value>Персонаж</value>
+  </data>
+  <data name="RelationSetting_Other" xml:space="preserve">
+    <value>Другие</value>
+  </data>
+  <data name="RelationSetting_ParentStory" xml:space="preserve">
+    <value>Родительский история</value>
+  </data>
+  <data name="RelationSetting_SideStory" xml:space="preserve">
+    <value>История</value>
+  </data>
+  <data name="RelationSetting_Summary" xml:space="preserve">
+    <value>Резюме</value>
+  </data>
+  <data name="RelationSetting_FullStory" xml:space="preserve">
+    <value>Полная история</value>
+  </data>
+  <data name="RelationSetting_AltVersion" xml:space="preserve">
+    <value>Альтернативная версия</value>
+  </data>
+  <data name="TAB_Settings_RelationSettings" xml:space="preserve">
+    <value>Параметры связи</value>
+  </data>
+  <data name="RelationSettings_Info" xml:space="preserve">
+    <value>Выберите следующие действия, чтобы исключить из группировки</value>
+  </data>
+  <data name="Link_RelationSettings" xml:space="preserve">
+    <value>http://JMediaManager.org/JMM-Desktop/Settings/#Essential</value>
+  </data>
+  <data name="Video_Hi08P" xml:space="preserve">
+    <value>8 бит</value>
+  </data>
+  <data name="Video_Hi12P" xml:space="preserve">
+    <value>12 бит</value>
+  </data>
+  <data name="VideoPlayer_MPCIntegrationTypeNote" xml:space="preserve">
+    <value>There are 2 types of MPC Integrations:</value>
+  </data>
+  <data name="VideoPlayer_MPCWebUIPort" xml:space="preserve">
+    <value>MPC Web UI Port</value>
+  </data>
+  <data name="VideoPlayer_MPCNote1" xml:space="preserve">
+    <value>Для INI интеграции необходимо включить следующие параметры в поле зрения &gt; вариантов &gt; игрок; (1) хранить параметры INI-файла и (2) хранить историю недавно смотрел файлов (3) запомнить позиции файла. INI-файл расположен обычно что-то вроде C:\Program Files (x86) \Combined Community Codec Pack\MPC</value>
+  </data>
+  <data name="VideoPlayer_PotPlayerNote" xml:space="preserve">
+    <value>Для интеграции PotPlayer, необходимо включить следующие параметры (1) предпочтения &gt; общего &gt; хранилища параметров .ini файла (2) предпочтения &gt; воспроизведение &gt; играть от последней точки. Расположение файла .ini PlotPlayer обычно это что-то вроде C:\Users\username\AppData\Roaming\PotPlayer64\PotPlayer64.ini</value>
+  </data>
+  <data name="VideoPlayer_MPCNote2" xml:space="preserve">
+    <value>Для интеграции пользовательского веб-интерфейса необходимо включить следующий параметр в представлении &gt; вариантов &gt; игрок &gt; веб-интерфейс; Прослушать порт. По умолчанию, прослушивающего порта 13579, который можно использовать, если вы решите изменить это убедитесь, что вы измените его в поле ниже.</value>
+  </data>
+  <data name="VideoPlayer_MPCTest" xml:space="preserve">
+    <value>Теста MPC ini-файла</value>
+  </data>
+  <data name="VideoPlayer_VLCTest" xml:space="preserve">
+    <value>Теста VLC ini-файла</value>
+  </data>
+  <data name="VideoPlayer_PotPlayerTest" xml:space="preserve">
+    <value>Теста PotPlayer ini-файла</value>
+  </data>
+  <data name="VideoPlayer_MPCClear" xml:space="preserve">
+    <value>Очистить папку MPC INI</value>
+  </data>
+  <data name="VideoPlayer_PotPlayerClear" xml:space="preserve">
+    <value>Снимите кастрюлю игрок INI папки</value>
+  </data>
+  <data name="VideoPlayer_VLCClear" xml:space="preserve">
+    <value>Очистить папку VLC INI</value>
+  </data>
+  <data name="VideoPlayer_VLCNote" xml:space="preserve">
+    <value>Для воспроизведения общего файла с JMM может использоваться любая версия VLC. Однако только VLC версии 2.2 или новее могут воспользоваться преимуществами интеграции видео плеер как ' резюме от последней позиции "не доступен в более ранних версиях. VLC также включает необходимые параметры по умолчанию, так что вам не нужно делать любые дополнительные настройки. Расположение файла .ini VLC является обычно что-то вроде C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini</value>
   </data>
 </root>

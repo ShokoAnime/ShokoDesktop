@@ -33,12 +33,12 @@ using System.Security;
 
 
 [assembly: ThemeInfo(
-	ResourceDictionaryLocation.None, //where theme specific resource dictionaries are located
-	//(used if a resource is not found in the page, 
-	// or application resource dictionaries)
-	ResourceDictionaryLocation.SourceAssembly //where the generic resource dictionary is located
-	//(used if a resource is not found in the page, 
-	// app, or any theme specific resource dictionaries)
+    ResourceDictionaryLocation.None, //where theme specific resource dictionaries are located
+                                     //(used if a resource is not found in the page, 
+                                     // or application resource dictionaries)
+    ResourceDictionaryLocation.SourceAssembly //where the generic resource dictionary is located
+                                              //(used if a resource is not found in the page, 
+                                              // app, or any theme specific resource dictionaries)
 )]
 
 
@@ -52,8 +52,8 @@ using System.Security;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("3.5.0.0")]
-[assembly: AssemblyFileVersion("3.5.0.0")]
+[assembly: AssemblyVersion("3.5.0.3")]
+[assembly: AssemblyFileVersion("3.5.0.3")]
 [assembly: AllowPartiallyTrustedCallers]
 [assembly: AssemblyKeyFile("JMMDesktop.snk")]
 [assembly: SecurityRules(SecurityRuleSet.Level1)]

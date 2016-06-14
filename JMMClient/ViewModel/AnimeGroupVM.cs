@@ -1,38 +1,35 @@
-﻿using System;
+﻿using JMMClient.ViewModel;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Reflection;
 using System.ComponentModel;
-using System.Windows;
-using System.IO;
 using System.Diagnostics;
-using JMMClient.ViewModel;
+using System.IO;
+using System.Windows;
 
 namespace JMMClient
 {
-	/// <summary>
-	/// This class is used for the basic details about an AnimeGroup
-	/// The only details we get from the server are the ones we want to display in the main list
-	/// This is to make it simpler and faster
-	/// When we want to get the extended details about a group we will get AnimeGroupDetailedVM record
-	/// 
-	/// </summary>
-	public class AnimeGroupVM : MainListWrapper, INotifyPropertyChanged, IComparable<AnimeGroupVM>
-	{
-		private static Random fanartRandom = new Random();
-		private static Random posterRandom = new Random();
+    /// <summary>
+    /// This class is used for the basic details about an AnimeGroup
+    /// The only details we get from the server are the ones we want to display in the main list
+    /// This is to make it simpler and faster
+    /// When we want to get the extended details about a group we will get AnimeGroupDetailedVM record
+    /// 
+    /// </summary>
+    public class AnimeGroupVM : MainListWrapper, INotifyPropertyChanged, IComparable<AnimeGroupVM>
+    {
+        private static Random fanartRandom = new Random();
+        private static Random posterRandom = new Random();
 
-		#region Readonly members
-		public int? AnimeGroupID { get; set; }
-		public DateTime DateTimeUpdated { get; set; }
-		public int PlayedCount { get; set; }
-		public int StoppedCount { get; set; }
-		public int OverrideDescription { get; set; }
-		public int IsManuallyNamed { get; set; }
+        #region Readonly members
+        public int? AnimeGroupID { get; set; }
+        public DateTime DateTimeUpdated { get; set; }
+        public int PlayedCount { get; set; }
+        public int StoppedCount { get; set; }
+        public int OverrideDescription { get; set; }
+        public int IsManuallyNamed { get; set; }
 
-		public int MissingEpisodeCount { get; set; }
-		public int MissingEpisodeCountGroups { get; set; }
+        public int MissingEpisodeCount { get; set; }
+        public int MissingEpisodeCountGroups { get; set; }
 
 		public DateTime? Stat_AirDate_Min { get; set; }
 		public DateTime? Stat_AirDate_Max { get; set; }
@@ -59,266 +56,266 @@ namespace JMMClient
 		public int Stat_EpisodeCount { get; set; }
 		public decimal Stat_AniDBRating { get; set; }
 
-		private static AnimeGroupSortMethod sortMethod = AnimeGroupSortMethod.SortName;
-		public static AnimeGroupSortMethod SortMethod
-		{
-			get { return sortMethod; }
-			set { sortMethod = value; }
-		}
+        private static AnimeGroupSortMethod sortMethod = AnimeGroupSortMethod.SortName;
+        public static AnimeGroupSortMethod SortMethod
+        {
+            get { return sortMethod; }
+            set { sortMethod = value; }
+        }
 
-		public static SortDirection sortDirection = JMMClient.SortDirection.Ascending;
-		public static SortDirection SortDirection
-		{
-			get { return sortDirection; }
-			set { sortDirection = value; }
-		}
-		
-
-		public event PropertyChangedEventHandler PropertyChanged;
-		private void NotifyPropertyChanged(String propertyName)
-		{
-			if (PropertyChanged != null)
-			{
-				var args = new PropertyChangedEventArgs(propertyName);
-				PropertyChanged(this, args);
-			}
-		}
-
-		#endregion
-
-		public override string ToString()
-		{
-			return string.Format("{0} - {1}", AnimeGroupID, GroupName);
-		}
-
-		#region Editable members
-
-		private int? animeGroupParentID;
-		public int? AnimeGroupParentID
-		{
-			get { return animeGroupParentID; }
-			set
-			{
-				animeGroupParentID = value;
-				NotifyPropertyChanged("AnimeGroupParentID");
-			}
-		}
-
-		private int? defaultAnimeSeriesID;
-		public int? DefaultAnimeSeriesID
-		{
-			get { return defaultAnimeSeriesID; }
-			set
-			{
-				defaultAnimeSeriesID = value;
-				NotifyPropertyChanged("DefaultAnimeSeriesID");
-				HasDefaultSeries = defaultAnimeSeriesID.HasValue;
-			}
-		}
-
-		private Boolean hasDefaultSeries = false;
-		public Boolean HasDefaultSeries
-		{
-			get { return hasDefaultSeries; }
-			set
-			{
-				hasDefaultSeries = value;
-				NotifyPropertyChanged("HasDefaultSeries");
-			}
-		}
-
-		private Boolean isReadOnly = true;
-		public Boolean IsReadOnly
-		{
-			get { return isReadOnly; }
-			set
-			{
-				isReadOnly = value;
-				NotifyPropertyChanged("IsReadOnly");
-			}
-		}
-
-		private Boolean isBeingEdited = false;
-		public Boolean IsBeingEdited
-		{
-			get { return isBeingEdited; }
-			set
-			{
-				isBeingEdited = value;
-				NotifyPropertyChanged("IsBeingEdited");
-			}
-		}
-
-		private String groupName;
-		public String GroupName
-		{
-			get { return groupName; }
-			set
-			{
-				groupName = value;
-				NotifyPropertyChanged("GroupName");
-			}
-		}
-
-		private int isFave;
-		public int IsFave
-		{
-			get { return isFave; }
-			set
-			{
-				isFave = value;
-				NotifyPropertyChanged("IsFave");
-				BIsFave = isFave == 1;
-				BIsNotFave = isFave != 1;
-			}
-		}
-
-		private Boolean bIsFave = false;
-		public Boolean BIsFave
-		{
-			get { return bIsFave; }
-			set
-			{
-				bIsFave = value;
-				NotifyPropertyChanged("BIsFave");
-			}
-		}
-
-		private Boolean bIsNotFave = false;
-		public Boolean BIsNotFave
-		{
-			get { return bIsNotFave; }
-			set
-			{
-				bIsNotFave = value;
-				NotifyPropertyChanged("BIsNotFave");
-			}
-		}
-
-		private Boolean userHasVoted;
-		public Boolean UserHasVoted
-		{
-			get { return userHasVoted; }
-			set
-			{
-				userHasVoted = value;
-				NotifyPropertyChanged("UserHasVoted");
-			}
-		}
-
-		private Boolean userHasVotedAny;
-		public Boolean UserHasVotedAny
-		{
-			get { return userHasVotedAny; }
-			set
-			{
-				userHasVotedAny = value;
-				NotifyPropertyChanged("UserHasVotedAny");
-			}
-		}
-
-		private int watchedEpisodeCount;
-		public int WatchedEpisodeCount
-		{
-			get { return watchedEpisodeCount; }
-			set
-			{
-				watchedEpisodeCount = value;
-				NotifyPropertyChanged("WatchedEpisodeCount");
-			}
-		}
-
-		private int unwatchedEpisodeCount;
-		public int UnwatchedEpisodeCount
-		{
-			get { return unwatchedEpisodeCount; }
-			set
-			{
-				unwatchedEpisodeCount = value;
-				NotifyPropertyChanged("UnwatchedEpisodeCount");
-			}
-		}
-
-		private int watchedCount;
-		public int WatchedCount
-		{
-			get { return watchedCount; }
-			set
-			{
-				watchedCount = value;
-				NotifyPropertyChanged("WatchedCount");
-			}
-		}
-
-		private DateTime? episodeAddedDate;
-		public DateTime? EpisodeAddedDate
-		{
-			get { return episodeAddedDate; }
-			set
-			{
-				episodeAddedDate = value;
-				NotifyPropertyChanged("EpisodeAddedDate");
-			}
-		}
-
-		private DateTime? watchedDate;
-		public DateTime? WatchedDate
-		{
-			get { return watchedDate; }
-			set
-			{
-				watchedDate = value;
-				NotifyPropertyChanged("WatchedDate");
-			}
-		}
+        public static SortDirection sortDirection = JMMClient.SortDirection.Ascending;
+        public static SortDirection SortDirection
+        {
+            get { return sortDirection; }
+            set { sortDirection = value; }
+        }
 
 
-		private String sortName;
-		public String SortName
-		{
-			get { return sortName; }
-			set
-			{
-				sortName = value;
-				NotifyPropertyChanged("SortName");
-			}
-		}
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                var args = new PropertyChangedEventArgs(propertyName);
+                PropertyChanged(this, args);
+            }
+        }
 
-		private String description;
-		public String Description
-		{
-			get { return description; }
-			set
-			{
-				description = value;
-				NotifyPropertyChanged("Description");
-			}
-		}
+        #endregion
 
-		#endregion
+        public override string ToString()
+        {
+            return string.Format("{0} - {1}", AnimeGroupID, GroupName);
+        }
 
-		public int AllSeriesCount
-		{
-			get
-			{
-				return Stat_SeriesCount;
-			}
-		}
+        #region Editable members
 
-		public string TagsString
-		{
-			get
-			{
-				string tagsString = "";
-				foreach (string cat in TagsList)
-				{
-					if (!string.IsNullOrEmpty(tagsString))
-						tagsString += ", ";
-					tagsString += cat;
-				}
-				return tagsString;
-			}
-		}
+        private int? animeGroupParentID;
+        public int? AnimeGroupParentID
+        {
+            get { return animeGroupParentID; }
+            set
+            {
+                animeGroupParentID = value;
+                NotifyPropertyChanged("AnimeGroupParentID");
+            }
+        }
+
+        private int? defaultAnimeSeriesID;
+        public int? DefaultAnimeSeriesID
+        {
+            get { return defaultAnimeSeriesID; }
+            set
+            {
+                defaultAnimeSeriesID = value;
+                NotifyPropertyChanged("DefaultAnimeSeriesID");
+                HasDefaultSeries = defaultAnimeSeriesID.HasValue;
+            }
+        }
+
+        private Boolean hasDefaultSeries = false;
+        public Boolean HasDefaultSeries
+        {
+            get { return hasDefaultSeries; }
+            set
+            {
+                hasDefaultSeries = value;
+                NotifyPropertyChanged("HasDefaultSeries");
+            }
+        }
+
+        private Boolean isReadOnly = true;
+        public Boolean IsReadOnly
+        {
+            get { return isReadOnly; }
+            set
+            {
+                isReadOnly = value;
+                NotifyPropertyChanged("IsReadOnly");
+            }
+        }
+
+        private Boolean isBeingEdited = false;
+        public Boolean IsBeingEdited
+        {
+            get { return isBeingEdited; }
+            set
+            {
+                isBeingEdited = value;
+                NotifyPropertyChanged("IsBeingEdited");
+            }
+        }
+
+        private String groupName;
+        public String GroupName
+        {
+            get { return groupName; }
+            set
+            {
+                groupName = value;
+                NotifyPropertyChanged("GroupName");
+            }
+        }
+
+        private int isFave;
+        public int IsFave
+        {
+            get { return isFave; }
+            set
+            {
+                isFave = value;
+                NotifyPropertyChanged("IsFave");
+                BIsFave = isFave == 1;
+                BIsNotFave = isFave != 1;
+            }
+        }
+
+        private Boolean bIsFave = false;
+        public Boolean BIsFave
+        {
+            get { return bIsFave; }
+            set
+            {
+                bIsFave = value;
+                NotifyPropertyChanged("BIsFave");
+            }
+        }
+
+        private Boolean bIsNotFave = false;
+        public Boolean BIsNotFave
+        {
+            get { return bIsNotFave; }
+            set
+            {
+                bIsNotFave = value;
+                NotifyPropertyChanged("BIsNotFave");
+            }
+        }
+
+        private Boolean userHasVoted;
+        public Boolean UserHasVoted
+        {
+            get { return userHasVoted; }
+            set
+            {
+                userHasVoted = value;
+                NotifyPropertyChanged("UserHasVoted");
+            }
+        }
+
+        private Boolean userHasVotedAny;
+        public Boolean UserHasVotedAny
+        {
+            get { return userHasVotedAny; }
+            set
+            {
+                userHasVotedAny = value;
+                NotifyPropertyChanged("UserHasVotedAny");
+            }
+        }
+
+        private int watchedEpisodeCount;
+        public int WatchedEpisodeCount
+        {
+            get { return watchedEpisodeCount; }
+            set
+            {
+                watchedEpisodeCount = value;
+                NotifyPropertyChanged("WatchedEpisodeCount");
+            }
+        }
+
+        private int unwatchedEpisodeCount;
+        public int UnwatchedEpisodeCount
+        {
+            get { return unwatchedEpisodeCount; }
+            set
+            {
+                unwatchedEpisodeCount = value;
+                NotifyPropertyChanged("UnwatchedEpisodeCount");
+            }
+        }
+
+        private int watchedCount;
+        public int WatchedCount
+        {
+            get { return watchedCount; }
+            set
+            {
+                watchedCount = value;
+                NotifyPropertyChanged("WatchedCount");
+            }
+        }
+
+        private DateTime? episodeAddedDate;
+        public DateTime? EpisodeAddedDate
+        {
+            get { return episodeAddedDate; }
+            set
+            {
+                episodeAddedDate = value;
+                NotifyPropertyChanged("EpisodeAddedDate");
+            }
+        }
+
+        private DateTime? watchedDate;
+        public DateTime? WatchedDate
+        {
+            get { return watchedDate; }
+            set
+            {
+                watchedDate = value;
+                NotifyPropertyChanged("WatchedDate");
+            }
+        }
+
+
+        private String sortName;
+        public String SortName
+        {
+            get { return sortName; }
+            set
+            {
+                sortName = value;
+                NotifyPropertyChanged("SortName");
+            }
+        }
+
+        private String description;
+        public String Description
+        {
+            get { return description; }
+            set
+            {
+                description = value;
+                NotifyPropertyChanged("Description");
+            }
+        }
+
+        #endregion
+
+        public int AllSeriesCount
+        {
+            get
+            {
+                return Stat_SeriesCount;
+            }
+        }
+
+        public string TagsString
+        {
+            get
+            {
+                string tagsString = "";
+                foreach (string cat in TagsList)
+                {
+                    if (!string.IsNullOrEmpty(tagsString))
+                        tagsString += ", ";
+                    tagsString += cat;
+                }
+                return tagsString;
+            }
+        }
 
 		public List<string> TagsList
 		{
@@ -336,122 +333,122 @@ namespace JMMClient
 			}
 		}
 
-		public List<string> AnimeTypesList
-		{
-			get
-			{
-				List<string> atypeList = new List<string>();
-				foreach (AnimeSeriesVM series in AllAnimeSeries)
-				{
-					string atype = series.AniDB_Anime.AnimeTypeDescription;
-					if (!atypeList.Contains(atype)) atypeList.Add(atype);
-				}
-				return atypeList;
-			}
-		}
+        public List<string> AnimeTypesList
+        {
+            get
+            {
+                List<string> atypeList = new List<string>();
+                foreach (AnimeSeriesVM series in AllAnimeSeries)
+                {
+                    string atype = series.AniDB_Anime.AnimeTypeDescription;
+                    if (!atypeList.Contains(atype)) atypeList.Add(atype);
+                }
+                return atypeList;
+            }
+        }
 
-		public string AnimeTypesString
-		{
-			get
-			{
-				string atypesString = "";
-				foreach (string atype in AnimeTypesList)
-				{
-					if (!string.IsNullOrEmpty(atypesString))
-						atypesString += ", ";
-					atypesString += atype;
-				}
-				return atypesString;
-			}
-		}
+        public string AnimeTypesString
+        {
+            get
+            {
+                string atypesString = "";
+                foreach (string atype in AnimeTypesList)
+                {
+                    if (!string.IsNullOrEmpty(atypesString))
+                        atypesString += ", ";
+                    atypesString += atype;
+                }
+                return atypesString;
+            }
+        }
 
-		public string Summary
-		{
-			get
-			{
-				string summ = "";
-				if (this.AllSubGroups.Count > 0)
-					summ = string.Format("{0} Groups", this.AllSubGroups.Count);
+        public string Summary
+        {
+            get
+            {
+                string summ = "";
+                if (this.AllSubGroups.Count > 0)
+                    summ = string.Format("{0} Groups", this.AllSubGroups.Count);
 
 
 
-				if (summ.Length > 0) summ += ", ";
+                if (summ.Length > 0) summ += ", ";
 
-				if (MainListHelperVM.Instance.CurrentGroupFilter != null && MainListHelperVM.Instance.CurrentGroupFilter.IsApplyToSeries)
-				{
-					List<AnimeSeriesVM> allSeries = AllAnimeSeries;
-					int serCount = 0;
-					foreach (AnimeSeriesVM ser in allSeries)
-					{
-						if (MainListHelperVM.Instance.CurrentGroupFilter.EvaluateGroupFilter(ser))
-							serCount++;
-					}
-					summ = summ + string.Format("{0} Series", serCount);
-				}
-				else
-					summ = summ + string.Format("{0} Series", AllAnimeSeries.Count);
+                if (MainListHelperVM.Instance.CurrentGroupFilter != null && MainListHelperVM.Instance.CurrentGroupFilter.IsApplyToSeries)
+                {
+                    List<AnimeSeriesVM> allSeries = AllAnimeSeries;
+                    int serCount = 0;
+                    foreach (AnimeSeriesVM ser in allSeries)
+                    {
+                        if (MainListHelperVM.Instance.CurrentGroupFilter.EvaluateGroupFilter(ser))
+                            serCount++;
+                    }
+                    summ = summ + string.Format("{0} Series", serCount);
+                }
+                else
+                    summ = summ + string.Format("{0} Series", AllAnimeSeries.Count);
 
-				return summ;
-			}
-		}
+                return summ;
+            }
+        }
 
-		public bool HasUnwatchedFiles
-		{
-			get
-			{
-				return UnwatchedEpisodeCount > 0;
-			}
-		}
+        public bool HasUnwatchedFiles
+        {
+            get
+            {
+                return UnwatchedEpisodeCount > 0;
+            }
+        }
 
-		public bool AllFilesWatched
-		{
-			get
-			{
-				return UnwatchedEpisodeCount == 0;
-			}
-		}
+        public bool AllFilesWatched
+        {
+            get
+            {
+                return UnwatchedEpisodeCount == 0;
+            }
+        }
 
-		public bool AnyFilesWatched
-		{
-			get
-			{
-				return WatchedEpisodeCount > 0;
-			}
-		}
+        public bool AnyFilesWatched
+        {
+            get
+            {
+                return WatchedEpisodeCount > 0;
+            }
+        }
 
-		public bool HasMissingEpisodesAny
-		{
-			get
-			{
-				return (MissingEpisodeCount > 0 || MissingEpisodeCountGroups > 0);
-			}
-		}
+        public bool HasMissingEpisodesAny
+        {
+            get
+            {
+                return (MissingEpisodeCount > 0 || MissingEpisodeCountGroups > 0);
+            }
+        }
 
-		public bool HasMissingEpisodesAllDifferentToGroups
-		{
-			get
-			{
-				return (MissingEpisodeCount > 0 && MissingEpisodeCount != MissingEpisodeCountGroups);
-			}
-		}
+        public bool HasMissingEpisodesAllDifferentToGroups
+        {
+            get
+            {
+                return (MissingEpisodeCount > 0 && MissingEpisodeCount != MissingEpisodeCountGroups);
+            }
+        }
 
-		public bool HasMissingEpisodesGroups
-		{
-			get
-			{
-				return MissingEpisodeCountGroups > 0;
-			}
-		}
+        public bool HasMissingEpisodesGroups
+        {
+            get
+            {
+                return MissingEpisodeCountGroups > 0;
+            }
+        }
 
-		public bool HasMissingEpisodes
-		{
-			get
-			{
-				return MissingEpisodeCountGroups > 0;
-			}
-		}
+        public bool HasMissingEpisodes
+        {
+            get
+            {
+                return MissingEpisodeCountGroups > 0;
+            }
+        }
 
-		/*public bool IsComplete
+        /*public bool IsComplete
 		{
 			get
 			{
@@ -464,7 +461,7 @@ namespace JMMClient
 			}
 		}*/
 
-		/*public bool FinishedAiring
+        /*public bool FinishedAiring
 		{
 			get
 			{
@@ -477,309 +474,309 @@ namespace JMMClient
 			}
 		}*/
 
-		public AnimeSeriesVM DefaultSeries
-		{
-			get
-			{
-				if (!HasDefaultSeries) return null;
+        public AnimeSeriesVM DefaultSeries
+        {
+            get
+            {
+                if (!HasDefaultSeries) return null;
 
-				if (!MainListHelperVM.Instance.AllSeriesDictionary.ContainsKey(DefaultAnimeSeriesID.Value)) return null;
+                if (!MainListHelperVM.Instance.AllSeriesDictionary.ContainsKey(DefaultAnimeSeriesID.Value)) return null;
 
-				return MainListHelperVM.Instance.AllSeriesDictionary[DefaultAnimeSeriesID.Value];
-			}
-		}
+                return MainListHelperVM.Instance.AllSeriesDictionary[DefaultAnimeSeriesID.Value];
+            }
+        }
 
-		private List<string> GetPosterFilenames()
-		{
-			List<string> allPosters = new List<string>();
+        private List<string> GetPosterFilenames()
+        {
+            List<string> allPosters = new List<string>();
 
-			// check if user has specied a fanart to always be used
-			if (DefaultSeries != null)
-			{
-				if (!string.IsNullOrEmpty(DefaultSeries.AniDB_Anime.DefaultPosterPathNoBlanks) && File.Exists(DefaultSeries.AniDB_Anime.DefaultPosterPathNoBlanks))
-				{
-					allPosters.Add(DefaultSeries.AniDB_Anime.DefaultPosterPathNoBlanks);
-					return allPosters;
-				}
-			}
+            // check if user has specied a fanart to always be used
+            if (DefaultSeries != null)
+            {
+                if (!string.IsNullOrEmpty(DefaultSeries.AniDB_Anime.DefaultPosterPathNoBlanks) && File.Exists(DefaultSeries.AniDB_Anime.DefaultPosterPathNoBlanks))
+                {
+                    allPosters.Add(DefaultSeries.AniDB_Anime.DefaultPosterPathNoBlanks);
+                    return allPosters;
+                }
+            }
 
-			foreach (AnimeSeriesVM ser in AllAnimeSeries)
-			{
-				if (!string.IsNullOrEmpty(ser.AniDB_Anime.DefaultPosterPathNoBlanks) && File.Exists(ser.AniDB_Anime.DefaultPosterPathNoBlanks))
-					allPosters.Add(ser.AniDB_Anime.DefaultPosterPathNoBlanks);
-			}
+            foreach (AnimeSeriesVM ser in AllAnimeSeries)
+            {
+                if (!string.IsNullOrEmpty(ser.AniDB_Anime.DefaultPosterPathNoBlanks) && File.Exists(ser.AniDB_Anime.DefaultPosterPathNoBlanks))
+                    allPosters.Add(ser.AniDB_Anime.DefaultPosterPathNoBlanks);
+            }
 
-			return allPosters;
-		}
+            return allPosters;
+        }
 
-		public string PosterPath
-		{
-			get
-			{
-				string packUriBlank = string.Format("pack://application:,,,/{0};component/Images/blankposter.png", Constants.AssemblyName);
+        public string PosterPath
+        {
+            get
+            {
+                string packUriBlank = string.Format("pack://application:,,,/{0};component/Images/blankposter.png", Constants.AssemblyName);
 
-				List<string> allPosters = GetPosterFilenames();
-				string posterName = "";
-				if (allPosters.Count > 0)
-					posterName = allPosters[fanartRandom.Next(0, allPosters.Count)];
+                List<string> allPosters = GetPosterFilenames();
+                string posterName = "";
+                if (allPosters.Count > 0)
+                    posterName = allPosters[fanartRandom.Next(0, allPosters.Count)];
 
-				if (!String.IsNullOrEmpty(posterName))
-					return posterName;
+                if (!String.IsNullOrEmpty(posterName))
+                    return posterName;
 
-				return packUriBlank;
-			}
-		}
+                return packUriBlank;
+            }
+        }
 
-		public string FullImagePath
-		{
-			get
-			{
-				return PosterPath;
-			}
-		}
+        public string FullImagePath
+        {
+            get
+            {
+                return PosterPath;
+            }
+        }
 
-		private List<string> GetFanartFilenames()
-		{
-			List<string> allFanart = new List<string>();
+        private List<string> GetFanartFilenames()
+        {
+            List<string> allFanart = new List<string>();
 
-			// check if user has specied a fanart to always be used
-			if (DefaultSeries != null)
-			{
-				if (DefaultSeries.AniDB_Anime.DefaultFanart != null && !string.IsNullOrEmpty(DefaultSeries.AniDB_Anime.DefaultFanart.FullImagePathOnlyExisting) 
-					&& File.Exists(DefaultSeries.AniDB_Anime.DefaultFanart.FullImagePathOnlyExisting))
-				{
-					allFanart.Add(DefaultSeries.AniDB_Anime.DefaultFanart.FullImagePathOnlyExisting);
-					return allFanart;
-				}
-			}
-
-
-			foreach (AnimeSeriesVM ser in AllAnimeSeries)
-			{
-				foreach (FanartContainer fanart in ser.AniDB_Anime.AniDB_AnimeCrossRefs.AllFanarts)
-				{
-					if (!fanart.IsImageEnabled) continue;
-					if (!File.Exists(fanart.FullImagePath)) continue;
-
-					allFanart.Add(fanart.FullImagePath);
-				}
-			}
+            // check if user has specied a fanart to always be used
+            if (DefaultSeries != null)
+            {
+                if (DefaultSeries.AniDB_Anime.DefaultFanart != null && !string.IsNullOrEmpty(DefaultSeries.AniDB_Anime.DefaultFanart.FullImagePathOnlyExisting)
+                    && File.Exists(DefaultSeries.AniDB_Anime.DefaultFanart.FullImagePathOnlyExisting))
+                {
+                    allFanart.Add(DefaultSeries.AniDB_Anime.DefaultFanart.FullImagePathOnlyExisting);
+                    return allFanart;
+                }
+            }
 
 
-			return allFanart;
-		}
+            foreach (AnimeSeriesVM ser in AllAnimeSeries)
+            {
+                foreach (FanartContainer fanart in ser.AniDB_Anime.AniDB_AnimeCrossRefs.AllFanarts)
+                {
+                    if (!fanart.IsImageEnabled) continue;
+                    if (!File.Exists(fanart.FullImagePath)) continue;
 
-		public bool UseFanartOnSeries
-		{
-			get
-			{
-				if (!AppSettings.UseFanartOnSeries) return false;
-				if (string.IsNullOrEmpty(FanartPath)) return false;
-
-				return true;
-
-			}
-		}
-
-		public bool UsePosterOnSeries
-		{
-			get
-			{
-				if (!AppSettings.UseFanartOnSeries) return true;
-				if (string.IsNullOrEmpty(FanartPath)) return true;
-
-				return false;
-
-			}
-		}
-
-		public string FanartPath
-		{
-			get
-			{
-				List<string> allFanarts = GetFanartFilenames();
-				string fanartName = "";
-				if (allFanarts.Count > 0)
-				{
-					fanartName = allFanarts[fanartRandom.Next(0, allFanarts.Count)];
-				}
-
-				if (!String.IsNullOrEmpty(fanartName))
-					return fanartName;
+                    allFanart.Add(fanart.FullImagePath);
+                }
+            }
 
 
-				return "";
-			}
-		}
+            return allFanart;
+        }
 
-		public string FanartPathThenPosterPath
-		{
-			get
-			{
-				if (!AppSettings.UseFanartOnSeries) return PosterPath;
+        public bool UseFanartOnSeries
+        {
+            get
+            {
+                if (!AppSettings.UseFanartOnSeries) return false;
+                if (string.IsNullOrEmpty(FanartPath)) return false;
 
-				if (string.IsNullOrEmpty(FanartPath))
-					return PosterPath;
+                return true;
 
-				return FanartPath;
-			}
-		}
+            }
+        }
 
-		
+        public bool UsePosterOnSeries
+        {
+            get
+            {
+                if (!AppSettings.UseFanartOnSeries) return true;
+                if (string.IsNullOrEmpty(FanartPath)) return true;
 
-		public string LastWatchedDescription
-		{
-			get
-			{
-				if (WatchedDate.HasValue)
-				{
-					DateTime today = DateTime.Now;
-					DateTime yesterday = today.AddDays(-1);
+                return false;
 
-					if (WatchedDate.Value.Day == today.Day && WatchedDate.Value.Month == today.Month && WatchedDate.Value.Year == today.Year)
-						return JMMClient.Properties.Resources.Today;
+            }
+        }
 
-					if (WatchedDate.Value.Day == yesterday.Day && WatchedDate.Value.Month == yesterday.Month && WatchedDate.Value.Year == yesterday.Year)
-						return JMMClient.Properties.Resources.Yesterday;
+        public string FanartPath
+        {
+            get
+            {
+                List<string> allFanarts = GetFanartFilenames();
+                string fanartName = "";
+                if (allFanarts.Count > 0)
+                {
+                    fanartName = allFanarts[fanartRandom.Next(0, allFanarts.Count)];
+                }
 
-					return WatchedDate.Value.ToString("dd MMM yyyy", Globals.Culture);
-				}
-				else
-					return "";
-			}
-		}
+                if (!String.IsNullOrEmpty(fanartName))
+                    return fanartName;
 
 
-		public decimal AniDBTotalRating
-		{
-			get
-			{
-				try
-				{
-					decimal totalRating = 0;
-					foreach (AnimeSeriesVM series in AllAnimeSeries)
-					{
-						totalRating += ((decimal)series.AniDB_Anime.Rating * series.AniDB_Anime.VoteCount);
-						totalRating += ((decimal)series.AniDB_Anime.TempRating * series.AniDB_Anime.TempVoteCount);
-					}
+                return "";
+            }
+        }
 
-					return totalRating;
-				}
-				catch (Exception ex)
-				{
-					return 0;
-				}
-			}
-		}
+        public string FanartPathThenPosterPath
+        {
+            get
+            {
+                if (!AppSettings.UseFanartOnSeries) return PosterPath;
 
-		public int AniDBTotalVotes
-		{
-			get
-			{
-				try
-				{
-					int cnt = 0;
-					foreach (AnimeSeriesVM series in AllAnimeSeries)
-					{
-						cnt += series.AniDB_Anime.AniDBTotalVotes;
-					}
+                if (string.IsNullOrEmpty(FanartPath))
+                    return PosterPath;
 
-					return cnt;
-				}
-				catch (Exception ex)
-				{
-					return 0;
-				}
-			}
-		}
+                return FanartPath;
+            }
+        }
 
-		public decimal AniDBRating
-		{
-			get
-			{
-				try
-				{
-					/*if (AniDBTotalVotes == 0)
+
+
+        public string LastWatchedDescription
+        {
+            get
+            {
+                if (WatchedDate.HasValue)
+                {
+                    DateTime today = DateTime.Now;
+                    DateTime yesterday = today.AddDays(-1);
+
+                    if (WatchedDate.Value.Day == today.Day && WatchedDate.Value.Month == today.Month && WatchedDate.Value.Year == today.Year)
+                        return JMMClient.Properties.Resources.Today;
+
+                    if (WatchedDate.Value.Day == yesterday.Day && WatchedDate.Value.Month == yesterday.Month && WatchedDate.Value.Year == yesterday.Year)
+                        return JMMClient.Properties.Resources.Yesterday;
+
+                    return WatchedDate.Value.ToString("dd MMM yyyy", Globals.Culture);
+                }
+                else
+                    return "";
+            }
+        }
+
+
+        public decimal AniDBTotalRating
+        {
+            get
+            {
+                try
+                {
+                    decimal totalRating = 0;
+                    foreach (AnimeSeriesVM series in AllAnimeSeries)
+                    {
+                        totalRating += ((decimal)series.AniDB_Anime.Rating * series.AniDB_Anime.VoteCount);
+                        totalRating += ((decimal)series.AniDB_Anime.TempRating * series.AniDB_Anime.TempVoteCount);
+                    }
+
+                    return totalRating;
+                }
+                catch (Exception ex)
+                {
+                    return 0;
+                }
+            }
+        }
+
+        public int AniDBTotalVotes
+        {
+            get
+            {
+                try
+                {
+                    int cnt = 0;
+                    foreach (AnimeSeriesVM series in AllAnimeSeries)
+                    {
+                        cnt += series.AniDB_Anime.AniDBTotalVotes;
+                    }
+
+                    return cnt;
+                }
+                catch (Exception ex)
+                {
+                    return 0;
+                }
+            }
+        }
+
+        public decimal AniDBRating
+        {
+            get
+            {
+                try
+                {
+                    /*if (AniDBTotalVotes == 0)
 						return 0;
 					else
 						return AniDBTotalRating / (decimal)AniDBTotalVotes / (decimal)100;*/
 
-					return Stat_AniDBRating / (decimal)100;
+                    return Stat_AniDBRating / (decimal)100;
 
-				}
-				catch (Exception ex)
-				{
-					return 0;
-				}
-			}
-		}
+                }
+                catch (Exception ex)
+                {
+                    return 0;
+                }
+            }
+        }
 
-		public string AniDBRatingFormatted
-		{
-			get
-			{
-				return string.Format("{0} ({1} {2})", Utils.FormatAniDBRating((double)AniDBRating),
-					AniDBTotalVotes, JMMClient.Properties.Resources.Votes);
-			}
-		}
+        public string AniDBRatingFormatted
+        {
+            get
+            {
+                return string.Format("{0} ({1} {2})", Utils.FormatAniDBRating((double)AniDBRating),
+                    AniDBTotalVotes, JMMClient.Properties.Resources.Votes);
+            }
+        }
 
 
-		public string EpisodeCountFormatted
-		{
-			get
-			{
-				int epCountNormal = 0;
-				int epCountSpecial = 0;
-				foreach (AnimeSeriesVM series in AllAnimeSeries)
-				{
-					epCountNormal += series.AniDB_Anime.EpisodeCountNormal;
-					epCountSpecial += series.AniDB_Anime.EpisodeCountSpecial;
-				}
+        public string EpisodeCountFormatted
+        {
+            get
+            {
+                int epCountNormal = 0;
+                int epCountSpecial = 0;
+                foreach (AnimeSeriesVM series in AllAnimeSeries)
+                {
+                    epCountNormal += series.AniDB_Anime.EpisodeCountNormal;
+                    epCountSpecial += series.AniDB_Anime.EpisodeCountSpecial;
+                }
 
-				return string.Format("{0} {1} ({2} {3})", epCountNormal, JMMClient.Properties.Resources.Episodes,
-					epCountSpecial, JMMClient.Properties.Resources.Specials);
-			}
-		}
+                return string.Format("{0} {1} ({2} {3})", epCountNormal, JMMClient.Properties.Resources.Episodes,
+                    epCountSpecial, JMMClient.Properties.Resources.Specials);
+            }
+        }
 
-		public string GroupType
-		{
-			get
-			{
-				if (this.AnimeGroupParentID.HasValue)
-					return JMMClient.Properties.Resources.SubGroup;
-				else
-					return JMMClient.Properties.Resources.Group;
-			}
-		}
-		
+        public string GroupType
+        {
+            get
+            {
+                if (this.AnimeGroupParentID.HasValue)
+                    return JMMClient.Properties.Resources.SubGroup;
+                else
+                    return JMMClient.Properties.Resources.Group;
+            }
+        }
 
-		public AnimeGroupVM()
-		{
-		}
 
-		public void Populate(JMMServerBinary.Contract_AnimeGroup contract)
-		{
-			if (contract.AnimeGroupID == 189)
-			{
-				Debug.Print("");
-			}
+        public AnimeGroupVM()
+        {
+        }
 
-			// readonly members
-			this.AnimeGroupID = contract.AnimeGroupID;
-			this.AnimeGroupParentID = contract.AnimeGroupParentID;
-			this.DateTimeUpdated = contract.DateTimeUpdated;
-			this.IsManuallyNamed = contract.IsManuallyNamed;
-			this.MissingEpisodeCount = contract.MissingEpisodeCount;
-			this.MissingEpisodeCountGroups = contract.MissingEpisodeCountGroups;
-			this.PlayedCount = contract.PlayedCount;
-			this.StoppedCount = contract.StoppedCount;
-			this.UnwatchedEpisodeCount = contract.UnwatchedEpisodeCount;
-			this.WatchedCount = contract.WatchedCount;
-			this.EpisodeAddedDate = contract.EpisodeAddedDate;
-			this.WatchedDate = contract.WatchedDate;
-			this.WatchedEpisodeCount = contract.WatchedEpisodeCount;
+        public void Populate(JMMServerBinary.Contract_AnimeGroup contract)
+        {
+            if (contract.AnimeGroupID == 189)
+            {
+                Debug.Print("");
+            }
 
-			
+            // readonly members
+            this.AnimeGroupID = contract.AnimeGroupID;
+            this.AnimeGroupParentID = contract.AnimeGroupParentID;
+            this.DateTimeUpdated = contract.DateTimeUpdated;
+            this.IsManuallyNamed = contract.IsManuallyNamed;
+            this.MissingEpisodeCount = contract.MissingEpisodeCount;
+            this.MissingEpisodeCountGroups = contract.MissingEpisodeCountGroups;
+            this.PlayedCount = contract.PlayedCount;
+            this.StoppedCount = contract.StoppedCount;
+            this.UnwatchedEpisodeCount = contract.UnwatchedEpisodeCount;
+            this.WatchedCount = contract.WatchedCount;
+            this.EpisodeAddedDate = contract.EpisodeAddedDate;
+            this.WatchedDate = contract.WatchedDate;
+            this.WatchedEpisodeCount = contract.WatchedEpisodeCount;
+
+
 
 			this.Stat_AirDate_Min = contract.Stat_AirDate_Min;
 			this.Stat_AirDate_Max = contract.Stat_AirDate_Max;
@@ -806,281 +803,281 @@ namespace JMMClient
 			this.Stat_EpisodeCount = contract.Stat_EpisodeCount;
 			this.Stat_AniDBRating = contract.Stat_AniDBRating;
 
-			// editable members
-			this.GroupName = contract.GroupName;
-			this.IsFave = contract.IsFave;
-			this.SortName = contract.SortName;
-			this.DefaultAnimeSeriesID = contract.DefaultAnimeSeriesID;
-			if (contract.DefaultAnimeSeriesID.HasValue)
-				this.HasDefaultSeries = contract.DefaultAnimeSeriesID.HasValue;
-			this.Description = contract.Description;
-			this.UserHasVoted = this.Stat_UserVotePermanent.HasValue;
-			this.UserHasVotedAny = this.Stat_UserVotePermanent.HasValue || this.Stat_UserVoteTemporary.HasValue;
-		}
+            // editable members
+            this.GroupName = contract.GroupName;
+            this.IsFave = contract.IsFave;
+            this.SortName = contract.SortName;
+            this.DefaultAnimeSeriesID = contract.DefaultAnimeSeriesID;
+            if (contract.DefaultAnimeSeriesID.HasValue)
+                this.HasDefaultSeries = contract.DefaultAnimeSeriesID.HasValue;
+            this.Description = contract.Description;
+            this.UserHasVoted = this.Stat_UserVotePermanent.HasValue;
+            this.UserHasVotedAny = this.Stat_UserVotePermanent.HasValue || this.Stat_UserVoteTemporary.HasValue;
+        }
 
-		public AnimeGroupVM(JMMServerBinary.Contract_AnimeGroup contract)
-		{
-			Populate(contract);
-		}
+        public AnimeGroupVM(JMMServerBinary.Contract_AnimeGroup contract)
+        {
+            Populate(contract);
+        }
 
-		public JMMServerBinary.Contract_AnimeGroup_Save ToContract()
-		{
-			JMMServerBinary.Contract_AnimeGroup_Save contract = new JMMServerBinary.Contract_AnimeGroup_Save();
-			contract.AnimeGroupID = this.AnimeGroupID;
-			contract.AnimeGroupParentID = this.AnimeGroupParentID;
-			contract.IsManuallyNamed = this.IsManuallyNamed;
-			//contract.DateTimeUpdated = this.DateTimeUpdated;
-			//contract.MissingEpisodesCount = this.MissingEpisodesCount;
-			//contract.PlayedCount = this.PlayedCount;
-			//contract.StoppedCount = this.StoppedCount;
-			//contract.UnwatchedEpisodeCount = this.UnwatchedEpisodeCount;
-			//contract.WatchedCount = this.WatchedCount;
-			//contract.WatchedDate = this.WatchedDate;
-			//contract.WatchedEpisodeCount = this.WatchedEpisodeCount;
+        public JMMServerBinary.Contract_AnimeGroup_Save ToContract()
+        {
+            JMMServerBinary.Contract_AnimeGroup_Save contract = new JMMServerBinary.Contract_AnimeGroup_Save();
+            contract.AnimeGroupID = this.AnimeGroupID;
+            contract.AnimeGroupParentID = this.AnimeGroupParentID;
+            contract.IsManuallyNamed = this.IsManuallyNamed;
+            //contract.DateTimeUpdated = this.DateTimeUpdated;
+            //contract.MissingEpisodesCount = this.MissingEpisodesCount;
+            //contract.PlayedCount = this.PlayedCount;
+            //contract.StoppedCount = this.StoppedCount;
+            //contract.UnwatchedEpisodeCount = this.UnwatchedEpisodeCount;
+            //contract.WatchedCount = this.WatchedCount;
+            //contract.WatchedDate = this.WatchedDate;
+            //contract.WatchedEpisodeCount = this.WatchedEpisodeCount;
 
-			// editable members
-			contract.GroupName = this.GroupName;
-			contract.IsFave = this.IsFave;
-			contract.SortName = this.SortName;
-			contract.Description = this.Description;
+            // editable members
+            contract.GroupName = this.GroupName;
+            contract.IsFave = this.IsFave;
+            contract.SortName = this.SortName;
+            contract.Description = this.Description;
 
-			return contract;
-		}
+            return contract;
+        }
 
-		
 
-		
-		/// <summary>
-		/// returns the direct child series of this group
-		/// </summary>
-		public List<AnimeSeriesVM> AnimeSeries
-		{
-			get
-			{
-				List<AnimeSeriesVM> series = new List<AnimeSeriesVM>();
-				foreach (AnimeSeriesVM ser in MainListHelperVM.Instance.AllSeries)
-				{
-					if (ser.AnimeGroupID == this.AnimeGroupID)
-					{
-						series.Add(ser);
-					}
-				}
 
-				JMMClient.AnimeSeriesVM.SortType = JMMClient.AnimeSeriesVM.SortMethod.AirDate;
-				series.Sort();
 
-				return series;
-			}
-		}
+        /// <summary>
+        /// returns the direct child series of this group
+        /// </summary>
+        public List<AnimeSeriesVM> AnimeSeries
+        {
+            get
+            {
+                List<AnimeSeriesVM> series = new List<AnimeSeriesVM>();
+                foreach (AnimeSeriesVM ser in MainListHelperVM.Instance.AllSeries)
+                {
+                    if (ser.AnimeGroupID == this.AnimeGroupID)
+                    {
+                        series.Add(ser);
+                    }
+                }
 
-		/// <summary>
-		/// returns all the anime series under this group  and sub groups
-		/// </summary>
-		public List<AnimeSeriesVM> AllAnimeSeries
-		{
-			get
-			{
-				List<AnimeSeriesVM> series = new List<AnimeSeriesVM>();
-				try
-				{
-					GetAnimeSeriesRecursive(this, ref series);
+                JMMClient.AnimeSeriesVM.SortType = JMMClient.AnimeSeriesVM.SortMethod.AirDate;
+                series.Sort();
 
-					JMMClient.AnimeSeriesVM.SortType = JMMClient.AnimeSeriesVM.SortMethod.AirDate;
-					series.Sort();
-				}
-				catch (Exception ex)
-				{
-					Utils.ShowErrorMessage(ex);
-				}
-				return series;
-			}
-		}
+                return series;
+            }
+        }
 
-		/// <summary>
-		/// returns all the anime series under this group and sub groups, which also pass the gurrent GroupFilter conditions
-		/// </summary>
-		public List<AnimeSeriesVM> AllAnimeSeriesFiltered
-		{
-			get
-			{
-				List<AnimeSeriesVM> series = new List<AnimeSeriesVM>();
-				try
-				{
-					List<AnimeSeriesVM> tempSeries = new List<AnimeSeriesVM>();
-					GetAnimeSeriesRecursive(this, ref tempSeries);
+        /// <summary>
+        /// returns all the anime series under this group  and sub groups
+        /// </summary>
+        public List<AnimeSeriesVM> AllAnimeSeries
+        {
+            get
+            {
+                List<AnimeSeriesVM> series = new List<AnimeSeriesVM>();
+                try
+                {
+                    GetAnimeSeriesRecursive(this, ref series);
 
-					// check if the current group filter is also applied to series
-					if (MainListHelperVM.Instance.CurrentGroupFilter != null && MainListHelperVM.Instance.CurrentGroupFilter.IsApplyToSeries)
-					{
-						foreach (AnimeSeriesVM ser in tempSeries)
-						{
-							if (MainListHelperVM.Instance.CurrentGroupFilter.EvaluateGroupFilter(ser))
-								series.Add(ser);
-						}
-					}
-					else
-						series = tempSeries;
+                    JMMClient.AnimeSeriesVM.SortType = JMMClient.AnimeSeriesVM.SortMethod.AirDate;
+                    series.Sort();
+                }
+                catch (Exception ex)
+                {
+                    Utils.ShowErrorMessage(ex);
+                }
+                return series;
+            }
+        }
 
-					JMMClient.AnimeSeriesVM.SortType = JMMClient.AnimeSeriesVM.SortMethod.AirDate;
-					series.Sort();
-				}
-				catch (Exception ex)
-				{
-					Utils.ShowErrorMessage(ex);
-				}
-				return series;
-			}
-		}
+        /// <summary>
+        /// returns all the anime series under this group and sub groups, which also pass the gurrent GroupFilter conditions
+        /// </summary>
+        public List<AnimeSeriesVM> AllAnimeSeriesFiltered
+        {
+            get
+            {
+                List<AnimeSeriesVM> series = new List<AnimeSeriesVM>();
+                try
+                {
+                    List<AnimeSeriesVM> tempSeries = new List<AnimeSeriesVM>();
+                    GetAnimeSeriesRecursive(this, ref tempSeries);
 
-		public override List<MainListWrapper> GetDirectChildren()
-		{
-			List<MainListWrapper> children = new List<MainListWrapper>();
-			children.AddRange(SubGroups);
+                    // check if the current group filter is also applied to series
+                    if (MainListHelperVM.Instance.CurrentGroupFilter != null && MainListHelperVM.Instance.CurrentGroupFilter.IsApplyToSeries)
+                    {
+                        foreach (AnimeSeriesVM ser in tempSeries)
+                        {
+                            if (MainListHelperVM.Instance.CurrentGroupFilter.EvaluateGroupFilter(ser))
+                                series.Add(ser);
+                        }
+                    }
+                    else
+                        series = tempSeries;
 
-			// check if the current group filter is also applied to series
-			if (MainListHelperVM.Instance.CurrentGroupFilter != null && MainListHelperVM.Instance.CurrentGroupFilter.IsApplyToSeries)
-			{
-				foreach (AnimeSeriesVM ser in AnimeSeries)
-				{
-					if (MainListHelperVM.Instance.CurrentGroupFilter.EvaluateGroupFilter(ser))
-						children.Add(ser);
-				}
-			}
-			else
-				children.AddRange(AnimeSeries);
+                    JMMClient.AnimeSeriesVM.SortType = JMMClient.AnimeSeriesVM.SortMethod.AirDate;
+                    series.Sort();
+                }
+                catch (Exception ex)
+                {
+                    Utils.ShowErrorMessage(ex);
+                }
+                return series;
+            }
+        }
 
-			return children;
-		}
+        public override List<MainListWrapper> GetDirectChildren()
+        {
+            List<MainListWrapper> children = new List<MainListWrapper>();
+            children.AddRange(SubGroups);
 
-		public AnimeGroupVM ParentGroup
-		{
-			get
-			{
-				if (!AnimeGroupParentID.HasValue) return null;
+            // check if the current group filter is also applied to series
+            if (MainListHelperVM.Instance.CurrentGroupFilter != null && MainListHelperVM.Instance.CurrentGroupFilter.IsApplyToSeries)
+            {
+                foreach (AnimeSeriesVM ser in AnimeSeries)
+                {
+                    if (MainListHelperVM.Instance.CurrentGroupFilter.EvaluateGroupFilter(ser))
+                        children.Add(ser);
+                }
+            }
+            else
+                children.AddRange(AnimeSeries);
 
-				try
-				{
-					foreach (AnimeGroupVM grp in MainListHelperVM.Instance.AllGroups)
-					{
-						if (grp.AnimeGroupID.HasValue && grp.AnimeGroupID.Value == this.AnimeGroupParentID.Value)
-						{
-							return grp;
-						}
-					}
-				}
-				catch (Exception ex)
-				{
-					Utils.ShowErrorMessage(ex);
-				}
-				return null;
-			}
-		}
+            return children;
+        }
 
-		public List<AnimeGroupVM> AllSubGroups
-		{
-			get
-			{
-				List<AnimeGroupVM> grps = new List<AnimeGroupVM>();
-				GetAnimeGroupsRecursive(this, ref grps);
-				return grps;
-			}
-		}
+        public AnimeGroupVM ParentGroup
+        {
+            get
+            {
+                if (!AnimeGroupParentID.HasValue) return null;
 
-		public List<AnimeGroupVM> SubGroups
-		{
-			get
-			{
-				List<AnimeGroupVM> grps = new List<AnimeGroupVM>();
-				foreach (AnimeGroupVM grp in MainListHelperVM.Instance.AllGroups)
-				{
-					if (grp.AnimeGroupParentID.HasValue && grp.AnimeGroupParentID == this.AnimeGroupID)
-					{
-						grps.Add(grp);
-					}
-				}
-				return grps;
-			}
-		}
+                try
+                {
+                    foreach (AnimeGroupVM grp in MainListHelperVM.Instance.AllGroups)
+                    {
+                        if (grp.AnimeGroupID.HasValue && grp.AnimeGroupID.Value == this.AnimeGroupParentID.Value)
+                        {
+                            return grp;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Utils.ShowErrorMessage(ex);
+                }
+                return null;
+            }
+        }
 
-		private static void GetAnimeGroupsRecursive(AnimeGroupVM grp, ref List<AnimeGroupVM> groupList)
-		{
-			// get the child groups for this group
-			groupList.AddRange(grp.SubGroups);
+        public List<AnimeGroupVM> AllSubGroups
+        {
+            get
+            {
+                List<AnimeGroupVM> grps = new List<AnimeGroupVM>();
+                GetAnimeGroupsRecursive(this, ref grps);
+                return grps;
+            }
+        }
 
-			foreach (AnimeGroupVM subGroup in grp.SubGroups)
-			{
-				GetAnimeGroupsRecursive(subGroup, ref groupList);
-			}
-		}
+        public List<AnimeGroupVM> SubGroups
+        {
+            get
+            {
+                List<AnimeGroupVM> grps = new List<AnimeGroupVM>();
+                foreach (AnimeGroupVM grp in MainListHelperVM.Instance.AllGroups)
+                {
+                    if (grp.AnimeGroupParentID.HasValue && grp.AnimeGroupParentID == this.AnimeGroupID)
+                    {
+                        grps.Add(grp);
+                    }
+                }
+                return grps;
+            }
+        }
 
-		private static void GetAnimeSeriesRecursive(AnimeGroupVM grp, ref List<AnimeSeriesVM> seriesList)
-		{
-			// get the child groups for this group
-			seriesList.AddRange(grp.AnimeSeries);
+        private static void GetAnimeGroupsRecursive(AnimeGroupVM grp, ref List<AnimeGroupVM> groupList)
+        {
+            // get the child groups for this group
+            groupList.AddRange(grp.SubGroups);
 
-			foreach (AnimeGroupVM subGroup in grp.SubGroups)
-			{
-				GetAnimeSeriesRecursive(subGroup, ref seriesList);
-			}
-		}
+            foreach (AnimeGroupVM subGroup in grp.SubGroups)
+            {
+                GetAnimeGroupsRecursive(subGroup, ref groupList);
+            }
+        }
 
-		public int CompareTo(AnimeGroupVM obj)
-		{
-			switch (SortMethod)
-			{
-				case AnimeGroupSortMethod.SortName:
-					return SortName.CompareTo(obj.SortName);
+        private static void GetAnimeSeriesRecursive(AnimeGroupVM grp, ref List<AnimeSeriesVM> seriesList)
+        {
+            // get the child groups for this group
+            seriesList.AddRange(grp.AnimeSeries);
 
-				case AnimeGroupSortMethod.IsFave:
-					return IsFave.CompareTo(obj.IsFave);
+            foreach (AnimeGroupVM subGroup in grp.SubGroups)
+            {
+                GetAnimeSeriesRecursive(subGroup, ref seriesList);
+            }
+        }
 
-				default:
-					return SortName.CompareTo(obj.SortName);
-			}
+        public int CompareTo(AnimeGroupVM obj)
+        {
+            switch (SortMethod)
+            {
+                case AnimeGroupSortMethod.SortName:
+                    return SortName.CompareTo(obj.SortName);
 
-		}
+                case AnimeGroupSortMethod.IsFave:
+                    return IsFave.CompareTo(obj.IsFave);
 
-		public bool Validate()
-		{
-			if (string.IsNullOrEmpty(this.GroupName))
-			{
-				MessageBox.Show("Group name must be populated");
-				return false;
-			}
+                default:
+                    return SortName.CompareTo(obj.SortName);
+            }
 
-			if (string.IsNullOrEmpty(this.SortName))
-			{
-				MessageBox.Show("Sort name must be populated");
-				return false;
-			}
+        }
 
-			return true;
-		}
-		
+        public bool Validate()
+        {
+            if (string.IsNullOrEmpty(this.GroupName))
+            {
+                MessageBox.Show("Group name must be populated");
+                return false;
+            }
 
-		public bool Save()
-		{
-			try
-			{
-				JMMServerBinary.Contract_AnimeGroup_SaveResponse response = JMMServerVM.Instance.clientBinaryHTTP.SaveGroup(this.ToContract(), 
-					JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
-				if (!string.IsNullOrEmpty(response.ErrorMessage))
-				{
-					MessageBox.Show(response.ErrorMessage);
-					return false;
-				}
-				else
-				{
-					this.Populate(response.AnimeGroup);
-					MainListHelperVM.Instance.AllGroupsDictionary[this.AnimeGroupID.Value] = this;
-					return true;
-				}
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-				return false;
-			}
-		}
-	}
+            if (string.IsNullOrEmpty(this.SortName))
+            {
+                MessageBox.Show("Sort name must be populated");
+                return false;
+            }
+
+            return true;
+        }
+
+
+        public bool Save()
+        {
+            try
+            {
+                JMMServerBinary.Contract_AnimeGroup_SaveResponse response = JMMServerVM.Instance.clientBinaryHTTP.SaveGroup(this.ToContract(),
+                    JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+                if (!string.IsNullOrEmpty(response.ErrorMessage))
+                {
+                    MessageBox.Show(response.ErrorMessage);
+                    return false;
+                }
+                else
+                {
+                    this.Populate(response.AnimeGroup);
+                    MainListHelperVM.Instance.AllGroupsDictionary[this.AnimeGroupID.Value] = this;
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+                return false;
+            }
+        }
+    }
 }

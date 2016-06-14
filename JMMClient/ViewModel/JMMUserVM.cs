@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace JMMClient.ViewModel
 {
@@ -21,24 +20,24 @@ namespace JMMClient.ViewModel
 			get { return IsAdmin == 1; }
 		}
 
-		public bool IsAniDBUserBool
-		{
-			get { return IsAniDBUser == 1; }
-		}
+        public bool IsAniDBUserBool
+        {
+            get { return IsAniDBUser == 1; }
+        }
 
-		public bool CanEditSettings
-		{
-			get { return CanEditServerSettings.HasValue ? CanEditServerSettings.Value == 1 : false; }
-		}
+        public bool CanEditSettings
+        {
+            get { return CanEditServerSettings.HasValue ? CanEditServerSettings.Value == 1 : false; }
+        }
 
-		public bool IsTraktUserBool
-		{
-			get { return IsTraktUser == 1; }
-		}
+        public bool IsTraktUserBool
+        {
+            get { return IsTraktUser == 1; }
+        }
 
-		public JMMUserVM()
-		{
-		}
+        public JMMUserVM()
+        {
+        }
 
 		public JMMUserVM(JMMServerBinary.Contract_JMMUser contract)
 		{
@@ -68,18 +67,18 @@ namespace JMMClient.ViewModel
 			return contract;
 		}
 
-		public override string ToString()
-		{
-			return string.Format("{0} - {1} ({2}) - {3}", Username, IsAdmin, IsAniDBUser, HideTags);
-		}
+        public override string ToString()
+        {
+            return string.Format("{0} - {1} ({2}) - {3}", Username, IsAdmin, IsAniDBUser, HideTags);
+        }
 
 		private bool EvaluateTags(HashSet<string> allcats)
 		{
 		    return !allcats.Overlaps(HideTags);
 		}
 
-		public bool EvaluateGroup(AnimeGroupVM grp)
-		{
+        public bool EvaluateGroup(AnimeGroupVM grp)
+        {
             if (grp.AnimeGroupID.Value == 215)
                 Console.WriteLine("");
 

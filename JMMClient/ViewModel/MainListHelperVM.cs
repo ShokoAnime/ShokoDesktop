@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel;
-using System.Windows.Data;
-using System.Windows.Controls;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.IO;
+﻿using JMMClient.UserControls;
 using JMMClient.ViewModel;
-using System.Windows;
-using JMMClient.UserControls;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
+using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace JMMClient
 {
@@ -44,7 +40,7 @@ namespace JMMClient
         public SeriesSearchType SerSearchType { get; set; }
         public int SearchResultCount = 0;
 
-
+        public ObservableCollection<AnimeEpisodeVM> EpisodesForSeries { get; set; }
         //public ObservableCollection<FileDetailedVM> FilesForSeries { get; set; }
 
         //public MainListWrapper CurrentWrapper { get; set; }
@@ -90,11 +86,12 @@ namespace JMMClient
             }
         }
 
-        public int LastAnimeGroupID { get; set; }
-        public int LastAnimeSeriesID { get; set; }
-        public int LastGroupFilterID { get; set; }
+        //public int LastAnimeGroupID { get; set; }
+        //public int LastAnimeSeriesID { get; set; }
+        //public int LastGroupFilterID { get; set; }
+        public string CurrentOpenGroupFilter { get; set; }
 
-        public Dictionary<int, int> LastGroupForGF { get; set; } // GroupFilterID, position in list of last selected group
+        public Dictionary<string, int> LastGroupForGF { get; set; } // GroupFilterID, position in list of last selected group
 
         public GroupFilterVM AllGroupFilter
         {
@@ -285,6 +282,8 @@ namespace JMMClient
             }
         }
 
+        public event EventHandler Refreshed;
+
         public static MainListHelperVM Instance
         {
             get
@@ -305,6 +304,7 @@ namespace JMMClient
             AllGroupFilters = new ObservableCollection<GroupFilterVM>();
             AllGroups = new ObservableCollection<AnimeGroupVM>();
             AllSeries = new ObservableCollection<AnimeSeriesVM>();
+            EpisodesForSeries = new ObservableCollection<AnimeEpisodeVM>();
             AVDumpFiles = new ObservableCollection<AVDumpVM>();
             BookmarkedAnime = new ObservableCollection<BookmarkedAnimeVM>();
 
@@ -324,10 +324,11 @@ namespace JMMClient
 
             BreadCrumbs = new ObservableCollection<MainListWrapper>();
 
-            LastAnimeGroupID = 0;
-            LastAnimeSeriesID = 0;
-            LastGroupFilterID = 0;
-            LastGroupForGF = new Dictionary<int, int>();
+            //LastAnimeGroupID = 0;
+            //LastAnimeSeriesID = 0;
+            //LastGroupFilterID = 0;
+            CurrentOpenGroupFilter = "";
+            LastGroupForGF = new Dictionary<string, int>();
             LastEpisodeForSeries = new Dictionary<int, int>();
         }
 
@@ -362,7 +363,7 @@ namespace JMMClient
             bool passed = false;
             System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()
             {
-                passed = GroupSearchFilterHelper.EvaluateSeriesTextSearch(ser, SeriesSearchTextBox.Text, SerSearchType);
+                passed = GroupSearchFilterHelper.EvaluateSeriesTextSearch(ser, SeriesSearchTextBox.Text.Replace("'", "`"), SerSearchType);
             });
 
             if (passed)
@@ -489,20 +490,28 @@ namespace JMMClient
                 CurrentWrapperIsGroup = wrapper is GroupFilterVM;
                 CurrentListWrapperIsGroup = wrapper is AnimeGroupVM;
 
-                if (wrapper is AnimeGroupVM) LastAnimeGroupID = ((AnimeGroupVM)wrapper).AnimeGroupID.Value;
+                if (wrapper is AnimeGroupVM)
+                {
+                    //LastAnimeGroupID = ((AnimeGroupVM)wrapper).AnimeGroupID.Value;
+                    MainListHelperVM.Instance.CurrentOpenGroupFilter = "AnimeGroupVM|" + ((AnimeGroupVM)wrapper).AnimeGroupID.Value;
+                }
                 if (wrapper is GroupFilterVM)
                 {
                     CurrentGroupFilter = (GroupFilterVM)wrapper;
-                    LastGroupFilterID = ((GroupFilterVM)wrapper).GroupFilterID.Value;
+                    //LastGroupFilterID = ((GroupFilterVM)wrapper).GroupFilterID.Value;
+
+                    MainListHelperVM.Instance.CurrentOpenGroupFilter = "GroupFilterVM|" + ((GroupFilterVM)wrapper).GroupFilterID.Value;
                 }
                 if (wrapper is AnimeSeriesVM)
                 {
                     CurrentSeries = wrapper as AnimeSeriesVM;
-                    LastAnimeSeriesID = ((AnimeSeriesVM)wrapper).AnimeSeriesID.Value;
+                    //LastAnimeSeriesID = ((AnimeSeriesVM)wrapper).AnimeSeriesID.Value;
+
+                    MainListHelperVM.Instance.CurrentOpenGroupFilter = "NoGroup";
                 }
 
-
-
+                if (wrapper == null)
+                    MainListHelperVM.Instance.CurrentOpenGroupFilter = "Init";
 
 
                 System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()
@@ -630,26 +639,26 @@ namespace JMMClient
         private void LoadTestData()
         {
             System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()
-           {
-               AllGroups.Clear();
-               AllSeries.Clear();
+            {
+                AllGroups.Clear();
+                AllSeries.Clear();
 
-               AnimeGroupVM grpNew = new AnimeGroupVM();
-               grpNew.GroupName = grpNew.SortName = "Bleach";
-               AllGroups.Add(grpNew);
+                AnimeGroupVM grpNew = new AnimeGroupVM();
+                grpNew.GroupName = grpNew.SortName = "Bleach";
+                AllGroups.Add(grpNew);
 
-               grpNew = new AnimeGroupVM();
-               grpNew.GroupName = grpNew.SortName = "Naruto";
-               AllGroups.Add(grpNew);
+                grpNew = new AnimeGroupVM();
+                grpNew.GroupName = grpNew.SortName = "Naruto";
+                AllGroups.Add(grpNew);
 
-               grpNew = new AnimeGroupVM();
-               grpNew.GroupName = grpNew.SortName = "High School of the Dead";
-               AllGroups.Add(grpNew);
+                grpNew = new AnimeGroupVM();
+                grpNew.GroupName = grpNew.SortName = "High School of the Dead";
+                AllGroups.Add(grpNew);
 
-               grpNew = new AnimeGroupVM();
-               grpNew.GroupName = grpNew.SortName = "Gundam";
-               AllGroups.Add(grpNew);
-           });
+                grpNew = new AnimeGroupVM();
+                grpNew.GroupName = grpNew.SortName = "Gundam";
+                AllGroups.Add(grpNew);
+            });
         }
 
         public void RefreshBookmarkedAnime()
@@ -697,6 +706,7 @@ namespace JMMClient
             AllAnimeDictionary.Clear();
 
             ViewSeriesSearch.Refresh();
+            OnRefreshed();
         }
 
         public void RefreshGroupsSeriesData()
@@ -725,17 +735,9 @@ namespace JMMClient
                     // must series before groups the binding is based on the groups, and will refresh when that is changed
                     foreach (JMMServerBinary.Contract_AnimeSeries ser in seriesRaw)
                     {
-                        try
-                        {
-                            AnimeSeriesVM serNew = new AnimeSeriesVM(ser);
-                            AllSeries.Add(serNew);
-                            AllSeriesDictionary[serNew.AnimeSeriesID.Value] = serNew;
-
-                        }
-                        catch (Exception e)
-                        {
-                            int a = 1;
-                        }
+                        AnimeSeriesVM serNew = new AnimeSeriesVM(ser);
+                        AllSeries.Add(serNew);
+                        AllSeriesDictionary[serNew.AnimeSeriesID.Value] = serNew;
                     }
 
                     ViewSeriesSearch.Refresh();
@@ -747,7 +749,7 @@ namespace JMMClient
                         AllGroupsDictionary[grpNew.AnimeGroupID.Value] = grpNew;
                     }
 
-
+                    OnRefreshed();
                 });
             }
             catch (Exception ex)
@@ -1132,6 +1134,12 @@ namespace JMMClient
             {
                 Utils.ShowErrorMessage(ex);
             }
+        }
+        private void OnRefreshed()
+        {
+            var handler = this.Refreshed;
+            if (handler != null)
+                handler(null, EventArgs.Empty);
         }
     }
 }
