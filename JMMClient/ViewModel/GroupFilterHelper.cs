@@ -9,32 +9,7 @@ namespace JMMClient.ViewModel
 	{
 	
 
-		public static List<GroupFilterVM> AllGroupFilters
-        {
-		    get
-		    {
-		        List<GroupFilterVM> gfs = new List<GroupFilterVM>();
-		        try
-		        {
-		            List<JMMServerBinary.Contract_GroupFilter> gf_cons = JMMServerVM.Instance.clientBinaryHTTP.GetAllGroupFilters();
-		            foreach (JMMServerBinary.Contract_GroupFilter gf_con in gf_cons)
-		            {
-		                GroupFilterVM gf = new GroupFilterVM(gf_con);
-		                gf.AllowEditing = !gf.IsLocked;
-		                gfs.Add(gf);
-		            }
-
-		        }
-		        catch (Exception ex)
-		        {
-		            Utils.ShowErrorMessage(ex);
-		        }
-
-		        gfs.Sort();
-		        return gfs;
-		    }
-        }
-
+	
 
 
 		public static string GetTextForEnum_Sorting(GroupFilterSorting sort)

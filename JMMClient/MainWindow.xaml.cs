@@ -2295,9 +2295,13 @@ namespace JMMClient
                         }
 
 						// remove from group filter list
-						MainListHelperVM.Instance.AllGroupFilters.Remove(gf);
-					    if (gf.GroupFilterID.HasValue && MainListHelperVM.Instance.AllGroupFiltersDictionary.ContainsKey(gf.GroupFilterID.Value))
-					        MainListHelperVM.Instance.AllGroupFiltersDictionary.Remove(gf.GroupFilterID.Value);
+                        if (MainListHelperVM.Instance.AllGroupFilters.Contains(gf))
+                        {
+                            MainListHelperVM.Instance.AllGroupFilters.Remove(gf);
+                            if (gf.GroupFilterID.HasValue &&
+                                MainListHelperVM.Instance.AllGroupFiltersDictionary.ContainsKey(gf.GroupFilterID.Value))
+                                MainListHelperVM.Instance.AllGroupFiltersDictionary.Remove(gf.GroupFilterID.Value);
+                        }
                         // remove from current wrapper list
                         if (pos >= 0)
 						{

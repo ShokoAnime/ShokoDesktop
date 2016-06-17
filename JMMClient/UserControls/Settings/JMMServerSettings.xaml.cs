@@ -43,6 +43,8 @@ namespace JMMClient.UserControls
                         maniWindow.Close();
                         return;
                     }
+                    else
+                        MainListHelperVM.Instance.RefreshGroupsSeriesData();
 
                     //MessageBox.Show(Properties.Resources.Success, "", MessageBoxButton.OK, MessageBoxImage.Information);
                 }

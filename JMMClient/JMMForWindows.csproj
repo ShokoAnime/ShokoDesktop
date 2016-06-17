@@ -1604,6 +1604,9 @@
     <None Include="Service References\JMMServerBinary\JMMServerBinary3.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\JMMServerBinary\JMMServerBinary4.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\JMMServerBinary\JMMServiceImplementation.wsdl" />
     <None Include="Service References\JMMServerStreaming\Message.xsd">
       <SubType>Designer</SubType>

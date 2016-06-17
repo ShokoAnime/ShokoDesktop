@@ -312,7 +312,7 @@ namespace JMMClient
             AllGroupsDictionary = new Dictionary<int, AnimeGroupVM>();
             AllSeriesDictionary = new Dictionary<int, AnimeSeriesVM>();
             AllAnimeDictionary = new Dictionary<int, AniDB_AnimeVM>();
-
+            AllGroupFiltersDictionary = new Dictionary<int, GroupFilterVM>();
             ViewGroups = CollectionViewSource.GetDefaultView(CurrentWrapperList);
             ViewGroupsForms = CollectionViewSource.GetDefaultView(AllGroups);
             ViewAVDumpFiles = CollectionViewSource.GetDefaultView(AVDumpFiles);
@@ -428,14 +428,10 @@ namespace JMMClient
                 CurrentWrapperList.Clear();
 
 
-                AllGroupFilters.Clear();
-                AllGroupFiltersDictionary=new Dictionary<int, GroupFilterVM>();
-                foreach (GroupFilterVM grpFilter in GroupFilterHelper.AllGroupFilters)
+                foreach (GroupFilterVM grpFilter in AllGroupFilters)
                 {
                     //if (grpFilter.FilterConditions.Count == 0)
                     //	AllGroupFilter = grpFilter;
-                    AllGroupFilters.Add(grpFilter);
-                    AllGroupFiltersDictionary[grpFilter.GroupFilterID.Value] = grpFilter;
                     if (!grpFilter.GroupFilterParentId.HasValue)
                         CurrentWrapperList.Add(grpFilter);
                 }
@@ -586,12 +582,8 @@ namespace JMMClient
                     if (wrapper == null)
                     {
                         CurrentWrapperList.Clear();
-                        AllGroupFilters.Clear();
-                        AllGroupFiltersDictionary=new Dictionary<int, GroupFilterVM>();
-                        foreach (GroupFilterVM grpFilter in GroupFilterHelper.AllGroupFilters)
+                        foreach (GroupFilterVM grpFilter in AllGroupFilters)
                         {
-                            AllGroupFilters.Add(grpFilter);
-                            AllGroupFiltersDictionary[grpFilter.GroupFilterID.Value] = grpFilter;
                             if (!grpFilter.GroupFilterParentId.HasValue)
                                 CurrentWrapperList.Add(grpFilter);
                         }
@@ -702,12 +694,16 @@ namespace JMMClient
             AllGroups.Clear();
             AllSeries.Clear();
             AllGroupsDictionary.Clear();
+            AllGroupFilters.Clear();
             AllSeriesDictionary.Clear();
             AllAnimeDictionary.Clear();
-
+            AllGroupFiltersDictionary.Clear();
             ViewSeriesSearch.Refresh();
             OnRefreshed();
         }
+
+
+
 
         public void RefreshGroupsSeriesData()
         {
@@ -721,17 +717,32 @@ namespace JMMClient
 
                 List<JMMServerBinary.Contract_AnimeGroup> grpsRaw = JMMServerVM.Instance.clientBinaryHTTP.GetAllGroups(JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
                 List<JMMServerBinary.Contract_AnimeSeries> seriesRaw = JMMServerVM.Instance.clientBinaryHTTP.GetAllSeries(JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+                List<JMMServerBinary.Contract_GroupFilter> gfRaw = JMMServerVM.Instance.clientBinaryHTTP.GetAllGroupFilters();
 
-                if (grpsRaw.Count == 0 || seriesRaw.Count == 0) return;
+
+                if (grpsRaw.Count == 0 || seriesRaw.Count == 0 || gfRaw.Count==0) return;
 
                 System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()
                 {
                     AllGroups.Clear();
                     AllSeries.Clear();
+                    List<GroupFilterVM> vms = AllGroupFilters.Where(a => a.GroupFilterID == 0).ToList();
+                    AllGroupFilters.Clear();
                     AllGroupsDictionary.Clear();
                     AllSeriesDictionary.Clear();
                     AllAnimeDictionary.Clear();
-
+                    AllGroupFiltersDictionary.Clear();
+                    foreach (GroupFilterVM gfv in vms)
+                    {
+                        AllGroupFilters.Add(gfv);
+                    }
+                    foreach (JMMServerBinary.Contract_GroupFilter gf_con in gfRaw.OrderBy(a=>a.GroupFilterName))
+                    {
+                        GroupFilterVM gf = new GroupFilterVM(gf_con);
+                        gf.AllowEditing = !gf.IsLocked;
+                        AllGroupFilters.Add(gf);
+                        AllGroupFiltersDictionary[gf.GroupFilterID.Value] = gf;
+                    }
                     // must series before groups the binding is based on the groups, and will refresh when that is changed
                     foreach (JMMServerBinary.Contract_AnimeSeries ser in seriesRaw)
                     {
@@ -772,16 +783,30 @@ namespace JMMClient
 
                 List<JMMServerBinary.Contract_AnimeGroup> grpsRaw = JMMServerVM.Instance.clientBinaryHTTP.GetAllGroups(JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
                 List<JMMServerBinary.Contract_AnimeSeries> seriesRaw = JMMServerVM.Instance.clientBinaryHTTP.GetAllSeries(JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+                List<JMMServerBinary.Contract_GroupFilter> gfRaw = JMMServerVM.Instance.clientBinaryHTTP.GetAllGroupFilters();
 
-                if (grpsRaw.Count == 0 || seriesRaw.Count == 0) return;
+                if (grpsRaw.Count == 0 || seriesRaw.Count == 0 || gfRaw.Count==0) return;
 
 
                 AllGroups.Clear();
                 AllSeries.Clear();
+                List<GroupFilterVM> vms = AllGroupFilters.Where(a => a.GroupFilterID == 0).ToList();
+                AllGroupFilters.Clear();
                 AllGroupsDictionary.Clear();
                 AllSeriesDictionary.Clear();
                 AllAnimeDictionary.Clear();
-
+                AllGroupFiltersDictionary.Clear();
+                foreach (GroupFilterVM gfv in vms)
+                {
+                    AllGroupFilters.Add(gfv);
+                }
+                foreach (JMMServerBinary.Contract_GroupFilter gf_con in gfRaw.OrderBy(a=>a.GroupFilterName))
+                {
+                    GroupFilterVM gf = new GroupFilterVM(gf_con);
+                    gf.AllowEditing = !gf.IsLocked;
+                    AllGroupFilters.Add(gf);
+                    AllGroupFiltersDictionary[gf.GroupFilterID.Value] = gf;
+                }
                 // must series before groups the binding is based on the groups, and will refresh when that is changed
                 foreach (JMMServerBinary.Contract_AnimeSeries ser in seriesRaw)
                 {
