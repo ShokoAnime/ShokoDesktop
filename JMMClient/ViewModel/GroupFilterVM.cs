@@ -226,7 +226,7 @@ namespace JMMClient
 
 	    public bool EvaluateGroupFilter(AnimeGroupVM grp)
 	    {
-	        if (Groups == null || Groups.Count == 0)
+	        if (Groups == null || !Groups.ContainsKey(JMMServerVM.Instance.CurrentUser.JMMUserID.Value))
 	            return false;
             if (grp.AnimeGroupID.HasValue)
     	        return Groups[JMMServerVM.Instance.CurrentUser.JMMUserID.Value].Contains(grp.AnimeGroupID.Value);
@@ -235,7 +235,7 @@ namespace JMMClient
 
 	    public bool EvaluateGroupFilter(AnimeSeriesVM ser)
 	    {
-	        if (Series == null || Series.Count == 0)
+	        if (Series == null || !Series.ContainsKey(JMMServerVM.Instance.CurrentUser.JMMUserID.Value))
 	            return false;
             if (ser.AnimeSeriesID.HasValue)
     	        return Series[JMMServerVM.Instance.CurrentUser.JMMUserID.Value].Contains(ser.AnimeSeriesID.Value);
