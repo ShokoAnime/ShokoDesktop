@@ -3469,9 +3469,6 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="AniDBMyListDelete" xml:space="preserve">
     <value>Delete File (AniDB)</value>
   </data>
-  <data name="DeleteFileAniDB" xml:space="preserve">
-    <value>Delete File (AniDB)</value>
-  </data>
   <data name="DeleteFiles_Name" xml:space="preserve">
     <value>Delete Files</value>
   </data>

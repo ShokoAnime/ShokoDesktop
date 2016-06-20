@@ -4145,4 +4145,13 @@
   <data name="VideoPlayer_VLCNote" xml:space="preserve">
     <value>VLC 2.2 + записей последних файлов и временные метки по умолчанию (и отключение «Дополнительно» вариант). Более старые версии не поддерживают функциональность «Резюме из последней позиции». Расположение файла .ini VLC является обычно что-то вроде C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini</value>
   </data>
+  <data name="GroupFilterConditionType_LatestEpisodeAirDate" xml:space="preserve">
+    <value>Последняя Дата воздуха эпизод</value>
+  </data>
+  <data name="GroupFilterConditionType_Year" xml:space="preserve">
+    <value>Год</value>
+  </data>
+  <data name="GroupFilterSorting_GroupFilter" xml:space="preserve">
+    <value>Имя фильтра группы</value>
+  </data>
 </root>

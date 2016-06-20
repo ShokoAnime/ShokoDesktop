@@ -4145,4 +4145,13 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   <data name="VideoPlayer_VLCNote" xml:space="preserve">
     <value>VLC 2.2 + registreert recent geopende bestanden en over tijdstempels standaard (en uitschakelen is een optie 'Geavanceerd'). Oudere versies ondersteunen geen 'Hervatten vanaf laatste positie' functionaliteit. De locatie van de VLC ini-bestand is meestal iets als C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini</value>
   </data>
+  <data name="GroupFilterConditionType_LatestEpisodeAirDate" xml:space="preserve">
+    <value>Nieuwste aflevering lucht datum</value>
+  </data>
+  <data name="GroupFilterConditionType_Year" xml:space="preserve">
+    <value>Jaar</value>
+  </data>
+  <data name="GroupFilterSorting_GroupFilter" xml:space="preserve">
+    <value>De naam van de Filter van de groep</value>
+  </data>
 </root>

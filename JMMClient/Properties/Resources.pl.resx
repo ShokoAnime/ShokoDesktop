@@ -4145,4 +4145,13 @@ Mark Unknown - pozostawia plik na liście, ale zmienia stan nieznany.</value>
   <data name="VideoPlayer_VLCNote" xml:space="preserve">
     <value>VLC 2.2 + nagrywa ostatnio używanych plików i sygnatury czasowe domyślnie (i wyłączenie jest opcja "Zaawansowane"). Starsze wersje nie obsługują funkcji "Życiorys z ostatniej pozycji". Lokalizacja pliku .ini VLC jest zazwyczaj coś w stylu C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini</value>
   </data>
+  <data name="GroupFilterConditionType_LatestEpisodeAirDate" xml:space="preserve">
+    <value>Najnowszy odcinek Air Data</value>
+  </data>
+  <data name="GroupFilterConditionType_Year" xml:space="preserve">
+    <value>Rok</value>
+  </data>
+  <data name="GroupFilterSorting_GroupFilter" xml:space="preserve">
+    <value>Nazwa filtru grupy</value>
+  </data>
 </root>

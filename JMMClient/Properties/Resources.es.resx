@@ -4145,4 +4145,13 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
   <data name="VideoPlayer_VLCNote" xml:space="preserve">
     <value>VLC 2.2 + graba archivos recientes y marcas de tiempo por defecto, y es una opción 'Avanzadas'. Versiones anteriores no admiten la funcionalidad 'Reanudar desde la última posición'. La ubicación del archivo .ini VLC es generalmente algo como C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini</value>
   </data>
+  <data name="GroupFilterConditionType_LatestEpisodeAirDate" xml:space="preserve">
+    <value>Última fecha de aire episodio</value>
+  </data>
+  <data name="GroupFilterConditionType_Year" xml:space="preserve">
+    <value>Año</value>
+  </data>
+  <data name="GroupFilterSorting_GroupFilter" xml:space="preserve">
+    <value>Nombre de filtro de grupo</value>
+  </data>
 </root>

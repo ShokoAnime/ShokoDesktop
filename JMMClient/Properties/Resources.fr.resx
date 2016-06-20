@@ -4145,4 +4145,13 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   <data name="VideoPlayer_VLCNote" xml:space="preserve">
     <value>VLC 2.2 + enregistre les fichiers récents et les horodatages par défaut (et la désactivation est une option « Avancé »). Des versions plus anciennes ne supportent pas la fonctionnalité de 'Reprise de la dernière position'. L'emplacement du fichier .ini VLC est généralement quelque chose comme C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini</value>
   </data>
+  <data name="GroupFilterConditionType_LatestEpisodeAirDate" xml:space="preserve">
+    <value>Dernier épisode Date de diffusion</value>
+  </data>
+  <data name="GroupFilterConditionType_Year" xml:space="preserve">
+    <value>Année</value>
+  </data>
+  <data name="GroupFilterSorting_GroupFilter" xml:space="preserve">
+    <value>Nom de filtre de groupe</value>
+  </data>
 </root>

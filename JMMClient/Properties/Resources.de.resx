@@ -4145,4 +4145,13 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   <data name="VideoPlayer_VLCNote" xml:space="preserve">
     <value>VLC 2.2 + zeichnet zuletzt geöffnete Dateien und Zeitstempeln standardmäßig (und deaktivieren ist eine Option "Erweitert"). Ältere Versionen unterstützen keine 'Resume aus der letzten Position'-Funktionalität. Die Lage des VLC-ini-Datei ist in der Regel so etwas wie C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini</value>
   </data>
+  <data name="GroupFilterConditionType_LatestEpisodeAirDate" xml:space="preserve">
+    <value>Neueste Episode Luft-Datum</value>
+  </data>
+  <data name="GroupFilterConditionType_Year" xml:space="preserve">
+    <value>Jahr</value>
+  </data>
+  <data name="GroupFilterSorting_GroupFilter" xml:space="preserve">
+    <value>Gruppennamen Filter</value>
+  </data>
 </root>

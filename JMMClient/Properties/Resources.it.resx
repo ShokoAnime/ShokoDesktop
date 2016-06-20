@@ -4145,4 +4145,13 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   <data name="VideoPlayer_VLCNote" xml:space="preserve">
     <value>VLC 2.2 + registra file recenti e timestamp per impostazione predefinita (e la disattivazione è un'opzione 'Avanzate'). Le versioni precedenti non supportano la funzionalità di 'Riprendere dall'ultima posizione'. La posizione del file ini VLC è di solito qualcosa di simile C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini</value>
   </data>
+  <data name="GroupFilterConditionType_LatestEpisodeAirDate" xml:space="preserve">
+    <value>Ultimo episodio Air Data</value>
+  </data>
+  <data name="GroupFilterConditionType_Year" xml:space="preserve">
+    <value>Anno</value>
+  </data>
+  <data name="GroupFilterSorting_GroupFilter" xml:space="preserve">
+    <value>Nome del filtro di gruppo</value>
+  </data>
 </root>

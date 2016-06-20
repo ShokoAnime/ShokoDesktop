@@ -2284,15 +2284,6 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete File (AniDB).
-        /// </summary>
-        public static string DeleteFileAniDB {
-            get {
-                return ResourceManager.GetString("DeleteFileAniDB", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to delete these {0} file/s, the physical video files will also be deleted.
         /// </summary>
         public static string DeleteFiles_Confirm {

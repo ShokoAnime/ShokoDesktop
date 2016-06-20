@@ -4145,4 +4145,13 @@ Mark Unknown - deixa o arquivo em sua lista, mas altera o estado para o desconhe
   <data name="VideoPlayer_VLCNote" xml:space="preserve">
     <value>VLC 2.2 + grava arquivos recentes e os carimbos de hora por padrão (e desabilitando é uma opção 'Avançado'). Versões mais antigas não suportam a funcionalidade de 'Resume da última posição'. A localização do arquivo. ini VLC é geralmente algo como C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini</value>
   </data>
+  <data name="GroupFilterConditionType_LatestEpisodeAirDate" xml:space="preserve">
+    <value>Mais recente episódio Air Data</value>
+  </data>
+  <data name="GroupFilterConditionType_Year" xml:space="preserve">
+    <value>Ano</value>
+  </data>
+  <data name="GroupFilterSorting_GroupFilter" xml:space="preserve">
+    <value>Nome do grupo de filtro</value>
+  </data>
 </root>
