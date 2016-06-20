@@ -199,7 +199,7 @@
     <value>TvDB</value>
   </data>
   <data name="ViewLabel" xml:space="preserve">
-    <value>View: </value>
+    <value>View:</value>
   </data>
   <data name="Back" xml:space="preserve">
     <value>Back</value>
@@ -586,7 +586,7 @@
     <value>Search</value>
   </data>
   <data name="Tooltip_GroupSearch" xml:space="preserve">
-    <value>Search  groups by name (in any language), category or tag</value>
+    <value>Search groups by name (in any language), category or tag</value>
   </data>
   <data name="AniDBDownloadChar" xml:space="preserve">
     <value>Download Characters/Creators</value>
@@ -1132,7 +1132,7 @@
     <value>Multiple Files</value>
   </data>
   <data name="INFO_MultipleFiles" xml:space="preserve">
-    <value>Multiple files are where you have two or more files for the same episode. This utility will let you examine all these occurrences, and decide which ones you want to  keep</value>
+    <value>Multiple files are where you have two or more files for the same episode. This utility will let you examine all these occurrences, and decide which ones you want to keep</value>
   </data>
   <data name="Loading" xml:space="preserve">
     <value>Loading...</value>
@@ -1528,7 +1528,7 @@
     <value>Select the default series for</value>
   </data>
   <data name="DefSeries2" xml:space="preserve">
-    <value>Selecting a default series means that all images that are dsiplayed for a group will use that </value>
+    <value>Selecting a default series means that all images that are dsiplayed for a group will use that</value>
   </data>
   <data name="DefSeries3" xml:space="preserve">
     <value>default series instead of a random series within the group</value>
@@ -1939,10 +1939,10 @@
     <value>AniDB Start:</value>
   </data>
   <data name="CommunityLinks_TvDB" xml:space="preserve">
-    <value>TvDB: </value>
+    <value>TvDB:</value>
   </data>
   <data name="CommunityLinks_Trakt" xml:space="preserve">
-    <value>Trakt: </value>
+    <value>Trakt:</value>
   </data>
   <data name="CommunityLinks_TMDb" xml:space="preserve">
     <value>The Movie DB</value>
@@ -2116,7 +2116,7 @@
     <value>File</value>
   </data>
   <data name="Playlist_Name" xml:space="preserve">
-    <value>Enter playlist name: </value>
+    <value>Enter playlist name:</value>
   </data>
   <data name="Playlist_NameBlank" xml:space="preserve">
     <value>Please enter a playlist name</value>
@@ -2329,7 +2329,7 @@
     <value>What action to take for a file when you delete it from you local collection.
 Delete File (AniDB) - Removes file from your AniDB MyList.
 Delete File (Local DB) - Remove file from your local DB only.
-Mark Deleted -  Leaves the file on your list, but changes the state to deleted.
+Mark Deleted - Leaves the file on your list, but changes the state to deleted.
 Mark External (CD/DVD) - Leaves the file on your list, but changes the state to external storage.
 Mark Unknown - Leaves the file on your list, but changes the state to unkown.</value>
   </data>
@@ -2445,7 +2445,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Change Password</value>
   </data>
   <data name="ChangingPassword" xml:space="preserve">
-    <value>Changing Password For: </value>
+    <value>Changing Password For:</value>
   </data>
   <data name="WhatDoesThisMean" xml:space="preserve">
     <value>What Does This Mean?</value>
@@ -2553,16 +2553,16 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>AniDB Start:</value>
   </data>
   <data name="Search_Trakt" xml:space="preserve">
-    <value>Trakt: </value>
+    <value>Trakt:</value>
   </data>
   <data name="Search_Approved" xml:space="preserve">
     <value>Admin Approved</value>
   </data>
   <data name="Search_TvDB" xml:space="preserve">
-    <value>TvDB: </value>
+    <value>TvDB:</value>
   </data>
   <data name="Search_MAL" xml:space="preserve">
-    <value>MAL: </value>
+    <value>MAL:</value>
   </data>
   <data name="SelectAniDBTitle_SelectName" xml:space="preserve">
     <value>Select an override name</value>
@@ -3015,13 +3015,13 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Hide Tags</value>
   </data>
   <data name="Sort_Error" xml:space="preserve">
-    <value>Error trying to sort list of </value>
+    <value>Error trying to sort list of</value>
   </data>
   <data name="Sort_PassedEmpty" xml:space="preserve">
     <value>MultiSort parameter rgSortBy was passed an empty field name in rgSortBy[</value>
   </data>
   <data name="Selected_DoesNotExist" xml:space="preserve">
-    <value>The specified file or folder doesn't exists : </value>
+    <value>The specified file or folder doesn't exists :</value>
   </data>
   <data name="Video_VLCError1" xml:space="preserve">
     <value>Unable to parse URI in VLC ini file</value>
@@ -3039,7 +3039,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>has changed to</value>
   </data>
   <data name="Video_Updating" xml:space="preserve">
-    <value>Updating to watched by media player: </value>
+    <value>Updating to watched by media player:</value>
   </data>
   <data name="AniDB_DataMissing" xml:space="preserve">
     <value>Data Missing</value>
@@ -3384,7 +3384,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>INI file found. Sample of recently watched file...</value>
   </data>
   <data name="VideoPlayer_DefaultNote" xml:space="preserve">
-    <value>JMM automatically uses the default Windows video player. If you'd like to use a different video player you'll need to add the video player's executable to the PATH system variable. </value>
+    <value>JMM automatically uses the default Windows video player. If you'd like to use a different video player you'll need to add the video player's executable to the PATH system variable.</value>
   </data>
   <data name="AniDBMyListDeleteLocal" xml:space="preserve">
     <value>Delete File (Local DB)</value>
@@ -3408,9 +3408,6 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>CD/DVD</value>
   </data>
   <data name="AniDBMyListDelete" xml:space="preserve">
-    <value>Delete File (AniDB)</value>
-  </data>
-  <data name="Delete File (AniDB)" xml:space="preserve">
     <value>Delete File (AniDB)</value>
   </data>
   <data name="DeleteFiles_Name" xml:space="preserve">
@@ -3459,7 +3456,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>New Playlist</value>
   </data>
   <data name="EpisodeDetail_PlaylistMenu" xml:space="preserve">
-    <value>Playlist Menu: </value>
+    <value>Playlist Menu:</value>
   </data>
   <data name="EpisodeDetail_PlaylistMissing" xml:space="preserve">
     <value>Could not find playlist</value>
@@ -3504,7 +3501,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>not found while trying to compare objects of type</value>
   </data>
   <data name="ValueCompare_FieldName" xml:space="preserve">
-    <value>Field name </value>
+    <value>Field name</value>
   </data>
   <data name="SelectGroupSeries_Select" xml:space="preserve">
     <value>Select a</value>
@@ -3537,7 +3534,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Overview not available</value>
   </data>
   <data name="JMMServer_TraktAuth" xml:space="preserve">
-    <value>Trakt Authorization Status </value>
+    <value>Trakt Authorization Status</value>
   </data>
   <data name="Sort_Using" xml:space="preserve">
     <value>using</value>
@@ -4119,33 +4116,42 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>MPC Web UI Port</value>
   </data>
   <data name="VideoPlayer_MPCNote1" xml:space="preserve">
-    <value>For INI integration you must enable the following options in View &gt; Options &gt; Player; (1) Store settings to .ini file and (2) Keep history of recently watched files (3) Remember File Position. The location of the INI file is usually something like C:\Program Files (x86)\Combined Community Codec Pack\MPC</value>
+    <value>For MPC Integration you must enable two options (1) Store settings to .ini file and (2) Keep history of recently watched files. See the following screenshot for more details. The location of MPC is usually something like C:\Program Files (x86)\Combined Community Codec Pack\MPC</value>
   </data>
   <data name="VideoPlayer_PotPlayerNote" xml:space="preserve">
-    <value>For PotPlayer Integration you must enable the following options (1) Preferences &gt; General &gt; Store Settings to .ini file (2) Preferences &gt; Playback &gt; Play from latest point. The location of the PlotPlayer .ini file is usually something like C:\Users\username\AppData\Roaming\PotPlayer64\PotPlayer64.ini</value>
+    <value>For PotPlayer Integration you must enable the following options (1) Preferences &gt; General &gt; Store Settings to .ini file (2) Preferences &gt; Playback &gt; Play from latest point. See the following screenshot for more details. The location of the PlotPlayer .ini file is usually something like C:\Users\username\AppData\Roaming\PotPlayer64\PotPlayer64.ini</value>
   </data>
   <data name="VideoPlayer_MPCNote2" xml:space="preserve">
     <value>For Web UI integration you must enable the following option in View &gt; Options &gt; Player &gt; Web Interface; Listen On Port. The default listening port is 13579 which you can use, if you decide to change it make sure you change it in the box below.</value>
   </data>
   <data name="VideoPlayer_MPCTest" xml:space="preserve">
-    <value>Test MPC INI File</value>
+    <value>Test MPC File</value>
   </data>
   <data name="VideoPlayer_VLCTest" xml:space="preserve">
-    <value>Test VLC INI File</value>
+    <value>Test VLC File</value>
   </data>
   <data name="VideoPlayer_PotPlayerTest" xml:space="preserve">
-    <value>Test PotPlayer INI File</value>
+    <value>Test PotPlayer File</value>
   </data>
   <data name="VideoPlayer_MPCClear" xml:space="preserve">
     <value>Clear MPC INI Folder</value>
   </data>
   <data name="VideoPlayer_PotPlayerClear" xml:space="preserve">
-    <value>Clear PotPlayer INI Folder</value>
+    <value>Clear Pot Player INI Folder</value>
   </data>
   <data name="VideoPlayer_VLCClear" xml:space="preserve">
     <value>Clear VLC INI Folder</value>
   </data>
   <data name="VideoPlayer_VLCNote" xml:space="preserve">
-    <value>Any version of VLC can be used with JMM for general file playback. However only VLC version 2.2 and newer are able to take advantage of the video player integration as 'Resume from last position" is not available in older versions. VLC also enables the required settings by default so you don't need to do any additional configuration. The location of the VLC .ini file is usually something like C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini</value>
+    <value>VLC 2.2+ records recent files and timestamps by default (and disabling is an 'Advanced' option). Older versions do not support 'Resume from last position' functionality. The location of the VLC .ini file is usually something like C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini</value>
+  </data>
+  <data name="GroupFilterConditionType_LatestEpisodeAirDate" xml:space="preserve">
+    <value>Latest Episode Air Date</value>
+  </data>
+  <data name="GroupFilterConditionType_Year" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="GroupFilterSorting_GroupFilter" xml:space="preserve">
+    <value>Group Filter Name</value>
   </data>
 </root>

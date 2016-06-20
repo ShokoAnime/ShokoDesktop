@@ -1375,7 +1375,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Changing Password For: .
+        ///   Looks up a localized string similar to Changing Password For:.
         /// </summary>
         public static string ChangingPassword {
             get {
@@ -1915,7 +1915,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Trakt: .
+        ///   Looks up a localized string similar to Trakt:.
         /// </summary>
         public static string CommunityLinks_Trakt {
             get {
@@ -1933,7 +1933,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TvDB: .
+        ///   Looks up a localized string similar to TvDB:.
         /// </summary>
         public static string CommunityLinks_TvDB {
             get {
@@ -2248,7 +2248,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Selecting a default series means that all images that are dsiplayed for a group will use that .
+        ///   Looks up a localized string similar to Selecting a default series means that all images that are dsiplayed for a group will use that.
         /// </summary>
         public static string DefSeries2 {
             get {
@@ -3112,7 +3112,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Playlist Menu: .
+        ///   Looks up a localized string similar to Playlist Menu:.
         /// </summary>
         public static string EpisodeDetail_PlaylistMenu {
             get {
@@ -4687,7 +4687,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Multiple files are where you have two or more files for the same episode. This utility will let you examine all these occurrences, and decide which ones you want to  keep.
+        ///   Looks up a localized string similar to Multiple files are where you have two or more files for the same episode. This utility will let you examine all these occurrences, and decide which ones you want to keep.
         /// </summary>
         public static string INFO_MultipleFiles {
             get {
@@ -4885,7 +4885,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Trakt Authorization Status .
+        ///   Looks up a localized string similar to Trakt Authorization Status.
         /// </summary>
         public static string JMMServer_TraktAuth {
             get {
@@ -6145,7 +6145,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter playlist name: .
+        ///   Looks up a localized string similar to Enter playlist name:.
         /// </summary>
         public static string Playlist_Name {
             get {
@@ -7666,7 +7666,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MAL: .
+        ///   Looks up a localized string similar to MAL:.
         /// </summary>
         public static string Search_MAL {
             get {
@@ -7738,7 +7738,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Trakt: .
+        ///   Looks up a localized string similar to Trakt:.
         /// </summary>
         public static string Search_Trakt {
             get {
@@ -7756,7 +7756,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TvDB: .
+        ///   Looks up a localized string similar to TvDB:.
         /// </summary>
         public static string Search_TvDB {
             get {
@@ -7945,7 +7945,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The specified file or folder doesn&apos;t exists : .
+        ///   Looks up a localized string similar to The specified file or folder doesn&apos;t exists :.
         /// </summary>
         public static string Selected_DoesNotExist {
             get {
@@ -8467,7 +8467,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error trying to sort list of .
+        ///   Looks up a localized string similar to Error trying to sort list of.
         /// </summary>
         public static string Sort_Error {
             get {
@@ -9289,7 +9289,7 @@ namespace JMMClient.Properties {
         ///   Looks up a localized string similar to What action to take for a file when you delete it from you local collection.
         ///Delete File (AniDB) - Removes file from your AniDB MyList.
         ///Delete File (Local DB) - Remove file from your local DB only.
-        ///Mark Deleted -  Leaves the file on your list, but changes the state to deleted.
+        ///Mark Deleted - Leaves the file on your list, but changes the state to deleted.
         ///Mark External (CD/DVD) - Leaves the file on your list, but changes the state to external storage.
         ///Mark Unknown - Leaves the file on your list, but changes the state to unkown..
         /// </summary>
@@ -9687,7 +9687,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search  groups by name (in any language), category or tag.
+        ///   Looks up a localized string similar to Search groups by name (in any language), category or tag.
         /// </summary>
         public static string Tooltip_GroupSearch {
             get {
@@ -11325,7 +11325,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Field name .
+        ///   Looks up a localized string similar to Field name.
         /// </summary>
         public static string ValueCompare_FieldName {
             get {
@@ -11442,7 +11442,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Updating to watched by media player: .
+        ///   Looks up a localized string similar to Updating to watched by media player:.
         /// </summary>
         public static string Video_Updating {
             get {
@@ -11577,7 +11577,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JMM automatically uses the default Windows video player. If you&apos;d like to use a different video player you&apos;ll need to add the video player&apos;s executable to the PATH system variable. .
+        ///   Looks up a localized string similar to JMM automatically uses the default Windows video player. If you&apos;d like to use a different video player you&apos;ll need to add the video player&apos;s executable to the PATH system variable..
         /// </summary>
         public static string VideoPlayer_DefaultNote {
             get {
@@ -11739,7 +11739,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Clear PotPlayer INI Folder.
+        ///   Looks up a localized string similar to Clear Pot Player INI Folder.
         /// </summary>
         public static string VideoPlayer_PotPlayerClear {
             get {
@@ -11991,7 +11991,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to View: .
+        ///   Looks up a localized string similar to View:.
         /// </summary>
         public static string ViewLabel {
             get {

@@ -202,7 +202,7 @@
     <value>TvDB</value>
   </data>
   <data name="ViewLabel" xml:space="preserve">
-    <value>Вид: </value>
+    <value>Вид:</value>
   </data>
   <data name="Back" xml:space="preserve">
     <value>Назад</value>
@@ -1534,7 +1534,7 @@
     <value>Выберите серии по умолчанию для</value>
   </data>
   <data name="DefSeries2" xml:space="preserve">
-    <value>Выбор серии по умолчанию означает, что будет использовать все изображения, которые являются dsiplayed для группы </value>
+    <value>Выбор серии по умолчанию означает, что будет использовать все изображения, которые являются dsiplayed для группы</value>
   </data>
   <data name="DefSeries3" xml:space="preserve">
     <value>серии по умолчанию вместо случайных серии в группе</value>
@@ -1824,7 +1824,7 @@
     <value>Смена пароля</value>
   </data>
   <data name="ChangingPassword" xml:space="preserve">
-    <value>Изменение пароля для: </value>
+    <value>Изменение пароля для:</value>
   </data>
   <data name="WhatDoesThisMean" xml:space="preserve">
     <value>Что это значит?</value>
@@ -1929,16 +1929,16 @@
     <value>AniDB начало:</value>
   </data>
   <data name="Search_Trakt" xml:space="preserve">
-    <value>Тракт: </value>
+    <value>Тракт:</value>
   </data>
   <data name="Search_Approved" xml:space="preserve">
     <value>Администратор утвердил</value>
   </data>
   <data name="Search_TvDB" xml:space="preserve">
-    <value>TvDB: </value>
+    <value>TvDB:</value>
   </data>
   <data name="Search_MAL" xml:space="preserve">
-    <value>МАЛ: </value>
+    <value>МАЛ:</value>
   </data>
   <data name="SelectAniDBTitle_SelectName" xml:space="preserve">
     <value>Выберите имя переопределения</value>
@@ -2682,10 +2682,10 @@
     <value>AniDB начало:</value>
   </data>
   <data name="CommunityLinks_TvDB" xml:space="preserve">
-    <value>TvDB: </value>
+    <value>TvDB:</value>
   </data>
   <data name="CommunityLinks_Trakt" xml:space="preserve">
-    <value>Тракт: </value>
+    <value>Тракт:</value>
   </data>
   <data name="CommunityLinks_TMDb" xml:space="preserve">
     <value>Фильм DB</value>
@@ -2826,13 +2826,13 @@
     <value>Смена пароля</value>
   </data>
   <data name="Sort_Error" xml:space="preserve">
-    <value>Ошибка при попытке отсортировать список </value>
+    <value>Ошибка при попытке отсортировать список</value>
   </data>
   <data name="Sort_PassedEmpty" xml:space="preserve">
     <value>Имя пустого поля в rgSortBy [был принят multiSort параметр rgSortBy</value>
   </data>
   <data name="Selected_DoesNotExist" xml:space="preserve">
-    <value>Указанный файл или папка не существует: </value>
+    <value>Указанный файл или папка не существует:</value>
   </data>
   <data name="Video_VLCError1" xml:space="preserve">
     <value>Не удается выполнить разбор URI в VLC ini-файла</value>
@@ -2850,7 +2850,7 @@
     <value>изменился</value>
   </data>
   <data name="Video_Updating" xml:space="preserve">
-    <value>Обновление до смотрел на медиа-проигрыватель: </value>
+    <value>Обновление до смотрел на медиа-проигрыватель:</value>
   </data>
   <data name="AniDB_DataMissing" xml:space="preserve">
     <value>Отсутствуют данные</value>
@@ -2946,7 +2946,7 @@
     <value>Файл</value>
   </data>
   <data name="Playlist_Name" xml:space="preserve">
-    <value>Введите имя списка воспроизведения: </value>
+    <value>Введите имя списка воспроизведения:</value>
   </data>
   <data name="Playlist_NameBlank" xml:space="preserve">
     <value>Пожалуйста, введите имя списка воспроизведения</value>
@@ -3378,7 +3378,7 @@
     <value>INI файл найден. Образец файла недавно смотрел...</value>
   </data>
   <data name="VideoPlayer_DefaultNote" xml:space="preserve">
-    <value>Модель памяти JMM автоматически использует видео проигрыватель Windows по умолчанию. Если вы хотите использовать другой проигрыватель, вам будет нужно добавить исполняемый файл видео-плеер в системной переменной PATH. </value>
+    <value>Модель памяти JMM автоматически использует видео проигрыватель Windows по умолчанию. Если вы хотите использовать другой проигрыватель, вам будет нужно добавить исполняемый файл видео-плеер в системной переменной PATH.</value>
   </data>
   <data name="AniDBMyListDeleteLocal" xml:space="preserve">
     <value>Удалить файл (местные дБ)</value>
@@ -3402,9 +3402,6 @@
     <value>CD/DVD</value>
   </data>
   <data name="AniDBMyListDelete" xml:space="preserve">
-    <value>Удалить файл (AniDB)</value>
-  </data>
-  <data name="Delete File (AniDB)" xml:space="preserve">
     <value>Удалить файл (AniDB)</value>
   </data>
   <data name="DeleteFiles_Name" xml:space="preserve">
@@ -3453,7 +3450,7 @@
     <value>Новый список воспроизведения</value>
   </data>
   <data name="EpisodeDetail_PlaylistMenu" xml:space="preserve">
-    <value>Меню плейлистов: </value>
+    <value>Меню плейлистов:</value>
   </data>
   <data name="EpisodeDetail_PlaylistMissing" xml:space="preserve">
     <value>Не удалось найти плейлист</value>
@@ -3498,7 +3495,7 @@
     <value>не найден, при попытке сравнения объектов типа</value>
   </data>
   <data name="ValueCompare_FieldName" xml:space="preserve">
-    <value>Имя поля </value>
+    <value>Имя поля</value>
   </data>
   <data name="SelectGroupSeries_Select" xml:space="preserve">
     <value>Выберите</value>
@@ -3543,7 +3540,7 @@
     <value>Исключение в ТМЕ при сортировке списка</value>
   </data>
   <data name="JMMServer_TraktAuth" xml:space="preserve">
-    <value>Тракт авторизации </value>
+    <value>Тракт авторизации</value>
   </data>
   <data name="Group_GroupCount" xml:space="preserve">
     <value>Группы</value>
@@ -4119,22 +4116,22 @@
     <value>MPC Web UI Port</value>
   </data>
   <data name="VideoPlayer_MPCNote1" xml:space="preserve">
-    <value>Для INI интеграции необходимо включить следующие параметры в поле зрения &gt; вариантов &gt; игрок; (1) хранить параметры INI-файла и (2) хранить историю недавно смотрел файлов (3) запомнить позиции файла. INI-файл расположен обычно что-то вроде C:\Program Files (x86) \Combined Community Codec Pack\MPC</value>
+    <value>Для интеграции MPC, которую вы должны включить два варианта (1) хранить параметры INI-файла и истории (2) хранить недавно смотрел файлов. Смотрите скриншот ниже для более подробной информации. MPC расположен обычно что-то вроде C:\Program Files (x 86) \Combined Community Codec Pack\MPC</value>
   </data>
   <data name="VideoPlayer_PotPlayerNote" xml:space="preserve">
-    <value>Для интеграции PotPlayer, необходимо включить следующие параметры (1) предпочтения &gt; общего &gt; хранилища параметров .ini файла (2) предпочтения &gt; воспроизведение &gt; играть от последней точки. Расположение файла .ini PlotPlayer обычно это что-то вроде C:\Users\username\AppData\Roaming\PotPlayer64\PotPlayer64.ini</value>
+    <value>Для интеграции PotPlayer, необходимо включить следующие параметры (1) предпочтения &gt; общего &gt; хранилища параметров .ini файла (2) предпочтения &gt; воспроизведение &gt; играть от последней точки. Смотрите скриншот ниже для более подробной информации. Расположение файла .ini PlotPlayer обычно это что-то вроде C:\Users\username\AppData\Roaming\PotPlayer64\PotPlayer64.ini</value>
   </data>
   <data name="VideoPlayer_MPCNote2" xml:space="preserve">
     <value>Для интеграции пользовательского веб-интерфейса необходимо включить следующий параметр в представлении &gt; вариантов &gt; игрок &gt; веб-интерфейс; Прослушать порт. По умолчанию, прослушивающего порта 13579, который можно использовать, если вы решите изменить это убедитесь, что вы измените его в поле ниже.</value>
   </data>
   <data name="VideoPlayer_MPCTest" xml:space="preserve">
-    <value>Теста MPC ini-файла</value>
+    <value>MPC файлов теста</value>
   </data>
   <data name="VideoPlayer_VLCTest" xml:space="preserve">
-    <value>Теста VLC ini-файла</value>
+    <value>Тестовый файл VLC</value>
   </data>
   <data name="VideoPlayer_PotPlayerTest" xml:space="preserve">
-    <value>Теста PotPlayer ini-файла</value>
+    <value>Тестовый файл PotPlayer</value>
   </data>
   <data name="VideoPlayer_MPCClear" xml:space="preserve">
     <value>Очистить папку MPC INI</value>
@@ -4146,6 +4143,6 @@
     <value>Очистить папку VLC INI</value>
   </data>
   <data name="VideoPlayer_VLCNote" xml:space="preserve">
-    <value>Для воспроизведения общего файла с JMM может использоваться любая версия VLC. Однако только VLC версии 2.2 или новее могут воспользоваться преимуществами интеграции видео плеер как ' резюме от последней позиции "не доступен в более ранних версиях. VLC также включает необходимые параметры по умолчанию, так что вам не нужно делать любые дополнительные настройки. Расположение файла .ini VLC является обычно что-то вроде C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini</value>
+    <value>VLC 2.2 + записей последних файлов и временные метки по умолчанию (и отключение «Дополнительно» вариант). Более старые версии не поддерживают функциональность «Резюме из последней позиции». Расположение файла .ini VLC является обычно что-то вроде C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini</value>
   </data>
 </root>
