@@ -504,20 +504,21 @@ namespace JMMClient.Forms
             IsParameterSubtitleLanguage = false;
             IsParameterInteger = false;
 
-            switch (conditionType)
-            {
-                case GroupFilterConditionType.AirDate:
-                case GroupFilterConditionType.SeriesCreatedDate:
-                case GroupFilterConditionType.EpisodeAddedDate:
-                case GroupFilterConditionType.EpisodeWatchedDate:
-                    if (opType == GroupFilterOperator.LastXDays)
-                    {
-                        IsParameterLastXDays = true;
-                        IsParameterText = true;
-                    }
-                    else
-                        IsParameterDate = true;
-                    break;
+			switch (conditionType)
+			{
+				case GroupFilterConditionType.AirDate:
+				case GroupFilterConditionType.SeriesCreatedDate:
+				case GroupFilterConditionType.EpisodeAddedDate:
+				case GroupFilterConditionType.EpisodeWatchedDate:
+                case GroupFilterConditionType.LatestEpisodeAirDate:
+					if (opType == GroupFilterOperator.LastXDays)
+					{
+						IsParameterLastXDays = true;
+						IsParameterText = true;
+					}
+					else
+						IsParameterDate = true; 
+					break;
 
                 case GroupFilterConditionType.AnimeGroup:
                     IsParameterAnimeGroup = true;
@@ -550,10 +551,14 @@ namespace JMMClient.Forms
                     IsParameterSubtitleLanguage = true;
                     break;
 
-                case GroupFilterConditionType.VideoQuality:
+                case GroupFilterConditionType.Year:
                     IsParameterInNotIn = true;
-                    IsParameterVideoQuality = true;
                     break;
+
+                case GroupFilterConditionType.VideoQuality:
+					IsParameterInNotIn = true;
+					IsParameterVideoQuality = true;
+					break;
 
                 case GroupFilterConditionType.AniDBRating:
                 case GroupFilterConditionType.UserRating:
@@ -731,13 +736,14 @@ namespace JMMClient.Forms
                 cboConditionOperator.SelectedIndex = idx;
                 GroupFilterOperator opType = GroupFilterHelper.GetEnumForText_Operator(cboConditionOperator.Items[idx].ToString());
 
-                // display the selected filter value
-                switch (conditionType)
-                {
-                    case GroupFilterConditionType.AirDate:
-                    case GroupFilterConditionType.SeriesCreatedDate:
-                    case GroupFilterConditionType.EpisodeAddedDate:
-                    case GroupFilterConditionType.EpisodeWatchedDate:
+				// display the selected filter value
+				switch (conditionType)
+				{
+					case GroupFilterConditionType.AirDate:
+					case GroupFilterConditionType.SeriesCreatedDate:
+					case GroupFilterConditionType.EpisodeAddedDate:
+					case GroupFilterConditionType.EpisodeWatchedDate:
+                    case GroupFilterConditionType.LatestEpisodeAirDate:
 
                         if (opType == GroupFilterOperator.LastXDays)
                             txtParameter.Text = gfc.ConditionParameter;
@@ -756,16 +762,17 @@ namespace JMMClient.Forms
                     case GroupFilterConditionType.AnimeType:
                     case GroupFilterConditionType.Tag:
                     case GroupFilterConditionType.CustomTags:
-                    case GroupFilterConditionType.ReleaseGroup:
-                    case GroupFilterConditionType.Studio:
-                    case GroupFilterConditionType.VideoQuality:
-                    case GroupFilterConditionType.AniDBRating:
-                    case GroupFilterConditionType.UserRating:
-                    case GroupFilterConditionType.AudioLanguage:
-                    case GroupFilterConditionType.SubtitleLanguage:
-                        txtParameter.Text = gfc.ConditionParameter;
-                        break;
-                }
+					case GroupFilterConditionType.ReleaseGroup:
+					case GroupFilterConditionType.Studio:
+					case GroupFilterConditionType.VideoQuality:
+					case GroupFilterConditionType.AniDBRating:
+					case GroupFilterConditionType.UserRating:
+					case GroupFilterConditionType.AudioLanguage:
+					case GroupFilterConditionType.SubtitleLanguage:
+                    case GroupFilterConditionType.Year:
+						txtParameter.Text = gfc.ConditionParameter;
+						break;
+				}
 
             }
             catch (Exception ex)

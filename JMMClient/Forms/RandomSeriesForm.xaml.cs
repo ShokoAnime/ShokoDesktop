@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -228,27 +229,27 @@ namespace JMMClient.Forms
                                         if (cat.Trim().Length == 0) continue;
                                         if (cat.Trim() == ",") continue;
 
-                                        index = ser.TagsString.IndexOf(cat, 0, StringComparison.InvariantCultureIgnoreCase);
-
-                                        if (cboCatFilter.SelectedIndex == 0) // any
-                                        {
-                                            if (index > -1)
-                                            {
-                                                foundCat = true;
-                                                break;
-                                            }
-                                        }
-                                        else //all
-                                        {
-                                            if (index < 0)
-                                            {
-                                                foundCat = false;
-                                                break;
-                                            }
-                                        }
-                                    }
-                                    if (!foundCat) continue;
-                                }
+									    bool fnd = ser.AllTags.Contains(cat, StringComparer.InvariantCultureIgnoreCase);
+                                        
+										if (cboCatFilter.SelectedIndex == 0) // any
+										{
+											if (fnd)
+											{
+												foundCat = true;
+												break;
+											}
+										}
+										else //all
+										{
+											if (!fnd)
+											{
+												foundCat = false;
+												break;
+											}
+										}
+									}
+									if (!foundCat) continue;
+								}
 
                                 if (!ser.IsComplete && chkComplete.IsChecked.Value) continue;
 

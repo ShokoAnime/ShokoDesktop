@@ -1,5 +1,6 @@
 ﻿using NLog;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace JMMClient.ViewModel
@@ -51,16 +52,16 @@ namespace JMMClient.ViewModel
             }
         }
 
-        private string titles = "";
-        public string Titles
-        {
-            get { return titles; }
-            set
-            {
-                titles = value;
-                NotifyPropertyChanged("Titles");
-            }
-        }
+		private HashSet<string> titles =new HashSet<string>();
+		public HashSet<string> Titles
+		{
+			get { return titles; }
+			set
+			{
+				titles = value;
+				NotifyPropertyChanged("Titles");
+			}
+		}
 
         private bool seriesExists = false;
         public bool SeriesExists
@@ -110,17 +111,17 @@ namespace JMMClient.ViewModel
             Populate(contract);
         }
 
-        public void Populate(JMMServerBinary.Contract_AnimeSearch contract)
-        {
-            this.AnimeGroupID = contract.AnimeGroupID;
-            this.AnimeGroupName = contract.AnimeGroupName;
-            this.AnimeID = contract.AnimeID;
-            this.AnimeSeriesID = contract.AnimeSeriesID;
-            this.AnimeSeriesName = contract.AnimeSeriesName;
-            this.MainTitle = contract.MainTitle;
-            this.SeriesExists = contract.SeriesExists;
-            this.SeriesNotExists = !contract.SeriesExists;
-            this.Titles = contract.Titles;
-        }
-    }
+		public void Populate(JMMServerBinary.Contract_AnimeSearch contract)
+		{
+			this.AnimeGroupID = contract.AnimeGroupID;
+			this.AnimeGroupName = contract.AnimeGroupName;
+			this.AnimeID = contract.AnimeID;
+			this.AnimeSeriesID = contract.AnimeSeriesID;
+			this.AnimeSeriesName = contract.AnimeSeriesName;
+			this.MainTitle = contract.MainTitle;
+			this.SeriesExists = contract.SeriesExists;
+			this.SeriesNotExists = !contract.SeriesExists;
+			this.Titles = new HashSet<string>(contract.Titles);
+		}
+	}
 }

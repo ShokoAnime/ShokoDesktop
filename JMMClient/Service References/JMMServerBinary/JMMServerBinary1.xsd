@@ -1,195 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/JMMContracts" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/JMMContracts" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:8111/JMMServerBinary?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/JMMContracts.KodiContracts" />
   <xs:import schemaLocation="http://localhost:8111/JMMServerBinary?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-  <xs:complexType name="ArrayOfContract_CrossRef_AniDB_TraktV2">
+  <xs:import schemaLocation="http://localhost:8111/JMMServerBinary?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/JMMContracts.PlexAndKodi" />
+  <xs:complexType name="ArrayOfContract_Trakt_CommentUser">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_CrossRef_AniDB_TraktV2" nillable="true" type="tns:Contract_CrossRef_AniDB_TraktV2" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_Trakt_CommentUser" nillable="true" type="tns:Contract_Trakt_CommentUser" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfContract_CrossRef_AniDB_TraktV2" nillable="true" type="tns:ArrayOfContract_CrossRef_AniDB_TraktV2" />
-  <xs:complexType name="Contract_CrossRef_AniDB_TraktV2">
+  <xs:element name="ArrayOfContract_Trakt_CommentUser" nillable="true" type="tns:ArrayOfContract_Trakt_CommentUser" />
+  <xs:complexType name="Contract_Trakt_CommentUser">
     <xs:sequence>
-      <xs:element minOccurs="0" name="AniDBStartEpisodeNumber" type="xs:int" />
-      <xs:element minOccurs="0" name="AniDBStartEpisodeType" type="xs:int" />
-      <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
-      <xs:element minOccurs="0" name="CrossRefSource" type="xs:int" />
-      <xs:element minOccurs="0" name="CrossRef_AniDB_TraktV2ID" type="xs:int" />
-      <xs:element minOccurs="0" name="TraktID" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="TraktSeasonNumber" type="xs:int" />
-      <xs:element minOccurs="0" name="TraktStartEpisodeNumber" type="xs:int" />
-      <xs:element minOccurs="0" name="TraktTitle" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Comment" nillable="true" type="tns:Contract_Trakt_Comment" />
+      <xs:element minOccurs="0" name="User" nillable="true" type="tns:Contract_Trakt_User" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="Contract_CrossRef_AniDB_TraktV2" nillable="true" type="tns:Contract_CrossRef_AniDB_TraktV2" />
-  <xs:complexType name="ArrayOfContract_CrossRef_AniDB_Trakt_Episode">
+  <xs:element name="Contract_Trakt_CommentUser" nillable="true" type="tns:Contract_Trakt_CommentUser" />
+  <xs:complexType name="Contract_Trakt_Comment">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_CrossRef_AniDB_Trakt_Episode" nillable="true" type="tns:Contract_CrossRef_AniDB_Trakt_Episode" />
+      <xs:element minOccurs="0" name="Anime" nillable="true" type="tns:Contract_AniDBAnime" />
+      <xs:element minOccurs="0" name="AnimeSeriesID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CommentType" type="xs:int" />
+      <xs:element minOccurs="0" name="Comment_Url" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Episode_Number" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Episode_Overview" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Episode_Screenshot" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Episode_Season" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Episode_Title" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Episode_Url" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Inserted" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Spoiler" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Text" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TraktShow" nillable="true" type="tns:Contract_TraktTVShowResponse" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfContract_CrossRef_AniDB_Trakt_Episode" nillable="true" type="tns:ArrayOfContract_CrossRef_AniDB_Trakt_Episode" />
-  <xs:complexType name="Contract_CrossRef_AniDB_Trakt_Episode">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="AniDBEpisodeID" type="xs:int" />
-      <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
-      <xs:element minOccurs="0" name="CrossRef_AniDB_Trakt_EpisodeID" type="xs:int" />
-      <xs:element minOccurs="0" name="EpisodeNumber" type="xs:int" />
-      <xs:element minOccurs="0" name="Season" type="xs:int" />
-      <xs:element minOccurs="0" name="TraktID" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_CrossRef_AniDB_Trakt_Episode" nillable="true" type="tns:Contract_CrossRef_AniDB_Trakt_Episode" />
-  <xs:complexType name="ArrayOfContract_TraktTVShowResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_TraktTVShowResponse" nillable="true" type="tns:Contract_TraktTVShowResponse" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_TraktTVShowResponse" nillable="true" type="tns:ArrayOfContract_TraktTVShowResponse" />
-  <xs:complexType name="Contract_TraktTVShowResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="country" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="first_aired" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="overview" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="title" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="tvdb_id" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="url" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="year" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_TraktTVShowResponse" nillable="true" type="tns:Contract_TraktTVShowResponse" />
-  <xs:complexType name="Contract_GroupFilterExtended">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="GroupCount" type="xs:int" />
-      <xs:element minOccurs="0" name="GroupFilter" nillable="true" type="tns:Contract_GroupFilter" />
-      <xs:element minOccurs="0" name="SeriesCount" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_GroupFilterExtended" nillable="true" type="tns:Contract_GroupFilterExtended" />
-  <xs:complexType name="Contract_GroupFilter">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="ApplyToSeries" type="xs:int" />
-      <xs:element minOccurs="0" name="BaseCondition" type="xs:int" />
-      <xs:element minOccurs="0" name="FilterConditions" nillable="true" type="tns:ArrayOfContract_GroupFilterCondition" />
-      <xs:element minOccurs="0" name="FilterType" type="xs:int" />
-      <xs:element minOccurs="0" name="GroupFilterID" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="GroupFilterName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Locked" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="SortingCriteria" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_GroupFilter" nillable="true" type="tns:Contract_GroupFilter" />
-  <xs:complexType name="ArrayOfContract_GroupFilterCondition">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_GroupFilterCondition" nillable="true" type="tns:Contract_GroupFilterCondition" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_GroupFilterCondition" nillable="true" type="tns:ArrayOfContract_GroupFilterCondition" />
-  <xs:complexType name="Contract_GroupFilterCondition">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="ConditionOperator" type="xs:int" />
-      <xs:element minOccurs="0" name="ConditionParameter" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ConditionType" type="xs:int" />
-      <xs:element minOccurs="0" name="GroupFilterConditionID" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="GroupFilterID" nillable="true" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_GroupFilterCondition" nillable="true" type="tns:Contract_GroupFilterCondition" />
-  <xs:complexType name="ArrayOfContract_AnimeGroup">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_AnimeGroup" nillable="true" type="tns:Contract_AnimeGroup" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_AnimeGroup" nillable="true" type="tns:ArrayOfContract_AnimeGroup" />
-  <xs:complexType name="Contract_AnimeGroup">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="AnimeGroupID" type="xs:int" />
-      <xs:element minOccurs="0" name="AnimeGroupParentID" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="DateTimeUpdated" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="DefaultAnimeSeriesID" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="EpisodeAddedDate" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="GroupName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="IsFave" type="xs:int" />
-      <xs:element minOccurs="0" name="IsManuallyNamed" type="xs:int" />
-      <xs:element minOccurs="0" name="LatestEpisodeAirDate" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="MissingEpisodeCount" type="xs:int" />
-      <xs:element minOccurs="0" name="MissingEpisodeCountGroups" type="xs:int" />
-      <xs:element minOccurs="0" name="OverrideDescription" type="xs:int" />
-      <xs:element minOccurs="0" name="PlayedCount" type="xs:int" />
-      <xs:element minOccurs="0" name="SeriesForNameOverride" nillable="true" type="tns:Contract_AnimeSeries" />
-      <xs:element minOccurs="0" name="ServerPosterPath" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="SortName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Stat_AirDate_Max" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="Stat_AirDate_Min" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="Stat_AllCustomTags" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Stat_AllTags" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Stat_AllTitles" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Stat_AllVideoQuality" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Stat_AllVideoQuality_Episodes" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Stat_AniDBRating" type="xs:decimal" />
-      <xs:element minOccurs="0" name="Stat_AudioLanguages" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Stat_EndDate" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="Stat_EpisodeCount" type="xs:int" />
-      <xs:element minOccurs="0" name="Stat_HasFinishedAiring" type="xs:boolean" />
-      <xs:element minOccurs="0" name="Stat_HasMALLink" type="xs:boolean" />
-      <xs:element minOccurs="0" name="Stat_HasMovieDBLink" type="xs:boolean" />
-      <xs:element minOccurs="0" name="Stat_HasMovieDBOrTvDBLink" type="xs:boolean" />
-      <xs:element minOccurs="0" name="Stat_HasTvDBLink" type="xs:boolean" />
-      <xs:element minOccurs="0" name="Stat_IsComplete" type="xs:boolean" />
-      <xs:element minOccurs="0" name="Stat_IsCurrentlyAiring" type="xs:boolean" />
-      <xs:element minOccurs="0" name="Stat_SeriesCount" type="xs:int" />
-      <xs:element minOccurs="0" name="Stat_SeriesCreatedDate" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="Stat_SubtitleLanguages" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Stat_UserVoteOverall" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="Stat_UserVotePermanent" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="Stat_UserVoteTemporary" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="StoppedCount" type="xs:int" />
-      <xs:element minOccurs="0" name="UnwatchedEpisodeCount" type="xs:int" />
-      <xs:element minOccurs="0" name="WatchedCount" type="xs:int" />
-      <xs:element minOccurs="0" name="WatchedDate" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="WatchedEpisodeCount" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_AnimeGroup" nillable="true" type="tns:Contract_AnimeGroup" />
-  <xs:complexType name="Contract_AnimeSeries">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="AniDBAnime" nillable="true" type="tns:Contract_AniDBAnime" />
-      <xs:element minOccurs="0" name="AniDB_ID" type="xs:int" />
-      <xs:element minOccurs="0" name="AnimeGroupID" type="xs:int" />
-      <xs:element minOccurs="0" name="AnimeSeriesID" type="xs:int" />
-      <xs:element minOccurs="0" name="CrossRefAniDBMAL" nillable="true" type="tns:ArrayOfContract_CrossRef_AniDB_MAL" />
-      <xs:element minOccurs="0" name="CrossRefAniDBMovieDB" nillable="true" type="tns:Contract_CrossRef_AniDB_Other" />
-      <xs:element minOccurs="0" name="CrossRefAniDBTvDBV2" nillable="true" type="tns:ArrayOfContract_CrossRef_AniDB_TvDBV2" />
-      <xs:element minOccurs="0" name="DateTimeCreated" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="DateTimeUpdated" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="DefaultAudioLanguage" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="DefaultFolder" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="DefaultSubtitleLanguage" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="EpisodeAddedDate" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="LatestLocalEpisodeNumber" type="xs:int" />
-      <xs:element minOccurs="0" name="MissingEpisodeCount" type="xs:int" />
-      <xs:element minOccurs="0" name="MissingEpisodeCountGroups" type="xs:int" />
-      <xs:element minOccurs="0" name="MovieDB_Movie" nillable="true" type="tns:Contract_MovieDB_Movie" />
-      <xs:element minOccurs="0" name="PlayedCount" type="xs:int" />
-      <xs:element minOccurs="0" name="SeriesNameOverride" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="StoppedCount" type="xs:int" />
-      <xs:element minOccurs="0" name="TopLevelGroup" nillable="true" type="tns:Contract_AnimeGroup" />
-      <xs:element minOccurs="0" name="TvDB_Series" nillable="true" type="tns:ArrayOfContract_TvDB_Series" />
-      <xs:element minOccurs="0" name="UnwatchedEpisodeCount" type="xs:int" />
-      <xs:element minOccurs="0" name="WatchedCount" type="xs:int" />
-      <xs:element minOccurs="0" name="WatchedDate" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="WatchedEpisodeCount" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_AnimeSeries" nillable="true" type="tns:Contract_AnimeSeries" />
+  <xs:element name="Contract_Trakt_Comment" nillable="true" type="tns:Contract_Trakt_Comment" />
   <xs:complexType name="Contract_AniDBAnime">
     <xs:sequence>
       <xs:element minOccurs="0" name="ANNID" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="AirDate" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="AllCategories" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="AllCinemaID" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="AllTags" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="AllTitles" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="AllTags" nillable="true" type="q1:ArrayOfstring" />
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="AllTitles" nillable="true" type="q2:ArrayOfstring" />
       <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
       <xs:element minOccurs="0" name="AnimeNfo" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="AnimePlanetID" nillable="true" type="xs:int" />
@@ -197,7 +48,7 @@
       <xs:element minOccurs="0" name="AvgReviewRating" type="xs:int" />
       <xs:element minOccurs="0" name="AwardList" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="BeginYear" type="xs:int" />
-      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/JMMContracts.KodiContracts" minOccurs="0" name="Characters" nillable="true" type="q1:ArrayOfCharacter" />
+      <xs:element minOccurs="0" name="Characters" nillable="true" type="tns:ArrayOfContract_AniDB_Character" />
       <xs:element minOccurs="0" name="DateTimeDescUpdated" type="xs:dateTime" />
       <xs:element minOccurs="0" name="DateTimeUpdated" type="xs:dateTime" />
       <xs:element minOccurs="0" name="DefaultImageFanart" nillable="true" type="tns:Contract_AniDB_Anime_DefaultImage" />
@@ -212,7 +63,6 @@
       <xs:element minOccurs="0" name="EpisodeCountSpecial" type="xs:int" />
       <xs:element minOccurs="0" name="FormattedTitle" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ImageEnabled" type="xs:int" />
-      <xs:element minOccurs="0" name="LatestEpisodeAirDate" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="LatestEpisodeNumber" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="MainTitle" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Picname" nillable="true" type="xs:string" />
@@ -226,6 +76,36 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_AniDBAnime" nillable="true" type="tns:Contract_AniDBAnime" />
+  <xs:complexType name="ArrayOfContract_AniDB_Character">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_AniDB_Character" nillable="true" type="tns:Contract_AniDB_Character" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_AniDB_Character" nillable="true" type="tns:ArrayOfContract_AniDB_Character" />
+  <xs:complexType name="Contract_AniDB_Character">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AniDB_CharacterID" type="xs:int" />
+      <xs:element minOccurs="0" name="Anime" nillable="true" type="tns:Contract_AniDBAnime" />
+      <xs:element minOccurs="0" name="CharDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CharID" type="xs:int" />
+      <xs:element minOccurs="0" name="CharKanjiName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CharName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CharType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreatorListRaw" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PicName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Seiyuu" nillable="true" type="tns:Contract_AniDB_Seiyuu" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_AniDB_Character" nillable="true" type="tns:Contract_AniDB_Character" />
+  <xs:complexType name="Contract_AniDB_Seiyuu">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AniDB_SeiyuuID" type="xs:int" />
+      <xs:element minOccurs="0" name="PicName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SeiyuuID" type="xs:int" />
+      <xs:element minOccurs="0" name="SeiyuuName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_AniDB_Seiyuu" nillable="true" type="tns:Contract_AniDB_Seiyuu" />
   <xs:complexType name="Contract_AniDB_Anime_DefaultImage">
     <xs:sequence>
       <xs:element minOccurs="0" name="AniDB_Anime_DefaultImageID" type="xs:int" />
@@ -336,6 +216,186 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_Trakt_ImagePoster" nillable="true" type="tns:Contract_Trakt_ImagePoster" />
+  <xs:complexType name="Contract_TraktTVShowResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="country" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="first_aired" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="overview" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="title" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="tvdb_id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="url" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="year" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_TraktTVShowResponse" nillable="true" type="tns:Contract_TraktTVShowResponse" />
+  <xs:complexType name="Contract_Trakt_User">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="About" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Age" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="Avatar" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Full_name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Gender" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Joined" type="xs:int" />
+      <xs:element minOccurs="0" name="JoinedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Location" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Trakt_FriendID" type="xs:int" />
+      <xs:element minOccurs="0" name="Url" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_Trakt_User" nillable="true" type="tns:Contract_Trakt_User" />
+  <xs:complexType name="Contract_AnimeGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AnimeGroupID" type="xs:int" />
+      <xs:element minOccurs="0" name="AnimeGroupParentID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="DateTimeUpdated" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DefaultAnimeSeriesID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EpisodeAddedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="GroupName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsFave" type="xs:int" />
+      <xs:element minOccurs="0" name="IsManuallyNamed" type="xs:int" />
+      <xs:element minOccurs="0" name="LatestEpisodeAirDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="MissingEpisodeCount" type="xs:int" />
+      <xs:element minOccurs="0" name="MissingEpisodeCountGroups" type="xs:int" />
+      <xs:element minOccurs="0" name="OverrideDescription" type="xs:int" />
+      <xs:element minOccurs="0" name="PlayedCount" type="xs:int" />
+      <xs:element minOccurs="0" name="SeriesForNameOverride" nillable="true" type="tns:Contract_AnimeSeries" />
+      <xs:element minOccurs="0" name="ServerPosterPath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SortName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Stat_AirDate_Max" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Stat_AirDate_Min" nillable="true" type="xs:dateTime" />
+      <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Stat_AllCustomTags" nillable="true" type="q3:ArrayOfstring" />
+      <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Stat_AllTags" nillable="true" type="q4:ArrayOfstring" />
+      <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Stat_AllTitles" nillable="true" type="q5:ArrayOfstring" />
+      <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Stat_AllVideoQuality" nillable="true" type="q6:ArrayOfstring" />
+      <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Stat_AllVideoQuality_Episodes" nillable="true" type="q7:ArrayOfstring" />
+      <xs:element minOccurs="0" name="Stat_AniDBRating" type="xs:decimal" />
+      <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Stat_AnimeTypes" nillable="true" type="q8:ArrayOfstring" />
+      <xs:element xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Stat_AudioLanguages" nillable="true" type="q9:ArrayOfstring" />
+      <xs:element minOccurs="0" name="Stat_EndDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Stat_EpisodeCount" type="xs:int" />
+      <xs:element minOccurs="0" name="Stat_HasFinishedAiring" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Stat_HasMALLink" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Stat_HasMovieDBLink" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Stat_HasMovieDBOrTvDBLink" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Stat_HasTvDBLink" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Stat_IsComplete" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Stat_IsCurrentlyAiring" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Stat_SeriesCount" type="xs:int" />
+      <xs:element minOccurs="0" name="Stat_SeriesCreatedDate" nillable="true" type="xs:dateTime" />
+      <xs:element xmlns:q10="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Stat_SubtitleLanguages" nillable="true" type="q10:ArrayOfstring" />
+      <xs:element minOccurs="0" name="Stat_UserVoteOverall" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Stat_UserVotePermanent" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Stat_UserVoteTemporary" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="StoppedCount" type="xs:int" />
+      <xs:element minOccurs="0" name="UnwatchedEpisodeCount" type="xs:int" />
+      <xs:element minOccurs="0" name="WatchedCount" type="xs:int" />
+      <xs:element minOccurs="0" name="WatchedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="WatchedEpisodeCount" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_AnimeGroup" nillable="true" type="tns:Contract_AnimeGroup" />
+  <xs:complexType name="Contract_AnimeSeries">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AniDBAnime" nillable="true" type="tns:Contract_AniDB_AnimeDetailed" />
+      <xs:element minOccurs="0" name="AniDB_ID" type="xs:int" />
+      <xs:element minOccurs="0" name="AnimeGroupID" type="xs:int" />
+      <xs:element minOccurs="0" name="AnimeSeriesID" type="xs:int" />
+      <xs:element minOccurs="0" name="CrossRefAniDBMAL" nillable="true" type="tns:ArrayOfContract_CrossRef_AniDB_MAL" />
+      <xs:element minOccurs="0" name="CrossRefAniDBMovieDB" nillable="true" type="tns:Contract_CrossRef_AniDB_Other" />
+      <xs:element minOccurs="0" name="CrossRefAniDBTvDBV2" nillable="true" type="tns:ArrayOfContract_CrossRef_AniDB_TvDBV2" />
+      <xs:element minOccurs="0" name="DateTimeCreated" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DateTimeUpdated" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DefaultAudioLanguage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DefaultFolder" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DefaultSubtitleLanguage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EpisodeAddedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LatestEpisodeAirDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LatestLocalEpisodeNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="MissingEpisodeCount" type="xs:int" />
+      <xs:element minOccurs="0" name="MissingEpisodeCountGroups" type="xs:int" />
+      <xs:element minOccurs="0" name="MovieDB_Movie" nillable="true" type="tns:Contract_MovieDB_Movie" />
+      <xs:element minOccurs="0" name="PlayedCount" type="xs:int" />
+      <xs:element minOccurs="0" name="SeriesNameOverride" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StoppedCount" type="xs:int" />
+      <xs:element minOccurs="0" name="TopLevelGroup" nillable="true" type="tns:Contract_AnimeGroup" />
+      <xs:element minOccurs="0" name="TvDB_Series" nillable="true" type="tns:ArrayOfContract_TvDB_Series" />
+      <xs:element minOccurs="0" name="UnwatchedEpisodeCount" type="xs:int" />
+      <xs:element minOccurs="0" name="WatchedCount" type="xs:int" />
+      <xs:element minOccurs="0" name="WatchedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="WatchedEpisodeCount" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_AnimeSeries" nillable="true" type="tns:Contract_AnimeSeries" />
+  <xs:complexType name="Contract_AniDB_AnimeDetailed">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AniDBAnime" nillable="true" type="tns:Contract_AniDBAnime" />
+      <xs:element minOccurs="0" name="AnimeTitles" nillable="true" type="tns:ArrayOfContract_AnimeTitle" />
+      <xs:element minOccurs="0" name="CustomTags" nillable="true" type="tns:ArrayOfContract_CustomTag" />
+      <xs:element xmlns:q11="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Stat_AllVideoQuality" nillable="true" type="q11:ArrayOfstring" />
+      <xs:element xmlns:q12="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Stat_AllVideoQuality_Episodes" nillable="true" type="q12:ArrayOfstring" />
+      <xs:element xmlns:q13="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Stat_AudioLanguages" nillable="true" type="q13:ArrayOfstring" />
+      <xs:element xmlns:q14="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Stat_SubtitleLanguages" nillable="true" type="q14:ArrayOfstring" />
+      <xs:element minOccurs="0" name="Tags" nillable="true" type="tns:ArrayOfContract_AnimeTag" />
+      <xs:element minOccurs="0" name="UserVote" nillable="true" type="tns:Contract_AniDBVote" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_AniDB_AnimeDetailed" nillable="true" type="tns:Contract_AniDB_AnimeDetailed" />
+  <xs:complexType name="ArrayOfContract_AnimeTitle">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_AnimeTitle" nillable="true" type="tns:Contract_AnimeTitle" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_AnimeTitle" nillable="true" type="tns:ArrayOfContract_AnimeTitle" />
+  <xs:complexType name="Contract_AnimeTitle">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
+      <xs:element minOccurs="0" name="Language" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TitleType" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_AnimeTitle" nillable="true" type="tns:Contract_AnimeTitle" />
+  <xs:complexType name="ArrayOfContract_CustomTag">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_CustomTag" nillable="true" type="tns:Contract_CustomTag" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_CustomTag" nillable="true" type="tns:ArrayOfContract_CustomTag" />
+  <xs:complexType name="Contract_CustomTag">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomTagID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="TagDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TagName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_CustomTag" nillable="true" type="tns:Contract_CustomTag" />
+  <xs:complexType name="ArrayOfContract_AnimeTag">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_AnimeTag" nillable="true" type="tns:Contract_AnimeTag" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_AnimeTag" nillable="true" type="tns:ArrayOfContract_AnimeTag" />
+  <xs:complexType name="Contract_AnimeTag">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GlobalSpoiler" type="xs:int" />
+      <xs:element minOccurs="0" name="LocalSpoiler" type="xs:int" />
+      <xs:element minOccurs="0" name="TagDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TagID" type="xs:int" />
+      <xs:element minOccurs="0" name="TagName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Weight" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_AnimeTag" nillable="true" type="tns:Contract_AnimeTag" />
+  <xs:complexType name="Contract_AniDBVote">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EntityID" type="xs:int" />
+      <xs:element minOccurs="0" name="VoteType" type="xs:int" />
+      <xs:element minOccurs="0" name="VoteValue" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_AniDBVote" nillable="true" type="tns:Contract_AniDBVote" />
   <xs:complexType name="ArrayOfContract_CrossRef_AniDB_MAL">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_CrossRef_AniDB_MAL" nillable="true" type="tns:Contract_CrossRef_AniDB_MAL" />
@@ -414,247 +474,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_TvDB_Series" nillable="true" type="tns:Contract_TvDB_Series" />
-  <xs:complexType name="ArrayOfContract_GroupFilterExtended">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_GroupFilterExtended" nillable="true" type="tns:Contract_GroupFilterExtended" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_GroupFilterExtended" nillable="true" type="tns:ArrayOfContract_GroupFilterExtended" />
-  <xs:complexType name="ArrayOfContract_AnimeSeries">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_AnimeSeries" nillable="true" type="tns:Contract_AnimeSeries" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_AnimeSeries" nillable="true" type="tns:ArrayOfContract_AnimeSeries" />
-  <xs:complexType name="ArrayOfContract_AniDB_Anime_Similar">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_AniDB_Anime_Similar" nillable="true" type="tns:Contract_AniDB_Anime_Similar" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_AniDB_Anime_Similar" nillable="true" type="tns:ArrayOfContract_AniDB_Anime_Similar" />
-  <xs:complexType name="Contract_AniDB_Anime_Similar">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="AniDB_Anime" nillable="true" type="tns:Contract_AniDBAnime" />
-      <xs:element minOccurs="0" name="AniDB_Anime_SimilarID" type="xs:int" />
-      <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
-      <xs:element minOccurs="0" name="AnimeSeries" nillable="true" type="tns:Contract_AnimeSeries" />
-      <xs:element minOccurs="0" name="Approval" type="xs:int" />
-      <xs:element minOccurs="0" name="SimilarAnimeID" type="xs:int" />
-      <xs:element minOccurs="0" name="Total" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_AniDB_Anime_Similar" nillable="true" type="tns:Contract_AniDB_Anime_Similar" />
-  <xs:complexType name="ArrayOfContract_AniDB_Anime_Relation">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_AniDB_Anime_Relation" nillable="true" type="tns:Contract_AniDB_Anime_Relation" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_AniDB_Anime_Relation" nillable="true" type="tns:ArrayOfContract_AniDB_Anime_Relation" />
-  <xs:complexType name="Contract_AniDB_Anime_Relation">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="AniDB_Anime" nillable="true" type="tns:Contract_AniDBAnime" />
-      <xs:element minOccurs="0" name="AniDB_Anime_RelationID" type="xs:int" />
-      <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
-      <xs:element minOccurs="0" name="AnimeSeries" nillable="true" type="tns:Contract_AnimeSeries" />
-      <xs:element minOccurs="0" name="RelatedAnimeID" type="xs:int" />
-      <xs:element minOccurs="0" name="RelationType" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_AniDB_Anime_Relation" nillable="true" type="tns:Contract_AniDB_Anime_Relation" />
-  <xs:complexType name="ArrayOfContract_Recommendation">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_Recommendation" nillable="true" type="tns:Contract_Recommendation" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_Recommendation" nillable="true" type="tns:ArrayOfContract_Recommendation" />
-  <xs:complexType name="Contract_Recommendation">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="BasedOnAnimeID" type="xs:int" />
-      <xs:element minOccurs="0" name="BasedOnVoteValue" type="xs:int" />
-      <xs:element minOccurs="0" name="BasedOn_AniDB_Anime" nillable="true" type="tns:Contract_AniDBAnime" />
-      <xs:element minOccurs="0" name="BasedOn_AnimeSeries" nillable="true" type="tns:Contract_AnimeSeries" />
-      <xs:element minOccurs="0" name="RecommendedAnimeID" type="xs:int" />
-      <xs:element minOccurs="0" name="RecommendedApproval" type="xs:double" />
-      <xs:element minOccurs="0" name="Recommended_AniDB_Anime" nillable="true" type="tns:Contract_AniDBAnime" />
-      <xs:element minOccurs="0" name="Recommended_AnimeSeries" nillable="true" type="tns:Contract_AnimeSeries" />
-      <xs:element minOccurs="0" name="Score" type="xs:double" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_Recommendation" nillable="true" type="tns:Contract_Recommendation" />
-  <xs:complexType name="ArrayOfContract_AniDBReleaseGroup">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_AniDBReleaseGroup" nillable="true" type="tns:Contract_AniDBReleaseGroup" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_AniDBReleaseGroup" nillable="true" type="tns:ArrayOfContract_AniDBReleaseGroup" />
-  <xs:complexType name="Contract_AniDBReleaseGroup">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="EpisodeRange" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="FileCount" type="xs:int" />
-      <xs:element minOccurs="0" name="GroupID" type="xs:int" />
-      <xs:element minOccurs="0" name="GroupName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="UserCollecting" type="xs:boolean" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_AniDBReleaseGroup" nillable="true" type="tns:Contract_AniDBReleaseGroup" />
-  <xs:complexType name="ArrayOfContract_AniDBAnime">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_AniDBAnime" nillable="true" type="tns:Contract_AniDBAnime" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_AniDBAnime" nillable="true" type="tns:ArrayOfContract_AniDBAnime" />
-  <xs:complexType name="ArrayOfContract_AniDB_Character">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_AniDB_Character" nillable="true" type="tns:Contract_AniDB_Character" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_AniDB_Character" nillable="true" type="tns:ArrayOfContract_AniDB_Character" />
-  <xs:complexType name="Contract_AniDB_Character">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="AniDB_CharacterID" type="xs:int" />
-      <xs:element minOccurs="0" name="Anime" nillable="true" type="tns:Contract_AniDBAnime" />
-      <xs:element minOccurs="0" name="CharDescription" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CharID" type="xs:int" />
-      <xs:element minOccurs="0" name="CharKanjiName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CharName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CharType" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CreatorListRaw" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="PicName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Seiyuu" nillable="true" type="tns:Contract_AniDB_Seiyuu" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_AniDB_Character" nillable="true" type="tns:Contract_AniDB_Character" />
-  <xs:complexType name="Contract_AniDB_Seiyuu">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="AniDB_SeiyuuID" type="xs:int" />
-      <xs:element minOccurs="0" name="PicName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="SeiyuuID" type="xs:int" />
-      <xs:element minOccurs="0" name="SeiyuuName" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_AniDB_Seiyuu" nillable="true" type="tns:Contract_AniDB_Seiyuu" />
-  <xs:complexType name="ArrayOfContract_MissingFile">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_MissingFile" nillable="true" type="tns:Contract_MissingFile" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_MissingFile" nillable="true" type="tns:ArrayOfContract_MissingFile" />
-  <xs:complexType name="Contract_MissingFile">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
-      <xs:element minOccurs="0" name="AnimeSeries" nillable="true" type="tns:Contract_AnimeSeries" />
-      <xs:element minOccurs="0" name="AnimeTitle" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="EpisodeID" type="xs:int" />
-      <xs:element minOccurs="0" name="EpisodeNumber" type="xs:int" />
-      <xs:element minOccurs="0" name="EpisodeType" type="xs:int" />
-      <xs:element minOccurs="0" name="FileID" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_MissingFile" nillable="true" type="tns:Contract_MissingFile" />
-  <xs:complexType name="ArrayOfContract_MissingEpisode">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_MissingEpisode" nillable="true" type="tns:Contract_MissingEpisode" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_MissingEpisode" nillable="true" type="tns:ArrayOfContract_MissingEpisode" />
-  <xs:complexType name="Contract_MissingEpisode">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
-      <xs:element minOccurs="0" name="AnimeSeries" nillable="true" type="tns:Contract_AnimeSeries" />
-      <xs:element minOccurs="0" name="AnimeTitle" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="EpisodeID" type="xs:int" />
-      <xs:element minOccurs="0" name="EpisodeNumber" type="xs:int" />
-      <xs:element minOccurs="0" name="EpisodeType" type="xs:int" />
-      <xs:element minOccurs="0" name="GroupFileSummary" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="GroupFileSummarySimple" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_MissingEpisode" nillable="true" type="tns:Contract_MissingEpisode" />
-  <xs:complexType name="Contract_AniDBVote">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="EntityID" type="xs:int" />
-      <xs:element minOccurs="0" name="VoteType" type="xs:int" />
-      <xs:element minOccurs="0" name="VoteValue" type="xs:decimal" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_AniDBVote" nillable="true" type="tns:Contract_AniDBVote" />
-  <xs:complexType name="ArrayOfContract_IgnoreAnime">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_IgnoreAnime" nillable="true" type="tns:Contract_IgnoreAnime" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_IgnoreAnime" nillable="true" type="tns:ArrayOfContract_IgnoreAnime" />
-  <xs:complexType name="Contract_IgnoreAnime">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Anime" nillable="true" type="tns:Contract_AniDBAnime" />
-      <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
-      <xs:element minOccurs="0" name="IgnoreAnimeID" type="xs:int" />
-      <xs:element minOccurs="0" name="IgnoreType" type="xs:int" />
-      <xs:element minOccurs="0" name="JMMUserID" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_IgnoreAnime" nillable="true" type="tns:Contract_IgnoreAnime" />
-  <xs:complexType name="ArrayOfContract_TvDBLanguage">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_TvDBLanguage" nillable="true" type="tns:Contract_TvDBLanguage" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_TvDBLanguage" nillable="true" type="tns:ArrayOfContract_TvDBLanguage" />
-  <xs:complexType name="Contract_TvDBLanguage">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Abbreviation" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_TvDBLanguage" nillable="true" type="tns:Contract_TvDBLanguage" />
-  <xs:complexType name="ArrayOfContract_Trakt_CommentUser">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_Trakt_CommentUser" nillable="true" type="tns:Contract_Trakt_CommentUser" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_Trakt_CommentUser" nillable="true" type="tns:ArrayOfContract_Trakt_CommentUser" />
-  <xs:complexType name="Contract_Trakt_CommentUser">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Comment" nillable="true" type="tns:Contract_Trakt_Comment" />
-      <xs:element minOccurs="0" name="User" nillable="true" type="tns:Contract_Trakt_User" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_Trakt_CommentUser" nillable="true" type="tns:Contract_Trakt_CommentUser" />
-  <xs:complexType name="Contract_Trakt_Comment">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Anime" nillable="true" type="tns:Contract_AniDBAnime" />
-      <xs:element minOccurs="0" name="AnimeSeriesID" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="CommentType" type="xs:int" />
-      <xs:element minOccurs="0" name="Comment_Url" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Episode_Number" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Episode_Overview" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Episode_Screenshot" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Episode_Season" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Episode_Title" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Episode_Url" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Inserted" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="Spoiler" type="xs:boolean" />
-      <xs:element minOccurs="0" name="Text" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="TraktShow" nillable="true" type="tns:Contract_TraktTVShowResponse" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_Trakt_Comment" nillable="true" type="tns:Contract_Trakt_Comment" />
-  <xs:complexType name="Contract_Trakt_User">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="About" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Age" nillable="true" type="xs:anyType" />
-      <xs:element minOccurs="0" name="Avatar" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Full_name" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Gender" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Joined" type="xs:int" />
-      <xs:element minOccurs="0" name="JoinedDate" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="Location" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Trakt_FriendID" type="xs:int" />
-      <xs:element minOccurs="0" name="Url" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_Trakt_User" nillable="true" type="tns:Contract_Trakt_User" />
   <xs:complexType name="ArrayOfContract_AnimeEpisode">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_AnimeEpisode" nillable="true" type="tns:Contract_AnimeEpisode" />
@@ -688,6 +507,22 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_AnimeEpisode" nillable="true" type="tns:Contract_AnimeEpisode" />
+  <xs:complexType name="ArrayOfContract_AniDBReleaseGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_AniDBReleaseGroup" nillable="true" type="tns:Contract_AniDBReleaseGroup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_AniDBReleaseGroup" nillable="true" type="tns:ArrayOfContract_AniDBReleaseGroup" />
+  <xs:complexType name="Contract_AniDBReleaseGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EpisodeRange" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FileCount" type="xs:int" />
+      <xs:element minOccurs="0" name="GroupID" type="xs:int" />
+      <xs:element minOccurs="0" name="GroupName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserCollecting" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_AniDBReleaseGroup" nillable="true" type="tns:Contract_AniDBReleaseGroup" />
   <xs:complexType name="ArrayOfContract_MALAnimeResponse">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_MALAnimeResponse" nillable="true" type="tns:Contract_MALAnimeResponse" />
@@ -782,6 +617,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_BookmarkedAnime_SaveResponse" nillable="true" type="tns:Contract_BookmarkedAnime_SaveResponse" />
+  <xs:complexType name="ArrayOfContract_AnimeSeries">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_AnimeSeries" nillable="true" type="tns:Contract_AnimeSeries" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_AnimeSeries" nillable="true" type="tns:ArrayOfContract_AnimeSeries" />
   <xs:complexType name="ArrayOfContract_CrossRef_AniDB_TvDB_Episode">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_CrossRef_AniDB_TvDB_Episode" nillable="true" type="tns:Contract_CrossRef_AniDB_TvDB_Episode" />
@@ -826,6 +667,7 @@
       <xs:element minOccurs="0" name="IsVariation" type="xs:int" />
       <xs:element minOccurs="0" name="IsWatched" type="xs:int" />
       <xs:element minOccurs="0" name="MD5" nillable="true" type="xs:string" />
+      <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/JMMContracts.PlexAndKodi" minOccurs="0" name="Media" nillable="true" type="q15:Media" />
       <xs:element minOccurs="0" name="SHA1" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="VideoLocalID" type="xs:int" />
       <xs:element minOccurs="0" name="WatchedDate" nillable="true" type="xs:dateTime" />
@@ -889,7 +731,7 @@
       <xs:element minOccurs="0" name="GroupNameShort" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="NormalComplete" type="xs:boolean" />
       <xs:element minOccurs="0" name="NormalEpisodeNumberSummary" nillable="true" type="xs:string" />
-      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="NormalEpisodeNumbers" nillable="true" type="q2:ArrayOfint" />
+      <xs:element xmlns:q16="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="NormalEpisodeNumbers" nillable="true" type="q16:ArrayOfint" />
       <xs:element minOccurs="0" name="SpecialsComplete" type="xs:boolean" />
       <xs:element minOccurs="0" name="TotalFileSize" type="xs:double" />
       <xs:element minOccurs="0" name="TotalRunningTime" type="xs:long" />
@@ -990,66 +832,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_AnimeRating" nillable="true" type="tns:Contract_AnimeRating" />
-  <xs:complexType name="Contract_AniDB_AnimeDetailed">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="AniDBAnime" nillable="true" type="tns:Contract_AniDBAnime" />
-      <xs:element minOccurs="0" name="AnimeTitles" nillable="true" type="tns:ArrayOfContract_AnimeTitle" />
-      <xs:element minOccurs="0" name="CustomTags" nillable="true" type="tns:ArrayOfContract_CustomTag" />
-      <xs:element minOccurs="0" name="Stat_AllVideoQuality" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Stat_AllVideoQuality_Episodes" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Stat_AudioLanguages" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Stat_SubtitleLanguages" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Tags" nillable="true" type="tns:ArrayOfContract_AnimeTag" />
-      <xs:element minOccurs="0" name="UserVote" nillable="true" type="tns:Contract_AniDBVote" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_AniDB_AnimeDetailed" nillable="true" type="tns:Contract_AniDB_AnimeDetailed" />
-  <xs:complexType name="ArrayOfContract_AnimeTitle">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_AnimeTitle" nillable="true" type="tns:Contract_AnimeTitle" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_AnimeTitle" nillable="true" type="tns:ArrayOfContract_AnimeTitle" />
-  <xs:complexType name="Contract_AnimeTitle">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
-      <xs:element minOccurs="0" name="Language" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="TitleType" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_AnimeTitle" nillable="true" type="tns:Contract_AnimeTitle" />
-  <xs:complexType name="ArrayOfContract_CustomTag">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_CustomTag" nillable="true" type="tns:Contract_CustomTag" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_CustomTag" nillable="true" type="tns:ArrayOfContract_CustomTag" />
-  <xs:complexType name="Contract_CustomTag">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="CustomTagID" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="TagDescription" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="TagName" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_CustomTag" nillable="true" type="tns:Contract_CustomTag" />
-  <xs:complexType name="ArrayOfContract_AnimeTag">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_AnimeTag" nillable="true" type="tns:Contract_AnimeTag" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_AnimeTag" nillable="true" type="tns:ArrayOfContract_AnimeTag" />
-  <xs:complexType name="Contract_AnimeTag">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="GlobalSpoiler" type="xs:int" />
-      <xs:element minOccurs="0" name="LocalSpoiler" type="xs:int" />
-      <xs:element minOccurs="0" name="TagDescription" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="TagID" type="xs:int" />
-      <xs:element minOccurs="0" name="TagName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Weight" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_AnimeTag" nillable="true" type="tns:Contract_AnimeTag" />
   <xs:complexType name="ArrayOfContract_AniDB_Recommendation">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_AniDB_Recommendation" nillable="true" type="tns:Contract_AniDB_Recommendation" />
@@ -1081,7 +863,7 @@
       <xs:element minOccurs="0" name="AnimeSeriesName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="MainTitle" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="SeriesExists" type="xs:boolean" />
-      <xs:element minOccurs="0" name="Titles" nillable="true" type="xs:string" />
+      <xs:element xmlns:q17="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Titles" nillable="true" type="q17:ArrayOfstring" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_AnimeSearch" nillable="true" type="tns:Contract_AnimeSearch" />
@@ -1108,6 +890,504 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_AniDB_Episode" nillable="true" type="tns:Contract_AniDB_Episode" />
+  <xs:complexType name="ArrayOfContract_GroupVideoQuality">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_GroupVideoQuality" nillable="true" type="tns:Contract_GroupVideoQuality" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_GroupVideoQuality" nillable="true" type="tns:ArrayOfContract_GroupVideoQuality" />
+  <xs:complexType name="Contract_GroupVideoQuality">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FileCountNormal" type="xs:int" />
+      <xs:element minOccurs="0" name="FileCountSpecials" type="xs:int" />
+      <xs:element minOccurs="0" name="GroupName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GroupNameShort" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NormalComplete" type="xs:boolean" />
+      <xs:element minOccurs="0" name="NormalEpisodeNumberSummary" nillable="true" type="xs:string" />
+      <xs:element xmlns:q18="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="NormalEpisodeNumbers" nillable="true" type="q18:ArrayOfint" />
+      <xs:element minOccurs="0" name="Ranking" type="xs:int" />
+      <xs:element minOccurs="0" name="Resolution" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SpecialsComplete" type="xs:boolean" />
+      <xs:element minOccurs="0" name="TotalFileSize" type="xs:double" />
+      <xs:element minOccurs="0" name="TotalRunningTime" type="xs:long" />
+      <xs:element minOccurs="0" name="VideoBitDepth" type="xs:int" />
+      <xs:element minOccurs="0" name="VideoSource" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_GroupVideoQuality" nillable="true" type="tns:Contract_GroupVideoQuality" />
+  <xs:complexType name="Contract_AniDB_AnimeCrossRefs">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
+      <xs:element minOccurs="0" name="CrossRef_AniDB_MAL" nillable="true" type="tns:ArrayOfContract_CrossRef_AniDB_MAL" />
+      <xs:element minOccurs="0" name="CrossRef_AniDB_MovieDB" nillable="true" type="tns:Contract_CrossRef_AniDB_Other" />
+      <xs:element minOccurs="0" name="CrossRef_AniDB_Trakt" nillable="true" type="tns:ArrayOfContract_CrossRef_AniDB_TraktV2" />
+      <xs:element minOccurs="0" name="CrossRef_AniDB_TvDB" nillable="true" type="tns:ArrayOfContract_CrossRef_AniDB_TvDBV2" />
+      <xs:element minOccurs="0" name="MovieDBFanarts" nillable="true" type="tns:ArrayOfContract_MovieDB_Fanart" />
+      <xs:element minOccurs="0" name="MovieDBMovie" nillable="true" type="tns:Contract_MovieDB_Movie" />
+      <xs:element minOccurs="0" name="MovieDBPosters" nillable="true" type="tns:ArrayOfContract_MovieDB_Poster" />
+      <xs:element minOccurs="0" name="TraktImageFanarts" nillable="true" type="tns:ArrayOfContract_Trakt_ImageFanart" />
+      <xs:element minOccurs="0" name="TraktImagePosters" nillable="true" type="tns:ArrayOfContract_Trakt_ImagePoster" />
+      <xs:element minOccurs="0" name="TraktShows" nillable="true" type="tns:ArrayOfContract_Trakt_Show" />
+      <xs:element minOccurs="0" name="TvDBEpisodes" nillable="true" type="tns:ArrayOfContract_TvDB_Episode" />
+      <xs:element minOccurs="0" name="TvDBImageFanarts" nillable="true" type="tns:ArrayOfContract_TvDB_ImageFanart" />
+      <xs:element minOccurs="0" name="TvDBImagePosters" nillable="true" type="tns:ArrayOfContract_TvDB_ImagePoster" />
+      <xs:element minOccurs="0" name="TvDBImageWideBanners" nillable="true" type="tns:ArrayOfContract_TvDB_ImageWideBanner" />
+      <xs:element minOccurs="0" name="TvDBSeries" nillable="true" type="tns:ArrayOfContract_TvDB_Series" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_AniDB_AnimeCrossRefs" nillable="true" type="tns:Contract_AniDB_AnimeCrossRefs" />
+  <xs:complexType name="ArrayOfContract_CrossRef_AniDB_TraktV2">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_CrossRef_AniDB_TraktV2" nillable="true" type="tns:Contract_CrossRef_AniDB_TraktV2" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_CrossRef_AniDB_TraktV2" nillable="true" type="tns:ArrayOfContract_CrossRef_AniDB_TraktV2" />
+  <xs:complexType name="Contract_CrossRef_AniDB_TraktV2">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AniDBStartEpisodeNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="AniDBStartEpisodeType" type="xs:int" />
+      <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
+      <xs:element minOccurs="0" name="CrossRefSource" type="xs:int" />
+      <xs:element minOccurs="0" name="CrossRef_AniDB_TraktV2ID" type="xs:int" />
+      <xs:element minOccurs="0" name="TraktID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TraktSeasonNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="TraktStartEpisodeNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="TraktTitle" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_CrossRef_AniDB_TraktV2" nillable="true" type="tns:Contract_CrossRef_AniDB_TraktV2" />
+  <xs:complexType name="ArrayOfContract_MovieDB_Fanart">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_MovieDB_Fanart" nillable="true" type="tns:Contract_MovieDB_Fanart" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_MovieDB_Fanart" nillable="true" type="tns:ArrayOfContract_MovieDB_Fanart" />
+  <xs:complexType name="ArrayOfContract_MovieDB_Poster">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_MovieDB_Poster" nillable="true" type="tns:Contract_MovieDB_Poster" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_MovieDB_Poster" nillable="true" type="tns:ArrayOfContract_MovieDB_Poster" />
+  <xs:complexType name="ArrayOfContract_Trakt_ImageFanart">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_Trakt_ImageFanart" nillable="true" type="tns:Contract_Trakt_ImageFanart" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_Trakt_ImageFanart" nillable="true" type="tns:ArrayOfContract_Trakt_ImageFanart" />
+  <xs:complexType name="ArrayOfContract_Trakt_ImagePoster">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_Trakt_ImagePoster" nillable="true" type="tns:Contract_Trakt_ImagePoster" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_Trakt_ImagePoster" nillable="true" type="tns:ArrayOfContract_Trakt_ImagePoster" />
+  <xs:complexType name="ArrayOfContract_Trakt_Show">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_Trakt_Show" nillable="true" type="tns:Contract_Trakt_Show" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_Trakt_Show" nillable="true" type="tns:ArrayOfContract_Trakt_Show" />
+  <xs:complexType name="Contract_Trakt_Show">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Overview" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Seasons" nillable="true" type="tns:ArrayOfContract_Trakt_Season" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TraktID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Trakt_ShowID" type="xs:int" />
+      <xs:element minOccurs="0" name="TvDB_ID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="URL" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Year" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_Trakt_Show" nillable="true" type="tns:Contract_Trakt_Show" />
+  <xs:complexType name="ArrayOfContract_Trakt_Season">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_Trakt_Season" nillable="true" type="tns:Contract_Trakt_Season" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_Trakt_Season" nillable="true" type="tns:ArrayOfContract_Trakt_Season" />
+  <xs:complexType name="Contract_Trakt_Season">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Episodes" nillable="true" type="tns:ArrayOfContract_Trakt_Episode" />
+      <xs:element minOccurs="0" name="Season" type="xs:int" />
+      <xs:element minOccurs="0" name="Trakt_SeasonID" type="xs:int" />
+      <xs:element minOccurs="0" name="Trakt_ShowID" type="xs:int" />
+      <xs:element minOccurs="0" name="URL" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_Trakt_Season" nillable="true" type="tns:Contract_Trakt_Season" />
+  <xs:complexType name="ArrayOfContract_Trakt_Episode">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_Trakt_Episode" nillable="true" type="tns:Contract_Trakt_Episode" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_Trakt_Episode" nillable="true" type="tns:ArrayOfContract_Trakt_Episode" />
+  <xs:complexType name="Contract_Trakt_Episode">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EpisodeImage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EpisodeNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="Overview" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Season" type="xs:int" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Trakt_EpisodeID" type="xs:int" />
+      <xs:element minOccurs="0" name="Trakt_ShowID" type="xs:int" />
+      <xs:element minOccurs="0" name="URL" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_Trakt_Episode" nillable="true" type="tns:Contract_Trakt_Episode" />
+  <xs:complexType name="ArrayOfContract_TvDB_Episode">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_TvDB_Episode" nillable="true" type="tns:Contract_TvDB_Episode" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_TvDB_Episode" nillable="true" type="tns:ArrayOfContract_TvDB_Episode" />
+  <xs:complexType name="Contract_TvDB_Episode">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AbsoluteNumber" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="AirsAfterSeason" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="AirsBeforeEpisode" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="AirsBeforeSeason" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="EpImgFlag" type="xs:int" />
+      <xs:element minOccurs="0" name="EpisodeName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EpisodeNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="Filename" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Overview" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SeasonID" type="xs:int" />
+      <xs:element minOccurs="0" name="SeasonNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="SeriesID" type="xs:int" />
+      <xs:element minOccurs="0" name="TvDB_EpisodeID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_TvDB_Episode" nillable="true" type="tns:Contract_TvDB_Episode" />
+  <xs:complexType name="ArrayOfContract_TvDB_ImageFanart">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_TvDB_ImageFanart" nillable="true" type="tns:Contract_TvDB_ImageFanart" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_TvDB_ImageFanart" nillable="true" type="tns:ArrayOfContract_TvDB_ImageFanart" />
+  <xs:complexType name="ArrayOfContract_TvDB_ImagePoster">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_TvDB_ImagePoster" nillable="true" type="tns:Contract_TvDB_ImagePoster" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_TvDB_ImagePoster" nillable="true" type="tns:ArrayOfContract_TvDB_ImagePoster" />
+  <xs:complexType name="ArrayOfContract_TvDB_ImageWideBanner">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_TvDB_ImageWideBanner" nillable="true" type="tns:Contract_TvDB_ImageWideBanner" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_TvDB_ImageWideBanner" nillable="true" type="tns:ArrayOfContract_TvDB_ImageWideBanner" />
+  <xs:complexType name="ArrayOfContract_Azure_CrossRef_AniDB_TvDB">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_Azure_CrossRef_AniDB_TvDB" nillable="true" type="tns:Contract_Azure_CrossRef_AniDB_TvDB" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_Azure_CrossRef_AniDB_TvDB" nillable="true" type="tns:ArrayOfContract_Azure_CrossRef_AniDB_TvDB" />
+  <xs:complexType name="Contract_Azure_CrossRef_AniDB_TvDB">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AniDBStartEpisodeNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="AniDBStartEpisodeType" type="xs:int" />
+      <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
+      <xs:element minOccurs="0" name="AnimeName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CrossRefSource" type="xs:int" />
+      <xs:element minOccurs="0" name="CrossRef_AniDB_TvDBId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="DateSubmitted" type="xs:long" />
+      <xs:element minOccurs="0" name="IsAdminApproved" type="xs:int" />
+      <xs:element minOccurs="0" name="TvDBID" type="xs:int" />
+      <xs:element minOccurs="0" name="TvDBSeasonNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="TvDBStartEpisodeNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="TvDBTitle" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_Azure_CrossRef_AniDB_TvDB" nillable="true" type="tns:Contract_Azure_CrossRef_AniDB_TvDB" />
+  <xs:complexType name="ArrayOfContract_TVDBSeriesSearchResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_TVDBSeriesSearchResult" nillable="true" type="tns:Contract_TVDBSeriesSearchResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_TVDBSeriesSearchResult" nillable="true" type="tns:ArrayOfContract_TVDBSeriesSearchResult" />
+  <xs:complexType name="Contract_TVDBSeriesSearchResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Banner" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Language" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Overview" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SeriesID" type="xs:int" />
+      <xs:element minOccurs="0" name="SeriesName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_TVDBSeriesSearchResult" nillable="true" type="tns:Contract_TVDBSeriesSearchResult" />
+  <xs:complexType name="Contract_CrossRef_AniDB_OtherResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
+      <xs:element minOccurs="0" name="CrossRefID" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_CrossRef_AniDB_OtherResult" nillable="true" type="tns:Contract_CrossRef_AniDB_OtherResult" />
+  <xs:complexType name="ArrayOfContract_MovieDBMovieSearchResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_MovieDBMovieSearchResult" nillable="true" type="tns:Contract_MovieDBMovieSearchResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_MovieDBMovieSearchResult" nillable="true" type="tns:ArrayOfContract_MovieDBMovieSearchResult" />
+  <xs:complexType name="Contract_MovieDBMovieSearchResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="MovieID" type="xs:int" />
+      <xs:element minOccurs="0" name="MovieName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OriginalName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Overview" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_MovieDBMovieSearchResult" nillable="true" type="tns:Contract_MovieDBMovieSearchResult" />
+  <xs:complexType name="ArrayOfContract_AniDBAnime">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_AniDBAnime" nillable="true" type="tns:Contract_AniDBAnime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_AniDBAnime" nillable="true" type="tns:ArrayOfContract_AniDBAnime" />
+  <xs:complexType name="ArrayOfContract_JMMUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_JMMUser" nillable="true" type="tns:Contract_JMMUser" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_JMMUser" nillable="true" type="tns:ArrayOfContract_JMMUser" />
+  <xs:complexType name="Contract_JMMUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CanEditServerSettings" nillable="true" type="xs:int" />
+      <xs:element xmlns:q19="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="HideCategories" nillable="true" type="q19:ArrayOfstring" />
+      <xs:element minOccurs="0" name="IsAdmin" type="xs:int" />
+      <xs:element minOccurs="0" name="IsAniDBUser" type="xs:int" />
+      <xs:element minOccurs="0" name="IsTraktUser" type="xs:int" />
+      <xs:element minOccurs="0" name="JMMUserID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element xmlns:q20="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="PlexUsers" nillable="true" type="q20:ArrayOfstring" />
+      <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_JMMUser" nillable="true" type="tns:Contract_JMMUser" />
+  <xs:complexType name="ArrayOfContract_Azure_CrossRef_AniDB_Trakt">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_Azure_CrossRef_AniDB_Trakt" nillable="true" type="tns:Contract_Azure_CrossRef_AniDB_Trakt" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_Azure_CrossRef_AniDB_Trakt" nillable="true" type="tns:ArrayOfContract_Azure_CrossRef_AniDB_Trakt" />
+  <xs:complexType name="Contract_Azure_CrossRef_AniDB_Trakt">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AniDBStartEpisodeNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="AniDBStartEpisodeType" type="xs:int" />
+      <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
+      <xs:element minOccurs="0" name="AnimeName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CrossRefSource" type="xs:int" />
+      <xs:element minOccurs="0" name="CrossRef_AniDB_TraktId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="DateSubmitted" type="xs:long" />
+      <xs:element minOccurs="0" name="IsAdminApproved" type="xs:int" />
+      <xs:element minOccurs="0" name="TraktID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TraktSeasonNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="TraktStartEpisodeNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="TraktTitle" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_Azure_CrossRef_AniDB_Trakt" nillable="true" type="tns:Contract_Azure_CrossRef_AniDB_Trakt" />
+  <xs:complexType name="ArrayOfContract_CrossRef_AniDB_Trakt_Episode">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_CrossRef_AniDB_Trakt_Episode" nillable="true" type="tns:Contract_CrossRef_AniDB_Trakt_Episode" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_CrossRef_AniDB_Trakt_Episode" nillable="true" type="tns:ArrayOfContract_CrossRef_AniDB_Trakt_Episode" />
+  <xs:complexType name="Contract_CrossRef_AniDB_Trakt_Episode">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AniDBEpisodeID" type="xs:int" />
+      <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
+      <xs:element minOccurs="0" name="CrossRef_AniDB_Trakt_EpisodeID" type="xs:int" />
+      <xs:element minOccurs="0" name="EpisodeNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="Season" type="xs:int" />
+      <xs:element minOccurs="0" name="TraktID" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_CrossRef_AniDB_Trakt_Episode" nillable="true" type="tns:Contract_CrossRef_AniDB_Trakt_Episode" />
+  <xs:complexType name="ArrayOfContract_TraktTVShowResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_TraktTVShowResponse" nillable="true" type="tns:Contract_TraktTVShowResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_TraktTVShowResponse" nillable="true" type="tns:ArrayOfContract_TraktTVShowResponse" />
+  <xs:complexType name="Contract_GroupFilterExtended">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GroupCount" type="xs:int" />
+      <xs:element minOccurs="0" name="GroupFilter" nillable="true" type="tns:Contract_GroupFilter" />
+      <xs:element minOccurs="0" name="SeriesCount" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_GroupFilterExtended" nillable="true" type="tns:Contract_GroupFilterExtended" />
+  <xs:complexType name="Contract_GroupFilter">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ApplyToSeries" type="xs:int" />
+      <xs:element minOccurs="0" name="BaseCondition" type="xs:int" />
+      <xs:element xmlns:q21="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Childs" nillable="true" type="q21:ArrayOfint" />
+      <xs:element minOccurs="0" name="FilterConditions" nillable="true" type="tns:ArrayOfContract_GroupFilterCondition" />
+      <xs:element minOccurs="0" name="FilterType" type="xs:int" />
+      <xs:element minOccurs="0" name="GroupFilterID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="GroupFilterName" nillable="true" type="xs:string" />
+      <xs:element xmlns:q22="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Groups" nillable="true" type="q22:ArrayOfKeyValueOfintArrayOfintty7Ep6D1" />
+      <xs:element minOccurs="0" name="InvisibleInClients" type="xs:int" />
+      <xs:element minOccurs="0" name="Locked" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ParentGroupFilterID" nillable="true" type="xs:int" />
+      <xs:element xmlns:q23="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Series" nillable="true" type="q23:ArrayOfKeyValueOfintArrayOfintty7Ep6D1" />
+      <xs:element minOccurs="0" name="SortingCriteria" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_GroupFilter" nillable="true" type="tns:Contract_GroupFilter" />
+  <xs:complexType name="ArrayOfContract_GroupFilterCondition">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_GroupFilterCondition" nillable="true" type="tns:Contract_GroupFilterCondition" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_GroupFilterCondition" nillable="true" type="tns:ArrayOfContract_GroupFilterCondition" />
+  <xs:complexType name="Contract_GroupFilterCondition">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ConditionOperator" type="xs:int" />
+      <xs:element minOccurs="0" name="ConditionParameter" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ConditionType" type="xs:int" />
+      <xs:element minOccurs="0" name="GroupFilterConditionID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="GroupFilterID" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_GroupFilterCondition" nillable="true" type="tns:Contract_GroupFilterCondition" />
+  <xs:complexType name="ArrayOfContract_AnimeGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_AnimeGroup" nillable="true" type="tns:Contract_AnimeGroup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_AnimeGroup" nillable="true" type="tns:ArrayOfContract_AnimeGroup" />
+  <xs:complexType name="ArrayOfContract_GroupFilterExtended">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_GroupFilterExtended" nillable="true" type="tns:Contract_GroupFilterExtended" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_GroupFilterExtended" nillable="true" type="tns:ArrayOfContract_GroupFilterExtended" />
+  <xs:complexType name="ArrayOfContract_AniDB_Anime_Similar">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_AniDB_Anime_Similar" nillable="true" type="tns:Contract_AniDB_Anime_Similar" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_AniDB_Anime_Similar" nillable="true" type="tns:ArrayOfContract_AniDB_Anime_Similar" />
+  <xs:complexType name="Contract_AniDB_Anime_Similar">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AniDB_Anime" nillable="true" type="tns:Contract_AniDBAnime" />
+      <xs:element minOccurs="0" name="AniDB_Anime_SimilarID" type="xs:int" />
+      <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
+      <xs:element minOccurs="0" name="AnimeSeries" nillable="true" type="tns:Contract_AnimeSeries" />
+      <xs:element minOccurs="0" name="Approval" type="xs:int" />
+      <xs:element minOccurs="0" name="SimilarAnimeID" type="xs:int" />
+      <xs:element minOccurs="0" name="Total" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_AniDB_Anime_Similar" nillable="true" type="tns:Contract_AniDB_Anime_Similar" />
+  <xs:complexType name="ArrayOfContract_AniDB_Anime_Relation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_AniDB_Anime_Relation" nillable="true" type="tns:Contract_AniDB_Anime_Relation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_AniDB_Anime_Relation" nillable="true" type="tns:ArrayOfContract_AniDB_Anime_Relation" />
+  <xs:complexType name="Contract_AniDB_Anime_Relation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AniDB_Anime" nillable="true" type="tns:Contract_AniDBAnime" />
+      <xs:element minOccurs="0" name="AniDB_Anime_RelationID" type="xs:int" />
+      <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
+      <xs:element minOccurs="0" name="AnimeSeries" nillable="true" type="tns:Contract_AnimeSeries" />
+      <xs:element minOccurs="0" name="RelatedAnimeID" type="xs:int" />
+      <xs:element minOccurs="0" name="RelationType" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_AniDB_Anime_Relation" nillable="true" type="tns:Contract_AniDB_Anime_Relation" />
+  <xs:complexType name="ArrayOfContract_Recommendation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_Recommendation" nillable="true" type="tns:Contract_Recommendation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_Recommendation" nillable="true" type="tns:ArrayOfContract_Recommendation" />
+  <xs:complexType name="Contract_Recommendation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BasedOnAnimeID" type="xs:int" />
+      <xs:element minOccurs="0" name="BasedOnVoteValue" type="xs:int" />
+      <xs:element minOccurs="0" name="BasedOn_AniDB_Anime" nillable="true" type="tns:Contract_AniDBAnime" />
+      <xs:element minOccurs="0" name="BasedOn_AnimeSeries" nillable="true" type="tns:Contract_AnimeSeries" />
+      <xs:element minOccurs="0" name="RecommendedAnimeID" type="xs:int" />
+      <xs:element minOccurs="0" name="RecommendedApproval" type="xs:double" />
+      <xs:element minOccurs="0" name="Recommended_AniDB_Anime" nillable="true" type="tns:Contract_AniDBAnime" />
+      <xs:element minOccurs="0" name="Recommended_AnimeSeries" nillable="true" type="tns:Contract_AnimeSeries" />
+      <xs:element minOccurs="0" name="Score" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_Recommendation" nillable="true" type="tns:Contract_Recommendation" />
+  <xs:complexType name="ArrayOfContract_MissingFile">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_MissingFile" nillable="true" type="tns:Contract_MissingFile" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_MissingFile" nillable="true" type="tns:ArrayOfContract_MissingFile" />
+  <xs:complexType name="Contract_MissingFile">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
+      <xs:element minOccurs="0" name="AnimeSeries" nillable="true" type="tns:Contract_AnimeSeries" />
+      <xs:element minOccurs="0" name="AnimeTitle" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EpisodeID" type="xs:int" />
+      <xs:element minOccurs="0" name="EpisodeNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="EpisodeType" type="xs:int" />
+      <xs:element minOccurs="0" name="FileID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_MissingFile" nillable="true" type="tns:Contract_MissingFile" />
+  <xs:complexType name="ArrayOfContract_MissingEpisode">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_MissingEpisode" nillable="true" type="tns:Contract_MissingEpisode" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_MissingEpisode" nillable="true" type="tns:ArrayOfContract_MissingEpisode" />
+  <xs:complexType name="Contract_MissingEpisode">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
+      <xs:element minOccurs="0" name="AnimeSeries" nillable="true" type="tns:Contract_AnimeSeries" />
+      <xs:element minOccurs="0" name="AnimeTitle" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EpisodeID" type="xs:int" />
+      <xs:element minOccurs="0" name="EpisodeNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="EpisodeType" type="xs:int" />
+      <xs:element minOccurs="0" name="GroupFileSummary" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GroupFileSummarySimple" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_MissingEpisode" nillable="true" type="tns:Contract_MissingEpisode" />
+  <xs:complexType name="ArrayOfContract_IgnoreAnime">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_IgnoreAnime" nillable="true" type="tns:Contract_IgnoreAnime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_IgnoreAnime" nillable="true" type="tns:ArrayOfContract_IgnoreAnime" />
+  <xs:complexType name="Contract_IgnoreAnime">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Anime" nillable="true" type="tns:Contract_AniDBAnime" />
+      <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
+      <xs:element minOccurs="0" name="IgnoreAnimeID" type="xs:int" />
+      <xs:element minOccurs="0" name="IgnoreType" type="xs:int" />
+      <xs:element minOccurs="0" name="JMMUserID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_IgnoreAnime" nillable="true" type="tns:Contract_IgnoreAnime" />
+  <xs:complexType name="ArrayOfContract_TvDBLanguage">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_TvDBLanguage" nillable="true" type="tns:Contract_TvDBLanguage" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_TvDBLanguage" nillable="true" type="tns:ArrayOfContract_TvDBLanguage" />
+  <xs:complexType name="Contract_TvDBLanguage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Abbreviation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_TvDBLanguage" nillable="true" type="tns:Contract_TvDBLanguage" />
   <xs:complexType name="Contract_Azure_AnimeLink">
     <xs:sequence>
       <xs:element minOccurs="0" name="AnimeNeedingApproval" type="xs:int" />
@@ -1357,278 +1637,4 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_DuplicateFile" nillable="true" type="tns:Contract_DuplicateFile" />
-  <xs:complexType name="ArrayOfContract_GroupVideoQuality">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_GroupVideoQuality" nillable="true" type="tns:Contract_GroupVideoQuality" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_GroupVideoQuality" nillable="true" type="tns:ArrayOfContract_GroupVideoQuality" />
-  <xs:complexType name="Contract_GroupVideoQuality">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="FileCountNormal" type="xs:int" />
-      <xs:element minOccurs="0" name="FileCountSpecials" type="xs:int" />
-      <xs:element minOccurs="0" name="GroupName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="GroupNameShort" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="NormalComplete" type="xs:boolean" />
-      <xs:element minOccurs="0" name="NormalEpisodeNumberSummary" nillable="true" type="xs:string" />
-      <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="NormalEpisodeNumbers" nillable="true" type="q3:ArrayOfint" />
-      <xs:element minOccurs="0" name="Ranking" type="xs:int" />
-      <xs:element minOccurs="0" name="Resolution" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="SpecialsComplete" type="xs:boolean" />
-      <xs:element minOccurs="0" name="TotalFileSize" type="xs:double" />
-      <xs:element minOccurs="0" name="TotalRunningTime" type="xs:long" />
-      <xs:element minOccurs="0" name="VideoBitDepth" type="xs:int" />
-      <xs:element minOccurs="0" name="VideoSource" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_GroupVideoQuality" nillable="true" type="tns:Contract_GroupVideoQuality" />
-  <xs:complexType name="Contract_AniDB_AnimeCrossRefs">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
-      <xs:element minOccurs="0" name="CrossRef_AniDB_MAL" nillable="true" type="tns:ArrayOfContract_CrossRef_AniDB_MAL" />
-      <xs:element minOccurs="0" name="CrossRef_AniDB_MovieDB" nillable="true" type="tns:Contract_CrossRef_AniDB_Other" />
-      <xs:element minOccurs="0" name="CrossRef_AniDB_Trakt" nillable="true" type="tns:ArrayOfContract_CrossRef_AniDB_TraktV2" />
-      <xs:element minOccurs="0" name="CrossRef_AniDB_TvDB" nillable="true" type="tns:ArrayOfContract_CrossRef_AniDB_TvDBV2" />
-      <xs:element minOccurs="0" name="MovieDBFanarts" nillable="true" type="tns:ArrayOfContract_MovieDB_Fanart" />
-      <xs:element minOccurs="0" name="MovieDBMovie" nillable="true" type="tns:Contract_MovieDB_Movie" />
-      <xs:element minOccurs="0" name="MovieDBPosters" nillable="true" type="tns:ArrayOfContract_MovieDB_Poster" />
-      <xs:element minOccurs="0" name="TraktImageFanarts" nillable="true" type="tns:ArrayOfContract_Trakt_ImageFanart" />
-      <xs:element minOccurs="0" name="TraktImagePosters" nillable="true" type="tns:ArrayOfContract_Trakt_ImagePoster" />
-      <xs:element minOccurs="0" name="TraktShows" nillable="true" type="tns:ArrayOfContract_Trakt_Show" />
-      <xs:element minOccurs="0" name="TvDBEpisodes" nillable="true" type="tns:ArrayOfContract_TvDB_Episode" />
-      <xs:element minOccurs="0" name="TvDBImageFanarts" nillable="true" type="tns:ArrayOfContract_TvDB_ImageFanart" />
-      <xs:element minOccurs="0" name="TvDBImagePosters" nillable="true" type="tns:ArrayOfContract_TvDB_ImagePoster" />
-      <xs:element minOccurs="0" name="TvDBImageWideBanners" nillable="true" type="tns:ArrayOfContract_TvDB_ImageWideBanner" />
-      <xs:element minOccurs="0" name="TvDBSeries" nillable="true" type="tns:ArrayOfContract_TvDB_Series" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_AniDB_AnimeCrossRefs" nillable="true" type="tns:Contract_AniDB_AnimeCrossRefs" />
-  <xs:complexType name="ArrayOfContract_MovieDB_Fanart">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_MovieDB_Fanart" nillable="true" type="tns:Contract_MovieDB_Fanart" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_MovieDB_Fanart" nillable="true" type="tns:ArrayOfContract_MovieDB_Fanart" />
-  <xs:complexType name="ArrayOfContract_MovieDB_Poster">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_MovieDB_Poster" nillable="true" type="tns:Contract_MovieDB_Poster" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_MovieDB_Poster" nillable="true" type="tns:ArrayOfContract_MovieDB_Poster" />
-  <xs:complexType name="ArrayOfContract_Trakt_ImageFanart">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_Trakt_ImageFanart" nillable="true" type="tns:Contract_Trakt_ImageFanart" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_Trakt_ImageFanart" nillable="true" type="tns:ArrayOfContract_Trakt_ImageFanart" />
-  <xs:complexType name="ArrayOfContract_Trakt_ImagePoster">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_Trakt_ImagePoster" nillable="true" type="tns:Contract_Trakt_ImagePoster" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_Trakt_ImagePoster" nillable="true" type="tns:ArrayOfContract_Trakt_ImagePoster" />
-  <xs:complexType name="ArrayOfContract_Trakt_Show">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_Trakt_Show" nillable="true" type="tns:Contract_Trakt_Show" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_Trakt_Show" nillable="true" type="tns:ArrayOfContract_Trakt_Show" />
-  <xs:complexType name="Contract_Trakt_Show">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Overview" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Seasons" nillable="true" type="tns:ArrayOfContract_Trakt_Season" />
-      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="TraktID" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Trakt_ShowID" type="xs:int" />
-      <xs:element minOccurs="0" name="TvDB_ID" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="URL" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Year" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_Trakt_Show" nillable="true" type="tns:Contract_Trakt_Show" />
-  <xs:complexType name="ArrayOfContract_Trakt_Season">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_Trakt_Season" nillable="true" type="tns:Contract_Trakt_Season" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_Trakt_Season" nillable="true" type="tns:ArrayOfContract_Trakt_Season" />
-  <xs:complexType name="Contract_Trakt_Season">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Episodes" nillable="true" type="tns:ArrayOfContract_Trakt_Episode" />
-      <xs:element minOccurs="0" name="Season" type="xs:int" />
-      <xs:element minOccurs="0" name="Trakt_SeasonID" type="xs:int" />
-      <xs:element minOccurs="0" name="Trakt_ShowID" type="xs:int" />
-      <xs:element minOccurs="0" name="URL" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_Trakt_Season" nillable="true" type="tns:Contract_Trakt_Season" />
-  <xs:complexType name="ArrayOfContract_Trakt_Episode">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_Trakt_Episode" nillable="true" type="tns:Contract_Trakt_Episode" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_Trakt_Episode" nillable="true" type="tns:ArrayOfContract_Trakt_Episode" />
-  <xs:complexType name="Contract_Trakt_Episode">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="EpisodeImage" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="EpisodeNumber" type="xs:int" />
-      <xs:element minOccurs="0" name="Overview" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Season" type="xs:int" />
-      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Trakt_EpisodeID" type="xs:int" />
-      <xs:element minOccurs="0" name="Trakt_ShowID" type="xs:int" />
-      <xs:element minOccurs="0" name="URL" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_Trakt_Episode" nillable="true" type="tns:Contract_Trakt_Episode" />
-  <xs:complexType name="ArrayOfContract_TvDB_Episode">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_TvDB_Episode" nillable="true" type="tns:Contract_TvDB_Episode" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_TvDB_Episode" nillable="true" type="tns:ArrayOfContract_TvDB_Episode" />
-  <xs:complexType name="Contract_TvDB_Episode">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="AbsoluteNumber" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="AirsAfterSeason" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="AirsBeforeEpisode" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="AirsBeforeSeason" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="EpImgFlag" type="xs:int" />
-      <xs:element minOccurs="0" name="EpisodeName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="EpisodeNumber" type="xs:int" />
-      <xs:element minOccurs="0" name="Filename" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element minOccurs="0" name="Overview" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="SeasonID" type="xs:int" />
-      <xs:element minOccurs="0" name="SeasonNumber" type="xs:int" />
-      <xs:element minOccurs="0" name="SeriesID" type="xs:int" />
-      <xs:element minOccurs="0" name="TvDB_EpisodeID" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_TvDB_Episode" nillable="true" type="tns:Contract_TvDB_Episode" />
-  <xs:complexType name="ArrayOfContract_TvDB_ImageFanart">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_TvDB_ImageFanart" nillable="true" type="tns:Contract_TvDB_ImageFanart" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_TvDB_ImageFanart" nillable="true" type="tns:ArrayOfContract_TvDB_ImageFanart" />
-  <xs:complexType name="ArrayOfContract_TvDB_ImagePoster">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_TvDB_ImagePoster" nillable="true" type="tns:Contract_TvDB_ImagePoster" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_TvDB_ImagePoster" nillable="true" type="tns:ArrayOfContract_TvDB_ImagePoster" />
-  <xs:complexType name="ArrayOfContract_TvDB_ImageWideBanner">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_TvDB_ImageWideBanner" nillable="true" type="tns:Contract_TvDB_ImageWideBanner" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_TvDB_ImageWideBanner" nillable="true" type="tns:ArrayOfContract_TvDB_ImageWideBanner" />
-  <xs:complexType name="ArrayOfContract_Azure_CrossRef_AniDB_TvDB">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_Azure_CrossRef_AniDB_TvDB" nillable="true" type="tns:Contract_Azure_CrossRef_AniDB_TvDB" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_Azure_CrossRef_AniDB_TvDB" nillable="true" type="tns:ArrayOfContract_Azure_CrossRef_AniDB_TvDB" />
-  <xs:complexType name="Contract_Azure_CrossRef_AniDB_TvDB">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="AniDBStartEpisodeNumber" type="xs:int" />
-      <xs:element minOccurs="0" name="AniDBStartEpisodeType" type="xs:int" />
-      <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
-      <xs:element minOccurs="0" name="AnimeName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CrossRefSource" type="xs:int" />
-      <xs:element minOccurs="0" name="CrossRef_AniDB_TvDBId" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="DateSubmitted" type="xs:long" />
-      <xs:element minOccurs="0" name="IsAdminApproved" type="xs:int" />
-      <xs:element minOccurs="0" name="TvDBID" type="xs:int" />
-      <xs:element minOccurs="0" name="TvDBSeasonNumber" type="xs:int" />
-      <xs:element minOccurs="0" name="TvDBStartEpisodeNumber" type="xs:int" />
-      <xs:element minOccurs="0" name="TvDBTitle" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_Azure_CrossRef_AniDB_TvDB" nillable="true" type="tns:Contract_Azure_CrossRef_AniDB_TvDB" />
-  <xs:complexType name="ArrayOfContract_TVDBSeriesSearchResult">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_TVDBSeriesSearchResult" nillable="true" type="tns:Contract_TVDBSeriesSearchResult" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_TVDBSeriesSearchResult" nillable="true" type="tns:ArrayOfContract_TVDBSeriesSearchResult" />
-  <xs:complexType name="Contract_TVDBSeriesSearchResult">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Banner" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Language" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Overview" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="SeriesID" type="xs:int" />
-      <xs:element minOccurs="0" name="SeriesName" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_TVDBSeriesSearchResult" nillable="true" type="tns:Contract_TVDBSeriesSearchResult" />
-  <xs:complexType name="Contract_CrossRef_AniDB_OtherResult">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
-      <xs:element minOccurs="0" name="CrossRefID" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_CrossRef_AniDB_OtherResult" nillable="true" type="tns:Contract_CrossRef_AniDB_OtherResult" />
-  <xs:complexType name="ArrayOfContract_MovieDBMovieSearchResult">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_MovieDBMovieSearchResult" nillable="true" type="tns:Contract_MovieDBMovieSearchResult" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_MovieDBMovieSearchResult" nillable="true" type="tns:ArrayOfContract_MovieDBMovieSearchResult" />
-  <xs:complexType name="Contract_MovieDBMovieSearchResult">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="MovieID" type="xs:int" />
-      <xs:element minOccurs="0" name="MovieName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="OriginalName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Overview" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_MovieDBMovieSearchResult" nillable="true" type="tns:Contract_MovieDBMovieSearchResult" />
-  <xs:complexType name="ArrayOfContract_JMMUser">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_JMMUser" nillable="true" type="tns:Contract_JMMUser" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_JMMUser" nillable="true" type="tns:ArrayOfContract_JMMUser" />
-  <xs:complexType name="Contract_JMMUser">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="CanEditServerSettings" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="HideCategories" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="IsAdmin" type="xs:int" />
-      <xs:element minOccurs="0" name="IsAniDBUser" type="xs:int" />
-      <xs:element minOccurs="0" name="IsTraktUser" type="xs:int" />
-      <xs:element minOccurs="0" name="JMMUserID" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="PlexUsers" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_JMMUser" nillable="true" type="tns:Contract_JMMUser" />
-  <xs:complexType name="ArrayOfContract_Azure_CrossRef_AniDB_Trakt">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_Azure_CrossRef_AniDB_Trakt" nillable="true" type="tns:Contract_Azure_CrossRef_AniDB_Trakt" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_Azure_CrossRef_AniDB_Trakt" nillable="true" type="tns:ArrayOfContract_Azure_CrossRef_AniDB_Trakt" />
-  <xs:complexType name="Contract_Azure_CrossRef_AniDB_Trakt">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="AniDBStartEpisodeNumber" type="xs:int" />
-      <xs:element minOccurs="0" name="AniDBStartEpisodeType" type="xs:int" />
-      <xs:element minOccurs="0" name="AnimeID" type="xs:int" />
-      <xs:element minOccurs="0" name="AnimeName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CrossRefSource" type="xs:int" />
-      <xs:element minOccurs="0" name="CrossRef_AniDB_TraktId" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="DateSubmitted" type="xs:long" />
-      <xs:element minOccurs="0" name="IsAdminApproved" type="xs:int" />
-      <xs:element minOccurs="0" name="TraktID" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="TraktSeasonNumber" type="xs:int" />
-      <xs:element minOccurs="0" name="TraktStartEpisodeNumber" type="xs:int" />
-      <xs:element minOccurs="0" name="TraktTitle" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_Azure_CrossRef_AniDB_Trakt" nillable="true" type="tns:Contract_Azure_CrossRef_AniDB_Trakt" />
 </xs:schema>

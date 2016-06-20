@@ -3,6 +3,7 @@ using NLog;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Text;
 using System.Windows;
 
@@ -469,38 +470,17 @@ namespace JMMClient
 
 
 
-        public string TagsString
-        {
-            get
-            {
-                return AniDB_Anime.AllTags;
-            }
-        }
+		public HashSet<string> AllTags => AniDB_Anime.AllTags;
 
-        public string CustomTagsString
-        {
-            get
-            {
-                string allCustomTags = string.Empty;
+	    public HashSet<string> CustomTags => new HashSet<string>(AniDB_Anime.Detail.CustomTags.Select(a=>a.TagName));
 
-                foreach (CustomTagVM ctag in AniDB_Anime.Detail.CustomTags)
-                {
-                    if (!string.IsNullOrEmpty(allCustomTags))
-                        allCustomTags += "|";
-                    allCustomTags += ctag.TagName;
-                }
-
-                return allCustomTags;
-            }
-        }
-
-        public bool HasUnwatchedFiles
-        {
-            get
-            {
-                return UnwatchedEpisodeCount > 0;
-            }
-        }
+		public bool HasUnwatchedFiles
+		{
+			get
+			{
+				return UnwatchedEpisodeCount > 0;
+			}
+		}
 
         public bool AllFilesWatched
         {
@@ -750,10 +730,11 @@ namespace JMMClient
             TvDBSeriesV2 = new List<TvDB_SeriesVM>();
         }
 
-        public void Populate(JMMServerBinary.Contract_AnimeSeries contract)
-        {
-            AniDB_Anime = new AniDB_AnimeVM(contract.AniDBAnime);
-            NotifyPropertyChanged("AniDB_Anime");
+		public void Populate(JMMServerBinary.Contract_AnimeSeries contract)
+		{
+            //TODO we can get detailed in here
+			AniDB_Anime = new AniDB_AnimeVM(contract.AniDBAnime.AniDBAnime);
+			NotifyPropertyChanged("AniDB_Anime");
 
             MainListHelperVM.Instance.AllAnimeDictionary[AniDB_Anime.AnimeID] = AniDB_Anime;
 

@@ -9,54 +9,7 @@
 //------------------------------------------------------------------------------
 
 namespace JMMClient.JMMImageServer {
-    using System.Runtime.Serialization;
-    using System;
     
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Contract_Test", Namespace="http://schemas.datacontract.org/2004/07/JMMContracts")]
-    [System.SerializableAttribute()]
-    public partial class Contract_Test : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int AnimeEpisodeIDField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int AnimeEpisodeID {
-            get {
-                return this.AnimeEpisodeIDField;
-            }
-            set {
-                if ((this.AnimeEpisodeIDField.Equals(value) != true)) {
-                    this.AnimeEpisodeIDField = value;
-                    this.RaisePropertyChanged("AnimeEpisodeID");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="JMMImageServer.IJMMServerImage")]
@@ -67,9 +20,6 @@ namespace JMMClient.JMMImageServer {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServerImage/GetImageUsingPath", ReplyAction="http://tempuri.org/IJMMServerImage/GetImageUsingPathResponse")]
         byte[] GetImageUsingPath(string serverImagePath);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServerImage/GetTest", ReplyAction="http://tempuri.org/IJMMServerImage/GetTestResponse")]
-        JMMClient.JMMImageServer.Contract_Test GetTest(int maxRecords, int jmmuserID);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -105,10 +55,6 @@ namespace JMMClient.JMMImageServer {
         
         public byte[] GetImageUsingPath(string serverImagePath) {
             return base.Channel.GetImageUsingPath(serverImagePath);
-        }
-        
-        public JMMClient.JMMImageServer.Contract_Test GetTest(int maxRecords, int jmmuserID) {
-            return base.Channel.GetTest(maxRecords, jmmuserID);
         }
     }
 }

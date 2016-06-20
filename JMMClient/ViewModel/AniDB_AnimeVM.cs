@@ -15,39 +15,39 @@ namespace JMMClient
         private static Random posterRandom = new Random();
 
         public int AnimeID { get; set; }
-        public int EpisodeCount { get; set; }
-        public DateTime? AirDate { get; set; }
-        public DateTime? EndDate { get; set; }
-        public string URL { get; set; }
-        public string Picname { get; set; }
-        public int BeginYear { get; set; }
-        public int EndYear { get; set; }
-        public int AnimeType { get; set; }
-        public string MainTitle { get; set; }
-        public string FormattedTitle { get; set; }
-        public string AllTitles { get; set; }
-        public string AllTags { get; set; }
-        public string Description { get; set; }
-        public string DescriptionTruncated { get; set; }
-        public int EpisodeCountNormal { get; set; }
-        public int EpisodeCountSpecial { get; set; }
-        public int Rating { get; set; }
-        public int VoteCount { get; set; }
-        public int TempRating { get; set; }
-        public int TempVoteCount { get; set; }
-        public int AvgReviewRating { get; set; }
-        public int ReviewCount { get; set; }
-        public DateTime DateTimeUpdated { get; set; }
-        public DateTime DateTimeDescUpdated { get; set; }
-        public int ImageEnabled { get; set; }
-        public string AwardList { get; set; }
-        public int Restricted { get; set; }
-        public int? AnimePlanetID { get; set; }
-        public int? ANNID { get; set; }
-        public int? AllCinemaID { get; set; }
-        public int? AnimeNfo { get; set; }
-        public int? LatestEpisodeNumber { get; set; }
-        public int DisableExternalLinksFlag { get; set; }
+		public int EpisodeCount { get; set; }
+		public DateTime? AirDate { get; set; }
+		public DateTime? EndDate { get; set; }
+		public string URL { get; set; }
+		public string Picname { get; set; }
+		public int BeginYear { get; set; }
+		public int EndYear { get; set; }
+		public int AnimeType { get; set; }
+		public string MainTitle { get; set; }
+		public string FormattedTitle { get; set; }
+		public HashSet<string> AllTitles { get; set; }
+		public HashSet<string> AllTags { get; set; }
+		public string Description { get; set; }
+		public string DescriptionTruncated { get; set; }
+		public int EpisodeCountNormal { get; set; }
+		public int EpisodeCountSpecial { get; set; }
+		public int Rating { get; set; }
+		public int VoteCount { get; set; }
+		public int TempRating { get; set; }
+		public int TempVoteCount { get; set; }
+		public int AvgReviewRating { get; set; }
+		public int ReviewCount { get; set; }
+		public DateTime DateTimeUpdated { get; set; }
+		public DateTime DateTimeDescUpdated { get; set; }
+		public int ImageEnabled { get; set; }
+		public string AwardList { get; set; }
+		public int Restricted { get; set; }
+		public int? AnimePlanetID { get; set; }
+		public int? ANNID { get; set; }
+		public int? AllCinemaID { get; set; }
+		public int? AnimeNfo { get; set; }
+		public int? LatestEpisodeNumber { get; set; }
+		public int DisableExternalLinksFlag { get; set; }
 
 
         public AniDB_Anime_DefaultImageVM DefaultPoster { get; set; }
@@ -90,17 +90,17 @@ namespace JMMClient
         {
             this.AirDate = contract.AirDate;
             this.AllCinemaID = contract.AllCinemaID;
-            this.AllTags = contract.AllTags;
-            this.AllTitles = contract.AllTitles;
-            this.AnimeID = contract.AnimeID;
-            this.AnimeNfo = contract.AnimeNfo;
-            this.AnimePlanetID = contract.AnimePlanetID;
-            this.AnimeType = contract.AnimeType;
-            this.ANNID = contract.ANNID;
-            this.AvgReviewRating = contract.AvgReviewRating;
-            this.AwardList = contract.AwardList;
-            this.BeginYear = contract.BeginYear;
-            this.Description = Utils.ReparseDescription(contract.Description);
+            this.AllTags = new HashSet<string>(contract.AllTags);
+			this.AllTitles = new HashSet<string>(contract.AllTitles);
+			this.AnimeID = contract.AnimeID;
+			this.AnimeNfo = contract.AnimeNfo;
+			this.AnimePlanetID = contract.AnimePlanetID;
+			this.AnimeType = contract.AnimeType;
+			this.ANNID = contract.ANNID;
+			this.AvgReviewRating = contract.AvgReviewRating;
+			this.AwardList = contract.AwardList;
+			this.BeginYear = contract.BeginYear;
+			this.Description = Utils.ReparseDescription(contract.Description);
 
 
 
@@ -1382,11 +1382,11 @@ namespace JMMClient
         {
             int lowestLD = int.MaxValue;
 
-            foreach (string nm in this.AllTitles.Split('|'))
-            {
-                int ld = Utils.LevenshteinDistance(input, nm);
-                if (ld < lowestLD) lowestLD = ld;
-            }
+			foreach (string nm in this.AllTitles)
+			{
+				int ld = Utils.LevenshteinDistance(input, nm);
+				if (ld < lowestLD) lowestLD = ld;
+			}
 
             return lowestLD;
         }

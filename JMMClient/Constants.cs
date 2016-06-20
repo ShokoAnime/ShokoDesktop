@@ -119,44 +119,44 @@
             public static readonly string HasEpisodes = Properties.Resources.Rename_HasEpisodes;
         }
 
-        public struct FileRenameTest_Test
-        {
-            public static readonly string AnimeID = "A()";
-            public static readonly string GroupID = "G()";
-            public static readonly string FileVersion = "F()";
-            public static readonly string EpisodeNumber = "E()";
-            public static readonly string EpisodeCount = "X()";
-            public static readonly string RipSource = "R()";
-            public static readonly string AnimeType = "T()";
-            public static readonly string Year = "Y()";
-            public static readonly string DubLanguage = "D()";
-            public static readonly string SubLanguage = "S()";
-            public static readonly string Codec = "C()";
-            public static readonly string Tag = "I()";
-            public static readonly string VideoBitDepth = "Z()";
-            public static readonly string VideoResolutionWidth = "W()";
-            public static readonly string VideoResolutionHeight = "U()";
-            public static readonly string ManuallyLinked = "M()";
-            public static readonly string HasEpisodes = "N()";
-        }
+		public struct FileRenameTest_Test
+		{
+			public static readonly string AnimeID = "A()";
+			public static readonly string GroupID = "G()";
+			public static readonly string FileVersion = "F()";
+			public static readonly string EpisodeNumber = "E()";
+			public static readonly string EpisodeCount = "X()";
+			public static readonly string RipSource = "R()";
+			public static readonly string AnimeType = "T()";
+			public static readonly string Year = "Y()";
+			public static readonly string DubLanguage = "D()";
+			public static readonly string SubLanguage = "S()";
+			public static readonly string Codec = "C()";
+			public static readonly string Tag = "I()";
+			public static readonly string VideoBitDepth = "Z()";
+			public static readonly string VideoResolutionWidth = "W()";
+			public static readonly string VideoResolutionHeight = "U()";
+			public static readonly string ManuallyLinked = "M()";
+			public static readonly string HasEpisodes = "N()";
+		}
+		/*
+		public struct StaticGF
+		{
+			public static readonly int All = -999;
 
-        public struct StaticGF
-        {
-            public static readonly int All = -999;
+			public static readonly int Predefined = -900;
 
-            public static readonly int Predefined = -900;
+			public static readonly int Predefined_Years = -901;
+			public static readonly int Predefined_Tags = -902;
 
-            public static readonly int Predefined_Years = -901;
-            public static readonly int Predefined_Tags = -902;
-
-            public static readonly int Predefined_Years_Child = -921;
-            public static readonly int Predefined_Tags_Child = -922;
-        }
-
-        public struct URLS
-        {
-            public static readonly string MAL_Series = @"http://myanimelist.net/anime/{0}";
-            public static readonly string MAL_SeriesDiscussion = @"http://myanimelist.net/anime/{0}/{1}/forum";
+			public static readonly int Predefined_Years_Child = -921;
+			public static readonly int Predefined_Tags_Child = -922;
+		}
+		*/
+		public struct URLS
+		{
+			public static readonly string MAL_Series = @"http://myanimelist.net/anime/{0}";
+			public static readonly string MAL_SeriesDiscussion = @"http://myanimelist.net/anime/{0}/{1}/forum";
 
             public static readonly string AniDB_File = @"http://anidb.net/perl-bin/animedb.pl?show=file&fid={0}";
             public static readonly string AniDB_Episode = @"http://anidb.net/perl-bin/animedb.pl?show=ep&eid={0}";

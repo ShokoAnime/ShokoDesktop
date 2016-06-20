@@ -197,18 +197,17 @@ namespace JMMClient.Forms
             lnkAniDB.DisplayText = searchResult.AnimeID_Friendly;
             lnkAniDB.URL = searchResult.AniDB_SiteURL;
 
-            try
-            {
-                string[] titles = searchResult.Titles.Split('|');
-                //make sure list is unique
-                SortedDictionary<string, string> sortedTitles = new SortedDictionary<string, string>();
-                foreach (string tit in titles)
-                {
-                    if (!string.IsNullOrEmpty(tit))
-                    {
-                        sortedTitles[tit] = tit;
-                    }
-                }
+			try
+			{
+				//make sure list is unique
+				SortedDictionary<string, string> sortedTitles = new SortedDictionary<string, string>();
+				foreach (string tit in searchResult.Titles)
+				{
+					if (!string.IsNullOrEmpty(tit))
+					{
+						sortedTitles[tit] = tit;
+					}
+				}
 
                 foreach (string tit in sortedTitles.Values)
                 {
@@ -388,12 +387,12 @@ namespace JMMClient.Forms
             EvaluateRadioButtons();
         }
 
-        public void Init(AniDB_AnimeVM anime, string defaultGroupName)
-        {
-            AnimeSearchVM srch = new AnimeSearchVM();
-            srch.AnimeID = anime.AnimeID;
-            srch.MainTitle = anime.MainTitle;
-            srch.Titles = anime.AllTitles;
+		public void Init(AniDB_AnimeVM anime, string defaultGroupName)
+		{
+			AnimeSearchVM srch = new AnimeSearchVM();
+			srch.AnimeID = anime.AnimeID;
+			srch.MainTitle = anime.MainTitle;
+			srch.Titles = new HashSet<string>(anime.AllTitles);
 
             SetSelectedAnime(srch);
             EvaluateRadioButtons();

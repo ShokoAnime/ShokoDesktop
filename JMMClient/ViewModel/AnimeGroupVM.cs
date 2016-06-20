@@ -31,30 +31,30 @@ namespace JMMClient
         public int MissingEpisodeCount { get; set; }
         public int MissingEpisodeCountGroups { get; set; }
 
-        public DateTime? Stat_AirDate_Min { get; set; }
-        public DateTime? Stat_AirDate_Max { get; set; }
-        public DateTime? Stat_EndDate { get; set; }
-        public DateTime? Stat_SeriesCreatedDate { get; set; }
-        public decimal? Stat_UserVotePermanent { get; set; }
-        public decimal? Stat_UserVoteTemporary { get; set; }
-        public decimal? Stat_UserVoteOverall { get; set; }
-        public string Stat_AllTags { get; set; }
-        public string Stat_AllCustomTags { get; set; }
-        public string Stat_AllTitles { get; set; }
-        public bool Stat_IsComplete { get; set; }
-        public bool Stat_HasFinishedAiring { get; set; }
-        public bool Stat_IsCurrentlyAiring { get; set; }
-        public string Stat_AllVideoQuality { get; set; }
-        public string Stat_AllVideoQualityEpisodes { get; set; }
-        public string Stat_AudioLanguages { get; set; }
-        public string Stat_SubtitleLanguages { get; set; }
-        public bool Stat_HasTvDBLink { get; set; }
-        public bool Stat_HasMALLink { get; set; }
-        public bool Stat_HasMovieDBLink { get; set; }
-        public bool Stat_HasMovieDBOrTvDBLink { get; set; }
-        public int Stat_SeriesCount { get; set; }
-        public int Stat_EpisodeCount { get; set; }
-        public decimal Stat_AniDBRating { get; set; }
+		public DateTime? Stat_AirDate_Min { get; set; }
+		public DateTime? Stat_AirDate_Max { get; set; }
+		public DateTime? Stat_EndDate { get; set; }
+		public DateTime? Stat_SeriesCreatedDate { get; set; }
+		public decimal? Stat_UserVotePermanent { get; set; }
+		public decimal? Stat_UserVoteTemporary { get; set; }
+		public decimal? Stat_UserVoteOverall { get; set; }
+		public HashSet<string> Stat_AllTags { get; set; }
+        public HashSet<string> Stat_AllCustomTags { get; set; }
+		public HashSet<string> Stat_AllTitles { get; set; }
+		public bool Stat_IsComplete { get; set; }
+		public bool Stat_HasFinishedAiring { get; set; }
+		public bool Stat_IsCurrentlyAiring { get; set; }
+		public HashSet<string> Stat_AllVideoQuality { get; set; }
+		public HashSet<string> Stat_AllVideoQualityEpisodes { get; set; }
+		public HashSet<string> Stat_AudioLanguages { get; set; }
+		public HashSet<string> Stat_SubtitleLanguages { get; set; }
+		public bool Stat_HasTvDBLink { get; set; }
+		public bool Stat_HasMALLink { get; set; }
+		public bool Stat_HasMovieDBLink { get; set; }
+		public bool Stat_HasMovieDBOrTvDBLink { get; set; }
+		public int Stat_SeriesCount { get; set; }
+		public int Stat_EpisodeCount { get; set; }
+		public decimal Stat_AniDBRating { get; set; }
 
         private static AnimeGroupSortMethod sortMethod = AnimeGroupSortMethod.SortName;
         public static AnimeGroupSortMethod SortMethod
@@ -317,23 +317,21 @@ namespace JMMClient
             }
         }
 
-        public List<string> TagsList
-        {
-            get
-            {
-                List<string> tagList = new List<string>();
-                foreach (AnimeSeriesVM series in AllAnimeSeries)
-                {
-                    string catstemp = series.TagsString.Replace(" ", "");
-                    string[] tagsArray = series.TagsString.Split('|');
-                    foreach (string tag in tagsArray)
-                    {
-                        if (!tagList.Contains(tag)) tagList.Add(tag);
-                    }
-                }
-                return tagList;
-            }
-        }
+		public List<string> TagsList
+		{
+			get
+			{
+				List<string> tagList = new List<string>();
+				foreach (AnimeSeriesVM series in AllAnimeSeries)
+				{
+					foreach (string tag in series.AllTags)
+					{
+						if (!tagList.Contains(tag)) tagList.Add(tag);
+					}
+				}
+				return tagList;
+			}
+		}
 
         public List<string> AnimeTypesList
         {
@@ -780,30 +778,30 @@ namespace JMMClient
 
 
 
-            this.Stat_AirDate_Min = contract.Stat_AirDate_Min;
-            this.Stat_AirDate_Max = contract.Stat_AirDate_Max;
-            this.Stat_EndDate = contract.Stat_EndDate;
-            this.Stat_SeriesCreatedDate = contract.Stat_SeriesCreatedDate;
-            this.Stat_UserVoteOverall = contract.Stat_UserVoteOverall;
-            this.Stat_UserVotePermanent = contract.Stat_UserVotePermanent;
-            this.Stat_UserVoteTemporary = contract.Stat_UserVoteTemporary;
-            this.Stat_AllTags = contract.Stat_AllTags;
-            this.Stat_AllCustomTags = contract.Stat_AllCustomTags;
-            this.Stat_AllTitles = contract.Stat_AllTitles;
-            this.Stat_IsComplete = contract.Stat_IsComplete;
-            this.Stat_HasFinishedAiring = contract.Stat_HasFinishedAiring;
-            this.Stat_IsCurrentlyAiring = contract.Stat_IsCurrentlyAiring;
-            this.Stat_AllVideoQuality = contract.Stat_AllVideoQuality;
-            this.Stat_AllVideoQualityEpisodes = contract.Stat_AllVideoQuality_Episodes;
-            this.Stat_AudioLanguages = contract.Stat_AudioLanguages;
-            this.Stat_SubtitleLanguages = contract.Stat_SubtitleLanguages;
-            this.Stat_HasTvDBLink = contract.Stat_HasTvDBLink;
-            this.Stat_HasMALLink = contract.Stat_HasMALLink;
-            this.Stat_HasMovieDBLink = contract.Stat_HasMovieDBLink;
-            this.Stat_HasMovieDBOrTvDBLink = contract.Stat_HasMovieDBOrTvDBLink;
-            this.Stat_SeriesCount = contract.Stat_SeriesCount;
-            this.Stat_EpisodeCount = contract.Stat_EpisodeCount;
-            this.Stat_AniDBRating = contract.Stat_AniDBRating;
+			this.Stat_AirDate_Min = contract.Stat_AirDate_Min;
+			this.Stat_AirDate_Max = contract.Stat_AirDate_Max;
+			this.Stat_EndDate = contract.Stat_EndDate;
+			this.Stat_SeriesCreatedDate = contract.Stat_SeriesCreatedDate;
+			this.Stat_UserVoteOverall = contract.Stat_UserVoteOverall;
+			this.Stat_UserVotePermanent = contract.Stat_UserVotePermanent;
+			this.Stat_UserVoteTemporary = contract.Stat_UserVoteTemporary;
+            this.Stat_AllTags = new HashSet<string>(contract.Stat_AllTags);
+            this.Stat_AllCustomTags = new HashSet<string>(contract.Stat_AllCustomTags);
+			this.Stat_AllTitles = new HashSet<string>(contract.Stat_AllTitles);
+			this.Stat_IsComplete = contract.Stat_IsComplete;
+			this.Stat_HasFinishedAiring = contract.Stat_HasFinishedAiring;
+			this.Stat_IsCurrentlyAiring = contract.Stat_IsCurrentlyAiring;
+			this.Stat_AllVideoQuality = new HashSet<string>(contract.Stat_AllVideoQuality);
+			this.Stat_AllVideoQualityEpisodes = new HashSet<string>(contract.Stat_AllVideoQuality_Episodes);
+			this.Stat_AudioLanguages = new HashSet<string>(contract.Stat_AudioLanguages);
+			this.Stat_SubtitleLanguages = new HashSet<string>(contract.Stat_SubtitleLanguages);
+			this.Stat_HasTvDBLink = contract.Stat_HasTvDBLink;
+			this.Stat_HasMALLink = contract.Stat_HasMALLink;
+			this.Stat_HasMovieDBLink = contract.Stat_HasMovieDBLink;
+			this.Stat_HasMovieDBOrTvDBLink = contract.Stat_HasMovieDBOrTvDBLink;
+			this.Stat_SeriesCount = contract.Stat_SeriesCount;
+			this.Stat_EpisodeCount = contract.Stat_EpisodeCount;
+			this.Stat_AniDBRating = contract.Stat_AniDBRating;
 
             // editable members
             this.GroupName = contract.GroupName;

@@ -102,12 +102,13 @@ namespace JMMClient.ViewModel
 
             // only set if a proper match
 
-            switch (ConditionTypeEnum)
-            {
-                case GroupFilterConditionType.AirDate:
-                case GroupFilterConditionType.SeriesCreatedDate:
-                case GroupFilterConditionType.EpisodeAddedDate:
-                case GroupFilterConditionType.EpisodeWatchedDate:
+			switch (ConditionTypeEnum)
+			{
+				case GroupFilterConditionType.AirDate:
+				case GroupFilterConditionType.SeriesCreatedDate:
+				case GroupFilterConditionType.EpisodeAddedDate:
+				case GroupFilterConditionType.EpisodeWatchedDate:
+                case GroupFilterConditionType.LatestEpisodeAirDate:
 
                     if (ConditionOperatorEnum == GroupFilterOperator.LastXDays)
                         ConditionParameterString += ConditionParameter;
@@ -132,17 +133,18 @@ namespace JMMClient.ViewModel
                 case GroupFilterConditionType.AnimeType:
                 case GroupFilterConditionType.Tag:
                 case GroupFilterConditionType.CustomTags:
-                case GroupFilterConditionType.ReleaseGroup:
-                case GroupFilterConditionType.Studio:
-                case GroupFilterConditionType.VideoQuality:
-                case GroupFilterConditionType.AniDBRating:
-                case GroupFilterConditionType.UserRating:
-                case GroupFilterConditionType.AudioLanguage:
-                case GroupFilterConditionType.SubtitleLanguage:
-                    ConditionParameterString += ConditionParameter;
-                    break;
-            }
-        }
+				case GroupFilterConditionType.ReleaseGroup:
+				case GroupFilterConditionType.Studio:
+				case GroupFilterConditionType.VideoQuality:
+				case GroupFilterConditionType.AniDBRating:
+				case GroupFilterConditionType.UserRating:
+				case GroupFilterConditionType.AudioLanguage:
+				case GroupFilterConditionType.SubtitleLanguage:
+                case GroupFilterConditionType.Year:
+					ConditionParameterString += ConditionParameter;
+					break;
+			}
+		}
 
         public int CompareTo(GroupFilterConditionVM obj)
         {

@@ -2190,25 +2190,26 @@ namespace JMMClient
                     GroupFilterVM gf = (GroupFilterVM)obj;
 
 
-                    bool isnew = !gf.GroupFilterID.HasValue;
-                    if (gf.Validate())
-                    {
-                        gf.IsLocked = true;
-                        gf.IsBeingEdited = false;
-                        if (gf.Save() && isnew)
-                        {
-                            MainListHelperVM.Instance.AllGroupFilters.Add(gf);
-                            //MainListHelperVM.Instance.LastGroupFilterID = gf.GroupFilterID.Value;
-                            showChildWrappersWorker.RunWorkerAsync(null);
-                        }
-                        //showChildWrappersWorker.RunWorkerAsync(null);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
+					bool isnew = !gf.GroupFilterID.HasValue;
+					if (gf.Validate())
+					{
+						gf.IsLocked = true;
+						gf.IsBeingEdited = false;
+						if (gf.Save() && isnew)
+						{
+							MainListHelperVM.Instance.AllGroupFilters.Add(gf);
+						    MainListHelperVM.Instance.AllGroupFiltersDictionary[gf.GroupFilterID.Value] = gf;
+							//MainListHelperVM.Instance.LastGroupFilterID = gf.GroupFilterID.Value;
+							showChildWrappersWorker.RunWorkerAsync(null);
+						}
+						//showChildWrappersWorker.RunWorkerAsync(null);
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
 
             EnableDisableGroupControls(true);
         }
@@ -2293,15 +2294,20 @@ namespace JMMClient
                             i++;
                         }
 
-                        // remove from group filter list
-                        MainListHelperVM.Instance.AllGroupFilters.Remove(gf);
-
+						// remove from group filter list
+                        if (MainListHelperVM.Instance.AllGroupFilters.Contains(gf))
+                        {
+                            MainListHelperVM.Instance.AllGroupFilters.Remove(gf);
+                            if (gf.GroupFilterID.HasValue &&
+                                MainListHelperVM.Instance.AllGroupFiltersDictionary.ContainsKey(gf.GroupFilterID.Value))
+                                MainListHelperVM.Instance.AllGroupFiltersDictionary.Remove(gf.GroupFilterID.Value);
+                        }
                         // remove from current wrapper list
                         if (pos >= 0)
-                        {
-                            MainListHelperVM.Instance.CurrentWrapperList.RemoveAt(pos);
-                            //MainListHelperVM.Instance.ViewGroups.Refresh();
-                        }
+						{
+							MainListHelperVM.Instance.CurrentWrapperList.RemoveAt(pos);
+							//MainListHelperVM.Instance.ViewGroups.Refresh();
+						}
 
                     }
                 }

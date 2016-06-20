@@ -290,6 +290,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.ru.resx</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\AnimeFolderSummaryControl.xaml.cs">
       <DependentUpon>AnimeFolderSummaryControl.xaml</DependentUpon>
     </Compile>
@@ -1297,11 +1302,6 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -1336,7 +1336,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.de.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -1366,12 +1366,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Service References\JMMImageServer\JMMClient.JMMImageServer.Contract_Test.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\JMMImageServer\JMMServerImage.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AdminMessage.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

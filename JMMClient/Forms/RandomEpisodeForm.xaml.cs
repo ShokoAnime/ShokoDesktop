@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -342,68 +343,64 @@ namespace JMMClient.Forms
                 GroupFilterVM gf = LevelObject as GroupFilterVM;
                 if (gf == null) return serList;
 
-                List<AnimeGroupVM> grps = new List<AnimeGroupVM>(MainListHelperVM.Instance.AllGroups);
+				List<AnimeGroupVM> grps = gf.Groups[0].Select(a => MainListHelperVM.Instance.AllGroupsDictionary[a]).ToList();
 
-                foreach (AnimeGroupVM grp in grps)
-                {
-                    // ignore sub groups
-                    if (grp.AnimeGroupParentID.HasValue) continue;
 
-                    if (gf.EvaluateGroupFilter(grp))
-                    {
-                        foreach (AnimeSeriesVM ser in grp.AllAnimeSeries)
-                        {
-                            if (gf.EvaluateGroupFilter(ser))
-                            {
-                                // tags
-                                if (!string.IsNullOrEmpty(SelectedTags))
-                                {
-                                    string filterParm = SelectedTags.Trim();
+				foreach (AnimeGroupVM grp in grps)
+				{
+					// ignore sub groups
+					if (grp.AnimeGroupParentID.HasValue) continue;
 
-                                    string[] cats = filterParm.Split(',');
+					foreach (AnimeSeriesVM ser in grp.AllAnimeSeries)
+					{
+						if (gf.EvaluateGroupFilter(ser))
+						{
+							// tags
+							if (!string.IsNullOrEmpty(SelectedTags))
+							{
+								string filterParm = SelectedTags.Trim();
 
-                                    bool foundCat = false;
-                                    if (cboCatFilter.SelectedIndex == 1) foundCat = true; // all
+								string[] cats = filterParm.Split(',');
 
-                                    int index = 0;
-                                    foreach (string cat in cats)
-                                    {
-                                        if (cat.Trim().Length == 0) continue;
-                                        if (cat.Trim() == ",") continue;
+								bool foundCat = false;
+								if (cboCatFilter.SelectedIndex == 1) foundCat = true; // all
 
-                                        index = ser.TagsString.IndexOf(cat, 0, StringComparison.InvariantCultureIgnoreCase);
+								foreach (string cat in cats)
+								{
+									if (cat.Trim().Length == 0) continue;
+									if (cat.Trim() == ",") continue;
 
-                                        if (cboCatFilter.SelectedIndex == 0) // any
-                                        {
-                                            if (index > -1)
-                                            {
-                                                foundCat = true;
-                                                break;
-                                            }
-                                        }
-                                        else //all
-                                        {
-                                            if (index < 0)
-                                            {
-                                                foundCat = false;
-                                                break;
-                                            }
-                                        }
-                                    }
-                                    if (!foundCat) continue;
-                                }
+								    bool fnd = ser.AllTags.Contains(cat, StringComparer.InvariantCultureIgnoreCase);
+                                    
+									if (cboCatFilter.SelectedIndex == 0) // any
+									{
+										if (fnd)
+										{
+											foundCat = true;
+											break;
+										}
+									}
+									else //all
+									{
+										if (!fnd)
+										{
+											foundCat = false;
+											break;
+										}
+									}
+								}
+								if (!foundCat) continue;
+							}
 
-                                serList.Add(ser);
-                            }
-                        }
-                    }
-                }
-
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
+							serList.Add(ser);
+						}
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				Utils.ShowErrorMessage(ex);
+			}
 
             return serList;
         }
@@ -436,27 +433,27 @@ namespace JMMClient.Forms
                             if (cat.Trim().Length == 0) continue;
                             if (cat.Trim() == ",") continue;
 
-                            index = ser.TagsString.IndexOf(cat, 0, StringComparison.InvariantCultureIgnoreCase);
-
-                            if (cboCatFilter.SelectedIndex == 0) // any
-                            {
-                                if (index > -1)
-                                {
-                                    foundCat = true;
-                                    break;
-                                }
-                            }
-                            else //all
-                            {
-                                if (index < 0)
-                                {
-                                    foundCat = false;
-                                    break;
-                                }
-                            }
-                        }
-                        if (!foundCat) continue;
-                    }
+						    bool fnd = ser.AllTags.Contains(cat, StringComparer.InvariantCultureIgnoreCase);
+                            
+							if (cboCatFilter.SelectedIndex == 0) // any
+							{
+								if (fnd)
+								{
+									foundCat = true;
+									break;
+								}
+							}
+							else //all
+							{
+								if (!fnd)
+								{
+									foundCat = false;
+									break;
+								}
+							}
+						}
+						if (!foundCat) continue;
+					}
 
                     serList.Add(ser);
                 }

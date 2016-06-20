@@ -24,10 +24,10 @@ namespace JMMClient.ViewModel
         public List<AnimeTitleVM> AnimeTitlesSynonym { get; set; }
         public List<AnimeTitleVM> AnimeTitlesShort { get; set; }
 
-        public string Stat_AllVideoQuality { get; set; }
-        public string Stat_AllVideoQuality_Episodes { get; set; }
-        public string Stat_AudioLanguages { get; set; }
-        public string Stat_SubtitleLanguages { get; set; }
+		public HashSet<string> Stat_AllVideoQuality { get; set; }
+		public HashSet<string> Stat_AllVideoQuality_Episodes { get; set; }
+		public HashSet<string> Stat_AudioLanguages { get; set; }
+		public HashSet<string> Stat_SubtitleLanguages { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)
@@ -144,10 +144,10 @@ namespace JMMClient.ViewModel
                     UserRatingFormatted += ")";
                 }
 
-                this.Stat_AllVideoQuality = contract.Stat_AllVideoQuality;
-                this.Stat_AllVideoQuality_Episodes = contract.Stat_AllVideoQuality_Episodes;
-                this.Stat_AudioLanguages = contract.Stat_AudioLanguages;
-                this.Stat_SubtitleLanguages = contract.Stat_SubtitleLanguages;
+				this.Stat_AllVideoQuality = new HashSet<string>(contract.Stat_AllVideoQuality);
+				this.Stat_AllVideoQuality_Episodes = new HashSet<string>(contract.Stat_AllVideoQuality_Episodes);
+				this.Stat_AudioLanguages = new HashSet<string>(contract.Stat_AudioLanguages);
+				this.Stat_SubtitleLanguages = new HashSet<string>(contract.Stat_SubtitleLanguages);
 
                 foreach (JMMServerBinary.Contract_AnimeTag tag in contract.Tags)
                 {
