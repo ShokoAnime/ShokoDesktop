@@ -1,7 +1,20 @@
-﻿namespace JMMClient
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+
+namespace JMMClient
 {
-    static class ExtensionMethods
+    public static class ExtensionMethods
     {
+        public static bool SubContains(this IEnumerable<string> list, string part)
+        {
+            foreach (string n in list)
+            {
+                if (n.IndexOf(part, StringComparison.InvariantCultureIgnoreCase) >= 0)
+                    return true;
+            }
+            return false;
+        }
         /*static public bool SetSelectedItem(this TreeView treeView, object item)
 		{
 			return SetSelected(treeView, item);
