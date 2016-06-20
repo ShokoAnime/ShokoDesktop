@@ -121,7 +121,7 @@ namespace JMMClient.ViewModel
 			this.MainTitle = contract.MainTitle;
 			this.SeriesExists = contract.SeriesExists;
 			this.SeriesNotExists = !contract.SeriesExists;
-			this.Titles = new HashSet<string>(contract.Titles);
+			this.Titles = new HashSet<string>(contract.Titles,StringComparer.InvariantCultureIgnoreCase);
 		}
 	}
 }

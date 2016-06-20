@@ -785,9 +785,9 @@ namespace JMMClient
 			this.Stat_UserVoteOverall = contract.Stat_UserVoteOverall;
 			this.Stat_UserVotePermanent = contract.Stat_UserVotePermanent;
 			this.Stat_UserVoteTemporary = contract.Stat_UserVoteTemporary;
-            this.Stat_AllTags = new HashSet<string>(contract.Stat_AllTags);
-            this.Stat_AllCustomTags = new HashSet<string>(contract.Stat_AllCustomTags);
-			this.Stat_AllTitles = new HashSet<string>(contract.Stat_AllTitles);
+            this.Stat_AllTags = new HashSet<string>(contract.Stat_AllTags,StringComparer.InvariantCultureIgnoreCase);
+            this.Stat_AllCustomTags = new HashSet<string>(contract.Stat_AllCustomTags,StringComparer.InvariantCultureIgnoreCase);
+			this.Stat_AllTitles = new HashSet<string>(contract.Stat_AllTitles,StringComparer.InvariantCultureIgnoreCase);
 			this.Stat_IsComplete = contract.Stat_IsComplete;
 			this.Stat_HasFinishedAiring = contract.Stat_HasFinishedAiring;
 			this.Stat_IsCurrentlyAiring = contract.Stat_IsCurrentlyAiring;
