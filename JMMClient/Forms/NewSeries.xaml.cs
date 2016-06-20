@@ -392,7 +392,7 @@ namespace JMMClient.Forms
 			AnimeSearchVM srch = new AnimeSearchVM();
 			srch.AnimeID = anime.AnimeID;
 			srch.MainTitle = anime.MainTitle;
-			srch.Titles = new HashSet<string>(anime.AllTitles);
+			srch.Titles = new HashSet<string>(anime.AllTitles,StringComparer.InvariantCultureIgnoreCase);
 
             SetSelectedAnime(srch);
             EvaluateRadioButtons();

@@ -90,8 +90,8 @@ namespace JMMClient
         {
             this.AirDate = contract.AirDate;
             this.AllCinemaID = contract.AllCinemaID;
-            this.AllTags = new HashSet<string>(contract.AllTags);
-			this.AllTitles = new HashSet<string>(contract.AllTitles);
+            this.AllTags = new HashSet<string>(contract.AllTags,StringComparer.InvariantCultureIgnoreCase);
+			this.AllTitles = new HashSet<string>(contract.AllTitles,StringComparer.InvariantCultureIgnoreCase);
 			this.AnimeID = contract.AnimeID;
 			this.AnimeNfo = contract.AnimeNfo;
 			this.AnimePlanetID = contract.AnimePlanetID;

@@ -41,7 +41,7 @@ namespace JMMClient
 			// search the titles (romaji name, english names) etc from anidb
 			if (grp.Stat_AllTitles != null && grp.Stat_AllTitles.Count > 0)
             {
-                if (grp.Stat_AllTitles.Contains(filterText, StringComparer.InvariantCultureIgnoreCase))
+                if (grp.Stat_AllTitles.SubContains(filterText))
                     return true;
 			}
 
@@ -73,7 +73,7 @@ namespace JMMClient
                 return true;
 
             // search the romaji name, english names etc from anidb
-            if (anime.AllTitles.Contains(filterText, StringComparer.InvariantCultureIgnoreCase))
+            if (anime.AllTitles.SubContains(filterText))
                 return true;
 
 
