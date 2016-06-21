@@ -223,19 +223,19 @@
     <value>Tytuł główny</value>
   </data>
   <data name="AnimeTitlesOfficial" xml:space="preserve">
-    <value>Oficjalna</value>
+    <value>Tytuł oficjalny</value>
   </data>
   <data name="AnimeTitlesShort" xml:space="preserve">
-    <value>Krótki</value>
+    <value>Tytuł krótki</value>
   </data>
   <data name="AnimeTitlesSynonym" xml:space="preserve">
     <value>Synonim</value>
   </data>
   <data name="Categories" xml:space="preserve">
-    <value>Kategorii</value>
+    <value>Kategorie</value>
   </data>
   <data name="Tags" xml:space="preserve">
-    <value>Tagi (może zawierać spoilery)</value>
+    <value>Tagi (mogą zawierać spoilery)</value>
   </data>
   <data name="CategoryWeighting" xml:space="preserve">
     <value>Ważenie</value>
@@ -244,10 +244,10 @@
     <value>Zatwierdzenia</value>
   </data>
   <data name="Episodes_AvAll" xml:space="preserve">
-    <value>Wszystkie odcinki</value>
+    <value>Wszystkie dostępne odcinki</value>
   </data>
   <data name="Episodes_AvMissing" xml:space="preserve">
-    <value>Nie Aavailable plików</value>
+    <value>Wszystkie brakujące odcinki</value>
   </data>
   <data name="Episodes_AvOnly" xml:space="preserve">
     <value>Tylko dostępne pliki</value>
@@ -256,13 +256,13 @@
     <value>Wszystkie</value>
   </data>
   <data name="Episodes_Watched_Unwatched" xml:space="preserve">
-    <value>Unwatched</value>
+    <value>Nieobejrzane</value>
   </data>
   <data name="Episodes_Watched_Watched" xml:space="preserve">
-    <value>Oglądałem</value>
+    <value>Obejrzane</value>
   </data>
   <data name="Play" xml:space="preserve">
-    <value>Zagraj</value>
+    <value>Odtwórz</value>
   </data>
   <data name="Tooltip_FileFound" xml:space="preserve">
     <value>Ten plik jest dostępny</value>
@@ -310,7 +310,7 @@
     <value>Odcinek Specjalny</value>
   </data>
   <data name="AnimeType_Web" xml:space="preserve">
-    <value>Www</value>
+    <value>WWW</value>
   </data>
   <data name="Ongoing" xml:space="preserve">
     <value>Bieżących</value>
@@ -334,16 +334,16 @@
     <value>Brak</value>
   </data>
   <data name="Tooltip_MissingEps" xml:space="preserve">
-    <value>Brakujące odcinki ze wszystkich wersji grup</value>
+    <value>Brakujące odcinki ze wszystkich grup</value>
   </data>
   <data name="Tooltip_MissingEpsGroups" xml:space="preserve">
-    <value>Brakujące odcinki od wersji grup, które zbieram</value>
+    <value>Brakujące odcinki z grup, które zbieram</value>
   </data>
   <data name="Tooltip_QueueImages" xml:space="preserve">
-    <value>Pobierz obrazy kolejce czeka</value>
+    <value>Kolejka oczekujących obrazów do pobrania</value>
   </data>
   <data name="Specials" xml:space="preserve">
-    <value>Promocje</value>
+    <value>Odcinek Specjalny</value>
   </data>
   <data name="GroupFilter_Missing" xml:space="preserve">
     <value>Brakuje odcinków</value>
@@ -367,7 +367,7 @@
     <value>Grupa</value>
   </data>
   <data name="AddSubGroup" xml:space="preserve">
-    <value>Nowa grupa Sub</value>
+    <value>Nowa podgrupa (subgroup)</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Edycja</value>
@@ -376,7 +376,7 @@
     <value>Anuluj</value>
   </data>
   <data name="SubGroup" xml:space="preserve">
-    <value>Grupa sub</value>
+    <value>Podgrupa</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Ustawienia</value>
@@ -385,7 +385,7 @@
     <value>Nowa seria</value>
   </data>
   <data name="MoveSeries" xml:space="preserve">
-    <value>Przenieść serii</value>
+    <value>Przenieść serię</value>
   </data>
   <data name="MoveToGroup" xml:space="preserve">
     <value>Przenieść do wybranej grupy</value>
@@ -397,19 +397,19 @@
     <value>Kolejka AniDB</value>
   </data>
   <data name="QueueHasher" xml:space="preserve">
-    <value>Hasher kolejki</value>
+    <value>Kolejka Hasher-a</value>
   </data>
   <data name="Tooltip_QueueGeneral" xml:space="preserve">
     <value>Polecenia AniDB w kolejce</value>
   </data>
   <data name="Tooltip_QueueHasher" xml:space="preserve">
-    <value>Pliki czekają, aby być mieszany</value>
+    <value>Pliki oczekujące na wyliczenie sumy kontrolnej</value>
   </data>
   <data name="Pause" xml:space="preserve">
     <value>Pauza</value>
   </data>
   <data name="Resume" xml:space="preserve">
-    <value>Życiorys</value>
+    <value>Wznów</value>
   </data>
   <data name="Video_Bluray" xml:space="preserve">
     <value>Blu-ray</value>
@@ -427,10 +427,10 @@
     <value>Nowy Folder</value>
   </data>
   <data name="DropDestination" xml:space="preserve">
-    <value>Upuść obiekt docelowy</value>
+    <value>Folder docelowy</value>
   </data>
   <data name="DropSource" xml:space="preserve">
-    <value>Usuwanie źródła</value>
+    <value>Folder źródłowy</value>
   </data>
   <data name="ImportFolderName" xml:space="preserve">
     <value>Nazwa folderu import</value>
@@ -439,7 +439,7 @@
     <value>Ścieżka folderu import</value>
   </data>
   <data name="LocalMapping" xml:space="preserve">
-    <value>Mapowanie lokalnego</value>
+    <value>Lokalne mapowanie</value>
   </data>
   <data name="LocalPath" xml:space="preserve">
     <value>Ścieżka lokalna</value>
@@ -448,25 +448,25 @@
     <value>Szczegóły serwera</value>
   </data>
   <data name="MSG_ERR_DropSourceDestCheck" xml:space="preserve">
-    <value>Folder importu nie może być upuszczania źródła i miejsca docelowego upuszczania</value>
+    <value>Folder importu nie może być jednocześnie folderem źródłowym i docelowym</value>
   </data>
   <data name="MSG_ERR_ImportFolderLocationCheck" xml:space="preserve">
-    <value>Lokalizacja folderu przywozu nie może być puste. Wprowadź prawidłową ścieżkę serwera OMM</value>
+    <value>Ścieżka folderu nie może być pusta lub niepoprawna. Wprowadź prawidłową ścieżkę serwera</value>
   </data>
   <data name="TAB_UnrecognisedFiles" xml:space="preserve">
-    <value>Nierozpoznane</value>
+    <value>Nierozpoznane pliki</value>
   </data>
   <data name="Confirm" xml:space="preserve">
-    <value>Potwierdzić</value>
+    <value>Potwierdź</value>
   </data>
   <data name="NothingSelected" xml:space="preserve">
-    <value>Nic nie wybrany</value>
+    <value>Nie wybrano nic</value>
   </data>
   <data name="SelectSeriesEp" xml:space="preserve">
-    <value>Wybierz serii i odcinek</value>
+    <value>Wybierz odcinek</value>
   </data>
   <data name="AssociateFile" xml:space="preserve">
-    <value>Łączenie pliku z odcinka</value>
+    <value>Łączenie pliku z odcinkiem</value>
   </data>
   <data name="Ignore" xml:space="preserve">
     <value>Ignoruj</value>
@@ -481,10 +481,10 @@
     <value>Wybrane pliki</value>
   </data>
   <data name="StartingEpisodeNumber" xml:space="preserve">
-    <value>Początkowy odcinek numer</value>
+    <value>Początkowy numer odcinka</value>
   </data>
   <data name="Existing" xml:space="preserve">
-    <value>Istniejących</value>
+    <value>Istniejący</value>
   </data>
   <data name="SelectGroup" xml:space="preserve">
     <value>Wybierz grupę</value>
