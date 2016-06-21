@@ -202,7 +202,7 @@
     <value>TvDB</value>
   </data>
   <data name="ViewLabel" xml:space="preserve">
-    <value>View: </value>
+    <value>View:</value>
   </data>
   <data name="Back" xml:space="preserve">
     <value>Back</value>
@@ -592,7 +592,7 @@
     <value>Search</value>
   </data>
   <data name="Tooltip_GroupSearch" xml:space="preserve">
-    <value>Search  groups by name (in any language), category or tag</value>
+    <value>Search groups by name (in any language), category or tag</value>
   </data>
   <data name="AniDBDownloadChar" xml:space="preserve">
     <value>Download Characters/Creators</value>
@@ -1143,7 +1143,7 @@
     <value>Multiple Files</value>
   </data>
   <data name="INFO_MultipleFiles" xml:space="preserve">
-    <value>Multiple files are where you have two or more files for the same episode. This utility will let you examine all these occurrences, and decide which ones you want to  keep</value>
+    <value>Multiple files are where you have two or more files for the same episode. This utility will let you examine all these occurrences, and decide which ones you want to keep</value>
   </data>
   <data name="Loading" xml:space="preserve">
     <value>Loading...</value>
@@ -1539,7 +1539,7 @@
     <value>Select the default series for</value>
   </data>
   <data name="DefSeries2" xml:space="preserve">
-    <value>Selecting a default series means that all images that are dsiplayed for a group will use that </value>
+    <value>Selecting a default series means that all images that are dsiplayed for a group will use that</value>
   </data>
   <data name="DefSeries3" xml:space="preserve">
     <value>default series instead of a random series within the group</value>
@@ -1713,7 +1713,7 @@
     <value>What action to take for a file when you delete it from you local collection.
 Delete File (AniDB) - Removes file from your AniDB MyList.
 Delete File (Local DB) - Remove file from your local DB only.
-Mark Deleted -  Leaves the file on your list, but changes the state to deleted.
+Mark Deleted - Leaves the file on your list, but changes the state to deleted.
 Mark External (CD/DVD) - Leaves the file on your list, but changes the state to external storage.
 Mark Unknown - Leaves the file on your list, but changes the state to unkown.</value>
   </data>
@@ -1829,7 +1829,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Change Password</value>
   </data>
   <data name="ChangingPassword" xml:space="preserve">
-    <value>Changing Password For: </value>
+    <value>Changing Password For:</value>
   </data>
   <data name="WhatDoesThisMean" xml:space="preserve">
     <value>What Does This Mean?</value>
@@ -1937,16 +1937,16 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>AniDB Start:</value>
   </data>
   <data name="Search_Trakt" xml:space="preserve">
-    <value>Trakt: </value>
+    <value>Trakt:</value>
   </data>
   <data name="Search_Approved" xml:space="preserve">
     <value>Admin Approved</value>
   </data>
   <data name="Search_TvDB" xml:space="preserve">
-    <value>TvDB: </value>
+    <value>TvDB:</value>
   </data>
   <data name="Search_MAL" xml:space="preserve">
-    <value>MAL: </value>
+    <value>MAL:</value>
   </data>
   <data name="SelectAniDBTitle_SelectName" xml:space="preserve">
     <value>Select an override name</value>
@@ -2720,10 +2720,10 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>AniDB Start:</value>
   </data>
   <data name="CommunityLinks_TvDB" xml:space="preserve">
-    <value>TvDB: </value>
+    <value>TvDB:</value>
   </data>
   <data name="CommunityLinks_Trakt" xml:space="preserve">
-    <value>Trakt: </value>
+    <value>Trakt:</value>
   </data>
   <data name="CommunityLinks_TMDb" xml:space="preserve">
     <value>The Movie DB</value>
@@ -2867,7 +2867,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Change Password</value>
   </data>
   <data name="Sort_Error" xml:space="preserve">
-    <value>Error trying to sort list of </value>
+    <value>Error trying to sort list of</value>
   </data>
   <data name="Sort_Using" xml:space="preserve">
     <value>using</value>
@@ -2885,7 +2885,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>MultiSort parameter rgSortBy was passed an empty field name in rgSortBy[</value>
   </data>
   <data name="Selected_DoesNotExist" xml:space="preserve">
-    <value>The specified file or folder doesn't exists : </value>
+    <value>The specified file or folder doesn't exists :</value>
   </data>
   <data name="ValueCompare_PropertyName" xml:space="preserve">
     <value>Property name</value>
@@ -2894,7 +2894,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>not found while trying to compare objects of type</value>
   </data>
   <data name="ValueCompare_FieldName" xml:space="preserve">
-    <value>Field name </value>
+    <value>Field name</value>
   </data>
   <data name="Video_VLCError1" xml:space="preserve">
     <value>Unable to parse URI in VLC ini file</value>
@@ -2912,7 +2912,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>has changed to</value>
   </data>
   <data name="Video_Updating" xml:space="preserve">
-    <value>Updating to watched by media player: </value>
+    <value>Updating to watched by media player:</value>
   </data>
   <data name="AniDB_DataMissing" xml:space="preserve">
     <value>Data Missing</value>
@@ -2996,7 +2996,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Anime ID:</value>
   </data>
   <data name="JMMServer_TraktAuth" xml:space="preserve">
-    <value>Trakt Authorization Status </value>
+    <value>Trakt Authorization Status</value>
   </data>
   <data name="JMMServer_Success" xml:space="preserve">
     <value>Success</value>
@@ -3011,7 +3011,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>File</value>
   </data>
   <data name="Playlist_Name" xml:space="preserve">
-    <value>Enter playlist name: </value>
+    <value>Enter playlist name:</value>
   </data>
   <data name="Playlist_NameBlank" xml:space="preserve">
     <value>Please enter a playlist name</value>
@@ -3194,7 +3194,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Default Video Player</value>
   </data>
   <data name="VideoPlayer_DefaultNote" xml:space="preserve">
-    <value>JMM automatically uses the default Windows video player. If you'd like to use a different video player you'll need to add the video player's executable to the PATH system variable. </value>
+    <value>JMM automatically uses the default Windows video player. If you'd like to use a different video player you'll need to add the video player's executable to the PATH system variable.</value>
   </data>
   <data name="VideoPlayer_DefaultPlayer" xml:space="preserve">
     <value>Default Player</value>
@@ -3469,9 +3469,6 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="AniDBMyListDelete" xml:space="preserve">
     <value>Delete File (AniDB)</value>
   </data>
-  <data name="DeleteFileAniDB" xml:space="preserve">
-    <value>Delete File (AniDB)</value>
-  </data>
   <data name="DeleteFiles_Name" xml:space="preserve">
     <value>Delete Files</value>
   </data>
@@ -3518,7 +3515,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>New Playlist</value>
   </data>
   <data name="EpisodeDetail_PlaylistMenu" xml:space="preserve">
-    <value>Playlist Menu: </value>
+    <value>Playlist Menu:</value>
   </data>
   <data name="EpisodeDetail_PlaylistMissing" xml:space="preserve">
     <value>Could not find playlist</value>
@@ -4116,5 +4113,47 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   </data>
   <data name="Link_RelationSettings" xml:space="preserve">
     <value>http://jmediamanager.org/jmm-desktop/settings/#essential</value>
+  </data>
+  <data name="MAL_LoginCorrect" xml:space="preserve">
+    <value>MAL login successful, settings saved.</value>
+  </data>
+  <data name="MAL_SearchInfo" xml:space="preserve">
+    <value>Valid MAL credentials are required in order to use this feature</value>
+  </data>
+  <data name="CheckCred" xml:space="preserve">
+    <value>Check Credentials</value>
+  </data>
+  <data name="MAL_CheckCred" xml:space="preserve">
+    <value>Check MAL Credentials</value>
+  </data>
+  <data name="Trakt_SearchInfo" xml:space="preserve">
+    <value>Valid Trakt credentials are required in order to use this feature</value>
+  </data>
+  <data name="Trakt_CheckCred" xml:space="preserve">
+    <value>Check Trakt Credentials</value>
+  </data>
+  <data name="Video_Hi08P" xml:space="preserve">
+    <value>8bit</value>
+  </data>
+  <data name="Video_Hi12P" xml:space="preserve">
+    <value>12bit</value>
+  </data>
+  <data name="VideoPlayer_MPCIntegrationTypeNote" xml:space="preserve">
+    <value>There are 2 types of MPC Integrations:</value>
+  </data>
+  <data name="VideoPlayer_MPCWebUIPort" xml:space="preserve">
+    <value>MPC Web UI Port</value>
+  </data>
+  <data name="VideoPlayer_MPCNote2" xml:space="preserve">
+    <value>For Web UI integration you must enable the following option in View &gt; Options &gt; Player &gt; Web Interface; Listen On Port. The default listening port is 13579 which you can use, if you decide to change it make sure you change it in the box below.</value>
+  </data>
+  <data name="VideoPlayer_MPCClear" xml:space="preserve">
+    <value>Clear MPC INI Folder</value>
+  </data>
+  <data name="VideoPlayer_PotPlayerClear" xml:space="preserve">
+    <value>Clear Pot Player INI Folder</value>
+  </data>
+  <data name="VideoPlayer_VLCClear" xml:space="preserve">
+    <value>Clear VLC INI Folder</value>
   </data>
 </root>

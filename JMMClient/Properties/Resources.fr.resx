@@ -202,7 +202,7 @@
     <value>TvDB</value>
   </data>
   <data name="ViewLabel" xml:space="preserve">
-    <value>Vue : </value>
+    <value>Vue :</value>
   </data>
   <data name="Back" xml:space="preserve">
     <value>Précédent</value>
@@ -1534,7 +1534,7 @@
     <value>Sélectionnez la série par défaut pour</value>
   </data>
   <data name="DefSeries2" xml:space="preserve">
-    <value>En sélectionnant une série par défaut signifie que toutes les images qui sont dsiplayed pour un groupe qui utilise </value>
+    <value>En sélectionnant une série par défaut signifie que toutes les images qui sont dsiplayed pour un groupe qui utilise</value>
   </data>
   <data name="DefSeries3" xml:space="preserve">
     <value>série par défaut au lieu d'une série au hasard au sein du groupe</value>
@@ -1824,7 +1824,7 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
     <value>Changer mot de passe</value>
   </data>
   <data name="ChangingPassword" xml:space="preserve">
-    <value>Changer le mot de passe : </value>
+    <value>Changer le mot de passe :</value>
   </data>
   <data name="WhatDoesThisMean" xml:space="preserve">
     <value>Que cela signifie-t-il ?</value>
@@ -1929,16 +1929,16 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
     <value>AniDB Start :</value>
   </data>
   <data name="Search_Trakt" xml:space="preserve">
-    <value>Trakt : </value>
+    <value>Trakt :</value>
   </data>
   <data name="Search_Approved" xml:space="preserve">
     <value>Admin a approuvé</value>
   </data>
   <data name="Search_TvDB" xml:space="preserve">
-    <value>TvDB : </value>
+    <value>TvDB :</value>
   </data>
   <data name="Search_MAL" xml:space="preserve">
-    <value>MAL : </value>
+    <value>MAL :</value>
   </data>
   <data name="SelectAniDBTitle_SelectName" xml:space="preserve">
     <value>Sélectionnez un nom de remplacement</value>
@@ -2682,10 +2682,10 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
     <value>AniDB Start :</value>
   </data>
   <data name="CommunityLinks_TvDB" xml:space="preserve">
-    <value>TvDB : </value>
+    <value>TvDB :</value>
   </data>
   <data name="CommunityLinks_Trakt" xml:space="preserve">
-    <value>Trakt : </value>
+    <value>Trakt :</value>
   </data>
   <data name="CommunityLinks_TMDb" xml:space="preserve">
     <value>Le film DB</value>
@@ -2826,13 +2826,13 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
     <value>Changer mot de passe</value>
   </data>
   <data name="Sort_Error" xml:space="preserve">
-    <value>Erreur en essayant de trier la liste des </value>
+    <value>Erreur en essayant de trier la liste des</value>
   </data>
   <data name="Sort_PassedEmpty" xml:space="preserve">
     <value>MultiSort paramètre rgSortBy a été adopté un nom de champ vide en rgSortBy [</value>
   </data>
   <data name="Selected_DoesNotExist" xml:space="preserve">
-    <value>Le fichier spécifié ou le dossier n'existe pas : </value>
+    <value>Le fichier spécifié ou le dossier n'existe pas :</value>
   </data>
   <data name="Video_VLCError1" xml:space="preserve">
     <value>Impossible d'analyser des URI dans le fichier ini VLC</value>
@@ -2850,7 +2850,7 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
     <value>a changé</value>
   </data>
   <data name="Video_Updating" xml:space="preserve">
-    <value>Mise à jour à suivre par le lecteur multimédia : </value>
+    <value>Mise à jour à suivre par le lecteur multimédia :</value>
   </data>
   <data name="AniDB_DataMissing" xml:space="preserve">
     <value>Données manquantes</value>
@@ -2946,7 +2946,7 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
     <value>Fichier</value>
   </data>
   <data name="Playlist_Name" xml:space="preserve">
-    <value>Entrez le nom de la playlist : </value>
+    <value>Entrez le nom de la playlist :</value>
   </data>
   <data name="Playlist_NameBlank" xml:space="preserve">
     <value>Veuillez entrer un nom de la playlist</value>
@@ -3378,7 +3378,7 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
     <value>Fichier INI trouvé. Exemple de fichier récemment regardé...</value>
   </data>
   <data name="VideoPlayer_DefaultNote" xml:space="preserve">
-    <value>JMM utilise automatiquement le lecteur vidéo de Windows par défaut. Si vous souhaitez utiliser un autre lecteur vidéo, que vous devrez ajouter exécutable du joueur de la vidéo à la variable système PATH. </value>
+    <value>JMM utilise automatiquement le lecteur vidéo de Windows par défaut. Si vous souhaitez utiliser un autre lecteur vidéo, que vous devrez ajouter exécutable du joueur de la vidéo à la variable système PATH.</value>
   </data>
   <data name="AniDBMyListDeleteLocal" xml:space="preserve">
     <value>Supprimer le fichier (DB Local)</value>
@@ -3402,9 +3402,6 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
     <value>CD/DVD</value>
   </data>
   <data name="AniDBMyListDelete" xml:space="preserve">
-    <value>Supprimer le fichier (AniDB)</value>
-  </data>
-  <data name="Delete File (AniDB)" xml:space="preserve">
     <value>Supprimer le fichier (AniDB)</value>
   </data>
   <data name="DeleteFiles_Name" xml:space="preserve">
@@ -3453,7 +3450,7 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
     <value>Nouvelle liste de lecture</value>
   </data>
   <data name="EpisodeDetail_PlaylistMenu" xml:space="preserve">
-    <value>Menu de la playlist : </value>
+    <value>Menu de la playlist :</value>
   </data>
   <data name="EpisodeDetail_PlaylistMissing" xml:space="preserve">
     <value>Playlist est introuvable</value>
@@ -3498,7 +3495,7 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
     <value>pas trouvé en essayant de comparer des objets de type</value>
   </data>
   <data name="ValueCompare_FieldName" xml:space="preserve">
-    <value>Nom de domaine </value>
+    <value>Nom de domaine</value>
   </data>
   <data name="SelectGroupSeries_Select" xml:space="preserve">
     <value>Sélectionnez un</value>
@@ -3543,7 +3540,7 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
     <value>Exception dans MultiSort lors du tri d'une liste de</value>
   </data>
   <data name="JMMServer_TraktAuth" xml:space="preserve">
-    <value>Trakt autorisation </value>
+    <value>Trakt autorisation</value>
   </data>
   <data name="Group_GroupCount" xml:space="preserve">
     <value>Groupes</value>
@@ -4119,22 +4116,22 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
     <value>MPC Web UI Port</value>
   </data>
   <data name="VideoPlayer_MPCNote1" xml:space="preserve">
-    <value>Pour INI, vous devez activer ce qui suit l’intégration options en vue &gt; Options &gt; joueur ; (1) magasin paramètres au fichier .ini et (2) conserver l’historique des fichiers récemment regardés (3) Position du fichier Remember. L’emplacement du fichier INI est généralement quelque chose comme C:\Program Files (x86) \Combined Community Codec Pack\MPC</value>
+    <value>Pour l'intégration de MPC que vous devez activer les deux options (1) magasin paramètres au fichier .ini et (2) conserver historique de récemment regardé les fichiers. Voir la capture d'écran ci-dessous pour plus de détails. L'emplacement du MPC est généralement quelque chose comme C:\Program Files (x 86) \Combined Community Codec Pack\MPC</value>
   </data>
   <data name="VideoPlayer_PotPlayerNote" xml:space="preserve">
-    <value>Pour intégration PotPlayer vous devez activer le suivant options préférences (1) &gt; générales &gt; magasin paramètres à .ini fichier de préférences (2) &gt; lecture &gt; jouer du dernier point. L’emplacement du fichier .ini PlotPlayer est généralement quelque chose comme C:\Users\username\AppData\Roaming\PotPlayer64\PotPlayer64.ini</value>
+    <value>Pour intégration PotPlayer vous devez activer le suivant options préférences (1) &gt; générales &gt; magasin paramètres à .ini fichier de préférences (2) &gt; lecture &gt; jouer du dernier point. Voir la capture d'écran ci-dessous pour plus de détails. L'emplacement du fichier .ini PlotPlayer est généralement quelque chose comme C:\Users\username\AppData\Roaming\PotPlayer64\PotPlayer64.ini</value>
   </data>
   <data name="VideoPlayer_MPCNote2" xml:space="preserve">
     <value>Pour l’intégration de l’interface utilisateur Web, vous devez activer l’option suivante en vue &gt; Options &gt; joueur &gt; Interface Web ; Écouter sur le Port. La valeur par défaut écoute le port est 13579 qui vous permet, si vous décidez de changer il Assurez-vous que vous modifier dans la boîte ci-dessous.</value>
   </data>
   <data name="VideoPlayer_MPCTest" xml:space="preserve">
-    <value>Fichier INI MPC test</value>
+    <value>Fichier de test MPC</value>
   </data>
   <data name="VideoPlayer_VLCTest" xml:space="preserve">
-    <value>Fichier INI VLC test</value>
+    <value>Fichier de test VLC</value>
   </data>
   <data name="VideoPlayer_PotPlayerTest" xml:space="preserve">
-    <value>Fichier INI PotPlayer test</value>
+    <value>PotPlayer fichier test</value>
   </data>
   <data name="VideoPlayer_MPCClear" xml:space="preserve">
     <value>Effacer le dossier INI MPC</value>
@@ -4146,6 +4143,15 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
     <value>Effacer le dossier VLC INI</value>
   </data>
   <data name="VideoPlayer_VLCNote" xml:space="preserve">
-    <value>Utilisable avec JMM n’importe quelle version de VLC pour la lecture de fichier général. Toutefois seulement VLC version 2.2 et plus récentes sont en mesure de tirer parti de l’intégration de lecteur vidéo comme "Résumé de la dernière position" n’est pas disponible dans les anciennes versions. VLC permet aussi les paramètres requis par défaut si vous n’avez pas besoin de faire aucune configuration supplémentaire. L’emplacement du fichier .ini VLC est généralement quelque chose comme C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini</value>
+    <value>VLC 2.2 + enregistre les fichiers récents et les horodatages par défaut (et la désactivation est une option « Avancé »). Des versions plus anciennes ne supportent pas la fonctionnalité de 'Reprise de la dernière position'. L'emplacement du fichier .ini VLC est généralement quelque chose comme C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini</value>
+  </data>
+  <data name="GroupFilterConditionType_LatestEpisodeAirDate" xml:space="preserve">
+    <value>Dernier épisode Date de diffusion</value>
+  </data>
+  <data name="GroupFilterConditionType_Year" xml:space="preserve">
+    <value>Année</value>
+  </data>
+  <data name="GroupFilterSorting_GroupFilter" xml:space="preserve">
+    <value>Nom de filtre de groupe</value>
   </data>
 </root>

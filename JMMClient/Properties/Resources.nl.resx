@@ -199,7 +199,7 @@
     <value>TvDB</value>
   </data>
   <data name="ViewLabel" xml:space="preserve">
-    <value>Weergave: </value>
+    <value>Weergave:</value>
   </data>
   <data name="Back" xml:space="preserve">
     <value>Terug</value>
@@ -1525,7 +1525,7 @@
     <value>Selecteer de reeks van de standaard voor</value>
   </data>
   <data name="DefSeries2" xml:space="preserve">
-    <value>Selecteren van een reeks standaard betekent dat alle afbeeldingen die dsiplayed voor een groep zijn die zal gebruiken </value>
+    <value>Selecteren van een reeks standaard betekent dat alle afbeeldingen die dsiplayed voor een groep zijn die zal gebruiken</value>
   </data>
   <data name="DefSeries3" xml:space="preserve">
     <value>standaard serie in plaats van een willekeurige reeks binnen de groep</value>
@@ -1815,7 +1815,7 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>Wachtwoord wijzigen</value>
   </data>
   <data name="ChangingPassword" xml:space="preserve">
-    <value>Wachtwoord voor wijzigen: </value>
+    <value>Wachtwoord voor wijzigen:</value>
   </data>
   <data name="WhatDoesThisMean" xml:space="preserve">
     <value>Wat betekent dit?</value>
@@ -1923,16 +1923,16 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>AniDB Start:</value>
   </data>
   <data name="Search_Trakt" xml:space="preserve">
-    <value>Trakt: </value>
+    <value>Trakt:</value>
   </data>
   <data name="Search_Approved" xml:space="preserve">
     <value>Admin goedgekeurd</value>
   </data>
   <data name="Search_TvDB" xml:space="preserve">
-    <value>TvDB: </value>
+    <value>TvDB:</value>
   </data>
   <data name="Search_MAL" xml:space="preserve">
-    <value>MAL: </value>
+    <value>MAL:</value>
   </data>
   <data name="SelectAniDBTitle_SelectName" xml:space="preserve">
     <value>Selecteer de naam van een override</value>
@@ -2676,10 +2676,10 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>AniDB Start:</value>
   </data>
   <data name="CommunityLinks_TvDB" xml:space="preserve">
-    <value>TvDB: </value>
+    <value>TvDB:</value>
   </data>
   <data name="CommunityLinks_Trakt" xml:space="preserve">
-    <value>Trakt: </value>
+    <value>Trakt:</value>
   </data>
   <data name="CommunityLinks_TMDb" xml:space="preserve">
     <value>De film DB</value>
@@ -2820,13 +2820,13 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>Wachtwoord wijzigen</value>
   </data>
   <data name="Sort_Error" xml:space="preserve">
-    <value>Fout bij het sorteren van de lijst van </value>
+    <value>Fout bij het sorteren van de lijst van</value>
   </data>
   <data name="Sort_PassedEmpty" xml:space="preserve">
     <value>MultiSort parameter rgSortBy werd een lege veldnaam aangenomen in rgSortBy]</value>
   </data>
   <data name="Selected_DoesNotExist" xml:space="preserve">
-    <value>Het opgegeven bestand of de map bestaat niet: </value>
+    <value>Het opgegeven bestand of de map bestaat niet:</value>
   </data>
   <data name="Video_VLCError1" xml:space="preserve">
     <value>Kan niet parseren URI in VLC ini-bestand</value>
@@ -2844,7 +2844,7 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>veranderd in</value>
   </data>
   <data name="Video_Updating" xml:space="preserve">
-    <value>Bijwerken naar keek door mediaplayer: </value>
+    <value>Bijwerken naar keek door mediaplayer:</value>
   </data>
   <data name="AniDB_DataMissing" xml:space="preserve">
     <value>Ontbrekende gegevens</value>
@@ -2940,7 +2940,7 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>Bestand</value>
   </data>
   <data name="Playlist_Name" xml:space="preserve">
-    <value>Afspeellijst naam invoeren: </value>
+    <value>Afspeellijst naam invoeren:</value>
   </data>
   <data name="Playlist_NameBlank" xml:space="preserve">
     <value>Voer de naam van een playlist</value>
@@ -3165,7 +3165,7 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>Proces in de wachtrij is geplaatst</value>
   </data>
   <data name="AirDate" xml:space="preserve">
-    <value>Lucht datum</value>
+    <value>Uitzenddatum</value>
   </data>
   <data name="ServerDetails" xml:space="preserve">
     <value>Server Details</value>
@@ -3378,7 +3378,7 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>INI-bestand gevonden. Voorbeeld van onlangs bekeken-bestand...</value>
   </data>
   <data name="VideoPlayer_DefaultNote" xml:space="preserve">
-    <value>JMM gebruikt automatisch de standaard videospeler voor Windows. Als u gebruiken een andere videospeler willen zou, u moet de video-speler uitvoerbare bestand toevoegen aan de systeemvariabele PATH. </value>
+    <value>JMM gebruikt automatisch de standaard videospeler voor Windows. Als u gebruiken een andere videospeler willen zou, u moet de video-speler uitvoerbare bestand toevoegen aan de systeemvariabele PATH.</value>
   </data>
   <data name="AniDBMyListDeleteLocal" xml:space="preserve">
     <value>Verwijder bestand (lokale DB)</value>
@@ -3402,9 +3402,6 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>CD/DVD</value>
   </data>
   <data name="AniDBMyListDelete" xml:space="preserve">
-    <value>Verwijder bestand (AniDB)</value>
-  </data>
-  <data name="Delete File (AniDB)" xml:space="preserve">
     <value>Verwijder bestand (AniDB)</value>
   </data>
   <data name="DeleteFiles_Name" xml:space="preserve">
@@ -3453,7 +3450,7 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>Nieuwe afspeellijst</value>
   </data>
   <data name="EpisodeDetail_PlaylistMenu" xml:space="preserve">
-    <value>Afspeellijst-Menu: </value>
+    <value>Afspeellijst-Menu:</value>
   </data>
   <data name="EpisodeDetail_PlaylistMissing" xml:space="preserve">
     <value>Konden niet vondst afspeellijst</value>
@@ -3498,7 +3495,7 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>niet gevonden terwijl het proberen om het vergelijken van objecten van het type</value>
   </data>
   <data name="ValueCompare_FieldName" xml:space="preserve">
-    <value>Veldnaam </value>
+    <value>Veldnaam</value>
   </data>
   <data name="SelectGroupSeries_Select" xml:space="preserve">
     <value>Selecteer een</value>
@@ -3543,7 +3540,7 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>Uitzondering in MultiSort tijdens het sorteren van een lijst met</value>
   </data>
   <data name="JMMServer_TraktAuth" xml:space="preserve">
-    <value>Trakt vergunning </value>
+    <value>Trakt vergunning</value>
   </data>
   <data name="Group_GroupCount" xml:space="preserve">
     <value>Groepen</value>
@@ -4119,22 +4116,22 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>MPC Web UI Port</value>
   </data>
   <data name="VideoPlayer_MPCNote1" xml:space="preserve">
-    <value>Voor INI integratie moet u het inschakelen van de volgende opties in het licht &gt; opties &gt; speler; (1) winkelinstellingen ini-bestand en (2) Houd geschiedenis van onlangs gevolgde bestanden (3) onthouden bestandspositie. De locatie van het INI-bestand is meestal iets als C:\Program Files (x86) \Combined Community Codec Pack\MPC</value>
+    <value>Keek bestanden voor MPC-integratie die moet u twee opties (1) winkelinstellingen aan ini-bestand en (2) Houd geschiedenis van onlangs inschakelen. Zie de volgende screenshot voor meer details. De locatie van MPC is meestal iets als C:\Program Files (x 86) \Combined Community Codec Pack\MPC</value>
   </data>
   <data name="VideoPlayer_PotPlayerNote" xml:space="preserve">
-    <value>Voor PotPlayer integratie moet u inschakelen van de volgende opties (1) voorkeuren &gt; algemene &gt; winkelinstellingen aan .ini bestand (2) voorkeuren &gt; afspelen &gt; spelen vanaf het laatste punt. De locatie van het PlotPlayer ini-bestand is meestal iets als C:\Users\username\AppData\Roaming\PotPlayer64\PotPlayer64.ini</value>
+    <value>Voor PotPlayer integratie moet u inschakelen van de volgende opties (1) voorkeuren &gt; algemene &gt; winkelinstellingen aan .ini bestand (2) voorkeuren &gt; afspelen &gt; spelen vanaf het laatste punt. Zie de volgende screenshot voor meer details. De locatie van het PlotPlayer ini-bestand is meestal iets als C:\Users\username\AppData\Roaming\PotPlayer64\PotPlayer64.ini</value>
   </data>
   <data name="VideoPlayer_MPCNote2" xml:space="preserve">
     <value>Voor Web UI integratie moet u de volgende optie in de weergave inschakelen &gt; opties &gt; speler &gt; Web Interface; Luisteren op poort. De standaard poort te luisteren is 13579 die u kunt gebruiken, als u wilt wijzigen het zorg ervoor dat u het wijzigen in het vak hieronder.</value>
   </data>
   <data name="VideoPlayer_MPCTest" xml:space="preserve">
-    <value>Test MPC INI-bestand</value>
+    <value>MPC testbestand</value>
   </data>
   <data name="VideoPlayer_VLCTest" xml:space="preserve">
-    <value>Test VLC INI-bestand</value>
+    <value>Testbestand VLC</value>
   </data>
   <data name="VideoPlayer_PotPlayerTest" xml:space="preserve">
-    <value>Test PotPlayer INI-bestand</value>
+    <value>Testbestand PotPlayer</value>
   </data>
   <data name="VideoPlayer_MPCClear" xml:space="preserve">
     <value>MPC INI-map wissen</value>
@@ -4146,6 +4143,15 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>VLC INI-map wissen</value>
   </data>
   <data name="VideoPlayer_VLCNote" xml:space="preserve">
-    <value>Elke versie van VLC kan worden gebruikt met JMM voor het algemene bestand afspelen. Echter enige VLC versie 2.2 en nieuwer zijn in staat om te profiteren van de integratie van de video-speler als ' hervatten vanaf laatste positie "is niet beschikbaar in oudere versies. De vereiste instellingen schakelt VLC ook standaard zodat u niet hoeft te doen een aanvullende configuratie. De locatie van de VLC ini-bestand is meestal iets als C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini</value>
+    <value>VLC 2.2 + registreert recent geopende bestanden en over tijdstempels standaard (en uitschakelen is een optie 'Geavanceerd'). Oudere versies ondersteunen geen 'Hervatten vanaf laatste positie' functionaliteit. De locatie van de VLC ini-bestand is meestal iets als C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini</value>
+  </data>
+  <data name="GroupFilterConditionType_LatestEpisodeAirDate" xml:space="preserve">
+    <value>Nieuwste aflevering lucht datum</value>
+  </data>
+  <data name="GroupFilterConditionType_Year" xml:space="preserve">
+    <value>Jaar</value>
+  </data>
+  <data name="GroupFilterSorting_GroupFilter" xml:space="preserve">
+    <value>De naam van de Filter van de groep</value>
   </data>
 </root>
