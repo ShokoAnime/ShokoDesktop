@@ -631,34 +631,34 @@
     <value>Status</value>
   </data>
   <data name="Tooltip_AniDBDownloadChar" xml:space="preserve">
-    <value>Pobierz informacje i zdjęcia dotyczące znaków i seiyuu, które pojawiają się w anime</value>
+    <value>Pobierz informacje i zdjęcia dotyczące postaci i seiyuu, które pojawiają się w anime</value>
   </data>
   <data name="Tooltip_AniDBDownloadRelated" xml:space="preserve">
-    <value>Podczas pobierania informacji o anime, również pobrać informacje o wszystkich związanych z anime. To jest potrzebne, aby prawidłowo grupy związane z anime podczas procesu importu.</value>
+    <value>Podczas pobierania informacji o anime, również pobierz informacje o wszystkich związanych z anime seriami. Jest to potrzebne, by prawidłowo łączyć grupy ze sobą podczas procesu importu.</value>
   </data>
   <data name="Tooltip_AniDBDownloadReleaseGroups" xml:space="preserve">
-    <value>Pobierz szczegółowe informacje na temat wydania/subbing grup dla Twojej anime</value>
+    <value>Pobierz szczegółowe informacje na temat grup fansub-erskich dla Twojej kolekcji</value>
   </data>
   <data name="Tooltip_AniDBDownloadReviews" xml:space="preserve">
-    <value>Pobierane anime Recenzje przez użytkowników AniDB</value>
+    <value>Pobierane recenzje napisane przez użytkowników AniDB</value>
   </data>
   <data name="Tooltip_AniDBDownloadSimilar" xml:space="preserve">
-    <value>Podczas pobierania informacji o anime, również pobrać informacje o podobnych i polecamy tytuły</value>
+    <value>Podczas pobierania informacji o anime, pobierz również informacje o podobnych i polecanych seriach</value>
   </data>
   <data name="Tooltip_AniDBMyListAddFiles" xml:space="preserve">
-    <value>Jeśli wybrany podczas importowania plików, pliki zostaną dodane do Twojego konta AniDB</value>
+    <value>Jeśli wybierz tę opcję podczas importowania plików, pliki zostaną dodane do Twojego konta AniDB</value>
   </data>
   <data name="Tooltip_AniDBMyListReadUnwatched" xml:space="preserve">
-    <value>Jeśli plik jest ustawiona jako un-patrzył na AniDB, to również będzie ustawiony jako un-patrzył na swojej lokalnej kolekcji</value>
+    <value>Jeśli plik jest ustawiona jako nieobejrzany na AniDB, to będzie ustawiony tako samo w lokalnej kolekcji</value>
   </data>
   <data name="Tooltip_AniDBMyListReadWatched" xml:space="preserve">
-    <value>Jeśli plik jest ustawiona jak patrzył na AniDB, to będzie również zestaw jak oglądałem na swojej lokalnej kolekcji</value>
+    <value>Jeśli plik jest ustawiona jak obejrzany na AniDB, to będzie ustawiony tako samo w lokalnej kolekcji</value>
   </data>
   <data name="Tooltip_AniDBMyListSetUnwatched" xml:space="preserve">
-    <value>Jeśli oznaczysz ręcznie film jak oglądałem, AniDB zostaną także zaktualizowane</value>
+    <value>Jeśli oznaczysz ręcznie film jak obejrzany, pliki te będą także zaktualizowane na AniDB, by odzwierciedlać zmiany lokalne</value>
   </data>
   <data name="Tooltip_AniDBMyListSetWatched" xml:space="preserve">
-    <value>Podczas zakończenia, oglądanie wideo, lub ręcznie oznaczyć film jak oglądałem, AniDB zostaną także zaktualizowane</value>
+    <value>Podczas zakończenia oglądania lub ręcznego ustawienia filmu jako obejrzany AniDB zostanie zaktualizowane, by odzwierciedlać zmiany lokalne</value>
   </data>
   <data name="Tooltip_AniDBMyListState" xml:space="preserve">
     <value>Przechowywania plików stanu będzie zestaw do dodania do listy</value>
