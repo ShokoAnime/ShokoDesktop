@@ -127,10 +127,10 @@
     <value>Odcinki</value>
   </data>
   <data name="EpisodeType" xml:space="preserve">
-    <value>Typ odcinek</value>
+    <value>Typ odcinka</value>
   </data>
   <data name="EpisodeType_Credits" xml:space="preserve">
-    <value>Kredyty</value>
+    <value>Credits</value>
   </data>
   <data name="EpisodeType_Normal" xml:space="preserve">
     <value>Odcinki</value>
@@ -142,10 +142,10 @@
     <value>Parodia</value>
   </data>
   <data name="EpisodeType_Specials" xml:space="preserve">
-    <value>Promocje</value>
+    <value>Odcinek Specjalny</value>
   </data>
   <data name="EpisodeType_Trailer" xml:space="preserve">
-    <value>Przyczep</value>
+    <value>Trailer</value>
   </data>
   <data name="Favorite" xml:space="preserve">
     <value>Ulubione</value>
@@ -157,25 +157,25 @@
     <value>Ulubione</value>
   </data>
   <data name="IsWatched" xml:space="preserve">
-    <value>To oglądałem</value>
+    <value>Obejrzane</value>
   </data>
   <data name="MyRating" xml:space="preserve">
-    <value>MyRating</value>
+    <value>Moja ocena</value>
   </data>
   <data name="Refresh" xml:space="preserve">
     <value>Odśwież</value>
   </data>
   <data name="RunTime" xml:space="preserve">
-    <value>Czas jednostkowy</value>
+    <value>Czas trwania</value>
   </data>
   <data name="SortName" xml:space="preserve">
-    <value>Nazwa sortowania</value>
+    <value>Nazwa filtru sortującego</value>
   </data>
   <data name="Series" xml:space="preserve">
     <value>Seria</value>
   </data>
   <data name="TAB_Config" xml:space="preserve">
-    <value>Config</value>
+    <value>Konfiguracja</value>
   </data>
   <data name="TAB_Episodes" xml:space="preserve">
     <value>Odcinki</value>
@@ -184,10 +184,10 @@
     <value>Menedżer plików</value>
   </data>
   <data name="TAB_Images" xml:space="preserve">
-    <value>Zdjęcia</value>
+    <value>Obrazki</value>
   </data>
   <data name="TAB_Relations" xml:space="preserve">
-    <value>Stosunków</value>
+    <value>Powiązania</value>
   </data>
   <data name="TAB_SeriesEpisodes" xml:space="preserve">
     <value>Kolekcja</value>
@@ -271,22 +271,22 @@
     <value>Ten plik nie istnieje</value>
   </data>
   <data name="Tooltip_FutureDated" xml:space="preserve">
-    <value>Tego odcinka nie ma jeszcze nagłaśniane</value>
+    <value>Tego odcinka nie został jeszcze wyemitowany</value>
   </data>
   <data name="Tooltip_Unwatched" xml:space="preserve">
-    <value>Oznaczenie NIEOGLĄDANYCH - kliknij, aby oznaczyć jako obejrzane</value>
+    <value>Nieobejrzane - kliknij, aby oznaczyć jako obejrzane</value>
   </data>
   <data name="Tooltip_Watched" xml:space="preserve">
-    <value>Oglądałem - kliknij, aby oznaczyć jako unwatched</value>
+    <value>Obejrzane - kliknij, aby oznaczyć jako nieobejrzane</value>
   </data>
   <data name="Tooltip_ZeroFiles" xml:space="preserve">
     <value>Nie ma żadnych plików dostępnych na tym odcinku</value>
   </data>
   <data name="Unwatched" xml:space="preserve">
-    <value>Unwatched</value>
+    <value>Nieobejrzane</value>
   </data>
   <data name="Watched" xml:space="preserve">
-    <value>Oglądałem</value>
+    <value>Obejrzane</value>
   </data>
   <data name="Rating" xml:space="preserve">
     <value>Ocena</value>
@@ -301,13 +301,13 @@
     <value>Inne</value>
   </data>
   <data name="AnimeType_OVA" xml:space="preserve">
-    <value>KOMÓRKI JAJOWE</value>
+    <value>OVA</value>
   </data>
   <data name="AnimeType_TVSeries" xml:space="preserve">
     <value>Serial telewizyjny</value>
   </data>
   <data name="AnimeType_TVSpecial" xml:space="preserve">
-    <value>Specjalne TV</value>
+    <value>Odcinek Specjalny</value>
   </data>
   <data name="AnimeType_Web" xml:space="preserve">
     <value>Www</value>
@@ -319,7 +319,7 @@
     <value>do</value>
   </data>
   <data name="LastWatched" xml:space="preserve">
-    <value>Ostatnio oglądałem</value>
+    <value>Ostatnio obejrzane</value>
   </data>
   <data name="Today" xml:space="preserve">
     <value>Dziś</value>
@@ -580,7 +580,7 @@
     <value>Test i zapisać</value>
   </data>
   <data name="Success" xml:space="preserve">
-    <value>Sukces!</value>
+    <value>Sukces</value>
   </data>
   <data name="INFO_SettingsEssential" xml:space="preserve">
     <value>Wszystkie ustawienia na tej stronie powinny być wypełnione. Upewnij się, aby sprawdzić i zapisać JMM serwer i AniDB szczegóły przed przystąpieniem. Jeśli jest to twój pierwszy raz uruchomiona aplikacja wprowadź przywozu co najmniej jeden folder i naciśnij przycisk Uruchom importowanie.</value>
@@ -829,7 +829,7 @@
     <value>Warunek typ</value>
   </data>
   <data name="GroupFilterConditionType_AirDate" xml:space="preserve">
-    <value>AirDate</value>
+    <value>Data emisji</value>
   </data>
   <data name="GroupFilterConditionType_AllEpisodesWatched" xml:space="preserve">
     <value>Oglądałem wszystkie odcinki</value>
@@ -1021,7 +1021,7 @@
     <value>Odwołać</value>
   </data>
   <data name="GroupFilterConditionType_FinishedAiring" xml:space="preserve">
-    <value>Gotowych wietrzenie</value>
+    <value>Zakończone emisje</value>
   </data>
   <data name="VoteTypeAnimePermanent" xml:space="preserve">
     <value>Stałe</value>
@@ -1075,7 +1075,7 @@
     <value>Odcinek dodane Data</value>
   </data>
   <data name="GroupFilterSorting_EpisodeAirDate" xml:space="preserve">
-    <value>Odcinek Air Data</value>
+    <value>Data emisji</value>
   </data>
   <data name="GroupFilterSorting_EpisodeWatchedDate" xml:space="preserve">
     <value>Odcinek obserwowany Data</value>
