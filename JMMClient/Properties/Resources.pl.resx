@@ -514,43 +514,43 @@
     <value>Wybierz istniejącą grupę</value>
   </data>
   <data name="MSG_ERR_InvalidEpGetAnime" xml:space="preserve">
-    <value>Odcinek zakres numerów, które podałeś nie jest ważne, czy chcesz odświeżyć dane z AniDB?</value>
+    <value>Zakres odcinków, które podałeś jest niepoprawny, czy chcesz odświeżyć dane z AniDB?</value>
   </data>
   <data name="MSG_ERR_InvalidEp" xml:space="preserve">
-    <value>Zakresie odcinek, którą podałeś nie jest prawidłowy.</value>
+    <value>Zakres odcinków, które podałeś jest niepoprawny.</value>
   </data>
   <data name="DeleteLink" xml:space="preserve">
-    <value>Usuń Link</value>
+    <value>Usuń powiązanie</value>
   </data>
   <data name="Tooltip_DeleteLink" xml:space="preserve">
     <value>Usunąć powiązania tego pliku i odcinek.</value>
   </data>
   <data name="TAB_IgnoredFiles" xml:space="preserve">
-    <value>Ignorowane</value>
+    <value>Zignorowane pliki</value>
   </data>
   <data name="Restore" xml:space="preserve">
-    <value>Odnawiać zapas towarów</value>
+    <value>Przywróć</value>
   </data>
   <data name="TAB_ManuallyLinked" xml:space="preserve">
-    <value>Ręcznie połączone</value>
+    <value>Ręcznie powiązany</value>
   </data>
   <data name="AniDBLogin" xml:space="preserve">
-    <value>AniDB logowanie</value>
+    <value>Logowanie do AniDB</value>
   </data>
   <data name="Client" xml:space="preserve">
     <value>Klient</value>
   </data>
   <data name="ImportFolders" xml:space="preserve">
-    <value>Importuj foldery</value>
+    <value>Importowane foldery</value>
   </data>
   <data name="JMMServer" xml:space="preserve">
-    <value>JMM serwera</value>
+    <value>Serwer JMM</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Hasło</value>
   </data>
   <data name="Port" xml:space="preserve">
-    <value>Portu</value>
+    <value>Port</value>
   </data>
   <data name="Server" xml:space="preserve">
     <value>Serwer</value>
@@ -562,52 +562,52 @@
     <value>AniDB</value>
   </data>
   <data name="TAB_SettingsDisplay" xml:space="preserve">
-    <value>Wyświetlacz</value>
+    <value>Ustawienia wyświetlania</value>
   </data>
   <data name="TAB_SettingsEssential" xml:space="preserve">
-    <value>Zasadnicze</value>
+    <value>Ustawienia niezbędne</value>
   </data>
   <data name="TAB_SettingsOnlineDB" xml:space="preserve">
-    <value>Wspólnoty witryn</value>
+    <value>Wspólnoty witryn??</value>
   </data>
   <data name="Test" xml:space="preserve">
-    <value>Badania</value>
+    <value>Przetestuj</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Nazwa użytkownika</value>
   </data>
   <data name="TestAndSave" xml:space="preserve">
-    <value>Test i zapisać</value>
+    <value>Przetestuj i zapisz</value>
   </data>
   <data name="Success" xml:space="preserve">
-    <value>Sukces</value>
+    <value>Zakończono pomyślnie!</value>
   </data>
   <data name="INFO_SettingsEssential" xml:space="preserve">
-    <value>Wszystkie ustawienia na tej stronie powinny być wypełnione. Upewnij się, aby sprawdzić i zapisać JMM serwer i AniDB szczegóły przed przystąpieniem. Jeśli jest to twój pierwszy raz uruchomiona aplikacja wprowadź przywozu co najmniej jeden folder i naciśnij przycisk Uruchom importowanie.</value>
+    <value>Wszystkie ustawienia na tej stronie powinny być wypełnione. Uzupełni brakujące dane i zapisz zmiany. Jeśli jest to Twoje pierwsze uruchomienie pamiętaj o dodaniu folderu do importu i rozpocznij proces importowania.</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Szukaj</value>
   </data>
   <data name="Tooltip_GroupSearch" xml:space="preserve">
-    <value>Wyszukiwanie grup przez nazwę (w dowolnym języku), kategorii lub tagów</value>
+    <value>Wyszukiwanie grup poprzez nazwę (w dowolnym języku), kategorii lub tagi</value>
   </data>
   <data name="AniDBDownloadChar" xml:space="preserve">
-    <value>Pobierz za darmo znaków/twórcy</value>
+    <value>Pobierz dane o postaciach</value>
   </data>
   <data name="AniDBDownloadOptions" xml:space="preserve">
     <value>Opcje pobierania AniDB</value>
   </data>
   <data name="AniDBDownloadRelated" xml:space="preserve">
-    <value>Anime podobne do pobrania</value>
+    <value>Pobierz informację o powiązanych seriach</value>
   </data>
   <data name="AniDBDownloadReleaseGroups" xml:space="preserve">
-    <value>Pobierz za darmo prasowa grupy</value>
+    <value>Pobierz informację o fan-grupach</value>
   </data>
   <data name="AniDBDownloadReviews" xml:space="preserve">
-    <value>Pobierz za darmo Opinie</value>
+    <value>Pobierz recenzje serii</value>
   </data>
   <data name="AniDBDownloadSimilar" xml:space="preserve">
-    <value>Anime podobne do pobrania</value>
+    <value>Pobierz informacje o podobnych seriach</value>
   </data>
   <data name="AniDBMyListAddFiles" xml:space="preserve">
     <value>Dodaj pliki</value>
@@ -616,19 +616,19 @@
     <value>Opcje AniDB MyList</value>
   </data>
   <data name="AniDBMyListReadUnwatched" xml:space="preserve">
-    <value>Oznaczenie NIEOGLĄDANYCH odczytu</value>
+    <value>Wczytaj informacje o nieobejrzanych</value>
   </data>
   <data name="AniDBMyListReadWatched" xml:space="preserve">
-    <value>Przeczytaj oglądałem</value>
+    <value>Wczytaj informacje o obejrzanych</value>
   </data>
   <data name="AniDBMyListSetUnwatched" xml:space="preserve">
-    <value>Zestaw Unwatched</value>
+    <value>Ustaw jakoe nieobejrzane</value>
   </data>
   <data name="AniDBMyListSetWatched" xml:space="preserve">
-    <value>Zestaw oglądałem</value>
+    <value>Ustaw jako obejrzane</value>
   </data>
   <data name="AniDBMyListState" xml:space="preserve">
-    <value>Stan magazynu</value>
+    <value>Status</value>
   </data>
   <data name="Tooltip_AniDBDownloadChar" xml:space="preserve">
     <value>Pobierz informacje i zdjęcia dotyczące znaków i seiyuu, które pojawiają się w anime</value>
