@@ -1,30 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Windows;
+﻿using NLog;
+using System;
 using System.Resources;
-using System.Globalization;
-using System.Threading;
-using System.Security;
-using NLog;
+using System.Windows;
 
 namespace JMMClient
 {
-	/// <summary>
-	/// Interaction logic for App.xaml
-	/// </summary>
-	/// 
-	
-	public partial class App : Application
-	{
-		public static ResourceManager ResGlobal = null;
+    /// <summary>
+    /// Interaction logic for App.xaml
+    /// </summary>
+    /// 
+
+    public partial class App : Application
+    {
+        public static ResourceManager ResGlobal = null;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-		public App()
-		{
-			/*ResGlobal = new ResourceManager("JMMClient.Properties.Resources", typeof(App).Assembly);
+        public App()
+        {
+            /*ResGlobal = new ResourceManager("JMMClient.Properties.Resources", typeof(App).Assembly);
 
 			// Set application startup culture based on config settings
 			string culture = AppSettings.Culture;
@@ -37,7 +30,7 @@ namespace JMMClient
 
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             Application.Current.DispatcherUnhandledException += Current_DispatcherUnhandledException;
-		}
+        }
 
         void Current_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
@@ -52,5 +45,5 @@ namespace JMMClient
                 logger.ErrorException(ex.ToString(), ex);
         }
 
-	}
+    }
 }

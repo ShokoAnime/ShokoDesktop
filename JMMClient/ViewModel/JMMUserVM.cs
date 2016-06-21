@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace JMMClient.ViewModel
 {
@@ -13,32 +12,32 @@ namespace JMMClient.ViewModel
 		public int IsAdmin { get; set; }
 		public int IsAniDBUser { get; set; }
 		public int IsTraktUser { get; set; }
-		public string HideTags { get; set; }
+		public HashSet<string> HideTags { get; set; }
 		public int? CanEditServerSettings { get; set; }
-        public string PlexUsers { get; set; }
+        public HashSet<string> PlexUsers { get; set; }
 		public bool IsAdminUser
 		{
 			get { return IsAdmin == 1; }
 		}
 
-		public bool IsAniDBUserBool
-		{
-			get { return IsAniDBUser == 1; }
-		}
+        public bool IsAniDBUserBool
+        {
+            get { return IsAniDBUser == 1; }
+        }
 
-		public bool CanEditSettings
-		{
-			get { return CanEditServerSettings.HasValue ? CanEditServerSettings.Value == 1 : false; }
-		}
+        public bool CanEditSettings
+        {
+            get { return CanEditServerSettings.HasValue ? CanEditServerSettings.Value == 1 : false; }
+        }
 
-		public bool IsTraktUserBool
-		{
-			get { return IsTraktUser == 1; }
-		}
+        public bool IsTraktUserBool
+        {
+            get { return IsTraktUser == 1; }
+        }
 
-		public JMMUserVM()
-		{
-		}
+        public JMMUserVM()
+        {
+        }
 
 		public JMMUserVM(JMMServerBinary.Contract_JMMUser contract)
 		{
@@ -48,9 +47,9 @@ namespace JMMClient.ViewModel
 			this.IsAdmin = contract.IsAdmin;
 			this.IsAniDBUser = contract.IsAniDBUser;
 			this.IsTraktUser = contract.IsTraktUser;
-			this.HideTags = contract.HideCategories;
+			this.HideTags = new HashSet<string>(contract.HideCategories);
 			this.CanEditServerSettings = contract.CanEditServerSettings;
-		    this.PlexUsers = contract.PlexUsers;
+		    this.PlexUsers = new HashSet<string>(contract.PlexUsers);
 		}
 
 		public JMMServerBinary.Contract_JMMUser ToContract()
@@ -62,69 +61,40 @@ namespace JMMClient.ViewModel
 			contract.IsAdmin = this.IsAdmin;
 			contract.IsAniDBUser = this.IsAniDBUser;
 			contract.IsTraktUser = this.IsTraktUser;
-			contract.HideCategories = this.HideTags;
+			contract.HideCategories = this.HideTags.ToList();
 			contract.CanEditServerSettings = this.CanEditServerSettings;
-		    contract.PlexUsers = this.PlexUsers;
+		    contract.PlexUsers = this.PlexUsers.ToList();
 			return contract;
 		}
 
-		public override string ToString()
+        public override string ToString()
+        {
+            return string.Format("{0} - {1} ({2}) - {3}", Username, IsAdmin, IsAniDBUser, HideTags);
+        }
+
+		private bool EvaluateTags(HashSet<string> allcats)
 		{
-			return string.Format("{0} - {1} ({2}) - {3}", Username, IsAdmin, IsAniDBUser, HideTags);
+		    return !allcats.Overlaps(HideTags);
 		}
 
-		private bool EvaluateTagString(string allcats)
-		{
-			string filterParm = HideTags.Trim();
-
-			string[] cats = filterParm.Trim().Split(',');
-			int index = 0;
-			foreach (string cat in cats)
-			{
-				if (cat.Trim().Length == 0) continue;
-				if (cat.Trim() == ",") continue;
-
-				index = allcats.IndexOf(cat.Trim(), 0, StringComparison.InvariantCultureIgnoreCase);
-				if (index > -1) return false;
-			}
-
-			return true;
-		}
-
-		public bool EvaluateGroup(AnimeGroupVM grp)
-		{
+        public bool EvaluateGroup(AnimeGroupVM grp)
+        {
             if (grp.AnimeGroupID.Value == 215)
                 Console.WriteLine("");
 
-			// make sure the user has not filtered this out
-			if (!string.IsNullOrEmpty(JMMServerVM.Instance.CurrentUser.HideTags))
-			{
-				return EvaluateTagString(grp.Stat_AllTags);
-			}
-
-			return true;
+			return EvaluateTags(grp.Stat_AllTags);
 		}
 
 		public bool EvaluateSeries(AnimeSeriesVM ser)
 		{
 			// make sure the user has not filtered this out
-			if (!string.IsNullOrEmpty(JMMServerVM.Instance.CurrentUser.HideTags))
-			{
-				return EvaluateTagString(ser.TagsString);
-			}
-
-			return true;
+			return EvaluateTags(ser.AllTags);
 		}
 
 		public bool EvaluateAnime(AniDB_AnimeVM anime)
 		{
 			// make sure the user has not filtered this out
-			if (!string.IsNullOrEmpty(JMMServerVM.Instance.CurrentUser.HideTags))
-			{
-				return EvaluateTagString(anime.AllTags);
-			}
-
-			return true;
+			return EvaluateTags(anime.AllTags);
 		}
 	}
 }

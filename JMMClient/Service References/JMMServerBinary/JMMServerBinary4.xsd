@@ -1,15 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:complexType name="ArrayOfint">
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/JMMContracts.PlexAndKodi" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/JMMContracts.PlexAndKodi" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="Media">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="int" type="xs:int" />
+      <xs:element name="_x003C_AspectRatio_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_AudioChannels_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_AudioCodec_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Bitrate_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Container_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Duration_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Height_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Id_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_OptimizedForStreaming_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Parts_x003E_k__BackingField" nillable="true" type="tns:ArrayOfPart" />
+      <xs:element name="_x003C_VideoCodec_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_VideoFrameRate_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_VideoResolution_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Width_x003E_k__BackingField" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfint" nillable="true" type="tns:ArrayOfint" />
-  <xs:complexType name="ArrayOfstring">
+  <xs:element name="Media" nillable="true" type="tns:Media" />
+  <xs:complexType name="ArrayOfPart">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Part" nillable="true" type="tns:Part" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfstring" nillable="true" type="tns:ArrayOfstring" />
+  <xs:element name="ArrayOfPart" nillable="true" type="tns:ArrayOfPart" />
+  <xs:complexType name="Part">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Accessible" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Container" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Duration" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Exists" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Extension" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="File" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Has64bitOffsets" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Key" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OptimizedForStreaming" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Size" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Streams" nillable="true" type="tns:ArrayOfStream" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Part" nillable="true" type="tns:Part" />
+  <xs:complexType name="ArrayOfStream">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Stream" nillable="true" type="tns:Stream" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfStream" nillable="true" type="tns:ArrayOfStream" />
+  <xs:complexType name="Stream">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BVOP" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BitDepth" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Bitrate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BitrateMode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Cabac" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Channels" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ChromaSubsampling" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Codec" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CodecID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ColorSpace" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Default" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DialogNorm" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Duration" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="File" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Forced" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Format" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FrameRate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FrameRateMode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GMC" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HasScalingMatrix" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HeaderStripping" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Height" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Index" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Key" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Language" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LanguageCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Level" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Orientation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PA" type="xs:float" />
+      <xs:element minOccurs="0" name="PixelAspectRatio" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Profile" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="QPel" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RefFrames" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SamplingRate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ScanType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Selected" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StreamType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SubIndex" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Width" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="idx" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Stream" nillable="true" type="tns:Stream" />
 </xs:schema>

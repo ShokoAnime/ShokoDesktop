@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace JMMClient.ViewModel
+﻿namespace JMMClient.ViewModel
 {
     public class AnimeEpisodeDisplayVM : AnimeEpisodeVM
     {

@@ -1,14 +1,21 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Controls;
 
 namespace JMMClient
 {
-	static class ExtensionMethods
-	{
-		/*static public bool SetSelectedItem(this TreeView treeView, object item)
+    public static class ExtensionMethods
+    {
+        public static bool SubContains(this IEnumerable<string> list, string part)
+        {
+            foreach (string n in list)
+            {
+                if (n.IndexOf(part, StringComparison.InvariantCultureIgnoreCase) >= 0)
+                    return true;
+            }
+            return false;
+        }
+        /*static public bool SetSelectedItem(this TreeView treeView, object item)
 		{
 			return SetSelected(treeView, item);
 		}
@@ -43,5 +50,5 @@ namespace JMMClient
 
 			return false;
 		}*/
-	}
+    }
 }

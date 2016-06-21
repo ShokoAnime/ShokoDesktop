@@ -1,10 +1,9 @@
-﻿using System;
+﻿using NLog;
+using System;
+using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using NLog;
 
 namespace JMMClient.UserControls
 {
@@ -12,25 +11,35 @@ namespace JMMClient.UserControls
     /// Interaction logic for VideoPlayerSettingsControl.xaml
     /// </summary>
     public partial class VideoPlayerSettingsControl : UserControl
-	{
+    {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         public VideoPlayerSettingsControl()
-		{
-			InitializeComponent();
+        {
+            InitializeComponent();
 
-			btnChooseMPCLocation.Click += new RoutedEventHandler(btnChooseMPCLocation_Click);
-			btnTestMPCLocation.Click += new RoutedEventHandler(btnTestMPCLocation_Click);
+            btnChooseMPCLocation.Click += new RoutedEventHandler(btnChooseMPCLocation_Click);
+            btnTestMPCLocation.Click += new RoutedEventHandler(btnTestMPCLocation_Click);
+            btnClearMPCLocation.Click += new RoutedEventHandler(btnClearMPCLocation_Click);
 
-			btnChoosePotLocation.Click += new RoutedEventHandler(btnChoosePotLocation_Click);
-			btnTestPotLocation.Click += new RoutedEventHandler(btnTestPotLocation_Click);
+            btnChoosePotLocation.Click += new RoutedEventHandler(btnChoosePotLocation_Click);
+            btnTestPotLocation.Click += new RoutedEventHandler(btnTestPotLocation_Click);
+            btnClearPotLocation.Click += new RoutedEventHandler(btnClearPotLocation_Click);
 
             btnChooseVLCLocation.Click += new RoutedEventHandler(btnChooseVLCLocation_Click);
             btnTestVLCLocation.Click += new RoutedEventHandler(btnTestVLCLocation_Click);
+            btnClearVLCLocation.Click += new RoutedEventHandler(btnClearVLCLocation_Click);
+
 
             chkAutoSetWatched.IsChecked = UserSettingsVM.Instance.VideoAutoSetWatched;
 
-			chkAutoSetWatched.Click += new RoutedEventHandler(chkAutoSetWatched_Click);
+            chkAutoSetWatched.Click += new RoutedEventHandler(chkAutoSetWatched_Click);
+
+            chkMpcIniIntegration.IsChecked = UserSettingsVM.Instance.MPCIniIntegration;
+            chkMpcWebUiIntegration.IsChecked = UserSettingsVM.Instance.MPCWebUiIntegration;
+
+            chkMpcIniIntegration.Click += new RoutedEventHandler(chkMpcIniIntegration_Click);
+            chkMpcWebUiIntegration.Click += new RoutedEventHandler(chkMpcWebUiIntegration_Click);
 
             cboDefaultPlayer.Items.Clear();
             cboDefaultPlayer.Items.Add("Windows Default");
@@ -72,6 +81,105 @@ namespace JMMClient.UserControls
                 case 2: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)DefaultVideoPlayer.PotPlayer; break;
                 case 3: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)DefaultVideoPlayer.VLC; break;
                 default: UserSettingsVM.Instance.DisplayStyle_GroupList = (int)DefaultVideoPlayer.WindowsDefault; break;
+            }
+        }
+
+        void chkAutoSetWatched_Click(object sender, RoutedEventArgs e)
+        {
+            UserSettingsVM.Instance.VideoAutoSetWatched = chkAutoSetWatched.IsChecked.Value;
+            MainWindow.videoHandler.Init();
+        }
+
+        void chkMpcIniIntegration_Click(object sender, RoutedEventArgs e)
+        {
+            UserSettingsVM.Instance.MPCWebUiIntegration = false;
+            chkMpcWebUiIntegration.IsChecked = false;
+            UserSettingsVM.Instance.MPCIniIntegration = chkMpcIniIntegration.IsChecked.Value;
+            MainWindow.videoHandler.Init();
+        }
+
+        void chkMpcWebUiIntegration_Click(object sender, RoutedEventArgs e)
+        {
+            UserSettingsVM.Instance.MPCIniIntegration = false;
+            chkMpcIniIntegration.IsChecked = false;
+            UserSettingsVM.Instance.MPCWebUiIntegration = chkMpcWebUiIntegration.IsChecked.Value;
+            MainWindow.videoHandler.Init();
+        }
+
+        void btnChooseMPCLocation_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
+
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                UserSettingsVM.Instance.MPCFolder = dialog.SelectedPath;
+                MainWindow.videoHandler.Init();
+            }
+        }
+
+        void btnTestMPCLocation_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(UserSettingsVM.Instance.MPCFolder))
+                {
+                    MessageBox.Show(Properties.Resources.VideoPlayer_MPCNotSelected, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                if (!Directory.Exists(UserSettingsVM.Instance.MPCFolder))
+                {
+                    MessageBox.Show(Properties.Resources.VideoPlayer_MPCNotFound, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                // look for an ini file
+                string[] iniFiles = Directory.GetFiles(UserSettingsVM.Instance.MPCFolder, "*.ini");
+                if (iniFiles.Length == 0)
+                {
+                    MessageBox.Show(Properties.Resources.VideoPlayer_MPCINIMissing, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                string[] lines = File.ReadAllLines(iniFiles[0]);
+
+                bool foundFileHistory = false;
+                string lastHistoryLine = "";
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    if (lines[i].StartsWith("File Name 0=", StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        foundFileHistory = true;
+                        lastHistoryLine = lines[i];
+                        break;
+                    }
+                }
+
+                if (!foundFileHistory)
+                    MessageBox.Show(Properties.Resources.VideoPlayer_INIFound, Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Warning);
+                else
+                    MessageBox.Show(Properties.Resources.VideoPlayer_INIFoundHistory + Environment.NewLine + lastHistoryLine, Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+        }
+
+        void btnClearMPCLocation_Click(object sender, RoutedEventArgs e)
+        {
+            UserSettingsVM.Instance.MPCFolder = string.Empty;
+        }
+
+
+        void btnChoosePotLocation_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
+
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                UserSettingsVM.Instance.PotPlayerFolder = dialog.SelectedPath;
+                MainWindow.videoHandler.Init();
             }
         }
 
@@ -136,79 +244,18 @@ namespace JMMClient.UserControls
             }
         }
 
-        void btnChoosePotLocation_Click(object sender, RoutedEventArgs e)
+        void btnClearPotLocation_Click(object sender, RoutedEventArgs e)
+        {
+            UserSettingsVM.Instance.PotPlayerFolder = string.Empty;
+        }
+
+        void btnChooseVLCLocation_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
 
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                UserSettingsVM.Instance.PotPlayerFolder = dialog.SelectedPath;
-                MainWindow.videoHandler.Init();
-            }
-        }
-
-        void chkAutoSetWatched_Click(object sender, RoutedEventArgs e)
-        {
-            UserSettingsVM.Instance.VideoAutoSetWatched = chkAutoSetWatched.IsChecked.Value;
-            MainWindow.videoHandler.Init();
-        }
-
-        void btnTestMPCLocation_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (string.IsNullOrEmpty(UserSettingsVM.Instance.MPCFolder))
-                {
-                    MessageBox.Show(Properties.Resources.VideoPlayer_MPCNotSelected, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-
-                if (!Directory.Exists(UserSettingsVM.Instance.MPCFolder))
-                {
-                    MessageBox.Show(Properties.Resources.VideoPlayer_MPCNotFound, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-
-                // look for an ini file
-                string[] iniFiles = Directory.GetFiles(UserSettingsVM.Instance.MPCFolder, "*.ini");
-                if (iniFiles.Length == 0)
-                {
-                    MessageBox.Show(Properties.Resources.VideoPlayer_MPCINIMissing, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-
-                string[] lines = File.ReadAllLines(iniFiles[0]);
-
-                bool foundFileHistory = false;
-                string lastHistoryLine = "";
-                for (int i = 0; i < lines.Length; i++)
-                {
-                    if (lines[i].StartsWith("File Name 0=", StringComparison.InvariantCultureIgnoreCase))
-                    {
-                        foundFileHistory = true;
-                        lastHistoryLine = lines[i];
-                        break;
-                    }
-                }
-
-                if (!foundFileHistory)
-                    MessageBox.Show(Properties.Resources.VideoPlayer_INIFound, Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Warning);
-                else
-                    MessageBox.Show(Properties.Resources.VideoPlayer_INIFoundHistory + Environment.NewLine + lastHistoryLine, Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
-        }
-
-        void btnChooseMPCLocation_Click(object sender, RoutedEventArgs e)
-        {
-            System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
-
-            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                UserSettingsVM.Instance.MPCFolder = dialog.SelectedPath;
+                UserSettingsVM.Instance.VLCFolder = dialog.SelectedPath;
                 MainWindow.videoHandler.Init();
             }
         }
@@ -274,16 +321,10 @@ namespace JMMClient.UserControls
             }
         }
 
-        void btnChooseVLCLocation_Click(object sender, RoutedEventArgs e)
+        void btnClearVLCLocation_Click(object sender, RoutedEventArgs e)
         {
-            System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
-
-            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                UserSettingsVM.Instance.VLCFolder = dialog.SelectedPath;
-                MainWindow.videoHandler.Init();
-            }
+            UserSettingsVM.Instance.VLCFolder = string.Empty;
         }
-        
+
     }
 }

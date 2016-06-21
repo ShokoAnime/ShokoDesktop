@@ -199,7 +199,7 @@
     <value>TvDB</value>
   </data>
   <data name="ViewLabel" xml:space="preserve">
-    <value>Weergave: </value>
+    <value>Weergave:</value>
   </data>
   <data name="Back" xml:space="preserve">
     <value>Terug</value>
@@ -1138,7 +1138,7 @@
     <value>Bezig met laden...</value>
   </data>
   <data name="TotalFileCount" xml:space="preserve">
-    <value>Totaal Bestandstotaal</value>
+    <value>Totaal Bestandstotaal:</value>
   </data>
   <data name="ImportSettings_UseEpisodeStatus" xml:space="preserve">
     <value>Bestand instellen als keek als aflevering is bekeken</value>
@@ -1525,7 +1525,7 @@
     <value>Selecteer de reeks van de standaard voor</value>
   </data>
   <data name="DefSeries2" xml:space="preserve">
-    <value>Selecteren van een reeks standaard betekent dat alle afbeeldingen die dsiplayed voor een groep zijn die zal gebruiken </value>
+    <value>Selecteren van een reeks standaard betekent dat alle afbeeldingen die dsiplayed voor een groep zijn die zal gebruiken</value>
   </data>
   <data name="DefSeries3" xml:space="preserve">
     <value>standaard serie in plaats van een willekeurige reeks binnen de groep</value>
@@ -1815,7 +1815,7 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>Wachtwoord wijzigen</value>
   </data>
   <data name="ChangingPassword" xml:space="preserve">
-    <value>Wachtwoord voor wijzigen: </value>
+    <value>Wachtwoord voor wijzigen:</value>
   </data>
   <data name="WhatDoesThisMean" xml:space="preserve">
     <value>Wat betekent dit?</value>
@@ -1923,16 +1923,16 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>AniDB Start:</value>
   </data>
   <data name="Search_Trakt" xml:space="preserve">
-    <value>Trakt: </value>
+    <value>Trakt:</value>
   </data>
   <data name="Search_Approved" xml:space="preserve">
     <value>Admin goedgekeurd</value>
   </data>
   <data name="Search_TvDB" xml:space="preserve">
-    <value>TvDB: </value>
+    <value>TvDB:</value>
   </data>
   <data name="Search_MAL" xml:space="preserve">
-    <value>MAL: </value>
+    <value>MAL:</value>
   </data>
   <data name="SelectAniDBTitle_SelectName" xml:space="preserve">
     <value>Selecteer de naam van een override</value>
@@ -2192,26 +2192,17 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   <data name="VideoPlayer_MPC" xml:space="preserve">
     <value>Media Player Classic</value>
   </data>
-  <data name="VideoPlayer_MPCNote" xml:space="preserve">
-    <value>Keek bestanden voor MPC-integratie die moet u twee opties (1) winkelinstellingen aan ini-bestand en (2) Houd geschiedenis van onlangs inschakelen. Zie de volgende screenshot voor meer details. De locatie van MPC is meestal iets als C:\Program Files (x 86) \Combined Community Codec Pack\MPC</value>
-  </data>
   <data name="VideoPlayer_MPCOptions" xml:space="preserve">
     <value>MPC opties</value>
   </data>
   <data name="VideoPlayer_VLC" xml:space="preserve">
     <value>VLC</value>
   </data>
-  <data name="VideoPlayer_VLCNote" xml:space="preserve">
-    <value>VLC 2.2 + registreert recent geopende bestanden en over tijdstempels standaard (en uitschakelen is een optie 'Geavanceerd'). Oudere versies ondersteunen geen 'Hervatten vanaf laatste positie' functionaliteit. De locatie van de VLC ini-bestand is meestal iets als C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini</value>
-  </data>
   <data name="VideoPlayer_VLCOptions" xml:space="preserve">
     <value>VLC opties</value>
   </data>
   <data name="VideoPlayer_PotPlayer" xml:space="preserve">
     <value>PotPlayer</value>
-  </data>
-  <data name="VideoPlayer_PotPlayerNote" xml:space="preserve">
-    <value>Voor PotPlayer integratie moet u inschakelen van de volgende opties (1) voorkeuren &gt; algemene &gt; winkelinstellingen aan .ini bestand (2) voorkeuren &gt; afspelen &gt; spelen vanaf het laatste punt. Zie de volgende screenshot voor meer details. De locatie van het PlotPlayer ini-bestand is meestal iets als C:\Users\username\AppData\Roaming\PotPlayer64\PotPlayer64.ini</value>
   </data>
   <data name="VideoPlayer_PotPlayerOptions" xml:space="preserve">
     <value>PotPlayer opties</value>
@@ -2224,15 +2215,6 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   </data>
   <data name="VideoPlayer_PotPlayerINI" xml:space="preserve">
     <value>Selecteer PotPlayer INI map</value>
-  </data>
-  <data name="VideoPlayer_MPCTest" xml:space="preserve">
-    <value>MPC testbestand</value>
-  </data>
-  <data name="VideoPlayer_VLCTest" xml:space="preserve">
-    <value>Testbestand VLC</value>
-  </data>
-  <data name="VideoPlayer_PotPlayerTest" xml:space="preserve">
-    <value>Testbestand PotPlayer</value>
   </data>
   <data name="VideoPlayer_AutoMark" xml:space="preserve">
     <value>Automatisch markeren bestanden als keek toen het volgende percentage is keek</value>
@@ -2694,10 +2676,10 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>AniDB Start:</value>
   </data>
   <data name="CommunityLinks_TvDB" xml:space="preserve">
-    <value>TvDB: </value>
+    <value>TvDB:</value>
   </data>
   <data name="CommunityLinks_Trakt" xml:space="preserve">
-    <value>Trakt: </value>
+    <value>Trakt:</value>
   </data>
   <data name="CommunityLinks_TMDb" xml:space="preserve">
     <value>De film DB</value>
@@ -2838,13 +2820,13 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>Wachtwoord wijzigen</value>
   </data>
   <data name="Sort_Error" xml:space="preserve">
-    <value>Fout bij het sorteren van de lijst van </value>
+    <value>Fout bij het sorteren van de lijst van</value>
   </data>
   <data name="Sort_PassedEmpty" xml:space="preserve">
     <value>MultiSort parameter rgSortBy werd een lege veldnaam aangenomen in rgSortBy]</value>
   </data>
   <data name="Selected_DoesNotExist" xml:space="preserve">
-    <value>Het opgegeven bestand of de map bestaat niet: </value>
+    <value>Het opgegeven bestand of de map bestaat niet:</value>
   </data>
   <data name="Video_VLCError1" xml:space="preserve">
     <value>Kan niet parseren URI in VLC ini-bestand</value>
@@ -2862,7 +2844,7 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>veranderd in</value>
   </data>
   <data name="Video_Updating" xml:space="preserve">
-    <value>Bijwerken naar keek door mediaplayer: </value>
+    <value>Bijwerken naar keek door mediaplayer:</value>
   </data>
   <data name="AniDB_DataMissing" xml:space="preserve">
     <value>Ontbrekende gegevens</value>
@@ -2958,7 +2940,7 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>Bestand</value>
   </data>
   <data name="Playlist_Name" xml:space="preserve">
-    <value>Afspeellijst naam invoeren: </value>
+    <value>Afspeellijst naam invoeren:</value>
   </data>
   <data name="Playlist_NameBlank" xml:space="preserve">
     <value>Voer de naam van een playlist</value>
@@ -3183,7 +3165,7 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>Proces in de wachtrij is geplaatst</value>
   </data>
   <data name="AirDate" xml:space="preserve">
-    <value>Lucht datum</value>
+    <value>Uitzenddatum</value>
   </data>
   <data name="ServerDetails" xml:space="preserve">
     <value>Server Details</value>
@@ -3396,7 +3378,7 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>INI-bestand gevonden. Voorbeeld van onlangs bekeken-bestand...</value>
   </data>
   <data name="VideoPlayer_DefaultNote" xml:space="preserve">
-    <value>JMM gebruikt automatisch de standaard videospeler voor Windows. Als u gebruiken een andere videospeler willen zou, u moet de video-speler uitvoerbare bestand toevoegen aan de systeemvariabele PATH. </value>
+    <value>JMM gebruikt automatisch de standaard videospeler voor Windows. Als u gebruiken een andere videospeler willen zou, u moet de video-speler uitvoerbare bestand toevoegen aan de systeemvariabele PATH.</value>
   </data>
   <data name="AniDBMyListDeleteLocal" xml:space="preserve">
     <value>Verwijder bestand (lokale DB)</value>
@@ -3420,9 +3402,6 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>CD/DVD</value>
   </data>
   <data name="AniDBMyListDelete" xml:space="preserve">
-    <value>Verwijder bestand (AniDB)</value>
-  </data>
-  <data name="Delete File (AniDB)" xml:space="preserve">
     <value>Verwijder bestand (AniDB)</value>
   </data>
   <data name="DeleteFiles_Name" xml:space="preserve">
@@ -3471,7 +3450,7 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>Nieuwe afspeellijst</value>
   </data>
   <data name="EpisodeDetail_PlaylistMenu" xml:space="preserve">
-    <value>Afspeellijst-Menu: </value>
+    <value>Afspeellijst-Menu:</value>
   </data>
   <data name="EpisodeDetail_PlaylistMissing" xml:space="preserve">
     <value>Konden niet vondst afspeellijst</value>
@@ -3516,7 +3495,7 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>niet gevonden terwijl het proberen om het vergelijken van objecten van het type</value>
   </data>
   <data name="ValueCompare_FieldName" xml:space="preserve">
-    <value>Veldnaam </value>
+    <value>Veldnaam</value>
   </data>
   <data name="SelectGroupSeries_Select" xml:space="preserve">
     <value>Selecteer een</value>
@@ -3561,7 +3540,7 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>Uitzondering in MultiSort tijdens het sorteren van een lijst met</value>
   </data>
   <data name="JMMServer_TraktAuth" xml:space="preserve">
-    <value>Trakt vergunning </value>
+    <value>Trakt vergunning</value>
   </data>
   <data name="Group_GroupCount" xml:space="preserve">
     <value>Groepen</value>
@@ -4087,5 +4066,92 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   </data>
   <data name="Trakt_CheckCred" xml:space="preserve">
     <value>Trakt referenties controleren</value>
+  </data>
+  <data name="RelationSetting_AltSetting" xml:space="preserve">
+    <value>Alternatieve instelling</value>
+  </data>
+  <data name="RelationSetting_SameSetting" xml:space="preserve">
+    <value>Dezelfde instelling</value>
+  </data>
+  <data name="RelationSetting_Character" xml:space="preserve">
+    <value>Teken</value>
+  </data>
+  <data name="RelationSetting_Other" xml:space="preserve">
+    <value>Andere</value>
+  </data>
+  <data name="RelationSetting_ParentStory" xml:space="preserve">
+    <value>Ouder Story</value>
+  </data>
+  <data name="RelationSetting_SideStory" xml:space="preserve">
+    <value>Side Story</value>
+  </data>
+  <data name="RelationSetting_Summary" xml:space="preserve">
+    <value>Samenvatting</value>
+  </data>
+  <data name="RelationSetting_FullStory" xml:space="preserve">
+    <value>Volledige verhaal</value>
+  </data>
+  <data name="RelationSetting_AltVersion" xml:space="preserve">
+    <value>Alternatieve versie</value>
+  </data>
+  <data name="TAB_Settings_RelationSettings" xml:space="preserve">
+    <value>Relatie-instellingen</value>
+  </data>
+  <data name="RelationSettings_Info" xml:space="preserve">
+    <value>Selecteer de volgende uit te sluiten van de groepering</value>
+  </data>
+  <data name="Link_RelationSettings" xml:space="preserve">
+    <value>http://jmediamanager.org/JMM-Desktop/Settings/#Essential</value>
+  </data>
+  <data name="Video_Hi08P" xml:space="preserve">
+    <value>8 bit</value>
+  </data>
+  <data name="Video_Hi12P" xml:space="preserve">
+    <value>12 bit</value>
+  </data>
+  <data name="VideoPlayer_MPCIntegrationTypeNote" xml:space="preserve">
+    <value>There are 2 types of MPC Integrations:</value>
+  </data>
+  <data name="VideoPlayer_MPCWebUIPort" xml:space="preserve">
+    <value>MPC Web UI Port</value>
+  </data>
+  <data name="VideoPlayer_MPCNote1" xml:space="preserve">
+    <value>Keek bestanden voor MPC-integratie die moet u twee opties (1) winkelinstellingen aan ini-bestand en (2) Houd geschiedenis van onlangs inschakelen. Zie de volgende screenshot voor meer details. De locatie van MPC is meestal iets als C:\Program Files (x 86) \Combined Community Codec Pack\MPC</value>
+  </data>
+  <data name="VideoPlayer_PotPlayerNote" xml:space="preserve">
+    <value>Voor PotPlayer integratie moet u inschakelen van de volgende opties (1) voorkeuren &gt; algemene &gt; winkelinstellingen aan .ini bestand (2) voorkeuren &gt; afspelen &gt; spelen vanaf het laatste punt. Zie de volgende screenshot voor meer details. De locatie van het PlotPlayer ini-bestand is meestal iets als C:\Users\username\AppData\Roaming\PotPlayer64\PotPlayer64.ini</value>
+  </data>
+  <data name="VideoPlayer_MPCNote2" xml:space="preserve">
+    <value>Voor Web UI integratie moet u de volgende optie in de weergave inschakelen &gt; opties &gt; speler &gt; Web Interface; Luisteren op poort. De standaard poort te luisteren is 13579 die u kunt gebruiken, als u wilt wijzigen het zorg ervoor dat u het wijzigen in het vak hieronder.</value>
+  </data>
+  <data name="VideoPlayer_MPCTest" xml:space="preserve">
+    <value>MPC testbestand</value>
+  </data>
+  <data name="VideoPlayer_VLCTest" xml:space="preserve">
+    <value>Testbestand VLC</value>
+  </data>
+  <data name="VideoPlayer_PotPlayerTest" xml:space="preserve">
+    <value>Testbestand PotPlayer</value>
+  </data>
+  <data name="VideoPlayer_MPCClear" xml:space="preserve">
+    <value>MPC INI-map wissen</value>
+  </data>
+  <data name="VideoPlayer_PotPlayerClear" xml:space="preserve">
+    <value>Duidelijke Pot speler INI vouwblad</value>
+  </data>
+  <data name="VideoPlayer_VLCClear" xml:space="preserve">
+    <value>VLC INI-map wissen</value>
+  </data>
+  <data name="VideoPlayer_VLCNote" xml:space="preserve">
+    <value>VLC 2.2 + registreert recent geopende bestanden en over tijdstempels standaard (en uitschakelen is een optie 'Geavanceerd'). Oudere versies ondersteunen geen 'Hervatten vanaf laatste positie' functionaliteit. De locatie van de VLC ini-bestand is meestal iets als C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini</value>
+  </data>
+  <data name="GroupFilterConditionType_LatestEpisodeAirDate" xml:space="preserve">
+    <value>Nieuwste aflevering lucht datum</value>
+  </data>
+  <data name="GroupFilterConditionType_Year" xml:space="preserve">
+    <value>Jaar</value>
+  </data>
+  <data name="GroupFilterSorting_GroupFilter" xml:space="preserve">
+    <value>De naam van de Filter van de groep</value>
   </data>
 </root>

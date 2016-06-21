@@ -17,6 +17,33 @@
   <wsdl:binding name="BinaryBinding_IJMMServer" type="i0:IJMMServer">
     <wsp:PolicyReference URI="#BinaryBinding_IJMMServer_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ScanDropFolders">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/ScanDropFolders" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RefreshAllMediaInfo">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/RefreshAllMediaInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TraktFriendRequestDeny">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/TraktFriendRequestDeny" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="TraktFriendRequestApprove">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/TraktFriendRequestApprove" style="document" />
       <wsdl:input>
@@ -568,6 +595,33 @@
     </wsdl:operation>
     <wsdl:operation name="GetAniDBEpisodesForAnime">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAniDBEpisodesForAnime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllManuallyLinkedFiles">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllManuallyLinkedFiles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllEpisodesWithMultipleFiles">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllEpisodesWithMultipleFiles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReevaluateDuplicateFiles">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/ReevaluateDuplicateFiles" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1313,33 +1367,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ScanDropFolders">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/ScanDropFolders" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="RefreshAllMediaInfo">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/RefreshAllMediaInfo" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="TraktFriendRequestDeny">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/TraktFriendRequestDeny" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetLastWatchedEpisodeForSeries">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetLastWatchedEpisodeForSeries" style="document" />
       <wsdl:input>
@@ -1961,6 +1988,33 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetGroupFilters">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetGroupFilters" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupFiltersExtended">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetGroupFiltersExtended" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EvaluateGroupFilter">
+      <soap12:operation soapAction="http://tempuri.org/IJMMServer/EvaluateGroupFilter" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="SaveGroupFilter">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/SaveGroupFilter" style="document" />
       <wsdl:input>
@@ -2071,33 +2125,6 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteDuplicateFile">
       <soap12:operation soapAction="http://tempuri.org/IJMMServer/DeleteDuplicateFile" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetAllManuallyLinkedFiles">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllManuallyLinkedFiles" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetAllEpisodesWithMultipleFiles">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/GetAllEpisodesWithMultipleFiles" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ReevaluateDuplicateFiles">
-      <soap12:operation soapAction="http://tempuri.org/IJMMServer/ReevaluateDuplicateFiles" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

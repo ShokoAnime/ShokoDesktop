@@ -6,10 +6,28 @@
       <xsd:import schemaLocation="http://localhost:8111/JMMServerBinary?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:8111/JMMServerBinary?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:8111/JMMServerBinary?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/JMMContracts" />
-      <xsd:import schemaLocation="http://localhost:8111/JMMServerBinary?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/JMMContracts.KodiContracts" />
-      <xsd:import schemaLocation="http://localhost:8111/JMMServerBinary?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:8111/JMMServerBinary?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:8111/JMMServerBinary?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/JMMContracts.PlexAndKodi" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IJMMServer_ScanDropFolders_InputMessage">
+    <wsdl:part name="parameters" element="tns:ScanDropFolders" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_ScanDropFolders_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ScanDropFoldersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RefreshAllMediaInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:RefreshAllMediaInfo" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RefreshAllMediaInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RefreshAllMediaInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_TraktFriendRequestDeny_InputMessage">
+    <wsdl:part name="parameters" element="tns:TraktFriendRequestDeny" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_TraktFriendRequestDeny_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TraktFriendRequestDenyResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_TraktFriendRequestApprove_InputMessage">
     <wsdl:part name="parameters" element="tns:TraktFriendRequestApprove" />
   </wsdl:message>
@@ -381,6 +399,24 @@
   </wsdl:message>
   <wsdl:message name="IJMMServer_GetAniDBEpisodesForAnime_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAniDBEpisodesForAnimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllManuallyLinkedFiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllManuallyLinkedFiles" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllManuallyLinkedFiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllManuallyLinkedFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllEpisodesWithMultipleFiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllEpisodesWithMultipleFiles" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllEpisodesWithMultipleFiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllEpisodesWithMultipleFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_ReevaluateDuplicateFiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReevaluateDuplicateFiles" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_ReevaluateDuplicateFiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReevaluateDuplicateFilesResponse" />
   </wsdl:message>
   <wsdl:message name="IJMMServer_GetGroupVideoQualitySummary_InputMessage">
     <wsdl:part name="parameters" element="tns:GetGroupVideoQualitySummary" />
@@ -874,24 +910,6 @@
   <wsdl:message name="IJMMServer_GetTvDBLanguages_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetTvDBLanguagesResponse" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_ScanDropFolders_InputMessage">
-    <wsdl:part name="parameters" element="tns:ScanDropFolders" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_ScanDropFolders_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ScanDropFoldersResponse" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_RefreshAllMediaInfo_InputMessage">
-    <wsdl:part name="parameters" element="tns:RefreshAllMediaInfo" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_RefreshAllMediaInfo_OutputMessage">
-    <wsdl:part name="parameters" element="tns:RefreshAllMediaInfoResponse" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_TraktFriendRequestDeny_InputMessage">
-    <wsdl:part name="parameters" element="tns:TraktFriendRequestDeny" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_TraktFriendRequestDeny_OutputMessage">
-    <wsdl:part name="parameters" element="tns:TraktFriendRequestDenyResponse" />
-  </wsdl:message>
   <wsdl:message name="IJMMServer_GetLastWatchedEpisodeForSeries_InputMessage">
     <wsdl:part name="parameters" element="tns:GetLastWatchedEpisodeForSeries" />
   </wsdl:message>
@@ -1306,6 +1324,24 @@
   <wsdl:message name="IJMMServer_GetAllGroupFilters_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllGroupFiltersResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_GetGroupFilters_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroupFilters" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetGroupFilters_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroupFiltersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetGroupFiltersExtended_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroupFiltersExtended" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetGroupFiltersExtended_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroupFiltersExtendedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_EvaluateGroupFilter_InputMessage">
+    <wsdl:part name="parameters" element="tns:EvaluateGroupFilter" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_EvaluateGroupFilter_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EvaluateGroupFilterResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_SaveGroupFilter_InputMessage">
     <wsdl:part name="parameters" element="tns:SaveGroupFilter" />
   </wsdl:message>
@@ -1384,25 +1420,19 @@
   <wsdl:message name="IJMMServer_DeleteDuplicateFile_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteDuplicateFileResponse" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_GetAllManuallyLinkedFiles_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllManuallyLinkedFiles" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_GetAllManuallyLinkedFiles_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllManuallyLinkedFilesResponse" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_GetAllEpisodesWithMultipleFiles_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllEpisodesWithMultipleFiles" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_GetAllEpisodesWithMultipleFiles_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllEpisodesWithMultipleFilesResponse" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_ReevaluateDuplicateFiles_InputMessage">
-    <wsdl:part name="parameters" element="tns:ReevaluateDuplicateFiles" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_ReevaluateDuplicateFiles_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ReevaluateDuplicateFilesResponse" />
-  </wsdl:message>
   <wsdl:portType name="IJMMServer">
+    <wsdl:operation name="ScanDropFolders">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/ScanDropFolders" message="tns:IJMMServer_ScanDropFolders_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/ScanDropFoldersResponse" message="tns:IJMMServer_ScanDropFolders_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RefreshAllMediaInfo">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RefreshAllMediaInfo" message="tns:IJMMServer_RefreshAllMediaInfo_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RefreshAllMediaInfoResponse" message="tns:IJMMServer_RefreshAllMediaInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TraktFriendRequestDeny">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/TraktFriendRequestDeny" message="tns:IJMMServer_TraktFriendRequestDeny_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/TraktFriendRequestDenyResponse" message="tns:IJMMServer_TraktFriendRequestDeny_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="TraktFriendRequestApprove">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/TraktFriendRequestApprove" message="tns:IJMMServer_TraktFriendRequestApprove_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/TraktFriendRequestApproveResponse" message="tns:IJMMServer_TraktFriendRequestApprove_OutputMessage" />
@@ -1650,6 +1680,18 @@
     <wsdl:operation name="GetAniDBEpisodesForAnime">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAniDBEpisodesForAnime" message="tns:IJMMServer_GetAniDBEpisodesForAnime_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAniDBEpisodesForAnimeResponse" message="tns:IJMMServer_GetAniDBEpisodesForAnime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllManuallyLinkedFiles">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllManuallyLinkedFiles" message="tns:IJMMServer_GetAllManuallyLinkedFiles_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllManuallyLinkedFilesResponse" message="tns:IJMMServer_GetAllManuallyLinkedFiles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllEpisodesWithMultipleFiles">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllEpisodesWithMultipleFiles" message="tns:IJMMServer_GetAllEpisodesWithMultipleFiles_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllEpisodesWithMultipleFilesResponse" message="tns:IJMMServer_GetAllEpisodesWithMultipleFiles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReevaluateDuplicateFiles">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/ReevaluateDuplicateFiles" message="tns:IJMMServer_ReevaluateDuplicateFiles_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/ReevaluateDuplicateFilesResponse" message="tns:IJMMServer_ReevaluateDuplicateFiles_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetGroupVideoQualitySummary">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetGroupVideoQualitySummary" message="tns:IJMMServer_GetGroupVideoQualitySummary_InputMessage" />
@@ -1979,18 +2021,6 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetTvDBLanguages" message="tns:IJMMServer_GetTvDBLanguages_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetTvDBLanguagesResponse" message="tns:IJMMServer_GetTvDBLanguages_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="ScanDropFolders">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/ScanDropFolders" message="tns:IJMMServer_ScanDropFolders_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/ScanDropFoldersResponse" message="tns:IJMMServer_ScanDropFolders_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="RefreshAllMediaInfo">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RefreshAllMediaInfo" message="tns:IJMMServer_RefreshAllMediaInfo_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RefreshAllMediaInfoResponse" message="tns:IJMMServer_RefreshAllMediaInfo_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="TraktFriendRequestDeny">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/TraktFriendRequestDeny" message="tns:IJMMServer_TraktFriendRequestDeny_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/TraktFriendRequestDenyResponse" message="tns:IJMMServer_TraktFriendRequestDeny_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="GetLastWatchedEpisodeForSeries">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetLastWatchedEpisodeForSeries" message="tns:IJMMServer_GetLastWatchedEpisodeForSeries_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetLastWatchedEpisodeForSeriesResponse" message="tns:IJMMServer_GetLastWatchedEpisodeForSeries_OutputMessage" />
@@ -2267,6 +2297,18 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllGroupFilters" message="tns:IJMMServer_GetAllGroupFilters_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllGroupFiltersResponse" message="tns:IJMMServer_GetAllGroupFilters_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetGroupFilters">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilters" message="tns:IJMMServer_GetGroupFilters_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetGroupFiltersResponse" message="tns:IJMMServer_GetGroupFilters_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupFiltersExtended">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetGroupFiltersExtended" message="tns:IJMMServer_GetGroupFiltersExtended_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetGroupFiltersExtendedResponse" message="tns:IJMMServer_GetGroupFiltersExtended_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EvaluateGroupFilter">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/EvaluateGroupFilter" message="tns:IJMMServer_EvaluateGroupFilter_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/EvaluateGroupFilterResponse" message="tns:IJMMServer_EvaluateGroupFilter_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="SaveGroupFilter">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SaveGroupFilter" message="tns:IJMMServer_SaveGroupFilter_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SaveGroupFilterResponse" message="tns:IJMMServer_SaveGroupFilter_OutputMessage" />
@@ -2318,18 +2360,6 @@
     <wsdl:operation name="DeleteDuplicateFile">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/DeleteDuplicateFile" message="tns:IJMMServer_DeleteDuplicateFile_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/DeleteDuplicateFileResponse" message="tns:IJMMServer_DeleteDuplicateFile_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetAllManuallyLinkedFiles">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllManuallyLinkedFiles" message="tns:IJMMServer_GetAllManuallyLinkedFiles_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllManuallyLinkedFilesResponse" message="tns:IJMMServer_GetAllManuallyLinkedFiles_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetAllEpisodesWithMultipleFiles">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllEpisodesWithMultipleFiles" message="tns:IJMMServer_GetAllEpisodesWithMultipleFiles_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllEpisodesWithMultipleFilesResponse" message="tns:IJMMServer_GetAllEpisodesWithMultipleFiles_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ReevaluateDuplicateFiles">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/ReevaluateDuplicateFiles" message="tns:IJMMServer_ReevaluateDuplicateFiles_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/ReevaluateDuplicateFilesResponse" message="tns:IJMMServer_ReevaluateDuplicateFiles_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:service name="JMMServiceImplementation">

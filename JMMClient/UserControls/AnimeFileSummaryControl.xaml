@@ -34,19 +34,23 @@
                                Visibility="{Binding Path=IsBluRay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         <Label Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Video_DVD}" Style="{DynamicResource VideoDefStyle_Source}" VerticalAlignment="Center" Margin="0,0,10,0"
                                Visibility="{Binding Path=IsDVD, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <Label Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Video_Hi08P}" Style="{DynamicResource VideoDefStyle_Hi08P}" VerticalAlignment="Center" Margin="0,0,10,0"
+                               Visibility="{Binding Path=IsHi08P, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         <Label Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Video_Hi10P}" Style="{DynamicResource VideoDefStyle_Hi10P}" VerticalAlignment="Center" Margin="0,0,10,0"
                                Visibility="{Binding Path=IsHi10P, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <Label Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Video_Hi12P}" Style="{DynamicResource VideoDefStyle_Hi12P}" VerticalAlignment="Center" Margin="0,0,10,0"
+                               Visibility="{Binding Path=IsHi12P, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                         <TextBlock Margin="10,0,0,0" Text="{Binding Path=VideoSource}" VerticalAlignment="Center"/>
                         <TextBlock Margin="10,0,10,0" Text="{Binding Path=Resolution}" VerticalAlignment="Center"/>
                         <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,0,2" VerticalAlignment="Center"
                                Visibility="{Binding Path=NormalComplete, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         <TextBlock Margin="3,0,0,0" Text="{Binding Path=FileCountNormal}" VerticalAlignment="Center"/>
-                        <TextBlock Margin="2,0,10,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episodes}" VerticalAlignment="Center"/>
+                        <TextBlock Margin="2,0,5,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episodes}" VerticalAlignment="Center"/>
                         <TextBlock Margin="3,0,0,0" Text="(" VerticalAlignment="Center"/>
                         <TextBlock Margin="0,0,0,0" Text="{Binding Path=NormalEpisodeNumberSummary}" VerticalAlignment="Center"/>
                         <TextBlock Margin="0,0,0,0" Text=")" VerticalAlignment="Center"/>
-                        <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,0,2" VerticalAlignment="Center"
+                        <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="10,0,0,2" VerticalAlignment="Center"
                                Visibility="{Binding Path=SpecialsComplete, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         <StackPanel Orientation="Horizontal" Visibility="{Binding Path=HasAnySpecials, Converter={StaticResource BooleanToVisibilityConverter}}" VerticalAlignment="Center">
                             <TextBlock Margin="3,0,0,0" Text="{Binding Path=FileCountSpecials}" />
@@ -83,14 +87,14 @@
                         <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,0,2" VerticalAlignment="Center"
                                Visibility="{Binding Path=NormalComplete, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         <TextBlock Margin="3,0,0,0" Text="{Binding Path=FileCountNormal}" VerticalAlignment="Center"/>
-                        <TextBlock Margin="2,0,10,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episodes}" VerticalAlignment="Center"/>
+                        <TextBlock Margin="2,0,5,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episodes}" VerticalAlignment="Center"/>
                         <TextBlock Margin="3,0,0,0" Text="(" VerticalAlignment="Center"/>
                         <TextBlock Margin="0,0,0,0" Text="{Binding Path=NormalEpisodeNumberSummary}" VerticalAlignment="Center"/>
                         <TextBlock Margin="0,0,0,0" Text=")" VerticalAlignment="Center"/>
 
                         
                         
-                        <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="5,0,0,2" VerticalAlignment="Center"
+                        <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,0,2" VerticalAlignment="Center"
                                Visibility="{Binding Path=SpecialsComplete, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         <StackPanel Orientation="Horizontal" Visibility="{Binding Path=HasAnySpecials, Converter={StaticResource BooleanToVisibilityConverter}}" VerticalAlignment="Center">
                             <TextBlock Margin="3,0,0,0" Text="{Binding Path=FileCountSpecials}" />
@@ -145,7 +149,7 @@
             <StackPanel Orientation="Horizontal">
                 <ComboBox Margin="5,5,5,5" Name="cboFileSummaryType" VerticalAlignment="Center" Style="{DynamicResource FlatComboBox}"/>
                 <TextBlock FontWeight="Bold" Padding="5" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TotalFileCount}" VerticalAlignment="Center" />
-                <TextBlock Padding="5" Text="{Binding Path=TotalFileCount, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeFileSummaryControl}}}" 
+                <TextBlock Padding="1" Text="{Binding Path=TotalFileCount, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeFileSummaryControl}}}" 
                            VerticalAlignment="Center" />
                 <TextBlock Padding="5,5,0,5" Text="(" VerticalAlignment="Center" />
                 <TextBlock Padding="2,5,2,5" Text="{Binding Path=TotalFileSize, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeFileSummaryControl}}}" 

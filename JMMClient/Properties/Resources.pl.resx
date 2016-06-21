@@ -199,7 +199,7 @@
     <value>TvDB</value>
   </data>
   <data name="ViewLabel" xml:space="preserve">
-    <value>Widok: </value>
+    <value>Widok:</value>
   </data>
   <data name="Back" xml:space="preserve">
     <value>Wstecz</value>
@@ -1144,7 +1144,7 @@
     <value>Trwa ładowanie...</value>
   </data>
   <data name="TotalFileCount" xml:space="preserve">
-    <value>Ogólna liczba plików</value>
+    <value>Ogólna liczba plików:</value>
   </data>
   <data name="ImportSettings_UseEpisodeStatus" xml:space="preserve">
     <value>Zestaw plików jak oglądałem czy odcinek jest obserwowany</value>
@@ -1531,7 +1531,7 @@
     <value>Wybierz domyślne serii dla</value>
   </data>
   <data name="DefSeries2" xml:space="preserve">
-    <value>Wybór domyślnej oznacza, że wszystkie obrazy, które są dsiplayed dla grupy będą używać </value>
+    <value>Wybór domyślnej oznacza, że wszystkie obrazy, które są dsiplayed dla grupy będą używać</value>
   </data>
   <data name="DefSeries3" xml:space="preserve">
     <value>Seria domyślne zamiast serię losowych w grupie</value>
@@ -1821,7 +1821,7 @@ Mark Unknown - pozostawia plik na liście, ale zmienia stan nieznany.</value>
     <value>Zmiana hasła</value>
   </data>
   <data name="ChangingPassword" xml:space="preserve">
-    <value>Zmiana hasła: </value>
+    <value>Zmiana hasła:</value>
   </data>
   <data name="WhatDoesThisMean" xml:space="preserve">
     <value>Co to znaczy?</value>
@@ -1929,16 +1929,16 @@ Mark Unknown - pozostawia plik na liście, ale zmienia stan nieznany.</value>
     <value>AniDB Start:</value>
   </data>
   <data name="Search_Trakt" xml:space="preserve">
-    <value>Trakt: </value>
+    <value>Trakt:</value>
   </data>
   <data name="Search_Approved" xml:space="preserve">
     <value>Admin zatwierdzone</value>
   </data>
   <data name="Search_TvDB" xml:space="preserve">
-    <value>TvDB: </value>
+    <value>TvDB:</value>
   </data>
   <data name="Search_MAL" xml:space="preserve">
-    <value>MAL: </value>
+    <value>MAL:</value>
   </data>
   <data name="SelectAniDBTitle_SelectName" xml:space="preserve">
     <value>Wybierz opcję Zastąp nazwę</value>
@@ -2198,26 +2198,17 @@ Mark Unknown - pozostawia plik na liście, ale zmienia stan nieznany.</value>
   <data name="VideoPlayer_MPC" xml:space="preserve">
     <value>Media Player Classic</value>
   </data>
-  <data name="VideoPlayer_MPCNote" xml:space="preserve">
-    <value>Integracji MPC, które należy włączyć dwie opcje (1) sklep ustawienia do pliku .ini i (2) zachować historię niedawno oglądałem plików. Zobacz poniższy zrzut ekranu więcej szczegółów. Lokalizacja MPC jest zazwyczaj coś w C:\Program Files (x 86) \Combined Community Codec Pack\MPC</value>
-  </data>
   <data name="VideoPlayer_MPCOptions" xml:space="preserve">
     <value>RPP opcje</value>
   </data>
   <data name="VideoPlayer_VLC" xml:space="preserve">
     <value>VLC</value>
   </data>
-  <data name="VideoPlayer_VLCNote" xml:space="preserve">
-    <value>VLC 2.2 + nagrywa ostatnio używanych plików i sygnatury czasowe domyślnie (i wyłączenie jest opcja "Zaawansowane"). Starsze wersje nie obsługują funkcji "Życiorys z ostatniej pozycji". Lokalizacja pliku .ini VLC jest zazwyczaj coś w stylu C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini</value>
-  </data>
   <data name="VideoPlayer_VLCOptions" xml:space="preserve">
     <value>VLC opcje</value>
   </data>
   <data name="VideoPlayer_PotPlayer" xml:space="preserve">
     <value>PotPlayer</value>
-  </data>
-  <data name="VideoPlayer_PotPlayerNote" xml:space="preserve">
-    <value>PotPlayer integracji należy włączyć następujące opcje (1) Preferencje &gt; ogólne &gt; ustawienia magazynu do ini plików (2) preferencje &gt; odtwarzania &gt; grać od ostatni punkt. Zobacz poniższy zrzut ekranu więcej szczegółów. Lokalizację pliku ini PlotPlayer zazwyczaj jest coś takiego jak C:\Users\username\AppData\Roaming\PotPlayer64\PotPlayer64.ini</value>
   </data>
   <data name="VideoPlayer_PotPlayerOptions" xml:space="preserve">
     <value>PotPlayer opcje</value>
@@ -2230,15 +2221,6 @@ Mark Unknown - pozostawia plik na liście, ale zmienia stan nieznany.</value>
   </data>
   <data name="VideoPlayer_PotPlayerINI" xml:space="preserve">
     <value>Wybierz Folder PotPlayer INI</value>
-  </data>
-  <data name="VideoPlayer_MPCTest" xml:space="preserve">
-    <value>MPC plik testowy</value>
-  </data>
-  <data name="VideoPlayer_VLCTest" xml:space="preserve">
-    <value>VLC plik testowy</value>
-  </data>
-  <data name="VideoPlayer_PotPlayerTest" xml:space="preserve">
-    <value>PotPlayer plik testowy</value>
   </data>
   <data name="VideoPlayer_AutoMark" xml:space="preserve">
     <value>Automatycznie zaznaczyć pliki jak oglądałem kiedy oglądałem jest następujący odsetek</value>
@@ -2700,10 +2682,10 @@ Mark Unknown - pozostawia plik na liście, ale zmienia stan nieznany.</value>
     <value>AniDB Start:</value>
   </data>
   <data name="CommunityLinks_TvDB" xml:space="preserve">
-    <value>TvDB: </value>
+    <value>TvDB:</value>
   </data>
   <data name="CommunityLinks_Trakt" xml:space="preserve">
-    <value>Trakt: </value>
+    <value>Trakt:</value>
   </data>
   <data name="CommunityLinks_TMDb" xml:space="preserve">
     <value>Film DB</value>
@@ -2844,13 +2826,13 @@ Mark Unknown - pozostawia plik na liście, ale zmienia stan nieznany.</value>
     <value>Zmiana hasła</value>
   </data>
   <data name="Sort_Error" xml:space="preserve">
-    <value>Wystąpił błąd podczas próby sortować listę </value>
+    <value>Wystąpił błąd podczas próby sortować listę</value>
   </data>
   <data name="Sort_PassedEmpty" xml:space="preserve">
     <value>RgSortBy elementy parametr przekazano puste pole Nazwa rgSortBy [</value>
   </data>
   <data name="Selected_DoesNotExist" xml:space="preserve">
-    <value>Określony plik lub folder nie istnieje: </value>
+    <value>Określony plik lub folder nie istnieje:</value>
   </data>
   <data name="Video_VLCError1" xml:space="preserve">
     <value>Nie można przeanalizować URI w pliku ini VLC</value>
@@ -2868,7 +2850,7 @@ Mark Unknown - pozostawia plik na liście, ale zmienia stan nieznany.</value>
     <value>zmienił się</value>
   </data>
   <data name="Video_Updating" xml:space="preserve">
-    <value>Aktualizacja do oglądałem przez media player: </value>
+    <value>Aktualizacja do oglądałem przez media player:</value>
   </data>
   <data name="AniDB_DataMissing" xml:space="preserve">
     <value>Brakujących danych</value>
@@ -2964,7 +2946,7 @@ Mark Unknown - pozostawia plik na liście, ale zmienia stan nieznany.</value>
     <value>Pliku</value>
   </data>
   <data name="Playlist_Name" xml:space="preserve">
-    <value>Wprowadź nazwę listy odtwarzania: </value>
+    <value>Wprowadź nazwę listy odtwarzania:</value>
   </data>
   <data name="Playlist_NameBlank" xml:space="preserve">
     <value>Wprowadź nazwę listy odtwarzania</value>
@@ -3396,7 +3378,7 @@ Mark Unknown - pozostawia plik na liście, ale zmienia stan nieznany.</value>
     <value>Znaleziono pliku INI. Próbki pliku niedawno oglądałem...</value>
   </data>
   <data name="VideoPlayer_DefaultNote" xml:space="preserve">
-    <value>JMM automatycznie używa domyślnego odtwarzacza wideo systemu Windows. Jeśli chcesz użyć innego odtwarzacza wideo musisz dodać odtwarzacz wideo pliku wykonywalnego do zmiennej systemowej PATH. </value>
+    <value>JMM automatycznie używa domyślnego odtwarzacza wideo systemu Windows. Jeśli chcesz użyć innego odtwarzacza wideo musisz dodać odtwarzacz wideo pliku wykonywalnego do zmiennej systemowej PATH.</value>
   </data>
   <data name="AniDBMyListDeleteLocal" xml:space="preserve">
     <value>Usuń plik (lokalne DB)</value>
@@ -3420,9 +3402,6 @@ Mark Unknown - pozostawia plik na liście, ale zmienia stan nieznany.</value>
     <value>CD/DVD</value>
   </data>
   <data name="AniDBMyListDelete" xml:space="preserve">
-    <value>Usuń plik (AniDB)</value>
-  </data>
-  <data name="Delete File (AniDB)" xml:space="preserve">
     <value>Usuń plik (AniDB)</value>
   </data>
   <data name="DeleteFiles_Name" xml:space="preserve">
@@ -3471,7 +3450,7 @@ Mark Unknown - pozostawia plik na liście, ale zmienia stan nieznany.</value>
     <value>Nowa lista odtwarzania</value>
   </data>
   <data name="EpisodeDetail_PlaylistMenu" xml:space="preserve">
-    <value>Menu listy odtwarzania: </value>
+    <value>Menu listy odtwarzania:</value>
   </data>
   <data name="EpisodeDetail_PlaylistMissing" xml:space="preserve">
     <value>Nie mogłem znaleźć listy odtwarzania</value>
@@ -3516,7 +3495,7 @@ Mark Unknown - pozostawia plik na liście, ale zmienia stan nieznany.</value>
     <value>nie znaleziono starając się porównać obiektów typu</value>
   </data>
   <data name="ValueCompare_FieldName" xml:space="preserve">
-    <value>Nazwa pola </value>
+    <value>Nazwa pola</value>
   </data>
   <data name="SelectGroupSeries_Select" xml:space="preserve">
     <value>Wybierz</value>
@@ -3561,7 +3540,7 @@ Mark Unknown - pozostawia plik na liście, ale zmienia stan nieznany.</value>
     <value>Wyjątek w MultiSort podczas sortowania listy</value>
   </data>
   <data name="JMMServer_TraktAuth" xml:space="preserve">
-    <value>Trakt autoryzacji </value>
+    <value>Trakt autoryzacji</value>
   </data>
   <data name="Group_GroupCount" xml:space="preserve">
     <value>Grupy</value>
@@ -4087,5 +4066,92 @@ Mark Unknown - pozostawia plik na liście, ale zmienia stan nieznany.</value>
   </data>
   <data name="Trakt_CheckCred" xml:space="preserve">
     <value>Sprawdź poświadczenia Trakt</value>
+  </data>
+  <data name="RelationSetting_AltSetting" xml:space="preserve">
+    <value>Zmienić ustawienie</value>
+  </data>
+  <data name="RelationSetting_SameSetting" xml:space="preserve">
+    <value>Samo ustawienie</value>
+  </data>
+  <data name="RelationSetting_Character" xml:space="preserve">
+    <value>Znak</value>
+  </data>
+  <data name="RelationSetting_Other" xml:space="preserve">
+    <value>Inne</value>
+  </data>
+  <data name="RelationSetting_ParentStory" xml:space="preserve">
+    <value>Historia rodziców</value>
+  </data>
+  <data name="RelationSetting_SideStory" xml:space="preserve">
+    <value>Side Story</value>
+  </data>
+  <data name="RelationSetting_Summary" xml:space="preserve">
+    <value>Krótki opis</value>
+  </data>
+  <data name="RelationSetting_FullStory" xml:space="preserve">
+    <value>Pełna historia</value>
+  </data>
+  <data name="RelationSetting_AltVersion" xml:space="preserve">
+    <value>Wersja alternatywna</value>
+  </data>
+  <data name="TAB_Settings_RelationSettings" xml:space="preserve">
+    <value>Ustawienia relacji</value>
+  </data>
+  <data name="RelationSettings_Info" xml:space="preserve">
+    <value>Wybierz następujące czynności, aby wykluczyć z grupowania</value>
+  </data>
+  <data name="Link_RelationSettings" xml:space="preserve">
+    <value>http://jmediamanager.org/JMM-Desktop/Settings/#Essential</value>
+  </data>
+  <data name="Video_Hi08P" xml:space="preserve">
+    <value>8-bitowa</value>
+  </data>
+  <data name="Video_Hi12P" xml:space="preserve">
+    <value>12 bit</value>
+  </data>
+  <data name="VideoPlayer_MPCIntegrationTypeNote" xml:space="preserve">
+    <value>There are 2 types of MPC Integrations:</value>
+  </data>
+  <data name="VideoPlayer_MPCWebUIPort" xml:space="preserve">
+    <value>MPC Web UI Port</value>
+  </data>
+  <data name="VideoPlayer_MPCNote1" xml:space="preserve">
+    <value>Integracji MPC, które należy włączyć dwie opcje (1) sklep ustawienia do pliku .ini i (2) zachować historię niedawno oglądałem plików. Zobacz poniższy zrzut ekranu więcej szczegółów. Lokalizacja MPC jest zazwyczaj coś w C:\Program Files (x 86) \Combined Community Codec Pack\MPC</value>
+  </data>
+  <data name="VideoPlayer_PotPlayerNote" xml:space="preserve">
+    <value>PotPlayer integracji należy włączyć następujące opcje (1) Preferencje &gt; ogólne &gt; ustawienia magazynu do ini plików (2) preferencje &gt; odtwarzania &gt; grać od ostatni punkt. Zobacz poniższy zrzut ekranu więcej szczegółów. Lokalizację pliku ini PlotPlayer zazwyczaj jest coś takiego jak C:\Users\username\AppData\Roaming\PotPlayer64\PotPlayer64.ini</value>
+  </data>
+  <data name="VideoPlayer_MPCNote2" xml:space="preserve">
+    <value>Integracji interfejsu użytkownika sieci Web należy włączyć następujące opcje w widoku &gt; Opcje &amp;gt; odtwarzacz &gt; interfejs sieci Web; Nasłuchiwać portu. Domyślny port nasłuchiwania jest 13579, którego można użyć, jeśli zdecydujesz się zmienić to upewnij się, że możesz zmienić go w polu poniżej.</value>
+  </data>
+  <data name="VideoPlayer_MPCTest" xml:space="preserve">
+    <value>MPC plik testowy</value>
+  </data>
+  <data name="VideoPlayer_VLCTest" xml:space="preserve">
+    <value>VLC plik testowy</value>
+  </data>
+  <data name="VideoPlayer_PotPlayerTest" xml:space="preserve">
+    <value>PotPlayer plik testowy</value>
+  </data>
+  <data name="VideoPlayer_MPCClear" xml:space="preserve">
+    <value>Wyczyścić Folder MPC INI</value>
+  </data>
+  <data name="VideoPlayer_PotPlayerClear" xml:space="preserve">
+    <value>Wyczyścić Folder INI puli gracz</value>
+  </data>
+  <data name="VideoPlayer_VLCClear" xml:space="preserve">
+    <value>Wyczyścić Folder VLC INI</value>
+  </data>
+  <data name="VideoPlayer_VLCNote" xml:space="preserve">
+    <value>VLC 2.2 + nagrywa ostatnio używanych plików i sygnatury czasowe domyślnie (i wyłączenie jest opcja "Zaawansowane"). Starsze wersje nie obsługują funkcji "Życiorys z ostatniej pozycji". Lokalizacja pliku .ini VLC jest zazwyczaj coś w stylu C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini</value>
+  </data>
+  <data name="GroupFilterConditionType_LatestEpisodeAirDate" xml:space="preserve">
+    <value>Najnowszy odcinek Air Data</value>
+  </data>
+  <data name="GroupFilterConditionType_Year" xml:space="preserve">
+    <value>Rok</value>
+  </data>
+  <data name="GroupFilterSorting_GroupFilter" xml:space="preserve">
+    <value>Nazwa filtru grupy</value>
   </data>
 </root>

@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows;
-using System.Windows.Input;
-using System.Diagnostics;
+﻿using JMMClient.ViewModel;
 using NLog;
-using JMMClient.ViewModel;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Windows.Data;
 using System.ComponentModel;
-using System.Threading;
+using System.Diagnostics;
 using System.Globalization;
+using System.Threading;
+using System.Windows;
+using System.Windows.Data;
+using System.Windows.Input;
 
 namespace JMMClient.Forms
 {
@@ -17,8 +17,8 @@ namespace JMMClient.Forms
     /// Interaction logic for SearchTraktForm.xaml
     /// </summary>
     public partial class SearchTraktForm : Window
-	{
-		private static Logger logger = LogManager.GetCurrentClassLogger();
+    {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
 
         public ICollectionView ViewTraktSeriesSearchResults { get; set; }
         public ObservableCollection<TraktTVShowResponseVM> TraktSeriesSearchResults { get; set; }
@@ -27,52 +27,52 @@ namespace JMMClient.Forms
         public ObservableCollection<CrossRef_AniDB_TraktVMV2> CrossRef_AniDB_TraktResult { get; set; }
 
         public static readonly DependencyProperty IsSearchProperty = DependencyProperty.Register("IsSearch",
-			typeof(bool), typeof(SearchTraktForm), new UIPropertyMetadata(false, null));
+            typeof(bool), typeof(SearchTraktForm), new UIPropertyMetadata(false, null));
 
-		public static readonly DependencyProperty IsExistingProperty = DependencyProperty.Register("IsExisting",
-			typeof(bool), typeof(SearchTraktForm), new UIPropertyMetadata(false, null));
+        public static readonly DependencyProperty IsExistingProperty = DependencyProperty.Register("IsExisting",
+            typeof(bool), typeof(SearchTraktForm), new UIPropertyMetadata(false, null));
 
-		public static readonly DependencyProperty HasWebCacheRecProperty = DependencyProperty.Register("HasWebCacheRec",
-			typeof(bool), typeof(SearchTraktForm), new UIPropertyMetadata(false, null));
+        public static readonly DependencyProperty HasWebCacheRecProperty = DependencyProperty.Register("HasWebCacheRec",
+            typeof(bool), typeof(SearchTraktForm), new UIPropertyMetadata(false, null));
 
 
-		public bool IsSearch
-		{
-			get { return (bool)GetValue(IsSearchProperty); }
-			set { SetValue(IsSearchProperty, value); }
-		}
+        public bool IsSearch
+        {
+            get { return (bool)GetValue(IsSearchProperty); }
+            set { SetValue(IsSearchProperty, value); }
+        }
 
-		public bool IsExisting
-		{
-			get { return (bool)GetValue(IsExistingProperty); }
-			set { SetValue(IsExistingProperty, value); }
-		}
+        public bool IsExisting
+        {
+            get { return (bool)GetValue(IsExistingProperty); }
+            set { SetValue(IsExistingProperty, value); }
+        }
 
-		public bool HasWebCacheRec
-		{
-			get { return (bool)GetValue(HasWebCacheRecProperty); }
-			set { SetValue(HasWebCacheRecProperty, value); }
-		}
+        public bool HasWebCacheRec
+        {
+            get { return (bool)GetValue(HasWebCacheRecProperty); }
+            set { SetValue(HasWebCacheRecProperty, value); }
+        }
 
-		
 
-		public static readonly DependencyProperty AnimeNameProperty = DependencyProperty.Register("AnimeName",
-			typeof(string), typeof(SearchTraktForm), new UIPropertyMetadata("", null));
 
-		public string AnimeName
-		{
-			get { return (string)GetValue(AnimeNameProperty); }
-			set { SetValue(AnimeNameProperty, value); }
-		}
+        public static readonly DependencyProperty AnimeNameProperty = DependencyProperty.Register("AnimeName",
+            typeof(string), typeof(SearchTraktForm), new UIPropertyMetadata("", null));
 
-		private int AnimeID = 0;
-		private string ExistingTraktID = "";
-		public string SelectedTraktID = "";
+        public string AnimeName
+        {
+            get { return (string)GetValue(AnimeNameProperty); }
+            set { SetValue(AnimeNameProperty, value); }
+        }
+
+        private int AnimeID = 0;
+        private string ExistingTraktID = "";
+        public string SelectedTraktID = "";
         private AniDB_AnimeVM Anime = null;
 
-		public SearchTraktForm()
-		{
-			InitializeComponent();
+        public SearchTraktForm()
+        {
+            InitializeComponent();
 
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
@@ -83,58 +83,58 @@ namespace JMMClient.Forms
             ViewCrossRef_AniDB_TraktResult = CollectionViewSource.GetDefaultView(CrossRef_AniDB_TraktResult);
 
             rbExisting.Checked += new RoutedEventHandler(rbExisting_Checked);
-			rbSearch.Checked += new RoutedEventHandler(rbSearch_Checked);
+            rbSearch.Checked += new RoutedEventHandler(rbSearch_Checked);
 
-			hlURL.Click += new RoutedEventHandler(hlURL_Click);
-			//hlURLWebCache.Click += new RoutedEventHandler(hlURLWebCache_Click);
+            hlURL.Click += new RoutedEventHandler(hlURL_Click);
+            //hlURLWebCache.Click += new RoutedEventHandler(hlURLWebCache_Click);
 
-			rbSearch.IsChecked = true;
-			rbExisting.IsChecked = false;
+            rbSearch.IsChecked = true;
+            rbExisting.IsChecked = false;
 
-			btnSearch.Click += new RoutedEventHandler(btnSearch_Click);
-			btnClose.Click += new RoutedEventHandler(btnClose_Click);
-			btnUseThis.Click += new RoutedEventHandler(btnUseThis_Click);
-			btnUseThisExisting.Click += new RoutedEventHandler(btnUseThisExisting_Click);
+            btnSearch.Click += new RoutedEventHandler(btnSearch_Click);
+            btnClose.Click += new RoutedEventHandler(btnClose_Click);
+            btnUseThis.Click += new RoutedEventHandler(btnUseThis_Click);
+            btnUseThisExisting.Click += new RoutedEventHandler(btnUseThisExisting_Click);
 
             btnChkCred.Click += new RoutedEventHandler(btnChkCred_Click);
         }
 
-		void btnUseThisExisting_Click(object sender, RoutedEventArgs e)
-		{
-			try
-			{
-				// prompt to select season
-				Window wdw = Window.GetWindow(this);
+        void btnUseThisExisting_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                // prompt to select season
+                Window wdw = Window.GetWindow(this);
 
-				this.Cursor = Cursors.Wait;
-				SelectTraktSeasonForm frm = new SelectTraktSeasonForm();
-				frm.Owner = wdw;
+                this.Cursor = Cursors.Wait;
+                SelectTraktSeasonForm frm = new SelectTraktSeasonForm();
+                frm.Owner = wdw;
                 frm.Init(AnimeID, AnimeName, EpisodeType.Episode, 1, txtSeriesID.Text.Trim(), 1, 1, AnimeName, Anime, null);
-				bool? result = frm.ShowDialog();
-				if (result.Value)
-				{
-					SelectedTraktID = txtSeriesID.Text.Trim();
-					this.DialogResult = true;
-					this.Cursor = Cursors.Arrow;
-					this.Close();
-				}
+                bool? result = frm.ShowDialog();
+                if (result.Value)
+                {
+                    SelectedTraktID = txtSeriesID.Text.Trim();
+                    this.DialogResult = true;
+                    this.Cursor = Cursors.Arrow;
+                    this.Close();
+                }
 
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-			finally
-			{
-				this.Cursor = Cursors.Arrow;
-			}
-		}
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Arrow;
+            }
+        }
 
-		void btnUseThis_Click(object sender, RoutedEventArgs e)
-		{
-			try
-			{
-				this.Cursor = Cursors.Wait;
+        void btnUseThis_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                this.Cursor = Cursors.Wait;
 
                 // remove any existing links
                 string res = JMMServerVM.Instance.clientBinaryHTTP.RemoveLinkAniDBTraktForAnime(this.AnimeID);
@@ -162,77 +162,77 @@ namespace JMMClient.Forms
                 this.DialogResult = true;
                 this.Cursor = Cursors.Arrow;
                 this.Close();
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-			finally
-			{
-				this.Cursor = Cursors.Arrow;
-			}
-		}
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Arrow;
+            }
+        }
 
-		void btnClose_Click(object sender, RoutedEventArgs e)
-		{
-			this.DialogResult = false;
-			SelectedTraktID = "";
-			this.Close();
-		}
+        void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = false;
+            SelectedTraktID = "";
+            this.Close();
+        }
 
-		private void CommandBinding_UseThis(object sender, ExecutedRoutedEventArgs e)
-		{
-			Window parentWindow = Window.GetWindow(this);
+        private void CommandBinding_UseThis(object sender, ExecutedRoutedEventArgs e)
+        {
+            Window parentWindow = Window.GetWindow(this);
 
-			object obj = e.Parameter;
-			if (obj == null) return;
+            object obj = e.Parameter;
+            if (obj == null) return;
 
-			try
-			{
-				if (obj.GetType() == typeof(TraktTVShowResponseVM))
-				{
-					this.Cursor = Cursors.Wait;
-					TraktTVShowResponseVM searchResult = obj as TraktTVShowResponseVM;
+            try
+            {
+                if (obj.GetType() == typeof(TraktTVShowResponseVM))
+                {
+                    this.Cursor = Cursors.Wait;
+                    TraktTVShowResponseVM searchResult = obj as TraktTVShowResponseVM;
 
-					// prompt to select season
-					Window wdw = Window.GetWindow(this);
+                    // prompt to select season
+                    Window wdw = Window.GetWindow(this);
 
-					this.Cursor = Cursors.Wait;
-					SelectTraktSeasonForm frm = new SelectTraktSeasonForm();
-					frm.Owner = wdw;
+                    this.Cursor = Cursors.Wait;
+                    SelectTraktSeasonForm frm = new SelectTraktSeasonForm();
+                    frm.Owner = wdw;
                     frm.Init(AnimeID, AnimeName, EpisodeType.Episode, 1, searchResult.TraktID, 1, 1, AnimeName, Anime, null);
-					bool? result = frm.ShowDialog();
-					if (result.Value)
-					{
-						SelectedTraktID = searchResult.TraktID;
-						this.DialogResult = true;
-						this.Cursor = Cursors.Arrow;
-						this.Close();
-					}
-				}
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-			finally
-			{
-				this.Cursor = Cursors.Arrow;
-			}
-		}
+                    bool? result = frm.ShowDialog();
+                    if (result.Value)
+                    {
+                        SelectedTraktID = searchResult.TraktID;
+                        this.DialogResult = true;
+                        this.Cursor = Cursors.Arrow;
+                        this.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Arrow;
+            }
+        }
 
-		void btnSearch_Click(object sender, RoutedEventArgs e)
-		{
+        void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
             TraktSeriesSearchResults.Clear();
             CrossRef_AniDB_TraktResult.Clear();
 
             HasWebCacheRec = false;
-			if (!JMMServerVM.Instance.ServerOnline) return;
+            if (!JMMServerVM.Instance.ServerOnline) return;
 
-			this.Cursor = Cursors.Wait;
-			try
-			{
-                
+            this.Cursor = Cursors.Wait;
+            try
+            {
+
                 // first find what the community recommends
                 List<JMMServerBinary.Contract_Azure_CrossRef_AniDB_Trakt> xrefs = JMMServerVM.Instance.clientBinaryHTTP.GetTraktCrossRefWebCache(AnimeID, false);
                 if (xrefs != null && xrefs.Count > 0)
@@ -247,61 +247,61 @@ namespace JMMClient.Forms
                 }
 
                 // now search Trakt
-                
 
-                List<JMMServerBinary.Contract_TraktTVShowResponse> traktResults = JMMServerVM.Instance.clientBinaryHTTP.SearchTrakt(txtSearch.Text.Trim());
-				foreach (JMMServerBinary.Contract_TraktTVShowResponse traktResult in traktResults)
-					TraktSeriesSearchResults.Add(new TraktTVShowResponseVM(traktResult));
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-			finally
-			{
-				this.Cursor = Cursors.Arrow;
-			}
 
-		}
+                List<JMMServerBinary.Contract_TraktTVShowResponse> traktResults = JMMServerVM.Instance.clientBinaryHTTP.SearchTrakt(txtSearch.Text.Replace("`", "'").Trim());
+                foreach (JMMServerBinary.Contract_TraktTVShowResponse traktResult in traktResults)
+                    TraktSeriesSearchResults.Add(new TraktTVShowResponseVM(traktResult));
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Arrow;
+            }
 
-		void hlURL_Click(object sender, RoutedEventArgs e)
-		{
-			Uri uri = new Uri(string.Format(Constants.URLS.Trakt_Series, txtSeriesID.Text.Trim()));
-			Process.Start(new ProcessStartInfo(uri.AbsoluteUri));
-		}
+        }
 
-		void hlURLWebCache_Click(object sender, RoutedEventArgs e)
-		{
-			//Uri uri = new Uri(string.Format(Constants.URLS.Trakt_Series, CrossRef_AniDB_TraktResult.TraktID));
-			//Process.Start(new ProcessStartInfo(uri.AbsoluteUri));
-		}
+        void hlURL_Click(object sender, RoutedEventArgs e)
+        {
+            Uri uri = new Uri(string.Format(Constants.URLS.Trakt_Series, txtSeriesID.Text.Trim()));
+            Process.Start(new ProcessStartInfo(uri.AbsoluteUri));
+        }
 
-		void rbSearch_Checked(object sender, RoutedEventArgs e)
-		{
-			EvaluateRadioButtons();
-		}
+        void hlURLWebCache_Click(object sender, RoutedEventArgs e)
+        {
+            //Uri uri = new Uri(string.Format(Constants.URLS.Trakt_Series, CrossRef_AniDB_TraktResult.TraktID));
+            //Process.Start(new ProcessStartInfo(uri.AbsoluteUri));
+        }
 
-		void rbExisting_Checked(object sender, RoutedEventArgs e)
-		{
-			EvaluateRadioButtons();
-		}
+        void rbSearch_Checked(object sender, RoutedEventArgs e)
+        {
+            EvaluateRadioButtons();
+        }
 
-		private void EvaluateRadioButtons()
-		{
-			IsSearch = rbSearch.IsChecked.Value;
-			IsExisting = rbExisting.IsChecked.Value;
+        void rbExisting_Checked(object sender, RoutedEventArgs e)
+        {
+            EvaluateRadioButtons();
+        }
+
+        private void EvaluateRadioButtons()
+        {
+            IsSearch = rbSearch.IsChecked.Value;
+            IsExisting = rbExisting.IsChecked.Value;
 
             HasWebCacheRec = IsSearch && CrossRef_AniDB_TraktResult != null && CrossRef_AniDB_TraktResult.Count > 0;
-		}
+        }
 
         public void Init(int animeID, string animeName, string searchCriteria, string existingTraktID, AniDB_AnimeVM anime)
-		{
+        {
             Anime = anime;
-			AnimeID = animeID;
-			AnimeName = animeName;
-			ExistingTraktID = existingTraktID;
-			txtSearch.Text = searchCriteria;
-		}
+            AnimeID = animeID;
+            AnimeName = animeName;
+            ExistingTraktID = existingTraktID;
+            txtSearch.Text = searchCriteria;
+        }
 
         private void btnChkCred_Click(object sender, System.Windows.RoutedEventArgs e)
         {

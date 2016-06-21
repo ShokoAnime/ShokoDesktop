@@ -1,9 +1,7 @@
 using System;
-using System.Threading;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Reflection;
 using System.Globalization;
+using System.Threading;
 
 // Source code by Owen Emlen (owene_1998@yahoo.com, owen@binarynorthwest.com)
 // http://www.braintechllc.com/owen.aspx, http://www.binarynorthwest.com
@@ -34,7 +32,7 @@ namespace BinaryNorthwest
     /// </summary>
     public static class Sorting
     {
-        
+
         /// <summary>
         /// Sorts a given list, in-place, using the specified sortBy (comparison) criterion.  
         /// This static method is thread-safe -- but only if you remember to lock the list elsewhere 
@@ -222,5 +220,5 @@ namespace BinaryNorthwest
             else if (t == typeof(double) || t == typeof(float)) return SortType.eDoubleOrFloat;
             else return SortType.eString;
         }
-    }    
+    }
 }

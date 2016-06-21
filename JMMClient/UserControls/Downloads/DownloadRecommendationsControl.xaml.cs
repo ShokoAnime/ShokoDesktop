@@ -1,183 +1,176 @@
-﻿using System;
+﻿using JMMClient.ViewModel;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.ComponentModel;
-using System.Collections.ObjectModel;
-using JMMClient.ViewModel;
 
 namespace JMMClient.UserControls
 {
-	/// <summary>
-	/// Interaction logic for DownloadRecommendationsControl.xaml
-	/// </summary>
-	public partial class DownloadRecommendationsControl : UserControl
-	{
-		public ICollectionView ViewRecs { get; set; }
-		public ObservableCollection<RecommendationVM> Recs { get; set; }
+    /// <summary>
+    /// Interaction logic for DownloadRecommendationsControl.xaml
+    /// </summary>
+    public partial class DownloadRecommendationsControl : UserControl
+    {
+        public ICollectionView ViewRecs { get; set; }
+        public ObservableCollection<RecommendationVM> Recs { get; set; }
 
-		BackgroundWorker getMissingDataWorker = new BackgroundWorker();
+        BackgroundWorker getMissingDataWorker = new BackgroundWorker();
 
-		public static readonly DependencyProperty IsLoadingProperty = DependencyProperty.Register("IsLoading",
-			typeof(bool), typeof(DownloadRecommendationsControl), new UIPropertyMetadata(false, null));
+        public static readonly DependencyProperty IsLoadingProperty = DependencyProperty.Register("IsLoading",
+            typeof(bool), typeof(DownloadRecommendationsControl), new UIPropertyMetadata(false, null));
 
-		public bool IsLoading
-		{
-			get { return (bool)GetValue(IsLoadingProperty); }
-			set
-			{
-				SetValue(IsLoadingProperty, value);
-				IsNotLoading = !IsLoading;
-			}
-		}
+        public bool IsLoading
+        {
+            get { return (bool)GetValue(IsLoadingProperty); }
+            set
+            {
+                SetValue(IsLoadingProperty, value);
+                IsNotLoading = !IsLoading;
+            }
+        }
 
-		public static readonly DependencyProperty IsNotLoadingProperty = DependencyProperty.Register("IsNotLoading",
-			typeof(bool), typeof(DownloadRecommendationsControl), new UIPropertyMetadata(true, null));
+        public static readonly DependencyProperty IsNotLoadingProperty = DependencyProperty.Register("IsNotLoading",
+            typeof(bool), typeof(DownloadRecommendationsControl), new UIPropertyMetadata(true, null));
 
-		public bool IsNotLoading
-		{
-			get { return (bool)GetValue(IsNotLoadingProperty); }
-			set { SetValue(IsNotLoadingProperty, value); }
-		}
-
-
-		public static readonly DependencyProperty StatusMessageProperty = DependencyProperty.Register("StatusMessage",
-			typeof(string), typeof(DownloadRecommendationsControl), new UIPropertyMetadata("", null));
-
-		public string StatusMessage
-		{
-			get { return (string)GetValue(StatusMessageProperty); }
-			set { SetValue(StatusMessageProperty, value); }
-		}
+        public bool IsNotLoading
+        {
+            get { return (bool)GetValue(IsNotLoadingProperty); }
+            set { SetValue(IsNotLoadingProperty, value); }
+        }
 
 
-		public DownloadRecommendationsControl()
-		{
-			InitializeComponent();
+        public static readonly DependencyProperty StatusMessageProperty = DependencyProperty.Register("StatusMessage",
+            typeof(string), typeof(DownloadRecommendationsControl), new UIPropertyMetadata("", null));
 
-			IsLoading = false;
+        public string StatusMessage
+        {
+            get { return (string)GetValue(StatusMessageProperty); }
+            set { SetValue(StatusMessageProperty, value); }
+        }
 
-			Recs = new ObservableCollection<RecommendationVM>();
-			ViewRecs = CollectionViewSource.GetDefaultView(Recs);
 
-			btnRefresh.Click += new RoutedEventHandler(btnRefresh_Click);
-			btnGetRecDownloadMissingInfo.Click += new RoutedEventHandler(btnGetRecDownloadMissingInfo_Click);
+        public DownloadRecommendationsControl()
+        {
+            InitializeComponent();
 
-			getMissingDataWorker.DoWork += new DoWorkEventHandler(getMissingDataWorker_DoWork);
-			getMissingDataWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(getMissingDataWorker_RunWorkerCompleted);
-		}
+            IsLoading = false;
 
-		private void CommandBinding_IgnoreAnimeDownload(object sender, ExecutedRoutedEventArgs e)
-		{
-			Window parentWindow = Window.GetWindow(this);
+            Recs = new ObservableCollection<RecommendationVM>();
+            ViewRecs = CollectionViewSource.GetDefaultView(Recs);
 
-			object obj = e.Parameter;
-			if (obj == null) return;
+            btnRefresh.Click += new RoutedEventHandler(btnRefresh_Click);
+            btnGetRecDownloadMissingInfo.Click += new RoutedEventHandler(btnGetRecDownloadMissingInfo_Click);
 
-			try
-			{
-				if (obj.GetType() == typeof(RecommendationVM))
-				{
-					RecommendationVM rec = obj as RecommendationVM;
-					if (rec == null) return;
+            getMissingDataWorker.DoWork += new DoWorkEventHandler(getMissingDataWorker_DoWork);
+            getMissingDataWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(getMissingDataWorker_RunWorkerCompleted);
+        }
 
-					JMMServerVM.Instance.clientBinaryHTTP.IgnoreAnime(rec.RecommendedAnimeID, (int)RecommendationType.Download,
-						JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+        private void CommandBinding_IgnoreAnimeDownload(object sender, ExecutedRoutedEventArgs e)
+        {
+            Window parentWindow = Window.GetWindow(this);
 
-					RefreshData();
-				}
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-		}
+            object obj = e.Parameter;
+            if (obj == null) return;
 
-		void btnGetRecDownloadMissingInfo_Click(object sender, RoutedEventArgs e)
-		{
-			Window parentWindow = Window.GetWindow(this);
+            try
+            {
+                if (obj.GetType() == typeof(RecommendationVM))
+                {
+                    RecommendationVM rec = obj as RecommendationVM;
+                    if (rec == null) return;
 
-			IsLoading = true;
-			this.IsEnabled = false;
-			parentWindow.Cursor = Cursors.Wait;
-			getMissingDataWorker.RunWorkerAsync();
-		}
+                    JMMServerVM.Instance.clientBinaryHTTP.IgnoreAnime(rec.RecommendedAnimeID, (int)RecommendationType.Download,
+                        JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
 
-		void getMissingDataWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-		{
-			Window parentWindow = Window.GetWindow(this);
+                    RefreshData();
+                }
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+        }
 
-			RefreshData();
+        void btnGetRecDownloadMissingInfo_Click(object sender, RoutedEventArgs e)
+        {
+            Window parentWindow = Window.GetWindow(this);
 
-			parentWindow.Cursor = Cursors.Arrow;
-			this.IsEnabled = true;
-			IsLoading = false;
-		}
+            IsLoading = true;
+            this.IsEnabled = false;
+            parentWindow.Cursor = Cursors.Wait;
+            getMissingDataWorker.RunWorkerAsync();
+        }
 
-		void getMissingDataWorker_DoWork(object sender, DoWorkEventArgs e)
-		{
-			try
-			{
-				foreach (RecommendationVM rec in Recs)
-				{
-					if (rec.Recommended_AnimeInfoNotExists)
-					{
-						JMMServerVM.Instance.clientBinaryHTTP.UpdateAnimeData(rec.RecommendedAnimeID);
-					}
-				}
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-		}
+        void getMissingDataWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            Window parentWindow = Window.GetWindow(this);
 
-		private void RefreshData()
-		{
-			try
-			{
-				Window parentWindow = Window.GetWindow(this);
-				parentWindow.Cursor = Cursors.Wait;
+            RefreshData();
 
-				Recs.Clear();
+            parentWindow.Cursor = Cursors.Arrow;
+            this.IsEnabled = true;
+            IsLoading = false;
+        }
 
-				List<JMMServerBinary.Contract_Recommendation> contracts =
-					JMMServerVM.Instance.clientBinaryHTTP.GetRecommendations(UserSettingsVM.Instance.DownloadsRecItems, JMMServerVM.Instance.CurrentUser.JMMUserID.Value,
-					(int)RecommendationType.Download);
+        void getMissingDataWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                foreach (RecommendationVM rec in Recs)
+                {
+                    if (rec.Recommended_AnimeInfoNotExists)
+                    {
+                        JMMServerVM.Instance.clientBinaryHTTP.UpdateAnimeData(rec.RecommendedAnimeID);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+        }
 
-				foreach (JMMServerBinary.Contract_Recommendation contract in contracts)
-				{
-					RecommendationVM rec = new RecommendationVM();
-					rec.Populate(contract);
-					Recs.Add(rec);
-				}
+        private void RefreshData()
+        {
+            try
+            {
+                Window parentWindow = Window.GetWindow(this);
+                parentWindow.Cursor = Cursors.Wait;
 
-				ViewRecs.Refresh();
+                Recs.Clear();
 
-				parentWindow.Cursor = Cursors.Arrow;
+                List<JMMServerBinary.Contract_Recommendation> contracts =
+                    JMMServerVM.Instance.clientBinaryHTTP.GetRecommendations(UserSettingsVM.Instance.DownloadsRecItems, JMMServerVM.Instance.CurrentUser.JMMUserID.Value,
+                    (int)RecommendationType.Download);
 
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
-			finally
-			{
-			}
-		}
+                foreach (JMMServerBinary.Contract_Recommendation contract in contracts)
+                {
+                    RecommendationVM rec = new RecommendationVM();
+                    rec.Populate(contract);
+                    Recs.Add(rec);
+                }
 
-		void btnRefresh_Click(object sender, RoutedEventArgs e)
-		{
-			RefreshData();
-		}
-	}
+                ViewRecs.Refresh();
+
+                parentWindow.Cursor = Cursors.Arrow;
+
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+            finally
+            {
+            }
+        }
+
+        void btnRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            RefreshData();
+        }
+    }
 }

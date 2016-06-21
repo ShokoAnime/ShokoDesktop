@@ -1,23 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace JMMClient
+﻿namespace JMMClient
 {
-	public class RenameTag
-	{
-		public string Name { get; set; }
-		public string Tag { get; set; }
+    public class RenameTag
+    {
+        public string Name { get; set; }
+        public string Tag { get; set; }
 
-		public RenameTag()
-		{
-		}
+        public RenameTag()
+        {
+        }
 
-		public RenameTag(string name, string tag)
-		{
-			Name = name;
-			Tag = tag;
-		}
-	}
+        public RenameTag(string name, string tag)
+        {
+            Name = name;
+            Tag = tag;
+        }
+    }
 }

@@ -1375,7 +1375,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Changing Password For: .
+        ///   Looks up a localized string similar to Changing Password For:.
         /// </summary>
         public static string ChangingPassword {
             get {
@@ -1915,7 +1915,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Trakt: .
+        ///   Looks up a localized string similar to Trakt:.
         /// </summary>
         public static string CommunityLinks_Trakt {
             get {
@@ -1933,7 +1933,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TvDB: .
+        ///   Looks up a localized string similar to TvDB:.
         /// </summary>
         public static string CommunityLinks_TvDB {
             get {
@@ -2248,7 +2248,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Selecting a default series means that all images that are dsiplayed for a group will use that .
+        ///   Looks up a localized string similar to Selecting a default series means that all images that are dsiplayed for a group will use that.
         /// </summary>
         public static string DefSeries2 {
             get {
@@ -2271,15 +2271,6 @@ namespace JMMClient.Properties {
         public static string Delete {
             get {
                 return ResourceManager.GetString("Delete", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Delete File (AniDB).
-        /// </summary>
-        public static string Delete_File__AniDB_ {
-            get {
-                return ResourceManager.GetString("Delete File (AniDB)", resourceCulture);
             }
         }
         
@@ -3112,7 +3103,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Playlist Menu: .
+        ///   Looks up a localized string similar to Playlist Menu:.
         /// </summary>
         public static string EpisodeDetail_PlaylistMenu {
             get {
@@ -3940,6 +3931,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Latest Episode Air Date.
+        /// </summary>
+        public static string GroupFilterConditionType_LatestEpisodeAirDate {
+            get {
+                return ResourceManager.GetString("GroupFilterConditionType_LatestEpisodeAirDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Missing Episodes.
         /// </summary>
         public static string GroupFilterConditionType_MissingEpisodes {
@@ -4035,6 +4035,15 @@ namespace JMMClient.Properties {
         public static string GroupFilterConditionType_VideoQuality {
             get {
                 return ResourceManager.GetString("GroupFilterConditionType_VideoQuality", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Year.
+        /// </summary>
+        public static string GroupFilterConditionType_Year {
+            get {
+                return ResourceManager.GetString("GroupFilterConditionType_Year", resourceCulture);
             }
         }
         
@@ -4215,6 +4224,15 @@ namespace JMMClient.Properties {
         public static string GroupFilterSorting_EpisodeWatchedDate {
             get {
                 return ResourceManager.GetString("GroupFilterSorting_EpisodeWatchedDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group Filter Name.
+        /// </summary>
+        public static string GroupFilterSorting_GroupFilter {
+            get {
+                return ResourceManager.GetString("GroupFilterSorting_GroupFilter", resourceCulture);
             }
         }
         
@@ -4660,7 +4678,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Multiple files are where you have two or more files for the same episode. This utility will let you examine all these occurrences, and decide which ones you want to  keep.
+        ///   Looks up a localized string similar to Multiple files are where you have two or more files for the same episode. This utility will let you examine all these occurrences, and decide which ones you want to keep.
         /// </summary>
         public static string INFO_MultipleFiles {
             get {
@@ -4858,7 +4876,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Trakt Authorization Status .
+        ///   Looks up a localized string similar to Trakt Authorization Status.
         /// </summary>
         public static string JMMServer_TraktAuth {
             get {
@@ -5025,6 +5043,15 @@ namespace JMMClient.Properties {
         public static string Link_PotPlayer {
             get {
                 return ResourceManager.GetString("Link_PotPlayer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/settings/#essential.
+        /// </summary>
+        public static string Link_RelationSettings {
+            get {
+                return ResourceManager.GetString("Link_RelationSettings", resourceCulture);
             }
         }
         
@@ -6109,7 +6136,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter playlist name: .
+        ///   Looks up a localized string similar to Enter playlist name:.
         /// </summary>
         public static string Playlist_Name {
             get {
@@ -6699,6 +6726,96 @@ namespace JMMClient.Properties {
         public static string RelatedAnime {
             get {
                 return ResourceManager.GetString("RelatedAnime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alternative Setting.
+        /// </summary>
+        public static string RelationSetting_AltSetting {
+            get {
+                return ResourceManager.GetString("RelationSetting_AltSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alternative Version.
+        /// </summary>
+        public static string RelationSetting_AltVersion {
+            get {
+                return ResourceManager.GetString("RelationSetting_AltVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Character.
+        /// </summary>
+        public static string RelationSetting_Character {
+            get {
+                return ResourceManager.GetString("RelationSetting_Character", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Full Story.
+        /// </summary>
+        public static string RelationSetting_FullStory {
+            get {
+                return ResourceManager.GetString("RelationSetting_FullStory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other.
+        /// </summary>
+        public static string RelationSetting_Other {
+            get {
+                return ResourceManager.GetString("RelationSetting_Other", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parent Story.
+        /// </summary>
+        public static string RelationSetting_ParentStory {
+            get {
+                return ResourceManager.GetString("RelationSetting_ParentStory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Same Setting.
+        /// </summary>
+        public static string RelationSetting_SameSetting {
+            get {
+                return ResourceManager.GetString("RelationSetting_SameSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Side Story.
+        /// </summary>
+        public static string RelationSetting_SideStory {
+            get {
+                return ResourceManager.GetString("RelationSetting_SideStory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Summary.
+        /// </summary>
+        public static string RelationSetting_Summary {
+            get {
+                return ResourceManager.GetString("RelationSetting_Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the following to exclude from grouping.
+        /// </summary>
+        public static string RelationSettings_Info {
+            get {
+                return ResourceManager.GetString("RelationSettings_Info", resourceCulture);
             }
         }
         
@@ -7540,7 +7657,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MAL: .
+        ///   Looks up a localized string similar to MAL:.
         /// </summary>
         public static string Search_MAL {
             get {
@@ -7612,7 +7729,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Trakt: .
+        ///   Looks up a localized string similar to Trakt:.
         /// </summary>
         public static string Search_Trakt {
             get {
@@ -7630,7 +7747,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TvDB: .
+        ///   Looks up a localized string similar to TvDB:.
         /// </summary>
         public static string Search_TvDB {
             get {
@@ -7819,7 +7936,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The specified file or folder doesn&apos;t exists : .
+        ///   Looks up a localized string similar to The specified file or folder doesn&apos;t exists :.
         /// </summary>
         public static string Selected_DoesNotExist {
             get {
@@ -8341,7 +8458,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error trying to sort list of .
+        ///   Looks up a localized string similar to Error trying to sort list of.
         /// </summary>
         public static string Sort_Error {
             get {
@@ -8854,6 +8971,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Relation Settings.
+        /// </summary>
+        public static string TAB_Settings_RelationSettings {
+            get {
+                return ResourceManager.GetString("TAB_Settings_RelationSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AniDB.
         /// </summary>
         public static string TAB_SettingsAniDB {
@@ -9154,7 +9280,7 @@ namespace JMMClient.Properties {
         ///   Looks up a localized string similar to What action to take for a file when you delete it from you local collection.
         ///Delete File (AniDB) - Removes file from your AniDB MyList.
         ///Delete File (Local DB) - Remove file from your local DB only.
-        ///Mark Deleted -  Leaves the file on your list, but changes the state to deleted.
+        ///Mark Deleted - Leaves the file on your list, but changes the state to deleted.
         ///Mark External (CD/DVD) - Leaves the file on your list, but changes the state to external storage.
         ///Mark Unknown - Leaves the file on your list, but changes the state to unkown..
         /// </summary>
@@ -9552,7 +9678,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search  groups by name (in any language), category or tag.
+        ///   Looks up a localized string similar to Search groups by name (in any language), category or tag.
         /// </summary>
         public static string Tooltip_GroupSearch {
             get {
@@ -10209,7 +10335,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Total File Count.
+        ///   Looks up a localized string similar to Total File Count:.
         /// </summary>
         public static string TotalFileCount {
             get {
@@ -11190,7 +11316,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Field name .
+        ///   Looks up a localized string similar to Field name.
         /// </summary>
         public static string ValueCompare_FieldName {
             get {
@@ -11271,11 +11397,29 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 8bit.
+        /// </summary>
+        public static string Video_Hi08P {
+            get {
+                return ResourceManager.GetString("Video_Hi08P", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 10bit.
         /// </summary>
         public static string Video_Hi10P {
             get {
                 return ResourceManager.GetString("Video_Hi10P", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12bit.
+        /// </summary>
+        public static string Video_Hi12P {
+            get {
+                return ResourceManager.GetString("Video_Hi12P", resourceCulture);
             }
         }
         
@@ -11289,7 +11433,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Updating to watched by media player: .
+        ///   Looks up a localized string similar to Updating to watched by media player:.
         /// </summary>
         public static string Video_Updating {
             get {
@@ -11424,7 +11568,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JMM automatically uses the default Windows video player. If you&apos;d like to use a different video player you&apos;ll need to add the video player&apos;s executable to the PATH system variable. .
+        ///   Looks up a localized string similar to JMM automatically uses the default Windows video player. If you&apos;d like to use a different video player you&apos;ll need to add the video player&apos;s executable to the PATH system variable..
         /// </summary>
         public static string VideoPlayer_DefaultNote {
             get {
@@ -11469,6 +11613,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clear MPC INI Folder.
+        /// </summary>
+        public static string VideoPlayer_MPCClear {
+            get {
+                return ResourceManager.GetString("VideoPlayer_MPCClear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MPC INI Folder.
         /// </summary>
         public static string VideoPlayer_MPCFolder {
@@ -11496,11 +11649,29 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to For MPC Integration you must enable two options (1) Store settings to .ini file and (2) Keep history of recently watched files. See the following screenshot for more details. The location of MPC is usually something like C:\Program Files (x86)\Combined Community Codec Pack\MPC.
+        ///   Looks up a localized string similar to There are 2 types of MPC Integrations:.
         /// </summary>
-        public static string VideoPlayer_MPCNote {
+        public static string VideoPlayer_MPCIntegrationTypeNote {
             get {
-                return ResourceManager.GetString("VideoPlayer_MPCNote", resourceCulture);
+                return ResourceManager.GetString("VideoPlayer_MPCIntegrationTypeNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For INI integration you must enable the following options in View &gt; Options &gt; Player; (1) Store settings to .ini file and (2) Keep history of recently watched files (3) Remember File Position. The location of the INI file is usually something like C:\Program Files (x86)\Combined Community Codec Pack\MPC.
+        /// </summary>
+        public static string VideoPlayer_MPCNote1 {
+            get {
+                return ResourceManager.GetString("VideoPlayer_MPCNote1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For Web UI integration you must enable the following option in View &gt; Options &gt; Player &gt; Web Interface; Listen On Port. The default listening port is 13579 which you can use, if you decide to change it make sure you change it in the box below..
+        /// </summary>
+        public static string VideoPlayer_MPCNote2 {
+            get {
+                return ResourceManager.GetString("VideoPlayer_MPCNote2", resourceCulture);
             }
         }
         
@@ -11532,11 +11703,20 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Test MPC File.
+        ///   Looks up a localized string similar to Test MPC INI File.
         /// </summary>
         public static string VideoPlayer_MPCTest {
             get {
                 return ResourceManager.GetString("VideoPlayer_MPCTest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MPC Web UI Port.
+        /// </summary>
+        public static string VideoPlayer_MPCWebUIPort {
+            get {
+                return ResourceManager.GetString("VideoPlayer_MPCWebUIPort", resourceCulture);
             }
         }
         
@@ -11546,6 +11726,15 @@ namespace JMMClient.Properties {
         public static string VideoPlayer_PotPlayer {
             get {
                 return ResourceManager.GetString("VideoPlayer_PotPlayer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear Pot Player INI Folder.
+        /// </summary>
+        public static string VideoPlayer_PotPlayerClear {
+            get {
+                return ResourceManager.GetString("VideoPlayer_PotPlayerClear", resourceCulture);
             }
         }
         
@@ -11577,7 +11766,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to For PotPlayer Integration you must enable the following options (1) Preferences &gt; General &gt; Store Settings to .ini file (2) Preferences &gt; Playback &gt; Play from latest point. See the following screenshot for more details. The location of the PlotPlayer .ini file is usually something like C:\Users\username\AppData\Roaming\PotPlayer64\PotPlayer64.ini.
+        ///   Looks up a localized string similar to For PotPlayer Integration you must enable the following options (1) Preferences &gt; General &gt; Store Settings to .ini file (2) Preferences &gt; Playback &gt; Play from latest point. The location of the PlotPlayer .ini file is usually something like C:\Users\username\AppData\Roaming\PotPlayer64\PotPlayer64.ini.
         /// </summary>
         public static string VideoPlayer_PotPlayerNote {
             get {
@@ -11613,7 +11802,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Test PotPlayer File.
+        ///   Looks up a localized string similar to Test PotPlayer INI File.
         /// </summary>
         public static string VideoPlayer_PotPlayerTest {
             get {
@@ -11636,6 +11825,15 @@ namespace JMMClient.Properties {
         public static string VideoPlayer_VLC {
             get {
                 return ResourceManager.GetString("VideoPlayer_VLC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear VLC INI Folder.
+        /// </summary>
+        public static string VideoPlayer_VLCClear {
+            get {
+                return ResourceManager.GetString("VideoPlayer_VLCClear", resourceCulture);
             }
         }
         
@@ -11667,7 +11865,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to VLC 2.2+ records recent files and timestamps by default (and disabling is an &apos;Advanced&apos; option). Older versions do not support &apos;Resume from last position&apos; functionality. The location of the VLC .ini file is usually something like C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini.
+        ///   Looks up a localized string similar to Any version of VLC can be used with JMM for general file playback. However only VLC version 2.2 and newer are able to take advantage of the video player integration as &apos;Resume from last position&quot; is not available in older versions. VLC also enables the required settings by default so you don&apos;t need to do any additional configuration. The location of the VLC .ini file is usually something like C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini.
         /// </summary>
         public static string VideoPlayer_VLCNote {
             get {
@@ -11703,7 +11901,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Test VLC File.
+        ///   Looks up a localized string similar to Test VLC INI File.
         /// </summary>
         public static string VideoPlayer_VLCTest {
             get {
@@ -11784,7 +11982,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to View: .
+        ///   Looks up a localized string similar to View:.
         /// </summary>
         public static string ViewLabel {
             get {

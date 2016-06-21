@@ -1,22 +1,16 @@
-﻿using System;
+﻿using JMMClient.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
+using System.Globalization;
 using System.Reflection;
-using System.Text;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
-using JMMClient.ViewModel;
-using System.Globalization;
 
 namespace JMMClient.UserControls
 {
@@ -229,7 +223,7 @@ namespace JMMClient.UserControls
                     SearchStatus = res.ExtraInfo;
 
                 //SearchStatus = string.Format("{0} Anime still need TvDB approval", link.AnimeNeedingApproval);
-                
+
             }
             catch (Exception ex)
             {
@@ -432,7 +426,7 @@ namespace JMMClient.UserControls
                         xref.IsAdminApproved = 1;
                     else
                         MessageBox.Show(res, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
-                    
+
                 }
                 if (obj.GetType() == typeof(CrossRef_AniDB_TraktVMV2))
                 {

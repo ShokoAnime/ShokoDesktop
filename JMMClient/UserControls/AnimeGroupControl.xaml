@@ -20,7 +20,7 @@
         <CommandBinding Command="{StaticResource ToggleWatchedStatusCommand}" Executed="CommandBinding_ToggleWatchedStatus" />
     </UserControl.CommandBindings>
 
-    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Name="ScrollerAnimeGroup" Grid.Column="0" Grid.Row="0" Margin="0,0,0,0" >
+    <usercontrols:ContentAwareScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" x:Name="ScrollerAnimeGroup" Grid.Column="0" Grid.Row="0" Margin="0,0,0,0">
 
         <StackPanel Orientation="Vertical" Width="{Binding Source={x:Static local:MainListHelperVM.Instance},Path=MainScrollerWidth}">
 
@@ -333,5 +333,5 @@
         </StackPanel>
 
 
-    </ScrollViewer>
+    </usercontrols:ContentAwareScrollViewer>
 </UserControl>
