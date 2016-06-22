@@ -661,22 +661,24 @@
     <value>Podczas zakończenia oglądania lub ręcznego ustawienia filmu jako obejrzany AniDB zostanie zaktualizowane, by odzwierciedlać zmiany lokalne</value>
   </data>
   <data name="Tooltip_AniDBMyListState" xml:space="preserve">
-    <value>Przechowywania plików stanu będzie zestaw do dodania do listy</value>
+    <value>Przechowywane stany plików zostaną ustawione w momencie dodania do listy</value>
   </data>
   <data name="SyncMyList" xml:space="preserve">
     <value>Synchronizacja AniDB MyList</value>
   </data>
   <data name="Rehash" xml:space="preserve">
-    <value>Odgrzewana</value>
+    <value>Odśwież</value>
   </data>
   <data name="MSG_INFO_AddedQueueCmds" xml:space="preserve">
-    <value>Polecenia, które zostały dodane do kolejki</value>
+    <value>Zadanie zostało dodane do kolejki</value>
   </data>
   <data name="MultiTypeRange" xml:space="preserve">
-    <value>Odcinek zakres</value>
+    <value>Zakres odcineków</value>
+    <comment>Używany gdy łączone jest wiele plików z odcinkami</comment>
   </data>
   <data name="MultiTypeSingle" xml:space="preserve">
-    <value>Pojedynczy epizod</value>
+    <value>Pojedynczy odcinek</value>
+    <comment>Używany gdy łączone jest wiele plików z odcinkami</comment>
   </data>
   <data name="AniDBScheduleCalendar" xml:space="preserve">
     <value>Automatycznie zaktualizować kalendarz</value>
@@ -685,73 +687,73 @@
     <value>Automatycznie zaktualizować Anime i odcinek informacje</value>
   </data>
   <data name="AniDBScheduleMyList" xml:space="preserve">
-    <value>Automatycznie Synchronizuj mojalista informacje</value>
+    <value>Automatycznie synchronizuj informacje o MyList</value>
   </data>
   <data name="AniDBScheduleOptions" xml:space="preserve">
-    <value>Regularne aktualizacje</value>
+    <value>Zaplanowane aktualizacje</value>
   </data>
   <data name="Tooltip_AniDBScheduleCalendar" xml:space="preserve">
     <value>Pobierz informacje o nadchodzących anime.</value>
   </data>
   <data name="Tooltip_AniDBScheduleHTTP" xml:space="preserve">
-    <value>Aktualizacja informacji o anime i dostać nowy odcinek informacji. Zostanie pobrana tylko dane, które zmieniały się od czasu ostatniej aktualizacji.</value>
+    <value>Aktualizacja informacji o anime i pobierz informacje o nowych odcinekach. Pobrane zostaną tylko dane, które zmieniały się od ostatniej aktualizacji.</value>
   </data>
   <data name="Tooltip_AniDBScheduleMyList" xml:space="preserve">
-    <value>Synchronizacja informacji od AniDB zgodnie z opcjami określonymi w sekcji mojalista.</value>
+    <value>Synchronizacja informacji od AniDB zgodnie z opcjami określonymi w sekcji MyList.</value>
   </data>
   <data name="TAB_SettingsWebCache" xml:space="preserve">
     <value>Web Cache</value>
   </data>
   <data name="DetailedInformationLink" xml:space="preserve">
-    <value>Pod tym linkiem dogłębne wyjaśnienie</value>
+    <value>Kliknij tutja w celu uzyskania bardziej szczegółowego wyjaśnienia</value>
   </data>
   <data name="Get" xml:space="preserve">
     <value>Pobierz</value>
   </data>
   <data name="INFO_SettingsWebCache" xml:space="preserve">
-    <value>Pamięci podręcznej web to internetowa baza danych Utworzona przez twórców JMM i MyAnime. Jego celem jest wypełnienie luki, które innych baz danych nie zaspokoić, a także uczynić proces importowania szybciej poprzez wymianę informacji z innymi użytkownikami JMM.</value>
+    <value>Web Cache to internetowa baza danych utworzona przez twórców JMM i MyAnime. Jej celem jest wypełnienie luki, której innych baz danych nie wypełniły, a także uczynić proces importowania szybszym poprzez wymianę informacji z innymi użytkownikami JMM.</value>
   </data>
   <data name="Send" xml:space="preserve">
     <value>Wyślij</value>
   </data>
   <data name="Tooltip_WebCache_Anonymous" xml:space="preserve">
-    <value>Wybranie tej opcji użytkownika AniDB nie być wysyłane do pamięci podręcznej web. Jednak oznacza to, że nie dostaniesz na korzyść zapamiętywanie własnych osobistych wyborów.</value>
+    <value>Opcja ta usuwa z wysyłanych do Web Cache informacji nazwę użytkownika AniDB przez co anonimizuje te dane. Oznacza to, że przy ponownym importowaniu danych twoje osobiste powiązania nie zostaną odtworzone, gdyż nie posiadają danych, do kogo należały.</value>
   </data>
   <data name="Tooltip_WebCache_FileEpisodes" xml:space="preserve">
-    <value>Gdy pliki nie są wyświetlane w AniDB, pamięci podręcznej web może mieć informacje o odcinku odnoszące się do tego pliku. Jest to szczególnie przydatne, gdy ręcznie połączyć pliki i nie chcesz stracić tej informacji.</value>
+    <value>Gdy pliki nie są wyświetlane w AniDB, Web Cache może posiadać informacje o odcinku odnoszące się do tego pliku. Jest to szczególnie przydatne, gdy ręcznie połączono pliki i nie chcemy stracić tych informacji.</value>
   </data>
   <data name="Tooltip_WebCache_FileHashes" xml:space="preserve">
-    <value>Próby uzyskania pliku skrótu z pamięci podręcznej web przed mieszaniem lokalnie. Pozwala to zaoszczędzić sporo czasu podczas importowania.</value>
+    <value>Próbuj uzyskać skrótu (hash) pliku z Web Cache zanim przystopisz do wyliczania go lokalnie. Pozwala to zaoszczędzić sporo czasu podczas importowania.</value>
   </data>
   <data name="Tooltip_WebCache_TvDBAssociations" xml:space="preserve">
-    <value>Użyj pamięci podręcznej web wobec spojrzenie w górze linki między AniDB i TvDB. Jeśli nie wybrano trzeba będzie ręcznie wyszukać wszystkie linki TvDB.</value>
+    <value>Użyj Web Cache by wyszukać relacji miedzy informacjami AniDB i TvDB. Jeśli nie wybrano tej opcji trzeba będzie ręcznie wyszukać wszystkich linki TvDB.</value>
   </data>
   <data name="TvDB_FanartAutoDownload" xml:space="preserve">
-    <value>Automatyczne pobieranie Fanart</value>
+    <value>Automatyczne pobieranie fanart</value>
   </data>
   <data name="TvDB_FanartCount" xml:space="preserve">
-    <value>Maksymalna Fanarts</value>
+    <value>Maksymalna ilość fanart-ów</value>
   </data>
   <data name="TvDB_PosterAutoDownload" xml:space="preserve">
-    <value>Automatycznie Pobierz plakaty</value>
+    <value>Automatycznie pobierz plakaty</value>
   </data>
   <data name="TvDB_WideBannerAutoDownload" xml:space="preserve">
-    <value>Automatycznie Pobierz szeroki banery</value>
+    <value>Automatycznie pobierz szeroki banery (wide banner)</value>
   </data>
   <data name="WebCache_Anonymous" xml:space="preserve">
-    <value>Zachować anonimowość</value>
+    <value>Zachowaj anonimowość</value>
   </data>
   <data name="WebCache_FileEpisodes" xml:space="preserve">
-    <value>Plik do odcinek linki</value>
+    <value>Powiązania pomiędzy plikami, a odcinkami</value>
   </data>
   <data name="WebCache_FileHashes" xml:space="preserve">
-    <value>Mieszań plików</value>
+    <value>Skróty plików</value>
   </data>
   <data name="WebCache_TvDBAssociations" xml:space="preserve">
-    <value>TvDB linki</value>
+    <value>Link TvDB</value>
   </data>
   <data name="TAB_SettingsOnlineDB_MovieDB" xml:space="preserve">
-    <value>Film DB</value>
+    <value>MovieDB</value>
   </data>
   <data name="TAB_SettingsOnlineDB_TvDB" xml:space="preserve">
     <value>TvDB</value>
