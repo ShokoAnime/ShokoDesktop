@@ -263,7 +263,7 @@
                     <CheckBox Name="chkPlayWatchedLocked" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Playlist_PlayWatched}" VerticalAlignment="Center" Margin="10,0,0,0" IsEnabled="False"
                                   IsChecked="{Binding Path=PlayWatchedBool}"/>
 
-                    <CheckBox Name="chkPlayUnwatchedLocked" Content="{Resx ResxName=JMMClient.Properties.Resources, Key={Resx ResxName=JMMClient.Properties.Resources, Key=Playlist_PlayUnWatched}}" VerticalAlignment="Center" Margin="10,0,0,0" IsEnabled="False"
+                    <CheckBox Name="chkPlayUnwatchedLocked" Content="{Resx ResxName=JMMClient.Properties.Resources, Key={Resx ResxName=JMMClient.Properties.Resources, Key=Playlist_PlayUnwatched}}" VerticalAlignment="Center" Margin="10,0,0,0" IsEnabled="False"
                                   IsChecked="{Binding Path=PlayUnwatchedBool}"/>
 
                     <TextBlock Margin="10,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Playlist_Default}" VerticalAlignment="Center" IsEnabled="False" Foreground="DarkGray"/>

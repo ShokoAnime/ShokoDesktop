@@ -5758,7 +5758,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The import folder location cannot be blank. Enter a valid path on OMM Server.
+        ///   Looks up a localized string similar to The import folder location cannot be blank. Enter a valid path on JMM Server.
         /// </summary>
         public static string MSG_ERR_ImportFolderLocationCheck {
             get {
@@ -5857,7 +5857,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Only Release Goups I Am Collecting.
+        ///   Looks up a localized string similar to Only Release Groups I Am Collecting.
         /// </summary>
         public static string MyGroupsOnly {
             get {
@@ -6172,7 +6172,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Play UnWatched.
+        ///   Looks up a localized string similar to Play Unwatched.
         /// </summary>
         public static string Playlist_PlayUnwatched {
             get {
