@@ -127,10 +127,10 @@
     <value>Odcinki</value>
   </data>
   <data name="EpisodeType" xml:space="preserve">
-    <value>Typ odcinek</value>
+    <value>Typ odcinka</value>
   </data>
   <data name="EpisodeType_Credits" xml:space="preserve">
-    <value>Kredyty</value>
+    <value>Credits</value>
   </data>
   <data name="EpisodeType_Normal" xml:space="preserve">
     <value>Odcinki</value>
@@ -142,10 +142,10 @@
     <value>Parodia</value>
   </data>
   <data name="EpisodeType_Specials" xml:space="preserve">
-    <value>Promocje</value>
+    <value>Odcinek Specjalny</value>
   </data>
   <data name="EpisodeType_Trailer" xml:space="preserve">
-    <value>Przyczep</value>
+    <value>Trailer</value>
   </data>
   <data name="Favorite" xml:space="preserve">
     <value>Ulubione</value>
@@ -157,25 +157,25 @@
     <value>Ulubione</value>
   </data>
   <data name="IsWatched" xml:space="preserve">
-    <value>To oglądałem</value>
+    <value>Obejrzane</value>
   </data>
   <data name="MyRating" xml:space="preserve">
-    <value>MyRating</value>
+    <value>Moja ocena</value>
   </data>
   <data name="Refresh" xml:space="preserve">
     <value>Odśwież</value>
   </data>
   <data name="RunTime" xml:space="preserve">
-    <value>Czas jednostkowy</value>
+    <value>Czas trwania</value>
   </data>
   <data name="SortName" xml:space="preserve">
-    <value>Nazwa sortowania</value>
+    <value>Nazwa filtru sortującego</value>
   </data>
   <data name="Series" xml:space="preserve">
     <value>Seria</value>
   </data>
   <data name="TAB_Config" xml:space="preserve">
-    <value>Config</value>
+    <value>Konfiguracja</value>
   </data>
   <data name="TAB_Episodes" xml:space="preserve">
     <value>Odcinki</value>
@@ -184,10 +184,10 @@
     <value>Menedżer plików</value>
   </data>
   <data name="TAB_Images" xml:space="preserve">
-    <value>Zdjęcia</value>
+    <value>Obrazki</value>
   </data>
   <data name="TAB_Relations" xml:space="preserve">
-    <value>Stosunków</value>
+    <value>Powiązania</value>
   </data>
   <data name="TAB_SeriesEpisodes" xml:space="preserve">
     <value>Kolekcja</value>
@@ -223,19 +223,19 @@
     <value>Tytuł główny</value>
   </data>
   <data name="AnimeTitlesOfficial" xml:space="preserve">
-    <value>Oficjalna</value>
+    <value>Tytuł oficjalny</value>
   </data>
   <data name="AnimeTitlesShort" xml:space="preserve">
-    <value>Krótki</value>
+    <value>Tytuł krótki</value>
   </data>
   <data name="AnimeTitlesSynonym" xml:space="preserve">
     <value>Synonim</value>
   </data>
   <data name="Categories" xml:space="preserve">
-    <value>Kategorii</value>
+    <value>Kategorie</value>
   </data>
   <data name="Tags" xml:space="preserve">
-    <value>Tagi (może zawierać spoilery)</value>
+    <value>Tagi (mogą zawierać spoilery)</value>
   </data>
   <data name="CategoryWeighting" xml:space="preserve">
     <value>Ważenie</value>
@@ -244,10 +244,10 @@
     <value>Zatwierdzenia</value>
   </data>
   <data name="Episodes_AvAll" xml:space="preserve">
-    <value>Wszystkie odcinki</value>
+    <value>Wszystkie dostępne odcinki</value>
   </data>
   <data name="Episodes_AvMissing" xml:space="preserve">
-    <value>Nie Aavailable plików</value>
+    <value>Wszystkie brakujące odcinki</value>
   </data>
   <data name="Episodes_AvOnly" xml:space="preserve">
     <value>Tylko dostępne pliki</value>
@@ -256,13 +256,13 @@
     <value>Wszystkie</value>
   </data>
   <data name="Episodes_Watched_Unwatched" xml:space="preserve">
-    <value>Unwatched</value>
+    <value>Nieobejrzane</value>
   </data>
   <data name="Episodes_Watched_Watched" xml:space="preserve">
-    <value>Oglądałem</value>
+    <value>Obejrzane</value>
   </data>
   <data name="Play" xml:space="preserve">
-    <value>Zagraj</value>
+    <value>Odtwórz</value>
   </data>
   <data name="Tooltip_FileFound" xml:space="preserve">
     <value>Ten plik jest dostępny</value>
@@ -271,22 +271,22 @@
     <value>Ten plik nie istnieje</value>
   </data>
   <data name="Tooltip_FutureDated" xml:space="preserve">
-    <value>Tego odcinka nie ma jeszcze nagłaśniane</value>
+    <value>Tego odcinka nie został jeszcze wyemitowany</value>
   </data>
   <data name="Tooltip_Unwatched" xml:space="preserve">
-    <value>Oznaczenie NIEOGLĄDANYCH - kliknij, aby oznaczyć jako obejrzane</value>
+    <value>Nieobejrzane - kliknij, aby oznaczyć jako obejrzane</value>
   </data>
   <data name="Tooltip_Watched" xml:space="preserve">
-    <value>Oglądałem - kliknij, aby oznaczyć jako unwatched</value>
+    <value>Obejrzane - kliknij, aby oznaczyć jako nieobejrzane</value>
   </data>
   <data name="Tooltip_ZeroFiles" xml:space="preserve">
     <value>Nie ma żadnych plików dostępnych na tym odcinku</value>
   </data>
   <data name="Unwatched" xml:space="preserve">
-    <value>Unwatched</value>
+    <value>Nieobejrzane</value>
   </data>
   <data name="Watched" xml:space="preserve">
-    <value>Oglądałem</value>
+    <value>Obejrzane</value>
   </data>
   <data name="Rating" xml:space="preserve">
     <value>Ocena</value>
@@ -301,16 +301,16 @@
     <value>Inne</value>
   </data>
   <data name="AnimeType_OVA" xml:space="preserve">
-    <value>KOMÓRKI JAJOWE</value>
+    <value>OVA</value>
   </data>
   <data name="AnimeType_TVSeries" xml:space="preserve">
     <value>Serial telewizyjny</value>
   </data>
   <data name="AnimeType_TVSpecial" xml:space="preserve">
-    <value>Specjalne TV</value>
+    <value>Odcinek Specjalny</value>
   </data>
   <data name="AnimeType_Web" xml:space="preserve">
-    <value>Www</value>
+    <value>WWW</value>
   </data>
   <data name="Ongoing" xml:space="preserve">
     <value>Bieżących</value>
@@ -319,7 +319,7 @@
     <value>do</value>
   </data>
   <data name="LastWatched" xml:space="preserve">
-    <value>Ostatnio oglądałem</value>
+    <value>Ostatnio obejrzane</value>
   </data>
   <data name="Today" xml:space="preserve">
     <value>Dziś</value>
@@ -334,16 +334,16 @@
     <value>Brak</value>
   </data>
   <data name="Tooltip_MissingEps" xml:space="preserve">
-    <value>Brakujące odcinki ze wszystkich wersji grup</value>
+    <value>Brakujące odcinki ze wszystkich grup</value>
   </data>
   <data name="Tooltip_MissingEpsGroups" xml:space="preserve">
-    <value>Brakujące odcinki od wersji grup, które zbieram</value>
+    <value>Brakujące odcinki z grup, które zbieram</value>
   </data>
   <data name="Tooltip_QueueImages" xml:space="preserve">
-    <value>Pobierz obrazy kolejce czeka</value>
+    <value>Kolejka oczekujących obrazów do pobrania</value>
   </data>
   <data name="Specials" xml:space="preserve">
-    <value>Promocje</value>
+    <value>Odcinek Specjalny</value>
   </data>
   <data name="GroupFilter_Missing" xml:space="preserve">
     <value>Brakuje odcinków</value>
@@ -367,7 +367,7 @@
     <value>Grupa</value>
   </data>
   <data name="AddSubGroup" xml:space="preserve">
-    <value>Nowa grupa Sub</value>
+    <value>Nowa podgrupa (subgroup)</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Edycja</value>
@@ -376,7 +376,7 @@
     <value>Anuluj</value>
   </data>
   <data name="SubGroup" xml:space="preserve">
-    <value>Grupa sub</value>
+    <value>Podgrupa</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Ustawienia</value>
@@ -385,7 +385,7 @@
     <value>Nowa seria</value>
   </data>
   <data name="MoveSeries" xml:space="preserve">
-    <value>Przenieść serii</value>
+    <value>Przenieść serię</value>
   </data>
   <data name="MoveToGroup" xml:space="preserve">
     <value>Przenieść do wybranej grupy</value>
@@ -397,19 +397,19 @@
     <value>Kolejka AniDB</value>
   </data>
   <data name="QueueHasher" xml:space="preserve">
-    <value>Hasher kolejki</value>
+    <value>Kolejka Hasher-a</value>
   </data>
   <data name="Tooltip_QueueGeneral" xml:space="preserve">
     <value>Polecenia AniDB w kolejce</value>
   </data>
   <data name="Tooltip_QueueHasher" xml:space="preserve">
-    <value>Pliki czekają, aby być mieszany</value>
+    <value>Pliki oczekujące na wyliczenie sumy kontrolnej</value>
   </data>
   <data name="Pause" xml:space="preserve">
     <value>Pauza</value>
   </data>
   <data name="Resume" xml:space="preserve">
-    <value>Życiorys</value>
+    <value>Wznów</value>
   </data>
   <data name="Video_Bluray" xml:space="preserve">
     <value>Blu-ray</value>
@@ -427,10 +427,10 @@
     <value>Nowy Folder</value>
   </data>
   <data name="DropDestination" xml:space="preserve">
-    <value>Upuść obiekt docelowy</value>
+    <value>Folder docelowy</value>
   </data>
   <data name="DropSource" xml:space="preserve">
-    <value>Usuwanie źródła</value>
+    <value>Folder źródłowy</value>
   </data>
   <data name="ImportFolderName" xml:space="preserve">
     <value>Nazwa folderu import</value>
@@ -439,7 +439,7 @@
     <value>Ścieżka folderu import</value>
   </data>
   <data name="LocalMapping" xml:space="preserve">
-    <value>Mapowanie lokalnego</value>
+    <value>Lokalne mapowanie</value>
   </data>
   <data name="LocalPath" xml:space="preserve">
     <value>Ścieżka lokalna</value>
@@ -448,25 +448,25 @@
     <value>Szczegóły serwera</value>
   </data>
   <data name="MSG_ERR_DropSourceDestCheck" xml:space="preserve">
-    <value>Folder importu nie może być upuszczania źródła i miejsca docelowego upuszczania</value>
+    <value>Folder importu nie może być jednocześnie folderem źródłowym i docelowym</value>
   </data>
   <data name="MSG_ERR_ImportFolderLocationCheck" xml:space="preserve">
-    <value>Lokalizacja folderu przywozu nie może być puste. Wprowadź prawidłową ścieżkę serwera OMM</value>
+    <value>Ścieżka folderu nie może być pusta lub niepoprawna. Wprowadź prawidłową ścieżkę serwera</value>
   </data>
   <data name="TAB_UnrecognisedFiles" xml:space="preserve">
-    <value>Nierozpoznane</value>
+    <value>Nierozpoznane pliki</value>
   </data>
   <data name="Confirm" xml:space="preserve">
-    <value>Potwierdzić</value>
+    <value>Potwierdź</value>
   </data>
   <data name="NothingSelected" xml:space="preserve">
-    <value>Nic nie wybrany</value>
+    <value>Nie wybrano nic</value>
   </data>
   <data name="SelectSeriesEp" xml:space="preserve">
-    <value>Wybierz serii i odcinek</value>
+    <value>Wybierz odcinek</value>
   </data>
   <data name="AssociateFile" xml:space="preserve">
-    <value>Łączenie pliku z odcinka</value>
+    <value>Łączenie pliku z odcinkiem</value>
   </data>
   <data name="Ignore" xml:space="preserve">
     <value>Ignoruj</value>
@@ -481,10 +481,10 @@
     <value>Wybrane pliki</value>
   </data>
   <data name="StartingEpisodeNumber" xml:space="preserve">
-    <value>Początkowy odcinek numer</value>
+    <value>Początkowy numer odcinka</value>
   </data>
   <data name="Existing" xml:space="preserve">
-    <value>Istniejących</value>
+    <value>Istniejący</value>
   </data>
   <data name="SelectGroup" xml:space="preserve">
     <value>Wybierz grupę</value>
@@ -514,43 +514,43 @@
     <value>Wybierz istniejącą grupę</value>
   </data>
   <data name="MSG_ERR_InvalidEpGetAnime" xml:space="preserve">
-    <value>Odcinek zakres numerów, które podałeś nie jest ważne, czy chcesz odświeżyć dane z AniDB?</value>
+    <value>Zakres odcinków, które podałeś jest niepoprawny, czy chcesz odświeżyć dane z AniDB?</value>
   </data>
   <data name="MSG_ERR_InvalidEp" xml:space="preserve">
-    <value>Zakresie odcinek, którą podałeś nie jest prawidłowy.</value>
+    <value>Zakres odcinków, które podałeś jest niepoprawny.</value>
   </data>
   <data name="DeleteLink" xml:space="preserve">
-    <value>Usuń Link</value>
+    <value>Usuń powiązanie</value>
   </data>
   <data name="Tooltip_DeleteLink" xml:space="preserve">
     <value>Usunąć powiązania tego pliku i odcinek.</value>
   </data>
   <data name="TAB_IgnoredFiles" xml:space="preserve">
-    <value>Ignorowane</value>
+    <value>Zignorowane pliki</value>
   </data>
   <data name="Restore" xml:space="preserve">
-    <value>Odnawiać zapas towarów</value>
+    <value>Przywróć</value>
   </data>
   <data name="TAB_ManuallyLinked" xml:space="preserve">
-    <value>Ręcznie połączone</value>
+    <value>Ręcznie powiązany</value>
   </data>
   <data name="AniDBLogin" xml:space="preserve">
-    <value>AniDB logowanie</value>
+    <value>Logowanie do AniDB</value>
   </data>
   <data name="Client" xml:space="preserve">
     <value>Klient</value>
   </data>
   <data name="ImportFolders" xml:space="preserve">
-    <value>Importuj foldery</value>
+    <value>Importowane foldery</value>
   </data>
   <data name="JMMServer" xml:space="preserve">
-    <value>JMM serwera</value>
+    <value>Serwer JMM</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Hasło</value>
   </data>
   <data name="Port" xml:space="preserve">
-    <value>Portu</value>
+    <value>Port</value>
   </data>
   <data name="Server" xml:space="preserve">
     <value>Serwer</value>
@@ -562,52 +562,52 @@
     <value>AniDB</value>
   </data>
   <data name="TAB_SettingsDisplay" xml:space="preserve">
-    <value>Wyświetlacz</value>
+    <value>Ustawienia wyświetlania</value>
   </data>
   <data name="TAB_SettingsEssential" xml:space="preserve">
-    <value>Zasadnicze</value>
+    <value>Ustawienia niezbędne</value>
   </data>
   <data name="TAB_SettingsOnlineDB" xml:space="preserve">
-    <value>Wspólnoty witryn</value>
+    <value>Wspólnoty witryn??</value>
   </data>
   <data name="Test" xml:space="preserve">
-    <value>Badania</value>
+    <value>Przetestuj</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Nazwa użytkownika</value>
   </data>
   <data name="TestAndSave" xml:space="preserve">
-    <value>Test i zapisać</value>
+    <value>Przetestuj i zapisz</value>
   </data>
   <data name="Success" xml:space="preserve">
-    <value>Sukces!</value>
+    <value>Zakończono pomyślnie!</value>
   </data>
   <data name="INFO_SettingsEssential" xml:space="preserve">
-    <value>Wszystkie ustawienia na tej stronie powinny być wypełnione. Upewnij się, aby sprawdzić i zapisać JMM serwer i AniDB szczegóły przed przystąpieniem. Jeśli jest to twój pierwszy raz uruchomiona aplikacja wprowadź przywozu co najmniej jeden folder i naciśnij przycisk Uruchom importowanie.</value>
+    <value>Wszystkie ustawienia na tej stronie powinny być wypełnione. Uzupełni brakujące dane i zapisz zmiany. Jeśli jest to Twoje pierwsze uruchomienie pamiętaj o dodaniu folderu do importu i rozpocznij proces importowania.</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Szukaj</value>
   </data>
   <data name="Tooltip_GroupSearch" xml:space="preserve">
-    <value>Wyszukiwanie grup przez nazwę (w dowolnym języku), kategorii lub tagów</value>
+    <value>Wyszukiwanie grup poprzez nazwę (w dowolnym języku), kategorii lub tagi</value>
   </data>
   <data name="AniDBDownloadChar" xml:space="preserve">
-    <value>Pobierz za darmo znaków/twórcy</value>
+    <value>Pobierz dane o postaciach</value>
   </data>
   <data name="AniDBDownloadOptions" xml:space="preserve">
     <value>Opcje pobierania AniDB</value>
   </data>
   <data name="AniDBDownloadRelated" xml:space="preserve">
-    <value>Anime podobne do pobrania</value>
+    <value>Pobierz informację o powiązanych seriach</value>
   </data>
   <data name="AniDBDownloadReleaseGroups" xml:space="preserve">
-    <value>Pobierz za darmo prasowa grupy</value>
+    <value>Pobierz informację o fan-grupach</value>
   </data>
   <data name="AniDBDownloadReviews" xml:space="preserve">
-    <value>Pobierz za darmo Opinie</value>
+    <value>Pobierz recenzje serii</value>
   </data>
   <data name="AniDBDownloadSimilar" xml:space="preserve">
-    <value>Anime podobne do pobrania</value>
+    <value>Pobierz informacje o podobnych seriach</value>
   </data>
   <data name="AniDBMyListAddFiles" xml:space="preserve">
     <value>Dodaj pliki</value>
@@ -616,67 +616,69 @@
     <value>Opcje AniDB MyList</value>
   </data>
   <data name="AniDBMyListReadUnwatched" xml:space="preserve">
-    <value>Oznaczenie NIEOGLĄDANYCH odczytu</value>
+    <value>Wczytaj informacje o nieobejrzanych</value>
   </data>
   <data name="AniDBMyListReadWatched" xml:space="preserve">
-    <value>Przeczytaj oglądałem</value>
+    <value>Wczytaj informacje o obejrzanych</value>
   </data>
   <data name="AniDBMyListSetUnwatched" xml:space="preserve">
-    <value>Zestaw Unwatched</value>
+    <value>Ustaw jakoe nieobejrzane</value>
   </data>
   <data name="AniDBMyListSetWatched" xml:space="preserve">
-    <value>Zestaw oglądałem</value>
+    <value>Ustaw jako obejrzane</value>
   </data>
   <data name="AniDBMyListState" xml:space="preserve">
-    <value>Stan magazynu</value>
+    <value>Status</value>
   </data>
   <data name="Tooltip_AniDBDownloadChar" xml:space="preserve">
-    <value>Pobierz informacje i zdjęcia dotyczące znaków i seiyuu, które pojawiają się w anime</value>
+    <value>Pobierz informacje i zdjęcia dotyczące postaci i seiyuu, które pojawiają się w anime</value>
   </data>
   <data name="Tooltip_AniDBDownloadRelated" xml:space="preserve">
-    <value>Podczas pobierania informacji o anime, również pobrać informacje o wszystkich związanych z anime. To jest potrzebne, aby prawidłowo grupy związane z anime podczas procesu importu.</value>
+    <value>Podczas pobierania informacji o anime, również pobierz informacje o wszystkich związanych z anime seriami. Jest to potrzebne, by prawidłowo łączyć grupy ze sobą podczas procesu importu.</value>
   </data>
   <data name="Tooltip_AniDBDownloadReleaseGroups" xml:space="preserve">
-    <value>Pobierz szczegółowe informacje na temat wydania/subbing grup dla Twojej anime</value>
+    <value>Pobierz szczegółowe informacje na temat grup fansub-erskich dla Twojej kolekcji</value>
   </data>
   <data name="Tooltip_AniDBDownloadReviews" xml:space="preserve">
-    <value>Pobierane anime Recenzje przez użytkowników AniDB</value>
+    <value>Pobierane recenzje napisane przez użytkowników AniDB</value>
   </data>
   <data name="Tooltip_AniDBDownloadSimilar" xml:space="preserve">
-    <value>Podczas pobierania informacji o anime, również pobrać informacje o podobnych i polecamy tytuły</value>
+    <value>Podczas pobierania informacji o anime, pobierz również informacje o podobnych i polecanych seriach</value>
   </data>
   <data name="Tooltip_AniDBMyListAddFiles" xml:space="preserve">
-    <value>Jeśli wybrany podczas importowania plików, pliki zostaną dodane do Twojego konta AniDB</value>
+    <value>Jeśli wybierz tę opcję podczas importowania plików, pliki zostaną dodane do Twojego konta AniDB</value>
   </data>
   <data name="Tooltip_AniDBMyListReadUnwatched" xml:space="preserve">
-    <value>Jeśli plik jest ustawiona jako un-patrzył na AniDB, to również będzie ustawiony jako un-patrzył na swojej lokalnej kolekcji</value>
+    <value>Jeśli plik jest ustawiona jako nieobejrzany na AniDB, to będzie ustawiony tako samo w lokalnej kolekcji</value>
   </data>
   <data name="Tooltip_AniDBMyListReadWatched" xml:space="preserve">
-    <value>Jeśli plik jest ustawiona jak patrzył na AniDB, to będzie również zestaw jak oglądałem na swojej lokalnej kolekcji</value>
+    <value>Jeśli plik jest ustawiona jak obejrzany na AniDB, to będzie ustawiony tako samo w lokalnej kolekcji</value>
   </data>
   <data name="Tooltip_AniDBMyListSetUnwatched" xml:space="preserve">
-    <value>Jeśli oznaczysz ręcznie film jak oglądałem, AniDB zostaną także zaktualizowane</value>
+    <value>Jeśli oznaczysz ręcznie film jak obejrzany, pliki te będą także zaktualizowane na AniDB, by odzwierciedlać zmiany lokalne</value>
   </data>
   <data name="Tooltip_AniDBMyListSetWatched" xml:space="preserve">
-    <value>Podczas zakończenia, oglądanie wideo, lub ręcznie oznaczyć film jak oglądałem, AniDB zostaną także zaktualizowane</value>
+    <value>Podczas zakończenia oglądania lub ręcznego ustawienia filmu jako obejrzany AniDB zostanie zaktualizowane, by odzwierciedlać zmiany lokalne</value>
   </data>
   <data name="Tooltip_AniDBMyListState" xml:space="preserve">
-    <value>Przechowywania plików stanu będzie zestaw do dodania do listy</value>
+    <value>Przechowywane stany plików zostaną ustawione w momencie dodania do listy</value>
   </data>
   <data name="SyncMyList" xml:space="preserve">
     <value>Synchronizacja AniDB MyList</value>
   </data>
   <data name="Rehash" xml:space="preserve">
-    <value>Odgrzewana</value>
+    <value>Odśwież</value>
   </data>
   <data name="MSG_INFO_AddedQueueCmds" xml:space="preserve">
-    <value>Polecenia, które zostały dodane do kolejki</value>
+    <value>Zadanie zostało dodane do kolejki</value>
   </data>
   <data name="MultiTypeRange" xml:space="preserve">
-    <value>Odcinek zakres</value>
+    <value>Zakres odcineków</value>
+    <comment>Używany gdy łączone jest wiele plików z odcinkami</comment>
   </data>
   <data name="MultiTypeSingle" xml:space="preserve">
-    <value>Pojedynczy epizod</value>
+    <value>Pojedynczy odcinek</value>
+    <comment>Używany gdy łączone jest wiele plików z odcinkami</comment>
   </data>
   <data name="AniDBScheduleCalendar" xml:space="preserve">
     <value>Automatycznie zaktualizować kalendarz</value>
@@ -685,73 +687,73 @@
     <value>Automatycznie zaktualizować Anime i odcinek informacje</value>
   </data>
   <data name="AniDBScheduleMyList" xml:space="preserve">
-    <value>Automatycznie Synchronizuj mojalista informacje</value>
+    <value>Automatycznie synchronizuj informacje o MyList</value>
   </data>
   <data name="AniDBScheduleOptions" xml:space="preserve">
-    <value>Regularne aktualizacje</value>
+    <value>Zaplanowane aktualizacje</value>
   </data>
   <data name="Tooltip_AniDBScheduleCalendar" xml:space="preserve">
     <value>Pobierz informacje o nadchodzących anime.</value>
   </data>
   <data name="Tooltip_AniDBScheduleHTTP" xml:space="preserve">
-    <value>Aktualizacja informacji o anime i dostać nowy odcinek informacji. Zostanie pobrana tylko dane, które zmieniały się od czasu ostatniej aktualizacji.</value>
+    <value>Aktualizacja informacji o anime i pobierz informacje o nowych odcinekach. Pobrane zostaną tylko dane, które zmieniały się od ostatniej aktualizacji.</value>
   </data>
   <data name="Tooltip_AniDBScheduleMyList" xml:space="preserve">
-    <value>Synchronizacja informacji od AniDB zgodnie z opcjami określonymi w sekcji mojalista.</value>
+    <value>Synchronizacja informacji od AniDB zgodnie z opcjami określonymi w sekcji MyList.</value>
   </data>
   <data name="TAB_SettingsWebCache" xml:space="preserve">
     <value>Web Cache</value>
   </data>
   <data name="DetailedInformationLink" xml:space="preserve">
-    <value>Pod tym linkiem dogłębne wyjaśnienie</value>
+    <value>Kliknij tutja w celu uzyskania bardziej szczegółowego wyjaśnienia</value>
   </data>
   <data name="Get" xml:space="preserve">
     <value>Pobierz</value>
   </data>
   <data name="INFO_SettingsWebCache" xml:space="preserve">
-    <value>Pamięci podręcznej web to internetowa baza danych Utworzona przez twórców JMM i MyAnime. Jego celem jest wypełnienie luki, które innych baz danych nie zaspokoić, a także uczynić proces importowania szybciej poprzez wymianę informacji z innymi użytkownikami JMM.</value>
+    <value>Web Cache to internetowa baza danych utworzona przez twórców JMM i MyAnime. Jej celem jest wypełnienie luki, której innych baz danych nie wypełniły, a także uczynić proces importowania szybszym poprzez wymianę informacji z innymi użytkownikami JMM.</value>
   </data>
   <data name="Send" xml:space="preserve">
     <value>Wyślij</value>
   </data>
   <data name="Tooltip_WebCache_Anonymous" xml:space="preserve">
-    <value>Wybranie tej opcji użytkownika AniDB nie być wysyłane do pamięci podręcznej web. Jednak oznacza to, że nie dostaniesz na korzyść zapamiętywanie własnych osobistych wyborów.</value>
+    <value>Opcja ta usuwa z wysyłanych do Web Cache informacji nazwę użytkownika AniDB przez co anonimizuje te dane. Oznacza to, że przy ponownym importowaniu danych twoje osobiste powiązania nie zostaną odtworzone, gdyż nie posiadają danych, do kogo należały.</value>
   </data>
   <data name="Tooltip_WebCache_FileEpisodes" xml:space="preserve">
-    <value>Gdy pliki nie są wyświetlane w AniDB, pamięci podręcznej web może mieć informacje o odcinku odnoszące się do tego pliku. Jest to szczególnie przydatne, gdy ręcznie połączyć pliki i nie chcesz stracić tej informacji.</value>
+    <value>Gdy pliki nie są wyświetlane w AniDB, Web Cache może posiadać informacje o odcinku odnoszące się do tego pliku. Jest to szczególnie przydatne, gdy ręcznie połączono pliki i nie chcemy stracić tych informacji.</value>
   </data>
   <data name="Tooltip_WebCache_FileHashes" xml:space="preserve">
-    <value>Próby uzyskania pliku skrótu z pamięci podręcznej web przed mieszaniem lokalnie. Pozwala to zaoszczędzić sporo czasu podczas importowania.</value>
+    <value>Próbuj uzyskać skrótu (hash) pliku z Web Cache zanim przystopisz do wyliczania go lokalnie. Pozwala to zaoszczędzić sporo czasu podczas importowania.</value>
   </data>
   <data name="Tooltip_WebCache_TvDBAssociations" xml:space="preserve">
-    <value>Użyj pamięci podręcznej web wobec spojrzenie w górze linki między AniDB i TvDB. Jeśli nie wybrano trzeba będzie ręcznie wyszukać wszystkie linki TvDB.</value>
+    <value>Użyj Web Cache by wyszukać relacji miedzy informacjami AniDB i TvDB. Jeśli nie wybrano tej opcji trzeba będzie ręcznie wyszukać wszystkich linki TvDB.</value>
   </data>
   <data name="TvDB_FanartAutoDownload" xml:space="preserve">
-    <value>Automatyczne pobieranie Fanart</value>
+    <value>Automatyczne pobieranie fanart</value>
   </data>
   <data name="TvDB_FanartCount" xml:space="preserve">
-    <value>Maksymalna Fanarts</value>
+    <value>Maksymalna ilość fanart-ów</value>
   </data>
   <data name="TvDB_PosterAutoDownload" xml:space="preserve">
-    <value>Automatycznie Pobierz plakaty</value>
+    <value>Automatycznie pobierz plakaty</value>
   </data>
   <data name="TvDB_WideBannerAutoDownload" xml:space="preserve">
-    <value>Automatycznie Pobierz szeroki banery</value>
+    <value>Automatycznie pobierz szeroki banery (wide banner)</value>
   </data>
   <data name="WebCache_Anonymous" xml:space="preserve">
-    <value>Zachować anonimowość</value>
+    <value>Zachowaj anonimowość</value>
   </data>
   <data name="WebCache_FileEpisodes" xml:space="preserve">
-    <value>Plik do odcinek linki</value>
+    <value>Powiązania pomiędzy plikami, a odcinkami</value>
   </data>
   <data name="WebCache_FileHashes" xml:space="preserve">
-    <value>Mieszań plików</value>
+    <value>Skróty plików</value>
   </data>
   <data name="WebCache_TvDBAssociations" xml:space="preserve">
-    <value>TvDB linki</value>
+    <value>Link TvDB</value>
   </data>
   <data name="TAB_SettingsOnlineDB_MovieDB" xml:space="preserve">
-    <value>Film DB</value>
+    <value>MovieDB</value>
   </data>
   <data name="TAB_SettingsOnlineDB_TvDB" xml:space="preserve">
     <value>TvDB</value>
@@ -829,7 +831,7 @@
     <value>Warunek typ</value>
   </data>
   <data name="GroupFilterConditionType_AirDate" xml:space="preserve">
-    <value>AirDate</value>
+    <value>Data emisji</value>
   </data>
   <data name="GroupFilterConditionType_AllEpisodesWatched" xml:space="preserve">
     <value>Oglądałem wszystkie odcinki</value>
@@ -1021,7 +1023,7 @@
     <value>Odwołać</value>
   </data>
   <data name="GroupFilterConditionType_FinishedAiring" xml:space="preserve">
-    <value>Gotowych wietrzenie</value>
+    <value>Zakończone emisje</value>
   </data>
   <data name="VoteTypeAnimePermanent" xml:space="preserve">
     <value>Stałe</value>
@@ -1075,7 +1077,7 @@
     <value>Odcinek dodane Data</value>
   </data>
   <data name="GroupFilterSorting_EpisodeAirDate" xml:space="preserve">
-    <value>Odcinek Air Data</value>
+    <value>Data emisji</value>
   </data>
   <data name="GroupFilterSorting_EpisodeWatchedDate" xml:space="preserve">
     <value>Odcinek obserwowany Data</value>
