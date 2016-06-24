@@ -2091,7 +2091,7 @@ namespace JMMClient
                 {
                     GroupFilterVM gf = (GroupFilterVM)obj;
 
-                    if (gf.GroupFilterID.HasValue)
+                    if (gf.GroupFilterID.HasValue && gf.GroupFilterID.Value!=0)
                     {
                         groupFilterBeforeChanges = new GroupFilterVM();
                         groupFilterBeforeChanges.FilterName = gf.FilterName;
@@ -2160,6 +2160,7 @@ namespace JMMClient
                         grp.IsBeingEdited = false;
                         if (grp.Save() && isnew)
                         {
+                            MainListHelperVM.Instance.RefreshGroupFiltersOnly();
                             MainListHelperVM.Instance.AllGroups.Add(grp);
                             MainListHelperVM.Instance.AllGroupsDictionary[grp.AnimeGroupID.Value] = grp;
                             MainListHelperVM.Instance.ViewGroups.Refresh();
@@ -2190,14 +2191,15 @@ namespace JMMClient
                     GroupFilterVM gf = (GroupFilterVM)obj;
 
 
-					bool isnew = !gf.GroupFilterID.HasValue;
+					bool isnew = !(gf.GroupFilterID.HasValue && gf.GroupFilterID.Value!=0);
 					if (gf.Validate())
 					{
 						gf.IsLocked = true;
 						gf.IsBeingEdited = false;
 						if (gf.Save() && isnew)
 						{
-							MainListHelperVM.Instance.AllGroupFilters.Add(gf);
+                            if (!MainListHelperVM.Instance.AllGroupFilters.Contains(gf))
+    							MainListHelperVM.Instance.AllGroupFilters.Add(gf);
 						    MainListHelperVM.Instance.AllGroupFiltersDictionary[gf.GroupFilterID.Value] = gf;
 							//MainListHelperVM.Instance.LastGroupFilterID = gf.GroupFilterID.Value;
 							showChildWrappersWorker.RunWorkerAsync(null);
@@ -2364,7 +2366,7 @@ namespace JMMClient
                     gf.IsBeingEdited = false;
 
                     // copy all editable properties
-                    if (gf.GroupFilterID.HasValue) // an existing group filter
+                    if (gf.GroupFilterID.HasValue && gf.GroupFilterID.Value!=0) // an existing group filter
                     {
                         gf.FilterName = groupFilterBeforeChanges.FilterName;
                         gf.ApplyToSeries = groupFilterBeforeChanges.ApplyToSeries;
@@ -2917,6 +2919,7 @@ namespace JMMClient
 
         }
 
+        private int prevgf = -1;
         private void CommandBinding_DeleteSeries(object sender, ExecutedRoutedEventArgs e)
         {
             AnimeSeriesVM ser = e.Parameter as AnimeSeriesVM;
@@ -2930,14 +2933,14 @@ namespace JMMClient
 
                 if (result.HasValue && result.Value == true)
                 {
-
                     this.Cursor = Cursors.Wait;
-                    JMMServerVM.Instance.clientBinaryHTTP.DeleteAnimeSeries(ser.AnimeSeriesID.Value, frm.DeleteFiles, frm.DeleteGroups);
 
+                    JMMServerVM.Instance.clientBinaryHTTP.DeleteAnimeSeries(ser.AnimeSeriesID.Value, frm.DeleteFiles, frm.DeleteGroups);
                     MainListHelperVM.Instance.RefreshGroupsSeriesData();
                     MainListHelperVM.Instance.ShowChildWrappers(MainListHelperVM.Instance.CurrentWrapper);
                     SetDetailBinding(null);
                     this.Cursor = Cursors.Arrow;
+
                 }
             }
             catch (Exception ex)
@@ -2949,6 +2952,7 @@ namespace JMMClient
                 this.Cursor = Cursors.Arrow;
             }
         }
+ 
 
         private void CommandBinding_MoveSeries(object sender, ExecutedRoutedEventArgs e)
         {
@@ -3302,7 +3306,6 @@ namespace JMMClient
         {
             AnimeGroupVM grpvm = obj as AnimeGroupVM;
             if (grpvm == null) return false;
-
             return GroupSearchFilterHelper.EvaluateGroupFilter(groupFilterVM, grpvm);
         }
 

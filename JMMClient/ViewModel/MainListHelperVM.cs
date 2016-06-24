@@ -704,7 +704,6 @@ namespace JMMClient
 
 
 
-
         public void RefreshGroupsSeriesData()
         {
             //LoadTestData();
@@ -724,6 +723,8 @@ namespace JMMClient
 
                 System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()
                 {
+                    object p = CurrentWrapper;
+
                     AllGroups.Clear();
                     AllSeries.Clear();
                     List<GroupFilterVM> vms = AllGroupFilters.Where(a => a.GroupFilterID == 0).ToList();
@@ -759,8 +760,34 @@ namespace JMMClient
                         AllGroups.Add(grpNew);
                         AllGroupsDictionary[grpNew.AnimeGroupID.Value] = grpNew;
                     }
+                    //Restore previous condition
+                    if (p is GroupFilterVM)
+                    {
+                        int id = ((GroupFilterVM)p).GroupFilterID.Value;
+                        if (AllGroupFiltersDictionary.ContainsKey(id))
+                        {
+                            CurrentWrapper = AllGroupFiltersDictionary[id];
+                        }
+                    }
+                    else if (p is AnimeGroupVM)
+                    {
+                        int id = ((AnimeGroupVM)p).AnimeGroupID.Value;
+                        if (AllGroupsDictionary.ContainsKey(id))
+                        {
+                            CurrentWrapper = AllGroupsDictionary[id];
+                        }
 
+                    }
+                    else if (p is AnimeSeriesVM)
+                    {
+                        int id = ((AnimeSeriesVM) p).AnimeSeriesID.Value;
+                        if (AllSeriesDictionary.ContainsKey(id))
+                        {
+                            CurrentWrapper = AllSeriesDictionary[id];
+                        }
+                    }
                     OnRefreshed();
+
                 });
             }
             catch (Exception ex)
@@ -770,7 +797,74 @@ namespace JMMClient
 
 
         }
+        public void RefreshGroupFiltersOnly()
+        {
+            //LoadTestData();
+            //return;
 
+            try
+            {
+                // set this to null so that it will be refreshed the next time it is needed
+                List<JMMServerBinary.Contract_GroupFilter> gfRaw = JMMServerVM.Instance.clientBinaryHTTP.GetAllGroupFilters();
+
+
+                if (gfRaw.Count == 0) return;
+
+                System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()
+                {
+                    object p = CurrentWrapper;
+
+                  
+                    List<GroupFilterVM> vms = AllGroupFilters.Where(a => a.GroupFilterID == 0).ToList();
+                    AllGroupFilters.Clear();
+                    AllGroupFiltersDictionary.Clear();
+                    foreach (GroupFilterVM gfv in vms)
+                    {
+                        AllGroupFilters.Add(gfv);
+                    }
+                    foreach (JMMServerBinary.Contract_GroupFilter gf_con in gfRaw.OrderBy(a => a.GroupFilterName))
+                    {
+                        GroupFilterVM gf = new GroupFilterVM(gf_con);
+                        gf.AllowEditing = !gf.IsLocked;
+                        AllGroupFilters.Add(gf);
+                        AllGroupFiltersDictionary[gf.GroupFilterID.Value] = gf;
+                    }
+                  
+                    //Restore previous condition
+                    if (p is GroupFilterVM)
+                    {
+                        int id = ((GroupFilterVM)p).GroupFilterID.Value;
+                        if (AllGroupFiltersDictionary.ContainsKey(id))
+                        {
+                            CurrentWrapper = AllGroupFiltersDictionary[id];
+                        }
+                    }
+                    else if (p is AnimeGroupVM)
+                    {
+                        int id = ((AnimeGroupVM)p).AnimeGroupID.Value;
+                        if (AllGroupsDictionary.ContainsKey(id))
+                        {
+                            CurrentWrapper = AllGroupsDictionary[id];
+                        }
+
+                    }
+                    else if (p is AnimeSeriesVM)
+                    {
+                        int id = ((AnimeSeriesVM)p).AnimeSeriesID.Value;
+                        if (AllSeriesDictionary.ContainsKey(id))
+                        {
+                            CurrentWrapper = AllSeriesDictionary[id];
+                        }
+                    }
+                    OnRefreshed();
+
+                });
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+        }
         public void InitGroupsSeriesData()
         {
             //LoadTestData();
