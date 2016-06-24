@@ -207,25 +207,49 @@ namespace JMMClient
 			GroupFilterID = null;
 			this.SortCriteriaList = new ObservableCollection<GroupFilterSortingCriteria>();
 			this.FilterConditions = new ObservableCollection<GroupFilterConditionVM>();
-		}
+            FilterConditions.CollectionChanged += (a, b) =>
+            {
+                CollectionChanged = true;
+            };
+            SortCriteriaList.CollectionChanged += (a, b) =>
+            {
+                CollectionChanged = true;
+            };
+        }
 
 
-		public GroupFilterVM(JMMServerBinary.Contract_GroupFilter contract)
+        public GroupFilterVM(JMMServerBinary.Contract_GroupFilter contract)
 		{
 			this.SortCriteriaList = new ObservableCollection<GroupFilterSortingCriteria>();
 			this.FilterConditions = new ObservableCollection<GroupFilterConditionVM>();
-
 			// read only members
 			Populate(contract);
+		    FilterConditions.CollectionChanged += (a, b) =>
+		    {
+		        CollectionChanged = true;
+		    };
+		    SortCriteriaList.CollectionChanged += (a, b) =>
+		    {
+		        CollectionChanged = true;
+		    };
 		}
 
-		public override string ToString()
+
+
+        public override string ToString()
 		{
 			return string.Format("{0} - {1}", GroupFilterID, FilterName);
 		}
 
+        private bool CollectionChanged = false;
+
 	    public bool EvaluateGroupFilter(AnimeGroupVM grp)
 	    {
+	        if (this.IsBeingEdited && CollectionChanged)
+	        {
+	            Populate(JMMServerVM.Instance.clientBinaryHTTP.EvaluateGroupFilter(this.ToContract()));
+	            CollectionChanged = false;
+	        }
 	        if (Groups == null || !Groups.ContainsKey(JMMServerVM.Instance.CurrentUser.JMMUserID.Value))
 	            return false;
             if (grp.AnimeGroupID.HasValue)
@@ -358,7 +382,7 @@ namespace JMMClient
             }
 
             //SortCriteriaList = new ObservableCollection<GroupFilterSortingCriteria>(SortCriteriaList.OrderBy(p => p.GroupFilterSortingString));
-            FilterConditions = new ObservableCollection<GroupFilterConditionVM>(FilterConditions.OrderBy(p => p.ConditionTypeString));
+            //FilterConditions = new ObservableCollection<GroupFilterConditionVM>(FilterConditions.OrderBy(p => p.ConditionTypeString));
         }
 
         public bool Save()
@@ -400,7 +424,7 @@ namespace JMMClient
         {
             try
             {
-                if (!this.GroupFilterID.HasValue) return true;
+                if (!this.GroupFilterID.HasValue || this.GroupFilterID.Value==0) return true;
 
                 string msg = JMMServerVM.Instance.clientBinaryHTTP.DeleteGroupFilter(this.GroupFilterID.Value);
                 if (!string.IsNullOrEmpty(msg))
