@@ -877,6 +877,7 @@ namespace JMMClient
                         AllSeriesDictionary[s.AnimeSeriesID] = v;
                     }
                 }
+                AllGroupFilters = new ObservableCollection<GroupFilterVM>(AllGroupFilters.OrderBy(a => a.FilterName));
                 LastChange = changes.LastChange;
             }
             catch (Exception ex)
