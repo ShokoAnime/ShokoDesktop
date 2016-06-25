@@ -2,6 +2,19 @@
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/JMMContracts" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/JMMContracts" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:8111/JMMServerBinary?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:import schemaLocation="http://localhost:8111/JMMServerBinary?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/JMMContracts.PlexAndKodi" />
+  <xs:complexType name="ArrayOfContract_TvDBLanguage">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_TvDBLanguage" nillable="true" type="tns:Contract_TvDBLanguage" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_TvDBLanguage" nillable="true" type="tns:ArrayOfContract_TvDBLanguage" />
+  <xs:complexType name="Contract_TvDBLanguage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Abbreviation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_TvDBLanguage" nillable="true" type="tns:Contract_TvDBLanguage" />
   <xs:complexType name="ArrayOfContract_Trakt_CommentUser">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_Trakt_CommentUser" nillable="true" type="tns:Contract_Trakt_CommentUser" />
@@ -890,6 +903,31 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_AniDB_Episode" nillable="true" type="tns:Contract_AniDB_Episode" />
+  <xs:complexType name="ArrayOfContract_DuplicateFile">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_DuplicateFile" nillable="true" type="tns:Contract_DuplicateFile" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_DuplicateFile" nillable="true" type="tns:ArrayOfContract_DuplicateFile" />
+  <xs:complexType name="Contract_DuplicateFile">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AnimeID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="AnimeName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DateTimeUpdated" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DuplicateFileID" type="xs:int" />
+      <xs:element minOccurs="0" name="EpisodeName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EpisodeNumber" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="EpisodeType" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="FilePathFile1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FilePathFile2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Hash" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ImportFolder1" nillable="true" type="tns:Contract_ImportFolder" />
+      <xs:element minOccurs="0" name="ImportFolder2" nillable="true" type="tns:Contract_ImportFolder" />
+      <xs:element minOccurs="0" name="ImportFolderIDFile1" type="xs:int" />
+      <xs:element minOccurs="0" name="ImportFolderIDFile2" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_DuplicateFile" nillable="true" type="tns:Contract_DuplicateFile" />
   <xs:complexType name="ArrayOfContract_GroupVideoQuality">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_GroupVideoQuality" nillable="true" type="tns:Contract_GroupVideoQuality" />
@@ -1375,19 +1413,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_IgnoreAnime" nillable="true" type="tns:Contract_IgnoreAnime" />
-  <xs:complexType name="ArrayOfContract_TvDBLanguage">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_TvDBLanguage" nillable="true" type="tns:Contract_TvDBLanguage" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_TvDBLanguage" nillable="true" type="tns:ArrayOfContract_TvDBLanguage" />
-  <xs:complexType name="Contract_TvDBLanguage">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Abbreviation" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_TvDBLanguage" nillable="true" type="tns:Contract_TvDBLanguage" />
   <xs:complexType name="Contract_Azure_AnimeLink">
     <xs:sequence>
       <xs:element minOccurs="0" name="AnimeNeedingApproval" type="xs:int" />
@@ -1461,6 +1486,66 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_AnimeGroup_SaveResponse" nillable="true" type="tns:Contract_AnimeGroup_SaveResponse" />
+  <xs:complexType name="Contract_MainChanges">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Filters" nillable="true" type="tns:Contract_ChangesOfContract_GroupFilterFG2lp1Ah" />
+      <xs:element minOccurs="0" name="Groups" nillable="true" type="tns:Contract_ChangesOfContract_AnimeGroupFG2lp1Ah" />
+      <xs:element minOccurs="0" name="LastChange" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Series" nillable="true" type="tns:Contract_ChangesOfContract_AnimeSeriesFG2lp1Ah" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_MainChanges" nillable="true" type="tns:Contract_MainChanges" />
+  <xs:complexType name="Contract_ChangesOfContract_GroupFilterFG2lp1Ah">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="Contract_ChangesOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/JMMContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Contract_GroupFilter" Namespace="http://schemas.datacontract.org/2004/07/JMMContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangedItems" nillable="true" type="tns:ArrayOfContract_GroupFilter" />
+      <xs:element minOccurs="0" name="LastChange" type="xs:dateTime" />
+      <xs:element xmlns:q24="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="RemovedItems" nillable="true" type="q24:ArrayOfint" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_ChangesOfContract_GroupFilterFG2lp1Ah" nillable="true" type="tns:Contract_ChangesOfContract_GroupFilterFG2lp1Ah" />
+  <xs:complexType name="ArrayOfContract_GroupFilter">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_GroupFilter" nillable="true" type="tns:Contract_GroupFilter" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContract_GroupFilter" nillable="true" type="tns:ArrayOfContract_GroupFilter" />
+  <xs:complexType name="Contract_ChangesOfContract_AnimeGroupFG2lp1Ah">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="Contract_ChangesOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/JMMContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Contract_AnimeGroup" Namespace="http://schemas.datacontract.org/2004/07/JMMContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangedItems" nillable="true" type="tns:ArrayOfContract_AnimeGroup" />
+      <xs:element minOccurs="0" name="LastChange" type="xs:dateTime" />
+      <xs:element xmlns:q25="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="RemovedItems" nillable="true" type="q25:ArrayOfint" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_ChangesOfContract_AnimeGroupFG2lp1Ah" nillable="true" type="tns:Contract_ChangesOfContract_AnimeGroupFG2lp1Ah" />
+  <xs:complexType name="Contract_ChangesOfContract_AnimeSeriesFG2lp1Ah">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="Contract_ChangesOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/JMMContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Contract_AnimeSeries" Namespace="http://schemas.datacontract.org/2004/07/JMMContracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangedItems" nillable="true" type="tns:ArrayOfContract_AnimeSeries" />
+      <xs:element minOccurs="0" name="LastChange" type="xs:dateTime" />
+      <xs:element xmlns:q26="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="RemovedItems" nillable="true" type="q26:ArrayOfint" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Contract_ChangesOfContract_AnimeSeriesFG2lp1Ah" nillable="true" type="tns:Contract_ChangesOfContract_AnimeSeriesFG2lp1Ah" />
   <xs:complexType name="Contract_AnimeSeries_Save">
     <xs:sequence>
       <xs:element minOccurs="0" name="AniDB_ID" type="xs:int" />
@@ -1599,12 +1684,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_ImportFolder_SaveResponse" nillable="true" type="tns:Contract_ImportFolder_SaveResponse" />
-  <xs:complexType name="ArrayOfContract_GroupFilter">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_GroupFilter" nillable="true" type="tns:Contract_GroupFilter" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_GroupFilter" nillable="true" type="tns:ArrayOfContract_GroupFilter" />
   <xs:complexType name="Contract_GroupFilter_SaveResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
@@ -1612,29 +1691,4 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_GroupFilter_SaveResponse" nillable="true" type="tns:Contract_GroupFilter_SaveResponse" />
-  <xs:complexType name="ArrayOfContract_DuplicateFile">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract_DuplicateFile" nillable="true" type="tns:Contract_DuplicateFile" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfContract_DuplicateFile" nillable="true" type="tns:ArrayOfContract_DuplicateFile" />
-  <xs:complexType name="Contract_DuplicateFile">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="AnimeID" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="AnimeName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="DateTimeUpdated" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="DuplicateFileID" type="xs:int" />
-      <xs:element minOccurs="0" name="EpisodeName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="EpisodeNumber" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="EpisodeType" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="FilePathFile1" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="FilePathFile2" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Hash" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ImportFolder1" nillable="true" type="tns:Contract_ImportFolder" />
-      <xs:element minOccurs="0" name="ImportFolder2" nillable="true" type="tns:Contract_ImportFolder" />
-      <xs:element minOccurs="0" name="ImportFolderIDFile1" type="xs:int" />
-      <xs:element minOccurs="0" name="ImportFolderIDFile2" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Contract_DuplicateFile" nillable="true" type="tns:Contract_DuplicateFile" />
 </xs:schema>

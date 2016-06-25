@@ -10,6 +10,24 @@
       <xsd:import schemaLocation="http://localhost:8111/JMMServerBinary?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/JMMContracts.PlexAndKodi" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IJMMServer_SetDefaultSeriesForGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetDefaultSeriesForGroup" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SetDefaultSeriesForGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetDefaultSeriesForGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RemoveDefaultSeriesForGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveDefaultSeriesForGroup" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RemoveDefaultSeriesForGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveDefaultSeriesForGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetTvDBLanguages_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTvDBLanguages" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetTvDBLanguages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTvDBLanguagesResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_ScanDropFolders_InputMessage">
     <wsdl:part name="parameters" element="tns:ScanDropFolders" />
   </wsdl:message>
@@ -399,6 +417,24 @@
   </wsdl:message>
   <wsdl:message name="IJMMServer_GetAniDBEpisodesForAnime_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAniDBEpisodesForAnimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllUniqueSubtitleLanguages_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUniqueSubtitleLanguages" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllUniqueSubtitleLanguages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUniqueSubtitleLanguagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllDuplicateFiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllDuplicateFiles" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllDuplicateFiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllDuplicateFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_DeleteDuplicateFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDuplicateFile" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_DeleteDuplicateFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDuplicateFileResponse" />
   </wsdl:message>
   <wsdl:message name="IJMMServer_GetAllManuallyLinkedFiles_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAllManuallyLinkedFiles" />
@@ -892,24 +928,6 @@
   <wsdl:message name="IJMMServer_RemoveIgnoreAnime_OutputMessage">
     <wsdl:part name="parameters" element="tns:RemoveIgnoreAnimeResponse" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_SetDefaultSeriesForGroup_InputMessage">
-    <wsdl:part name="parameters" element="tns:SetDefaultSeriesForGroup" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_SetDefaultSeriesForGroup_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SetDefaultSeriesForGroupResponse" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_RemoveDefaultSeriesForGroup_InputMessage">
-    <wsdl:part name="parameters" element="tns:RemoveDefaultSeriesForGroup" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_RemoveDefaultSeriesForGroup_OutputMessage">
-    <wsdl:part name="parameters" element="tns:RemoveDefaultSeriesForGroupResponse" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_GetTvDBLanguages_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetTvDBLanguages" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_GetTvDBLanguages_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetTvDBLanguagesResponse" />
-  </wsdl:message>
   <wsdl:message name="IJMMServer_GetLastWatchedEpisodeForSeries_InputMessage">
     <wsdl:part name="parameters" element="tns:GetLastWatchedEpisodeForSeries" />
   </wsdl:message>
@@ -1126,6 +1144,18 @@
   <wsdl:message name="IJMMServer_GetAllSeries_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllSeriesResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllChanges_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllChanges" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllChanges_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllChangesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetGroupFilterChanges_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroupFilterChanges" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetGroupFilterChanges_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroupFilterChangesResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_SaveSeries_InputMessage">
     <wsdl:part name="parameters" element="tns:SaveSeries" />
   </wsdl:message>
@@ -1330,6 +1360,12 @@
   <wsdl:message name="IJMMServer_GetGroupFilters_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetGroupFiltersResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_GetGroupFilter_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroupFilter" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetGroupFilter_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroupFilterResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_GetGroupFiltersExtended_InputMessage">
     <wsdl:part name="parameters" element="tns:GetGroupFiltersExtended" />
   </wsdl:message>
@@ -1402,25 +1438,19 @@
   <wsdl:message name="IJMMServer_GetAllUniqueAudioLanguages_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllUniqueAudioLanguagesResponse" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_GetAllUniqueSubtitleLanguages_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllUniqueSubtitleLanguages" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_GetAllUniqueSubtitleLanguages_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllUniqueSubtitleLanguagesResponse" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_GetAllDuplicateFiles_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllDuplicateFiles" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_GetAllDuplicateFiles_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllDuplicateFilesResponse" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_DeleteDuplicateFile_InputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteDuplicateFile" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_DeleteDuplicateFile_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteDuplicateFileResponse" />
-  </wsdl:message>
   <wsdl:portType name="IJMMServer">
+    <wsdl:operation name="SetDefaultSeriesForGroup">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SetDefaultSeriesForGroup" message="tns:IJMMServer_SetDefaultSeriesForGroup_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SetDefaultSeriesForGroupResponse" message="tns:IJMMServer_SetDefaultSeriesForGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveDefaultSeriesForGroup">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RemoveDefaultSeriesForGroup" message="tns:IJMMServer_RemoveDefaultSeriesForGroup_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RemoveDefaultSeriesForGroupResponse" message="tns:IJMMServer_RemoveDefaultSeriesForGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTvDBLanguages">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetTvDBLanguages" message="tns:IJMMServer_GetTvDBLanguages_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetTvDBLanguagesResponse" message="tns:IJMMServer_GetTvDBLanguages_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="ScanDropFolders">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/ScanDropFolders" message="tns:IJMMServer_ScanDropFolders_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/ScanDropFoldersResponse" message="tns:IJMMServer_ScanDropFolders_OutputMessage" />
@@ -1680,6 +1710,18 @@
     <wsdl:operation name="GetAniDBEpisodesForAnime">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAniDBEpisodesForAnime" message="tns:IJMMServer_GetAniDBEpisodesForAnime_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAniDBEpisodesForAnimeResponse" message="tns:IJMMServer_GetAniDBEpisodesForAnime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUniqueSubtitleLanguages">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllUniqueSubtitleLanguages" message="tns:IJMMServer_GetAllUniqueSubtitleLanguages_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllUniqueSubtitleLanguagesResponse" message="tns:IJMMServer_GetAllUniqueSubtitleLanguages_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDuplicateFiles">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllDuplicateFiles" message="tns:IJMMServer_GetAllDuplicateFiles_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllDuplicateFilesResponse" message="tns:IJMMServer_GetAllDuplicateFiles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDuplicateFile">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/DeleteDuplicateFile" message="tns:IJMMServer_DeleteDuplicateFile_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/DeleteDuplicateFileResponse" message="tns:IJMMServer_DeleteDuplicateFile_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetAllManuallyLinkedFiles">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllManuallyLinkedFiles" message="tns:IJMMServer_GetAllManuallyLinkedFiles_InputMessage" />
@@ -2009,18 +2051,6 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RemoveIgnoreAnime" message="tns:IJMMServer_RemoveIgnoreAnime_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RemoveIgnoreAnimeResponse" message="tns:IJMMServer_RemoveIgnoreAnime_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="SetDefaultSeriesForGroup">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SetDefaultSeriesForGroup" message="tns:IJMMServer_SetDefaultSeriesForGroup_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SetDefaultSeriesForGroupResponse" message="tns:IJMMServer_SetDefaultSeriesForGroup_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="RemoveDefaultSeriesForGroup">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RemoveDefaultSeriesForGroup" message="tns:IJMMServer_RemoveDefaultSeriesForGroup_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RemoveDefaultSeriesForGroupResponse" message="tns:IJMMServer_RemoveDefaultSeriesForGroup_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetTvDBLanguages">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetTvDBLanguages" message="tns:IJMMServer_GetTvDBLanguages_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetTvDBLanguagesResponse" message="tns:IJMMServer_GetTvDBLanguages_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="GetLastWatchedEpisodeForSeries">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetLastWatchedEpisodeForSeries" message="tns:IJMMServer_GetLastWatchedEpisodeForSeries_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetLastWatchedEpisodeForSeriesResponse" message="tns:IJMMServer_GetLastWatchedEpisodeForSeries_OutputMessage" />
@@ -2165,6 +2195,14 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllSeries" message="tns:IJMMServer_GetAllSeries_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllSeriesResponse" message="tns:IJMMServer_GetAllSeries_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetAllChanges">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllChanges" message="tns:IJMMServer_GetAllChanges_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllChangesResponse" message="tns:IJMMServer_GetAllChanges_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupFilterChanges">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilterChanges" message="tns:IJMMServer_GetGroupFilterChanges_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilterChangesResponse" message="tns:IJMMServer_GetGroupFilterChanges_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="SaveSeries">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SaveSeries" message="tns:IJMMServer_SaveSeries_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SaveSeriesResponse" message="tns:IJMMServer_SaveSeries_OutputMessage" />
@@ -2301,6 +2339,10 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilters" message="tns:IJMMServer_GetGroupFilters_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetGroupFiltersResponse" message="tns:IJMMServer_GetGroupFilters_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetGroupFilter">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilter" message="tns:IJMMServer_GetGroupFilter_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetGroupFilterResponse" message="tns:IJMMServer_GetGroupFilter_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetGroupFiltersExtended">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetGroupFiltersExtended" message="tns:IJMMServer_GetGroupFiltersExtended_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetGroupFiltersExtendedResponse" message="tns:IJMMServer_GetGroupFiltersExtended_OutputMessage" />
@@ -2348,18 +2390,6 @@
     <wsdl:operation name="GetAllUniqueAudioLanguages">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllUniqueAudioLanguages" message="tns:IJMMServer_GetAllUniqueAudioLanguages_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllUniqueAudioLanguagesResponse" message="tns:IJMMServer_GetAllUniqueAudioLanguages_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetAllUniqueSubtitleLanguages">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllUniqueSubtitleLanguages" message="tns:IJMMServer_GetAllUniqueSubtitleLanguages_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllUniqueSubtitleLanguagesResponse" message="tns:IJMMServer_GetAllUniqueSubtitleLanguages_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetAllDuplicateFiles">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllDuplicateFiles" message="tns:IJMMServer_GetAllDuplicateFiles_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllDuplicateFilesResponse" message="tns:IJMMServer_GetAllDuplicateFiles_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="DeleteDuplicateFile">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/DeleteDuplicateFile" message="tns:IJMMServer_DeleteDuplicateFile_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/DeleteDuplicateFileResponse" message="tns:IJMMServer_DeleteDuplicateFile_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:service name="JMMServiceImplementation">

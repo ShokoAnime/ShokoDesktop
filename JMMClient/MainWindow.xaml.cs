@@ -2160,9 +2160,7 @@ namespace JMMClient
                         grp.IsBeingEdited = false;
                         if (grp.Save() && isnew)
                         {
-                            MainListHelperVM.Instance.RefreshGroupFiltersOnly();
-                            MainListHelperVM.Instance.AllGroups.Add(grp);
-                            MainListHelperVM.Instance.AllGroupsDictionary[grp.AnimeGroupID.Value] = grp;
+                            MainListHelperVM.Instance.RefreshGroupsSeriesData();
                             MainListHelperVM.Instance.ViewGroups.Refresh();
                             //MainListHelperVM.Instance.LastAnimeGroupID = grp.AnimeGroupID.Value;
 
