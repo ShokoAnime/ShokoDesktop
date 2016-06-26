@@ -585,10 +585,9 @@ namespace JMMClient
                     if (wrapper == null)
                     {
                         CurrentWrapperList.Clear();
-                        foreach (GroupFilterVM grpFilter in AllGroupFilters)
+                        foreach (GroupFilterVM grpFilter in AllGroupFilters.Where(a=>!a.GroupFilterParentId.HasValue).OrderBy(a=>a.FilterName))
                         {
-                            if (!grpFilter.GroupFilterParentId.HasValue)
-                                CurrentWrapperList.Add(grpFilter);
+                            CurrentWrapperList.Add(grpFilter);
                         }
                     }
                     else
@@ -877,7 +876,6 @@ namespace JMMClient
                         AllSeriesDictionary[s.AnimeSeriesID] = v;
                     }
                 }
-                AllGroupFilters = new ObservableCollection<GroupFilterVM>(AllGroupFilters.OrderBy(a => a.FilterName));
                 LastChange = changes.LastChange;
             }
             catch (Exception ex)
