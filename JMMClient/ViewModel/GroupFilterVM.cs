@@ -194,13 +194,20 @@ namespace JMMClient
 			}
 		}
 
-		public int GroupsCount
+        private int _groupsCount=0;
+        public int GroupsCount
 		{
 			get
 			{
-				return GetDirectChildren().Count;
+			    return _groupsCount;
+
 			}
-		}
+            set
+            {
+                _groupsCount = value;
+                NotifyPropertyChanged("GroupsCount");
+            }
+        }
 
 		public GroupFilterVM()
 		{
@@ -216,7 +223,6 @@ namespace JMMClient
                 CollectionChanged = true;
             };
         }
-
 
         public GroupFilterVM(JMMServerBinary.Contract_GroupFilter contract)
 		{
@@ -279,20 +285,29 @@ namespace JMMClient
             AnimeGroupVM.SortMethod = AnimeGroupSortMethod.SortName;
             if (Childs.Count > 0)
             {
-                wrappers.AddRange(Childs.Select(a => MainListHelperVM.Instance.AllGroupFiltersDictionary[a]).Where(a=>!a.IsLocked || (a.IsLocked && a.HasGroupChilds())).OrderBy(a => a.FilterName));
+                wrappers.AddRange(Childs.Where(a=> MainListHelperVM.Instance.AllGroupFiltersDictionary.ContainsKey(a)).Select(a => MainListHelperVM.Instance.AllGroupFiltersDictionary[a]).Where(a=>!a.IsLocked || (a.IsLocked && a.HasGroupChilds())).OrderBy(a => a.FilterName));
             }
             else
             {
-                foreach (AnimeGroupVM grp in Groups[JMMServerVM.Instance.CurrentUser.JMMUserID.Value].Select(a => MainListHelperVM.Instance.AllGroupsDictionary[a]))
+                if (Groups.ContainsKey(JMMServerVM.Instance.CurrentUser.JMMUserID.Value))
                 {
-                    if (grp.AnimeGroupParentID.HasValue) continue;
-                    if (grp.AllAnimeSeries.Count == 1)
-                        wrappers.Add(grp.AllAnimeSeries[0]);
-                    else
-                        wrappers.Add(grp);
+                    foreach (
+                        AnimeGroupVM grp in
+                            Groups[JMMServerVM.Instance.CurrentUser.JMMUserID.Value].Select(
+                                a => MainListHelperVM.Instance.AllGroupsDictionary[a]))
+                    {
+                        if (grp.AnimeGroupParentID.HasValue) continue;
+                        if (grp.AllAnimeSeries.Count == 1)
+                            wrappers.Add(grp.AllAnimeSeries[0]);
+                        else
+                            wrappers.Add(grp);
+                    }
                 }
             }
-
+            if (wrappers.Count != GroupsCount)
+            {
+                GroupsCount = wrappers.Count;
+            }
             return wrappers;
         }
 
@@ -380,10 +395,11 @@ namespace JMMClient
                     }
                 }
             }
-
-            //SortCriteriaList = new ObservableCollection<GroupFilterSortingCriteria>(SortCriteriaList.OrderBy(p => p.GroupFilterSortingString));
-            //FilterConditions = new ObservableCollection<GroupFilterConditionVM>(FilterConditions.OrderBy(p => p.ConditionTypeString));
-        }
+            //Update GroupCount
+	
+		    //SortCriteriaList = new ObservableCollection<GroupFilterSortingCriteria>(SortCriteriaList.OrderBy(p => p.GroupFilterSortingString));
+		    //FilterConditions = new ObservableCollection<GroupFilterConditionVM>(FilterConditions.OrderBy(p => p.ConditionTypeString));
+		}
 
         public bool Save()
         {
