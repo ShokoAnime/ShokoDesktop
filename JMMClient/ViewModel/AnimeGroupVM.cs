@@ -1069,6 +1069,8 @@ namespace JMMClient
                 else
                 {
                     this.Populate(response.AnimeGroup);
+                    if (!MainListHelperVM.Instance.AllGroups.Contains(this))
+                        MainListHelperVM.Instance.AllGroups.Add(this);
                     MainListHelperVM.Instance.AllGroupsDictionary[this.AnimeGroupID.Value] = this;
                     return true;
                 }

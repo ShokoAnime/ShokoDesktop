@@ -147,8 +147,7 @@ namespace JMMClient.Forms
                     grp.IsBeingEdited = false;
                     if (grp.Save())
                     {
-                        MainListHelperVM.Instance.AllGroups.Add(grp);
-                        MainListHelperVM.Instance.AllGroupsDictionary[grp.AnimeGroupID.Value] = grp;
+
                         MainListHelperVM.Instance.ViewGroups.Refresh();
                         groupID = grp.AnimeGroupID;
                     }

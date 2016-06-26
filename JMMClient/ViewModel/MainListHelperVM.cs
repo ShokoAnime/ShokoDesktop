@@ -804,28 +804,28 @@ namespace JMMClient
             {
                 Contract_MainChanges changes= JMMServerVM.Instance.clientBinaryHTTP.GetAllChanges(LastChange, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
                 AllAnimeDetailedDictionary = null;
-                //Update Group Filters
-                foreach (int gfr in changes.Filters.RemovedItems)
+                //Update Anime Series
+                foreach (int sr in changes.Series.RemovedItems)
                 {
-                    if (AllGroupFiltersDictionary.ContainsKey(gfr))
+                    if (AllSeriesDictionary.ContainsKey(sr))
                     {
-                        GroupFilterVM vm = AllGroupFiltersDictionary[gfr];
-                        AllGroupFilters.Remove(vm);
-                        AllGroupFiltersDictionary.Remove(gfr);
+                        AnimeSeriesVM vm = AllSeriesDictionary[sr];
+                        AllSeries.Remove(vm);
+                        AllSeriesDictionary.Remove(sr);
                     }
                 }
-                foreach (Contract_GroupFilter gf in changes.Filters.ChangedItems)
+                foreach (Contract_AnimeSeries s in changes.Series.ChangedItems)
                 {
-                    if (AllGroupFiltersDictionary.ContainsKey(gf.GroupFilterID.Value))
+                    if (AllSeriesDictionary.ContainsKey(s.AnimeSeriesID))
                     {
-                        GroupFilterVM v = AllGroupFiltersDictionary[gf.GroupFilterID.Value];
-                        v.Populate(gf);
+                        AnimeSeriesVM v = AllSeriesDictionary[s.AnimeSeriesID];
+                        v.Populate(s);
                     }
                     else
                     {
-                        GroupFilterVM v=new GroupFilterVM(gf);
-                        AllGroupFilters.Add(v);
-                        AllGroupFiltersDictionary[gf.GroupFilterID.Value] = v;
+                        AnimeSeriesVM v = new AnimeSeriesVM(s);
+                        AllSeries.Add(v);
+                        AllSeriesDictionary[s.AnimeSeriesID] = v;
                     }
                 }
                 //Update Anime Groups
@@ -852,29 +852,37 @@ namespace JMMClient
                         AllGroupsDictionary[g.AnimeGroupID] = v;
                     }
                 }
-                //Update Anime Series
-                foreach (int sr in changes.Series.RemovedItems)
+
+                //Update Group Filters
+                foreach (int gfr in changes.Filters.RemovedItems)
                 {
-                    if (AllSeriesDictionary.ContainsKey(sr))
+                    if (AllGroupFiltersDictionary.ContainsKey(gfr))
                     {
-                        AnimeSeriesVM vm = AllSeriesDictionary[sr];
-                        AllSeries.Remove(vm);
-                        AllSeriesDictionary.Remove(sr);
+                        GroupFilterVM vm = AllGroupFiltersDictionary[gfr];
+                        AllGroupFilters.Remove(vm);
+                        AllGroupFiltersDictionary.Remove(gfr);
                     }
                 }
-                foreach (Contract_AnimeSeries s in changes.Series.ChangedItems)
+                foreach (Contract_GroupFilter gf in changes.Filters.ChangedItems)
                 {
-                    if (AllSeriesDictionary.ContainsKey(s.AnimeSeriesID))
+                    if (AllGroupFiltersDictionary.ContainsKey(gf.GroupFilterID.Value))
                     {
-                        AnimeSeriesVM v = AllSeriesDictionary[s.AnimeSeriesID];
-                        v.Populate(s);
+                        GroupFilterVM v = AllGroupFiltersDictionary[gf.GroupFilterID.Value];
+                        v.Populate(gf);
                     }
                     else
                     {
-                        AnimeSeriesVM v = new AnimeSeriesVM(s);
-                        AllSeries.Add(v);
-                        AllSeriesDictionary[s.AnimeSeriesID] = v;
+                        GroupFilterVM v=new GroupFilterVM(gf);
+                        AllGroupFilters.Add(v);
+                        AllGroupFiltersDictionary[gf.GroupFilterID.Value] = v;
                     }
+                }
+
+                foreach (int gf in changes.Filters.ChangedItems.Select(a => a.GroupFilterID.Value))
+                {
+                    GroupFilterVM v = AllGroupFiltersDictionary[gf];
+                    //Recalculate Groups Count
+                    v.GetDirectChildren();
                 }
                 LastChange = changes.LastChange;
             }

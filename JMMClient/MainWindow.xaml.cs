@@ -2199,6 +2199,8 @@ namespace JMMClient
                             if (!MainListHelperVM.Instance.AllGroupFilters.Contains(gf))
     							MainListHelperVM.Instance.AllGroupFilters.Add(gf);
 						    MainListHelperVM.Instance.AllGroupFiltersDictionary[gf.GroupFilterID.Value] = gf;
+                            //Manually reset GroupCount
+                            gf.GetDirectChildren();
 							//MainListHelperVM.Instance.LastGroupFilterID = gf.GroupFilterID.Value;
 							showChildWrappersWorker.RunWorkerAsync(null);
 						}

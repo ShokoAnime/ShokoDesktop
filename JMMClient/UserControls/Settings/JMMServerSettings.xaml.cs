@@ -44,8 +44,10 @@ namespace JMMClient.UserControls
                         return;
                     }
                     else
+                    {
+                        MainListHelperVM.Instance.ClearData();
                         MainListHelperVM.Instance.RefreshGroupsSeriesData();
-
+                    }
                     //MessageBox.Show(Properties.Resources.Success, "", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
