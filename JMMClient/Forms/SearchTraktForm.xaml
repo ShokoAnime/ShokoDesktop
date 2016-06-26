@@ -220,7 +220,7 @@
                             ItemsSource="{Binding Path=ViewTraktSeriesSearchResults, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SearchTraktForm}}}"
                             HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
                             ItemTemplate="{DynamicResource TraktSearchResultTemplate}"
-                            ItemContainerStyle="{DynamicResource ListBoxItemStyle}" 
+                            ItemContainerStyle="{DynamicResource ListBoxItemStylePlain}" 
                             />
         </Border>
 

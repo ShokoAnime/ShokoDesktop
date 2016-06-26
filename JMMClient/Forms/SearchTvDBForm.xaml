@@ -196,7 +196,7 @@
                             ItemsSource="{Binding Path=TVDBSeriesSearchResults, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SearchTvDBForm}}}"
                             HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
                             ItemTemplate="{DynamicResource TVSearchResultTemplate}"
-                            ItemContainerStyle="{DynamicResource ListBoxItemStyle}" 
+                            ItemContainerStyle="{DynamicResource ListBoxItemStylePlain}" 
                             />
         </Border>
 

@@ -97,7 +97,7 @@
                             ItemsSource="{Binding Path=AllTitles, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SelectAniDBTitleForm}}}"
                             HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
                             ItemTemplate="{DynamicResource TitleTemplate}"
-                            ItemContainerStyle="{DynamicResource ListBoxItemStyle}" 
+                            ItemContainerStyle="{DynamicResource ListBoxItemStylePlain}" 
                             />
         </Border>
 
