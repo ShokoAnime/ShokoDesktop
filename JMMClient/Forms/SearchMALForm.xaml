@@ -234,7 +234,7 @@
                             ItemsSource="{Binding Path=MALSearchResults, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SearchMALForm}}}"
                             HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ScrollViewer.CanContentScroll="False"
                             ItemTemplate="{DynamicResource MALSearchResultTemplate}"
-                            ItemContainerStyle="{DynamicResource ListBoxItemStyle}" 
+                            ItemContainerStyle="{DynamicResource ListBoxItemStylePlain}" 
                             />
         </Border>
 
