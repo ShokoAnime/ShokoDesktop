@@ -1041,8 +1041,13 @@ namespace JMMClient
                     JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
                 if (!string.IsNullOrEmpty(response.ErrorMessage))
                 {
-                    this.Cursor = Cursors.Arrow;
-                    MessageBox.Show(response.ErrorMessage);
+                    System.Windows.Application.Current.Dispatcher.Invoke(
+                        System.Windows.Threading.DispatcherPriority.Normal, (Action)
+                            delegate()
+                            {
+                                this.Cursor = Cursors.Arrow;
+                                MessageBox.Show(response.ErrorMessage);
+                            });
                     return;
                 }
                 else
