@@ -1954,6 +1954,18 @@ namespace JMMClient
                     return;
                 }
 
+                updateServerStatus();
+            }
+
+            catch { }
+
+            serverStatusTimer.Start();
+        }
+
+        void updateServerStatus()
+        {
+            try
+            {
                 TimeSpan ts = DateTime.Now - lastVersionCheck;
 
                 JMMServerBinary.Contract_ServerStatus status = JMMServerVM.Instance.clientBinaryHTTP.GetServerStatus();
@@ -1980,9 +1992,6 @@ namespace JMMClient
                     // check if this user is allowed to admin the web cache
                     ShowCommunity = JMMServerVM.Instance.clientBinaryHTTP.IsWebCacheAdmin();
                 }
-
-
-
 
                 System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()
                 {
@@ -2044,8 +2053,11 @@ namespace JMMClient
             }
 
             catch { }
+        }
 
-            serverStatusTimer.Start();
+        public void UpdateServerStatus()
+        {
+            updateServerStatus();
         }
 
         public void RemoveNamingLanguage(string oldLan)
