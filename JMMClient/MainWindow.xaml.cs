@@ -3231,6 +3231,7 @@ namespace JMMClient
             try
             {
                 JMMServerVM.Instance.clientBinaryHTTP.SetCommandProcessorHasherPaused(true);
+                JMMServerVM.Instance.UpdateServerStatus();
             }
             catch (Exception ex)
             {
@@ -3243,6 +3244,7 @@ namespace JMMClient
             try
             {
                 JMMServerVM.Instance.clientBinaryHTTP.SetCommandProcessorHasherPaused(false);
+                JMMServerVM.Instance.UpdateServerStatus();
             }
             catch (Exception ex)
             {
@@ -3255,6 +3257,7 @@ namespace JMMClient
             try
             {
                 JMMServerVM.Instance.clientBinaryHTTP.SetCommandProcessorGeneralPaused(true);
+                JMMServerVM.Instance.UpdateServerStatus();
             }
             catch (Exception ex)
             {
@@ -3267,6 +3270,7 @@ namespace JMMClient
             try
             {
                 JMMServerVM.Instance.clientBinaryHTTP.SetCommandProcessorGeneralPaused(false);
+                JMMServerVM.Instance.UpdateServerStatus();
             }
             catch (Exception ex)
             {
@@ -3279,6 +3283,7 @@ namespace JMMClient
             try
             {
                 JMMServerVM.Instance.clientBinaryHTTP.SetCommandProcessorImagesPaused(true);
+                JMMServerVM.Instance.UpdateServerStatus();
             }
             catch (Exception ex)
             {
@@ -3291,6 +3296,7 @@ namespace JMMClient
             try
             {
                 JMMServerVM.Instance.clientBinaryHTTP.SetCommandProcessorImagesPaused(false);
+                JMMServerVM.Instance.UpdateServerStatus();
             }
             catch (Exception ex)
             {
