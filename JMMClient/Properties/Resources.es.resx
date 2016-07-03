@@ -202,7 +202,7 @@
     <value>TvDB</value>
   </data>
   <data name="ViewLabel" xml:space="preserve">
-    <value>Vista:</value>
+    <value>Vista: </value>
   </data>
   <data name="Back" xml:space="preserve">
     <value>Atrás</value>
@@ -813,11 +813,8 @@
   <data name="Down" xml:space="preserve">
     <value>Abajo</value>
   </data>
-  <data name="LanguageUseSynonyms" xml:space="preserve">
+  <data name="Language_UseSynonyms" xml:space="preserve">
     <value>También utilizar sinónimos</value>
-  </data>
-  <data name="TAB_Settings_Language" xml:space="preserve">
-    <value>Preferencias de idioma</value>
   </data>
   <data name="Tooltip_LanguageUseSynonyms" xml:space="preserve">
     <value>También utilizar sinónimos de idioma seleccionado para la visualización de series y grupos. Inglés y sinónimos de Romaji no se utilizará</value>
@@ -909,17 +906,11 @@
   <data name="ImageSize_SubGroupList" xml:space="preserve">
     <value>Sub grupos lista y serie</value>
   </data>
-  <data name="INFO_SettingsDisplayStyle" xml:space="preserve">
-    <value>Usted tendrá que actualizar su lista de grupo para ver los efectos de los cambios</value>
-  </data>
   <data name="MSG_ERR_SelectDate" xml:space="preserve">
     <value>Elige un primero</value>
   </data>
   <data name="NewGroupFilter" xml:space="preserve">
     <value>Nuevo filtro de grupo</value>
-  </data>
-  <data name="RenameGroups" xml:space="preserve">
-    <value>Cambiar el nombre de todos los grupos</value>
   </data>
   <data name="Style_GroupList" xml:space="preserve">
     <value>Lista de grupo</value>
@@ -1392,9 +1383,6 @@
   <data name="TAB_Pinned" xml:space="preserve">
     <value>Cubrió a</value>
   </data>
-  <data name="Tooltip_ViewSeries" xml:space="preserve">
-    <value>Abrir esta serie de Anime en una nueva ventana</value>
-  </data>
   <data name="GroupFilterConditionType_UserVotedAny" xml:space="preserve">
     <value>Usuario ha votado (cualquiera)</value>
   </data>
@@ -1534,7 +1522,7 @@
     <value>Seleccione la serie de</value>
   </data>
   <data name="DefSeries2" xml:space="preserve">
-    <value>Selección de una serie por defecto significa que todas las imágenes que son dsiplayed para un grupo utilice</value>
+    <value>Selección de una serie por defecto significa que todas las imágenes que son dsiplayed para un grupo utilice </value>
   </data>
   <data name="DefSeries3" xml:space="preserve">
     <value>serie por defecto en lugar de una serie al azar dentro del grupo</value>
@@ -1824,7 +1812,7 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
     <value>Cambiar contraseña</value>
   </data>
   <data name="ChangingPassword" xml:space="preserve">
-    <value>Cambio de contraseña para:</value>
+    <value>Cambio de contraseña para: </value>
   </data>
   <data name="WhatDoesThisMean" xml:space="preserve">
     <value>¿Qué significa esto?</value>
@@ -1929,16 +1917,16 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
     <value>Inicio AniDB:</value>
   </data>
   <data name="Search_Trakt" xml:space="preserve">
-    <value>Trakt:</value>
+    <value>Trakt: </value>
   </data>
   <data name="Search_Approved" xml:space="preserve">
     <value>Admin aprobado</value>
   </data>
   <data name="Search_TvDB" xml:space="preserve">
-    <value>TvDB:</value>
+    <value>TvDB: </value>
   </data>
   <data name="Search_MAL" xml:space="preserve">
-    <value>MAL:</value>
+    <value>MAL: </value>
   </data>
   <data name="SelectAniDBTitle_SelectName" xml:space="preserve">
     <value>Seleccione un nombre de reemplazo</value>
@@ -2682,10 +2670,10 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
     <value>Inicio AniDB:</value>
   </data>
   <data name="CommunityLinks_TvDB" xml:space="preserve">
-    <value>TvDB:</value>
+    <value>TvDB: </value>
   </data>
   <data name="CommunityLinks_Trakt" xml:space="preserve">
-    <value>Trakt:</value>
+    <value>Trakt: </value>
   </data>
   <data name="CommunityLinks_TMDb" xml:space="preserve">
     <value>La película de DB</value>
@@ -2826,13 +2814,13 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
     <value>Cambiar contraseña</value>
   </data>
   <data name="Sort_Error" xml:space="preserve">
-    <value>Error intentando ordenar la lista de</value>
+    <value>Error intentando ordenar la lista de </value>
   </data>
   <data name="Sort_PassedEmpty" xml:space="preserve">
     <value>RgSortBy parámetro multiSort pasó un nombre de campo vacío en rgSortBy [</value>
   </data>
   <data name="Selected_DoesNotExist" xml:space="preserve">
-    <value>No existe el archivo especificado o la carpeta:</value>
+    <value>No existe el archivo especificado o la carpeta: </value>
   </data>
   <data name="Video_VLCError1" xml:space="preserve">
     <value>No se puede analizar la URI en el archivo ini VLC</value>
@@ -2850,7 +2838,7 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
     <value>ha cambiado a</value>
   </data>
   <data name="Video_Updating" xml:space="preserve">
-    <value>Actualización vigilados por reproductor:</value>
+    <value>Actualización vigilados por reproductor: </value>
   </data>
   <data name="AniDB_DataMissing" xml:space="preserve">
     <value>Datos que faltan</value>
@@ -2946,7 +2934,7 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
     <value>Archivo</value>
   </data>
   <data name="Playlist_Name" xml:space="preserve">
-    <value>Introduzca el nombre de la lista de reproducción:</value>
+    <value>Introduzca el nombre de la lista de reproducción: </value>
   </data>
   <data name="Playlist_NameBlank" xml:space="preserve">
     <value>Introduzca un nombre de lista de reproducción</value>
@@ -3378,7 +3366,7 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
     <value>Encontró el archivo INI. Muestra de archivo recientemente visto...</value>
   </data>
   <data name="VideoPlayer_DefaultNote" xml:space="preserve">
-    <value>JMM utiliza automáticamente el reproductor de vídeo por defecto de Windows. Si desea utilizar un reproductor de vídeo diferentes, que necesitará agregar el ejecutable del reproductor de vídeo a la variable de sistema PATH.</value>
+    <value>JMM utiliza automáticamente el reproductor de vídeo por defecto de Windows. Si desea utilizar un reproductor de vídeo diferentes, que necesitará agregar el ejecutable del reproductor de vídeo a la variable de sistema PATH. </value>
   </data>
   <data name="AniDBMyListDeleteLocal" xml:space="preserve">
     <value>Eliminar archivo (Local DB)</value>
@@ -3450,7 +3438,7 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
     <value>Nueva lista de reproducción</value>
   </data>
   <data name="EpisodeDetail_PlaylistMenu" xml:space="preserve">
-    <value>Menú de lista de reproducción:</value>
+    <value>Menú de lista de reproducción: </value>
   </data>
   <data name="EpisodeDetail_PlaylistMissing" xml:space="preserve">
     <value>No se pudo encontrar lista de reproducción</value>
@@ -3495,7 +3483,7 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
     <value>no se encontró al intentar comparar los objetos de tipo</value>
   </data>
   <data name="ValueCompare_FieldName" xml:space="preserve">
-    <value>Nombre del campo</value>
+    <value>Nombre del campo </value>
   </data>
   <data name="SelectGroupSeries_Select" xml:space="preserve">
     <value>Seleccione un</value>
@@ -3540,7 +3528,7 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
     <value>Excepción en MultiSort al ordenar una lista de</value>
   </data>
   <data name="JMMServer_TraktAuth" xml:space="preserve">
-    <value>Autorización de Trakt</value>
+    <value>Autorización de Trakt </value>
   </data>
   <data name="Group_GroupCount" xml:space="preserve">
     <value>Grupos</value>
@@ -4327,5 +4315,20 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
   </data>
   <data name="Actions_SyncVotes" xml:space="preserve">
     <value>Votos de sincronización</value>
+  </data>
+  <data name="TAB_Settings_Language" xml:space="preserve">
+    <value>Idioma de preferencia para grupo/serie de nombres</value>
+  </data>
+  <data name="INFO_SettingsDisplayStyle" xml:space="preserve">
+    <value>Establecer el idioma o idiomas utilizados para nombrar cuando grupos o serie se agrega a la colección. Estos títulos se tiran directamente en AniDB así fuera inglés, Romaji o Kanji; no todos los grupos o series tendrán títulos adicionales disponibles. Para utilizar sinónimos enumeradas AniDB asegurarse de comprobar "También utilizar sinónimos" y cambiar el nombre de los grupos existentes y serie Asegúrese de haga clic en "cambiar el nombre de todos los grupos/serie" una vez que termines</value>
+  </data>
+  <data name="Language_Rename" xml:space="preserve">
+    <value>Cambiar el nombre de todos los grupos/serie</value>
+  </data>
+  <data name="Tooltip_PinSeries" xml:space="preserve">
+    <value>Este anime a ver más adelante el perno</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Quitar</value>
   </data>
 </root>

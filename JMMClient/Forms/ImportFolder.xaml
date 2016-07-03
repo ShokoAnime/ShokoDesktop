@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:JMMClient"
         xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
-        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=ImportFolder}" Height="Auto" Width="Auto" Icon="/JMMDesktop;component/Images/32_folder_edit.png" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" SizeToContent="WidthAndHeight">
+        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=ImportFolder}" Height="Auto" Width="Auto" Icon="/JMMDesktop;component/Images/24_folder_edit.png" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" SizeToContent="WidthAndHeight">
 
 
     <StackPanel Orientation="Vertical">
@@ -92,14 +92,14 @@
         <StackPanel Orientation="Horizontal" Margin="5,5,0,10">
             <Button HorizontalAlignment="Left" Name="btnSave" Margin="0,0,0,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                    <Image Height="16" Width="16" Source="/Images/32_Save.png" Margin="0,0,5,0"/>
+                    <Image Height="16" Width="16" Source="/Images/16_save.png" Margin="0,0,5,0"/>
                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Save}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
 
             <Button HorizontalAlignment="Left" Name="btnCancel" Margin="10,0,0,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                    <Image Height="16" Width="16" Source="/Images/32_cancel.png" Margin="0,0,5,0"/>
+                    <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,5,0"/>
                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Cancel}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>

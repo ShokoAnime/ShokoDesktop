@@ -76,7 +76,7 @@
                             Command="{DynamicResource DeleteBookmarkCommand}" CommandParameter="{Binding}" 
                             ToolTip="{Resx ResxName=JMMClient.Properties.Resources, Key=Delete}" VerticalAlignment="Center">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                <Image Height="16" Width="16" Source="/Images/32_delete.png" Margin="0,0,0,0"/>
+                                <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,0,0"/>
 
                             </StackPanel>
                         </Button>
@@ -90,7 +90,7 @@
                             Command="{DynamicResource ShowTorrentSearchCommand}" CommandParameter="{Binding}" Grid.Column="1" Grid.Row="1"
                             ToolTip="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_BookmarksSearch}" VerticalAlignment="Top">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                            <Image Height="16" Width="16" Source="/Images/24_download3.png" Margin="0,0,0,0" VerticalAlignment="Center"/>
+                            <Image Height="16" Width="16" Source="/Images/24_download.png" Margin="0,0,0,0" VerticalAlignment="Center"/>
                             <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Bookmarks_DownloadNow}" VerticalAlignment="Center" Margin="5,0,0,0" />
                         </StackPanel>
                     </Button>
@@ -101,7 +101,7 @@
                             Command="{DynamicResource ToggleDownloadingCommand}" CommandParameter="{Binding}"  Grid.Column="1" Grid.Row="2"
                             ToolTip="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_BookmarksToggle}" VerticalAlignment="Top">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                            <Image Height="16" Width="16" Source="/Images/32_down.png" Margin="0,0,0,0" VerticalAlignment="Center"/>
+                            <Image Height="16" Width="16" Source="/Images/24_download.png" Margin="0,0,0,0" VerticalAlignment="Center"/>
                             <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Bookmarks_CurrentlyDownloading}" VerticalAlignment="Center" Margin="5,0,0,0" />
                         </StackPanel>
                     </Button>

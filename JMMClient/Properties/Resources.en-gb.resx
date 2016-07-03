@@ -807,11 +807,11 @@
   <data name="Down" xml:space="preserve">
     <value>Down</value>
   </data>
-  <data name="LanguageUseSynonyms" xml:space="preserve">
+  <data name="Language_UseSynonyms" xml:space="preserve">
     <value>Also Use Synonyms</value>
   </data>
   <data name="TAB_Settings_Language" xml:space="preserve">
-    <value>Language Preferences</value>
+    <value>Language Preference for Group/Series Naming</value>
   </data>
   <data name="Tooltip_LanguageUseSynonyms" xml:space="preserve">
     <value>Also use synonyms from selected preferred language for display of series and groups. English and Romaji synonyms will not be used</value>
@@ -904,7 +904,7 @@
     <value>Sub Groups List and Series</value>
   </data>
   <data name="INFO_SettingsDisplayStyle" xml:space="preserve">
-    <value>You will need to refresh your group list to see the effects of the changes</value>
+    <value>Set the language or languages used for naming when groups or series are added to your collection. These titles are pulled directly from AniDB so outside of English, Romaji or Kanji; not all groups or series will have additional titles available. To use synonyms listed on AniDB make sure to check “Also Use Synonyms” and to rename existing groups and series make sure to click “Rename All Groups/Series” once you’re done</value>
   </data>
   <data name="MSG_ERR_SelectDate" xml:space="preserve">
     <value>Select a date first</value>
@@ -912,8 +912,8 @@
   <data name="NewGroupFilter" xml:space="preserve">
     <value>New Group Filter</value>
   </data>
-  <data name="RenameGroups" xml:space="preserve">
-    <value>Rename All Groups</value>
+  <data name="Language_Rename" xml:space="preserve">
+    <value>Rename All Groups/Series</value>
   </data>
   <data name="Style_GroupList" xml:space="preserve">
     <value>Group List</value>
@@ -1386,8 +1386,8 @@
   <data name="TAB_Pinned" xml:space="preserve">
     <value>Pinned</value>
   </data>
-  <data name="Tooltip_ViewSeries" xml:space="preserve">
-    <value>Open this Anime Series in a new window</value>
+  <data name="Tooltip_PinSeries" xml:space="preserve">
+    <value>Pin this anime to view later</value>
   </data>
   <data name="GroupFilterConditionType_UserVotedAny" xml:space="preserve">
     <value>User Voted (Any)</value>
@@ -4327,5 +4327,8 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   </data>
   <data name="Actions_SyncVotes" xml:space="preserve">
     <value>Sync Votes</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Remove</value>
   </data>
 </root>

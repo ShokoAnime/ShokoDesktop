@@ -1334,7 +1334,7 @@ namespace JMMClient
 
                 ExternalSiteLink anidb = new ExternalSiteLink();
                 anidb.SiteName = "AniDB";
-                anidb.SiteLogo = @"/Images/anidb.ico";
+                anidb.SiteLogo = @"/Images/32_anidb.png";
                 anidb.SiteURL = AniDB_SiteURL;
                 anidb.SiteURLDiscussion = AniDB_SiteURLDiscussion;
                 links.Add(anidb);
@@ -1346,7 +1346,7 @@ namespace JMMClient
                 {
                     ExternalSiteLink tvdb = new ExternalSiteLink();
                     tvdb.SiteName = "TvDB";
-                    tvdb.SiteLogo = @"/Images/tvdb.ico";
+                    tvdb.SiteLogo = @"/Images/32_tvdb.png";
                     tvdb.SiteURL = AniDB_AnimeCrossRefs.TvDBSeriesV2[0].SeriesURL;
                     tvdb.SiteURLDiscussion = AniDB_AnimeCrossRefs.TvDBSeriesV2[0].SeriesURL;
                     links.Add(tvdb);
@@ -1356,7 +1356,7 @@ namespace JMMClient
                 {
                     ExternalSiteLink trakt = new ExternalSiteLink();
                     trakt.SiteName = "Trakt";
-                    trakt.SiteLogo = @"/Images/trakttv.ico";
+                    trakt.SiteLogo = @"/Images/32_trakt.png";
                     trakt.SiteURL = AniDB_AnimeCrossRefs.TraktShowV2[0].ShowURL;
                     trakt.SiteURLDiscussion = AniDB_AnimeCrossRefs.TraktShowV2[0].ShowURL;
                     links.Add(trakt);
@@ -1367,7 +1367,7 @@ namespace JMMClient
                 {
                     ExternalSiteLink mal = new ExternalSiteLink();
                     mal.SiteName = "MAL";
-                    mal.SiteLogo = @"/Images/myanimelist.ico";
+                    mal.SiteLogo = @"/Images/32_mal.png";
                     mal.SiteURL = AniDB_AnimeCrossRefs.CrossRef_AniDB_MAL[0].SiteURL;
                     mal.SiteURLDiscussion = AniDB_AnimeCrossRefs.CrossRef_AniDB_MAL[0].SiteURL;
                     links.Add(mal);

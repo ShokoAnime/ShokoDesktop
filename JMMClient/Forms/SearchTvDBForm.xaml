@@ -4,7 +4,7 @@
         xmlns:local="clr-namespace:JMMClient"
         xmlns:forms="clr-namespace:JMMClient.Forms"
         xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
-        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=Search_TheTVDB}" Height="450" Width="700" ShowInTaskbar="False" WindowStyle="ToolWindow" Icon="/JMMDesktop;component/Images/tvdb.ico"
+        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=Search_TheTVDB}" Height="450" Width="700" ShowInTaskbar="False" WindowStyle="ToolWindow" Icon="/JMMDesktop;component/Images/32_tvdb.png"
         WindowStartupLocation="CenterOwner" Topmost="False">
     <Grid>
         <Grid.Resources>
@@ -109,7 +109,7 @@
         <!-- Selected series details -->
         <Border Grid.Row="0" Grid.Column="0" Margin="5,5,5,5" Padding="5" Background="#F1F1F1" BorderBrush="LightGray" BorderThickness="1">
             <StackPanel Orientation="Horizontal"  Margin="0,0,0,5" DockPanel.Dock="Top">
-                <Image Height="16" Width="16" Source="/Images/tvdb.ico" Margin="5,0,5,0"/>
+                <Image Height="16" Width="16" Source="/Images/32_tvdb.png" Margin="5,0,5,0"/>
                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TvDBSearchPrompt}" Margin="0,0,20,0"/>
                 <RadioButton Name="rbSearch" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Search}" Margin="5,0,0,0"/>
                 <RadioButton Name="rbExisting" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Existing}" Margin="5,0,0,0"/>
@@ -142,7 +142,7 @@
                             <TextBlock Name="txtLinkTvDB" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TvDBShow}"/>
                         </Hyperlink>
                     </TextBlock>
-                    <Image Margin="5,0,0,0" Height="16" Width="16" Source="/Images/16_arrow45.png" VerticalAlignment="Center"/>
+                    <Image Margin="5,0,0,0" Height="16" Width="16" Source="/Images/16_link.png" VerticalAlignment="Center"/>
                 </StackPanel>
 
                 <!-- Use this button -->

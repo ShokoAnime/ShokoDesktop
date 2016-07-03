@@ -35,7 +35,7 @@
                         <Button Margin="0,0,10,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{StaticResource PlayVideoCommand}"
                                  CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                <Image Height="16" Width="16" Source="/Images/32_play2.png" Margin="2,0,2,0" VerticalAlignment="Center"/>
+                                <Image Height="16" Width="16" Source="/Images/32_resume.png" Margin="2,0,2,0" VerticalAlignment="Center"/>
                                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Play}" Margin="5,0,5,0"/>
                             </StackPanel>
                             <Button.ToolTip>
@@ -72,7 +72,7 @@
                         <Button Name="btnAvdumpFile" Margin="0,0,2,2" Grid.Column="0" Grid.Row="3" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" 
                                 Command="{StaticResource AvdumpFileCommand}" CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                <Image Height="16" Width="16" Source="/Images/anidb.ico" Margin="0,0,5,0"/>
+                                <Image Height="16" Width="16" Source="/Images/32_anidb.png" Margin="0,0,5,0"/>
                                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Avdump}" Margin="0,0,5,0"/>
                             </StackPanel>
                         </Button>

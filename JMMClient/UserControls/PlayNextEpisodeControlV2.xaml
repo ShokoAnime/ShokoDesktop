@@ -85,7 +85,7 @@
                 <Button Name="btnToggleWatched" Margin="0,0,0,0" Style="{StaticResource FlatButtonStyle}" VerticalAlignment="Center"
                             Command="{DynamicResource ToggleWatchedStatusCommand}" CommandParameter="{Binding}">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                        <Image Height="24" Width="24" Source="/Images/16_eye2.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000">
+                        <Image Height="24" Width="24" Source="/Images/32_eye2.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000">
                             <Image.ToolTip>
                                 <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_Unwatched}"/>
                             </Image.ToolTip>
@@ -98,7 +98,7 @@
                 <Button Name="btnPlay" Margin="10,0,0,0" Style="{StaticResource FlatButtonStyle}" Command="{StaticResource PlayEpisodeCommand}" CommandParameter="{Binding}"
                             VerticalAlignment="Center">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                        <Image Height="24" Width="24" Source="/Images/32_play2.png" Margin="0,0,0,0"/>
+                        <Image Height="24" Width="24" Source="/Images/32_resume.png" Margin="0,0,0,0"/>
                     </StackPanel>
                     <Button.ToolTip>
                         <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Play}"/>

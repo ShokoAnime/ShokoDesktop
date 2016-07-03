@@ -199,7 +199,7 @@
     <value>TvDB</value>
   </data>
   <data name="ViewLabel" xml:space="preserve">
-    <value>Weergave:</value>
+    <value>Weergave: </value>
   </data>
   <data name="Back" xml:space="preserve">
     <value>Terug</value>
@@ -804,11 +804,8 @@
   <data name="Down" xml:space="preserve">
     <value>Down</value>
   </data>
-  <data name="LanguageUseSynonyms" xml:space="preserve">
+  <data name="Language_UseSynonyms" xml:space="preserve">
     <value>Ook gebruik maken van synoniemen</value>
-  </data>
-  <data name="TAB_Settings_Language" xml:space="preserve">
-    <value>Taalvoorkeuren</value>
   </data>
   <data name="Tooltip_LanguageUseSynonyms" xml:space="preserve">
     <value>Ook gebruik maken van synoniemen van geselecteerde voorkeurstaal voor weergave van de series en groepen. Engels en Romaji synoniemen zal niet worden gebruikt</value>
@@ -900,17 +897,11 @@
   <data name="ImageSize_SubGroupList" xml:space="preserve">
     <value>Sub groepen lijst en serie</value>
   </data>
-  <data name="INFO_SettingsDisplayStyle" xml:space="preserve">
-    <value>U zult moeten vernieuwen van uw Groepslijst om te zien welk effect de wijzigingen</value>
-  </data>
   <data name="MSG_ERR_SelectDate" xml:space="preserve">
     <value>Selecteer eerst een datum</value>
   </data>
   <data name="NewGroupFilter" xml:space="preserve">
     <value>Nieuwe groepeerfilter</value>
-  </data>
-  <data name="RenameGroups" xml:space="preserve">
-    <value>Naam wijzigen van alle groepen</value>
   </data>
   <data name="Style_GroupList" xml:space="preserve">
     <value>Groepslijst</value>
@@ -1383,9 +1374,6 @@
   <data name="TAB_Pinned" xml:space="preserve">
     <value>Vastgemaakt</value>
   </data>
-  <data name="Tooltip_ViewSeries" xml:space="preserve">
-    <value>Deze Anime Series in een nieuw venster openen</value>
-  </data>
   <data name="GroupFilterConditionType_UserVotedAny" xml:space="preserve">
     <value>Gebruiker gestemd (een)</value>
   </data>
@@ -1525,7 +1513,7 @@
     <value>Selecteer de reeks van de standaard voor</value>
   </data>
   <data name="DefSeries2" xml:space="preserve">
-    <value>Selecteren van een reeks standaard betekent dat alle afbeeldingen die dsiplayed voor een groep zijn die zal gebruiken</value>
+    <value>Selecteren van een reeks standaard betekent dat alle afbeeldingen die dsiplayed voor een groep zijn die zal gebruiken </value>
   </data>
   <data name="DefSeries3" xml:space="preserve">
     <value>standaard serie in plaats van een willekeurige reeks binnen de groep</value>
@@ -1815,7 +1803,7 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>Wachtwoord wijzigen</value>
   </data>
   <data name="ChangingPassword" xml:space="preserve">
-    <value>Wachtwoord voor wijzigen:</value>
+    <value>Wachtwoord voor wijzigen: </value>
   </data>
   <data name="WhatDoesThisMean" xml:space="preserve">
     <value>Wat betekent dit?</value>
@@ -1923,16 +1911,16 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>AniDB Start:</value>
   </data>
   <data name="Search_Trakt" xml:space="preserve">
-    <value>Trakt:</value>
+    <value>Trakt: </value>
   </data>
   <data name="Search_Approved" xml:space="preserve">
     <value>Admin goedgekeurd</value>
   </data>
   <data name="Search_TvDB" xml:space="preserve">
-    <value>TvDB:</value>
+    <value>TvDB: </value>
   </data>
   <data name="Search_MAL" xml:space="preserve">
-    <value>MAL:</value>
+    <value>MAL: </value>
   </data>
   <data name="SelectAniDBTitle_SelectName" xml:space="preserve">
     <value>Selecteer de naam van een override</value>
@@ -2676,10 +2664,10 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>AniDB Start:</value>
   </data>
   <data name="CommunityLinks_TvDB" xml:space="preserve">
-    <value>TvDB:</value>
+    <value>TvDB: </value>
   </data>
   <data name="CommunityLinks_Trakt" xml:space="preserve">
-    <value>Trakt:</value>
+    <value>Trakt: </value>
   </data>
   <data name="CommunityLinks_TMDb" xml:space="preserve">
     <value>De film DB</value>
@@ -2820,13 +2808,13 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>Wachtwoord wijzigen</value>
   </data>
   <data name="Sort_Error" xml:space="preserve">
-    <value>Fout bij het sorteren van de lijst van</value>
+    <value>Fout bij het sorteren van de lijst van </value>
   </data>
   <data name="Sort_PassedEmpty" xml:space="preserve">
     <value>MultiSort parameter rgSortBy werd een lege veldnaam aangenomen in rgSortBy]</value>
   </data>
   <data name="Selected_DoesNotExist" xml:space="preserve">
-    <value>Het opgegeven bestand of de map bestaat niet:</value>
+    <value>Het opgegeven bestand of de map bestaat niet: </value>
   </data>
   <data name="Video_VLCError1" xml:space="preserve">
     <value>Kan niet parseren URI in VLC ini-bestand</value>
@@ -2844,7 +2832,7 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>veranderd in</value>
   </data>
   <data name="Video_Updating" xml:space="preserve">
-    <value>Bijwerken naar keek door mediaplayer:</value>
+    <value>Bijwerken naar keek door mediaplayer: </value>
   </data>
   <data name="AniDB_DataMissing" xml:space="preserve">
     <value>Ontbrekende gegevens</value>
@@ -2940,7 +2928,7 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>Bestand</value>
   </data>
   <data name="Playlist_Name" xml:space="preserve">
-    <value>Afspeellijst naam invoeren:</value>
+    <value>Afspeellijst naam invoeren: </value>
   </data>
   <data name="Playlist_NameBlank" xml:space="preserve">
     <value>Voer de naam van een playlist</value>
@@ -3378,7 +3366,7 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>INI-bestand gevonden. Voorbeeld van onlangs bekeken-bestand...</value>
   </data>
   <data name="VideoPlayer_DefaultNote" xml:space="preserve">
-    <value>JMM gebruikt automatisch de standaard videospeler voor Windows. Als u gebruiken een andere videospeler willen zou, u moet de video-speler uitvoerbare bestand toevoegen aan de systeemvariabele PATH.</value>
+    <value>JMM gebruikt automatisch de standaard videospeler voor Windows. Als u gebruiken een andere videospeler willen zou, u moet de video-speler uitvoerbare bestand toevoegen aan de systeemvariabele PATH. </value>
   </data>
   <data name="AniDBMyListDeleteLocal" xml:space="preserve">
     <value>Verwijder bestand (lokale DB)</value>
@@ -3450,7 +3438,7 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>Nieuwe afspeellijst</value>
   </data>
   <data name="EpisodeDetail_PlaylistMenu" xml:space="preserve">
-    <value>Afspeellijst-Menu:</value>
+    <value>Afspeellijst-Menu: </value>
   </data>
   <data name="EpisodeDetail_PlaylistMissing" xml:space="preserve">
     <value>Konden niet vondst afspeellijst</value>
@@ -3495,7 +3483,7 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>niet gevonden terwijl het proberen om het vergelijken van objecten van het type</value>
   </data>
   <data name="ValueCompare_FieldName" xml:space="preserve">
-    <value>Veldnaam</value>
+    <value>Veldnaam </value>
   </data>
   <data name="SelectGroupSeries_Select" xml:space="preserve">
     <value>Selecteer een</value>
@@ -3540,7 +3528,7 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>Uitzondering in MultiSort tijdens het sorteren van een lijst met</value>
   </data>
   <data name="JMMServer_TraktAuth" xml:space="preserve">
-    <value>Trakt vergunning</value>
+    <value>Trakt vergunning </value>
   </data>
   <data name="Group_GroupCount" xml:space="preserve">
     <value>Groepen</value>
@@ -4327,5 +4315,20 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   </data>
   <data name="Actions_SyncVotes" xml:space="preserve">
     <value>Sync stemmen</value>
+  </data>
+  <data name="TAB_Settings_Language" xml:space="preserve">
+    <value>Taalvoorkeur voor de naamgeving van de groep/Series</value>
+  </data>
+  <data name="INFO_SettingsDisplayStyle" xml:space="preserve">
+    <value>Het instellen van de taal of de talen die worden gebruikt voor de naamgeving van wanneer groepen of serie worden toegevoegd aan uw collectie. Deze titels worden getrokken vanuit AniDB zo buiten Engels, Romaji of Kanji; niet alle groepen of serie zal hebben extra titels beschikbaar. Voor het gebruik van synoniemen genoteerd op AniDB zorg ervoor dat te controleren "Ook gebruik synoniemen" en te hernoemen bestaande groepen en serie Zorg dat u "hernoemen alle groepen/Series" klikt als u klaar bent</value>
+  </data>
+  <data name="Language_Rename" xml:space="preserve">
+    <value>Naam wijzigen van alle groepen/Series</value>
+  </data>
+  <data name="Tooltip_PinSeries" xml:space="preserve">
+    <value>PIN dit anime om later weer te geven</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Verwijderen</value>
   </data>
 </root>

@@ -812,11 +812,8 @@
   <data name="Down" xml:space="preserve">
     <value>W dół</value>
   </data>
-  <data name="LanguageUseSynonyms" xml:space="preserve">
+  <data name="Language_UseSynonyms" xml:space="preserve">
     <value>Również użyć synonimów</value>
-  </data>
-  <data name="TAB_Settings_Language" xml:space="preserve">
-    <value>Preferencje językowe</value>
   </data>
   <data name="Tooltip_LanguageUseSynonyms" xml:space="preserve">
     <value>Również użyć synonimów od wybranego preferowany język wyświetlania serii i grupach. Angielski i Romaji synonimów nie będzie używany</value>
@@ -908,17 +905,11 @@
   <data name="ImageSize_SubGroupList" xml:space="preserve">
     <value>Sub grupy listy i serii</value>
   </data>
-  <data name="INFO_SettingsDisplayStyle" xml:space="preserve">
-    <value>Trzeba odświeżyć swoje grupy listy aby zobaczyć skutki zmian</value>
-  </data>
   <data name="MSG_ERR_SelectDate" xml:space="preserve">
     <value>Najpierw wybierz datę</value>
   </data>
   <data name="NewGroupFilter" xml:space="preserve">
     <value>Nowy filtr grupy</value>
-  </data>
-  <data name="RenameGroups" xml:space="preserve">
-    <value>Nazwy wszystkich grup</value>
   </data>
   <data name="Style_GroupList" xml:space="preserve">
     <value>Lista grup</value>
@@ -1391,9 +1382,6 @@
   <data name="TAB_Pinned" xml:space="preserve">
     <value>Przypięte</value>
   </data>
-  <data name="Tooltip_ViewSeries" xml:space="preserve">
-    <value>Otwórz to seria Anime w nowym oknie</value>
-  </data>
   <data name="GroupFilterConditionType_UserVotedAny" xml:space="preserve">
     <value>Użytkownika głosowali (każdy)</value>
   </data>
@@ -1705,11 +1693,11 @@
   </data>
   <data name="Tooltip_AniDBMyListDeleteAction" xml:space="preserve">
     <value>Jaką akcję należy podjąć dla pliku, kiedy możesz usunąć go z lokalnej kolekcji.
-Usuń plik (AniDB) - usuwa plik z twój AniDB MyList.
-Usuń plik (lokalne DB) - usuń plik z twój miejscowy DB tylko.
-Mark Deleted - pozostawia plik na liście, ale zmienia stan usunięte.
-Mark External (CD/DVD) - pozostawia plik na liście, ale zmienia stan do zewnętrznej pamięci masowej.
-Mark Unknown - pozostawia plik na liście, ale zmienia stan nieznany.</value>
+ Usuń plik (AniDB) - usuwa plik z twój AniDB MyList.
+ Usuń plik (lokalne DB) - usuń plik z twój miejscowy DB tylko.
+ Mark Deleted - pozostawia plik na liście, ale zmienia stan usunięte.
+ Mark External (CD/DVD) - pozostawia plik na liście, ale zmienia stan do zewnętrznej pamięci masowej.
+ Mark Unknown - pozostawia plik na liście, ale zmienia stan nieznany.</value>
   </data>
   <data name="GroupFilterConditionType_CustomTag" xml:space="preserve">
     <value>Znacznik</value>
@@ -4329,5 +4317,20 @@ Mark Unknown - pozostawia plik na liście, ale zmienia stan nieznany.</value>
   </data>
   <data name="Actions_SyncVotes" xml:space="preserve">
     <value>Synchronizacja ocen</value>
+  </data>
+  <data name="TAB_Settings_Language" xml:space="preserve">
+    <value>Preferowany język dla grupy/Seria nazewnictwa</value>
+  </data>
+  <data name="INFO_SettingsDisplayStyle" xml:space="preserve">
+    <value>Ustawienie języka lub języków używane dla nazw, gdy grupy lub serii, które są dodawane do kolekcji. Te tytuły są pobierane bezpośrednio z AniDB tak poza angielskim, Romaji, Kanji; nie wszystkie grupy lub serii będzie mieć dodatkowe tytuły dostępne. Aby użyć synonimy wymienione na AniDB upewnij się, aby sprawdzić "Również użyć synonimów" i zmienić istniejące grupy i serii upewnij się, że po zakończeniu kliknij "zmiana nazwy wszystkich grup/seria"</value>
+  </data>
+  <data name="Language_Rename" xml:space="preserve">
+    <value>Zmień nazwy wszystkich grup/serii</value>
+  </data>
+  <data name="Tooltip_PinSeries" xml:space="preserve">
+    <value>PIN to anime, aby później wyświetlić</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Usuń</value>
   </data>
 </root>

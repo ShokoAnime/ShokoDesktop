@@ -1680,7 +1680,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\16_folder.png" />
-    <Resource Include="Images\32_folder.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\16_filter.png" />
@@ -1693,26 +1692,14 @@
     <Resource Include="Images\16_folder2.png" />
     <Resource Include="Images\16_videofile.png" />
     <Resource Include="Images\32_dvd.png" />
-    <Resource Include="Images\32_folder2.png" />
     <Resource Include="Images\32_videofile.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\16_back.png" />
     <Resource Include="Images\32_back.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\32_delete.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\16_blankstar.png" />
     <Resource Include="Images\16_star.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\32_delete_folder.png" />
-    <Resource Include="Images\32_save.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\32_import.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Flags\au_australia.gif" />
@@ -1791,12 +1778,7 @@
     <Resource Include="Images\32_play.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\32_calendar.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\16_award.png" />
-    <Resource Include="Images\16_eye.png" />
-    <Resource Include="Images\16_eye2.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\16_exclamation.png" />
@@ -1822,28 +1804,11 @@
     <Resource Include="Images\blankposter.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\32_image.png" />
     <Resource Include="Images\32_picture.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\32_down.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\16_server_connect.png" />
     <Resource Include="Images\16_server_hash.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\16_arrow45.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\32_folder_add.png" />
-    <Resource Include="Images\32_folder_remove.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\32_folder_edit.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\32_cancel.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\32_settings.png" />
@@ -1861,13 +1826,6 @@
     <Resource Include="Images\32_drop.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\32_folder_down.png" />
-    <Resource Include="Images\32_folder_up.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\32_add.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\24_ignore.png" />
     <Resource Include="Images\24_ignore_off.png" />
   </ItemGroup>
@@ -1877,7 +1835,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\32_help.png" />
-    <Resource Include="Images\32_info.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
@@ -1954,17 +1911,10 @@
     <Resource Include="Images\16_switch.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\anidb.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\EpisodeThumb_NotFound.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Samples\Episode.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\moviedb.ico" />
-    <Resource Include="Images\tvdb.ico" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\16_heart.png" />
@@ -1983,10 +1933,6 @@
   <ItemGroup>
     <Resource Include="Images\16_admin.png" />
     <Resource Include="Images\64_admin.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\myanimelist.ico" />
-    <Resource Include="Images\trakttv.ico" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\16_windows.png" />
@@ -2011,9 +1957,6 @@
     <Resource Include="Images\trakt-icon-shouts.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\16_folder_find.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\32_discussion.png" />
   </ItemGroup>
   <ItemGroup>
@@ -2027,12 +1970,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\32_new.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\32_bookmark_add.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\32_bookmark.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\16_columns.png" />
@@ -2056,9 +1993,6 @@
     <Resource Include="Images\128_download3.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\24_download3.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="PostBuild.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -2066,14 +2000,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\64_preview.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Pause.png" />
-    <Resource Include="Images\Play.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\32_play2.png" />
-    <Resource Include="Images\32_play2_all.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\metro_Back.png" />
@@ -2206,6 +2132,53 @@
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.Core.dll" />
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.dll" />
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.resources.dll" />
+    <Resource Include="Images\16_add.png" />
+    <Resource Include="Images\16_simple.png" />
+    <Resource Include="Images\24_calendar.png" />
+    <Resource Include="Images\24_download.png" />
+    <Resource Include="Images\24_folder_edit.png" />
+    <Resource Include="Images\24_folder_filter.png" />
+    <Resource Include="Images\24_folder_group.png" />
+    <Resource Include="Images\24_folder_remove.png" />
+    <Resource Include="Images\24_play_all.png" />
+    <Resource Include="Images\16_cancel.png" />
+    <Resource Include="Images\16_clear.png" />
+    <Resource Include="Images\16_folder_video.png" />
+    <Resource Include="Images\16_save.png" />
+    <Resource Include="Images\16_update_data.png" />
+    <Resource Include="Images\24_folder.png" />
+    <Resource Include="Images\24_folder_down.png" />
+    <Resource Include="Images\24_folder_find.png" />
+    <Resource Include="Images\24_folder_up.png" />
+    <Resource Include="Images\32_eye.png" />
+    <Resource Include="Images\32_eye2.png" />
+    <Resource Include="Images\32_info.png" />
+    <Resource Include="Images\128_download.png" />
+    <Resource Include="Images\128_download2.png" />
+    <Resource Include="Images\16_bookmark.png" />
+    <Resource Include="Images\16_bookmark_add.png" />
+    <Resource Include="Images\16_hourglass.png" />
+    <Resource Include="Images\16_image.png" />
+    <Resource Include="Images\16_info.png" />
+    <Resource Include="Images\16_link.png" />
+    <Resource Include="Images\16_pause.png" />
+    <Resource Include="Images\32_anidb.png" />
+    <Resource Include="Images\32_Disk.png" />
+    <Resource Include="Images\32_mal.png" />
+    <Resource Include="Images\32_resume.png" />
+    <Resource Include="Images\32_tmdb.png" />
+    <Resource Include="Images\32_trakt.png" />
+    <Resource Include="Images\32_tvdb.png" />
+    <Resource Include="Images\clock %282%29.png" />
+    <Resource Include="Images\database_refresh.png" />
+    <Resource Include="Images\database_remove.png" />
+    <Resource Include="Images\download.png" />
+    <Resource Include="Images\folder__plus.png" />
+    <Resource Include="Images\Pause_32x32.png" />
+    <Resource Include="Images\Play_32x32.png" />
+    <Resource Include="Images\refresh.png" />
+    <Resource Include="Images\refresh_48.png" />
+    <Resource Include="Images\thumb-up.png" />
     <Resource Include="Images\Flags\pt.gif" />
     <Resource Include="Images\Metro\details.png" />
     <Resource Include="Images\16_feed.png" />

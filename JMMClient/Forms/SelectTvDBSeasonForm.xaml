@@ -82,7 +82,7 @@
             <StackPanel Orientation="Vertical">
 
                 <StackPanel Orientation="Horizontal"  Margin="0,0,0,0" DockPanel.Dock="Top">
-                    <Image Margin="5,0,0,0" Height="16" Width="16" Source="/Images/anidb.ico" VerticalAlignment="Center"/>
+                    <Image Margin="5,0,0,0" Height="16" Width="16" Source="/Images/32_anidb.png" VerticalAlignment="Center"/>
                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AniDB}" Margin="5,0,0,0"/>
 
                     <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=AnimeName, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SelectTvDBSeasonForm}}}" Margin="5,0,0,0"/>
@@ -112,7 +112,7 @@
             <StackPanel Orientation="Vertical">
 
                 <StackPanel Orientation="Horizontal"  Margin="0,0,0,0" DockPanel.Dock="Top">
-                    <Image Margin="5,0,0,0" Height="16" Width="16" Source="/Images/tvdb.ico" VerticalAlignment="Center"/>
+                    <Image Margin="5,0,0,0" Height="16" Width="16" Source="/Images/32_tvdb.png" VerticalAlignment="Center"/>
                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TheTvDB}" Margin="5,0,0,0"/>
 
                     <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=TvDBSeriesName, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SelectTvDBSeasonForm}}}" Margin="15,0,0,0"/>

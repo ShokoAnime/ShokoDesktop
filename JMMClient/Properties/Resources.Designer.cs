@@ -5209,7 +5209,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You will need to refresh your group list to see the effects of the changes.
+        ///   Looks up a localized string similar to Set the language or languages used for naming when groups or series are added to your collection. These titles are pulled directly from AniDB so outside of English, Romaji or Kanji; not all groups or series will have additional titles available. To use synonyms listed on AniDB make sure to check “Also Use Synonyms” and to rename existing groups and series make sure to click “Rename All Groups/Series” once you’re done.
         /// </summary>
         public static string INFO_SettingsDisplayStyle {
             get {
@@ -5416,11 +5416,20 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rename All Groups/Series.
+        /// </summary>
+        public static string Language_Rename {
+            get {
+                return ResourceManager.GetString("Language_Rename", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Also Use Synonyms.
         /// </summary>
-        public static string LanguageUseSynonyms {
+        public static string Language_UseSynonyms {
             get {
-                return ResourceManager.GetString("LanguageUseSynonyms", resourceCulture);
+                return ResourceManager.GetString("Language_UseSynonyms", resourceCulture);
             }
         }
         
@@ -7342,6 +7351,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove.
+        /// </summary>
+        public static string Remove {
+            get {
+                return ResourceManager.GetString("Remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove Default Series.
         /// </summary>
         public static string RemoveDefaultSeries {
@@ -7950,15 +7968,6 @@ namespace JMMClient.Properties {
         public static string Rename_Year {
             get {
                 return ResourceManager.GetString("Rename_Year", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Rename All Groups.
-        /// </summary>
-        public static string RenameGroups {
-            get {
-                return ResourceManager.GetString("RenameGroups", resourceCulture);
             }
         }
         
@@ -9484,7 +9493,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Language Preferences.
+        ///   Looks up a localized string similar to Language Preference for Group/Series Naming.
         /// </summary>
         public static string TAB_Settings_Language {
             get {
@@ -10407,6 +10416,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pin this anime to view later.
+        /// </summary>
+        public static string Tooltip_PinSeries {
+            get {
+                return ResourceManager.GetString("Tooltip_PinSeries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Play all episodes (sent as a playlist to the default player).
         /// </summary>
         public static string Tooltip_PlayAll {
@@ -10736,15 +10754,6 @@ namespace JMMClient.Properties {
         public static string Tooltip_User_PlexUsers {
             get {
                 return ResourceManager.GetString("Tooltip_User_PlexUsers", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Open this Anime Series in a new window.
-        /// </summary>
-        public static string Tooltip_ViewSeries {
-            get {
-                return ResourceManager.GetString("Tooltip_ViewSeries", resourceCulture);
             }
         }
         

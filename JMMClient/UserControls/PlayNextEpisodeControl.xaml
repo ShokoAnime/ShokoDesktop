@@ -38,7 +38,7 @@
                         <Button Name="btnPlay" Margin="0,0,0,0" Style="{DynamicResource RoundButtonStyle}" VerticalAlignment="Center"
                             Command="{DynamicResource PlayVideoCommand}" CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                <Image Height="16" Width="16" Source="/Images/32_play2.png" Margin="0,0,5,0"/>
+                                <Image Height="16" Width="16" Source="/Images/32_resume.png" Margin="0,0,5,0"/>
                                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Play}" Margin="0,0,5,0"/>
                             </StackPanel>
                         </Button>
@@ -46,13 +46,13 @@
                         <!-- Set watched/unwatched button-->
                         <Button Margin="5,0,5,0" Style="{DynamicResource RoundButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource ToggleWatchedStatusCommand}" CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                <Image Height="16" Width="16" Source="/Images/16_eye.png" Margin="2,0,2,0"
+                                <Image Height="16" Width="16" Source="/Images/32_eye.png" Margin="2,0,2,0"
                                     Visibility="{Binding Path=Watched, Converter={StaticResource BooleanToVisibilityConverter}}">
                                     <Image.ToolTip>
                                         <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_Watched}"/>
                                     </Image.ToolTip>
                                 </Image>
-                                <Image Height="16" Width="16" Source="/Images/16_eye2.png" Margin="2,0,2,0"
+                                <Image Height="16" Width="16" Source="/Images/32_eye2.png" Margin="2,0,2,0"
                                     Visibility="{Binding Path=Unwatched, Converter={StaticResource BooleanToVisibilityConverter}}">
                                     <Image.ToolTip>
                                         <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_Unwatched}"/>
@@ -146,13 +146,13 @@
                         Visibility="{Binding Path=HasFiles, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Command="{DynamicResource ToggleWatchedStatusCommand}" CommandParameter="{Binding}">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                    <Image Height="16" Width="16" Source="/Images/16_eye.png" Margin="2,0,2,0"
+                    <Image Height="16" Width="16" Source="/Images/32_eye.png" Margin="2,0,2,0"
                            Visibility="{Binding Path=Watched, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <Image.ToolTip>
                             <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_Watched}"/>
                         </Image.ToolTip>
                     </Image>
-                    <Image Height="16" Width="16" Source="/Images/16_eye2.png" Margin="2,0,2,0"
+                    <Image Height="16" Width="16" Source="/Images/32_eye2.png" Margin="2,0,2,0"
                            Visibility="{Binding Path=Unwatched, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <Image.ToolTip>
                             <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_Unwatched}"/>
@@ -165,7 +165,7 @@
             <Button Name="btnPlay" Margin="5,0,0,0" Style="{DynamicResource RoundButtonStyle}" Command="{DynamicResource PlayEpisodeCommand}" CommandParameter="{Binding}"
                         VerticalAlignment="Center" Visibility="{Binding Path=OneFileOnly, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                    <Image Height="16" Width="16" Source="/Images/32_play2.png" Margin="0,0,5,0"/>
+                    <Image Height="16" Width="16" Source="/Images/32_resume.png" Margin="0,0,5,0"/>
                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Play}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
@@ -179,7 +179,7 @@
                         <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_ZeroFiles}"/>
                     </Image.ToolTip>
                 </Image>
-                <Image Height="16" Width="16" Source="/Images/32_calendar.png" Margin="0,0,5,0"
+                <Image Height="16" Width="16" Source="/Images/24_calendar.png" Margin="0,0,5,0"
                            Visibility="{Binding Path=FutureDated, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Image.ToolTip>
                         <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_FutureDated}"/>

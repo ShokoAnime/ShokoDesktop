@@ -34,7 +34,7 @@
                     <!-- delete entry button-->
                     <Button Margin="10,0,5,0" Grid.Column="0" Style="{DynamicResource FlatButtonStyle}"  Command="{DynamicResource DeleteIgnoredAnimeCommand}" CommandParameter="{Binding}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                            <Image Height="16" Width="16" Source="/Images/32_Delete.png" Margin="0,0,0,0"/>
+                            <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,0,0"/>
                         </StackPanel>
                         <Button.ToolTip>
                             <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=IgnoredAnime_Delete}"/>

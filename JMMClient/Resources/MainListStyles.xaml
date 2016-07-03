@@ -75,7 +75,7 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Visibility="{Binding Path=HasUnwatchedFiles, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <Image Height="12" Width="12" Source="/Images/16_eye2.png" Margin="0,0,0,0" VerticalAlignment="Center"/>
+                <Image Height="12" Width="12" Source="/Images/32_eye2.png" Margin="0,0,0,0" VerticalAlignment="Center"/>
                 <TextBlock Margin="5,0,0,0" Text="{Binding Path=UnwatchedEpisodeCount}"  VerticalAlignment="Center" FontSize="11" />
                 <TextBlock Margin="5,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Unwatched}" VerticalAlignment="Center" FontSize="11" />
             </StackPanel>
@@ -179,7 +179,7 @@
             
             <!-- Watched stats -->
             <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3" Visibility="{Binding Path=HasUnwatchedFiles, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <Image Height="12" Width="12" Source="/Images/16_eye2.png" Margin="0,0,0,0" VerticalAlignment="Center"/>
+                <Image Height="12" Width="12" Source="/Images/32_eye2.png" Margin="0,0,0,0" VerticalAlignment="Center"/>
                 <TextBlock Margin="5,0,0,0" Text="{Binding Path=UnwatchedEpisodeCount}"  VerticalAlignment="Center" FontSize="11"/>
                 <TextBlock Margin="5,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Unwatched}" VerticalAlignment="Center" FontSize="11" />
             </StackPanel>

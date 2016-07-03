@@ -151,7 +151,7 @@
 
                             </TextBox>
                             <Button Name="btnClearSearch" Style="{DynamicResource FlatButtonStyle}">
-                                <Image Height="16" Width="16" Source="/Images/32_Delete.png" Margin="0,0,0,0"/>
+                                <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,0,0"/>
                             </Button>
 
                             <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled"  VerticalAlignment="Center" Background="Transparent" Padding="0" BorderThickness="0" Margin="10,0,0,5"
@@ -257,9 +257,9 @@
                                 <Button Margin="5,0,0,0" Style="{DynamicResource RoundButtonStyle}" VerticalAlignment="Center"
                                 Command="{DynamicResource ShowPinnedSeriesCommand}" CommandParameter="{Binding}">
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                        <Image Height="16" Width="16" Source="/Images/16_windows.png" Margin="1,0,1,0" ToolTipService.ShowDuration="60000">
+                                        <Image Height="16" Width="16" Source="/Images/32_pin.png" Margin="1,0,1,0" ToolTipService.ShowDuration="60000">
                                             <Image.ToolTip>
-                                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_ViewSeries}"/>
+                                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_PinSeries}"/>
                                             </Image.ToolTip>
                                         </Image>
 

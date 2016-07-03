@@ -73,7 +73,7 @@
 
         <Button Name="btnTest" Margin="0,8,2,2" Grid.Column="0" Grid.Row="6"  HorizontalAlignment="Left" Style="{DynamicResource RoundButtonStyle}">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                <Image Height="16" Width="16" Source="/Images/32_save.png" Margin="0,0,5,0"/>
+                <Image Height="16" Width="16" Source="/Images/16_save.png" Margin="0,0,5,0"/>
                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TestAndSave}" Margin="0,0,5,0"/>
             </StackPanel>
         </Button>

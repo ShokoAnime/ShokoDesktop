@@ -571,7 +571,7 @@
     <value>Erfolgreich!</value>
   </data>
   <data name="INFO_SettingsEssential" xml:space="preserve">
-    <value>Alle Einstellungen auf dieser Seite sollten vorgenommen werden. Achten Sie darauf die Einstellungen des JMM Servers und AniDB zu Testen bevor Sie fortfahren. Wenn es das erste mal ist, dass Sie diese Applikation gestartet haben, geben Sie mindestens einen Importordner an und klicken Sie den Import Ausführen Button.</value>
+    <value>Alle Einstellungen auf dieser Seite sollten vorgenommen werden. Achten Sie darauf die Einstellungen des JMM Servers und AniDB zu Testen bevor Sie fortfahren. Wenn es das erste mal ist, dass Sie diese Applikation gestartet haben, geben Sie mindestens einen Importordner an und klicken Sie  den Import Ausführen Button.</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Suche</value>
@@ -798,11 +798,8 @@
   <data name="Down" xml:space="preserve">
     <value>Herunter</value>
   </data>
-  <data name="LanguageUseSynonyms" xml:space="preserve">
+  <data name="Language_UseSynonyms" xml:space="preserve">
     <value>Auch Synonyme verwenden!</value>
-  </data>
-  <data name="TAB_Settings_Language" xml:space="preserve">
-    <value>Spracheinstellungen!</value>
   </data>
   <data name="Files" xml:space="preserve">
     <value>Dateien</value>
@@ -1068,9 +1065,6 @@
   <data name="TAB_Pinned" xml:space="preserve">
     <value>Fixiert</value>
   </data>
-  <data name="Tooltip_ViewSeries" xml:space="preserve">
-    <value>Dieser Anime-Serie in einem neuen Fenster geöffnet</value>
-  </data>
   <data name="GroupFilterConditionType_UserVotedAny" xml:space="preserve">
     <value>Benutzer, die abgestimmt (alle)</value>
   </data>
@@ -1210,7 +1204,7 @@
     <value>Wählen Sie die Standard-Serie für</value>
   </data>
   <data name="DefSeries2" xml:space="preserve">
-    <value>Auswählen eines Standard-Serie bedeutet, dass alle Bilder, die für eine Gruppe angezeigt werden, die verwendet wird</value>
+    <value>Auswählen eines Standard-Serie bedeutet, dass alle Bilder, die für eine Gruppe angezeigt werden, die verwendet wird </value>
   </data>
   <data name="DefSeries3" xml:space="preserve">
     <value>Standard-Serie statt einer zufälligen Reihe innerhalb der Gruppe</value>
@@ -1500,7 +1494,7 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
     <value>Passwort ändern</value>
   </data>
   <data name="ChangingPassword" xml:space="preserve">
-    <value>Ändern des Kennworts für:</value>
+    <value>Ändern des Kennworts für: </value>
   </data>
   <data name="WhatDoesThisMean" xml:space="preserve">
     <value>Was bedeutet das?</value>
@@ -1605,16 +1599,16 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
     <value>AniDB Start:</value>
   </data>
   <data name="Search_Trakt" xml:space="preserve">
-    <value>Trakt:</value>
+    <value>Trakt: </value>
   </data>
   <data name="Search_Approved" xml:space="preserve">
     <value>Admin genehmigt</value>
   </data>
   <data name="Search_TvDB" xml:space="preserve">
-    <value>TvDB:</value>
+    <value>TvDB: </value>
   </data>
   <data name="Search_MAL" xml:space="preserve">
-    <value>MAL:</value>
+    <value>MAL: </value>
   </data>
   <data name="SelectAniDBTitle_SelectName" xml:space="preserve">
     <value>Wählen Sie einen Namen überschreiben</value>
@@ -2358,10 +2352,10 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
     <value>AniDB Start:</value>
   </data>
   <data name="CommunityLinks_TvDB" xml:space="preserve">
-    <value>TvDB:</value>
+    <value>TvDB: </value>
   </data>
   <data name="CommunityLinks_Trakt" xml:space="preserve">
-    <value>Trakt:</value>
+    <value>Trakt: </value>
   </data>
   <data name="CommunityLinks_TMDb" xml:space="preserve">
     <value>Der Film DB!</value>
@@ -2502,13 +2496,13 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
     <value>Passwort ändern</value>
   </data>
   <data name="Sort_Error" xml:space="preserve">
-    <value>Fehler beim Sortieren</value>
+    <value>Fehler beim Sortieren </value>
   </data>
   <data name="Sort_PassedEmpty" xml:space="preserve">
     <value>MultiSort Parameter RgSortBy wurde ein leeres Feldname im RgSortBy [verabschiedet</value>
   </data>
   <data name="Selected_DoesNotExist" xml:space="preserve">
-    <value>Die angegebene Datei oder den Ordner existiert nicht:</value>
+    <value>Die angegebene Datei oder den Ordner existiert nicht: </value>
   </data>
   <data name="Video_VLCError1" xml:space="preserve">
     <value>Nicht URI in VLC-Ini-Datei analysieren</value>
@@ -2526,7 +2520,7 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
     <value>wurde zu geändert</value>
   </data>
   <data name="Video_Updating" xml:space="preserve">
-    <value>Fortschreibung von MediaPlayer beobachtet:</value>
+    <value>Fortschreibung von MediaPlayer beobachtet: </value>
   </data>
   <data name="AniDB_DataMissing" xml:space="preserve">
     <value>Daten fehlen</value>
@@ -2622,7 +2616,7 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
     <value>Datei</value>
   </data>
   <data name="Playlist_Name" xml:space="preserve">
-    <value>Playlist-Namen eingeben:</value>
+    <value>Playlist-Namen eingeben: </value>
   </data>
   <data name="Playlist_NameBlank" xml:space="preserve">
     <value>Bitte geben Sie einen Namen der Wiedergabeliste</value>
@@ -2840,17 +2834,11 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   <data name="ImageSize_SubGroupList" xml:space="preserve">
     <value>Sub-Gruppen Liste und Reihe</value>
   </data>
-  <data name="INFO_SettingsDisplayStyle" xml:space="preserve">
-    <value>Sie müssen Ihre Gruppenliste um zu sehen, die Auswirkungen der Änderungen zu aktualisieren.</value>
-  </data>
   <data name="MSG_ERR_SelectDate" xml:space="preserve">
     <value>Wählen Sie zuerst ein Datum</value>
   </data>
   <data name="NewGroupFilter" xml:space="preserve">
     <value>Neue Gruppenfilter</value>
-  </data>
-  <data name="RenameGroups" xml:space="preserve">
-    <value>Alle Gruppen umbenennen</value>
   </data>
   <data name="Style_GroupList" xml:space="preserve">
     <value>Gruppenliste</value>
@@ -3375,7 +3363,7 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
     <value>INI-Datei gefunden. Probe des vor kurzem überwachten Datei...</value>
   </data>
   <data name="VideoPlayer_DefaultNote" xml:space="preserve">
-    <value>JMM verwendet automatisch den Standard-Windows-video-Player. Wenn Sie einen anderen video-Player verwenden möchten müssen Sie die PATH-Systemvariable des Videoplayers ausführbare Datei hinzu.</value>
+    <value>JMM verwendet automatisch den Standard-Windows-video-Player. Wenn Sie einen anderen video-Player verwenden möchten müssen Sie die PATH-Systemvariable des Videoplayers ausführbare Datei hinzu. </value>
   </data>
   <data name="AniDBMyListDeleteLocal" xml:space="preserve">
     <value>Löschen der Datei (lokale DB)</value>
@@ -3447,7 +3435,7 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
     <value>Neue Playlist</value>
   </data>
   <data name="EpisodeDetail_PlaylistMenu" xml:space="preserve">
-    <value>Playlist-Menü:</value>
+    <value>Playlist-Menü: </value>
   </data>
   <data name="EpisodeDetail_PlaylistMissing" xml:space="preserve">
     <value>Wiedergabeliste konnte nicht gefunden werden.</value>
@@ -3492,7 +3480,7 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
     <value>nicht gefunden Sie beim Versuch, Objekte vom Typ vergleichen</value>
   </data>
   <data name="ValueCompare_FieldName" xml:space="preserve">
-    <value>Feldname</value>
+    <value>Feldname </value>
   </data>
   <data name="MoveSeries" xml:space="preserve">
     <value>Verschobene Serien</value>
@@ -3540,7 +3528,7 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
     <value>Ausnahme in MultiSort beim Sortieren einer Liste von</value>
   </data>
   <data name="JMMServer_TraktAuth" xml:space="preserve">
-    <value>Trakt Autorisierung</value>
+    <value>Trakt Autorisierung </value>
   </data>
   <data name="Group_GroupCount" xml:space="preserve">
     <value>Gruppen</value>
@@ -4327,5 +4315,20 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   </data>
   <data name="Actions_SyncVotes" xml:space="preserve">
     <value>Sync-Stimmen!</value>
+  </data>
+  <data name="TAB_Settings_Language" xml:space="preserve">
+    <value>Bevorzugte Sprache für die Benennung von Gruppe/Serie</value>
+  </data>
+  <data name="INFO_SettingsDisplayStyle" xml:space="preserve">
+    <value>Legen Sie die Sprache oder Sprachen, die für die Benennung von Gruppen oder Serie zu Ihrer Sammlung hinzugefügt werden. Diese Titel werden direkt vom AniDB gezogen so außerhalb von Englisch, Romaji und Kanji; nicht alle Gruppen oder Serie haben Zusatzbezeichnungen zur Verfügung. Damit verwenden Synonyme aufgeführt auf AniDB müssen "Auch verwenden Synonyme" zu überprüfen und zu bestehende Gruppen umbenennen und Serie sicherstellen "umbenennen alle Gruppen/Serie" klicken, wenn du fertig bist</value>
+  </data>
+  <data name="Language_Rename" xml:space="preserve">
+    <value>Benennen Sie alle Gruppen/Serie</value>
+  </data>
+  <data name="Tooltip_PinSeries" xml:space="preserve">
+    <value>Heften Sie diesen Anime zu einem späteren Zeitpunkt ansehen</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Entfernen</value>
   </data>
 </root>
