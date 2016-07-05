@@ -738,6 +738,8 @@ namespace JMMClient
 
             MainListHelperVM.Instance.AllAnimeDictionary[AniDB_Anime.AnimeID] = AniDB_Anime;
 
+            CrossRef_AniDB_TvDBV2.Clear();
+            TvDBSeriesV2.Clear();
 
             if (contract.CrossRefAniDBTvDBV2 != null)
             {
