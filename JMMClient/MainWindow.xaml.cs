@@ -3472,7 +3472,7 @@ namespace JMMClient
                         lbGroupsSeries.SelectedItem = lbGroupsSeries.Items[lastSelIndex];
                         lbGroupsSeries.Focus();
                         lbGroupsSeries.ScrollIntoView(lbGroupsSeries.Items[lastSelIndex]);
-                        SetDetailBinding(lbGroupsSeries.SelectedItem);
+                        //SetDetailBinding(lbGroupsSeries.SelectedItem);
 
                         return;
                     }
@@ -3486,7 +3486,7 @@ namespace JMMClient
                                 lbGroupsSeries.SelectedItem = lbGroupsSeries.Items[lastSelIndex - 1];
                                 lbGroupsSeries.Focus();
                                 lbGroupsSeries.ScrollIntoView(lbGroupsSeries.Items[lastSelIndex - 1]);
-                                SetDetailBinding(lbGroupsSeries.SelectedItem);
+                                //SetDetailBinding(lbGroupsSeries.SelectedItem);
 
                                 return;
                             }
@@ -3499,7 +3499,7 @@ namespace JMMClient
                     lbGroupsSeries.SelectedIndex = 0;
                     lbGroupsSeries.Focus();
                     lbGroupsSeries.ScrollIntoView(lbGroupsSeries.SelectedItem);
-                    SetDetailBinding(lbGroupsSeries.SelectedItem);
+                    //SetDetailBinding(lbGroupsSeries.SelectedItem);
                 }
 
                 return;                
