@@ -4085,9 +4085,6 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   <data name="TAB_Settings_RelationSettings" xml:space="preserve">
     <value>Relation-Einstellungen</value>
   </data>
-  <data name="RelationSettings_Info" xml:space="preserve">
-    <value>Wählen Sie die folgenden, von der Gruppierung auszuschließen</value>
-  </data>
   <data name="Link_RelationSettings" xml:space="preserve">
     <value>http://jmediamanager.org/JMM-Desktop/Settings/#Essential</value>
   </data>
@@ -4330,5 +4327,11 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   </data>
   <data name="Remove" xml:space="preserve">
     <value>Entfernen</value>
+  </data>
+  <data name="Language_RenameComplete" xml:space="preserve">
+    <value>Alle Gruppen und Serien wurden erfolgreich umbenannt!</value>
+  </data>
+  <data name="RelationSettings_Info" xml:space="preserve">
+    <value>Wenn aktiviert, wird JMM alle Verwandte Serien zusammen basierend auf der Serie Beziehung Diagramm auf AniDB gruppieren. Um bestimmte Arten von Beziehungen auszuschließen, klicken Sie auf die Beziehung wollen Sie nicht gruppierten.</value>
   </data>
 </root>

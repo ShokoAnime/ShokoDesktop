@@ -5425,6 +5425,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All groups and series have been successfully renamed!.
+        /// </summary>
+        public static string Language_RenameComplete {
+            get {
+                return ResourceManager.GetString("Language_RenameComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Also Use Synonyms.
         /// </summary>
         public static string Language_UseSynonyms {
@@ -7342,7 +7351,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select the following to exclude from grouping.
+        ///   Looks up a localized string similar to If enabled, JMM will group all related series together based on the series&apos; relation graph on AniDB. To exclude certain types of relations, click the relation you don&apos;t want grouped..
         /// </summary>
         public static string RelationSettings_Info {
             get {

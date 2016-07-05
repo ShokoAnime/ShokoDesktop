@@ -4087,9 +4087,6 @@
   <data name="TAB_Settings_RelationSettings" xml:space="preserve">
     <value>Ustawienia relacji</value>
   </data>
-  <data name="RelationSettings_Info" xml:space="preserve">
-    <value>Wybierz następujące czynności, aby wykluczyć z grupowania</value>
-  </data>
   <data name="Link_RelationSettings" xml:space="preserve">
     <value>http://jmediamanager.org/JMM-Desktop/Settings/#Essential</value>
   </data>
@@ -4332,5 +4329,11 @@
   </data>
   <data name="Remove" xml:space="preserve">
     <value>Usuń</value>
+  </data>
+  <data name="Language_RenameComplete" xml:space="preserve">
+    <value>Wszystkie grupy i seria została pomyślnie zmieniona!</value>
+  </data>
+  <data name="RelationSettings_Info" xml:space="preserve">
+    <value>Jeśli włączone, JMM będą grupy wszystkich serii powiązanych razem w oparciu o Wykres relacji serii na AniDB. Aby wykluczyć niektóre typy relacji, kliknij relacji, które nie mają zgrupowanej.</value>
   </data>
 </root>

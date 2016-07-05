@@ -2381,7 +2381,7 @@ namespace JMMClient
 
                 string msg = Instance.clientBinaryHTTP.RenameAllGroups();
                 if (string.IsNullOrEmpty(msg))
-                    MessageBox.Show(Properties.Resources.JMMServer_Complete);
+                    MessageBox.Show(Properties.Resources.Language_RenameComplete, Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
                 else
                     Utils.ShowErrorMessage(msg);
             }

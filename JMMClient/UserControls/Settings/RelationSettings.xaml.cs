@@ -46,10 +46,10 @@ namespace JMMClient.UserControls
             System.Windows.Visibility vis = System.Windows.Visibility.Collapsed;
             if (JMMServerVM.Instance.AutoGroupSeries) vis = System.Windows.Visibility.Visible;
 
-            visRelations_Row1.Visibility = vis;
-            visRelations_Row2.Visibility = vis;
-            visRelations_Row3.Visibility = vis;
-            visRelations_Info.Visibility = vis;
+            //visRelations_Row1.Visibility = vis;
+            //visRelations_Row2.Visibility = vis;
+            //visRelations_Row3.Visibility = vis;
+            //visRelations_Info.Visibility = vis;
 
         }
 

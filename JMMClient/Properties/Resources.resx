@@ -4109,7 +4109,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Relation Settings</value>
   </data>
   <data name="RelationSettings_Info" xml:space="preserve">
-    <value>Select the following to exclude from grouping</value>
+    <value>If enabled, JMM will group all related series together based on the series' relation graph on AniDB. To exclude certain types of relations, click the relation you don't want grouped.</value>
   </data>
   <data name="Link_RelationSettings" xml:space="preserve">
     <value>http://jmediamanager.org/jmm-desktop/settings/#essential</value>
@@ -4332,5 +4332,8 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   </data>
   <data name="Remove" xml:space="preserve">
     <value>Remove</value>
+  </data>
+  <data name="Language_RenameComplete" xml:space="preserve">
+    <value>All groups and series have been successfully renamed!</value>
   </data>
 </root>
