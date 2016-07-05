@@ -4334,4 +4334,10 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
   <data name="RelationSettings_Info" xml:space="preserve">
     <value>Si está habilitado, JMM agrupará todas las series relacionadas juntos basadas en gráfico de relación de la serie en AniDB. Para excluir ciertos tipos de relaciones, haga clic en la relación que no desea agrupadas.</value>
   </data>
+  <data name="Language_Switch" xml:space="preserve">
+    <value>Cambiar el idioma</value>
+  </data>
+  <data name="Language_Info" xml:space="preserve">
+    <value>JMM escritorio necesita reiniciar para cambiar el idioma, haga clic en Aceptar para reinicio automático o cancelar para reiniciar manualmente.!</value>
+  </data>
 </root>

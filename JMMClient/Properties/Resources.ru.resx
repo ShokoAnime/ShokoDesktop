@@ -4334,4 +4334,10 @@
   <data name="RelationSettings_Info" xml:space="preserve">
     <value>Если этот параметр включен, JMM группы все связанные серии вместе на основе серии отношения граф на AniDB. Чтобы исключить определенные типы отношений, нажмите кнопку связь, которую вы не хотите сгруппированных.</value>
   </data>
+  <data name="Language_Switch" xml:space="preserve">
+    <value>Переключение языка</value>
+  </data>
+  <data name="Language_Info" xml:space="preserve">
+    <value>Чтобы изменить язык JMM Desktop необходимо перезапустить, нажмите кнопку ОК для автоматическиого перезапуска или Отмена, чтобы перезапустить вручную!</value>
+  </data>
 </root>

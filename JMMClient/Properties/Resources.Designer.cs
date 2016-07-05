@@ -5416,6 +5416,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to JMM Desktop needs to restart to change the language, click OK to auto restart or Cancel to manually restart..
+        /// </summary>
+        public static string Language_Info {
+            get {
+                return ResourceManager.GetString("Language_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rename All Groups/Series.
         /// </summary>
         public static string Language_Rename {
@@ -5430,6 +5439,15 @@ namespace JMMClient.Properties {
         public static string Language_RenameComplete {
             get {
                 return ResourceManager.GetString("Language_RenameComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Switch Language.
+        /// </summary>
+        public static string Language_Switch {
+            get {
+                return ResourceManager.GetString("Language_Switch", resourceCulture);
             }
         }
         

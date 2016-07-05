@@ -4336,4 +4336,10 @@
   <data name="RelationSettings_Info" xml:space="preserve">
     <value>Jeśli włączone, JMM będą grupy wszystkich serii powiązanych razem w oparciu o Wykres relacji serii na AniDB. Aby wykluczyć niektóre typy relacji, kliknij relacji, które nie mają zgrupowanej.</value>
   </data>
+  <data name="Language_Switch" xml:space="preserve">
+    <value>Zmień język</value>
+  </data>
+  <data name="Language_Info" xml:space="preserve">
+    <value>JMM pulpitu Uruchom ponownie aby zmienić język, kliknij przycisk OK aby auto restart lub Anuluj, aby ręcznie ponownie uruchomić.!</value>
+  </data>
 </root>
