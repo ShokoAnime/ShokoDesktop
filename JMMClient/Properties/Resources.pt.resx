@@ -4334,4 +4334,10 @@
   <data name="RelationSettings_Info" xml:space="preserve">
     <value>Se habilitado, JMM agrupará todas as séries relacionadas juntos com base no gráfico de relação de série na AniDB. Para excluir certos tipos de relações, clique a relação que não quer agrupados.</value>
   </data>
+  <data name="Language_Switch" xml:space="preserve">
+    <value>Mudar o idioma</value>
+  </data>
+  <data name="Language_Info" xml:space="preserve">
+    <value>JMM Desktop precisa reiniciar para mudar o idioma, clique Okey auto reiniciar ou cancelar para reiniciar manualmente.!</value>
+  </data>
 </root>

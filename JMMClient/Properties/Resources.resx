@@ -4336,4 +4336,10 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="Language_RenameComplete" xml:space="preserve">
     <value>All groups and series have been successfully renamed!</value>
   </data>
+  <data name="Language_Switch" xml:space="preserve">
+    <value>Switch Language</value>
+  </data>
+  <data name="Language_Info" xml:space="preserve">
+    <value>JMM Desktop needs to restart to change the language, click OK to auto restart or Cancel to manually restart.</value>
+  </data>
 </root>

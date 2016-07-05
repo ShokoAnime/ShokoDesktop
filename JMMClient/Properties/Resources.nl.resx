@@ -4334,4 +4334,10 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   <data name="RelationSettings_Info" xml:space="preserve">
     <value>Als ingeschakeld, worden JMM gegroepeerd alle gekoppelde reeksen samen op basis van de serie relatie grafiek op AniDB. Klik om te sluiten van bepaalde soorten betrekkingen, op de relatie die u niet dat gegroepeerde wilt.</value>
   </data>
+  <data name="Language_Switch" xml:space="preserve">
+    <value>Wissel taal</value>
+  </data>
+  <data name="Language_Info" xml:space="preserve">
+    <value>JMM Desktop behoeften te starten als u wilt wijzigen van de taal, klik op OK wanneer automatisch herstarten of annuleren om af te handmatig opnieuw starten.!</value>
+  </data>
 </root>

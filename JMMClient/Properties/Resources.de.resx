@@ -4334,4 +4334,10 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   <data name="RelationSettings_Info" xml:space="preserve">
     <value>Wenn aktiviert, wird JMM alle Verwandte Serien zusammen basierend auf der Serie Beziehung Diagramm auf AniDB gruppieren. Um bestimmte Arten von Beziehungen auszuschließen, klicken Sie auf die Beziehung wollen Sie nicht gruppierten.</value>
   </data>
+  <data name="Language_Switch" xml:space="preserve">
+    <value>Sprache wechseln</value>
+  </data>
+  <data name="Language_Info" xml:space="preserve">
+    <value>JMM Desktop muss neu starten, um die Sprache zu ändern, klicken Sie auf OK, Auto-Neustart "oder" Abbrechen, um manuell neu starten.!</value>
+  </data>
 </root>

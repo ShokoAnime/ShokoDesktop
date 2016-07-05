@@ -4334,4 +4334,10 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="RelationSettings_Info" xml:space="preserve">
     <value>If enabled, JMM will group all related series together based on the series' relation graph on AniDB. To exclude certain types of relations, click the relation you don't want grouped.</value>
   </data>
+  <data name="Language_Switch" xml:space="preserve">
+    <value>Switch Language</value>
+  </data>
+  <data name="Language_Info" xml:space="preserve">
+    <value>JMM Desktop needs to restart to change the language, click OK to auto restart or Cancel to manually restart.!</value>
+  </data>
 </root>
