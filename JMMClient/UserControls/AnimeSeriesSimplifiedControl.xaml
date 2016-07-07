@@ -88,7 +88,7 @@
                                     Visibility="{Binding Path=TraktLinkExists, Converter={StaticResource BooleanToVisibilityConverter}}"
                                     CommandParameter="{Binding}">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                    <Image Height="16" Width="16" Source="/Images/trakttv.ico" Margin="2,0,2,0" ToolTipService.ShowDuration="60000">
+                                    <Image Height="16" Width="16" Source="/Images/32_trakt.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000">
                                         <Image.ToolTip>
                                             <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_TraktLink}"/>
                                         </Image.ToolTip>
@@ -131,7 +131,7 @@
                             <Button Name="btnToggleWatched" Margin="0,0,0,0" Style="{StaticResource FlatButtonStyle}" VerticalAlignment="Center"
                             Command="{StaticResource ToggleWatchedStatusCommand}" CommandParameter="{Binding}">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                    <Image Height="24" Width="24" Source="/Images/16_eye.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000">
+                                    <Image Height="24" Width="24" Source="/Images/32_eye.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000">
                                         <Image.ToolTip>
                                             <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_Watched}"/>
                                         </Image.ToolTip>
@@ -143,7 +143,7 @@
                             <Button Name="btnPlay" Margin="10,0,0,0" Style="{StaticResource FlatButtonStyle}" Command="{StaticResource PlayEpisodeCommand}" CommandParameter="{Binding}"
                             VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                    <Image Height="24" Width="24" Source="/Images/32_play2.png" Margin="0,0,0,0"/>
+                                    <Image Height="24" Width="24" Source="/Images/32_resume.png" Margin="0,0,0,0"/>
                                 </StackPanel>
                                 <Button.ToolTip>
                                     <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_Play}"/>
@@ -234,7 +234,7 @@
                             <Button Name="btnToggleWatched" Margin="0,0,0,0" Style="{StaticResource FlatButtonStyle}" VerticalAlignment="Center"
                             Command="{StaticResource ToggleWatchedStatusCommand}" CommandParameter="{Binding}">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                    <Image Height="24" Width="24" Source="/Images/16_eye2.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000">
+                                    <Image Height="24" Width="24" Source="/Images/32_eye2.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000">
                                         <Image.ToolTip>
                                             <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_Unwatched}"/>
                                         </Image.ToolTip>
@@ -247,7 +247,7 @@
                             <Button Name="btnPlay" Margin="10,0,0,0" Style="{StaticResource FlatButtonStyle}" Command="{StaticResource PlayEpisodeCommand}" CommandParameter="{Binding}"
                             VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                    <Image Height="24" Width="24" Source="/Images/32_play2.png" Margin="0,0,0,0"/>
+                                    <Image Height="24" Width="24" Source="/Images/32_resume.png" Margin="0,0,0,0"/>
                                 </StackPanel>
                                 <Button.ToolTip>
                                     <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_Play}"/>
@@ -326,7 +326,7 @@
                             <Button Name="btnToggleWatched" Margin="0,0,0,0" Style="{StaticResource FlatButtonStyle}" VerticalAlignment="Center"
                             Command="{StaticResource ToggleWatchedStatusCommand}" CommandParameter="{Binding}">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                    <Image Height="24" Width="24" Source="/Images/16_eye2.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000">
+                                    <Image Height="24" Width="24" Source="/Images/32_eye2.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000">
                                         <Image.ToolTip>
                                             <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_Unwatched}"/>
                                         </Image.ToolTip>
@@ -339,7 +339,7 @@
                             <Button Name="btnPlay" Margin="10,0,0,0" Style="{StaticResource FlatButtonStyle}" Command="{StaticResource PlayEpisodeCommand}" CommandParameter="{Binding}"
                             VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                    <Image Height="24" Width="24" Source="/Images/32_play2.png" Margin="0,0,0,0"/>
+                                    <Image Height="24" Width="24" Source="/Images/32_resume.png" Margin="0,0,0,0"/>
                                 </StackPanel>
                                 <Button.ToolTip>
                                     <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_Play}"/>
@@ -413,7 +413,7 @@
                             <Button Name="btnToggleWatched" Margin="0,0,0,0" Style="{StaticResource FlatButtonStyle}" VerticalAlignment="Center"
                             Command="{StaticResource ToggleWatchedStatusCommand}" CommandParameter="{Binding}">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                    <Image Height="24" Width="24" Source="/Images/16_eye2.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000">
+                                    <Image Height="24" Width="24" Source="/Images/32_eye2.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000">
                                         <Image.ToolTip>
                                             <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_Unwatched}"/>
                                         </Image.ToolTip>
@@ -426,7 +426,7 @@
                             <Button Name="btnPlay" Margin="10,0,0,0" Style="{StaticResource FlatButtonStyle}" Command="{StaticResource PlayEpisodeCommand}" CommandParameter="{Binding}"
                             VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                    <Image Height="24" Width="24" Source="/Images/32_play2.png" Margin="0,0,0,0"/>
+                                    <Image Height="24" Width="24" Source="/Images/32_resume.png" Margin="0,0,0,0"/>
                                 </StackPanel>
                                 <Button.ToolTip>
                                     <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_Play}"/>
@@ -519,7 +519,7 @@
                             <!-- vote up -->
                             <Button Margin="10,0,0,0" VerticalAlignment="Center" Command="{StaticResource VoteUpCommand}" CommandParameter="{Binding}" Visibility="Collapsed">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                    <Image Height="24" Width="24" Source="/Images/vote_up2.png" Margin="2,0,2,0" VerticalAlignment="Center">
+                                    <Image Height="24" Width="24" Source="/Images/24_vote_up.png" Margin="2,0,2,0" VerticalAlignment="Center">
                                         <Image.ToolTip>
                                             <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_VoteUp}"/>
                                         </Image.ToolTip>
@@ -530,7 +530,7 @@
                             <!-- vote down -->
                             <Button Margin="10,0,0,0" VerticalAlignment="Center" Command="{StaticResource VoteDownCommand}" CommandParameter="{Binding}" Visibility="Collapsed">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center"  >
-                                    <Image Height="24" Width="24" Source="/Images/vote_down2.png" Margin="2,0,2,0" VerticalAlignment="Center">
+                                    <Image Height="24" Width="24" Source="/Images/24_vote_down.png" Margin="2,0,2,0" VerticalAlignment="Center">
                                         <Image.ToolTip>
                                             <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_VoteDown}"/>
                                         </Image.ToolTip>
@@ -772,7 +772,7 @@
                 <Button Margin="10,2,2,2" Style="{StaticResource FlatButtonStyle}" VerticalAlignment="Center" ToolTip="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AnimeView}"
                                         Command="{DynamicResource ShowPinnedSeriesCommand}" CommandParameter="{Binding}">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                        <Image Height="16" Width="16" Source="/Images/16_windows.png" Margin="2,0,2,0">
+                        <Image Height="16" Width="16" Source="/Images/32_pin.png" Margin="2,0,2,0">
                         </Image>
 
                     </StackPanel>
@@ -919,7 +919,7 @@
 
                             <Button Name="btnPlayNextEp" Margin="0" VerticalAlignment="Top" >
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                    <Image Height="24" Width="24" Source="/Images/32_play2.png" Margin="2,0,2,0" VerticalAlignment="Center"/>
+                                    <Image Height="24" Width="24" Source="/Images/32_resume.png" Margin="2,0,2,0" VerticalAlignment="Center"/>
                                     <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_PlayNext}" FontSize="14" VerticalAlignment="Center" Margin="2,0,8,0"/>
                                 </StackPanel>
 
@@ -927,7 +927,7 @@
 
                             <Button Name="btnPlayAllEps" VerticalAlignment="Top" Margin="12,0,2,0">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                    <Image Height="24" Width="24" Source="/Images/32_play2.png" Margin="2,0,2,0" VerticalAlignment="Center"/>
+                                    <Image Height="24" Width="24" Source="/Images/32_resume.png" Margin="2,0,2,0" VerticalAlignment="Center"/>
                                     <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_PlayUnWatched}" FontSize="14" VerticalAlignment="Center" Margin="2,0,0,0"/>
                                     <TextBlock Text="(" FontSize="14" VerticalAlignment="Center" Margin="0,0,8,0"/>
                                     <TextBlock Text="{Binding Path=UnwatchedEpisodeCount, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeSeriesSimplifiedControl}}}" FontSize="14" VerticalAlignment="Center" Margin="0,0,0,0"/>

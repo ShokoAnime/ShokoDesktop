@@ -48,7 +48,7 @@
                 <TextBlock Grid.Column="0" Grid.Row="0" Margin="5,5,5,5" VerticalAlignment="Center"
                            Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_Default}"
                            Grid.ColumnSpan="2" FontSize="14" FontWeight="Bold" />
-                <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,5,0" Grid.Column="0"
+                <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0"
                        Grid.Row="1" VerticalAlignment="Top" />
                 <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,0,5,0" VerticalAlignment="Center"
                            Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_DefaultNote}"
@@ -152,7 +152,7 @@
                 <TextBlock Grid.Column="1" Grid.Row="3" Margin="0,0,5,0" VerticalAlignment="Center"
                            Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPCNote2}"
                            TextWrapping="Wrap" Grid.ColumnSpan="2" />
-                <Image Height="16" Source="/Images/32_info.png" Margin="5,2,5,0" Grid.Column="0" Grid.Row="1"
+                <Image Height="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0" Grid.Row="1"
                        VerticalAlignment="Top" />
                 <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,0,5,0" VerticalAlignment="Center"
                            Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPCIntegrationTypeNote}"
@@ -186,7 +186,7 @@
                 <Button Name="btnChooseMPCLocation" Style="{DynamicResource RoundButtonStyle}" Margin="10,10,0,10"
                         Grid.Row="2" Grid.Column="0">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                        <Image Height="16" Width="16" Source="/Images/32_Folder.png" Margin="0,0,5,0" />
+                        <Image Height="16" Width="16" Source="/Images/24_folder.png" Margin="0,0,5,0" />
                         <TextBlock VerticalAlignment="Center"
                                    Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPCINI}"
                                    Margin="0,0,5,0" />
@@ -206,7 +206,7 @@
                 <Button Name="btnClearMPCLocation" Style="{DynamicResource RoundButtonStyle}" Margin="10,10,0,10"
                         Grid.Row="2" Grid.Column="2">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                        <Image Height="16" Width="16" Source="/Images/32_delete.png" Margin="0,0,5,0" />
+                        <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,5,0" />
                         <TextBlock VerticalAlignment="Center"
                                    Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPCClear}"
                                    Margin="0,0,5,0" />
@@ -245,8 +245,7 @@
                 <TextBlock Grid.Column="0" Grid.Row="0" Margin="5,5,5,5" VerticalAlignment="Center"
                            Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_PotPlayer}"
                            Grid.ColumnSpan="2" FontSize="14" FontWeight="Bold" />
-
-                <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,5,0" Grid.Column="0"
+                <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0"
                        Grid.Row="1" VerticalAlignment="Top" />
                 <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,0,5,0" VerticalAlignment="Center"
                            Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_PotPlayerNote}"
@@ -287,7 +286,7 @@
                 <Button Name="btnChoosePotLocation" Style="{DynamicResource RoundButtonStyle}" Margin="10,10,0,10"
                         Grid.Row="2" Grid.Column="0">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                        <Image Height="16" Width="16" Source="/Images/32_Folder.png" Margin="0,0,5,0" />
+                        <Image Height="16" Width="16" Source="/Images/24_folder.png" Margin="0,0,5,0" />
                         <TextBlock VerticalAlignment="Center"
                                    Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_PotPlayerINI}"
                                    Margin="0,0,5,0" />
@@ -307,7 +306,7 @@
                 <Button Name="btnClearPotLocation" Style="{DynamicResource RoundButtonStyle}" Margin="10,10,0,10"
                         Grid.Row="2" Grid.Column="2">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                        <Image Height="16" Width="16" Source="/Images/32_delete.png" Margin="0,0,5,0" />
+                        <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,5,0" />
                         <TextBlock VerticalAlignment="Center"
                                    Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_PotPlayerClear}"
                                    Margin="0,0,5,0" />
@@ -335,7 +334,7 @@
                 <TextBlock Grid.Column="0" Grid.Row="0" Margin="5,5,5,5" VerticalAlignment="Center"
                            Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_VLC}"
                            Grid.ColumnSpan="2" FontSize="14" FontWeight="Bold" />
-                <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,5,0" Grid.Column="0"
+                <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0"
                        Grid.Row="1" VerticalAlignment="Top" />
                 <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,0,5,0" VerticalAlignment="Center"
                            Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_VLCNote}"
@@ -375,7 +374,7 @@
                 <Button Name="btnChooseVLCLocation" Style="{DynamicResource RoundButtonStyle}" Margin="10,10,0,10"
                         Grid.Row="2" Grid.Column="0">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                        <Image Height="16" Width="16" Source="/Images/32_Folder.png" Margin="0,0,5,0" />
+                        <Image Height="16" Width="16" Source="/Images/24_folder.png" Margin="0,0,5,0" />
                         <TextBlock VerticalAlignment="Center"
                                    Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_VLCINI}"
                                    Margin="0,0,5,0" />
@@ -395,7 +394,7 @@
                 <Button Name="btnClearVLCLocation" Style="{DynamicResource RoundButtonStyle}" Margin="10,10,0,10"
                         Grid.Row="2" Grid.Column="2">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                        <Image Height="16" Width="16" Source="/Images/32_delete.png" Margin="0,0,5,0" />
+                        <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,5,0" />
                         <TextBlock VerticalAlignment="Center"
                                    Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_VLCClear}"
                                    Margin="0,0,5,0" />

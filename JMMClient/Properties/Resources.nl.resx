@@ -199,7 +199,7 @@
     <value>TvDB</value>
   </data>
   <data name="ViewLabel" xml:space="preserve">
-    <value>Weergave:</value>
+    <value>Weergave: </value>
   </data>
   <data name="Back" xml:space="preserve">
     <value>Terug</value>
@@ -482,9 +482,6 @@
   </data>
   <data name="Existing" xml:space="preserve">
     <value>Bestaande</value>
-  </data>
-  <data name="SelectGroup" xml:space="preserve">
-    <value>Selecteer een groep</value>
   </data>
   <data name="SelectAnime" xml:space="preserve">
     <value>Anime selecteren AniDB</value>
@@ -804,11 +801,8 @@
   <data name="Down" xml:space="preserve">
     <value>Down</value>
   </data>
-  <data name="LanguageUseSynonyms" xml:space="preserve">
+  <data name="Language_UseSynonyms" xml:space="preserve">
     <value>Ook gebruik maken van synoniemen</value>
-  </data>
-  <data name="TAB_Settings_Language" xml:space="preserve">
-    <value>Taalvoorkeuren</value>
   </data>
   <data name="Tooltip_LanguageUseSynonyms" xml:space="preserve">
     <value>Ook gebruik maken van synoniemen van geselecteerde voorkeurstaal voor weergave van de series en groepen. Engels en Romaji synoniemen zal niet worden gebruikt</value>
@@ -900,17 +894,11 @@
   <data name="ImageSize_SubGroupList" xml:space="preserve">
     <value>Sub groepen lijst en serie</value>
   </data>
-  <data name="INFO_SettingsDisplayStyle" xml:space="preserve">
-    <value>U zult moeten vernieuwen van uw Groepslijst om te zien welk effect de wijzigingen</value>
-  </data>
   <data name="MSG_ERR_SelectDate" xml:space="preserve">
     <value>Selecteer eerst een datum</value>
   </data>
   <data name="NewGroupFilter" xml:space="preserve">
     <value>Nieuwe groepeerfilter</value>
-  </data>
-  <data name="RenameGroups" xml:space="preserve">
-    <value>Naam wijzigen van alle groepen</value>
   </data>
   <data name="Style_GroupList" xml:space="preserve">
     <value>Groepslijst</value>
@@ -1149,9 +1137,6 @@
   <data name="TvDB_Schedule_Updates" xml:space="preserve">
     <value>Update Info om de 12 uur</value>
   </data>
-  <data name="RescanAll" xml:space="preserve">
-    <value>Opnieuw scannen alle</value>
-  </data>
   <data name="DeleteAll" xml:space="preserve">
     <value>Verwijder alle</value>
   </data>
@@ -1170,10 +1155,10 @@
   <data name="CommunityRecommendation" xml:space="preserve">
     <value>Aanbeveling van de Gemeenschap</value>
   </data>
-  <data name="TvDBSearchPrompt" xml:space="preserve">
+  <data name="TvDB_SearchPrompt" xml:space="preserve">
     <value>Zoeken op de TvDB of TvDB serie ID</value>
   </data>
-  <data name="TvDBShow" xml:space="preserve">
+  <data name="TvDB_Show" xml:space="preserve">
     <value>Ga naar TvDB</value>
   </data>
   <data name="UseThis" xml:space="preserve">
@@ -1383,9 +1368,6 @@
   <data name="TAB_Pinned" xml:space="preserve">
     <value>Vastgemaakt</value>
   </data>
-  <data name="Tooltip_ViewSeries" xml:space="preserve">
-    <value>Deze Anime Series in een nieuw venster openen</value>
-  </data>
   <data name="GroupFilterConditionType_UserVotedAny" xml:space="preserve">
     <value>Gebruiker gestemd (een)</value>
   </data>
@@ -1517,18 +1499,6 @@
   </data>
   <data name="RemoveDefaultSeries" xml:space="preserve">
     <value>Verwijderen van de standaard serie</value>
-  </data>
-  <data name="SetDefaultSeries" xml:space="preserve">
-    <value>Toevoegen van de standaard serie</value>
-  </data>
-  <data name="DefSeries1" xml:space="preserve">
-    <value>Selecteer de reeks van de standaard voor</value>
-  </data>
-  <data name="DefSeries2" xml:space="preserve">
-    <value>Selecteren van een reeks standaard betekent dat alle afbeeldingen die dsiplayed voor een groep zijn die zal gebruiken</value>
-  </data>
-  <data name="DefSeries3" xml:space="preserve">
-    <value>standaard serie in plaats van een willekeurige reeks binnen de groep</value>
   </data>
   <data name="ChangeLanguage" xml:space="preserve">
     <value>Taal wijzigen</value>
@@ -1727,12 +1697,6 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   <data name="Override" xml:space="preserve">
     <value>Overschrijven</value>
   </data>
-  <data name="Tooltip_NameOverride" xml:space="preserve">
-    <value>U kunt handmatig typt u de gewenste naam of gebruik de groene pijlen naar rechts om te selecteren een naam van AniDB.</value>
-  </data>
-  <data name="Tooltip_NameOverride2" xml:space="preserve">
-    <value>Selecteer een naam uit een lijst met AniDB namen.</value>
-  </data>
   <data name="AdminMessageTitle" xml:space="preserve">
     <value>Admin bericht</value>
   </data>
@@ -1815,7 +1779,7 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>Wachtwoord wijzigen</value>
   </data>
   <data name="ChangingPassword" xml:space="preserve">
-    <value>Wachtwoord voor wijzigen:</value>
+    <value>Wachtwoord voor wijzigen: </value>
   </data>
   <data name="WhatDoesThisMean" xml:space="preserve">
     <value>Wat betekent dit?</value>
@@ -1923,16 +1887,16 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>AniDB Start:</value>
   </data>
   <data name="Search_Trakt" xml:space="preserve">
-    <value>Trakt:</value>
+    <value>Trakt: </value>
   </data>
   <data name="Search_Approved" xml:space="preserve">
     <value>Admin goedgekeurd</value>
   </data>
   <data name="Search_TvDB" xml:space="preserve">
-    <value>TvDB:</value>
+    <value>TvDB: </value>
   </data>
   <data name="Search_MAL" xml:space="preserve">
-    <value>MAL:</value>
+    <value>MAL: </value>
   </data>
   <data name="SelectAniDBTitle_SelectName" xml:space="preserve">
     <value>Selecteer de naam van een override</value>
@@ -1954,9 +1918,6 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   </data>
   <data name="Select_Season" xml:space="preserve">
     <value>Seizoen</value>
-  </data>
-  <data name="Select_DefaultLanguage" xml:space="preserve">
-    <value>Selecteer de standaardtaal</value>
   </data>
   <data name="Update_Update" xml:space="preserve">
     <value>JMM Desktop Update beschikbaar!</value>
@@ -2676,10 +2637,10 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>AniDB Start:</value>
   </data>
   <data name="CommunityLinks_TvDB" xml:space="preserve">
-    <value>TvDB:</value>
+    <value>TvDB: </value>
   </data>
   <data name="CommunityLinks_Trakt" xml:space="preserve">
-    <value>Trakt:</value>
+    <value>Trakt: </value>
   </data>
   <data name="CommunityLinks_TMDb" xml:space="preserve">
     <value>De film DB</value>
@@ -2774,9 +2735,6 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   <data name="Unrecognized_CRC32" xml:space="preserve">
     <value>CRC32</value>
   </data>
-  <data name="Unrecognized_Rehash" xml:space="preserve">
-    <value>Opnieuw hash alle</value>
-  </data>
   <data name="Unrecognized_Logs" xml:space="preserve">
     <value>Logboeken</value>
   </data>
@@ -2820,13 +2778,13 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>Wachtwoord wijzigen</value>
   </data>
   <data name="Sort_Error" xml:space="preserve">
-    <value>Fout bij het sorteren van de lijst van</value>
+    <value>Fout bij het sorteren van de lijst van </value>
   </data>
   <data name="Sort_PassedEmpty" xml:space="preserve">
     <value>MultiSort parameter rgSortBy werd een lege veldnaam aangenomen in rgSortBy]</value>
   </data>
   <data name="Selected_DoesNotExist" xml:space="preserve">
-    <value>Het opgegeven bestand of de map bestaat niet:</value>
+    <value>Het opgegeven bestand of de map bestaat niet: </value>
   </data>
   <data name="Video_VLCError1" xml:space="preserve">
     <value>Kan niet parseren URI in VLC ini-bestand</value>
@@ -2844,7 +2802,7 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>veranderd in</value>
   </data>
   <data name="Video_Updating" xml:space="preserve">
-    <value>Bijwerken naar keek door mediaplayer:</value>
+    <value>Bijwerken naar keek door mediaplayer: </value>
   </data>
   <data name="AniDB_DataMissing" xml:space="preserve">
     <value>Ontbrekende gegevens</value>
@@ -2940,7 +2898,7 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>Bestand</value>
   </data>
   <data name="Playlist_Name" xml:space="preserve">
-    <value>Afspeellijst naam invoeren:</value>
+    <value>Afspeellijst naam invoeren: </value>
   </data>
   <data name="Playlist_NameBlank" xml:space="preserve">
     <value>Voer de naam van een playlist</value>
@@ -3378,7 +3336,7 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>INI-bestand gevonden. Voorbeeld van onlangs bekeken-bestand...</value>
   </data>
   <data name="VideoPlayer_DefaultNote" xml:space="preserve">
-    <value>JMM gebruikt automatisch de standaard videospeler voor Windows. Als u gebruiken een andere videospeler willen zou, u moet de video-speler uitvoerbare bestand toevoegen aan de systeemvariabele PATH.</value>
+    <value>JMM gebruikt automatisch de standaard videospeler voor Windows. Als u gebruiken een andere videospeler willen zou, u moet de video-speler uitvoerbare bestand toevoegen aan de systeemvariabele PATH. </value>
   </data>
   <data name="AniDBMyListDeleteLocal" xml:space="preserve">
     <value>Verwijder bestand (lokale DB)</value>
@@ -3428,12 +3386,6 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   <data name="DuplicateFiles_DeleteEntry" xml:space="preserve">
     <value>Weet u zeker dat u wilt verwijderen van dit bericht?</value>
   </data>
-  <data name="Unrecognized_AniDBQueue" xml:space="preserve">
-    <value>Bestanden in de wachtrij voor AniDB gewarmd kost</value>
-  </data>
-  <data name="Unrecognized_AniDBScan" xml:space="preserve">
-    <value>Bestanden in de wachtrij voor AniDB scan</value>
-  </data>
   <data name="Unrecognized_ConfirmDelete" xml:space="preserve">
     <value>Weet u zeker dat u wilt verwijderen van dit bestand: {0}</value>
   </data>
@@ -3450,7 +3402,7 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>Nieuwe afspeellijst</value>
   </data>
   <data name="EpisodeDetail_PlaylistMenu" xml:space="preserve">
-    <value>Afspeellijst-Menu:</value>
+    <value>Afspeellijst-Menu: </value>
   </data>
   <data name="EpisodeDetail_PlaylistMissing" xml:space="preserve">
     <value>Konden niet vondst afspeellijst</value>
@@ -3495,7 +3447,7 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>niet gevonden terwijl het proberen om het vergelijken van objecten van het type</value>
   </data>
   <data name="ValueCompare_FieldName" xml:space="preserve">
-    <value>Veldnaam</value>
+    <value>Veldnaam </value>
   </data>
   <data name="SelectGroupSeries_Select" xml:space="preserve">
     <value>Selecteer een</value>
@@ -3540,7 +3492,7 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>Uitzondering in MultiSort tijdens het sorteren van een lijst met</value>
   </data>
   <data name="JMMServer_TraktAuth" xml:space="preserve">
-    <value>Trakt vergunning</value>
+    <value>Trakt vergunning </value>
   </data>
   <data name="Group_GroupCount" xml:space="preserve">
     <value>Groepen</value>
@@ -3878,9 +3830,6 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   <data name="Downloads_Searching" xml:space="preserve">
     <value>Bezig met zoeken...</value>
   </data>
-  <data name="Downloads_Results" xml:space="preserve">
-    <value>{0} resultaten</value>
-  </data>
   <data name="Downloads_Download" xml:space="preserve">
     <value>Downloaden</value>
   </data>
@@ -4097,9 +4046,6 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   <data name="TAB_Settings_RelationSettings" xml:space="preserve">
     <value>Relatie-instellingen</value>
   </data>
-  <data name="RelationSettings_Info" xml:space="preserve">
-    <value>Selecteer de volgende uit te sluiten van de groepering</value>
-  </data>
   <data name="Link_RelationSettings" xml:space="preserve">
     <value>http://jmediamanager.org/JMM-Desktop/Settings/#Essential</value>
   </data>
@@ -4153,5 +4099,248 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   </data>
   <data name="GroupFilterSorting_GroupFilter" xml:space="preserve">
     <value>De naam van de Filter van de groep</value>
+  </data>
+  <data name="AniDB_GetTitles" xml:space="preserve">
+    <value>Krijgen AniDB titels</value>
+  </data>
+  <data name="AniDB_MyListAdd" xml:space="preserve">
+    <value>Toevoegen bestand MyList: {0}</value>
+  </data>
+  <data name="AniDB_MyListDelete" xml:space="preserve">
+    <value>Verwijderen bestand uit MyList: {0} _ {1}</value>
+  </data>
+  <data name="Command_AnimeInfo" xml:space="preserve">
+    <value>Anime info krijgen van HTTP API: {0}</value>
+  </data>
+  <data name="Command_DeleteError" xml:space="preserve">
+    <value>Fout bij het verwijderen van afbeelding: ({0}) - {1}</value>
+  </data>
+  <data name="Command_DownloadImage" xml:space="preserve">
+    <value>Afbeelding downloaden: {0}</value>
+  </data>
+  <data name="Command_DownloadMalWatched" xml:space="preserve">
+    <value>Staten van MAL downloaden keek</value>
+  </data>
+  <data name="Command_DownloadTvDBImages" xml:space="preserve">
+    <value>Om afbeeldingen van de TvDB: {0}</value>
+  </data>
+  <data name="Command_FileInfo" xml:space="preserve">
+    <value>Bestandsinfo krijgen van UDP-API: {0}</value>
+  </data>
+  <data name="Command_GetCalendar" xml:space="preserve">
+    <value>Kalender info krijgen van UDP-API</value>
+  </data>
+  <data name="Command_GetEpisodeList" xml:space="preserve">
+    <value>Verkrijgen van info van de aflevering van UDP-API: {0}</value>
+  </data>
+  <data name="Command_GetFileInfo" xml:space="preserve">
+    <value>Bestandsinfo krijgen van UDP-API: {0}</value>
+  </data>
+  <data name="Command_GetReleaseGroup" xml:space="preserve">
+    <value>Groep status info krijgen van UDP-API voor Anime: {0}</value>
+  </data>
+  <data name="Command_GetReleaseInfo" xml:space="preserve">
+    <value>Krijgen van groep versieinfo van UDP-API: {0}</value>
+  </data>
+  <data name="Command_GetReviewInfo" xml:space="preserve">
+    <value>Krijgen lees info van UDP-API voor Anime: {0}</value>
+  </data>
+  <data name="Command_GettingTvDB" xml:space="preserve">
+    <value>Krijgen van afleveringen van The TvDB: {0}</value>
+  </data>
+  <data name="Command_GetUpdatedAnime" xml:space="preserve">
+    <value>Het krijgen van de lijst van bijgewerkte animes van UDP-API</value>
+  </data>
+  <data name="Command_HashingFile" xml:space="preserve">
+    <value>Hashing bestand: {0}</value>
+  </data>
+  <data name="Command_Idle" xml:space="preserve">
+    <value>Idle</value>
+  </data>
+  <data name="Command_Paused" xml:space="preserve">
+    <value>Onderbroken</value>
+  </data>
+  <data name="Command_Queued" xml:space="preserve">
+    <value>In de wachtrij</value>
+  </data>
+  <data name="Command_ReadingMedia" xml:space="preserve">
+    <value>Media-Info voor bestand lezen: {0}</value>
+  </data>
+  <data name="Command_Refresh" xml:space="preserve">
+    <value>Verfrissende Anime Stats: {0}</value>
+  </data>
+  <data name="Command_SearchMal" xml:space="preserve">
+    <value>Op zoek naar anime op MAL: {0}</value>
+  </data>
+  <data name="Command_SearchTMDb" xml:space="preserve">
+    <value>Op zoek naar anime op The MovieDB: {0}</value>
+  </data>
+  <data name="Command_SearchTrakt" xml:space="preserve">
+    <value>Op zoek naar anime op Trakt.TV: {0}</value>
+  </data>
+  <data name="Command_SearchTvDB" xml:space="preserve">
+    <value>Op zoek naar anime op de TvDB: {0}</value>
+  </data>
+  <data name="Command_SendAnimeAzure" xml:space="preserve">
+    <value>Anime xml te sturen naar azure: {0}</value>
+  </data>
+  <data name="Command_SendAnimeFull" xml:space="preserve">
+    <value>Verzenden van anime volledige naar azure: {0}</value>
+  </data>
+  <data name="Command_SendAnimeTitle" xml:space="preserve">
+    <value>Verzenden van anime titel naar azure: {0}</value>
+  </data>
+  <data name="Command_SendAnonymousData" xml:space="preserve">
+    <value>Verzenden van anonieme gebruiksgegevens naar azure</value>
+  </data>
+  <data name="Command_StartingGeneral" xml:space="preserve">
+    <value>Opdracht werknemer (generaal) te beginnen...</value>
+  </data>
+  <data name="Command_StartingHasher" xml:space="preserve">
+    <value>Startende opdracht werknemer (hasher)...</value>
+  </data>
+  <data name="Command_StartingImages" xml:space="preserve">
+    <value>Startende opdracht werknemer (beelden)...</value>
+  </data>
+  <data name="Command_SyncMyList" xml:space="preserve">
+    <value>Synchroniseren MyList info van HTTP API</value>
+  </data>
+  <data name="Command_SyncTrakt" xml:space="preserve">
+    <value>Synchroniseren Trakt collectie</value>
+  </data>
+  <data name="Command_SyncTraktEpisodes" xml:space="preserve">
+    <value>Sync aflevering aan collectie op Trakt: {0} - {1}</value>
+  </data>
+  <data name="Command_SyncTraktSeries" xml:space="preserve">
+    <value>Syncing Trakt collectie voor serie: {0}</value>
+  </data>
+  <data name="Command_SyncVotes" xml:space="preserve">
+    <value>Synchroniseren van stemming info van HTTP API</value>
+  </data>
+  <data name="Command_TraktAddHistory" xml:space="preserve">
+    <value>Aflevering aan geschiedenis op Trakt toevoegen: {0}</value>
+  </data>
+  <data name="Command_UpdateMALWatched" xml:space="preserve">
+    <value>Bijwerken van status op MAL: {0}</value>
+  </data>
+  <data name="Command_UpdateMyListInfo" xml:space="preserve">
+    <value>MyList info van UDP-API voor bestand bijwerken: {0}</value>
+  </data>
+  <data name="Command_UpdateMyListStats" xml:space="preserve">
+    <value>Bijwerken van AniDB MyListStats</value>
+  </data>
+  <data name="Command_UpdateTrakt" xml:space="preserve">
+    <value>Bijwerken van alle Trakt serie Info</value>
+  </data>
+  <data name="Command_UpdateTraktData" xml:space="preserve">
+    <value>Info/Foto's op Trakt.TV bijwerken: {0}</value>
+  </data>
+  <data name="Command_UploadMALWatched" xml:space="preserve">
+    <value>Uploaden keek Staten MAL</value>
+  </data>
+  <data name="Command_VoteAnime" xml:space="preserve">
+    <value>Stemmen: {0} - {1}</value>
+  </data>
+  <data name="Command_WebCacheDeleteXRefAniDBMAL" xml:space="preserve">
+    <value>Cross-ref voor Anidb aan de MAL uit webcache verwijderen: {0}!</value>
+  </data>
+  <data name="Command_WebCacheDeleteXRefAniDBOther" xml:space="preserve">
+    <value>Cross-ref voor Anidb naar andere uit webcache verwijderen: {0}!</value>
+  </data>
+  <data name="Command_WebCacheDeleteXRefAniDBTrakt" xml:space="preserve">
+    <value>Cross-ref voor Anidb aan Trakt uit webcache verwijderen: {0}!</value>
+  </data>
+  <data name="Command_WebCacheDeleteXRefAniDBTvDB" xml:space="preserve">
+    <value>Cross-ref voor Anidb aan TvDB uit webcache verwijderen: {0}!</value>
+  </data>
+  <data name="Command_WebCacheDeleteXRefFileEpisode" xml:space="preserve">
+    <value>Cross-ref aflevering webcache-bestand verwijderen: {0}-{1}!</value>
+  </data>
+  <data name="Command_WebCacheSendXRefAniDBMAL" xml:space="preserve">
+    <value>Cross-ref voor Anidb vanaf naar stuurt MAL webcache: {0}!</value>
+  </data>
+  <data name="Command_WebCacheSendXRefAniDBOther" xml:space="preserve">
+    <value>Cross-ref voor Anidb vanaf naar stuurt andere webcache: {0}!</value>
+  </data>
+  <data name="Command_WebCacheSendXRefAniDBTrakt" xml:space="preserve">
+    <value>Cross-ref voor Anidb vanaf naar stuurt Trakt webcache: {0}!</value>
+  </data>
+  <data name="Command_WebCacheSendXRefAniDBTvDB" xml:space="preserve">
+    <value>Cross-ref voor Anidb vanaf naar stuurt TvDB webcache: {0}!</value>
+  </data>
+  <data name="Command_WebCacheSendXRefFileEpisode" xml:space="preserve">
+    <value>Cross-ref voor aflevering webcache bestand verzenden: {0}!</value>
+  </data>
+  <data name="Actions_SyncVotes" xml:space="preserve">
+    <value>Sync stemmen</value>
+  </data>
+  <data name="TAB_Settings_Language" xml:space="preserve">
+    <value>Taalvoorkeur voor de naamgeving van de groep/Series</value>
+  </data>
+  <data name="INFO_SettingsDisplayStyle" xml:space="preserve">
+    <value>Het instellen van de taal of de talen die worden gebruikt voor de naamgeving van wanneer groepen of serie worden toegevoegd aan uw collectie. Deze titels worden getrokken vanuit AniDB zo buiten Engels, Romaji of Kanji; niet alle groepen of serie zal hebben extra titels beschikbaar. Voor het gebruik van synoniemen genoteerd op AniDB zorg ervoor dat te controleren "Ook gebruik synoniemen" en te hernoemen bestaande groepen en serie Zorg dat u "hernoemen alle groepen/Series" klikt als u klaar bent</value>
+  </data>
+  <data name="Language_Rename" xml:space="preserve">
+    <value>Naam wijzigen van alle groepen/Series</value>
+  </data>
+  <data name="Tooltip_PinSeries" xml:space="preserve">
+    <value>PIN dit anime om later weer te geven</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Verwijderen</value>
+  </data>
+  <data name="Language_RenameComplete" xml:space="preserve">
+    <value>Alle groepen en serie een zijn, met succes hernoemd!</value>
+  </data>
+  <data name="RelationSettings_Info" xml:space="preserve">
+    <value>Als ingeschakeld, worden JMM gegroepeerd alle gekoppelde reeksen samen op basis van de serie relatie grafiek op AniDB. Klik om te sluiten van bepaalde soorten betrekkingen, op de relatie die u niet dat gegroepeerde wilt.</value>
+  </data>
+  <data name="Language_Switch" xml:space="preserve">
+    <value>Wissel taal</value>
+  </data>
+  <data name="Language_Info" xml:space="preserve">
+    <value>JMM Desktop behoeften te starten als u wilt wijzigen van de taal, klik op OK wanneer automatisch herstarten of annuleren om af te handmatig opnieuw starten.!</value>
+  </data>
+  <data name="Unrecognized_Rehash" xml:space="preserve">
+    <value>Alle rehash</value>
+  </data>
+  <data name="Unrecognized_AniDBQueue" xml:space="preserve">
+    <value>bestanden in de wachtrij voor AniDB gewarmd kost</value>
+  </data>
+  <data name="Unrecognized_AniDBScan" xml:space="preserve">
+    <value>bestanden in de wachtrij voor AniDB scan</value>
+  </data>
+  <data name="Downloads_Results" xml:space="preserve">
+    <value>{0} resultaten</value>
+  </data>
+  <data name="UpdateAniDB_QueueCount" xml:space="preserve">
+    <value>{0} bestanden zullen worden in de wachtrij staat voor verwerking</value>
+  </data>
+  <data name="UpdateAniDB_QueueActual" xml:space="preserve">
+    <value>{0} bestanden in de wachtrij voor verwerking</value>
+  </data>
+  <data name="UpdateAniDB_UpdateAniDB" xml:space="preserve">
+    <value>Bijwerken van de lokale AniDB Metadata</value>
+  </data>
+  <data name="SelectGroup" xml:space="preserve">
+    <value>Type Selecteer groep</value>
+  </data>
+  <data name="RescanAll" xml:space="preserve">
+    <value>Scannen van alle</value>
+  </data>
+  <data name="DefaultSeries_Select" xml:space="preserve">
+    <value>Selecteer standaard serie</value>
+  </data>
+  <data name="DefaultSeries_Info" xml:space="preserve">
+    <value>Als standaardnummerreeks voor een groep is geselecteerd, wordt alleen die serie afbeeldingen getoond in plaats van willekeurig afbeeldingen in de verschillende series binnen de groep te selecteren.</value>
+  </data>
+  <data name="Tooltip_NameOverride" xml:space="preserve">
+    <value>U kunt handmatig typt u de gewenste naam of gebruik de groene pijlen naar rechts om te selecteren een naam van AniDB</value>
+  </data>
+  <data name="Tooltip_NameOverride2" xml:space="preserve">
+    <value>Selecteer een naam uit de lijst met beschikbare AniDB-namen</value>
+  </data>
+  <data name="TvDB_DefaultLanguage" xml:space="preserve">
+    <value>Selecteer de taal die u wenst aflevering titels en beschrijvingen van de TvDB in worden gedownload. Houd er rekening mee dat als een aflevering titel of beschrijving niet beschikbaar in de taal die u hebt geselecteerd is, de Engelse versie van de standaard zal worden gedownload.</value>
   </data>
 </root>

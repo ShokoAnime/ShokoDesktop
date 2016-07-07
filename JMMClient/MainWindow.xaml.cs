@@ -848,14 +848,27 @@ namespace JMMClient
         {
             if (cboLanguages.SelectedItem == null) return;
             UserCulture ul = cboLanguages.SelectedItem as UserCulture;
+            bool isLanguageChanged = AppSettings.Culture != ul.Culture;
+            System.Windows.Forms.DialogResult result;
 
             try
             {
                 CultureInfo ci = new CultureInfo(ul.Culture);
+                CultureInfo.DefaultThreadCurrentUICulture = ci;
                 CultureManager.UICulture = ci;
-
                 AppSettings.Culture = ul.Culture;
                 ConfigurationManager.RefreshSection("appSettings");
+
+                if (isLanguageChanged)
+                {
+                    result = System.Windows.Forms.MessageBox.Show(JMMClient.Properties.Resources.Language_Info, JMMClient.Properties.Resources.Language_Switch, System.Windows.Forms.MessageBoxButtons.OKCancel, System.Windows.Forms.MessageBoxIcon.Information);
+                    if (result == System.Windows.Forms.DialogResult.OK)
+                    {
+                        System.Windows.Forms.Application.Restart();
+                        System.Windows.Application.Current.Shutdown();
+                    }
+                }
+                
             }
             catch (Exception ex)
             {
@@ -3473,7 +3486,7 @@ namespace JMMClient
                         lbGroupsSeries.SelectedItem = lbGroupsSeries.Items[lastSelIndex];
                         lbGroupsSeries.Focus();
                         lbGroupsSeries.ScrollIntoView(lbGroupsSeries.Items[lastSelIndex]);
-                        SetDetailBinding(lbGroupsSeries.SelectedItem);
+                        //SetDetailBinding(lbGroupsSeries.SelectedItem);
 
                         return;
                     }
@@ -3487,7 +3500,7 @@ namespace JMMClient
                                 lbGroupsSeries.SelectedItem = lbGroupsSeries.Items[lastSelIndex - 1];
                                 lbGroupsSeries.Focus();
                                 lbGroupsSeries.ScrollIntoView(lbGroupsSeries.Items[lastSelIndex - 1]);
-                                SetDetailBinding(lbGroupsSeries.SelectedItem);
+                                //SetDetailBinding(lbGroupsSeries.SelectedItem);
 
                                 return;
                             }
@@ -3500,7 +3513,7 @@ namespace JMMClient
                     lbGroupsSeries.SelectedIndex = 0;
                     lbGroupsSeries.Focus();
                     lbGroupsSeries.ScrollIntoView(lbGroupsSeries.SelectedItem);
-                    SetDetailBinding(lbGroupsSeries.SelectedItem);
+                    //SetDetailBinding(lbGroupsSeries.SelectedItem);
                 }
 
                 return;                

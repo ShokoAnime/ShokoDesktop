@@ -75,12 +75,12 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Visibility="{Binding Path=HasUnwatchedFiles, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <Image Height="12" Width="12" Source="/Images/16_eye2.png" Margin="0,0,0,0" VerticalAlignment="Center"/>
+                <Image Height="14" Width="14" Source="/Images/32_eye2.png" Margin="0,0,0,0" VerticalAlignment="Center"/>
                 <TextBlock Margin="5,0,0,0" Text="{Binding Path=UnwatchedEpisodeCount}"  VerticalAlignment="Center" FontSize="11" />
                 <TextBlock Margin="5,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Unwatched}" VerticalAlignment="Center" FontSize="11" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Visibility="{Binding Path=AllFilesWatched, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <Image Height="12" Width="12" Source="/Images/16_tick.png" Margin="0,0,0,0" VerticalAlignment="Center"/>
+                <Image Height="14" Width="14" Source="/Images/16_tick.png" Margin="0,0,0,0" VerticalAlignment="Center"/>
                 <TextBlock Margin="5,0,0,0" Text="{Binding Path=UnwatchedEpisodeCount}"  VerticalAlignment="Center" FontSize="11"/>
                 <TextBlock Margin="5,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Unwatched}" VerticalAlignment="Center" FontSize="11"/>
             </StackPanel>
@@ -89,7 +89,7 @@
                                 Visibility="{Binding Path=HasMissingEpisodesAny, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <StackPanel Orientation="Horizontal" Margin="0,0,10,0"
                                     Visibility="{Binding Path=HasMissingEpisodesGroups, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <Image Height="12" Width="12" Source="/Images/16_exclamation.png" Margin="0,0,0,0" VerticalAlignment="Center">
+                    <Image Height="14" Width="14" Source="/Images/16_exclamation.png" Margin="0,0,0,0" VerticalAlignment="Center">
                         <Image.ToolTip>
                             <TextBlock Margin="5,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_MissingEpsGroups}" VerticalAlignment="Center" />
                         </Image.ToolTip>
@@ -99,7 +99,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,0,10,0"
                                     Visibility="{Binding Path=HasMissingEpisodesAllDifferentToGroups, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <Image Height="12" Width="12" Source="/Images/32_warning.png" Margin="0,0,0,0" VerticalAlignment="Center">
+                    <Image Height="14" Width="14" Source="/Images/16_warning.png" Margin="0,0,0,0" VerticalAlignment="Center">
                         <Image.ToolTip>
                             <TextBlock Margin="5,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_MissingEps}" VerticalAlignment="Center" />
                         </Image.ToolTip>
@@ -179,12 +179,12 @@
             
             <!-- Watched stats -->
             <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3" Visibility="{Binding Path=HasUnwatchedFiles, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <Image Height="12" Width="12" Source="/Images/16_eye2.png" Margin="0,0,0,0" VerticalAlignment="Center"/>
+                <Image Height="14" Width="14" Source="/Images/32_eye2.png" Margin="0,0,0,0" VerticalAlignment="Center"/>
                 <TextBlock Margin="5,0,0,0" Text="{Binding Path=UnwatchedEpisodeCount}"  VerticalAlignment="Center" FontSize="11"/>
                 <TextBlock Margin="5,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Unwatched}" VerticalAlignment="Center" FontSize="11" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3" Visibility="{Binding Path=AllFilesWatched, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <Image Height="12" Width="12" Source="/Images/16_tick.png" Margin="0,0,0,0" VerticalAlignment="Center"/>
+                <Image Height="14" Width="14" Source="/Images/16_tick.png" Margin="0,0,0,0" VerticalAlignment="Center"/>
                 <TextBlock Margin="5,0,0,0" Text="{Binding Path=UnwatchedEpisodeCount}"  VerticalAlignment="Center" FontSize="11"/>
                 <TextBlock Margin="5,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Unwatched}" VerticalAlignment="Center" FontSize="11" />
             </StackPanel>
@@ -194,7 +194,7 @@
                                 Visibility="{Binding Path=HasMissingEpisodesAny, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <StackPanel Orientation="Horizontal" Margin="0,0,10,0"
                                     Visibility="{Binding Path=HasMissingEpisodesGroups, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <Image Height="12" Width="12" Source="/Images/16_exclamation.png" Margin="0,0,0,0" VerticalAlignment="Center">
+                    <Image Height="14" Width="14" Source="/Images/16_exclamation.png" Margin="0,0,0,0" VerticalAlignment="Center">
                         <Image.ToolTip>
                             <TextBlock Margin="5,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_MissingEpsGroups}" VerticalAlignment="Center" />
                         </Image.ToolTip>
@@ -204,7 +204,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,0,10,0"
                                     Visibility="{Binding Path=HasMissingEpisodesAllDifferentToGroups, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <Image Height="12" Width="12" Source="/Images/32_warning.png" Margin="0,0,0,0" VerticalAlignment="Center">
+                    <Image Height="14" Width="14" Source="/Images/16_warning.png" Margin="0,0,0,0" VerticalAlignment="Center">
                         <Image.ToolTip>
                             <TextBlock Margin="5,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_MissingEps}" VerticalAlignment="Center" />
                         </Image.ToolTip>
@@ -293,7 +293,7 @@
 
         <Button Margin="0" Style="{DynamicResource BreadCrumbButtonStyle}" Command="{DynamicResource BreadCrumbCommand}" CommandParameter="{Binding}">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <Image Height="16" Width="16" Source="/Images/16_folder.png" Margin="0,0,5,0"/>
+                <Image Height="16" Width="16" Source="/Images/24_folder_group.png" Margin="0,0,5,0"/>
                 <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Group}" Margin="0,0,1,0" />
                 <TextBlock Text=":" Margin="0,0,5,0" />
                 <TextBlock Text="{Binding Path=GroupName}" Margin="0,0,5,0" />
@@ -321,7 +321,7 @@
 
         <Button Margin="0" Style="{DynamicResource BreadCrumbButtonStyle}" Command="{DynamicResource BreadCrumbCommand}" CommandParameter="{Binding}">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <Image Height="16" Width="16" Source="/Images/16_folder2.png" Margin="0,0,5,0"/>
+                <Image Height="16" Width="16" Source="/Images/24_folder_group.png" Margin="0,0,5,0"/>
                 <TextBlock Text="{Binding Path=EpisodeTypeDescription}" Margin="0,0,5,0" />
             </StackPanel>
         </Button>
@@ -333,7 +333,7 @@
 
         <Button Margin="0" Style="{DynamicResource BreadCrumbButtonStyle}" Command="{DynamicResource BreadCrumbCommand}" CommandParameter="{Binding}">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <Image Height="16" Width="16" Source="/Images/16_dvd.png" Margin="0,0,5,0"/>
+                <Image Height="16" Width="16" Source="/Images/32_dvd.png" Margin="0,0,5,0"/>
                 <TextBlock Text="{Binding Path=EpisodeNumberAndName}" Margin="0,0,5,0" />
             </StackPanel>
         </Button>
@@ -345,7 +345,7 @@
 
         <Button Margin="0" Style="{DynamicResource BreadCrumbButtonStyle}" Command="{DynamicResource ViewGroupCommand}" CommandParameter="{Binding}">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <Image Height="16" Width="16" Source="/Images/16_folder.png" Margin="0,0,5,0"/>
+                <Image Height="16" Width="16" Source="/Images/24_folder_group.png" Margin="0,0,5,0"/>
                 <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Group}" Margin="0,0,1,0" />
                 <TextBlock Text=":" Margin="0,0,5,0" />
                 <TextBlock Text="{Binding Path=GroupName}" Margin="0,0,5,0" />

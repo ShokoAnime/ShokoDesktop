@@ -85,7 +85,7 @@ namespace JMMClient
                 case "ZH": return @"/Images/Flags/cn.gif"; // Chinese
                 case "ZH-HANS": return @"/Images/Flags/cn.gif"; // Chinese (Simplified)
                 case "ZH-HANT": return @"/Images/Flags/cn.gif"; // Chinese (Traditional)
-                default: return @"/Images/32_warning.png";
+                default: return @"/Images/16_warning.png";
 
             }
         }

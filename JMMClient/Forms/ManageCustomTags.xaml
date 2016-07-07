@@ -35,7 +35,7 @@
                         <Button HorizontalAlignment="Left" Margin="0,0,0,0" Style="{DynamicResource RoundButtonStyle}" Width="Auto" Grid.Column="0" Grid.Row="0"
                             Command="{DynamicResource DeleteCustomTagCommand}" CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                <Image Height="16" Width="16" Source="/Images/32_Delete.png" Margin="0"/>
+                                <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0"/>
                             </StackPanel>
                         </Button>
 

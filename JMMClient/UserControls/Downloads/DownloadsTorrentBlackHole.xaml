@@ -35,7 +35,7 @@
             <TextBox Name="blackholefolder" Width="300" Margin="0,5,5,0" VerticalAlignment="Center" Text="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=TorrentBlackholeFolder}"/>
             <Button Name="btnBlackHoleFolder" Style="{DynamicResource RoundButtonStyle}" Margin="0,5,5,0">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                    <Image Height="16" Width="16" Source="/Images/32_Folder.png" Margin="0,0,0,0"/>
+                    <Image Height="16" Width="16" Source="/Images/24_folder.png" Margin="0,0,0,0"/>
                 </StackPanel>
             </Button>
         </StackPanel>

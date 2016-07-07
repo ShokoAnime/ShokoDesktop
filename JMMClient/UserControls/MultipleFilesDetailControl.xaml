@@ -37,7 +37,7 @@
                             Visibility="{Binding Path=FileIsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
                             Command="{DynamicResource PlayVideoCommand}" CommandParameter="{Binding}">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                    <Image Height="16" Width="16" Source="/Images/32_play2.png" Margin="0,0,5,0"/>
+                                    <Image Height="16" Width="16" Source="/Images/32_resume.png" Margin="0,0,5,0"/>
                                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Play}" Margin="5,0,5,0"/>
                                 </StackPanel>
                                 <Button.ToolTip>
@@ -49,7 +49,7 @@
                             <Button Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource OpenFolderCommand}" 
                                 CommandParameter="{Binding}" Visibility="{Binding Path=FileIsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}" >
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                    <Image Height="16" Width="16" Source="/Images/32_folder.png" Margin="0,0,5,0"/>
+                                    <Image Height="16" Width="16" Source="/Images/24_folder.png" Margin="0,0,5,0"/>
                                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=OpenFolder}" Margin="5,0,5,0"/>
                                 </StackPanel>
                                 <Button.ToolTip>
@@ -173,10 +173,10 @@
         <Button Name="btnToggleExpander" Grid.Column="0" Grid.Row="0" Style="{DynamicResource FlatButtonStyle}" Margin="0,0,5,0">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
 
-                <Image Height="16" Width="16" Source="/Images/16_toggle2.png" Margin="2,0,2,0"
+                <Image Height="16" Width="16" Source="/Images/16_toggle_open.png" Margin="2,0,2,0"
                        Visibility="{Binding Path=IsCollapsed, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MultipleFilesDetailControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
                 </Image>
-                <Image Height="16" Width="16" Source="/Images/16_collapse2.png" Margin="2,0,2,0"
+                <Image Height="16" Width="16" Source="/Images/16_toggle_close.png" Margin="2,0,2,0"
                        Visibility="{Binding Path=IsExpanded, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MultipleFilesDetailControl}}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
             </StackPanel>
         </Button>
@@ -202,15 +202,15 @@
             <Button Margin="5,0,0,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center"
                                         Command="{DynamicResource ShowPinnedSeriesCommand}" CommandParameter="{Binding}">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                    <Image Height="16" Width="16" Source="/Images/16_windows.png" Margin="2,0,2,0">
+                    <Image Height="16" Width="16" Source="/Images/32_pin.png" Margin="2,0,2,0">
                         <Image.ToolTip>
-                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_ViewSeries}"/>
+                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_PinSeries}"/>
                         </Image.ToolTip>
                     </Image>
 
                 </StackPanel>
             </Button>
-            <Image Height="16" Width="16" Source="/Images/32_calendar.png" Margin="10,0,0,0" VerticalAlignment="Center"/>
+            <Image Height="16" Width="16" Source="/Images/24_calendar.png" Margin="10,0,0,0" VerticalAlignment="Center"/>
             <TextBlock Name="tbAirDate" Text="{Binding Path=AirDateAsString}" Margin="2,0,0,0" VerticalAlignment="Center" />
             <Image Height="16" Width="16" Source="/Images/32_clock.png" Margin="15,0,0,0" VerticalAlignment="Center"/>
             <TextBlock Text="{Binding Path=RunTime}" Margin="2,0,0,0" VerticalAlignment="Center" />

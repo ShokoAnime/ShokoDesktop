@@ -37,10 +37,10 @@
         <Button Name="btnToggleExpander" Grid.Column="0" Grid.Row="0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Top">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
 
-                <Image Height="16" Width="16" Source="/Images/16_toggle2.png" Margin="0,0,3,0"
+                <Image Height="16" Width="16" Source="/Images/16_toggle_open.png" Margin="0,0,3,0"
                            Visibility="{Binding Path=IsCollapsed, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TruncatedTextBlock}}, Converter={StaticResource BooleanToVisibilityConverter}}">
                 </Image>
-                <Image Height="16" Width="16" Source="/Images/16_collapse2.png" Margin="0,0,3,0"
+                <Image Height="16" Width="16" Source="/Images/16_toggle_close.png" Margin="0,0,3,0"
                            Visibility="{Binding Path=IsExpanded, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TruncatedTextBlock}}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
             </StackPanel>
         </Button>

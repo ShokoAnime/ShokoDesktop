@@ -4,7 +4,7 @@
         xmlns:local="clr-namespace:JMMClient"
         xmlns:forms="clr-namespace:JMMClient.Forms"
         xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
-        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=Search_MyAnimeList}" Height="520" Width="700" ShowInTaskbar="False" WindowStyle="ToolWindow" Icon="/JMMDesktop;component/Images/myanimelist.ico"
+        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=Search_MyAnimeList}" Height="520" Width="700" ShowInTaskbar="False" WindowStyle="ToolWindow" Icon="/JMMDesktop;component/Images/32_mal.png"
         WindowStartupLocation="CenterOwner" Topmost="False">
     <Grid>
         <Grid.Resources>
@@ -126,9 +126,9 @@
 
 
         <!-- Selected series details -->
-        <Border Grid.Row="0" Grid.Column="0" Margin="5,5,5,5" Padding="5" Background="#F1F1F1" BorderBrush="LightGray" BorderThickness="1">
-            <StackPanel Orientation="Horizontal"  Margin="0,0,0,5" DockPanel.Dock="Top">
-                <Image Height="16" Width="16" Source="/Images/myanimelist.ico" Margin="5,0,5,0"/>
+        <Border Grid.Row="0" Grid.Column="0" Margin="5,5,5,0" Padding="5" Background="#F1F1F1" BorderBrush="LightGray" BorderThickness="1">
+            <StackPanel Orientation="Horizontal"  Margin="0" DockPanel.Dock="Top">
+                <Image Height="16" Width="16" Source="/Images/32_mal.png" Margin="5,0,5,0"/>
                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=MALSearchPrompt}" Margin="0,0,20,0"/>
                 <RadioButton Name="rbSearch" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Search}" Margin="5,0,0,0"/>
                 <RadioButton Name="rbExisting" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Existing}" Margin="5,0,0,0"/>
@@ -136,7 +136,7 @@
         </Border>
 
         <!-- Info Message -->
-        <Border Grid.Row="1" Grid.Column="0" Margin="5,5,5,5" Padding="5" Background="#F1F1F1" BorderBrush="LightGray" BorderThickness="1">
+        <Border Grid.Row="1" Grid.Column="0" Margin="5,5,5,0" Padding="5" Background="#F1F1F1" BorderBrush="LightGray" BorderThickness="1">
             <StackPanel Orientation="Horizontal"  Margin="0,0,0,5" DockPanel.Dock="Top">
                 <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,0,5,-5"/>
                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=MAL_SearchInfo}" Margin="0,0,10,-5"/>
@@ -160,7 +160,7 @@
                 <!-- search button -->
                 <Button Name="btnSearch" Margin="10,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                        <Image Height="16" Width="16" Source="/Images/MagnifyingGlass7.png" Margin="0,0,5,0"/>
+                        <Image Height="16" Width="16" Source="/Images/32_search.png" Margin="0,0,5,0"/>
                         <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
                     </StackPanel>
                 </Button>
@@ -181,7 +181,7 @@
                             <TextBlock Name="txtLinkMALDB" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=MALShow}"/>
                         </Hyperlink>
                     </TextBlock>
-                    <Image Margin="5,0,0,0" Height="16" Width="16" Source="/Images/16_arrow45.png" VerticalAlignment="Center"/>
+                    <Image Margin="5,0,0,0" Height="16" Width="16" Source="/Images/16_link.png" VerticalAlignment="Center"/>
                 </StackPanel>
 
                 <!-- Use this button -->
@@ -195,19 +195,19 @@
         </Border>
 
         <!-- Web Cache Recommendation -->
-        <Border Grid.Row="3" Grid.Column="0" Margin="5,5,5,5" Padding="5" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1"
+        <Border Grid.Row="3" Grid.Column="0" Margin="5,0,5,0" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1"
                 Visibility="{Binding Path=HasWebCacheRec, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SearchMALForm}}, Converter={StaticResource BooleanToVisibilityConverter}}">
             <StackPanel Orientation="Vertical">
-                <StackPanel Orientation="Horizontal"  Margin="0,0,0,0" DockPanel.Dock="Top">
-                    <Image Margin="5,0,0,0" Height="16" Width="16" Source="/Images/16_star.png" VerticalAlignment="Center"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityRecommendation}" Margin="5,0,10,0"/>
-                    <TextBlock VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal"  Margin="0" DockPanel.Dock="Top">
+                    <Image Margin="5,5,0,0" Height="16" Width="16" Source="/Images/16_award.png" VerticalAlignment="Center"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityRecommendation}" Margin="5,5,10,0"/>
+                    <TextBlock VerticalAlignment="Center" Margin="0,5,10,0">
                         <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=WhatsThis}"
                                                                         URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_CommunityRecommendation}"/>
                     </TextBlock>
 
                     <!-- Use this button -->
-                    <Button Name="btnUseThis" Margin="10,0,2,0" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Button Name="btnUseThis" Margin="10,5,2,0" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,5,0"/>
                             <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=UseThis}" Margin="0,0,5,0"/>

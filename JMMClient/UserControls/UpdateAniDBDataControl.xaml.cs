@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -16,6 +18,8 @@ namespace JMMClient.UserControls
         public UpdateAniDBDataControl()
         {
             InitializeComponent();
+
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
             btnQueueCommands.Click += new RoutedEventHandler(btnQueueCommands_Click);
             btnEstimate.Click += new RoutedEventHandler(btnEstimate_Click);
@@ -50,7 +54,7 @@ namespace JMMClient.UserControls
 
                 int filesQueued = JMMServerVM.Instance.clientBinaryHTTP.UpdateAniDBFileData(chkMissingInfo.IsChecked.Value, chkOutofDate.IsChecked.Value, true);
 
-                MessageBox.Show(string.Format("{0} Files will be queued for processing", filesQueued), "Done", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(string.Format(JMMClient.Properties.Resources.UpdateAniDB_QueueCount, filesQueued), JMMClient.Properties.Resources.UpdateAniDB_UpdateAniDB, MessageBoxButton.OK, MessageBoxImage.Information);
 
                 wdw.Cursor = Cursors.Arrow;
             }
@@ -69,7 +73,7 @@ namespace JMMClient.UserControls
 
                 int filesQueued = JMMServerVM.Instance.clientBinaryHTTP.UpdateAniDBFileData(chkMissingInfo.IsChecked.Value, chkOutofDate.IsChecked.Value, false);
 
-                MessageBox.Show(string.Format("{0} Files queued for processing", filesQueued), "Done", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(string.Format(JMMClient.Properties.Resources.UpdateAniDB_QueueActual, filesQueued), JMMClient.Properties.Resources.UpdateAniDB_UpdateAniDB, MessageBoxButton.OK, MessageBoxImage.Information);
 
                 wdw.Cursor = Cursors.Arrow;
             }

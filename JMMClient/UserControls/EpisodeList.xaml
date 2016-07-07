@@ -99,7 +99,7 @@
                         </MultiBinding>
                     </Button.Visibility>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                        <Image Height="16" Width="16" Source="/Images/16_eye.png" Margin="0,0,5,0"/>
+                        <Image Height="16" Width="16" Source="/Images/32_eye.png" Margin="0,0,5,0"/>
                         <TextBlock VerticalAlignment="Center" Foreground="White" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=EpisodeMarkAllWatched}" Margin="0,0,5,0"/>
                     </StackPanel>
                 </Button>
@@ -120,7 +120,7 @@
                         </MultiBinding>
                     </Button.Visibility>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                        <Image Height="16" Width="16" Source="/Images/16_eye2.png" Margin="0,0,5,0"/>
+                        <Image Height="16" Width="16" Source="/Images/32_eye2.png" Margin="0,0,5,0"/>
                         <TextBlock VerticalAlignment="Center" Foreground="White" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=EpisodeMarkAllUnwatched}" Margin="0,0,5,0"/>
                     </StackPanel>
                 </Button>
@@ -140,7 +140,7 @@
                         </MultiBinding>
                     </Button.Visibility>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                        <Image Height="16" Width="16" Source="/Images/16_eye.png" Margin="0,0,5,0"/>
+                        <Image Height="16" Width="16" Source="/Images/32_eye.png" Margin="0,0,5,0"/>
                         <TextBlock VerticalAlignment="Center" Foreground="White" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=EpisodeMarkAllWatchedPrevious}" Margin="0,0,5,0"/>
                         <TextBlock VerticalAlignment="Center" Foreground="White" Text="{Binding Path=CurrentEpisodeNumber, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:EpisodeList}}}" Margin="0,0,5,0"/>
                     </StackPanel>

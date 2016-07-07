@@ -1881,6 +1881,153 @@ namespace JMMClient
 
         #endregion
 
+        #region Server Queue
+        private enum QueueStateEnum
+        {
+            AnimeInfo = 1, DeleteError, DownloadImage, DownloadMalWatched, DownloadTvDBImages, FileInfo, GetCalendar, GetEpisodeList, GetFileInfo, GetReleaseGroup,
+            GetReleaseInfo, GetReviewInfo, GettingTvDB, GetUpdatedAnime, HashingFile, Idle, Paused, Queued, ReadingMedia, Refresh, SearchMal, SearchTMDb, SearchTrakt,
+            SearchTvDB, SendAnimeAzure, SendAnimeFull, SendAnimeTitle, SendAnonymousData, StartingGeneral, StartingHasher, StartingImages, SyncMyList, SyncTrakt,
+            SyncTraktEpisodes, SyncTraktSeries, SyncVotes, TraktAddHistory, UpdateMALWatched, UpdateMyListInfo, UpdateMyListStats, UpdateTrakt, UpdateTraktData, UploadMALWatched,
+            VoteAnime, WebCacheDeleteXRefAniDBMAL, WebCacheDeleteXRefAniDBOther, WebCacheDeleteXRefAniDBTrakt, WebCacheDeleteXRefAniDBTvDB, WebCacheDeleteXRefFileEpisode, WebCacheSendXRefAniDBMAL,
+            WebCacheSendXRefAniDBOther, WebCacheSendXRefAniDBTrakt, WebCacheSendXRefAniDBTvDB, WebCacheSendXRefFileEpisode, AniDB_MyListAdd, AniDB_MyListDelete, AniDB_GetTitles, Actions_SyncVotes
+        };
+
+        private struct QueueStateStruct
+        {
+            public QueueStateEnum queueState;
+            public string[] extraParams;
+            public string formatMessage()
+            {
+                string formatString = getFormatString(queueState);
+                return string.Format(formatString, extraParams);
+            }
+            private string getFormatString(QueueStateEnum id)
+            {
+                switch (id)
+                {
+                    case QueueStateEnum.AnimeInfo:
+                        return JMMClient.Properties.Resources.Command_AnimeInfo;
+                    case QueueStateEnum.DeleteError:
+                        return JMMClient.Properties.Resources.Command_DeleteError;
+                    case QueueStateEnum.DownloadImage:
+                        return JMMClient.Properties.Resources.Command_DownloadImage;
+                    case QueueStateEnum.DownloadMalWatched:
+                        return JMMClient.Properties.Resources.Command_DownloadMalWatched;
+                    case QueueStateEnum.DownloadTvDBImages:
+                        return JMMClient.Properties.Resources.Command_DownloadTvDBImages;
+                    case QueueStateEnum.FileInfo:
+                        return JMMClient.Properties.Resources.Command_FileInfo;
+                    case QueueStateEnum.GetCalendar:
+                        return JMMClient.Properties.Resources.Command_GetCalendar;
+                    case QueueStateEnum.GetEpisodeList:
+                        return JMMClient.Properties.Resources.Command_GetEpisodeList;
+                    case QueueStateEnum.GetFileInfo:
+                        return JMMClient.Properties.Resources.Command_GetFileInfo;
+                    case QueueStateEnum.GetReleaseGroup:
+                        return JMMClient.Properties.Resources.Command_GetReleaseGroup;
+                    case QueueStateEnum.GetReleaseInfo:
+                        return JMMClient.Properties.Resources.Command_GetReleaseInfo;
+                    case QueueStateEnum.GetReviewInfo:
+                        return JMMClient.Properties.Resources.Command_GetReviewInfo;
+                    case QueueStateEnum.GettingTvDB:
+                        return JMMClient.Properties.Resources.Command_GettingTvDB;
+                    case QueueStateEnum.GetUpdatedAnime:
+                        return JMMClient.Properties.Resources.Command_GetUpdatedAnime;
+                    case QueueStateEnum.HashingFile:
+                        return JMMClient.Properties.Resources.Command_HashingFile;
+                    case QueueStateEnum.Idle:
+                        return JMMClient.Properties.Resources.Command_Idle;
+                    case QueueStateEnum.Paused:
+                        return JMMClient.Properties.Resources.Command_Paused;
+                    case QueueStateEnum.Queued:
+                        return JMMClient.Properties.Resources.Command_Queued;
+                    case QueueStateEnum.ReadingMedia:
+                        return JMMClient.Properties.Resources.Command_ReadingMedia;
+                    case QueueStateEnum.Refresh:
+                        return JMMClient.Properties.Resources.Command_Refresh;
+                    case QueueStateEnum.SearchMal:
+                        return JMMClient.Properties.Resources.Command_SearchMal;
+                    case QueueStateEnum.SearchTMDb:
+                        return JMMClient.Properties.Resources.Command_SearchTMDb;
+                    case QueueStateEnum.SearchTrakt:
+                        return JMMClient.Properties.Resources.Command_SearchTrakt;
+                    case QueueStateEnum.SearchTvDB:
+                        return JMMClient.Properties.Resources.Command_SearchTvDB;
+                    case QueueStateEnum.SendAnimeAzure:
+                        return JMMClient.Properties.Resources.Command_SendAnimeAzure;
+                    case QueueStateEnum.SendAnimeFull:
+                        return JMMClient.Properties.Resources.Command_SendAnimeFull;
+                    case QueueStateEnum.SendAnimeTitle:
+                        return JMMClient.Properties.Resources.Command_SendAnimeTitle;
+                    case QueueStateEnum.SendAnonymousData:
+                        return JMMClient.Properties.Resources.Command_SendAnonymousData;
+                    case QueueStateEnum.StartingGeneral:
+                        return JMMClient.Properties.Resources.Command_StartingGeneral;
+                    case QueueStateEnum.StartingHasher:
+                        return JMMClient.Properties.Resources.Command_StartingHasher;
+                    case QueueStateEnum.StartingImages:
+                        return JMMClient.Properties.Resources.Command_StartingImages;
+                    case QueueStateEnum.SyncMyList:
+                        return JMMClient.Properties.Resources.Command_SyncMyList;
+                    case QueueStateEnum.SyncTrakt:
+                        return JMMClient.Properties.Resources.Command_SyncTrakt;
+                    case QueueStateEnum.SyncTraktEpisodes:
+                        return JMMClient.Properties.Resources.Command_SyncTraktEpisodes;
+                    case QueueStateEnum.SyncTraktSeries:
+                        return JMMClient.Properties.Resources.Command_SyncTraktSeries;
+                    case QueueStateEnum.SyncVotes:
+                        return JMMClient.Properties.Resources.Command_SyncVotes;
+                    case QueueStateEnum.TraktAddHistory:
+                        return JMMClient.Properties.Resources.Command_TraktAddHistory;
+                    case QueueStateEnum.UpdateMALWatched:
+                        return JMMClient.Properties.Resources.Command_UpdateMALWatched;
+                    case QueueStateEnum.UpdateMyListInfo:
+                        return JMMClient.Properties.Resources.Command_UpdateMyListInfo;
+                    case QueueStateEnum.UpdateMyListStats:
+                        return JMMClient.Properties.Resources.Command_UpdateMyListStats;
+                    case QueueStateEnum.UpdateTrakt:
+                        return JMMClient.Properties.Resources.Command_UpdateTrakt;
+                    case QueueStateEnum.UpdateTraktData:
+                        return JMMClient.Properties.Resources.Command_UpdateTraktData;
+                    case QueueStateEnum.UploadMALWatched:
+                        return JMMClient.Properties.Resources.Command_UploadMALWatched;
+                    case QueueStateEnum.VoteAnime:
+                        return JMMClient.Properties.Resources.Command_VoteAnime;
+                    case QueueStateEnum.WebCacheDeleteXRefAniDBMAL:
+                        return JMMClient.Properties.Resources.Command_WebCacheDeleteXRefAniDBMAL;
+                    case QueueStateEnum.WebCacheDeleteXRefAniDBOther:
+                        return JMMClient.Properties.Resources.Command_WebCacheDeleteXRefAniDBOther;
+                    case QueueStateEnum.WebCacheDeleteXRefAniDBTrakt:
+                        return JMMClient.Properties.Resources.Command_WebCacheDeleteXRefAniDBTrakt;
+                    case QueueStateEnum.WebCacheDeleteXRefAniDBTvDB:
+                        return JMMClient.Properties.Resources.Command_WebCacheDeleteXRefAniDBTvDB;
+                    case QueueStateEnum.WebCacheDeleteXRefFileEpisode:
+                        return JMMClient.Properties.Resources.Command_WebCacheDeleteXRefFileEpisode;
+                    case QueueStateEnum.WebCacheSendXRefAniDBMAL:
+                        return JMMClient.Properties.Resources.Command_WebCacheSendXRefAniDBMAL;
+                    case QueueStateEnum.WebCacheSendXRefAniDBOther:
+                        return JMMClient.Properties.Resources.Command_WebCacheSendXRefAniDBOther;
+                    case QueueStateEnum.WebCacheSendXRefAniDBTrakt:
+                        return JMMClient.Properties.Resources.Command_WebCacheSendXRefAniDBTrakt;
+                    case QueueStateEnum.WebCacheSendXRefAniDBTvDB:
+                        return JMMClient.Properties.Resources.Command_WebCacheSendXRefAniDBTvDB;
+                    case QueueStateEnum.WebCacheSendXRefFileEpisode:
+                        return JMMClient.Properties.Resources.Command_WebCacheSendXRefFileEpisode;
+                    case QueueStateEnum.AniDB_MyListAdd:
+                        return JMMClient.Properties.Resources.AniDB_MyListAdd;
+                    case QueueStateEnum.AniDB_MyListDelete:
+                        return JMMClient.Properties.Resources.AniDB_MyListDelete;
+                    case QueueStateEnum.AniDB_GetTitles:
+                        return JMMClient.Properties.Resources.AniDB_GetTitles;
+                    case QueueStateEnum.Actions_SyncVotes:
+                        return JMMClient.Properties.Resources.Actions_SyncVotes;
+                    default:
+                        throw new System.Exception("Unknown queue state format string"); ;
+                }
+
+            }
+        }
+        #endregion
 
         public static JMMServerVM Instance
         {
@@ -1999,22 +2146,27 @@ namespace JMMClient
                     GeneralQueueCount = status.GeneralQueueCount;
                     ServerImageQueueCount = status.ImagesQueueCount;
 
-                    HasherQueueState = status.HashQueueState;
-                    GeneralQueueState = status.GeneralQueueState;
-                    ServerImageQueueState = status.ImagesQueueState;
+                    QueueStateStruct queueState = new QueueStateStruct() { queueState = (QueueStateEnum)status.HashQueueStateId, extraParams = status.HashQueueStateParams.ToArray() };
+                    HasherQueueState = queueState.formatMessage();
+                    HasherQueuePaused = queueState.queueState == QueueStateEnum.Paused;
+                    HasherQueueRunning = queueState.queueState != QueueStateEnum.Paused;
+
+                    
+                    queueState.queueState = (QueueStateEnum)status.GeneralQueueStateId;
+                    queueState.extraParams = status.GeneralQueueStateParams.ToArray();
+                    GeneralQueueState = queueState.formatMessage();
+                    GeneralQueuePaused = queueState.queueState == QueueStateEnum.Paused;
+                    GeneralQueueRunning = queueState.queueState != QueueStateEnum.Paused;
+
+                    queueState.queueState = (QueueStateEnum)status.ImagesQueueStateId;
+                    queueState.extraParams = status.ImagesQueueStateParams.ToArray();
+                    ServerImageQueueState = queueState.formatMessage();
+                    ServerImageQueuePaused = queueState.queueState == QueueStateEnum.Paused;
+                    ServerImageQueueRunning = queueState.queueState != QueueStateEnum.Paused;
 
                     IsBanned = status.IsBanned;
                     BanReason = status.BanReason;
                     BanOrigin = status.BanOrigin;
-
-                    HasherQueuePaused = HasherQueueState.ToLower().Contains("pause");
-                    HasherQueueRunning = !HasherQueueState.ToLower().Contains("pause");
-
-                    GeneralQueuePaused = GeneralQueueState.ToLower().Contains("pause");
-                    GeneralQueueRunning = !GeneralQueueState.ToLower().Contains("pause");
-
-                    ServerImageQueuePaused = ServerImageQueueState.ToLower().Contains("pause");
-                    ServerImageQueueRunning = !ServerImageQueueState.ToLower().Contains("pause");
 
                     if (appv != null)
                     {
@@ -2229,7 +2381,7 @@ namespace JMMClient
 
                 string msg = Instance.clientBinaryHTTP.RenameAllGroups();
                 if (string.IsNullOrEmpty(msg))
-                    MessageBox.Show(Properties.Resources.JMMServer_Complete);
+                    MessageBox.Show(Properties.Resources.Language_RenameComplete, Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
                 else
                     Utils.ShowErrorMessage(msg);
             }

@@ -202,7 +202,7 @@
     <value>TvDB</value>
   </data>
   <data name="ViewLabel" xml:space="preserve">
-    <value>Vue :</value>
+    <value>Vue : </value>
   </data>
   <data name="Back" xml:space="preserve">
     <value>Précédent</value>
@@ -488,9 +488,6 @@
   </data>
   <data name="Existing" xml:space="preserve">
     <value>Existant</value>
-  </data>
-  <data name="SelectGroup" xml:space="preserve">
-    <value>Sélectionnez un groupe</value>
   </data>
   <data name="SelectAnime" xml:space="preserve">
     <value>Sélectionnez-y Anime AniDB</value>
@@ -813,11 +810,8 @@
   <data name="Down" xml:space="preserve">
     <value>Vers le bas</value>
   </data>
-  <data name="LanguageUseSynonyms" xml:space="preserve">
+  <data name="Language_UseSynonyms" xml:space="preserve">
     <value>Également utiliser des synonymes</value>
-  </data>
-  <data name="TAB_Settings_Language" xml:space="preserve">
-    <value>Préférences de langue</value>
   </data>
   <data name="Tooltip_LanguageUseSynonyms" xml:space="preserve">
     <value>Également utiliser des synonymes de la langue sélectionnée pour l'affichage des séries et des groupes. Anglais et Romaji synonymes servira pas</value>
@@ -909,17 +903,11 @@
   <data name="ImageSize_SubGroupList" xml:space="preserve">
     <value>Sous groupes de liste et série</value>
   </data>
-  <data name="INFO_SettingsDisplayStyle" xml:space="preserve">
-    <value>Vous devez actualiser votre liste de groupe afin de voir les effets des changements</value>
-  </data>
   <data name="MSG_ERR_SelectDate" xml:space="preserve">
     <value>Sélectionnez d'abord une date</value>
   </data>
   <data name="NewGroupFilter" xml:space="preserve">
     <value>Nouveau filtre de groupe</value>
-  </data>
-  <data name="RenameGroups" xml:space="preserve">
-    <value>Renommez tous les groupes</value>
   </data>
   <data name="Style_GroupList" xml:space="preserve">
     <value>Liste des groupes</value>
@@ -1158,9 +1146,6 @@
   <data name="TvDB_Schedule_Updates" xml:space="preserve">
     <value>Info mise à jour toutes les 12 heures</value>
   </data>
-  <data name="RescanAll" xml:space="preserve">
-    <value>Re-analyser tous</value>
-  </data>
   <data name="DeleteAll" xml:space="preserve">
     <value>Supprimer tous les</value>
   </data>
@@ -1179,10 +1164,10 @@
   <data name="CommunityRecommendation" xml:space="preserve">
     <value>Recommandation de la communauté</value>
   </data>
-  <data name="TvDBSearchPrompt" xml:space="preserve">
+  <data name="TvDB_SearchPrompt" xml:space="preserve">
     <value>Rechercher sur le TvDB ou entrez l'identifiant des séries TvDB</value>
   </data>
-  <data name="TvDBShow" xml:space="preserve">
+  <data name="TvDB_Show" xml:space="preserve">
     <value>Aller à TvDB</value>
   </data>
   <data name="UseThis" xml:space="preserve">
@@ -1392,9 +1377,6 @@
   <data name="TAB_Pinned" xml:space="preserve">
     <value>Épinglés</value>
   </data>
-  <data name="Tooltip_ViewSeries" xml:space="preserve">
-    <value>Ouvrir cette série animée dans une nouvelle fenêtre</value>
-  </data>
   <data name="GroupFilterConditionType_UserVotedAny" xml:space="preserve">
     <value>Utilisateur a voté (tout)</value>
   </data>
@@ -1526,18 +1508,6 @@
   </data>
   <data name="RemoveDefaultSeries" xml:space="preserve">
     <value>Enlever des souches par défaut</value>
-  </data>
-  <data name="SetDefaultSeries" xml:space="preserve">
-    <value>Ajouter la série par défaut</value>
-  </data>
-  <data name="DefSeries1" xml:space="preserve">
-    <value>Sélectionnez la série par défaut pour</value>
-  </data>
-  <data name="DefSeries2" xml:space="preserve">
-    <value>En sélectionnant une série par défaut signifie que toutes les images qui sont dsiplayed pour un groupe qui utilise</value>
-  </data>
-  <data name="DefSeries3" xml:space="preserve">
-    <value>série par défaut au lieu d'une série au hasard au sein du groupe</value>
   </data>
   <data name="ChangeLanguage" xml:space="preserve">
     <value>Changer la langue</value>
@@ -1736,12 +1706,6 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   <data name="Override" xml:space="preserve">
     <value>Substituez</value>
   </data>
-  <data name="Tooltip_NameOverride" xml:space="preserve">
-    <value>Vous pouvez manuellement taper le nom que vous souhaitez, ou utilisez les flèches vertes vers la droite pour sélectionner un nom dans AniDB.</value>
-  </data>
-  <data name="Tooltip_NameOverride2" xml:space="preserve">
-    <value>Sélectionnez un nom dans une liste de noms AniDB.</value>
-  </data>
   <data name="AdminMessageTitle" xml:space="preserve">
     <value>Message de l'admin</value>
   </data>
@@ -1824,7 +1788,7 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
     <value>Changer mot de passe</value>
   </data>
   <data name="ChangingPassword" xml:space="preserve">
-    <value>Changer le mot de passe :</value>
+    <value>Changer le mot de passe : </value>
   </data>
   <data name="WhatDoesThisMean" xml:space="preserve">
     <value>Que cela signifie-t-il ?</value>
@@ -1929,16 +1893,16 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
     <value>AniDB Start :</value>
   </data>
   <data name="Search_Trakt" xml:space="preserve">
-    <value>Trakt :</value>
+    <value>Trakt : </value>
   </data>
   <data name="Search_Approved" xml:space="preserve">
     <value>Admin a approuvé</value>
   </data>
   <data name="Search_TvDB" xml:space="preserve">
-    <value>TvDB :</value>
+    <value>TvDB : </value>
   </data>
   <data name="Search_MAL" xml:space="preserve">
-    <value>MAL :</value>
+    <value>MAL : </value>
   </data>
   <data name="SelectAniDBTitle_SelectName" xml:space="preserve">
     <value>Sélectionnez un nom de remplacement</value>
@@ -1960,9 +1924,6 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   </data>
   <data name="Select_Season" xml:space="preserve">
     <value>Saison</value>
-  </data>
-  <data name="Select_DefaultLanguage" xml:space="preserve">
-    <value>Sélectionnez la langue par défaut</value>
   </data>
   <data name="Update_Update" xml:space="preserve">
     <value>JMM Desktop mise à jour disponible !</value>
@@ -2682,10 +2643,10 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
     <value>AniDB Start :</value>
   </data>
   <data name="CommunityLinks_TvDB" xml:space="preserve">
-    <value>TvDB :</value>
+    <value>TvDB : </value>
   </data>
   <data name="CommunityLinks_Trakt" xml:space="preserve">
-    <value>Trakt :</value>
+    <value>Trakt : </value>
   </data>
   <data name="CommunityLinks_TMDb" xml:space="preserve">
     <value>Le film DB</value>
@@ -2780,9 +2741,6 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   <data name="Unrecognized_CRC32" xml:space="preserve">
     <value>CRC32</value>
   </data>
-  <data name="Unrecognized_Rehash" xml:space="preserve">
-    <value>Re-hachage tous</value>
-  </data>
   <data name="Unrecognized_Logs" xml:space="preserve">
     <value>Journaux</value>
   </data>
@@ -2826,13 +2784,13 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
     <value>Changer mot de passe</value>
   </data>
   <data name="Sort_Error" xml:space="preserve">
-    <value>Erreur en essayant de trier la liste des</value>
+    <value>Erreur en essayant de trier la liste des </value>
   </data>
   <data name="Sort_PassedEmpty" xml:space="preserve">
     <value>MultiSort paramètre rgSortBy a été adopté un nom de champ vide en rgSortBy [</value>
   </data>
   <data name="Selected_DoesNotExist" xml:space="preserve">
-    <value>Le fichier spécifié ou le dossier n'existe pas :</value>
+    <value>Le fichier spécifié ou le dossier n'existe pas : </value>
   </data>
   <data name="Video_VLCError1" xml:space="preserve">
     <value>Impossible d'analyser des URI dans le fichier ini VLC</value>
@@ -2850,7 +2808,7 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
     <value>a changé</value>
   </data>
   <data name="Video_Updating" xml:space="preserve">
-    <value>Mise à jour à suivre par le lecteur multimédia :</value>
+    <value>Mise à jour à suivre par le lecteur multimédia : </value>
   </data>
   <data name="AniDB_DataMissing" xml:space="preserve">
     <value>Données manquantes</value>
@@ -2946,7 +2904,7 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
     <value>Fichier</value>
   </data>
   <data name="Playlist_Name" xml:space="preserve">
-    <value>Entrez le nom de la playlist :</value>
+    <value>Entrez le nom de la playlist : </value>
   </data>
   <data name="Playlist_NameBlank" xml:space="preserve">
     <value>Veuillez entrer un nom de la playlist</value>
@@ -3378,7 +3336,7 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
     <value>Fichier INI trouvé. Exemple de fichier récemment regardé...</value>
   </data>
   <data name="VideoPlayer_DefaultNote" xml:space="preserve">
-    <value>JMM utilise automatiquement le lecteur vidéo de Windows par défaut. Si vous souhaitez utiliser un autre lecteur vidéo, que vous devrez ajouter exécutable du joueur de la vidéo à la variable système PATH.</value>
+    <value>JMM utilise automatiquement le lecteur vidéo de Windows par défaut. Si vous souhaitez utiliser un autre lecteur vidéo, que vous devrez ajouter exécutable du joueur de la vidéo à la variable système PATH. </value>
   </data>
   <data name="AniDBMyListDeleteLocal" xml:space="preserve">
     <value>Supprimer le fichier (DB Local)</value>
@@ -3428,12 +3386,6 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   <data name="DuplicateFiles_DeleteEntry" xml:space="preserve">
     <value>Êtes-vous sûr de que vouloir supprimer cette entrée ?</value>
   </data>
-  <data name="Unrecognized_AniDBQueue" xml:space="preserve">
-    <value>Fichiers en file d'attente pour la commande rehash AniDB</value>
-  </data>
-  <data name="Unrecognized_AniDBScan" xml:space="preserve">
-    <value>Fichiers en file d'attente pour scan AniDB</value>
-  </data>
   <data name="Unrecognized_ConfirmDelete" xml:space="preserve">
     <value>Êtes-vous sûr de vouloir supprimer ce fichier : {0}</value>
   </data>
@@ -3450,7 +3402,7 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
     <value>Nouvelle liste de lecture</value>
   </data>
   <data name="EpisodeDetail_PlaylistMenu" xml:space="preserve">
-    <value>Menu de la playlist :</value>
+    <value>Menu de la playlist : </value>
   </data>
   <data name="EpisodeDetail_PlaylistMissing" xml:space="preserve">
     <value>Playlist est introuvable</value>
@@ -3495,7 +3447,7 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
     <value>pas trouvé en essayant de comparer des objets de type</value>
   </data>
   <data name="ValueCompare_FieldName" xml:space="preserve">
-    <value>Nom de domaine</value>
+    <value>Nom de domaine </value>
   </data>
   <data name="SelectGroupSeries_Select" xml:space="preserve">
     <value>Sélectionnez un</value>
@@ -3540,7 +3492,7 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
     <value>Exception dans MultiSort lors du tri d'une liste de</value>
   </data>
   <data name="JMMServer_TraktAuth" xml:space="preserve">
-    <value>Trakt autorisation</value>
+    <value>Trakt autorisation </value>
   </data>
   <data name="Group_GroupCount" xml:space="preserve">
     <value>Groupes</value>
@@ -3878,9 +3830,6 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   <data name="Downloads_Searching" xml:space="preserve">
     <value>La recherche...</value>
   </data>
-  <data name="Downloads_Results" xml:space="preserve">
-    <value>{0} résultats</value>
-  </data>
   <data name="Downloads_Download" xml:space="preserve">
     <value>Télécharger</value>
   </data>
@@ -4097,9 +4046,6 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   <data name="TAB_Settings_RelationSettings" xml:space="preserve">
     <value>Paramètres de la relation</value>
   </data>
-  <data name="RelationSettings_Info" xml:space="preserve">
-    <value>Sélectionnez ce qui suit à exclure du groupement</value>
-  </data>
   <data name="Link_RelationSettings" xml:space="preserve">
     <value>http://jmediamanager.org/JMM-Desktop/Settings/#Essential</value>
   </data>
@@ -4153,5 +4099,248 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   </data>
   <data name="GroupFilterSorting_GroupFilter" xml:space="preserve">
     <value>Nom de filtre de groupe</value>
+  </data>
+  <data name="AniDB_GetTitles" xml:space="preserve">
+    <value>Obtention des titres AniDB</value>
+  </data>
+  <data name="AniDB_MyListAdd" xml:space="preserve">
+    <value>Ajout de fichiers à MyList : {0}</value>
+  </data>
+  <data name="AniDB_MyListDelete" xml:space="preserve">
+    <value>Suppression fichier de MyList: {0} _ {1}</value>
+  </data>
+  <data name="Command_AnimeInfo" xml:space="preserve">
+    <value>Trouver de l'info de l'anime de l'API HTTP: {0}</value>
+  </data>
+  <data name="Command_DeleteError" xml:space="preserve">
+    <value>Erreur de suppression d'image: ({0}) - {1}</value>
+  </data>
+  <data name="Command_DownloadImage" xml:space="preserve">
+    <value>Téléchargement d'Image : {0}</value>
+  </data>
+  <data name="Command_DownloadMalWatched" xml:space="preserve">
+    <value>Téléchargement regardé des États de MAL</value>
+  </data>
+  <data name="Command_DownloadTvDBImages" xml:space="preserve">
+    <value>Obtenir des images de The TvDB : {0}</value>
+  </data>
+  <data name="Command_FileInfo" xml:space="preserve">
+    <value>Obtenir des informations sur le fichier de UDP API: {0}</value>
+  </data>
+  <data name="Command_GetCalendar" xml:space="preserve">
+    <value>Obtention d'informations de calendrier de UDP API</value>
+  </data>
+  <data name="Command_GetEpisodeList" xml:space="preserve">
+    <value>Trouver de l'info de l'épisode de l'UDP API: {0}</value>
+  </data>
+  <data name="Command_GetFileInfo" xml:space="preserve">
+    <value>Obtenir des informations sur le fichier de UDP API: {0}</value>
+  </data>
+  <data name="Command_GetReleaseGroup" xml:space="preserve">
+    <value>Obtenir des infos d'État groupe de UDP API pour l'Anime : {0}</value>
+  </data>
+  <data name="Command_GetReleaseInfo" xml:space="preserve">
+    <value>Obtenir info presse groupe de UDP API: {0}</value>
+  </data>
+  <data name="Command_GetReviewInfo" xml:space="preserve">
+    <value>Se revoir info de UDP API pour l'Anime : {0}</value>
+  </data>
+  <data name="Command_GettingTvDB" xml:space="preserve">
+    <value>Obtenir les épisodes de The TvDB : {0}</value>
+  </data>
+  <data name="Command_GetUpdatedAnime" xml:space="preserve">
+    <value>Obtenir la liste des animes mise à jour de UDP API</value>
+  </data>
+  <data name="Command_HashingFile" xml:space="preserve">
+    <value>Fichier de hachage : {0}</value>
+  </data>
+  <data name="Command_Idle" xml:space="preserve">
+    <value>Idle</value>
+  </data>
+  <data name="Command_Paused" xml:space="preserve">
+    <value>En pause</value>
+  </data>
+  <data name="Command_Queued" xml:space="preserve">
+    <value>En file d'attente</value>
+  </data>
+  <data name="Command_ReadingMedia" xml:space="preserve">
+    <value>Lecture des médias d'informations fichier : {0}</value>
+  </data>
+  <data name="Command_Refresh" xml:space="preserve">
+    <value>Rafraîchissant Anime Stats : {0}</value>
+  </data>
+  <data name="Command_SearchMal" xml:space="preserve">
+    <value>Vous cherchez une anime sur LTA : {0}</value>
+  </data>
+  <data name="Command_SearchTMDb" xml:space="preserve">
+    <value>Vous cherchez une anime sur The MovieDB : {0}</value>
+  </data>
+  <data name="Command_SearchTrakt" xml:space="preserve">
+    <value>Vous cherchez une anime sur Trakt.TV : {0}</value>
+  </data>
+  <data name="Command_SearchTvDB" xml:space="preserve">
+    <value>Vous cherchez une anime sur le TvDB : {0}</value>
+  </data>
+  <data name="Command_SendAnimeAzure" xml:space="preserve">
+    <value>Envoi xml anime sur azure : {0}</value>
+  </data>
+  <data name="Command_SendAnimeFull" xml:space="preserve">
+    <value>Anime l'envoi complet sur azure : {0}</value>
+  </data>
+  <data name="Command_SendAnimeTitle" xml:space="preserve">
+    <value>Envoi de titre anime sur azure : {0}</value>
+  </data>
+  <data name="Command_SendAnonymousData" xml:space="preserve">
+    <value>Envoi des données d'utilisation anonymes à azure</value>
+  </data>
+  <data name="Command_StartingGeneral" xml:space="preserve">
+    <value>À partir de travailleur (général) de la commande...</value>
+  </data>
+  <data name="Command_StartingHasher" xml:space="preserve">
+    <value>À partir de travailleur (hasher) de la commande...</value>
+  </data>
+  <data name="Command_StartingImages" xml:space="preserve">
+    <value>À partir de travailleur (images) de la commande...</value>
+  </data>
+  <data name="Command_SyncMyList" xml:space="preserve">
+    <value>Synchronisation de MyList info de l'API HTTP</value>
+  </data>
+  <data name="Command_SyncTrakt" xml:space="preserve">
+    <value>Trakt Collection de synchronisation</value>
+  </data>
+  <data name="Command_SyncTraktEpisodes" xml:space="preserve">
+    <value>Épisode de synchronisation à collection sur Trakt : {0} - {1}</value>
+  </data>
+  <data name="Command_SyncTraktSeries" xml:space="preserve">
+    <value>Trakt Collection de synchronisation pour la série : {0}</value>
+  </data>
+  <data name="Command_SyncVotes" xml:space="preserve">
+    <value>Synchronisation d'informations aux voix de l'API HTTP</value>
+  </data>
+  <data name="Command_TraktAddHistory" xml:space="preserve">
+    <value>Ajouter l'épisode de l'histoire sur Trakt : {0}</value>
+  </data>
+  <data name="Command_UpdateMALWatched" xml:space="preserve">
+    <value>Mise à jour de statut sur le MAL : {0}</value>
+  </data>
+  <data name="Command_UpdateMyListInfo" xml:space="preserve">
+    <value>Mise à jour de MyList info de UDP API pour fichier : {0}</value>
+  </data>
+  <data name="Command_UpdateMyListStats" xml:space="preserve">
+    <value>Mise à jour de AniDB MyListStats</value>
+  </data>
+  <data name="Command_UpdateTrakt" xml:space="preserve">
+    <value>Mise à jour toutes les infos de série Trakt</value>
+  </data>
+  <data name="Command_UpdateTraktData" xml:space="preserve">
+    <value>Mise à jour d'informations/images sur Trakt.TV : {0}</value>
+  </data>
+  <data name="Command_UploadMALWatched" xml:space="preserve">
+    <value>Téléchargement de regardé des États de MAL</value>
+  </data>
+  <data name="Command_VoteAnime" xml:space="preserve">
+    <value>Vote : {0} - {1}</value>
+  </data>
+  <data name="Command_WebCacheDeleteXRefAniDBMAL" xml:space="preserve">
+    <value>Suppression de croix ref pour Anidb pour MAL de cache web: {0} !</value>
+  </data>
+  <data name="Command_WebCacheDeleteXRefAniDBOther" xml:space="preserve">
+    <value>Suppression de croix ref pour Anidb aux autres de cache web: {0} !</value>
+  </data>
+  <data name="Command_WebCacheDeleteXRefAniDBTrakt" xml:space="preserve">
+    <value>Suppression de croix ref pour Anidb à Trakt de cache web: {0} !</value>
+  </data>
+  <data name="Command_WebCacheDeleteXRefAniDBTvDB" xml:space="preserve">
+    <value>Suppression de croix ref pour Anidb à TvDB de cache web: {0} !</value>
+  </data>
+  <data name="Command_WebCacheDeleteXRefFileEpisode" xml:space="preserve">
+    <value>Suppression ref croix pour le fichier d&amp;#39;épisode à cache Web: {0} - {1}!</value>
+  </data>
+  <data name="Command_WebCacheSendXRefAniDBMAL" xml:space="preserve">
+    <value>Envoi croisé Réf pour Anidb à MAL de cache web: {0} !</value>
+  </data>
+  <data name="Command_WebCacheSendXRefAniDBOther" xml:space="preserve">
+    <value>Envoi de croix ref pour Anidb aux autres de cache web: {0} !</value>
+  </data>
+  <data name="Command_WebCacheSendXRefAniDBTrakt" xml:space="preserve">
+    <value>Envoi de croix ref pour Anidb à Trakt de cache web: {0} !</value>
+  </data>
+  <data name="Command_WebCacheSendXRefAniDBTvDB" xml:space="preserve">
+    <value>Envoi croisé Réf pour Anidb à TvDB de cache web: {0} !</value>
+  </data>
+  <data name="Command_WebCacheSendXRefFileEpisode" xml:space="preserve">
+    <value>Envoi de croix Réf fichier épisode de cache web: {0} !</value>
+  </data>
+  <data name="Actions_SyncVotes" xml:space="preserve">
+    <value>Sync Votes</value>
+  </data>
+  <data name="TAB_Settings_Language" xml:space="preserve">
+    <value>Langue préférée pour nommer les groupe/série</value>
+  </data>
+  <data name="INFO_SettingsDisplayStyle" xml:space="preserve">
+    <value>Définir l’ou les langues utilisées pour nommer lors de groupes ou la série est ajoutés à votre collection. Ces titres sont tirés directement du AniDB tant à l’extérieur des anglais, Romaji ou Kanji ; tous les groupes ou les séries auront des titres supplémentaires disponibles. Pour utiliser synonymes figurant sur AniDB Assurez-vous de vérifier « Également utiliser synonymes » et renommer les groupes existants et série Assurez-vous de cliquer sur « renommer tous les groupes/série » une fois que vous avez terminé</value>
+  </data>
+  <data name="Language_Rename" xml:space="preserve">
+    <value>Renommez tous les groupes/série</value>
+  </data>
+  <data name="Tooltip_PinSeries" xml:space="preserve">
+    <value>Épingler cet anime pour visualiser plus tard</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="Language_RenameComplete" xml:space="preserve">
+    <value>Tous les groupes et les séries ont été renommés avec succès !</value>
+  </data>
+  <data name="RelationSettings_Info" xml:space="preserve">
+    <value>Si activé, JMM regroupera toutes les séries connexes ensemble basés sur relation graphique la série sur AniDB. Pour exclure certains types de relations, cliquez sur la relation que vous ne voulez pas groupés.</value>
+  </data>
+  <data name="Language_Switch" xml:space="preserve">
+    <value>Changer de langue</value>
+  </data>
+  <data name="Language_Info" xml:space="preserve">
+    <value>JMM Desktop doit redémarrer pour changer la langue, cliquez sur OK pour le redémarrage automatique ou sur Annuler pour redémarrer manuellement. !</value>
+  </data>
+  <data name="Unrecognized_Rehash" xml:space="preserve">
+    <value>Ressasser tous</value>
+  </data>
+  <data name="Unrecognized_AniDBQueue" xml:space="preserve">
+    <value>fichiers en file d’attente pour la commande rehash AniDB</value>
+  </data>
+  <data name="Unrecognized_AniDBScan" xml:space="preserve">
+    <value>fichiers en file d’attente pour scan AniDB</value>
+  </data>
+  <data name="Downloads_Results" xml:space="preserve">
+    <value>{0} résultats</value>
+  </data>
+  <data name="UpdateAniDB_QueueCount" xml:space="preserve">
+    <value>{0} fichiers seront mises en attente pour le traitement</value>
+  </data>
+  <data name="UpdateAniDB_QueueActual" xml:space="preserve">
+    <value>{0} fichiers en file d’attente pour le traitement</value>
+  </data>
+  <data name="UpdateAniDB_UpdateAniDB" xml:space="preserve">
+    <value>Mettre à jour les métadonnées AniDB locales</value>
+  </data>
+  <data name="SelectGroup" xml:space="preserve">
+    <value>Sélectionner un groupe Type</value>
+  </data>
+  <data name="RescanAll" xml:space="preserve">
+    <value>Réanalyser tous</value>
+  </data>
+  <data name="DefaultSeries_Select" xml:space="preserve">
+    <value>Sélectionnez la série par défaut</value>
+  </data>
+  <data name="DefaultSeries_Info" xml:space="preserve">
+    <value>Si une série par défaut est activée pour un groupe, seules les images de cette série seront affichera au lieu de sélectionner au hasard des images de la série différente au sein du groupe.</value>
+  </data>
+  <data name="Tooltip_NameOverride" xml:space="preserve">
+    <value>Vous pouvez manuellement tapez le nom que vous souhaitez, ou utilisez les flèches vertes vers la droite pour sélectionner un nom dans AniDB</value>
+  </data>
+  <data name="Tooltip_NameOverride2" xml:space="preserve">
+    <value>Sélectionnez un nom dans la liste des noms disponibles de AniDB</value>
+  </data>
+  <data name="TvDB_DefaultLanguage" xml:space="preserve">
+    <value>Sélectionnez la langue que vous désirez épisode titres et descriptions à télécharger dans de la TvDB. Veuillez noter que si un titre de l’épisode ou de la description n’est pas disponible dans la langue que vous avez sélectionné, la version anglaise par défaut sera téléchargée.</value>
   </data>
 </root>
