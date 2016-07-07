@@ -1033,6 +1033,28 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to using System.Reflection;
+        ///using System.Resources;
+        ///using System.Runtime.CompilerServices;
+        ///using System.Runtime.InteropServices;
+        ///using System.Windows;
+        ///using System.Security;
+        ///
+        ///// General Information about an assembly is controlled through the following 
+        ///// set of attributes. Change these attribute values to modify the information
+        ///// associated with an assembly.
+        ///[assembly: AssemblyTitle(&quot;JMMDesktop&quot;)]
+        ///[assembly: AssemblyDescription(&quot;&quot;)]
+        ///[assembly: AssemblyConfiguration(&quot;&quot;)]
+        ///[assembly: AssemblyCompan [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string AssemblyInfo {
+            get {
+                return ResourceManager.GetString("AssemblyInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Link a file with an episode.
         /// </summary>
         public static string AssociateFile {
@@ -5682,6 +5704,15 @@ namespace JMMClient.Properties {
         public static string MovieDBShow {
             get {
                 return ResourceManager.GetString("MovieDBShow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MPV.
+        /// </summary>
+        public static string MPV {
+            get {
+                return ResourceManager.GetString("MPV", resourceCulture);
             }
         }
         
@@ -11289,6 +11320,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Use Streaming.
+        /// </summary>
+        public static string UseStreaming {
+            get {
+                return ResourceManager.GetString("UseStreaming", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Use This.
         /// </summary>
         public static string UseThis {
@@ -11420,6 +11460,15 @@ namespace JMMClient.Properties {
         public static string Video_Hi12P {
             get {
                 return ResourceManager.GetString("Video_Hi12P", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not Configured.
+        /// </summary>
+        public static string Video_Player_DefaultPlayerNotConfigured {
+            get {
+                return ResourceManager.GetString("Video_Player_DefaultPlayerNotConfigured", resourceCulture);
             }
         }
         
@@ -11559,6 +11608,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Configured.
+        /// </summary>
+        public static string VideoPlayer_Configured {
+            get {
+                return ResourceManager.GetString("VideoPlayer_Configured", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Default Video Player.
         /// </summary>
         public static string VideoPlayer_Default {
@@ -11568,7 +11626,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JMM automatically uses the default Windows video player. If you&apos;d like to use a different video player you&apos;ll need to add the video player&apos;s executable to the PATH system variable..
+        ///   Looks up a localized string similar to JMM automatically uses the first video player installed. If you&apos;d like to use a different video player you&apos;ll need to add the video player&apos;s executable to the PATH system variable..
         /// </summary>
         public static string VideoPlayer_DefaultNote {
             get {
@@ -11582,6 +11640,15 @@ namespace JMMClient.Properties {
         public static string VideoPlayer_DefaultPlayer {
             get {
                 return ResourceManager.GetString("VideoPlayer_DefaultPlayer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enabled.
+        /// </summary>
+        public static string VideoPlayer_DefaultPlayerEnabled {
+            get {
+                return ResourceManager.GetString("VideoPlayer_DefaultPlayerEnabled", resourceCulture);
             }
         }
         
@@ -11600,6 +11667,15 @@ namespace JMMClient.Properties {
         public static string VideoPlayer_INIFoundHistory {
             get {
                 return ResourceManager.GetString("VideoPlayer_INIFoundHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Installed.
+        /// </summary>
+        public static string VideoPlayer_Installed {
+            get {
+                return ResourceManager.GetString("VideoPlayer_Installed", resourceCulture);
             }
         }
         
@@ -11717,6 +11793,24 @@ namespace JMMClient.Properties {
         public static string VideoPlayer_MPCWebUIPort {
             get {
                 return ResourceManager.GetString("VideoPlayer_MPCWebUIPort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NOT Configured Please Resolve.
+        /// </summary>
+        public static string VideoPlayer_NotConfigured {
+            get {
+                return ResourceManager.GetString("VideoPlayer_NotConfigured", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not Installed.
+        /// </summary>
+        public static string VideoPlayer_NotInstalled {
+            get {
+                return ResourceManager.GetString("VideoPlayer_NotInstalled", resourceCulture);
             }
         }
         

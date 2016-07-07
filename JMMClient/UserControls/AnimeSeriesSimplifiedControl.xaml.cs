@@ -124,7 +124,7 @@ namespace JMMClient.UserControls
             refreshCommentsRecsWorker.DoWork += new DoWorkEventHandler(refreshCommentsRecsWorker_DoWork);
             refreshCommentsRecsWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(refreshCommentsRecsWorker_RunWorkerCompleted);
 
-            MainWindow.videoHandler.VideoWatchedEvent += new Utilities.VideoHandler.VideoWatchedEventHandler(videoHandler_VideoWatchedEvent);
+            MainWindow.videoHandler.VideoWatchedEvent += new VideoPlayers.VideoHandler.VideoWatchedEventHandler(videoHandler_VideoWatchedEvent);
 
             txtCommentNew.GotFocus += new RoutedEventHandler(txtCommentNew_GotFocus);
             txtCommentNew.LostFocus += new RoutedEventHandler(txtCommentNew_LostFocus);
@@ -445,7 +445,7 @@ namespace JMMClient.UserControls
         }
 
 
-        void videoHandler_VideoWatchedEvent(Utilities.VideoWatchedEventArgs ev)
+        void videoHandler_VideoWatchedEvent(VideoPlayers.VideoWatchedEventArgs ev)
         {
             try
             {

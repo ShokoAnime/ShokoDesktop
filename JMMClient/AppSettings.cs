@@ -96,6 +96,8 @@ namespace JMMClient
             }
         }
 
+
+
         public static bool BaseImagesPathIsDefault
         {
             get
@@ -371,7 +373,7 @@ namespace JMMClient
                     return ival;
                 }
                 else
-                    return (int)DefaultVideoPlayer.WindowsDefault; // default value
+                    return (int)VideoPlayer.WindowsDefault; // default value
             }
             set
             {
@@ -2013,6 +2015,24 @@ namespace JMMClient
                 UpdateSetting("AnimeBytesOnlyUseForSeriesSearches", value.ToString());
             }
         }
+
+        public static bool UseStreaming
+        {
+            get
+            {
+                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                string val = appSettings["UseStreaming"];
+                bool bval = true;
+                if (bool.TryParse(val, out bval))
+                    return bval;
+                return true; // default value
+            }
+            set
+            {
+                UpdateSetting("UseStreaming", value.ToString());
+            }
+        }
+
 
         public static string MPCFolder
         {

@@ -501,11 +501,12 @@ namespace JMMClient
         ED2KHash = 4
     }
 
-    public enum DefaultVideoPlayer
+    public enum VideoPlayer
     {
         MPC = 0,
         PotPlayer = 1,
         VLC = 2,
+        MPV = 3,
         WindowsDefault = 999
     }
 

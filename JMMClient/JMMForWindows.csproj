@@ -319,6 +319,12 @@
     <Compile Include="UserControls\Settings\RelationSettings.xaml.cs">
       <DependentUpon>RelationSettings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="VideoPlayers\BaseVideoPlayer.cs" />
+    <Compile Include="VideoPlayers\IVideoPlayer.cs" />
+    <Compile Include="VideoPlayers\MPCVideoPlayer.cs" />
+    <Compile Include="VideoPlayers\MPVVideoPlayer.cs" />
+    <Compile Include="VideoPlayers\PotVideoPlayer.cs" />
+    <Compile Include="VideoPlayers\VLCVideoPlayer.cs" />
     <Compile Include="ViewModel\AniDB_CharacterVM.cs" />
     <Compile Include="ViewModel\AniDB_SeiyuuVM.cs" />
     <Compile Include="ViewModel\AnimeEpisodeDisplayVM.cs" />
@@ -686,7 +692,6 @@
     <Compile Include="UserCulture.cs" />
     <Compile Include="Utilities\DragAndDrop.cs" />
     <Compile Include="Utilities\ImageAsyncHelper.cs" />
-    <Compile Include="Utilities\MPCHelper.cs" />
     <Compile Include="Utilities\MultiSort.cs" />
     <Compile Include="Utilities\RenameHelper.cs" />
     <Compile Include="Utilities\RenameTag.cs" />
@@ -694,7 +699,7 @@
     <Compile Include="Utilities\ShowSelectedInExplorer.cs" />
     <Compile Include="Utilities\SortSearchCriteria.cs" />
     <Compile Include="Utilities\ValueComparison.cs" />
-    <Compile Include="Utilities\VideoHandler.cs" />
+    <Compile Include="VideoPlayers\VideoHandler.cs" />
     <Compile Include="ViewModel\AdminMessage.cs" />
     <Compile Include="ViewModel\AniDBReleaseGroupVM.cs" />
     <Compile Include="ViewModel\AniDB_AnimeCrossRefsVM.cs" />
@@ -1336,7 +1341,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.de.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

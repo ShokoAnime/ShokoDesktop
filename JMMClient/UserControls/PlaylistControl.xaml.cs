@@ -58,7 +58,7 @@ namespace JMMClient.UserControls
             btnRandomEpisode.Click += new RoutedEventHandler(btnRandomEpisode_Click);
 
             this.DataContextChanged += new DependencyPropertyChangedEventHandler(PlaylistControl_DataContextChanged);
-            MainWindow.videoHandler.VideoWatchedEvent += new Utilities.VideoHandler.VideoWatchedEventHandler(videoHandler_VideoWatchedEvent);
+            MainWindow.videoHandler.VideoWatchedEvent += new VideoPlayers.VideoHandler.VideoWatchedEventHandler(videoHandler_VideoWatchedEvent);
 
             btnPlayAll.Click += new RoutedEventHandler(btnPlayAll_Click);
         }
@@ -75,7 +75,7 @@ namespace JMMClient.UserControls
             MainWindow.videoHandler.PlayEpisodes(eps);
         }
 
-        void videoHandler_VideoWatchedEvent(Utilities.VideoWatchedEventArgs ev)
+        void videoHandler_VideoWatchedEvent(VideoPlayers.VideoWatchedEventArgs ev)
         {
             if (MainWindow.CurrentMainTabIndex == MainWindow.TAB_MAIN_Playlists)
             {

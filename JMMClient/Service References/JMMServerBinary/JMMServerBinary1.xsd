@@ -789,6 +789,7 @@
       <xs:element minOccurs="0" name="ImportFolderName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="LanguagesAudio" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="LanguagesSubtitle" nillable="true" type="xs:string" />
+      <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/JMMContracts.PlexAndKodi" minOccurs="0" name="Media" nillable="true" type="q17:Media" />
       <xs:element minOccurs="0" name="Percentage" type="xs:int" />
       <xs:element minOccurs="0" name="ReleaseGroup" nillable="true" type="tns:Contract_ReleaseGroup" />
       <xs:element minOccurs="0" name="VideoInfo_AudioBitrate" nillable="true" type="xs:string" />
@@ -876,7 +877,7 @@
       <xs:element minOccurs="0" name="AnimeSeriesName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="MainTitle" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="SeriesExists" type="xs:boolean" />
-      <xs:element xmlns:q17="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Titles" nillable="true" type="q17:ArrayOfstring" />
+      <xs:element xmlns:q18="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Titles" nillable="true" type="q18:ArrayOfstring" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_AnimeSearch" nillable="true" type="tns:Contract_AnimeSearch" />
@@ -942,7 +943,7 @@
       <xs:element minOccurs="0" name="GroupNameShort" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="NormalComplete" type="xs:boolean" />
       <xs:element minOccurs="0" name="NormalEpisodeNumberSummary" nillable="true" type="xs:string" />
-      <xs:element xmlns:q18="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="NormalEpisodeNumbers" nillable="true" type="q18:ArrayOfint" />
+      <xs:element xmlns:q19="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="NormalEpisodeNumbers" nillable="true" type="q19:ArrayOfint" />
       <xs:element minOccurs="0" name="Ranking" type="xs:int" />
       <xs:element minOccurs="0" name="Resolution" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="SpecialsComplete" type="xs:boolean" />
@@ -1193,13 +1194,13 @@
   <xs:complexType name="Contract_JMMUser">
     <xs:sequence>
       <xs:element minOccurs="0" name="CanEditServerSettings" nillable="true" type="xs:int" />
-      <xs:element xmlns:q19="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="HideCategories" nillable="true" type="q19:ArrayOfstring" />
+      <xs:element xmlns:q20="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="HideCategories" nillable="true" type="q20:ArrayOfstring" />
       <xs:element minOccurs="0" name="IsAdmin" type="xs:int" />
       <xs:element minOccurs="0" name="IsAniDBUser" type="xs:int" />
       <xs:element minOccurs="0" name="IsTraktUser" type="xs:int" />
       <xs:element minOccurs="0" name="JMMUserID" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
-      <xs:element xmlns:q20="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="PlexUsers" nillable="true" type="q20:ArrayOfstring" />
+      <xs:element xmlns:q21="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="PlexUsers" nillable="true" type="q21:ArrayOfstring" />
       <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
@@ -1263,16 +1264,16 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="ApplyToSeries" type="xs:int" />
       <xs:element minOccurs="0" name="BaseCondition" type="xs:int" />
-      <xs:element xmlns:q21="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Childs" nillable="true" type="q21:ArrayOfint" />
+      <xs:element xmlns:q22="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Childs" nillable="true" type="q22:ArrayOfint" />
       <xs:element minOccurs="0" name="FilterConditions" nillable="true" type="tns:ArrayOfContract_GroupFilterCondition" />
       <xs:element minOccurs="0" name="FilterType" type="xs:int" />
       <xs:element minOccurs="0" name="GroupFilterID" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="GroupFilterName" nillable="true" type="xs:string" />
-      <xs:element xmlns:q22="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Groups" nillable="true" type="q22:ArrayOfKeyValueOfintArrayOfintty7Ep6D1" />
+      <xs:element xmlns:q23="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Groups" nillable="true" type="q23:ArrayOfKeyValueOfintArrayOfintty7Ep6D1" />
       <xs:element minOccurs="0" name="InvisibleInClients" type="xs:int" />
       <xs:element minOccurs="0" name="Locked" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="ParentGroupFilterID" nillable="true" type="xs:int" />
-      <xs:element xmlns:q23="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Series" nillable="true" type="q23:ArrayOfKeyValueOfintArrayOfintty7Ep6D1" />
+      <xs:element xmlns:q24="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Series" nillable="true" type="q24:ArrayOfKeyValueOfintArrayOfintty7Ep6D1" />
       <xs:element minOccurs="0" name="SortingCriteria" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
@@ -1506,7 +1507,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="ChangedItems" nillable="true" type="tns:ArrayOfContract_GroupFilter" />
       <xs:element minOccurs="0" name="LastChange" type="xs:dateTime" />
-      <xs:element xmlns:q24="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="RemovedItems" nillable="true" type="q24:ArrayOfint" />
+      <xs:element xmlns:q25="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="RemovedItems" nillable="true" type="q25:ArrayOfint" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_ChangesOfContract_GroupFilterFG2lp1Ah" nillable="true" type="tns:Contract_ChangesOfContract_GroupFilterFG2lp1Ah" />
@@ -1527,7 +1528,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="ChangedItems" nillable="true" type="tns:ArrayOfContract_AnimeGroup" />
       <xs:element minOccurs="0" name="LastChange" type="xs:dateTime" />
-      <xs:element xmlns:q25="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="RemovedItems" nillable="true" type="q25:ArrayOfint" />
+      <xs:element xmlns:q26="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="RemovedItems" nillable="true" type="q26:ArrayOfint" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_ChangesOfContract_AnimeGroupFG2lp1Ah" nillable="true" type="tns:Contract_ChangesOfContract_AnimeGroupFG2lp1Ah" />
@@ -1542,7 +1543,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="ChangedItems" nillable="true" type="tns:ArrayOfContract_AnimeSeries" />
       <xs:element minOccurs="0" name="LastChange" type="xs:dateTime" />
-      <xs:element xmlns:q26="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="RemovedItems" nillable="true" type="q26:ArrayOfint" />
+      <xs:element xmlns:q27="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="RemovedItems" nillable="true" type="q27:ArrayOfint" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Contract_ChangesOfContract_AnimeSeriesFG2lp1Ah" nillable="true" type="tns:Contract_ChangesOfContract_AnimeSeriesFG2lp1Ah" />
@@ -1576,10 +1577,16 @@
       <xs:element minOccurs="0" name="BanReason" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="GeneralQueueCount" type="xs:int" />
       <xs:element minOccurs="0" name="GeneralQueueState" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GeneralQueueStateId" type="xs:int" />
+      <xs:element xmlns:q28="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GeneralQueueStateParams" nillable="true" type="q28:ArrayOfstring" />
       <xs:element minOccurs="0" name="HashQueueCount" type="xs:int" />
       <xs:element minOccurs="0" name="HashQueueState" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HashQueueStateId" type="xs:int" />
+      <xs:element xmlns:q29="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="HashQueueStateParams" nillable="true" type="q29:ArrayOfstring" />
       <xs:element minOccurs="0" name="ImagesQueueCount" type="xs:int" />
       <xs:element minOccurs="0" name="ImagesQueueState" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ImagesQueueStateId" type="xs:int" />
+      <xs:element xmlns:q30="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ImagesQueueStateParams" nillable="true" type="q30:ArrayOfstring" />
       <xs:element minOccurs="0" name="IsBanned" type="xs:boolean" />
     </xs:sequence>
   </xs:complexType>

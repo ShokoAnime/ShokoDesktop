@@ -244,7 +244,7 @@ namespace JMMClient.UserControls
 
             SetWidgetOrder();
 
-            MainWindow.videoHandler.VideoWatchedEvent += new Utilities.VideoHandler.VideoWatchedEventHandler(videoHandler_VideoWatchedEvent);
+            MainWindow.videoHandler.VideoWatchedEvent += new VideoPlayers.VideoHandler.VideoWatchedEventHandler(videoHandler_VideoWatchedEvent);
 
             btnToggleDash.Click += new RoutedEventHandler(btnToggleDash_Click);
         }
@@ -259,7 +259,7 @@ namespace JMMClient.UserControls
             mainwdw.ShowDashMetroView(MetroViews.MainMetro);
         }
 
-        void videoHandler_VideoWatchedEvent(Utilities.VideoWatchedEventArgs ev)
+        void videoHandler_VideoWatchedEvent(VideoPlayers.VideoWatchedEventArgs ev)
         {
             try
             {

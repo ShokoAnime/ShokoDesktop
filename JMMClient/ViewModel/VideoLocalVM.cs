@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using JMMClient.JMMServerBinary;
 
 namespace JMMClient.ViewModel
 {
@@ -20,7 +21,7 @@ namespace JMMClient.ViewModel
         public int IsVariation { get; set; }
         public DateTime? WatchedDate { get; set; }
         public DateTime DateTimeUpdated { get; set; }
-
+        public Media Media { get; set; }
         public ImportFolderVM ImportFolder { get; set; }
 
         public string FullPath
@@ -139,7 +140,7 @@ namespace JMMClient.ViewModel
             this.SHA1 = contract.SHA1;
             this.VideoLocalID = contract.VideoLocalID;
             this.WatchedDate = contract.WatchedDate;
-
+            this.Media = contract.Media;
             ImportFolder = new ImportFolderVM(contract.ImportFolder);
         }
 

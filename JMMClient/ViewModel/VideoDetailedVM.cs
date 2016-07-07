@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using JMMClient.JMMServerBinary;
 
 namespace JMMClient
 {
@@ -65,6 +66,8 @@ namespace JMMClient
         public string AniDB_MD5 { get; set; }
         public string AniDB_SHA1 { get; set; }
         public int AniDB_File_FileVersion { get; set; }
+
+        public Media Media { get; set; }
 
         public string VideoResolution
         {
@@ -576,7 +579,6 @@ namespace JMMClient
             this.ImportFolderID = contract.ImportFolderID;
             this.ImportFolderName = contract.ImportFolderName;
             this.ImportFolderLocation = contract.ImportFolderLocation;
-
             this.Percentage = contract.Percentage;
             this.EpisodeOrder = contract.EpisodeOrder;
             this.CrossRefSource = contract.CrossRefSource;
@@ -627,7 +629,7 @@ namespace JMMClient
 
             this.LanguagesAudio = contract.LanguagesAudio;
             this.LanguagesSubtitle = contract.LanguagesSubtitle;
-
+            this.Media = contract.Media;
             if (contract.ReleaseGroup != null)
                 this.ReleaseGroup = new ReleaseGroupVM(contract.ReleaseGroup);
 

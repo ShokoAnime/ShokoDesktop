@@ -3158,33 +3158,47 @@ namespace JMMClient.JMMServerBinary {
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        private string AspectRatiok__BackingFieldField;
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<JMMClient.JMMServerBinary.Part> PartsField;
         
-        private string AudioChannelsk__BackingFieldField;
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DurationField;
         
-        private string AudioCodeck__BackingFieldField;
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string VideoFrameRateField;
         
-        private string Bitratek__BackingFieldField;
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ContainerField;
         
-        private string Containerk__BackingFieldField;
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string VideoCodecField;
         
-        private string Durationk__BackingFieldField;
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AudioCodecField;
         
-        private string Heightk__BackingFieldField;
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AudioChannelsField;
         
-        private string Idk__BackingFieldField;
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AspectRatioField;
         
-        private string OptimizedForStreamingk__BackingFieldField;
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string HeightField;
         
-        private System.Collections.Generic.List<JMMClient.JMMServerBinary.Part> Partsk__BackingFieldField;
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string WidthField;
         
-        private string VideoCodeck__BackingFieldField;
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string BitrateField;
         
-        private string VideoFrameRatek__BackingFieldField;
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string IdField;
         
-        private string VideoResolutionk__BackingFieldField;
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string VideoResolutionField;
         
-        private string Widthk__BackingFieldField;
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string OptimizedForStreamingField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -3196,184 +3210,184 @@ namespace JMMClient.JMMServerBinary {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<AspectRatio>k__BackingField", IsRequired=true)]
-        public string AspectRatiok__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
+        public System.Collections.Generic.List<JMMClient.JMMServerBinary.Part> Parts {
             get {
-                return this.AspectRatiok__BackingFieldField;
+                return this.PartsField;
             }
             set {
-                if ((object.ReferenceEquals(this.AspectRatiok__BackingFieldField, value) != true)) {
-                    this.AspectRatiok__BackingFieldField = value;
-                    this.RaisePropertyChanged("AspectRatiok__BackingField");
+                if ((object.ReferenceEquals(this.PartsField, value) != true)) {
+                    this.PartsField = value;
+                    this.RaisePropertyChanged("Parts");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<AudioChannels>k__BackingField", IsRequired=true)]
-        public string AudioChannelsk__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public string Duration {
             get {
-                return this.AudioChannelsk__BackingFieldField;
+                return this.DurationField;
             }
             set {
-                if ((object.ReferenceEquals(this.AudioChannelsk__BackingFieldField, value) != true)) {
-                    this.AudioChannelsk__BackingFieldField = value;
-                    this.RaisePropertyChanged("AudioChannelsk__BackingField");
+                if ((object.ReferenceEquals(this.DurationField, value) != true)) {
+                    this.DurationField = value;
+                    this.RaisePropertyChanged("Duration");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<AudioCodec>k__BackingField", IsRequired=true)]
-        public string AudioCodeck__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
+        public string VideoFrameRate {
             get {
-                return this.AudioCodeck__BackingFieldField;
+                return this.VideoFrameRateField;
             }
             set {
-                if ((object.ReferenceEquals(this.AudioCodeck__BackingFieldField, value) != true)) {
-                    this.AudioCodeck__BackingFieldField = value;
-                    this.RaisePropertyChanged("AudioCodeck__BackingField");
+                if ((object.ReferenceEquals(this.VideoFrameRateField, value) != true)) {
+                    this.VideoFrameRateField = value;
+                    this.RaisePropertyChanged("VideoFrameRate");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<Bitrate>k__BackingField", IsRequired=true)]
-        public string Bitratek__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
+        public string Container {
             get {
-                return this.Bitratek__BackingFieldField;
+                return this.ContainerField;
             }
             set {
-                if ((object.ReferenceEquals(this.Bitratek__BackingFieldField, value) != true)) {
-                    this.Bitratek__BackingFieldField = value;
-                    this.RaisePropertyChanged("Bitratek__BackingField");
+                if ((object.ReferenceEquals(this.ContainerField, value) != true)) {
+                    this.ContainerField = value;
+                    this.RaisePropertyChanged("Container");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<Container>k__BackingField", IsRequired=true)]
-        public string Containerk__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=4)]
+        public string VideoCodec {
             get {
-                return this.Containerk__BackingFieldField;
+                return this.VideoCodecField;
             }
             set {
-                if ((object.ReferenceEquals(this.Containerk__BackingFieldField, value) != true)) {
-                    this.Containerk__BackingFieldField = value;
-                    this.RaisePropertyChanged("Containerk__BackingField");
+                if ((object.ReferenceEquals(this.VideoCodecField, value) != true)) {
+                    this.VideoCodecField = value;
+                    this.RaisePropertyChanged("VideoCodec");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<Duration>k__BackingField", IsRequired=true)]
-        public string Durationk__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=5)]
+        public string AudioCodec {
             get {
-                return this.Durationk__BackingFieldField;
+                return this.AudioCodecField;
             }
             set {
-                if ((object.ReferenceEquals(this.Durationk__BackingFieldField, value) != true)) {
-                    this.Durationk__BackingFieldField = value;
-                    this.RaisePropertyChanged("Durationk__BackingField");
+                if ((object.ReferenceEquals(this.AudioCodecField, value) != true)) {
+                    this.AudioCodecField = value;
+                    this.RaisePropertyChanged("AudioCodec");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<Height>k__BackingField", IsRequired=true)]
-        public string Heightk__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=6)]
+        public string AudioChannels {
             get {
-                return this.Heightk__BackingFieldField;
+                return this.AudioChannelsField;
             }
             set {
-                if ((object.ReferenceEquals(this.Heightk__BackingFieldField, value) != true)) {
-                    this.Heightk__BackingFieldField = value;
-                    this.RaisePropertyChanged("Heightk__BackingField");
+                if ((object.ReferenceEquals(this.AudioChannelsField, value) != true)) {
+                    this.AudioChannelsField = value;
+                    this.RaisePropertyChanged("AudioChannels");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<Id>k__BackingField", IsRequired=true)]
-        public string Idk__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=7)]
+        public string AspectRatio {
             get {
-                return this.Idk__BackingFieldField;
+                return this.AspectRatioField;
             }
             set {
-                if ((object.ReferenceEquals(this.Idk__BackingFieldField, value) != true)) {
-                    this.Idk__BackingFieldField = value;
-                    this.RaisePropertyChanged("Idk__BackingField");
+                if ((object.ReferenceEquals(this.AspectRatioField, value) != true)) {
+                    this.AspectRatioField = value;
+                    this.RaisePropertyChanged("AspectRatio");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<OptimizedForStreaming>k__BackingField", IsRequired=true)]
-        public string OptimizedForStreamingk__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=8)]
+        public string Height {
             get {
-                return this.OptimizedForStreamingk__BackingFieldField;
+                return this.HeightField;
             }
             set {
-                if ((object.ReferenceEquals(this.OptimizedForStreamingk__BackingFieldField, value) != true)) {
-                    this.OptimizedForStreamingk__BackingFieldField = value;
-                    this.RaisePropertyChanged("OptimizedForStreamingk__BackingField");
+                if ((object.ReferenceEquals(this.HeightField, value) != true)) {
+                    this.HeightField = value;
+                    this.RaisePropertyChanged("Height");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<Parts>k__BackingField", IsRequired=true)]
-        public System.Collections.Generic.List<JMMClient.JMMServerBinary.Part> Partsk__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=9)]
+        public string Width {
             get {
-                return this.Partsk__BackingFieldField;
+                return this.WidthField;
             }
             set {
-                if ((object.ReferenceEquals(this.Partsk__BackingFieldField, value) != true)) {
-                    this.Partsk__BackingFieldField = value;
-                    this.RaisePropertyChanged("Partsk__BackingField");
+                if ((object.ReferenceEquals(this.WidthField, value) != true)) {
+                    this.WidthField = value;
+                    this.RaisePropertyChanged("Width");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<VideoCodec>k__BackingField", IsRequired=true)]
-        public string VideoCodeck__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=10)]
+        public string Bitrate {
             get {
-                return this.VideoCodeck__BackingFieldField;
+                return this.BitrateField;
             }
             set {
-                if ((object.ReferenceEquals(this.VideoCodeck__BackingFieldField, value) != true)) {
-                    this.VideoCodeck__BackingFieldField = value;
-                    this.RaisePropertyChanged("VideoCodeck__BackingField");
+                if ((object.ReferenceEquals(this.BitrateField, value) != true)) {
+                    this.BitrateField = value;
+                    this.RaisePropertyChanged("Bitrate");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<VideoFrameRate>k__BackingField", IsRequired=true)]
-        public string VideoFrameRatek__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=11)]
+        public string Id {
             get {
-                return this.VideoFrameRatek__BackingFieldField;
+                return this.IdField;
             }
             set {
-                if ((object.ReferenceEquals(this.VideoFrameRatek__BackingFieldField, value) != true)) {
-                    this.VideoFrameRatek__BackingFieldField = value;
-                    this.RaisePropertyChanged("VideoFrameRatek__BackingField");
+                if ((object.ReferenceEquals(this.IdField, value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<VideoResolution>k__BackingField", IsRequired=true)]
-        public string VideoResolutionk__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=12)]
+        public string VideoResolution {
             get {
-                return this.VideoResolutionk__BackingFieldField;
+                return this.VideoResolutionField;
             }
             set {
-                if ((object.ReferenceEquals(this.VideoResolutionk__BackingFieldField, value) != true)) {
-                    this.VideoResolutionk__BackingFieldField = value;
-                    this.RaisePropertyChanged("VideoResolutionk__BackingField");
+                if ((object.ReferenceEquals(this.VideoResolutionField, value) != true)) {
+                    this.VideoResolutionField = value;
+                    this.RaisePropertyChanged("VideoResolution");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<Width>k__BackingField", IsRequired=true)]
-        public string Widthk__BackingField {
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=13)]
+        public string OptimizedForStreaming {
             get {
-                return this.Widthk__BackingFieldField;
+                return this.OptimizedForStreamingField;
             }
             set {
-                if ((object.ReferenceEquals(this.Widthk__BackingFieldField, value) != true)) {
-                    this.Widthk__BackingFieldField = value;
-                    this.RaisePropertyChanged("Widthk__BackingField");
+                if ((object.ReferenceEquals(this.OptimizedForStreamingField, value) != true)) {
+                    this.OptimizedForStreamingField = value;
+                    this.RaisePropertyChanged("OptimizedForStreaming");
                 }
             }
         }
@@ -3401,37 +3415,34 @@ namespace JMMClient.JMMServerBinary {
         private string AccessibleField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ContainerField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DurationField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ExistsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ExtensionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string FileField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string Has64bitOffsetsField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string KeyField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string OptimizedForStreamingField;
+        private System.Collections.Generic.List<JMMClient.JMMServerBinary.Stream> StreamsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string SizeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<JMMClient.JMMServerBinary.Stream> StreamsField;
+        private string DurationField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string KeyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ContainerField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FileField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string OptimizedForStreamingField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string Has64bitOffsetsField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -3443,7 +3454,7 @@ namespace JMMClient.JMMServerBinary {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
         public string Accessible {
             get {
                 return this.AccessibleField;
@@ -3456,33 +3467,7 @@ namespace JMMClient.JMMServerBinary {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Container {
-            get {
-                return this.ContainerField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ContainerField, value) != true)) {
-                    this.ContainerField = value;
-                    this.RaisePropertyChanged("Container");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Duration {
-            get {
-                return this.DurationField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DurationField, value) != true)) {
-                    this.DurationField = value;
-                    this.RaisePropertyChanged("Duration");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
         public string Exists {
             get {
                 return this.ExistsField;
@@ -3495,85 +3480,20 @@ namespace JMMClient.JMMServerBinary {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Extension {
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
+        public System.Collections.Generic.List<JMMClient.JMMServerBinary.Stream> Streams {
             get {
-                return this.ExtensionField;
+                return this.StreamsField;
             }
             set {
-                if ((object.ReferenceEquals(this.ExtensionField, value) != true)) {
-                    this.ExtensionField = value;
-                    this.RaisePropertyChanged("Extension");
+                if ((object.ReferenceEquals(this.StreamsField, value) != true)) {
+                    this.StreamsField = value;
+                    this.RaisePropertyChanged("Streams");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string File {
-            get {
-                return this.FileField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FileField, value) != true)) {
-                    this.FileField = value;
-                    this.RaisePropertyChanged("File");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Has64bitOffsets {
-            get {
-                return this.Has64bitOffsetsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.Has64bitOffsetsField, value) != true)) {
-                    this.Has64bitOffsetsField = value;
-                    this.RaisePropertyChanged("Has64bitOffsets");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.IdField, value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Key {
-            get {
-                return this.KeyField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.KeyField, value) != true)) {
-                    this.KeyField = value;
-                    this.RaisePropertyChanged("Key");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string OptimizedForStreaming {
-            get {
-                return this.OptimizedForStreamingField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.OptimizedForStreamingField, value) != true)) {
-                    this.OptimizedForStreamingField = value;
-                    this.RaisePropertyChanged("OptimizedForStreaming");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
         public string Size {
             get {
                 return this.SizeField;
@@ -3586,15 +3506,93 @@ namespace JMMClient.JMMServerBinary {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<JMMClient.JMMServerBinary.Stream> Streams {
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=4)]
+        public string Duration {
             get {
-                return this.StreamsField;
+                return this.DurationField;
             }
             set {
-                if ((object.ReferenceEquals(this.StreamsField, value) != true)) {
-                    this.StreamsField = value;
-                    this.RaisePropertyChanged("Streams");
+                if ((object.ReferenceEquals(this.DurationField, value) != true)) {
+                    this.DurationField = value;
+                    this.RaisePropertyChanged("Duration");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=5)]
+        public string Key {
+            get {
+                return this.KeyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.KeyField, value) != true)) {
+                    this.KeyField = value;
+                    this.RaisePropertyChanged("Key");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=6)]
+        public string Container {
+            get {
+                return this.ContainerField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ContainerField, value) != true)) {
+                    this.ContainerField = value;
+                    this.RaisePropertyChanged("Container");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=7)]
+        public string Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IdField, value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=8)]
+        public string File {
+            get {
+                return this.FileField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FileField, value) != true)) {
+                    this.FileField = value;
+                    this.RaisePropertyChanged("File");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=9)]
+        public string OptimizedForStreaming {
+            get {
+                return this.OptimizedForStreamingField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OptimizedForStreamingField, value) != true)) {
+                    this.OptimizedForStreamingField = value;
+                    this.RaisePropertyChanged("OptimizedForStreaming");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=10)]
+        public string Has64bitOffsets {
+            get {
+                return this.Has64bitOffsetsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.Has64bitOffsetsField, value) != true)) {
+                    this.Has64bitOffsetsField = value;
+                    this.RaisePropertyChanged("Has64bitOffsets");
                 }
             }
         }
@@ -3619,130 +3617,124 @@ namespace JMMClient.JMMServerBinary {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string BVOPField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string BitDepthField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string BitrateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string BitrateModeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CabacField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ChannelsField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ChromaSubsamplingField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CodecField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CodecIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ColorSpaceField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DefaultField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DialogNormField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DurationField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string FileField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ForcedField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string FormatField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string FrameRateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string FrameRateModeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string GMCField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string HasScalingMatrixField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string HeaderStrippingField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string HeightField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string IndexField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string KeyField;
+        private string TitleField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string LanguageField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string LanguageCodeField;
+        private string KeyField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string LevelField;
+        private string DurationField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string OrientationField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private float PAField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PixelAspectRatioField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ProfileField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string QPelField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string RefFramesField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string SamplingRateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ScanTypeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string SelectedField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string StreamTypeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string SubIndexField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string TitleField;
+        private string HeightField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string WidthField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int idxField;
+        private string BitrateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SubIndexField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ScanTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RefFramesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ProfileField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string LevelField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string HeaderStrippingField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string HasScalingMatrixField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FrameRateModeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FileField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FrameRateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ColorSpaceField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CodecIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ChromaSubsamplingField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CabacField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string BitDepthField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string IndexField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CodecField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string StreamTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string OrientationField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string QPelField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string GMCField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string BVOPField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SamplingRateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string LanguageCodeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ChannelsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SelectedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DialogNormField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string BitrateModeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FormatField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DefaultField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ForcedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PixelAspectRatioField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -3754,514 +3746,7 @@ namespace JMMClient.JMMServerBinary {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string BVOP {
-            get {
-                return this.BVOPField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.BVOPField, value) != true)) {
-                    this.BVOPField = value;
-                    this.RaisePropertyChanged("BVOP");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string BitDepth {
-            get {
-                return this.BitDepthField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.BitDepthField, value) != true)) {
-                    this.BitDepthField = value;
-                    this.RaisePropertyChanged("BitDepth");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Bitrate {
-            get {
-                return this.BitrateField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.BitrateField, value) != true)) {
-                    this.BitrateField = value;
-                    this.RaisePropertyChanged("Bitrate");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string BitrateMode {
-            get {
-                return this.BitrateModeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.BitrateModeField, value) != true)) {
-                    this.BitrateModeField = value;
-                    this.RaisePropertyChanged("BitrateMode");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Cabac {
-            get {
-                return this.CabacField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CabacField, value) != true)) {
-                    this.CabacField = value;
-                    this.RaisePropertyChanged("Cabac");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Channels {
-            get {
-                return this.ChannelsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ChannelsField, value) != true)) {
-                    this.ChannelsField = value;
-                    this.RaisePropertyChanged("Channels");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ChromaSubsampling {
-            get {
-                return this.ChromaSubsamplingField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ChromaSubsamplingField, value) != true)) {
-                    this.ChromaSubsamplingField = value;
-                    this.RaisePropertyChanged("ChromaSubsampling");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Codec {
-            get {
-                return this.CodecField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CodecField, value) != true)) {
-                    this.CodecField = value;
-                    this.RaisePropertyChanged("Codec");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string CodecID {
-            get {
-                return this.CodecIDField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CodecIDField, value) != true)) {
-                    this.CodecIDField = value;
-                    this.RaisePropertyChanged("CodecID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ColorSpace {
-            get {
-                return this.ColorSpaceField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ColorSpaceField, value) != true)) {
-                    this.ColorSpaceField = value;
-                    this.RaisePropertyChanged("ColorSpace");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Default {
-            get {
-                return this.DefaultField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DefaultField, value) != true)) {
-                    this.DefaultField = value;
-                    this.RaisePropertyChanged("Default");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string DialogNorm {
-            get {
-                return this.DialogNormField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DialogNormField, value) != true)) {
-                    this.DialogNormField = value;
-                    this.RaisePropertyChanged("DialogNorm");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Duration {
-            get {
-                return this.DurationField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DurationField, value) != true)) {
-                    this.DurationField = value;
-                    this.RaisePropertyChanged("Duration");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string File {
-            get {
-                return this.FileField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FileField, value) != true)) {
-                    this.FileField = value;
-                    this.RaisePropertyChanged("File");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Forced {
-            get {
-                return this.ForcedField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ForcedField, value) != true)) {
-                    this.ForcedField = value;
-                    this.RaisePropertyChanged("Forced");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Format {
-            get {
-                return this.FormatField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FormatField, value) != true)) {
-                    this.FormatField = value;
-                    this.RaisePropertyChanged("Format");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string FrameRate {
-            get {
-                return this.FrameRateField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FrameRateField, value) != true)) {
-                    this.FrameRateField = value;
-                    this.RaisePropertyChanged("FrameRate");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string FrameRateMode {
-            get {
-                return this.FrameRateModeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FrameRateModeField, value) != true)) {
-                    this.FrameRateModeField = value;
-                    this.RaisePropertyChanged("FrameRateMode");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string GMC {
-            get {
-                return this.GMCField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.GMCField, value) != true)) {
-                    this.GMCField = value;
-                    this.RaisePropertyChanged("GMC");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string HasScalingMatrix {
-            get {
-                return this.HasScalingMatrixField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.HasScalingMatrixField, value) != true)) {
-                    this.HasScalingMatrixField = value;
-                    this.RaisePropertyChanged("HasScalingMatrix");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string HeaderStripping {
-            get {
-                return this.HeaderStrippingField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.HeaderStrippingField, value) != true)) {
-                    this.HeaderStrippingField = value;
-                    this.RaisePropertyChanged("HeaderStripping");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Height {
-            get {
-                return this.HeightField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.HeightField, value) != true)) {
-                    this.HeightField = value;
-                    this.RaisePropertyChanged("Height");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.IdField, value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Index {
-            get {
-                return this.IndexField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.IndexField, value) != true)) {
-                    this.IndexField = value;
-                    this.RaisePropertyChanged("Index");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Key {
-            get {
-                return this.KeyField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.KeyField, value) != true)) {
-                    this.KeyField = value;
-                    this.RaisePropertyChanged("Key");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Language {
-            get {
-                return this.LanguageField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.LanguageField, value) != true)) {
-                    this.LanguageField = value;
-                    this.RaisePropertyChanged("Language");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string LanguageCode {
-            get {
-                return this.LanguageCodeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.LanguageCodeField, value) != true)) {
-                    this.LanguageCodeField = value;
-                    this.RaisePropertyChanged("LanguageCode");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Level {
-            get {
-                return this.LevelField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.LevelField, value) != true)) {
-                    this.LevelField = value;
-                    this.RaisePropertyChanged("Level");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Orientation {
-            get {
-                return this.OrientationField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.OrientationField, value) != true)) {
-                    this.OrientationField = value;
-                    this.RaisePropertyChanged("Orientation");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public float PA {
-            get {
-                return this.PAField;
-            }
-            set {
-                if ((this.PAField.Equals(value) != true)) {
-                    this.PAField = value;
-                    this.RaisePropertyChanged("PA");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string PixelAspectRatio {
-            get {
-                return this.PixelAspectRatioField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PixelAspectRatioField, value) != true)) {
-                    this.PixelAspectRatioField = value;
-                    this.RaisePropertyChanged("PixelAspectRatio");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Profile {
-            get {
-                return this.ProfileField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ProfileField, value) != true)) {
-                    this.ProfileField = value;
-                    this.RaisePropertyChanged("Profile");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string QPel {
-            get {
-                return this.QPelField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.QPelField, value) != true)) {
-                    this.QPelField = value;
-                    this.RaisePropertyChanged("QPel");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string RefFrames {
-            get {
-                return this.RefFramesField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.RefFramesField, value) != true)) {
-                    this.RefFramesField = value;
-                    this.RaisePropertyChanged("RefFrames");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string SamplingRate {
-            get {
-                return this.SamplingRateField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.SamplingRateField, value) != true)) {
-                    this.SamplingRateField = value;
-                    this.RaisePropertyChanged("SamplingRate");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ScanType {
-            get {
-                return this.ScanTypeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ScanTypeField, value) != true)) {
-                    this.ScanTypeField = value;
-                    this.RaisePropertyChanged("ScanType");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Selected {
-            get {
-                return this.SelectedField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.SelectedField, value) != true)) {
-                    this.SelectedField = value;
-                    this.RaisePropertyChanged("Selected");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string StreamType {
-            get {
-                return this.StreamTypeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.StreamTypeField, value) != true)) {
-                    this.StreamTypeField = value;
-                    this.RaisePropertyChanged("StreamType");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string SubIndex {
-            get {
-                return this.SubIndexField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.SubIndexField, value) != true)) {
-                    this.SubIndexField = value;
-                    this.RaisePropertyChanged("SubIndex");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
         public string Title {
             get {
                 return this.TitleField;
@@ -4274,7 +3759,59 @@ namespace JMMClient.JMMServerBinary {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public string Language {
+            get {
+                return this.LanguageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LanguageField, value) != true)) {
+                    this.LanguageField = value;
+                    this.RaisePropertyChanged("Language");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
+        public string Key {
+            get {
+                return this.KeyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.KeyField, value) != true)) {
+                    this.KeyField = value;
+                    this.RaisePropertyChanged("Key");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
+        public string Duration {
+            get {
+                return this.DurationField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DurationField, value) != true)) {
+                    this.DurationField = value;
+                    this.RaisePropertyChanged("Duration");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=4)]
+        public string Height {
+            get {
+                return this.HeightField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.HeightField, value) != true)) {
+                    this.HeightField = value;
+                    this.RaisePropertyChanged("Height");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=5)]
         public string Width {
             get {
                 return this.WidthField;
@@ -4287,15 +3824,444 @@ namespace JMMClient.JMMServerBinary {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int idx {
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=6)]
+        public string Bitrate {
             get {
-                return this.idxField;
+                return this.BitrateField;
             }
             set {
-                if ((this.idxField.Equals(value) != true)) {
-                    this.idxField = value;
-                    this.RaisePropertyChanged("idx");
+                if ((object.ReferenceEquals(this.BitrateField, value) != true)) {
+                    this.BitrateField = value;
+                    this.RaisePropertyChanged("Bitrate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=7)]
+        public string SubIndex {
+            get {
+                return this.SubIndexField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SubIndexField, value) != true)) {
+                    this.SubIndexField = value;
+                    this.RaisePropertyChanged("SubIndex");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=8)]
+        public string Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IdField, value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=9)]
+        public string ScanType {
+            get {
+                return this.ScanTypeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ScanTypeField, value) != true)) {
+                    this.ScanTypeField = value;
+                    this.RaisePropertyChanged("ScanType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=10)]
+        public string RefFrames {
+            get {
+                return this.RefFramesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RefFramesField, value) != true)) {
+                    this.RefFramesField = value;
+                    this.RaisePropertyChanged("RefFrames");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=11)]
+        public string Profile {
+            get {
+                return this.ProfileField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProfileField, value) != true)) {
+                    this.ProfileField = value;
+                    this.RaisePropertyChanged("Profile");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=12)]
+        public string Level {
+            get {
+                return this.LevelField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LevelField, value) != true)) {
+                    this.LevelField = value;
+                    this.RaisePropertyChanged("Level");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=13)]
+        public string HeaderStripping {
+            get {
+                return this.HeaderStrippingField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.HeaderStrippingField, value) != true)) {
+                    this.HeaderStrippingField = value;
+                    this.RaisePropertyChanged("HeaderStripping");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=14)]
+        public string HasScalingMatrix {
+            get {
+                return this.HasScalingMatrixField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.HasScalingMatrixField, value) != true)) {
+                    this.HasScalingMatrixField = value;
+                    this.RaisePropertyChanged("HasScalingMatrix");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=15)]
+        public string FrameRateMode {
+            get {
+                return this.FrameRateModeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FrameRateModeField, value) != true)) {
+                    this.FrameRateModeField = value;
+                    this.RaisePropertyChanged("FrameRateMode");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=16)]
+        public string File {
+            get {
+                return this.FileField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FileField, value) != true)) {
+                    this.FileField = value;
+                    this.RaisePropertyChanged("File");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=17)]
+        public string FrameRate {
+            get {
+                return this.FrameRateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FrameRateField, value) != true)) {
+                    this.FrameRateField = value;
+                    this.RaisePropertyChanged("FrameRate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=18)]
+        public string ColorSpace {
+            get {
+                return this.ColorSpaceField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ColorSpaceField, value) != true)) {
+                    this.ColorSpaceField = value;
+                    this.RaisePropertyChanged("ColorSpace");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=19)]
+        public string CodecID {
+            get {
+                return this.CodecIDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CodecIDField, value) != true)) {
+                    this.CodecIDField = value;
+                    this.RaisePropertyChanged("CodecID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=20)]
+        public string ChromaSubsampling {
+            get {
+                return this.ChromaSubsamplingField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ChromaSubsamplingField, value) != true)) {
+                    this.ChromaSubsamplingField = value;
+                    this.RaisePropertyChanged("ChromaSubsampling");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=21)]
+        public string Cabac {
+            get {
+                return this.CabacField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CabacField, value) != true)) {
+                    this.CabacField = value;
+                    this.RaisePropertyChanged("Cabac");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=22)]
+        public string BitDepth {
+            get {
+                return this.BitDepthField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BitDepthField, value) != true)) {
+                    this.BitDepthField = value;
+                    this.RaisePropertyChanged("BitDepth");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=23)]
+        public string Index {
+            get {
+                return this.IndexField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IndexField, value) != true)) {
+                    this.IndexField = value;
+                    this.RaisePropertyChanged("Index");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=24)]
+        public string Codec {
+            get {
+                return this.CodecField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CodecField, value) != true)) {
+                    this.CodecField = value;
+                    this.RaisePropertyChanged("Codec");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=25)]
+        public string StreamType {
+            get {
+                return this.StreamTypeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StreamTypeField, value) != true)) {
+                    this.StreamTypeField = value;
+                    this.RaisePropertyChanged("StreamType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=26)]
+        public string Orientation {
+            get {
+                return this.OrientationField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OrientationField, value) != true)) {
+                    this.OrientationField = value;
+                    this.RaisePropertyChanged("Orientation");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=27)]
+        public string QPel {
+            get {
+                return this.QPelField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.QPelField, value) != true)) {
+                    this.QPelField = value;
+                    this.RaisePropertyChanged("QPel");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=28)]
+        public string GMC {
+            get {
+                return this.GMCField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GMCField, value) != true)) {
+                    this.GMCField = value;
+                    this.RaisePropertyChanged("GMC");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=29)]
+        public string BVOP {
+            get {
+                return this.BVOPField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BVOPField, value) != true)) {
+                    this.BVOPField = value;
+                    this.RaisePropertyChanged("BVOP");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=30)]
+        public string SamplingRate {
+            get {
+                return this.SamplingRateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SamplingRateField, value) != true)) {
+                    this.SamplingRateField = value;
+                    this.RaisePropertyChanged("SamplingRate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=31)]
+        public string LanguageCode {
+            get {
+                return this.LanguageCodeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LanguageCodeField, value) != true)) {
+                    this.LanguageCodeField = value;
+                    this.RaisePropertyChanged("LanguageCode");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=32)]
+        public string Channels {
+            get {
+                return this.ChannelsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ChannelsField, value) != true)) {
+                    this.ChannelsField = value;
+                    this.RaisePropertyChanged("Channels");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=33)]
+        public string Selected {
+            get {
+                return this.SelectedField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SelectedField, value) != true)) {
+                    this.SelectedField = value;
+                    this.RaisePropertyChanged("Selected");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=34)]
+        public string DialogNorm {
+            get {
+                return this.DialogNormField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DialogNormField, value) != true)) {
+                    this.DialogNormField = value;
+                    this.RaisePropertyChanged("DialogNorm");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=35)]
+        public string BitrateMode {
+            get {
+                return this.BitrateModeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BitrateModeField, value) != true)) {
+                    this.BitrateModeField = value;
+                    this.RaisePropertyChanged("BitrateMode");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=36)]
+        public string Format {
+            get {
+                return this.FormatField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FormatField, value) != true)) {
+                    this.FormatField = value;
+                    this.RaisePropertyChanged("Format");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=37)]
+        public string Default {
+            get {
+                return this.DefaultField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DefaultField, value) != true)) {
+                    this.DefaultField = value;
+                    this.RaisePropertyChanged("Default");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=38)]
+        public string Forced {
+            get {
+                return this.ForcedField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ForcedField, value) != true)) {
+                    this.ForcedField = value;
+                    this.RaisePropertyChanged("Forced");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=39)]
+        public string PixelAspectRatio {
+            get {
+                return this.PixelAspectRatioField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PixelAspectRatioField, value) != true)) {
+                    this.PixelAspectRatioField = value;
+                    this.RaisePropertyChanged("PixelAspectRatio");
                 }
             }
         }
@@ -9299,6 +9265,9 @@ namespace JMMClient.JMMServerBinary {
         private string LanguagesSubtitleField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private JMMClient.JMMServerBinary.Media MediaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int PercentageField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -9763,6 +9732,19 @@ namespace JMMClient.JMMServerBinary {
                 if ((object.ReferenceEquals(this.LanguagesSubtitleField, value) != true)) {
                     this.LanguagesSubtitleField = value;
                     this.RaisePropertyChanged("LanguagesSubtitle");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public JMMClient.JMMServerBinary.Media Media {
+            get {
+                return this.MediaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MediaField, value) != true)) {
+                    this.MediaField = value;
+                    this.RaisePropertyChanged("Media");
                 }
             }
         }
@@ -15956,16 +15938,34 @@ namespace JMMClient.JMMServerBinary {
         private string GeneralQueueStateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int GeneralQueueStateIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<string> GeneralQueueStateParamsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int HashQueueCountField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string HashQueueStateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int HashQueueStateIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<string> HashQueueStateParamsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int ImagesQueueCountField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ImagesQueueStateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ImagesQueueStateIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<string> ImagesQueueStateParamsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool IsBannedField;
@@ -16033,6 +16033,32 @@ namespace JMMClient.JMMServerBinary {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public int GeneralQueueStateId {
+            get {
+                return this.GeneralQueueStateIdField;
+            }
+            set {
+                if ((this.GeneralQueueStateIdField.Equals(value) != true)) {
+                    this.GeneralQueueStateIdField = value;
+                    this.RaisePropertyChanged("GeneralQueueStateId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<string> GeneralQueueStateParams {
+            get {
+                return this.GeneralQueueStateParamsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GeneralQueueStateParamsField, value) != true)) {
+                    this.GeneralQueueStateParamsField = value;
+                    this.RaisePropertyChanged("GeneralQueueStateParams");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public int HashQueueCount {
             get {
                 return this.HashQueueCountField;
@@ -16059,6 +16085,32 @@ namespace JMMClient.JMMServerBinary {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public int HashQueueStateId {
+            get {
+                return this.HashQueueStateIdField;
+            }
+            set {
+                if ((this.HashQueueStateIdField.Equals(value) != true)) {
+                    this.HashQueueStateIdField = value;
+                    this.RaisePropertyChanged("HashQueueStateId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<string> HashQueueStateParams {
+            get {
+                return this.HashQueueStateParamsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.HashQueueStateParamsField, value) != true)) {
+                    this.HashQueueStateParamsField = value;
+                    this.RaisePropertyChanged("HashQueueStateParams");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public int ImagesQueueCount {
             get {
                 return this.ImagesQueueCountField;
@@ -16080,6 +16132,32 @@ namespace JMMClient.JMMServerBinary {
                 if ((object.ReferenceEquals(this.ImagesQueueStateField, value) != true)) {
                     this.ImagesQueueStateField = value;
                     this.RaisePropertyChanged("ImagesQueueState");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ImagesQueueStateId {
+            get {
+                return this.ImagesQueueStateIdField;
+            }
+            set {
+                if ((this.ImagesQueueStateIdField.Equals(value) != true)) {
+                    this.ImagesQueueStateIdField = value;
+                    this.RaisePropertyChanged("ImagesQueueStateId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<string> ImagesQueueStateParams {
+            get {
+                return this.ImagesQueueStateParamsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ImagesQueueStateParamsField, value) != true)) {
+                    this.ImagesQueueStateParamsField = value;
+                    this.RaisePropertyChanged("ImagesQueueStateParams");
                 }
             }
         }
