@@ -64,11 +64,18 @@ namespace JMMClient.VideoPlayers
             {
                 foreach (Stream s in p.Streams.Where(a => a.File != null && a.StreamType == "3"))
                 {
-                    string ext = Path.GetExtension(s.File);
-                    string filePath = Utils.GetTempFilePathWithExtension(ext);
-                    string subtitle = wc.DownloadString(s.Key);
-                    File.WriteAllText(filePath,subtitle);
-                    subs.Add(filePath);
+                    string filename = Path.GetFileName(s.File);
+                    string filePath = Path.Combine(Path.GetTempPath(), filename);
+                    try
+                    {
+                        string subtitle = wc.DownloadString(s.Key);
+                        File.WriteAllText(filePath, subtitle);
+                        subs.Add(filePath);
+                    }
+                    catch (Exception e)
+                    {
+                        logger.Warn("Cannot download subtitle: "+e.ToString());
+                    }
                 }
             }
             return new Tuple<string, List<string>>(p.Key,subs);
