@@ -1858,9 +1858,6 @@
     <Resource Include="Images\16_plus.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\16_windows.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\navbar.png" />
   </ItemGroup>
   <ItemGroup>
@@ -2069,7 +2066,6 @@
     <Resource Include="Images\32_info.png" />
     <Resource Include="Images\16_bookmark.png" />
     <Resource Include="Images\16_bookmark_add.png" />
-    <Resource Include="Images\16_hourglass.png" />
     <Resource Include="Images\16_image.png" />
     <Resource Include="Images\16_info.png" />
     <Resource Include="Images\16_link.png" />
