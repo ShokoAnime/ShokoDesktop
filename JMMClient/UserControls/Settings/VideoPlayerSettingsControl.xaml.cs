@@ -1,9 +1,14 @@
 ﻿using NLog;
 using System;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Forms;
+using JMMClient.VideoPlayers;
+using MessageBox = System.Windows.MessageBox;
+using UserControl = System.Windows.Controls.UserControl;
 
 namespace JMMClient.UserControls
 {
@@ -46,21 +51,25 @@ namespace JMMClient.UserControls
             cboDefaultPlayer.Items.Add("MPC");
             cboDefaultPlayer.Items.Add("PotPlayer");
             cboDefaultPlayer.Items.Add("VLC");
+            cboDefaultPlayer.Items.Add("MPV");
             switch (AppSettings.DefaultPlayer_GroupList)
             {
-                case (int)DefaultVideoPlayer.MPC:
+                case (int)VideoPlayer.MPC:
                     cboDefaultPlayer.SelectedIndex = 1;
                     break;
 
-                case (int)DefaultVideoPlayer.PotPlayer:
+                case (int)VideoPlayer.PotPlayer:
                     cboDefaultPlayer.SelectedIndex = 2;
                     break;
 
-                case (int)DefaultVideoPlayer.VLC:
+                case (int)VideoPlayer.VLC:
                     cboDefaultPlayer.SelectedIndex = 3;
                     break;
+                case (int)VideoPlayer.MPV:
+                    cboDefaultPlayer.SelectedIndex = 4;
+                    break;
 
-                case (int)DefaultVideoPlayer.WindowsDefault:
+                case (int)VideoPlayer.WindowsDefault:
                     cboDefaultPlayer.SelectedIndex = 0;
                     break;
 
@@ -70,18 +79,45 @@ namespace JMMClient.UserControls
             }
 
             cboDefaultPlayer.SelectionChanged += new SelectionChangedEventHandler(cboDefaultPlayer_SelectionChanged);
+            MainWindow.videoHandler.Init();
+            RefreshConfigured();
+
         }
+
+        public Visibility DefaultConfigured
+        {
+            get
+            {
+                bool val = cboDefaultPlayer.SelectedIndex == 0 ? MainWindow.videoHandler.Active : MainWindow.videoHandler.IsActive((VideoPlayer) cboDefaultPlayer.SelectedIndex - 1);
+                return val ? Visibility.Visible : Visibility.Hidden;
+            }
+        }
+
+        public string ActivePlayer => MainWindow.videoHandler.DefaultPlayer !=null ? MainWindow.videoHandler.DefaultPlayer.Player.ToString() : "";
+
+        public Visibility DefaultNotConfigured => DefaultConfigured == Visibility.Visible ? Visibility.Hidden : Visibility.Visible;
+
 
         void cboDefaultPlayer_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             switch (cboDefaultPlayer.SelectedIndex)
             {
-                case 0: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)DefaultVideoPlayer.WindowsDefault; break;
-                case 1: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)DefaultVideoPlayer.MPC; break;
-                case 2: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)DefaultVideoPlayer.PotPlayer; break;
-                case 3: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)DefaultVideoPlayer.VLC; break;
-                default: UserSettingsVM.Instance.DisplayStyle_GroupList = (int)DefaultVideoPlayer.WindowsDefault; break;
+                case 0: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.WindowsDefault; break;
+                case 1: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.MPC; break;
+                case 2: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.PotPlayer; break;
+                case 3: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.VLC; break;
+                case 4: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.MPV; break;
+                default: UserSettingsVM.Instance.DisplayStyle_GroupList = (int)VideoPlayer.WindowsDefault; break;
             }
+            RefreshConfigured();
+        }
+
+        private void RefreshConfigured()
+        {
+            TextDefaultConfigured.Visibility = DefaultConfigured;
+            TextDefaultConfigured.Text = JMMClient.Properties.Resources.VideoPlayer_Configured + " (" + ActivePlayer + ")";
+            TextDefaultNotConfigured.Visibility = DefaultNotConfigured;
+
         }
 
         void chkAutoSetWatched_Click(object sender, RoutedEventArgs e)
@@ -326,5 +362,9 @@ namespace JMMClient.UserControls
             UserSettingsVM.Instance.VLCFolder = string.Empty;
         }
 
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            RefreshConfigured();
+        }
     }
 }

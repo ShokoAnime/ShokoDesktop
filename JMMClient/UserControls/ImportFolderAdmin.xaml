@@ -81,7 +81,7 @@
         </StackPanel.Resources>
 
         
-        <StackPanel Orientation="Horizontal">
+        <DockPanel>
             <StackPanel Orientation="Vertical">
                 <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ServerPath}" Margin="10,10,0,10" FontWeight="DemiBold"></TextBlock>
                 <ListBox Margin="10,0,0,10" Name="lbImportFolders" BorderThickness="0" Background="AntiqueWhite"
@@ -101,7 +101,8 @@
 
                 </ListBox>
             </StackPanel>
-        </StackPanel>
+            <CheckBox HorizontalAlignment="Right" IsChecked="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=UseStreaming}" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=UseStreaming}" Margin="10,0,15,10" FontWeight="DemiBold" Height="16"/>
+        </DockPanel>
 
         <StackPanel Orientation="Horizontal">
             <Button HorizontalAlignment="Left" Name="btnDeleteImportFolder" Margin="10,0,0,0" Style="{DynamicResource RoundButtonStyle}" Width="Auto">

@@ -601,6 +601,16 @@ namespace JMMClient
             }
         }
 
+        public bool UseStreaming
+        {
+            get { return AppSettings.UseStreaming;  }
+            set
+            {
+                AppSettings.UseStreaming = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("UseStreaming"));
+
+            }
+        }
         public void SetDashMetro_Image_Width()
         {
             if (AppSettings.DashMetroImageType == DashboardMetroImageType.Fanart)
@@ -1581,6 +1591,16 @@ namespace JMMClient
 
             return pos + 1;
         }
+
+        public Visibility IsMPCInstalled => MainWindow.videoHandler.IsActive(VideoPlayer.MPC) ? Visibility.Visible : Visibility.Hidden;
+        public Visibility IsMPCNotInstalled => MainWindow.videoHandler.IsActive(VideoPlayer.MPC) ? Visibility.Hidden : Visibility.Visible;
+        public Visibility IsMPVInstalled => MainWindow.videoHandler.IsActive(VideoPlayer.MPV) ? Visibility.Visible : Visibility.Hidden;
+        public Visibility IsMPVNotInstalled => MainWindow.videoHandler.IsActive(VideoPlayer.MPV) ? Visibility.Hidden : Visibility.Visible;
+        public Visibility IsVLCInstalled => MainWindow.videoHandler.IsActive(VideoPlayer.VLC) ? Visibility.Visible : Visibility.Hidden;
+        public Visibility IsVLCNotInstalled => MainWindow.videoHandler.IsActive(VideoPlayer.VLC) ? Visibility.Hidden : Visibility.Visible;
+        public Visibility IsPotInstalled => MainWindow.videoHandler.IsActive(VideoPlayer.PotPlayer) ? Visibility.Visible : Visibility.Hidden;
+        public Visibility IsPotNotInstalled => MainWindow.videoHandler.IsActive(VideoPlayer.PotPlayer) ? Visibility.Hidden : Visibility.Visible;
+       
 
         public void EnableDisableDashboardMetroSection(DashboardMetroProcessType swid, bool enabled)
         {
