@@ -486,9 +486,6 @@
   <data name="Existing" xml:space="preserve">
     <value>Istniejący</value>
   </data>
-  <data name="SelectGroup" xml:space="preserve">
-    <value>Wybierz grupę</value>
-  </data>
   <data name="SelectAnime" xml:space="preserve">
     <value>Wybierz Anime z AniDB</value>
   </data>
@@ -1148,9 +1145,6 @@
   <data name="TvDB_Schedule_Updates" xml:space="preserve">
     <value>Aktualizacja informacji co 12 godzin</value>
   </data>
-  <data name="RescanAll" xml:space="preserve">
-    <value>Ponowne skanowanie wszystkich</value>
-  </data>
   <data name="DeleteAll" xml:space="preserve">
     <value>Usuń wszystkie</value>
   </data>
@@ -1169,10 +1163,10 @@
   <data name="CommunityRecommendation" xml:space="preserve">
     <value>Wspólnoty zalecenie</value>
   </data>
-  <data name="TvDBSearchPrompt" xml:space="preserve">
+  <data name="TvDB_SearchPrompt" xml:space="preserve">
     <value>Szukaj na TvDB lub wprowadź identyfikator serii TvDB</value>
   </data>
-  <data name="TvDBShow" xml:space="preserve">
+  <data name="TvDB_Show" xml:space="preserve">
     <value>Przejdź do TvDB</value>
   </data>
   <data name="UseThis" xml:space="preserve">
@@ -1514,18 +1508,6 @@
   <data name="RemoveDefaultSeries" xml:space="preserve">
     <value>Usunąć domyślne serii</value>
   </data>
-  <data name="SetDefaultSeries" xml:space="preserve">
-    <value>Dodać domyślną serii</value>
-  </data>
-  <data name="DefSeries1" xml:space="preserve">
-    <value>Wybierz domyślne serii dla</value>
-  </data>
-  <data name="DefSeries2" xml:space="preserve">
-    <value>Wybór domyślnej oznacza, że wszystkie obrazy, które są dsiplayed dla grupy będą używać</value>
-  </data>
-  <data name="DefSeries3" xml:space="preserve">
-    <value>Seria domyślne zamiast serię losowych w grupie</value>
-  </data>
   <data name="ChangeLanguage" xml:space="preserve">
     <value>Zmień język</value>
   </data>
@@ -1722,12 +1704,6 @@
   </data>
   <data name="Override" xml:space="preserve">
     <value>Zastąpić</value>
-  </data>
-  <data name="Tooltip_NameOverride" xml:space="preserve">
-    <value>Można ręcznie wpisać nazwę preferowanego lub użyć zielone strzałki w prawo, aby wybrać nazwę z AniDB.</value>
-  </data>
-  <data name="Tooltip_NameOverride2" xml:space="preserve">
-    <value>Wybierz nazwę z listy nazw AniDB.</value>
   </data>
   <data name="AdminMessageTitle" xml:space="preserve">
     <value>Admin wiadomość</value>
@@ -1950,9 +1926,6 @@
   </data>
   <data name="Select_Season" xml:space="preserve">
     <value>Sezon</value>
-  </data>
-  <data name="Select_DefaultLanguage" xml:space="preserve">
-    <value>Wybierz domyślny język</value>
   </data>
   <data name="Update_Update" xml:space="preserve">
     <value>JMM pulpitu dostępna aktualizacja!</value>
@@ -2770,9 +2743,6 @@
   <data name="Unrecognized_CRC32" xml:space="preserve">
     <value>CRC32</value>
   </data>
-  <data name="Unrecognized_Rehash" xml:space="preserve">
-    <value>Ponownego mieszania wszystkich</value>
-  </data>
   <data name="Unrecognized_Logs" xml:space="preserve">
     <value>Dzienniki</value>
   </data>
@@ -3418,12 +3388,6 @@
   <data name="DuplicateFiles_DeleteEntry" xml:space="preserve">
     <value>Czy na pewno chcesz usunąć ten wpis?</value>
   </data>
-  <data name="Unrecognized_AniDBQueue" xml:space="preserve">
-    <value>Pliki w kolejce do AniDB odgrzewana</value>
-  </data>
-  <data name="Unrecognized_AniDBScan" xml:space="preserve">
-    <value>Pliki w kolejce do skanowania AniDB</value>
-  </data>
   <data name="Unrecognized_ConfirmDelete" xml:space="preserve">
     <value>Czy na pewno chcesz usunąć ten plik: {0}</value>
   </data>
@@ -3867,9 +3831,6 @@
   </data>
   <data name="Downloads_Searching" xml:space="preserve">
     <value>Wyszukiwanie...</value>
-  </data>
-  <data name="Downloads_Results" xml:space="preserve">
-    <value>Wyniki {0}</value>
   </data>
   <data name="Downloads_Download" xml:space="preserve">
     <value>Pobierz za darmo</value>
@@ -4341,5 +4302,47 @@
   </data>
   <data name="Language_Info" xml:space="preserve">
     <value>JMM pulpitu Uruchom ponownie aby zmienić język, kliknij przycisk OK aby auto restart lub Anuluj, aby ręcznie ponownie uruchomić.!</value>
+  </data>
+  <data name="Unrecognized_Rehash" xml:space="preserve">
+    <value>Wszystkie rehash</value>
+  </data>
+  <data name="Unrecognized_AniDBQueue" xml:space="preserve">
+    <value>pliki w kolejce AniDB rehash</value>
+  </data>
+  <data name="Unrecognized_AniDBScan" xml:space="preserve">
+    <value>pliki w kolejce do skanowania AniDB</value>
+  </data>
+  <data name="Downloads_Results" xml:space="preserve">
+    <value>Wyniki {0}</value>
+  </data>
+  <data name="UpdateAniDB_QueueCount" xml:space="preserve">
+    <value>{0} pliki zostaną umieszczone w kolejce do przetwarzania</value>
+  </data>
+  <data name="UpdateAniDB_QueueActual" xml:space="preserve">
+    <value>Pliki {0} w kolejce na przetworzenie</value>
+  </data>
+  <data name="UpdateAniDB_UpdateAniDB" xml:space="preserve">
+    <value>Metadane aktualizacji lokalnej AniDB</value>
+  </data>
+  <data name="SelectGroup" xml:space="preserve">
+    <value>Typ grupy wybierz</value>
+  </data>
+  <data name="RescanAll" xml:space="preserve">
+    <value>Skanuj wszystkie</value>
+  </data>
+  <data name="DefaultSeries_Select" xml:space="preserve">
+    <value>Wybierz domyślny serii</value>
+  </data>
+  <data name="DefaultSeries_Info" xml:space="preserve">
+    <value>Jeśli domyślna seria jest zaznaczone dla grupy, tylko że seria zdjęć pojawi się zamiast losowo wybierać obrazy z różnych serii w ramach grupy.</value>
+  </data>
+  <data name="Tooltip_NameOverride" xml:space="preserve">
+    <value>Można ręcznie wpisać nazwę lub użyć zielone strzałki w prawo, aby wybrać nazwę z AniDB</value>
+  </data>
+  <data name="Tooltip_NameOverride2" xml:space="preserve">
+    <value>Wybierz nazwę z listy dostępnych nazw AniDB</value>
+  </data>
+  <data name="TvDB_DefaultLanguage" xml:space="preserve">
+    <value>Wybierz język, chcieliby odcinek tytuły i opisy do pobrania w z The TvDB. Należy pamiętać, że jeśli odcinek tytuł lub opis nie jest dostępny w wybranym języku, domyślna wersja zostanie pobrany.</value>
   </data>
 </root>

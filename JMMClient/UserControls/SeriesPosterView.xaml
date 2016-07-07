@@ -106,7 +106,7 @@
                     
                     <StackPanel Orientation="Horizontal"
                                     Visibility="{Binding Path=HasMissingEpisodesAllDifferentToGroups, Converter={StaticResource BooleanToVisibilityConverter}}">
-                        <Image Height="14" Width="14" Source="/Images/32_warning.png" Margin="0,0,0,0" VerticalAlignment="Center">
+                        <Image Height="14" Width="14" Source="/Images/16_warning.png" Margin="0,0,0,0" VerticalAlignment="Center">
                             <Image.ToolTip>
                                 <TextBlock Margin="5,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_MissingEps}" VerticalAlignment="Center" />
                             </Image.ToolTip>

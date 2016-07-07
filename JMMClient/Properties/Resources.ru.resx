@@ -489,9 +489,6 @@
   <data name="Existing" xml:space="preserve">
     <value>Существующие</value>
   </data>
-  <data name="SelectGroup" xml:space="preserve">
-    <value>Выберите группу</value>
-  </data>
   <data name="SelectAnime" xml:space="preserve">
     <value>Выберите аниме из AniDB</value>
   </data>
@@ -1149,9 +1146,6 @@
   <data name="TvDB_Schedule_Updates" xml:space="preserve">
     <value>Обновлять информацию каждые 12 часов</value>
   </data>
-  <data name="RescanAll" xml:space="preserve">
-    <value>Повторно сканировать все</value>
-  </data>
   <data name="DeleteAll" xml:space="preserve">
     <value>Удалить все</value>
   </data>
@@ -1170,10 +1164,10 @@
   <data name="CommunityRecommendation" xml:space="preserve">
     <value>Рекомендации сообщества</value>
   </data>
-  <data name="TvDBSearchPrompt" xml:space="preserve">
+  <data name="TvDB_SearchPrompt" xml:space="preserve">
     <value>Поиск по TvDB или введите ID серии TvDB</value>
   </data>
-  <data name="TvDBShow" xml:space="preserve">
+  <data name="TvDB_Show" xml:space="preserve">
     <value>Перейти к TvDB</value>
   </data>
   <data name="UseThis" xml:space="preserve">
@@ -1515,18 +1509,6 @@
   <data name="RemoveDefaultSeries" xml:space="preserve">
     <value>Удалить сериал по умолчанию</value>
   </data>
-  <data name="SetDefaultSeries" xml:space="preserve">
-    <value>Добавить сериал по умолчанию</value>
-  </data>
-  <data name="DefSeries1" xml:space="preserve">
-    <value>Выбрать сериал по умолчанию для</value>
-  </data>
-  <data name="DefSeries2" xml:space="preserve">
-    <value>Выбор сериала по умолчанию означает, что группа будет использовать изображения из этого сериала</value>
-  </data>
-  <data name="DefSeries3" xml:space="preserve">
-    <value>серии по умолчанию вместо случайных серии в группе</value>
-  </data>
   <data name="ChangeLanguage" xml:space="preserve">
     <value>Изменение языка</value>
   </data>
@@ -1723,12 +1705,6 @@
   </data>
   <data name="Override" xml:space="preserve">
     <value>Переопределить</value>
-  </data>
-  <data name="Tooltip_NameOverride" xml:space="preserve">
-    <value>Введите предпочтительное название или используйте зеленые стрелки справа для выбора имени из AniDB.</value>
-  </data>
-  <data name="Tooltip_NameOverride2" xml:space="preserve">
-    <value>Выбрать название из списка названий AniDB.</value>
   </data>
   <data name="AdminMessageTitle" xml:space="preserve">
     <value>Сообщение от администрации</value>
@@ -1948,9 +1924,6 @@
   </data>
   <data name="Select_Season" xml:space="preserve">
     <value>Сезон</value>
-  </data>
-  <data name="Select_DefaultLanguage" xml:space="preserve">
-    <value>Выберите язык по умолчанию</value>
   </data>
   <data name="Update_Update" xml:space="preserve">
     <value>Доступно обновление JMM Desktop!</value>
@@ -2768,9 +2741,6 @@
   <data name="Unrecognized_CRC32" xml:space="preserve">
     <value>CRC32</value>
   </data>
-  <data name="Unrecognized_Rehash" xml:space="preserve">
-    <value>Перехешировать все</value>
-  </data>
   <data name="Unrecognized_Logs" xml:space="preserve">
     <value>Журналы</value>
   </data>
@@ -3416,12 +3386,6 @@
   <data name="DuplicateFiles_DeleteEntry" xml:space="preserve">
     <value>Вы уверены, что вы хотите удалить эту запись?</value>
   </data>
-  <data name="Unrecognized_AniDBQueue" xml:space="preserve">
-    <value>Файлы в очереди перехеширования AniDB</value>
-  </data>
-  <data name="Unrecognized_AniDBScan" xml:space="preserve">
-    <value>Файлы в очереди для проверки AniDB</value>
-  </data>
   <data name="Unrecognized_ConfirmDelete" xml:space="preserve">
     <value>Вы уверены, что вы хотите удалить этот файл: {0}</value>
   </data>
@@ -3865,9 +3829,6 @@
   </data>
   <data name="Downloads_Searching" xml:space="preserve">
     <value>Поиск...</value>
-  </data>
-  <data name="Downloads_Results" xml:space="preserve">
-    <value>Результаты {0}</value>
   </data>
   <data name="Downloads_Download" xml:space="preserve">
     <value>Скачать</value>
@@ -4339,5 +4300,47 @@
   </data>
   <data name="Language_Info" xml:space="preserve">
     <value>Чтобы изменить язык JMM Desktop необходимо перезапустить, нажмите кнопку ОК для автоматическиого перезапуска или Отмена, чтобы перезапустить вручную!</value>
+  </data>
+  <data name="Unrecognized_Rehash" xml:space="preserve">
+    <value>Переделывать все</value>
+  </data>
+  <data name="Unrecognized_AniDBQueue" xml:space="preserve">
+    <value>файлы в очереди перепев AniDB</value>
+  </data>
+  <data name="Unrecognized_AniDBScan" xml:space="preserve">
+    <value>файлы в очереди для проверки AniDB</value>
+  </data>
+  <data name="Downloads_Results" xml:space="preserve">
+    <value>Результаты {0}</value>
+  </data>
+  <data name="UpdateAniDB_QueueCount" xml:space="preserve">
+    <value>{0} файлов будут помещаться в очередь для обработки</value>
+  </data>
+  <data name="UpdateAniDB_QueueActual" xml:space="preserve">
+    <value>{0} файлов в очереди для обработки</value>
+  </data>
+  <data name="UpdateAniDB_UpdateAniDB" xml:space="preserve">
+    <value>Обновление локальных метаданных AniDB</value>
+  </data>
+  <data name="SelectGroup" xml:space="preserve">
+    <value>Тип группы выберите</value>
+  </data>
+  <data name="RescanAll" xml:space="preserve">
+    <value>Сканирование всех</value>
+  </data>
+  <data name="DefaultSeries_Select" xml:space="preserve">
+    <value>Выберите сериал по умолчанию</value>
+  </data>
+  <data name="DefaultSeries_Info" xml:space="preserve">
+    <value>Если для группы установлен по умолчанию серии, только что серии изображений будет отображаться вместо случайно выбора изображений из различных серий в рамках группы.</value>
+  </data>
+  <data name="Tooltip_NameOverride" xml:space="preserve">
+    <value>Можно вручную ввести предпочтительное имя или использовать зеленые стрелки вправо для выбора имени из AniDB</value>
+  </data>
+  <data name="Tooltip_NameOverride2" xml:space="preserve">
+    <value>Выберите имя из списка доступных имен AniDB</value>
+  </data>
+  <data name="TvDB_DefaultLanguage" xml:space="preserve">
+    <value>Выберите язык вы хотите эпизод названия и описания для загрузки в с TvDB. Пожалуйста, обратите внимание, что если эпизод название или описание не доступна на языке, который вы выбрали, будут загружены на английском языке по умолчанию.</value>
   </data>
 </root>

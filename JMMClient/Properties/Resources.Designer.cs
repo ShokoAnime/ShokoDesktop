@@ -2761,29 +2761,20 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select the default series for.
+        ///   Looks up a localized string similar to If a default series is selected for a group, only that series images will be displayed instead of randomly selecting images from the different series within the group..
         /// </summary>
-        public static string DefSeries1 {
+        public static string DefaultSeries_Info {
             get {
-                return ResourceManager.GetString("DefSeries1", resourceCulture);
+                return ResourceManager.GetString("DefaultSeries_Info", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Selecting a default series means that all images that are dsiplayed for a group will use that.
+        ///   Looks up a localized string similar to Select Default Series.
         /// </summary>
-        public static string DefSeries2 {
+        public static string DefaultSeries_Select {
             get {
-                return ResourceManager.GetString("DefSeries2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to default series instead of a random series within the group.
-        /// </summary>
-        public static string DefSeries3 {
-            get {
-                return ResourceManager.GetString("DefSeries3", resourceCulture);
+                return ResourceManager.GetString("DefaultSeries_Select", resourceCulture);
             }
         }
         
@@ -7999,7 +7990,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Re-scan All.
+        ///   Looks up a localized string similar to Rescan All.
         /// </summary>
         public static string RescanAll {
             get {
@@ -8323,15 +8314,6 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select the default language.
-        /// </summary>
-        public static string Select_DefaultLanguage {
-            get {
-                return ResourceManager.GetString("Select_DefaultLanguage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Select Default Series.
         /// </summary>
         public static string Select_DefaultSeries {
@@ -8503,7 +8485,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select a Group.
+        ///   Looks up a localized string similar to Select Group Type.
         /// </summary>
         public static string SelectGroup {
             get {
@@ -8904,15 +8886,6 @@ namespace JMMClient.Properties {
         public static string ServerPath {
             get {
                 return ResourceManager.GetString("ServerPath", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Add Default Series.
-        /// </summary>
-        public static string SetDefaultSeries {
-            get {
-                return ResourceManager.GetString("SetDefaultSeries", resourceCulture);
             }
         }
         
@@ -10416,7 +10389,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can manually type the preferred name or use the green arrows to the right to select a name from AniDB..
+        ///   Looks up a localized string similar to You can manually type the preferred name or use the green arrows to the right to select a name from AniDB.
         /// </summary>
         public static string Tooltip_NameOverride {
             get {
@@ -10425,7 +10398,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select a name from a list of AniDB names..
+        ///   Looks up a localized string similar to Select a name from the list of available AniDB names.
         /// </summary>
         public static string Tooltip_NameOverride2 {
             get {
@@ -11154,6 +11127,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select the language you&apos;d like episode titles and descriptions to be downloaded in from The TvDB. Please note that if an episode title or description is not available in the language you&apos;ve selected, the default English version will be downloaded..
+        /// </summary>
+        public static string TvDB_DefaultLanguage {
+            get {
+                return ResourceManager.GetString("TvDB_DefaultLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Auto Download Fanart.
         /// </summary>
         public static string TvDB_FanartAutoDownload {
@@ -11226,6 +11208,24 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search on the TvDB or enter TvDB Series ID.
+        /// </summary>
+        public static string TvDB_SearchPrompt {
+            get {
+                return ResourceManager.GetString("TvDB_SearchPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Go To TvDB.
+        /// </summary>
+        public static string TvDB_Show {
+            get {
+                return ResourceManager.GetString("TvDB_Show", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Auto Download Wide Banners.
         /// </summary>
         public static string TvDB_WideBannerAutoDownload {
@@ -11244,25 +11244,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search on the TvDB or enter TvDB Series ID.
-        /// </summary>
-        public static string TvDBSearchPrompt {
-            get {
-                return ResourceManager.GetString("TvDBSearchPrompt", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Go To TvDB.
-        /// </summary>
-        public static string TvDBShow {
-            get {
-                return ResourceManager.GetString("TvDBShow", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Files queued for AniDB rehash.
+        ///   Looks up a localized string similar to files queued for AniDB rehash.
         /// </summary>
         public static string Unrecognized_AniDBQueue {
             get {
@@ -11271,7 +11253,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Files queued for AniDB scan.
+        ///   Looks up a localized string similar to files queued for AniDB scan.
         /// </summary>
         public static string Unrecognized_AniDBScan {
             get {
@@ -11388,7 +11370,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Re-hash All.
+        ///   Looks up a localized string similar to Rehash All.
         /// </summary>
         public static string Unrecognized_Rehash {
             get {
@@ -11559,11 +11541,38 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} Files queued for processing.
+        /// </summary>
+        public static string UpdateAniDB_QueueActual {
+            get {
+                return ResourceManager.GetString("UpdateAniDB_QueueActual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} Files will be queued for processing.
+        /// </summary>
+        public static string UpdateAniDB_QueueCount {
+            get {
+                return ResourceManager.GetString("UpdateAniDB_QueueCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Queue Commands.
         /// </summary>
         public static string UpdateAniDB_Queued {
             get {
                 return ResourceManager.GetString("UpdateAniDB_Queued", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Local AniDB Metadata.
+        /// </summary>
+        public static string UpdateAniDB_UpdateAniDB {
+            get {
+                return ResourceManager.GetString("UpdateAniDB_UpdateAniDB", resourceCulture);
             }
         }
         

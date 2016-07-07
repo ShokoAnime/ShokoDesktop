@@ -66,8 +66,8 @@
             <StackPanel Orientation="Horizontal"  Margin="0,0,0,5" DockPanel.Dock="Top">
                 <Image Height="16" Width="16" Source="/Images/24_folder.png" Margin="0,0,5,0"/>
                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SelectGroup}" Margin="0,0,0,0"/>
-                <RadioButton Name="rbGroupExisting" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Existing}" Margin="5,0,0,0" IsChecked="True" />
-                <RadioButton Name="rbGroupNew" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=New}" Margin="5,0,0,0"/>
+                <RadioButton Name="rbGroupExisting" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Existing}" Margin="5,2,0,0" IsChecked="True" />
+                <RadioButton Name="rbGroupNew" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=New}" Margin="5,2,0,0"/>
             </StackPanel>
 
             <!-- existing group -->
@@ -75,7 +75,7 @@
                             Visibility="{Binding Path=IsExistingGroup, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:MoveSeries}}, Converter={StaticResource BooleanToVisibilityConverter}}">
 
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="/Images/MagnifyingGlass7.png" Width="16" Height="16" Margin="5,0,0,0" ></Image>
+                    <Image Source="/Images/32_search.png" Width="16" Height="16" Margin="5,0,0,0" ></Image>
 
                     <TextBox Name="txtGroupSearch" Width="180" Margin="10,2,2,0" BorderThickness="1" />
                     <Button Name="btnClearSearch" Style="{DynamicResource FlatButtonStyle}">

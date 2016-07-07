@@ -218,7 +218,7 @@
                                     <Button Margin="5,0,0,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center"
                                         Command="{StaticResource RefreshSeriesCommand}" CommandParameter="{Binding}">
                                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                            <Image Height="16" Width="16" Source="/Images/16_refresh.png" Margin="2,0,2,0">
+                                            <Image Height="16" Width="16" Source="/Images/32_refresh.png" Margin="2,0,2,0">
                                                 <Image.ToolTip>
                                                     <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Community_Refresh}"/>
                                                 </Image.ToolTip>

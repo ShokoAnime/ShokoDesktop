@@ -489,9 +489,6 @@
   <data name="Existing" xml:space="preserve">
     <value>Esistenti</value>
   </data>
-  <data name="SelectGroup" xml:space="preserve">
-    <value>Selezionare un gruppo</value>
-  </data>
   <data name="SelectAnime" xml:space="preserve">
     <value>Selezionare Anime da AniDB</value>
   </data>
@@ -1146,9 +1143,6 @@
   <data name="TvDB_Schedule_Updates" xml:space="preserve">
     <value>Info aggiornamento ogni 12 ore</value>
   </data>
-  <data name="RescanAll" xml:space="preserve">
-    <value>Rianalizzare tutti</value>
-  </data>
   <data name="DeleteAll" xml:space="preserve">
     <value>Eliminare tutti i</value>
   </data>
@@ -1167,10 +1161,10 @@
   <data name="CommunityRecommendation" xml:space="preserve">
     <value>Raccomandazione comunitaria</value>
   </data>
-  <data name="TvDBSearchPrompt" xml:space="preserve">
+  <data name="TvDB_SearchPrompt" xml:space="preserve">
     <value>Cerca nella TvDB o immettere TvDB serie ID</value>
   </data>
-  <data name="TvDBShow" xml:space="preserve">
+  <data name="TvDB_Show" xml:space="preserve">
     <value>Vai a TvDB</value>
   </data>
   <data name="UseThis" xml:space="preserve">
@@ -1512,18 +1506,6 @@
   <data name="RemoveDefaultSeries" xml:space="preserve">
     <value>Rimuovere la serie di Default</value>
   </data>
-  <data name="SetDefaultSeries" xml:space="preserve">
-    <value>Aggiungere serie predefinita</value>
-  </data>
-  <data name="DefSeries1" xml:space="preserve">
-    <value>Selezionare la serie di default per</value>
-  </data>
-  <data name="DefSeries2" xml:space="preserve">
-    <value>Selezionando una serie di default significa che tutte le immagini che sono dsiplayed per un gruppo che utilizzerà </value>
-  </data>
-  <data name="DefSeries3" xml:space="preserve">
-    <value>serie di default invece di una serie casuale all'interno del gruppo</value>
-  </data>
   <data name="ChangeLanguage" xml:space="preserve">
     <value>Cambia lingua</value>
   </data>
@@ -1720,12 +1702,6 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   </data>
   <data name="Override" xml:space="preserve">
     <value>Eseguire l'override</value>
-  </data>
-  <data name="Tooltip_NameOverride" xml:space="preserve">
-    <value>Si può digitare il nome preferito o usare le frecce verdi a destra per selezionare un nome da AniDB manualmente.</value>
-  </data>
-  <data name="Tooltip_NameOverride2" xml:space="preserve">
-    <value>Selezionare un nome da un elenco di nomi di AniDB.</value>
   </data>
   <data name="AdminMessageTitle" xml:space="preserve">
     <value>Messaggio di admin</value>
@@ -1945,9 +1921,6 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   </data>
   <data name="Select_Season" xml:space="preserve">
     <value>Stagione</value>
-  </data>
-  <data name="Select_DefaultLanguage" xml:space="preserve">
-    <value>Selezionare la lingua predefinita</value>
   </data>
   <data name="Update_Update" xml:space="preserve">
     <value>JMM Desktop aggiornamento disponibile!</value>
@@ -2765,9 +2738,6 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   <data name="Unrecognized_CRC32" xml:space="preserve">
     <value>CRC32</value>
   </data>
-  <data name="Unrecognized_Rehash" xml:space="preserve">
-    <value>Re-hash tutti</value>
-  </data>
   <data name="Unrecognized_Logs" xml:space="preserve">
     <value>Registri</value>
   </data>
@@ -3416,12 +3386,6 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   <data name="DuplicateFiles_DeleteEntry" xml:space="preserve">
     <value>Sei sicuro di che voler cancellare questa voce?</value>
   </data>
-  <data name="Unrecognized_AniDBQueue" xml:space="preserve">
-    <value>I file in coda per AniDB rimaneggiamento</value>
-  </data>
-  <data name="Unrecognized_AniDBScan" xml:space="preserve">
-    <value>I file in coda per la scansione di AniDB</value>
-  </data>
   <data name="Unrecognized_ConfirmDelete" xml:space="preserve">
     <value>Sei sicuro di voler eliminare questo file: {0}</value>
   </data>
@@ -3865,9 +3829,6 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   </data>
   <data name="Downloads_Searching" xml:space="preserve">
     <value>Ricerca...</value>
-  </data>
-  <data name="Downloads_Results" xml:space="preserve">
-    <value>{0} risultati</value>
   </data>
   <data name="Downloads_Download" xml:space="preserve">
     <value>Scarica</value>
@@ -4339,5 +4300,47 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   </data>
   <data name="Language_Info" xml:space="preserve">
     <value>JMM Desktop è necessario riavviare per cambiare la lingua, fare clic su OK per riavvio automatico o su Annulla per riavviare manualmente.!</value>
+  </data>
+  <data name="Unrecognized_Rehash" xml:space="preserve">
+    <value>Rimaneggiamento tutti</value>
+  </data>
+  <data name="Unrecognized_AniDBQueue" xml:space="preserve">
+    <value>i file in coda per AniDB rimaneggiamento</value>
+  </data>
+  <data name="Unrecognized_AniDBScan" xml:space="preserve">
+    <value>i file in coda per la scansione di AniDB</value>
+  </data>
+  <data name="Downloads_Results" xml:space="preserve">
+    <value>{0} risultati</value>
+  </data>
+  <data name="UpdateAniDB_QueueCount" xml:space="preserve">
+    <value>{0} file verranno accodati per l'elaborazione</value>
+  </data>
+  <data name="UpdateAniDB_QueueActual" xml:space="preserve">
+    <value>{0} file in coda per l'elaborazione</value>
+  </data>
+  <data name="UpdateAniDB_UpdateAniDB" xml:space="preserve">
+    <value>Aggiornare i metadati locali AniDB</value>
+  </data>
+  <data name="SelectGroup" xml:space="preserve">
+    <value>Seleziona gruppo tipo</value>
+  </data>
+  <data name="RescanAll" xml:space="preserve">
+    <value>Rescan tutti</value>
+  </data>
+  <data name="DefaultSeries_Select" xml:space="preserve">
+    <value>Selezionare la serie di Default</value>
+  </data>
+  <data name="DefaultSeries_Info" xml:space="preserve">
+    <value>Se una serie di default è selezionata per un gruppo, solo che immagini di serie verranno visualizzato invece di selezionare in modo casuale immagini da diverse serie all'interno del gruppo.</value>
+  </data>
+  <data name="Tooltip_NameOverride" xml:space="preserve">
+    <value>Manualmente si può digitare il nome preferito o usare le frecce verdi a destra per selezionare un nome da AniDB</value>
+  </data>
+  <data name="Tooltip_NameOverride2" xml:space="preserve">
+    <value>Selezionare un nome dall'elenco dei nomi disponibili AniDB</value>
+  </data>
+  <data name="TvDB_DefaultLanguage" xml:space="preserve">
+    <value>Selezionare la lingua che desideri episodio titoli e descrizioni possono essere scaricate dal The TvDB. Siete pregati di notare che se un episodio titolo o la descrizione non è disponibile nella lingua selezionata, verrà scaricata la versione inglese di default.</value>
   </data>
 </root>

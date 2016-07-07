@@ -49,83 +49,83 @@
         <!-- Different Relation Settings -->
 
         <!-- Same Setting -->
-        <StackPanel Orientation="Horizontal"  Grid.Column="0" Grid.Row="1">
+        <StackPanel Orientation="Horizontal"  Grid.Column="0" Grid.Row="1" Margin="0,5,0,0">
             <TextBlock Text="{Resx Key=RelationSetting_SameSetting, ResxName=JMMClient.Properties.Resources}" VerticalAlignment="Center"/>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" Margin="0,5,0,0">
             <CheckBox Name="chkRelationSettings_SameSetting" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=RelationExcludeSameSetting}" VerticalAlignment="Center"/>
         </StackPanel>
 
         <!-- Alternative Setting -->
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2">
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2" Margin="0,5,0,0">
             <TextBlock Text="{Resx Key=RelationSetting_AltSetting, ResxName=JMMClient.Properties.Resources}" VerticalAlignment="Center"/>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2">
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Margin="0,5,0,0">
             <CheckBox Name="chkRelationSettings_AltSetting" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=RelationExcludeAltSetting}" VerticalAlignment="Center"/>
         </StackPanel>
 
         <!-- Alternative Version -->
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="3">
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="3" Margin="0,5,0,0">
             <TextBlock Text="{Resx Key=RelationSetting_AltVersion, ResxName=JMMClient.Properties.Resources}" VerticalAlignment="Center"/>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3">
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3" Margin="0,5,0,0">
             <CheckBox Name="chkRelationSettings_AltVersion" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=RelationExcludeAltVersion}" VerticalAlignment="Center"/>
         </StackPanel>
 
         <!-- Parent Story -->
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="4">
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="4" Margin="0,5,0,0">
             <TextBlock Text="{Resx Key=RelationSetting_ParentStory, ResxName=JMMClient.Properties.Resources}" VerticalAlignment="Center"/>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="4">
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="4" Margin="0,5,0,0">
             <CheckBox Name="chkRelationSettings_ParentStory" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=RelationExcludeParentStory}" VerticalAlignment="Center"/>
         </StackPanel>
 
         <!-- Side Story -->
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="5">
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="5" Margin="0,5,0,0">
             <TextBlock Text="{Resx Key=RelationSetting_SideStory, ResxName=JMMClient.Properties.Resources}" VerticalAlignment="Center"/>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="5">
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="5" Margin="0,5,0,0">
             <CheckBox Name="chkRelationSettings_SideStory" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=RelationExcludeSideStory}" VerticalAlignment="Center"/>
         </StackPanel>
 
         <!-- Full Story -->
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="6">
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="6" Margin="0,5,0,0">
             <TextBlock Text="{Resx Key=RelationSetting_FullStory, ResxName=JMMClient.Properties.Resources}" VerticalAlignment="Center"/>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="6">
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="6" Margin="0,5,0,0">
             <CheckBox Name="chkRelationSettings_FullStory" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=RelationExcludeFullStory}" VerticalAlignment="Center"/>
         </StackPanel>
 
         <!-- Summary -->
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="7">
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="7" Margin="0,5,0,0">
             <TextBlock Text="{Resx Key=RelationSetting_Summary, ResxName=JMMClient.Properties.Resources}" VerticalAlignment="Center"/>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="7">
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="7" Margin="0,5,0,0">
             <CheckBox Name="chkRelationSettings_Summary" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=RelationExcludeSummary}" VerticalAlignment="Center"/>
         </StackPanel>
 
         <!-- Character -->
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="8">
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="8" Margin="0,5,0,0">
             <TextBlock Text="{Resx Key=RelationSetting_Character, ResxName=JMMClient.Properties.Resources}" VerticalAlignment="Center"/>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="8">
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="8" Margin="0,5,0,0">
             <CheckBox Name="chkRelationSettings_Character" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=RelationExcludeCharacter}" VerticalAlignment="Center"/>
         </StackPanel>
 
         <!-- Other -->
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="9">
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="9" Margin="0,5,0,0">
             <TextBlock Text="{Resx Key=RelationSetting_Other, ResxName=JMMClient.Properties.Resources}" VerticalAlignment="Center"/>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="9">
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="9" Margin="0,5,0,0">
             <CheckBox Name="chkRelationSettings_Other" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=RelationExcludeOther}" VerticalAlignment="Center"/>
         </StackPanel>
 

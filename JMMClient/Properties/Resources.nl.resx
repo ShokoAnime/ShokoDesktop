@@ -483,9 +483,6 @@
   <data name="Existing" xml:space="preserve">
     <value>Bestaande</value>
   </data>
-  <data name="SelectGroup" xml:space="preserve">
-    <value>Selecteer een groep</value>
-  </data>
   <data name="SelectAnime" xml:space="preserve">
     <value>Anime selecteren AniDB</value>
   </data>
@@ -1140,9 +1137,6 @@
   <data name="TvDB_Schedule_Updates" xml:space="preserve">
     <value>Update Info om de 12 uur</value>
   </data>
-  <data name="RescanAll" xml:space="preserve">
-    <value>Opnieuw scannen alle</value>
-  </data>
   <data name="DeleteAll" xml:space="preserve">
     <value>Verwijder alle</value>
   </data>
@@ -1161,10 +1155,10 @@
   <data name="CommunityRecommendation" xml:space="preserve">
     <value>Aanbeveling van de Gemeenschap</value>
   </data>
-  <data name="TvDBSearchPrompt" xml:space="preserve">
+  <data name="TvDB_SearchPrompt" xml:space="preserve">
     <value>Zoeken op de TvDB of TvDB serie ID</value>
   </data>
-  <data name="TvDBShow" xml:space="preserve">
+  <data name="TvDB_Show" xml:space="preserve">
     <value>Ga naar TvDB</value>
   </data>
   <data name="UseThis" xml:space="preserve">
@@ -1506,18 +1500,6 @@
   <data name="RemoveDefaultSeries" xml:space="preserve">
     <value>Verwijderen van de standaard serie</value>
   </data>
-  <data name="SetDefaultSeries" xml:space="preserve">
-    <value>Toevoegen van de standaard serie</value>
-  </data>
-  <data name="DefSeries1" xml:space="preserve">
-    <value>Selecteer de reeks van de standaard voor</value>
-  </data>
-  <data name="DefSeries2" xml:space="preserve">
-    <value>Selecteren van een reeks standaard betekent dat alle afbeeldingen die dsiplayed voor een groep zijn die zal gebruiken </value>
-  </data>
-  <data name="DefSeries3" xml:space="preserve">
-    <value>standaard serie in plaats van een willekeurige reeks binnen de groep</value>
-  </data>
   <data name="ChangeLanguage" xml:space="preserve">
     <value>Taal wijzigen</value>
   </data>
@@ -1714,12 +1696,6 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   </data>
   <data name="Override" xml:space="preserve">
     <value>Overschrijven</value>
-  </data>
-  <data name="Tooltip_NameOverride" xml:space="preserve">
-    <value>U kunt handmatig typt u de gewenste naam of gebruik de groene pijlen naar rechts om te selecteren een naam van AniDB.</value>
-  </data>
-  <data name="Tooltip_NameOverride2" xml:space="preserve">
-    <value>Selecteer een naam uit een lijst met AniDB namen.</value>
   </data>
   <data name="AdminMessageTitle" xml:space="preserve">
     <value>Admin bericht</value>
@@ -1942,9 +1918,6 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   </data>
   <data name="Select_Season" xml:space="preserve">
     <value>Seizoen</value>
-  </data>
-  <data name="Select_DefaultLanguage" xml:space="preserve">
-    <value>Selecteer de standaardtaal</value>
   </data>
   <data name="Update_Update" xml:space="preserve">
     <value>JMM Desktop Update beschikbaar!</value>
@@ -2762,9 +2735,6 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   <data name="Unrecognized_CRC32" xml:space="preserve">
     <value>CRC32</value>
   </data>
-  <data name="Unrecognized_Rehash" xml:space="preserve">
-    <value>Opnieuw hash alle</value>
-  </data>
   <data name="Unrecognized_Logs" xml:space="preserve">
     <value>Logboeken</value>
   </data>
@@ -3416,12 +3386,6 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   <data name="DuplicateFiles_DeleteEntry" xml:space="preserve">
     <value>Weet u zeker dat u wilt verwijderen van dit bericht?</value>
   </data>
-  <data name="Unrecognized_AniDBQueue" xml:space="preserve">
-    <value>Bestanden in de wachtrij voor AniDB gewarmd kost</value>
-  </data>
-  <data name="Unrecognized_AniDBScan" xml:space="preserve">
-    <value>Bestanden in de wachtrij voor AniDB scan</value>
-  </data>
   <data name="Unrecognized_ConfirmDelete" xml:space="preserve">
     <value>Weet u zeker dat u wilt verwijderen van dit bestand: {0}</value>
   </data>
@@ -3865,9 +3829,6 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   </data>
   <data name="Downloads_Searching" xml:space="preserve">
     <value>Bezig met zoeken...</value>
-  </data>
-  <data name="Downloads_Results" xml:space="preserve">
-    <value>{0} resultaten</value>
   </data>
   <data name="Downloads_Download" xml:space="preserve">
     <value>Downloaden</value>
@@ -4339,5 +4300,47 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   </data>
   <data name="Language_Info" xml:space="preserve">
     <value>JMM Desktop behoeften te starten als u wilt wijzigen van de taal, klik op OK wanneer automatisch herstarten of annuleren om af te handmatig opnieuw starten.!</value>
+  </data>
+  <data name="Unrecognized_Rehash" xml:space="preserve">
+    <value>Alle rehash</value>
+  </data>
+  <data name="Unrecognized_AniDBQueue" xml:space="preserve">
+    <value>bestanden in de wachtrij voor AniDB gewarmd kost</value>
+  </data>
+  <data name="Unrecognized_AniDBScan" xml:space="preserve">
+    <value>bestanden in de wachtrij voor AniDB scan</value>
+  </data>
+  <data name="Downloads_Results" xml:space="preserve">
+    <value>{0} resultaten</value>
+  </data>
+  <data name="UpdateAniDB_QueueCount" xml:space="preserve">
+    <value>{0} bestanden zullen worden in de wachtrij staat voor verwerking</value>
+  </data>
+  <data name="UpdateAniDB_QueueActual" xml:space="preserve">
+    <value>{0} bestanden in de wachtrij voor verwerking</value>
+  </data>
+  <data name="UpdateAniDB_UpdateAniDB" xml:space="preserve">
+    <value>Bijwerken van de lokale AniDB Metadata</value>
+  </data>
+  <data name="SelectGroup" xml:space="preserve">
+    <value>Type Selecteer groep</value>
+  </data>
+  <data name="RescanAll" xml:space="preserve">
+    <value>Scannen van alle</value>
+  </data>
+  <data name="DefaultSeries_Select" xml:space="preserve">
+    <value>Selecteer standaard serie</value>
+  </data>
+  <data name="DefaultSeries_Info" xml:space="preserve">
+    <value>Als standaardnummerreeks voor een groep is geselecteerd, wordt alleen die serie afbeeldingen getoond in plaats van willekeurig afbeeldingen in de verschillende series binnen de groep te selecteren.</value>
+  </data>
+  <data name="Tooltip_NameOverride" xml:space="preserve">
+    <value>U kunt handmatig typt u de gewenste naam of gebruik de groene pijlen naar rechts om te selecteren een naam van AniDB</value>
+  </data>
+  <data name="Tooltip_NameOverride2" xml:space="preserve">
+    <value>Selecteer een naam uit de lijst met beschikbare AniDB-namen</value>
+  </data>
+  <data name="TvDB_DefaultLanguage" xml:space="preserve">
+    <value>Selecteer de taal die u wenst aflevering titels en beschrijvingen van de TvDB in worden gedownload. Houd er rekening mee dat als een aflevering titel of beschrijving niet beschikbaar in de taal die u hebt geselecteerd is, de Engelse versie van de standaard zal worden gedownload.</value>
   </data>
 </root>

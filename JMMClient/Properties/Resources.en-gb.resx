@@ -483,9 +483,6 @@
   <data name="Existing" xml:space="preserve">
     <value>Existing</value>
   </data>
-  <data name="SelectGroup" xml:space="preserve">
-    <value>Select a Group</value>
-  </data>
   <data name="SelectAnime" xml:space="preserve">
     <value>Select Anime from AniDB</value>
   </data>
@@ -1149,9 +1146,6 @@
   <data name="TvDB_Schedule_Updates" xml:space="preserve">
     <value>Update Info every 12 hours</value>
   </data>
-  <data name="RescanAll" xml:space="preserve">
-    <value>Re-scan All</value>
-  </data>
   <data name="DeleteAll" xml:space="preserve">
     <value>Delete All</value>
   </data>
@@ -1170,10 +1164,10 @@
   <data name="CommunityRecommendation" xml:space="preserve">
     <value>Community Recommendation</value>
   </data>
-  <data name="TvDBSearchPrompt" xml:space="preserve">
+  <data name="TvDB_SearchPrompt" xml:space="preserve">
     <value>Search on the TvDB or enter TvDB Series ID</value>
   </data>
-  <data name="TvDBShow" xml:space="preserve">
+  <data name="TvDB_Show" xml:space="preserve">
     <value>Go To TvDB</value>
   </data>
   <data name="UseThis" xml:space="preserve">
@@ -1520,18 +1514,6 @@
   </data>
   <data name="RemoveDefaultSeries" xml:space="preserve">
     <value>Remove Default Series</value>
-  </data>
-  <data name="SetDefaultSeries" xml:space="preserve">
-    <value>Add Default Series</value>
-  </data>
-  <data name="DefSeries1" xml:space="preserve">
-    <value>Select the default series for</value>
-  </data>
-  <data name="DefSeries2" xml:space="preserve">
-    <value>Selecting a default series means that all images that are dsiplayed for a group will use that</value>
-  </data>
-  <data name="DefSeries3" xml:space="preserve">
-    <value>default series instead of a random series within the group</value>
   </data>
   <data name="ChangeLanguage" xml:space="preserve">
     <value>Change Language</value>
@@ -2019,9 +2001,6 @@
   <data name="Unrecognized_CRC32" xml:space="preserve">
     <value>CRC32</value>
   </data>
-  <data name="Unrecognized_Rehash" xml:space="preserve">
-    <value>Re-hash All</value>
-  </data>
   <data name="Unrecognized_Logs" xml:space="preserve">
     <value>Logs</value>
   </data>
@@ -2357,12 +2336,6 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="Override" xml:space="preserve">
     <value>Override</value>
   </data>
-  <data name="Tooltip_NameOverride" xml:space="preserve">
-    <value>You can manually type the preferred name or use the green arrows to the right to select a name from AniDB.</value>
-  </data>
-  <data name="Tooltip_NameOverride2" xml:space="preserve">
-    <value>Select a name from a list of AniDB names.</value>
-  </data>
   <data name="AdminMessageTitle" xml:space="preserve">
     <value>Admin Message</value>
   </data>
@@ -2584,9 +2557,6 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   </data>
   <data name="Select_Season" xml:space="preserve">
     <value>Season</value>
-  </data>
-  <data name="Select_DefaultLanguage" xml:space="preserve">
-    <value>Select the default language</value>
   </data>
   <data name="Update_Update" xml:space="preserve">
     <value>JMM Desktop Update Available!</value>
@@ -3434,12 +3404,6 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="DuplicateFiles_DeleteEntry" xml:space="preserve">
     <value>Are you sure you want to delete this entry?</value>
   </data>
-  <data name="Unrecognized_AniDBQueue" xml:space="preserve">
-    <value>Files queued for AniDB rehash</value>
-  </data>
-  <data name="Unrecognized_AniDBScan" xml:space="preserve">
-    <value>Files queued for AniDB scan</value>
-  </data>
   <data name="Unrecognized_ConfirmDelete" xml:space="preserve">
     <value>Are you sure you want to delete this file: {0}</value>
   </data>
@@ -3883,9 +3847,6 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   </data>
   <data name="Downloads_Searching" xml:space="preserve">
     <value>Searching...</value>
-  </data>
-  <data name="Downloads_Results" xml:space="preserve">
-    <value>{0} Results</value>
   </data>
   <data name="Downloads_Download" xml:space="preserve">
     <value>Download</value>
@@ -4339,5 +4300,47 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   </data>
   <data name="Language_Info" xml:space="preserve">
     <value>JMM Desktop needs to restart to change the language, click OK to auto restart or Cancel to manually restart.!</value>
+  </data>
+  <data name="Unrecognized_Rehash" xml:space="preserve">
+    <value>Rehash All</value>
+  </data>
+  <data name="Unrecognized_AniDBQueue" xml:space="preserve">
+    <value>files queued for AniDB rehash</value>
+  </data>
+  <data name="Unrecognized_AniDBScan" xml:space="preserve">
+    <value>files queued for AniDB scan</value>
+  </data>
+  <data name="Downloads_Results" xml:space="preserve">
+    <value>{0} Results</value>
+  </data>
+  <data name="UpdateAniDB_QueueCount" xml:space="preserve">
+    <value>{0} Files will be queued for processing</value>
+  </data>
+  <data name="UpdateAniDB_QueueActual" xml:space="preserve">
+    <value>{0} Files queued for processing</value>
+  </data>
+  <data name="UpdateAniDB_UpdateAniDB" xml:space="preserve">
+    <value>Update Local AniDB Metadata</value>
+  </data>
+  <data name="SelectGroup" xml:space="preserve">
+    <value>Select Group Type</value>
+  </data>
+  <data name="RescanAll" xml:space="preserve">
+    <value>Rescan All</value>
+  </data>
+  <data name="DefaultSeries_Select" xml:space="preserve">
+    <value>Select Default Series</value>
+  </data>
+  <data name="DefaultSeries_Info" xml:space="preserve">
+    <value>If a default series is selected for a group, only that series images will be displayed instead of randomly selecting images from the different series within the group.</value>
+  </data>
+  <data name="Tooltip_NameOverride" xml:space="preserve">
+    <value>You can manually type the preferred name or use the green arrows to the right to select a name from AniDB</value>
+  </data>
+  <data name="Tooltip_NameOverride2" xml:space="preserve">
+    <value>Select a name from the list of available AniDB names</value>
+  </data>
+  <data name="TvDB_DefaultLanguage" xml:space="preserve">
+    <value>Select the language you'd like episode titles and descriptions to be downloaded in from The TvDB. Please note that if an episode title or description is not available in the language you've selected, the default English version will be downloaded.</value>
   </data>
 </root>

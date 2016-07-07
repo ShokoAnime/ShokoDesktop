@@ -519,7 +519,7 @@
                             <!-- vote up -->
                             <Button Margin="10,0,0,0" VerticalAlignment="Center" Command="{StaticResource VoteUpCommand}" CommandParameter="{Binding}" Visibility="Collapsed">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                    <Image Height="24" Width="24" Source="/Images/vote_up2.png" Margin="2,0,2,0" VerticalAlignment="Center">
+                                    <Image Height="24" Width="24" Source="/Images/24_vote_up.png" Margin="2,0,2,0" VerticalAlignment="Center">
                                         <Image.ToolTip>
                                             <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_VoteUp}"/>
                                         </Image.ToolTip>
@@ -530,7 +530,7 @@
                             <!-- vote down -->
                             <Button Margin="10,0,0,0" VerticalAlignment="Center" Command="{StaticResource VoteDownCommand}" CommandParameter="{Binding}" Visibility="Collapsed">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center"  >
-                                    <Image Height="24" Width="24" Source="/Images/vote_down2.png" Margin="2,0,2,0" VerticalAlignment="Center">
+                                    <Image Height="24" Width="24" Source="/Images/24_vote_down.png" Margin="2,0,2,0" VerticalAlignment="Center">
                                         <Image.ToolTip>
                                             <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_VoteDown}"/>
                                         </Image.ToolTip>

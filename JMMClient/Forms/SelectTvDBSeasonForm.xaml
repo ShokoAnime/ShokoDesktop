@@ -117,7 +117,7 @@
 
                     <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=TvDBSeriesName, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SelectTvDBSeasonForm}}}" Margin="15,0,0,0"/>
 
-                    <usercontrols:HyperLinkStandard DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=TvDBShow}" 
+                    <usercontrols:HyperLinkStandard DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=TvDB_Show}" 
                      VerticalAlignment="Center" URL="{Binding Path=TvDBURL, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SelectTvDBSeasonForm}}}" Margin="10,0,0,0"/>
 
                 </StackPanel>
