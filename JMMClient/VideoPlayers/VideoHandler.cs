@@ -7,6 +7,7 @@ using System.Net;
 using JMMClient.JMMServerBinary;
 using JMMClient.Utilities;
 using JMMClient.ViewModel;
+using Microsoft.Win32;
 using NLog;
 using Stream = JMMClient.JMMServerBinary.Stream;
 
@@ -33,6 +34,7 @@ namespace JMMClient.VideoPlayers
 
         public VideoHandler()
         {
+            AddTempPathToSubtilePaths();
             recentlyPlayedFiles = new Dictionary<int, VideoDetailedVM>();
             previousFilePositions.Clear();
 
@@ -59,27 +61,153 @@ namespace JMMClient.VideoPlayers
             List<string> subs=new List<string>();
             //Only Support one part for now
            
-            Part p = m.Parts[0];
-            if (p.Streams != null)
-            {
-                foreach (Stream s in p.Streams.Where(a => a.File != null && a.StreamType == "3"))
+                Part p = m.Parts[0];
+                string fullname =p.Key.Replace("\\", "/").Replace("//", "/").Replace(":",string.Empty);            
+                string fname = Path.GetFileNameWithoutExtension(fullname);
+                if (p.Streams != null)
                 {
-                    string filename = Path.GetFileName(s.File);
-                    string filePath = Path.Combine(Path.GetTempPath(), filename);
-                    try
+                    foreach (Stream s in p.Streams.Where(a => a.File != null && a.StreamType == "3"))
                     {
-                        string subtitle = wc.DownloadString(s.Key);
-                        File.WriteAllText(filePath, subtitle);
-                        subs.Add(filePath);
-                    }
-                    catch (Exception e)
-                    {
-                        logger.Warn("Cannot download subtitle: "+e.ToString());
+                        string extension = Path.GetExtension(s.File);
+                        string filePath = Path.Combine(Path.GetTempPath(), Path.GetDirectoryName(fullname));
+                        try
+                        {
+                            string subtitle = wc.DownloadString(s.Key);
+                         /*   try
+                            {
+                                Directory.CreateDirectory(filePath);
+                                string fullpath = Path.Combine(filePath, fname + extension);
+                                File.WriteAllText(filePath, subtitle);
+                            }
+                            catch (Exception)
+                            {
+                            }*/
+                            try
+                            {
+                                filePath = Path.Combine(Path.GetTempPath(), fname + extension);
+                                File.WriteAllText(filePath, subtitle);
+                                subs.Add(filePath);
+                            }
+                            catch (Exception)
+                            {
+                            }
+
+                        }
+                        catch (Exception e)
+                        {
+                            logger.Warn("Cannot download subtitle: " + e.ToString());
+                        }
                     }
                 }
-            }
             return new Tuple<string, List<string>>(p.Key,subs);
         }
+
+
+        private void AddTempPathToSubtilePaths()
+        {
+            string path = Path.GetTempPath();
+            //FFDSHow
+            try
+            {
+                RegistryKey k = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\GNU\ffdshow",true);
+                if (k != null)
+                {
+                    string org = (string)k.GetValue("subSearchDir", null);
+                    if (string.IsNullOrEmpty(org))
+                        org = path;
+                    else if (!org.Contains(path))
+                        org += ";" + path;
+                    k.SetValue("subSearchDir", org);
+                }
+                k = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\GNU\ffdshow64",true);
+                if (k != null)
+                {
+                    string org = (string)k.GetValue("subSearchDir", null);
+                    if (string.IsNullOrEmpty(org))
+                        org = path;
+                    else if(!org.Contains(path))
+                        org += ";" + path;
+                    k.SetValue("subSearchDir", org);
+                }
+                k = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Gabest\VSFilter\DefTextPathes",true);
+                if (k != null)
+                {
+                    for (int x = 0; x < 10; x++)
+                    {
+                        string val = (string)k.GetValue("Path" + x, null);
+                        if (val != null && val == path)
+                            break;
+                        if (val == null)
+                        {
+                            k.SetValue("Path" + x, path);
+                            break;
+                        }
+                    }
+                }
+                k = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\MPC-HC\MPC-HC\Settings",true);
+                if (k != null)
+                {
+                    string org = (string)k.GetValue("SubtitlePaths", null);
+                    if (string.IsNullOrEmpty(org))
+                        org = path;
+                    else if (!org.Contains(path))
+                        org += ";" + path;
+                    k.SetValue("SubtitlePaths", org);
+                }
+                k = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Daum\PotPlayerMini\CaptionFolderList",true);
+                if (k != null)
+                {
+                    for (int x = 0; x < 10; x++)
+                    {
+                        string val = (string)k.GetValue(x.ToString(), null);
+                        if (val != null && val == path)
+                            break;
+                        if (val == null)
+                        {
+                            k.SetValue(x.ToString(), path);
+                            break;
+                        }
+                    }
+                }
+                string vlcrcpath = Path.Combine(Environment.GetFolderPath((Environment.SpecialFolder.ApplicationData)), "vlc", "vlcrc");
+                try
+                {
+                    if (File.Exists(vlcrcpath))
+                    {
+                        string[] lines = File.ReadAllLines(vlcrcpath);
+                        for (int x = 0; x < lines.Length; x++)
+                        {
+                            string s = lines[x];
+                            if (s.StartsWith("#sub-autodetect-path=") || s.StartsWith("sub-autodetect-path="))
+                            {
+                                if (!s.Contains(path))
+                                {
+                                    s += ", " + path;
+                                    if (s.StartsWith("#"))
+                                        s = s.Substring(1);
+                                    lines[x] = s;
+                                    File.WriteAllLines(vlcrcpath, lines);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+            catch (Exception e)
+            {
+                int a = 1;
+            }
+            
+
+        }
+
+
 
         private IVideoPlayer ResolvePlayer()
         {
