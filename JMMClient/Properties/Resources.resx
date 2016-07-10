@@ -1574,6 +1574,9 @@
   <data name="Video_Hi10P" xml:space="preserve">
     <value>10bit</value>
   </data>
+  <data name="Video_Hi08P" xml:space="preserve">
+      <value>8bit</value>
+    </data>
   <data name="Tooltip_TraktAnimeOnly" xml:space="preserve">
     <value>Only show activity is related to anime (ie exclude other tv series)</value>
   </data>
