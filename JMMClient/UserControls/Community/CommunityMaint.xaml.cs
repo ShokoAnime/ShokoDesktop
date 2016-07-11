@@ -398,7 +398,7 @@ namespace JMMClient.UserControls
             HasUserTraktLink = UserTraktLinks.Count > 0;
         }
 
-        private string hasTraktLinkImage = @"/Images/32_clock.png";
+        private string hasTraktLinkImage = @"/Images/16_hourglass.png";
         public string HasTraktLinkImage
         {
             get { return hasTraktLinkImage; }
@@ -441,7 +441,7 @@ namespace JMMClient.UserControls
                 HasTraktCommLinkImage = @"/Images/16_exclamation.png";
         }
 
-        private string hasTraktCommLinkImage = @"/Images/32_clock.png";
+        private string hasTraktCommLinkImage = @"/Images/16_hourglass.png";
         public string HasTraktCommLinkImage
         {
             get { return hasTraktCommLinkImage; }
@@ -486,7 +486,7 @@ namespace JMMClient.UserControls
                 UserTraktLinkMatchImage = @"/Images/16_exclamation.png";
         }
 
-        private string userTraktLinkMatchImage = @"/Images/32_clock.png";
+        private string userTraktLinkMatchImage = @"/Images/16_hourglass.png";
         public string UserTraktLinkMatchImage
         {
             get { return userTraktLinkMatchImage; }
@@ -550,7 +550,7 @@ namespace JMMClient.UserControls
             }
         }
 
-        private string isTraktLinkValidImage = @"/Images/32_clock.png";
+        private string isTraktLinkValidImage = @"/Images/16_hourglass.png";
         public string IsTraktLinkValidImage
         {
             get { return isTraktLinkValidImage; }

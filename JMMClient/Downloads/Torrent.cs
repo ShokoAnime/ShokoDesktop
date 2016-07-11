@@ -254,7 +254,7 @@ namespace JMMClient.Downloads
                 int paused = Status & StatusPaused;
                 if (paused > 0) return @"/Images/Torrents/tor_paused.png";
 
-                return @"/Images/16_key.png";
+                return @"/Images/32_key.png";
             }
         }
 

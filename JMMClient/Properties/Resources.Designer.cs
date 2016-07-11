@@ -1069,28 +1069,6 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to using System.Reflection;
-        ///using System.Resources;
-        ///using System.Runtime.CompilerServices;
-        ///using System.Runtime.InteropServices;
-        ///using System.Windows;
-        ///using System.Security;
-        ///
-        ///// General Information about an assembly is controlled through the following 
-        ///// set of attributes. Change these attribute values to modify the information
-        ///// associated with an assembly.
-        ///[assembly: AssemblyTitle(&quot;JMMDesktop&quot;)]
-        ///[assembly: AssemblyDescription(&quot;&quot;)]
-        ///[assembly: AssemblyConfiguration(&quot;&quot;)]
-        ///[assembly: AssemblyCompan [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string AssemblyInfo {
-            get {
-                return ResourceManager.GetString("AssemblyInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Link a file with an episode.
         /// </summary>
         public static string AssociateFile {
@@ -4934,7 +4912,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This utility will show you all the anime you have chosen to ignore from the recommendations. Deleting these records means they may show in recommendations again..
+        ///   Looks up a localized string similar to This utility will show all anime series you have marked as ignored from the recommendations section. If you delete a series from this list, it&apos;s possible for it to show up in the recommendations section again..
         /// </summary>
         public static string IgnoredAnime_Note {
             get {
@@ -5204,7 +5182,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Duplicate files are where you have two or more files which are exactly the same, except they are in different folders or are named differently. JMM only allows one file with the same hash in the collection..
+        ///   Looks up a localized string similar to This utility will show all instances where there are two or more files with the same hash. JMM only allows you to have one file with the same hash in your collection..
         /// </summary>
         public static string INFO_DuplicateFiles {
             get {
@@ -5213,7 +5191,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Multiple files are where you have two or more files for the same episode. This utility will let you examine all these occurrences, and decide which ones you want to keep.
+        ///   Looks up a localized string similar to This utility will show all instances where you have multiple files for the same episode. You will be able to view each instance and decide which ones you&apos;d like to keep..
         /// </summary>
         public static string INFO_MultipleFiles {
             get {
@@ -5551,6 +5529,15 @@ namespace JMMClient.Properties {
         public static string Link_Download {
             get {
                 return ResourceManager.GetString("Link_Download", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/server/#streaming.
+        /// </summary>
+        public static string Link_EnableStreaming {
+            get {
+                return ResourceManager.GetString("Link_EnableStreaming", resourceCulture);
             }
         }
         
@@ -6014,7 +6001,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Airing State:.
+        ///   Looks up a localized string similar to Airing State.
         /// </summary>
         public static string MissingEpisodes_AiringState {
             get {
@@ -6113,7 +6100,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This utility will show you a summary of all your missing episodes..
+        ///   Looks up a localized string similar to This utility will show you a summary of all episodes you are missing from series in your collection. This utility runs in the background so you do not need to wait for the results. It may also take some time depending on how many missing episodes there are so please be patient..
         /// </summary>
         public static string MissingEpisodes_Note {
             get {
@@ -6140,7 +6127,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to View Missing File.
+        ///   Looks up a localized string similar to View Missing Files.
         /// </summary>
         public static string MissingMyList_Missing {
             get {
@@ -6149,7 +6136,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This utility will download your list of files from AniDB, and compare it to the files locally. You will then have the chance to remove those files from AniDB if they don&apos;t exist..
+        ///   Looks up a localized string similar to This utility will compare your current collection with your AniDB MyList and display any file discrepancies between the two. You can review the results and have JMM automatically remove all file discrepancies. Please note that JMM will use your current collection as the base and remove all entries in your AniDB MyList that are not present in your current collection. This utility runs in the background so you do not need to wait for the results. It may also take some time depending on how many file discrepan [rest of string was truncated]&quot;;.
         /// </summary>
         public static string MissingMyList_Note {
             get {
@@ -7243,15 +7230,6 @@ namespace JMMClient.Properties {
         public static string Refresh {
             get {
                 return ResourceManager.GetString("Refresh", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Pressing the refresh button can take several minutes, so please be patient.
-        /// </summary>
-        public static string RefreshWait {
-            get {
-                return ResourceManager.GetString("RefreshWait", resourceCulture);
             }
         }
         
@@ -8876,7 +8854,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This utility will show you all the series which do not have any files. Deleting the series will also delete the group if no other series in that group have files..
+        ///   Looks up a localized string similar to This utility will show all the series in your collection that do not have any files. Deleting the series from your collection will also delete the group if there are no other series in that group or if any additional series in that group do not have files. .
         /// </summary>
         public static string SeriesWithoutFiles_Note {
             get {
@@ -10492,7 +10470,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Queued images awaiting download.
+        ///   Looks up a localized string similar to Images awaiting download.
         /// </summary>
         public static string Tooltip_QueueImages {
             get {
@@ -11887,7 +11865,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use Streaming.
+        ///   Looks up a localized string similar to Enable Streaming.
         /// </summary>
         public static string UseStreaming {
             get {

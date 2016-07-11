@@ -336,9 +336,6 @@
   <data name="Tooltip_MissingEpsGroups" xml:space="preserve">
     <value>Fehlende Episoden von Verörffentlichungsgruppen, die ich sammle</value>
   </data>
-  <data name="Tooltip_QueueImages" xml:space="preserve">
-    <value>Bilder in der Warteschlange, warten auf Download</value>
-  </data>
   <data name="Specials" xml:space="preserve">
     <value>Specials</value>
   </data>
@@ -809,9 +806,6 @@
   </data>
   <data name="TAB_MultipleFiles" xml:space="preserve">
     <value>Mehrere Dateien</value>
-  </data>
-  <data name="INFO_MultipleFiles" xml:space="preserve">
-    <value>Mehrere Dateien sind, wo Sie zwei oder mehr Dateien für die gleiche Episode haben. Dieses Dienstprogramm können Sie alle diese Vorkommnisse zu prüfen und entscheiden, welche Sie behalten möchten</value>
   </data>
   <data name="Loading" xml:space="preserve">
     <value>Wird geladen...</value>
@@ -2216,32 +2210,14 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   <data name="IgnoredAnime_Delete" xml:space="preserve">
     <value>Diesen Eintrag löschen</value>
   </data>
-  <data name="IgnoredAnime_Note" xml:space="preserve">
-    <value>Dieses Dienstprogramm zeigt Ihnen den Anime, die, den Sie, um von den Empfehlungen gewählt haben zu ignorieren. Diese Einträge löschen bedeutet, dass sie wieder in Empfehlungen zeigen können.</value>
-  </data>
   <data name="ImportFolder_Watched" xml:space="preserve">
     <value>Dieser Ordner ist für neue Dateien beobachtet</value>
   </data>
   <data name="MissingEpisodes_SelectColumns" xml:space="preserve">
     <value>Wählen Sie die Spalten in den Import verwendet werden</value>
   </data>
-  <data name="MissingEpisodes_AiringState" xml:space="preserve">
-    <value>Lüften-Status:</value>
-  </data>
-  <data name="RefreshWait" xml:space="preserve">
-    <value>Durch Drücken der Schaltfläche "Aktualisieren" kann mehrere Minuten dauern, also bitte etwas Geduld</value>
-  </data>
-  <data name="MissingEpisodes_Note" xml:space="preserve">
-    <value>Dieses Dienstprogramm wird Ihnen eine Zusammenfassung aller Ihrer fehlenden Episoden zeigen.</value>
-  </data>
-  <data name="MissingMyList_Missing" xml:space="preserve">
-    <value>Fehlende Datei anzeigen</value>
-  </data>
   <data name="MissingMyList_RemoveAll" xml:space="preserve">
     <value>Entfernen Sie alle Einträge aus AniDB</value>
-  </data>
-  <data name="MissingMyList_Note" xml:space="preserve">
-    <value>Dieses Dienstprogramm wird Ihre Liste von Dateien von AniDB herunterladen und vergleichen Sie sie mit den Dateien lokal. Sie haben dann die Möglichkeit, diese Dateien aus AniDB zu entfernen, wenn diese nicht vorhanden sind.</value>
   </data>
   <data name="Episode" xml:space="preserve">
     <value>Folge</value>
@@ -2296,9 +2272,6 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   </data>
   <data name="SeriesWithoutFiles_Delete" xml:space="preserve">
     <value>Diese Serie aus der Datenbank löschen</value>
-  </data>
-  <data name="SeriesWithoutFiles_Note" xml:space="preserve">
-    <value>Dieses Dienstprogramm zeigen Ihnen alle Serien die keine Dateien verfügen. Löschen der Serie wird die Gruppe auch löschen, wenn keine andere Serie in dieser Gruppe Dateien haben.</value>
   </data>
   <data name="TraktShouts_View" xml:space="preserve">
     <value>Anzeigen</value>
@@ -3007,9 +2980,6 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   </data>
   <data name="TAB_DuplicateFiles" xml:space="preserve">
     <value>Doppelte Dateien</value>
-  </data>
-  <data name="INFO_DuplicateFiles" xml:space="preserve">
-    <value>Doppelte Dateien sind, wo Sie zwei oder mehr Dateien haben, die genau gleich sind, außer sie in verschiedenen Ordnern sind oder sind anders benannt. JMM erlaubt nur eine Datei mit dem gleichen Hash in der Auflistung.</value>
   </data>
   <data name="Tooltip_DeleteDuplicateFileAll" xml:space="preserve">
     <value>Löschen Sie der Datenbankeintrag und die ausgewählte Datei auf dem Datenträger.</value>
@@ -4342,5 +4312,59 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   </data>
   <data name="TvDB_DefaultLanguage" xml:space="preserve">
     <value>Wählen Sie die Sprache, die Sie möchten Folgentitel und Beschreibungen von The TvDB in heruntergeladen werden. Bitte beachten Sie, dass wenn eine Episodentitel oder die Beschreibung nicht verfügbar in der Sprache, die Sie ausgewählt haben ist, die englische Standardversion heruntergeladen werden.</value>
+  </data>
+  <data name="INFO_DuplicateFiles" xml:space="preserve">
+    <value>Dieses Dienstprogramm wird alle Instanzen zeigen wo gibt es zwei oder mehr Dateien mit dem gleichen Hash. JMM ermöglicht nur eine Datei mit dem gleichen Hash in Ihrer Sammlung haben.</value>
+  </data>
+  <data name="INFO_MultipleFiles" xml:space="preserve">
+    <value>Dieses Dienstprogramm wird alle Instanzen zeigen, wo Sie mehrere Dateien für die gleiche Folge haben. Sie werden in der Lage, jede Instanz anzuzeigen und zu entscheiden, welche Sie behalten möchten.</value>
+  </data>
+  <data name="IgnoredAnime_Note" xml:space="preserve">
+    <value>Dieses Dienstprogramm zeigt alle Anime-Serie, die Sie markiert haben, wie aus dem Abschnitt Empfehlungen ignoriert. Wenn Sie eine Reihe aus dieser Liste löschen, ist es möglich, dass es im Abschnitt Empfehlungen wieder auftauchen.</value>
+  </data>
+  <data name="MissingEpisodes_AiringState" xml:space="preserve">
+    <value>Lüften-Zustand</value>
+  </data>
+  <data name="MissingEpisodes_Note" xml:space="preserve">
+    <value>Dieses Programm zeigt Ihnen eine Zusammenfassung aller Episoden Du fehlst aus Serie in Ihrer Sammlung. Dieses Programm läuft im Hintergrund, so Sie nicht auf die Ergebnisse warten müssen. Es kann auch etwas dauern je nach wie viele fehlende Episoden gibt es also bitte etwas Geduld.</value>
+  </data>
+  <data name="MissingMyList_Missing" xml:space="preserve">
+    <value>Fehlende Dateien anzeigen</value>
+  </data>
+  <data name="MissingMyList_Note" xml:space="preserve">
+    <value>Dieses Dienstprogramm wird Ihre aktuelle Kollektion mit Ihrem AniDB MyList vergleichen und zeigen jede Datei Diskrepanzen zwischen den beiden. Sie können überprüfen Sie die Ergebnisse und JMM automatisch alle Datei-Abweichungen zu entfernen. Bitte beachten Sie, dass JMM wird Ihre aktuelle Kollektion als Basis verwenden und entfernen Sie alle Einträge in Ihrem AniDB MyList, die nicht in Ihrer aktuellen Kollektion vorhanden sind. Dieses Programm läuft im Hintergrund, so Sie nicht auf die Ergebnisse warten müssen. Es kann auch etwas dauern je nach wie viele Datei-Unterschiede gibt es also bitte etwas Geduld.</value>
+  </data>
+  <data name="SeriesWithoutFiles_Note" xml:space="preserve">
+    <value>Dieses Dienstprogramm wird die Serie in Ihrer Sammlung, die keine Dateien zeigen. Die Serie wird aus Ihrer Sammlung auch die Gruppe löschen wenn in dieser Gruppe gibt es keine andere Serie oder eine zusätzliche Serie in dieser Gruppe nicht Dateien verfügen. </value>
+  </data>
+  <data name="VideoPlayer_Installed" xml:space="preserve">
+    <value>Installiert</value>
+  </data>
+  <data name="MPV" xml:space="preserve">
+    <value>MPV</value>
+  </data>
+  <data name="VideoPlayer_NotInstalled" xml:space="preserve">
+    <value>Nicht installiert</value>
+  </data>
+  <data name="VideoPlayer_DefaultPlayerEnabled" xml:space="preserve">
+    <value>Aktiviert</value>
+  </data>
+  <data name="Video_Player_DefaultPlayerNotConfigured" xml:space="preserve">
+    <value>Nicht konfiguriert</value>
+  </data>
+  <data name="VideoPlayer_Configured" xml:space="preserve">
+    <value>Konfiguriert</value>
+  </data>
+  <data name="VideoPlayer_NotConfigured" xml:space="preserve">
+    <value>NICHT konfiguriert Bitte beheben</value>
+  </data>
+  <data name="Link_EnableStreaming" xml:space="preserve">
+    <value>http://jmediamanager.org/jmm-desktop/server/#streaming</value>
+  </data>
+  <data name="Tooltip_QueueImages" xml:space="preserve">
+    <value>Download Bilder warten auf</value>
+  </data>
+  <data name="UseStreaming" xml:space="preserve">
+    <value>Streaming zu ermöglichen</value>
   </data>
 </root>

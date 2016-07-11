@@ -944,7 +944,7 @@
                                         <usercontrols:HyperLinkStandard Margin="0,0,20,0" VerticalAlignment="Center" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=AvdumpInfoLink}" Grid.Column="3"
                                                                         URL="http://wiki.anidb.net/w/Avdump2"/>
 
-                                        <Image Height="16" Width="16" Source="/Images/16_key.png" Margin="5,2,5,0" Grid.Column="4" VerticalAlignment="Top"/>
+                                        <Image Height="16" Width="16" Source="/Images/32_key.png" Margin="5,2,4,0" Grid.Column="4" VerticalAlignment="Top"/>
                                         <usercontrols:HyperLinkStandard Margin="0,0,20,0" VerticalAlignment="Center" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=AvdumpKeyEditLink}" Grid.Column="5"
                                                                         URL="http://anidb.net/perl-bin/animedb.pl?show=profile"/>
 
@@ -1059,7 +1059,7 @@
                                         <usercontrols:HyperLinkStandard Margin="0,0,20,0" VerticalAlignment="Center" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=AvdumpInfoLink}" Grid.Column="3"
                                                                         URL="http://wiki.anidb.net/w/Avdump2"/>
 
-                                        <Image Height="16" Width="16" Source="/Images/16_key.png" Margin="5,2,5,0" Grid.Column="4" VerticalAlignment="Top"/>
+                                        <Image Height="16" Width="16" Source="/Images/32_key.png" Margin="5,2,4,0" Grid.Column="4" VerticalAlignment="Top"/>
                                         <usercontrols:HyperLinkStandard Margin="0,0,20,0" VerticalAlignment="Center" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=AvdumpKeyEditLink}" Grid.Column="5"
                                                                         URL="http://anidb.net/perl-bin/animedb.pl?show=profile"/>
 
@@ -1684,18 +1684,8 @@
             <DockPanel >
                 <StackPanel Orientation="Horizontal"  Background="#F1F1F1" DockPanel.Dock="Left">
 
-                    <!-- Image download queue -->
-                    <Image Height="16" Width="16" Source="/Images/16_image.png" Margin="5,4,0,4" VerticalAlignment="Center">
-                        <Image.ToolTip>
-                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_QueueImages}"></TextBlock>
-                        </Image.ToolTip>
-                    </Image>
-
-                    <TextBlock Name="tbImageDownloadQueueStatus" Margin="4,4,0,4" Text="{Binding Source={x:Static local:JMMServerVM.Instance},Path=ServerImageQueueCount}"
-                               VerticalAlignment="Center"/>
-
                     <!-- hasher command queue -->
-                    <Image Height="16" Width="16" Source="/Images/16_server_hash.png" Margin="15,4,0,4" VerticalAlignment="Center">
+                    <Image Height="16" Width="16" Source="/Images/16_server_hash.png" Margin="5,4,0,4" VerticalAlignment="Center">
                         <Image.ToolTip>
                             <StackPanel Orientation="Vertical">
                                 <Border Background="SteelBlue">
@@ -1720,6 +1710,20 @@
                         </Image.ToolTip>
                     </Image>
                     <TextBlock Name="tbGeneralQueueCount" Margin="4,4,0,4" Text="{Binding Source={x:Static local:JMMServerVM.Instance},Path=GeneralQueueCount}"  VerticalAlignment="Center">
+                    </TextBlock>
+
+                    <!-- Image download queue -->
+                    <Image Height="16" Width="16" Source="/Images/16_image.png" Margin="15,4,0,4" VerticalAlignment="Center">
+                        <Image.ToolTip>
+                            <StackPanel Orientation="Vertical">
+                                <Border Background="SteelBlue">
+                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_QueueImages}" FontWeight="Bold" Foreground="White" Padding="6"/>
+                                </Border>
+                                <TextBlock Margin="4,4,0,4" Text="{Binding Source={x:Static local:JMMServerVM.Instance},Path=ServerImageQueueState}"/>
+                            </StackPanel>
+                        </Image.ToolTip>
+                    </Image>
+                    <TextBlock Name="tbImageDownloadQueueStatus" Margin="4,4,0,4" Text="{Binding Source={x:Static local:JMMServerVM.Instance},Path=ServerImageQueueCount}" VerticalAlignment="Center">
                     </TextBlock>
 
                     <!-- Admin Messages -->

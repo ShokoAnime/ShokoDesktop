@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:JMMClient"
+             xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
 
@@ -101,7 +102,6 @@
 
                 </ListBox>
             </StackPanel>
-            <CheckBox HorizontalAlignment="Right" IsChecked="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=UseStreaming}" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=UseStreaming}" Margin="10,0,15,10" FontWeight="DemiBold" Height="16"/>
         </DockPanel>
 
         <StackPanel Orientation="Horizontal">
@@ -126,6 +126,11 @@
                 </StackPanel>
             </Button>
         </StackPanel>
+
+        <TextBlock VerticalAlignment="Center" Margin="0,5,10,0">
+            <CheckBox HorizontalAlignment="Left" IsChecked="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=UseStreaming}" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=UseStreaming}" Margin="10,10,10,0" FontWeight="DemiBold" Height="16"/>    
+            <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=WhatsThis}" URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_CommunityRecommendation}"/>
+        </TextBlock>
 
     </StackPanel>
 

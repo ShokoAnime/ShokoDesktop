@@ -342,9 +342,6 @@
   <data name="Tooltip_MissingEpsGroups" xml:space="preserve">
     <value>Отсутствуют эпизоды от релиз группы, которые я собираю</value>
   </data>
-  <data name="Tooltip_QueueImages" xml:space="preserve">
-    <value>Очередь ожидающих загрузки изображений</value>
-  </data>
   <data name="Specials" xml:space="preserve">
     <value>Специальные</value>
   </data>
@@ -1107,9 +1104,6 @@
   <data name="TAB_DuplicateFiles" xml:space="preserve">
     <value>Дубликаты файлов</value>
   </data>
-  <data name="INFO_DuplicateFiles" xml:space="preserve">
-    <value>Дублирующиеся файлы,  это файлы содержимое которых в точности совпадает, за исключением того что они находятся в разных папках или их названия не совпадают. Сервер JMM позволяет добавить только один файл в коллекцию.</value>
-  </data>
   <data name="Tooltip_DeleteDuplicateFileAll" xml:space="preserve">
     <value>Удаляет записи из базы данных и  файл на диске.</value>
   </data>
@@ -1127,9 +1121,6 @@
   </data>
   <data name="TAB_MultipleFiles" xml:space="preserve">
     <value>Несколько файлов</value>
-  </data>
-  <data name="INFO_MultipleFiles" xml:space="preserve">
-    <value>Несколько файлов, у вас два или более файлов для одного эпизода. Эта утилита позволит вам изучить все эти случаи и решить, какие из них вы хотите сохранить</value>
   </data>
   <data name="Loading" xml:space="preserve">
     <value>Загрузка...</value>
@@ -2534,32 +2525,14 @@
   <data name="IgnoredAnime_Delete" xml:space="preserve">
     <value>Удалить эту запись</value>
   </data>
-  <data name="IgnoredAnime_Note" xml:space="preserve">
-    <value>Эта вкладка покажет вам все аниме, которое вы решили игнорировать при расчете рекомендаций. Удаление этих записей означает, что они снова могут быть показаны в рекомендациях.</value>
-  </data>
   <data name="ImportFolder_Watched" xml:space="preserve">
     <value>В настоящее время смотрел эту папку для новых файлов</value>
   </data>
   <data name="MissingEpisodes_SelectColumns" xml:space="preserve">
     <value>Выберите столбцы, которые будут использоваться при импорте</value>
   </data>
-  <data name="MissingEpisodes_AiringState" xml:space="preserve">
-    <value>Выход в эфир:</value>
-  </data>
-  <data name="RefreshWait" xml:space="preserve">
-    <value>Нажатие кнопки Обновить может занять несколько минут, так что будьте терпеливы</value>
-  </data>
-  <data name="MissingEpisodes_Note" xml:space="preserve">
-    <value>Эта вкладка покажет вам краткую информацию о всех отсутствующих эпизодах.</value>
-  </data>
-  <data name="MissingMyList_Missing" xml:space="preserve">
-    <value>Просмотреть отсутствующий файл</value>
-  </data>
   <data name="MissingMyList_RemoveAll" xml:space="preserve">
     <value>Удалить все записи из AniDB</value>
-  </data>
-  <data name="MissingMyList_Note" xml:space="preserve">
-    <value>Эта вкладка получит список файлов из AniDB и сравнит его с локальными файлами. Затем можно будет удалить отсутствующие файлы из AniDB.</value>
   </data>
   <data name="Episode" xml:space="preserve">
     <value>Эпизод</value>
@@ -2614,9 +2587,6 @@
   </data>
   <data name="SeriesWithoutFiles_Delete" xml:space="preserve">
     <value>Удалить этот сериал из базы данных</value>
-  </data>
-  <data name="SeriesWithoutFiles_Note" xml:space="preserve">
-    <value>Эта программа покажет вам все сераилы без файлов. Удаление сериала также удалит группу, если в ней нет других сериалов.</value>
   </data>
   <data name="TraktShouts_View" xml:space="preserve">
     <value>Вид</value>
@@ -4342,5 +4312,59 @@
   </data>
   <data name="TvDB_DefaultLanguage" xml:space="preserve">
     <value>Выберите язык вы хотите эпизод названия и описания для загрузки в с TvDB. Пожалуйста, обратите внимание, что если эпизод название или описание не доступна на языке, который вы выбрали, будут загружены на английском языке по умолчанию.</value>
+  </data>
+  <data name="INFO_DuplicateFiles" xml:space="preserve">
+    <value>Эта программа покажет все экземпляры где есть два или более файлов с же хэш-код. Модель памяти JMM позволяет только один файл с же хэш-код в вашей коллекции.</value>
+  </data>
+  <data name="INFO_MultipleFiles" xml:space="preserve">
+    <value>Эта программа покажет все экземпляры, где у вас есть несколько файлов на тот же эпизод. Вы сможете просмотреть каждый экземпляр и решить, какие из них вы хотели бы сохранить.</value>
+  </data>
+  <data name="IgnoredAnime_Note" xml:space="preserve">
+    <value>Эта программа покажет все аниме-сериал, которые вы пометили как игнорировать рекомендации секции. Если вы удаляете серию из этого списка, это возможно для того чтобы показать в разделе рекомендации снова.</value>
+  </data>
+  <data name="MissingEpisodes_AiringState" xml:space="preserve">
+    <value>Проветривание состояние</value>
+  </data>
+  <data name="MissingEpisodes_Note" xml:space="preserve">
+    <value>Эта программа покажет вам резюме всех эпизодов вы пропавши от серии в вашей коллекции. Эта утилита работает в фоновом режиме, так что вам не нужно ждать результатов. Он также может занять некоторое время в зависимости от сколько хватает эпизодов, есть, так что будьте терпеливы.</value>
+  </data>
+  <data name="MissingMyList_Missing" xml:space="preserve">
+    <value>Просмотреть отсутствующие файлы</value>
+  </data>
+  <data name="MissingMyList_Note" xml:space="preserve">
+    <value>Эта утилита будет сравнить вашу текущую коллекцию с AniDB MyList и отображать любой файл расхождений между ними. Вы можете просмотреть результаты и JMM автоматически удалять все файл расхождений. Пожалуйста, обратите внимание, что модель памяти JMM будет использовать вашу текущую коллекцию в качестве базы и удалить все записи в вашем AniDB MyList, которые не присутствуют в вашей текущей коллекции. Эта утилита работает в фоновом режиме, так что вам не нужно ждать результатов. Он также может занять некоторое время в зависимости от сколько файл расхождений, есть, так что будьте терпеливы.</value>
+  </data>
+  <data name="SeriesWithoutFiles_Note" xml:space="preserve">
+    <value>Эта программа покажет все серии в вашей коллекции, которые не имеют каких-либо файлов. Удаление серии из вашей коллекции будет также удалить группу, если есть без других серий в этой группе или любые дополнительные серии в этой группе нет файлов. </value>
+  </data>
+  <data name="VideoPlayer_Installed" xml:space="preserve">
+    <value>Установлен</value>
+  </data>
+  <data name="MPV" xml:space="preserve">
+    <value>MPV</value>
+  </data>
+  <data name="VideoPlayer_NotInstalled" xml:space="preserve">
+    <value>Не установлен</value>
+  </data>
+  <data name="VideoPlayer_DefaultPlayerEnabled" xml:space="preserve">
+    <value>Включено</value>
+  </data>
+  <data name="Video_Player_DefaultPlayerNotConfigured" xml:space="preserve">
+    <value>Не настроен</value>
+  </data>
+  <data name="VideoPlayer_Configured" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="VideoPlayer_NotConfigured" xml:space="preserve">
+    <value>НЕ настроен пожалуйста решимость</value>
+  </data>
+  <data name="Link_EnableStreaming" xml:space="preserve">
+    <value>http://jmediamanager.org/jmm-desktop/server/#streaming</value>
+  </data>
+  <data name="Tooltip_QueueImages" xml:space="preserve">
+    <value>Изображения, ожидающих загрузки</value>
+  </data>
+  <data name="UseStreaming" xml:space="preserve">
+    <value>Включение потоковой передачи</value>
   </data>
 </root>

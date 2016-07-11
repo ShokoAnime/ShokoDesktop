@@ -339,9 +339,6 @@
   <data name="Tooltip_MissingEpsGroups" xml:space="preserve">
     <value>Missende afleveringen van release groepen die ik ben het verzamelen</value>
   </data>
-  <data name="Tooltip_QueueImages" xml:space="preserve">
-    <value>In de wachtrij beelden in afwachting downloaden</value>
-  </data>
   <data name="Specials" xml:space="preserve">
     <value>Specials</value>
   </data>
@@ -1098,9 +1095,6 @@
   <data name="TAB_DuplicateFiles" xml:space="preserve">
     <value>Dubbele bestanden</value>
   </data>
-  <data name="INFO_DuplicateFiles" xml:space="preserve">
-    <value>Dubbele bestanden zijn waar u twee of meer bestanden die precies hetzelfde, zijn behalve dat ze zich in verschillende mappen of anders heten. JMM staat slechts één bestand met dezelfde hash in de collectie.</value>
-  </data>
   <data name="Tooltip_DeleteDuplicateFileAll" xml:space="preserve">
     <value>De databasevermelding en het geselecteerde bestand op schijf verwijderen.</value>
   </data>
@@ -1118,9 +1112,6 @@
   </data>
   <data name="TAB_MultipleFiles" xml:space="preserve">
     <value>Meerdere bestanden</value>
-  </data>
-  <data name="INFO_MultipleFiles" xml:space="preserve">
-    <value>Meerdere bestanden zijn waar u twee of meer bestanden voor dezelfde aflevering hebben. Deze tool laat je onderzoeken deze overal, en beslissen welke u wilt behouden</value>
   </data>
   <data name="Loading" xml:space="preserve">
     <value>Bezig met laden...</value>
@@ -2528,32 +2519,14 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   <data name="IgnoredAnime_Delete" xml:space="preserve">
     <value>Verwijder deze vermelding</value>
   </data>
-  <data name="IgnoredAnime_Note" xml:space="preserve">
-    <value>Deze tool zal u tonen alle de anime die u hebt gekozen om te negeren van de aanbevelingen. Verwijderen van deze records betekent dat zij aanbevelingen weer kunnen vertonen.</value>
-  </data>
   <data name="ImportFolder_Watched" xml:space="preserve">
     <value>Deze map wordt gadegeslagen voor nieuwe bestanden</value>
   </data>
   <data name="MissingEpisodes_SelectColumns" xml:space="preserve">
     <value>Selecteer de kolommen die moet worden gebruikt bij de invoer</value>
   </data>
-  <data name="MissingEpisodes_AiringState" xml:space="preserve">
-    <value>Luchten staat:</value>
-  </data>
-  <data name="RefreshWait" xml:space="preserve">
-    <value>Druk op de knop Vernieuwen kan enkele minuten duren, dus wees geduldig</value>
-  </data>
-  <data name="MissingEpisodes_Note" xml:space="preserve">
-    <value>Deze tool toont u een overzicht van alle uw ontbrekende afleveringen.</value>
-  </data>
-  <data name="MissingMyList_Missing" xml:space="preserve">
-    <value>Ontbrekend bestand bekijken</value>
-  </data>
   <data name="MissingMyList_RemoveAll" xml:space="preserve">
     <value>Verwijder alle vermeldingen uit AniDB</value>
-  </data>
-  <data name="MissingMyList_Note" xml:space="preserve">
-    <value>Deze tool zal uw lijst met bestanden downloaden van AniDB, en het vergelijken met de bestanden lokaal. Vervolgens hebt u de kans om die bestanden te verwijderen uit AniDB als zij niet bestaan.</value>
   </data>
   <data name="Episode" xml:space="preserve">
     <value>Aflevering</value>
@@ -2608,9 +2581,6 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   </data>
   <data name="SeriesWithoutFiles_Delete" xml:space="preserve">
     <value>Deze serie uit de database verwijderen</value>
-  </data>
-  <data name="SeriesWithoutFiles_Note" xml:space="preserve">
-    <value>Deze tool zal u tonen alle series die niet geen bestanden hoeven. Verwijderen van de serie wordt ook de groep verwijderd als geen andere series in die groep bestanden hebt.</value>
   </data>
   <data name="TraktShouts_View" xml:space="preserve">
     <value>Weergave</value>
@@ -4342,5 +4312,59 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   </data>
   <data name="TvDB_DefaultLanguage" xml:space="preserve">
     <value>Selecteer de taal die u wenst aflevering titels en beschrijvingen van de TvDB in worden gedownload. Houd er rekening mee dat als een aflevering titel of beschrijving niet beschikbaar in de taal die u hebt geselecteerd is, de Engelse versie van de standaard zal worden gedownload.</value>
+  </data>
+  <data name="INFO_DuplicateFiles" xml:space="preserve">
+    <value>Deze tool toont alle instanties waar er twee of meer bestanden met dezelfde hash. JMM alleen kunt u een bestand met dezelfde hash in uw collectie.</value>
+  </data>
+  <data name="INFO_MultipleFiles" xml:space="preserve">
+    <value>Deze tool toont alle instanties waar u meerdere bestanden voor dezelfde aflevering hebt. U zal zitten kundig voor elk exemplaar bekijken en beslissen welke u zou willen houden.</value>
+  </data>
+  <data name="IgnoredAnime_Note" xml:space="preserve">
+    <value>Deze tool toont alle animeserie die u hebt gemarkeerd als van de sectie van de aanbevelingen genegeerd. Als u een reeks uit deze lijst verwijdert, is het mogelijk voor het te tonen in de sectie aanbevelingen weer.</value>
+  </data>
+  <data name="MissingEpisodes_AiringState" xml:space="preserve">
+    <value>Luchten staat</value>
+  </data>
+  <data name="MissingEpisodes_Note" xml:space="preserve">
+    <value>Deze tool toont u een overzicht van alle afleveringen van u ontbreken in serie in uw collectie. Deze tool draait op de achtergrond, zodat u niet hoeft te wachten op de resultaten. Het kan ook enige tijd duren afhankelijk van hoeveel van de vermissing er zijn dus wees geduldig.</value>
+  </data>
+  <data name="MissingMyList_Missing" xml:space="preserve">
+    <value>Ontbrekende bestanden bekijken</value>
+  </data>
+  <data name="MissingMyList_Note" xml:space="preserve">
+    <value>Deze tool zal uw huidige verzameling met uw AniDB MyList vergelijken en weergeven van elk bestand verschillen tussen de twee. U kunt de resultaten bekijken en JMM automatisch verwijderen alle bestand verschillen. Houd er rekening mee dat JMM zal uw huidige verzameling als de basis gebruiken en verwijder alle vermeldingen in uw AniDB MyList die niet aanwezig zijn in uw huidige collectie. Deze tool draait op de achtergrond, zodat u niet hoeft te wachten op de resultaten. Het kan ook enige tijd duren afhankelijk van hoeveel bestand verschillen er zijn dus wees geduldig.</value>
+  </data>
+  <data name="SeriesWithoutFiles_Note" xml:space="preserve">
+    <value>Deze tool toont alle reeksen in uw collectie die nog geen bestanden. De serie verwijderen uit uw collectie wordt ook de groep verwijderd als er geen andere series in die groep of als een extra reeks in die groep geen bestanden hebben. </value>
+  </data>
+  <data name="VideoPlayer_Installed" xml:space="preserve">
+    <value>Geïnstalleerd</value>
+  </data>
+  <data name="MPV" xml:space="preserve">
+    <value>MPV</value>
+  </data>
+  <data name="VideoPlayer_NotInstalled" xml:space="preserve">
+    <value>Niet geïnstalleerd</value>
+  </data>
+  <data name="VideoPlayer_DefaultPlayerEnabled" xml:space="preserve">
+    <value>Ingeschakeld</value>
+  </data>
+  <data name="Video_Player_DefaultPlayerNotConfigured" xml:space="preserve">
+    <value>Niet geconfigureerd</value>
+  </data>
+  <data name="VideoPlayer_Configured" xml:space="preserve">
+    <value>Geconfigureerd</value>
+  </data>
+  <data name="VideoPlayer_NotConfigured" xml:space="preserve">
+    <value>NIET geconfigureerd alstublieft oplossen</value>
+  </data>
+  <data name="Link_EnableStreaming" xml:space="preserve">
+    <value>http://jmediamanager.org/jmm-desktop/server/#streaming</value>
+  </data>
+  <data name="Tooltip_QueueImages" xml:space="preserve">
+    <value>Afbeeldingen in afwachting downloaden</value>
+  </data>
+  <data name="UseStreaming" xml:space="preserve">
+    <value>Inschakelen Streaming</value>
   </data>
 </root>

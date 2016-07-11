@@ -44,7 +44,7 @@
         <StackPanel Orientation="Vertical" >
 
             <StackPanel Orientation="Horizontal"  Margin="0,0,0,5">
-                <Image Height="16" Width="16" Source="/Images/32_cut.png" Margin="0,0,5,0"/>
+                <Image Height="16" Width="16" Source="/Images/24_cut.png" Margin="0,0,5,0"/>
                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=MoveSeries}" Margin="0,0,0,0"/>
             </StackPanel>
 

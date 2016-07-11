@@ -342,9 +342,6 @@
   <data name="Tooltip_MissingEpsGroups" xml:space="preserve">
     <value>Episodi mancanti da gruppi di rilascio che sto raccogliendo</value>
   </data>
-  <data name="Tooltip_QueueImages" xml:space="preserve">
-    <value>Scarica immagini in coda in attesa di</value>
-  </data>
   <data name="Specials" xml:space="preserve">
     <value>Offerte speciali</value>
   </data>
@@ -1104,9 +1101,6 @@
   <data name="TAB_DuplicateFiles" xml:space="preserve">
     <value>File duplicati</value>
   </data>
-  <data name="INFO_DuplicateFiles" xml:space="preserve">
-    <value>I file duplicati sono dove avete due o più file che sono esattamente gli stessi, tranne per il fatto che sono in cartelle diverse o sono denominati in modo diverso. JMM consente solo un file con lo stesso hash nell'insieme.</value>
-  </data>
   <data name="Tooltip_DeleteDuplicateFileAll" xml:space="preserve">
     <value>Eliminare la voce del database e il file selezionato sul disco.</value>
   </data>
@@ -1124,9 +1118,6 @@
   </data>
   <data name="TAB_MultipleFiles" xml:space="preserve">
     <value>Più file</value>
-  </data>
-  <data name="INFO_MultipleFiles" xml:space="preserve">
-    <value>Più file sono dove avete due o più file per l'episodio stesso. Questa utility vi permetterà di esaminare tutti questi avvenimenti e decidere quali si desidera mantenere</value>
   </data>
   <data name="Loading" xml:space="preserve">
     <value>Caricamento...</value>
@@ -2531,32 +2522,14 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   <data name="IgnoredAnime_Delete" xml:space="preserve">
     <value>Eliminare questa voce</value>
   </data>
-  <data name="IgnoredAnime_Note" xml:space="preserve">
-    <value>Questa utility vi mostrerà tutte le anime che si è scelto di ignorare le raccomandazioni. L'eliminazione di questi record significa che essi possono mostrare nuovamente nelle raccomandazioni.</value>
-  </data>
   <data name="ImportFolder_Watched" xml:space="preserve">
     <value>Questa cartella viene guardata per i nuovi file</value>
   </data>
   <data name="MissingEpisodes_SelectColumns" xml:space="preserve">
     <value>Selezionare le colonne da utilizzare nell'importazione</value>
   </data>
-  <data name="MissingEpisodes_AiringState" xml:space="preserve">
-    <value>Stato di messa in onda:</value>
-  </data>
-  <data name="RefreshWait" xml:space="preserve">
-    <value>Premendo il pulsante di aggiornamento può richiedere alcuni minuti, quindi per favore sii paziente</value>
-  </data>
-  <data name="MissingEpisodes_Note" xml:space="preserve">
-    <value>Questa utility vi mostrerà un riepilogo di tutti i tuoi episodi mancanti.</value>
-  </data>
-  <data name="MissingMyList_Missing" xml:space="preserve">
-    <value>Mostra File mancante</value>
-  </data>
   <data name="MissingMyList_RemoveAll" xml:space="preserve">
     <value>Rimuovere tutte le voci da AniDB</value>
-  </data>
-  <data name="MissingMyList_Note" xml:space="preserve">
-    <value>Questa utility si Scarica la tua lista di file da AniDB e confrontarlo con i file localmente. Si avrà quindi la possibilità di rimuovere tali file da AniDB se non sono presenti.</value>
   </data>
   <data name="Episode" xml:space="preserve">
     <value>Episodio</value>
@@ -2611,9 +2584,6 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   </data>
   <data name="SeriesWithoutFiles_Delete" xml:space="preserve">
     <value>Eliminare questa serie dal database</value>
-  </data>
-  <data name="SeriesWithoutFiles_Note" xml:space="preserve">
-    <value>Questa utility vi mostrerà tutte le serie che non hanno alcun file. L'eliminazione della serie eliminerà il gruppo anche se nessuna altra serie in quel gruppo hanno i file.</value>
   </data>
   <data name="TraktShouts_View" xml:space="preserve">
     <value>Vista</value>
@@ -4342,5 +4312,59 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   </data>
   <data name="TvDB_DefaultLanguage" xml:space="preserve">
     <value>Selezionare la lingua che desideri episodio titoli e descrizioni possono essere scaricate dal The TvDB. Siete pregati di notare che se un episodio titolo o la descrizione non è disponibile nella lingua selezionata, verrà scaricata la versione inglese di default.</value>
+  </data>
+  <data name="INFO_DuplicateFiles" xml:space="preserve">
+    <value>Questa utility vi mostrerà tutte le istanze dove ci sono due o più file con lo stesso hash. JMM consente solo di avere un file con lo stesso hash nella vostra collezione.</value>
+  </data>
+  <data name="INFO_MultipleFiles" xml:space="preserve">
+    <value>Questa utility vi mostrerà tutte le istanze dove si dispone di più file per l'episodio stesso. Sarete in grado di visualizzare ogni istanza e decidere quali si desidera mantenere.</value>
+  </data>
+  <data name="IgnoredAnime_Note" xml:space="preserve">
+    <value>Questa utility vi mostrerà tutte le serie di anime che hai contrassegnato come ignorato dalla sezione consigli. Se si elimina una serie da questo elenco, è possibile per mostrare nuovamente nella sezione consigli.</value>
+  </data>
+  <data name="MissingEpisodes_AiringState" xml:space="preserve">
+    <value>Stato di messa in onda</value>
+  </data>
+  <data name="MissingEpisodes_Note" xml:space="preserve">
+    <value>Questa utility vi mostrerà un riepilogo di tutti gli episodi sono mancanti dalla serie nella vostra collezione. Questa utilità funziona in background, quindi non è necessario attendere i risultati. Inoltre potrebbe richiedere qualche tempo a seconda di quanti episodi mancanti sono così si prega di essere paziente.</value>
+  </data>
+  <data name="MissingMyList_Missing" xml:space="preserve">
+    <value>Mostra i file mancanti</value>
+  </data>
+  <data name="MissingMyList_Note" xml:space="preserve">
+    <value>Questa utilità confronta l'insieme corrente con il tuo AniDB MyList e visualizzare eventuali discrepanze di file tra i due. È possibile rivedere i risultati e avere JMM rimuovere automaticamente tutte le discrepanze di file. Siete pregati di notare che JMM utilizzerà l'insieme corrente come base e rimuovere tutte le voci nella tua AniDB MyList che non sono presenti nella vostra collezione attuale. Questa utilità funziona in background, quindi non è necessario attendere i risultati. Inoltre potrebbe richiedere qualche tempo a seconda di quanti file discrepanze esistono così si prega di essere paziente.</value>
+  </data>
+  <data name="SeriesWithoutFiles_Note" xml:space="preserve">
+    <value>Questa utility vi mostrerà tutte le serie nella tua collezione che non dispongono di alcun file. L'eliminazione della serie dalla tua collezione eliminerà il gruppo anche se non esistono altre serie in quel gruppo o qualsiasi altre serie in quel gruppo non dispongono di file. </value>
+  </data>
+  <data name="VideoPlayer_Installed" xml:space="preserve">
+    <value>Installato</value>
+  </data>
+  <data name="MPV" xml:space="preserve">
+    <value>MPV</value>
+  </data>
+  <data name="VideoPlayer_NotInstalled" xml:space="preserve">
+    <value>Non installato</value>
+  </data>
+  <data name="VideoPlayer_DefaultPlayerEnabled" xml:space="preserve">
+    <value>Abilitato</value>
+  </data>
+  <data name="Video_Player_DefaultPlayerNotConfigured" xml:space="preserve">
+    <value>Non configurato</value>
+  </data>
+  <data name="VideoPlayer_Configured" xml:space="preserve">
+    <value>Configurato</value>
+  </data>
+  <data name="VideoPlayer_NotConfigured" xml:space="preserve">
+    <value>NON configurato per favore risolvi</value>
+  </data>
+  <data name="Link_EnableStreaming" xml:space="preserve">
+    <value>http://jmediamanager.org/jmm-desktop/server/#streaming</value>
+  </data>
+  <data name="Tooltip_QueueImages" xml:space="preserve">
+    <value>Scarica immagini in attesa</value>
+  </data>
+  <data name="UseStreaming" xml:space="preserve">
+    <value>Abilitare lo Streaming</value>
   </data>
 </root>

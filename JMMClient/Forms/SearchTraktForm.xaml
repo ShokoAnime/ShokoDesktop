@@ -131,7 +131,7 @@
                 <!-- Check Cred button -->
                 <Button Name="btnChkCred" Margin="5,0,0,-5" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                        <Image Height="16" Width="16" Source="/Images/32_settings2.png" Margin="0,0,5,0"/>
+                        <Image Height="16" Width="16" Source="/Images/32_settings.png" Margin="0,0,5,0"/>
                         <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CheckCred}" Margin="0,0,5,0"/>
                     </StackPanel>
                 </Button>
@@ -187,13 +187,13 @@
                 <StackPanel Orientation="Horizontal"  Margin="0" DockPanel.Dock="Top">
                     <Image Margin="5,5,0,0" Height="16" Width="16" Source="/Images/16_award.png" VerticalAlignment="Center"/>
                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityRecommendation}" Margin="5,5,10,0"/>
-                    <TextBlock VerticalAlignment="Center">
-                        <usercontrols:HyperLinkStandard VerticalAlignment="Center" Margin="0,5,-10,0" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=WhatsThis}"
+                    <TextBlock VerticalAlignment="Center" Margin="0,5,10,0">
+                        <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=WhatsThis}"
                                                                         URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_CommunityRecommendation}"/>
                     </TextBlock>
 
                     <!-- Use this button -->
-                    <Button Name="btnUseThis" Margin="5,5,2,0" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Button Name="btnUseThis" Margin="0,5,2,0" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,5,0"/>
                             <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=UseThis}" Margin="0,0,5,0"/>

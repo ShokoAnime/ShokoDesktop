@@ -1341,7 +1341,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
-      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.de.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -1758,12 +1758,6 @@
     <Resource Include="Images\16_server_hash.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\32_settings2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\32_cut.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\24_ignore.png" />
     <Resource Include="Images\24_ignore_off.png" />
   </ItemGroup>
@@ -1867,9 +1861,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\24_export.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\16_key.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\16_clipboard.png" />
@@ -2040,6 +2031,12 @@
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.Core.dll" />
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.dll" />
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.resources.dll" />
+    <Resource Include="Images\32_key.png" />
+    <Resource Include="Images\16_hourglass.png" />
+    <Resource Include="Images\32_simple.png" />
+    <Resource Include="Images\24_cut.png" />
+    <Resource Include="Images\16_link_edit.png" />
+    <Resource Include="Images\32_settings.png" />
     <Resource Include="Images\16_toggle_close.png" />
     <Resource Include="Images\16_toggle_open.png" />
     <Resource Include="Images\24_vote_down.png" />
@@ -2049,7 +2046,6 @@
     <Resource Include="Images\32_search.png" />
     <Resource Include="Images\Sources.txt" />
     <Resource Include="Images\16_add.png" />
-    <Resource Include="Images\16_simple.png" />
     <Resource Include="Images\24_calendar.png" />
     <Resource Include="Images\24_download.png" />
     <Resource Include="Images\24_folder_edit.png" />

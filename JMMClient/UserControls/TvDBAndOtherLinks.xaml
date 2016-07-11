@@ -69,7 +69,7 @@
                         <Button Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                                 Command="{DynamicResource EditMALLinkCommand}" CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                <Image Height="16" Width="16" Source="/Images/16_switch.png" Margin="0,0,5,0"/>
+                                <Image Height="16" Width="16" Source="/Images/16_link_edit.png" Margin="0,0,5,0"/>
                                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_Edit}" Margin="0,0,5,0"/>
                             </StackPanel>
                         </Button>
@@ -119,7 +119,7 @@
                                 ToolTip="{usercontrols:Info Title=Tooltip_EditTitle, 
                                 Body=Tooltip_EditInfo}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                <Image Height="16" Width="16" Source="/Images/16_switch.png" Margin="0,0,0,0"/>
+                                <Image Height="16" Width="16" Source="/Images/16_link_edit.png" Margin="0,0,0,0"/>
                             </StackPanel>
                         </Button>
 
@@ -189,7 +189,7 @@
                                 ToolTip="{usercontrols:Info Title=Tooltip_EditTitle, 
                                 Body=Tooltip_EditInfo}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                <Image Height="16" Width="16" Source="/Images/16_switch.png" Margin="0,0,0,0"/>
+                                <Image Height="16" Width="16" Source="/Images/16_link_edit.png" Margin="0,0,0,0"/>
                             </StackPanel>
                         </Button>
 
@@ -206,7 +206,7 @@
                         <!-- Sync Trakt Info button -->
                         <Button Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                                 Command="{StaticResource SyncTraktLinkCommand}" CommandParameter="{Binding}"
-                                ToolTip="{usercontrols:Info Title=Tooltip_SyncTitle, 
+                                ToolTip="{usercontrols:Info Title=Tooltip_Sync, 
                                 Body=Tooltip_SyncTrakt}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="0,0,0,0"/>
@@ -417,7 +417,7 @@
                                     Body=Tooltip_AutoLinkDisabledTrakt}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ComminityLinks_AutoLink}" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
