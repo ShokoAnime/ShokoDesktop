@@ -7,8 +7,8 @@
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 AppId={{AD24689F-020C-4C53-B649-99BB49ED6238}
 AppName=JMM Desktop
-AppVersion=3.5.0.2
-;AppVerName=JMM Desktop 3.4.6.4
+AppVersion=3.6.0.1
+;AppVerName=JMM Desktop 3.6.0.1
 AppPublisher=JMM
 AppPublisherURL=https://github.com/japanesemediamanager
 AppSupportURL=https://github.com/japanesemediamanager
@@ -55,16 +55,19 @@ Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\NLog.dll"; DestDir: 
 Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\ReuxablesLegacy.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\System.Windows.Interactivity.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\WPFToolkit.Extended.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\de\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\en\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\en-gb\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\es\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\fr\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\it\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\ja\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\ko\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\zh-Hans\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\zh-Hant\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\de\*"; DestDir: "{app}\de"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\en\*"; DestDir: "{app}\en"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\en-gb\*"; DestDir: "{app}\en-gb"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\es\*"; DestDir: "{app}\es"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\fr\*"; DestDir: "{app}\fr"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\it\*"; DestDir: "{app}\it"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\ja\*"; DestDir: "{app}\ja"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\ko\*"; DestDir: "{app}\ko"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\nl\*"; DestDir: "{app}\nl"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\pl\*"; DestDir: "{app}\pl"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\ru\*"; DestDir: "{app}\ru"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\zh-Hans\*"; DestDir: "{app}\zh-Hans"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\zh-Hant\*"; DestDir: "{app}\zh-Hant"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "C:\Projects\[ JMM Binaries No Configs ]\Config\JMMDesktop.exe.Config"; DestDir: "{app}"; Flags: ignoreversion onlyifdoesntexist
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
