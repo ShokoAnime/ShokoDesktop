@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.NetworkInformation;
+using System.Net.Sockets;
 using JMMClient.JMMServerBinary;
 using JMMClient.Utilities;
 using JMMClient.ViewModel;
@@ -48,6 +50,41 @@ namespace JMMClient.VideoPlayers
                 v.PositionChange += FindChangedFiles;
             }
         }
+
+        private bool IsLocalMachine(string url)
+        {
+            Uri uri = new Uri(url, UriKind.Absolute);
+            List<IPAddress> addresses=new List<IPAddress>();
+            IPAddress oip;
+            if (!IPAddress.TryParse(uri.Host, out oip))
+            {
+                IPHostEntry entry = Dns.GetHostEntry(uri.Host);
+                if (entry != null && entry.AddressList != null && entry.AddressList.Length > 0)
+                {
+                    addresses.AddRange(entry.AddressList);
+                }
+                else
+                    return true;
+            }
+            else
+                addresses.Add(oip);
+            foreach (NetworkInterface item in NetworkInterface.GetAllNetworkInterfaces())
+            {
+                if (item.OperationalStatus == OperationalStatus.Up)
+                {
+                    foreach (UnicastIPAddressInformation uip in item.GetIPProperties().UnicastAddresses)
+                    {
+                        foreach (IPAddress ip in addresses)
+                        {
+                            if (uip.Address.Equals(ip))
+                                return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
 
         public delegate void VideoWatchedEventHandler(VideoWatchedEventArgs ev);
         public event VideoWatchedEventHandler VideoWatchedEvent;
@@ -233,8 +270,9 @@ namespace JMMClient.VideoPlayers
                 IVideoPlayer player = ResolvePlayer();
                 if (player==null)
                     throw new Exception("Please configure a Video Player");
-                if (AppSettings.UseStreaming && vid.Media!=null && vid.Media.Parts!=null && vid.Media.Parts.Count>0)
+                if (AppSettings.UseStreaming && vid.Media!=null && vid.Media.Parts!=null && vid.Media.Parts.Count>0 && !IsLocalMachine(vid.Media.Parts[0].Key))
                 {
+
                     Tuple<string, List<string>> t = GetInfoFromMedia(vid.Media);
                     player.PlayUrl(t.Item1,t.Item2);
                 }
@@ -264,7 +302,7 @@ namespace JMMClient.VideoPlayers
                 IVideoPlayer player = ResolvePlayer();
                 if (player == null)
                     throw new Exception("Please configure a Video Player");
-                if (AppSettings.UseStreaming && vid.Media != null && vid.Media.Parts != null && vid.Media.Parts.Count > 0)
+                if (AppSettings.UseStreaming && vid.Media != null && vid.Media.Parts != null && vid.Media.Parts.Count > 0 && !IsLocalMachine(vid.Media.Parts[0].Key))
                 {
                     Tuple<string, List<string>> t = GetInfoFromMedia(vid.Media);
                     player.PlayUrl(t.Item1, t.Item2);

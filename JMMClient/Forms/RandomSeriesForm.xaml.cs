@@ -200,9 +200,8 @@ namespace JMMClient.Forms
                 GroupFilterVM gf = LevelObject as GroupFilterVM;
                 if (gf == null) return serList;
 
-                List<AnimeGroupVM> grps = new List<AnimeGroupVM>(MainListHelperVM.Instance.AllGroups);
 
-                foreach (AnimeGroupVM grp in grps)
+                foreach (AnimeGroupVM grp in MainListHelperVM.Instance.AllGroupsDictionary.Values)
                 {
                     // ignore sub groups
                     if (grp.AnimeGroupParentID.HasValue) continue;

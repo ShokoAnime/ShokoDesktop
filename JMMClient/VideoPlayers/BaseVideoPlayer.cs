@@ -73,7 +73,7 @@ namespace JMMClient.Utilities
 
         public virtual void PlayVideoOrPlaylist(string path)
         {
-            Process.Start(PlayerPath, '"' + path.Replace(@"\", "/") + '"');
+            Process.Start(PlayerPath, '"' + path + '"');
         }
 
 

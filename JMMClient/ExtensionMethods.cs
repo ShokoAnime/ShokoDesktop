@@ -6,6 +6,12 @@ namespace JMMClient
 {
     public static class ExtensionMethods
     {
+        public static T SureGet<T>(this Dictionary<int, T> dict, int val) where T:class
+        {
+            if (dict.ContainsKey(val))
+                return dict[val];
+            return null;
+        }
         public static bool SubContains(this IEnumerable<string> list, string part)
         {
             foreach (string n in list)

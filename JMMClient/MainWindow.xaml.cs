@@ -664,7 +664,7 @@ namespace JMMClient
                 if (tabIndex == TAB_MAIN_Collection)
                 {
 
-                    if (MainListHelperVM.Instance.AllGroups.Count == 0)
+                    if (MainListHelperVM.Instance.AllGroupsDictionary.Count == 0)
                     {
                         MainListHelperVM.Instance.RefreshGroupsSeriesData();
                     }
@@ -706,7 +706,7 @@ namespace JMMClient
 
                 if (tabIndex == TAB_MAIN_Search)
                 {
-                    if (MainListHelperVM.Instance.AllSeries == null || MainListHelperVM.Instance.AllSeries.Count == 0) MainListHelperVM.Instance.RefreshGroupsSeriesData();
+                    if (MainListHelperVM.Instance.AllSeriesDictionary == null || MainListHelperVM.Instance.AllSeriesDictionary.Count == 0) MainListHelperVM.Instance.RefreshGroupsSeriesData();
                 }
 
                 if (tabIndex == TAB_MAIN_Server)
@@ -2022,10 +2022,6 @@ namespace JMMClient
                         if (serContract != null)
                         {
                             ser = new AnimeSeriesVM(serContract);
-
-                            if (MainListHelperVM.Instance.AllSeries.Contains(ser) == false)
-                                MainListHelperVM.Instance.AllSeries.Add(ser);
-
                             MainListHelperVM.Instance.AllSeriesDictionary[valObjID] = ser;
                         }
                     }
@@ -2215,8 +2211,6 @@ namespace JMMClient
 						gf.IsBeingEdited = false;
 						if (gf.Save() && isnew)
 						{
-                            if (!MainListHelperVM.Instance.AllGroupFilters.Contains(gf))
-    							MainListHelperVM.Instance.AllGroupFilters.Add(gf);
 						    MainListHelperVM.Instance.AllGroupFiltersDictionary[gf.GroupFilterID.Value] = gf;
                             //Manually reset GroupCount
                             gf.GetDirectChildren();
@@ -2316,13 +2310,8 @@ namespace JMMClient
                         }
 
 						// remove from group filter list
-                        if (MainListHelperVM.Instance.AllGroupFilters.Contains(gf))
-                        {
-                            MainListHelperVM.Instance.AllGroupFilters.Remove(gf);
-                            if (gf.GroupFilterID.HasValue &&
-                                MainListHelperVM.Instance.AllGroupFiltersDictionary.ContainsKey(gf.GroupFilterID.Value))
-                                MainListHelperVM.Instance.AllGroupFiltersDictionary.Remove(gf.GroupFilterID.Value);
-                        }
+                        if (gf.GroupFilterID.HasValue && MainListHelperVM.Instance.AllGroupFiltersDictionary.ContainsKey(gf.GroupFilterID.Value))
+                            MainListHelperVM.Instance.AllGroupFiltersDictionary.Remove(gf.GroupFilterID.Value);
                         // remove from current wrapper list
                         if (pos >= 0)
 						{
@@ -2448,8 +2437,8 @@ namespace JMMClient
                 gfNew.BaseCondition = (int)GroupFilterBaseCondition.Include;
                 gfNew.FilterConditions = new ObservableCollection<GroupFilterConditionVM>();
 
-                MainListHelperVM.Instance.AllGroupFilters.Add(gfNew);
-
+                MainListHelperVM.Instance.AllGroupFiltersDictionary[0]=gfNew;
+                
                 groupFilterVM = gfNew;
                 MainListHelperVM.Instance.ViewGroupsForms.Filter = GroupFilter_GroupSearch;
                 MainListHelperVM.Instance.SetGroupFilterSortingOnForms(gfNew);
@@ -2483,7 +2472,7 @@ namespace JMMClient
 
                         // fund the GroupFilter
 
-                        foreach (GroupFilterVM gf in MainListHelperVM.Instance.AllGroupFilters)
+                        foreach (GroupFilterVM gf in MainListHelperVM.Instance.AllGroupFiltersDictionary.Values)
                         {
                             if (!gf.AllowEditing) continue; // all filter
                             if (gf.GroupFilterID == gfc.GroupFilterID)
@@ -2622,7 +2611,7 @@ namespace JMMClient
         private void GroupFilterSortMoveUpDown(GroupFilterSortingCriteria gfsc, int direction)
         {
             // find the sorting condition
-            foreach (GroupFilterVM gf in MainListHelperVM.Instance.AllGroupFilters)
+            foreach (GroupFilterVM gf in MainListHelperVM.Instance.AllGroupFiltersDictionary.Values)
             {
                 if (!gf.AllowEditing) continue; // all filter
                 if (gf.GroupFilterID == gfsc.GroupFilterID)
@@ -2679,7 +2668,7 @@ namespace JMMClient
                     if (res == MessageBoxResult.Yes)
                     {
                         // find the sorting condition
-                        foreach (GroupFilterVM gf in MainListHelperVM.Instance.AllGroupFilters)
+                        foreach (GroupFilterVM gf in MainListHelperVM.Instance.AllGroupFiltersDictionary.Values)
                         {
                             if (!gf.AllowEditing) continue; // all filter
                             if (gf.GroupFilterID == gfsc.GroupFilterID)
