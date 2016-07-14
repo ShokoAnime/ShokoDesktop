@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
+using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -760,15 +761,9 @@ namespace JMMClient.UserControls
 
                     anime.ClearTraktData();
 
-                    // find the series for this anime
-                    foreach (AnimeSeriesVM ser in MainListHelperVM.Instance.AllSeriesDictionary.Values)
-                    {
-                        if (anime.AnimeID == ser.AniDB_ID)
-                        {
-                            MainListHelperVM.Instance.UpdateHeirarchy(ser);
-                            break;
-                        }
-                    }
+                    AnimeSeriesVM ser = MainListHelperVM.Instance.AllSeriesDictionary.Values.FirstOrDefault(a => a.AniDB_ID == anime.AnimeID);
+                    if (ser!=null)
+                        MainListHelperVM.Instance.UpdateHeirarchy(ser);
 
                     RefreshData();
                 }
@@ -1085,14 +1080,9 @@ namespace JMMClient.UserControls
                     anime.ClearTvDBData();
 
                     // find the series for this anime
-                    foreach (AnimeSeriesVM ser in MainListHelperVM.Instance.AllSeriesDictionary.Values)
-                    {
-                        if (anime.AnimeID == ser.AniDB_ID)
-                        {
-                            MainListHelperVM.Instance.UpdateHeirarchy(ser);
-                            break;
-                        }
-                    }
+                    AnimeSeriesVM ser = MainListHelperVM.Instance.AllSeriesDictionary.Values.FirstOrDefault(a => a.AniDB_ID == anime.AnimeID);
+                    if (ser != null)
+                        MainListHelperVM.Instance.UpdateHeirarchy(ser);
 
                     RefreshData();
                 }

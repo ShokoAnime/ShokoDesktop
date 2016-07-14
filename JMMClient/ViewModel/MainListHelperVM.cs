@@ -379,14 +379,12 @@ namespace JMMClient
                     AllAnimeDictionary[anime.AnimeID] = anime;
 
                     // update the series
-                    foreach (AnimeSeriesVM ser in AllSeriesDictionary.Values)
+                    AnimeSeriesVM ser = AllSeriesDictionary.Values.FirstOrDefault(a => a.AniDB_ID == anime.AnimeID);
+                    if (ser != null)
                     {
-                        if (ser.AniDB_ID == anime.AnimeID)
-                        {
-                            ser.RefreshBase();
-                            ser.AniDB_Anime.Detail.RefreshBase();
-                            AllSeriesDictionary[ser.AnimeSeriesID.Value] = ser;
-                        }
+                        ser.RefreshBase();
+                        ser.AniDB_Anime.Detail.RefreshBase();
+                        AllSeriesDictionary[ser.AnimeSeriesID.Value] = ser;
                     }
                 }
             }
@@ -864,16 +862,7 @@ namespace JMMClient
         {
             try
             {
-                AnimeSeriesVM thisSeries = null;
-                foreach (AnimeSeriesVM ser in MainListHelperVM.Instance.AllSeriesDictionary.Values)
-                {
-                    if (ser.AnimeSeriesID == ep.AnimeSeriesID)
-                    {
-                        thisSeries = ser;
-                        break;
-                    }
-                }
-                return thisSeries;
+                return AllSeriesDictionary.SureGet(ep.AnimeSeriesID);
             }
             catch (Exception ex)
             {
@@ -887,16 +876,7 @@ namespace JMMClient
         {
             try
             {
-                AnimeSeriesVM thisSeries = null;
-                foreach (AnimeSeriesVM ser in MainListHelperVM.Instance.AllSeriesDictionary.Values)
-                {
-                    if (ser.AniDB_ID == animeID)
-                    {
-                        thisSeries = ser;
-                        break;
-                    }
-                }
-                return thisSeries;
+                return MainListHelperVM.Instance.AllSeriesDictionary.Values.FirstOrDefault(a => a.AniDB_ID == animeID);                
             }
             catch (Exception ex)
             {
@@ -928,20 +908,12 @@ namespace JMMClient
             try
             {
                 // get the episodes that this file applies to
-                List<JMMServerBinary.Contract_AnimeEpisode> eps = JMMServerVM.Instance.clientBinaryHTTP.GetEpisodesForFile(videoLocalID,
-                    JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+                List<JMMServerBinary.Contract_AnimeEpisode> eps = JMMServerVM.Instance.clientBinaryHTTP.GetEpisodesForFile(videoLocalID,JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
                 foreach (JMMServerBinary.Contract_AnimeEpisode epcontract in eps)
                 {
-                    AnimeSeriesVM thisSeries = null;
-                    foreach (AnimeSeriesVM ser in MainListHelperVM.Instance.AllSeriesDictionary.Values)
-                    {
-                        if (ser.AnimeSeriesID == epcontract.AnimeSeriesID)
-                        {
-                            thisSeries = ser;
-                            break;
-                        }
-                    }
-                    return thisSeries;
+                    AnimeSeriesVM thisSeries=AllSeriesDictionary.SureGet(epcontract.AnimeSeriesID);
+                    if (thisSeries != null)
+                        return thisSeries;
                 }
 
             }
@@ -1077,15 +1049,7 @@ namespace JMMClient
                     JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
                 foreach (JMMServerBinary.Contract_AnimeEpisode epcontract in eps)
                 {
-                    AnimeSeriesVM thisSeries = null;
-                    foreach (AnimeSeriesVM ser in MainListHelperVM.Instance.AllSeriesDictionary.Values)
-                    {
-                        if (ser.AnimeSeriesID == epcontract.AnimeSeriesID)
-                        {
-                            thisSeries = ser;
-                            break;
-                        }
-                    }
+                    AnimeSeriesVM thisSeries = AllSeriesDictionary.SureGet(epcontract.AnimeSeriesID);
 
                     // update the episodes
                     if (thisSeries != null && thisSeries.AnimeSeriesID.HasValue && thisSeries.AnimeSeriesID.Value == epcontract.AnimeSeriesID)
@@ -1126,33 +1090,19 @@ namespace JMMClient
             try
             {
                 // update the attached series
-                JMMServerBinary.Contract_AnimeSeries serContract = JMMServerVM.Instance.clientBinaryHTTP.GetSeries(ep.AnimeSeriesID,
-                    JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
-                foreach (AnimeSeriesVM ser in MainListHelperVM.Instance.AllSeriesDictionary.Values)
+                JMMServerBinary.Contract_AnimeSeries serContract = JMMServerVM.Instance.clientBinaryHTTP.GetSeries(ep.AnimeSeriesID, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+                AnimeSeriesVM ser = AllSeriesDictionary.SureGet(serContract.AnimeSeriesID);
+                if (ser != null)
                 {
-                    if (ser.AnimeSeriesID == serContract.AnimeSeriesID)
-                    {
-                        ser.Populate(serContract);
-
-                        // TODO update the episode list
-                        break;
-                    }
+                    ser.Populate(serContract);
+                    // TODO update the episode list
                 }
-
-                List<JMMServerBinary.Contract_AnimeGroup> grps = JMMServerVM.Instance.clientBinaryHTTP.GetAllGroupsAboveSeries(ep.AnimeSeriesID,
-                    JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
-                foreach (AnimeGroupVM grp in MainListHelperVM.Instance.AllGroupsDictionary.Values)
-                {
-                    foreach (JMMServerBinary.Contract_AnimeGroup grpContract in grps)
-                    {
-                        if (grp.AnimeGroupID.Value == grpContract.AnimeGroupID)
-                        {
-                            grp.Populate(grpContract);
-                            break;
-                        }
-                        grp.PopulateSerieInfo(AllGroupsDictionary,AllSeriesDictionary);
-                    }
-
+                List<JMMServerBinary.Contract_AnimeGroup> grps = JMMServerVM.Instance.clientBinaryHTTP.GetAllGroupsAboveSeries(ep.AnimeSeriesID,JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+                foreach (JMMServerBinary.Contract_AnimeGroup grpContract in grps)
+                { 
+                    AnimeGroupVM agrp = AllGroupsDictionary.SureGet(grpContract.AnimeGroupID);
+                    agrp?.Populate(grpContract);
+                    agrp?.PopulateSerieInfo(AllGroupsDictionary, AllSeriesDictionary);
                 }
             }
             catch (Exception ex)
@@ -1172,18 +1122,11 @@ namespace JMMClient
 
                 List<JMMServerBinary.Contract_AnimeGroup> grps = JMMServerVM.Instance.clientBinaryHTTP.GetAllGroupsAboveSeries(ser.AnimeSeriesID.Value,
                     JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
-                foreach (AnimeGroupVM grp in MainListHelperVM.Instance.AllGroupsDictionary.Values)
+                foreach (JMMServerBinary.Contract_AnimeGroup grpContract in grps)
                 {
-                    foreach (JMMServerBinary.Contract_AnimeGroup grpContract in grps)
-                    {
-                        if (grp.AnimeGroupID.Value == grpContract.AnimeGroupID)
-                        {
-                            grp.Populate(grpContract);
-                            grp.PopulateSerieInfo(AllGroupsDictionary, AllSeriesDictionary);
-                            break;
-                        }
-                    }
-
+                    AnimeGroupVM agrp = AllGroupsDictionary.SureGet(grpContract.AnimeGroupID);
+                    agrp?.Populate(grpContract);
+                    agrp?.PopulateSerieInfo(AllGroupsDictionary, AllSeriesDictionary);
                 }
             }
             catch (Exception ex)
