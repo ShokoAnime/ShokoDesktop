@@ -144,7 +144,7 @@
                 <!-- Check Cred button -->
                 <Button Name="btnChkCred" Margin="5,0,0,-5" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                        <Image Height="16" Width="16" Source="/Images/32_settings2.png" Margin="0,0,5,0"/>
+                        <Image Height="16" Width="16" Source="/Images/32_settings.png" Margin="0,0,5,0"/>
                         <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CheckCred}" Margin="0,0,5,0"/>
                     </StackPanel>
                 </Button>
@@ -207,7 +207,7 @@
                     </TextBlock>
 
                     <!-- Use this button -->
-                    <Button Name="btnUseThis" Margin="10,5,2,0" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Button Name="btnUseThis" Margin="0,5,2,0" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,5,0"/>
                             <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=UseThis}" Margin="0,0,5,0"/>

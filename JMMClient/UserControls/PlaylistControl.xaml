@@ -42,16 +42,16 @@
 
                     <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Margin="0,0,5,5">
                         <!-- delete item button -->
-                        <Button HorizontalAlignment="Left" Margin="0,0,10,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto"
+                        <Button HorizontalAlignment="Left" Margin="0,5,10,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto"
                             Command="{DynamicResource DeletePlaylistItemCommand}" CommandParameter="{Binding}" 
                             ToolTip="{Resx ResxName=JMMClient.Properties.Resources, Key=Delete}" VerticalAlignment="Center">
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,0,0"/>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <Image Height="16" Width="16" Source="/Images/16_cancel.png"/>
 
                             </StackPanel>
                         </Button>
-                        <TextBlock Margin="0,0,10,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Series}" FontSize="16" Foreground="DarkGray" VerticalAlignment="Center" />
-                        <TextBlock Text="{Binding Path=Series.SeriesName}" FontWeight="Bold" FontSize="16" VerticalAlignment="Center" />
+                        <TextBlock Margin="0,5,10,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Series}" FontSize="16" Foreground="DarkGray" VerticalAlignment="Center" />
+                        <TextBlock Margin="0,5,0,0" Text="{Binding Path=Series.SeriesName}" FontWeight="Bold" FontSize="16" VerticalAlignment="Center" />
 
                         <!-- show pinned series button -->
                         <Button Margin="10,5,0,0" Style="{DynamicResource RoundButtonStyle}" VerticalAlignment="Center"
@@ -95,17 +95,17 @@
 
                     <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Margin="0,0,5,5">
                         <!-- delete item button -->
-                        <Button HorizontalAlignment="Left" Margin="0,0,10,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto"
+                        <Button HorizontalAlignment="Left" Margin="0,5,10,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto"
                             Command="{DynamicResource DeletePlaylistItemCommand}" CommandParameter="{Binding}" 
                             ToolTip="{Resx ResxName=JMMClient.Properties.Resources, Key=Delete}" VerticalAlignment="Center">
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,0,0"/>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <Image Height="16" Width="16" Source="/Images/16_cancel.png"/>
 
                             </StackPanel>
                         </Button>
-                        <TextBlock Margin="0,0,10,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode}" FontSize="16" Foreground="DarkGray" VerticalAlignment="Center" />
-                        <TextBlock Text="{Binding Path=Series.SeriesName}" FontWeight="Bold" FontSize="16" VerticalAlignment="Center" Margin="0,0,10,0" />
-                        <TextBlock Text="{Binding Path=Episode.EpisodeNumberAndNameWithTypeTruncated}" FontWeight="Bold" FontSize="16" Foreground="DarkGreen" VerticalAlignment="Center" />
+                        <TextBlock Margin="0,5,10,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode}" FontSize="16" Foreground="DarkGray" VerticalAlignment="Center" />
+                        <TextBlock Margin="0,5,10,0" Text="{Binding Path=Series.SeriesName}" FontWeight="Bold" FontSize="16" VerticalAlignment="Center" />
+                        <TextBlock Margin="0,5,0,0" Text="{Binding Path=Episode.EpisodeNumberAndNameWithTypeTruncated}" FontWeight="Bold" FontSize="16" Foreground="DarkGreen" VerticalAlignment="Center" />
 
                         <!-- show pinned series button -->
                         <Button Margin="5,0,0,0" Style="{DynamicResource RoundButtonStyle}" VerticalAlignment="Center"

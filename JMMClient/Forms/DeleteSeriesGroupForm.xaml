@@ -34,7 +34,7 @@
 
         <!-- Row 1 -->
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Margin="0,0,0,10">
-            <Image Height="16" Width="16" Source="/Images/32_trash.png" Margin="0,0,6,0"/>
+            <Image Height="16" Width="16" Source="/Images/16_warning.png" Margin="0,0,6,0"/>
             <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=DeleteSeriesConfirm}" Margin="0,0,0,0"/>
         </StackPanel>
 

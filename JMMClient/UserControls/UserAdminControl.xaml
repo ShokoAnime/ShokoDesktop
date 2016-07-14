@@ -158,7 +158,7 @@
                         <!-- Change Password -->
                         <Button x:Name="btnChangePassword" Margin="10,2,2,2" Style="{DynamicResource RoundButtonStyle}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                <Image Height="16" Width="16" Source="/Images/16_key.png" Margin="0,0,3,0"/>
+                                <Image Height="16" Width="16" Source="/Images/32_key.png" Margin="0,0,3,0"/>
                                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ChangePassword}" Margin="0,0,0,0"/>
                             </StackPanel>
                         </Button>

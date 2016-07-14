@@ -339,9 +339,6 @@
   <data name="Tooltip_MissingEpsGroups" xml:space="preserve">
     <value>Brakujące odcinki z grup, które zbieram</value>
   </data>
-  <data name="Tooltip_QueueImages" xml:space="preserve">
-    <value>Kolejka oczekujących obrazów do pobrania</value>
-  </data>
   <data name="Specials" xml:space="preserve">
     <value>Odcinek Specjalny</value>
   </data>
@@ -1106,9 +1103,6 @@
   <data name="TAB_DuplicateFiles" xml:space="preserve">
     <value>Zduplikowane pliki</value>
   </data>
-  <data name="INFO_DuplicateFiles" xml:space="preserve">
-    <value>Zduplikowane pliki są, gdzie masz dwie lub więcej plików, które są dokładnie takie same, z wyjątkiem ich w różnych folderach lub są nazwane inaczej. JMM umożliwia tylko jeden plik z taką samą wartość mieszania w kolekcja.</value>
-  </data>
   <data name="Tooltip_DeleteDuplicateFileAll" xml:space="preserve">
     <value>Usuwanie wpisu bazy danych i wybranego pliku na dysku.</value>
   </data>
@@ -1126,9 +1120,6 @@
   </data>
   <data name="TAB_MultipleFiles" xml:space="preserve">
     <value>Wiele plików</value>
-  </data>
-  <data name="INFO_MultipleFiles" xml:space="preserve">
-    <value>Wiele plików są, gdzie masz dwie lub więcej plików na tym samym odcinku. To narzędzie pozwoli ci sprawdzić wszystkie te zdarzenia i zdecydować, które z nich chcesz zachować</value>
   </data>
   <data name="Loading" xml:space="preserve">
     <value>Trwa ładowanie...</value>
@@ -2536,32 +2527,14 @@
   <data name="IgnoredAnime_Delete" xml:space="preserve">
     <value>Usuń ten wpis</value>
   </data>
-  <data name="IgnoredAnime_Note" xml:space="preserve">
-    <value>To narzędzie pokaże wszystkie anime, wybranych do zignorowania z zaleceniami. Usunięcie tych rekordów oznacza, że mogą one wykazywać w zaleceniach ponownie.</value>
-  </data>
   <data name="ImportFolder_Watched" xml:space="preserve">
     <value>Folder ten jest obserwowany na nowe pliki</value>
   </data>
   <data name="MissingEpisodes_SelectColumns" xml:space="preserve">
     <value>Wybierz kolumn, które mają być stosowane w imporcie</value>
   </data>
-  <data name="MissingEpisodes_AiringState" xml:space="preserve">
-    <value>Wietrzenie Państwa:</value>
-  </data>
-  <data name="RefreshWait" xml:space="preserve">
-    <value>Naciśnięcie przycisku Odśwież może potrwać kilka minut, więc proszę o cierpliwość</value>
-  </data>
-  <data name="MissingEpisodes_Note" xml:space="preserve">
-    <value>To narzędzie będzie wyświetlał podsumowanie wszystkich brakujących odcinków.</value>
-  </data>
-  <data name="MissingMyList_Missing" xml:space="preserve">
-    <value>Zobacz brakujący plik</value>
-  </data>
   <data name="MissingMyList_RemoveAll" xml:space="preserve">
     <value>Usuń wszystkie wpisy z AniDB</value>
-  </data>
-  <data name="MissingMyList_Note" xml:space="preserve">
-    <value>To narzędzie będzie pobieranie listy plików z AniDB i porównać go do plików lokalnych. Wtedy masz szansę, aby usunąć te pliki z AniDB, jeśli nie istnieje.</value>
   </data>
   <data name="Episode" xml:space="preserve">
     <value>Odcinek</value>
@@ -2616,9 +2589,6 @@
   </data>
   <data name="SeriesWithoutFiles_Delete" xml:space="preserve">
     <value>Usunięcia tej serii z bazy danych</value>
-  </data>
-  <data name="SeriesWithoutFiles_Note" xml:space="preserve">
-    <value>To narzędzie pokaże wszystkie serie, które nie mają żadnych plików. Usuwanie z serii spowoduje również usunięcie grupy, jeśli nie ma innych serii w tym grupa plików.</value>
   </data>
   <data name="TraktShouts_View" xml:space="preserve">
     <value>Widok</value>
@@ -4344,5 +4314,59 @@
   </data>
   <data name="TvDB_DefaultLanguage" xml:space="preserve">
     <value>Wybierz język, chcieliby odcinek tytuły i opisy do pobrania w z The TvDB. Należy pamiętać, że jeśli odcinek tytuł lub opis nie jest dostępny w wybranym języku, domyślna wersja zostanie pobrany.</value>
+  </data>
+  <data name="INFO_DuplicateFiles" xml:space="preserve">
+    <value>To narzędzie pokaże wszystkie wystąpienia w przypadku, gdy istnieją dwa lub więcej plików z tego samego skrótu. JMM pozwala tylko jeden plik z taką samą wartość mieszania w swojej kolekcji.</value>
+  </data>
+  <data name="INFO_MultipleFiles" xml:space="preserve">
+    <value>To narzędzie pokaże wszystkie wystąpienia, gdzie masz wiele plików na tym samym odcinku. Będzie być w stanie wyświetlić każde wystąpienie i zdecydować, które z nich chcesz zachować.</value>
+  </data>
+  <data name="IgnoredAnime_Note" xml:space="preserve">
+    <value>To narzędzie pokaże wszystkie serii anime, które oznaczyłeś ignorowane z sekcji zalecenia. Jeśli usuniesz serii z tej listy, jest możliwe, aby był wyświetlany w sekcji zaleceń ponownie.</value>
+  </data>
+  <data name="MissingEpisodes_AiringState" xml:space="preserve">
+    <value>Wietrzenie Państwa</value>
+  </data>
+  <data name="MissingEpisodes_Note" xml:space="preserve">
+    <value>To narzędzie pokaże podsumowanie wszystkich odcinków jesteś chybianie z serii w swojej kolekcji. To narzędzie działa w tle, więc nie trzeba czekać na wyniki. To może również zająć trochę czasu, w zależności od tego, jak wiele brakujące odcinki są więc proszę o cierpliwość.</value>
+  </data>
+  <data name="MissingMyList_Missing" xml:space="preserve">
+    <value>Wyświetlić brakujące pliki</value>
+  </data>
+  <data name="MissingMyList_Note" xml:space="preserve">
+    <value>To narzędzie będzie porównanie bieżącej kolekcji z Twoim AniDB MyList i wyświetlenie dowolnego pliku rozbieżności między dwoma. Możesz przejrzeć wyniki i automatycznie usunąć wszystkie rozbieżności plik JMM. Należy pamiętać, że JMM będzie używać bieżącej kolekcji jako podstawy i Usuń wszystkie wpisy w Twoim AniDB MyList, które nie są obecne w bieżącej kolekcji. To narzędzie działa w tle, więc nie trzeba czekać na wyniki. To może również zająć trochę czasu, w zależności od tego, jak wiele rozbieżności plik istnieje więc proszę o cierpliwość.</value>
+  </data>
+  <data name="SeriesWithoutFiles_Note" xml:space="preserve">
+    <value>To narzędzie pokaże wszystkie serie w swojej kolekcji, który nie ma żadnych plików. Usuwanie z serii z kolekcji spowoduje również usunięcie grupy, jeśli istnieją nie inne serie w tej grupie, czy też żadnych dodatkowych serii w tej grupie nie ma plików. </value>
+  </data>
+  <data name="VideoPlayer_Installed" xml:space="preserve">
+    <value>Zainstalowane</value>
+  </data>
+  <data name="MPV" xml:space="preserve">
+    <value>MPV</value>
+  </data>
+  <data name="VideoPlayer_NotInstalled" xml:space="preserve">
+    <value>Nie zainstalowane</value>
+  </data>
+  <data name="VideoPlayer_DefaultPlayerEnabled" xml:space="preserve">
+    <value>Włączone</value>
+  </data>
+  <data name="Video_Player_DefaultPlayerNotConfigured" xml:space="preserve">
+    <value>Nie skonfigurowano</value>
+  </data>
+  <data name="VideoPlayer_Configured" xml:space="preserve">
+    <value>Skonfigurowany</value>
+  </data>
+  <data name="VideoPlayer_NotConfigured" xml:space="preserve">
+    <value>NIE skonfigurowano proszę rozwiązać</value>
+  </data>
+  <data name="Link_EnableStreaming" xml:space="preserve">
+    <value>http://jmediamanager.org/jmm-desktop/server/#streaming</value>
+  </data>
+  <data name="Tooltip_QueueImages" xml:space="preserve">
+    <value>Obrazy czeka do pobrania</value>
+  </data>
+  <data name="UseStreaming" xml:space="preserve">
+    <value>Włączenie przesyłania strumieniowego</value>
   </data>
 </root>

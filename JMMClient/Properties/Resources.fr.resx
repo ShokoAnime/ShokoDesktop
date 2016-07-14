@@ -342,9 +342,6 @@
   <data name="Tooltip_MissingEpsGroups" xml:space="preserve">
     <value>Épisodes manquants de groupes que je collecte</value>
   </data>
-  <data name="Tooltip_QueueImages" xml:space="preserve">
-    <value>Téléchargement des images en file d'attente en attente</value>
-  </data>
   <data name="Specials" xml:space="preserve">
     <value>Offres spéciales</value>
   </data>
@@ -1107,9 +1104,6 @@
   <data name="TAB_DuplicateFiles" xml:space="preserve">
     <value>Les fichiers en double</value>
   </data>
-  <data name="INFO_DuplicateFiles" xml:space="preserve">
-    <value>Les fichiers en double sont où vous avez deux ou plusieurs fichiers qui sont exactement les mêmes, sauf qu'ils sont dans des dossiers différents ou sont nommés différemment. JMM autorise uniquement un seul fichier avec le même hachage de la collection.</value>
-  </data>
   <data name="Tooltip_DeleteDuplicateFileAll" xml:space="preserve">
     <value>Supprimez l'entrée de la base de données et le fichier sélectionné sur le disque.</value>
   </data>
@@ -1127,9 +1121,6 @@
   </data>
   <data name="TAB_MultipleFiles" xml:space="preserve">
     <value>Plusieurs fichiers</value>
-  </data>
-  <data name="INFO_MultipleFiles" xml:space="preserve">
-    <value>Plusieurs fichiers sont où vous avez deux ou plusieurs fichiers du même épisode. Cet utilitaire vous permettra d'examiner tous ces événements et de décider quels sont ceux que vous souhaitez conserver</value>
   </data>
   <data name="Loading" xml:space="preserve">
     <value>Chargement...</value>
@@ -2534,32 +2525,14 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   <data name="IgnoredAnime_Delete" xml:space="preserve">
     <value>Supprimer cette rubrique</value>
   </data>
-  <data name="IgnoredAnime_Note" xml:space="preserve">
-    <value>Cet utilitaire va vous montrer tout l'anime que vous avez choisi d'ignorer les recommandations. Supprimer ces enregistrements signifie qu'ils peuvent réafficher dans les recommandations.</value>
-  </data>
   <data name="ImportFolder_Watched" xml:space="preserve">
     <value>Ce dossier est observé pour les nouveaux fichiers</value>
   </data>
   <data name="MissingEpisodes_SelectColumns" xml:space="preserve">
     <value>Sélectionnez les colonnes à utiliser pour l'importation</value>
   </data>
-  <data name="MissingEpisodes_AiringState" xml:space="preserve">
-    <value>État de diffusion :</value>
-  </data>
-  <data name="RefreshWait" xml:space="preserve">
-    <value>En appuyant sur le bouton actualiser peut durer plusieurs minutes, donc s'il vous plaît soyez patient</value>
-  </data>
-  <data name="MissingEpisodes_Note" xml:space="preserve">
-    <value>Cet utilitaire va vous montrer un aperçu de tous vos épisodes manquants.</value>
-  </data>
-  <data name="MissingMyList_Missing" xml:space="preserve">
-    <value>Afficher le fichier manquant</value>
-  </data>
   <data name="MissingMyList_RemoveAll" xml:space="preserve">
     <value>Supprimer toutes les entrées de AniDB</value>
-  </data>
-  <data name="MissingMyList_Note" xml:space="preserve">
-    <value>Cet utilitaire va télécharger votre liste de fichiers à partir AniDB et comparez-le aux fichiers localement. Vous aurez alors la possibilité de supprimer ces fichiers de AniDB si elles n'existent pas.</value>
   </data>
   <data name="Episode" xml:space="preserve">
     <value>Épisode</value>
@@ -2614,9 +2587,6 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   </data>
   <data name="SeriesWithoutFiles_Delete" xml:space="preserve">
     <value>Supprimer cette série dans la base de données</value>
-  </data>
-  <data name="SeriesWithoutFiles_Note" xml:space="preserve">
-    <value>Cet utilitaire va vous montrer toutes les séries qui n'ont pas tous les fichiers. Suppression de la série supprimera également le groupe si aucune autre série de ce groupe n'ont des fichiers.</value>
   </data>
   <data name="TraktShouts_View" xml:space="preserve">
     <value>Vue</value>
@@ -4342,5 +4312,59 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   </data>
   <data name="TvDB_DefaultLanguage" xml:space="preserve">
     <value>Sélectionnez la langue que vous désirez épisode titres et descriptions à télécharger dans de la TvDB. Veuillez noter que si un titre de l’épisode ou de la description n’est pas disponible dans la langue que vous avez sélectionné, la version anglaise par défaut sera téléchargée.</value>
+  </data>
+  <data name="INFO_DuplicateFiles" xml:space="preserve">
+    <value>Cet utilitaire affiche toutes les instances où il y a deux ou plusieurs fichiers avec le même hachage. JMM vous permet uniquement d’avoir un fichier avec le même hachage dans votre collection.</value>
+  </data>
+  <data name="INFO_MultipleFiles" xml:space="preserve">
+    <value>Cet utilitaire affiche toutes les instances où vous avez plusieurs fichiers du même épisode. Vous serez en mesure d’afficher chaque instance et décider quels sont ceux que vous souhaitez garder.</value>
+  </data>
+  <data name="IgnoredAnime_Note" xml:space="preserve">
+    <value>Cet utilitaire affiche toutes les séries d’anime que vous avez marqué comme ignoré de la section des recommandations. Si vous supprimez une série dans cette liste, il est possible qu’il s’affiche dans la section recommandations à nouveau.</value>
+  </data>
+  <data name="MissingEpisodes_AiringState" xml:space="preserve">
+    <value>État de diffusion</value>
+  </data>
+  <data name="MissingEpisodes_Note" xml:space="preserve">
+    <value>Cet utilitaire va vous montrer un résumé de tous les épisodes, vous êtes absent de la série dans votre collection. Cet utilitaire s’exécute en arrière-plan, vous n’avez pas besoin d’attendre les résultats. Il peut également prendre un certain temps selon combien d’épisodes manquants il y a donc s’il vous plaît être patient.</value>
+  </data>
+  <data name="MissingMyList_Missing" xml:space="preserve">
+    <value>Afficher les fichiers manquants</value>
+  </data>
+  <data name="MissingMyList_Note" xml:space="preserve">
+    <value>Cet utilitaire va comparer votre collection actuelle avec votre AniDB MyList et afficher tout écart de fichier entre les deux. Vous pouvez consulter les résultats et ont JMM automatiquement supprimer toutes les différences de fichier. Veuillez noter que JMM utilisera votre collection actuelle comme base et supprimer toutes les entrées dans votre AniDB MyList qui ne se trouvent pas dans votre collection actuelle. Cet utilitaire s’exécute en arrière-plan, vous n’avez pas besoin d’attendre les résultats. Il peut également prendre un certain temps selon les différences de fichier combien il y a donc s’il vous plaît être patient.</value>
+  </data>
+  <data name="SeriesWithoutFiles_Note" xml:space="preserve">
+    <value>Cet utilitaire affiche toutes les séries dans votre collection qui n’ont pas tous les fichiers. Suppression de la série de votre collection supprimera également le groupe s’il n’y a aucune autre série de ce groupe, ou si n’importe quelle série supplémentaire de ce groupe n’ont pas de fichiers. </value>
+  </data>
+  <data name="VideoPlayer_Installed" xml:space="preserve">
+    <value>Installé</value>
+  </data>
+  <data name="MPV" xml:space="preserve">
+    <value>MPV</value>
+  </data>
+  <data name="VideoPlayer_NotInstalled" xml:space="preserve">
+    <value>Pas installé</value>
+  </data>
+  <data name="VideoPlayer_DefaultPlayerEnabled" xml:space="preserve">
+    <value>Activé</value>
+  </data>
+  <data name="Video_Player_DefaultPlayerNotConfigured" xml:space="preserve">
+    <value>Non configuré</value>
+  </data>
+  <data name="VideoPlayer_Configured" xml:space="preserve">
+    <value>Configurée</value>
+  </data>
+  <data name="VideoPlayer_NotConfigured" xml:space="preserve">
+    <value>PAS configuré veuillez résoudre</value>
+  </data>
+  <data name="Link_EnableStreaming" xml:space="preserve">
+    <value>http://jmediamanager.org/jmm-desktop/server/#streaming</value>
+  </data>
+  <data name="Tooltip_QueueImages" xml:space="preserve">
+    <value>Téléchargement des images en attente</value>
+  </data>
+  <data name="UseStreaming" xml:space="preserve">
+    <value>Activer le Streaming</value>
   </data>
 </root>
