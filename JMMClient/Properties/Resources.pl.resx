@@ -1718,16 +1718,10 @@
     <value>http://jmediamanager.org/JMM-Desktop/Collection/#What-are-filters</value>
   </data>
   <data name="Link_ImportFolders" xml:space="preserve">
-    <value>http://jmediamanager.org/JMM-Server/Configuring-JMM-Server/#import-Folders</value>
+    <value>http://jmediamanager.org/jmm-desktop/server/#import-folders</value>
   </data>
   <data name="Link_MAL" xml:space="preserve">
     <value>http://jmediamanager.org/JMM-Desktop/Settings/#Community-sites</value>
-  </data>
-  <data name="Link_MPC" xml:space="preserve">
-    <value>http://jmediamanager.org/JMM-Desktop/Settings/#MPC</value>
-  </data>
-  <data name="Link_PotPlayer" xml:space="preserve">
-    <value>http://jmediamanager.org/JMM-Desktop/Settings/#pot-Player</value>
   </data>
   <data name="Link_TMDb" xml:space="preserve">
     <value>http://jmediamanager.org/JMM-Desktop/Settings/#Community-sites</value>
@@ -1740,9 +1734,6 @@
   </data>
   <data name="Link_uTorrent" xml:space="preserve">
     <value>http://jmediamanager.org/JMM-Desktop/downloads/#uTorrent</value>
-  </data>
-  <data name="Link_VLC" xml:space="preserve">
-    <value>http://jmediamanager.org/JMM-Desktop/Settings/#VLC</value>
   </data>
   <data name="Link_WebCache" xml:space="preserve">
     <value>http://jmediamanager.org/JMM-Desktop/Settings/#Web-cache</value>
@@ -2152,20 +2143,11 @@
   <data name="VideoPlayer_MPC" xml:space="preserve">
     <value>Media Player Classic</value>
   </data>
-  <data name="VideoPlayer_MPCOptions" xml:space="preserve">
-    <value>RPP opcje</value>
-  </data>
   <data name="VideoPlayer_VLC" xml:space="preserve">
     <value>VLC</value>
   </data>
-  <data name="VideoPlayer_VLCOptions" xml:space="preserve">
-    <value>VLC opcje</value>
-  </data>
   <data name="VideoPlayer_PotPlayer" xml:space="preserve">
     <value>PotPlayer</value>
-  </data>
-  <data name="VideoPlayer_PotPlayerOptions" xml:space="preserve">
-    <value>PotPlayer opcje</value>
   </data>
   <data name="VideoPlayer_MPCINI" xml:space="preserve">
     <value>Wybierz Folder MPC INI</value>
@@ -3052,8 +3034,8 @@
   <data name="VideoPlayer_DefaultPlayer" xml:space="preserve">
     <value>Domyślnego odtwarzacza</value>
   </data>
-  <data name="Link_Path" xml:space="preserve">
-    <value>http://www.computerhope.com/Issues/ch000549.htm</value>
+  <data name="Link_VideoPlayer" xml:space="preserve">
+    <value>http://jmediamanager.org/jmm-desktop/settings/#video-player</value>
   </data>
   <data name="Search_Everything" xml:space="preserve">
     <value>Wszystko</value>
@@ -3268,9 +3250,6 @@
   <data name="ImportSettings_Custom" xml:space="preserve">
     <value>Niestandardowe</value>
   </data>
-  <data name="SeriesSimple_PlayUnWatched" xml:space="preserve">
-    <value>Gry wszystko UnWatched</value>
-  </data>
   <data name="Main_Paused" xml:space="preserve">
     <value>Wstrzymane z powodu bana od AniDB</value>
   </data>
@@ -3306,9 +3285,6 @@
   </data>
   <data name="VideoPlayer_INIFoundHistory" xml:space="preserve">
     <value>Znaleziono pliku INI. Próbki pliku niedawno oglądałem...</value>
-  </data>
-  <data name="VideoPlayer_DefaultNote" xml:space="preserve">
-    <value>JMM automatycznie używa domyślnego odtwarzacza wideo systemu Windows. Jeśli chcesz użyć innego odtwarzacza wideo musisz dodać odtwarzacz wideo pliku wykonywalnego do zmiennej systemowej PATH.</value>
   </data>
   <data name="AniDBMyListDeleteLocal" xml:space="preserve">
     <value>Usuń plik (lokalne DB)</value>
@@ -3835,9 +3811,6 @@
   <data name="Tooltip_AnimeFull" xml:space="preserve">
     <value>Widok pełny serii</value>
   </data>
-  <data name="Tooltip_AnimeView" xml:space="preserve">
-    <value>Widok serii</value>
-  </data>
   <data name="Tooltip_AnimeUpdateAniDBInfo" xml:space="preserve">
     <value>Aktualizacja informacji z AniDB i Odśwież</value>
   </data>
@@ -4255,9 +4228,6 @@
   <data name="Language_Rename" xml:space="preserve">
     <value>Zmień nazwy wszystkich grup/serii</value>
   </data>
-  <data name="Tooltip_PinSeries" xml:space="preserve">
-    <value>PIN to anime, aby później wyświetlić</value>
-  </data>
   <data name="Remove" xml:space="preserve">
     <value>Usuń</value>
   </data>
@@ -4342,7 +4312,7 @@
   <data name="VideoPlayer_Installed" xml:space="preserve">
     <value>Zainstalowane</value>
   </data>
-  <data name="MPV" xml:space="preserve">
+  <data name="VideoPlayer_MPV" xml:space="preserve">
     <value>MPV</value>
   </data>
   <data name="VideoPlayer_NotInstalled" xml:space="preserve">
@@ -4361,12 +4331,32 @@
     <value>NIE skonfigurowano proszę rozwiązać</value>
   </data>
   <data name="Link_EnableStreaming" xml:space="preserve">
-    <value>http://jmediamanager.org/jmm-desktop/server/#streaming</value>
+    <value>http://jmediamanager.org/streaming/</value>
   </data>
   <data name="Tooltip_QueueImages" xml:space="preserve">
     <value>Obrazy czeka do pobrania</value>
   </data>
   <data name="UseStreaming" xml:space="preserve">
     <value>Włączenie przesyłania strumieniowego</value>
+  </data>
+  <data name="Link_MPV" xml:space="preserve">
+    <value>https://github.com/rossy/mpv-install/blob/master/README.md</value>
+  </data>
+  <data name="Tooltip_PinSeries" xml:space="preserve">
+    <value>PIN to Anime</value>
+  </data>
+  <data name="SeriesSimple_PlayUnwatched" xml:space="preserve">
+    <value>Zagraj wszystkie nieobejrzanych</value>
+  </data>
+  <data name="VideoPlayer_DefaultNote" xml:space="preserve">
+    <value>Domyślnie JMM pulpitu będzie używać odtwarzacza wideo wymienione przez system Windows jako domyślnego odtwarzacza wideo. Jednak można zmienić odtwarzacz wideo, JMM pulpitu używa wybierając jedną z obsługiwanych odtwarzaczy z poniższej listy. Konfiguracja nie jest wymagane, jak JMM Desktop ściąga lokalizację pliku .exe odtwarzacz wideo z rejestru systemu.</value>
+  </data>
+  <data name="VideoPlayer_MPVInstall" xml:space="preserve">
+    <value>Instrukcje instalacji MPV</value>
+  </data>
+  <data name="VideoPlayer_MPVNote" xml:space="preserve">
+    <value>MPV jest lekki odtwarzacz, który powinno przede wszystkim służyć podczas przesyłania strumieniowego w swojej kolekcji. MPV został opracowany, aby uruchomić na wielu różnych systemach operacyjnych, więc niepotrzebne funkcje, takie jak śledzenie, które uniemożliwia MPV przekaźnik stan obserwowany do JMM nie są obsługiwane. 
+
+W przeciwieństwie do innych odtwarzaczy multimedialnych obsługiwanych MPV jest najszybszy, jeśli chodzi o strumieniowe, zwykle w ciągu kilku sekund z otworzeniem pliku rozpoczęcie odtwarzania. Zaleca się posiadanie porządnego połączenia do serwera JMM, jeśli chcesz używać MPV do gotowania na parze. Jeśli zaczniesz zauważać jąkania stały podczas odtwarzania spróbować przełączyć do innego gracza obsługiwanych nośników.</value>
   </data>
 </root>
