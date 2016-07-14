@@ -2055,6 +2055,7 @@
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.Core.dll" />
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.dll" />
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.resources.dll" />
+    <Resource Include="Images\Metro\refresh_32.png" />
     <Resource Include="Images\32_key.png" />
     <Resource Include="Images\16_hourglass.png" />
     <Resource Include="Images\32_simple.png" />

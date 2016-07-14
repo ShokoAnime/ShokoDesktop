@@ -12,6 +12,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
@@ -137,6 +138,19 @@ namespace JMMClient
             //TODO Check 32bit registry logic
             //TODO Wait a little bit for jmm server to start (just enough for the window to load)
             //TODO Let the client know that the server is initalising.
+
+            // first check if JMM Server is already started
+            Mutex mutex;
+            string mutexName = "JmmServer3.0Mutex";
+
+            try
+            {
+                mutex = Mutex.OpenExisting(mutexName);
+                //since it hasn't thrown an exception, then we already have one copy of the app open.
+                return true; // already running
+            }
+            catch { }
+            
 
             string JMMServerPath = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{898530ED-CFC7-4744-B2B8-A8D98A2FA06C}_is1", "InstallLocation", null);
 

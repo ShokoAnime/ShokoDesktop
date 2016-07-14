@@ -343,7 +343,7 @@
     <value>Missing episodes from release groups that I am collecting</value>
   </data>
   <data name="Tooltip_QueueImages" xml:space="preserve">
-    <value>Images awaiting download</value>
+    <value>Images Awaiting Download</value>
   </data>
   <data name="Specials" xml:space="preserve">
     <value>Specials</value>
@@ -1398,7 +1398,7 @@
     <value>Pinned</value>
   </data>
   <data name="Tooltip_PinSeries" xml:space="preserve">
-    <value>Pin this anime to view later</value>
+    <value>Pin This Anime</value>
   </data>
   <data name="GroupFilterConditionType_UserVotedAny" xml:space="preserve">
     <value>User Voted (Any)</value>
@@ -1766,16 +1766,10 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>http://jmediamanager.org/jmm-desktop/collection/#what-are-filters</value>
   </data>
   <data name="Link_ImportFolders" xml:space="preserve">
-    <value>http://jmediamanager.org/jmm-server/configuring-jmm-server/#import-folders</value>
+    <value>http://jmediamanager.org/jmm-desktop/server/#import-folders</value>
   </data>
   <data name="Link_MAL" xml:space="preserve">
     <value>http://jmediamanager.org/jmm-desktop/settings/#community-sites</value>
-  </data>
-  <data name="Link_MPC" xml:space="preserve">
-    <value>http://jmediamanager.org/jmm-desktop/settings/#mpc</value>
-  </data>
-  <data name="Link_PotPlayer" xml:space="preserve">
-    <value>http://jmediamanager.org/jmm-desktop/settings/#pot-player</value>
   </data>
   <data name="Link_TMDb" xml:space="preserve">
     <value>http://jmediamanager.org/jmm-desktop/settings/#community-sites</value>
@@ -1788,9 +1782,6 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   </data>
   <data name="Link_uTorrent" xml:space="preserve">
     <value>http://jmediamanager.org/jmm-desktop/downloads/#utorrent</value>
-  </data>
-  <data name="Link_VLC" xml:space="preserve">
-    <value>http://jmediamanager.org/jmm-desktop/settings/#vlc</value>
   </data>
   <data name="Link_WebCache" xml:space="preserve">
     <value>http://jmediamanager.org/jmm-desktop/settings/#web-cache</value>
@@ -2209,26 +2200,17 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="VideoPlayer_MPCNote1" xml:space="preserve">
     <value>For INI integration you must enable the following options in View &gt; Options &gt; Player; (1) Store settings to .ini file and (2) Keep history of recently watched files (3) Remember File Position. The location of the INI file is usually something like C:\Program Files (x86)\Combined Community Codec Pack\MPC</value>
   </data>
-  <data name="VideoPlayer_MPCOptions" xml:space="preserve">
-    <value>MPC Options</value>
-  </data>
   <data name="VideoPlayer_VLC" xml:space="preserve">
     <value>VLC</value>
   </data>
   <data name="VideoPlayer_VLCNote" xml:space="preserve">
     <value>Any version of VLC can be used with JMM for general file playback. However only VLC version 2.2 and newer are able to take advantage of the video player integration as 'Resume from last position" is not available in older versions. VLC also enables the required settings by default so you don't need to do any additional configuration. The location of the VLC .ini file is usually something like C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini</value>
   </data>
-  <data name="VideoPlayer_VLCOptions" xml:space="preserve">
-    <value>VLC Options</value>
-  </data>
   <data name="VideoPlayer_PotPlayer" xml:space="preserve">
     <value>PotPlayer</value>
   </data>
   <data name="VideoPlayer_PotPlayerNote" xml:space="preserve">
     <value>For PotPlayer Integration you must enable the following options (1) Preferences &gt; General &gt; Store Settings to .ini file (2) Preferences &gt; Playback &gt; Play from latest point. The location of the PlotPlayer .ini file is usually something like C:\Users\username\AppData\Roaming\PotPlayer64\PotPlayer64.ini</value>
-  </data>
-  <data name="VideoPlayer_PotPlayerOptions" xml:space="preserve">
-    <value>PotPlayer Options</value>
   </data>
   <data name="VideoPlayer_MPCINI" xml:space="preserve">
     <value>Select MPC INI Folder</value>
@@ -2407,8 +2389,8 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="SeriesSimple_PlayNext" xml:space="preserve">
     <value>Play Next Episode</value>
   </data>
-  <data name="SeriesSimple_PlayUnWatched" xml:space="preserve">
-    <value>Play All UnWatched</value>
+  <data name="SeriesSimple_PlayUnwatched" xml:space="preserve">
+    <value>Play All Unwatched</value>
   </data>
   <data name="SeriesSimple_YourSay" xml:space="preserve">
     <value>Have Your Say...</value>
@@ -3188,13 +3170,13 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Default Video Player</value>
   </data>
   <data name="VideoPlayer_DefaultNote" xml:space="preserve">
-    <value>JMM automatically uses the first video player installed. If you'd like to use a different video player you'll need to add the video player's executable to the PATH system variable.</value>
+    <value>By default, JMM Desktop will use the video player listed by Windows as the default video player. However, you can change the video player JMM Desktop uses by selecting one of the supported players from the list below. No configuration is required as JMM Desktop pulls the video player's .exe file location from your registry.</value>
   </data>
   <data name="VideoPlayer_DefaultPlayer" xml:space="preserve">
     <value>Default Player</value>
   </data>
-  <data name="Link_Path" xml:space="preserve">
-    <value>http://www.computerhope.com/issues/ch000549.htm</value>
+  <data name="Link_VideoPlayer" xml:space="preserve">
+    <value>http://jmediamanager.org/jmm-desktop/settings/#video-player</value>
   </data>
   <data name="Search_Everything" xml:space="preserve">
     <value>Everything</value>
@@ -3934,9 +3916,6 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="Tooltip_AnimeFull" xml:space="preserve">
     <value>Full Series View</value>
   </data>
-  <data name="Tooltip_AnimeView" xml:space="preserve">
-    <value>View Series</value>
-  </data>
   <data name="Tooltip_AnimeUpdateAniDBInfo" xml:space="preserve">
     <value>Update Info from AniDB and Refresh</value>
   </data>
@@ -4348,7 +4327,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="VideoPlayer_Installed" xml:space="preserve">
     <value>Installed</value>
   </data>
-  <data name="MPV" xml:space="preserve">
+  <data name="VideoPlayer_MPV" xml:space="preserve">
     <value>MPV</value>
   </data>
   <data name="VideoPlayer_NotInstalled" xml:space="preserve">
@@ -4367,6 +4346,17 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>NOT Configured Please Resolve</value>
   </data>
   <data name="Link_EnableStreaming" xml:space="preserve">
-    <value>http://jmediamanager.org/jmm-desktop/server/#streaming</value>
+    <value>http://jmediamanager.org/streaming/</value>
+  </data>
+  <data name="VideoPlayer_MPVInstall" xml:space="preserve">
+    <value>MPV Install Instructions</value>
+  </data>
+  <data name="Link_MPV" xml:space="preserve">
+    <value>https://github.com/rossy/mpv-install/blob/master/README.md</value>
+  </data>
+  <data name="VideoPlayer_MPVNote" xml:space="preserve">
+    <value>MPV is a lightweight media player that should be primarily used when streaming your collection. MPV was developed to run on a multitude of different operating systems so non-essential features, such as tracking, are not supported which prevents MPV from being able to relay your watched state to JMM. 
+
+Unlike the other supported media players, MPV is the fastest when it comes to streaming usually starting playback within seconds of opening the file. We recommend having a decent connection to JMM Server if you'd like to use MPV for steaming. If you start to notice constant stuttering during playback try switching to another supported media player.</value>
   </data>
 </root>

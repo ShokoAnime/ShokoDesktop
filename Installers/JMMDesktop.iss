@@ -65,6 +65,7 @@ Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\ja\*"; DestDir: "{ap
 Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\ko\*"; DestDir: "{app}\ko"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\nl\*"; DestDir: "{app}\nl"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\pl\*"; DestDir: "{app}\pl"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\pt\*"; DestDir: "{app}\pt"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\ru\*"; DestDir: "{app}\ru"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\zh-Hans\*"; DestDir: "{app}\zh-Hans"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\zh-Hant\*"; DestDir: "{app}\zh-Hant"; Flags: ignoreversion recursesubdirs createallsubdirs

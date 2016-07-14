@@ -5533,7 +5533,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/server/#streaming.
+        ///   Looks up a localized string similar to http://jmediamanager.org/streaming/.
         /// </summary>
         public static string Link_EnableStreaming {
             get {
@@ -5560,7 +5560,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-server/configuring-jmm-server/#import-folders.
+        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/server/#import-folders.
         /// </summary>
         public static string Link_ImportFolders {
             get {
@@ -5578,29 +5578,11 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/settings/#mpc.
+        ///   Looks up a localized string similar to https://github.com/rossy/mpv-install/blob/master/README.md.
         /// </summary>
-        public static string Link_MPC {
+        public static string Link_MPV {
             get {
-                return ResourceManager.GetString("Link_MPC", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to http://www.computerhope.com/issues/ch000549.htm.
-        /// </summary>
-        public static string Link_Path {
-            get {
-                return ResourceManager.GetString("Link_Path", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/settings/#pot-player.
-        /// </summary>
-        public static string Link_PotPlayer {
-            get {
-                return ResourceManager.GetString("Link_PotPlayer", resourceCulture);
+                return ResourceManager.GetString("Link_MPV", resourceCulture);
             }
         }
         
@@ -5659,11 +5641,11 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/settings/#vlc.
+        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/settings/#video-player.
         /// </summary>
-        public static string Link_VLC {
+        public static string Link_VideoPlayer {
             get {
-                return ResourceManager.GetString("Link_VLC", resourceCulture);
+                return ResourceManager.GetString("Link_VideoPlayer", resourceCulture);
             }
         }
         
@@ -6240,15 +6222,6 @@ namespace JMMClient.Properties {
         public static string MovieDBShow {
             get {
                 return ResourceManager.GetString("MovieDBShow", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to MPV.
-        /// </summary>
-        public static string MPV {
-            get {
-                return ResourceManager.GetString("MPV", resourceCulture);
             }
         }
         
@@ -8773,11 +8746,11 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Play All UnWatched.
+        ///   Looks up a localized string similar to Play All Unwatched.
         /// </summary>
-        public static string SeriesSimple_PlayUnWatched {
+        public static string SeriesSimple_PlayUnwatched {
             get {
-                return ResourceManager.GetString("SeriesSimple_PlayUnWatched", resourceCulture);
+                return ResourceManager.GetString("SeriesSimple_PlayUnwatched", resourceCulture);
             }
         }
         
@@ -9921,15 +9894,6 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to View Series.
-        /// </summary>
-        public static string Tooltip_AnimeView {
-            get {
-                return ResourceManager.GetString("Tooltip_AnimeView", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Auto linking from this anime to a MAL series is currently disabled.
         /// </summary>
         public static string Tooltip_AutoLinkDisabledMAL {
@@ -10425,7 +10389,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pin this anime to view later.
+        ///   Looks up a localized string similar to Pin This Anime.
         /// </summary>
         public static string Tooltip_PinSeries {
             get {
@@ -10470,7 +10434,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Images awaiting download.
+        ///   Looks up a localized string similar to Images Awaiting Download.
         /// </summary>
         public static string Tooltip_QueueImages {
             get {
@@ -12171,7 +12135,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JMM automatically uses the first video player installed. If you&apos;d like to use a different video player you&apos;ll need to add the video player&apos;s executable to the PATH system variable..
+        ///   Looks up a localized string similar to By default, JMM Desktop will use the video player listed by Windows as the default video player. However, you can change the video player JMM Desktop uses by selecting one of the supported players from the list below. No configuration is required as JMM Desktop pulls the video player&apos;s .exe file location from your registry..
         /// </summary>
         public static string VideoPlayer_DefaultNote {
             get {
@@ -12315,15 +12279,6 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MPC Options.
-        /// </summary>
-        public static string VideoPlayer_MPCOptions {
-            get {
-                return ResourceManager.GetString("VideoPlayer_MPCOptions", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Test MPC INI File.
         /// </summary>
         public static string VideoPlayer_MPCTest {
@@ -12338,6 +12293,35 @@ namespace JMMClient.Properties {
         public static string VideoPlayer_MPCWebUIPort {
             get {
                 return ResourceManager.GetString("VideoPlayer_MPCWebUIPort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MPV.
+        /// </summary>
+        public static string VideoPlayer_MPV {
+            get {
+                return ResourceManager.GetString("VideoPlayer_MPV", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MPV Install Instructions.
+        /// </summary>
+        public static string VideoPlayer_MPVInstall {
+            get {
+                return ResourceManager.GetString("VideoPlayer_MPVInstall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MPV is a lightweight media player that should be primarily used when streaming your collection. MPV was developed to run on a multitude of different operating systems so non-essential features, such as tracking, are not supported which prevents MPV from being able to relay your watched state to JMM. 
+        ///
+        ///Unlike the other supported media players, MPV is the fastest when it comes to streaming usually starting playback within seconds of opening the file. We recommend having a decent connection to JMM Server if  [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string VideoPlayer_MPVNote {
+            get {
+                return ResourceManager.GetString("VideoPlayer_MPVNote", resourceCulture);
             }
         }
         
@@ -12432,15 +12416,6 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PotPlayer Options.
-        /// </summary>
-        public static string VideoPlayer_PotPlayerOptions {
-            get {
-                return ResourceManager.GetString("VideoPlayer_PotPlayerOptions", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Test PotPlayer INI File.
         /// </summary>
         public static string VideoPlayer_PotPlayerTest {
@@ -12527,15 +12502,6 @@ namespace JMMClient.Properties {
         public static string VideoPlayer_VLCNotSelected {
             get {
                 return ResourceManager.GetString("VideoPlayer_VLCNotSelected", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to VLC Options.
-        /// </summary>
-        public static string VideoPlayer_VLCOptions {
-            get {
-                return ResourceManager.GetString("VideoPlayer_VLCOptions", resourceCulture);
             }
         }
         

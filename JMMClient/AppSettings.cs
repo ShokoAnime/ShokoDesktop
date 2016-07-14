@@ -1482,7 +1482,7 @@ namespace JMMClient
                 if (bool.TryParse(val, out bval))
                     return bval;
                 else
-                    return true; //default value
+                    return false; //default value
             }
             set
             {

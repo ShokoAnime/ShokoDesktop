@@ -769,7 +769,7 @@
 
 
                 <!-- show pinned series button -->
-                <Button Margin="10,2,2,2" Style="{StaticResource FlatButtonStyle}" VerticalAlignment="Center" ToolTip="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AnimeView}"
+                <Button Margin="10,2,2,2" Style="{StaticResource FlatButtonStyle}" VerticalAlignment="Center" ToolTip="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_PinSeries}"
                                         Command="{DynamicResource ShowPinnedSeriesCommand}" CommandParameter="{Binding}">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                         <Image Height="16" Width="16" Source="/Images/32_pin.png" Margin="2,0,2,0">
@@ -906,7 +906,7 @@
                             <!-- User rating if the user has NOT voted -->
                             <StackPanel Orientation="Horizontal">
 
-                                <TextBlock Margin="5,0,5,0"  FontWeight="Heavy" Foreground="DarkGray"  Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_MyVote}" VerticalAlignment="Center"/>
+                                <TextBlock Margin="5,0,5,0"  Foreground="DarkBlue" FontFamily="Segoe UI" FontSize="15" FontWeight="Bold" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_MyVote}" VerticalAlignment="Center"/>
 
                                 <usercontrols:RatingControl x:Name="cRating" Width="280" Height="24" RatingValue="{Binding Path=AniDB_Anime.Detail.UserRating}" />
 
@@ -928,10 +928,10 @@
                             <Button Name="btnPlayAllEps" VerticalAlignment="Top" Margin="12,0,2,0">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="24" Width="24" Source="/Images/32_resume.png" Margin="2,0,2,0" VerticalAlignment="Center"/>
-                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_PlayUnWatched}" FontSize="14" VerticalAlignment="Center" Margin="2,0,0,0"/>
-                                    <TextBlock Text="(" FontSize="14" VerticalAlignment="Center" Margin="0,0,8,0"/>
-                                    <TextBlock Text="{Binding Path=UnwatchedEpisodeCount, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeSeriesSimplifiedControl}}}" FontSize="14" VerticalAlignment="Center" Margin="0,0,0,0"/>
-                                    <TextBlock Text=")" FontSize="14" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_PlayUnwatched}" FontSize="14" VerticalAlignment="Center" Margin="2,0,0,0"/>
+                                    <TextBlock Text="(" FontSize="14" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                                    <TextBlock Text="{Binding Path=UnwatchedEpisodeCount, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeSeriesSimplifiedControl}}}" FontSize="14" VerticalAlignment="Center" Margin="2,0,2,0"/>
+                                    <TextBlock Text=")" FontSize="14" VerticalAlignment="Center" Margin="0,0,5,0"/>
                                 </StackPanel>
 
                             </Button>
@@ -958,7 +958,7 @@
 
                                     <StackPanel Orientation="Horizontal" Margin="5" VerticalAlignment="Center">
                                         <CheckBox Name="chkSpoiler" VerticalAlignment="Center"/>
-                                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_Spoiler}" Foreground="Black" FontSize="12" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_Spoiler}" Foreground="Black" FontFamily="Segoe UI" FontSize="15" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,0,0"/>
 
                                     </StackPanel>
 

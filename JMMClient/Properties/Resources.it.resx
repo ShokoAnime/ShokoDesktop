@@ -1716,16 +1716,10 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
     <value>http://jmediamanager.org/JMM-desktop/Collection/#What-are-filters</value>
   </data>
   <data name="Link_ImportFolders" xml:space="preserve">
-    <value>http://jmediamanager.org/JMM-server/Configuring-JMM-Server/#Import-Folders</value>
+    <value>http://jmediamanager.org/jmm-desktop/server/#import-folders</value>
   </data>
   <data name="Link_MAL" xml:space="preserve">
     <value>http://jmediamanager.org/JMM-desktop/Settings/#community-sites</value>
-  </data>
-  <data name="Link_MPC" xml:space="preserve">
-    <value>http://jmediamanager.org/JMM-desktop/Settings/#MPC</value>
-  </data>
-  <data name="Link_PotPlayer" xml:space="preserve">
-    <value>http://jmediamanager.org/JMM-desktop/Settings/#pot-Player</value>
   </data>
   <data name="Link_TMDb" xml:space="preserve">
     <value>http://jmediamanager.org/JMM-desktop/Settings/#community-sites</value>
@@ -1738,9 +1732,6 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   </data>
   <data name="Link_uTorrent" xml:space="preserve">
     <value>http://jmediamanager.org/JMM-desktop/downloads/#uTorrent</value>
-  </data>
-  <data name="Link_VLC" xml:space="preserve">
-    <value>http://jmediamanager.org/JMM-desktop/Settings/#VLC</value>
   </data>
   <data name="Link_WebCache" xml:space="preserve">
     <value>http://jmediamanager.org/JMM-desktop/Settings/#Web-cache</value>
@@ -2147,20 +2138,11 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   <data name="VideoPlayer_MPC" xml:space="preserve">
     <value>Media Player Classic</value>
   </data>
-  <data name="VideoPlayer_MPCOptions" xml:space="preserve">
-    <value>Opzioni di MPC</value>
-  </data>
   <data name="VideoPlayer_VLC" xml:space="preserve">
     <value>VLC</value>
   </data>
-  <data name="VideoPlayer_VLCOptions" xml:space="preserve">
-    <value>Opzioni di VLC</value>
-  </data>
   <data name="VideoPlayer_PotPlayer" xml:space="preserve">
     <value>PotPlayer</value>
-  </data>
-  <data name="VideoPlayer_PotPlayerOptions" xml:space="preserve">
-    <value>PotPlayer opzioni</value>
   </data>
   <data name="VideoPlayer_MPCINI" xml:space="preserve">
     <value>Selezionare la cartella di MPC INI</value>
@@ -3056,8 +3038,8 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   <data name="TvDB_NoSeasons" xml:space="preserve">
     <value>Nessun stagioni disponibili, controllare nuovamente l'ID TvDB</value>
   </data>
-  <data name="Link_Path" xml:space="preserve">
-    <value>http://www.computerhope.com/issues/ch000549.htm</value>
+  <data name="Link_VideoPlayer" xml:space="preserve">
+    <value>http://jmediamanager.org/jmm-desktop/settings/#video-player</value>
   </data>
   <data name="Search_Everything" xml:space="preserve">
     <value>Tutto</value>
@@ -3266,9 +3248,6 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   <data name="ImportSettings_Custom" xml:space="preserve">
     <value>Su ordinazione</value>
   </data>
-  <data name="SeriesSimple_PlayUnWatched" xml:space="preserve">
-    <value>Gioca tutto incustodito</value>
-  </data>
   <data name="Main_Paused" xml:space="preserve">
     <value>In pausa a causa di BAN da AniDB</value>
   </data>
@@ -3304,9 +3283,6 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   </data>
   <data name="VideoPlayer_INIFoundHistory" xml:space="preserve">
     <value>Trovare il file INI. Esempio di file recentemente controllato...</value>
-  </data>
-  <data name="VideoPlayer_DefaultNote" xml:space="preserve">
-    <value>JMM utilizza automaticamente il lettore video di Windows predefinito. Se si desidera utilizzare un diverso lettore video che sarà necessario aggiungere il file eseguibile di lettore video alla variabile di sistema PATH. </value>
   </data>
   <data name="AniDBMyListDeleteLocal" xml:space="preserve">
     <value>Elimina File (DB locale)</value>
@@ -3833,9 +3809,6 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   <data name="Tooltip_AnimeFull" xml:space="preserve">
     <value>Serie completa vista</value>
   </data>
-  <data name="Tooltip_AnimeView" xml:space="preserve">
-    <value>Visualizza serie</value>
-  </data>
   <data name="Tooltip_AnimeUpdateAniDBInfo" xml:space="preserve">
     <value>Aggiornamento Info da AniDB e Refresh</value>
   </data>
@@ -4253,9 +4226,6 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   <data name="Language_Rename" xml:space="preserve">
     <value>Rinominare tutti i gruppi/serie</value>
   </data>
-  <data name="Tooltip_PinSeries" xml:space="preserve">
-    <value>Perno di questo anime per un momento successivo</value>
-  </data>
   <data name="Remove" xml:space="preserve">
     <value>Rimuovere</value>
   </data>
@@ -4340,7 +4310,7 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   <data name="VideoPlayer_Installed" xml:space="preserve">
     <value>Installato</value>
   </data>
-  <data name="MPV" xml:space="preserve">
+  <data name="VideoPlayer_MPV" xml:space="preserve">
     <value>MPV</value>
   </data>
   <data name="VideoPlayer_NotInstalled" xml:space="preserve">
@@ -4359,12 +4329,32 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
     <value>NON configurato per favore risolvi</value>
   </data>
   <data name="Link_EnableStreaming" xml:space="preserve">
-    <value>http://jmediamanager.org/jmm-desktop/server/#streaming</value>
+    <value>http://jmediamanager.org/streaming/</value>
   </data>
   <data name="Tooltip_QueueImages" xml:space="preserve">
     <value>Scarica immagini in attesa</value>
   </data>
   <data name="UseStreaming" xml:space="preserve">
     <value>Abilitare lo Streaming</value>
+  </data>
+  <data name="Link_MPV" xml:space="preserve">
+    <value>https://github.com/rossy/mpv-install/blob/master/README.md</value>
+  </data>
+  <data name="Tooltip_PinSeries" xml:space="preserve">
+    <value>Perno di questo Anime</value>
+  </data>
+  <data name="SeriesSimple_PlayUnwatched" xml:space="preserve">
+    <value>Gioca tutto incustodito</value>
+  </data>
+  <data name="VideoPlayer_DefaultNote" xml:space="preserve">
+    <value>Per impostazione predefinita, Desktop JMM utilizzerà il lettore video catalogato da Windows come il lettore video predefinito. Tuttavia, è possibile modificare il video player che JMM Desktop utilizza selezionando uno dei giocatori supportati dalla lista qui sotto. Come tira JMM Desktop video posizione del giocatore .exe file dal registro di è necessaria alcuna configurazione.</value>
+  </data>
+  <data name="VideoPlayer_MPVInstall" xml:space="preserve">
+    <value>Istruzioni di installazione di MPV</value>
+  </data>
+  <data name="VideoPlayer_MPVNote" xml:space="preserve">
+    <value>MPV è un lettore multimediale leggero che dovrebbe essere utilizzato principalmente durante lo streaming di vostra collezione. MPV è stato sviluppato per funzionare su una moltitudine di sistemi operativi diversi in modo funzionalità non essenziali, quali il rilevamento, non sono supportati che impedisce che MPV in grado di inoltrare il tuo stato visto a JMM. 
+
+A differenza di altri lettori multimediali supportati, MPV è il più veloce quando si tratta di streaming solitamente a partire la riproduzione in pochi secondi di apertura del file. Si consiglia di avere una connessione decente a JMM Server se si desidera utilizzare MPV per cuocere a vapore. Se si inizia a notare balbuzie costante durante la riproduzione di provare a passare a un altro lettore multimediale supportato.</value>
   </data>
 </root>

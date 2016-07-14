@@ -425,7 +425,7 @@
                 <!-- Refresh -->
                 <Button Name="btnRefresh" Margin="12,2,2,2" Style="{DynamicResource FlatButtonStyle}" ToolTip="{Resx ResxName=JMMClient.Properties.Resources, Key=Metro_Refresh}">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                        <Image Height="24" Width="24" Source="/Images/Metro/refresh.png" Margin="0,0,0,0"/>
+                        <Image Height="24" Width="24" Source="/Images/Metro/refresh_32.png" Margin="0,0,0,0"/>
                     </StackPanel>
                 </Button>
 
@@ -480,7 +480,7 @@
                 <!-- Refresh -->
                 <Button Name="btnRefreshRandomSeries" Margin="12,2,2,2" Style="{DynamicResource FlatButtonStyle}" ToolTip="{Resx ResxName=JMMClient.Properties.Resources, Key=Metro_Refresh}">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                        <Image Height="24" Width="24" Source="/Images/Metro/refresh.png" Margin="0,0,0,0"/>
+                        <Image Height="24" Width="24" Source="/Images/Metro/refresh_32.png" Margin="0,0,0,0"/>
                     </StackPanel>
                 </Button>
             </StackPanel>
@@ -535,7 +535,7 @@
                 <!-- Refresh -->
                 <Button Name="btnRefreshNewEpisodes" Margin="12,2,2,2" Style="{DynamicResource FlatButtonStyle}" ToolTip="{Resx ResxName=JMMClient.Properties.Resources, Key=Metro_Refresh}">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                        <Image Height="24" Width="24" Source="/Images/Metro/refresh.png" Margin="0,0,0,0"/>
+                        <Image Height="24" Width="24" Source="/Images/Metro/refresh_32.png" Margin="0,0,0,0"/>
                     </StackPanel>
                 </Button>
             </StackPanel>
