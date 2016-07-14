@@ -1,8 +1,10 @@
 ﻿using JMMClient.ViewModel;
 using NLog;
 using System;
+using System.Collections.Concurrent;
 using System.ComponentModel;
 using System.IO;
+using System.Threading;
 
 namespace JMMClient.ImageDownload
 {
@@ -10,7 +12,8 @@ namespace JMMClient.ImageDownload
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private const string QUEUE_STOP = "StopQueue";
-        private BlockingList<ImageDownloadRequest> imagesToDownload = new BlockingList<ImageDownloadRequest>();
+        private ConcurrentQueue<ImageDownloadRequest> imagesToDownload = new ConcurrentQueue<ImageDownloadRequest>();
+        //private BlockingList<ImageDownloadRequest> imagesToDownload = new BlockingList<ImageDownloadRequest>();
         private BackgroundWorker workerImages = new BackgroundWorker();
         private static object downloadsLock = new object();
 
@@ -71,7 +74,7 @@ namespace JMMClient.ImageDownload
                     // check to make sure the file actually exists
                     if (!File.Exists(anime.PosterPath))
                     {
-                        this.imagesToDownload.Add(req);
+                        this.imagesToDownload.Enqueue(req);
                         OnQueueUpdateEvent(new QueueUpdateEventArgs(this.QueueCount));
                         return;
                     }
@@ -80,7 +83,7 @@ namespace JMMClient.ImageDownload
                     return;
                 }
 
-                this.imagesToDownload.Add(req);
+                this.imagesToDownload.Enqueue(req);
                 OnQueueUpdateEvent(new QueueUpdateEventArgs(this.QueueCount));
             }
             catch (Exception ex)
@@ -106,7 +109,7 @@ namespace JMMClient.ImageDownload
                     // check to make sure the file actually exists
                     if (!File.Exists(poster.FullImagePath))
                     {
-                        this.imagesToDownload.Add(req);
+                        this.imagesToDownload.Enqueue(req);
                         OnQueueUpdateEvent(new QueueUpdateEventArgs(this.QueueCount));
                         return;
                     }
@@ -115,7 +118,7 @@ namespace JMMClient.ImageDownload
                     return;
                 }
 
-                this.imagesToDownload.Add(req);
+                this.imagesToDownload.Enqueue(req);
                 OnQueueUpdateEvent(new QueueUpdateEventArgs(this.QueueCount));
             }
             catch (Exception ex)
@@ -141,7 +144,7 @@ namespace JMMClient.ImageDownload
                     // check to make sure the file actually exists
                     if (!File.Exists(wideBanner.FullImagePath))
                     {
-                        this.imagesToDownload.Add(req);
+                        this.imagesToDownload.Enqueue(req);
                         OnQueueUpdateEvent(new QueueUpdateEventArgs(this.QueueCount));
                         return;
                     }
@@ -150,7 +153,7 @@ namespace JMMClient.ImageDownload
                     return;
                 }
 
-                this.imagesToDownload.Add(req);
+                this.imagesToDownload.Enqueue(req);
                 OnQueueUpdateEvent(new QueueUpdateEventArgs(this.QueueCount));
             }
             catch (Exception ex)
@@ -176,7 +179,7 @@ namespace JMMClient.ImageDownload
                     // check to make sure the file actually exists
                     if (!File.Exists(episode.FullImagePath))
                     {
-                        this.imagesToDownload.Add(req);
+                        this.imagesToDownload.Enqueue(req);
                         OnQueueUpdateEvent(new QueueUpdateEventArgs(this.QueueCount));
                         return;
                     }
@@ -185,7 +188,7 @@ namespace JMMClient.ImageDownload
                     return;
                 }
 
-                this.imagesToDownload.Add(req);
+                this.imagesToDownload.Enqueue(req);
                 OnQueueUpdateEvent(new QueueUpdateEventArgs(this.QueueCount));
             }
             catch (Exception ex)
@@ -211,7 +214,7 @@ namespace JMMClient.ImageDownload
                     // check to make sure the file actually exists
                     if (!File.Exists(fanart.FullImagePath) || !File.Exists(fanart.FullThumbnailPath))
                     {
-                        this.imagesToDownload.Add(req);
+                        this.imagesToDownload.Enqueue(req);
                         OnQueueUpdateEvent(new QueueUpdateEventArgs(this.QueueCount));
                         return;
                     }
@@ -220,7 +223,7 @@ namespace JMMClient.ImageDownload
                     return;
                 }
 
-                this.imagesToDownload.Add(req);
+                this.imagesToDownload.Enqueue(req);
                 OnQueueUpdateEvent(new QueueUpdateEventArgs(this.QueueCount));
             }
             catch (Exception ex)
@@ -246,7 +249,7 @@ namespace JMMClient.ImageDownload
                     // check to make sure the file actually exists
                     if (!File.Exists(poster.FullImagePath))
                     {
-                        this.imagesToDownload.Add(req);
+                        this.imagesToDownload.Enqueue(req);
                         OnQueueUpdateEvent(new QueueUpdateEventArgs(this.QueueCount));
                         return;
                     }
@@ -255,7 +258,7 @@ namespace JMMClient.ImageDownload
                     return;
                 }
 
-                this.imagesToDownload.Add(req);
+                this.imagesToDownload.Enqueue(req);
                 OnQueueUpdateEvent(new QueueUpdateEventArgs(this.QueueCount));
             }
             catch (Exception ex)
@@ -281,7 +284,7 @@ namespace JMMClient.ImageDownload
                     // check to make sure the file actually exists
                     if (!File.Exists(fanart.FullImagePath))
                     {
-                        this.imagesToDownload.Add(req);
+                        this.imagesToDownload.Enqueue(req);
                         OnQueueUpdateEvent(new QueueUpdateEventArgs(this.QueueCount));
                         return;
                     }
@@ -290,7 +293,7 @@ namespace JMMClient.ImageDownload
                     return;
                 }
 
-                this.imagesToDownload.Add(req);
+                this.imagesToDownload.Enqueue(req);
                 OnQueueUpdateEvent(new QueueUpdateEventArgs(this.QueueCount));
             }
             catch (Exception ex)
@@ -316,7 +319,7 @@ namespace JMMClient.ImageDownload
                     // check to make sure the file actually exists
                     if (!File.Exists(poster.FullImagePath))
                     {
-                        this.imagesToDownload.Add(req);
+                        this.imagesToDownload.Enqueue(req);
                         OnQueueUpdateEvent(new QueueUpdateEventArgs(this.QueueCount));
                         return;
                     }
@@ -325,7 +328,7 @@ namespace JMMClient.ImageDownload
                     return;
                 }
 
-                this.imagesToDownload.Add(req);
+                this.imagesToDownload.Enqueue(req);
                 OnQueueUpdateEvent(new QueueUpdateEventArgs(this.QueueCount));
             }
             catch (Exception ex)
@@ -351,7 +354,7 @@ namespace JMMClient.ImageDownload
                     // check to make sure the file actually exists
                     if (!File.Exists(fanart.FullImagePath))
                     {
-                        this.imagesToDownload.Add(req);
+                        this.imagesToDownload.Enqueue(req);
                         OnQueueUpdateEvent(new QueueUpdateEventArgs(this.QueueCount));
                         return;
                     }
@@ -360,7 +363,7 @@ namespace JMMClient.ImageDownload
                     return;
                 }
 
-                this.imagesToDownload.Add(req);
+                this.imagesToDownload.Enqueue(req);
                 OnQueueUpdateEvent(new QueueUpdateEventArgs(this.QueueCount));
             }
             catch (Exception ex)
@@ -386,7 +389,7 @@ namespace JMMClient.ImageDownload
                     // check to make sure the file actually exists
                     if (!File.Exists(episode.FullImagePath))
                     {
-                        this.imagesToDownload.Add(req);
+                        this.imagesToDownload.Enqueue(req);
                         OnQueueUpdateEvent(new QueueUpdateEventArgs(this.QueueCount));
                         return;
                     }
@@ -395,7 +398,7 @@ namespace JMMClient.ImageDownload
                     return;
                 }
 
-                this.imagesToDownload.Add(req);
+                this.imagesToDownload.Enqueue(req);
                 OnQueueUpdateEvent(new QueueUpdateEventArgs(this.QueueCount));
             }
             catch (Exception ex)
@@ -664,8 +667,27 @@ namespace JMMClient.ImageDownload
 
         private void ProcessImages(object sender, DoWorkEventArgs args)
         {
-
-
+            while (true)
+            {
+                while (!imagesToDownload.IsEmpty)
+                {
+                    ImageDownloadRequest req;
+                    if (imagesToDownload.TryDequeue(out req))
+                    {
+                        try
+                        {
+                            DownloadImage(req);                        
+                        }
+                        catch (Exception ex)
+                        {
+                            logger.ErrorException(ex.ToString(), ex);
+                        }
+                        OnQueueUpdateEvent(new QueueUpdateEventArgs(this.QueueCount));
+                    }
+                }
+                Thread.Sleep(100);
+            }
+            /*
             foreach (ImageDownloadRequest req in imagesToDownload)
             {
                 try
@@ -681,7 +703,7 @@ namespace JMMClient.ImageDownload
                     logger.ErrorException(ex.ToString(), ex);
                 }
             }
-
+            */
         }
     }
 }

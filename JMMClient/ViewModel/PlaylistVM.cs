@@ -620,9 +620,6 @@ namespace JMMClient.ViewModel
                         {
                             ser = new AnimeSeriesVM(serContract);
 
-                            if (MainListHelperVM.Instance.AllSeries.Contains(ser) == false)
-                                MainListHelperVM.Instance.AllSeries.Add(ser);
-
                             MainListHelperVM.Instance.AllSeriesDictionary[objID] = ser;
                         }
                     }

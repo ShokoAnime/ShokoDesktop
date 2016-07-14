@@ -305,7 +305,6 @@ namespace JMMClient.Forms
                 }
 
                 AnimeSeries = new AnimeSeriesVM(response.AnimeSeries);
-                MainListHelperVM.Instance.AllSeries.Add(AnimeSeries);
                 MainListHelperVM.Instance.AllSeriesDictionary[AnimeSeries.AnimeSeriesID.Value] = AnimeSeries;
 
             }

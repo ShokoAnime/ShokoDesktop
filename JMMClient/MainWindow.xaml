@@ -390,11 +390,11 @@
                                 </StackPanel>
                             </Button>
                         </StackPanel>
-                        <ListBox DockPanel.Dock="Top" Name="lbGroupsSeries" BorderThickness="0" Background="Transparent" VirtualizingStackPanel.IsVirtualizing="True"
-    VirtualizingStackPanel.VirtualizationMode="Recycling" ScrollViewer.CanContentScroll="False"
+                        <ListBox DockPanel.Dock="Top" Name="lbGroupsSeries" BorderThickness="0" Background="Transparent" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Standard" 
                          HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemTemplateSelector="{StaticResource MainListTemplateSelector}" 
                          ItemContainerStyle="{DynamicResource ListBoxItemStyle}" ItemsSource="{Binding Source={x:Static local:MainListHelperVM.Instance},Path=ViewGroups}"
                          >
+
                         </ListBox>
                     </DockPanel>
 
@@ -467,6 +467,7 @@
                          HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemTemplateSelector="{StaticResource PlaylistTemplateSelector}" 
                          ItemContainerStyle="{DynamicResource ListBoxItemStyle}" ItemsSource="{Binding Source={x:Static local:PlaylistHelperVM.Instance},Path=ViewPlaylists}"
                          >
+
                         </ListBox>
                     </DockPanel>
 
@@ -1794,3 +1795,4 @@
     </Grid>
 
 </Window>
+

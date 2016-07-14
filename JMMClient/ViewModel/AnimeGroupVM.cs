@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Windows;
 
 namespace JMMClient
@@ -56,6 +57,27 @@ namespace JMMClient
 		public int Stat_EpisodeCount { get; set; }
 		public decimal Stat_AniDBRating { get; set; }
 
+        public HashSet<int> DirectSeries { get; set; }
+        public HashSet<int> AllSeries { get; set; }
+
+
+        public void PopulateSerieInfo(Dictionary<int, AnimeGroupVM> groups, Dictionary<int,AnimeSeriesVM>  series)
+        {
+            List<int> allgroups = RecursiveGetGroups(groups, this).Select(a=>a.AnimeGroupID.Value).ToList();
+            AllSeries = new HashSet<int>(series.Values.Where(a => allgroups.Contains(a.AnimeGroupID)).Select(a => a.AnimeSeriesID.Value));
+            DirectSeries = new HashSet<int>(series.Values.Where(a=>a.AnimeGroupID==this.AnimeGroupID.Value).Select(a=>a.AnimeSeriesID.Value));
+        }
+
+        private List<AnimeGroupVM> RecursiveGetGroups(Dictionary<int, AnimeGroupVM> groups, AnimeGroupVM initialgrp)
+        {
+            List<AnimeGroupVM> ls = groups.Values.Where(a => a.AnimeGroupParentID.HasValue && a.AnimeGroupParentID.Value == initialgrp.AnimeGroupID.Value).ToList();
+            foreach (AnimeGroupVM v in ls.ToList())
+            {
+                ls.AddRange(RecursiveGetGroups(groups,v));
+            }
+            ls.Add(initialgrp);
+            return ls;
+        }
         private static AnimeGroupSortMethod sortMethod = AnimeGroupSortMethod.SortName;
         public static AnimeGroupSortMethod SortMethod
         {
@@ -854,6 +876,10 @@ namespace JMMClient
         {
             get
             {
+                return DirectSeries.Select(a => MainListHelperVM.Instance.AllSeriesDictionary.SureGet(a))
+                        .Where(a => a != null)
+                        .OrderBy(a => a.Stat_AirDate_Min).ToList();
+                /*
                 List<AnimeSeriesVM> series = new List<AnimeSeriesVM>();
                 foreach (AnimeSeriesVM ser in MainListHelperVM.Instance.AllSeries)
                 {
@@ -866,7 +892,7 @@ namespace JMMClient
                 JMMClient.AnimeSeriesVM.SortType = JMMClient.AnimeSeriesVM.SortMethod.AirDate;
                 series.Sort();
 
-                return series;
+                return series;*/
             }
         }
 
@@ -877,6 +903,11 @@ namespace JMMClient
         {
             get
             {
+                return
+                    AllSeries.Select(a => MainListHelperVM.Instance.AllSeriesDictionary.SureGet(a))
+                        .Where(a => a != null)
+                        .OrderBy(a=>a.Stat_AirDate_Min).ToList();
+                /*
                 List<AnimeSeriesVM> series = new List<AnimeSeriesVM>();
                 try
                 {
@@ -890,6 +921,7 @@ namespace JMMClient
                     Utils.ShowErrorMessage(ex);
                 }
                 return series;
+                */
             }
         }
 
@@ -903,23 +935,17 @@ namespace JMMClient
                 List<AnimeSeriesVM> series = new List<AnimeSeriesVM>();
                 try
                 {
-                    List<AnimeSeriesVM> tempSeries = new List<AnimeSeriesVM>();
-                    GetAnimeSeriesRecursive(this, ref tempSeries);
-
                     // check if the current group filter is also applied to series
                     if (MainListHelperVM.Instance.CurrentGroupFilter != null && MainListHelperVM.Instance.CurrentGroupFilter.IsApplyToSeries)
                     {
-                        foreach (AnimeSeriesVM ser in tempSeries)
+                        foreach (AnimeSeriesVM ser in AllAnimeSeries)
                         {
                             if (MainListHelperVM.Instance.CurrentGroupFilter.EvaluateGroupFilter(ser))
                                 series.Add(ser);
                         }
                     }
                     else
-                        series = tempSeries;
-
-                    JMMClient.AnimeSeriesVM.SortType = JMMClient.AnimeSeriesVM.SortMethod.AirDate;
-                    series.Sort();
+                        series = AllAnimeSeries;
                 }
                 catch (Exception ex)
                 {
@@ -954,21 +980,8 @@ namespace JMMClient
             get
             {
                 if (!AnimeGroupParentID.HasValue) return null;
-
-                try
-                {
-                    foreach (AnimeGroupVM grp in MainListHelperVM.Instance.AllGroups)
-                    {
-                        if (grp.AnimeGroupID.HasValue && grp.AnimeGroupID.Value == this.AnimeGroupParentID.Value)
-                        {
-                            return grp;
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Utils.ShowErrorMessage(ex);
-                }
+                if (MainListHelperVM.Instance.AllGroupsDictionary.ContainsKey(AnimeGroupParentID.Value))
+                    return MainListHelperVM.Instance.AllGroupsDictionary[AnimeGroupParentID.Value];
                 return null;
             }
         }
@@ -987,15 +1000,9 @@ namespace JMMClient
         {
             get
             {
-                List<AnimeGroupVM> grps = new List<AnimeGroupVM>();
-                foreach (AnimeGroupVM grp in MainListHelperVM.Instance.AllGroups)
-                {
-                    if (grp.AnimeGroupParentID.HasValue && grp.AnimeGroupParentID == this.AnimeGroupID)
-                    {
-                        grps.Add(grp);
-                    }
-                }
-                return grps;
+                return MainListHelperVM.Instance.AllGroupsDictionary.Values.Where(
+                        a => a.AnimeGroupParentID.HasValue && a.AnimeGroupParentID.Value == AnimeGroupID).ToList();
+
             }
         }
 
@@ -1069,9 +1076,8 @@ namespace JMMClient
                 else
                 {
                     this.Populate(response.AnimeGroup);
-                    if (!MainListHelperVM.Instance.AllGroups.Contains(this))
-                        MainListHelperVM.Instance.AllGroups.Add(this);
                     MainListHelperVM.Instance.AllGroupsDictionary[this.AnimeGroupID.Value] = this;
+                    PopulateSerieInfo(MainListHelperVM.Instance.AllGroupsDictionary,MainListHelperVM.Instance.AllSeriesDictionary);
                     return true;
                 }
             }

@@ -256,10 +256,9 @@ namespace JMMClient
 
                 logger.Trace("XXX2 RefreshRandomSeries");
                 List<AnimeSeriesVM> serList = new List<AnimeSeriesVM>();
-                List<AnimeGroupVM> grps = new List<AnimeGroupVM>(MainListHelperVM.Instance.AllGroups);
                 logger.Trace("XXX3 RefreshRandomSeries");
 
-                foreach (AnimeGroupVM grp in grps)
+                foreach (AnimeGroupVM grp in MainListHelperVM.Instance.AllGroupsDictionary.Values)
                 {
                     // ignore sub groups
                     if (grp.AnimeGroupParentID.HasValue) continue;

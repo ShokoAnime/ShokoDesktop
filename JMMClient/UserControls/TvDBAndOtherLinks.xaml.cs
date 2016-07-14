@@ -761,7 +761,7 @@ namespace JMMClient.UserControls
                     anime.ClearTraktData();
 
                     // find the series for this anime
-                    foreach (AnimeSeriesVM ser in MainListHelperVM.Instance.AllSeries)
+                    foreach (AnimeSeriesVM ser in MainListHelperVM.Instance.AllSeriesDictionary.Values)
                     {
                         if (anime.AnimeID == ser.AniDB_ID)
                         {
@@ -1085,7 +1085,7 @@ namespace JMMClient.UserControls
                     anime.ClearTvDBData();
 
                     // find the series for this anime
-                    foreach (AnimeSeriesVM ser in MainListHelperVM.Instance.AllSeries)
+                    foreach (AnimeSeriesVM ser in MainListHelperVM.Instance.AllSeriesDictionary.Values)
                     {
                         if (anime.AnimeID == ser.AniDB_ID)
                         {
