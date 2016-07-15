@@ -4357,4 +4357,7 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
 
 A diferencia de los otros jugadores de medios compatibles, la MPV es el más rápido a la hora de transmisión generalmente a partir de la reproducción dentro de segundos de abrir el archivo. Se recomienda tener una conexión decente a JMM servidor si desea utilizar MPV para cocer al vapor. Si empiezas a notar tartamudeo constante durante aparato de lectura trate de cambiar a otro reproductor de medios compatibles.</value>
   </data>
+  <data name="Tooltip_WebCache_TraktAssociations" xml:space="preserve">
+    <value>Para ver enlaces entre AniDB y Trakt, usar la caché web. Si no ha seleccionado tendrá que buscar manualmente todos los enlaces Trakt.</value>
+  </data>
 </root>

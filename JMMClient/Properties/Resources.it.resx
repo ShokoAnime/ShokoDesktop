@@ -4357,4 +4357,7 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
 
 A differenza di altri lettori multimediali supportati, MPV è il più veloce quando si tratta di streaming solitamente a partire la riproduzione in pochi secondi di apertura del file. Si consiglia di avere una connessione decente a JMM Server se si desidera utilizzare MPV per cuocere a vapore. Se si inizia a notare balbuzie costante durante la riproduzione di provare a passare a un altro lettore multimediale supportato.</value>
   </data>
+  <data name="Tooltip_WebCache_TraktAssociations" xml:space="preserve">
+    <value>Utilizzare la cache web per cercare la pagina di collegamenti tra AniDB e Trakt. Se non selezionata sarà necessario cercare manualmente tutti i collegamenti di Trakt.</value>
+  </data>
 </root>

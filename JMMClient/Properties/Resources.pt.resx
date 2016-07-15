@@ -4357,4 +4357,7 @@
 
 Ao contrário de outros players de mídia suportados, MPV é o mais rápido quando se trata de geralmente, iniciando a reprodução segundos depois de abrir o arquivo de streaming. É recomendável ter uma conexão decente para servidor JMM se você gostaria de usar o MPV para cozinhar. Se você começa a notar uma gagueira constante durante a reprodução tentar alternar para outro jogador de mídia suportados.</value>
   </data>
+  <data name="Tooltip_WebCache_TraktAssociations" xml:space="preserve">
+    <value>Use o cache da web para procurar ligações entre AniDB e Trakt. Se não selecionado você precisará procurar manualmente todos os links Trakt.</value>
+  </data>
 </root>

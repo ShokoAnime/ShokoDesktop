@@ -4357,4 +4357,7 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
 
 Im Gegensatz zu den anderen unterstützten Media-Playern ist MPV der schnellste beim Streaming-Wiedergabe in der Regel innerhalb von Sekunden öffnen der Datei starten. Wir empfehlen, eine anständige Verbindung zu JMM Server wenn Sie MPV zum Dämpfen verwenden möchten. Wenn Sie beginnen zu bemerken konstante Stottern während der Wiedergabe versuchen Sie zu einem anderen unterstützten Media-Player.</value>
   </data>
+  <data name="Tooltip_WebCache_TraktAssociations" xml:space="preserve">
+    <value>Verwenden Sie den Web-Cache zum Nachschlagen von Verbindungen zwischen AniDB und Trakt. Wenn nicht ausgewählt alle Trakt Links manuell suchen müssen werden.</value>
+  </data>
 </root>

@@ -10785,6 +10785,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Use the web cache to look up links between AniDB and Trakt. If not selected you will need to manually search for all Trakt links..
+        /// </summary>
+        public static string Tooltip_WebCache_TraktAssociations {
+            get {
+                return ResourceManager.GetString("Tooltip_WebCache_TraktAssociations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Use the web cache to look up links between AniDB and TvDB. If not selected you will need to manually search for all TvDB links..
         /// </summary>
         public static string Tooltip_WebCache_TvDBAssociations {

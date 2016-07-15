@@ -4357,4 +4357,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
 
 Unlike the other supported media players, MPV is the fastest when it comes to streaming usually starting playback within seconds of opening the file. We recommend having a decent connection to JMM Server if you'd like to use MPV for steaming. If you start to notice constant stuttering during playback try switching to another supported media player.</value>
   </data>
+  <data name="Tooltip_WebCache_TraktAssociations" xml:space="preserve">
+    <value>Use the web cache to look up links between AniDB and Trakt. If not selected you will need to manually search for all Trakt links.</value>
+  </data>
 </root>

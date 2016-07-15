@@ -4359,4 +4359,7 @@
 
 W przeciwieństwie do innych odtwarzaczy multimedialnych obsługiwanych MPV jest najszybszy, jeśli chodzi o strumieniowe, zwykle w ciągu kilku sekund z otworzeniem pliku rozpoczęcie odtwarzania. Zaleca się posiadanie porządnego połączenia do serwera JMM, jeśli chcesz używać MPV do gotowania na parze. Jeśli zaczniesz zauważać jąkania stały podczas odtwarzania spróbować przełączyć do innego gracza obsługiwanych nośników.</value>
   </data>
+  <data name="Tooltip_WebCache_TraktAssociations" xml:space="preserve">
+    <value>Użyj pamięci podręcznej sieci web, aby znaleźć łącza między AniDB i Trakt. Jeśli nie wybrany trzeba będzie ręcznie wyszukać wszystkie linki Trakt.</value>
+  </data>
 </root>
