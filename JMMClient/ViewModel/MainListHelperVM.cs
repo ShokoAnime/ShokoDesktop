@@ -357,10 +357,8 @@ namespace JMMClient
             if (SearchResultCount > 100) return false;
 
             bool passed = false;
-            System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()
-            {
-                passed = GroupSearchFilterHelper.EvaluateSeriesTextSearch(ser, SeriesSearchTextBox.Text.Replace("'", "`"), SerSearchType);
-            });
+           
+            passed = GroupSearchFilterHelper.EvaluateSeriesTextSearch(ser, SeriesSearchTextBox.Text.Replace("'", "`"), SerSearchType);
 
             if (passed)
                 SearchResultCount++;
