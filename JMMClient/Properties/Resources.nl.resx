@@ -4360,4 +4360,13 @@ In tegenstelling tot de andere ondersteunde mediaspelers is MPV het snelste als 
   <data name="Tooltip_WebCache_TraktAssociations" xml:space="preserve">
     <value>Gebruik de webcache koppelingen tussen AniDB en Trakt opzoeken. Als niet geselecteerd u moet handmatig zoeken naar alle Trakt links.</value>
   </data>
+  <data name="Link_Help" xml:space="preserve">
+    <value>http://jmediamanager.org/jmm-desktop/</value>
+  </data>
+  <data name="Tab_Help" xml:space="preserve">
+    <value>Help!</value>
+  </data>
+  <data name="Main_Discord" xml:space="preserve">
+    <value>Discord</value>
+  </data>
 </root>

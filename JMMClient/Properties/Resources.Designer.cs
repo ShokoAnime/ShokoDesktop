@@ -5560,6 +5560,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/.
+        /// </summary>
+        public static string Link_Help {
+            get {
+                return ResourceManager.GetString("Link_Help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/server/#import-folders.
         /// </summary>
         public static string Link_ImportFolders {
@@ -5718,6 +5727,15 @@ namespace JMMClient.Properties {
         public static string Main_About {
             get {
                 return ResourceManager.GetString("Main_About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Discord.
+        /// </summary>
+        public static string Main_Discord {
+            get {
+                return ResourceManager.GetString("Main_Discord", resourceCulture);
             }
         }
         
@@ -9291,6 +9309,15 @@ namespace JMMClient.Properties {
         public static string Tab_FileSearch {
             get {
                 return ResourceManager.GetString("Tab_FileSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help!.
+        /// </summary>
+        public static string Tab_Help {
+            get {
+                return ResourceManager.GetString("Tab_Help", resourceCulture);
             }
         }
         

@@ -182,6 +182,7 @@ namespace JMMClient
 
                 btnUpdateMediaInfo.Click += new RoutedEventHandler(btnUpdateMediaInfo_Click);
                 btnFeed.Click += new RoutedEventHandler(btnFeed_Click);
+                btnDiscord.Click += new RoutedEventHandler(btnDiscord_Click);
                 btnAbout.Click += new RoutedEventHandler(btnAbout_Click);
                 btnClearHasherQueue.Click += new RoutedEventHandler(btnClearHasherQueue_Click);
                 btnClearGeneralQueue.Click += new RoutedEventHandler(btnClearGeneralQueue_Click);
@@ -329,6 +330,15 @@ namespace JMMClient
             FeedForm frm = new FeedForm();
             frm.Owner = this;
             frm.ShowDialog();
+        }
+
+        void btnDiscord_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("https://discord.gg/0XKJW7TObKLajoKc");
+            }
+            catch { }
         }
 
         void btnAbout_Click(object sender, RoutedEventArgs e)
@@ -3600,5 +3610,12 @@ namespace JMMClient
         void grdMain_LayoutUpdated(object sender, EventArgs e)
         {
         }
+
+        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
+            e.Handled = true;
+        }
+
     }
 }

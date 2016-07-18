@@ -4360,4 +4360,13 @@ A diferencia de los otros jugadores de medios compatibles, la MPV es el más rá
   <data name="Tooltip_WebCache_TraktAssociations" xml:space="preserve">
     <value>Para ver enlaces entre AniDB y Trakt, usar la caché web. Si no ha seleccionado tendrá que buscar manualmente todos los enlaces Trakt.</value>
   </data>
+  <data name="Link_Help" xml:space="preserve">
+    <value>http://jmediamanager.org/jmm-desktop/</value>
+  </data>
+  <data name="Tab_Help" xml:space="preserve">
+    <value>¡Ayuda!</value>
+  </data>
+  <data name="Main_Discord" xml:space="preserve">
+    <value>Discord</value>
+  </data>
 </root>

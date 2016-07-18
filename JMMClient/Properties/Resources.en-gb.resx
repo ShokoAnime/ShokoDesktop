@@ -4360,4 +4360,13 @@ Unlike the other supported media players, MPV is the fastest when it comes to st
   <data name="Tooltip_WebCache_TraktAssociations" xml:space="preserve">
     <value>Use the web cache to look up links between AniDB and Trakt. If not selected you will need to manually search for all Trakt links.</value>
   </data>
+  <data name="Tab_Help" xml:space="preserve">
+    <value>Help!</value>
+  </data>
+  <data name="Link_Help" xml:space="preserve">
+    <value>http://jmediamanager.org/jmm-desktop/</value>
+  </data>
+  <data name="Main_Discord" xml:space="preserve">
+    <value>Discord</value>
+  </data>
 </root>

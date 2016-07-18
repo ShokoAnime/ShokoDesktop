@@ -4362,4 +4362,13 @@ W przeciwieństwie do innych odtwarzaczy multimedialnych obsługiwanych MPV jest
   <data name="Tooltip_WebCache_TraktAssociations" xml:space="preserve">
     <value>Użyj pamięci podręcznej sieci web, aby znaleźć łącza między AniDB i Trakt. Jeśli nie wybrany trzeba będzie ręcznie wyszukać wszystkie linki Trakt.</value>
   </data>
+  <data name="Link_Help" xml:space="preserve">
+    <value>http://jmediamanager.org/jmm-desktop/</value>
+  </data>
+  <data name="Tab_Help" xml:space="preserve">
+    <value>Pomoc!</value>
+  </data>
+  <data name="Main_Discord" xml:space="preserve">
+    <value>Discord</value>
+  </data>
 </root>
