@@ -2221,7 +2221,9 @@ namespace JMMClient
 						gf.IsBeingEdited = false;
 						if (gf.Save() && isnew)
 						{
-						    MainListHelperVM.Instance.AllGroupFiltersDictionary[gf.GroupFilterID.Value] = gf;
+						    //Not needed as change tracked does this for us.
+                            //MainListHelperVM.Instance.AllGroupFiltersDictionary[gf.GroupFilterID.Value] = gf;
+                        
                             //Manually reset GroupCount
                             gf.GetDirectChildren();
 							//MainListHelperVM.Instance.LastGroupFilterID = gf.GroupFilterID.Value;
