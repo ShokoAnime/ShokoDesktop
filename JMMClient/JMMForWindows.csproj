@@ -2113,16 +2113,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(TargetDir)\en" "$(TargetDir)\languages\en\"  /R /I /Y
-xcopy "$(TargetDir)\en-gb" "$(TargetDir)\languages\en-gb\"  /R /I /Y
-xcopy "$(TargetDir)\de" "$(TargetDir)\languages\de\"  /R /I /Y
-xcopy "$(TargetDir)\es" "$(TargetDir)\languages\es\"  /R /I /Y
-xcopy "$(TargetDir)\fr" "$(TargetDir)\languages\fr\"  /R /I /Y
-xcopy "$(TargetDir)\it" "$(TargetDir)\languages\it\"  /R /I /Y
-xcopy "$(TargetDir)\nl" "$(TargetDir)\languages\nl\"  /R /I /Y
-xcopy "$(TargetDir)\pl" "$(TargetDir)\languages\pl\"  /R /I /Y
-xcopy "$(TargetDir)\pt" "$(TargetDir)\languages\pt\"  /R /I /Y
-xcopy "$(TargetDir)\ru" "$(TargetDir)\languages\ru\"  /R /I /Y</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
