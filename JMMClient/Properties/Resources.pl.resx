@@ -4377,4 +4377,7 @@ W przeciwieństwie do innych odtwarzaczy multimedialnych obsługiwanych MPV jest
   <data name="TvDB_SearchInfo" xml:space="preserve">
     <value>TvDB zakazuje treści dla dorosłych, nie dodać dorosłych związanym z serii The TvDB lub próba powiązać go.</value>
   </data>
+  <data name="Command_LinkAniDBTvDB" xml:space="preserve">
+    <value>Aktualizowanie stowarzyszenia TvDB zmieniono: {0}!</value>
+  </data>
 </root>

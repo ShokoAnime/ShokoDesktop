@@ -4375,4 +4375,7 @@ Contrairement à d’autres joueurs supports pris en charge, MPV est le plus rap
   <data name="TvDB_SearchInfo" xml:space="preserve">
     <value>Le TvDB interdit un contenu pour adultes, ne pas ajouter adultes séries connexes à la TvDB ou tenter de lier.</value>
   </data>
+  <data name="Command_LinkAniDBTvDB" xml:space="preserve">
+    <value>Mise à jour changé TvDB association : {0} !</value>
+  </data>
 </root>

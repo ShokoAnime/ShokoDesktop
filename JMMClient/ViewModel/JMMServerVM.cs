@@ -1889,7 +1889,8 @@ namespace JMMClient
             SearchTvDB, SendAnimeAzure, SendAnimeFull, SendAnimeTitle, SendAnonymousData, StartingGeneral, StartingHasher, StartingImages, SyncMyList, SyncTrakt,
             SyncTraktEpisodes, SyncTraktSeries, SyncVotes, TraktAddHistory, UpdateMALWatched, UpdateMyListInfo, UpdateMyListStats, UpdateTrakt, UpdateTraktData, UploadMALWatched,
             VoteAnime, WebCacheDeleteXRefAniDBMAL, WebCacheDeleteXRefAniDBOther, WebCacheDeleteXRefAniDBTrakt, WebCacheDeleteXRefAniDBTvDB, WebCacheDeleteXRefFileEpisode, WebCacheSendXRefAniDBMAL,
-            WebCacheSendXRefAniDBOther, WebCacheSendXRefAniDBTrakt, WebCacheSendXRefAniDBTvDB, WebCacheSendXRefFileEpisode, AniDB_MyListAdd, AniDB_MyListDelete, AniDB_GetTitles, Actions_SyncVotes
+            WebCacheSendXRefAniDBOther, WebCacheSendXRefAniDBTrakt, WebCacheSendXRefAniDBTvDB, WebCacheSendXRefFileEpisode, AniDB_MyListAdd, AniDB_MyListDelete, AniDB_GetTitles, Actions_SyncVotes,
+            LinkAniDBTvDB
         };
 
         private struct QueueStateStruct
@@ -2021,6 +2022,8 @@ namespace JMMClient
                         return JMMClient.Properties.Resources.AniDB_GetTitles;
                     case QueueStateEnum.Actions_SyncVotes:
                         return JMMClient.Properties.Resources.Actions_SyncVotes;
+                    case QueueStateEnum.LinkAniDBTvDB:
+                        return JMMClient.Properties.Resources.Command_LinkAniDBTvDB;
                     default:
                         throw new System.Exception("Unknown queue state format string"); ;
                 }

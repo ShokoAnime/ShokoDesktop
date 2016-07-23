@@ -4375,4 +4375,7 @@ In tegenstelling tot de andere ondersteunde mediaspelers is MPV het snelste als 
   <data name="TvDB_SearchInfo" xml:space="preserve">
     <value>De TvDB verbiedt inhoud voor volwassenen, volwassen gekoppelde reeksen aan de TvDB toevoegen of niet probeert te koppelen.</value>
   </data>
+  <data name="Command_LinkAniDBTvDB" xml:space="preserve">
+    <value>Bijwerken veranderd TvDB vereniging: {0}!</value>
+  </data>
 </root>

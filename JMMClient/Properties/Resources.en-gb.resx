@@ -4375,4 +4375,7 @@ Unlike the other supported media players, MPV is the fastest when it comes to st
   <data name="TvDB_SearchInfo" xml:space="preserve">
     <value>The TvDB prohibits adult content, do not add adult related series to The TvDB or attempt to link it.</value>
   </data>
+  <data name="Command_LinkAniDBTvDB" xml:space="preserve">
+    <value>Updating Changed TvDB association: {0}!</value>
+  </data>
 </root>
