@@ -576,9 +576,6 @@
   <data name="Success" xml:space="preserve">
     <value>Zakończono pomyślnie!</value>
   </data>
-  <data name="INFO_SettingsEssential" xml:space="preserve">
-    <value>Wszystkie ustawienia na tej stronie powinny być wypełnione. Uzupełni brakujące dane i zapisz zmiany. Jeśli jest to Twoje pierwsze uruchomienie pamiętaj o dodaniu folderu do importu i rozpocznij proces importowania.</value>
-  </data>
   <data name="Search" xml:space="preserve">
     <value>Szukaj</value>
   </data>
@@ -4234,9 +4231,6 @@
   <data name="Language_RenameComplete" xml:space="preserve">
     <value>Wszystkie grupy i seria została pomyślnie zmieniona!</value>
   </data>
-  <data name="RelationSettings_Info" xml:space="preserve">
-    <value>Jeśli włączone, JMM będą grupy wszystkich serii powiązanych razem w oparciu o Wykres relacji serii na AniDB. Aby wykluczyć niektóre typy relacji, kliknij relacji, które nie mają zgrupowanej.</value>
-  </data>
   <data name="Language_Switch" xml:space="preserve">
     <value>Zmień język</value>
   </data>
@@ -4370,5 +4364,17 @@ W przeciwieństwie do innych odtwarzaczy multimedialnych obsługiwanych MPV jest
   </data>
   <data name="Main_Discord" xml:space="preserve">
     <value>Discord</value>
+  </data>
+  <data name="Server_AutoStart" xml:space="preserve">
+    <value>AutoStart lokalnego serwera JMM</value>
+  </data>
+  <data name="INFO_SettingsEssential" xml:space="preserve">
+    <value>Panelu essentials zawiera wszystkie ustawienia, które są wymagane do uruchomienia JMM. Dla sekcji JMM serwera i logowania AniDB trzeba będzie kliknij przycisk "Test i Zapisz", aby zapisać wszelkie zmiany, które wprowadzasz. </value>
+  </data>
+  <data name="RelationSettings_Info" xml:space="preserve">
+    <value>Jeśli włączone, JMM będą grupować wszystkie związanym z serii w swojej kolekcji, w oparciu o wykresy relacji serii na AniDB. Można wykluczyć niektóre rodzaje stosunków klikając relacji, które nie mają zgrupowanej.</value>
+  </data>
+  <data name="TvDB_SearchInfo" xml:space="preserve">
+    <value>TvDB zakazuje treści dla dorosłych, nie dodać dorosłych związanym z serii The TvDB lub próba powiązać go.</value>
   </data>
 </root>

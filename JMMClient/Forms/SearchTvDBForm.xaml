@@ -98,6 +98,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
@@ -116,8 +117,16 @@
             </StackPanel>
         </Border>
 
+        <!-- Info Message -->
+        <Border Grid.Row="1" Grid.Column="0" Margin="5,5,5,0" Padding="5" Background="#F1F1F1" BorderBrush="LightGray" BorderThickness="1">
+            <StackPanel Orientation="Horizontal"  Margin="0,0,0,5" DockPanel.Dock="Top">
+                <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,0,5,-5"/>
+                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TvDB_SearchInfo}" Margin="0,0,10,-5"/>
+            </StackPanel>
+        </Border>
+
         <!-- Search block -->
-        <Border Grid.Row="1" Grid.Column="0" Margin="5,5,5,5" Padding="5" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1"
+        <Border Grid.Row="2" Grid.Column="0" Margin="5,5,5,5" Padding="5" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1"
                 Visibility="{Binding Path=IsSearch, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SearchTvDBForm}}, Converter={StaticResource BooleanToVisibilityConverter}}">
             <StackPanel Orientation="Horizontal"  Margin="0,0,0,0" DockPanel.Dock="Top">
                 <TextBox Name="txtSearch" Width="180" Margin="10,2,2,0" BorderThickness="1" />
@@ -132,7 +141,7 @@
         </Border>
 
         <!-- Existing ID block -->
-        <Border Grid.Row="1" Grid.Column="0" Margin="5,5,5,5" Padding="5" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1"
+        <Border Grid.Row="2" Grid.Column="0" Margin="5,5,5,5" Padding="5" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1"
                 Visibility="{Binding Path=IsExisting, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SearchTvDBForm}}, Converter={StaticResource BooleanToVisibilityConverter}}">
             <StackPanel Orientation="Horizontal"  Margin="0" DockPanel.Dock="Top">
                 <TextBox Name="txtSeriesID" Width="180" Margin="10,0,2,0" BorderThickness="1" />
@@ -156,7 +165,7 @@
         </Border>
 
         <!-- Web Cache Recommendation -->
-        <Border Grid.Row="2" Grid.Column="0" Margin="5,0,5,0" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1"
+        <Border Grid.Row="3" Grid.Column="0" Margin="5,0,5,0" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1"
                 Visibility="{Binding Path=HasWebCacheRec, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SearchTvDBForm}}, Converter={StaticResource BooleanToVisibilityConverter}}">
             <StackPanel Orientation="Vertical">
                 
@@ -191,8 +200,8 @@
         </Border>
 
         <!-- Search results -->
-        <Border Grid.Row="3" Grid.Column="0" Margin="5,5,5,5" Background="White" BorderBrush="LightGray" BorderThickness="1">
-            <ListBox Name="lbFiles" BorderThickness="0" Background="Transparent"
+        <Border Grid.Row="4" Grid.Column="0" Margin="5,5,5,5" Background="White" BorderBrush="LightGray" BorderThickness="1">
+            <ListBox Name="lbFiles" BorderThickness="0" Background="Transparent" ScrollViewer.CanContentScroll="False"
                             ItemsSource="{Binding Path=TVDBSeriesSearchResults, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SearchTvDBForm}}}"
                             HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
                             ItemTemplate="{DynamicResource TVSearchResultTemplate}"
@@ -200,7 +209,7 @@
                             />
         </Border>
 
-        <DockPanel Grid.Row="4" Grid.Column="0"  Margin="5,5,5,5">
+        <DockPanel Grid.Row="5" Grid.Column="0"  Margin="5,5,5,5">
 
             <Button Name="btnClose" Margin="2,2,2,2" Style="{DynamicResource RoundButtonStyle}" DockPanel.Dock="Right" HorizontalAlignment="Right">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">

@@ -5209,7 +5209,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to All the settings on this page should be populated. Make sure to test and save the JMM Server and AniDB details before proceeding. If this is your first time running the application enter at least one import folder and the press the Run Import button..
+        ///   Looks up a localized string similar to The essentials panel contains all settings that are required to run JMM. For the JMM Server and AniDB Login sections, you&apos;ll need to click the &quot;Test And Save&quot; button to save any changes you make. .
         /// </summary>
         public static string INFO_SettingsEssential {
             get {
@@ -7360,7 +7360,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If enabled, JMM will group all related series together based on the series&apos; relation graph on AniDB. To exclude certain types of relations, click the relation you don&apos;t want grouped..
+        ///   Looks up a localized string similar to If enabled, JMM will group all related series in your collection based on the series relation graphs on AniDB. You can exclude certain types of relations by clicking the relation you don&apos;t want grouped..
         /// </summary>
         public static string RelationSettings_Info {
             get {
@@ -8859,6 +8859,15 @@ namespace JMMClient.Properties {
         public static string Server {
             get {
                 return ResourceManager.GetString("Server", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AutoStart Local JMM Server.
+        /// </summary>
+        public static string Server_AutoStart {
+            get {
+                return ResourceManager.GetString("Server_AutoStart", resourceCulture);
             }
         }
         
@@ -11213,6 +11222,15 @@ namespace JMMClient.Properties {
         public static string TvDB_Schedule_Updates {
             get {
                 return ResourceManager.GetString("TvDB_Schedule_Updates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The TvDB prohibits adult content, do not add adult related series to The TvDB or attempt to link it..
+        /// </summary>
+        public static string TvDB_SearchInfo {
+            get {
+                return ResourceManager.GetString("TvDB_SearchInfo", resourceCulture);
             }
         }
         

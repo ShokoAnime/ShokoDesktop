@@ -579,9 +579,6 @@
   <data name="Success" xml:space="preserve">
     <value>Успешно!</value>
   </data>
-  <data name="INFO_SettingsEssential" xml:space="preserve">
-    <value>Все параметры на этой странице должны быть заполнены. Убедитесь в правильнсти настроек JMM сервера и AniDB прежде чем продолжить. Если это ваш первый запуск приложения введите по крайней мере одну папку импорта и нажмите кнопку Выполнить импорт.</value>
-  </data>
   <data name="Search" xml:space="preserve">
     <value>Поиск</value>
   </data>
@@ -4232,9 +4229,6 @@
   <data name="Language_RenameComplete" xml:space="preserve">
     <value>Все группы и серии были успешно переименованы!</value>
   </data>
-  <data name="RelationSettings_Info" xml:space="preserve">
-    <value>Если этот параметр включен, JMM группы все связанные серии вместе на основе серии отношения граф на AniDB. Чтобы исключить определенные типы отношений, нажмите кнопку связь, которую вы не хотите сгруппированных.</value>
-  </data>
   <data name="Language_Switch" xml:space="preserve">
     <value>Переключение языка</value>
   </data>
@@ -4368,5 +4362,17 @@
   </data>
   <data name="Main_Discord" xml:space="preserve">
     <value>Discord</value>
+  </data>
+  <data name="Server_AutoStart" xml:space="preserve">
+    <value>AutoStart локального сервера JMM</value>
+  </data>
+  <data name="INFO_SettingsEssential" xml:space="preserve">
+    <value>Панель essentials содержит все параметры, которые требуются для запуска модели памяти JMM. Для секции JMM сервера и AniDB входа вам будет нужно нажмите кнопку «Тест и сохранить», чтобы сохранить любые изменения, внесенные. </value>
+  </data>
+  <data name="RelationSettings_Info" xml:space="preserve">
+    <value>Если этот параметр включен, JMM группы все связанные серии в вашей коллекции, основанные на серии отношение графики на AniDB. Вы можете исключить определенные типы отношений, нажав отношения, что вы не хотите сгруппированы.</value>
+  </data>
+  <data name="TvDB_SearchInfo" xml:space="preserve">
+    <value>TvDB запрещает содержание только для взрослых, не добавить взрослых родственные серии TvDB или пытаться связать его.</value>
   </data>
 </root>

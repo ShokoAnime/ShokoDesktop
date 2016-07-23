@@ -576,9 +576,6 @@
   <data name="Success" xml:space="preserve">
     <value>Successo!</value>
   </data>
-  <data name="INFO_SettingsEssential" xml:space="preserve">
-    <value>Tutte le impostazioni in questa pagina devono essere popolate. Assicurarsi di testare e salvare il Server JMM e AniDB dettagli prima di procedere. Se questa è la prima volta che esegue l'applicazione immettere importazione almeno una cartella e premere il tasto Esegui importazione.</value>
-  </data>
   <data name="Search" xml:space="preserve">
     <value>Ricerca</value>
   </data>
@@ -4232,9 +4229,6 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   <data name="Language_RenameComplete" xml:space="preserve">
     <value>Tutti i gruppi e le serie sono stati rinominati con successo!</value>
   </data>
-  <data name="RelationSettings_Info" xml:space="preserve">
-    <value>Se abilitata, JMM raggrupperà tutte le serie collegate insieme basati su grafo della serie su AniDB. Per escludere determinati tipi di relazioni, fare clic sulla relazione che non volete raggruppati.</value>
-  </data>
   <data name="Language_Switch" xml:space="preserve">
     <value>Cambia lingua</value>
   </data>
@@ -4368,5 +4362,17 @@ A differenza di altri lettori multimediali supportati, MPV è il più veloce qua
   </data>
   <data name="Main_Discord" xml:space="preserve">
     <value>Discord</value>
+  </data>
+  <data name="Server_AutoStart" xml:space="preserve">
+    <value>AutoStart locale JMM Server</value>
+  </data>
+  <data name="INFO_SettingsEssential" xml:space="preserve">
+    <value>Il pannello di essentials contiene tutte le impostazioni che sono necessari per eseguire JMM. Per le sezioni AniDB Login e JMM Server, sarà necessario fare clic sul pulsante "Test And Save" per salvare le modifiche apportate. </value>
+  </data>
+  <data name="RelationSettings_Info" xml:space="preserve">
+    <value>Se abilitata, JMM raggrupperà tutte le serie correlate nella vostra collezione basata sui grafici relazione serie su AniDB. È possibile escludere determinati tipi di relazioni cliccando la relazione che non volete raggruppati.</value>
+  </data>
+  <data name="TvDB_SearchInfo" xml:space="preserve">
+    <value>Il TvDB vieta contenuti per adulti, non aggiungere adulta serie correlati al The TvDB o tentare di collegarlo.</value>
   </data>
 </root>

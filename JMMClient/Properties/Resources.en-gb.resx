@@ -574,7 +574,7 @@
     <value>Success!</value>
   </data>
   <data name="INFO_SettingsEssential" xml:space="preserve">
-    <value>All the settings on this page should be populated. Make sure to test and save the JMM Server and AniDB details before proceeding. If this is your first time running the application enter at least one import folder and the press the Run Import button.</value>
+    <value>The essentials panel contains all settings that are required to run JMM. For the JMM Server and AniDB Login sections, you'll need to click the "Test And Save" button to save any changes you make. </value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Search</value>
@@ -4239,7 +4239,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>All groups and series have been successfully renamed!</value>
   </data>
   <data name="RelationSettings_Info" xml:space="preserve">
-    <value>If enabled, JMM will group all related series together based on the series' relation graph on AniDB. To exclude certain types of relations, click the relation you don't want grouped.</value>
+    <value>If enabled, JMM will group all related series in your collection based on the series relation graphs on AniDB. You can exclude certain types of relations by clicking the relation you don't want grouped.</value>
   </data>
   <data name="Language_Switch" xml:space="preserve">
     <value>Switch Language</value>
@@ -4368,5 +4368,11 @@ Unlike the other supported media players, MPV is the fastest when it comes to st
   </data>
   <data name="Main_Discord" xml:space="preserve">
     <value>Discord</value>
+  </data>
+  <data name="Server_AutoStart" xml:space="preserve">
+    <value>AutoStart Local JMM Server</value>
+  </data>
+  <data name="TvDB_SearchInfo" xml:space="preserve">
+    <value>The TvDB prohibits adult content, do not add adult related series to The TvDB or attempt to link it.</value>
   </data>
 </root>

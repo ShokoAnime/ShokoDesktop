@@ -579,9 +579,6 @@
   <data name="Success" xml:space="preserve">
     <value>¡ Un éxito!</value>
   </data>
-  <data name="INFO_SettingsEssential" xml:space="preserve">
-    <value>Deben rellenarse todos los ajustes en esta página. Asegúrese de probar y guardar el servidor JMM y AniDB detalles antes de proceder. Si esta es la primera vez que ejecuta la aplicación entrar importación al menos una carpeta y el Presione el botón de ejecutar la importación.</value>
-  </data>
   <data name="Search" xml:space="preserve">
     <value>Búsqueda de</value>
   </data>
@@ -4232,9 +4229,6 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
   <data name="Language_RenameComplete" xml:space="preserve">
     <value>Todos los grupos y series han sido renombradas con éxito!</value>
   </data>
-  <data name="RelationSettings_Info" xml:space="preserve">
-    <value>Si está habilitado, JMM agrupará todas las series relacionadas juntos basadas en gráfico de relación de la serie en AniDB. Para excluir ciertos tipos de relaciones, haga clic en la relación que no desea agrupadas.</value>
-  </data>
   <data name="Language_Switch" xml:space="preserve">
     <value>Cambiar el idioma</value>
   </data>
@@ -4368,5 +4362,17 @@ A diferencia de los otros jugadores de medios compatibles, la MPV es el más rá
   </data>
   <data name="Main_Discord" xml:space="preserve">
     <value>Discord</value>
+  </data>
+  <data name="Server_AutoStart" xml:space="preserve">
+    <value>Local de AutoStart JMM servidor</value>
+  </data>
+  <data name="INFO_SettingsEssential" xml:space="preserve">
+    <value>El panel de essentials contiene todos los parámetros que se necesitan para ejecutar JMM. Para las secciones de JMM Server y AniDB Login, deberá hacer clic en el botón de "Prueba y salvar" para guardar los cambios realizados. </value>
+  </data>
+  <data name="RelationSettings_Info" xml:space="preserve">
+    <value>Si está habilitado, JMM agrupará todas las series relacionadas en su colección basada en las gráficas de relación de la serie en AniDB. Se pueden excluir ciertos tipos de relaciones haciendo clic en la relación que no desea agrupadas.</value>
+  </data>
+  <data name="TvDB_SearchInfo" xml:space="preserve">
+    <value>El TvDB prohíbe contenido para adultos, añadir adultos series relacionadas a The TvDB ni intentar un enlace.</value>
   </data>
 </root>

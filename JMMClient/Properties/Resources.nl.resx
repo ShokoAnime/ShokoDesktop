@@ -570,9 +570,6 @@
   <data name="Success" xml:space="preserve">
     <value>Succes!</value>
   </data>
-  <data name="INFO_SettingsEssential" xml:space="preserve">
-    <value>Alle instellingen op deze pagina moeten worden gevuld. Zorg ervoor om te testen en opslaan van de JMM Server en AniDB gegevens voordat u verdergaat. Als dit je eerste keer uitvoeren van de toepassing invoeren map ten minste één import en de druk op de knop importeren uitvoeren.</value>
-  </data>
   <data name="Search" xml:space="preserve">
     <value>Zoek</value>
   </data>
@@ -4232,9 +4229,6 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   <data name="Language_RenameComplete" xml:space="preserve">
     <value>Alle groepen en serie een zijn, met succes hernoemd!</value>
   </data>
-  <data name="RelationSettings_Info" xml:space="preserve">
-    <value>Als ingeschakeld, worden JMM gegroepeerd alle gekoppelde reeksen samen op basis van de serie relatie grafiek op AniDB. Klik om te sluiten van bepaalde soorten betrekkingen, op de relatie die u niet dat gegroepeerde wilt.</value>
-  </data>
   <data name="Language_Switch" xml:space="preserve">
     <value>Wissel taal</value>
   </data>
@@ -4368,5 +4362,17 @@ In tegenstelling tot de andere ondersteunde mediaspelers is MPV het snelste als 
   </data>
   <data name="Main_Discord" xml:space="preserve">
     <value>Discord</value>
+  </data>
+  <data name="Server_AutoStart" xml:space="preserve">
+    <value>AutoStart lokaal JMM Server</value>
+  </data>
+  <data name="INFO_SettingsEssential" xml:space="preserve">
+    <value>Het paneel van de essentials bevat alle instellingen die zijn vereist voor het uitvoeren van JMM. Voor de JMM Server en AniDB Login secties, zult u wilt klik op de knop 'Test en opslaan' als u wilt opslaan van de wijzigingen die u aanbrengt. </value>
+  </data>
+  <data name="RelationSettings_Info" xml:space="preserve">
+    <value>Als ingeschakeld, worden JMM gegroepeerd alle gekoppelde reeksen in uw collectie op basis van de serie relatie grafieken op AniDB. U kunt bepaalde soorten betrekkingen uitsluiten door te klikken op de relatie die u niet dat gegroepeerde wilt.</value>
+  </data>
+  <data name="TvDB_SearchInfo" xml:space="preserve">
+    <value>De TvDB verbiedt inhoud voor volwassenen, volwassen gekoppelde reeksen aan de TvDB toevoegen of niet probeert te koppelen.</value>
   </data>
 </root>

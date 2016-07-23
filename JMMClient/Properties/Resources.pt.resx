@@ -579,9 +579,6 @@
   <data name="Success" xml:space="preserve">
     <value>Sucesso!</value>
   </data>
-  <data name="INFO_SettingsEssential" xml:space="preserve">
-    <value>Todas as definições nesta página devem ser preenchidas. Certifique-se de testar e salvar os detalhes do servidor JMM e do AniDB antes de prosseguir. Se esta é sua primeira vez executando o aplicativo selecione pelo menos uma pasta de importação e o pressione o botão Executar importação.</value>
-  </data>
   <data name="Search" xml:space="preserve">
     <value>Pesquisar</value>
   </data>
@@ -4232,9 +4229,6 @@
   <data name="Language_RenameComplete" xml:space="preserve">
     <value>Todos os grupos e série já foi renomeado com sucesso!</value>
   </data>
-  <data name="RelationSettings_Info" xml:space="preserve">
-    <value>Se habilitado, JMM agrupará todas as séries relacionadas juntos com base no gráfico de relação de série na AniDB. Para excluir certos tipos de relações, clique a relação que não quer agrupados.</value>
-  </data>
   <data name="Language_Switch" xml:space="preserve">
     <value>Mudar o idioma</value>
   </data>
@@ -4368,5 +4362,17 @@ Ao contrário de outros players de mídia suportados, MPV é o mais rápido quan
   </data>
   <data name="Main_Discord" xml:space="preserve">
     <value>Discord</value>
+  </data>
+  <data name="Server_AutoStart" xml:space="preserve">
+    <value>Servidor de Local de AutoStart JMM</value>
+  </data>
+  <data name="INFO_SettingsEssential" xml:space="preserve">
+    <value>O painel básico contém todas as configurações que são necessários para executar a JMM. Para as seções JMM servidor e AniDB Login, você precisará clicar no botão "Teste e salvar" para salvar as alterações feitas. </value>
+  </data>
+  <data name="RelationSettings_Info" xml:space="preserve">
+    <value>Se habilitado, JMM agrupará todas as séries relacionadas em sua coleção com base em gráficos de relação a série na AniDB. Você pode excluir determinados tipos de relações clicando-se a relação que não quer agrupados.</value>
+  </data>
+  <data name="TvDB_SearchInfo" xml:space="preserve">
+    <value>O TvDB proíbe conteúdo adulto, não adicionar adulto série relacionado para o TvDB ou tentar vinculá-lo.</value>
   </data>
 </root>

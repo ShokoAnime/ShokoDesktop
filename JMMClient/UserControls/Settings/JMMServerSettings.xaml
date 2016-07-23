@@ -10,6 +10,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -18,12 +19,12 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0">
-            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Server}" Margin="0,0,5,0" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Server}" Margin="0,0,5,2" VerticalAlignment="Center"></TextBlock>
             <TextBox Name="txtServer" Width="150" Margin="0,0,5,0" VerticalAlignment="Center"/>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" Margin="0,0,15,0">
-            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Port}" Margin="0,0,5,0" VerticalAlignment="Center"></TextBlock>
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" Margin="0,0,5,0">
+            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Port}" Margin="0,0,5,2" VerticalAlignment="Center"></TextBlock>
             <TextBox Name="txtPort" Width="50" Margin="0,0,5,0" VerticalAlignment="Center"/>
         </StackPanel>
 
@@ -39,7 +40,7 @@
                            />
             </StackPanel>
         </Button>
-        <CheckBox Name="btnAutoStartLocalJMMServer" Content="AutoStart Local JMM Server" HorizontalAlignment="Left" Height="19" Margin="85,6,-169,0" VerticalAlignment="Top" Width="165" IsChecked="True" Grid.Column="1" Click="btnAutoStartLocalJMMServer_Click"/>
+        <CheckBox Name="btnAutoStartLocalJMMServer" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Server_AutoStart}" Margin="0,2,0,0" HorizontalAlignment="Left" Grid.Column="2" VerticalAlignment="Top" IsChecked="True" Click="btnAutoStartLocalJMMServer_Click"/>
 
     </Grid>
 </UserControl>

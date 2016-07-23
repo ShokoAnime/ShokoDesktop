@@ -564,9 +564,6 @@
   <data name="Success" xml:space="preserve">
     <value>Erfolgreich!</value>
   </data>
-  <data name="INFO_SettingsEssential" xml:space="preserve">
-    <value>Alle Einstellungen auf dieser Seite sollten vorgenommen werden. Achten Sie darauf die Einstellungen des JMM Servers und AniDB zu Testen bevor Sie fortfahren. Wenn es das erste mal ist, dass Sie diese Applikation gestartet haben, geben Sie mindestens einen Importordner an und klicken Sie  den Import Ausführen Button.</value>
-  </data>
   <data name="Search" xml:space="preserve">
     <value>Suche</value>
   </data>
@@ -4232,9 +4229,6 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   <data name="Language_RenameComplete" xml:space="preserve">
     <value>Alle Gruppen und Serien wurden erfolgreich umbenannt!</value>
   </data>
-  <data name="RelationSettings_Info" xml:space="preserve">
-    <value>Wenn aktiviert, wird JMM alle Verwandte Serien zusammen basierend auf der Serie Beziehung Diagramm auf AniDB gruppieren. Um bestimmte Arten von Beziehungen auszuschließen, klicken Sie auf die Beziehung wollen Sie nicht gruppierten.</value>
-  </data>
   <data name="Language_Switch" xml:space="preserve">
     <value>Sprache wechseln</value>
   </data>
@@ -4368,5 +4362,17 @@ Im Gegensatz zu den anderen unterstützten Media-Playern ist MPV der schnellste 
   </data>
   <data name="Main_Discord" xml:space="preserve">
     <value>Discord</value>
+  </data>
+  <data name="Server_AutoStart" xml:space="preserve">
+    <value>AutoStart-lokale JMM Server</value>
+  </data>
+  <data name="INFO_SettingsEssential" xml:space="preserve">
+    <value>Der wesentliche Bereich enthält alle Einstellungen, die zur Ausführung von JMM. Für die Abschnitte JMM Server und AniDB Login müssen Sie klicken Sie auf die Schaltfläche "Test And Save", um alle Änderungen zu speichern, die Sie vornehmen. </value>
+  </data>
+  <data name="RelationSettings_Info" xml:space="preserve">
+    <value>Wenn aktiviert, wird JMM alle Verwandte Serien in Ihrer Sammlung, basierend auf der Serie Beziehung Diagramme auf AniDB gruppieren. Sie können bestimmte Arten von Beziehungen ausschließen, indem Sie auf die Beziehung wollen Sie nicht gruppierten.</value>
+  </data>
+  <data name="TvDB_SearchInfo" xml:space="preserve">
+    <value>Die TvDB verbietet Inhalte für Erwachsene, nicht die TvDB Erwachsenen Verwandten Serie hinzufügen oder versuchen Sie es zu verbinden.</value>
   </data>
 </root>
