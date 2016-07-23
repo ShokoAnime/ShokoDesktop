@@ -4375,4 +4375,7 @@ A diferencia de los otros jugadores de medios compatibles, la MPV es el más rá
   <data name="TvDB_SearchInfo" xml:space="preserve">
     <value>El TvDB prohíbe contenido para adultos, añadir adultos series relacionadas a The TvDB ni intentar un enlace.</value>
   </data>
+  <data name="Command_LinkAniDBTvDB" xml:space="preserve">
+    <value>Actualización cambiado TvDB Asociación: {0}!</value>
+  </data>
 </root>

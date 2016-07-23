@@ -4375,4 +4375,7 @@ A differenza di altri lettori multimediali supportati, MPV è il più veloce qua
   <data name="TvDB_SearchInfo" xml:space="preserve">
     <value>Il TvDB vieta contenuti per adulti, non aggiungere adulta serie correlati al The TvDB o tentare di collegarlo.</value>
   </data>
+  <data name="Command_LinkAniDBTvDB" xml:space="preserve">
+    <value>L'aggiornamento ha cambiato TvDB associazione: {0}!</value>
+  </data>
 </root>

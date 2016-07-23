@@ -4375,4 +4375,7 @@ Im Gegensatz zu den anderen unterstützten Media-Playern ist MPV der schnellste 
   <data name="TvDB_SearchInfo" xml:space="preserve">
     <value>Die TvDB verbietet Inhalte für Erwachsene, nicht die TvDB Erwachsenen Verwandten Serie hinzufügen oder versuchen Sie es zu verbinden.</value>
   </data>
+  <data name="Command_LinkAniDBTvDB" xml:space="preserve">
+    <value>Geändert TvDB Verein aktualisieren: {0}!</value>
+  </data>
 </root>

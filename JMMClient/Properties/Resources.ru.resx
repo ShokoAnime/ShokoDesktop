@@ -4375,4 +4375,7 @@
   <data name="TvDB_SearchInfo" xml:space="preserve">
     <value>TvDB запрещает содержание только для взрослых, не добавить взрослых родственные серии TvDB или пытаться связать его.</value>
   </data>
+  <data name="Command_LinkAniDBTvDB" xml:space="preserve">
+    <value>Обновление TvDB ассоциации: {0}!</value>
+  </data>
 </root>
