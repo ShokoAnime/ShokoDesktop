@@ -152,8 +152,7 @@ namespace JMMClient.UserControls
             btnAnimeGroupShow.Click += new RoutedEventHandler(btnAnimeGroupShow_Click);
             btnTvDBLinks.Click += new RoutedEventHandler(btnTvDBLinks_Click);
             //btnPlayNextEpisode.Click += new RoutedEventHandler(btnPlayNextEpisode_Click);
-            btnGetRelMissingInfo.Click += new RoutedEventHandler(btnGetRelMissingInfo_Click);
-            btnGetSimMissingInfo.Click += new RoutedEventHandler(btnGetSimMissingInfo_Click);
+            
             btnSwitchView.Click += BtnSwitchView_Click;
 
             this.DataContextChanged += new DependencyPropertyChangedEventHandler(AnimeSeries_DataContextChanged);
@@ -502,23 +501,6 @@ namespace JMMClient.UserControls
                 FullDescription = !FullDescription;
             }
         }
-
-        void btnGetSimMissingInfo_Click(object sender, RoutedEventArgs e)
-        {
-            ucSimilarAnime.GetMissingSimilarData();
-        }
-
-        void btnGetRelMissingInfo_Click(object sender, RoutedEventArgs e)
-        {
-
-            ucRelatedAnime.GetMissingSimilarData();
-        }
-
-
-
-
-
-
 
         void btnEditSeriesFinish_Click(object sender, RoutedEventArgs e)
         {
