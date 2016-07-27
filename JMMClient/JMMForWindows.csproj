@@ -1782,10 +1782,6 @@
     <Resource Include="Images\16_server_hash.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\24_ignore.png" />
-    <Resource Include="Images\24_ignore_off.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\16_link_add.png" />
     <Resource Include="Images\16_link_remove.png" />
   </ItemGroup>
@@ -1878,13 +1874,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\16_minus.png" />
-    <Resource Include="Images\16_plus.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\navbar.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\24_export.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\16_clipboard.png" />
@@ -2055,6 +2047,8 @@
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.Core.dll" />
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.dll" />
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.resources.dll" />
+    <Resource Include="Images\16_ignore.png" />
+    <Resource Include="Images\32_television.png" />
     <Resource Include="Images\16_discord.png" />
     <Resource Include="Images\32_discord.png" />
     <Resource Include="Images\Metro\refresh_32.png" />

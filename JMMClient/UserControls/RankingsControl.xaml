@@ -209,8 +209,8 @@
                 <StackPanel Orientation="Horizontal" Margin="5"
                             Visibility="{Binding Path=AnimeHasSeries, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:RankingsControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
 
-                    <TextBlock Margin="0,0,5,0"  FontWeight="Heavy" Foreground="DarkGray"  Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Rankings_MyVote}" VerticalAlignment="Center"/>
-
+                    <TextBlock Margin="5,0,5,0"  FontFamily="Segoe UI" FontSize="15" FontWeight="Bold" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_MyVote}" VerticalAlignment="Center"/>
+                    
                     <usercontrols:RatingControl x:Name="cRating" Width="280" Height="24" RatingValue="{Binding Path=AnimeDetailed.AniDB_Anime.Detail.UserRating}" />
 
                 </StackPanel>

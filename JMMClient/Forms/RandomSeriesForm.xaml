@@ -184,7 +184,7 @@
 
                     <!--Episode counts-->
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,5,0,0">
-                        <Image Name="imgAnimeType" Height="14" Width="14" Margin="0,0,0,0" Source="/Images/16_television.png" VerticalAlignment="Center">
+                        <Image Name="imgAnimeType" Height="14" Width="14" Margin="0,0,0,0" Source="/Images/32_television.png" VerticalAlignment="Center">
                             <Image.ToolTip>
                                 <TextBlock Text="{Binding Path=Series.AniDB_Anime.AnimeTypeDescription, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:RandomSeriesForm}}}"></TextBlock>
                             </Image.ToolTip>

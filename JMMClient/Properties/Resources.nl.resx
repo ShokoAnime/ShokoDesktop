@@ -1383,12 +1383,6 @@
   <data name="GetMissingData" xml:space="preserve">
     <value>Ontbrekende gegevens nu ophalen</value>
   </data>
-  <data name="NoSimilarAnime" xml:space="preserve">
-    <value>Geen soortgelijke anime kon worden gevonden</value>
-  </data>
-  <data name="NoRelatedAnime" xml:space="preserve">
-    <value>Geen verwante anime kon worden gevonden</value>
-  </data>
   <data name="RelatedAnime" xml:space="preserve">
     <value>Verwante Anime</value>
   </data>
@@ -1568,9 +1562,6 @@
   </data>
   <data name="UseFanartOnSeries" xml:space="preserve">
     <value>Gebruiker Fanart serie tentoongesteld</value>
-  </data>
-  <data name="MAL_NeverDecrease" xml:space="preserve">
-    <value>Nooit zag daling graven</value>
   </data>
   <data name="Tooltip_MAL_NeverDecrease" xml:space="preserve">
     <value>Zorg ervoor dat keek graven worden altijd gehouden. Dit vereist downloaden uw volledige lijst telkens wanneer u kijken naar een aflevering, zo kan tijdrovend</value>
@@ -3941,17 +3932,11 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   <data name="MAL_LoginCorrect" xml:space="preserve">
     <value>MAL succesvolle, inloginstellingen opgeslagen.</value>
   </data>
-  <data name="MAL_SearchInfo" xml:space="preserve">
-    <value>Geldige MAL referenties nodig zijn om deze functie te gebruiken</value>
-  </data>
   <data name="CheckCred" xml:space="preserve">
     <value>Referenties controleren</value>
   </data>
   <data name="MAL_CheckCred" xml:space="preserve">
     <value>MAL referenties controleren</value>
-  </data>
-  <data name="Trakt_SearchInfo" xml:space="preserve">
-    <value>Geldige Trakt referenties nodig zijn om deze functie te gebruiken</value>
   </data>
   <data name="Trakt_CheckCred" xml:space="preserve">
     <value>Trakt referenties controleren</value>
@@ -4372,10 +4357,25 @@ In tegenstelling tot de andere ondersteunde mediaspelers is MPV het snelste als 
   <data name="RelationSettings_Info" xml:space="preserve">
     <value>Als ingeschakeld, worden JMM gegroepeerd alle gekoppelde reeksen in uw collectie op basis van de serie relatie grafieken op AniDB. U kunt bepaalde soorten betrekkingen uitsluiten door te klikken op de relatie die u niet dat gegroepeerde wilt.</value>
   </data>
-  <data name="TvDB_SearchInfo" xml:space="preserve">
-    <value>De TvDB verbiedt inhoud voor volwassenen, volwassen gekoppelde reeksen aan de TvDB toevoegen of niet probeert te koppelen.</value>
-  </data>
   <data name="Command_LinkAniDBTvDB" xml:space="preserve">
     <value>Bijwerken veranderd TvDB vereniging: {0}!</value>
+  </data>
+  <data name="MAL_NeverDecrease" xml:space="preserve">
+    <value>Nooit de Status van daling-serie</value>
+  </data>
+  <data name="NoSimilarAnime" xml:space="preserve">
+    <value>doet ieder soortgelijk anime, worden niet op AniDB</value>
+  </data>
+  <data name="NoRelatedAnime" xml:space="preserve">
+    <value>doet niet zijn een met hen gelieerde anime vermeld op AniDB</value>
+  </data>
+  <data name="MAL_SearchInfo" xml:space="preserve">
+    <value>Geldige MAL referenties zijn vereist om het gebruik van deze functie.</value>
+  </data>
+  <data name="Trakt_SearchInfo" xml:space="preserve">
+    <value>Geldige Trakt referenties zijn nodig om het gebruik van deze functie.</value>
+  </data>
+  <data name="TvDB_SearchInfo" xml:space="preserve">
+    <value>De TvDB verbiedt inhoud voor volwassenen, volwassen gekoppelde reeksen aan de TvDB toevoegen of niet probeert te koppelen.</value>
   </data>
 </root>

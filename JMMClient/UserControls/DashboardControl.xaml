@@ -316,7 +316,7 @@
                                 <Button Style="{StaticResource RoundButtonStyle}" VerticalAlignment="Center" ToolTipService.ShowDuration="60000"
                                         ToolTip="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_CreateSeries}"
                                         Command="{DynamicResource ResourceKey=CreateSeriesFromAnimeCommand}" CommandParameter="{Binding}">
-                                    <Image Height="16" Width="16" Source="/Images/16_television.png" Margin="2,0,2,0"/>
+                                    <Image Height="16" Width="16" Source="/Images/32_television.png" Margin="2,0,2,0"/>
                                 </Button>
 
                                 <!-- Bookmark anime button -->
@@ -845,35 +845,35 @@
         <Border Style="{DynamicResource ToolbarBorderControlStyle}" DockPanel.Dock="Top">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,0" Background="#F1F1F1">
                 <!-- Refresh -->
-                <Button x:Name="btnToolbarRefresh" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}">
+                <Button x:Name="btnToolbarRefresh" Margin="2,2,5,2" Style="{DynamicResource FlatButtonStyle}">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                         <Image Height="16" Width="16" Source="/Images/32_refresh.png" Margin="0,0,5,0"/>
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Refresh}" Margin="0,0,5,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Refresh}" Margin="0,0,0,0"/>
                     </StackPanel>
                 </Button>
 
                 <!-- Edit Dashboard -->
-                <Button x:Name="btnEditDashboard" Margin="10,2,2,2" Style="{DynamicResource FlatButtonStyle}"
+                <Button x:Name="btnEditDashboard" Margin="0,2,5,2" Style="{DynamicResource FlatButtonStyle}"
                         Visibility="{Binding Source={x:Static local:DashboardVM.Instance}, Path=IsReadOnly, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                        <Image Height="16" Width="16" Source="/Images/24_folder_edit.png" Margin="0,0,3,0"/>
+                        <Image Height="16" Width="16" Source="/Images/24_folder_edit.png" Margin="0,0,5,0"/>
                         <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Edit}" Margin="0,0,0,0"/>
                     </StackPanel>
                 </Button>
 
                 <!-- Finish Editing Dashboard -->
-                <Button Name="btnEditDashboardFinish" Margin="10,2,2,2" Style="{DynamicResource FlatButtonStyle}"
+                <Button Name="btnEditDashboardFinish" Margin="0,2,5,2" Style="{DynamicResource FlatButtonStyle}"
                                     Visibility="{Binding Source={x:Static local:DashboardVM.Instance}, Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                        <Image Height="16" Width="16" Source="/Images/24_folder_edit.png" Margin="0,0,3,0"/>
+                        <Image Height="16" Width="16" Source="/Images/24_folder_edit.png" Margin="0,0,5,0"/>
                         <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=FinishEditing}" Margin="0,0,0,0"/>
                     </StackPanel>
                 </Button>
 
                 <!-- Toggle Dash -->
-                <Button Name="btnToggleDash" Margin="12,2,2,2" Style="{DynamicResource FlatButtonStyle}">
+                <Button Name="btnToggleDash" Margin="0,2,2,2" Style="{DynamicResource FlatButtonStyle}">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                        <Image Height="16" Width="16" Source="/Images/Metro/MetroDash2_16.png" Margin="0,0,3,0"/>
+                        <Image Height="16" Width="16" Source="/Images/Metro/MetroDash2_16.png" Margin="0,0,5,0"/>
                         <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Dashboard_Metro}" Margin="0,0,5,0"/>
                     </StackPanel>
                 </Button>
@@ -946,7 +946,7 @@
                                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ImageSize}" Margin="15,0,3,0"/>
 
                                 <Button x:Name="btnWatchNextIncrease" Margin="0,2,0,2" Style="{DynamicResource FlatButtonStyle}">
-                                    <Image Height="16" Width="16" Source="/Images/16_plus.png" Margin="0,0,0,0"/>
+                                    <Image Height="16" Width="16" Source="/Images/16_add.png" Margin="0,0,0,0"/>
                                 </Button>
 
                                 <Button x:Name="btnWatchNextReduce" Margin="0,2,0,2" Style="{DynamicResource FlatButtonStyle}">
@@ -1012,7 +1012,7 @@
                                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ImageSize}" Margin="15,0,3,0"/>
 
                                 <Button Name="btnMissingEpsIncrease" Margin="0,2,0,2" Style="{DynamicResource FlatButtonStyle}">
-                                    <Image Height="16" Width="16" Source="/Images/16_plus.png" Margin="0,0,0,0"/>
+                                    <Image Height="16" Width="16" Source="/Images/16_add.png" Margin="0,0,0,0"/>
                                 </Button>
 
                                 <Button Name="btnMissingEpsReduce" Margin="0,2,0,2" Style="{DynamicResource FlatButtonStyle}">
@@ -1085,7 +1085,7 @@
                                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ImageSize}" Margin="15,0,3,0"/>
 
                                 <Button Name="btnMiniCalendarIncrease" Margin="0,2,0,2" Style="{DynamicResource FlatButtonStyle}">
-                                    <Image Height="16" Width="16" Source="/Images/16_plus.png" Margin="0,0,0,0"/>
+                                    <Image Height="16" Width="16" Source="/Images/16_add.png" Margin="0,0,0,0"/>
                                 </Button>
 
                                 <Button Name="btnMiniCalendarReduce" Margin="0,2,0,2" Style="{DynamicResource FlatButtonStyle}">
@@ -1161,7 +1161,7 @@
                                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ImageSize}" Margin="15,0,3,0"/>
 
                                 <Button Name="btnRecWatchIncrease" Margin="0,2,0,2" Style="{DynamicResource FlatButtonStyle}">
-                                    <Image Height="16" Width="16" Source="/Images/16_plus.png" Margin="0,0,0,0"/>
+                                    <Image Height="16" Width="16" Source="/Images/16_add.png" Margin="0,0,0,0"/>
                                 </Button>
 
                                 <Button Name="btnRecWatchReduce" Margin="0,2,0,2" Style="{DynamicResource FlatButtonStyle}">
@@ -1228,7 +1228,7 @@
 
                                 <Button Name="btnRecDownloadIncrease" Margin="0,2,0,2" Style="{DynamicResource FlatButtonStyle}">
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                        <Image Height="16" Width="16" Source="/Images/16_plus.png" Margin="0,0,0,0"/>
+                                        <Image Height="16" Width="16" Source="/Images/16_add.png" Margin="0,0,0,0"/>
                                     </StackPanel>
                                 </Button>
 
@@ -1309,7 +1309,7 @@
 
                                 <Button Name="btnRecentEpisodesIncrease" Margin="0,2,0,2" Style="{DynamicResource FlatButtonStyle}">
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                        <Image Height="16" Width="16" Source="/Images/16_plus.png" Margin="0,0,0,0"/>
+                                        <Image Height="16" Width="16" Source="/Images/16_add.png" Margin="0,0,0,0"/>
                                     </StackPanel>
                                 </Button>
 
@@ -1391,7 +1391,7 @@
 
                                 <Button Name="btnRecentAdditionsIncrease" Margin="0,2,0,2" Style="{DynamicResource FlatButtonStyle}">
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                        <Image Height="16" Width="16" Source="/Images/16_plus.png" Margin="0,0,0,0"/>
+                                        <Image Height="16" Width="16" Source="/Images/16_add.png" Margin="0,0,0,0"/>
                                     </StackPanel>
                                 </Button>
 

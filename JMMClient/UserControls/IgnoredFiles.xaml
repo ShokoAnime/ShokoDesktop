@@ -47,7 +47,7 @@
                         <Button Name="btnRemoveIgnoreFileEntryMultiple" Margin="0,0,2,2" Grid.Column="0" Grid.Row="3" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left"
                                 Command="{DynamicResource RestoreFileCommand}" CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                <Image Height="16" Width="16" Source="/Images/24_ignore_off.png" Margin="0,0,5,0"/>
+                                <Image Height="16" Width="16" Source="/Images/16_add.png" Margin="0,0,5,0"/>
                                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Restore}" Margin="0,0,5,0"/>
                             </StackPanel>
                         </Button>
@@ -104,7 +104,7 @@
                         <Button Name="btnRemoveIgnoreFileEntrySingle" Margin="0,0,2,2" Grid.Column="0" Grid.Row="3" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left"
                                 Command="{StaticResource RestoreFileCommand}" CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                <Image Height="16" Width="16" Source="/Images/24_ignore_off.png" Margin="0,0,5,0"/>
+                                <Image Height="16" Width="16" Source="/Images/16_add.png" Margin="0,0,5,0"/>
                                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Restore}" Margin="0,0,5,0"/>
                             </StackPanel>
                         </Button>

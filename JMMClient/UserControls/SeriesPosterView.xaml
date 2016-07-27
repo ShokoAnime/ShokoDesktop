@@ -76,7 +76,7 @@
 
                 <!--Episode counts-->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0">
-                    <Image Name="imgAnimeType" Height="14" Width="14" Margin="5,0,0,0" Source="/Images/16_television.png" VerticalAlignment="Center">
+                    <Image Name="imgAnimeType" Height="14" Width="14" Margin="5,0,0,0" Source="/Images/32_television.png" VerticalAlignment="Center">
                         <Image.ToolTip>
                             <TextBlock Text="{Binding Path=AniDB_Anime.AnimeTypeDescription}"></TextBlock>
                         </Image.ToolTip>

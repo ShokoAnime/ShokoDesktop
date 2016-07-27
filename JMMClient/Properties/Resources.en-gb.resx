@@ -1399,10 +1399,10 @@
     <value>Get Missing Data Now</value>
   </data>
   <data name="NoSimilarAnime" xml:space="preserve">
-    <value>No similar anime could be found</value>
+    <value>does not have any similar anime listed on AniDB</value>
   </data>
   <data name="NoRelatedAnime" xml:space="preserve">
-    <value>No related anime could be found</value>
+    <value>does not have any related anime listed on AniDB</value>
   </data>
   <data name="RelatedAnime" xml:space="preserve">
     <value>Related Anime</value>
@@ -1585,7 +1585,7 @@
     <value>User Fanart On Series Display</value>
   </data>
   <data name="MAL_NeverDecrease" xml:space="preserve">
-    <value>Never Decrease Watched Counts</value>
+    <value>Never Decrease Series Status</value>
   </data>
   <data name="Tooltip_MAL_NeverDecrease" xml:space="preserve">
     <value>Make sure that watched counts are always kept. This requires downloading your full list each time you watch an episode, so may be time consuming</value>
@@ -3960,7 +3960,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>MAL login successful, settings saved.</value>
   </data>
   <data name="MAL_SearchInfo" xml:space="preserve">
-    <value>Valid MAL credentials are required in order to use this feature</value>
+    <value>Valid MAL credentials are required in order to use this feature.</value>
   </data>
   <data name="CheckCred" xml:space="preserve">
     <value>Check Credentials</value>
@@ -3969,7 +3969,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Check MAL Credentials</value>
   </data>
   <data name="Trakt_SearchInfo" xml:space="preserve">
-    <value>Valid Trakt credentials are required in order to use this feature</value>
+    <value>Valid Trakt credentials are required in order to use this feature.</value>
   </data>
   <data name="Trakt_CheckCred" xml:space="preserve">
     <value>Check Trakt Credentials</value>

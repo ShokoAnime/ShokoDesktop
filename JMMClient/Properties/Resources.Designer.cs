@@ -5821,7 +5821,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Never Decrease Watched Counts.
+        ///   Looks up a localized string similar to Never Decrease Series Status.
         /// </summary>
         public static string MAL_NeverDecrease {
             get {
@@ -5830,7 +5830,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Valid MAL credentials are required in order to use this feature.
+        ///   Looks up a localized string similar to Valid MAL credentials are required in order to use this feature..
         /// </summary>
         public static string MAL_SearchInfo {
             get {
@@ -6568,7 +6568,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No related anime could be found.
+        ///   Looks up a localized string similar to does not have any related anime listed on AniDB.
         /// </summary>
         public static string NoRelatedAnime {
             get {
@@ -6577,7 +6577,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No similar anime could be found.
+        ///   Looks up a localized string similar to does not have any similar anime listed on AniDB.
         /// </summary>
         public static string NoSimilarAnime {
             get {
@@ -11019,7 +11019,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Valid Trakt credentials are required in order to use this feature.
+        ///   Looks up a localized string similar to Valid Trakt credentials are required in order to use this feature..
         /// </summary>
         public static string Trakt_SearchInfo {
             get {
@@ -11235,7 +11235,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The TvDB prohibits adult content, do not add adult related series to The TvDB or attempt to link it..
+        ///   Looks up a localized string similar to The TvDB prohibits adult content, do not add adult related series to The TvDB or attempt to link them..
         /// </summary>
         public static string TvDB_SearchInfo {
             get {

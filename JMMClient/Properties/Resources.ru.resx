@@ -1392,12 +1392,6 @@
   <data name="GetMissingData" xml:space="preserve">
     <value>Получить недостающие данные</value>
   </data>
-  <data name="NoSimilarAnime" xml:space="preserve">
-    <value>Подобных аниме не найдено</value>
-  </data>
-  <data name="NoRelatedAnime" xml:space="preserve">
-    <value>Связанных аниме не найдено</value>
-  </data>
   <data name="RelatedAnime" xml:space="preserve">
     <value>Связанные аниме</value>
   </data>
@@ -1577,9 +1571,6 @@
   </data>
   <data name="UseFanartOnSeries" xml:space="preserve">
     <value>Пользовательский фанарт при показе сериалов</value>
-  </data>
-  <data name="MAL_NeverDecrease" xml:space="preserve">
-    <value>Никогда не уменьшать количество просмотров</value>
   </data>
   <data name="Tooltip_MAL_NeverDecrease" xml:space="preserve">
     <value>Гарантирует что счетчики просмотров будут сохраненны. Это требует загрузки всего списка каждый раз, когда вы просматриваете эпизод, так что может занять много времени</value>
@@ -3941,17 +3932,11 @@
   <data name="MAL_LoginCorrect" xml:space="preserve">
     <value>MAL подключение успешно, параметры сохранены.</value>
   </data>
-  <data name="MAL_SearchInfo" xml:space="preserve">
-    <value>Для того чтобы использовать эту функцию требуются учетные данные MAL</value>
-  </data>
   <data name="CheckCred" xml:space="preserve">
     <value>Проверка учетных данных</value>
   </data>
   <data name="MAL_CheckCred" xml:space="preserve">
     <value>Проверить данные MAL</value>
-  </data>
-  <data name="Trakt_SearchInfo" xml:space="preserve">
-    <value>Для того чтобы использовать эту функцию требуются учетные данные Trakt </value>
   </data>
   <data name="Trakt_CheckCred" xml:space="preserve">
     <value>Проверить данные Trakt</value>
@@ -4372,10 +4357,25 @@
   <data name="RelationSettings_Info" xml:space="preserve">
     <value>Если этот параметр включен, JMM группы все связанные серии в вашей коллекции, основанные на серии отношение графики на AniDB. Вы можете исключить определенные типы отношений, нажав отношения, что вы не хотите сгруппированы.</value>
   </data>
-  <data name="TvDB_SearchInfo" xml:space="preserve">
-    <value>TvDB запрещает содержание только для взрослых, не добавить взрослых родственные серии TvDB или пытаться связать его.</value>
-  </data>
   <data name="Command_LinkAniDBTvDB" xml:space="preserve">
     <value>Обновление TvDB ассоциации: {0}!</value>
+  </data>
+  <data name="MAL_NeverDecrease" xml:space="preserve">
+    <value>Никогда не уменьшение серии статус</value>
+  </data>
+  <data name="NoSimilarAnime" xml:space="preserve">
+    <value>делает не имеют каких-либо подобных аниме, перечисленные на AniDB</value>
+  </data>
+  <data name="NoRelatedAnime" xml:space="preserve">
+    <value>делает не имеют какие-либо связанные с аниме, перечисленные на AniDB</value>
+  </data>
+  <data name="MAL_SearchInfo" xml:space="preserve">
+    <value>Действительный MAL учетные данные требуются для того, чтобы использовать эту функцию.</value>
+  </data>
+  <data name="Trakt_SearchInfo" xml:space="preserve">
+    <value>Действительные тракт учетные данные требуются для того, чтобы использовать эту функцию.</value>
+  </data>
+  <data name="TvDB_SearchInfo" xml:space="preserve">
+    <value>TvDB запрещает содержание только для взрослых, не добавить взрослых родственные серии TvDB или пытаться связать их.</value>
   </data>
 </root>

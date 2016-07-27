@@ -65,7 +65,7 @@
                         <Button Name="btnIgnoreFileEntryMultiple" Margin="0,0,2,2" Grid.Column="0" Grid.Row="3" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left"
                                 Command="{DynamicResource IgnoreFileCommand}" CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                <Image Height="16" Width="16" Source="/Images/24_ignore.png" Margin="0,0,5,0"/>
+                                <Image Height="16" Width="16" Source="/Images/16_ignore.png" Margin="0,0,5,0"/>
                                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Ignore}" Margin="0,0,5,0"/>
                             </StackPanel>
                         </Button>
@@ -149,7 +149,7 @@
                         <Button Name="btnIgnoreFileEntry" Margin="0,0,2,2" Grid.Column="0" Grid.Row="3" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" 
                                 Command="{StaticResource IgnoreFileCommand}" CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                <Image Height="16" Width="16" Source="/Images/24_ignore.png" Margin="0,0,5,0"/>
+                                <Image Height="16" Width="16" Source="/Images/16_ignore.png" Margin="0,0,5,0"/>
                                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Ignore}" Margin="0,0,5,0"/>
                             </StackPanel>
                         </Button>
@@ -360,7 +360,7 @@
 
                 <!-- single series and episode -->
                 <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Margin="0,0,0,5">
-                    <Image Source="/Images/16_television.png" Width="16" Height="16" Margin="5,0,0,0" VerticalAlignment="Center" ></Image>
+                    <Image Source="/Images/32_television.png" Width="16" Height="16" Margin="5,0,0,0" VerticalAlignment="Center" ></Image>
                     <TextBlock Name="txtSelectedSeriesDetails" Margin="5,0,0,0"  Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Unrecognized_NA}"  VerticalAlignment="Center"/>
                 </StackPanel>
 
@@ -385,13 +385,13 @@
 
                 <StackPanel Orientation="Vertical"  DockPanel.Dock="Top">
                     <StackPanel Orientation="Horizontal"  Margin="0,0,0,5">
-                        <Image Height="16" Width="16" Source="/Images/16_television.png" Margin="5,0,5,0"/>
+                        <Image Height="16" Width="16" Source="/Images/32_television.png" Margin="5,0,5,0"/>
                         <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SelectSeriesEp}" Margin="0,0,0,0"/>
 
                         <!-- add series -->
                         <Button  Name="btnRefreshSeriesList" Margin="20,2,2,2" Style="{DynamicResource FlatButtonStyle}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                <Image Height="16" Width="16" Source="/Images/32_refresh.png" Margin="0,0,3,0"/>
+                                <Image Height="16" Width="16" Source="/Images/32_refresh.png" Margin="0,0,5,0"/>
                                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Unrecognized_RefreshSeries}" Margin="0,0,0,0"/>
                             </StackPanel>
                         </Button>
@@ -404,7 +404,7 @@
                         <!-- add series -->
                         <Button  Name="btnAddSeries" Margin="3,2,2,2" Style="{DynamicResource FlatButtonStyle}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                <Image Height="16" Width="16" Source="/Images/16_television.png" Margin="0,0,3,0"/>
+                                <Image Height="16" Width="16" Source="/Images/32_television.png" Margin="0,0,3,0"/>
                                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=NewSeries}" Margin="0,0,0,0"/>
                             </StackPanel>
                         </Button>

@@ -1392,12 +1392,6 @@
   <data name="GetMissingData" xml:space="preserve">
     <value>Téléchargez dès maintenant les données manquantes</value>
   </data>
-  <data name="NoSimilarAnime" xml:space="preserve">
-    <value>Aucun anime similaire a pu être trouvé</value>
-  </data>
-  <data name="NoRelatedAnime" xml:space="preserve">
-    <value>Aucun anime connexe a pu être trouvé</value>
-  </data>
   <data name="RelatedAnime" xml:space="preserve">
     <value>Anime connexe</value>
   </data>
@@ -1577,9 +1571,6 @@
   </data>
   <data name="UseFanartOnSeries" xml:space="preserve">
     <value>Fanart d'utilisateur sur l'écran de la série</value>
-  </data>
-  <data name="MAL_NeverDecrease" xml:space="preserve">
-    <value>Jamais la diminution regardé comtes</value>
   </data>
   <data name="Tooltip_MAL_NeverDecrease" xml:space="preserve">
     <value>Assurez-vous que regardé comptes sont toujours conservés. Cela nécessite le téléchargement de votre liste complète chaque fois que vous regardez un épisode, donc peut être beaucoup de temps</value>
@@ -3941,17 +3932,11 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   <data name="MAL_LoginCorrect" xml:space="preserve">
     <value>Connexion MAL réussie, les paramètres enregistrés.</value>
   </data>
-  <data name="MAL_SearchInfo" xml:space="preserve">
-    <value>Informations d’identification valides de MAL sont requis pour pouvoir utiliser cette fonctionnalité</value>
-  </data>
   <data name="CheckCred" xml:space="preserve">
     <value>Vérifiez les informations d’identification</value>
   </data>
   <data name="MAL_CheckCred" xml:space="preserve">
     <value>Vérifiez les informations d’identification de MAL</value>
-  </data>
-  <data name="Trakt_SearchInfo" xml:space="preserve">
-    <value>Informations d’identification Trakt valides sont requis pour pouvoir utiliser cette fonctionnalité</value>
   </data>
   <data name="Trakt_CheckCred" xml:space="preserve">
     <value>Vérifier les informations d’identification Trakt</value>
@@ -4372,10 +4357,25 @@ Contrairement à d’autres joueurs supports pris en charge, MPV est le plus rap
   <data name="RelationSettings_Info" xml:space="preserve">
     <value>Si activé, JMM regroupera toutes les séries connexes dans votre collection basée sur les graphiques de relation série sur AniDB. Vous pouvez exclure certains types de relations en cliquant sur la relation que vous ne voulez pas groupés.</value>
   </data>
-  <data name="TvDB_SearchInfo" xml:space="preserve">
-    <value>Le TvDB interdit un contenu pour adultes, ne pas ajouter adultes séries connexes à la TvDB ou tenter de lier.</value>
-  </data>
   <data name="Command_LinkAniDBTvDB" xml:space="preserve">
     <value>Mise à jour changé TvDB association : {0} !</value>
+  </data>
+  <data name="MAL_NeverDecrease" xml:space="preserve">
+    <value>Jamais diminuer le statut de série</value>
+  </data>
+  <data name="NoSimilarAnime" xml:space="preserve">
+    <value>avoir n’importe quel anime similaire ne figurent pas sur AniDB</value>
+  </data>
+  <data name="NoRelatedAnime" xml:space="preserve">
+    <value>pas avoir connexe anime répertorié sur AniDB</value>
+  </data>
+  <data name="MAL_SearchInfo" xml:space="preserve">
+    <value>Informations d’identification valides de MAL sont requis pour pouvoir utiliser cette fonctionnalité.</value>
+  </data>
+  <data name="Trakt_SearchInfo" xml:space="preserve">
+    <value>Informations d’identification Trakt valides sont nécessaires pour pouvoir utiliser cette fonctionnalité.</value>
+  </data>
+  <data name="TvDB_SearchInfo" xml:space="preserve">
+    <value>Le TvDB interdit un contenu pour adultes, ne pas ajouter adultes séries connexes à la TvDB ou tenter de les relier.</value>
   </data>
 </root>

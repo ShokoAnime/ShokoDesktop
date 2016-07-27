@@ -1077,12 +1077,6 @@
   <data name="GetMissingData" xml:space="preserve">
     <value>Holen Sie sich jetzt Daten fehlen</value>
   </data>
-  <data name="NoSimilarAnime" xml:space="preserve">
-    <value>Keine ähnlichen Anime konnte gefunden werden.</value>
-  </data>
-  <data name="NoRelatedAnime" xml:space="preserve">
-    <value>Nicht verwandte Anime konnte gefunden werden.</value>
-  </data>
   <data name="RelatedAnime" xml:space="preserve">
     <value>Beiträge zu Anime</value>
   </data>
@@ -1262,9 +1256,6 @@
   </data>
   <data name="UseFanartOnSeries" xml:space="preserve">
     <value>Benutzer-Fanart Serie Display</value>
-  </data>
-  <data name="MAL_NeverDecrease" xml:space="preserve">
-    <value>Nie beobachtete Abnahme zählt</value>
   </data>
   <data name="Tooltip_MAL_NeverDecrease" xml:space="preserve">
     <value>Stellen Sie sicher, dass beobachtete, dass zählt immer gehalten werden. Dies erfordert herunterladen Ihre vollständige Liste jedes Mal, wenn Sie eine Episode zu sehen kann sehr lange dauern</value>
@@ -3941,17 +3932,11 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   <data name="MAL_LoginCorrect" xml:space="preserve">
     <value>MAL erfolgreich, für die Anmeldung gespeichert.</value>
   </data>
-  <data name="MAL_SearchInfo" xml:space="preserve">
-    <value>Um diese Funktion nutzen zu können, sind gültige MAL Anmeldeinformationen erforderlich.</value>
-  </data>
   <data name="CheckCred" xml:space="preserve">
     <value>Überprüfen Sie die Anmeldeinformationen</value>
   </data>
   <data name="MAL_CheckCred" xml:space="preserve">
     <value>Überprüfen Sie MAL Anmeldeinformationen</value>
-  </data>
-  <data name="Trakt_SearchInfo" xml:space="preserve">
-    <value>Um diese Funktion nutzen zu können, sind gültige Trakt Anmeldeinformationen erforderlich.</value>
   </data>
   <data name="Trakt_CheckCred" xml:space="preserve">
     <value>Trakt Anmeldeinformationen überprüfen</value>
@@ -4372,10 +4357,25 @@ Im Gegensatz zu den anderen unterstützten Media-Playern ist MPV der schnellste 
   <data name="RelationSettings_Info" xml:space="preserve">
     <value>Wenn aktiviert, wird JMM alle Verwandte Serien in Ihrer Sammlung, basierend auf der Serie Beziehung Diagramme auf AniDB gruppieren. Sie können bestimmte Arten von Beziehungen ausschließen, indem Sie auf die Beziehung wollen Sie nicht gruppierten.</value>
   </data>
-  <data name="TvDB_SearchInfo" xml:space="preserve">
-    <value>Die TvDB verbietet Inhalte für Erwachsene, nicht die TvDB Erwachsenen Verwandten Serie hinzufügen oder versuchen Sie es zu verbinden.</value>
-  </data>
   <data name="Command_LinkAniDBTvDB" xml:space="preserve">
     <value>Geändert TvDB Verein aktualisieren: {0}!</value>
+  </data>
+  <data name="MAL_NeverDecrease" xml:space="preserve">
+    <value>Verringern Sie nie Serie Status</value>
+  </data>
+  <data name="NoSimilarAnime" xml:space="preserve">
+    <value>nicht haben eine ähnliche Anime auf AniDB aufgeführt</value>
+  </data>
+  <data name="NoRelatedAnime" xml:space="preserve">
+    <value>nicht haben alle damit verbundenen Anime auf AniDB aufgeführt</value>
+  </data>
+  <data name="MAL_SearchInfo" xml:space="preserve">
+    <value>Gültige MAL Anmeldeinformationen werden benötigt, um diese Funktion nutzen.</value>
+  </data>
+  <data name="Trakt_SearchInfo" xml:space="preserve">
+    <value>Gültige Trakt Anmeldeinformationen werden benötigt, um diese Funktion nutzen.</value>
+  </data>
+  <data name="TvDB_SearchInfo" xml:space="preserve">
+    <value>Die TvDB verbietet Inhalte für Erwachsene, nicht die TvDB Erwachsenen Verwandten Serie hinzufügen oder versuchen, sie zu verknüpfen.</value>
   </data>
 </root>

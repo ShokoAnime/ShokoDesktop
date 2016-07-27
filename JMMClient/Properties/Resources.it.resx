@@ -1389,12 +1389,6 @@
   <data name="GetMissingData" xml:space="preserve">
     <value>Ottenere dati mancanti ora</value>
   </data>
-  <data name="NoSimilarAnime" xml:space="preserve">
-    <value>Nessun anime simili potrebbe essere trovato</value>
-  </data>
-  <data name="NoRelatedAnime" xml:space="preserve">
-    <value>È non stato possibile trovare nessun anime correlati</value>
-  </data>
   <data name="RelatedAnime" xml:space="preserve">
     <value>Correlati Anime</value>
   </data>
@@ -1574,9 +1568,6 @@
   </data>
   <data name="UseFanartOnSeries" xml:space="preserve">
     <value>Fanart di utente sul Display di serie</value>
-  </data>
-  <data name="MAL_NeverDecrease" xml:space="preserve">
-    <value>Diminuzione non guardava mai la conta</value>
   </data>
   <data name="Tooltip_MAL_NeverDecrease" xml:space="preserve">
     <value>Assicurarsi che guardava i conteggi vengono sempre mantenuti. Questo richiede il download di tutta la tua lista ogni volta che si guarda un episodio, così potrebbe richiedere molto tempo</value>
@@ -3941,17 +3932,11 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   <data name="MAL_LoginCorrect" xml:space="preserve">
     <value>Accesso è MAL riuscito correttamente, le impostazioni salvate.</value>
   </data>
-  <data name="MAL_SearchInfo" xml:space="preserve">
-    <value>Credenziali valide MAL sono necessari per poter utilizzare questa funzione</value>
-  </data>
   <data name="CheckCred" xml:space="preserve">
     <value>Verifica le credenziali</value>
   </data>
   <data name="MAL_CheckCred" xml:space="preserve">
     <value>Controllare le credenziali di MAL</value>
-  </data>
-  <data name="Trakt_SearchInfo" xml:space="preserve">
-    <value>Credenziali valide Trakt sono necessari per poter utilizzare questa funzione</value>
   </data>
   <data name="Trakt_CheckCred" xml:space="preserve">
     <value>Controllare le credenziali Trakt</value>
@@ -4372,10 +4357,25 @@ A differenza di altri lettori multimediali supportati, MPV è il più veloce qua
   <data name="RelationSettings_Info" xml:space="preserve">
     <value>Se abilitata, JMM raggrupperà tutte le serie correlate nella vostra collezione basata sui grafici relazione serie su AniDB. È possibile escludere determinati tipi di relazioni cliccando la relazione che non volete raggruppati.</value>
   </data>
-  <data name="TvDB_SearchInfo" xml:space="preserve">
-    <value>Il TvDB vieta contenuti per adulti, non aggiungere adulta serie correlati al The TvDB o tentare di collegarlo.</value>
-  </data>
   <data name="Command_LinkAniDBTvDB" xml:space="preserve">
     <value>L'aggiornamento ha cambiato TvDB associazione: {0}!</value>
+  </data>
+  <data name="MAL_NeverDecrease" xml:space="preserve">
+    <value>Mai diminuire lo stato Series</value>
+  </data>
+  <data name="NoSimilarAnime" xml:space="preserve">
+    <value>non alcun anime simili elencati su AniDB</value>
+  </data>
+  <data name="NoRelatedAnime" xml:space="preserve">
+    <value>non hanno eventuali correlati anime elencati su AniDB</value>
+  </data>
+  <data name="MAL_SearchInfo" xml:space="preserve">
+    <value>Credenziali valide MAL sono necessari per poter utilizzare questa funzionalità.</value>
+  </data>
+  <data name="Trakt_SearchInfo" xml:space="preserve">
+    <value>Credenziali valide Trakt sono necessari per poter utilizzare questa funzionalità.</value>
+  </data>
+  <data name="TvDB_SearchInfo" xml:space="preserve">
+    <value>Il TvDB vieta contenuti per adulti, non aggiungere adulta serie correlati al The TvDB o tentare di collegarli.</value>
   </data>
 </root>

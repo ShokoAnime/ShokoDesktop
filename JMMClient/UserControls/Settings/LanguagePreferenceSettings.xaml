@@ -69,9 +69,9 @@
     
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Margin="5,0,0,5">
             <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Language_UseSynonyms}" VerticalAlignment="Center" Margin="0,0,10,0"
-                       ToolTip="{usercontrols:Info Title=LanguageUseSynonyms, Body=Tooltip_LanguageUseSynonyms}"></TextBlock>
-            <CheckBox Name="chkLanguageUseSynonyms" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=LanguageUseSynonyms}" VerticalAlignment="Center"
-                      ToolTip="{usercontrols:Info Title=LanguageUseSynonyms, Body=Tooltip_LanguageUseSynonyms}"/>
+                       ToolTip="{usercontrols:Info Title=Language_UseSynonyms, Body=Tooltip_LanguageUseSynonyms}"></TextBlock>
+            <CheckBox Name="chkLanguageUseSynonyms" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=Language_UseSynonyms}" VerticalAlignment="Center"
+                      ToolTip="{usercontrols:Info Title=Language_UseSynonyms, Body=Tooltip_LanguageUseSynonyms}"/>
         </StackPanel>
 
         <Button HorizontalAlignment="Left" Name="btnRenameGroups" Margin="5,0,0,5" Style="{DynamicResource FlatButtonStyle}" Width="Auto" Grid.Column="2" Grid.Row="0">

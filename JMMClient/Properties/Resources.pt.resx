@@ -1395,12 +1395,6 @@
   <data name="GetMissingData" xml:space="preserve">
     <value>Obter dados faltando agora</value>
   </data>
-  <data name="NoSimilarAnime" xml:space="preserve">
-    <value>Animes semelhantes não puderam ser encontrados</value>
-  </data>
-  <data name="NoRelatedAnime" xml:space="preserve">
-    <value>Animes relacionado não puderam ser encontrados</value>
-  </data>
   <data name="RelatedAnime" xml:space="preserve">
     <value>Anime relacionado</value>
   </data>
@@ -1580,9 +1574,6 @@
   </data>
   <data name="UseFanartOnSeries" xml:space="preserve">
     <value>Usar Fanart na exibição de série</value>
-  </data>
-  <data name="MAL_NeverDecrease" xml:space="preserve">
-    <value>Nunca diminuir a contagem de assistidos</value>
   </data>
   <data name="Tooltip_MAL_NeverDecrease" xml:space="preserve">
     <value>Certifique-se que as contagens de assistidos sempre sejam mantidas. Isto requer baixar sua lista completa de cada vez que você assistir a um episódio, então pode ser demorado</value>
@@ -3941,17 +3932,11 @@
   <data name="MAL_LoginCorrect" xml:space="preserve">
     <value>Êxito de login de MAL, configurações salvas.</value>
   </data>
-  <data name="MAL_SearchInfo" xml:space="preserve">
-    <value>São necessárias credenciais MAL válidas para utilizar este recurso</value>
-  </data>
   <data name="CheckCred" xml:space="preserve">
     <value>Verificar credenciais</value>
   </data>
   <data name="MAL_CheckCred" xml:space="preserve">
     <value>Verificar as credenciais do MAL</value>
-  </data>
-  <data name="Trakt_SearchInfo" xml:space="preserve">
-    <value>São necessárias credenciais de Trakt válidas para utilizar este recurso</value>
   </data>
   <data name="Trakt_CheckCred" xml:space="preserve">
     <value>Verificar as credenciais Trakt</value>
@@ -4372,10 +4357,25 @@ Ao contrário de outros players de mídia suportados, MPV é o mais rápido quan
   <data name="RelationSettings_Info" xml:space="preserve">
     <value>Se habilitado, JMM agrupará todas as séries relacionadas em sua coleção com base em gráficos de relação a série na AniDB. Você pode excluir determinados tipos de relações clicando-se a relação que não quer agrupados.</value>
   </data>
-  <data name="TvDB_SearchInfo" xml:space="preserve">
-    <value>O TvDB proíbe conteúdo adulto, não adicionar adulto série relacionado para o TvDB ou tentar vinculá-lo.</value>
-  </data>
   <data name="Command_LinkAniDBTvDB" xml:space="preserve">
     <value>Atualizando a associação mudou TvDB: {0}!</value>
+  </data>
+  <data name="MAL_NeverDecrease" xml:space="preserve">
+    <value>Nunca diminuir o Status de série</value>
+  </data>
+  <data name="NoSimilarAnime" xml:space="preserve">
+    <value>Não é que têm qualquer anime semelhante listados na AniDB</value>
+  </data>
+  <data name="NoRelatedAnime" xml:space="preserve">
+    <value>é que não têm qualquer relacionados anime listado na AniDB</value>
+  </data>
+  <data name="MAL_SearchInfo" xml:space="preserve">
+    <value>Credenciais válidas do MAL são necessárias para usar esse recurso.</value>
+  </data>
+  <data name="Trakt_SearchInfo" xml:space="preserve">
+    <value>Válido Trakt credenciais são necessárias para usar esse recurso.</value>
+  </data>
+  <data name="TvDB_SearchInfo" xml:space="preserve">
+    <value>O TvDB proíbe conteúdo adulto, não adicionar adulto série relacionado para o TvDB ou tentar vinculá-las.</value>
   </data>
 </root>

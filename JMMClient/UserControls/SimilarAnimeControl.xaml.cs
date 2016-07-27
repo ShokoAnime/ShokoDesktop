@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -44,8 +46,9 @@ namespace JMMClient.UserControls
         {
             InitializeComponent();
 
-            SimilarAnimeLinks = new ObservableCollection<AniDB_Anime_SimilarVM>();
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
+            SimilarAnimeLinks = new ObservableCollection<AniDB_Anime_SimilarVM>();
 
             this.DataContextChanged += new DependencyPropertyChangedEventHandler(SimilarAnimeControl_DataContextChanged);
 
@@ -152,6 +155,16 @@ namespace JMMClient.UserControls
             wdw.IsEnabled = false;
 
             missingDataWorker.RunWorkerAsync();
+        }
+
+        public string SeriesName
+        {
+            get
+            {
+                if (this.DataContext == null) { return ""; }
+                AnimeSeriesVM series = (AnimeSeriesVM)this.DataContext;
+                return series.SeriesName + " " + Properties.Resources.NoSimilarAnime;
+            }
         }
     }
 }

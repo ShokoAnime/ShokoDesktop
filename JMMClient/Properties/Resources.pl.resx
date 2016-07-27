@@ -1391,12 +1391,6 @@
   <data name="GetMissingData" xml:space="preserve">
     <value>Teraz uzyskać brakujące dane</value>
   </data>
-  <data name="NoSimilarAnime" xml:space="preserve">
-    <value>Nie ma podobnych anime można odnaleźć</value>
-  </data>
-  <data name="NoRelatedAnime" xml:space="preserve">
-    <value>Nie związane z anime można odnaleźć</value>
-  </data>
   <data name="RelatedAnime" xml:space="preserve">
     <value>Związane z Anime</value>
   </data>
@@ -1576,9 +1570,6 @@
   </data>
   <data name="UseFanartOnSeries" xml:space="preserve">
     <value>Fanart użytkownika na wyświetlaczu serii</value>
-  </data>
-  <data name="MAL_NeverDecrease" xml:space="preserve">
-    <value>Nigdy nie oglądałem spadek liczy</value>
   </data>
   <data name="Tooltip_MAL_NeverDecrease" xml:space="preserve">
     <value>Upewnij się, że oglądałem, że liczy się zawsze na bieżąco. To wymaga pobierania listy pełne za każdym razem obejrzeć odcinek, więc może być czasochłonne</value>
@@ -3943,17 +3934,11 @@
   <data name="MAL_LoginCorrect" xml:space="preserve">
     <value>MAL logowanie udane, zapisane ustawienia.</value>
   </data>
-  <data name="MAL_SearchInfo" xml:space="preserve">
-    <value>Ważne MAL poświadczenia są wymagane w celu wykorzystania tej funkcji</value>
-  </data>
   <data name="CheckCred" xml:space="preserve">
     <value>Sprawdź poświadczenia</value>
   </data>
   <data name="MAL_CheckCred" xml:space="preserve">
     <value>Sprawdź poświadczenia MAL</value>
-  </data>
-  <data name="Trakt_SearchInfo" xml:space="preserve">
-    <value>Ważny Trakt poświadczenia są wymagane w celu wykorzystania tej funkcji</value>
   </data>
   <data name="Trakt_CheckCred" xml:space="preserve">
     <value>Sprawdź poświadczenia Trakt</value>
@@ -4374,10 +4359,25 @@ W przeciwieństwie do innych odtwarzaczy multimedialnych obsługiwanych MPV jest
   <data name="RelationSettings_Info" xml:space="preserve">
     <value>Jeśli włączone, JMM będą grupować wszystkie związanym z serii w swojej kolekcji, w oparciu o wykresy relacji serii na AniDB. Można wykluczyć niektóre rodzaje stosunków klikając relacji, które nie mają zgrupowanej.</value>
   </data>
-  <data name="TvDB_SearchInfo" xml:space="preserve">
-    <value>TvDB zakazuje treści dla dorosłych, nie dodać dorosłych związanym z serii The TvDB lub próba powiązać go.</value>
-  </data>
   <data name="Command_LinkAniDBTvDB" xml:space="preserve">
     <value>Aktualizowanie stowarzyszenia TvDB zmieniono: {0}!</value>
+  </data>
+  <data name="MAL_NeverDecrease" xml:space="preserve">
+    <value>Nigdy zmniejszenie stanu serii</value>
+  </data>
+  <data name="NoSimilarAnime" xml:space="preserve">
+    <value>nie wszystkie anime podobne wymienione na AniDB</value>
+  </data>
+  <data name="NoRelatedAnime" xml:space="preserve">
+    <value>nie mają żadnych związanych z anime wymienione na AniDB</value>
+  </data>
+  <data name="MAL_SearchInfo" xml:space="preserve">
+    <value>Ważne MAL poświadczenia są wymagane w celu korzystania z tej funkcji.</value>
+  </data>
+  <data name="Trakt_SearchInfo" xml:space="preserve">
+    <value>Ważny Trakt poświadczenia są wymagane do użycia tej funkcji.</value>
+  </data>
+  <data name="TvDB_SearchInfo" xml:space="preserve">
+    <value>TvDB zakazuje treści dla dorosłych, nie dodać dorosłych związanym z serii The TvDB lub próby połączyć je.</value>
   </data>
 </root>
