@@ -4,8 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Globalization;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -44,11 +42,12 @@ namespace JMMClient.UserControls
         {
             InitializeComponent();
 
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
-
             RelatedAnimeLinks = new ObservableCollection<AniDB_Anime_RelationVM>();
 
+
             this.DataContextChanged += new DependencyPropertyChangedEventHandler(RelatedAnimeControl_DataContextChanged);
+
+            btnGetRelMissingInfo.Click += new RoutedEventHandler(btnGetRelMissingInfo_Click);
 
             missingDataWorker.DoWork += new DoWorkEventHandler(missingDataWorker_DoWork);
             missingDataWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(missingDataWorker_RunWorkerCompleted);
@@ -155,15 +154,10 @@ namespace JMMClient.UserControls
             missingDataWorker.RunWorkerAsync();
         }
 
-        public string SeriesName
+        void btnGetRelMissingInfo_Click(object sender, RoutedEventArgs e)
         {
-            get
-            {
-                if (this.DataContext == null) { return ""; }
-                AnimeSeriesVM series = (AnimeSeriesVM)this.DataContext;
-                return series.SeriesName + " " + Properties.Resources.NoRelatedAnime;
-            }
-        }
 
+            GetMissingSimilarData();
+        }
     }
 }
