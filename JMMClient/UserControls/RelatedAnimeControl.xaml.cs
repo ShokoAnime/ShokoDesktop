@@ -36,6 +36,16 @@ namespace JMMClient.UserControls
             set { SetValue(DataMissingProperty, value); }
         }
 
+        public string SeriesName
+        {
+            get
+            {
+                if (this.DataContext == null) { return ""; }
+                AnimeSeriesVM series = (AnimeSeriesVM)this.DataContext;
+                return series.SeriesName + " " + Properties.Resources.NoRelatedAnime;
+            }
+        }
+
         public ObservableCollection<AniDB_Anime_RelationVM> RelatedAnimeLinks { get; set; }
 
         public RelatedAnimeControl()
