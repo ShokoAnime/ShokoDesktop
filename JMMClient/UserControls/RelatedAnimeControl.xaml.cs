@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -52,9 +54,10 @@ namespace JMMClient.UserControls
         {
             InitializeComponent();
 
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
             RelatedAnimeLinks = new ObservableCollection<AniDB_Anime_RelationVM>();
-
-
+        
             this.DataContextChanged += new DependencyPropertyChangedEventHandler(RelatedAnimeControl_DataContextChanged);
 
             btnGetRelMissingInfo.Click += new RoutedEventHandler(btnGetRelMissingInfo_Click);
