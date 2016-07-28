@@ -38,6 +38,16 @@ namespace JMMClient.UserControls
             set { SetValue(DataMissingProperty, value); }
         }
 
+        public string SeriesName
+        {
+            get
+            {
+                if (this.DataContext == null) { return ""; }
+                AnimeSeriesVM series = (AnimeSeriesVM)this.DataContext;
+                return series.SeriesName + " " + Properties.Resources.NoSimilarAnime;
+            }
+        }
+
         public ObservableCollection<AniDB_Anime_SimilarVM> SimilarAnimeLinks { get; set; }
 
         public SimilarAnimeControl()
