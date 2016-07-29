@@ -37,6 +37,9 @@
             <RoutedUICommand x:Key="UpdateTraktLinkCommand" Text="UpdateTraktLinkCommand" />
             <RoutedUICommand x:Key="SyncTraktLinkCommand" Text="SyncTraktLinkCommand" />
 
+            <RoutedUICommand x:Key="DeleteMovieDBLinkCommand" Text="DeleteMovieDBLinkCommand" />
+            <RoutedUICommand x:Key="UpdateMovieDBLinkCommand" Text="UpdateMovieDBLinkCommand" />
+
             <!-- MALLinkTemplate -->
             <DataTemplate x:Key="MALLinkTemplate">
                 <Grid Margin="0">
@@ -58,19 +61,17 @@
 
                         <!-- delete link button -->
                         <Button Margin="8,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
-                                Command="{DynamicResource DeleteMALLinkCommand}" CommandParameter="{Binding}">
+                                Command="{DynamicResource DeleteMALLinkCommand}" CommandParameter="{Binding}" ToolTip="{usercontrols:Info Title=Tooltip_DeleteTitle, Body=Tooltip_DeleteInfo}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,5,0"/>
-                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Delete}" Margin="0,0,5,0"/>
+                                <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,0,0"/>
                             </StackPanel>
                         </Button>
 
                         <!-- Edit MAL Details button -->
                         <Button Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
-                                Command="{DynamicResource EditMALLinkCommand}" CommandParameter="{Binding}">
+                                Command="{DynamicResource EditMALLinkCommand}" CommandParameter="{Binding}" ToolTip="{usercontrols:Info Title=Tooltip_EditTitle, Body=Tooltip_EditInfo}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                <Image Height="16" Width="16" Source="/Images/16_link_edit.png" Margin="0,0,5,0"/>
-                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_Edit}" Margin="0,0,5,0"/>
+                                <Image Height="16" Width="16" Source="/Images/16_link_edit.png" Margin="0,0,0,0"/>
                             </StackPanel>
                         </Button>
 
@@ -229,6 +230,45 @@
                 </Grid>
             </DataTemplate>
 
+            <!-- MovieDBLinkTemplate -->
+            <DataTemplate x:Key="MovieDBLinkTemplate">
+                <Grid Margin="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+
+                    <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Margin="0,0,0,5">
+
+                        <usercontrols:HyperLinkStandard DisplayText="{Binding Path=AniDB_AnimeCrossRefs.MovieDB_Movie.MovieId, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}}" VerticalAlignment="Center" URL="{Binding Path=AniDB_AnimeCrossRefs.MovieDB_Movie.SiteURL, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}}" Margin="10,0,0,0"/>
+
+                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_Movie}" Margin="10,0,0,0"/>
+                        <TextBlock FontWeight="Medium" Margin="10,0,0,0" VerticalAlignment="Center" Text="{Binding Path=AniDB_AnimeCrossRefs.MovieDB_Movie.MovieName, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}}" />
+
+                        <!-- Delete Link Button -->
+                        <Button Margin="8,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                Command="{DynamicResource DeleteMovieDBLinkCommand}" CommandParameter="{Binding}" ToolTip="{usercontrols:Info Title=Tooltip_DeleteTitle, Body=Tooltip_DeleteInfo}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+
+                        <!-- Update MovieDB Info button -->
+                        <Button Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                Command="{DynamicResource UpdateMovieDBLinkCommand}" CommandParameter="{Binding}" ToolTip="{usercontrols:Info Title=Tooltip_EditTitle, Body=Tooltip_EditInfo}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <Image Height="16" Width="16" Source="/Images/16_update_data.png" Margin="0,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+
+                    </StackPanel>
+
+                </Grid>
+            </DataTemplate>
+
         </ResourceDictionary>
 
     </UserControl.Resources>
@@ -251,6 +291,10 @@
         <CommandBinding Command="{StaticResource EditTraktLinkCommand}" Executed="CommandBinding_EditTraktLink" />
         <CommandBinding Command="{StaticResource UpdateTraktLinkCommand}" Executed="CommandBinding_UpdateTraktLink" />
         <CommandBinding Command="{StaticResource SyncTraktLinkCommand}" Executed="CommandBinding_SyncTraktLink" />
+
+        <CommandBinding Command="{StaticResource DeleteMovieDBLinkCommand}" Executed="CommandBinding_DeleteMovieDBLink" />
+        <CommandBinding Command="{StaticResource UpdateMovieDBLinkCommand}" Executed="CommandBinding_UpdateMovieDBInfo" />
+
     </UserControl.CommandBindings>
 
     <Grid Margin="3">
@@ -285,7 +329,7 @@
                     <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,0,2" VerticalAlignment="Center"/>
 
                     <!-- search button -->
-                    <Button Name="btnSearchExistingTvDB" Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Button Name="btnSearchExistingTvDB" Margin="20,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/32_search.png" Margin="0,0,5,0"/>
                             <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
@@ -402,7 +446,7 @@
                     <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,0,2" VerticalAlignment="Center"/>
 
                     <!-- search button -->
-                    <Button Name="btnSearchExistingTrakt" Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Button Name="btnSearchExistingTrakt" Margin="20,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/32_search.png" Margin="0,0,5,0"/>
                             <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
@@ -586,40 +630,16 @@
                     Visibility="{Binding Path=AniDB_AnimeCrossRefs.MovieDBCrossRefExists, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}, Converter={StaticResource BooleanToVisibilityConverter}}">
 
             <StackPanel Orientation="Vertical">
-
                 <StackPanel Orientation="Horizontal">
                     <Image Height="24" Width="24" Source="/Images/32_tmdb.png" Margin="0,0,10,2" VerticalAlignment="Center"/>
                     <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TheMovieDB}" Width="120" VerticalAlignment="Center"/>
                     <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,0,2" VerticalAlignment="Center"/>
-                    <usercontrols:HyperLinkStandard DisplayText="{Binding Path=AniDB_AnimeCrossRefs.MovieDB_Movie.MovieId, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}}" 
-                         VerticalAlignment="Center" URL="{Binding Path=AniDB_AnimeCrossRefs.MovieDB_Movie.SiteURL, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}}" Margin="10,0,0,0"/>
-                    <TextBlock FontWeight="Medium" Margin="10,0,0,0" VerticalAlignment="Center" 
-                           Text="{Binding Path=AniDB_AnimeCrossRefs.MovieDB_Movie.MovieName, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}}" />
-
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal" Margin="126,7,0,0">
-                    <!-- delete link button -->
-                    <Button Name="btnDeleteMovieDBLink" Margin="20,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                            <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Delete}" Margin="0,0,5,0"/>
-                        </StackPanel>
-                    </Button>
 
                     <!-- search button -->
-                    <Button Name="btnSearchExistingMovieDB" Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Button Name="btnSearchExistingMovieDB" Margin="20,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/32_search.png" Margin="0,0,5,0"/>
                             <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
-                        </StackPanel>
-                    </Button>
-
-                    <!-- Update MovieDB Info button -->
-                    <Button Name="btnUpdateMovieDBInfo" Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                            <Image Height="16" Width="16" Source="/Images/16_update_data.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=UpdateInfo}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
@@ -627,8 +647,7 @@
                     <Button Name="btnMovieDBAutoLinkEnable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                             Command="{StaticResource ToggleAutoLinkMovieDBCommand}" CommandParameter="{Binding}"
                             Visibility="{Binding Path=IsMovieDBLinkDisabled, Converter={StaticResource BooleanToVisibilityConverter}}" 
-                            ToolTip="{usercontrols:Info Title=Tooltip_AutoLinkDisabledTitle, 
-                            Body=Tooltip_AutoLinkDisabledTMDb}">
+                            ToolTip="{usercontrols:Info Title=Tooltip_AutoLinkDisabledTitle, Body=Tooltip_AutoLinkDisabledTMDb}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,5,0"/>
                             <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
@@ -639,27 +658,16 @@
                     <Button Name="btnMovieDBAutoLinkDisable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                             Command="{StaticResource ToggleAutoLinkMovieDBCommand}" CommandParameter="{Binding}"
                             Visibility="{Binding Path=IsMovieDBLinkEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-                            ToolTip="{usercontrols:Info Title=Tooltip_AutoLinkEnabledTitle, 
-                            Body=Tooltip_AutoLinkEnabledTMDb}">
+                            ToolTip="{usercontrols:Info Title=Tooltip_AutoLinkEnabledTitle, Body=Tooltip_AutoLinkEnabledTMDb}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
                             <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
-                    <!-- Community Admin -->
-                    <Button Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
-                    Command="{DynamicResource ShowWebCacheAdminCommand}" CommandParameter="{Binding}"
-                    Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ShowCommunity, Converter={StaticResource BooleanToVisibilityConverter}}"
-                    ToolTip="{usercontrols:Info Title=Tooltip_CommunityAdminTitle, 
-                    Body=Tooltip_CommunityAdminInfo}">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                            <Image Height="16" Width="16" Source="/Images/16_Star.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_CommunityAdminTitle}" Margin="0,0,5,0"/>
-                        </StackPanel>
-                    </Button>
-
                 </StackPanel>
+
+                <ListBox Name="lbMovieDBLinks" BorderThickness="0" Background="Transparent" Margin="140,0,0,0" ItemsSource="{Binding Path=AniDB_AnimeCrossRefs.MovieDB_Movie.MovieName, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemTemplate="{DynamicResource MovieDBLinkTemplate}" ItemContainerStyle="{DynamicResource ListBoxItemStylePlain}" />
 
             </StackPanel>
         </StackPanel>

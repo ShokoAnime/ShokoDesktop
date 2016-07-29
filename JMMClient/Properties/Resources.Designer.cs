@@ -2392,6 +2392,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Movie.
+        /// </summary>
+        public static string CommunityLinks_Movie {
+            get {
+                return ResourceManager.GetString("CommunityLinks_Movie", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Links Need Approval.
         /// </summary>
         public static string CommunityLinks_NeedApproval {

@@ -2047,6 +2047,9 @@
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.Core.dll" />
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.dll" />
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.resources.dll" />
+    <Resource Include="Images\32_edit.png" />
+    <Resource Include="Images\32_edit_accept.png" />
+    <Resource Include="Images\32_edit_delete.png" />
     <Resource Include="Images\16_ignore.png" />
     <Resource Include="Images\32_television.png" />
     <Resource Include="Images\16_discord.png" />
@@ -2069,10 +2072,8 @@
     <Resource Include="Images\16_add.png" />
     <Resource Include="Images\24_calendar.png" />
     <Resource Include="Images\24_download.png" />
-    <Resource Include="Images\24_folder_edit.png" />
     <Resource Include="Images\24_folder_filter.png" />
     <Resource Include="Images\24_folder_group.png" />
-    <Resource Include="Images\24_folder_remove.png" />
     <Resource Include="Images\24_play_all.png" />
     <Resource Include="Images\16_cancel.png" />
     <Resource Include="Images\16_clear.png" />

@@ -4,7 +4,9 @@ using NLog;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.IO;
+using System.Threading;
 
 namespace JMMClient
 {
@@ -168,6 +170,8 @@ namespace JMMClient
         {
             get
             {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
                 return string.Format("{0} {1} ({2} {3})", EpisodeCountNormal, JMMClient.Properties.Resources.Episodes,
                     EpisodeCountSpecial, JMMClient.Properties.Resources.Specials);
             }

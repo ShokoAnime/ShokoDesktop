@@ -3,8 +3,10 @@ using NLog;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows;
 
 namespace JMMClient
@@ -554,6 +556,8 @@ namespace JMMClient
         {
             get
             {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
                 return string.Format("{0} {1} ({2} {3})", AniDB_Anime.EpisodeCountNormal, JMMClient.Properties.Resources.Episodes,
                     AniDB_Anime.EpisodeCountSpecial, JMMClient.Properties.Resources.Specials);
             }
@@ -563,6 +567,8 @@ namespace JMMClient
         {
             get
             {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
                 return string.Format("{0} {1}", AniDB_Anime.EpisodeCountNormal, JMMClient.Properties.Resources.Episodes);
             }
         }

@@ -4380,4 +4380,7 @@ Unlike the other supported media players, MPV is the fastest when it comes to st
   <data name="Command_LinkAniDBTvDB" xml:space="preserve">
     <value>Updating Changed TvDB association: {0}</value>
   </data>
+  <data name="CommunityLinks_Movie" xml:space="preserve">
+    <value>Movie</value>
+  </data>
 </root>

@@ -53,10 +53,10 @@
 
             <StackPanel Orientation="Horizontal" >
 
-                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=RateSeries_Rate}" FontSize="14" Margin="0,0,10,5"  />
+                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=RateSeries_Rate}" FontSize="14" Margin="0,0,10,0"  />
 
                 <TextBlock Text="{Binding Path=Series.SeriesName, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:RateSeriesForm}}}" 
-                       FontWeight="Bold" FontSize="14" Margin="0,0,0,5"  />
+                       FontWeight="Bold" FontSize="14" Margin="0,0,0,0"  />
 
             </StackPanel>
 
@@ -100,7 +100,7 @@
                 <!-- User rating if the user has NOT voted -->
                 <StackPanel Orientation="Horizontal" Visibility="{Binding Path=AniDB_Anime.Detail.UserHasNotVoted, Converter={StaticResource BooleanToVisibilityConverter}}">
 
-                    <TextBlock Padding="5,10,5,10" FontWeight="Heavy" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VoteNow}" VerticalAlignment="Center"/>
+                    <TextBlock Padding="5,10,5,10" FontWeight="Heavy" FontSize="14" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VoteNow}" VerticalAlignment="Center"/>
 
                     <usercontrols:RatingControl x:Name="cRating" Width="195" Height="16" RatingValue="7.5" />
 
@@ -129,7 +129,7 @@
 
                 <StackPanel Orientation="Vertical">
 
-                    <TextBlock Padding="5,10,5,10" FontWeight="Heavy" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=RateSeries_TraktShout}" VerticalAlignment="Center"/>
+                    <TextBlock Padding="5,10,5,10" FontWeight="Heavy" FontSize="14" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=RateSeries_TraktShout}" VerticalAlignment="Center"/>
 
                     <usercontrols:TraktCommentsShowControl x:Name="ucTraktComments"  />
 

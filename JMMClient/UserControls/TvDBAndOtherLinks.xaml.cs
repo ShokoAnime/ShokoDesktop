@@ -94,8 +94,6 @@ namespace JMMClient.UserControls
 
             btnSearchExistingMovieDB.Click += new RoutedEventHandler(btnSearchExistingMovieDB_Click);
             btnSearchMovieDB.Click += new RoutedEventHandler(btnSearchMovieDB_Click);
-            btnDeleteMovieDBLink.Click += new RoutedEventHandler(btnDeleteMovieDBLink_Click);
-            btnUpdateMovieDBInfo.Click += btnUpdateMovieDBInfo_Click;
 
             btnSearchExistingTrakt.Click += new RoutedEventHandler(btnSearchExistingTrakt_Click);
             btnSearchTrakt.Click += new RoutedEventHandler(btnSearchTrakt_Click);
@@ -1140,7 +1138,7 @@ namespace JMMClient.UserControls
             SearchMovieDB();
         }
 
-        void btnUpdateMovieDBInfo_Click(object sender, RoutedEventArgs e)
+        void CommandBinding_UpdateMovieDBInfo(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -1171,7 +1169,7 @@ namespace JMMClient.UserControls
             }
         }
 
-        void btnDeleteMovieDBLink_Click(object sender, RoutedEventArgs e)
+        void CommandBinding_DeleteMovieDBLink(object sender, RoutedEventArgs e)
         {
             try
             {

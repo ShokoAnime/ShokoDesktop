@@ -3,8 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Windows;
 
 namespace JMMClient
@@ -747,6 +749,8 @@ namespace JMMClient
         {
             get
             {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
                 int epCountNormal = 0;
                 int epCountSpecial = 0;
                 foreach (AnimeSeriesVM series in AllAnimeSeries)
