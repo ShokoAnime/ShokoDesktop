@@ -229,46 +229,6 @@
 
                 </Grid>
             </DataTemplate>
-
-            <!-- MovieDBLinkTemplate -->
-            <DataTemplate x:Key="MovieDBLinkTemplate">
-                <Grid Margin="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-
-
-                    <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Margin="0,0,0,5">
-
-                        <usercontrols:HyperLinkStandard DisplayText="{Binding Path=AniDB_AnimeCrossRefs.MovieDB_Movie.MovieId, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}}" VerticalAlignment="Center" URL="{Binding Path=AniDB_AnimeCrossRefs.MovieDB_Movie.SiteURL, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}}" Margin="10,0,0,0"/>
-
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_Movie}" Margin="10,0,0,0"/>
-                        <TextBlock FontWeight="Medium" Margin="10,0,0,0" VerticalAlignment="Center" Text="{Binding Path=AniDB_AnimeCrossRefs.MovieDB_Movie.MovieName, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}}" />
-
-                        <!-- Delete Link Button -->
-                        <Button Margin="8,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
-                                Command="{DynamicResource DeleteMovieDBLinkCommand}" CommandParameter="{Binding}" ToolTip="{usercontrols:Info Title=Tooltip_DeleteTitle, Body=Tooltip_DeleteInfo}">
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,0,0"/>
-                            </StackPanel>
-                        </Button>
-
-                        <!-- Update MovieDB Info button -->
-                        <Button Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
-                                Command="{DynamicResource UpdateMovieDBLinkCommand}" CommandParameter="{Binding}" ToolTip="{usercontrols:Info Title=Tooltip_EditTitle, Body=Tooltip_EditInfo}">
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                <Image Height="16" Width="16" Source="/Images/16_update_data.png" Margin="0,0,0,0"/>
-                            </StackPanel>
-                        </Button>
-
-                    </StackPanel>
-
-                </Grid>
-            </DataTemplate>
-
         </ResourceDictionary>
 
     </UserControl.Resources>
@@ -667,7 +627,39 @@
 
                 </StackPanel>
 
-                <ListBox Name="lbMovieDBLinks" BorderThickness="0" Background="Transparent" Margin="140,0,0,0" ItemsSource="{Binding Path=AniDB_AnimeCrossRefs.MovieDB_Movie.MovieName, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemTemplate="{DynamicResource MovieDBLinkTemplate}" ItemContainerStyle="{DynamicResource ListBoxItemStylePlain}" />
+                <!-- MovieDB - Link item -->
+                <Grid  Margin="140,0,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Margin="0,0,0,5">
+
+                        <usercontrols:HyperLinkStandard DisplayText="{Binding Path=AniDB_AnimeCrossRefs.MovieDB_Movie.MovieId, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}}" VerticalAlignment="Center" URL="{Binding Path=AniDB_AnimeCrossRefs.MovieDB_Movie.SiteURL, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}}" Margin="10,0,0,0"/>
+
+                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_Movie}" Margin="10,0,0,0"/>
+                        <TextBlock FontWeight="Medium" Margin="10,0,0,0" VerticalAlignment="Center" Text="{Binding Path=AniDB_AnimeCrossRefs.MovieDB_Movie.MovieName, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}}" />
+
+                        <!-- Delete Link Button -->
+                        <Button Margin="8,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                Command="{DynamicResource DeleteMovieDBLinkCommand}" CommandParameter="{Binding}" ToolTip="{usercontrols:Info Title=Tooltip_DeleteTitle, Body=Tooltip_DeleteInfo}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+
+                        <!-- Update MovieDB Info button -->
+                        <Button Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                Command="{DynamicResource UpdateMovieDBLinkCommand}" CommandParameter="{Binding}" ToolTip="{usercontrols:Info Title=Tooltip_EditTitle, Body=Tooltip_EditInfo}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <Image Height="16" Width="16" Source="/Images/16_update_data.png" Margin="0,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </Grid>
 
             </StackPanel>
         </StackPanel>
