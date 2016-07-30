@@ -2267,9 +2267,6 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   <data name="SeriesSimple_AlreadyHave" xml:space="preserve">
     <value>Hai già questo anime nella vostra collezione</value>
   </data>
-  <data name="SeriesSimple_Details" xml:space="preserve">
-    <value>Dettagli:</value>
-  </data>
   <data name="SeriesSimple_Voteup" xml:space="preserve">
     <value>Voto alto</value>
   </data>
@@ -2962,9 +2959,6 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   </data>
   <data name="Main_User" xml:space="preserve">
     <value>Utente</value>
-  </data>
-  <data name="Main_Feed" xml:space="preserve">
-    <value>Alimentazione</value>
   </data>
   <data name="Main_About" xml:space="preserve">
     <value>Circa</value>
@@ -4377,5 +4371,17 @@ A differenza di altri lettori multimediali supportati, MPV è il più veloce qua
   </data>
   <data name="TvDB_SearchInfo" xml:space="preserve">
     <value>Il TvDB vieta contenuti per adulti, non aggiungere adulta serie correlati al The TvDB o tentare di collegarli.</value>
+  </data>
+  <data name="CommunityLinks_Movie" xml:space="preserve">
+    <value>Film:</value>
+  </data>
+  <data name="Tooltip_UpdateMovieDB" xml:space="preserve">
+    <value>Scarica i dati freschi da The Movie DB e aggiornare il database locale</value>
+  </data>
+  <data name="SeriesSimple_ViewSeries" xml:space="preserve">
+    <value>Visualizza serie</value>
+  </data>
+  <data name="Main_Feed" xml:space="preserve">
+    <value>Notizie</value>
   </data>
 </root>

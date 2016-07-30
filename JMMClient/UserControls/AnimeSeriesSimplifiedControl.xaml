@@ -497,8 +497,8 @@
                         </TextBlock>
 
                         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2" Margin="5,2,5,5" Grid.ColumnSpan="2" HorizontalAlignment="Left">
-                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_From}" FontSize="12" Foreground="DarkGray" VerticalAlignment="Center" />
-                            <TextBlock Text="{Binding Path=Source}" FontSize="14" Foreground="DarkGray" VerticalAlignment="Center" Margin="3,0,0,0" FontWeight="Bold"/>
+                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_From}" FontSize="12" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding Path=Source}" FontSize="14" VerticalAlignment="Center" Margin="5,0,0,0" FontWeight="Bold"/>
                             <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="5,0,0,0" VerticalAlignment="Center"
                                    Visibility="{Binding Path=HasSeries, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <Image.ToolTip>
@@ -512,7 +512,7 @@
                             <!-- Details -->
                             <Button Margin="0,0,0,0" VerticalAlignment="Center" Command="{StaticResource RecDetailsCommand}" CommandParameter="{Binding}">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_Details}" VerticalAlignment="Center" FontSize="12" FontWeight="Normal"/>
+                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_ViewSeries}" VerticalAlignment="Center" FontSize="12" FontWeight="Normal"/>
                                 </StackPanel>
                             </Button>
 
@@ -760,25 +760,24 @@
 
                 </Button>
 
-                <Button Name="btnSwitchView" Margin="0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" ToolTip="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AnimeFull}" Visibility="Collapsed">
-                    <Image Height="32" Width="32" Source="/Images/Metro/details.png" Margin="2,0,2,0"/>
-
-                </Button>
-
-                <TextBlock VerticalAlignment="Center" Text="{Binding Path=SeriesName}" FontWeight="Bold" FontFamily="Segoe UI" FontSize="24" Foreground="Black"  Margin="15,0,0,0" />
-
-
                 <!-- show pinned series button -->
-                <Button Margin="10,2,2,2" Style="{StaticResource FlatButtonStyle}" VerticalAlignment="Center" ToolTip="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_PinSeries}"
+                <Button Margin="2,0,2,0" Style="{StaticResource FlatButtonStyle}" VerticalAlignment="Center" ToolTip="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_PinSeries}"
                                         Command="{DynamicResource ShowPinnedSeriesCommand}" CommandParameter="{Binding}">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                        <Image Height="16" Width="16" Source="/Images/32_pin.png" Margin="2,0,2,0">
+                        <Image Height="32" Width="32" Source="/Images/Metro/pin.png" Margin="2,0,2,0">
                         </Image>
 
                     </StackPanel>
                 </Button>
 
-                <usercontrols:ExternalAnimeLinksControl x:Name="ucExternalLinks" VerticalAlignment="Center" LinkType="1" Margin="10,0,0,0"  />
+                <Button Name="btnSwitchView" Margin="0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" ToolTip="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AnimeFull}" Visibility="Collapsed">
+                    <Image Height="32" Width="32" Source="/Images/Metro/details.png" Margin="2,0,2,0"/>
+
+                </Button>
+
+                <TextBlock VerticalAlignment="Center" Text="{Binding Path=SeriesName}" FontWeight="Bold" FontFamily="Segoe UI" FontSize="24" Foreground="Black"  Margin="10,0,0,0" />
+
+                <usercontrols:ExternalAnimeLinksControl x:Name="ucExternalLinks" VerticalAlignment="Center" LinkType="1" Margin="5,0,0,0"  />
 
 
 

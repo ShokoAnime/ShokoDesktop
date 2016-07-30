@@ -322,7 +322,7 @@
 
                                         <TextBox Name="txtGroupSearch" Width="180" Margin="10,3,0,3" BorderThickness="1" 
                                                  ToolTip="{usercontrols:Info Title=Search, 
-                                                Body=Tooltip_GroupSearch}">
+                                                 Body=Tooltip_GroupSearch}">
 
                                         </TextBox>
                                         <Button Name="btnClearSearch" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource ClearSearchCommand}">

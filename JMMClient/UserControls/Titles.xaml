@@ -20,14 +20,14 @@
 
             <!-- animeTitleTemplate-->
             <DataTemplate x:Key="animeTitleTemplate">
-                <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
                     <Image Height="16" Width="16" Source="{Binding Path=FlagImage}" Margin="0,0,5,0">
                         <Image.ToolTip>
                             <TextBlock Text="{Binding Path=LanguageDescription}"></TextBlock>
                         </Image.ToolTip>
                     </Image>
 
-                    <TextBlock Margin="2,0,10,0" Text="{Binding Path=Title}" />
+                    <TextBlock Margin="0,0,0,0" Text="{Binding Path=Title}" />
                 </StackPanel>
             </DataTemplate>
 
@@ -52,12 +52,8 @@
 
 
         <!-- official titles -->
-        <TextBlock Grid.Row="1" Grid.Column="1" Padding="5" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AnimeTitlesOfficial}"
-                    Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=TitlesExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-        <ListBox Grid.Row="1" Grid.Column="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
-                  Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=TitlesExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
-                        Background="Transparent" Padding="0" BorderThickness="0" VerticalAlignment="Center"
-                        ItemTemplate="{StaticResource animeTitleTemplate}" ItemsSource="{Binding Path=AnimeTitlesOfficial}">
+        <TextBlock Grid.Row="1" Grid.Column="1" Padding="5" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AnimeTitlesOfficial}" Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=TitlesExpanded, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="33,-3,0,0"/>
+        <ListBox Grid.Row="1" Grid.Column="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=TitlesExpanded, Converter={StaticResource BooleanToVisibilityConverter}}" Background="Transparent" Padding="0" BorderThickness="0" VerticalAlignment="Center" ItemTemplate="{StaticResource animeTitleTemplate}" ItemsSource="{Binding Path=AnimeTitlesOfficial}">
             <ListBox.Template>
                 <ControlTemplate>
                     <ItemsPresenter />
@@ -72,12 +68,8 @@
         </ListBox>
 
         <!-- synonym titles -->
-        <TextBlock Grid.Row="2" Grid.Column="1" Padding="5" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AnimeTitlesSynonym}"
-                    Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=TitlesExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-        <ListBox Grid.Row="2" Grid.Column="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
-                  Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=TitlesExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
-                        Background="Transparent" Padding="0" BorderThickness="0" VerticalAlignment="Center"
-                        ItemTemplate="{StaticResource animeTitleTemplate}" ItemsSource="{Binding Path=AnimeTitlesSynonym}">
+        <TextBlock Grid.Row="2" Grid.Column="1" Padding="5" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AnimeTitlesSynonym}" Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=TitlesExpanded, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="33,0,0,0"/>
+        <ListBox Grid.Row="2" Grid.Column="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=TitlesExpanded, Converter={StaticResource BooleanToVisibilityConverter}}" Background="Transparent" Padding="0" BorderThickness="0" VerticalAlignment="Center"  ItemTemplate="{StaticResource animeTitleTemplate}" ItemsSource="{Binding Path=AnimeTitlesSynonym}" Margin="0,5,0,5">
             <ListBox.Template>
                 <ControlTemplate>
                     <ItemsPresenter />
@@ -92,12 +84,8 @@
         </ListBox>
 
         <!-- short titles -->
-        <TextBlock Grid.Row="3" Grid.Column="1" Padding="5" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AnimeTitlesShort}"
-                    Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=TitlesExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-        <ListBox Grid.Row="3" Grid.Column="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
-                  Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=TitlesExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
-                        Background="Transparent" Padding="0" BorderThickness="0" VerticalAlignment="Center"
-                        ItemTemplate="{StaticResource animeTitleTemplate}" ItemsSource="{Binding Path=AnimeTitlesShort}">
+        <TextBlock Grid.Row="3" Grid.Column="1" Padding="5" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AnimeTitlesShort}"  Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=TitlesExpanded, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="33,0,0,0"/>
+        <ListBox Grid.Row="3" Grid.Column="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  Visibility="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=TitlesExpanded, Converter={StaticResource BooleanToVisibilityConverter}}" Background="Transparent" Padding="0" BorderThickness="0" VerticalAlignment="Center" ItemTemplate="{StaticResource animeTitleTemplate}" ItemsSource="{Binding Path=AnimeTitlesShort}">
             <ListBox.Template>
                 <ControlTemplate>
                     <ItemsPresenter />

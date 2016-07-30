@@ -2359,8 +2359,8 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="SeriesSimple_AlreadyHave" xml:space="preserve">
     <value>You already have this anime in your collection</value>
   </data>
-  <data name="SeriesSimple_Details" xml:space="preserve">
-    <value>Details:</value>
+  <data name="SeriesSimple_ViewSeries" xml:space="preserve">
+    <value>View Series</value>
   </data>
   <data name="SeriesSimple_Voteup" xml:space="preserve">
     <value>Vote Up</value>
@@ -3119,7 +3119,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>User</value>
   </data>
   <data name="Main_Feed" xml:space="preserve">
-    <value>Feed</value>
+    <value>News</value>
   </data>
   <data name="Main_About" xml:space="preserve">
     <value>About</value>
@@ -4381,6 +4381,9 @@ Unlike the other supported media players, MPV is the fastest when it comes to st
     <value>Updating Changed TvDB association: {0}</value>
   </data>
   <data name="CommunityLinks_Movie" xml:space="preserve">
-    <value>Movie</value>
+    <value>Movie:</value>
+  </data>
+  <data name="Tooltip_UpdateMovieDB" xml:space="preserve">
+    <value>Download fresh data from The Movie DB and update the local database</value>
   </data>
 </root>

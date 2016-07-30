@@ -2282,9 +2282,6 @@
   <data name="SeriesSimple_AlreadyHave" xml:space="preserve">
     <value>Você já tem este anime em sua coleção</value>
   </data>
-  <data name="SeriesSimple_Details" xml:space="preserve">
-    <value>Detalhes:</value>
-  </data>
   <data name="SeriesSimple_Voteup" xml:space="preserve">
     <value>Voto acima</value>
   </data>
@@ -3016,9 +3013,6 @@
   </data>
   <data name="Main_User" xml:space="preserve">
     <value>Usuário</value>
-  </data>
-  <data name="Main_Feed" xml:space="preserve">
-    <value>Feed</value>
   </data>
   <data name="Main_About" xml:space="preserve">
     <value>Sobre</value>
@@ -4377,5 +4371,17 @@ Ao contrário de outros players de mídia suportados, MPV é o mais rápido quan
   </data>
   <data name="TvDB_SearchInfo" xml:space="preserve">
     <value>O TvDB proíbe conteúdo adulto, não adicionar adulto série relacionado para o TvDB ou tentar vinculá-las.</value>
+  </data>
+  <data name="CommunityLinks_Movie" xml:space="preserve">
+    <value>Filme:</value>
+  </data>
+  <data name="Tooltip_UpdateMovieDB" xml:space="preserve">
+    <value>Baixar dados atualizados do The Movie DB e atualizar o banco de dados local</value>
+  </data>
+  <data name="SeriesSimple_ViewSeries" xml:space="preserve">
+    <value>Exibir série</value>
+  </data>
+  <data name="Main_Feed" xml:space="preserve">
+    <value>Notícias</value>
   </data>
 </root>

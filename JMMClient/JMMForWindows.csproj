@@ -2047,6 +2047,8 @@
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.Core.dll" />
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.dll" />
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.resources.dll" />
+    <Resource Include="Images\Metro\pin.png" />
+    <Resource Include="Images\Flags\lv.gif" />
     <Resource Include="Images\32_edit.png" />
     <Resource Include="Images\32_edit_accept.png" />
     <Resource Include="Images\32_edit_delete.png" />

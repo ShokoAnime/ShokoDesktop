@@ -2392,7 +2392,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Movie.
+        ///   Looks up a localized string similar to Movie:.
         /// </summary>
         public static string CommunityLinks_Movie {
             get {
@@ -5758,7 +5758,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Feed.
+        ///   Looks up a localized string similar to News.
         /// </summary>
         public static string Main_Feed {
             get {
@@ -8692,15 +8692,6 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Details:.
-        /// </summary>
-        public static string SeriesSimple_Details {
-            get {
-                return ResourceManager.GetString("SeriesSimple_Details", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Episodes.
         /// </summary>
         public static string SeriesSimple_Episodes {
@@ -8814,6 +8805,15 @@ namespace JMMClient.Properties {
         public static string SeriesSimple_View {
             get {
                 return ResourceManager.GetString("SeriesSimple_View", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Series.
+        /// </summary>
+        public static string SeriesSimple_ViewSeries {
+            get {
+                return ResourceManager.GetString("SeriesSimple_ViewSeries", resourceCulture);
             }
         }
         
@@ -10727,6 +10727,15 @@ namespace JMMClient.Properties {
         public static string Tooltip_UpdateMediaInfo {
             get {
                 return ResourceManager.GetString("Tooltip_UpdateMediaInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download fresh data from The Movie DB and update the local database.
+        /// </summary>
+        public static string Tooltip_UpdateMovieDB {
+            get {
+                return ResourceManager.GetString("Tooltip_UpdateMovieDB", resourceCulture);
             }
         }
         

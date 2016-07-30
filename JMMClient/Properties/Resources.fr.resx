@@ -2270,9 +2270,6 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   <data name="SeriesSimple_AlreadyHave" xml:space="preserve">
     <value>Vous avez déjà cet anime dans votre collection</value>
   </data>
-  <data name="SeriesSimple_Details" xml:space="preserve">
-    <value>Détails :</value>
-  </data>
   <data name="SeriesSimple_Voteup" xml:space="preserve">
     <value>Votez pour</value>
   </data>
@@ -2965,9 +2962,6 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   </data>
   <data name="Main_User" xml:space="preserve">
     <value>Utilisateur</value>
-  </data>
-  <data name="Main_Feed" xml:space="preserve">
-    <value>Se nourrir</value>
   </data>
   <data name="Main_About" xml:space="preserve">
     <value>Sur</value>
@@ -4377,5 +4371,17 @@ Contrairement à d’autres joueurs supports pris en charge, MPV est le plus rap
   </data>
   <data name="TvDB_SearchInfo" xml:space="preserve">
     <value>Le TvDB interdit un contenu pour adultes, ne pas ajouter adultes séries connexes à la TvDB ou tenter de les relier.</value>
+  </data>
+  <data name="CommunityLinks_Movie" xml:space="preserve">
+    <value>Film:</value>
+  </data>
+  <data name="Tooltip_UpdateMovieDB" xml:space="preserve">
+    <value>Télécharger les nouvelles données de The Movie DB et mettre à jour la base de données locale</value>
+  </data>
+  <data name="SeriesSimple_ViewSeries" xml:space="preserve">
+    <value>Série vue</value>
+  </data>
+  <data name="Main_Feed" xml:space="preserve">
+    <value>Nouvelles</value>
   </data>
 </root>

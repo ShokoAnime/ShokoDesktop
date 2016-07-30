@@ -2270,9 +2270,6 @@
   <data name="SeriesSimple_AlreadyHave" xml:space="preserve">
     <value>У вас уже есть это аниме</value>
   </data>
-  <data name="SeriesSimple_Details" xml:space="preserve">
-    <value>Подробности:</value>
-  </data>
   <data name="SeriesSimple_Voteup" xml:space="preserve">
     <value>Голосовать за</value>
   </data>
@@ -2965,9 +2962,6 @@
   </data>
   <data name="Main_User" xml:space="preserve">
     <value>Пользователь</value>
-  </data>
-  <data name="Main_Feed" xml:space="preserve">
-    <value>Лента</value>
   </data>
   <data name="Main_About" xml:space="preserve">
     <value>О программе</value>
@@ -4377,5 +4371,17 @@
   </data>
   <data name="TvDB_SearchInfo" xml:space="preserve">
     <value>TvDB запрещает содержание только для взрослых, не добавить взрослых родственные серии TvDB или пытаться связать их.</value>
+  </data>
+  <data name="CommunityLinks_Movie" xml:space="preserve">
+    <value>Фильм:</value>
+  </data>
+  <data name="Tooltip_UpdateMovieDB" xml:space="preserve">
+    <value>Скачать свежие данные из фильма DB и обновить локальную базу данных</value>
+  </data>
+  <data name="SeriesSimple_ViewSeries" xml:space="preserve">
+    <value>Просмотр сериала</value>
+  </data>
+  <data name="Main_Feed" xml:space="preserve">
+    <value>Новости</value>
   </data>
 </root>

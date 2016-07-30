@@ -11,7 +11,7 @@ namespace JMMClient
             {
                 string[] lans = new string[] { "EN", "X-JAT", "JA", "AR", "BD", "BG", "CA", "CS", "CZ"
                 , "DA", "DK", "DE", "EL", "ES", "ET", "FI", "FR", "GL", "GR", "HE", "HU", "IL", "IT"
-                , "KO", "LT", "MN", "MS", "MY", "NL", "NO", "PL", "PT", "PT-BR", "RO", "RU", "SK", "SL"
+                , "KO", "LT", "LV", "MN", "MS", "MY", "NL", "NO", "PL", "PT", "PT-BR", "RO", "RU", "SK", "SL"
                 , "SR", "SV", "SE", "TH", "TR", "UK", "UA", "VI", "ZH", "ZH-HANS", "ZH-HANT"};
                 return lans;
             }
@@ -62,6 +62,7 @@ namespace JMMClient
                 case "IT": return @"/Images/Flags/it.gif"; // Italy
                 case "KO": return @"/Images/Flags/ko.gif"; // Korean
                 case "LT": return @"/Images/Flags/lt.gif"; // Lithuanian
+                case "LV": return @"/Images/Flags/lv.gif"; // Latvia
                 case "MN": return @"/Images/Flags/mn.gif"; // Mongolian
                 case "MS": return @"/Images/Flags/my.gif"; // Malaysian
                 case "MY": return @"/Images/Flags/my.gif"; // Malaysian
@@ -119,6 +120,7 @@ namespace JMMClient
                 case "IT": return "Italian (it)";
                 case "KO": return "Korean (ko)";
                 case "LT": return "Lithuanian (lt)";
+                case "LV": return "Latvian (lv)";
                 case "MN": return "Mongolian (mn)";
                 case "MS": return "Malaysian (ms)";
                 case "MY": return "Malaysian (my)";

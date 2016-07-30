@@ -2264,9 +2264,6 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   <data name="SeriesSimple_AlreadyHave" xml:space="preserve">
     <value>U hebt al deze anime in uw collectie</value>
   </data>
-  <data name="SeriesSimple_Details" xml:space="preserve">
-    <value>Details:</value>
-  </data>
   <data name="SeriesSimple_Voteup" xml:space="preserve">
     <value>Stem omhoog</value>
   </data>
@@ -2959,9 +2956,6 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   </data>
   <data name="Main_User" xml:space="preserve">
     <value>Gebruiker</value>
-  </data>
-  <data name="Main_Feed" xml:space="preserve">
-    <value>Feed</value>
   </data>
   <data name="Main_About" xml:space="preserve">
     <value>Over</value>
@@ -4377,5 +4371,17 @@ In tegenstelling tot de andere ondersteunde mediaspelers is MPV het snelste als 
   </data>
   <data name="TvDB_SearchInfo" xml:space="preserve">
     <value>De TvDB verbiedt inhoud voor volwassenen, volwassen gekoppelde reeksen aan de TvDB toevoegen of niet probeert te koppelen.</value>
+  </data>
+  <data name="CommunityLinks_Movie" xml:space="preserve">
+    <value>Film:</value>
+  </data>
+  <data name="Tooltip_UpdateMovieDB" xml:space="preserve">
+    <value>Verse data uit de film-DB downloaden en bijwerken van de lokale database</value>
+  </data>
+  <data name="SeriesSimple_ViewSeries" xml:space="preserve">
+    <value>Bekijk serie</value>
+  </data>
+  <data name="Main_Feed" xml:space="preserve">
+    <value>Nieuws</value>
   </data>
 </root>

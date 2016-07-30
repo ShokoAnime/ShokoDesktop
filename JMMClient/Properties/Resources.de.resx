@@ -1955,9 +1955,6 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   <data name="SeriesSimple_AlreadyHave" xml:space="preserve">
     <value>Sie haben bereits diese Anime in Ihrer Sammlung</value>
   </data>
-  <data name="SeriesSimple_Details" xml:space="preserve">
-    <value>Informationen:</value>
-  </data>
   <data name="SeriesSimple_Voteup" xml:space="preserve">
     <value>Abstimmung bis</value>
   </data>
@@ -2650,9 +2647,6 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   </data>
   <data name="Main_User" xml:space="preserve">
     <value>Benutzer</value>
-  </data>
-  <data name="Main_Feed" xml:space="preserve">
-    <value>Füttern</value>
   </data>
   <data name="Main_About" xml:space="preserve">
     <value>Über</value>
@@ -4377,5 +4371,17 @@ Im Gegensatz zu den anderen unterstützten Media-Playern ist MPV der schnellste 
   </data>
   <data name="TvDB_SearchInfo" xml:space="preserve">
     <value>Die TvDB verbietet Inhalte für Erwachsene, nicht die TvDB Erwachsenen Verwandten Serie hinzufügen oder versuchen, sie zu verknüpfen.</value>
+  </data>
+  <data name="CommunityLinks_Movie" xml:space="preserve">
+    <value>Film:</value>
+  </data>
+  <data name="Tooltip_UpdateMovieDB" xml:space="preserve">
+    <value>Aktuelle Daten von The Movie DB herunterladen und Aktualisieren der lokalen Datenbank</value>
+  </data>
+  <data name="SeriesSimple_ViewSeries" xml:space="preserve">
+    <value>Blick-Serie</value>
+  </data>
+  <data name="Main_Feed" xml:space="preserve">
+    <value>News</value>
   </data>
 </root>

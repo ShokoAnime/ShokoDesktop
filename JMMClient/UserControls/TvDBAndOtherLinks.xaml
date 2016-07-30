@@ -125,10 +125,7 @@
                         </Button>
 
                         <!-- Update TvDB Info button -->
-                        <Button Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
-                                Command="{StaticResource UpdateTvDBLinkCommand}" CommandParameter="{Binding}"
-                                ToolTip="{usercontrols:Info Title=Tooltip_UpdateTitle, 
-                                Body=Tooltip_UpdateTvDB}">
+                        <Button Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" Command="{StaticResource UpdateTvDBLinkCommand}" CommandParameter="{Binding}" ToolTip="{usercontrols:Info Title=Tooltip_UpdateTitle, Body=Tooltip_UpdateTvDB}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Image Height="16" Width="16" Source="/Images/16_update_data.png" Margin="0,0,0,0"/>
                             </StackPanel>
@@ -628,7 +625,7 @@
                 </StackPanel>
 
                 <!-- MovieDB - Link item -->
-                <Grid  Margin="140,0,0,0">
+                <Grid  Margin="145,5,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
@@ -641,7 +638,7 @@
                         <usercontrols:HyperLinkStandard DisplayText="{Binding Path=AniDB_AnimeCrossRefs.MovieDB_Movie.MovieId, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}}" VerticalAlignment="Center" URL="{Binding Path=AniDB_AnimeCrossRefs.MovieDB_Movie.SiteURL, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}}" Margin="10,0,0,0"/>
 
                         <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_Movie}" Margin="10,0,0,0"/>
-                        <TextBlock FontWeight="Medium" Margin="10,0,0,0" VerticalAlignment="Center" Text="{Binding Path=AniDB_AnimeCrossRefs.MovieDB_Movie.MovieName, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}}" />
+                        <TextBlock FontWeight="Medium" Margin="5,0,0,0" VerticalAlignment="Center" Text="{Binding Path=AniDB_AnimeCrossRefs.MovieDB_Movie.MovieName, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}}" />
 
                         <!-- Delete Link Button -->
                         <Button Margin="8,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
@@ -653,7 +650,7 @@
 
                         <!-- Update MovieDB Info button -->
                         <Button Margin="5,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
-                                Command="{DynamicResource UpdateMovieDBLinkCommand}" CommandParameter="{Binding}" ToolTip="{usercontrols:Info Title=Tooltip_EditTitle, Body=Tooltip_EditInfo}">
+                                Command="{DynamicResource UpdateMovieDBLinkCommand}" CommandParameter="{Binding}" ToolTip="{usercontrols:Info Title=Tooltip_UpdateTitle, Body=Tooltip_UpdateMovieDB}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Image Height="16" Width="16" Source="/Images/16_update_data.png" Margin="0,0,0,0"/>
                             </StackPanel>
