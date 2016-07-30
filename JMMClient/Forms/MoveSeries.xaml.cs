@@ -1,4 +1,6 @@
-﻿using System.Globalization;
+﻿using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -35,6 +37,10 @@ namespace JMMClient.Forms
             set { SetValue(IsExistingGroupProperty, value); }
         }
 
+        public List<AnimeGroupVM> AllGroups {
+            get { return MainListHelperVM.Instance.AllGroupsDictionary.Select(a=>a.Value).ToList(); }
+        }
+       
         //private AnimeSeriesVM animeSeries = null;
 
         public MoveSeries()

@@ -774,6 +774,7 @@ namespace JMMClient
 
         public AnimeGroupVM()
         {
+            AllSeries = new HashSet<int>();
         }
 
         public void Populate(JMMServerBinary.Contract_AnimeGroup contract)
