@@ -2047,6 +2047,7 @@
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.Core.dll" />
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.dll" />
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.resources.dll" />
+    <Resource Include="Images\32_play_all.png" />
     <Resource Include="Images\Metro\pin.png" />
     <Resource Include="Images\Flags\lv.gif" />
     <Resource Include="Images\32_edit.png" />
@@ -2076,7 +2077,6 @@
     <Resource Include="Images\24_download.png" />
     <Resource Include="Images\24_folder_filter.png" />
     <Resource Include="Images\24_folder_group.png" />
-    <Resource Include="Images\24_play_all.png" />
     <Resource Include="Images\16_cancel.png" />
     <Resource Include="Images\16_clear.png" />
     <Resource Include="Images\16_folder_video.png" />

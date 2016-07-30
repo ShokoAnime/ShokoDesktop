@@ -147,7 +147,7 @@
                                     VerticalAlignment="Center" Visibility="{Binding Path=MultipleUnwatchedEpsSeries, Converter={StaticResource BooleanToVisibilityConverter}}"
                                     ToolTip="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_PlayAll}">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                    <Image Height="16" Width="16" Source="/Images/24_play_all.png" Margin="0,0,5,0"/>
+                                    <Image Height="16" Width="16" Source="/Images/32_play_all.png" Margin="0,0,5,0"/>
                                     <TextBlock VerticalAlignment="Center" Text="{Binding Path=UnwatchedEpCountSeries}" Foreground="Black"  Margin="0,0,5,0"/>
                                 </StackPanel>
                             </Button>
