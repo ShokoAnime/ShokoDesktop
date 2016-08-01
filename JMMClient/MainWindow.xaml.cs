@@ -2217,7 +2217,7 @@ namespace JMMClient
 					bool isnew = !(gf.GroupFilterID.HasValue && gf.GroupFilterID.Value!=0);
 					if (gf.Validate())
 					{
-						gf.IsLocked = true;
+						gf.IsLocked = false;
 						gf.IsBeingEdited = false;
 						if (gf.Save() && isnew)
 						{
