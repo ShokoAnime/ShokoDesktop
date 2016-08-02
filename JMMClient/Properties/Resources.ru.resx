@@ -126,7 +126,7 @@
   <data name="AniDBVoteCount" xml:space="preserve">
     <value>Количество голосов AniDB</value>
   </data>
-  <data name="Episodes" xml:space="preserve">
+  <data name="Anime_Episodes" xml:space="preserve">
     <value>Эпизоды</value>
   </data>
   <data name="EpisodeType" xml:space="preserve">
@@ -342,7 +342,7 @@
   <data name="Tooltip_MissingEpsGroups" xml:space="preserve">
     <value>Отсутствуют эпизоды от релиз группы, которые я собираю</value>
   </data>
-  <data name="Specials" xml:space="preserve">
+  <data name="Anime_Specials" xml:space="preserve">
     <value>Специальные</value>
   </data>
   <data name="GroupFilter_Missing" xml:space="preserve">
@@ -702,7 +702,7 @@
   <data name="Get" xml:space="preserve">
     <value>Получить</value>
   </data>
-  <data name="INFO_SettingsWebCache" xml:space="preserve">
+  <data name="Info_SettingsWebCache" xml:space="preserve">
     <value>Веб-кэш это онлайн база данных, созданная разработчиками JMM и MyAnime. Его цель заключается в том, чтобы заполнить пробелы, которые другие базы не обеспечивают, а также ускорить процесс импорта путем обмена информацией с другими пользователями JMM.</value>
   </data>
   <data name="Send" xml:space="preserve">
@@ -1721,8 +1721,8 @@
   <data name="Link_TvDB" xml:space="preserve">
     <value>http://jmediamanager.org/jmm-desktop/settings/#community-sites</value>
   </data>
-  <data name="Link_uTorrent" xml:space="preserve">
-    <value>http://jmediamanager.org/jmm-desktop/downloads/#utorrent</value>
+  <data name="Link_Downloads" xml:space="preserve">
+    <value>http://jmediamanager.org/jmm-desktop/downloads/</value>
   </data>
   <data name="Link_WebCache" xml:space="preserve">
     <value>http://jmediamanager.org/jmm-desktop/settings/#web-cache</value>
@@ -2144,9 +2144,6 @@
   <data name="VideoPlayer_PotPlayerINI" xml:space="preserve">
     <value>Выберите папку PotPlayer INI</value>
   </data>
-  <data name="VideoPlayer_AutoMark" xml:space="preserve">
-    <value>Автоматически отмечать файлы как просмотрено, если просмотрено больше чем указанный процент</value>
-  </data>
   <data name="VideoPlayer_MPCFolder" xml:space="preserve">
     <value>Папка MPC INI </value>
   </data>
@@ -2155,30 +2152,6 @@
   </data>
   <data name="VideoPlayer_PotPlayerFolder" xml:space="preserve">
     <value>Папка PotPlayer INI</value>
-  </data>
-  <data name="VideoPlayer_AutoFileNote1" xml:space="preserve">
-    <value>Автоматический выбор файла - для случаев когда больше одного файла для эпизода</value>
-  </data>
-  <data name="VideoPlayer_AutoFileNote2" xml:space="preserve">
-    <value>Для списка воспроизведения необходимо выбрать один файл на основе предпочтений ниже.</value>
-  </data>
-  <data name="VideoPlayer_AutoFileNote3" xml:space="preserve">
-    <value>За один эпизод можно включить автоматический выбор файла или JMM предложит вам выбрать файл всякий раз, когда у вас более чем один</value>
-  </data>
-  <data name="VideoPlayer_AutoFileFirstEpisode" xml:space="preserve">
-    <value>Автоматический выбор файла - первый эпизод в серии</value>
-  </data>
-  <data name="VideoPlayer_AutoFileNextEpisode" xml:space="preserve">
-    <value>Автоматический выбор файла - последующие эпизоды в серии</value>
-  </data>
-  <data name="VideoPlayer_AutoFileNote4" xml:space="preserve">
-    <value>Если вы выбрали «Релиз группа предыдущего эпизода» также нужно сделать следующее</value>
-  </data>
-  <data name="VideoPlayer_AutoFileNote5" xml:space="preserve">
-    <value>Снимите флажок «Установить файл как просмотрено если смотрел эпизод» в Настройки - Обязательные - Параметры импорта</value>
-  </data>
-  <data name="VideoPlayer_AutoFileNote6" xml:space="preserve">
-    <value>Всегда помечать файл как просмотрено а не эпизод</value>
   </data>
   <data name="VideoPlayer_AutoFileEnable" xml:space="preserve">
     <value>Включить автоматический выбор файлов для единичных эпизодов</value>
@@ -2923,9 +2896,6 @@
   </data>
   <data name="Tab_Downloads" xml:space="preserve">
     <value>Загрузки</value>
-  </data>
-  <data name="Downloads_uTorrentInfo" xml:space="preserve">
-    <value>Это использует uTorrent WebUI API, который необходимо включить в вашем клиенте uTorrent</value>
   </data>
   <data name="Downloads_uTorrentWebUI" xml:space="preserve">
     <value>uTorrent WebUI детали</value>
@@ -3920,7 +3890,7 @@
   <data name="UpdateAniDB_Info1" xml:space="preserve">
     <value>Данные, относящиеся к файлам в вашей коллекции автоматически загружаются и хранятся в локальной базе данных, когда JMM импортирует файлы. Этот процесс выполняется только один раз так что если информация о файле  отсутствует в AniDB во время загрузки то ее не будет в вашей базе данных. Кроме того вполне возможно, что будущие версии JMM будут использовать больше данных о файле чем было возможно в момент импорта. Эта утилита может  обновить и заменить все данные  файла теми что доступны на AniDB.</value>
   </data>
-  <data name="INFO_SettingsUserAdmin" xml:space="preserve">
+  <data name="Info_SettingsUserAdmin" xml:space="preserve">
     <value>Пользователи хранятся в вашей базе данных и доступны любому клиенту, который подключается к базе данных. При добавлении нового пользователя или изменении существующего, необзодимо нажать кнопку "Сохранить" иначе изменения не будут действовать. JMM требует наличия по крайней мере одного пользователя с правами администратора.</value>
   </data>
   <data name="MAL_LoginCorrect" xml:space="preserve">
@@ -4196,7 +4166,7 @@
   <data name="TAB_Settings_Language" xml:space="preserve">
     <value>Предпочтительный язык для именования группы/серии</value>
   </data>
-  <data name="INFO_SettingsDisplayStyle" xml:space="preserve">
+  <data name="Info_SettingsLanguage" xml:space="preserve">
     <value>Установите язык или языки, используемые для именования при добавлении групп или серии в вашей коллекции. Эти титулы берутся непосредственно из AniDB так вне английский, ромадзи или кандзи; не все группы или серии будет иметь дополнительные заголовки доступны. Использовать синонимы, перечисленные на AniDB убедитесь, чтобы проверить «Также использовать синонимы» и переименования существующих групп и серии убедитесь, нажмите кнопку «Переименовать все группы/серии», как только вы закончите</value>
   </data>
   <data name="Language_Rename" xml:space="preserve">
@@ -4256,10 +4226,10 @@
   <data name="TvDB_DefaultLanguage" xml:space="preserve">
     <value>Выберите язык вы хотите эпизод названия и описания для загрузки в с TvDB. Пожалуйста, обратите внимание, что если эпизод название или описание не доступна на языке, который вы выбрали, будут загружены на английском языке по умолчанию.</value>
   </data>
-  <data name="INFO_DuplicateFiles" xml:space="preserve">
+  <data name="Info_DuplicateFiles" xml:space="preserve">
     <value>Эта программа покажет все экземпляры где есть два или более файлов с же хэш-код. Модель памяти JMM позволяет только один файл с же хэш-код в вашей коллекции.</value>
   </data>
-  <data name="INFO_MultipleFiles" xml:space="preserve">
+  <data name="Info_MultipleFiles" xml:space="preserve">
     <value>Эта программа покажет все экземпляры, где у вас есть несколько файлов на тот же эпизод. Вы сможете просмотреть каждый экземпляр и решить, какие из них вы хотели бы сохранить.</value>
   </data>
   <data name="IgnoredAnime_Note" xml:space="preserve">
@@ -4345,7 +4315,7 @@
   <data name="Server_AutoStart" xml:space="preserve">
     <value>AutoStart локального сервера JMM</value>
   </data>
-  <data name="INFO_SettingsEssential" xml:space="preserve">
+  <data name="Info_SettingsEssential" xml:space="preserve">
     <value>Панель essentials содержит все параметры, которые требуются для запуска модели памяти JMM. Для секции JMM сервера и AniDB входа вам будет нужно нажмите кнопку «Тест и сохранить», чтобы сохранить любые изменения, внесенные. </value>
   </data>
   <data name="RelationSettings_Info" xml:space="preserve">
@@ -4383,5 +4353,86 @@
   </data>
   <data name="Main_Feed" xml:space="preserve">
     <value>Новости</value>
+  </data>
+  <data name="LearnMore_AniDBOptions" xml:space="preserve">
+    <value>Узнайте больше о вариантах AniDB</value>
+  </data>
+  <data name="LearnMore_GroupFilters" xml:space="preserve">
+    <value>Что такое группа фильтры?</value>
+  </data>
+  <data name="LearnMore_VideoPlayer" xml:space="preserve">
+    <value>Подробнее о настройке видео проигрыватель для использования с JMM</value>
+  </data>
+  <data name="LearnMore_ImportFolders" xml:space="preserve">
+    <value>Узнайте больше о импорта папки</value>
+  </data>
+  <data name="JMMServer_ImportFoldersInfo" xml:space="preserve">
+    <value>Заполните форму ниже, чтобы добавить папку импорта. Введите местоположение папки, выберите тип импорта и затем нажмите кнопку Сохранить, чтобы добавить в папку импорта.</value>
+  </data>
+  <data name="Info_Downloads" xml:space="preserve">
+    <value>Здесь можно настроить параметры программы торрент, какие сайты, чтобы использовать для поиска и ввода регистрационной информации для поддерживаемых сайтов.</value>
+  </data>
+  <data name="LearnMore_RelationSettings" xml:space="preserve">
+    <value>Подробнее о настройках отношения</value>
+  </data>
+  <data name="LearnMore_WebCache" xml:space="preserve">
+    <value>Узнать больше о веб-кэша</value>
+  </data>
+  <data name="Info_SettingsDisplay" xml:space="preserve">
+    <value>Панель дисплея позволяет настраивать способ отображения серии изображений и информации.</value>
+  </data>
+  <data name="LearnMore_Downloads" xml:space="preserve">
+    <value>Дополнительные сведения об использовании модели памяти JMM Скачать аниме</value>
+  </data>
+  <data name="JMMServer_DDInfo" xml:space="preserve">
+    <value>Обратите внимание, что обновление вашего назначения перетаскивания будет влиять только на новой серии добавляются. Серии, которые вы уже импортированы не будут затронуты.</value>
+  </data>
+  <data name="Link_Linking" xml:space="preserve">
+    <value>http://jmediamanager.org/jmm-desktop/collection/#linking</value>
+  </data>
+  <data name="MovieDB_Info" xml:space="preserve">
+    <value>Хотя фильм DB индекса сериал, JMM только поддерживает связывание фильмов.</value>
+  </data>
+  <data name="LearnMore_ComLinking" xml:space="preserve">
+    <value>Узнайте больше о серии ссылок</value>
+  </data>
+  <data name="Anime_Filters" xml:space="preserve">
+    <value>Фильтры</value>
+  </data>
+  <data name="Anime_FilterName" xml:space="preserve">
+    <value>Имя фильтра должно быть заполнено</value>
+  </data>
+  <data name="Anime_Files" xml:space="preserve">
+    <value>Файлы</value>
+  </data>
+  <data name="Anime_File" xml:space="preserve">
+    <value>Файл</value>
+  </data>
+  <data name="VideoPlayer_AutoMark" xml:space="preserve">
+    <value>Автоматическая пометка файлов как смотрел, когда смотрел следующих процент</value>
+  </data>
+  <data name="VideoPlayer_AutoFileNote1" xml:space="preserve">
+    <value>Вы можете настроить, как модель памяти JMM будет обрабатывать воспроизведение эпизодов с более одного файла. Эти параметры автоматически применяются к воспроизведения плейлиста, но может применяться для воспроизведения одного эпизода, позволяя вариант ниже.  </value>
+  </data>
+  <data name="VideoPlayer_AutoFileNote2" xml:space="preserve">
+    <value>Обратите внимание, что если «Релиз группы от ранее играл эпизод» для «Автоматический выбор файлов - последующие эпизоды в серии» выбран, и вы хотите пометить файл как наблюдал вместо эпизод. Вам нужно будет снять ' задать файл как смотрел если эпизод смотрят «под параметры импорта параметров - Мехико - и затем вручную пометить файл как смотрел, не эпизод, как наблюдал.</value>
+  </data>
+  <data name="VideoPlayer_AutoFileFirstEpisode" xml:space="preserve">
+    <value>Выбор автоматического файла - первый эпизод в серии</value>
+  </data>
+  <data name="VideoPlayer_AutoFileNextEpisode" xml:space="preserve">
+    <value>Выбор автоматического файла - последующие эпизоды в серии</value>
+  </data>
+  <data name="Anime_Filter" xml:space="preserve">
+    <value>Фильтр</value>
+  </data>
+  <data name="Anime_Group" xml:space="preserve">
+    <value>Группа</value>
+  </data>
+  <data name="Anime_Episode" xml:space="preserve">
+    <value>Эпизод</value>
+  </data>
+  <data name="Anime_Special" xml:space="preserve">
+    <value>Специальные</value>
   </data>
 </root>

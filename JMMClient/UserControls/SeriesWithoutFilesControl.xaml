@@ -84,7 +84,7 @@
 
 
         <!-- series list -->
-        <Border Grid.Row="1" Grid.Column="0" Margin="0,0,10,5" Background="White" BorderBrush="LightGray" BorderThickness="1">
+        <Border Grid.Row="1" Grid.Column="0" Margin="0,0,0,5" Background="White" BorderBrush="LightGray" BorderThickness="1">
 
             <DockPanel>
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Background="#F1F1F1">
@@ -118,7 +118,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0" VerticalAlignment="Top"/>
+                        <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,0,4,0" Grid.Column="0" VerticalAlignment="Top"/>
                         <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesWithoutFiles_Note}" Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1"/>
                     </Grid>
                 </Border>

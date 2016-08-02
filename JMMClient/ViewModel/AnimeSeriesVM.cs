@@ -472,17 +472,17 @@ namespace JMMClient
 
 
 
-		public HashSet<string> AllTags => AniDB_Anime.AllTags;
+        public HashSet<string> AllTags => AniDB_Anime.AllTags;
 
-	    public HashSet<string> CustomTags => new HashSet<string>(AniDB_Anime.Detail.CustomTags.Select(a=>a.TagName));
+        public HashSet<string> CustomTags => new HashSet<string>(AniDB_Anime.Detail.CustomTags.Select(a => a.TagName));
 
-		public bool HasUnwatchedFiles
-		{
-			get
-			{
-				return UnwatchedEpisodeCount > 0;
-			}
-		}
+        public bool HasUnwatchedFiles
+        {
+            get
+            {
+                return UnwatchedEpisodeCount > 0;
+            }
+        }
 
         public bool AllFilesWatched
         {
@@ -539,10 +539,10 @@ namespace JMMClient
                     DateTime yesterday = today.AddDays(-1);
 
                     if (WatchedDate.Value.Day == today.Day && WatchedDate.Value.Month == today.Month && WatchedDate.Value.Year == today.Year)
-                        return JMMClient.Properties.Resources.Today;
+                        return Properties.Resources.Today;
 
                     if (WatchedDate.Value.Day == yesterday.Day && WatchedDate.Value.Month == yesterday.Month && WatchedDate.Value.Year == yesterday.Year)
-                        return JMMClient.Properties.Resources.Yesterday;
+                        return Properties.Resources.Yesterday;
 
                     return WatchedDate.Value.ToString("dd MMM yyyy", Globals.Culture);
                 }
@@ -558,8 +558,43 @@ namespace JMMClient
             {
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
-                return string.Format("{0} {1} ({2} {3})", AniDB_Anime.EpisodeCountNormal, JMMClient.Properties.Resources.Episodes,
-                    AniDB_Anime.EpisodeCountSpecial, JMMClient.Properties.Resources.Specials);
+                // Multiple Episodes
+                if (AniDB_Anime.EpisodeCountNormal > 1)
+                {
+                    // Multiple Episodes, Multiple Specials
+                    if (AniDB_Anime.EpisodeCountSpecial > 1)
+                    {
+                        return string.Format("{0} {1} ({2} {3})", AniDB_Anime.EpisodeCountNormal, Properties.Resources.Anime_Episodes, AniDB_Anime.EpisodeCountSpecial, Properties.Resources.Anime_Specials);
+                    }
+                    else
+                    {
+                        // Multiple Episodes, No Specials
+                        if (AniDB_Anime.EpisodeCountSpecial <= 0)
+                        {
+                            return string.Format("{0} {1} ({2} {3})", AniDB_Anime.EpisodeCountNormal, Properties.Resources.Anime_Episodes, AniDB_Anime.EpisodeCountSpecial, Properties.Resources.Anime_Specials);
+                        }
+                        else
+                            return string.Format("{0} {1} ({2} {3})", AniDB_Anime.EpisodeCountNormal, Properties.Resources.Anime_Episodes, AniDB_Anime.EpisodeCountSpecial, Properties.Resources.Anime_Special);
+                    }
+                }
+                else
+                {
+                    // Single Episode, Multiple Specials
+                    if (AniDB_Anime.EpisodeCountSpecial > 1)
+                    {
+                        return string.Format("{0} {1} ({2} {3})", AniDB_Anime.EpisodeCountNormal, Properties.Resources.Anime_Episode, AniDB_Anime.EpisodeCountSpecial, Properties.Resources.Anime_Specials);
+                    }
+                    else
+                    {
+                        // Single Episodes, No Specials
+                        if (AniDB_Anime.EpisodeCountSpecial <= 0)
+                        {
+                            return string.Format("{0} {1} ({2} {3})", AniDB_Anime.EpisodeCountNormal, Properties.Resources.Anime_Episode, AniDB_Anime.EpisodeCountSpecial, Properties.Resources.Anime_Specials);
+                        }
+                        else
+                            return string.Format("{0} {1} ({2} {3})", AniDB_Anime.EpisodeCountNormal, Properties.Resources.Anime_Episode, AniDB_Anime.EpisodeCountSpecial, Properties.Resources.Anime_Special);
+                    }
+                }
             }
         }
 
@@ -569,7 +604,15 @@ namespace JMMClient
             {
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
-                return string.Format("{0} {1}", AniDB_Anime.EpisodeCountNormal, JMMClient.Properties.Resources.Episodes);
+                if (AniDB_Anime.EpisodeCountNormal > 1)
+                {
+                    return string.Format("{0} {1}", AniDB_Anime.EpisodeCountNormal, Properties.Resources.Anime_Episodes);
+                }
+                else
+                {
+                    return string.Format("{0} {1}", AniDB_Anime.EpisodeCountNormal, Properties.Resources.Anime_Episode);
+                }
+
             }
         }
 
@@ -736,11 +779,11 @@ namespace JMMClient
             TvDBSeriesV2 = new List<TvDB_SeriesVM>();
         }
 
-		public void Populate(JMMServerBinary.Contract_AnimeSeries contract)
-		{
+        public void Populate(JMMServerBinary.Contract_AnimeSeries contract)
+        {
             //TODO we can get detailed in here
-			AniDB_Anime = new AniDB_AnimeVM(contract.AniDBAnime.AniDBAnime);
-			NotifyPropertyChanged("AniDB_Anime");
+            AniDB_Anime = new AniDB_AnimeVM(contract.AniDBAnime.AniDBAnime);
+            NotifyPropertyChanged("AniDB_Anime");
 
             MainListHelperVM.Instance.AllAnimeDictionary[AniDB_Anime.AnimeID] = AniDB_Anime;
 

@@ -184,7 +184,7 @@ namespace JMMClient.UserControls
             cboDashWatchNextStyle.SelectionChanged += new SelectionChangedEventHandler(cboDashWatchNextStyle_SelectionChanged);
 
             cboDashRecentAdditionsType.Items.Clear();
-            cboDashRecentAdditionsType.Items.Add(JMMClient.Properties.Resources.Episodes);
+            cboDashRecentAdditionsType.Items.Add(JMMClient.Properties.Resources.Anime_Episodes);
             cboDashRecentAdditionsType.Items.Add(JMMClient.Properties.Resources.Series);
             cboDashRecentAdditionsType.SelectedIndex = AppSettings.DashRecentAdditionsType;
             cboDashRecentAdditionsType.SelectionChanged += new SelectionChangedEventHandler(cboDashRecentAdditionsType_SelectionChanged);

@@ -123,7 +123,7 @@
   <data name="AniDBVoteCount" xml:space="preserve">
     <value>Liczba głosów AniDB</value>
   </data>
-  <data name="Episodes" xml:space="preserve">
+  <data name="Anime_Episodes" xml:space="preserve">
     <value>Odcinki</value>
   </data>
   <data name="EpisodeType" xml:space="preserve">
@@ -339,7 +339,7 @@
   <data name="Tooltip_MissingEpsGroups" xml:space="preserve">
     <value>Brakujące odcinki z grup, które zbieram</value>
   </data>
-  <data name="Specials" xml:space="preserve">
+  <data name="Anime_Specials" xml:space="preserve">
     <value>Odcinek Specjalny</value>
   </data>
   <data name="GroupFilter_Missing" xml:space="preserve">
@@ -701,7 +701,7 @@
   <data name="Get" xml:space="preserve">
     <value>Pobierz</value>
   </data>
-  <data name="INFO_SettingsWebCache" xml:space="preserve">
+  <data name="Info_SettingsWebCache" xml:space="preserve">
     <value>Web Cache to internetowa baza danych utworzona przez twórców JMM i MyAnime. Jej celem jest wypełnienie luki, której innych baz danych nie wypełniły, a także uczynić proces importowania szybszym poprzez wymianę informacji z innymi użytkownikami JMM.</value>
   </data>
   <data name="Send" xml:space="preserve">
@@ -1720,8 +1720,8 @@
   <data name="Link_TvDB" xml:space="preserve">
     <value>http://jmediamanager.org/JMM-Desktop/Settings/#Community-sites</value>
   </data>
-  <data name="Link_uTorrent" xml:space="preserve">
-    <value>http://jmediamanager.org/JMM-Desktop/downloads/#uTorrent</value>
+  <data name="Link_Downloads" xml:space="preserve">
+    <value>http://jmediamanager.org/jmm-desktop/downloads/</value>
   </data>
   <data name="Link_WebCache" xml:space="preserve">
     <value>http://jmediamanager.org/JMM-Desktop/Settings/#Web-cache</value>
@@ -2146,9 +2146,6 @@
   <data name="VideoPlayer_PotPlayerINI" xml:space="preserve">
     <value>Wybierz Folder PotPlayer INI</value>
   </data>
-  <data name="VideoPlayer_AutoMark" xml:space="preserve">
-    <value>Automatycznie zaznaczyć pliki jak oglądałem kiedy oglądałem jest następujący odsetek</value>
-  </data>
   <data name="VideoPlayer_MPCFolder" xml:space="preserve">
     <value>MPC INI Folder</value>
   </data>
@@ -2157,30 +2154,6 @@
   </data>
   <data name="VideoPlayer_PotPlayerFolder" xml:space="preserve">
     <value>PotPlayer INI Folder</value>
-  </data>
-  <data name="VideoPlayer_AutoFileNote1" xml:space="preserve">
-    <value>Automatyczne preferencje wyboru pliku - odnosi się to do kiedy masz więcej niż plik na odcinku</value>
-  </data>
-  <data name="VideoPlayer_AutoFileNote2" xml:space="preserve">
-    <value>Do listy odtwarzania należy wybrać jeden plik, który opierać się będzie na Ciebie preferencje poni¿ej.</value>
-  </data>
-  <data name="VideoPlayer_AutoFileNote3" xml:space="preserve">
-    <value>Na jednym z odcinków można włączyć automatycznego wyboru pliku lub JMM monit o wybranie pliku, gdy masz więcej niż jeden</value>
-  </data>
-  <data name="VideoPlayer_AutoFileFirstEpisode" xml:space="preserve">
-    <value>Automatyczny wybór pliku - pierwszy odcinek serii</value>
-  </data>
-  <data name="VideoPlayer_AutoFileNextEpisode" xml:space="preserve">
-    <value>Automatyczny wybór pliku - kolejnych odcinków w serii</value>
-  </data>
-  <data name="VideoPlayer_AutoFileNote4" xml:space="preserve">
-    <value>Jeśli wybierzesz "Wydaniu Grupa z wcześniej grał odcinek" w ustawieniu powyżej należy również wykonać następujące czynności</value>
-  </data>
-  <data name="VideoPlayer_AutoFileNote5" xml:space="preserve">
-    <value>Odznacz "Zestaw plików jak oglądałem czy odcinek jest obserwowany" w ustawienia - zasadnicze - Import ustawień</value>
-  </data>
-  <data name="VideoPlayer_AutoFileNote6" xml:space="preserve">
-    <value>Zawsze znak pliku jak oglądałem i nie odcinek</value>
   </data>
   <data name="VideoPlayer_AutoFileEnable" xml:space="preserve">
     <value>Włączanie automatycznego wyboru pliku na pojedyncze odcinki</value>
@@ -2925,9 +2898,6 @@
   </data>
   <data name="Tab_Downloads" xml:space="preserve">
     <value>Pliki do pobrania</value>
-  </data>
-  <data name="Downloads_uTorrentInfo" xml:space="preserve">
-    <value>To wykorzystuje uTorrent WebUI API, które należy włączyć w klienta uTorrent po raz pierwszy</value>
   </data>
   <data name="Downloads_uTorrentWebUI" xml:space="preserve">
     <value>uTorrent WebUI szczegóły</value>
@@ -3922,7 +3892,7 @@
   <data name="UpdateAniDB_Info1" xml:space="preserve">
     <value>Dane, które jest związane z plików w swojej kolekcji jest automatycznie pobierane i przechowywane w lokalnej bazie danych, gdy JMM najpierw importuje pliki. Proces ten prowadzony jest tylko raz tak, jeśli określony plik danych jest brak AniDB w momencie pobrania, jeśli będzie brakować w bazie danych. Dodatkowo jest to możliwe, że przyszłe wersje JMM może używać dodatkowego pliku danych, który jest dostępny, ale nie został pobrany podczas JMM początkowo importowane pliki. To narzędzie będzie aktualizować i zastąpić wszystkich danych przechowywanych plików z tym, co jest obecnie dostępna na AniDB.</value>
   </data>
-  <data name="INFO_SettingsUserAdmin" xml:space="preserve">
+  <data name="Info_SettingsUserAdmin" xml:space="preserve">
     <value>Użytkowników są przechowywane w bazie danych i mogą być udostępniane przez każdego klienta, który łączy się z bazą danych. Kiedy Dodawanie nowego użytkownika lub aktualizacji istniejącej, należy kliknij przycisk Zapisz inaczej zmiany nie będą obowiązywać. JMM wymaga co najmniej jeden użytkownik z prawami administratora zaznaczone.</value>
   </data>
   <data name="MAL_LoginCorrect" xml:space="preserve">
@@ -4198,7 +4168,7 @@
   <data name="TAB_Settings_Language" xml:space="preserve">
     <value>Preferowany język dla grupy/Seria nazewnictwa</value>
   </data>
-  <data name="INFO_SettingsDisplayStyle" xml:space="preserve">
+  <data name="Info_SettingsLanguage" xml:space="preserve">
     <value>Ustawienie języka lub języków używane dla nazw, gdy grupy lub serii, które są dodawane do kolekcji. Te tytuły są pobierane bezpośrednio z AniDB tak poza angielskim, Romaji, Kanji; nie wszystkie grupy lub serii będzie mieć dodatkowe tytuły dostępne. Aby użyć synonimy wymienione na AniDB upewnij się, aby sprawdzić "Również użyć synonimów" i zmienić istniejące grupy i serii upewnij się, że po zakończeniu kliknij "zmiana nazwy wszystkich grup/seria"</value>
   </data>
   <data name="Language_Rename" xml:space="preserve">
@@ -4258,10 +4228,10 @@
   <data name="TvDB_DefaultLanguage" xml:space="preserve">
     <value>Wybierz język, chcieliby odcinek tytuły i opisy do pobrania w z The TvDB. Należy pamiętać, że jeśli odcinek tytuł lub opis nie jest dostępny w wybranym języku, domyślna wersja zostanie pobrany.</value>
   </data>
-  <data name="INFO_DuplicateFiles" xml:space="preserve">
+  <data name="Info_DuplicateFiles" xml:space="preserve">
     <value>To narzędzie pokaże wszystkie wystąpienia w przypadku, gdy istnieją dwa lub więcej plików z tego samego skrótu. JMM pozwala tylko jeden plik z taką samą wartość mieszania w swojej kolekcji.</value>
   </data>
-  <data name="INFO_MultipleFiles" xml:space="preserve">
+  <data name="Info_MultipleFiles" xml:space="preserve">
     <value>To narzędzie pokaże wszystkie wystąpienia, gdzie masz wiele plików na tym samym odcinku. Będzie być w stanie wyświetlić każde wystąpienie i zdecydować, które z nich chcesz zachować.</value>
   </data>
   <data name="IgnoredAnime_Note" xml:space="preserve">
@@ -4347,7 +4317,7 @@ W przeciwieństwie do innych odtwarzaczy multimedialnych obsługiwanych MPV jest
   <data name="Server_AutoStart" xml:space="preserve">
     <value>AutoStart lokalnego serwera JMM</value>
   </data>
-  <data name="INFO_SettingsEssential" xml:space="preserve">
+  <data name="Info_SettingsEssential" xml:space="preserve">
     <value>Panelu essentials zawiera wszystkie ustawienia, które są wymagane do uruchomienia JMM. Dla sekcji JMM serwera i logowania AniDB trzeba będzie kliknij przycisk "Test i Zapisz", aby zapisać wszelkie zmiany, które wprowadzasz. </value>
   </data>
   <data name="RelationSettings_Info" xml:space="preserve">
@@ -4385,5 +4355,86 @@ W przeciwieństwie do innych odtwarzaczy multimedialnych obsługiwanych MPV jest
   </data>
   <data name="Main_Feed" xml:space="preserve">
     <value>Aktualności</value>
+  </data>
+  <data name="LearnMore_AniDBOptions" xml:space="preserve">
+    <value>Dowiedz się więcej o opcjach AniDB</value>
+  </data>
+  <data name="LearnMore_GroupFilters" xml:space="preserve">
+    <value>Co to są filtry grupy?</value>
+  </data>
+  <data name="LearnMore_VideoPlayer" xml:space="preserve">
+    <value>Dowiedz się więcej o konfigurowaniu odtwarzacz wideo do użytku z JMM</value>
+  </data>
+  <data name="LearnMore_ImportFolders" xml:space="preserve">
+    <value>Dowiedz się więcej o Importuj foldery</value>
+  </data>
+  <data name="JMMServer_ImportFoldersInfo" xml:space="preserve">
+    <value>Wypełnij poniższy formularz, aby dodać folder importu. Wprowadź lokalizację folderu, wybierz typ importu i następnie kliknij przycisk Zapisz, aby dodać folder importu.</value>
+  </data>
+  <data name="Info_Downloads" xml:space="preserve">
+    <value>Tutaj można skonfigurować ustawienia programu torrent, jakie strony do wyszukiwania i wpisz swoje informacje logowania dla witryny obsługiwane.</value>
+  </data>
+  <data name="LearnMore_RelationSettings" xml:space="preserve">
+    <value>Dowiedz się więcej o ustawieniach relacji</value>
+  </data>
+  <data name="LearnMore_WebCache" xml:space="preserve">
+    <value>Dowiedz się więcej o pamięci podręcznej sieci web</value>
+  </data>
+  <data name="Info_SettingsDisplay" xml:space="preserve">
+    <value>Panel wyświetlacza pozwala dostosować sposób wyświetlania serii obrazów i informacje.</value>
+  </data>
+  <data name="LearnMore_Downloads" xml:space="preserve">
+    <value>Więcej informacji o używaniu JMM do pobrania anime</value>
+  </data>
+  <data name="JMMServer_DDInfo" xml:space="preserve">
+    <value>Uwaga: aktualizowanie miejsca docelowego upuszczania wpłynie tylko na nowa seria dodawana. Nie wpływają na serii, które już zostały zaimportowane.</value>
+  </data>
+  <data name="Link_Linking" xml:space="preserve">
+    <value>http://jmediamanager.org/jmm-desktop/collection/#linking</value>
+  </data>
+  <data name="MovieDB_Info" xml:space="preserve">
+    <value>Podczas gdy The Movie DB indeksu serii TV, JMM obsługuje tylko łączenia filmów.</value>
+  </data>
+  <data name="LearnMore_ComLinking" xml:space="preserve">
+    <value>Dowiedz się więcej o serii łączącej</value>
+  </data>
+  <data name="Anime_Filters" xml:space="preserve">
+    <value>Filtry</value>
+  </data>
+  <data name="Anime_FilterName" xml:space="preserve">
+    <value>Nazwa filtru musi być wypełnione</value>
+  </data>
+  <data name="Anime_Files" xml:space="preserve">
+    <value>Pliki</value>
+  </data>
+  <data name="Anime_File" xml:space="preserve">
+    <value>Pliku</value>
+  </data>
+  <data name="VideoPlayer_AutoMark" xml:space="preserve">
+    <value>Automatycznie oznaczyć pliki jak oglądałem, kiedy oglądałem następujący odsetek</value>
+  </data>
+  <data name="VideoPlayer_AutoFileNote1" xml:space="preserve">
+    <value>Można skonfigurować, jak JMM będzie obsługiwać odtwarzanie odcinków z więcej niż jeden plik. Te ustawienia są automatycznie stosowane do listy odtwarzania, ale mogą być stosowane do jednego odcinka odtwarzania przez włączenie opcji poniżej.  </value>
+  </data>
+  <data name="VideoPlayer_AutoFileNote2" xml:space="preserve">
+    <value>Uwaga: Jeśli 'Wydaniu Grupa z wcześniej grał odcinek' dla 'Automatyczny wybór pliku - kolejnych odcinków w serii' jest zaznaczone i chcesz oznaczyć plik jako oglądałem zamiast odcinek. Najpierw musisz odznaczyć ' Ustaw plik jako oglądałem jeśli odcinek jest oglądać "w obszarze Ustawienia importu ustawień - komputera - i następnie ręcznie oznaczyć plik jako patrzył, nie odcinek jak oglądałem.</value>
+  </data>
+  <data name="VideoPlayer_AutoFileFirstEpisode" xml:space="preserve">
+    <value>Wybór pliku automatyczne - pierwszy odcinek serii</value>
+  </data>
+  <data name="VideoPlayer_AutoFileNextEpisode" xml:space="preserve">
+    <value>Wybór pliku automatyczne - kolejne odcinki z serii</value>
+  </data>
+  <data name="Anime_Filter" xml:space="preserve">
+    <value>Filtr</value>
+  </data>
+  <data name="Anime_Group" xml:space="preserve">
+    <value>Grupa</value>
+  </data>
+  <data name="Anime_Episode" xml:space="preserve">
+    <value>Odcinek</value>
+  </data>
+  <data name="Anime_Special" xml:space="preserve">
+    <value>Specjalne</value>
   </data>
 </root>

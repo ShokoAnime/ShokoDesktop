@@ -34,40 +34,40 @@ namespace JMMClient
         public int MissingEpisodeCount { get; set; }
         public int MissingEpisodeCountGroups { get; set; }
 
-		public DateTime? Stat_AirDate_Min { get; set; }
-		public DateTime? Stat_AirDate_Max { get; set; }
-		public DateTime? Stat_EndDate { get; set; }
-		public DateTime? Stat_SeriesCreatedDate { get; set; }
-		public decimal? Stat_UserVotePermanent { get; set; }
-		public decimal? Stat_UserVoteTemporary { get; set; }
-		public decimal? Stat_UserVoteOverall { get; set; }
-		public HashSet<string> Stat_AllTags { get; set; }
+        public DateTime? Stat_AirDate_Min { get; set; }
+        public DateTime? Stat_AirDate_Max { get; set; }
+        public DateTime? Stat_EndDate { get; set; }
+        public DateTime? Stat_SeriesCreatedDate { get; set; }
+        public decimal? Stat_UserVotePermanent { get; set; }
+        public decimal? Stat_UserVoteTemporary { get; set; }
+        public decimal? Stat_UserVoteOverall { get; set; }
+        public HashSet<string> Stat_AllTags { get; set; }
         public HashSet<string> Stat_AllCustomTags { get; set; }
-		public HashSet<string> Stat_AllTitles { get; set; }
-		public bool Stat_IsComplete { get; set; }
-		public bool Stat_HasFinishedAiring { get; set; }
-		public bool Stat_IsCurrentlyAiring { get; set; }
-		public HashSet<string> Stat_AllVideoQuality { get; set; }
-		public HashSet<string> Stat_AllVideoQualityEpisodes { get; set; }
-		public HashSet<string> Stat_AudioLanguages { get; set; }
-		public HashSet<string> Stat_SubtitleLanguages { get; set; }
-		public bool Stat_HasTvDBLink { get; set; }
-		public bool Stat_HasMALLink { get; set; }
-		public bool Stat_HasMovieDBLink { get; set; }
-		public bool Stat_HasMovieDBOrTvDBLink { get; set; }
-		public int Stat_SeriesCount { get; set; }
-		public int Stat_EpisodeCount { get; set; }
-		public decimal Stat_AniDBRating { get; set; }
+        public HashSet<string> Stat_AllTitles { get; set; }
+        public bool Stat_IsComplete { get; set; }
+        public bool Stat_HasFinishedAiring { get; set; }
+        public bool Stat_IsCurrentlyAiring { get; set; }
+        public HashSet<string> Stat_AllVideoQuality { get; set; }
+        public HashSet<string> Stat_AllVideoQualityEpisodes { get; set; }
+        public HashSet<string> Stat_AudioLanguages { get; set; }
+        public HashSet<string> Stat_SubtitleLanguages { get; set; }
+        public bool Stat_HasTvDBLink { get; set; }
+        public bool Stat_HasMALLink { get; set; }
+        public bool Stat_HasMovieDBLink { get; set; }
+        public bool Stat_HasMovieDBOrTvDBLink { get; set; }
+        public int Stat_SeriesCount { get; set; }
+        public int Stat_EpisodeCount { get; set; }
+        public decimal Stat_AniDBRating { get; set; }
 
         public HashSet<int> DirectSeries { get; set; }
         public HashSet<int> AllSeries { get; set; }
 
 
-        public void PopulateSerieInfo(Dictionary<int, AnimeGroupVM> groups, Dictionary<int,AnimeSeriesVM>  series)
+        public void PopulateSerieInfo(Dictionary<int, AnimeGroupVM> groups, Dictionary<int, AnimeSeriesVM> series)
         {
-            List<int> allgroups = RecursiveGetGroups(groups, this).Select(a=>a.AnimeGroupID.Value).ToList();
+            List<int> allgroups = RecursiveGetGroups(groups, this).Select(a => a.AnimeGroupID.Value).ToList();
             AllSeries = new HashSet<int>(series.Values.Where(a => allgroups.Contains(a.AnimeGroupID)).Select(a => a.AnimeSeriesID.Value));
-            DirectSeries = new HashSet<int>(series.Values.Where(a=>a.AnimeGroupID==this.AnimeGroupID.Value).Select(a=>a.AnimeSeriesID.Value));
+            DirectSeries = new HashSet<int>(series.Values.Where(a => a.AnimeGroupID == this.AnimeGroupID.Value).Select(a => a.AnimeSeriesID.Value));
         }
 
         private List<AnimeGroupVM> RecursiveGetGroups(Dictionary<int, AnimeGroupVM> groups, AnimeGroupVM initialgrp)
@@ -75,7 +75,7 @@ namespace JMMClient
             List<AnimeGroupVM> ls = groups.Values.Where(a => a.AnimeGroupParentID.HasValue && a.AnimeGroupParentID.Value == initialgrp.AnimeGroupID.Value).ToList();
             foreach (AnimeGroupVM v in ls.ToList())
             {
-                ls.AddRange(RecursiveGetGroups(groups,v));
+                ls.AddRange(RecursiveGetGroups(groups, v));
             }
             ls.Add(initialgrp);
             return ls;
@@ -341,21 +341,21 @@ namespace JMMClient
             }
         }
 
-		public List<string> TagsList
-		{
-			get
-			{
-				List<string> tagList = new List<string>();
-				foreach (AnimeSeriesVM series in AllAnimeSeries)
-				{
-					foreach (string tag in series.AllTags)
-					{
-						if (!tagList.Contains(tag)) tagList.Add(tag);
-					}
-				}
-				return tagList;
-			}
-		}
+        public List<string> TagsList
+        {
+            get
+            {
+                List<string> tagList = new List<string>();
+                foreach (AnimeSeriesVM series in AllAnimeSeries)
+                {
+                    foreach (string tag in series.AllTags)
+                    {
+                        if (!tagList.Contains(tag)) tagList.Add(tag);
+                    }
+                }
+                return tagList;
+            }
+        }
 
         public List<string> AnimeTypesList
         {
@@ -658,10 +658,10 @@ namespace JMMClient
                     DateTime yesterday = today.AddDays(-1);
 
                     if (WatchedDate.Value.Day == today.Day && WatchedDate.Value.Month == today.Month && WatchedDate.Value.Year == today.Year)
-                        return JMMClient.Properties.Resources.Today;
+                        return Properties.Resources.Today;
 
                     if (WatchedDate.Value.Day == yesterday.Day && WatchedDate.Value.Month == yesterday.Month && WatchedDate.Value.Year == yesterday.Year)
-                        return JMMClient.Properties.Resources.Yesterday;
+                        return Properties.Resources.Yesterday;
 
                     return WatchedDate.Value.ToString("dd MMM yyyy", Globals.Culture);
                 }
@@ -740,7 +740,7 @@ namespace JMMClient
             get
             {
                 return string.Format("{0} ({1} {2})", Utils.FormatAniDBRating((double)AniDBRating),
-                    AniDBTotalVotes, JMMClient.Properties.Resources.Votes);
+                    AniDBTotalVotes, Properties.Resources.Votes);
             }
         }
 
@@ -759,8 +759,49 @@ namespace JMMClient
                     epCountSpecial += series.AniDB_Anime.EpisodeCountSpecial;
                 }
 
-                return string.Format("{0} {1} ({2} {3})", epCountNormal, JMMClient.Properties.Resources.Episodes,
-                    epCountSpecial, JMMClient.Properties.Resources.Specials);
+                // Multiple Episodes
+                if (epCountNormal > 1)
+                {
+                    // Multiple Episodes, Multiple Specials
+                    if (epCountSpecial > 1)
+                    {
+                        return string.Format("{0} {1} ({2} {3})", epCountNormal, Properties.Resources.Anime_Episodes, epCountSpecial, Properties.Resources.Anime_Specials);
+                    }
+                    else
+                    {
+                        // Multiple Episodes, No Specials
+                        if (epCountSpecial <= 0)
+                        {
+                            return string.Format("{0} {1} ({2} {3})", epCountNormal, Properties.Resources.Anime_Episodes, epCountSpecial, Properties.Resources.Anime_Specials);
+                        }
+                        else
+                            return string.Format("{0} {1} ({2} {3})", epCountNormal, Properties.Resources.Anime_Episodes, epCountSpecial, Properties.Resources.Anime_Special);
+                    }
+                }
+                else
+                {
+                    // No Episodes, No Specials 
+                    if (epCountNormal <= 0)
+                    {
+                        return string.Format("{0} {1} ({2} {3})", epCountNormal, Properties.Resources.Anime_Episodes, epCountSpecial, Properties.Resources.Anime_Specials);
+                    }
+
+                    // Single Episode, Multiple Specials
+                    if (epCountSpecial >= 1)
+                    {
+                        return string.Format("{0} {1} ({2} {3})", epCountNormal, Properties.Resources.Anime_Episode, epCountSpecial, Properties.Resources.Anime_Specials);
+                    }
+                    else
+                    {
+                        // Single Episodes, No Specials
+                        if (epCountSpecial <= 0)
+                        {
+                            return string.Format("{0} {1} ({2} {3})", epCountNormal, Properties.Resources.Anime_Episode, epCountSpecial, Properties.Resources.Anime_Specials);
+                        }
+                        else
+                            return string.Format("{0} {1} ({2} {3})", epCountNormal, Properties.Resources.Anime_Episode, epCountSpecial, Properties.Resources.Anime_Special);
+                    }
+                }
             }
         }
 
@@ -769,9 +810,9 @@ namespace JMMClient
             get
             {
                 if (this.AnimeGroupParentID.HasValue)
-                    return JMMClient.Properties.Resources.SubGroup;
+                    return Properties.Resources.SubGroup;
                 else
-                    return JMMClient.Properties.Resources.Group;
+                    return Properties.Resources.Group;
             }
         }
 
@@ -805,30 +846,30 @@ namespace JMMClient
 
 
 
-			this.Stat_AirDate_Min = contract.Stat_AirDate_Min;
-			this.Stat_AirDate_Max = contract.Stat_AirDate_Max;
-			this.Stat_EndDate = contract.Stat_EndDate;
-			this.Stat_SeriesCreatedDate = contract.Stat_SeriesCreatedDate;
-			this.Stat_UserVoteOverall = contract.Stat_UserVoteOverall;
-			this.Stat_UserVotePermanent = contract.Stat_UserVotePermanent;
-			this.Stat_UserVoteTemporary = contract.Stat_UserVoteTemporary;
-            this.Stat_AllTags = new HashSet<string>(contract.Stat_AllTags,StringComparer.InvariantCultureIgnoreCase);
-            this.Stat_AllCustomTags = new HashSet<string>(contract.Stat_AllCustomTags,StringComparer.InvariantCultureIgnoreCase);
-			this.Stat_AllTitles = new HashSet<string>(contract.Stat_AllTitles,StringComparer.InvariantCultureIgnoreCase);
-			this.Stat_IsComplete = contract.Stat_IsComplete;
-			this.Stat_HasFinishedAiring = contract.Stat_HasFinishedAiring;
-			this.Stat_IsCurrentlyAiring = contract.Stat_IsCurrentlyAiring;
-			this.Stat_AllVideoQuality = new HashSet<string>(contract.Stat_AllVideoQuality);
-			this.Stat_AllVideoQualityEpisodes = new HashSet<string>(contract.Stat_AllVideoQuality_Episodes);
-			this.Stat_AudioLanguages = new HashSet<string>(contract.Stat_AudioLanguages);
-			this.Stat_SubtitleLanguages = new HashSet<string>(contract.Stat_SubtitleLanguages);
-			this.Stat_HasTvDBLink = contract.Stat_HasTvDBLink;
-			this.Stat_HasMALLink = contract.Stat_HasMALLink;
-			this.Stat_HasMovieDBLink = contract.Stat_HasMovieDBLink;
-			this.Stat_HasMovieDBOrTvDBLink = contract.Stat_HasMovieDBOrTvDBLink;
-			this.Stat_SeriesCount = contract.Stat_SeriesCount;
-			this.Stat_EpisodeCount = contract.Stat_EpisodeCount;
-			this.Stat_AniDBRating = contract.Stat_AniDBRating;
+            this.Stat_AirDate_Min = contract.Stat_AirDate_Min;
+            this.Stat_AirDate_Max = contract.Stat_AirDate_Max;
+            this.Stat_EndDate = contract.Stat_EndDate;
+            this.Stat_SeriesCreatedDate = contract.Stat_SeriesCreatedDate;
+            this.Stat_UserVoteOverall = contract.Stat_UserVoteOverall;
+            this.Stat_UserVotePermanent = contract.Stat_UserVotePermanent;
+            this.Stat_UserVoteTemporary = contract.Stat_UserVoteTemporary;
+            this.Stat_AllTags = new HashSet<string>(contract.Stat_AllTags, StringComparer.InvariantCultureIgnoreCase);
+            this.Stat_AllCustomTags = new HashSet<string>(contract.Stat_AllCustomTags, StringComparer.InvariantCultureIgnoreCase);
+            this.Stat_AllTitles = new HashSet<string>(contract.Stat_AllTitles, StringComparer.InvariantCultureIgnoreCase);
+            this.Stat_IsComplete = contract.Stat_IsComplete;
+            this.Stat_HasFinishedAiring = contract.Stat_HasFinishedAiring;
+            this.Stat_IsCurrentlyAiring = contract.Stat_IsCurrentlyAiring;
+            this.Stat_AllVideoQuality = new HashSet<string>(contract.Stat_AllVideoQuality);
+            this.Stat_AllVideoQualityEpisodes = new HashSet<string>(contract.Stat_AllVideoQuality_Episodes);
+            this.Stat_AudioLanguages = new HashSet<string>(contract.Stat_AudioLanguages);
+            this.Stat_SubtitleLanguages = new HashSet<string>(contract.Stat_SubtitleLanguages);
+            this.Stat_HasTvDBLink = contract.Stat_HasTvDBLink;
+            this.Stat_HasMALLink = contract.Stat_HasMALLink;
+            this.Stat_HasMovieDBLink = contract.Stat_HasMovieDBLink;
+            this.Stat_HasMovieDBOrTvDBLink = contract.Stat_HasMovieDBOrTvDBLink;
+            this.Stat_SeriesCount = contract.Stat_SeriesCount;
+            this.Stat_EpisodeCount = contract.Stat_EpisodeCount;
+            this.Stat_AniDBRating = contract.Stat_AniDBRating;
 
             // editable members
             this.GroupName = contract.GroupName;
@@ -911,7 +952,7 @@ namespace JMMClient
                 return
                     AllSeries.Select(a => MainListHelperVM.Instance.AllSeriesDictionary.SureGet(a))
                         .Where(a => a != null)
-                        .OrderBy(a=>a.Stat_AirDate_Min).ToList();
+                        .OrderBy(a => a.Stat_AirDate_Min).ToList();
                 /*
                 List<AnimeSeriesVM> series = new List<AnimeSeriesVM>();
                 try
@@ -1082,7 +1123,7 @@ namespace JMMClient
                 {
                     this.Populate(response.AnimeGroup);
                     MainListHelperVM.Instance.AllGroupsDictionary[this.AnimeGroupID.Value] = this;
-                    PopulateSerieInfo(MainListHelperVM.Instance.AllGroupsDictionary,MainListHelperVM.Instance.AllSeriesDictionary);
+                    PopulateSerieInfo(MainListHelperVM.Instance.AllGroupsDictionary, MainListHelperVM.Instance.AllSeriesDictionary);
                     return true;
                 }
             }

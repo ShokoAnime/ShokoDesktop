@@ -266,10 +266,18 @@ namespace JMMClient
                 localFileCount = value;
                 NotifyPropertyChanged("LocalFileCount");
                 OneFileOnly = localFileCount == 1;
-                NoFiles = localFileCount == 0 && !FutureDated;
-                MultipleFiles = LocalFileCount > 1;
                 HasFiles = localFileCount > 0;
-                FileDetails = string.Format("{0} Files", LocalFileCount);
+
+                if (MultipleFiles = LocalFileCount > 1)
+                {
+                    FileDetails = string.Format("{0} " + Properties.Resources.Anime_Files, LocalFileCount);
+                }
+                else if (NoFiles = localFileCount == 0 && !FutureDated)
+                {
+                    FileDetails = string.Format("{0} " + Properties.Resources.Anime_Files, LocalFileCount);
+                }
+                else
+                    FileDetails = string.Format("{0} " + Properties.Resources.Anime_File, LocalFileCount);
             }
         }
 

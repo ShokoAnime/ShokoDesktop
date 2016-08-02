@@ -43,7 +43,8 @@ namespace JMMClient
         public static readonly int TAB_MAIN_Pinned = 7;
         public static readonly int TAB_MAIN_Downloads = 8;
         public static readonly int TAB_MAIN_Search = 9;
-        public static readonly int TAB_MAIN_Community = 10;
+        public static readonly int TAB_MAIN_Help = 10;
+        public static readonly int TAB_MAIN_Community = 11;
 
         public static int CurrentMainTabIndex = TAB_MAIN_Dashboard;
 

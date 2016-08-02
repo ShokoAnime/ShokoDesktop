@@ -123,7 +123,7 @@
   <data name="AniDBVoteCount" xml:space="preserve">
     <value>De telling van de stemmen van de AniDB</value>
   </data>
-  <data name="Episodes" xml:space="preserve">
+  <data name="Anime_Episodes" xml:space="preserve">
     <value>Afleveringen</value>
   </data>
   <data name="EpisodeType" xml:space="preserve">
@@ -339,7 +339,7 @@
   <data name="Tooltip_MissingEpsGroups" xml:space="preserve">
     <value>Missende afleveringen van release groepen die ik ben het verzamelen</value>
   </data>
-  <data name="Specials" xml:space="preserve">
+  <data name="Anime_Specials" xml:space="preserve">
     <value>Specials</value>
   </data>
   <data name="GroupFilter_Missing" xml:space="preserve">
@@ -693,7 +693,7 @@
   <data name="Get" xml:space="preserve">
     <value>Toevoegen</value>
   </data>
-  <data name="INFO_SettingsWebCache" xml:space="preserve">
+  <data name="Info_SettingsWebCache" xml:space="preserve">
     <value>De webcache is een online gegevensbestand gemaakt door de ontwikkelaars van JMM en MyAnime. Het doel is te vullen in de gaten welke andere databases niet voorzien, en ook het importproces sneller maken door het delen van informatie met andere gebruikers van JMM.</value>
   </data>
   <data name="Send" xml:space="preserve">
@@ -1712,8 +1712,8 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   <data name="Link_TvDB" xml:space="preserve">
     <value>http://jmediamanager.org/JMM-Desktop/Settings/#community-sites</value>
   </data>
-  <data name="Link_uTorrent" xml:space="preserve">
-    <value>http://jmediamanager.org/JMM-Desktop/downloads/#uTorrent</value>
+  <data name="Link_Downloads" xml:space="preserve">
+    <value>http://jmediamanager.org/jmm-desktop/downloads/</value>
   </data>
   <data name="Link_WebCache" xml:space="preserve">
     <value>http://jmediamanager.org/JMM-Desktop/Settings/#web-cache</value>
@@ -2138,9 +2138,6 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   <data name="VideoPlayer_PotPlayerINI" xml:space="preserve">
     <value>Selecteer PotPlayer INI map</value>
   </data>
-  <data name="VideoPlayer_AutoMark" xml:space="preserve">
-    <value>Automatisch markeren bestanden als keek toen het volgende percentage is keek</value>
-  </data>
   <data name="VideoPlayer_MPCFolder" xml:space="preserve">
     <value>MPC INI map</value>
   </data>
@@ -2149,30 +2146,6 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   </data>
   <data name="VideoPlayer_PotPlayerFolder" xml:space="preserve">
     <value>PotPlayer INI map</value>
-  </data>
-  <data name="VideoPlayer_AutoFileNote1" xml:space="preserve">
-    <value>Voorkeuren voor selectie in automatische bestand - dit verwijst naar wanneer u meer dan een bestand voor een aflevering</value>
-  </data>
-  <data name="VideoPlayer_AutoFileNote2" xml:space="preserve">
-    <value>Het moet voor een afspeellijst kiezen één bestand, die zal worden gebaseerd op je voorkeuren hieronder.</value>
-  </data>
-  <data name="VideoPlayer_AutoFileNote3" xml:space="preserve">
-    <value>Voor één aflevering kunt u de selectie van het taaldossier van de auto- of hebben JMM prompt u voor uitgezocht een bestand wanneer u meer dan één</value>
-  </data>
-  <data name="VideoPlayer_AutoFileFirstEpisode" xml:space="preserve">
-    <value>Automatische selectie van het taaldossier - eerste aflevering in de serie</value>
-  </data>
-  <data name="VideoPlayer_AutoFileNextEpisode" xml:space="preserve">
-    <value>Automatische selectie van het taaldossier - latere afleveringen in serie</value>
-  </data>
-  <data name="VideoPlayer_AutoFileNote4" xml:space="preserve">
-    <value>Als u 'Release groep uit eerder speelde Episode' in de bovenstaande instelling moet u ook het volgende doen</value>
-  </data>
-  <data name="VideoPlayer_AutoFileNote5" xml:space="preserve">
-    <value>Schakel onder instellingen - noodzakelijk - importinstellingen 'Set bestand als keek als aflevering is bekeken'</value>
-  </data>
-  <data name="VideoPlayer_AutoFileNote6" xml:space="preserve">
-    <value>Altijd een bestand als keek Mark en niet een aflevering</value>
   </data>
   <data name="VideoPlayer_AutoFileEnable" xml:space="preserve">
     <value>Inschakelen automatische selectie van het taaldossier op enkele afleveringen</value>
@@ -2917,9 +2890,6 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   </data>
   <data name="Tab_Downloads" xml:space="preserve">
     <value>Downloads</value>
-  </data>
-  <data name="Downloads_uTorrentInfo" xml:space="preserve">
-    <value>Deze maakt gebruik van de uTorrent WebUI API, die u wilt inschakelen in uw uTorrent client eerst</value>
   </data>
   <data name="Downloads_uTorrentWebUI" xml:space="preserve">
     <value>uTorrent WebUI details</value>
@@ -3920,7 +3890,7 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   <data name="UpdateAniDB_Info1" xml:space="preserve">
     <value>Gegevens die betrekking heeft op de bestanden in uw collectie wordt automatisch gedownload en opgeslagen in uw lokale database wanneer JMM eerst bestanden importeert. Dit proces wordt alleen uitgevoerd zodra dus als specifiek bestand gegevens op AniDB op het moment van downloaden, ontbreekt als missen in uw database zullen. Bovendien is het mogelijk dat toekomstige versies van JMM aanvullende bestandsgegevens is beschikbaar, maar was niet gedownload wanneer JMM in eerste instantie uw bestanden geïmporteerde kunnen gebruiken. Deze tool zal bijwerken en vervangen alle gegevens uit een opgeslagen bestand met wat momenteel beschikbaar op AniDB is.</value>
   </data>
-  <data name="INFO_SettingsUserAdmin" xml:space="preserve">
+  <data name="Info_SettingsUserAdmin" xml:space="preserve">
     <value>Gebruikers worden opgeslagen in uw database en kunnen worden benaderd door een client die verbinding met de database maakt. Wanneer een nieuwe gebruiker toe te voegen of een bestaande sjabloon bijwerken, u moet klikken sparen knoop anders uw wijzigingen niet zullen van kracht. JMM moet ten minste één gebruiker met beheerdersrechten geselecteerd.</value>
   </data>
   <data name="MAL_LoginCorrect" xml:space="preserve">
@@ -4196,7 +4166,7 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   <data name="TAB_Settings_Language" xml:space="preserve">
     <value>Taalvoorkeur voor de naamgeving van de groep/Series</value>
   </data>
-  <data name="INFO_SettingsDisplayStyle" xml:space="preserve">
+  <data name="Info_SettingsLanguage" xml:space="preserve">
     <value>Het instellen van de taal of de talen die worden gebruikt voor de naamgeving van wanneer groepen of serie worden toegevoegd aan uw collectie. Deze titels worden getrokken vanuit AniDB zo buiten Engels, Romaji of Kanji; niet alle groepen of serie zal hebben extra titels beschikbaar. Voor het gebruik van synoniemen genoteerd op AniDB zorg ervoor dat te controleren "Ook gebruik synoniemen" en te hernoemen bestaande groepen en serie Zorg dat u "hernoemen alle groepen/Series" klikt als u klaar bent</value>
   </data>
   <data name="Language_Rename" xml:space="preserve">
@@ -4256,10 +4226,10 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   <data name="TvDB_DefaultLanguage" xml:space="preserve">
     <value>Selecteer de taal die u wenst aflevering titels en beschrijvingen van de TvDB in worden gedownload. Houd er rekening mee dat als een aflevering titel of beschrijving niet beschikbaar in de taal die u hebt geselecteerd is, de Engelse versie van de standaard zal worden gedownload.</value>
   </data>
-  <data name="INFO_DuplicateFiles" xml:space="preserve">
+  <data name="Info_DuplicateFiles" xml:space="preserve">
     <value>Deze tool toont alle instanties waar er twee of meer bestanden met dezelfde hash. JMM alleen kunt u een bestand met dezelfde hash in uw collectie.</value>
   </data>
-  <data name="INFO_MultipleFiles" xml:space="preserve">
+  <data name="Info_MultipleFiles" xml:space="preserve">
     <value>Deze tool toont alle instanties waar u meerdere bestanden voor dezelfde aflevering hebt. U zal zitten kundig voor elk exemplaar bekijken en beslissen welke u zou willen houden.</value>
   </data>
   <data name="IgnoredAnime_Note" xml:space="preserve">
@@ -4345,7 +4315,7 @@ In tegenstelling tot de andere ondersteunde mediaspelers is MPV het snelste als 
   <data name="Server_AutoStart" xml:space="preserve">
     <value>AutoStart lokaal JMM Server</value>
   </data>
-  <data name="INFO_SettingsEssential" xml:space="preserve">
+  <data name="Info_SettingsEssential" xml:space="preserve">
     <value>Het paneel van de essentials bevat alle instellingen die zijn vereist voor het uitvoeren van JMM. Voor de JMM Server en AniDB Login secties, zult u wilt klik op de knop 'Test en opslaan' als u wilt opslaan van de wijzigingen die u aanbrengt. </value>
   </data>
   <data name="RelationSettings_Info" xml:space="preserve">
@@ -4383,5 +4353,86 @@ In tegenstelling tot de andere ondersteunde mediaspelers is MPV het snelste als 
   </data>
   <data name="Main_Feed" xml:space="preserve">
     <value>Nieuws</value>
+  </data>
+  <data name="LearnMore_AniDBOptions" xml:space="preserve">
+    <value>Meer informatie over opties voor AniDB</value>
+  </data>
+  <data name="LearnMore_GroupFilters" xml:space="preserve">
+    <value>Wat zijn groep Filters?</value>
+  </data>
+  <data name="LearnMore_VideoPlayer" xml:space="preserve">
+    <value>Meer informatie over het configureren van een video-speler voor gebruik met JMM</value>
+  </data>
+  <data name="LearnMore_ImportFolders" xml:space="preserve">
+    <value>Meer informatie over mappen importeren</value>
+  </data>
+  <data name="JMMServer_ImportFoldersInfo" xml:space="preserve">
+    <value>Vul het onderstaande formulier om een import map toevoegen. Ingang van de locatie van de map, selecteer het type invoer en klik op Opslaan om toe te voegen de import map.</value>
+  </data>
+  <data name="Info_Downloads" xml:space="preserve">
+    <value>Hier kunt u het configureren van uw torrent programma-instellingen, welke sites te gebruiken om te zoeken en de inbreng van uw login-gegevens voor gesteunde plaatsen.</value>
+  </data>
+  <data name="LearnMore_RelationSettings" xml:space="preserve">
+    <value>Meer informatie over de instellingen van de relatie</value>
+  </data>
+  <data name="LearnMore_WebCache" xml:space="preserve">
+    <value>Meer informatie over de webcache</value>
+  </data>
+  <data name="Info_SettingsDisplay" xml:space="preserve">
+    <value>Het display kunt u aanpassen hoe de reeks afbeeldingen en informatie worden weergegeven.</value>
+  </data>
+  <data name="LearnMore_Downloads" xml:space="preserve">
+    <value>Meer informatie over het gebruik van JMM anime downloaden</value>
+  </data>
+  <data name="JMMServer_DDInfo" xml:space="preserve">
+    <value>Houd er rekening mee, bijwerken van uw bestemming daling zal alleen van invloed op nieuwe serie wordt toegevoegd. Serie die u al hebt geïmporteerd, zal niet worden beïnvloed.</value>
+  </data>
+  <data name="Link_Linking" xml:space="preserve">
+    <value>http://jmediamanager.org/jmm-desktop/collection/#linking</value>
+  </data>
+  <data name="MovieDB_Info" xml:space="preserve">
+    <value>Terwijl de film DB televisieserie indexeert, ondersteunt JMM alleen koppelen films.</value>
+  </data>
+  <data name="LearnMore_ComLinking" xml:space="preserve">
+    <value>Meer informatie over het koppelen van de serie</value>
+  </data>
+  <data name="Anime_Filters" xml:space="preserve">
+    <value>Filters</value>
+  </data>
+  <data name="Anime_FilterName" xml:space="preserve">
+    <value>Naam van het filter moet worden ingevuld</value>
+  </data>
+  <data name="Anime_Files" xml:space="preserve">
+    <value>Bestanden</value>
+  </data>
+  <data name="Anime_File" xml:space="preserve">
+    <value>Bestand</value>
+  </data>
+  <data name="VideoPlayer_AutoMark" xml:space="preserve">
+    <value>Automatisch markeren bestanden als keek toen het volgende Percentage Is keek</value>
+  </data>
+  <data name="VideoPlayer_AutoFileNote1" xml:space="preserve">
+    <value>U kunt instellen hoe JMM afspelen voor afleveringen zal omgaan met meer dan één bestand. Deze instellingen automatisch worden toegepast op afspeellijst afspelen maar één aflevering afspelen door het inschakelen van de optie hieronder kunnen worden toegepast.  </value>
+  </data>
+  <data name="VideoPlayer_AutoFileNote2" xml:space="preserve">
+    <value>Houd er rekening mee, als 'Release groep uit eerder speelde Episode' voor 'Automatische bestandsselectie - latere afleveringen In serie' is geselecteerd en u het bestand markeren wilt als keek in plaats van de aflevering. Moet u aan uncheck ' Set bestand als keek als aflevering Is bekeken "onder instellingen - Essental - importinstellingen en vervolgens handmatig markeert het bestand als keek, niet aflevering als keek.</value>
+  </data>
+  <data name="VideoPlayer_AutoFileFirstEpisode" xml:space="preserve">
+    <value>Automatische bestandsselectie - eerste aflevering In de serie</value>
+  </data>
+  <data name="VideoPlayer_AutoFileNextEpisode" xml:space="preserve">
+    <value>Automatische bestandsselectie - latere afleveringen In serie</value>
+  </data>
+  <data name="Anime_Filter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="Anime_Group" xml:space="preserve">
+    <value>Groep</value>
+  </data>
+  <data name="Anime_Episode" xml:space="preserve">
+    <value>Aflevering</value>
+  </data>
+  <data name="Anime_Special" xml:space="preserve">
+    <value>Speciale</value>
   </data>
 </root>

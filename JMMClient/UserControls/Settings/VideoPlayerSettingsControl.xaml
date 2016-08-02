@@ -55,7 +55,7 @@
                            TextWrapping="Wrap" />
                 <usercontrols:HyperLinkStandard Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"
                                                 Margin="0,5,0,0"
-                                                DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=DetailedExplanation}"
+                                                DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=LearnMore_VideoPlayer}"
                                                 URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_VideoPlayer}" />
             </Grid>
         </Border>

@@ -172,8 +172,43 @@ namespace JMMClient
             {
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
-                return string.Format("{0} {1} ({2} {3})", EpisodeCountNormal, JMMClient.Properties.Resources.Episodes,
-                    EpisodeCountSpecial, JMMClient.Properties.Resources.Specials);
+                // Multiple Episodes
+                if (EpisodeCountNormal > 1)
+                {
+                    // Multiple Episodes, Multiple Specials
+                    if (EpisodeCountSpecial > 1)
+                    {
+                        return string.Format("{0} {1} ({2} {3})", EpisodeCountNormal, JMMClient.Properties.Resources.Anime_Episodes, EpisodeCountSpecial, JMMClient.Properties.Resources.Anime_Specials);
+                    }
+                    else
+                    {
+                        // Multiple Episodes, No Specials
+                        if (EpisodeCountSpecial <= 0)
+                        {
+                            return string.Format("{0} {1} ({2} {3})", EpisodeCountNormal, JMMClient.Properties.Resources.Anime_Episodes, EpisodeCountSpecial, JMMClient.Properties.Resources.Anime_Specials);
+                        }
+                        else
+                            return string.Format("{0} {1} ({2} {3})", EpisodeCountNormal, JMMClient.Properties.Resources.Anime_Episodes, EpisodeCountSpecial, JMMClient.Properties.Resources.Anime_Special);
+                    }
+                }
+                else
+                {
+                    // Single Episode, Multiple Specials
+                    if (EpisodeCountSpecial > 1)
+                    {
+                        return string.Format("{0} {1} ({2} {3})", EpisodeCountNormal, JMMClient.Properties.Resources.Anime_Episode, EpisodeCountSpecial, JMMClient.Properties.Resources.Anime_Specials);
+                    }
+                    else
+                    {
+                        // Single Episodes, No Specials
+                        if (EpisodeCountSpecial <= 0)
+                        {
+                            return string.Format("{0} {1} ({2} {3})", EpisodeCountNormal, JMMClient.Properties.Resources.Anime_Episode, EpisodeCountSpecial, JMMClient.Properties.Resources.Anime_Specials);
+                        }
+                        else
+                            return string.Format("{0} {1} ({2} {3})", EpisodeCountNormal, JMMClient.Properties.Resources.Anime_Episode, EpisodeCountSpecial, JMMClient.Properties.Resources.Anime_Special);
+                    }
+                }
             }
         }
 

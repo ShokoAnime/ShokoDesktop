@@ -129,7 +129,7 @@
 
         <TextBlock VerticalAlignment="Center" Margin="0,5,10,0">
             <CheckBox HorizontalAlignment="Left" IsChecked="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=UseStreaming}" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=UseStreaming}" Margin="10,10,10,0" FontWeight="DemiBold" Height="16"/>    
-            <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=WhatsThis}" URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_CommunityRecommendation}"/>
+            <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=WhatsThis}" URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_EnableStreaming}"/>
         </TextBlock>
 
     </StackPanel>

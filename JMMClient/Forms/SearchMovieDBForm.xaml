@@ -66,6 +66,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
@@ -84,13 +85,39 @@
             </StackPanel>
         </Border>
 
+        <!-- Info Message -->
+        <Border Grid.Row="1" Grid.Column="0" Margin="5,5,5,0" Padding="2" Background="#F1F1F1" BorderBrush="LightGray" BorderThickness="1">
+            <StackPanel Orientation="Horizontal"  Margin="0,0,0,0" DockPanel.Dock="Top">
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="25" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Column="0" Height="16" Width="16" Source="/Images/32_info.png" Margin="5,0,4,0"/>
+                    <TextBlock Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=MovieDB_Info}" Margin="0,0,0,0"/>
+
+                    <TextBlock VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" Margin="0,0,0,0">
+                        <usercontrols:HyperLinkStandard DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=LearnMore_ComLinking}" URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_Linking}"/>
+                    </TextBlock>
+
+                </Grid>
+            </StackPanel>
+        </Border>
+
         <!-- Search block -->
-        <Border Grid.Row="1" Grid.Column="0" Margin="5,5,5,5" Padding="5" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1"
+        <Border Grid.Row="2" Grid.Column="0" Margin="5,5,5,5" Padding="5" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1"
                 Visibility="{Binding Path=IsSearch, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SearchMovieDBForm}}, Converter={StaticResource BooleanToVisibilityConverter}}">
             <StackPanel Orientation="Horizontal"  Margin="0,0,0,0" DockPanel.Dock="Top">
-                <TextBox Name="txtSearch" Width="180" Margin="10,2,2,0" BorderThickness="1" />
+                <TextBox Name="txtSearch" Width="180" Margin="5,2,2,0" BorderThickness="1" />
                 <!-- search button -->
-                <Button Name="btnSearch" Margin="10,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <Button Name="btnSearch" Margin="10,0,2,0" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                         <Image Height="16" Width="16" Source="/Images/32_search.png" Margin="0,0,5,0"/>
                         <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
@@ -100,10 +127,10 @@
         </Border>
 
         <!-- Existing ID block -->
-        <Border Grid.Row="1" Grid.Column="0" Margin="5,5,5,5" Padding="5" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1"
+        <Border Grid.Row="2" Grid.Column="0" Margin="5,5,5,5" Padding="5" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1"
                 Visibility="{Binding Path=IsExisting, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SearchMovieDBForm}}, Converter={StaticResource BooleanToVisibilityConverter}}">
             <StackPanel Orientation="Horizontal"  Margin="0,0,0,0" DockPanel.Dock="Top">
-                <TextBox Name="txtMovieID" Width="180" Margin="10,2,2,0" BorderThickness="1" />
+                <TextBox Name="txtMovieID" Width="180" Margin="5,2,2,0" BorderThickness="1" />
                 <StackPanel Orientation="Horizontal" Margin="5,0,5,0" VerticalAlignment="Center">
                     <TextBlock VerticalAlignment="Center">
                         <Hyperlink Name="hlURL">
@@ -124,12 +151,12 @@
         </Border>
 
         <!-- Web Cache Recommendation -->
-        <Border Grid.Row="2" Grid.Column="0" Margin="5,0,5,0" Padding="5" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1"
+        <Border Grid.Row="3" Grid.Column="0" Margin="5,0,5,0" Padding="5" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1"
                 Visibility="{Binding Path=HasWebCacheRec, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SearchMovieDBForm}}, Converter={StaticResource BooleanToVisibilityConverter}}">
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal"  Margin="0,0,0,0" DockPanel.Dock="Top">
                     <Image Margin="5,0,0,0" Height="16" Width="16" Source="/Images/16_award.png" VerticalAlignment="Center"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityRecommendation}" Margin="5,0,0,0"/>       
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityRecommendation}" Margin="5,0,0,0"/>
                     <TextBlock VerticalAlignment="Center" Text="[" Margin="5,0,5,0"/>
                     <TextBlock VerticalAlignment="Center" Text="{Binding Path=CrossRef_AniDB_OtherResult.CrossRefID, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SearchMovieDBForm}}}"/>
                     <TextBlock VerticalAlignment="Center" Text="]" Margin="5,0,0,0"/>
@@ -163,7 +190,7 @@
         </Border>
 
         <!-- Search results -->
-        <Border Grid.Row="3" Grid.Column="0" Margin="5,5,5,5" Background="White" BorderBrush="LightGray" BorderThickness="1">
+        <Border Grid.Row="4" Grid.Column="0" Margin="5,5,5,5" Background="White" BorderBrush="LightGray" BorderThickness="1">
             <ListBox Name="lbFiles" BorderThickness="0" Background="Transparent" 
                             ItemsSource="{Binding Path=MovieDBSearchResults, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SearchMovieDBForm}}}"
                             HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
@@ -172,7 +199,7 @@
                             />
         </Border>
 
-        <DockPanel Grid.Row="4" Grid.Column="0"  Margin="5,5,5,5">
+        <DockPanel Grid.Row="5" Grid.Column="0"  Margin="5,0,5,5">
 
             <Button Name="btnClose" Margin="2,2,2,2" Style="{DynamicResource RoundButtonStyle}" DockPanel.Dock="Right" HorizontalAlignment="Right">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">

@@ -46,7 +46,7 @@
                         <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,0,2" VerticalAlignment="Center"
                                Visibility="{Binding Path=NormalComplete, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         <TextBlock Margin="3,0,0,0" Text="{Binding Path=FileCountNormal}" VerticalAlignment="Center"/>
-                        <TextBlock Margin="2,0,5,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episodes}" VerticalAlignment="Center"/>
+                        <TextBlock Margin="2,0,5,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Anime_Episodes}" VerticalAlignment="Center"/>
                         <TextBlock Margin="3,0,0,0" Text="(" VerticalAlignment="Center"/>
                         <TextBlock Margin="0,0,0,0" Text="{Binding Path=NormalEpisodeNumberSummary}" VerticalAlignment="Center"/>
                         <TextBlock Margin="0,0,0,0" Text=")" VerticalAlignment="Center"/>
@@ -54,7 +54,7 @@
                                Visibility="{Binding Path=SpecialsComplete, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         <StackPanel Orientation="Horizontal" Visibility="{Binding Path=HasAnySpecials, Converter={StaticResource BooleanToVisibilityConverter}}" VerticalAlignment="Center">
                             <TextBlock Margin="3,0,0,0" Text="{Binding Path=FileCountSpecials}" />
-                            <TextBlock Margin="2,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Specials}" />
+                            <TextBlock Margin="2,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Anime_Specials}" />
                         </StackPanel>
                         <!-- delete button-->
                         <Button Margin="10,0,0,0" Style="{DynamicResource RoundButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource DeleteAllFilesCommand}" 
@@ -87,7 +87,7 @@
                         <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,0,2" VerticalAlignment="Center"
                                Visibility="{Binding Path=NormalComplete, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         <TextBlock Margin="3,0,0,0" Text="{Binding Path=FileCountNormal}" VerticalAlignment="Center"/>
-                        <TextBlock Margin="2,0,5,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episodes}" VerticalAlignment="Center"/>
+                        <TextBlock Margin="2,0,5,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Anime_Episodes}" VerticalAlignment="Center"/>
                         <TextBlock Margin="3,0,0,0" Text="(" VerticalAlignment="Center"/>
                         <TextBlock Margin="0,0,0,0" Text="{Binding Path=NormalEpisodeNumberSummary}" VerticalAlignment="Center"/>
                         <TextBlock Margin="0,0,0,0" Text=")" VerticalAlignment="Center"/>
@@ -98,7 +98,7 @@
                                Visibility="{Binding Path=SpecialsComplete, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         <StackPanel Orientation="Horizontal" Visibility="{Binding Path=HasAnySpecials, Converter={StaticResource BooleanToVisibilityConverter}}" VerticalAlignment="Center">
                             <TextBlock Margin="3,0,0,0" Text="{Binding Path=FileCountSpecials}" />
-                            <TextBlock Margin="2,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Specials}" />
+                            <TextBlock Margin="2,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Anime_Specials}" />
                         </StackPanel>
                         <!-- delete button-->
                         <Button Margin="10,0,0,0" Style="{DynamicResource RoundButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource DeleteAllFilesCommand}" 

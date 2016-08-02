@@ -123,18 +123,37 @@
         </Border>
 
         <!-- Info Message -->
-        <Border Grid.Row="1" Grid.Column="0" Margin="5,5,5,0" Padding="5" Background="#F1F1F1" BorderBrush="LightGray" BorderThickness="1">
-            <StackPanel Orientation="Horizontal"  Margin="0,0,0,5" DockPanel.Dock="Top">
-                <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,0,5,-5"/>
-                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Trakt_SearchInfo}" Margin="0,0,10,-5"/>
+        <Border Grid.Row="1" Grid.Column="0" Margin="5,4,5,0" Padding="2" Background="#F1F1F1" BorderBrush="LightGray" BorderThickness="1">
+            <StackPanel Orientation="Horizontal"  Margin="0,0,0,0" DockPanel.Dock="Top">
 
-                <!-- Check Cred button -->
-                <Button Name="btnChkCred" Margin="5,0,0,-5" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                        <Image Height="16" Width="16" Source="/Images/32_settings.png" Margin="0,0,5,0"/>
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CheckCred}" Margin="0,0,5,0"/>
-                    </StackPanel>
-                </Button>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="25" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Column="0" Height="16" Width="16" Source="/Images/32_info.png" Margin="5,0,4,0"/>
+                    <TextBlock Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Trakt_SearchInfo}" Margin="0,0,10,0"/>
+
+                    <!-- Check Cred button -->
+                    <Button Name="btnChkCred" Grid.Column="2" Margin="5,0,0,0" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <Image Height="16" Width="16" Source="/Images/32_settings.png" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CheckCred}" Margin="0,0,5,0"/>
+                        </StackPanel>
+                    </Button>
+
+                    <TextBlock VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" Margin="0,0,0,0">
+                        <usercontrols:HyperLinkStandard DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=LearnMore_ComLinking}" URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_Linking}"/>
+                    </TextBlock>
+
+                </Grid>
             </StackPanel>
 
         </Border>
@@ -143,9 +162,9 @@
         <Border Grid.Row="2" Grid.Column="0" Margin="5,5,5,5" Padding="5" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1"
                 Visibility="{Binding Path=IsSearch, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SearchTraktForm}}, Converter={StaticResource BooleanToVisibilityConverter}}">
             <StackPanel Orientation="Horizontal"  Margin="0,0,0,0" DockPanel.Dock="Top">
-                <TextBox Name="txtSearch" Width="180" Margin="10,2,2,0" BorderThickness="1" />
+                <TextBox Name="txtSearch" Width="180" Margin="5,2,2,0" BorderThickness="1" />
                 <!-- search button -->
-                <Button Name="btnSearch" Margin="10,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" IsDefault="True">
+                <Button Name="btnSearch" Margin="10,0,2,0" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" IsDefault="True">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                         <Image Height="16" Width="16" Source="/Images/32_search.png" Margin="0,0,5,0"/>
                         <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
@@ -158,7 +177,7 @@
         <Border Grid.Row="2" Grid.Column="0" Margin="5,5,5,5" Padding="5" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1"
                 Visibility="{Binding Path=IsExisting, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SearchTraktForm}}, Converter={StaticResource BooleanToVisibilityConverter}}">
             <StackPanel Orientation="Horizontal"  Margin="0,0,0,0" DockPanel.Dock="Top">
-                <TextBox Name="txtSeriesID" Width="180" Margin="10,2,2,0" BorderThickness="1" />
+                <TextBox Name="txtSeriesID" Width="180" Margin="5,2,2,0" BorderThickness="1" />
                 <StackPanel Orientation="Horizontal" Margin="5,0,5,0" VerticalAlignment="Center">
                     <TextBlock VerticalAlignment="Center">
                         <Hyperlink Name="hlURL">

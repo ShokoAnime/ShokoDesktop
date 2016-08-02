@@ -221,8 +221,8 @@ namespace JMMClient.Forms
             }
 
             cboEpisodeType.Items.Clear();
-            cboEpisodeType.Items.Add(JMMClient.Properties.Resources.Episodes);
-            if (hasSpecials) cboEpisodeType.Items.Add(JMMClient.Properties.Resources.Specials);
+            cboEpisodeType.Items.Add(JMMClient.Properties.Resources.Anime_Episodes);
+            if (hasSpecials) cboEpisodeType.Items.Add(JMMClient.Properties.Resources.Anime_Specials);
 
             cboEpisodeType.SelectionChanged += new SelectionChangedEventHandler(cboEpisodeType_SelectionChanged);
 

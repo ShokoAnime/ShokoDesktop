@@ -45,66 +45,44 @@
                 </Grid.ColumnDefinitions>
 
                 <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0" VerticalAlignment="Top"/>
-                <TextBlock Grid.Column="1" Grid.Row="0" Margin="0,0,5,0" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_AutoFileNote1}"  TextWrapping="Wrap" />
-                <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,5,5,0" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_AutoFileNote2}"  TextWrapping="Wrap" />
-                <TextBlock Grid.Column="1" Grid.Row="2" Margin="0,5,5,0" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_AutoFileNote3}"  TextWrapping="Wrap" />
+                <TextBlock Grid.Column="1" Grid.Row="0" Margin="0,1,0,2" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_AutoFileNote1}"  TextWrapping="Wrap" />
+                
+                <Image Height="16" Width="16" Source="/Images/16_warning.png" Margin="5,2,4,0" Grid.Column="0" Grid.Row="1" VerticalAlignment="Top"/>
+                <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,1,0,0" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_AutoFileNote2}"  TextWrapping="Wrap" />
 
             </Grid>
         </Border>
 
-        
+
 
 
         <!-- Video Player Optons -->
-        <Grid Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" Margin="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="3" Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
+            <Grid Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" Margin="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
+                <TextBlock Grid.Row="0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_AutoFileEnable}" Margin="5,0,0,5"/>
+                <CheckBox  Grid.Column="1" Grid.Row="0" Name="chkAutoSelectFile" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10,0,0,0"/>
 
-            <TextBlock Grid.Column="0" VerticalAlignment="Center" Grid.Row="0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_AutoFileFirstEpisode}" Margin="10,0,0,5"/>
-            <ComboBox Name="cboAutoFileFirst" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Margin="10,0,0,5"/>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" Grid.Row="1" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_AutoFileFirstEpisode}" Margin="5,0,0,5"/>
+                <ComboBox Name="cboAutoFileFirst" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="10,0,0,5"/>
 
-            <TextBlock Grid.Column="0" VerticalAlignment="Center" Grid.Row="1" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_AutoFileNextEpisode}" Margin="10,0,0,5"/>
-            <ComboBox Name="cboAutoFileSubsequent" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="10,0,0,5"/>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" Grid.Row="2" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_AutoFileNextEpisode}" Margin="5,0,0,5"/>
+                <ComboBox Name="cboAutoFileSubsequent" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Margin="10,0,0,5"/>
 
-            <!-- Info 2 -->
-            <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Background="FloralWhite" Margin="0,0,0,5" Padding="5">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                    </Grid.RowDefinitions>
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="25"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Image Height="16" Width="16" Source="/Images/16_exclamation.png" Margin="5,2,4,0" Grid.Column="0" VerticalAlignment="Top"/>
-                    <TextBlock Grid.Column="1" Grid.Row="0" Margin="0,0,5,0" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_AutoFileNote4}"  TextWrapping="Wrap" />
-                    <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,5,5,0" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_AutoFileNote5}"  TextWrapping="Wrap" />
-                    <TextBlock Grid.Column="1" Grid.Row="2" Margin="0,5,5,0" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_AutoFileNote6}"  TextWrapping="Wrap" />
-
-                </Grid>
-            </Border>
-
-            <CheckBox Name="chkAutoSelectFile" Grid.Column="0" VerticalAlignment="Center" Grid.Row="3" Grid.ColumnSpan="2" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_AutoFileEnable}" Margin="0"/>
-
-
-
-        </Grid>
+            </Grid>
+        </Border>
 
     </Grid>
 </UserControl>

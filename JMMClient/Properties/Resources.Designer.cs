@@ -673,6 +673,69 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Episode.
+        /// </summary>
+        public static string Anime_Episode {
+            get {
+                return ResourceManager.GetString("Anime_Episode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Episodes.
+        /// </summary>
+        public static string Anime_Episodes {
+            get {
+                return ResourceManager.GetString("Anime_Episodes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File.
+        /// </summary>
+        public static string Anime_File {
+            get {
+                return ResourceManager.GetString("Anime_File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Files.
+        /// </summary>
+        public static string Anime_Files {
+            get {
+                return ResourceManager.GetString("Anime_Files", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter.
+        /// </summary>
+        public static string Anime_Filter {
+            get {
+                return ResourceManager.GetString("Anime_Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter Name must be populated.
+        /// </summary>
+        public static string Anime_FilterName {
+            get {
+                return ResourceManager.GetString("Anime_FilterName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filters.
+        /// </summary>
+        public static string Anime_Filters {
+            get {
+                return ResourceManager.GetString("Anime_Filters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Got episode data from service:.
         /// </summary>
         public static string Anime_GotEpisodes {
@@ -687,6 +750,15 @@ namespace JMMClient.Properties {
         public static string Anime_GotVids {
             get {
                 return ResourceManager.GetString("Anime_GotVids", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group.
+        /// </summary>
+        public static string Anime_Group {
+            get {
+                return ResourceManager.GetString("Anime_Group", resourceCulture);
             }
         }
         
@@ -858,6 +930,24 @@ namespace JMMClient.Properties {
         public static string Anime_SortName {
             get {
                 return ResourceManager.GetString("Anime_SortName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Special.
+        /// </summary>
+        public static string Anime_Special {
+            get {
+                return ResourceManager.GetString("Anime_Special", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specials.
+        /// </summary>
+        public static string Anime_Specials {
+            get {
+                return ResourceManager.GetString("Anime_Specials", resourceCulture);
             }
         }
         
@@ -3382,15 +3472,6 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This uses the uTorrent WebUI API, which you need to enable in your uTorrent client first.
-        /// </summary>
-        public static string Downloads_uTorrentInfo {
-            get {
-                return ResourceManager.GetString("Downloads_uTorrentInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to uTorrent WebUI details.
         /// </summary>
         public static string Downloads_uTorrentWebUI {
@@ -3720,15 +3801,6 @@ namespace JMMClient.Properties {
         public static string EpisodeMarkAllWatchedPrevious {
             get {
                 return ResourceManager.GetString("EpisodeMarkAllWatchedPrevious", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Episodes.
-        /// </summary>
-        public static string Episodes {
-            get {
-                return ResourceManager.GetString("Episodes", resourceCulture);
             }
         }
         
@@ -5200,56 +5272,74 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Here you can configure your torrent program settings, what sites to use for searching and input your login information for supported sites..
+        /// </summary>
+        public static string Info_Downloads {
+            get {
+                return ResourceManager.GetString("Info_Downloads", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This utility will show all instances where there are two or more files with the same hash. JMM only allows you to have one file with the same hash in your collection..
         /// </summary>
-        public static string INFO_DuplicateFiles {
+        public static string Info_DuplicateFiles {
             get {
-                return ResourceManager.GetString("INFO_DuplicateFiles", resourceCulture);
+                return ResourceManager.GetString("Info_DuplicateFiles", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to This utility will show all instances where you have multiple files for the same episode. You will be able to view each instance and decide which ones you&apos;d like to keep..
         /// </summary>
-        public static string INFO_MultipleFiles {
+        public static string Info_MultipleFiles {
             get {
-                return ResourceManager.GetString("INFO_MultipleFiles", resourceCulture);
+                return ResourceManager.GetString("Info_MultipleFiles", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Set the language or languages used for naming when groups or series are added to your collection. These titles are pulled directly from AniDB so outside of English, Romaji or Kanji; not all groups or series will have additional titles available. To use synonyms listed on AniDB make sure to check “Also Use Synonyms” and to rename existing groups and series make sure to click “Rename All Groups/Series” once you’re done.
+        ///   Looks up a localized string similar to The display panel allows you to customize how series images and information is displayed..
         /// </summary>
-        public static string INFO_SettingsDisplayStyle {
+        public static string Info_SettingsDisplay {
             get {
-                return ResourceManager.GetString("INFO_SettingsDisplayStyle", resourceCulture);
+                return ResourceManager.GetString("Info_SettingsDisplay", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to The essentials panel contains all settings that are required to run JMM. For the JMM Server and AniDB Login sections, you&apos;ll need to click the &quot;Test And Save&quot; button to save any changes you make. .
         /// </summary>
-        public static string INFO_SettingsEssential {
+        public static string Info_SettingsEssential {
             get {
-                return ResourceManager.GetString("INFO_SettingsEssential", resourceCulture);
+                return ResourceManager.GetString("Info_SettingsEssential", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set the language or languages used for naming when groups or series are added to your collection. These titles are pulled directly from AniDB so outside of English, Romaji or Kanji; not all groups or series will have additional titles available. To use synonyms listed on AniDB make sure to check “Also Use Synonyms” and to rename existing groups and series make sure to click “Rename All Groups/Series” once you’re done..
+        /// </summary>
+        public static string Info_SettingsLanguage {
+            get {
+                return ResourceManager.GetString("Info_SettingsLanguage", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Users are stored in your database and can be accessed by any client that connects to your database. When adding a new user or updating an existing one, you must click the Save button otherwise your changes will not take effect. JMM requires at least one user with administrator rights selected..
         /// </summary>
-        public static string INFO_SettingsUserAdmin {
+        public static string Info_SettingsUserAdmin {
             get {
-                return ResourceManager.GetString("INFO_SettingsUserAdmin", resourceCulture);
+                return ResourceManager.GetString("Info_SettingsUserAdmin", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to The web cache is an online database created by the developers of JMM and MyAnime. It&apos;s purpose is to fill in the gaps which other databases don&apos;t cater for, and also make the import process quicker by sharing information with other users of JMM..
         /// </summary>
-        public static string INFO_SettingsWebCache {
+        public static string Info_SettingsWebCache {
             get {
-                return ResourceManager.GetString("INFO_SettingsWebCache", resourceCulture);
+                return ResourceManager.GetString("Info_SettingsWebCache", resourceCulture);
             }
         }
         
@@ -5326,6 +5416,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please note, updating your drop destination will only affect new series being added. Series you&apos;ve already imported will not be affected..
+        /// </summary>
+        public static string JMMServer_DDInfo {
+            get {
+                return ResourceManager.GetString("JMMServer_DDInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
         public static string JMMServer_Error {
@@ -5340,6 +5439,15 @@ namespace JMMClient.Properties {
         public static string JMMServer_ImportFolders {
             get {
                 return ResourceManager.GetString("JMMServer_ImportFolders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fill out the form below to add an import folder. Input the folder&apos;s location, select the import type and then click Save to add the import folder..
+        /// </summary>
+        public static string JMMServer_ImportFoldersInfo {
+            get {
+                return ResourceManager.GetString("JMMServer_ImportFoldersInfo", resourceCulture);
             }
         }
         
@@ -5497,6 +5605,78 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Learn more about AniDB options.
+        /// </summary>
+        public static string LearnMore_AniDBOptions {
+            get {
+                return ResourceManager.GetString("LearnMore_AniDBOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Learn more about series linking.
+        /// </summary>
+        public static string LearnMore_ComLinking {
+            get {
+                return ResourceManager.GetString("LearnMore_ComLinking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Learn more about using JMM to download anime.
+        /// </summary>
+        public static string LearnMore_Downloads {
+            get {
+                return ResourceManager.GetString("LearnMore_Downloads", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What are Group Filters?.
+        /// </summary>
+        public static string LearnMore_GroupFilters {
+            get {
+                return ResourceManager.GetString("LearnMore_GroupFilters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Learn more about import folders.
+        /// </summary>
+        public static string LearnMore_ImportFolders {
+            get {
+                return ResourceManager.GetString("LearnMore_ImportFolders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Learn more about relation settings.
+        /// </summary>
+        public static string LearnMore_RelationSettings {
+            get {
+                return ResourceManager.GetString("LearnMore_RelationSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Learn more about configuring a video player for use with JMM.
+        /// </summary>
+        public static string LearnMore_VideoPlayer {
+            get {
+                return ResourceManager.GetString("LearnMore_VideoPlayer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Learn more about the web cache.
+        /// </summary>
+        public static string LearnMore_WebCache {
+            get {
+                return ResourceManager.GetString("LearnMore_WebCache", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to http://jmediamanager.org/faq/#banned-from-anidb.
         /// </summary>
         public static string Link_AniDBBanned {
@@ -5551,6 +5731,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/downloads/.
+        /// </summary>
+        public static string Link_Downloads {
+            get {
+                return ResourceManager.GetString("Link_Downloads", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to http://jmediamanager.org/streaming/.
         /// </summary>
         public static string Link_EnableStreaming {
@@ -5592,6 +5781,15 @@ namespace JMMClient.Properties {
         public static string Link_ImportFolders {
             get {
                 return ResourceManager.GetString("Link_ImportFolders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/collection/#linking.
+        /// </summary>
+        public static string Link_Linking {
+            get {
+                return ResourceManager.GetString("Link_Linking", resourceCulture);
             }
         }
         
@@ -5655,15 +5853,6 @@ namespace JMMClient.Properties {
         public static string Link_TvDB {
             get {
                 return ResourceManager.GetString("Link_TvDB", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/downloads/#utorrent.
-        /// </summary>
-        public static string Link_uTorrent {
-            get {
-                return ResourceManager.GetString("Link_uTorrent", resourceCulture);
             }
         }
         
@@ -6222,6 +6411,15 @@ namespace JMMClient.Properties {
         public static string MovieDB_FanartCount {
             get {
                 return ResourceManager.GetString("MovieDB_FanartCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to While The Movie DB does index TV Series, JMM only supports linking movies..
+        /// </summary>
+        public static string MovieDB_Info {
+            get {
+                return ResourceManager.GetString("MovieDB_Info", resourceCulture);
             }
         }
         
@@ -7891,7 +8089,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Help with scripting.
+        ///   Looks up a localized string similar to Help With Scripting.
         /// </summary>
         public static string Rename_ScriptingHelp {
             get {
@@ -9075,15 +9273,6 @@ namespace JMMClient.Properties {
         public static string SortName {
             get {
                 return ResourceManager.GetString("SortName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Specials.
-        /// </summary>
-        public static string Specials {
-            get {
-                return ResourceManager.GetString("Specials", resourceCulture);
             }
         }
         
@@ -12117,7 +12306,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Automatic File Selection - First episode in series.
+        ///   Looks up a localized string similar to Automatic File Selection - First Episode In Series.
         /// </summary>
         public static string VideoPlayer_AutoFileFirstEpisode {
             get {
@@ -12126,7 +12315,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Automatic File Selection - Subsequent episodes in series.
+        ///   Looks up a localized string similar to Automatic File Selection - Subsequent Episodes In Series.
         /// </summary>
         public static string VideoPlayer_AutoFileNextEpisode {
             get {
@@ -12135,7 +12324,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Automatic File Selection Preferences - this refers to when you have more than file for an episode.
+        ///   Looks up a localized string similar to You can setup how JMM will handle playback for episodes with more then one file. These settings are automatically applied to playlist playback but can be applied to single episode playback by enabling the option below.  .
         /// </summary>
         public static string VideoPlayer_AutoFileNote1 {
             get {
@@ -12144,7 +12333,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to For a playlist it needs to choose one file, which will be based on you preferences below..
+        ///   Looks up a localized string similar to Please note, if &apos;Release Group From Previously Played Episode&apos; for &apos;Automatic File Selection - Subsequent Episodes In Series&apos; is selected and you want to mark the file as watched instead of the episode. You&apos;ll need to uncheck &apos;Set File As Watched If Episode Is Watched&quot; under Settings - Essental - Import Settings and then manually mark the file as watched, not episode as watched..
         /// </summary>
         public static string VideoPlayer_AutoFileNote2 {
             get {
@@ -12153,43 +12342,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to For a single episode you can enable auto file selection or have JMM prompt you to select a file whenever you have more than one.
-        /// </summary>
-        public static string VideoPlayer_AutoFileNote3 {
-            get {
-                return ResourceManager.GetString("VideoPlayer_AutoFileNote3", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to If you select &apos;Release Group From Previously Played Episode&apos; in the above setting you also need to do the following.
-        /// </summary>
-        public static string VideoPlayer_AutoFileNote4 {
-            get {
-                return ResourceManager.GetString("VideoPlayer_AutoFileNote4", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Uncheck &apos;Set file as watched if episode is watched&apos; Under Settings - Essential - Import Settings.
-        /// </summary>
-        public static string VideoPlayer_AutoFileNote5 {
-            get {
-                return ResourceManager.GetString("VideoPlayer_AutoFileNote5", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Always Mark a File as watched and not an episode.
-        /// </summary>
-        public static string VideoPlayer_AutoFileNote6 {
-            get {
-                return ResourceManager.GetString("VideoPlayer_AutoFileNote6", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Automatically mark files as watched when the following percentage is watched.
+        ///   Looks up a localized string similar to Automatically Mark Files As Watched When The Following Percentage Is Watched.
         /// </summary>
         public static string VideoPlayer_AutoMark {
             get {

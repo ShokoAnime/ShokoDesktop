@@ -176,11 +176,12 @@ namespace JMMClient
 			{
 				int groupsCount = GroupsCount;
 				string summ = "";
-				if (groupsCount > 0)
-					summ = string.Format(Childs.Count>0 ? "{0} Filters" : "{0} Groups", groupsCount);
-
-				return summ;
-			}
+				if (groupsCount > 1)
+					summ = string.Format(Childs.Count > 0 ? "{0} " + Properties.Resources.Anime_Filters : "{0} " + Properties.Resources.Anime_Groups, groupsCount);
+                else if (groupsCount > 0)
+                    summ = string.Format(Childs.Count > 0 ? "{0} " + Properties.Resources.Anime_Filter : "{0} " + Properties.Resources.Anime_Group, groupsCount);
+                return summ;
+            }
 		}
 
 		private string predefinedCriteria = "";
@@ -429,7 +430,7 @@ namespace JMMClient
         {
             if (string.IsNullOrEmpty(this.FilterName))
             {
-                MessageBox.Show("Filter Name must be populated");
+                MessageBox.Show(Properties.Resources.Anime_FilterName, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 

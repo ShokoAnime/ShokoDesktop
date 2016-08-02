@@ -126,7 +126,7 @@
   <data name="AniDBVoteCount" xml:space="preserve">
     <value>AniDB Vote Count</value>
   </data>
-  <data name="Episodes" xml:space="preserve">
+  <data name="Anime_Episodes" xml:space="preserve">
     <value>Episodes</value>
   </data>
   <data name="EpisodeType" xml:space="preserve">
@@ -345,7 +345,7 @@
   <data name="Tooltip_QueueImages" xml:space="preserve">
     <value>Images Awaiting Download</value>
   </data>
-  <data name="Specials" xml:space="preserve">
+  <data name="Anime_Specials" xml:space="preserve">
     <value>Specials</value>
   </data>
   <data name="GroupFilter_Missing" xml:space="preserve">
@@ -585,7 +585,7 @@
   <data name="Success" xml:space="preserve">
     <value>Success!</value>
   </data>
-  <data name="INFO_SettingsEssential" xml:space="preserve">
+  <data name="Info_SettingsEssential" xml:space="preserve">
     <value>The essentials panel contains all settings that are required to run JMM. For the JMM Server and AniDB Login sections, you'll need to click the "Test And Save" button to save any changes you make. </value>
   </data>
   <data name="Search" xml:space="preserve">
@@ -713,7 +713,7 @@
   <data name="Get" xml:space="preserve">
     <value>Get</value>
   </data>
-  <data name="INFO_SettingsWebCache" xml:space="preserve">
+  <data name="Info_SettingsWebCache" xml:space="preserve">
     <value>The web cache is an online database created by the developers of JMM and MyAnime. It's purpose is to fill in the gaps which other databases don't cater for, and also make the import process quicker by sharing information with other users of JMM.</value>
   </data>
   <data name="Send" xml:space="preserve">
@@ -911,8 +911,8 @@
   <data name="ImageSize_SubGroupList" xml:space="preserve">
     <value>Sub Groups List and Series</value>
   </data>
-  <data name="INFO_SettingsDisplayStyle" xml:space="preserve">
-    <value>Set the language or languages used for naming when groups or series are added to your collection. These titles are pulled directly from AniDB so outside of English, Romaji or Kanji; not all groups or series will have additional titles available. To use synonyms listed on AniDB make sure to check “Also Use Synonyms” and to rename existing groups and series make sure to click “Rename All Groups/Series” once you’re done</value>
+  <data name="Info_SettingsLanguage" xml:space="preserve">
+    <value>Set the language or languages used for naming when groups or series are added to your collection. These titles are pulled directly from AniDB so outside of English, Romaji or Kanji; not all groups or series will have additional titles available. To use synonyms listed on AniDB make sure to check “Also Use Synonyms” and to rename existing groups and series make sure to click “Rename All Groups/Series” once you’re done.</value>
   </data>
   <data name="MSG_ERR_SelectDate" xml:space="preserve">
     <value>Select a date first</value>
@@ -1121,7 +1121,7 @@
   <data name="TAB_DuplicateFiles" xml:space="preserve">
     <value>Duplicate Files</value>
   </data>
-  <data name="INFO_DuplicateFiles" xml:space="preserve">
+  <data name="Info_DuplicateFiles" xml:space="preserve">
     <value>This utility will show all instances where there are two or more files with the same hash. JMM only allows you to have one file with the same hash in your collection.</value>
   </data>
   <data name="Tooltip_DeleteDuplicateFileAll" xml:space="preserve">
@@ -1142,7 +1142,7 @@
   <data name="TAB_MultipleFiles" xml:space="preserve">
     <value>Multiple Files</value>
   </data>
-  <data name="INFO_MultipleFiles" xml:space="preserve">
+  <data name="Info_MultipleFiles" xml:space="preserve">
     <value>This utility will show all instances where you have multiple files for the same episode. You will be able to view each instance and decide which ones you'd like to keep.</value>
   </data>
   <data name="Loading" xml:space="preserve">
@@ -1331,7 +1331,7 @@
   <data name="ImageSize" xml:space="preserve">
     <value>Image Size</value>
   </data>
-  <data name="INFO_SettingsUserAdmin" xml:space="preserve">
+  <data name="Info_SettingsUserAdmin" xml:space="preserve">
     <value>Users are stored in your database and can be accessed by any client that connects to your database. When adding a new user or updating an existing one, you must click the Save button otherwise your changes will not take effect. JMM requires at least one user with administrator rights selected.</value>
   </data>
   <data name="TAB_SettingsUsers" xml:space="preserve">
@@ -1780,8 +1780,8 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="Link_TvDB" xml:space="preserve">
     <value>http://jmediamanager.org/jmm-desktop/settings/#community-sites</value>
   </data>
-  <data name="Link_uTorrent" xml:space="preserve">
-    <value>http://jmediamanager.org/jmm-desktop/downloads/#utorrent</value>
+  <data name="Link_Downloads" xml:space="preserve">
+    <value>http://jmediamanager.org/jmm-desktop/downloads/</value>
   </data>
   <data name="Link_WebCache" xml:space="preserve">
     <value>http://jmediamanager.org/jmm-desktop/settings/#web-cache</value>
@@ -2231,7 +2231,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Test PotPlayer INI File</value>
   </data>
   <data name="VideoPlayer_AutoMark" xml:space="preserve">
-    <value>Automatically mark files as watched when the following percentage is watched</value>
+    <value>Automatically Mark Files As Watched When The Following Percentage Is Watched</value>
   </data>
   <data name="VideoPlayer_MPCFolder" xml:space="preserve">
     <value>MPC INI Folder</value>
@@ -2243,28 +2243,16 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>PotPlayer INI Folder</value>
   </data>
   <data name="VideoPlayer_AutoFileNote1" xml:space="preserve">
-    <value>Automatic File Selection Preferences - this refers to when you have more than file for an episode</value>
+    <value>You can setup how JMM will handle playback for episodes with more then one file. These settings are automatically applied to playlist playback but can be applied to single episode playback by enabling the option below.  </value>
   </data>
   <data name="VideoPlayer_AutoFileNote2" xml:space="preserve">
-    <value>For a playlist it needs to choose one file, which will be based on you preferences below.</value>
-  </data>
-  <data name="VideoPlayer_AutoFileNote3" xml:space="preserve">
-    <value>For a single episode you can enable auto file selection or have JMM prompt you to select a file whenever you have more than one</value>
+    <value>Please note, if 'Release Group From Previously Played Episode' for 'Automatic File Selection - Subsequent Episodes In Series' is selected and you want to mark the file as watched instead of the episode. You'll need to uncheck 'Set File As Watched If Episode Is Watched" under Settings - Essental - Import Settings and then manually mark the file as watched, not episode as watched.</value>
   </data>
   <data name="VideoPlayer_AutoFileFirstEpisode" xml:space="preserve">
-    <value>Automatic File Selection - First episode in series</value>
+    <value>Automatic File Selection - First Episode In Series</value>
   </data>
   <data name="VideoPlayer_AutoFileNextEpisode" xml:space="preserve">
-    <value>Automatic File Selection - Subsequent episodes in series</value>
-  </data>
-  <data name="VideoPlayer_AutoFileNote4" xml:space="preserve">
-    <value>If you select 'Release Group From Previously Played Episode' in the above setting you also need to do the following</value>
-  </data>
-  <data name="VideoPlayer_AutoFileNote5" xml:space="preserve">
-    <value>Uncheck 'Set file as watched if episode is watched' Under Settings - Essential - Import Settings</value>
-  </data>
-  <data name="VideoPlayer_AutoFileNote6" xml:space="preserve">
-    <value>Always Mark a File as watched and not an episode</value>
+    <value>Automatic File Selection - Subsequent Episodes In Series</value>
   </data>
   <data name="VideoPlayer_AutoFileEnable" xml:space="preserve">
     <value>Enable auto file selection on single episodes</value>
@@ -2552,7 +2540,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Test</value>
   </data>
   <data name="Rename_ScriptingHelp" xml:space="preserve">
-    <value>Help with scripting</value>
+    <value>Help With Scripting</value>
   </data>
   <data name="Rename_ImportRun" xml:space="preserve">
     <value>Run this script when importing files into collection</value>
@@ -3076,8 +3064,8 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="Tab_Downloads" xml:space="preserve">
     <value>Downloads</value>
   </data>
-  <data name="Downloads_uTorrentInfo" xml:space="preserve">
-    <value>This uses the uTorrent WebUI API, which you need to enable in your uTorrent client first</value>
+  <data name="Info_Downloads" xml:space="preserve">
+    <value>Here you can configure your torrent program settings, what sites to use for searching and input your login information for supported sites.</value>
   </data>
   <data name="Downloads_uTorrentWebUI" xml:space="preserve">
     <value>uTorrent WebUI details</value>
@@ -4385,5 +4373,68 @@ Unlike the other supported media players, MPV is the fastest when it comes to st
   </data>
   <data name="Tooltip_UpdateMovieDB" xml:space="preserve">
     <value>Download fresh data from The Movie DB and update the local database</value>
+  </data>
+  <data name="LearnMore_AniDBOptions" xml:space="preserve">
+    <value>Learn more about AniDB options</value>
+  </data>
+  <data name="LearnMore_GroupFilters" xml:space="preserve">
+    <value>What are Group Filters?</value>
+  </data>
+  <data name="LearnMore_VideoPlayer" xml:space="preserve">
+    <value>Learn more about configuring a video player for use with JMM</value>
+  </data>
+  <data name="LearnMore_ImportFolders" xml:space="preserve">
+    <value>Learn more about import folders</value>
+  </data>
+  <data name="JMMServer_ImportFoldersInfo" xml:space="preserve">
+    <value>Fill out the form below to add an import folder. Input the folder's location, select the import type and then click Save to add the import folder.</value>
+  </data>
+  <data name="LearnMore_RelationSettings" xml:space="preserve">
+    <value>Learn more about relation settings</value>
+  </data>
+  <data name="LearnMore_WebCache" xml:space="preserve">
+    <value>Learn more about the web cache</value>
+  </data>
+  <data name="Info_SettingsDisplay" xml:space="preserve">
+    <value>The display panel allows you to customize how series images and information is displayed.</value>
+  </data>
+  <data name="LearnMore_Downloads" xml:space="preserve">
+    <value>Learn more about using JMM to download anime</value>
+  </data>
+  <data name="JMMServer_DDInfo" xml:space="preserve">
+    <value>Please note, updating your drop destination will only affect new series being added. Series you've already imported will not be affected.</value>
+  </data>
+  <data name="MovieDB_Info" xml:space="preserve">
+    <value>While The Movie DB does index TV Series, JMM only supports linking movies.</value>
+  </data>
+  <data name="LearnMore_ComLinking" xml:space="preserve">
+    <value>Learn more about series linking</value>
+  </data>
+  <data name="Link_Linking" xml:space="preserve">
+    <value>http://jmediamanager.org/jmm-desktop/collection/#linking</value>
+  </data>
+  <data name="Anime_Filters" xml:space="preserve">
+    <value>Filters</value>
+  </data>
+  <data name="Anime_FilterName" xml:space="preserve">
+    <value>Filter Name must be populated</value>
+  </data>
+  <data name="Anime_Files" xml:space="preserve">
+    <value>Files</value>
+  </data>
+  <data name="Anime_File" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="Anime_Filter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="Anime_Group" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="Anime_Episode" xml:space="preserve">
+    <value>Episode</value>
+  </data>
+  <data name="Anime_Special" xml:space="preserve">
+    <value>Special</value>
   </data>
 </root>

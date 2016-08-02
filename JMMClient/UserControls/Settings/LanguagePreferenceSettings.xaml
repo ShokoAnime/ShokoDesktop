@@ -68,7 +68,7 @@
         </ListBox>
     
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Margin="5,0,0,5">
-            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Language_UseSynonyms}" VerticalAlignment="Center" Margin="0,0,10,0"
+            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Language_UseSynonyms}" VerticalAlignment="Center" Margin="0,0,10,3"
                        ToolTip="{usercontrols:Info Title=Language_UseSynonyms, Body=Tooltip_LanguageUseSynonyms}"></TextBlock>
             <CheckBox Name="chkLanguageUseSynonyms" IsChecked="{Binding Source={x:Static local:JMMServerVM.Instance},Path=Language_UseSynonyms}" VerticalAlignment="Center"
                       ToolTip="{usercontrols:Info Title=Language_UseSynonyms, Body=Tooltip_LanguageUseSynonyms}"/>
