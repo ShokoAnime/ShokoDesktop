@@ -91,17 +91,6 @@ namespace JMMClient
             }
         }
 
-        private int? locked = null;
-        public int? Locked
-        {
-            get { return locked; }
-            set
-            {
-                locked = value;
-                NotifyPropertyChanged("Locked");
-            }
-        }
-
         private int filterType = (int)GroupFilterType.UserDefined;
         public int FilterType
         {
@@ -318,7 +307,9 @@ namespace JMMClient
             contract.GroupFilterName = this.FilterName;
             contract.ApplyToSeries = this.ApplyToSeries;
             contract.BaseCondition = this.BaseCondition;
-            contract.Locked = this.Locked;
+            contract.Locked = null;
+            if (isLocked) 
+                contract.Locked = 1;
             contract.FilterType = this.FilterType;
 
             contract.FilterConditions = new List<JMMServerBinary.Contract_GroupFilterCondition>();
@@ -343,7 +334,7 @@ namespace JMMClient
 			this.FilterName = contract.GroupFilterName;
 			this.ApplyToSeries = contract.ApplyToSeries;
 			this.BaseCondition = contract.BaseCondition;
-			this.Locked = contract.Locked;
+			this.isLocked = contract.Locked.HasValue && contract.Locked == 1;
             this.FilterType = contract.FilterType;
             this.PredefinedCriteria = "";
 			this.InvisibleInClients = contract.InvisibleInClients;
@@ -352,7 +343,11 @@ namespace JMMClient
 		    this.Series = contract.Series.ToDictionary(a => a.Key, a => new HashSet<int>(a.Value));
 		    this.Childs = new HashSet<int>(contract.Childs);
 			this.AllowDeletion = true;
-            if (this.Locked.HasValue && this.Locked == 1) this.AllowDeletion = false;
+            this.AllowEditing = true;
+            if (this.isLocked) {
+                this.AllowDeletion = false;
+                this.AllowEditing = false;
+            } 
             if (this.FilterType == (int)GroupFilterType.ContinueWatching) this.AllowDeletion = false;
 
             this.IsSystemGroupFilter = false;

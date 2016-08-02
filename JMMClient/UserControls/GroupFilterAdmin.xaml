@@ -112,8 +112,7 @@
         </Grid>
 
         <!-- Toolbar when in read only mode -->
-        <Border Grid.Column="0" Grid.Row="0" Name="panelGroupReadOnlyToolbar" Style="{DynamicResource ToolbarBorderControlStyle}" 
-                    Visibility="{Binding Path=IsLocked, Converter={StaticResource BooleanToVisibilityConverter}}">
+        <Border Grid.Column="0" Grid.Row="0" Name="panelGroupReadOnlyToolbar" Style="{DynamicResource ToolbarBorderControlStyle}">
             <StackPanel Orientation="Horizontal"  VerticalAlignment="Center" Margin="0,0,0,0" Background="#F1F1F1">
 
                 <!-- Edit Group Filter -->
