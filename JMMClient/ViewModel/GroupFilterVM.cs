@@ -77,7 +77,13 @@ namespace JMMClient
             {
                 isBeingEdited = value;
                 NotifyPropertyChanged("IsBeingEdited");
+                NotifyPropertyChanged("IsNotBeingEdited");
             }
+        }
+
+        public Boolean IsNotBeingEdited
+        {
+            get { return !isBeingEdited; }
         }
 
         private string filterName = "";
