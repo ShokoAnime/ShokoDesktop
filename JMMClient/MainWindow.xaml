@@ -303,7 +303,7 @@
                                 <Border BorderThickness="1,0,1,0" BorderBrush="LightGray" Visibility="{Binding Source={x:Static local:MainListHelperVM.Instance}, Path=CurrentWrapperIsGroup, Converter={StaticResource BooleanToVisibilityConverter}}">
                                     <StackPanel Orientation="Horizontal" >
 
-                                        <ComboBox Name="cboGroupSort" Margin="10,5,5,5"></ComboBox>
+                                        <ComboBox Name="cboGroupSort" Margin="10,2,5,2"></ComboBox>
                                         <!-- New Group -->
                                         <Button Name="btnToolbarSort" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}">
                                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
@@ -320,9 +320,7 @@
                                     <StackPanel Orientation="Horizontal" >
                                         <Image Source="Images/32_search.png" Width="16" Height="16" Margin="5,0,0,0" ></Image>
 
-                                        <TextBox Name="txtGroupSearch" Width="180" Margin="10,3,0,3" BorderThickness="1" 
-                                                 ToolTip="{usercontrols:Info Title=Search, 
-                                                 Body=Tooltip_GroupSearch}">
+                                        <TextBox Name="txtGroupSearch" Width="180" Margin="10,3,0,3" BorderThickness="1" VerticalAlignment="Center" ToolTip="{usercontrols:Info Title=Search, Body=Tooltip_GroupSearch}">
 
                                         </TextBox>
                                         <Button Name="btnClearSearch" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource ClearSearchCommand}">
