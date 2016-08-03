@@ -4,7 +4,7 @@
         xmlns:local="clr-namespace:JMMClient"
         xmlns:forms="clr-namespace:JMMClient.Forms"
         xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
-        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=Select_TvDBLanguage}" Height="450" Width="400" ShowInTaskbar="False" WindowStyle="ToolWindow" Icon="/JMMDesktop;component/Images/32_tvdb.png"
+        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=Select_TvDBLanguage}" Height="450" Width="550" ShowInTaskbar="False" WindowStyle="ToolWindow" Icon="/JMMDesktop;component/Images/32_tvdb.png"
         WindowStartupLocation="CenterOwner" Topmost="False">
     <Grid>
         <Grid.Resources>
@@ -38,7 +38,7 @@
                             <Image Height="16" Width="16" Source="{Binding Path=LanguageFlagImage}" Margin="10,0,0,0"/>
                             <TextBlock VerticalAlignment="Center" Text="{Binding Path=Name}" Margin="10,0,0,0"/>
                             <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=Abbreviation}" Margin="5,0,0,0"/>
-                            
+
 
                             <!-- Use this button -->
                             <Button Margin="10,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
@@ -74,7 +74,7 @@
 
 
         <!-- Info block -->
-        <Border Grid.Row="0" Grid.Column="0" Margin="5,5,5,5" Padding="5" Background="#F1F1F1" BorderBrush="LightGray" BorderThickness="1">
+        <Border Grid.Row="0" Grid.Column="0" Margin="5,5,5,0" Padding="5" Background="#F1F1F1" BorderBrush="LightGray" BorderThickness="1">
 
             <Grid>
                 <Grid.RowDefinitions>
@@ -85,15 +85,10 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Image Grid.Row="0" Grid.Column="0" Height="16" Width="16" Source="/Images/32_info.png" Margin="5,0,5,45"/>
-
+                <Image Grid.Row="0" Grid.Column="0" Height="16" Width="16" VerticalAlignment="Top" Source="/Images/32_info.png" Margin="5,2,4,0"/>
                 <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TvDB_DefaultLanguage}" Margin="0,0,0,0" />
             </Grid>
-
-
-
         </Border>
-
 
         <!-- Series List -->
         <Border Grid.Row="1" Grid.Column="0" Margin="5,5,5,5" Background="White" BorderBrush="LightGray" BorderThickness="1">

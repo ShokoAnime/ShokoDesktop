@@ -7162,7 +7162,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to View this Series.
+        ///   Looks up a localized string similar to View Series.
         /// </summary>
         public static string Random_View {
             get {
@@ -11384,6 +11384,15 @@ namespace JMMClient.Properties {
         public static string TvDB_FanartCount {
             get {
                 return ResourceManager.GetString("TvDB_FanartCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If fixing an incorrect linking, please add it to the community links so other users can benefit from your correct link. .
+        /// </summary>
+        public static string TvDB_ManualLink {
+            get {
+                return ResourceManager.GetString("TvDB_ManualLink", resourceCulture);
             }
         }
         

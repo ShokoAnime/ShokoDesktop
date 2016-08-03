@@ -1901,7 +1901,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Complete ONLY</value>
   </data>
   <data name="Random_View" xml:space="preserve">
-    <value>View this Series</value>
+    <value>View Series</value>
   </data>
   <data name="RateSeries_Rate" xml:space="preserve">
     <value>Rate Series:</value>
@@ -4436,5 +4436,8 @@ Unlike the other supported media players, MPV is the fastest when it comes to st
   </data>
   <data name="Anime_Special" xml:space="preserve">
     <value>Special</value>
+  </data>
+  <data name="TvDB_ManualLink" xml:space="preserve">
+    <value>If fixing an incorrect linking, please add it to the community links so other users can benefit from your correct link. </value>
   </data>
 </root>

@@ -1832,9 +1832,6 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   <data name="Random_CompleteOnly" xml:space="preserve">
     <value>ALLEEN voltooien</value>
   </data>
-  <data name="Random_View" xml:space="preserve">
-    <value>Kijk deze serie</value>
-  </data>
   <data name="RateSeries_Rate" xml:space="preserve">
     <value>Tarief Series:</value>
   </data>
@@ -4434,5 +4431,11 @@ In tegenstelling tot de andere ondersteunde mediaspelers is MPV het snelste als 
   </data>
   <data name="Anime_Special" xml:space="preserve">
     <value>Speciale</value>
+  </data>
+  <data name="Random_View" xml:space="preserve">
+    <value>Bekijk serie</value>
+  </data>
+  <data name="TvDB_ManualLink" xml:space="preserve">
+    <value>Als de vaststelling van een onjuiste koppeling, voeg het toe aan de Gemeenschap links zodat andere gebruikers van uw juiste link profiteren kunnen. </value>
   </data>
 </root>

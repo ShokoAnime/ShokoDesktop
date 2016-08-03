@@ -1840,9 +1840,6 @@
   <data name="Random_CompleteOnly" xml:space="preserve">
     <value>TYLKO kompletny</value>
   </data>
-  <data name="Random_View" xml:space="preserve">
-    <value>Zobacz ten serial</value>
-  </data>
   <data name="RateSeries_Rate" xml:space="preserve">
     <value>Szybkość serii:</value>
   </data>
@@ -4436,5 +4433,11 @@ W przeciwieństwie do innych odtwarzaczy multimedialnych obsługiwanych MPV jest
   </data>
   <data name="Anime_Special" xml:space="preserve">
     <value>Specjalne</value>
+  </data>
+  <data name="Random_View" xml:space="preserve">
+    <value>Widok serii</value>
+  </data>
+  <data name="TvDB_ManualLink" xml:space="preserve">
+    <value>Jeśli mocowanie nieprawidłowe łączenie, należy dodać go do łącza do społeczności tak inni użytkownicy mogą korzystać z poprawny link. </value>
   </data>
 </root>

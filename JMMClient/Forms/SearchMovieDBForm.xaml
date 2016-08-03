@@ -87,28 +87,26 @@
 
         <!-- Info Message -->
         <Border Grid.Row="1" Grid.Column="0" Margin="5,5,5,0" Padding="2" Background="#F1F1F1" BorderBrush="LightGray" BorderThickness="1">
-            <StackPanel Orientation="Horizontal"  Margin="0,0,0,0" DockPanel.Dock="Top">
 
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="25" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-                    <Image Grid.Column="0" Height="16" Width="16" Source="/Images/32_info.png" Margin="5,0,4,0"/>
-                    <TextBlock Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=MovieDB_Info}" Margin="0,0,0,0"/>
+                <Image Grid.Column="0" Height="16" Width="16" VerticalAlignment="Top" Source="/Images/32_info.png" Margin="5,2,4,0"/>
+                <TextBlock Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=MovieDB_Info}" TextWrapping="Wrap" Margin="0,0,0,0"/>
 
-                    <TextBlock VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" Margin="0,0,0,0">
+                <TextBlock VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" Margin="0,0,0,0">
                         <usercontrols:HyperLinkStandard DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=LearnMore_ComLinking}" URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_Linking}"/>
-                    </TextBlock>
+                </TextBlock>
 
-                </Grid>
-            </StackPanel>
+            </Grid>
         </Border>
 
         <!-- Search block -->

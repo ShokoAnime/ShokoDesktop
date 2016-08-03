@@ -1844,9 +1844,6 @@
   <data name="Random_CompleteOnly" xml:space="preserve">
     <value>Concluidos apenas</value>
   </data>
-  <data name="Random_View" xml:space="preserve">
-    <value>Ver esta série</value>
-  </data>
   <data name="RateSeries_Rate" xml:space="preserve">
     <value>Avaliar série:</value>
   </data>
@@ -4434,5 +4431,11 @@ Ao contrário de outros players de mídia suportados, MPV é o mais rápido quan
   </data>
   <data name="Anime_Special" xml:space="preserve">
     <value>Especial</value>
+  </data>
+  <data name="Random_View" xml:space="preserve">
+    <value>Exibir série</value>
+  </data>
+  <data name="TvDB_ManualLink" xml:space="preserve">
+    <value>Se corrigindo uma ligação incorreta, por favor, adicioná-lo para as ligações da Comunidade para que outros usuários podem se beneficiar de seu link correto. </value>
   </data>
 </root>

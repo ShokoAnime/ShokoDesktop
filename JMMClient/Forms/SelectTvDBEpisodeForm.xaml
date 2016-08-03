@@ -99,7 +99,7 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
@@ -121,8 +121,31 @@
             </StackPanel>
         </Border>
 
+        <!-- Info Message -->
+        <Border Grid.Row="1" Grid.Column="0" Margin="5,5,5,0" Padding="5" Background="#F1F1F1" BorderBrush="LightGray" BorderThickness="1">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Image Grid.Row="0" Grid.Column="0" Height="16" Width="16" VerticalAlignment="Top" Source="/Images/32_info.png" Margin="5,2,4,0"/>
+                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TvDB_ManualLink}" TextWrapping="Wrap" Margin="0,0,0,0"/>
+
+                <TextBlock VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" Margin="0,0,0,0">
+                        <usercontrols:HyperLinkStandard DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=LearnMore_ComLinking}" URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_Linking}"/>
+                </TextBlock>
+            </Grid>
+        </Border>
+
         <!-- episode list -->
-        <Border Grid.Row="1" Grid.Column="0" Margin="5,5,5,5" Background="White" BorderBrush="LightGray" BorderThickness="1">
+        <Border Grid.Row="2" Grid.Column="0" Margin="5,5,5,5" Background="White" BorderBrush="LightGray" BorderThickness="1">
             <ListBox Name="lbFiles" BorderThickness="0" Background="Transparent"  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                             ItemsSource="{Binding Path=CurrentEpisodes, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:SelectTvDBEpisodeForm}}}"
                             HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 

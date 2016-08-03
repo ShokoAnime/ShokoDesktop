@@ -1,12 +1,13 @@
-﻿<Window x:Class="JMMClient.Forms.ImportFolder"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:JMMClient"
         xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
-        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=ImportFolder}" Height="Auto" Width="Auto" Icon="/JMMDesktop;component/Images/32_edit.png" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" SizeToContent="WidthAndHeight">
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="JMMClient.Forms.ImportFolder"
+        Title="{Resx Key=ImportFolder, ResxName=JMMClient.Properties.Resources}" Height="450" Width="600" Icon="/JMMDesktop;component/Images/32_edit.png" ResizeMode="CanResize" WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow">
 
 
-    <StackPanel Orientation="Vertical">
+    <StackPanel Orientation="Vertical" Height="Auto">
 
         <StackPanel.Resources>
 
@@ -21,7 +22,7 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition />
@@ -35,40 +36,41 @@
                 <Border Style="{DynamicResource ToolbarBorderControlStyle}" Background="FloralWhite" Margin="0,0,0,5" Padding="5" DockPanel.Dock="Top" BorderThickness="1"
                         Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3">
                     <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="25"/>
-                            <ColumnDefinition Width="490"/>
-                        </Grid.ColumnDefinitions>
-
                         <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0" VerticalAlignment="Top"/>
-                        <TextBlock Grid.Column="1" Grid.Row="0" Margin="5,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=JMMServer_ImportFoldersInfo}" TextWrapping="Wrap" />
+                        <TextBlock Grid.Column="1" Grid.Row="0" Margin="5,0,0,0" Text="{Resx Key=JMMServer_ImportFoldersInfo, ResxName=JMMClient.Properties.Resources}" TextWrapping="Wrap" />
 
                         <Image Height="16" Width="16" Source="/Images/16_warning.png" Margin="5,2,4,0" Grid.Column="0" Grid.Row="1" VerticalAlignment="Top" />
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=JMMServer_DDInfo}" Margin="5,0,0,0" TextWrapping="Wrap" Grid.Column="1" Grid.Row="1"/>
+                        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Resx Key=JMMServer_DDInfo, ResxName=JMMClient.Properties.Resources}" Margin="5,0,0,0" TextWrapping="Wrap" />
 
-                        <usercontrols:HyperLinkStandard Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="5,2,5,0" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=LearnMore_ImportFolders}"
-                                                                        URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_ImportFolders}"/>
+                        <usercontrols:HyperLinkStandard Grid.Row="2" Grid.Column="1" Margin="5,2,5,0" DisplayText="{Resx Key=LearnMore_ImportFolders, ResxName=JMMClient.Properties.Resources}" URL="{Resx Key=Link_ImportFolders, ResxName=JMMClient.Properties.Resources}"/>
+
                     </Grid>
                 </Border>
 
-                <TextBlock Grid.Column="0" Grid.Row="1" Margin="0,0,10,5" FontWeight="Bold" Padding="5" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ServerDetails}" />
-                <TextBlock Grid.Column="0" Grid.Row="2" Margin="0,0,10,5" FontWeight="DemiBold" Padding="5" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ImportFolderPath}"/>
-                <TextBox Name="txtImportFolderLocation" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="2" Width="400"  Margin="0,5,0,5"></TextBox>
+                <TextBlock Grid.Column="0" Grid.Row="1" Margin="0,0,10,5" FontWeight="Bold" Padding="5" Text="{Resx Key=ServerDetails, ResxName=JMMClient.Properties.Resources}" />
+                <TextBlock Grid.Column="0" Grid.Row="2" Margin="0,0,10,5" FontWeight="DemiBold" Padding="5" Text="{Resx Key=ImportFolderPath, ResxName=JMMClient.Properties.Resources}"/>
+                <TextBox x:Name="txtImportFolderLocation" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="2" Width="Auto"  Margin="0,5,0,5"/>
 
-                <TextBlock Grid.Column="0" Grid.Row="3" Margin="0,0,10,5" FontWeight="DemiBold" Padding="5" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=DropSource}"/>
-                <CheckBox Name="chkDropSource" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center"></CheckBox>
+                <TextBlock Grid.Column="0" Grid.Row="3" Margin="0,0,10,5" FontWeight="DemiBold" Padding="5" Text="{Resx Key=DropSource, ResxName=JMMClient.Properties.Resources}"/>
+                <CheckBox x:Name="chkDropSource" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center"/>
 
-                <TextBlock Grid.Column="0" Grid.Row="4" Margin="0,0,10,5" FontWeight="DemiBold" Padding="5" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=DropDestination}"/>
-                <CheckBox Name="chkDropDestination" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center"></CheckBox>
+                <TextBlock Grid.Column="0" Grid.Row="4" Margin="0,0,10,5" FontWeight="DemiBold" Padding="5" Text="{Resx Key=DropDestination, ResxName=JMMClient.Properties.Resources}"/>
+                <CheckBox x:Name="chkDropDestination" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center"/>
 
-                <TextBlock Grid.Column="0" Grid.Row="5" Margin="0,0,10,5" FontWeight="DemiBold" Padding="5" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ImportSettings_WatchFiles}"/>
-                <CheckBox Name="chkIsWatched" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center"></CheckBox>
+                <TextBlock Grid.Column="0" Grid.Row="5" Margin="0,0,10,5" FontWeight="DemiBold" Padding="5" Text="{Resx Key=ImportSettings_WatchFiles, ResxName=JMMClient.Properties.Resources}"/>
+                <CheckBox x:Name="chkIsWatched" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center"/>
 
             </Grid>
 
@@ -86,27 +88,27 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Column="0" Grid.Row="0" Margin="0,0,10,5" FontWeight="Bold" Padding="5" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=LocalMapping}"/>
+                <TextBlock Grid.Column="0" Grid.Row="0" Margin="0,0,10,5" FontWeight="Bold" Padding="5" Text="{Resx Key=LocalMapping, ResxName=JMMClient.Properties.Resources}"/>
 
-                <TextBlock Grid.Column="0" Grid.Row="1" Margin="0,0,10,5" FontWeight="DemiBold" Padding="5" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=LocalPath}"/>
-                <TextBox  Name="txtLocalPath" HorizontalAlignment="Stretch" Grid.Column="2" Grid.Row="2" Width="400" Margin="0,5,0,5"></TextBox>
+                <TextBlock Grid.Column="0" Grid.Row="1" Margin="0,0,10,5" FontWeight="DemiBold" Padding="5" Text="{Resx Key=LocalPath, ResxName=JMMClient.Properties.Resources}"/>
+                <TextBox  x:Name="txtLocalPath" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="2" Width="Auto" Margin="0,5,0,5"/>
 
             </Grid>
 
         </Border>
 
         <StackPanel Orientation="Horizontal" Margin="5,5,0,10">
-            <Button HorizontalAlignment="Left" Name="btnSave" Margin="0,0,0,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto">
+            <Button HorizontalAlignment="Left" x:Name="btnSave" Margin="0,0,0,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                     <Image Height="16" Width="16" Source="/Images/16_save.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Save}" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx Key=Save, ResxName=JMMClient.Properties.Resources}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
 
-            <Button HorizontalAlignment="Left" Name="btnCancel" Margin="10,0,0,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto">
+            <Button HorizontalAlignment="Left" x:Name="btnCancel" Margin="10,0,0,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                     <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Cancel}" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx Key=Cancel, ResxName=JMMClient.Properties.Resources}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
         </StackPanel>

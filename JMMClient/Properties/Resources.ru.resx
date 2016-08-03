@@ -1838,9 +1838,6 @@
   <data name="Random_CompleteOnly" xml:space="preserve">
     <value>ТОЛЬКО полные</value>
   </data>
-  <data name="Random_View" xml:space="preserve">
-    <value>Просмотр этого сериала</value>
-  </data>
   <data name="RateSeries_Rate" xml:space="preserve">
     <value>Оценить сериал:</value>
   </data>
@@ -4434,5 +4431,11 @@
   </data>
   <data name="Anime_Special" xml:space="preserve">
     <value>Специальные</value>
+  </data>
+  <data name="Random_View" xml:space="preserve">
+    <value>Просмотр сериала</value>
+  </data>
+  <data name="TvDB_ManualLink" xml:space="preserve">
+    <value>Если исправление неправильные ссылки, пожалуйста, добавьте его в сообщество ссылки так другие пользователи могут воспользоваться вашей правильной ссылке. </value>
   </data>
 </root>

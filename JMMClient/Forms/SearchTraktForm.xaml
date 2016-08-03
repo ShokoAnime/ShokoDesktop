@@ -123,39 +123,36 @@
         </Border>
 
         <!-- Info Message -->
-        <Border Grid.Row="1" Grid.Column="0" Margin="5,4,5,0" Padding="2" Background="#F1F1F1" BorderBrush="LightGray" BorderThickness="1">
-            <StackPanel Orientation="Horizontal"  Margin="0,0,0,0" DockPanel.Dock="Top">
+        <Border Grid.Row="1" Grid.Column="0" Margin="5,5,5,0" Padding="2" Background="#F1F1F1" BorderBrush="LightGray" BorderThickness="1">
 
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="25" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-                    <Image Grid.Column="0" Height="16" Width="16" Source="/Images/32_info.png" Margin="5,0,4,0"/>
-                    <TextBlock Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Trakt_SearchInfo}" Margin="0,0,10,0"/>
+                <Image Grid.Column="0" Height="16" Width="16" Source="/Images/32_info.png" VerticalAlignment="Top" Margin="5,2,4,0"/>
+                <TextBlock Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Trakt_SearchInfo}" TextWrapping="Wrap" Margin="0,0,0,0"/>
 
-                    <!-- Check Cred button -->
-                    <Button Name="btnChkCred" Grid.Column="2" Margin="5,0,0,0" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                            <Image Height="16" Width="16" Source="/Images/32_settings.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CheckCred}" Margin="0,0,5,0"/>
-                        </StackPanel>
-                    </Button>
+                <!-- Check Cred button -->
+                <Button Name="btnChkCred" Grid.Column="2" Margin="0,5,10,-10" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Image Height="16" Width="16" Source="/Images/32_settings.png" Margin="0,0,5,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CheckCred}" Margin="0,0,5,0"/>
+                    </StackPanel>
+                </Button>
 
-                    <TextBlock VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" Margin="0,0,0,0">
+                <TextBlock VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" Margin="0,0,0,0">
                         <usercontrols:HyperLinkStandard DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=LearnMore_ComLinking}" URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_Linking}"/>
-                    </TextBlock>
+                </TextBlock>
 
-                </Grid>
-            </StackPanel>
-
+            </Grid>
         </Border>
 
         <!-- Search block -->

@@ -1838,9 +1838,6 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   <data name="Random_CompleteOnly" xml:space="preserve">
     <value>Remplissez seulement</value>
   </data>
-  <data name="Random_View" xml:space="preserve">
-    <value>Découvre cette série</value>
-  </data>
   <data name="RateSeries_Rate" xml:space="preserve">
     <value>Séries de taux :</value>
   </data>
@@ -4434,5 +4431,11 @@ Contrairement à d’autres joueurs supports pris en charge, MPV est le plus rap
   </data>
   <data name="Anime_Special" xml:space="preserve">
     <value>Spécial</value>
+  </data>
+  <data name="Random_View" xml:space="preserve">
+    <value>Série vue</value>
+  </data>
+  <data name="TvDB_ManualLink" xml:space="preserve">
+    <value>Si fixation un lien incorrect, s’il vous plaît ajoutez-le aux liens communautaires pour les autres utilisateurs peuvent bénéficier de votre lien correct. </value>
   </data>
 </root>

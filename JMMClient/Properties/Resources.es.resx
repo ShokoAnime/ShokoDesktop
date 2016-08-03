@@ -1838,9 +1838,6 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
   <data name="Random_CompleteOnly" xml:space="preserve">
     <value>Completar solamente</value>
   </data>
-  <data name="Random_View" xml:space="preserve">
-    <value>Ver esta serie</value>
-  </data>
   <data name="RateSeries_Rate" xml:space="preserve">
     <value>Serie de tipo:</value>
   </data>
@@ -4434,5 +4431,11 @@ A diferencia de los otros jugadores de medios compatibles, la MPV es el más rá
   </data>
   <data name="Anime_Special" xml:space="preserve">
     <value>Especial</value>
+  </data>
+  <data name="Random_View" xml:space="preserve">
+    <value>Ver serie</value>
+  </data>
+  <data name="TvDB_ManualLink" xml:space="preserve">
+    <value>Si por favor, fijar un enlace incorrecto, agregar los vínculos de la comunidad así que otros usuarios pueden beneficiarse de su vínculo correcto. </value>
   </data>
 </root>

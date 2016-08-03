@@ -1523,9 +1523,6 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   <data name="Random_CompleteOnly" xml:space="preserve">
     <value>Füllen Sie nur</value>
   </data>
-  <data name="Random_View" xml:space="preserve">
-    <value>Dieser Serie anzeigen</value>
-  </data>
   <data name="RateSeries_Rate" xml:space="preserve">
     <value>Tarif-Serie:</value>
   </data>
@@ -4434,5 +4431,11 @@ Im Gegensatz zu den anderen unterstützten Media-Playern ist MPV der schnellste 
   </data>
   <data name="Anime_Special" xml:space="preserve">
     <value>Spezielle</value>
+  </data>
+  <data name="Random_View" xml:space="preserve">
+    <value>Blick-Serie</value>
+  </data>
+  <data name="TvDB_ManualLink" xml:space="preserve">
+    <value>Wenn eine falsche Verknüpfung zur Festsetzung, bitte fügen sie auf der Community-Links, damit andere Benutzer von Ihren korrekten Link profitieren können. </value>
   </data>
 </root>
