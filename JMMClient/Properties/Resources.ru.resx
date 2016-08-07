@@ -4438,4 +4438,10 @@
   <data name="TvDB_ManualLink" xml:space="preserve">
     <value>Если исправление неправильные ссылки, пожалуйста, добавьте его в сообщество ссылки так другие пользователи могут воспользоваться вашей правильной ссылке. </value>
   </data>
+  <data name="RelationSetting_OVA" xml:space="preserve">
+    <value>OVA</value>
+  </data>
+  <data name="RelationSetting_Movie" xml:space="preserve">
+    <value>Фильм</value>
+  </data>
 </root>

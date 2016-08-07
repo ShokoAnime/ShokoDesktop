@@ -4438,4 +4438,10 @@ A diferencia de los otros jugadores de medios compatibles, la MPV es el más rá
   <data name="TvDB_ManualLink" xml:space="preserve">
     <value>Si por favor, fijar un enlace incorrecto, agregar los vínculos de la comunidad así que otros usuarios pueden beneficiarse de su vínculo correcto. </value>
   </data>
+  <data name="RelationSetting_OVA" xml:space="preserve">
+    <value>OVA</value>
+  </data>
+  <data name="RelationSetting_Movie" xml:space="preserve">
+    <value>Película</value>
+  </data>
 </root>

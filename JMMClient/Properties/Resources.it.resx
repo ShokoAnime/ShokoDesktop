@@ -4438,4 +4438,10 @@ A differenza di altri lettori multimediali supportati, MPV è il più veloce qua
   <data name="TvDB_ManualLink" xml:space="preserve">
     <value>Se fissare un collegamento non corretto, si prega di aggiungere i link di comunità così gli altri utenti possono beneficiare il link corretto. </value>
   </data>
+  <data name="RelationSetting_OVA" xml:space="preserve">
+    <value>OVA</value>
+  </data>
+  <data name="RelationSetting_Movie" xml:space="preserve">
+    <value>Film</value>
+  </data>
 </root>

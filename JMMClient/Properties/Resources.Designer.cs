@@ -7531,11 +7531,29 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Movie.
+        /// </summary>
+        public static string RelationSetting_Movie {
+            get {
+                return ResourceManager.GetString("RelationSetting_Movie", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Other.
         /// </summary>
         public static string RelationSetting_Other {
             get {
                 return ResourceManager.GetString("RelationSetting_Other", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OVA.
+        /// </summary>
+        public static string RelationSetting_OVA {
+            get {
+                return ResourceManager.GetString("RelationSetting_OVA", resourceCulture);
             }
         }
         

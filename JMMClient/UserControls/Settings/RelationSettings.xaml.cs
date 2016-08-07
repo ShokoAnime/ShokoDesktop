@@ -22,6 +22,8 @@ namespace JMMClient.UserControls
 
             chkRelationSettings_AutoGroupSeries.Click += chkRelationSettings_AutoGroupSeries_Click;
 
+            chkRelationSettings_OVA.Click += new RoutedEventHandler(settingChanged);
+            chkRelationSettings_Movie.Click += new RoutedEventHandler(settingChanged);
             chkRelationSettings_SameSetting.Click += new RoutedEventHandler(settingChanged);
             chkRelationSettings_AltSetting.Click += new RoutedEventHandler(settingChanged);
             chkRelationSettings_AltVersion.Click += new RoutedEventHandler(settingChanged);

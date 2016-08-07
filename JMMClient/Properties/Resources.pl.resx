@@ -4440,4 +4440,10 @@ W przeciwieństwie do innych odtwarzaczy multimedialnych obsługiwanych MPV jest
   <data name="TvDB_ManualLink" xml:space="preserve">
     <value>Jeśli mocowanie nieprawidłowe łączenie, należy dodać go do łącza do społeczności tak inni użytkownicy mogą korzystać z poprawny link. </value>
   </data>
+  <data name="RelationSetting_OVA" xml:space="preserve">
+    <value>OVA</value>
+  </data>
+  <data name="RelationSetting_Movie" xml:space="preserve">
+    <value>Film</value>
+  </data>
 </root>

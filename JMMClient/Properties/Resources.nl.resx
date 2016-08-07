@@ -4438,4 +4438,10 @@ In tegenstelling tot de andere ondersteunde mediaspelers is MPV het snelste als 
   <data name="TvDB_ManualLink" xml:space="preserve">
     <value>Als de vaststelling van een onjuiste koppeling, voeg het toe aan de Gemeenschap links zodat andere gebruikers van uw juiste link profiteren kunnen. </value>
   </data>
+  <data name="RelationSetting_OVA" xml:space="preserve">
+    <value>EICELLEN</value>
+  </data>
+  <data name="RelationSetting_Movie" xml:space="preserve">
+    <value>Film</value>
+  </data>
 </root>

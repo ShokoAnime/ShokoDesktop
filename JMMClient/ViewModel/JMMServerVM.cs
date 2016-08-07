@@ -1503,6 +1503,30 @@ namespace JMMClient
             }
         }
 
+        public bool RelationExcludeOVA
+        {
+            get
+            {
+                return isRelationInExclusion("ova");
+            }
+            set
+            {
+                setRelationinExclusion("ova", value);
+            }
+        }
+
+        public bool RelationExcludeMovie
+        {
+            get
+            {
+                return isRelationInExclusion("movie");
+            }
+            set
+            {
+                setRelationinExclusion("movie", value);
+            }
+        }
+
         public bool RelationExcludeSameSetting
         {
             get

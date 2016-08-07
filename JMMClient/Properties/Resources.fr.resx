@@ -4438,4 +4438,10 @@ Contrairement à d’autres joueurs supports pris en charge, MPV est le plus rap
   <data name="TvDB_ManualLink" xml:space="preserve">
     <value>Si fixation un lien incorrect, s’il vous plaît ajoutez-le aux liens communautaires pour les autres utilisateurs peuvent bénéficier de votre lien correct. </value>
   </data>
+  <data name="RelationSetting_OVA" xml:space="preserve">
+    <value>OVULES</value>
+  </data>
+  <data name="RelationSetting_Movie" xml:space="preserve">
+    <value>Film</value>
+  </data>
 </root>

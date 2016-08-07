@@ -4440,4 +4440,10 @@ Unlike the other supported media players, MPV is the fastest when it comes to st
   <data name="TvDB_ManualLink" xml:space="preserve">
     <value>If fixing an incorrect linking, please add it to the community links so other users can benefit from your correct link. </value>
   </data>
+  <data name="RelationSetting_OVA" xml:space="preserve">
+    <value>OVA</value>
+  </data>
+  <data name="RelationSetting_Movie" xml:space="preserve">
+    <value>Movie</value>
+  </data>
 </root>
