@@ -1701,7 +1701,7 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
     <value>http://jmediamanager.org/JMM-Desktop/Utilities/file-renaming/</value>
   </data>
   <data name="Link_GroupFilters" xml:space="preserve">
-    <value>http://jmediamanager.org/JMM-desktop/Collection/#What-are-filters</value>
+    <value>http://jmediamanager.org/jmm-desktop/collection/filters/#what-are-filters</value>
   </data>
   <data name="Link_ImportFolders" xml:space="preserve">
     <value>http://jmediamanager.org/jmm-desktop/server/#import-folders</value>
@@ -4385,7 +4385,7 @@ A differenza di altri lettori multimediali supportati, MPV è il più veloce qua
     <value>Siete pregati di notare che l'aggiornamento destinazione goccia influirà solo nuova serie viene aggiunto. Serie che hai già importato non ne risentiranno.</value>
   </data>
   <data name="Link_Linking" xml:space="preserve">
-    <value>http://jmediamanager.org/jmm-desktop/collection/#linking</value>
+    <value>http://jmediamanager.org/jmm-desktop/collection/collection-overview/#linking</value>
   </data>
   <data name="MovieDB_Info" xml:space="preserve">
     <value>Mentre il film DB Indice serie TV, JMM supporta solo collegamento film.</value>

@@ -1695,7 +1695,7 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>http://jmediamanager.org/JMM-Desktop/Utilities/file-Renaming/</value>
   </data>
   <data name="Link_GroupFilters" xml:space="preserve">
-    <value>http://jmediamanager.org/JMM-Desktop/Collection/#What-are-filters</value>
+    <value>http://jmediamanager.org/jmm-desktop/collection/filters/#what-are-filters</value>
   </data>
   <data name="Link_ImportFolders" xml:space="preserve">
     <value>http://jmediamanager.org/jmm-desktop/server/#import-folders</value>
@@ -4385,7 +4385,7 @@ In tegenstelling tot de andere ondersteunde mediaspelers is MPV het snelste als 
     <value>Houd er rekening mee, bijwerken van uw bestemming daling zal alleen van invloed op nieuwe serie wordt toegevoegd. Serie die u al hebt geïmporteerd, zal niet worden beïnvloed.</value>
   </data>
   <data name="Link_Linking" xml:space="preserve">
-    <value>http://jmediamanager.org/jmm-desktop/collection/#linking</value>
+    <value>http://jmediamanager.org/jmm-desktop/collection/collection-overview/#linking</value>
   </data>
   <data name="MovieDB_Info" xml:space="preserve">
     <value>Terwijl de film DB televisieserie indexeert, ondersteunt JMM alleen koppelen films.</value>

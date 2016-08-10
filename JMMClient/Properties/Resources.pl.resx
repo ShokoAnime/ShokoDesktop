@@ -1703,7 +1703,7 @@
     <value>http://jmediamanager.org/JMM-Desktop/Utilities/File-renaming/</value>
   </data>
   <data name="Link_GroupFilters" xml:space="preserve">
-    <value>http://jmediamanager.org/JMM-Desktop/Collection/#What-are-filters</value>
+    <value>http://jmediamanager.org/jmm-desktop/collection/filters/#what-are-filters</value>
   </data>
   <data name="Link_ImportFolders" xml:space="preserve">
     <value>http://jmediamanager.org/jmm-desktop/server/#import-folders</value>
@@ -4387,7 +4387,7 @@ W przeciwieństwie do innych odtwarzaczy multimedialnych obsługiwanych MPV jest
     <value>Uwaga: aktualizowanie miejsca docelowego upuszczania wpłynie tylko na nowa seria dodawana. Nie wpływają na serii, które już zostały zaimportowane.</value>
   </data>
   <data name="Link_Linking" xml:space="preserve">
-    <value>http://jmediamanager.org/jmm-desktop/collection/#linking</value>
+    <value>http://jmediamanager.org/jmm-desktop/collection/collection-overview/#linking</value>
   </data>
   <data name="MovieDB_Info" xml:space="preserve">
     <value>Podczas gdy The Movie DB indeksu serii TV, JMM obsługuje tylko łączenia filmów.</value>

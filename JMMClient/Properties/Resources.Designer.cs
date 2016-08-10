@@ -5758,7 +5758,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/collection/#what-are-filters.
+        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/collection/filters/#what-are-filters.
         /// </summary>
         public static string Link_GroupFilters {
             get {
@@ -5785,7 +5785,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/collection/#linking.
+        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/collection/collection-overview/#linking.
         /// </summary>
         public static string Link_Linking {
             get {

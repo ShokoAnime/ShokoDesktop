@@ -2319,7 +2319,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>http://jmediamanager.org/jmm-desktop/utilities/file-renaming/</value>
   </data>
   <data name="Link_GroupFilters" xml:space="preserve">
-    <value>http://jmediamanager.org/jmm-desktop/collection/#what-are-filters</value>
+    <value>http://jmediamanager.org/jmm-desktop/collection/filters/#what-are-filters</value>
   </data>
   <data name="Link_ImportFolders" xml:space="preserve">
     <value>http://jmediamanager.org/jmm-desktop/server/#import-folders</value>
@@ -4403,7 +4403,7 @@ Unlike the other supported media players, MPV is the fastest when it comes to st
     <value>Please note, updating your drop destination will only affect new series being added. Series you've already imported will not be affected.</value>
   </data>
   <data name="Link_Linking" xml:space="preserve">
-    <value>http://jmediamanager.org/jmm-desktop/collection/#linking</value>
+    <value>http://jmediamanager.org/jmm-desktop/collection/collection-overview/#linking</value>
   </data>
   <data name="MovieDB_Info" xml:space="preserve">
     <value>While The Movie DB does index TV Series, JMM only supports linking movies.</value>
