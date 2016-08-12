@@ -16,7 +16,7 @@ namespace JMMClient.VideoPlayers
 
         public override void Init()
         {
-	        // nvo is k-lite
+	        // nvo is nvidia optimus
             PlayerPath = Utils.CheckSysPath(new string[] { "mpc-hc64.exe", "mpc-hc.exe", "mpc-hc64_nvo.exe", "mpc-hc_nvo.exe" });
             //Look for 64bit
             if (string.IsNullOrEmpty(PlayerPath))
