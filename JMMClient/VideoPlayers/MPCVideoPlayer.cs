@@ -33,6 +33,12 @@ namespace JMMClient.VideoPlayers
             }
             if (string.IsNullOrEmpty(PlayerPath))
             {
+                PlayerPath = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\KLiteCodecPack_is1", "InstallLocation", null);
+                if (!string.IsNullOrEmpty(PlayerPath))
+                    PlayerPath = System.IO.Path.Combine(PlayerPath, @"MPC_HC64\mpc-64.exe" , PlayerPath, @"MPC-HC64\mpc-hc64_nvo.exe");
+            }
+            if (string.IsNullOrEmpty(PlayerPath))
+            {
                 PlayerPath = (string)Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\MPC-HC\MPC-HC", "ExePath", null);
             }
             if (string.IsNullOrEmpty(PlayerPath))
