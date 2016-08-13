@@ -43,6 +43,8 @@ namespace JMMClient.VideoPlayers
                         PlayerPath = Path.Combine(PlayerPath, @"MPC-HC\mpc.exe");
                     else if (File.Exists(Path.Combine(PlayerPath, @"MPC-HC\mpc-hc_nvo.exe")))
                         PlayerPath = Path.Combine(PlayerPath, @"MPC-HC\mpc-hc_nvo.exe");
+                    else
+                        PlayerPath = null;
             }
             if (string.IsNullOrEmpty(PlayerPath))
             {
