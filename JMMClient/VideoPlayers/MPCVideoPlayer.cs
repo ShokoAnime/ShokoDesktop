@@ -18,6 +18,7 @@ namespace JMMClient.VideoPlayers
         {
 	        // nvo is nvidia optimus
             PlayerPath = Utils.CheckSysPath(new string[] { "mpc-hc64.exe", "mpc-hc.exe", "mpc-hc64_nvo.exe", "mpc-hc_nvo.exe" });
+            kcpPath = Utils.CheckSysPath(new string[] { "mpc-hc64.exe" , "mpc-hc.exe" , "mpc-hc64-nvo.exe" , "mpc-hc_nvo.exe"});
             //Look for 64bit
             if (string.IsNullOrEmpty(PlayerPath))
             { 
@@ -30,6 +31,19 @@ namespace JMMClient.VideoPlayers
                 PlayerPath = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Combined Community Codec Pack_is1", "InstallLocation", null);
                 if (!string.IsNullOrEmpty(PlayerPath))
                     PlayerPath = System.IO.Path.Combine(PlayerPath, @"MPC\mpc-hc.exe");
+            }
+            if (string.IsNullOrEmpty(PlayerPath))
+            {
+                kcpPath = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\KLiteCodecPack_is1", "InstallLocation", null);
+            if (!string.IsNullOrEmpty(kcpPath))
+                if (File.Exists(Path.Combine(kcpPath, @"MPC-HC64\mpc-64.exe")))
+                    PlayerPath = Path.Combine(kcpPath, @"MPC-HC64\mpc-64.exe");
+                else if (File.Exists(Path.Combine(kcpPath, @"MPC-HC64\mpc-hc64_nvo.exe")))
+                    PlayerPath = Path.Combine(kcpPath, @"MPC-HC64\mpc-hc64_nvo.exe");
+                else if (File.Exists(Path.Combine(kcpPath, @"MPC-HC\mpc.exe")))
+                    PlayerPath = Path.Combine(kcpPath, @"MPC-HC\mpc.exe");
+                else if (File.Exists(Path.Combine(kcpPath, @"MPC-HC\mpc-hc_nvo.exe")))
+                    PlayerPath = Path.Combine(kcpPath, @"MPC-HC\mpc-hc_nvo.exe");
             }
             if (string.IsNullOrEmpty(PlayerPath))
             {

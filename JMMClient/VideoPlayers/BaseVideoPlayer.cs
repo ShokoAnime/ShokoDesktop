@@ -18,6 +18,7 @@ namespace JMMClient.Utilities
 
 
         internal string PlayerPath { get; set; }
+        internal string kcpPath { get; set; }
         public bool Active { get; internal set; }
         public abstract void Init();
         internal abstract void FileChangeEvent(string path);
