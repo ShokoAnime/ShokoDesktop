@@ -3,9 +3,17 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
+using System.Linq;
 using System.Threading;
+using System.Web.UI.WebControls;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
+using DevExpress.Xpf.Core;
+using CheckBox = System.Windows.Controls.CheckBox;
+using Image = System.Windows.Controls.Image;
+using Orientation = System.Windows.Controls.Orientation;
 
 namespace JMMClient.Forms
 {
@@ -150,18 +158,63 @@ namespace JMMClient.Forms
                 string msg = string.Format(Properties.Resources.DeleteFiles_Deleting, i, vids.Count);
                 deleteFilesWorker.ReportProgress(0, msg);
                 //Thread.Sleep(500);
-
-                string result = JMMServerVM.Instance.clientBinaryHTTP.DeleteVideoLocalAndFile(vid.VideoLocalID);
-                if (result.Length > 0)
+                foreach (VideoLocal_PlaceVM n in vid.Places)
                 {
-                    deleteFilesWorker.ReportProgress(0, result);
-                    return;
+                    string g = dict[n.ImportFolder.CloudID ?? 0].Item1;
+                    if (chks[g])
+                    {
+                        string result = JMMServerVM.Instance.clientBinaryHTTP.DeleteVideoLocalPlaceAndFile(n.VideoLocal_Place_ID);
+                        if (result.Length > 0)
+                        {
+                            deleteFilesWorker.ReportProgress(0, result);
+                            return;
+                        }
+                    }
                 }
 
 
             }
 
             deleteFilesWorker.ReportProgress(100, Properties.Resources.Done);
+        }
+        Dictionary<string, bool> chks=new Dictionary<string, bool>();
+        private Dictionary<int, Tuple<string, BitmapImage>> dict=new Dictionary<int, Tuple<string, BitmapImage>>();
+
+        public void InitImportFolders(Dictionary<string, BitmapImage> types)
+        {
+            WrapPanel.Children.Clear();
+            foreach (string s in types.Keys)
+            {
+                StackPanel st = new StackPanel
+                {
+                    Orientation = Orientation.Horizontal,
+                    Margin = new Thickness(0, 0, 10, 0)
+                };
+                Image im = new Image
+                {
+                    Height = 24,
+                    Width = 24,
+                    Source = types[s],
+                    VerticalAlignment = VerticalAlignment.Center,
+                    Margin = new Thickness(0, 0, 5, 0)
+                };
+                TextBlock tx = new TextBlock
+                {
+                    Margin = new Thickness(0, 0, 5, 0),
+                    Text = s,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    FontWeight = FontWeights.DemiBold
+                };
+                CheckBox chk = new CheckBox {VerticalAlignment = VerticalAlignment.Center, IsChecked = true};
+                chk.Checked += (a, b) =>
+                {
+                    chks[s] = chk.IsChecked.Value;
+                };
+                st.Children.Add(im);
+                st.Children.Add(tx);
+                st.Children.Add(chk);
+                WrapPanel.Children.Add(st);
+            }
         }
 
         public void Init(int animeID, GroupVideoQualityVM gvq)
@@ -174,19 +227,31 @@ namespace JMMClient.Forms
             // get the videos
             try
             {
+                JMMServerVM.Instance.RefreshCloudAccounts();
+                dict = JMMServerVM.Instance.FolderProviders.ToDictionary(a => a.CloudID ?? 0, a=>new Tuple<string,BitmapImage>(a.Provider,a.Icon));
+                chks = new Dictionary<string, bool>();
+                Dictionary<string, BitmapImage> types=new Dictionary<string, BitmapImage>();
+
                 List<JMMServerBinary.Contract_VideoDetailed> vidContracts = JMMServerVM.Instance.clientBinaryHTTP.GetFilesByGroupAndResolution(AnimeID,
                     GroupVideoQuality.GroupName, GroupVideoQuality.Resolution, GroupVideoQuality.VideoSource, GroupVideoQuality.VideoBitDepth, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
                 vids = new List<VideoDetailedVM>();
                 foreach (JMMServerBinary.Contract_VideoDetailed contract in vidContracts)
                 {
                     VideoDetailedVM vid = new VideoDetailedVM(contract);
+                    foreach (VideoLocal_PlaceVM vv in vid.Places)
+                    {
+                        Tuple<string, BitmapImage> tup = dict[vv.ImportFolder.CloudID ?? 0];
+                        if (!types.ContainsKey(tup.Item1))
+                            types.Add(tup.Item1,tup.Item2);
+                    }
                     vids.Add(vid);
                 }
+                
                 FileCount = vids.Count;
                 lbFiles.ItemsSource = vids;
-
                 GroupName = GroupVideoQuality.GroupName;
                 SummaryText = string.Format("{0} - {1}", GroupVideoQuality.VideoSource, GroupVideoQuality.Resolution);
+                InitImportFolders(types);
             }
             catch (Exception ex)
             {
@@ -209,12 +274,24 @@ namespace JMMClient.Forms
             // get the videos
             try
             {
+                JMMServerVM.Instance.RefreshCloudAccounts();
+                dict = JMMServerVM.Instance.FolderProviders.ToDictionary(a => a.CloudID ?? 0, a => new Tuple<string, BitmapImage>(a.Provider, a.Icon));
+                chks = new Dictionary<string, bool>();
+                Dictionary<string, BitmapImage> types = new Dictionary<string, BitmapImage>();
+
+
                 List<JMMServerBinary.Contract_VideoDetailed> vidContracts = JMMServerVM.Instance.clientBinaryHTTP.GetFilesByGroup(AnimeID,
                     GroupFileSummary.GroupName, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
                 vids = new List<VideoDetailedVM>();
                 foreach (JMMServerBinary.Contract_VideoDetailed contract in vidContracts)
                 {
                     VideoDetailedVM vid = new VideoDetailedVM(contract);
+                    foreach (VideoLocal_PlaceVM vv in vid.Places)
+                    {
+                        Tuple<string, BitmapImage> tup = dict[vv.ImportFolder.CloudID ?? 0];
+                        if (!types.ContainsKey(tup.Item1))
+                            types.Add(tup.Item1, tup.Item2);
+                    }
                     vids.Add(vid);
                 }
                 FileCount = vids.Count;
@@ -222,6 +299,8 @@ namespace JMMClient.Forms
 
                 GroupName = GroupFileSummary.GroupName;
                 SummaryText = "";
+                InitImportFolders(types);
+
             }
             catch (Exception ex)
             {

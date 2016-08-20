@@ -105,9 +105,12 @@ namespace JMMClient.UserControls
         {
             VideoLocalVM vid = obj as VideoLocalVM;
             if (vid == null) return true;
-
-            int index = vid.FilePath.IndexOf(txtFileSearch.Text.Trim(), 0, StringComparison.InvariantCultureIgnoreCase);
-            if (index > -1) return true;
+            foreach (VideoLocal_PlaceVM n in vid.Places)
+            {
+                int index = n.FilePath.IndexOf(txtFileSearch.Text.Trim(), 0,
+                    StringComparison.InvariantCultureIgnoreCase);
+                if (index > -1) return true;
+            }
             return false;
         }
     }

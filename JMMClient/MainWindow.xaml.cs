@@ -14,6 +14,7 @@ using System.Configuration;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -79,6 +80,8 @@ namespace JMMClient
 
         private AnimeGroupVM groupBeforeChanges = null;
         private GroupFilterVM groupFilterBeforeChanges = null;
+
+
 
         BackgroundWorker showChildWrappersWorker = new BackgroundWorker();
         BackgroundWorker refreshGroupsWorker = new BackgroundWorker();
@@ -1290,7 +1293,7 @@ namespace JMMClient
             {
                 foreach (AVDumpVM dumpTemp in MainListHelperVM.Instance.AVDumpFiles)
                 {
-                    if (dumpTemp.FullPath == vid.FullPath) return;
+                    if (dumpTemp.FullPath == vid.BestFullPath) return;
                 }
 
                 AVDumpVM dump = new AVDumpVM(vid);
@@ -1442,6 +1445,7 @@ namespace JMMClient
 
             this.Cursor = Cursors.Arrow;
         }
+
 
         public void RefreshPinnedSeries()
         {
@@ -1648,7 +1652,7 @@ namespace JMMClient
 
                     foreach (AVDumpVM dumpTemp in MainListHelperVM.Instance.AVDumpFiles)
                     {
-                        if (dumpTemp.FullPath == vid.FullPath) return;
+                        if (dumpTemp.FullPath == vid.BestFullPath) return;
                     }
 
                     AVDumpVM dump = new AVDumpVM(vid);
@@ -1664,7 +1668,7 @@ namespace JMMClient
                         bool alreadyExists = false;
                         foreach (AVDumpVM dumpTemp in MainListHelperVM.Instance.AVDumpFiles)
                         {
-                            if (dumpTemp.FullPath == vid.FullPath)
+                            if (dumpTemp.FullPath == vid.BestFullPath)
                             {
                                 alreadyExists = true;
                                 break;

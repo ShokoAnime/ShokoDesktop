@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -531,9 +532,9 @@ namespace JMMClient.UserControls
             {
                 VideoLocalVM vid = obj as VideoLocalVM;
 
-                if (File.Exists(vid.FullPath))
+                if (File.Exists(vid.BestFullPath))
                 {
-                    Utils.OpenFolderAndSelectFile(vid.FullPath);
+                    Utils.OpenFolderAndSelectFile(vid.BestFullPath);
                 }
                 else
                 {
@@ -617,30 +618,47 @@ namespace JMMClient.UserControls
                 {
                     VideoLocalVM vid = obj as VideoLocalVM;
 
-                    MessageBoxResult res = MessageBox.Show(string.Format(Properties.Resources.Unrecognized_ConfirmDelete, vid.FullPath),
-                    Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
-                    if (res == MessageBoxResult.Yes)
+                    AskDeleteFile dlg = new AskDeleteFile(string.Format(Properties.Resources.DeleteFile_Title, vid.FileName), Properties.Resources.Unrecognized_ConfirmDelete + "\r\n" + Properties.Resources.DeleteFile_Confirm, vid.Places);
+                    dlg.Owner = Window.GetWindow(this);
+                    bool? res = dlg.ShowDialog();
+                    if (res.HasValue && res.Value)
                     {
-                        string result = JMMServerVM.Instance.clientBinaryHTTP.DeleteVideoLocalAndFile(vid.VideoLocalID);
-                        if (result.Length > 0)
-                            MessageBox.Show(result, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
-                        else
-                            RefreshUnrecognisedFiles();
+                        string tresult = string.Empty;
+                        this.Cursor = Cursors.Wait;
+                        foreach (VideoLocal_PlaceVM lv in dlg.Selected)
+                        {
+                            string result =
+                                JMMServerVM.Instance.clientBinaryHTTP.DeleteVideoLocalPlaceAndFile(
+                                    lv.VideoLocal_Place_ID);
+                            if (result.Length > 0)
+                                tresult += result + "\r\n";
+                        }
+                        if (!string.IsNullOrEmpty(tresult))
+                            MessageBox.Show(tresult, Properties.Resources.Error, MessageBoxButton.OK,
+                                MessageBoxImage.Error);
+                        RefreshUnrecognisedFiles();
                     }
+
 
                 }
                 if (obj.GetType() == typeof(MultipleVideos))
                 {
                     MultipleVideos mv = obj as MultipleVideos;
-                    MessageBoxResult res = MessageBox.Show(string.Format(Properties.Resources.Unrecognized_DeleteSelected, mv.VideoLocalIDs.Count),
-                    Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
-                    if (res == MessageBoxResult.Yes)
+                    AskDeleteFile dlg = new AskDeleteFile(Properties.Resources.DeleteFile_Multiple, Properties.Resources.Unrecognized_DeleteSelected + "\r\n" + Properties.Resources.DeleteFile_Confirm, mv.VideoLocals.SelectMany(a => a.Places).ToList());
+                    dlg.Owner = Window.GetWindow(this);
+                    bool? res = dlg.ShowDialog();
+                    if (res.HasValue && res.Value)
                     {
-                        foreach (int id in mv.VideoLocalIDs)
+                        string tresult = string.Empty;
+                        this.Cursor = Cursors.Wait;
+                        foreach (VideoLocal_PlaceVM lv in dlg.Selected)
                         {
-                            JMMServerVM.Instance.clientBinaryHTTP.DeleteVideoLocalAndFile(id);
+                            string result = JMMServerVM.Instance.clientBinaryHTTP.DeleteVideoLocalPlaceAndFile(lv.VideoLocal_Place_ID);
+                            if (result.Length > 0)
+                                tresult += result + "\r\n";
                         }
-
+                        if (!string.IsNullOrEmpty(tresult))
+                            MessageBox.Show(tresult, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         RefreshUnrecognisedFiles();
                     }
                 }
@@ -882,14 +900,17 @@ namespace JMMClient.UserControls
         {
             VideoLocalVM vid = obj as VideoLocalVM;
             if (vid == null) return true;
-
-            int index = vid.FilePath.IndexOf(txtFileSearch.Text.Trim(), 0, StringComparison.InvariantCultureIgnoreCase);
-            if (index > -1) return true;
-
-            index = vid.FileDirectory.IndexOf(txtFileSearch.Text.Trim(), 0, StringComparison.InvariantCultureIgnoreCase);
-            if (index > -1) return true;
+            foreach (VideoLocal_PlaceVM n in vid.Places)
+            {
+                int index = n.FilePath.IndexOf(txtFileSearch.Text.Trim(), 0, StringComparison.InvariantCultureIgnoreCase);
+                if (index > -1) return true;
+                /*
+                index = vid.FileDirectory.IndexOf(txtFileSearch.Text.Trim(), 0, StringComparison.InvariantCultureIgnoreCase);
+                if (index > -1) return true;*/
+            }
 
             return false;
         }
+
     }
 }

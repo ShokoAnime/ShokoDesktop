@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using JMMClient.JMMServerBinary;
 
 namespace JMMClient.ViewModel
@@ -8,8 +9,7 @@ namespace JMMClient.ViewModel
     public class VideoLocalVM : MainListWrapper, IComparable<VideoLocalVM>
     {
         public int VideoLocalID { get; set; }
-        public string FilePath { get; set; }
-        public int ImportFolderID { get; set; }
+        public string FileName { get; set; }
         public string Hash { get; set; }
         public string CRC32 { get; set; }
         public string MD5 { get; set; }
@@ -20,47 +20,28 @@ namespace JMMClient.ViewModel
         public int IsIgnored { get; set; }
         public int IsVariation { get; set; }
         public DateTime? WatchedDate { get; set; }
+        public long ResumePosition { get; set; }
+        public List<VideoLocal_PlaceVM> Places { get; set; }
         public DateTime DateTimeUpdated { get; set; }
         public Media Media { get; set; }
-        public ImportFolderVM ImportFolder { get; set; }
 
-        public string FullPath
-        {
-            get
-            {
-                if (AppSettings.ImportFolderMappings.ContainsKey(ImportFolderID))
-                    return Path.Combine(AppSettings.ImportFolderMappings[ImportFolderID], FilePath);
-                else
-                    return Path.Combine(ImportFolder.ImportFolderLocation, FilePath);
-            }
-        }
-
-        public string FileName
-        {
-            get
-            {
-                return Path.GetFileName(FullPath);
-            }
-        }
-
-        public string FileDirectory
-        {
-            get
-            {
-                return Path.GetDirectoryName(FullPath);
-            }
-        }
-
-        public string FormattedFileSize
-        {
-            get
-            {
-                return Utils.FormatFileSize(FileSize);
-            }
-        }
+        public string FormattedFileSize => Utils.FormatFileSize(FileSize);
 
         public VideoLocalVM()
         {
+        }
+
+        public string BestFullPath
+        {
+            get
+            {
+                if (Places == null)
+                    return string.Empty;
+                VideoLocal_PlaceVM b = Places.FirstOrDefault(a => !string.IsNullOrEmpty(a.FullPath));
+                if (b == null)
+                    return string.Empty;
+                return b.FullPath;
+            }
         }
 
         public string ClosestAnimeMatchString
@@ -128,20 +109,20 @@ namespace JMMClient.ViewModel
         {
             this.CRC32 = contract.CRC32;
             this.DateTimeUpdated = contract.DateTimeUpdated;
-            this.FilePath = contract.FilePath;
+            this.FileName = contract.FileName;
             this.FileSize = contract.FileSize;
             this.Hash = contract.Hash;
             this.HashSource = contract.HashSource;
-            this.ImportFolderID = contract.ImportFolderID;
             this.IsWatched = contract.IsWatched;
             this.IsIgnored = contract.IsIgnored;
             this.IsVariation = contract.IsVariation;
+            this.ResumePosition = contract.ResumePosition;
             this.MD5 = contract.MD5;
             this.SHA1 = contract.SHA1;
             this.VideoLocalID = contract.VideoLocalID;
             this.WatchedDate = contract.WatchedDate;
             this.Media = contract.Media;
-            ImportFolder = new ImportFolderVM(contract.ImportFolder);
+
         }
 
         public override List<MainListWrapper> GetDirectChildren()
@@ -151,7 +132,7 @@ namespace JMMClient.ViewModel
 
         public int CompareTo(VideoLocalVM obj)
         {
-            return FullPath.CompareTo(obj.FullPath);
+            return String.Compare(FileName, obj.FileName, StringComparison.Ordinal);
         }
 
         public List<AnimeEpisodeVM> GetEpisodes()

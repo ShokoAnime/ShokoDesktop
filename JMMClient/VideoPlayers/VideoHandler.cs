@@ -308,7 +308,7 @@ namespace JMMClient.VideoPlayers
                     player.PlayUrl(t.Item1, t.Item2);
                 }
                 else
-                    player.PlayVideoOrPlaylist(vid.FullPath);
+                    player.PlayVideoOrPlaylist(vid.BestFullPath);
             }
             catch (Exception ex)
             {

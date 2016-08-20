@@ -170,25 +170,23 @@
 
             </Grid>
         </Border>
-
-        <DockPanel Grid.Row="3" Grid.Column="0"  Margin="5,5,5,5">
-
-
-            <Button Name="btnClose" Margin="2,2,2,2" Style="{DynamicResource RoundButtonStyle}" DockPanel.Dock="Right" HorizontalAlignment="Right">
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Close}" Margin="0,0,5,0"/>
-                </StackPanel>
-            </Button>
-
-            <!-- update button -->
-            <Button Name="btnUpdate" Margin="10,0,2,2" Style="{DynamicResource RoundButtonStyle}" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center">
+        <StackPanel Grid.Row="3" Grid.Column="0"  Orientation="Horizontal" HorizontalAlignment="Right" Margin="5,5,0,10">
+            <Button Name="btnUpdate" Margin="0,0,0,0" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,5,0"/>
                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Update}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
-
-        </DockPanel>
+            <Button HorizontalAlignment="Left" x:Name="btnClose" Margin="10,0,0,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                    <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx Key=Close, ResxName=JMMClient.Properties.Resources}" Margin="0,0,5,0"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        
+        
+       
 
     </Grid>
 </Window>

@@ -193,9 +193,9 @@ namespace JMMClient.UserControls
             {
                 VideoLocalVM vid = obj as VideoLocalVM;
 
-                if (File.Exists(vid.FullPath))
+                if (File.Exists(vid.BestFullPath))
                 {
-                    Utils.OpenFolderAndSelectFile(vid.FullPath);
+                    Utils.OpenFolderAndSelectFile(vid.BestFullPath);
                 }
                 else
                 {

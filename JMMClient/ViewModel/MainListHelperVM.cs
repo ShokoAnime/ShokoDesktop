@@ -36,6 +36,7 @@ namespace JMMClient
         public Dictionary<int, AniDB_AnimeVM> AllAnimeDictionary { get; set; }
         public Dictionary<int, GroupFilterVM> AllGroupFiltersDictionary { get; set; }
 
+
         public SeriesSearchType SerSearchType { get; set; }
         public int SearchResultCount = 0;
 

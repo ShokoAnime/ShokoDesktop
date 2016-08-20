@@ -5,7 +5,7 @@
         xmlns:local="clr-namespace:JMMClient"
         ShowInTaskbar="False" WindowStyle="ToolWindow"
         WindowStartupLocation="CenterScreen" Topmost="False" SizeToContent="WidthAndHeight"
-        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=JMMDesktop}" MinHeight="250" MinWidth="500" Name="aboutWindow" Icon="/JMMDesktop;component/Web%20Database.ico">
+        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=JMMDesktop}"  Name="aboutWindow" Icon="/JMMDesktop;component/Web%20Database.ico">
 
     <Grid>
         <Grid.Resources>
@@ -28,6 +28,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
 
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -43,9 +44,9 @@
 
                 <TextBlock Margin="5,0,0,0" FontWeight="DemiBold" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=JMMDesktop}" FontSize="20" VerticalAlignment="Center"/>
                 <TextBlock Margin="10,0,0,0" FontWeight="DemiBold" FontSize="20" Foreground="DarkGray" Text="{Binding Source={x:Static local:JMMServerVM.Instance},Path=ApplicationVersion}" VerticalAlignment="Center"/>
-    
 
-               
+
+
             </StackPanel>
         </Border>
 
@@ -57,6 +58,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -75,23 +77,26 @@
                 <usercontrols:HyperLinkStandard Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="5,5,5,6" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_Blog}" 
                                                                         URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_Blog}"/>
 
-                <TextBlock Grid.Row="3" Grid.Column="0" Margin="5,2,5,46"  Text="{Resx ResxName=JMMClient.Properties.Resources, Key=About_MediaPortal}"  VerticalAlignment="Center"/>
-                <usercontrols:HyperLinkStandard Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Margin="5,2,5,47" DisplayText="MyAnime 3"
+                <TextBlock Grid.Row="3" Grid.Column="0" Margin="5,6"  Text="{Resx ResxName=JMMClient.Properties.Resources, Key=About_MediaPortal}"  VerticalAlignment="Center"/>
+                <usercontrols:HyperLinkStandard Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Margin="5,5,5,6" DisplayText="MyAnime 3"
                                                                         URL="http://forum.team-mediaportal.com/threads/my-anime-3.107475/"/>
 
-                <Button Grid.Row="3" Grid.Column="0" Name="btnUpdates" Margin="5,30,5,-5" Style="{DynamicResource RoundButtonStyle}" Grid.RowSpan="2">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
 
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CheckForUpdate}" Margin="0,0,5,0"/>
-                    </StackPanel>
-                </Button>
 
             </Grid>
-            
-            
+
+
         </Border>
 
-        
+        <StackPanel Grid.Row="2" Grid.Column="0"  Orientation="Horizontal" HorizontalAlignment="Center" Margin="5,5,0,10">
+            <Button Name="btnUpdates" Margin="0,0,0,0" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CheckForUpdate}" Margin="0,0,5,0"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
 
     </Grid>
 </Window>

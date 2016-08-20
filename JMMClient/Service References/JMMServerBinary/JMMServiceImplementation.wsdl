@@ -10,6 +10,18 @@
       <xsd:import schemaLocation="http://localhost:8111/JMMServerBinary?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/JMMContracts.PlexAndKodi" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IJMMServer_GetIgnoredAnime_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetIgnoredAnime" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetIgnoredAnime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetIgnoredAnimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RemoveIgnoreAnime_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveIgnoreAnime" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_RemoveIgnoreAnime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveIgnoreAnimeResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_SetDefaultSeriesForGroup_InputMessage">
     <wsdl:part name="parameters" element="tns:SetDefaultSeriesForGroup" />
   </wsdl:message>
@@ -418,6 +430,24 @@
   <wsdl:message name="IJMMServer_GetAniDBEpisodesForAnime_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAniDBEpisodesForAnimeResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_DirectoriesFromImportFolderPath_InputMessage">
+    <wsdl:part name="parameters" element="tns:DirectoriesFromImportFolderPath" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_DirectoriesFromImportFolderPath_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DirectoriesFromImportFolderPathResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetCloudProviders_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCloudProviders" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetCloudProviders_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCloudProvidersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllUniqueAudioLanguages_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUniqueAudioLanguages" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_GetAllUniqueAudioLanguages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUniqueAudioLanguagesResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_GetAllUniqueSubtitleLanguages_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAllUniqueSubtitleLanguages" />
   </wsdl:message>
@@ -460,17 +490,23 @@
   <wsdl:message name="IJMMServer_GetGroupVideoQualitySummary_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetGroupVideoQualitySummaryResponse" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_DeleteVideoLocalAndFile_InputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteVideoLocalAndFile" />
+  <wsdl:message name="IJMMServer_DeleteVideoLocalPlaceAndFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteVideoLocalPlaceAndFile" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_DeleteVideoLocalAndFile_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteVideoLocalAndFileResponse" />
+  <wsdl:message name="IJMMServer_DeleteVideoLocalPlaceAndFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteVideoLocalPlaceAndFileResponse" />
   </wsdl:message>
   <wsdl:message name="IJMMServer_RescanUnlinkedFiles_InputMessage">
     <wsdl:part name="parameters" element="tns:RescanUnlinkedFiles" />
   </wsdl:message>
   <wsdl:message name="IJMMServer_RescanUnlinkedFiles_OutputMessage">
     <wsdl:part name="parameters" element="tns:RescanUnlinkedFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SyncHashes_InputMessage">
+    <wsdl:part name="parameters" element="tns:SyncHashes" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SyncHashes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SyncHashesResponse" />
   </wsdl:message>
   <wsdl:message name="IJMMServer_GetFilesByGroupAndResolution_InputMessage">
     <wsdl:part name="parameters" element="tns:GetFilesByGroupAndResolution" />
@@ -916,18 +952,6 @@
   <wsdl:message name="IJMMServer_IncrementEpisodeStats_OutputMessage">
     <wsdl:part name="parameters" element="tns:IncrementEpisodeStatsResponse" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_GetIgnoredAnime_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetIgnoredAnime" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_GetIgnoredAnime_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetIgnoredAnimeResponse" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_RemoveIgnoreAnime_InputMessage">
-    <wsdl:part name="parameters" element="tns:RemoveIgnoreAnime" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_RemoveIgnoreAnime_OutputMessage">
-    <wsdl:part name="parameters" element="tns:RemoveIgnoreAnimeResponse" />
-  </wsdl:message>
   <wsdl:message name="IJMMServer_GetLastWatchedEpisodeForSeries_InputMessage">
     <wsdl:part name="parameters" element="tns:GetLastWatchedEpisodeForSeries" />
   </wsdl:message>
@@ -1240,6 +1264,12 @@
   <wsdl:message name="IJMMServer_SaveServerSettings_OutputMessage">
     <wsdl:part name="parameters" element="tns:SaveServerSettingsResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_SetResumePositionOnVideo_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetResumePositionOnVideo" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SetResumePositionOnVideo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetResumePositionOnVideoResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_ToggleWatchedStatusOnVideo_InputMessage">
     <wsdl:part name="parameters" element="tns:ToggleWatchedStatusOnVideo" />
   </wsdl:message>
@@ -1432,13 +1462,15 @@
   <wsdl:message name="IJMMServer_GetAllUniqueVideoQuality_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllUniqueVideoQualityResponse" />
   </wsdl:message>
-  <wsdl:message name="IJMMServer_GetAllUniqueAudioLanguages_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllUniqueAudioLanguages" />
-  </wsdl:message>
-  <wsdl:message name="IJMMServer_GetAllUniqueAudioLanguages_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllUniqueAudioLanguagesResponse" />
-  </wsdl:message>
   <wsdl:portType name="IJMMServer">
+    <wsdl:operation name="GetIgnoredAnime">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetIgnoredAnime" message="tns:IJMMServer_GetIgnoredAnime_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetIgnoredAnimeResponse" message="tns:IJMMServer_GetIgnoredAnime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveIgnoreAnime">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RemoveIgnoreAnime" message="tns:IJMMServer_RemoveIgnoreAnime_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RemoveIgnoreAnimeResponse" message="tns:IJMMServer_RemoveIgnoreAnime_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="SetDefaultSeriesForGroup">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SetDefaultSeriesForGroup" message="tns:IJMMServer_SetDefaultSeriesForGroup_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SetDefaultSeriesForGroupResponse" message="tns:IJMMServer_SetDefaultSeriesForGroup_OutputMessage" />
@@ -1711,6 +1743,18 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAniDBEpisodesForAnime" message="tns:IJMMServer_GetAniDBEpisodesForAnime_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAniDBEpisodesForAnimeResponse" message="tns:IJMMServer_GetAniDBEpisodesForAnime_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="DirectoriesFromImportFolderPath">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/DirectoriesFromImportFolderPath" message="tns:IJMMServer_DirectoriesFromImportFolderPath_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/DirectoriesFromImportFolderPathResponse" message="tns:IJMMServer_DirectoriesFromImportFolderPath_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCloudProviders">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetCloudProviders" message="tns:IJMMServer_GetCloudProviders_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetCloudProvidersResponse" message="tns:IJMMServer_GetCloudProviders_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUniqueAudioLanguages">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllUniqueAudioLanguages" message="tns:IJMMServer_GetAllUniqueAudioLanguages_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllUniqueAudioLanguagesResponse" message="tns:IJMMServer_GetAllUniqueAudioLanguages_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetAllUniqueSubtitleLanguages">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllUniqueSubtitleLanguages" message="tns:IJMMServer_GetAllUniqueSubtitleLanguages_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllUniqueSubtitleLanguagesResponse" message="tns:IJMMServer_GetAllUniqueSubtitleLanguages_OutputMessage" />
@@ -1739,13 +1783,17 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetGroupVideoQualitySummary" message="tns:IJMMServer_GetGroupVideoQualitySummary_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetGroupVideoQualitySummaryResponse" message="tns:IJMMServer_GetGroupVideoQualitySummary_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="DeleteVideoLocalAndFile">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/DeleteVideoLocalAndFile" message="tns:IJMMServer_DeleteVideoLocalAndFile_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/DeleteVideoLocalAndFileResponse" message="tns:IJMMServer_DeleteVideoLocalAndFile_OutputMessage" />
+    <wsdl:operation name="DeleteVideoLocalPlaceAndFile">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/DeleteVideoLocalPlaceAndFile" message="tns:IJMMServer_DeleteVideoLocalPlaceAndFile_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/DeleteVideoLocalPlaceAndFileResponse" message="tns:IJMMServer_DeleteVideoLocalPlaceAndFile_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="RescanUnlinkedFiles">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RescanUnlinkedFiles" message="tns:IJMMServer_RescanUnlinkedFiles_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RescanUnlinkedFilesResponse" message="tns:IJMMServer_RescanUnlinkedFiles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SyncHashes">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SyncHashes" message="tns:IJMMServer_SyncHashes_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SyncHashesResponse" message="tns:IJMMServer_SyncHashes_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetFilesByGroupAndResolution">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetFilesByGroupAndResolution" message="tns:IJMMServer_GetFilesByGroupAndResolution_InputMessage" />
@@ -2043,14 +2091,6 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/IncrementEpisodeStats" message="tns:IJMMServer_IncrementEpisodeStats_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/IncrementEpisodeStatsResponse" message="tns:IJMMServer_IncrementEpisodeStats_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetIgnoredAnime">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetIgnoredAnime" message="tns:IJMMServer_GetIgnoredAnime_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetIgnoredAnimeResponse" message="tns:IJMMServer_GetIgnoredAnime_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="RemoveIgnoreAnime">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/RemoveIgnoreAnime" message="tns:IJMMServer_RemoveIgnoreAnime_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/RemoveIgnoreAnimeResponse" message="tns:IJMMServer_RemoveIgnoreAnime_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="GetLastWatchedEpisodeForSeries">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetLastWatchedEpisodeForSeries" message="tns:IJMMServer_GetLastWatchedEpisodeForSeries_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetLastWatchedEpisodeForSeriesResponse" message="tns:IJMMServer_GetLastWatchedEpisodeForSeries_OutputMessage" />
@@ -2259,6 +2299,10 @@
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SaveServerSettings" message="tns:IJMMServer_SaveServerSettings_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SaveServerSettingsResponse" message="tns:IJMMServer_SaveServerSettings_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="SetResumePositionOnVideo">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SetResumePositionOnVideo" message="tns:IJMMServer_SetResumePositionOnVideo_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SetResumePositionOnVideoResponse" message="tns:IJMMServer_SetResumePositionOnVideo_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="ToggleWatchedStatusOnVideo">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/ToggleWatchedStatusOnVideo" message="tns:IJMMServer_ToggleWatchedStatusOnVideo_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/ToggleWatchedStatusOnVideoResponse" message="tns:IJMMServer_ToggleWatchedStatusOnVideo_OutputMessage" />
@@ -2386,10 +2430,6 @@
     <wsdl:operation name="GetAllUniqueVideoQuality">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllUniqueVideoQuality" message="tns:IJMMServer_GetAllUniqueVideoQuality_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllUniqueVideoQualityResponse" message="tns:IJMMServer_GetAllUniqueVideoQuality_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetAllUniqueAudioLanguages">
-      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllUniqueAudioLanguages" message="tns:IJMMServer_GetAllUniqueAudioLanguages_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetAllUniqueAudioLanguagesResponse" message="tns:IJMMServer_GetAllUniqueAudioLanguages_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:service name="JMMServiceImplementation">

@@ -27,6 +27,9 @@ namespace JMMClient.ViewModel
         {
             get
             {
+                if (ImportFolder1.CloudID.HasValue)
+                    return string.Empty;
+
                 if (AppSettings.ImportFolderMappings.ContainsKey(ImportFolderIDFile1))
                     return Path.Combine(AppSettings.ImportFolderMappings[ImportFolderIDFile1], FilePathFile1);
                 else
@@ -54,6 +57,8 @@ namespace JMMClient.ViewModel
         {
             get
             {
+                if (ImportFolder2.CloudID.HasValue)
+                    return string.Empty;
                 if (AppSettings.ImportFolderMappings.ContainsKey(ImportFolderIDFile2))
                     return Path.Combine(AppSettings.ImportFolderMappings[ImportFolderIDFile2], FilePathFile2);
                 else

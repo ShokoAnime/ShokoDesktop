@@ -24,12 +24,12 @@
                 <!-- ImportFolderTemplate -->
                 <DataTemplate x:Key="ImportFolderTemplate">
 
-                    <StackPanel Orientation="Horizontal" Height="25">
+                    <StackPanel Orientation="Horizontal" Height="24">
                         <Button HorizontalAlignment="Left" Name="btnScanFolder" Margin="5,0,0,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto"
                             Command="{DynamicResource ScanFolderCommand}" CommandParameter="{Binding}" 
                             ToolTip="{Resx ResxName=JMMClient.Properties.Resources, Key=ScanFolder}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                <Image Height="16" Width="16" Source="/Images/16_folder_video.png" Margin="0,0,0,0"/>
+                                <Image Width="24" Height="24" Stretch="Fill" Source="{Binding Path=Icon}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0"/>
 
                             </StackPanel>
                         </Button>

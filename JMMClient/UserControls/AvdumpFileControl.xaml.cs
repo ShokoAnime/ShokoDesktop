@@ -272,17 +272,21 @@ namespace JMMClient.UserControls
                 e.Result = "Could not find AvDump2 CLI: " + filePath;
                 return;
             }
-
-            if (!File.Exists(vid.FullPath))
+            if (string.IsNullOrEmpty(vid?.BestFullPath))
             {
-                e.Result = "Could not find Video File: " + vid.FullPath;
+                e.Result = "Unable to map video file : " + vid.FileName;
+                return;
+            }
+            if (!File.Exists(vid.BestFullPath))
+            {
+                e.Result = "Could not find Video File: " + vid.BestFullPath;
                 return;
             }
 
             pProcess.StartInfo.FileName = filePath;
 
             //strCommandParameters are parameters to pass to program
-            string fileName = (char)34 + vid.FullPath + (char)34;
+            string fileName = (char)34 + vid.BestFullPath + (char)34;
 
             pProcess.StartInfo.Arguments =
                 string.Format(@" --Auth={0}:{1} --LPort={2} --PrintEd2kLink -t {3}", JMMServerVM.Instance.AniDB_Username, JMMServerVM.Instance.AniDB_AVDumpKey,

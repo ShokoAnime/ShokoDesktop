@@ -449,27 +449,28 @@ namespace JMMClient.UserControls
                 {
                     VideoDetailedVM vid = obj as VideoDetailedVM;
                     AnimeEpisodeVM ep = this.DataContext as AnimeEpisodeVM;
-
-                    MessageBoxResult res = MessageBox.Show(string.Format(Properties.Resources.EpisodeDetail_ConfirmDelete),
-                        "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-
-                    if (res == MessageBoxResult.Yes)
+                    AskDeleteFile dlg=new AskDeleteFile(string.Format(Properties.Resources.DeleteFile_Title,vid.FileName), Properties.Resources.EpisodeDetail_ConfirmDelete+"\r\n"+Properties.Resources.DeleteFile_Confirm,vid.Places);
+                    dlg.Owner = Window.GetWindow(this);
+                    bool? res=dlg.ShowDialog();
+                    if (res.HasValue && res.Value)
                     {
+                        string tresult = string.Empty;
                         this.Cursor = Cursors.Wait;
-                        string result = JMMServerVM.Instance.clientBinaryHTTP.DeleteVideoLocalAndFile(vid.VideoLocalID);
-                        if (result.Length > 0)
-                            MessageBox.Show(result, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
-                        else
+                        foreach (VideoLocal_PlaceVM lv in dlg.Selected)
                         {
-                            // find the entry and remove it
-                            if (ep != null)
-                            {
-                                MainListHelperVM.Instance.UpdateHeirarchy(ep);
-                                DisplayFiles();
-                            }
-
+                            string result = JMMServerVM.Instance.clientBinaryHTTP.DeleteVideoLocalPlaceAndFile(lv.VideoLocal_Place_ID);
+                            if (result.Length > 0)
+                                tresult += result + "\r\n";
                         }
-                    }
+                        if (!string.IsNullOrEmpty(tresult))
+                            MessageBox.Show(tresult, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        if (ep != null)
+                        {
+                            MainListHelperVM.Instance.UpdateHeirarchy(ep);
+                            DisplayFiles();
+                        }
+
+                    }                    
                 }
             }
             catch (Exception ex)

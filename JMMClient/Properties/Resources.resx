@@ -1575,8 +1575,8 @@
     <value>10bit</value>
   </data>
   <data name="Video_Hi08P" xml:space="preserve">
-      <value>8bit</value>
-    </data>
+    <value>8bit</value>
+  </data>
   <data name="Tooltip_TraktAnimeOnly" xml:space="preserve">
     <value>Only show activity is related to anime (ie exclude other tv series)</value>
   </data>
@@ -4445,5 +4445,17 @@ Unlike the other supported media players, MPV is the fastest when it comes to st
   </data>
   <data name="RelationSetting_Movie" xml:space="preserve">
     <value>Movie</value>
+  </data>
+  <data name="ImportFolder_Provider" xml:space="preserve">
+    <value>Provider</value>
+  </data>
+  <data name="DeleteFile_Confirm" xml:space="preserve">
+    <value>Select in which providers you want to Delete</value>
+  </data>
+  <data name="DeleteFile_Multiple" xml:space="preserve">
+    <value>Delete Multiple Files?</value>
+  </data>
+  <data name="DeleteFile_Title" xml:space="preserve">
+    <value>Delete File '{0}'?</value>
   </data>
 </root>
