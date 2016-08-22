@@ -389,7 +389,7 @@ namespace JMMClient.VideoPlayers
                         if (vid != null)
                         {
                             vids.Add(vid);
-                            recentlyPlayedFiles[vid.VideoLocalID] = vid.ToVideoInfo();
+                            recentlyPlayedFiles[vid.VideoLocalID] = vid.ToVideoInfo(false);
                         }
                     }
                 }
