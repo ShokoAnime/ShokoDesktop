@@ -263,6 +263,9 @@
     <Compile Include="Forms\AdminMessagesForm.xaml.cs">
       <DependentUpon>AdminMessagesForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AskResumeVideo.xaml.cs">
+      <DependentUpon>AskResumeVideo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AskDeleteFile.xaml.cs">
       <DependentUpon>AskDeleteFile.xaml</DependentUpon>
     </Compile>
@@ -835,6 +838,10 @@
     <Page Include="Forms\AdminMessagesForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\AskResumeVideo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Forms\ChangePasswordForm.xaml">
       <SubType>Designer</SubType>

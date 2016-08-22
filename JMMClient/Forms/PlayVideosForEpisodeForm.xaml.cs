@@ -32,7 +32,15 @@ namespace JMMClient.Forms
                 if (obj.GetType() == typeof(VideoDetailedVM))
                 {
                     VideoDetailedVM vid = obj as VideoDetailedVM;
-                    MainWindow.videoHandler.PlayVideo(vid);
+                    bool force = true;
+                    if (vid.VideoLocal_ResumePosition > 0)
+                    {
+                        AskResumeVideo ask = new AskResumeVideo(vid.VideoLocal_ResumePosition);
+                        ask.Owner = Window.GetWindow(this);
+                        if (ask.ShowDialog() == true)
+                            force = false;
+                    }
+                    MainWindow.videoHandler.PlayVideo(vid,force);
                     this.Close();
                 }
             }

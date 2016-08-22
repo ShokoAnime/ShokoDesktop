@@ -8296,6 +8296,42 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Play from the begining.
+        /// </summary>
+        public static string Resume_Cancel {
+            get {
+                return ResourceManager.GetString("Resume_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to resume the video at {0}?.
+        /// </summary>
+        public static string Resume_Message {
+            get {
+                return ResourceManager.GetString("Resume_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resume.
+        /// </summary>
+        public static string Resume_OK {
+            get {
+                return ResourceManager.GetString("Resume_OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to resume the video?.
+        /// </summary>
+        public static string Resume_Title {
+            get {
+                return ResourceManager.GetString("Resume_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Run Import.
         /// </summary>
         public static string RunImport {

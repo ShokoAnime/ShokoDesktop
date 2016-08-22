@@ -596,7 +596,15 @@ namespace JMMClient.UserControls
                 if (obj.GetType() == typeof(VideoLocalVM))
                 {
                     VideoLocalVM vid = obj as VideoLocalVM;
-                    MainWindow.videoHandler.PlayVideo(vid);
+                    bool force = true;
+                    if (vid.ResumePosition > 0)
+                    {
+                        AskResumeVideo ask = new AskResumeVideo(vid.ResumePosition);
+                        ask.Owner = Window.GetWindow(this);
+                        if (ask.ShowDialog() == true)
+                            force = false;
+                    }
+                    MainWindow.videoHandler.PlayVideo(vid, force);
                 }
             }
             catch (Exception ex)
