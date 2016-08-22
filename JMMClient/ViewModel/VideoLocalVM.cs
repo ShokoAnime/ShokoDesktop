@@ -24,6 +24,7 @@ namespace JMMClient.ViewModel
         public List<VideoLocal_PlaceVM> Places { get; set; }
         public DateTime DateTimeUpdated { get; set; }
         public Media Media { get; set; }
+        public long Duration { get; set; }
 
         public string FormattedFileSize => Utils.FormatFileSize(FileSize);
 
@@ -122,6 +123,7 @@ namespace JMMClient.ViewModel
             this.VideoLocalID = contract.VideoLocalID;
             this.WatchedDate = contract.WatchedDate;
             this.Media = contract.Media;
+            this.Duration = contract.Duration;
 
         }
 

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using JMMClient.Utilities;
 using Microsoft.Win32;
@@ -25,6 +27,11 @@ namespace JMMClient.VideoPlayers
         }
 
         public VideoPlayer Player => VideoPlayer.PotPlayer;
+
+        public override void Play(VideoInfo video)
+        {
+            Process.Start(PlayerPath, '"' + video.Uri + '"');
+        }
 
         internal override void FileChangeEvent(string filePath)
         {

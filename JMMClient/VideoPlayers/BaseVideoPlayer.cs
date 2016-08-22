@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JMMClient.VideoPlayers;
 using NLog;
 
 namespace JMMClient.Utilities
@@ -71,23 +72,24 @@ namespace JMMClient.Utilities
                 watcher.EnableRaisingEvents = false;
         }
 
-        public virtual void PlayVideoOrPlaylist(string path)
+        public virtual void Play(VideoInfo video)
         {
-            Process.Start(PlayerPath, '"' + path + '"');
-        }
-
-
-        public virtual void PlayUrl(string url, List<string> subtitlespath)
-        {
-            string init = '"' + url + '"';
-            if (subtitlespath != null && subtitlespath.Count > 0)
+            if (video.IsPlaylist)
+                Process.Start(PlayerPath, '"' + video.Uri + '"');
+            else
             {
-                foreach (string s in subtitlespath)
+                string init = '"' + video.Uri + '"';
+                if (video.ResumePosition > 0)
+                    init += " /start " + video.ResumePosition;
+                if (video.SubtitlePaths != null && video.SubtitlePaths.Count > 0)
                 {
-                    init += " /sub \"" + s + "\"";
+                    foreach (string s in video.SubtitlePaths)
+                    {
+                        init += " /sub \"" + s + "\"";
+                    }
                 }
+                Process.Start(PlayerPath, init);
             }
-            Process.Start(PlayerPath, init);
         }
     }
 }

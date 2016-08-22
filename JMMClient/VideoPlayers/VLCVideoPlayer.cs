@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -29,17 +30,28 @@ namespace JMMClient.VideoPlayers
         }
         public VideoPlayer Player => VideoPlayer.VLC;
 
-        public override void PlayUrl(string url, List<string> subtitlespath)
+        public override void Play(VideoInfo video)
         {
-            string init = '"' + url + '"';
-            if (subtitlespath != null && subtitlespath.Count > 0)
+            if (video.IsPlaylist)
+                Process.Start(PlayerPath, '"' + video.Uri + '"');
+            else
             {
-                foreach (string s in subtitlespath)
+                string init = '"' + video.Uri + '"';
+                if (video.ResumePosition > 0)
                 {
-                    init += " --sub-file=\"" + s + "\"";
+                    double n = video.ResumePosition;
+                    n /= 1000;
+                    init += " --start-time=\"" + n.ToString(CultureInfo.InvariantCulture) + "\"";
                 }
+                if (video.SubtitlePaths != null && video.SubtitlePaths.Count > 0)
+                {
+                    foreach (string s in video.SubtitlePaths)
+                    {
+                        init += " --sub-file=\"" + s + "\"";
+                    }
+                }
+                Process.Start(PlayerPath, init);
             }
-            Process.Start(PlayerPath, init);
         }
 
 

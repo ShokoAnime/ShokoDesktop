@@ -8432,6 +8432,9 @@ namespace JMMClient.JMMServerBinary {
         private System.DateTime DateTimeUpdatedField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long DurationField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string FileNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -8505,6 +8508,19 @@ namespace JMMClient.JMMServerBinary {
                 if ((this.DateTimeUpdatedField.Equals(value) != true)) {
                     this.DateTimeUpdatedField = value;
                     this.RaisePropertyChanged("DateTimeUpdated");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long Duration {
+            get {
+                return this.DurationField;
+            }
+            set {
+                if ((this.DurationField.Equals(value) != true)) {
+                    this.DurationField = value;
+                    this.RaisePropertyChanged("Duration");
                 }
             }
         }
@@ -18068,6 +18084,9 @@ namespace JMMClient.JMMServerBinary {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetCloudProviders", ReplyAction="http://tempuri.org/IJMMServer/GetCloudProvidersResponse")]
         System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_CloudAccount> GetCloudProviders();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/SetResumePosition", ReplyAction="http://tempuri.org/IJMMServer/SetResumePositionResponse")]
+        void SetResumePosition(int videolocalid, int jmmuserID, long position);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetAllUniqueAudioLanguages", ReplyAction="http://tempuri.org/IJMMServer/GetAllUniqueAudioLanguagesResponse")]
         System.Collections.Generic.List<string> GetAllUniqueAudioLanguages();
         
@@ -18892,6 +18911,10 @@ namespace JMMClient.JMMServerBinary {
         
         public System.Collections.Generic.List<JMMClient.JMMServerBinary.Contract_CloudAccount> GetCloudProviders() {
             return base.Channel.GetCloudProviders();
+        }
+        
+        public void SetResumePosition(int videolocalid, int jmmuserID, long position) {
+            base.Channel.SetResumePosition(videolocalid, jmmuserID, position);
         }
         
         public System.Collections.Generic.List<string> GetAllUniqueAudioLanguages() {

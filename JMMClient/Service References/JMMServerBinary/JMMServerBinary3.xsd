@@ -997,6 +997,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="SetResumePosition">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="videolocalid" type="xs:int" />
+        <xs:element minOccurs="0" name="jmmuserID" type="xs:int" />
+        <xs:element minOccurs="0" name="position" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetResumePositionResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetAllUniqueAudioLanguages">
     <xs:complexType>
       <xs:sequence />

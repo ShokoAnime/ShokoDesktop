@@ -686,6 +686,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="CRC32" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="DateTimeUpdated" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Duration" type="xs:long" />
       <xs:element minOccurs="0" name="FileName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="FileSize" type="xs:long" />
       <xs:element minOccurs="0" name="Hash" nillable="true" type="xs:string" />

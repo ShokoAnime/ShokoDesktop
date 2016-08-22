@@ -353,10 +353,12 @@
       <DependentUpon>RelationSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="VideoPlayers\BaseVideoPlayer.cs" />
+    <Compile Include="VideoPlayers\Extensions.cs" />
     <Compile Include="VideoPlayers\IVideoPlayer.cs" />
     <Compile Include="VideoPlayers\MPCVideoPlayer.cs" />
     <Compile Include="VideoPlayers\MPVVideoPlayer.cs" />
     <Compile Include="VideoPlayers\PotVideoPlayer.cs" />
+    <Compile Include="VideoPlayers\VideoInfo.cs" />
     <Compile Include="VideoPlayers\VLCVideoPlayer.cs" />
     <Compile Include="ViewModel\AniDB_CharacterVM.cs" />
     <Compile Include="ViewModel\AniDB_SeiyuuVM.cs" />

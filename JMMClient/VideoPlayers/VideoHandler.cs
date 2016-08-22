@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using System.Threading;
 using JMMClient.JMMServerBinary;
 using JMMClient.Utilities;
 using JMMClient.ViewModel;
@@ -18,11 +19,12 @@ namespace JMMClient.VideoPlayers
 {
     public class VideoHandler
     {
-        private static WebClient wc=new WebClient();
+
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        private Dictionary<int, VideoDetailedVM> recentlyPlayedFiles = null;
+        private Dictionary<int, VideoInfo> recentlyPlayedFiles = null;
+
         private System.Timers.Timer handleTimer = null;
-        private string iniPath = string.Empty;
+
 
         private List<FileSystemWatcher> watcherVids = null;
         Dictionary<string, string> previousFilePositions = new Dictionary<string, string>();
@@ -34,10 +36,11 @@ namespace JMMClient.VideoPlayers
         public List<IVideoPlayer> Players=new List<IVideoPlayer>();
 
 
+
         public VideoHandler()
         {
             AddTempPathToSubtilePaths();
-            recentlyPlayedFiles = new Dictionary<int, VideoDetailedVM>();
+            recentlyPlayedFiles = new Dictionary<int, VideoInfo>();
             previousFilePositions.Clear();
 
             Players = new List<IVideoPlayer>();
@@ -50,7 +53,7 @@ namespace JMMClient.VideoPlayers
                 v.PositionChange += FindChangedFiles;
             }
         }
-
+        /*
         private bool IsLocalMachine(string url)
         {
             Uri uri = new Uri(url, UriKind.Absolute);
@@ -84,7 +87,7 @@ namespace JMMClient.VideoPlayers
             }
             return false;
         }
-
+        */
 
         public delegate void VideoWatchedEventHandler(VideoWatchedEventArgs ev);
         public event VideoWatchedEventHandler VideoWatchedEvent;
@@ -93,52 +96,7 @@ namespace JMMClient.VideoPlayers
             VideoWatchedEvent?.Invoke(ev);
         }
 
-        Tuple<string, List<string>> GetInfoFromMedia(Media m)
-        {
-            List<string> subs=new List<string>();
-            //Only Support one part for now
-           
-                Part p = m.Parts[0];
-                string fullname =p.Key.Replace("\\", "/").Replace("//", "/").Replace(":",string.Empty);            
-                string fname = Path.GetFileNameWithoutExtension(fullname);
-                if (p.Streams != null)
-                {
-                    foreach (Stream s in p.Streams.Where(a => a.File != null && a.StreamType == "3"))
-                    {
-                        string extension = Path.GetExtension(s.File);
-                        string filePath = Path.Combine(Path.GetTempPath(), Path.GetDirectoryName(fullname));
-                        try
-                        {
-                            string subtitle = wc.DownloadString(s.Key);
-                         /*   try
-                            {
-                                Directory.CreateDirectory(filePath);
-                                string fullpath = Path.Combine(filePath, fname + extension);
-                                File.WriteAllText(filePath, subtitle);
-                            }
-                            catch (Exception)
-                            {
-                            }*/
-                            try
-                            {
-                                filePath = Path.Combine(Path.GetTempPath(), fname + extension);
-                                File.WriteAllText(filePath, subtitle);
-                                subs.Add(filePath);
-                            }
-                            catch (Exception)
-                            {
-                            }
-
-                        }
-                        catch (Exception e)
-                        {
-                            logger.Warn("Cannot download subtitle: " + e.ToString());
-                        }
-                    }
-                }
-            return new Tuple<string, List<string>>(p.Key,subs);
-        }
-
+      
 
         private void AddTempPathToSubtilePaths()
         {
@@ -263,29 +221,6 @@ namespace JMMClient.VideoPlayers
             return v.Active;
         }
 
-        public void PlayVideo(VideoDetailedVM vid)
-        {
-            try
-            {
-                IVideoPlayer player = ResolvePlayer();
-                if (player==null)
-                    throw new Exception("Please configure a Video Player");
-                if (AppSettings.UseStreaming && vid.Media!=null && vid.Media.Parts!=null && vid.Media.Parts.Count>0 && !IsLocalMachine(vid.Media.Parts[0].Key))
-                {
-
-                    Tuple<string, List<string>> t = GetInfoFromMedia(vid.Media);
-                    player.PlayUrl(t.Item1,t.Item2);
-                }
-                else
-                    player.PlayVideoOrPlaylist(vid.FullPath);
-
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
-        }
-
         public bool Active
         {
             get { return Players.FirstOrDefault(a => a.Active) != null; }
@@ -295,27 +230,39 @@ namespace JMMClient.VideoPlayers
         {
             get { return ResolvePlayer(); }
         }
-        public void PlayVideo(VideoLocalVM vid)
+
+        public void PlayVideo(VideoLocalVM vid, bool forcebegining)
         {
             try
             {
                 IVideoPlayer player = ResolvePlayer();
                 if (player == null)
                     throw new Exception("Please configure a Video Player");
-                if (AppSettings.UseStreaming && vid.Media != null && vid.Media.Parts != null && vid.Media.Parts.Count > 0 && !IsLocalMachine(vid.Media.Parts[0].Key))
-                {
-                    Tuple<string, List<string>> t = GetInfoFromMedia(vid.Media);
-                    player.PlayUrl(t.Item1, t.Item2);
-                }
-                else
-                    player.PlayVideoOrPlaylist(vid.BestFullPath);
+                VideoInfo info = vid.ToVideoInfo(forcebegining);
+                recentlyPlayedFiles[info.VideoLocalId]=info;
+                player.Play(info);
             }
             catch (Exception ex)
             {
                 Utils.ShowErrorMessage(ex);
             }
         }
-
+        public void PlayVideo(VideoDetailedVM vid,bool forcebegining)
+        {
+            try
+            {
+                IVideoPlayer player = ResolvePlayer();
+                if (player == null)
+                    throw new Exception("Please configure a Video Player");
+                VideoInfo info = vid.ToVideoInfo(forcebegining);
+                recentlyPlayedFiles[info.VideoLocalId] = info;
+                player.Play(info);
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+        }
         public void Init()
         {
             try
@@ -332,7 +279,7 @@ namespace JMMClient.VideoPlayers
                 logger.ErrorException(ex.ToString(), ex);
             }
         }
- 
+
 
         private void FindChangedFiles(Dictionary<string, long> filePositions)
         {
@@ -354,40 +301,35 @@ namespace JMMClient.VideoPlayers
             {
                 long mpcPosMS = kvp.Value;
 
-                foreach (KeyValuePair<int, VideoDetailedVM> kvpVid in recentlyPlayedFiles)
+                VideoInfo v = recentlyPlayedFiles.Values.FirstOrDefault(a => a.Uri == kvp.Key);
+                if (v!=null)
                 {
-                    bool found=
-                        (AppSettings.UseStreaming && kvpVid.Value.Media != null && kvpVid.Value.Media.Parts != null && kvpVid.Value.Media.Parts.Count > 0) ?
-                        kvpVid.Value.Media.Parts[0].Key.Equals(kvp.Key, StringComparison.InvariantCultureIgnoreCase) :
-                        kvpVid.Value.FullPath.Equals(Path.GetFullPath(kvp.Key), StringComparison.InvariantCultureIgnoreCase);
+                    logger.Info(string.Format("Video position for {0} has changed to {1}", kvp.Key, kvp.Value));
+                    v.ChangePosition(kvp.Value); //Set New Resume Position
 
-                    if (found)
+                    // we don't care about files that are already watched
+                    if (v.WasWatched) continue;
+
+
+                    // now check if this file is considered watched
+                    double fileDurationMS = (double)v.Duration;
+
+                    double progress = mpcPosMS / fileDurationMS * 100.0d;
+
+                    if (progress > (double)AppSettings.VideoWatchedPct)
                     {
-                        // we don't care about files that are already watched
-                        if (kvpVid.Value.Watched) continue;
+                        logger.Info(string.Format("Updating to watched by media player: {0}", kvp.Key));
 
-                        logger.Info(string.Format("Video position for {0} has changed to {1}", kvp.Key, kvp.Value));
-
-                        // now check if this file is considered watched
-                        double fileDurationMS = (double)kvpVid.Value.VideoInfo_Duration;
-
-                        double progress = mpcPosMS / fileDurationMS * 100.0d;
-
-                        if (progress > (double)AppSettings.VideoWatchedPct)
+                        JMMServerVM.Instance.clientBinaryHTTP.ToggleWatchedStatusOnVideo(v.VideoLocalId, true, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+                        if (v.VideoDetailed != null)
                         {
-                            VideoDetailedVM vid = kvpVid.Value;
-
-                            logger.Info(string.Format("Updating to watched by media player: {0}", kvp.Key));
-
-                            JMMServerVM.Instance.clientBinaryHTTP.ToggleWatchedStatusOnVideo(vid.VideoLocalID, true, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
-                            MainListHelperVM.Instance.UpdateHeirarchy(vid);
-                            MainListHelperVM.Instance.GetSeriesForVideo(vid.VideoLocalID);
+                            MainListHelperVM.Instance.UpdateHeirarchy(v.VideoDetailed);
+                            MainListHelperVM.Instance.GetSeriesForVideo(v.VideoLocalId);
 
                             //kvp.Value.VideoLocal_IsWatched = 1;
-                            OnVideoWatchedEvent(new VideoWatchedEventArgs(vid.VideoLocalID, vid));
-
-                            Debug.WriteLine("complete");
+                            OnVideoWatchedEvent(new VideoWatchedEventArgs(v.VideoLocalId, v.VideoDetailed));
                         }
+                        Debug.WriteLine("complete");
 
                     }
                 }
@@ -398,17 +340,18 @@ namespace JMMClient.VideoPlayers
         {
             try
             {
+                IVideoPlayer player = ResolvePlayer();
+                if (player == null)
+                    throw new Exception("Please configure a Video Player");
                 List<JMMServerBinary.Contract_AnimeEpisode> rawEps = JMMServerVM.Instance.clientBinaryHTTP.GetAllUnwatchedEpisodes(animeSeriesID,
                     JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
 
                 List<AnimeEpisodeVM> episodes = new List<AnimeEpisodeVM>();
                 foreach (JMMServerBinary.Contract_AnimeEpisode raw in rawEps)
                     episodes.Add(new AnimeEpisodeVM(raw));
-
-
                 string plsPath = GenerateTemporaryPlayList(episodes);
                 if (!string.IsNullOrEmpty(plsPath))
-                    Process.Start(plsPath);
+                    player.Play(new VideoInfo {Uri = plsPath, IsPlaylist = true});
             }
             catch (Exception ex)
             {
@@ -420,9 +363,12 @@ namespace JMMClient.VideoPlayers
         {
             try
             {
+                IVideoPlayer player = ResolvePlayer();
+                if (player == null)
+                    throw new Exception("Please configure a Video Player");
                 string plsPath = GenerateTemporaryPlayList(episodes);
                 if (!string.IsNullOrEmpty(plsPath))
-                    Process.Start(plsPath);
+                    player.Play(new VideoInfo { Uri = plsPath, IsPlaylist = true });
             }
             catch (Exception ex)
             {
@@ -443,7 +389,7 @@ namespace JMMClient.VideoPlayers
                         if (vid != null)
                         {
                             vids.Add(vid);
-                            recentlyPlayedFiles[vid.VideoLocalID] = vid;
+                            recentlyPlayedFiles[vid.VideoLocalID] = vid.ToVideoInfo();
                         }
                     }
                 }
@@ -470,7 +416,7 @@ namespace JMMClient.VideoPlayers
 
                 for (int i = 1; i <= vids.Count; i++)
                 {
-                    if (AppSettings.UseStreaming && vids[i - 1].Media != null && vids[i - 1].Media.Parts != null &&
+                    if (string.IsNullOrEmpty(vids[i-1].FullPath) && vids[i - 1].Media != null && vids[i - 1].Media.Parts != null &&
                         vids[i - 1].Media.Parts.Count > 0)
                         plsContent += string.Format(@"File{0}={1}", i, vids[i - 1].Media.Parts[0].Key) + Environment.NewLine;
                     else

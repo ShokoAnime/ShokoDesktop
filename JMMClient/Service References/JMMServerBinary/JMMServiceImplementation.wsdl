@@ -442,6 +442,12 @@
   <wsdl:message name="IJMMServer_GetCloudProviders_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetCloudProvidersResponse" />
   </wsdl:message>
+  <wsdl:message name="IJMMServer_SetResumePosition_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetResumePosition" />
+  </wsdl:message>
+  <wsdl:message name="IJMMServer_SetResumePosition_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetResumePositionResponse" />
+  </wsdl:message>
   <wsdl:message name="IJMMServer_GetAllUniqueAudioLanguages_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAllUniqueAudioLanguages" />
   </wsdl:message>
@@ -1750,6 +1756,10 @@
     <wsdl:operation name="GetCloudProviders">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetCloudProviders" message="tns:IJMMServer_GetCloudProviders_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/GetCloudProvidersResponse" message="tns:IJMMServer_GetCloudProviders_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetResumePosition">
+      <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/SetResumePosition" message="tns:IJMMServer_SetResumePosition_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IJMMServer/SetResumePositionResponse" message="tns:IJMMServer_SetResumePosition_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetAllUniqueAudioLanguages">
       <wsdl:input wsam:Action="http://tempuri.org/IJMMServer/GetAllUniqueAudioLanguages" message="tns:IJMMServer_GetAllUniqueAudioLanguages_InputMessage" />
