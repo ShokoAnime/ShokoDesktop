@@ -413,16 +413,20 @@ namespace JMMClient.VideoPlayers
                 string plsContent = "";
 
                 plsContent += @"[playlist]" + Environment.NewLine;
+                List<string> lines=new List<string>();
 
                 for (int i = 1; i <= vids.Count; i++)
                 {
                     if (string.IsNullOrEmpty(vids[i-1].FullPath) && vids[i - 1].Media != null && vids[i - 1].Media.Parts != null &&
                         vids[i - 1].Media.Parts.Count > 0)
-                        plsContent += string.Format(@"File{0}={1}", i, vids[i - 1].Media.Parts[0].Key) + Environment.NewLine;
-                    else
-                        plsContent += string.Format(@"File{0}={1}", i, vids[i - 1].FullPath) + Environment.NewLine;
+                        lines.Add(string.Format(@"File{0}={1}", i, vids[i - 1].Media.Parts[0].Key) + Environment.NewLine);
+                    else if (!string.IsNullOrEmpty(vids[i-1].FullPath))
+                        lines.Add(string.Format(@"File{0}={1}", i, vids[i - 1].FullPath) + Environment.NewLine);
                 }
-                plsContent += @"NumberOfEntries=" + vids.Count.ToString() + Environment.NewLine;
+                if (lines.Count == 0)
+                    return string.Empty;
+                plsContent += string.Join("",lines);
+                plsContent += @"NumberOfEntries=" + lines.Count.ToString() + Environment.NewLine;
                 plsContent += @"Version=2" + Environment.NewLine;
 
                 File.WriteAllText(filePath, plsContent);
