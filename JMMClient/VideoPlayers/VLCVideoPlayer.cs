@@ -25,15 +25,15 @@ namespace JMMClient.VideoPlayers
                 Active = false;
                 return;
             }
-            StartWatchingFiles(AppSettings.VLCFolder);
             Active = true;
         }
         public VideoPlayer Player => VideoPlayer.VLC;
-
+      
         public override void Play(VideoInfo video)
         {
+            Process process;
             if (video.IsPlaylist)
-                Process.Start(PlayerPath, '"' + video.Uri + '"');
+                process=Process.Start(PlayerPath, '"' + video.Uri + '"');
             else
             {
                 string init = '"' + video.Uri + '"';
@@ -50,10 +50,17 @@ namespace JMMClient.VideoPlayers
                         init += " --sub-file=\"" + s + "\"";
                     }
                 }
-                Process.Start(PlayerPath, init);
+                process=Process.Start(PlayerPath, init);
+            }
+            if (process != null)
+            {
+                StartWatcher(AppSettings.VLCFolder);
+                process.Exited += (a, b) =>
+                {
+                    StopWatcher();
+                };
             }
         }
-
 
         internal override void FileChangeEvent(string filePath)
         {

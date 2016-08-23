@@ -22,16 +22,26 @@ namespace JMMClient.VideoPlayers
                 Active = false;
                 return;
             }
-            StartWatchingFiles(AppSettings.PotPlayerFolder);
             Active = true;
         }
 
         public VideoPlayer Player => VideoPlayer.PotPlayer;
 
+
         public override void Play(VideoInfo video)
         {
-            Process.Start(PlayerPath, '"' + video.Uri + '"');
+            Process process = Process.Start(PlayerPath, '"' + video.Uri + '"');
+            if (process != null)
+            {
+                StartWatcher(AppSettings.PotPlayerFolder);
+                process.Exited += (a, b) =>
+                {
+                    StopWatcher();
+                };
+            }
         }
+
+
 
         internal override void FileChangeEvent(string filePath)
         {

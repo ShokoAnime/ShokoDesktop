@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Text.RegularExpressions;
@@ -12,6 +13,35 @@ namespace JMMClient.VideoPlayers
     {
 
         private System.Timers.Timer playerWebUiTimer = null;
+
+        public override void Play(VideoInfo video)
+        {
+            Process process;
+            if (video.IsPlaylist)
+                process=Process.Start(PlayerPath, '"' + video.Uri + '"');
+            else
+            {
+                string init = '"' + video.Uri + '"';
+                if (video.ResumePosition > 0)
+                    init += " /start " + video.ResumePosition;
+                if (video.SubtitlePaths != null && video.SubtitlePaths.Count > 0)
+                {
+                    foreach (string s in video.SubtitlePaths)
+                    {
+                        init += " /sub \"" + s + "\"";
+                    }
+                }
+                process=Process.Start(PlayerPath, init);
+            }
+            if (process != null)
+            {
+                StartWatcher(AppSettings.MPCFolder);
+                process.Exited += (a, b) =>
+                {
+                    StopWatcher();
+                };
+            }
+        }
 
 
         public override void Init()
@@ -80,8 +110,15 @@ namespace JMMClient.VideoPlayers
                 return;
             }
             Active = true;
+
+        }
+        internal override void StartWatcher(string path)
+        {
+            if (!AppSettings.VideoAutoSetWatched) return;
+
+            StopWatcher();
             if (AppSettings.MPCIniIntegration)
-                StartWatchingFiles(AppSettings.MPCFolder);
+                base.StartWatcher(path);
             if (AppSettings.MPCWebUiIntegration)
             {
                 playerWebUiTimer = new System.Timers.Timer();
@@ -89,6 +126,16 @@ namespace JMMClient.VideoPlayers
                 playerWebUiTimer.Interval = 1000;
                 playerWebUiTimer.Enabled = true;
             }
+        }
+
+        internal override void StopWatcher()
+        {
+            if (playerWebUiTimer != null)
+            {
+                playerWebUiTimer.Dispose();
+                playerWebUiTimer = null;
+            }
+            base.StopWatcher();
         }
 
         public VideoPlayer Player => VideoPlayer.MPC;
