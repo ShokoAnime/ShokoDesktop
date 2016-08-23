@@ -39,26 +39,38 @@ namespace JMMClient.VideoPlayers
 
         public override void Play(VideoInfo video)
         {
-            if (video.IsPlaylist)
-                Process.Start(PlayerPath, '"' + video.Uri + '"');
-            else
+            if (IsPlaying)
+                return;
+            Task.Factory.StartNew(() =>
             {
-                string init = '"' + video.Uri + '"';
-                if (video.ResumePosition > 0)
+                Process process;
+                if (video.IsPlaylist)
+                    process = Process.Start(PlayerPath, '"' + video.Uri + '"');
+                else
                 {
-                    double n = video.ResumePosition;
-                    n /= 1000;
-                    init += " --start=\"" + n.ToString(CultureInfo.InvariantCulture) + "\"";
-                }
-                if (video.SubtitlePaths != null && video.SubtitlePaths.Count > 0)
-                {
-                    foreach (string s in video.SubtitlePaths)
+                    string init = '"' + video.Uri + '"';
+                    if (video.ResumePosition > 0)
                     {
-                        init += " --sub-file=\"" + s + "\"";
+                        double n = video.ResumePosition;
+                        n /= 1000;
+                        init += " --start=\"" + n.ToString(CultureInfo.InvariantCulture) + "\"";
                     }
+                    if (video.SubtitlePaths != null && video.SubtitlePaths.Count > 0)
+                    {
+                        foreach (string s in video.SubtitlePaths)
+                        {
+                            init += " --sub-file=\"" + s + "\"";
+                        }
+                    }
+                    process = Process.Start(PlayerPath, init);
                 }
-                Process.Start(PlayerPath, init);
-            }
+                if (process != null)
+                {
+                    IsPlaying = true;
+                    process.WaitForExit();
+                    IsPlaying = false;
+                }
+            });
         }
 
         internal override void FileChangeEvent(string filePath)

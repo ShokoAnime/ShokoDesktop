@@ -9,7 +9,7 @@ namespace JMMClient.Utilities
     public abstract class BaseVideoPlayer
     {
         private System.Timers.Timer handleTimer = null;
-
+        public bool IsPlaying { get; set; }
         internal static Logger logger = LogManager.GetCurrentClassLogger();
         private FileSystemWatcher watcher = null;
 
@@ -29,7 +29,7 @@ namespace JMMClient.Utilities
         }
         internal virtual void StartWatcher(string path)
         {
-            if (!AppSettings.VideoAutoSetWatched) return;
+
             if (!string.IsNullOrEmpty(path) && Directory.Exists(path))
             {
                 watcher = new FileSystemWatcher(path, "*.ini");

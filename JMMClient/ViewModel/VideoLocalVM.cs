@@ -32,16 +32,19 @@ namespace JMMClient.ViewModel
         {
         }
 
-        public string BestFullPath
+        public string FileDirectory
+        {
+            get { return string.Join(",", Places.Select(a => a.FileDirectory)); }
+        }
+
+        public string LocalFileSystemFullPath
         {
             get
             {
-                if (Places == null)
-                    return string.Empty;
-                VideoLocal_PlaceVM b = Places.FirstOrDefault(a => !string.IsNullOrEmpty(a.FullPath));
+                VideoLocal_PlaceVM b = Places?.FirstOrDefault(a => !string.IsNullOrEmpty(a.LocalFileSystemFullPath));
                 if (b == null)
                     return string.Empty;
-                return b.FullPath;
+                return b.LocalFileSystemFullPath;
             }
         }
 
@@ -124,7 +127,7 @@ namespace JMMClient.ViewModel
             this.WatchedDate = contract.WatchedDate;
             this.Media = contract.Media;
             this.Duration = contract.Duration;
-
+            this.Places = contract.Places.Select(a => new VideoLocal_PlaceVM(a)).ToList();
         }
 
         public override List<MainListWrapper> GetDirectChildren()

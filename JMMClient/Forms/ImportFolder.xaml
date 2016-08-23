@@ -99,8 +99,8 @@
 
         </Border>
 
-        <Border Margin="5,5,5,5" Padding="5" Background="GhostWhite" BorderBrush="LightGray" BorderThickness="1">
-            <Grid Name="GridLocalMapping">
+        <Border Name="GridLocalMapping" Margin="5,5,5,5" Padding="5" Background="GhostWhite" BorderBrush="LightGray" BorderThickness="1">
+            <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />

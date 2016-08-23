@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using JMMClient.ViewModel;
 
 namespace JMMClient.VideoPlayers
 {
@@ -18,14 +19,14 @@ namespace JMMClient.VideoPlayers
         public List<string> SubtitlePaths { get; set; }
         public bool WasWatched { get; set; }
         public VideoDetailedVM VideoDetailed { get; set; }
-
-        public int ChangePositionTimeout { get; set; } = 5000; //5 seconds
+        public VideoLocalVM VideoLocal { get; set; }
+        public int ChangePositionTimeout { get; set; } = 3000; //3 seconds
 
         private System.Threading.Timer _changePositionTimer=null;
 
         public void ChangePosition(long position)
         {
-            if (ResumePosition == position)
+            if ((ResumePosition == position) || (position==0))
                 return;
             ResumePosition = position;
             if (_changePositionTimer == null)
@@ -36,6 +37,10 @@ namespace JMMClient.VideoPlayers
 
         private void Change(object o)
         {
+            if (VideoDetailed != null)
+                VideoDetailed.VideoLocal_ResumePosition = ResumePosition;
+            if (VideoLocal != null)
+                VideoLocal.ResumePosition = ResumePosition;
             JMMServerVM.Instance.clientBinaryHTTP.SetResumePosition(VideoLocalId,JMMServerVM.Instance.CurrentUser.JMMUserID.Value,ResumePosition);
         }
     }

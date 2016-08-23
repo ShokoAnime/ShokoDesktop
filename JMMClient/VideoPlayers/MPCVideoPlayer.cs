@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
 using JMMClient.Utilities;
 using Microsoft.Win32;
 
@@ -16,31 +18,37 @@ namespace JMMClient.VideoPlayers
 
         public override void Play(VideoInfo video)
         {
-            Process process;
-            if (video.IsPlaylist)
-                process=Process.Start(PlayerPath, '"' + video.Uri + '"');
-            else
+            if (IsPlaying)
+                return;
+            Task.Factory.StartNew(() =>
             {
-                string init = '"' + video.Uri + '"';
-                if (video.ResumePosition > 0)
-                    init += " /start " + video.ResumePosition;
-                if (video.SubtitlePaths != null && video.SubtitlePaths.Count > 0)
+                Process process;
+                if (video.IsPlaylist)
+                    process = Process.Start(PlayerPath, '"' + video.Uri + '"');
+                else
                 {
-                    foreach (string s in video.SubtitlePaths)
+                    string init = '"' + video.Uri + '"';
+                    if (video.ResumePosition > 0)
+                        init += " /start " + video.ResumePosition;
+                    if (video.SubtitlePaths != null && video.SubtitlePaths.Count > 0)
                     {
-                        init += " /sub \"" + s + "\"";
+                        foreach (string s in video.SubtitlePaths)
+                        {
+                            init += " /sub \"" + s + "\"";
+                        }
                     }
+                    process = Process.Start(PlayerPath, init);
                 }
-                process=Process.Start(PlayerPath, init);
-            }
-            if (process != null)
-            {
-                StartWatcher(AppSettings.MPCFolder);
-                process.Exited += (a, b) =>
+                if (process != null)
                 {
+                    IsPlaying = true;
+                    StartWatcher(AppSettings.MPCFolder);
+                    process.WaitForExit();
                     StopWatcher();
-                };
-            }
+                    IsPlaying = false;
+                }
+            });
+
         }
 
 
@@ -114,7 +122,7 @@ namespace JMMClient.VideoPlayers
         }
         internal override void StartWatcher(string path)
         {
-            if (!AppSettings.VideoAutoSetWatched) return;
+
 
             StopWatcher();
             if (AppSettings.MPCIniIntegration)
@@ -132,6 +140,7 @@ namespace JMMClient.VideoPlayers
         {
             if (playerWebUiTimer != null)
             {
+                playerWebUiTimer.Stop();
                 playerWebUiTimer.Dispose();
                 playerWebUiTimer = null;
             }
@@ -300,13 +309,13 @@ namespace JMMClient.VideoPlayers
                         }
                     }
                     // Start timer again
-                    playerWebUiTimer.Start();
+                    playerWebUiTimer?.Start();
                 }
             }
             catch (Exception exception)
             {
                 logger.ErrorException(exception.ToString(), exception);
-                playerWebUiTimer.Start();
+                playerWebUiTimer?.Start();
             }
         }
     }

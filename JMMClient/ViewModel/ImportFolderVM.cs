@@ -55,6 +55,9 @@ namespace JMMClient.ViewModel
             }
         }
 
+        public bool IsCloud => CloudID.HasValue;
+        public bool IsNotCloud => !CloudID.HasValue;
+
         public bool LocalPathIsInvalid
         {
             get

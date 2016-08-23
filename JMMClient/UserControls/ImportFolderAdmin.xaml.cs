@@ -24,6 +24,7 @@ namespace JMMClient.UserControls
 
         void btnRefreshImportFolders_Click(object sender, RoutedEventArgs e)
         {
+            JMMServerVM.Instance.RefreshCloudAccounts();
             JMMServerVM.Instance.RefreshImportFolders();
         }
 

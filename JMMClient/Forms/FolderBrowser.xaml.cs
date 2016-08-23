@@ -4,6 +4,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using JMMClient.ViewModel;
 
 namespace JMMClient.Forms
 {
@@ -15,8 +16,8 @@ namespace JMMClient.Forms
         private object obj = new object();
 
         public string SelectedPath { get; set; } = string.Empty;
-        private int accountid;
-
+        private CloudAccountVM account;
+        
         public FolderBrowser()
         {
             InitializeComponent();
@@ -41,12 +42,12 @@ namespace JMMClient.Forms
 
         private List<string> GetFromDirectory(string path)
         {
-            return JMMServerVM.Instance.clientBinaryHTTP.DirectoriesFromImportFolderPath(accountid, path);
+            return JMMServerVM.Instance.clientBinaryHTTP.DirectoriesFromImportFolderPath(account.CloudID??0, path);
         }
 
-        public void Init(int accountcloudid, string initialpath)
+        public void Init(CloudAccountVM cl, string initialpath)
         {
-            accountid = accountcloudid;
+            account = cl;
             PopulateMainDir(initialpath);
         }
 
@@ -55,14 +56,18 @@ namespace JMMClient.Forms
             List<string> s = GetFromDirectory(path);
             if (s == null)
                 return;
-            foreach (string n in s)
+            foreach (string k in s)
             {
+                int idx = k.LastIndexOf("\\");
+                string n = (idx >= 0) ? k.Substring(idx + 1) : k;
+
                 TreeViewItem item = GenerateFromDirectory(n,Path.Combine(path,n));
                 if (parts.Length > pos)
                 {
-                    if (n.Equals(parts[0],StringComparison.InvariantCultureIgnoreCase))
+                    if (n.Equals(parts[pos],StringComparison.InvariantCultureIgnoreCase))
                     {
-                        RecursiveAddFromDirectory(item.Items, Path.Combine(path,n), parts, pos + 1);
+                        if (pos<parts.Length-1)
+                            RecursiveAddFromDirectory(item.Items, Path.Combine(path,n), parts, pos + 1);
                         item.IsSelected = true;
                     }
                 }
@@ -77,7 +82,7 @@ namespace JMMClient.Forms
             while (initialpath.StartsWith("\\"))
                 initialpath = initialpath.Substring(1);
             string[] pars = initialpath.Split(new char[] { '\\' }, StringSplitOptions.RemoveEmptyEntries);
-            RecursiveAddFromDirectory(TrView.Items, string.Empty, pars, 0);
+            RecursiveAddFromDirectory(TrView.Items, account.Name, pars, (account.CloudID ?? 0)==0 ? 0 : 1);
             this.Cursor = Cursors.Arrow;
         }
 
@@ -108,9 +113,12 @@ namespace JMMClient.Forms
                     List<string> ss = GetFromDirectory(path);
                     if (ss == null)
                         return;
-                    foreach (string s in ss)
+                    foreach (string k in ss)
                     {
-                        item.Items.Add(GenerateFromDirectory(s, Path.Combine(path, s)));
+                        int idx = k.LastIndexOf("\\");
+                        string n = (idx >= 0) ? k.Substring(idx + 1) : k;
+
+                        item.Items.Add(GenerateFromDirectory(n, Path.Combine(path,n)));
                     }
                 }
                 catch (Exception) { }

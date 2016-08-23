@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Threading.Tasks;
 using JMMClient.Utilities;
 using Microsoft.Win32;
 
@@ -30,15 +31,20 @@ namespace JMMClient.VideoPlayers
 
         public override void Play(VideoInfo video)
         {
-            Process process = Process.Start(PlayerPath, '"' + video.Uri + '"');
-            if (process != null)
+            if (IsPlaying)
+                return;
+            Task.Factory.StartNew(() =>
             {
-                StartWatcher(AppSettings.PotPlayerFolder);
-                process.Exited += (a, b) =>
+                Process process = Process.Start(PlayerPath, '"' + video.Uri + '"');
+                if (process != null)
                 {
+                    IsPlaying = true;
+                    StartWatcher(AppSettings.PotPlayerFolder);
+                    process.WaitForExit();
                     StopWatcher();
-                };
-            }
+                    IsPlaying = false;
+                }
+            });
         }
 
 

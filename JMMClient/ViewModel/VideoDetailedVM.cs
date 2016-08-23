@@ -338,7 +338,7 @@ namespace JMMClient
                 VideoLocal_PlaceVM p=Places.FirstOrDefault(a => a.FilePath != string.Empty);
                 if (p == null)
                     return string.Empty;
-                return p.FullPath;
+                return p.LocalFileSystemFullPath;
             }
         }
 

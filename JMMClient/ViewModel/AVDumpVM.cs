@@ -156,7 +156,7 @@ namespace JMMClient.ViewModel
 
         public AVDumpVM(VideoLocalVM vid)
         {
-            this.FullPath = vid.BestFullPath;
+            this.FullPath = vid.LocalFileSystemFullPath;
             this.FileSize = vid.FileSize;
             this.ED2KDump = "";
             this.AVDumpFullResult = "";

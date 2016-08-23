@@ -49,7 +49,7 @@ namespace JMMClient.VideoPlayers
         }
         public static VideoInfo ToVideoInfo(this VideoLocalVM vid, bool forcebegining)
         { 
-            if (string.IsNullOrEmpty(vid.BestFullPath))
+            if (string.IsNullOrEmpty(vid.LocalFileSystemFullPath))
             {
                 if (vid.Media?.Parts == null || vid.Media.Parts.Count == 0)
                     throw new Exception("There is no media information loaded in the video selected, we're unable to stream the media");
@@ -62,16 +62,18 @@ namespace JMMClient.VideoPlayers
                     Duration = vid.Duration,
                     ResumePosition = forcebegining ? 0 : vid.ResumePosition,
                     VideoLocalId = vid.VideoLocalID,
+                    VideoLocal = vid,
                     WasWatched = vid.WatchedDate.HasValue
                 };
             }
             return new VideoInfo
             {
-                Uri = vid.BestFullPath,
+                Uri = vid.LocalFileSystemFullPath,
                 IsUrl = false,
                 Duration = vid.Duration,
                 ResumePosition = forcebegining ? 0 : vid.ResumePosition,
                 VideoLocalId = vid.VideoLocalID,
+                VideoLocal =  vid,
                 WasWatched =  vid.WatchedDate.HasValue
             };
         }

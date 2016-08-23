@@ -307,6 +307,7 @@ namespace JMMClient.VideoPlayers
                     logger.Info(string.Format("Video position for {0} has changed to {1}", kvp.Key, kvp.Value));
                     v.ChangePosition(kvp.Value); //Set New Resume Position
 
+                    if (!AppSettings.VideoAutoSetWatched) return;
                     // we don't care about files that are already watched
                     if (v.WasWatched) continue;
 

@@ -480,6 +480,7 @@ namespace JMMClient.UserControls
             try
             {
                 AnimeEpisodeVM ep = UnwatchedEpisodes[0];
+
                 if (ep.IsWatched == 1)
                 {
                     if (UnwatchedEpisodes.Count == 1)

@@ -20,7 +20,7 @@ namespace JMMClient.ViewModel
 
         public ImportFolderVM ImportFolder { get; set; }
 
-        public string FullPath
+        public string LocalFileSystemFullPath
         {
             get
             {
@@ -31,13 +31,18 @@ namespace JMMClient.ViewModel
                 return Path.Combine(ImportFolder.ImportFolderLocation, FilePath);
             }
         }
+
+        public string FullPath => Path.Combine(ImportFolder.ImportFolderLocation, FilePath);
+
         public int CompareTo(VideoLocal_PlaceVM obj)
         {
             return String.Compare(FullPath, obj.FullPath, StringComparison.Ordinal);
         }
-        public string FileName => Path.GetFileName(FullPath);
+        public string FileName => Path.GetFileName(FilePath);
 
         public string FileDirectory => Path.GetDirectoryName(FullPath);
+
+        
 
         public VideoLocal_PlaceVM(Contract_VideoLocal_Place contract)
         {

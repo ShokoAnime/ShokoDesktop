@@ -725,11 +725,13 @@ namespace JMMClient
 
                 if (tabIndex == TAB_MAIN_Server)
                 {
+                    if (JMMServerVM.Instance.FolderProviders.Count == 0) JMMServerVM.Instance.RefreshCloudAccounts();
                     if (JMMServerVM.Instance.ImportFolders.Count == 0) JMMServerVM.Instance.RefreshImportFolders();
                 }
 
                 if (tabIndex == TAB_MAIN_Settings)
                 {
+                    if (JMMServerVM.Instance.FolderProviders.Count == 0)JMMServerVM.Instance.RefreshCloudAccounts();
                     if (JMMServerVM.Instance.ImportFolders.Count == 0) JMMServerVM.Instance.RefreshImportFolders();
                     if (JMMServerVM.Instance.SelectedLanguages.Count == 0) JMMServerVM.Instance.RefreshNamingLanguages();
                     if (JMMServerVM.Instance.AllUsers.Count == 0) JMMServerVM.Instance.RefreshAllUsers();
@@ -1293,7 +1295,7 @@ namespace JMMClient
             {
                 foreach (AVDumpVM dumpTemp in MainListHelperVM.Instance.AVDumpFiles)
                 {
-                    if (dumpTemp.FullPath == vid.BestFullPath) return;
+                    if (dumpTemp.FullPath == vid.LocalFileSystemFullPath) return;
                 }
 
                 AVDumpVM dump = new AVDumpVM(vid);
@@ -1652,7 +1654,7 @@ namespace JMMClient
 
                     foreach (AVDumpVM dumpTemp in MainListHelperVM.Instance.AVDumpFiles)
                     {
-                        if (dumpTemp.FullPath == vid.BestFullPath) return;
+                        if (dumpTemp.FullPath == vid.LocalFileSystemFullPath) return;
                     }
 
                     AVDumpVM dump = new AVDumpVM(vid);
@@ -1668,7 +1670,7 @@ namespace JMMClient
                         bool alreadyExists = false;
                         foreach (AVDumpVM dumpTemp in MainListHelperVM.Instance.AVDumpFiles)
                         {
-                            if (dumpTemp.FullPath == vid.BestFullPath)
+                            if (dumpTemp.FullPath == vid.LocalFileSystemFullPath)
                             {
                                 alreadyExists = true;
                                 break;

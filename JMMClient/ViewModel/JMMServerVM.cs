@@ -43,7 +43,7 @@ namespace JMMClient
                 return _clientBinaryHTTP;
             }
         }
-        public ObservableCollection<CloudAccountVM> FolderProviders { get; set; }
+        public ObservableCollection<CloudAccountVM> FolderProviders { get; set; }=new ObservableCollection<CloudAccountVM>();
         public void RefreshCloudAccounts()
         {
 
