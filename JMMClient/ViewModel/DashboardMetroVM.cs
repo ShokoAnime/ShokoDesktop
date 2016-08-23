@@ -214,7 +214,7 @@ namespace JMMClient
                     {
                         string imageName = "";
                         if (AppSettings.DashMetroImageType == DashboardMetroImageType.Fanart)
-                            imageName = ep.AniDB_Anime.FanartPathPreferThumb;
+                            imageName = ep.AniDB_Anime.FanartPath;
                         else
                             imageName = ep.AniDB_Anime.PosterPathWithRandoms;
 
