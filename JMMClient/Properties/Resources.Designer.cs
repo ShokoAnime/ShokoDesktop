@@ -5182,6 +5182,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select Import Folder....
+        /// </summary>
+        public static string ImportFolder_SelectImportFolder {
+            get {
+                return ResourceManager.GetString("ImportFolder_SelectImportFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This folder is being watched for new files.
         /// </summary>
         public static string ImportFolder_Watched {

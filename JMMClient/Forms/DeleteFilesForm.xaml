@@ -117,8 +117,8 @@
                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Files}" Margin="5,0,0,0" Foreground="DarkGray"/>
             </StackPanel>
         </Border>
-        <Border Grid.Row="2" Grid.Column="0" Margin="5,5,5,5" Background="White" BorderBrush="LightGray" BorderThickness="1">
-            <WrapPanel Name="WrapPanel" Orientation="Horizontal"  Margin="0,0,0,5"/>
+        <Border Grid.Row="1" Grid.Column="0" Margin="5,5,5,5" Background="White" BorderBrush="LightGray" BorderThickness="1">
+            <WrapPanel Name="WrapPanel" Orientation="Horizontal"  Margin="5,5,5,5"/>
         </Border>
         <Border Grid.Row="2" Grid.Column="0" Margin="5,5,5,5" Background="White" BorderBrush="LightGray" BorderThickness="1">
             <ListBox Name="lbFiles" BorderThickness="0" Background="Transparent" 

@@ -626,7 +626,7 @@ namespace JMMClient.UserControls
                 {
                     VideoLocalVM vid = obj as VideoLocalVM;
 
-                    AskDeleteFile dlg = new AskDeleteFile(string.Format(Properties.Resources.DeleteFile_Title, vid.FileName), Properties.Resources.Unrecognized_ConfirmDelete + "\r\n" + Properties.Resources.DeleteFile_Confirm, vid.Places);
+                    AskDeleteFile dlg = new AskDeleteFile(string.Format(Properties.Resources.DeleteFile_Title, vid.FileName), Properties.Resources.Unrecognized_ConfirmDelete + "\r\n\r\n" + Properties.Resources.DeleteFile_Confirm, vid.Places);
                     dlg.Owner = Window.GetWindow(this);
                     bool? res = dlg.ShowDialog();
                     if (res.HasValue && res.Value)
@@ -652,7 +652,7 @@ namespace JMMClient.UserControls
                 if (obj.GetType() == typeof(MultipleVideos))
                 {
                     MultipleVideos mv = obj as MultipleVideos;
-                    AskDeleteFile dlg = new AskDeleteFile(Properties.Resources.DeleteFile_Multiple, Properties.Resources.Unrecognized_DeleteSelected + "\r\n" + Properties.Resources.DeleteFile_Confirm, mv.VideoLocals.SelectMany(a => a.Places).ToList());
+                    AskDeleteFile dlg = new AskDeleteFile(Properties.Resources.DeleteFile_Multiple, Properties.Resources.Unrecognized_DeleteSelected + "\r\n\r\n" + Properties.Resources.DeleteFile_Confirm, mv.VideoLocals.SelectMany(a => a.Places).ToList());
                     dlg.Owner = Window.GetWindow(this);
                     bool? res = dlg.ShowDialog();
                     if (res.HasValue && res.Value)

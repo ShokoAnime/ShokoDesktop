@@ -335,7 +335,7 @@ namespace JMMClient
         {
             get
             {
-                VideoLocal_PlaceVM p=Places.FirstOrDefault(a => a.FilePath != string.Empty);
+                VideoLocal_PlaceVM p=Places.FirstOrDefault(a => a.LocalFileSystemFullPath != string.Empty);
                 if (p == null)
                     return string.Empty;
                 return p.LocalFileSystemFullPath;
@@ -346,6 +346,8 @@ namespace JMMClient
         {
             get
             {
+                if (string.IsNullOrEmpty(FullPath))
+                    return true;
                 return File.Exists(FullPath);
             }
         }
@@ -354,6 +356,8 @@ namespace JMMClient
         {
             get
             {
+                if (string.IsNullOrEmpty(FullPath))
+                    return false;
                 return !File.Exists(FullPath);
             }
         }

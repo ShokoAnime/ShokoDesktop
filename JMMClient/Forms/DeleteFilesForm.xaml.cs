@@ -242,7 +242,10 @@ namespace JMMClient.Forms
                     {
                         Tuple<string, BitmapImage> tup = dict[vv.ImportFolder.CloudID ?? 0];
                         if (!types.ContainsKey(tup.Item1))
-                            types.Add(tup.Item1,tup.Item2);
+                        {
+                            chks[tup.Item1] = true;
+                            types.Add(tup.Item1, tup.Item2);
+                        }
                     }
                     vids.Add(vid);
                 }

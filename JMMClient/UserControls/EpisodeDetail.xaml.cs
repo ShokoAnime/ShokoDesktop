@@ -449,7 +449,7 @@ namespace JMMClient.UserControls
                 {
                     VideoDetailedVM vid = obj as VideoDetailedVM;
                     AnimeEpisodeVM ep = this.DataContext as AnimeEpisodeVM;
-                    AskDeleteFile dlg=new AskDeleteFile(string.Format(Properties.Resources.DeleteFile_Title,vid.FileName), Properties.Resources.EpisodeDetail_ConfirmDelete+"\r\n"+Properties.Resources.DeleteFile_Confirm,vid.Places);
+                    AskDeleteFile dlg=new AskDeleteFile(string.Format(Properties.Resources.DeleteFile_Title,vid.FileName), Properties.Resources.EpisodeDetail_ConfirmDelete+"\r\n\r\n"+Properties.Resources.DeleteFile_Confirm,vid.Places);
                     dlg.Owner = Window.GetWindow(this);
                     bool? res=dlg.ShowDialog();
                     if (res.HasValue && res.Value)

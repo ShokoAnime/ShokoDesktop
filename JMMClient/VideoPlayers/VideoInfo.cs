@@ -29,6 +29,10 @@ namespace JMMClient.VideoPlayers
             if ((ResumePosition == position) || (position==0))
                 return;
             ResumePosition = position;
+            if (VideoDetailed != null)
+                VideoDetailed.VideoLocal_ResumePosition = ResumePosition;
+            if (VideoLocal != null)
+                VideoLocal.ResumePosition = ResumePosition;
             if (_changePositionTimer == null)
                 _changePositionTimer = new Timer(Change, null, ChangePositionTimeout, Timeout.Infinite);
             else
@@ -37,10 +41,6 @@ namespace JMMClient.VideoPlayers
 
         private void Change(object o)
         {
-            if (VideoDetailed != null)
-                VideoDetailed.VideoLocal_ResumePosition = ResumePosition;
-            if (VideoLocal != null)
-                VideoLocal.ResumePosition = ResumePosition;
             JMMServerVM.Instance.clientBinaryHTTP.SetResumePosition(VideoLocalId,JMMServerVM.Instance.CurrentUser.JMMUserID.Value,ResumePosition);
         }
     }

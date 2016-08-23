@@ -4470,4 +4470,7 @@ Unlike the other supported media players, MPV is the fastest when it comes to st
   <data name="Resume_Title" xml:space="preserve">
     <value>Do you want to resume the video?</value>
   </data>
+  <data name="ImportFolder_SelectImportFolder" xml:space="preserve">
+    <value>Select Import Folder...</value>
+  </data>
 </root>
