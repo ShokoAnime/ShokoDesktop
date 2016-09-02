@@ -139,6 +139,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\Infralution.Localization.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="Ionic.Zip.Reduced">
+      <HintPath>..\Dependencies\Ionic.Zip.Reduced.dll</HintPath>
+    </Reference>
     <Reference Include="Jint, Version=2.7.1.0, Culture=neutral, PublicKeyToken=2e92ba9c8d81157f, processorArchitecture=MSIL">
       <HintPath>..\packages\Jint.2.8\lib\portable-net40+sl50+win+WindowsPhoneApp81+wp80\Jint.dll</HintPath>
       <Private>True</Private>
