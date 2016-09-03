@@ -3,10 +3,10 @@ using JMMClient.Utilities;
 using Microsoft.Win32;
 using NLog;
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.IO;
 using System.Net;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -16,6 +16,9 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using Path = Pri.LongPath.Path;
+using Directory = Pri.LongPath.Directory;
+using File = Pri.LongPath.File;
 
 namespace JMMClient
 {
@@ -44,7 +47,7 @@ namespace JMMClient
         public static string GetAppPath()
         {
             if (string.IsNullOrEmpty(appPath))
-                appPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+                appPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 
             return appPath;
         }
@@ -62,16 +65,22 @@ namespace JMMClient
         /// <returns>The full path to the first occurance of an exe in the path.</returns>
         public static string CheckSysPath(string[] files)
         {
-            string sysPath = Environment.GetEnvironmentVariable("PATH");
-            string playerPath = null;
-            foreach (var path in sysPath.Split(';'))
+            try
             {
-                foreach (string file in files)
+                string sysPath = Environment.GetEnvironmentVariable("PATH");
+                string playerPath = null;
+                foreach (var path in sysPath.Split(';'))
                 {
-                    playerPath = Path.Combine(path, file);
-                    if (File.Exists(playerPath))
-                        return playerPath;
+                    foreach (string file in files)
+                    {
+                        playerPath = Path.Combine(path, file);
+                        if (File.Exists(playerPath))
+                            return playerPath;
+                    }
                 }
+            } catch (Exception ex)
+            {
+                logger.LogException(LogLevel.Error, "Invalid PATH variable.", ex);
             }
             return null;
         }
