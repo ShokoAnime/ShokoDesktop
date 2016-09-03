@@ -1594,8 +1594,8 @@ namespace JMMClient
 
         public Visibility IsMPCInstalled => MainWindow.videoHandler.IsActive(VideoPlayer.MPC) ? Visibility.Visible : Visibility.Hidden;
         public Visibility IsMPCNotInstalled => MainWindow.videoHandler.IsActive(VideoPlayer.MPC) ? Visibility.Hidden : Visibility.Visible;
-        public Visibility IsMPVInstalled => MainWindow.videoHandler.IsActive(VideoPlayer.MPV) ? Visibility.Visible : Visibility.Hidden;
-        public Visibility IsMPVNotInstalled => MainWindow.videoHandler.IsActive(VideoPlayer.MPV) ? Visibility.Hidden : Visibility.Visible;
+        public Visibility IsMPVInstalled => MainWindow.videoHandler.IsActive(VideoPlayer.ExternalMPV) ? Visibility.Visible : Visibility.Hidden;
+        public Visibility IsMPVNotInstalled => MainWindow.videoHandler.IsActive(VideoPlayer.ExternalMPV) ? Visibility.Hidden : Visibility.Visible;
         public Visibility IsVLCInstalled => MainWindow.videoHandler.IsActive(VideoPlayer.VLC) ? Visibility.Visible : Visibility.Hidden;
         public Visibility IsVLCNotInstalled => MainWindow.videoHandler.IsActive(VideoPlayer.VLC) ? Visibility.Hidden : Visibility.Visible;
         public Visibility IsPotInstalled => MainWindow.videoHandler.IsActive(VideoPlayer.PotPlayer) ? Visibility.Visible : Visibility.Hidden;

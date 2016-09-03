@@ -44,10 +44,11 @@ namespace JMMClient.VideoPlayers
             previousFilePositions.Clear();
 
             Players = new List<IVideoPlayer>();
+            Players.Add(new MPVVideoPlayer());
             Players.Add(new MPCVideoPlayer());
             Players.Add(new PotVideoPlayer());
             Players.Add(new VLCVideoPlayer());
-            Players.Add(new MPVVideoPlayer());
+            Players.Add(new ExternalMPVVideoPlayer());
             foreach (IVideoPlayer v in Players)
             {
                 v.PositionChange += FindChangedFiles;

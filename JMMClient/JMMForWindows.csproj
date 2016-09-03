@@ -359,7 +359,12 @@
     <Compile Include="VideoPlayers\Extensions.cs" />
     <Compile Include="VideoPlayers\IVideoPlayer.cs" />
     <Compile Include="VideoPlayers\MPCVideoPlayer.cs" />
+    <Compile Include="VideoPlayers\ExternalMPVVideoPlayer.cs" />
     <Compile Include="VideoPlayers\MPVVideoPlayer.cs" />
+    <Compile Include="VideoPlayers\mpv\PlayerForm.xaml.cs">
+      <DependentUpon>PlayerForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VideoPlayers\mpv\VideoPlayer.cs" />
     <Compile Include="VideoPlayers\PotVideoPlayer.cs" />
     <Compile Include="VideoPlayers\VideoInfo.cs" />
     <Compile Include="VideoPlayers\VLCVideoPlayer.cs" />
@@ -1351,6 +1356,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="VideoPlayers\mpv\PlayerForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -2143,6 +2152,10 @@
 xcopy "$(TargetDir)*.exe" "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y	
 xcopy "$(TargetDir)*.pdb" "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y	
 xcopy "$(TargetDir)*.manifest" "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y	</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>xcopy "$(ProjectDir)Dependencies\x64\*" "$(TargetDir)x64\" /S /R /I /Y
+xcopy "$(ProjectDir)Dependencies\x86\*" "$(TargetDir)x86\" /S /R /I /Y</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

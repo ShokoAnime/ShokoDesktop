@@ -165,6 +165,8 @@ namespace JMMClient.UserControls
                 MultipleTypeRange = cboMultiType.SelectedIndex == 0;
                 MultipleTypeSingle = cboMultiType.SelectedIndex == 1;
 
+
+
                 // if only one video selected
                 if (OneVideoSelected)
                 {
