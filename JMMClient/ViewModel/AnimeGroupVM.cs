@@ -949,11 +949,14 @@ namespace JMMClient
         {
             get
             {
-                return
-                    AllSeries.Select(a => MainListHelperVM.Instance.AllSeriesDictionary.SureGet(a))
-                        .Where(a => a != null)
-                        .OrderBy(a => a.Stat_AirDate_Min).ToList();
-                /*
+	            if (AllSeries == null) PopulateSerieInfo(MainListHelperVM.Instance.AllGroupsDictionary,
+		            MainListHelperVM.Instance.AllSeriesDictionary);
+	            if (AllSeries == null) return new List<AnimeSeriesVM>();
+				return
+					AllSeries.Select(a => MainListHelperVM.Instance.AllSeriesDictionary.SureGet(a))
+						.Where(a => a != null)
+						.OrderBy(a => a.Stat_AirDate_Min).ToList();
+	            /*
                 List<AnimeSeriesVM> series = new List<AnimeSeriesVM>();
                 try
                 {
