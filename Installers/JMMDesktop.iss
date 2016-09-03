@@ -85,7 +85,7 @@ Name: "{commondesktop}\JMM Desktop"; Filename: "{app}\JMMDesktop.exe"; Tasks: de
 Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\JMM Desktop"; Filename: "{app}\JMMDesktop.exe"; Tasks: quicklaunchicon
 
 [Run]
-Filename: "{app}\JMMDesktop.exe"; Description: "{cm:LaunchProgram,JMM Desktop}"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\JMMDesktop.exe"; Flags: nowait postinstall skipifsilent shellexec; Description: "{cm:LaunchProgram,JMM Desktop}"
 
 [Dirs]
 Name: "{app}"; Permissions: users-full
