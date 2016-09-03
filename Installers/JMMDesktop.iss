@@ -55,6 +55,7 @@ Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\Microsoft.Data.OData
 Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\Microsoft.Data.Services.Client.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\Microsoft.Win32.Primitives.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\NLog.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\Pri.LongPath.dll"; DestDir: "{app}"; Flags: ignoreversion    
 Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\ReuxablesLegacy.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\System.Diagnostics.DiagnosticSource.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\System.Net.Http.dll"; DestDir: "{app}"; Flags: ignoreversion
@@ -86,6 +87,7 @@ Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\JMM Desktop"; File
 
 [Run]
 Filename: "{app}\JMMDesktop.exe"; Flags: nowait postinstall skipifsilent shellexec; Description: "{cm:LaunchProgram,JMM Desktop}"
+Filename: "http://jmediamanager.org/version-3-6-brings-speed-and-streaming/"; Flags: shellexec runasoriginaluser postinstall; Description: "View Release Notes"
 
 [Dirs]
 Name: "{app}"; Permissions: users-full
