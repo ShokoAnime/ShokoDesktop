@@ -17,7 +17,7 @@ namespace JMMClient.VideoPlayers
         public override void Init()
         {
 	        // nvo is nvidia optimus
-            PlayerPath = Utils.CheckSysPath(new string[] { "mpc-hc64.exe", "mpc-hc.exe", "mpc-hc64_nvo.exe", "mpc-hc_nvo.exe" });
+            PlayerPath = Utils.CheckSysPath(new string[] { "mpc-hc64.exe", "mpc-hc.exe", "mpc-hc64_nvo.exe", "mpc-hc_nvo.exe", "mpc-be64.exe", "mpc-be.exe" });
             //Look for 64bit
             if (string.IsNullOrEmpty(PlayerPath))
             { 
@@ -45,6 +45,14 @@ namespace JMMClient.VideoPlayers
                         PlayerPath = Path.Combine(PlayerPath, @"MPC-HC\mpc-hc_nvo.exe");
                     else
                         PlayerPath = null;
+            }
+            if (string.IsNullOrEmpty(PlayerPath))
+            {
+                PlayerPath = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\MPC-BE", "ExePath", null);
+            }
+            if (string.IsNullOrEmpty(PlayerPath))
+            {
+                PlayerPath = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\MPC-BE", "ExePath", null);
             }
             if (string.IsNullOrEmpty(PlayerPath))
             {
