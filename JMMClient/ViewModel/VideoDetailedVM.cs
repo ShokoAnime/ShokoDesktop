@@ -46,7 +46,7 @@ namespace JMMClient
         public string VideoInfo_AudioCodec { get; set; }
         public string VideoInfo_AudioBitrate { get; set; }
         public long VideoInfo_Duration { get; set; }
-
+        public int VideoLocal_IsVariation { get; set; }
         // AniDB_File
         public int? AniDB_FileID { get; set; }
         public int? AniDB_AnimeID { get; set; }
@@ -69,7 +69,11 @@ namespace JMMClient
         public int AniDB_File_FileVersion { get; set; }
 
         public Media Media { get; set; }
+        // Languages
+        public string LanguagesAudio { get; set; }
+        public string LanguagesSubtitle { get; set; }
 
+        public ReleaseGroupVM ReleaseGroup { get; set; }
         public string VideoResolution
         {
             get
@@ -97,11 +101,7 @@ namespace JMMClient
             }
         }
 
-        // Languages
-        public string LanguagesAudio { get; set; }
-        public string LanguagesSubtitle { get; set; }
 
-        public ReleaseGroupVM ReleaseGroup { get; set; }
 
         #endregion
 

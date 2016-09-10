@@ -61,7 +61,9 @@ namespace JMMClient.VideoPlayers
                 "mpc-64.exe",
                 "mpc-hc.exe",
                 "mpc-hc_nvo.exe",
-                "mpc.exe"
+                "mpc.exe",
+                "mpc-be64.exe", 
+                "mpc-be.exe"
             }; //Prefer 64 Bit nvo is nvidia optimus
 
             string[] registryplaces = 
@@ -73,11 +75,21 @@ namespace JMMClient.VideoPlayers
                 @"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\KLiteCodecPack_is1",
                 "InstallLocation",
             };
+            string[] installregplaces =
+            {
+                @"HKEY_CURRENT_USER\SOFTWARE\MPC-HC\MPC-HC",
+                @"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\MPC-HC",
+                @"HKEY_LOCAL_MACHINE\SOFTWARE\MPC-BE",
+                @"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\MPC-BE",
+
+            };
             string[] subdirs=new string[]
             {
                 "",
                 "MPC-HC64",
                 "MPC-HC",
+                "MPC-BE64",
+                "MPC-BE",
             };
             PlayerPath = Utils.CheckSysPath(playersexenames);
             if (string.IsNullOrEmpty(PlayerPath))
@@ -107,10 +119,14 @@ namespace JMMClient.VideoPlayers
                         break;
                 }
             }
-
             if (string.IsNullOrEmpty(PlayerPath))
             {
-                PlayerPath = (string)Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\MPC-HC\MPC-HC", "ExePath", null);
+            	foreach(string r in installregplaces)
+                {
+                    PlayerPath = (string)Registry.GetValue(r, "ExePath", null);
+                    if (!string.IsNullOrEmpty(PlayerPath))
+                        break;
+                }
             }
             if (string.IsNullOrEmpty(PlayerPath))
             {

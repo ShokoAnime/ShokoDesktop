@@ -524,28 +524,34 @@ namespace JMMClient.UserControls
             if (!ser.IsSeriesNameOverridden)
                 newName = "";
 
-            if (!oldName.Equals(newName))
-            {
-                // override name has changes so lets save to db
-                ser.SeriesNameOverride = newName;
-                ser.Save();
+	        if (!oldName.Equals(newName))
+	        {
+		        // override name has changes so lets save to db
+		        ser.SeriesNameOverride = newName;
 
-                // prompt to change parent group name
-                MessageBoxResult res = MessageBox.Show(Properties.Resources.Anime_RenameParent,
-                    Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (res == MessageBoxResult.Yes)
-                {
-                    AnimeGroupVM thisGrp = MainListHelperVM.Instance.AllGroupsDictionary[ser.AnimeGroupID];
-                    if (thisGrp != null)
-                    {
-                        thisGrp.GroupName = newName;
-                        thisGrp.SortName = newName;
-                        thisGrp.Save();
-                    }
-                }
-            }
+		        ser.SetSeriesNames();
 
-            ser.SetSeriesNames();
+		        ser.Save();
+
+		        // prompt to change parent group name
+		        MessageBoxResult res = MessageBox.Show(Properties.Resources.Anime_RenameParent,
+			        Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
+		        if (res == MessageBoxResult.Yes)
+		        {
+			        AnimeGroupVM thisGrp = MainListHelperVM.Instance.AllGroupsDictionary[ser.AnimeGroupID];
+			        if (thisGrp != null)
+			        {
+				        thisGrp.GroupName = ser.SeriesName;
+				        thisGrp.SortName = ser.SeriesName;
+				        thisGrp.Save();
+			        }
+		        }
+	        }
+	        else
+	        {
+		        ser.SetSeriesNames();
+		        ser.Save();
+	        }
 
             //MainListHelperVM.Instance.RefreshGroupsSeriesData();
 

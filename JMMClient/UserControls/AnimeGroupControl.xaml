@@ -22,7 +22,7 @@
 
     <usercontrols:ContentAwareScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" x:Name="ScrollerAnimeGroup" Grid.Column="0" Grid.Row="0" Margin="0,0,0,0">
 
-        <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Vertical" Width="{Binding Source={x:Static local:MainListHelperVM.Instance},Path=MainScrollerWidth}">
 
             <!-- panelGroupReadOnlyToolbar -->
             <Border Name="panelGroupReadOnlyToolbar" Style="{DynamicResource ToolbarBorderControlStyle}" 
@@ -296,7 +296,7 @@
                 </Border>
 
                 <!-- Play Next Episode -->
-                <usercontrols:PlayNextEpisodeControl x:Name="ucNextEpisode" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="7" Margin="0,10,0,0" Width="{Binding Source={x:Static local:MainListHelperVM.Instance},Path=MainScrollerWidth}"/>
+                <usercontrols:PlayNextEpisodeControl x:Name="ucNextEpisode" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="7" Margin="0,10,0,0"/>
 
                 <!-- All Series Header -->
                 <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3" Padding="6" Background="#F1F1F1" Margin="-10,10,0,0">

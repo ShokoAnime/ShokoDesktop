@@ -7,8 +7,8 @@
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 AppId={{AD24689F-020C-4C53-B649-99BB49ED6238}
 AppName=JMM Desktop
-AppVersion=3.6.0.2
-;AppVerName=JMM Desktop 3.6.0.2
+AppVersion=3.6.0.3
+;AppVerName=JMM Desktop 3.6.0.3
 AppPublisher=JMM
 AppPublisherURL=https://github.com/japanesemediamanager
 AppSupportURL=https://github.com/japanesemediamanager
@@ -29,7 +29,6 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 
 [Files]
 Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\JMMDesktop.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\CSEBMLLib.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\DevExpress.Data.v12.2.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\DevExpress.PivotGrid.v12.2.Core.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\DevExpress.Printing.v12.2.Core.dll"; DestDir: "{app}"; Flags: ignoreversion
@@ -56,6 +55,7 @@ Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\Microsoft.Data.OData
 Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\Microsoft.Data.Services.Client.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\Microsoft.Win32.Primitives.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\NLog.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\Pri.LongPath.dll"; DestDir: "{app}"; Flags: ignoreversion    
 Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\ReuxablesLegacy.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\System.Diagnostics.DiagnosticSource.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\System.Net.Http.dll"; DestDir: "{app}"; Flags: ignoreversion
@@ -86,7 +86,8 @@ Name: "{commondesktop}\JMM Desktop"; Filename: "{app}\JMMDesktop.exe"; Tasks: de
 Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\JMM Desktop"; Filename: "{app}\JMMDesktop.exe"; Tasks: quicklaunchicon
 
 [Run]
-Filename: "{app}\JMMDesktop.exe"; Description: "{cm:LaunchProgram,JMM Desktop}"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\JMMDesktop.exe"; Flags: nowait postinstall skipifsilent shellexec; Description: "{cm:LaunchProgram,JMM Desktop}"
+Filename: "http://jmediamanager.org/version-3-6-brings-speed-and-streaming/"; Flags: shellexec runasoriginaluser postinstall; Description: "View Release Notes"
 
 [Dirs]
 Name: "{app}"; Permissions: users-full
