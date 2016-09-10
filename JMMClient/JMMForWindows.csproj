@@ -288,6 +288,15 @@
     <Compile Include="Forms\AdminMessagesForm.xaml.cs">
       <DependentUpon>AdminMessagesForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AskResumeVideo.xaml.cs">
+      <DependentUpon>AskResumeVideo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AskDeleteFile.xaml.cs">
+      <DependentUpon>AskDeleteFile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FolderBrowser.xaml.cs">
+      <DependentUpon>FolderBrowser.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FeedForm.xaml.cs">
       <DependentUpon>FeedForm.xaml</DependentUpon>
     </Compile>
@@ -372,10 +381,17 @@
       <DependentUpon>RelationSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="VideoPlayers\BaseVideoPlayer.cs" />
+    <Compile Include="VideoPlayers\Extensions.cs" />
     <Compile Include="VideoPlayers\IVideoPlayer.cs" />
     <Compile Include="VideoPlayers\MPCVideoPlayer.cs" />
+    <Compile Include="VideoPlayers\ExternalMPVVideoPlayer.cs" />
     <Compile Include="VideoPlayers\MPVVideoPlayer.cs" />
+    <Compile Include="VideoPlayers\mpv\PlayerForm.xaml.cs">
+      <DependentUpon>PlayerForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VideoPlayers\mpv\VideoPlayer.cs" />
     <Compile Include="VideoPlayers\PotVideoPlayer.cs" />
+    <Compile Include="VideoPlayers\VideoInfo.cs" />
     <Compile Include="VideoPlayers\VLCVideoPlayer.cs" />
     <Compile Include="ViewModel\AniDB_CharacterVM.cs" />
     <Compile Include="ViewModel\AniDB_SeiyuuVM.cs" />
@@ -772,6 +788,7 @@
     <Compile Include="ViewModel\AnimeTitleVM.cs" />
     <Compile Include="ViewModel\AVDumpVM.cs" />
     <Compile Include="ViewModel\BookmarkedAnimeVM.cs" />
+    <Compile Include="ViewModel\CloudProviderVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_MALResultVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_MALVM.cs" />
     <Compile Include="ViewModel\CrossRef_AniDB_OtherResultVM.cs" />
@@ -843,6 +860,7 @@
     <Compile Include="Utils.cs" />
     <Compile Include="ViewModel\VideoLocalRenamedVM.cs" />
     <Compile Include="ViewModel\VideoLocalVM.cs" />
+    <Compile Include="ViewModel\VideoLocal_PlaceVM.cs" />
     <Page Include="Forms\AboutForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -851,9 +869,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Forms\AskResumeVideo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Forms\ChangePasswordForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\FolderBrowser.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Forms\DeleteFilesForm.xaml">
       <SubType>Designer</SubType>
@@ -866,6 +892,10 @@
     <Page Include="Forms\DialogInteger.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\AskDeleteFile.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Forms\DialogText.xaml">
       <SubType>Designer</SubType>
@@ -1351,6 +1381,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="VideoPlayers\mpv\PlayerForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -1496,6 +1530,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_ChangesOfContract_GroupFilterFG2lp1Ah.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_CloudAccount.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_CrossRef_AniDB_MALResult1.datasource">
@@ -2072,6 +2109,7 @@
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.Core.dll" />
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.dll" />
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.resources.dll" />
+    <Resource Include="Images\16_folder.png" />
     <Resource Include="Images\32_play_all.png" />
     <Resource Include="Images\Metro\pin.png" />
     <Resource Include="Images\Flags\lv.gif" />
@@ -2139,6 +2177,10 @@
 xcopy "$(TargetDir)*.exe" "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y	
 xcopy "$(TargetDir)*.pdb" "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y	
 xcopy "$(TargetDir)*.manifest" "C:\Projects\[ JMM Binaries No Configs ]\JMMDesktop\" /S /R /I /Y	</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>xcopy "$(ProjectDir)Dependencies\x64\*" "$(TargetDir)x64\" /S /R /I /Y
+xcopy "$(ProjectDir)Dependencies\x86\*" "$(TargetDir)x86\" /S /R /I /Y</PreBuildEvent>
   </PropertyGroup>
   <Import Project="..\packages\StrongNamer.0.0.2\build\StrongNamer.targets" Condition="Exists('..\packages\StrongNamer.0.0.2\build\StrongNamer.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

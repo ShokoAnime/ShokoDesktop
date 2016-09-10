@@ -5,8 +5,7 @@ namespace JMMClient.VideoPlayers
 {
     public interface IVideoPlayer
     {
-        void PlayVideoOrPlaylist(string path);
-        void PlayUrl(string url, List<string> subtitlespath);
+        void Play(VideoInfo video);
         void Init();
         bool Active { get; }
         VideoPlayer Player { get; }

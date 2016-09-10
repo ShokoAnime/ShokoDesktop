@@ -136,17 +136,21 @@ namespace JMMClient.UserControls
                 {
                     TotalFileCount++;
                     fileSize += (double)vid.FileSize;
-                    if (!folders.ContainsKey(vid.FileDirectory))
+                    foreach (VideoLocal_PlaceVM vplace in vid.Places)
                     {
-                        AnimeFolderSummary fs = new AnimeFolderSummary();
-                        fs.FolderName = vid.FileDirectory;
-                        fs.FileCount = 0;
-                        fs.TotalFileSize = 0;
-                        folders[vid.FileDirectory] = fs;
-                    }
+                        if (!folders.ContainsKey(vplace.FileDirectory))
+                        {
+                            AnimeFolderSummary fs = new AnimeFolderSummary();
+                            fs.FolderName = vplace.FileDirectory;
+                            fs.FileCount = 0;
+                            fs.TotalFileSize = 0;
+                            folders[vplace.FileDirectory] = fs;
+                        }
 
-                    folders[vid.FileDirectory].FileCount = folders[vid.FileDirectory].FileCount + 1;
-                    folders[vid.FileDirectory].TotalFileSize = folders[vid.FileDirectory].TotalFileSize + vid.FileSize;
+                        folders[vplace.FileDirectory].FileCount = folders[vplace.FileDirectory].FileCount + 1;
+                        folders[vplace.FileDirectory].TotalFileSize = folders[vplace.FileDirectory].TotalFileSize +
+                                                                   vid.FileSize;
+                    }
                 }
 
                 bool foundDefault = false;

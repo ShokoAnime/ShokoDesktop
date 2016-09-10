@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using JMMClient.Forms;
 
 namespace JMMClient.UserControls
 {
@@ -137,7 +138,15 @@ namespace JMMClient.UserControls
                 if (obj.GetType() == typeof(VideoDetailedVM))
                 {
                     VideoDetailedVM vid = obj as VideoDetailedVM;
-                    MainWindow.videoHandler.PlayVideo(vid);
+                    bool force = true;
+                    if (vid.VideoLocal_ResumePosition > 0)
+                    {
+                        AskResumeVideo ask = new AskResumeVideo(vid.VideoLocal_ResumePosition);
+                        ask.Owner = Window.GetWindow(this);
+                        if (ask.ShowDialog() == true)
+                            force = false;
+                    }
+                    MainWindow.videoHandler.PlayVideo(vid, force);
                 }
             }
             catch (Exception ex)
@@ -154,7 +163,17 @@ namespace JMMClient.UserControls
             {
                 AnimeEpisodeVM ep = this.DataContext as AnimeEpisodeVM;
                 if (ep.FilesForEpisode.Count > 0)
-                    MainWindow.videoHandler.PlayVideo(ep.FilesForEpisode[0]);
+                {
+                    bool force = true;
+                    if (ep.FilesForEpisode[0].VideoLocal_ResumePosition > 0)
+                    {
+                        AskResumeVideo ask = new AskResumeVideo(ep.FilesForEpisode[0].VideoLocal_ResumePosition);
+                        ask.Owner = Window.GetWindow(this);
+                        if (ask.ShowDialog() == true)
+                            force = false;
+                    }
+                    MainWindow.videoHandler.PlayVideo(ep.FilesForEpisode[0], force);
+                }
             }
             catch (Exception ex)
             {

@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:extToolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
         ShowInTaskbar="False" WindowStyle="ToolWindow"
-        Height="150" Width="300" SizeToContent="WidthAndHeight"  WindowStartupLocation="CenterOwner" Topmost="False" Title="{Resx ResxName=JMMClient.Properties.Resources, Key=Input_Number}">
+       SizeToContent="WidthAndHeight"  WindowStartupLocation="CenterOwner" Topmost="False" Title="{Resx ResxName=JMMClient.Properties.Resources, Key=Input_Number}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />

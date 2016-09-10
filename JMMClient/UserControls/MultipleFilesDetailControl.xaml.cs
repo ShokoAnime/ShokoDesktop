@@ -4,6 +4,8 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using JMMClient.Forms;
+using JMMClient.ViewModel;
 
 namespace JMMClient.UserControls
 {
@@ -64,26 +66,32 @@ namespace JMMClient.UserControls
                 {
                     VideoDetailedVM vid = obj as VideoDetailedVM;
 
-                    MessageBoxResult res = MessageBox.Show(string.Format(Properties.Resources.MultipleFiles_ConfirmDelete),
-                        Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
-                    if (res == MessageBoxResult.Yes)
+                    AskDeleteFile dlg = new AskDeleteFile(string.Format(Properties.Resources.DeleteFile_Title, vid.FileName), Properties.Resources.MultipleFiles_ConfirmDelete + "\r\n\r\n" + Properties.Resources.DeleteFile_Confirm, vid.Places);
+                    dlg.Owner = Window.GetWindow(this);
+                    bool? res = dlg.ShowDialog();
+                    if (res.HasValue && res.Value)
                     {
+                        string tresult = string.Empty;
                         this.Cursor = Cursors.Wait;
-                        string result = JMMServerVM.Instance.clientBinaryHTTP.DeleteVideoLocalAndFile(vid.VideoLocalID);
-                        if (result.Length > 0)
-                            MessageBox.Show(result, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
-                        else
+                        foreach (VideoLocal_PlaceVM lv in dlg.Selected)
                         {
-                            // find the entry and remove it
-                            AnimeEpisodeVM ep = this.DataContext as AnimeEpisodeVM;
-                            if (ep != null)
-                            {
-                                MainListHelperVM.Instance.UpdateHeirarchy(ep);
-                                ep.LocalFileCount--;
-                            }
-                            DisplayFiles();
+                            string result =
+                                JMMServerVM.Instance.clientBinaryHTTP.DeleteVideoLocalPlaceAndFile(
+                                    lv.VideoLocal_Place_ID);
+                            if (result.Length > 0)
+                                tresult += result + "\r\n";
                         }
+                        if (!string.IsNullOrEmpty(tresult))
+                            MessageBox.Show(tresult, Properties.Resources.Error, MessageBoxButton.OK,
+                                MessageBoxImage.Error);
+                        AnimeEpisodeVM ep = this.DataContext as AnimeEpisodeVM;
+                        if (ep != null)
+                        {
+                            MainListHelperVM.Instance.UpdateHeirarchy(ep);
+                            ep.LocalFileCount--;
+                        }
+                        DisplayFiles();
                     }
                 }
             }

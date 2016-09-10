@@ -58,6 +58,8 @@ namespace JMMClient.Forms
                 {
                     ThisUser = user;
                     this.DialogResult = true;
+                    JMMServerVM.Instance.RefreshCloudAccounts();
+                    JMMServerVM.Instance.RefreshImportFolders();
                     this.Close();
                 }
                 else

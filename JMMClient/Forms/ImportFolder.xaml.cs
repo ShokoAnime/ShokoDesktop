@@ -1,6 +1,8 @@
 ﻿using JMMClient.ViewModel;
 using System;
 using System.Globalization;
+using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Windows;
 
@@ -18,9 +20,95 @@ namespace JMMClient.Forms
             InitializeComponent();
 
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
-
+            chkDropSource.Checked += ChkDropSource_Checked;
+            chkDropDestination.Checked += ChkDropDestination_Checked;
+            chkIsWatched.Checked += ChkIsWatched_Checked;
             btnCancel.Click += new RoutedEventHandler(btnCancel_Click);
             btnSave.Click += new RoutedEventHandler(btnSave_Click);
+            btnChooseFolder.Click += BtnChooseFolder_Click;
+            btnProvChooseFolder.Click += BtnProvChooseFolder_Click;
+            comboProvider.SelectionChanged += ComboProvider_SelectionChanged;
+        }
+
+        private void ComboProvider_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (comboProvider.SelectedItem != null)
+            {
+                CloudAccountVM account = (CloudAccountVM)comboProvider.SelectedItem;
+                GridLocalMapping.Visibility = (account.CloudID ?? 0) == 0 ? Visibility.Visible : Visibility.Collapsed;
+            }
+        }
+
+        private void BtnProvChooseFolder_Click(object sender, RoutedEventArgs e)
+        {
+            if (comboProvider.SelectedItem == null)
+                return;
+            CloudAccountVM cl = (CloudAccountVM)comboProvider.SelectedItem;
+            FolderBrowser fld=new FolderBrowser();
+            fld.Init(cl, txtImportFolderLocation.Text);
+            fld.Owner = this;
+            bool? result = fld.ShowDialog();
+            if (result.HasValue && result.Value)
+                txtImportFolderLocation.Text = fld.SelectedPath;
+        }
+
+        private void BtnChooseFolder_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
+
+            if (!string.IsNullOrEmpty(txtLocalPath.Text) &&
+                Directory.Exists(txtLocalPath.Text))
+                dialog.SelectedPath = txtLocalPath.Text;
+
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                txtLocalPath.Text = dialog.SelectedPath;
+            }
+        }
+
+        private void ChkIsWatched_Checked(object sender, RoutedEventArgs e)
+        {
+            if (!checkchange && importFldr.CloudID.HasValue && chkDropDestination.IsChecked.HasValue &&
+                chkDropDestination.IsChecked.Value)
+            {
+                checkchange = true;
+                chkIsWatched.IsChecked = false;
+                checkchange = false;
+            }
+        }
+
+        private void ChkDropDestination_Checked(object sender, RoutedEventArgs e)
+        {
+            if (!checkchange && chkDropDestination.IsChecked.HasValue && chkDropDestination.IsChecked.Value)
+            {
+                if (chkDropSource.IsChecked.HasValue && chkDropSource.IsChecked.Value)
+                {
+                    checkchange = true;
+                    chkDropSource.IsChecked = false;
+                    checkchange = false;
+                }
+                if (importFldr.CloudID.HasValue && chkIsWatched.IsChecked.HasValue && chkIsWatched.IsChecked.Value)
+                {
+                    checkchange = true;
+                    chkIsWatched.IsChecked = false;
+                    checkchange = false;
+                }
+            }
+        }
+
+        private bool checkchange = false;
+
+        private void ChkDropSource_Checked(object sender, RoutedEventArgs e)
+        {
+            if (!checkchange && chkDropSource.IsChecked.HasValue && chkDropSource.IsChecked.Value)
+            {
+                if (chkDropDestination.IsChecked.HasValue && chkDropDestination.IsChecked.Value)
+                {
+                    checkchange = true;
+                    chkDropDestination.IsChecked = false;
+                    checkchange = false;
+                }
+            }
         }
 
         void btnSave_Click(object sender, RoutedEventArgs e)
@@ -83,7 +171,10 @@ namespace JMMClient.Forms
                 chkDropDestination.IsChecked = importFldr.IsDropDestination == 1;
                 chkDropSource.IsChecked = importFldr.IsDropSource == 1;
                 chkIsWatched.IsChecked = importFldr.IsWatched == 1;
-
+                if ((ifldr.CloudID ?? 0)==0)
+                    comboProvider.SelectedIndex = 0;
+                else
+                    comboProvider.SelectedItem = JMMServerVM.Instance.FolderProviders.FirstOrDefault(a => a.CloudID == ifldr.CloudID.Value);
                 txtImportFolderLocation.Focus();
             }
             catch (Exception ex)

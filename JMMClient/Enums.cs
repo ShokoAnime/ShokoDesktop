@@ -503,10 +503,11 @@ namespace JMMClient
 
     public enum VideoPlayer
     {
-        MPC = 0,
-        PotPlayer = 1,
-        VLC = 2,
-        MPV = 3,
+        MPV = 0,
+        MPC = 1,
+        PotPlayer = 2,
+        VLC = 3,
+        ExternalMPV = 4,
         WindowsDefault = 999
     }
 

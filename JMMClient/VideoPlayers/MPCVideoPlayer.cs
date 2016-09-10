@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
 using JMMClient.Utilities;
 using Microsoft.Win32;
 
@@ -13,50 +16,117 @@ namespace JMMClient.VideoPlayers
 
         private System.Timers.Timer playerWebUiTimer = null;
 
+        public override void Play(VideoInfo video)
+        {
+            if (IsPlaying)
+                return;
+            Task.Factory.StartNew(() =>
+            {
+                Process process;
+                if (video.IsPlaylist)
+                    process = Process.Start(PlayerPath, '"' + video.Uri + '"');
+                else
+                {
+                    string init = '"' + video.Uri + '"';
+                    if (video.ResumePosition > 0)
+                        init += " /start " + video.ResumePosition;
+                    if (video.SubtitlePaths != null && video.SubtitlePaths.Count > 0)
+                    {
+                        foreach (string s in video.SubtitlePaths)
+                        {
+                            init += " /sub \"" + s + "\"";
+                        }
+                    }
+                    process = Process.Start(PlayerPath, init);
+                }
+                if (process != null)
+                {
+                    IsPlaying = true;
+                    StartWatcher(AppSettings.MPCFolder);
+                    process.WaitForExit();
+                    StopWatcher();
+                    IsPlaying = false;
+                }
+            });
+
+        }
+
 
         public override void Init()
         {
-	        // nvo is nvidia optimus
-            PlayerPath = Utils.CheckSysPath(new string[] { "mpc-hc64.exe", "mpc-hc.exe", "mpc-hc64_nvo.exe", "mpc-hc_nvo.exe", "mpc-be64.exe", "mpc-be.exe" });
-            //Look for 64bit
+            string[] playersexenames =
+            {
+                "mpc-hc64.exe",
+                "mpc-hc64_nvo.exe",
+                "mpc-64.exe",
+                "mpc-hc.exe",
+                "mpc-hc_nvo.exe",
+                "mpc.exe",
+                "mpc-be64.exe", 
+                "mpc-be.exe"
+            }; //Prefer 64 Bit nvo is nvidia optimus
+
+            string[] registryplaces = 
+            {
+                @"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Combined Community Codec Pack 64bit_is1",
+                "InstallLocation",
+                @"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Combined Community Codec Pack_is1",
+                "InstallLocation",
+                @"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\KLiteCodecPack_is1",
+                "InstallLocation",
+            };
+            string[] installregplaces =
+            {
+                @"HKEY_CURRENT_USER\SOFTWARE\MPC-HC\MPC-HC",
+                @"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\MPC-HC",
+                @"HKEY_LOCAL_MACHINE\SOFTWARE\MPC-BE",
+                @"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\MPC-BE",
+
+            };
+            string[] subdirs=new string[]
+            {
+                "",
+                "MPC-HC64",
+                "MPC-HC",
+                "MPC-BE64",
+                "MPC-BE",
+            };
+            PlayerPath = Utils.CheckSysPath(playersexenames);
             if (string.IsNullOrEmpty(PlayerPath))
-            { 
-                PlayerPath = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Combined Community Codec Pack 64bit_is1", "InstallLocation", null);
-                if (!string.IsNullOrEmpty(PlayerPath))
-                    PlayerPath = System.IO.Path.Combine(PlayerPath, @"MPC\mpc-hc64.exe");
+            {
+                for (int x = 0; x < registryplaces.Length; x += 2)
+                {
+                    string path= (string)Registry.GetValue(registryplaces[x],registryplaces[x+1], null);
+                    if (!string.IsNullOrEmpty(path))
+                    {
+                        foreach (string subdir in subdirs)
+                        {
+                            string subdirpath = (!string.IsNullOrEmpty(subdir)) ? Path.Combine(path, subdir) : path;
+                            foreach (string pname in playersexenames)
+                            {
+                                string npath = Path.Combine(subdirpath, pname);
+                                if (File.Exists(npath))
+                                {
+                                    PlayerPath = npath;
+                                    break;
+                                }
+                            }
+                            if (!string.IsNullOrEmpty(PlayerPath))
+                                break;
+                        }
+                    }
+                    if (!string.IsNullOrEmpty(PlayerPath))
+                        break;
+                }
             }
             if (string.IsNullOrEmpty(PlayerPath))
             {
-                PlayerPath = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Combined Community Codec Pack_is1", "InstallLocation", null);
-                if (!string.IsNullOrEmpty(PlayerPath))
-                    PlayerPath = System.IO.Path.Combine(PlayerPath, @"MPC\mpc-hc.exe");
-            }
-            if (string.IsNullOrEmpty(PlayerPath))
-            {
-                PlayerPath = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\KLiteCodecPack_is1", "InstallLocation", null);
-                if (!string.IsNullOrEmpty(PlayerPath))
-                    if (File.Exists(Path.Combine(PlayerPath, @"MPC-HC64\mpc-64.exe")))
-                        PlayerPath = Path.Combine(PlayerPath, @"MPC-HC64\mpc-64.exe");
-                    else if (File.Exists(Path.Combine(PlayerPath, @"MPC-HC64\mpc-hc64_nvo.exe")))
-                        PlayerPath = Path.Combine(PlayerPath, @"MPC-HC64\mpc-hc64_nvo.exe");
-                    else if (File.Exists(Path.Combine(PlayerPath, @"MPC-HC\mpc.exe")))
-                        PlayerPath = Path.Combine(PlayerPath, @"MPC-HC\mpc.exe");
-                    else if (File.Exists(Path.Combine(PlayerPath, @"MPC-HC\mpc-hc_nvo.exe")))
-                        PlayerPath = Path.Combine(PlayerPath, @"MPC-HC\mpc-hc_nvo.exe");
-                    else
-                        PlayerPath = null;
-            }
-            if (string.IsNullOrEmpty(PlayerPath))
-            {
-                PlayerPath = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\MPC-BE", "ExePath", null);
-            }
-            if (string.IsNullOrEmpty(PlayerPath))
-            {
-                PlayerPath = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\MPC-BE", "ExePath", null);
-            }
-            if (string.IsNullOrEmpty(PlayerPath))
-            {
-                PlayerPath = (string)Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\MPC-HC\MPC-HC", "ExePath", null);
+            	foreach(string r in installregplaces)
+                {
+                    PlayerPath = (string)Registry.GetValue(r, "ExePath", null);
+                    if (!string.IsNullOrEmpty(PlayerPath))
+                        break;
+                }
             }
             if (string.IsNullOrEmpty(PlayerPath))
             {
@@ -64,8 +134,15 @@ namespace JMMClient.VideoPlayers
                 return;
             }
             Active = true;
+
+        }
+        internal override void StartWatcher(string path)
+        {
+
+
+            StopWatcher();
             if (AppSettings.MPCIniIntegration)
-                StartWatchingFiles(AppSettings.MPCFolder);
+                base.StartWatcher(path);
             if (AppSettings.MPCWebUiIntegration)
             {
                 playerWebUiTimer = new System.Timers.Timer();
@@ -73,6 +150,17 @@ namespace JMMClient.VideoPlayers
                 playerWebUiTimer.Interval = 1000;
                 playerWebUiTimer.Enabled = true;
             }
+        }
+
+        internal override void StopWatcher()
+        {
+            if (playerWebUiTimer != null)
+            {
+                playerWebUiTimer.Stop();
+                playerWebUiTimer.Dispose();
+                playerWebUiTimer = null;
+            }
+            base.StopWatcher();
         }
 
         public VideoPlayer Player => VideoPlayer.MPC;
@@ -237,13 +325,13 @@ namespace JMMClient.VideoPlayers
                         }
                     }
                     // Start timer again
-                    playerWebUiTimer.Start();
+                    playerWebUiTimer?.Start();
                 }
             }
             catch (Exception exception)
             {
                 logger.ErrorException(exception.ToString(), exception);
-                playerWebUiTimer.Start();
+                playerWebUiTimer?.Start();
             }
         }
     }

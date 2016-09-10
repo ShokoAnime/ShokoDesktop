@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
 using System.IO;
+using System.Threading.Tasks;
 using JMMClient.Utilities;
 using Microsoft.Win32;
 
@@ -20,11 +23,31 @@ namespace JMMClient.VideoPlayers
                 Active = false;
                 return;
             }
-            StartWatchingFiles(AppSettings.PotPlayerFolder);
             Active = true;
         }
 
         public VideoPlayer Player => VideoPlayer.PotPlayer;
+
+
+        public override void Play(VideoInfo video)
+        {
+            if (IsPlaying)
+                return;
+            Task.Factory.StartNew(() =>
+            {
+                Process process = Process.Start(PlayerPath, '"' + video.Uri + '"');
+                if (process != null)
+                {
+                    IsPlaying = true;
+                    StartWatcher(AppSettings.PotPlayerFolder);
+                    process.WaitForExit();
+                    StopWatcher();
+                    IsPlaying = false;
+                }
+            });
+        }
+
+
 
         internal override void FileChangeEvent(string filePath)
         {

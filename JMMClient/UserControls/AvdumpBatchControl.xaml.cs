@@ -158,9 +158,9 @@ namespace JMMClient.UserControls
                         continue;
                     }
 
-                    if (!File.Exists(dump.VideoLocal.FullPath))
+                    if (string.IsNullOrEmpty(dump.VideoLocal.LocalFileSystemFullPath) || (!File.Exists(dump.VideoLocal.LocalFileSystemFullPath)))
                     {
-                        tempDump.AVDumpFullResult = Properties.Resources.AVDump_VideoMissing + " " + dump.VideoLocal.FullPath;
+                        tempDump.AVDumpFullResult = Properties.Resources.AVDump_VideoMissing + " " + dump.VideoLocal.LocalFileSystemFullPath ?? string.Empty;
                         tempDump.ED2KDump = Utils.GetED2KDump(tempDump.AVDumpFullResult);
                         tempDump.IsBeingDumped = false;
                         tempDump.DumpStatus = Properties.Resources.AVDump_Error;
@@ -172,7 +172,7 @@ namespace JMMClient.UserControls
                     pProcess.StartInfo.FileName = filePath;
 
                     //strCommandParameters are parameters to pass to program
-                    string fileName = (char)34 + dump.VideoLocal.FullPath + (char)34;
+                    string fileName = (char)34 + dump.VideoLocal.LocalFileSystemFullPath + (char)34;
 
                     pProcess.StartInfo.Arguments =
                         string.Format(@" --Auth={0}:{1} --LPort={2} --PrintEd2kLink -t {3}", JMMServerVM.Instance.AniDB_Username, JMMServerVM.Instance.AniDB_AVDumpKey,

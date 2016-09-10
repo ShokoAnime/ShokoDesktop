@@ -480,6 +480,7 @@ namespace JMMClient.UserControls
             try
             {
                 AnimeEpisodeVM ep = UnwatchedEpisodes[0];
+
                 if (ep.IsWatched == 1)
                 {
                     if (UnwatchedEpisodes.Count == 1)
@@ -489,14 +490,34 @@ namespace JMMClient.UserControls
                 }
 
                 if (ep.FilesForEpisode.Count == 1)
-                    MainWindow.videoHandler.PlayVideo(ep.FilesForEpisode[0]);
+                {
+                    bool force = true;
+                    if (ep.FilesForEpisode[0].VideoLocal_ResumePosition > 0)
+                    {
+                        AskResumeVideo ask = new AskResumeVideo(ep.FilesForEpisode[0].VideoLocal_ResumePosition);
+                        ask.Owner = Window.GetWindow(this);
+                        if (ask.ShowDialog() == true)
+                            force = false;
+                    }
+                    MainWindow.videoHandler.PlayVideo(ep.FilesForEpisode[0],force);
+                }
                 else if (ep.FilesForEpisode.Count > 1)
                 {
                     if (AppSettings.AutoFileSingleEpisode)
                     {
                         VideoDetailedVM vid = MainWindow.videoHandler.GetAutoFileForEpisode(ep);
                         if (vid != null)
-                            MainWindow.videoHandler.PlayVideo(vid);
+                        {
+                            bool force = true;
+                            if (vid.VideoLocal_ResumePosition > 0)
+                            {
+                                AskResumeVideo ask = new AskResumeVideo(vid.VideoLocal_ResumePosition);
+                                ask.Owner = Window.GetWindow(this);
+                                if (ask.ShowDialog() == true)
+                                    force = false;
+                            }
+                            MainWindow.videoHandler.PlayVideo(vid, force);
+                        }
                     }
                     else
                     {
@@ -873,14 +894,34 @@ namespace JMMClient.UserControls
                     AnimeEpisodeDisplayVM ep = obj as AnimeEpisodeDisplayVM;
 
                     if (ep.FilesForEpisode.Count == 1)
-                        MainWindow.videoHandler.PlayVideo(ep.FilesForEpisode[0]);
+                    {
+                        bool force = true;
+                        if (ep.FilesForEpisode[0].VideoLocal_ResumePosition > 0)
+                        {
+                            AskResumeVideo ask = new AskResumeVideo(ep.FilesForEpisode[0].VideoLocal_ResumePosition);
+                            ask.Owner = Window.GetWindow(this);
+                            if (ask.ShowDialog() == true)
+                                force = false;
+                        }
+                        MainWindow.videoHandler.PlayVideo(ep.FilesForEpisode[0], force);
+                    }
                     else if (ep.FilesForEpisode.Count > 1)
                     {
                         if (AppSettings.AutoFileSingleEpisode)
                         {
                             VideoDetailedVM vid = MainWindow.videoHandler.GetAutoFileForEpisode(ep);
                             if (vid != null)
-                                MainWindow.videoHandler.PlayVideo(vid);
+                            {
+                                bool force = true;
+                                if (vid.VideoLocal_ResumePosition > 0)
+                                {
+                                    AskResumeVideo ask = new AskResumeVideo(vid.VideoLocal_ResumePosition);
+                                    ask.Owner = Window.GetWindow(this);
+                                    if (ask.ShowDialog() == true)
+                                        force = false;
+                                }
+                                MainWindow.videoHandler.PlayVideo(vid, force);
+                            }
                         }
                         else
                         {

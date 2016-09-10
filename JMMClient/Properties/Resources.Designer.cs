@@ -2905,6 +2905,33 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select in which providers you want to Delete.
+        /// </summary>
+        public static string DeleteFile_Confirm {
+            get {
+                return ResourceManager.GetString("DeleteFile_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Multiple Files?.
+        /// </summary>
+        public static string DeleteFile_Multiple {
+            get {
+                return ResourceManager.GetString("DeleteFile_Multiple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete File &apos;{0}&apos;?.
+        /// </summary>
+        public static string DeleteFile_Title {
+            get {
+                return ResourceManager.GetString("DeleteFile_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to delete these {0} file/s, the physical video files will also be deleted.
         /// </summary>
         public static string DeleteFiles_Confirm {
@@ -5142,6 +5169,24 @@ namespace JMMClient.Properties {
         public static string ImportFolder {
             get {
                 return ResourceManager.GetString("ImportFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Provider.
+        /// </summary>
+        public static string ImportFolder_Provider {
+            get {
+                return ResourceManager.GetString("ImportFolder_Provider", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Import Folder....
+        /// </summary>
+        public static string ImportFolder_SelectImportFolder {
+            get {
+                return ResourceManager.GetString("ImportFolder_SelectImportFolder", resourceCulture);
             }
         }
         
@@ -8256,6 +8301,42 @@ namespace JMMClient.Properties {
         public static string Resume {
             get {
                 return ResourceManager.GetString("Resume", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Play from the begining.
+        /// </summary>
+        public static string Resume_Cancel {
+            get {
+                return ResourceManager.GetString("Resume_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to resume the video at {0}?.
+        /// </summary>
+        public static string Resume_Message {
+            get {
+                return ResourceManager.GetString("Resume_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resume.
+        /// </summary>
+        public static string Resume_OK {
+            get {
+                return ResourceManager.GetString("Resume_OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to resume the video?.
+        /// </summary>
+        public static string Resume_Title {
+            get {
+                return ResourceManager.GetString("Resume_Title", resourceCulture);
             }
         }
         

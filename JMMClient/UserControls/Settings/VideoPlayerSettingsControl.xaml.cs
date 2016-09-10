@@ -48,25 +48,29 @@ namespace JMMClient.UserControls
 
             cboDefaultPlayer.Items.Clear();
             cboDefaultPlayer.Items.Add("Windows Default");
-            cboDefaultPlayer.Items.Add("MPC");
+            cboDefaultPlayer.Items.Add("Internal MPV");
             cboDefaultPlayer.Items.Add("PotPlayer");
             cboDefaultPlayer.Items.Add("VLC");
             cboDefaultPlayer.Items.Add("MPV");
+            cboDefaultPlayer.Items.Add("External MPV");
             switch (AppSettings.DefaultPlayer_GroupList)
             {
-                case (int)VideoPlayer.MPC:
+                case (int)VideoPlayer.MPV:
                     cboDefaultPlayer.SelectedIndex = 1;
                     break;
-
-                case (int)VideoPlayer.PotPlayer:
+                case (int)VideoPlayer.MPC:
                     cboDefaultPlayer.SelectedIndex = 2;
                     break;
 
-                case (int)VideoPlayer.VLC:
+                case (int)VideoPlayer.PotPlayer:
                     cboDefaultPlayer.SelectedIndex = 3;
                     break;
-                case (int)VideoPlayer.MPV:
+
+                case (int)VideoPlayer.VLC:
                     cboDefaultPlayer.SelectedIndex = 4;
+                    break;
+                case (int)VideoPlayer.ExternalMPV:
+                    cboDefaultPlayer.SelectedIndex = 5;
                     break;
 
                 case (int)VideoPlayer.WindowsDefault:
@@ -103,10 +107,11 @@ namespace JMMClient.UserControls
             switch (cboDefaultPlayer.SelectedIndex)
             {
                 case 0: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.WindowsDefault; break;
-                case 1: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.MPC; break;
-                case 2: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.PotPlayer; break;
-                case 3: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.VLC; break;
-                case 4: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.MPV; break;
+                case 1: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.MPV; break;
+                case 2: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.MPC; break;
+                case 3: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.PotPlayer; break;
+                case 4: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.VLC; break;
+                case 5: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.ExternalMPV; break;
                 default: UserSettingsVM.Instance.DisplayStyle_GroupList = (int)VideoPlayer.WindowsDefault; break;
             }
             RefreshConfigured();

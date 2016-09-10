@@ -1,23 +1,31 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace JMMClient.ViewModel
 {
     public class ImportFolderVM
     {
         public int? ImportFolderID { get; set; }
+        public int ImportFolderType { get; set; }
         public string ImportFolderName { get; set; }
         public string ImportFolderLocation { get; set; }
         public int IsDropSource { get; set; }
         public int IsDropDestination { get; set; }
         public string LocalPathTemp { get; set; }
         public int IsWatched { get; set; }
+        public int? CloudID { get; set; }
+
+
 
         public string LocalPath
         {
             get
             {
+                if (CloudID.HasValue)
+                    return string.Empty;
                 if (ImportFolderID.HasValue)
                 {
                     if (AppSettings.ImportFolderMappings.ContainsKey(ImportFolderID.Value))
@@ -46,6 +54,9 @@ namespace JMMClient.ViewModel
                 return false;
             }
         }
+
+        public bool IsCloud => CloudID.HasValue;
+        public bool IsNotCloud => !CloudID.HasValue;
 
         public bool LocalPathIsInvalid
         {
@@ -84,7 +95,16 @@ namespace JMMClient.ViewModel
         }
 
 
-
+        public BitmapImage Icon
+        {
+            get
+            {
+                CloudAccountVM v = JMMServerVM.Instance.FolderProviders.FirstOrDefault(a => a.CloudID == this.CloudID);
+                if (v != null)
+                    return v.Icon;
+                return new BitmapImage();
+            }
+        }
         public ImportFolderVM(JMMServerBinary.Contract_ImportFolder contract)
         {
             // read only members
@@ -94,6 +114,8 @@ namespace JMMClient.ViewModel
             this.IsDropSource = contract.IsDropSource;
             this.IsDropDestination = contract.IsDropDestination;
             this.IsWatched = contract.IsWatched;
+            this.CloudID = contract.CloudID;
+            this.ImportFolderType = contract.ImportFolderType;
         }
 
         public JMMServerBinary.Contract_ImportFolder ToContract()
@@ -105,7 +127,8 @@ namespace JMMClient.ViewModel
             contract.IsDropSource = this.IsDropSource;
             contract.IsDropDestination = this.IsDropDestination;
             contract.IsWatched = this.IsWatched;
-
+            contract.ImportFolderType = this.ImportFolderType;
+            contract.CloudID = this.CloudID;
             return contract;
         }
 

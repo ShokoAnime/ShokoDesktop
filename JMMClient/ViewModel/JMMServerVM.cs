@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
+using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Description;
@@ -42,7 +43,14 @@ namespace JMMClient
                 return _clientBinaryHTTP;
             }
         }
+        public ObservableCollection<CloudAccountVM> FolderProviders { get; set; }=new ObservableCollection<CloudAccountVM>();
+        public void RefreshCloudAccounts()
+        {
 
+            List<JMMServerBinary.Contract_CloudAccount> ls = JMMServerVM.Instance.clientBinaryHTTP.GetCloudProviders();
+            if (ls != null)
+                FolderProviders = new ObservableCollection<CloudAccountVM>(ls.Select(a => new CloudAccountVM(a)));
+        }
         private JMMImageServer.JMMServerImageClient _imageClient = null;
         public JMMImageServer.JMMServerImageClient imageClient
         {

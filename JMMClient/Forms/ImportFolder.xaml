@@ -4,27 +4,39 @@
         xmlns:local="clr-namespace:JMMClient"
         xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="JMMClient.Forms.ImportFolder"
-        Title="{Resx Key=ImportFolder, ResxName=JMMClient.Properties.Resources}" Height="450" Width="600" Icon="/JMMDesktop;component/Images/32_edit.png" ResizeMode="CanResize" WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow">
+        Title="{Resx Key=ImportFolder, ResxName=JMMClient.Properties.Resources}" Width="600" SizeToContent="Height" Icon="/JMMDesktop;component/Images/32_edit.png" ResizeMode="CanResize" WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <DataTemplate x:Key="cmbTemplate">
+
+                <StackPanel Orientation="Horizontal" Height="24">
+                    <Image Height="24" Width="24" Source="{Binding Path=Icon}" VerticalAlignment="Center"
+                               Margin="0,0,5,0"/>
+                    <TextBlock Margin="5,0,10,0" Text="{Binding Path=Name}"
+                                   VerticalAlignment="Center" FontWeight="DemiBold" />
+                    <TextBlock Margin="0,0,2,0" Text="(" VerticalAlignment="Center" />
+                    <TextBlock Margin="0,0,2,0" Text="{Binding Path=Provider}" VerticalAlignment="Center" />
+                    <TextBlock Margin="0,0,5,0" Text=")" VerticalAlignment="Center" />
+                </StackPanel>
+            </DataTemplate>
+        </ResourceDictionary>
+
+    </Window.Resources>
+    <StackPanel Orientation="Vertical">
 
 
-    <StackPanel Orientation="Vertical" Height="Auto">
-
-        <StackPanel.Resources>
-
-            <ResourceDictionary>
-                <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-            </ResourceDictionary>
-
-
-        </StackPanel.Resources>
 
         <Border Margin="5,5,5,5" Padding="5" Background="#F1F1F1" BorderBrush="LightGray" BorderThickness="1">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
+                    <RowDefinition />
                     <RowDefinition />
                     <RowDefinition />
                     <RowDefinition />
@@ -60,23 +72,34 @@
                 </Border>
 
                 <TextBlock Grid.Column="0" Grid.Row="1" Margin="0,0,10,5" FontWeight="Bold" Padding="5" Text="{Resx Key=ServerDetails, ResxName=JMMClient.Properties.Resources}" />
-                <TextBlock Grid.Column="0" Grid.Row="2" Margin="0,0,10,5" FontWeight="DemiBold" Padding="5" Text="{Resx Key=ImportFolderPath, ResxName=JMMClient.Properties.Resources}"/>
-                <TextBox x:Name="txtImportFolderLocation" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="2" Width="Auto"  Margin="0,5,0,5"/>
 
-                <TextBlock Grid.Column="0" Grid.Row="3" Margin="0,0,10,5" FontWeight="DemiBold" Padding="5" Text="{Resx Key=DropSource, ResxName=JMMClient.Properties.Resources}"/>
-                <CheckBox x:Name="chkDropSource" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="0" Grid.Row="2" Margin="0,0,10,5" FontWeight="DemiBold" Padding="5" Text="{Resx Key=ImportFolder_Provider, ResxName=JMMClient.Properties.Resources}"/>
+                <ComboBox x:Name="comboProvider" ItemsSource="{Binding Source={x:Static local:JMMServerVM.Instance},Path=FolderProviders}" Grid.Column="1" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Grid.Row="2" Grid.ColumnSpan="2" ItemTemplate="{StaticResource cmbTemplate}" VerticalAlignment="Center" Width="Auto" SelectedIndex="0"/>
 
-                <TextBlock Grid.Column="0" Grid.Row="4" Margin="0,0,10,5" FontWeight="DemiBold" Padding="5" Text="{Resx Key=DropDestination, ResxName=JMMClient.Properties.Resources}"/>
-                <CheckBox x:Name="chkDropDestination" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center"/>
+                
+                <TextBlock Grid.Column="0" Grid.Row="3" Margin="0,0,10,5" FontWeight="DemiBold" Padding="5" Text="{Resx Key=ImportFolderPath, ResxName=JMMClient.Properties.Resources}"/>
+                <TextBox x:Name="txtImportFolderLocation" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="3" Width="Auto"  Margin="0,5,0,5"/>
+                <Button Name="btnProvChooseFolder" Style="{DynamicResource RoundButtonStyle}" Margin="3" Grid.Column="2"
+                        Grid.Row="3">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Image Height="16" Width="16" Source="/Images/24_folder.png" Margin="0,0,0,0" />
+                    </StackPanel>
+                </Button>
 
-                <TextBlock Grid.Column="0" Grid.Row="5" Margin="0,0,10,5" FontWeight="DemiBold" Padding="5" Text="{Resx Key=ImportSettings_WatchFiles, ResxName=JMMClient.Properties.Resources}"/>
-                <CheckBox x:Name="chkIsWatched" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="0" Grid.Row="4" Margin="0,0,10,5" FontWeight="DemiBold" Padding="5" Text="{Resx Key=DropSource, ResxName=JMMClient.Properties.Resources}"/>
+                <CheckBox x:Name="chkDropSource" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center"/>
+
+                <TextBlock Grid.Column="0" Grid.Row="5" Margin="0,0,10,5" FontWeight="DemiBold" Padding="5" Text="{Resx Key=DropDestination, ResxName=JMMClient.Properties.Resources}"/>
+                <CheckBox x:Name="chkDropDestination" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center"/>
+
+                <TextBlock Grid.Column="0" Grid.Row="6" Margin="0,0,10,5" FontWeight="DemiBold" Padding="5" Text="{Resx Key=ImportSettings_WatchFiles, ResxName=JMMClient.Properties.Resources}"/>
+                <CheckBox x:Name="chkIsWatched" Grid.Column="1" Grid.Row="6" VerticalAlignment="Center"/>
 
             </Grid>
 
         </Border>
 
-        <Border Margin="5,5,5,5" Padding="5" Background="GhostWhite" BorderBrush="LightGray" BorderThickness="1">
+        <Border Name="GridLocalMapping" Margin="5,5,5,5" Padding="5" Background="GhostWhite" BorderBrush="LightGray" BorderThickness="1">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -91,13 +114,18 @@
                 <TextBlock Grid.Column="0" Grid.Row="0" Margin="0,0,10,5" FontWeight="Bold" Padding="5" Text="{Resx Key=LocalMapping, ResxName=JMMClient.Properties.Resources}"/>
 
                 <TextBlock Grid.Column="0" Grid.Row="1" Margin="0,0,10,5" FontWeight="DemiBold" Padding="5" Text="{Resx Key=LocalPath, ResxName=JMMClient.Properties.Resources}"/>
-                <TextBox  x:Name="txtLocalPath" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="2" Width="Auto" Margin="0,5,0,5"/>
-
+                <TextBox  x:Name="txtLocalPath" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="1" Width="Auto" Margin="0,5,0,5"/>
+                <Button Name="btnChooseFolder" Style="{DynamicResource RoundButtonStyle}" Margin="3" Grid.Column="2"
+                        Grid.Row="1">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Image Height="16" Width="16" Source="/Images/24_folder.png" Margin="0,0,0,0" />
+                    </StackPanel>
+                </Button>
             </Grid>
 
         </Border>
 
-        <StackPanel Orientation="Horizontal" Margin="5,5,0,10">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="5,5,0,10">
             <Button HorizontalAlignment="Left" x:Name="btnSave" Margin="0,0,0,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                     <Image Height="16" Width="16" Source="/Images/16_save.png" Margin="0,0,5,0"/>

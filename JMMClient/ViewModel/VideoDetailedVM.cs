@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using JMMClient.JMMServerBinary;
+using JMMClient.ViewModel;
 
 namespace JMMClient
 {
@@ -13,10 +15,8 @@ namespace JMMClient
 
         public int AnimeEpisodeID { get; set; }
 
-        // Import Folder
-        public int ImportFolderID { get; set; }
-        public string ImportFolderName { get; set; }
-        public string ImportFolderLocation { get; set; }
+        // Places
+        public List<VideoLocal_PlaceVM> Places { get; set; }
 
         // CrossRef_File_Episode
         public int Percentage { get; set; }
@@ -25,9 +25,10 @@ namespace JMMClient
 
         // VideoLocal
         public int VideoLocalID { get; set; }
-        public string VideoLocal_FilePath { get; set; }
+        public string VideoLocal_FileName { get; set; }
         public string VideoLocal_Hash { get; set; }
         public long VideoLocal_FileSize { get; set; }
+        public long VideoLocal_ResumePosition { get; set; }
         public DateTime? VideoLocal_WatchedDate { get; set; }
         //public long VideoLocal_IsWatched { get; set; }
         public string VideoLocal_CRC32 { get; set; }
@@ -45,7 +46,7 @@ namespace JMMClient
         public string VideoInfo_AudioCodec { get; set; }
         public string VideoInfo_AudioBitrate { get; set; }
         public long VideoInfo_Duration { get; set; }
-
+        public int VideoLocal_IsVariation { get; set; }
         // AniDB_File
         public int? AniDB_FileID { get; set; }
         public int? AniDB_AnimeID { get; set; }
@@ -68,7 +69,11 @@ namespace JMMClient
         public int AniDB_File_FileVersion { get; set; }
 
         public Media Media { get; set; }
+        // Languages
+        public string LanguagesAudio { get; set; }
+        public string LanguagesSubtitle { get; set; }
 
+        public ReleaseGroupVM ReleaseGroup { get; set; }
         public string VideoResolution
         {
             get
@@ -96,11 +101,7 @@ namespace JMMClient
             }
         }
 
-        // Languages
-        public string LanguagesAudio { get; set; }
-        public string LanguagesSubtitle { get; set; }
 
-        public ReleaseGroupVM ReleaseGroup { get; set; }
 
         #endregion
 
@@ -328,22 +329,16 @@ namespace JMMClient
                 LastWatchedDescription = "";
         }
 
-        public string FileName
-        {
-            get
-            {
-                return Path.GetFileName(VideoLocal_FilePath);
-            }
-        }
+        public string FileName => VideoLocal_FileName;
 
         public string FullPath
         {
             get
             {
-                if (AppSettings.ImportFolderMappings.ContainsKey(ImportFolderID))
-                    return Path.Combine(AppSettings.ImportFolderMappings[ImportFolderID], VideoLocal_FilePath);
-                else
-                    return Path.Combine(ImportFolderLocation, VideoLocal_FilePath);
+                VideoLocal_PlaceVM p=Places.FirstOrDefault(a => a.LocalFileSystemFullPath != string.Empty);
+                if (p == null)
+                    return string.Empty;
+                return p.LocalFileSystemFullPath;
             }
         }
 
@@ -351,6 +346,8 @@ namespace JMMClient
         {
             get
             {
+                if (string.IsNullOrEmpty(FullPath))
+                    return true;
                 return File.Exists(FullPath);
             }
         }
@@ -359,6 +356,8 @@ namespace JMMClient
         {
             get
             {
+                if (string.IsNullOrEmpty(FullPath))
+                    return false;
                 return !File.Exists(FullPath);
             }
         }
@@ -576,15 +575,15 @@ namespace JMMClient
 
             this.AnimeEpisodeID = contract.AnimeEpisodeID;
 
-            this.ImportFolderID = contract.ImportFolderID;
-            this.ImportFolderName = contract.ImportFolderName;
-            this.ImportFolderLocation = contract.ImportFolderLocation;
+            this.Places = contract.Places.Select(a => new VideoLocal_PlaceVM(a)).ToList();
             this.Percentage = contract.Percentage;
             this.EpisodeOrder = contract.EpisodeOrder;
             this.CrossRefSource = contract.CrossRefSource;
 
             this.VideoLocalID = contract.VideoLocalID;
-            this.VideoLocal_FilePath = contract.VideoLocal_FilePath;
+            this.VideoLocal_FileName = contract.VideoLocal_FileName;
+            this.VideoLocal_ResumePosition = contract.VideoLocal_ResumePosition;
+
             this.VideoLocal_Hash = contract.VideoLocal_Hash;
             this.VideoLocal_FileSize = contract.VideoLocal_FileSize;
             this.VideoLocal_IsWatched = contract.VideoLocal_IsWatched;
@@ -597,7 +596,7 @@ namespace JMMClient
             this.VideoLocal_CRC32 = contract.VideoLocal_CRC32;
             this.VideoLocal_HashSource = contract.VideoLocal_HashSource;
 
-            this.VideoInfo_VideoInfoID = contract.VideoInfo_VideoInfoID;
+
             this.VideoInfo_VideoCodec = contract.VideoInfo_VideoCodec;
             this.VideoInfo_VideoBitrate = contract.VideoInfo_VideoBitrate;
             this.VideoInfo_VideoBitDepth = contract.VideoInfo_VideoBitDepth;

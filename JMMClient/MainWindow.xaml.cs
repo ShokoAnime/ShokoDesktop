@@ -14,6 +14,7 @@ using System.Configuration;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -79,6 +80,8 @@ namespace JMMClient
 
         private AnimeGroupVM groupBeforeChanges = null;
         private GroupFilterVM groupFilterBeforeChanges = null;
+
+
 
         BackgroundWorker showChildWrappersWorker = new BackgroundWorker();
         BackgroundWorker refreshGroupsWorker = new BackgroundWorker();
@@ -722,11 +725,13 @@ namespace JMMClient
 
                 if (tabIndex == TAB_MAIN_Server)
                 {
+                    if (JMMServerVM.Instance.FolderProviders.Count == 0) JMMServerVM.Instance.RefreshCloudAccounts();
                     if (JMMServerVM.Instance.ImportFolders.Count == 0) JMMServerVM.Instance.RefreshImportFolders();
                 }
 
                 if (tabIndex == TAB_MAIN_Settings)
                 {
+                    if (JMMServerVM.Instance.FolderProviders.Count == 0)JMMServerVM.Instance.RefreshCloudAccounts();
                     if (JMMServerVM.Instance.ImportFolders.Count == 0) JMMServerVM.Instance.RefreshImportFolders();
                     if (JMMServerVM.Instance.SelectedLanguages.Count == 0) JMMServerVM.Instance.RefreshNamingLanguages();
                     if (JMMServerVM.Instance.AllUsers.Count == 0) JMMServerVM.Instance.RefreshAllUsers();
@@ -1290,7 +1295,7 @@ namespace JMMClient
             {
                 foreach (AVDumpVM dumpTemp in MainListHelperVM.Instance.AVDumpFiles)
                 {
-                    if (dumpTemp.FullPath == vid.FullPath) return;
+                    if (dumpTemp.FullPath == vid.LocalFileSystemFullPath) return;
                 }
 
                 AVDumpVM dump = new AVDumpVM(vid);
@@ -1442,6 +1447,7 @@ namespace JMMClient
 
             this.Cursor = Cursors.Arrow;
         }
+
 
         public void RefreshPinnedSeries()
         {
@@ -1648,7 +1654,7 @@ namespace JMMClient
 
                     foreach (AVDumpVM dumpTemp in MainListHelperVM.Instance.AVDumpFiles)
                     {
-                        if (dumpTemp.FullPath == vid.FullPath) return;
+                        if (dumpTemp.FullPath == vid.LocalFileSystemFullPath) return;
                     }
 
                     AVDumpVM dump = new AVDumpVM(vid);
@@ -1664,7 +1670,7 @@ namespace JMMClient
                         bool alreadyExists = false;
                         foreach (AVDumpVM dumpTemp in MainListHelperVM.Instance.AVDumpFiles)
                         {
-                            if (dumpTemp.FullPath == vid.FullPath)
+                            if (dumpTemp.FullPath == vid.LocalFileSystemFullPath)
                             {
                                 alreadyExists = true;
                                 break;

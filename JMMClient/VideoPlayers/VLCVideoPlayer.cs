@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -24,24 +25,47 @@ namespace JMMClient.VideoPlayers
                 Active = false;
                 return;
             }
-            StartWatchingFiles(AppSettings.VLCFolder);
             Active = true;
         }
         public VideoPlayer Player => VideoPlayer.VLC;
-
-        public override void PlayUrl(string url, List<string> subtitlespath)
+      
+        public override void Play(VideoInfo video)
         {
-            string init = '"' + url + '"';
-            if (subtitlespath != null && subtitlespath.Count > 0)
+            if (IsPlaying)
+                return;
+            Task.Factory.StartNew(() =>
             {
-                foreach (string s in subtitlespath)
+                Process process;
+                if (video.IsPlaylist)
+                    process = Process.Start(PlayerPath, '"' + video.Uri + '"');
+                else
                 {
-                    init += " --sub-file=\"" + s + "\"";
+                    string init = '"' + video.Uri + '"';
+                    if (video.ResumePosition > 0)
+                    {
+                        double n = video.ResumePosition;
+                        n /= 1000;
+                        init += " --start-time=\"" + n.ToString(CultureInfo.InvariantCulture) + "\"";
+                    }
+                    if (video.SubtitlePaths != null && video.SubtitlePaths.Count > 0)
+                    {
+                        foreach (string s in video.SubtitlePaths)
+                        {
+                            init += " --sub-file=\"" + s + "\"";
+                        }
+                    }
+                    process = Process.Start(PlayerPath, init);
                 }
-            }
-            Process.Start(PlayerPath, init);
+                if (process != null)
+                {
+                    IsPlaying = true;
+                    StartWatcher(AppSettings.VLCFolder);
+                    process.WaitForExit();
+                    StopWatcher();
+                    IsPlaying = false;
+                }
+            });
         }
-
 
         internal override void FileChangeEvent(string filePath)
         {
