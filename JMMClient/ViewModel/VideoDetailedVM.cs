@@ -46,7 +46,7 @@ namespace JMMClient
         public string VideoInfo_AudioCodec { get; set; }
         public string VideoInfo_AudioBitrate { get; set; }
         public long VideoInfo_Duration { get; set; }
-        public int VideoLocal_IsVariation { get; set; }
+
         // AniDB_File
         public int? AniDB_FileID { get; set; }
         public int? AniDB_AnimeID { get; set; }
