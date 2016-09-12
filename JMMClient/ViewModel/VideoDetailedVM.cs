@@ -335,10 +335,10 @@ namespace JMMClient
         {
             get
             {
-                VideoLocal_PlaceVM p=Places.FirstOrDefault(a => a.LocalFileSystemFullPath != string.Empty);
-                if (p == null)
+                VideoLocal_PlaceVM b = Places?.FirstOrDefault(a => a.ImportFolder.IsNotCloud && !string.IsNullOrEmpty(a.LocalFileSystemFullPath));
+                if (b == null)
                     return string.Empty;
-                return p.LocalFileSystemFullPath;
+                return b.LocalFileSystemFullPath;
             }
         }
 

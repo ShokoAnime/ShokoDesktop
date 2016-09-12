@@ -28,7 +28,17 @@ namespace JMMClient.ViewModel
                     return string.Empty;
                 if (AppSettings.ImportFolderMappings.ContainsKey(ImportFolderID))
                     return Path.Combine(AppSettings.ImportFolderMappings[ImportFolderID], FilePath);
-                return Path.Combine(ImportFolder.ImportFolderLocation, FilePath);
+                string nn = Path.Combine(ImportFolder.ImportFolderLocation, FilePath);
+                try
+                {
+                    if (File.Exists(nn))
+                        return nn;
+                }
+                catch (Exception)
+                {
+                    //ignored
+                }
+                return string.Empty;
             }
         }
 
