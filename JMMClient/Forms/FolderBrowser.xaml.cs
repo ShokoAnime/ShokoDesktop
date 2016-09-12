@@ -42,6 +42,7 @@ namespace JMMClient.Forms
 
         private List<string> GetFromDirectory(string path)
         {
+
             return JMMServerVM.Instance.clientBinaryHTTP.DirectoriesFromImportFolderPath(account.CloudID??0, path);
         }
 
@@ -60,14 +61,16 @@ namespace JMMClient.Forms
             {
                 int idx = k.LastIndexOf("\\");
                 string n = (idx >= 0) ? k.Substring(idx + 1) : k;
-
-                TreeViewItem item = GenerateFromDirectory(n,Path.Combine(path,n));
+                if (path.EndsWith(":"))
+                    path += "\\";
+                string combined = Path.Combine(path, n);
+                TreeViewItem item = GenerateFromDirectory(n,combined);
                 if (parts.Length > pos)
                 {
                     if (n.Equals(parts[pos],StringComparison.InvariantCultureIgnoreCase))
                     {
                         if (pos<parts.Length-1)
-                            RecursiveAddFromDirectory(item.Items, Path.Combine(path,n), parts, pos + 1);
+                            RecursiveAddFromDirectory(item.Items, combined, parts, pos + 1);
                         item.IsSelected = true;
                     }
                 }
@@ -82,7 +85,7 @@ namespace JMMClient.Forms
             while (initialpath.StartsWith("\\"))
                 initialpath = initialpath.Substring(1);
             string[] pars = initialpath.Split(new char[] { '\\' }, StringSplitOptions.RemoveEmptyEntries);
-            RecursiveAddFromDirectory(TrView.Items, account.Name, pars, (account.CloudID ?? 0)==0 ? 0 : 1);
+            RecursiveAddFromDirectory(TrView.Items, account.CloudID == 0 ? "" : account.Name, pars, (account.CloudID ?? 0)==0 ? 0 : 1);
             this.Cursor = Cursors.Arrow;
         }
 
@@ -117,7 +120,9 @@ namespace JMMClient.Forms
                     {
                         int idx = k.LastIndexOf("\\");
                         string n = (idx >= 0) ? k.Substring(idx + 1) : k;
-
+                        if (path.EndsWith(":"))
+                            path += "\\";
+                        
                         item.Items.Add(GenerateFromDirectory(n, Path.Combine(path,n)));
                     }
                 }
