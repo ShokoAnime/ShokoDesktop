@@ -49,9 +49,9 @@ namespace JMMClient.UserControls
             cboDefaultPlayer.Items.Clear();
             cboDefaultPlayer.Items.Add("Windows Default");
             cboDefaultPlayer.Items.Add("Internal MPV");
+            cboDefaultPlayer.Items.Add("MPC");
             cboDefaultPlayer.Items.Add("PotPlayer");
             cboDefaultPlayer.Items.Add("VLC");
-            cboDefaultPlayer.Items.Add("MPV");
             cboDefaultPlayer.Items.Add("External MPV");
             switch (AppSettings.DefaultPlayer_GroupList)
             {
