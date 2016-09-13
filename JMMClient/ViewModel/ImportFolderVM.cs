@@ -99,7 +99,7 @@ namespace JMMClient.ViewModel
         {
             get
             {
-                CloudAccountVM v = JMMServerVM.Instance.FolderProviders.FirstOrDefault(a => a.CloudID == this.CloudID);
+                CloudAccountVM v = JMMServerVM.Instance.FolderProviders.FirstOrDefault(a => a.CloudID == (this.CloudID ?? 0));
                 if (v != null)
                     return v.Icon;
                 return new BitmapImage();
