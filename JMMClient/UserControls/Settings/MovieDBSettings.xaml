@@ -6,6 +6,7 @@
              xmlns:extToolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
              xmlns:local="clr-namespace:JMMClient"
              xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="600">
     <Grid>
@@ -40,7 +41,7 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="0" Margin="0,5,5,0">
-            <extToolkit:IntegerUpDown Name="udMaxFanarts" Minimum="1" Maximum="999" DefaultValue="5" VerticalAlignment="Center" 
+            <xctk:IntegerUpDown Name="udMaxFanarts" Minimum="1" Maximum="999" DefaultValue="5" VerticalAlignment="Center" 
                                       ToolTip="{usercontrols:Info Title=MovieDB_FanartCount, 
                                        Body=Tooltip_MovieDB_FanartCount}" Value="{Binding Source={x:Static local:JMMServerVM.Instance},Path=MovieDB_AutoFanartAmount}" />
         </StackPanel>
@@ -61,7 +62,7 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="2" Margin="0,5,5,0">
-            <extToolkit:IntegerUpDown Name="udMaxPosters" Minimum="1" Maximum="999" DefaultValue="5" VerticalAlignment="Center" 
+            <xctk:IntegerUpDown Name="udMaxPosters" Minimum="1" Maximum="999" DefaultValue="5" VerticalAlignment="Center" 
                        Value="{Binding Source={x:Static local:JMMServerVM.Instance},Path=MovieDB_AutoPostersAmount}" />
         </StackPanel>
 

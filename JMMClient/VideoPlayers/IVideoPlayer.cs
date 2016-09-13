@@ -9,6 +9,7 @@ namespace JMMClient.VideoPlayers
         void Init();
         bool Active { get; }
         VideoPlayer Player { get; }
-        event BaseVideoPlayer.FilesPositionsHandler PositionChange;
+        event BaseVideoPlayer.FilesPositionsHandler FilePositionsChange;
+        event BaseVideoPlayer.FilePositionHandler VideoInfoChange;
     }
 }

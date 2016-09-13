@@ -15,7 +15,8 @@
              xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
              xmlns:MahControls="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:MahShared="http://metro.mahapps.com/winfx/xaml/shared"
-            mc:Ignorable="d"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d"
             d:DesignHeight="800" d:DesignWidth="1000">
 
 
@@ -23,7 +24,7 @@
 
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colours.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
@@ -349,7 +350,7 @@
                 
                 <StackPanel Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="4" Orientation="Horizontal" Margin="10,10,2,2" >
                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Items}" Margin="0,0,5,0" Foreground="Black"/>
-                    <extToolkit:IntegerUpDown Name="udItemsContinueWatching" Minimum="1" Maximum="100" DefaultValue="10" VerticalAlignment="Center" 
+                    <xctk:IntegerUpDown Name="udItemsContinueWatching" Minimum="1" Maximum="100" DefaultValue="10" VerticalAlignment="Center" 
                                       Value="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=DashMetro_WatchNext_Items}" />
                 </StackPanel>
 
@@ -359,7 +360,7 @@
                
                 <StackPanel Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="4" Orientation="Horizontal" Margin="10,10,2,2" >
                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Items}" Margin="0,0,5,0" Foreground="Black"/>
-                    <extToolkit:IntegerUpDown Name="udItemsRandomSeries" Minimum="1" Maximum="100" DefaultValue="5" VerticalAlignment="Center" 
+                    <xctk:IntegerUpDown Name="udItemsRandomSeries" Minimum="1" Maximum="100" DefaultValue="5" VerticalAlignment="Center" 
                                       Value="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=DashMetro_RandomSeries_Items}" />
                 </StackPanel>
 
@@ -369,7 +370,7 @@
                 
                 <StackPanel Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="4" Orientation="Horizontal" Margin="10,10,2,2" >
                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Metro_Items}" Margin="0,0,5,0" Foreground="Black"/>
-                    <extToolkit:IntegerUpDown Name="udItemsNewEpisodes" Minimum="1" Maximum="100" DefaultValue="5" VerticalAlignment="Center" 
+                    <xctk:IntegerUpDown Name="udItemsNewEpisodes" Minimum="1" Maximum="100" DefaultValue="5" VerticalAlignment="Center" 
                                       Value="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=DashMetro_NewEpisodes_Items}" />
                 </StackPanel>
 

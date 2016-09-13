@@ -186,12 +186,14 @@ namespace JMMClient.VideoPlayers
         }
         public bool Active { get; set;  }
         public VideoPlayer Player => VideoPlayer.MPV;
-        public event BaseVideoPlayer.FilesPositionsHandler PositionChange;
+        public event BaseVideoPlayer.FilesPositionsHandler FilePositionsChange;
+        public event BaseVideoPlayer.FilePositionHandler VideoInfoChange;
 
         public void Stop()
         {
             Pause();
-            info.ChangePosition((long)(Time*1000));
+            info.ForceChange((long)(Time * 1000));
+            VideoInfoChange?.Invoke(info, (long) (Time*1000));
             Time = 0;
             StopWatcher();
         }
@@ -299,7 +301,8 @@ namespace JMMClient.VideoPlayers
         public void Quit()
         {
             StopWatcher();
-            info.ChangePosition((long)(Time * 1000));
+            info.ForceChange((long)(Time * 1000));
+            VideoInfoChange?.Invoke(info, (long)(Time * 1000));
             if (_mpvHandle != IntPtr.Zero)
             {
                 _mpvTerminateDestroy(_mpvHandle);

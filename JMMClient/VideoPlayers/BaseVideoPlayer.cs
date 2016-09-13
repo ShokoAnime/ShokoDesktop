@@ -21,11 +21,18 @@ namespace JMMClient.Utilities
         private string iniPath;
 
         public delegate void FilesPositionsHandler(Dictionary<string, long> positions);
-        public event FilesPositionsHandler PositionChange;
 
+        public delegate void FilePositionHandler(VideoInfo info, long position);
+        public event FilesPositionsHandler FilePositionsChange;
+        public event FilePositionHandler VideoInfoChange;
         protected void OnPositionChangeEvent(Dictionary<string, long> positions)
         {
-            PositionChange?.Invoke(positions);
+            FilePositionsChange?.Invoke(positions);
+        }
+
+        protected void OnPositionChangeEvent(VideoInfo info, long position)
+        {
+            VideoInfoChange?.Invoke(info,position);
         }
         internal virtual void StartWatcher(string path)
         {

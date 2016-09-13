@@ -6,6 +6,7 @@
              xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
              xmlns:extToolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
              xmlns:local="clr-namespace:JMMClient"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d"
              d:DesignWidth="800" Loaded="UserControl_Loaded">
     <Grid>
@@ -112,7 +113,7 @@
                           Content="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_AutoMark}"
                           Margin="10,0,0,0" />
 
-                <extToolkit:IntegerUpDown Grid.Column="1" Grid.Row="0" Name="udWatchedPct" Minimum="1" Maximum="100"
+                <xctk:IntegerUpDown Grid.Column="1" Grid.Row="0" Name="udWatchedPct" Minimum="1" Maximum="100"
                                           DefaultValue="85" VerticalAlignment="Center" Margin="5,0,0,0"
                                           Value="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=VideoWatchedPct}" />
             </Grid>

@@ -6,6 +6,7 @@
              xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
              xmlns:local="clr-namespace:JMMClient"
              xmlns:extToolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
@@ -231,7 +232,7 @@
                             <!-- Number of Items -->
                             <StackPanel Orientation="Horizontal" Margin="10,0,2,0" >
                                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Items}" Margin="0,0,5,0"/>
-                                <extToolkit:IntegerUpDown Name="udItemsRecDownload" Minimum="1" Maximum="100" DefaultValue="10" VerticalAlignment="Center" 
+                                <xctk:IntegerUpDown Name="udItemsRecDownload" Minimum="1" Maximum="100" DefaultValue="10" VerticalAlignment="Center" 
                                 Value="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=DownloadsRecItems}" />
 
                                 <!-- Update Series Info -->

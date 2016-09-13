@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace JMMClient.ViewModel
 {
-    public class PlaylistVM : GongSolutions.Wpf.DragDrop.IDropTarget, INotifyPropertyChanged
+    public class PlaylistVM : IDropTarget, INotifyPropertyChanged
     {
         public int? PlaylistID { get; set; }
         public string PlaylistItems { get; set; }
@@ -143,123 +143,7 @@ namespace JMMClient.ViewModel
             //PopulatePlaylistObjects();
         }
 
-        void GongSolutions.Wpf.DragDrop.IDropTarget.DragOver(DropInfo dropInfo)
-        {
-            PlaylistItemVM sourceItem = dropInfo.Data as PlaylistItemVM;
-            PlaylistItemVM targetItem = dropInfo.TargetItem as PlaylistItemVM;
-
-            if (sourceItem != null && targetItem != null)
-            {
-                dropInfo.DropTargetAdorner = DropTargetAdorners.Insert;
-                dropInfo.Effects = DragDropEffects.Copy;
-            }
-        }
-
-        void GongSolutions.Wpf.DragDrop.IDropTarget.Drop(DropInfo dropInfo)
-        {
-            PlaylistItemType itemType = PlaylistItemType.AnimeSeries;
-            int objIDOld = -1;
-
-            PlaylistItemVM pli = dropInfo.Data as PlaylistItemVM;
-            if (pli == null) return;
-
-            if (pli.ItemType == PlaylistItemType.Episode)
-            {
-                AnimeEpisodeVM ep = (AnimeEpisodeVM)pli.PlaylistItem;
-                itemType = PlaylistItemType.Episode;
-                objIDOld = ep.AnimeEpisodeID;
-            }
-            if (pli.ItemType == PlaylistItemType.AnimeSeries)
-            {
-                AnimeSeriesVM ep = (AnimeSeriesVM)pli.PlaylistItem;
-                itemType = PlaylistItemType.AnimeSeries;
-                objIDOld = ep.AnimeSeriesID.Value;
-            }
-
-            int iType = (int)itemType;
-
-            // find where this item was previously
-
-            if (string.IsNullOrEmpty(this.PlaylistItems)) return;
-
-            string[] items = this.PlaylistItems.Split('|');
-
-            // create a new list without the moved item
-            string newItemList = "";
-            foreach (string pitem in items)
-            {
-                string[] parms = pitem.Split(';');
-                if (parms.Length != 2) continue;
-
-                int objType = -1;
-                int objID = -1;
-
-                if (!int.TryParse(parms[0], out objType)) continue;
-                if (!int.TryParse(parms[1], out objID)) continue;
-
-                if (objType == iType && objID == objIDOld)
-                {
-                    // skip the old item
-                }
-                else
-                {
-                    if (newItemList.Length > 0) newItemList += "|";
-                    newItemList += string.Format("{0};{1}", objType, objID);
-                }
-            }
-
-            // insert the moved item into it's new position
-            items = newItemList.Split('|');
-
-            this.PlaylistItems = "";
-            int curPos = 0;
-
-            if (string.IsNullOrEmpty(newItemList))
-            {
-                // means there was only one item in list to begin with
-                PlaylistItems += string.Format("{0};{1}", iType, objIDOld);
-            }
-            else
-            {
-                foreach (string pitem in items)
-                {
-                    string[] parms = pitem.Split(';');
-                    if (parms.Length != 2) continue;
-
-                    int objType = -1;
-                    int objID = -1;
-
-                    int.TryParse(parms[0], out objType);
-                    int.TryParse(parms[1], out objID);
-
-                    if (curPos == dropInfo.InsertIndex)
-                    {
-                        // insert moved item
-                        if (PlaylistItems.Length > 0) PlaylistItems += "|";
-                        PlaylistItems += string.Format("{0};{1}", iType, objIDOld);
-                    }
-
-
-                    if (PlaylistItems.Length > 0) PlaylistItems += "|";
-                    PlaylistItems += string.Format("{0};{1}", objType, objID);
-
-                    curPos++;
-                }
-            }
-
-            // moved to the end of the list
-            if (dropInfo.InsertIndex > items.Length)
-            {
-                if (PlaylistItems.Length > 0) PlaylistItems += "|";
-                PlaylistItems += string.Format("{0};{1}", iType, objIDOld);
-            }
-
-            Save();
-            PopulatePlaylistObjects();
-
-            PlaylistHelperVM.Instance.OnPlaylistModified(new PlaylistModifiedEventArgs(PlaylistID));
-        }
-
+       
         public void Save()
         {
             JMMServerBinary.Contract_Playlist pl = new JMMServerBinary.Contract_Playlist();
@@ -656,5 +540,124 @@ namespace JMMClient.ViewModel
             this.PlayWatchedBool = PlayWatched == 1;
             this.PlayUnwatchedBool = PlayUnwatched == 1;
         }
+
+        public void DragOver(IDropInfo dropInfo)
+        {
+            PlaylistItemVM sourceItem = dropInfo.Data as PlaylistItemVM;
+            PlaylistItemVM targetItem = dropInfo.TargetItem as PlaylistItemVM;
+
+            if (sourceItem != null && targetItem != null)
+            {
+                dropInfo.DropTargetAdorner = DropTargetAdorners.Insert;
+                dropInfo.Effects = DragDropEffects.Copy;
+            }
+        }
+
+        public void Drop(IDropInfo dropInfo)
+        {
+            PlaylistItemType itemType = PlaylistItemType.AnimeSeries;
+            int objIDOld = -1;
+
+            PlaylistItemVM pli = dropInfo.Data as PlaylistItemVM;
+            if (pli == null) return;
+
+            if (pli.ItemType == PlaylistItemType.Episode)
+            {
+                AnimeEpisodeVM ep = (AnimeEpisodeVM)pli.PlaylistItem;
+                itemType = PlaylistItemType.Episode;
+                objIDOld = ep.AnimeEpisodeID;
+            }
+            if (pli.ItemType == PlaylistItemType.AnimeSeries)
+            {
+                AnimeSeriesVM ep = (AnimeSeriesVM)pli.PlaylistItem;
+                itemType = PlaylistItemType.AnimeSeries;
+                objIDOld = ep.AnimeSeriesID.Value;
+            }
+
+            int iType = (int)itemType;
+
+            // find where this item was previously
+
+            if (string.IsNullOrEmpty(this.PlaylistItems)) return;
+
+            string[] items = this.PlaylistItems.Split('|');
+
+            // create a new list without the moved item
+            string newItemList = "";
+            foreach (string pitem in items)
+            {
+                string[] parms = pitem.Split(';');
+                if (parms.Length != 2) continue;
+
+                int objType = -1;
+                int objID = -1;
+
+                if (!int.TryParse(parms[0], out objType)) continue;
+                if (!int.TryParse(parms[1], out objID)) continue;
+
+                if (objType == iType && objID == objIDOld)
+                {
+                    // skip the old item
+                }
+                else
+                {
+                    if (newItemList.Length > 0) newItemList += "|";
+                    newItemList += string.Format("{0};{1}", objType, objID);
+                }
+            }
+
+            // insert the moved item into it's new position
+            items = newItemList.Split('|');
+
+            this.PlaylistItems = "";
+            int curPos = 0;
+
+            if (string.IsNullOrEmpty(newItemList))
+            {
+                // means there was only one item in list to begin with
+                PlaylistItems += string.Format("{0};{1}", iType, objIDOld);
+            }
+            else
+            {
+                foreach (string pitem in items)
+                {
+                    string[] parms = pitem.Split(';');
+                    if (parms.Length != 2) continue;
+
+                    int objType = -1;
+                    int objID = -1;
+
+                    int.TryParse(parms[0], out objType);
+                    int.TryParse(parms[1], out objID);
+
+                    if (curPos == dropInfo.InsertIndex)
+                    {
+                        // insert moved item
+                        if (PlaylistItems.Length > 0) PlaylistItems += "|";
+                        PlaylistItems += string.Format("{0};{1}", iType, objIDOld);
+                    }
+
+
+                    if (PlaylistItems.Length > 0) PlaylistItems += "|";
+                    PlaylistItems += string.Format("{0};{1}", objType, objID);
+
+                    curPos++;
+                }
+            }
+
+            // moved to the end of the list
+            if (dropInfo.InsertIndex > items.Length)
+            {
+                if (PlaylistItems.Length > 0) PlaylistItems += "|";
+                PlaylistItems += string.Format("{0};{1}", iType, objIDOld);
+            }
+
+            Save();
+            PopulatePlaylistObjects();
+
+            PlaylistHelperVM.Instance.OnPlaylistModified(new PlaylistModifiedEventArgs(PlaylistID));
+        }
+
+
     }
 }

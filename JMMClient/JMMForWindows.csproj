@@ -134,53 +134,54 @@
     <Reference Include="DevExpress.Xpf.PivotGrid.v12.2">
       <Private>True</Private>
     </Reference>
-    <Reference Include="GongSolutions.Wpf.DragDrop">
-      <HintPath>..\Dependencies\GongSolutions.Wpf.DragDrop.dll</HintPath>
+    <Reference Include="GongSolutions.Wpf.DragDrop, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\gong-wpf-dragdrop.1.0.0\lib\net46\GongSolutions.Wpf.DragDrop.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Infralution.Localization.Wpf, Version=2.1.1.0, Culture=neutral, PublicKeyToken=547ccae517a004b5, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Dependencies\Infralution.Localization.Wpf.dll</HintPath>
+      <HintPath>Dependencies\Infralution.Localization.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="Ionic.Zip.Reduced">
-      <HintPath>..\Dependencies\Ionic.Zip.Reduced.dll</HintPath>
-    </Reference>
-    <Reference Include="Jint, Version=2.7.1.0, Culture=neutral, PublicKeyToken=2e92ba9c8d81157f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Jint.2.8\lib\portable-net40+sl50+win+WindowsPhoneApp81+wp80\Jint.dll</HintPath>
+    <Reference Include="Ionic.Zip.Reduced, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetZip.Reduced.1.9.1.8\lib\net20\Ionic.Zip.Reduced.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MahApps.Metro">
-      <HintPath>..\Dependencies\MahApps.Metro.dll</HintPath>
+    <Reference Include="Jint, Version=2.9.1.0, Culture=neutral, PublicKeyToken=2e92ba9c8d81157f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Jint.2.9.1\lib\portable-net40+sl50+win+WindowsPhoneApp81+wp80\Jint.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="MahApps.Metro.Resources">
-      <HintPath>..\Dependencies\MahApps.Metro.Resources.dll</HintPath>
+    <Reference Include="MahApps.Metro, Version=1.2.4.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.2.4.0\lib\net45\MahApps.Metro.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Data.Edm, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Dependencies\Microsoft.Data.Edm.dll</HintPath>
+    <Reference Include="Microsoft.Data.Edm, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Edm.5.7.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Data.OData, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Dependencies\Microsoft.Data.OData.dll</HintPath>
+    <Reference Include="Microsoft.Data.OData, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.OData.5.7.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Data.Services.Client, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Dependencies\Microsoft.Data.Services.Client.dll</HintPath>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Services.Client.5.7.0\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Win32.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Win32.Primitives.4.0.1\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NLog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Dependencies\NLog.dll</HintPath>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.3.8\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="PresentationFramework.Aero" />
-    <Reference Include="Pri.LongPath, Version=2.0.32.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Pri.LongPath, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Pri.LongPath.2.0.32\lib\net45\Pri.LongPath.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ReuxablesLegacy">
-      <HintPath>..\Dependencies\ReuxablesLegacy.dll</HintPath>
+    <Reference Include="ReuxablesLegacy, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>Dependencies\ReuxablesLegacy.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -212,12 +213,16 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Spatial, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Dependencies\System.Spatial.dll</HintPath>
+    <Reference Include="System.Spatial, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Spatial.5.7.0\lib\net40\System.Spatial.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.2.4.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -232,9 +237,29 @@
     <Reference Include="WindowsFormsIntegration">
       <Private>False</Private>
     </Reference>
-    <Reference Include="WPFToolkit.Extended, Version=1.4.0.2, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Dependencies\WPFToolkit.Extended.dll</HintPath>
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=2.9.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.9\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=2.9.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.9\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=2.9.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.9\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=2.9.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.9\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid, Version=2.9.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.9\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=2.9.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.9\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -1029,6 +1054,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\Icons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\IconsNonShared.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Resources\MainListContent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1454,6 +1487,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <Resource Include="Resources\Entypo.ttf" />
     <None Include="Service References\JMMServerBinary\JMMClient.JMMServerBinary.Contract_AdminMessage.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -1733,9 +1767,7 @@
     </None>
     <None Include="Service References\JMMImageServer\JMMServiceImplementationImage1.wsdl" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controls\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Images\32_Refresh.png" />
   </ItemGroup>
@@ -2109,6 +2141,8 @@
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.Core.dll" />
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.dll" />
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.resources.dll" />
+    <Resource Include="Resources\Entypo-license.txt" />
+    <Resource Include="Resources\WindowsIcons-license.txt" />
     <Resource Include="Images\16_folder.png" />
     <Resource Include="Images\32_play_all.png" />
     <Resource Include="Images\Metro\pin.png" />

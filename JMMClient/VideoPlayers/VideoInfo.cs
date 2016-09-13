@@ -43,5 +43,14 @@ namespace JMMClient.VideoPlayers
         {
             JMMServerVM.Instance.clientBinaryHTTP.SetResumePosition(VideoLocalId,JMMServerVM.Instance.CurrentUser.JMMUserID.Value,ResumePosition);
         }
+        public void ForceChange(long position)
+        {
+            if (_changePositionTimer != null)
+            {
+                _changePositionTimer.Dispose();
+                _changePositionTimer = null;
+            }
+            JMMServerVM.Instance.clientBinaryHTTP.SetResumePosition(VideoLocalId, JMMServerVM.Instance.CurrentUser.JMMUserID.Value, position);
+        }
     }
 }

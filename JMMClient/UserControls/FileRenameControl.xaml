@@ -7,6 +7,7 @@
              xmlns:local="clr-namespace:JMMClient"
              mc:Ignorable="d" 
              xmlns:extToolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
 
@@ -177,7 +178,7 @@
 
 
 
-                    <extToolkit:IntegerUpDown Name="udRandomFiles" Minimum="1" Maximum="99999" DefaultValue="100" Value="100" VerticalAlignment="Center"
+                    <xctk:IntegerUpDown Name="udRandomFiles" Minimum="1" Maximum="99999" DefaultValue="100" Value="100" VerticalAlignment="Center"
                                               Visibility="{Binding Path=LoadTypeIsRandom, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:FileRenameControl}}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                     <!-- Add Files -->

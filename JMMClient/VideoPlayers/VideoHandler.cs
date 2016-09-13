@@ -51,7 +51,8 @@ namespace JMMClient.VideoPlayers
             Players.Add(new ExternalMPVVideoPlayer());
             foreach (IVideoPlayer v in Players)
             {
-                v.PositionChange += FindChangedFiles;
+                v.FilePositionsChange += FindChangedFiles;
+                v.VideoInfoChange += CheckWatchStatus;
             }
         }
         /*
@@ -281,6 +282,42 @@ namespace JMMClient.VideoPlayers
             }
         }
 
+        private void CheckWatchStatus(VideoInfo v, long position)
+        {
+            MayUpdateWatchStatus(v, position);
+        }
+        internal bool MayUpdateWatchStatus(VideoInfo v, long position)
+        {
+
+            if (v != null)
+            {
+                if (!AppSettings.VideoAutoSetWatched) return false;
+                // we don't care about files that are already watched
+                if (v.WasWatched) return true;
+                // now check if this file is considered watched
+                double fileDurationMS = (double)v.Duration;
+
+                double progress = position / fileDurationMS * 100.0d;
+
+                if (progress > (double)AppSettings.VideoWatchedPct)
+                {
+                    logger.Info(string.Format("Updating to watched by media player: {0}", v.Uri));
+
+                    JMMServerVM.Instance.clientBinaryHTTP.ToggleWatchedStatusOnVideo(v.VideoLocalId, true, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+                    if (v.VideoDetailed != null)
+                    {
+                        MainListHelperVM.Instance.UpdateHeirarchy(v.VideoDetailed);
+                        MainListHelperVM.Instance.GetSeriesForVideo(v.VideoLocalId);
+
+                        //kvp.Value.VideoLocal_IsWatched = 1;
+                        OnVideoWatchedEvent(new VideoWatchedEventArgs(v.VideoLocalId, v.VideoDetailed));
+                    }
+                    Debug.WriteLine("complete");
+
+                }
+            }
+            return true;
+        }
 
         private void FindChangedFiles(Dictionary<string, long> filePositions)
         {
@@ -300,40 +337,13 @@ namespace JMMClient.VideoPlayers
 
             foreach (KeyValuePair<string, long> kvp in changedFilePositions)
             {
-                long mpcPosMS = kvp.Value;
-
                 VideoInfo v = recentlyPlayedFiles.Values.FirstOrDefault(a => a.Uri == kvp.Key);
-                if (v!=null)
+                if (v != null)
                 {
-                    logger.Info(string.Format("Video position for {0} has changed to {1}", kvp.Key, kvp.Value));
+                    logger.Info(string.Format("Video position for {0} has changed to {1}", v.Uri, kvp.Value));
                     v.ChangePosition(kvp.Value); //Set New Resume Position
-
-                    if (!AppSettings.VideoAutoSetWatched) return;
-                    // we don't care about files that are already watched
-                    if (v.WasWatched) continue;
-
-
-                    // now check if this file is considered watched
-                    double fileDurationMS = (double)v.Duration;
-
-                    double progress = mpcPosMS / fileDurationMS * 100.0d;
-
-                    if (progress > (double)AppSettings.VideoWatchedPct)
-                    {
-                        logger.Info(string.Format("Updating to watched by media player: {0}", kvp.Key));
-
-                        JMMServerVM.Instance.clientBinaryHTTP.ToggleWatchedStatusOnVideo(v.VideoLocalId, true, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
-                        if (v.VideoDetailed != null)
-                        {
-                            MainListHelperVM.Instance.UpdateHeirarchy(v.VideoDetailed);
-                            MainListHelperVM.Instance.GetSeriesForVideo(v.VideoLocalId);
-
-                            //kvp.Value.VideoLocal_IsWatched = 1;
-                            OnVideoWatchedEvent(new VideoWatchedEventArgs(v.VideoLocalId, v.VideoDetailed));
-                        }
-                        Debug.WriteLine("complete");
-
-                    }
+                    if (!MayUpdateWatchStatus(v, kvp.Value))
+                        return;
                 }
             }
         }

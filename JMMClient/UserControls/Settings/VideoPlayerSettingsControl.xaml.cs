@@ -47,39 +47,34 @@ namespace JMMClient.UserControls
             chkMpcWebUiIntegration.Click += new RoutedEventHandler(chkMpcWebUiIntegration_Click);
 
             cboDefaultPlayer.Items.Clear();
-            cboDefaultPlayer.Items.Add("Windows Default");
             cboDefaultPlayer.Items.Add("Internal MPV");
+            cboDefaultPlayer.Items.Add("MPC");
             cboDefaultPlayer.Items.Add("PotPlayer");
             cboDefaultPlayer.Items.Add("VLC");
-            cboDefaultPlayer.Items.Add("MPV");
             cboDefaultPlayer.Items.Add("External MPV");
             switch (AppSettings.DefaultPlayer_GroupList)
             {
                 case (int)VideoPlayer.MPV:
-                    cboDefaultPlayer.SelectedIndex = 1;
+                    cboDefaultPlayer.SelectedIndex = 0;
                     break;
                 case (int)VideoPlayer.MPC:
-                    cboDefaultPlayer.SelectedIndex = 2;
+                    cboDefaultPlayer.SelectedIndex = 1;
                     break;
 
                 case (int)VideoPlayer.PotPlayer:
-                    cboDefaultPlayer.SelectedIndex = 3;
+                    cboDefaultPlayer.SelectedIndex = 2;
                     break;
 
                 case (int)VideoPlayer.VLC:
-                    cboDefaultPlayer.SelectedIndex = 4;
+                    cboDefaultPlayer.SelectedIndex = 3;
                     break;
                 case (int)VideoPlayer.ExternalMPV:
-                    cboDefaultPlayer.SelectedIndex = 5;
+                    cboDefaultPlayer.SelectedIndex = 4;
                     break;
-
-                case (int)VideoPlayer.WindowsDefault:
-                    cboDefaultPlayer.SelectedIndex = 0;
-                    break;
-
                 default:
                     cboDefaultPlayer.SelectedIndex = 0;
                     break;
+
             }
 
             cboDefaultPlayer.SelectionChanged += new SelectionChangedEventHandler(cboDefaultPlayer_SelectionChanged);
@@ -106,13 +101,11 @@ namespace JMMClient.UserControls
         {
             switch (cboDefaultPlayer.SelectedIndex)
             {
-                case 0: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.WindowsDefault; break;
-                case 1: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.MPV; break;
-                case 2: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.MPC; break;
-                case 3: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.PotPlayer; break;
-                case 4: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.VLC; break;
-                case 5: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.ExternalMPV; break;
-                default: UserSettingsVM.Instance.DisplayStyle_GroupList = (int)VideoPlayer.WindowsDefault; break;
+                case 0: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.MPV; break;
+                case 1: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.MPC; break;
+                case 2: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.PotPlayer; break;
+                case 3: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.VLC; break;
+                case 4: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.ExternalMPV; break;
             }
             RefreshConfigured();
         }

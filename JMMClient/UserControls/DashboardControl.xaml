@@ -7,6 +7,7 @@
              xmlns:extToolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
              xmlns:local="clr-namespace:JMMClient"
              xmlns:mwt="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
@@ -937,7 +938,7 @@
                             <!-- Number of Items -->
                             <StackPanel Orientation="Horizontal" Margin="10,2,2,2" Visibility="{Binding Source={x:Static local:DashboardVM.Instance}, Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}" >
                                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Items}" Margin="0,0,5,0"/>
-                                <extToolkit:IntegerUpDown Name="udItemsWatchNext" Minimum="1" Maximum="100" DefaultValue="10" VerticalAlignment="Center" 
+                                <xctk:IntegerUpDown Name="udItemsWatchNext" Minimum="1" Maximum="100" DefaultValue="10" VerticalAlignment="Center" 
                                       Value="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_WatchNext_Items}" />
                             </StackPanel>
 
@@ -1003,7 +1004,7 @@
                             <!-- Number of Items -->
                             <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="0" Margin="10,2,2,2" Visibility="{Binding Source={x:Static local:DashboardVM.Instance}, Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}" >
                                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Items}" Margin="0,0,5,0"/>
-                                <extToolkit:IntegerUpDown Name="udItemsMissingEps" Minimum="1" Maximum="100" DefaultValue="10" VerticalAlignment="Center" 
+                                <xctk:IntegerUpDown Name="udItemsMissingEps" Minimum="1" Maximum="100" DefaultValue="10" VerticalAlignment="Center" 
                                       Value="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_MissingEps_Items}" />
                             </StackPanel>
 
@@ -1070,7 +1071,7 @@
                             <!-- Number of Days -->
                             <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="0" Margin="10,2,2,2" Visibility="{Binding Source={x:Static local:DashboardVM.Instance}, Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}" >
                                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Days}" Margin="0,0,5,0"/>
-                                <extToolkit:IntegerUpDown Name="udDaysMiniCalendar" Minimum="1" Maximum="100" DefaultValue="10" VerticalAlignment="Center" 
+                                <xctk:IntegerUpDown Name="udDaysMiniCalendar" Minimum="1" Maximum="100" DefaultValue="10" VerticalAlignment="Center" 
                                       Value="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_MiniCalendarDays}" />
                             </StackPanel>
 
@@ -1152,7 +1153,7 @@
                             <!-- Number of Items -->
                             <StackPanel Orientation="Horizontal" Margin="10,2,2,2" Visibility="{Binding Source={x:Static local:DashboardVM.Instance}, Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}" >
                                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Items}" Margin="0,0,5,0"/>
-                                <extToolkit:IntegerUpDown x:Name="udItemsRecWatch" Minimum="1" Maximum="100" DefaultValue="10" VerticalAlignment="Center" 
+                                <xctk:IntegerUpDown x:Name="udItemsRecWatch" Minimum="1" Maximum="100" DefaultValue="10" VerticalAlignment="Center" 
                                       Value="{Binding Source={x:Static local:UserSettingsVM.Instance}, Path=Dash_RecWatch_Items}" />
                             </StackPanel>
 
@@ -1218,7 +1219,7 @@
                             <!-- Number of Items -->
                             <StackPanel Orientation="Horizontal" Margin="10,2,2,2" Visibility="{Binding Source={x:Static local:DashboardVM.Instance}, Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}" >
                                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Items}" Margin="0,0,5,0"/>
-                                <extToolkit:IntegerUpDown Name="udItemsRecDownload" Minimum="1" Maximum="100" DefaultValue="10" VerticalAlignment="Center" 
+                                <xctk:IntegerUpDown Name="udItemsRecDownload" Minimum="1" Maximum="100" DefaultValue="10" VerticalAlignment="Center" 
                                       Value="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_RecDownload_Items}" />
                             </StackPanel>
 
@@ -1299,7 +1300,7 @@
                             <!-- Number of Items -->
                             <StackPanel Orientation="Horizontal" Margin="10,2,2,2" Visibility="{Binding Source={x:Static local:DashboardVM.Instance}, Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}" >
                                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Items}" Margin="0,0,5,0"/>
-                                <extToolkit:IntegerUpDown Name="udItemsRecentEpisodes" Minimum="1" Maximum="100" DefaultValue="10" VerticalAlignment="Center" 
+                                <xctk:IntegerUpDown Name="udItemsRecentEpisodes" Minimum="1" Maximum="100" DefaultValue="10" VerticalAlignment="Center" 
                                       Value="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_RecentlyWatchedEp_Items}" />
                             </StackPanel>
 
@@ -1381,7 +1382,7 @@
                             <!-- Number of Items -->
                             <StackPanel Orientation="Horizontal" Margin="10,2,2,2" Visibility="{Binding Source={x:Static local:DashboardVM.Instance}, Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}" >
                                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Items}" Margin="0,0,5,0"/>
-                                <extToolkit:IntegerUpDown Name="udItemsRecentAdditions" Minimum="1" Maximum="100" DefaultValue="10" VerticalAlignment="Center" 
+                                <xctk:IntegerUpDown Name="udItemsRecentAdditions" Minimum="1" Maximum="100" DefaultValue="10" VerticalAlignment="Center" 
                                       Value="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=Dash_RecentAdditions_Items}" />
                             </StackPanel>
 

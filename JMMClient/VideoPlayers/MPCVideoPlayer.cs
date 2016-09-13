@@ -78,6 +78,7 @@ namespace JMMClient.VideoPlayers
             string[] installregplaces =
             {
                 @"HKEY_CURRENT_USER\SOFTWARE\MPC-HC\MPC-HC",
+                @"HKEY_CURRENT_USER\SOFTWARE\MPC-HC64\MPC-HC",
                 @"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\MPC-HC",
                 @"HKEY_LOCAL_MACHINE\SOFTWARE\MPC-BE",
                 @"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\MPC-BE",
@@ -86,6 +87,7 @@ namespace JMMClient.VideoPlayers
             string[] subdirs=new string[]
             {
                 "",
+                "MPC",
                 "MPC-HC64",
                 "MPC-HC",
                 "MPC-BE64",
