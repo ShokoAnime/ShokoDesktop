@@ -12207,15 +12207,6 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enable Streaming.
-        /// </summary>
-        public static string UseStreaming {
-            get {
-                return ResourceManager.GetString("UseStreaming", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Use This.
         /// </summary>
         public static string UseThis {

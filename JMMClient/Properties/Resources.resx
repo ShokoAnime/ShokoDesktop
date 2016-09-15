@@ -4309,9 +4309,6 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="UpdateAniDB_UpdateAniDB" xml:space="preserve">
     <value>Update Local AniDB Metadata</value>
   </data>
-  <data name="UseStreaming" xml:space="preserve">
-    <value>Enable Streaming</value>
-  </data>
   <data name="VideoPlayer_Installed" xml:space="preserve">
     <value>Installed</value>
   </data>

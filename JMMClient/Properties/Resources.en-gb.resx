@@ -4325,9 +4325,6 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="Tooltip_QueueImages" xml:space="preserve">
     <value>Images Awaiting Download</value>
   </data>
-  <data name="UseStreaming" xml:space="preserve">
-    <value>Enable Streaming</value>
-  </data>
   <data name="Link_MPV" xml:space="preserve">
     <value>https://github.com/rossy/mpv-install/blob/master/README.md</value>
   </data>

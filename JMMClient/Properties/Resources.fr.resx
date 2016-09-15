@@ -4274,9 +4274,6 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   <data name="Tooltip_QueueImages" xml:space="preserve">
     <value>Téléchargement des images en attente</value>
   </data>
-  <data name="UseStreaming" xml:space="preserve">
-    <value>Activer le Streaming</value>
-  </data>
   <data name="Link_MPV" xml:space="preserve">
     <value>https://github.com/rossy/mpv-install/blob/master/README.md</value>
   </data>

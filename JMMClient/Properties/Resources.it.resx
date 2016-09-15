@@ -4274,9 +4274,6 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   <data name="Tooltip_QueueImages" xml:space="preserve">
     <value>Scarica immagini in attesa</value>
   </data>
-  <data name="UseStreaming" xml:space="preserve">
-    <value>Abilitare lo Streaming</value>
-  </data>
   <data name="Link_MPV" xml:space="preserve">
     <value>https://github.com/rossy/mpv-install/blob/master/README.md</value>
   </data>

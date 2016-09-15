@@ -4276,9 +4276,6 @@
   <data name="Tooltip_QueueImages" xml:space="preserve">
     <value>Obrazy czeka do pobrania</value>
   </data>
-  <data name="UseStreaming" xml:space="preserve">
-    <value>Włączenie przesyłania strumieniowego</value>
-  </data>
   <data name="Link_MPV" xml:space="preserve">
     <value>https://github.com/rossy/mpv-install/blob/master/README.md</value>
   </data>

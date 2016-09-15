@@ -4274,9 +4274,6 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
   <data name="Tooltip_QueueImages" xml:space="preserve">
     <value>Imágenes de espera de descarga</value>
   </data>
-  <data name="UseStreaming" xml:space="preserve">
-    <value>Habilitar transmisión</value>
-  </data>
   <data name="Link_MPV" xml:space="preserve">
     <value>https://github.com/rossy/mpv-install/blob/master/README.md</value>
   </data>
