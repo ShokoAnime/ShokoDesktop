@@ -759,17 +759,8 @@
   <data name="Tooltip_TvDB_WideBannerAutoDownload" xml:space="preserve">
     <value>Scaricare automaticamente i nuovi banner vasta ogni volta che viene eseguita un'importazione.</value>
   </data>
-  <data name="ImportSettings_HashCRC32" xml:space="preserve">
-    <value>Calcolare il CRC32</value>
-  </data>
-  <data name="ImportSettings_HashMD5" xml:space="preserve">
-    <value>Calcolare il MD5</value>
-  </data>
   <data name="ImportSettings_ImportOnStart" xml:space="preserve">
     <value>Importare su start</value>
-  </data>
-  <data name="ImportSettings_SHA1" xml:space="preserve">
-    <value>Calcolare SHA1</value>
   </data>
   <data name="ImportSettings_VideoExtensions" xml:space="preserve">
     <value>Estensioni dei video</value>
@@ -4440,5 +4431,32 @@ A differenza di altri lettori multimediali supportati, MPV è il più veloce qua
   </data>
   <data name="RelationSetting_Movie" xml:space="preserve">
     <value>Film</value>
+  </data>
+  <data name="ImportFolder_Provider" xml:space="preserve">
+    <value>Provider di</value>
+  </data>
+  <data name="DeleteFile_Confirm" xml:space="preserve">
+    <value>Selezionare nei provider che si desidera eliminare</value>
+  </data>
+  <data name="DeleteFile_Multiple" xml:space="preserve">
+    <value>Eliminare più file?</value>
+  </data>
+  <data name="DeleteFile_Title" xml:space="preserve">
+    <value>Eliminare il File '{0}'?</value>
+  </data>
+  <data name="Resume_Cancel" xml:space="preserve">
+    <value>Giocare dall'inizio</value>
+  </data>
+  <data name="Resume_Message" xml:space="preserve">
+    <value>Vuoi riprendere il video a {0}?</value>
+  </data>
+  <data name="Resume_OK" xml:space="preserve">
+    <value>Curriculum</value>
+  </data>
+  <data name="Resume_Title" xml:space="preserve">
+    <value>Vuoi riprendere il video?</value>
+  </data>
+  <data name="ImportFolder_SelectImportFolder" xml:space="preserve">
+    <value>Selezionare la cartella di importazione...</value>
   </data>
 </root>

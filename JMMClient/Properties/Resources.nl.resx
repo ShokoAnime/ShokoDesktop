@@ -753,17 +753,8 @@
   <data name="Tooltip_TvDB_WideBannerAutoDownload" xml:space="preserve">
     <value>Automatisch nieuwe brede banners te downloaden wanneer een import wordt uitgevoerd.</value>
   </data>
-  <data name="ImportSettings_HashCRC32" xml:space="preserve">
-    <value>CRC32 berekenen</value>
-  </data>
-  <data name="ImportSettings_HashMD5" xml:space="preserve">
-    <value>Bereken MD5</value>
-  </data>
   <data name="ImportSettings_ImportOnStart" xml:space="preserve">
     <value>Op start importeren</value>
-  </data>
-  <data name="ImportSettings_SHA1" xml:space="preserve">
-    <value>SHA1 berekenen</value>
   </data>
   <data name="ImportSettings_VideoExtensions" xml:space="preserve">
     <value>Video-extensies</value>
@@ -4440,5 +4431,32 @@ In tegenstelling tot de andere ondersteunde mediaspelers is MPV het snelste als 
   </data>
   <data name="RelationSetting_Movie" xml:space="preserve">
     <value>Film</value>
+  </data>
+  <data name="ImportFolder_Provider" xml:space="preserve">
+    <value>Provider</value>
+  </data>
+  <data name="DeleteFile_Confirm" xml:space="preserve">
+    <value>Selecteer in welke aanbieders u verwijderen wilt</value>
+  </data>
+  <data name="DeleteFile_Multiple" xml:space="preserve">
+    <value>Verwijderen van meerdere bestanden?</value>
+  </data>
+  <data name="DeleteFile_Title" xml:space="preserve">
+    <value>Verwijder bestand '{0}'?</value>
+  </data>
+  <data name="Resume_Cancel" xml:space="preserve">
+    <value>Spelen vanaf het begin</value>
+  </data>
+  <data name="Resume_Message" xml:space="preserve">
+    <value>Wilt u de video op {0} hervatten?</value>
+  </data>
+  <data name="Resume_OK" xml:space="preserve">
+    <value>CV</value>
+  </data>
+  <data name="Resume_Title" xml:space="preserve">
+    <value>Wilt u de video te hervatten?</value>
+  </data>
+  <data name="ImportFolder_SelectImportFolder" xml:space="preserve">
+    <value>Selecteer Import map...</value>
   </data>
 </root>

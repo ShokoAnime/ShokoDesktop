@@ -761,17 +761,8 @@
   <data name="Tooltip_TvDB_WideBannerAutoDownload" xml:space="preserve">
     <value>Automatycznie pobierać nowe bannery szeroki, gdy przywóz odbywa.</value>
   </data>
-  <data name="ImportSettings_HashCRC32" xml:space="preserve">
-    <value>Obliczyć CRC32</value>
-  </data>
-  <data name="ImportSettings_HashMD5" xml:space="preserve">
-    <value>Obliczać MD5</value>
-  </data>
   <data name="ImportSettings_ImportOnStart" xml:space="preserve">
     <value>Przywóz na start</value>
-  </data>
-  <data name="ImportSettings_SHA1" xml:space="preserve">
-    <value>Obliczyć SHA1</value>
   </data>
   <data name="ImportSettings_VideoExtensions" xml:space="preserve">
     <value>Rozszerzenia wideo</value>
@@ -4442,5 +4433,32 @@ W przeciwieństwie do innych odtwarzaczy multimedialnych obsługiwanych MPV jest
   </data>
   <data name="RelationSetting_Movie" xml:space="preserve">
     <value>Film</value>
+  </data>
+  <data name="ImportFolder_Provider" xml:space="preserve">
+    <value>Dostawcy</value>
+  </data>
+  <data name="DeleteFile_Confirm" xml:space="preserve">
+    <value>Wybierz, w których dostawców, które chcesz usunąć</value>
+  </data>
+  <data name="DeleteFile_Multiple" xml:space="preserve">
+    <value>Usuwanie wielu plików?</value>
+  </data>
+  <data name="DeleteFile_Title" xml:space="preserve">
+    <value>Usuń plik '{0}'?</value>
+  </data>
+  <data name="Resume_Cancel" xml:space="preserve">
+    <value>Gram od początku</value>
+  </data>
+  <data name="Resume_Message" xml:space="preserve">
+    <value>Czy chcesz wznowić odtwarzanie w {0}?</value>
+  </data>
+  <data name="Resume_OK" xml:space="preserve">
+    <value>Wznów</value>
+  </data>
+  <data name="Resume_Title" xml:space="preserve">
+    <value>Czy chcesz wznowić odtwarzanie?</value>
+  </data>
+  <data name="ImportFolder_SelectImportFolder" xml:space="preserve">
+    <value>Wybierz Folder importu...</value>
   </data>
 </root>

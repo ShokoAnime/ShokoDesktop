@@ -762,17 +762,8 @@
   <data name="Tooltip_TvDB_WideBannerAutoDownload" xml:space="preserve">
     <value>Télécharger automatiquement les nouvelles bannières larges chaque fois qu'une importation est effectuée.</value>
   </data>
-  <data name="ImportSettings_HashCRC32" xml:space="preserve">
-    <value>Calculer les CRC32</value>
-  </data>
-  <data name="ImportSettings_HashMD5" xml:space="preserve">
-    <value>Calculer le MD5</value>
-  </data>
   <data name="ImportSettings_ImportOnStart" xml:space="preserve">
     <value>Importer sur Démarrer</value>
-  </data>
-  <data name="ImportSettings_SHA1" xml:space="preserve">
-    <value>Calculer SHA1</value>
   </data>
   <data name="ImportSettings_VideoExtensions" xml:space="preserve">
     <value>Extensions de vidéo</value>
@@ -4440,5 +4431,32 @@ Contrairement à d’autres joueurs supports pris en charge, MPV est le plus rap
   </data>
   <data name="RelationSetting_Movie" xml:space="preserve">
     <value>Film</value>
+  </data>
+  <data name="ImportFolder_Provider" xml:space="preserve">
+    <value>Fournisseur de</value>
+  </data>
+  <data name="DeleteFile_Confirm" xml:space="preserve">
+    <value>Sélectionnez dans les fournisseurs que vous souhaitez supprimer</value>
+  </data>
+  <data name="DeleteFile_Multiple" xml:space="preserve">
+    <value>Supprimer plusieurs fichiers ?</value>
+  </data>
+  <data name="DeleteFile_Title" xml:space="preserve">
+    <value>Supprimez le fichier « {0} » ?</value>
+  </data>
+  <data name="Resume_Cancel" xml:space="preserve">
+    <value>Joue depuis le début</value>
+  </data>
+  <data name="Resume_Message" xml:space="preserve">
+    <value>Vous voulez reprendre la vidéo sur {0} ?</value>
+  </data>
+  <data name="Resume_OK" xml:space="preserve">
+    <value>Curriculum vitae</value>
+  </data>
+  <data name="Resume_Title" xml:space="preserve">
+    <value>Vous voulez reprendre la vidéo ?</value>
+  </data>
+  <data name="ImportFolder_SelectImportFolder" xml:space="preserve">
+    <value>Sélectionnez le dossier Import...</value>
   </data>
 </root>

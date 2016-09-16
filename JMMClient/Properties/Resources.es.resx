@@ -762,17 +762,8 @@
   <data name="Tooltip_TvDB_WideBannerAutoDownload" xml:space="preserve">
     <value>Descarga automáticamente nuevos banners amplia cuando se realiza una importación.</value>
   </data>
-  <data name="ImportSettings_HashCRC32" xml:space="preserve">
-    <value>Calcular CRC32</value>
-  </data>
-  <data name="ImportSettings_HashMD5" xml:space="preserve">
-    <value>Calcular MD5</value>
-  </data>
   <data name="ImportSettings_ImportOnStart" xml:space="preserve">
     <value>Importar en Inicio</value>
-  </data>
-  <data name="ImportSettings_SHA1" xml:space="preserve">
-    <value>Calcular el SHA1</value>
   </data>
   <data name="ImportSettings_VideoExtensions" xml:space="preserve">
     <value>Extensiones de video</value>
@@ -4440,5 +4431,32 @@ A diferencia de los otros jugadores de medios compatibles, la MPV es el más rá
   </data>
   <data name="RelationSetting_Movie" xml:space="preserve">
     <value>Película</value>
+  </data>
+  <data name="ImportFolder_Provider" xml:space="preserve">
+    <value>Proveedor</value>
+  </data>
+  <data name="DeleteFile_Confirm" xml:space="preserve">
+    <value>Seleccione en que los proveedores que desea eliminar</value>
+  </data>
+  <data name="DeleteFile_Multiple" xml:space="preserve">
+    <value>¿Borrar varios archivos?</value>
+  </data>
+  <data name="DeleteFile_Title" xml:space="preserve">
+    <value>¿Borrar el archivo '{0}'?</value>
+  </data>
+  <data name="Resume_Cancel" xml:space="preserve">
+    <value>Jugar desde el principio</value>
+  </data>
+  <data name="Resume_Message" xml:space="preserve">
+    <value>¿Desea reanudar el vídeo en {0}?</value>
+  </data>
+  <data name="Resume_OK" xml:space="preserve">
+    <value>Curriculum Vitae</value>
+  </data>
+  <data name="Resume_Title" xml:space="preserve">
+    <value>¿Desea reanudar el video?</value>
+  </data>
+  <data name="ImportFolder_SelectImportFolder" xml:space="preserve">
+    <value>Seleccione carpeta de importación...</value>
   </data>
 </root>

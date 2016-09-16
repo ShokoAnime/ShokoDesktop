@@ -5254,38 +5254,11 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Calculate CRC32.
-        /// </summary>
-        public static string ImportSettings_HashCRC32 {
-            get {
-                return ResourceManager.GetString("ImportSettings_HashCRC32", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Calculate MD5.
-        /// </summary>
-        public static string ImportSettings_HashMD5 {
-            get {
-                return ResourceManager.GetString("ImportSettings_HashMD5", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Import on start.
         /// </summary>
         public static string ImportSettings_ImportOnStart {
             get {
                 return ResourceManager.GetString("ImportSettings_ImportOnStart", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Calculate SHA1.
-        /// </summary>
-        public static string ImportSettings_SHA1 {
-            get {
-                return ResourceManager.GetString("ImportSettings_SHA1", resourceCulture);
             }
         }
         

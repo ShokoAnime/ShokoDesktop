@@ -21,16 +21,13 @@ namespace JMMClient.UserControls
             chkImportSettings_ImportOnStart.Click += new RoutedEventHandler(settingChanged);
             chkImportSettings_ScanDropOnStart.Click += new RoutedEventHandler(settingChanged);
             chkImportSettings_UseEpisodeStatus.Click += new RoutedEventHandler(settingChanged);
-            chkImportSettings_HashCRC32.Click += new RoutedEventHandler(settingChanged);
-            chkImportSettings_HashMD5.Click += new RoutedEventHandler(settingChanged);
-            chkImportSettings_SHA1.Click += new RoutedEventHandler(settingChanged);
 
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
             cboImagesPath.Items.Clear();
-            cboImagesPath.Items.Add(JMMClient.Properties.Resources.ImportSettings_Default);
-            cboImagesPath.Items.Add(JMMClient.Properties.Resources.ImportSettings_Custom);
-            cboImagesPath.SelectionChanged += new System.Windows.Controls.SelectionChangedEventHandler(cboImagesPath_SelectionChanged);
+            cboImagesPath.Items.Add(Properties.Resources.ImportSettings_Default);
+            cboImagesPath.Items.Add(Properties.Resources.ImportSettings_Custom);
+            cboImagesPath.SelectionChanged += new SelectionChangedEventHandler(cboImagesPath_SelectionChanged);
             btnChooseImagesFolder.Click += new RoutedEventHandler(btnChooseImagesFolder_Click);
 
             if (AppSettings.BaseImagesPathIsDefault)
@@ -49,17 +46,17 @@ namespace JMMClient.UserControls
             }
         }
 
-        void cboImagesPath_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        void cboImagesPath_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cboImagesPath.SelectedIndex == 0)
             {
                 AppSettings.BaseImagesPathIsDefault = true;
-                btnChooseImagesFolder.Visibility = System.Windows.Visibility.Hidden;
+                btnChooseImagesFolder.Visibility = Visibility.Hidden;
             }
             else
             {
                 AppSettings.BaseImagesPathIsDefault = false;
-                btnChooseImagesFolder.Visibility = System.Windows.Visibility.Visible;
+                btnChooseImagesFolder.Visibility = Visibility.Visible;
             }
 
         }

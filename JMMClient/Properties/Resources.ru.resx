@@ -762,17 +762,8 @@
   <data name="Tooltip_TvDB_WideBannerAutoDownload" xml:space="preserve">
     <value>Автоматически загружать новые широкие баннеры, всякий раз, когда выполняется импорт.</value>
   </data>
-  <data name="ImportSettings_HashCRC32" xml:space="preserve">
-    <value>Вычислять CRC32</value>
-  </data>
-  <data name="ImportSettings_HashMD5" xml:space="preserve">
-    <value>Вычислять MD5</value>
-  </data>
   <data name="ImportSettings_ImportOnStart" xml:space="preserve">
     <value>Импорт на старте</value>
-  </data>
-  <data name="ImportSettings_SHA1" xml:space="preserve">
-    <value>Вычислять SHA1</value>
   </data>
   <data name="ImportSettings_VideoExtensions" xml:space="preserve">
     <value>Расширения видео-файлов</value>
@@ -4440,5 +4431,32 @@
   </data>
   <data name="RelationSetting_Movie" xml:space="preserve">
     <value>Фильм</value>
+  </data>
+  <data name="ImportFolder_Provider" xml:space="preserve">
+    <value>Провайдер</value>
+  </data>
+  <data name="DeleteFile_Confirm" xml:space="preserve">
+    <value>Выберите, в которой поставщики необходимо удалить</value>
+  </data>
+  <data name="DeleteFile_Multiple" xml:space="preserve">
+    <value>Удалить несколько файлов?</value>
+  </data>
+  <data name="DeleteFile_Title" xml:space="preserve">
+    <value>Удалить файл {0}?</value>
+  </data>
+  <data name="Resume_Cancel" xml:space="preserve">
+    <value>Играть с самого начала</value>
+  </data>
+  <data name="Resume_Message" xml:space="preserve">
+    <value>Вы хотите возобновить видео в {0}?</value>
+  </data>
+  <data name="Resume_OK" xml:space="preserve">
+    <value>Продолжить</value>
+  </data>
+  <data name="Resume_Title" xml:space="preserve">
+    <value>Вы хотите возобновить видео?</value>
+  </data>
+  <data name="ImportFolder_SelectImportFolder" xml:space="preserve">
+    <value>Выберите импортировать папку...</value>
   </data>
 </root>
