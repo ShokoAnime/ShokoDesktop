@@ -46,12 +46,16 @@ namespace JMMClient.UserControls
             chkMpcIniIntegration.Click += new RoutedEventHandler(chkMpcIniIntegration_Click);
             chkMpcWebUiIntegration.Click += new RoutedEventHandler(chkMpcWebUiIntegration_Click);
 
+            chkZoomPlayerTCPControlIntegration.IsChecked = UserSettingsVM.Instance.ZoomPlayerTCPControlIntegration;
+            chkZoomPlayerTCPControlIntegration.Click += new RoutedEventHandler(chkZoomPlayerTCPControlIntegration_Click);
+
             cboDefaultPlayer.Items.Clear();
             cboDefaultPlayer.Items.Add("Internal MPV");
             cboDefaultPlayer.Items.Add("MPC");
             cboDefaultPlayer.Items.Add("PotPlayer");
             cboDefaultPlayer.Items.Add("VLC");
             cboDefaultPlayer.Items.Add("External MPV");
+            cboDefaultPlayer.Items.Add("Zoom Player");
             switch (AppSettings.DefaultPlayer_GroupList)
             {
                 case (int)VideoPlayer.MPV:
@@ -60,16 +64,17 @@ namespace JMMClient.UserControls
                 case (int)VideoPlayer.MPC:
                     cboDefaultPlayer.SelectedIndex = 1;
                     break;
-
                 case (int)VideoPlayer.PotPlayer:
                     cboDefaultPlayer.SelectedIndex = 2;
                     break;
-
                 case (int)VideoPlayer.VLC:
                     cboDefaultPlayer.SelectedIndex = 3;
                     break;
                 case (int)VideoPlayer.ExternalMPV:
                     cboDefaultPlayer.SelectedIndex = 4;
+                    break;
+                case (int)VideoPlayer.ZoomPlayer:
+                    cboDefaultPlayer.SelectedIndex = 5;
                     break;
                 default:
                     cboDefaultPlayer.SelectedIndex = 0;
@@ -106,6 +111,7 @@ namespace JMMClient.UserControls
                 case 2: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.PotPlayer; break;
                 case 3: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.VLC; break;
                 case 4: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.ExternalMPV; break;
+                case 5: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.ZoomPlayer; break;
             }
             RefreshConfigured();
         }
@@ -115,7 +121,6 @@ namespace JMMClient.UserControls
             TextDefaultConfigured.Visibility = DefaultConfigured;
             TextDefaultConfigured.Text = JMMClient.Properties.Resources.VideoPlayer_Configured + " (" + ActivePlayer + ")";
             TextDefaultNotConfigured.Visibility = DefaultNotConfigured;
-
         }
 
         void chkAutoSetWatched_Click(object sender, RoutedEventArgs e)
@@ -358,6 +363,13 @@ namespace JMMClient.UserControls
         void btnClearVLCLocation_Click(object sender, RoutedEventArgs e)
         {
             UserSettingsVM.Instance.VLCFolder = string.Empty;
+        }
+
+
+        private void chkZoomPlayerTCPControlIntegration_Click(object sender, RoutedEventArgs e)
+        {
+            UserSettingsVM.Instance.ZoomPlayerTCPControlIntegration = chkZoomPlayerTCPControlIntegration.IsChecked.Value;
+            MainWindow.videoHandler.Init();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)

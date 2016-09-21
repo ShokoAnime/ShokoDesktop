@@ -508,6 +508,7 @@ namespace JMMClient
         PotPlayer = 2,
         VLC = 3,
         ExternalMPV = 4,
+        ZoomPlayer = 5,
         WindowsDefault = 999
     }
 

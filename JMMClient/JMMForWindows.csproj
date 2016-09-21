@@ -415,6 +415,7 @@
     <Compile Include="VideoPlayers\PotVideoPlayer.cs" />
     <Compile Include="VideoPlayers\VideoInfo.cs" />
     <Compile Include="VideoPlayers\VLCVideoPlayer.cs" />
+    <Compile Include="VideoPlayers\ZoomPlayerVideoPlayer.cs" />
     <Compile Include="ViewModel\AniDB_CharacterVM.cs" />
     <Compile Include="ViewModel\AniDB_SeiyuuVM.cs" />
     <Compile Include="ViewModel\AnimeEpisodeDisplayVM.cs" />
