@@ -103,8 +103,6 @@ namespace JMMClient.VideoPlayers
             {
                 if (firstStart)
                 {
-                    bool startupDelayEnabled = true;
-
                     // Wait for process to start and skip short playbacks
                     var startupDelay = TimeSpan.FromSeconds(5);
                     Thread.Sleep(startupDelay);
@@ -117,7 +115,7 @@ namespace JMMClient.VideoPlayers
                     }
                 }
 
-                var tc = new ZPConnection("localhost", 4769);
+                var tc = new ZPConnection("localhost", int.Parse(AppSettings.ZoomPlayerTCPControlPort));
                 var playerInactive = false;
                 char[] charSeparator = {' '};
                 var videoDuration = "";
