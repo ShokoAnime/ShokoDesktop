@@ -135,7 +135,8 @@ namespace JMMClient.Forms
                     importFldr.LocalPathTemp = txtImportFolderLocation.Text.Trim();
                 else
                     importFldr.LocalPathTemp = txtLocalPath.Text.Trim();
-
+                CloudAccountVM cl = (CloudAccountVM)comboProvider.SelectedItem;
+                importFldr.CloudID = cl.CloudID;
                 importFldr.ImportFolderName = "NA";
                 importFldr.ImportFolderLocation = txtImportFolderLocation.Text.Trim();
                 importFldr.IsDropDestination = chkDropDestination.IsChecked.Value ? 1 : 0;
