@@ -4459,4 +4459,25 @@ In tegenstelling tot de andere ondersteunde mediaspelers is MPV het snelste als 
   <data name="ImportFolder_SelectImportFolder" xml:space="preserve">
     <value>Selecteer Import map...</value>
   </data>
+  <data name="VideoPlayer_ZoomPlayer" xml:space="preserve">
+    <value>Zoom Player</value>
+  </data>
+  <data name="VideoPlayer_ZoomPlayerNote" xml:space="preserve">
+    <value>Vereist TCP-web control poort in Zoom Player zijn ingeschakeld voor het ophalen van de positie.</value>
+  </data>
+  <data name="VideoPlayer_ZoomPlayerNotFound" xml:space="preserve">
+    <value>Zoom Player niet gevonden</value>
+  </data>
+  <data name="VideoPlayer_ZoomPlayerTCPControlPort" xml:space="preserve">
+    <value>Zoom Player TCP control-poort</value>
+  </data>
+  <data name="Link_ZoomPlayer" xml:space="preserve">
+    <value>http://Inmatrix.com/zplayer/options_system.shtml</value>
+  </data>
+  <data name="VideoPlayer_ZoomPlayerSetupInstructions" xml:space="preserve">
+    <value>Zoom Player installatie-instructies, Controleer "Enable externe TCP Control (haven)" hoofdstuk</value>
+  </data>
+  <data name="RelationSettings_Exclude" xml:space="preserve">
+    <value>De volgende betrekkingen uitsluiten</value>
+  </data>
 </root>

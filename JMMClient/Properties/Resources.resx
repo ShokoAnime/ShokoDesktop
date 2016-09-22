@@ -4479,4 +4479,7 @@ Unlike the other supported media players, MPV is the fastest when it comes to st
   <data name="VideoPlayer_ZoomPlayerSetupInstructions" xml:space="preserve">
     <value>Zoom Player setup instructions, check "Enable External TCP Control (port)" chapter</value>
   </data>
+  <data name="RelationSettings_Exclude" xml:space="preserve">
+    <value>Exclude The Following Relations</value>
+  </data>
 </root>

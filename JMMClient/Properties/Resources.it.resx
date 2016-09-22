@@ -4459,4 +4459,25 @@ A differenza di altri lettori multimediali supportati, MPV è il più veloce qua
   <data name="ImportFolder_SelectImportFolder" xml:space="preserve">
     <value>Selezionare la cartella di importazione...</value>
   </data>
+  <data name="VideoPlayer_ZoomPlayer" xml:space="preserve">
+    <value>Zoom Player</value>
+  </data>
+  <data name="VideoPlayer_ZoomPlayerNote" xml:space="preserve">
+    <value>Richiede la porta TCP web controllo deve essere abilitato in Zoom Player per recupero posizione.</value>
+  </data>
+  <data name="VideoPlayer_ZoomPlayerNotFound" xml:space="preserve">
+    <value>Zoom Player non trovato</value>
+  </data>
+  <data name="VideoPlayer_ZoomPlayerTCPControlPort" xml:space="preserve">
+    <value>Zoom porta di controllo TCP giocatore</value>
+  </data>
+  <data name="Link_ZoomPlayer" xml:space="preserve">
+    <value>http://InMatrix.com/ZPlayer/options_system.shtml</value>
+  </data>
+  <data name="VideoPlayer_ZoomPlayerSetupInstructions" xml:space="preserve">
+    <value>Zoom Player Istruzioni per l'installazione, controllare il capitolo "Abilita controllo esterno di TCP (porta)"</value>
+  </data>
+  <data name="RelationSettings_Exclude" xml:space="preserve">
+    <value>Escludere le seguenti relazioni</value>
+  </data>
 </root>

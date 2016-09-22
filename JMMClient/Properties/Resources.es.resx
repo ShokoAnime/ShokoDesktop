@@ -4459,4 +4459,25 @@ A diferencia de los otros jugadores de medios compatibles, la MPV es el más rá
   <data name="ImportFolder_SelectImportFolder" xml:space="preserve">
     <value>Seleccione carpeta de importación...</value>
   </data>
+  <data name="VideoPlayer_ZoomPlayer" xml:space="preserve">
+    <value>Zoom Player</value>
+  </data>
+  <data name="VideoPlayer_ZoomPlayerNote" xml:space="preserve">
+    <value>Requiere puerto de control de web TCP debe estar habilitada en Zoom Player para la recuperación de la posición.</value>
+  </data>
+  <data name="VideoPlayer_ZoomPlayerNotFound" xml:space="preserve">
+    <value>Zoom Player que no se encuentra</value>
+  </data>
+  <data name="VideoPlayer_ZoomPlayerTCPControlPort" xml:space="preserve">
+    <value>Zoom puerto de control de TCP de jugador</value>
+  </data>
+  <data name="Link_ZoomPlayer" xml:space="preserve">
+    <value>http://InMatrix.com/ZPlayer/options_system.shtml</value>
+  </data>
+  <data name="VideoPlayer_ZoomPlayerSetupInstructions" xml:space="preserve">
+    <value>Instrucciones de configuración de reproductor de zoom, ver capítulo "Habilitar el Control externo del TCP (puerto)"</value>
+  </data>
+  <data name="RelationSettings_Exclude" xml:space="preserve">
+    <value>Excluir las siguientes relaciones</value>
+  </data>
 </root>

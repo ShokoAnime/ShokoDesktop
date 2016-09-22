@@ -4461,4 +4461,25 @@ W przeciwieństwie do innych odtwarzaczy multimedialnych obsługiwanych MPV jest
   <data name="ImportFolder_SelectImportFolder" xml:space="preserve">
     <value>Wybierz Folder importu...</value>
   </data>
+  <data name="VideoPlayer_ZoomPlayer" xml:space="preserve">
+    <value>Zoom Player</value>
+  </data>
+  <data name="VideoPlayer_ZoomPlayerNote" xml:space="preserve">
+    <value>Wymaga TCP port sterowania sieci web mają być włączone w Zoom Player do pozycji pobieranie.</value>
+  </data>
+  <data name="VideoPlayer_ZoomPlayerNotFound" xml:space="preserve">
+    <value>Zoom Player nie znaleziono</value>
+  </data>
+  <data name="VideoPlayer_ZoomPlayerTCPControlPort" xml:space="preserve">
+    <value>Zoom Player TCP port sterowania</value>
+  </data>
+  <data name="Link_ZoomPlayer" xml:space="preserve">
+    <value>http://InMatrix.com/ZPlayer/options_system.shtml</value>
+  </data>
+  <data name="VideoPlayer_ZoomPlayerSetupInstructions" xml:space="preserve">
+    <value>Zoom Player instrukcje instalacji, sprawdź rozdział "Włączanie kontroli zewnętrznych TCP (port)"</value>
+  </data>
+  <data name="RelationSettings_Exclude" xml:space="preserve">
+    <value>Wykluczyć następujące relacje</value>
+  </data>
 </root>

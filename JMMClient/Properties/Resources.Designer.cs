@@ -7621,6 +7621,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exclude The Following Relations.
+        /// </summary>
+        public static string RelationSettings_Exclude {
+            get {
+                return ResourceManager.GetString("RelationSettings_Exclude", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to If enabled, JMM will group all related series in your collection based on the series relation graphs on AniDB. You can exclude certain types of relations by clicking the relation you don&apos;t want grouped..
         /// </summary>
         public static string RelationSettings_Info {
