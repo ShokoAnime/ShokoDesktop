@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Windows;
+using JMMClient.Utilities;
 
 namespace JMMClient
 {
@@ -208,8 +209,8 @@ namespace JMMClient
 		public GroupFilterVM()
 		{
 			GroupFilterID = null;
-			this.SortCriteriaList = new ObservableCollection<GroupFilterSortingCriteria>();
-			this.FilterConditions = new ObservableCollection<GroupFilterConditionVM>();
+			this.SortCriteriaList = new TrulyObservableCollection<GroupFilterSortingCriteria>();
+			this.FilterConditions = new TrulyObservableCollection<GroupFilterConditionVM>();
             FilterConditions.CollectionChanged += (a, b) =>
             {
                 CollectionChanged = true;
@@ -222,8 +223,8 @@ namespace JMMClient
 
         public GroupFilterVM(JMMServerBinary.Contract_GroupFilter contract)
 		{
-			this.SortCriteriaList = new ObservableCollection<GroupFilterSortingCriteria>();
-			this.FilterConditions = new ObservableCollection<GroupFilterConditionVM>();
+			this.SortCriteriaList = new TrulyObservableCollection<GroupFilterSortingCriteria>();
+            this.FilterConditions = new TrulyObservableCollection<GroupFilterConditionVM>();
 			// read only members
 			Populate(contract);
 		    FilterConditions.CollectionChanged += (a, b) =>

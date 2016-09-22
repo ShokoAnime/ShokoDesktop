@@ -106,6 +106,8 @@ namespace JMMClient.UserControls
 
                     Window win = Window.GetWindow(this);
                     MainWindow main = win as MainWindow;
+                    gf.IsBeingEdited = true;
+
                     //gf.FilterConditions.Add(gfc);
 
                     MainListHelperVM.Instance.ViewGroupsForms.Filter = main.GroupFilter_GroupSearch;

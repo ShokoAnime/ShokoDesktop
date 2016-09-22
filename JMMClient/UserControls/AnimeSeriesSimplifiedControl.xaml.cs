@@ -1017,6 +1017,7 @@ namespace JMMClient.UserControls
                 {
                     RecommendationTile rec = obj as RecommendationTile;
                     Utils.AniDBVoteRecommendation(rec.AnimeID, rec.SimilarAnimeID, true);
+
                 }
             }
             catch (Exception ex)
