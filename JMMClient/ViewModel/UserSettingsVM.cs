@@ -1219,6 +1219,29 @@ namespace JMMClient
             }
         }
 
+        public bool ZoomPlayerTCPControlIntegration
+        {
+            get
+            {
+                return AppSettings.ZoomPlayerTCPControlIntegration;
+            }
+            set
+            {
+                AppSettings.ZoomPlayerTCPControlIntegration = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("ZoomPlayerTCPControlIntegration"));
+            }
+        }
+
+        public string ZoomPlayerTCPControlPort
+        {
+            get { return AppSettings.ZoomPlayerTCPControlPort; }
+            set
+            {
+                AppSettings.ZoomPlayerTCPControlPort = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("ZoomPlayerTCPControlPort"));
+            }
+        }
+
         public int VideoWatchedPct
         {
             get { return AppSettings.VideoWatchedPct; }
@@ -1600,7 +1623,8 @@ namespace JMMClient
         public Visibility IsVLCNotInstalled => MainWindow.videoHandler.IsActive(VideoPlayer.VLC) ? Visibility.Hidden : Visibility.Visible;
         public Visibility IsPotInstalled => MainWindow.videoHandler.IsActive(VideoPlayer.PotPlayer) ? Visibility.Visible : Visibility.Hidden;
         public Visibility IsPotNotInstalled => MainWindow.videoHandler.IsActive(VideoPlayer.PotPlayer) ? Visibility.Hidden : Visibility.Visible;
-       
+        public Visibility IsZoomPlayerInstalled => MainWindow.videoHandler.IsActive(VideoPlayer.ZoomPlayer) ? Visibility.Visible : Visibility.Hidden;
+        public Visibility IsZoomPlayerNotInstalled => MainWindow.videoHandler.IsActive(VideoPlayer.ZoomPlayer) ? Visibility.Hidden : Visibility.Visible;
 
         public void EnableDisableDashboardMetroSection(DashboardMetroProcessType swid, bool enabled)
         {

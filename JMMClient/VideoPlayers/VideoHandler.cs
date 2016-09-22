@@ -36,7 +36,6 @@ namespace JMMClient.VideoPlayers
         public List<IVideoPlayer> Players=new List<IVideoPlayer>();
 
 
-
         public VideoHandler()
         {
             AddTempPathToSubtilePaths();
@@ -49,6 +48,8 @@ namespace JMMClient.VideoPlayers
             Players.Add(new PotVideoPlayer());
             Players.Add(new VLCVideoPlayer());
             Players.Add(new ExternalMPVVideoPlayer());
+            Players.Add(new ZoomPlayerVideoPlayer());
+
             foreach (IVideoPlayer v in Players)
             {
                 v.FilePositionsChange += FindChangedFiles;
@@ -96,9 +97,7 @@ namespace JMMClient.VideoPlayers
         protected void OnVideoWatchedEvent(VideoWatchedEventArgs ev)
         {
             VideoWatchedEvent?.Invoke(ev);
-        }
-
-      
+        }   
 
         private void AddTempPathToSubtilePaths()
         {
@@ -273,8 +272,6 @@ namespace JMMClient.VideoPlayers
                 {
                     v.Init();
                 }
-
-
             }
             catch (Exception ex)
             {
