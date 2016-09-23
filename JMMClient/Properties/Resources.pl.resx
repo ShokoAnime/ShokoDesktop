@@ -4482,4 +4482,10 @@ W przeciwieństwie do innych odtwarzaczy multimedialnych obsługiwanych MPV jest
   <data name="RelationSettings_Exclude" xml:space="preserve">
     <value>Wykluczyć następujące relacje</value>
   </data>
+  <data name="TvDB_UpdateImages" xml:space="preserve">
+    <value>Aktualizacja lokalne Images</value>
+  </data>
+  <data name="TvDB_UpdateImages_Desc" xml:space="preserve">
+    <value>Spowoduje to aktualizację wszystkich lokalnych obrazy z każdego źródła, z wyłączeniem AniDB. Jeśli używasz tego samego folderu dla komputerów i serwerów, nie jest to zalecane, aby uruchomić to.!</value>
+  </data>
 </root>

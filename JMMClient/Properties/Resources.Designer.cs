@@ -11568,6 +11568,24 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update Local Images.
+        /// </summary>
+        public static string TvDB_UpdateImages {
+            get {
+                return ResourceManager.GetString("TvDB_UpdateImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This will update all local images from every source, excluding AniDB. If you use the same folder for Desktop and Server, it is not recommended to run this..
+        /// </summary>
+        public static string TvDB_UpdateImages_Desc {
+            get {
+                return ResourceManager.GetString("TvDB_UpdateImages_Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Auto Download Wide Banners.
         /// </summary>
         public static string TvDB_WideBannerAutoDownload {

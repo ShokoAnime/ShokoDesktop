@@ -4480,4 +4480,10 @@ A diferencia de los otros jugadores de medios compatibles, la MPV es el más rá
   <data name="RelationSettings_Exclude" xml:space="preserve">
     <value>Excluir las siguientes relaciones</value>
   </data>
+  <data name="TvDB_UpdateImages" xml:space="preserve">
+    <value>Actualización de imágenes locales</value>
+  </data>
+  <data name="TvDB_UpdateImages_Desc" xml:space="preserve">
+    <value>Esto actualizará todas las imágenes de todas las fuentes locales, excluyendo AniDB. Si utiliza la misma carpeta de escritorio y servidor, no es recomendable hacer funcionar esto.!</value>
+  </data>
 </root>
