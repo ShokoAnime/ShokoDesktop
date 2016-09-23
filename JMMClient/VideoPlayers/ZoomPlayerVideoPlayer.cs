@@ -17,24 +17,59 @@ namespace JMMClient.VideoPlayers
     public class ZoomPlayerVideoPlayer : BaseVideoPlayer, IVideoPlayer
     {
         private bool _monitoringPositions;
+        private int _tcpControlPort = 4769;
+        private bool _tcpControlServerEnabled = false;
 
         public VideoPlayer Player => VideoPlayer.ZoomPlayer;
 
         public override void Init()
         {
-            string installDir = (string)Registry.GetValue(@"HKEY_CURRENT_USER\Software\VirtuaMedia\ZoomPlayer", "InstallDirectory", null);
-            if (installDir != null)
+            try
             {
-                PlayerPath = string.Format("{0}\\zplayer.exe", installDir);
-            }
+                string installDir =
+                    (string)
+                        Registry.GetValue(@"HKEY_CURRENT_USER\Software\VirtuaMedia\ZoomPlayer", "InstallDirectory", null);
+                Int32 tcpControlServerEnabled =
+                    (Int32) Registry.GetValue(@"HKEY_CURRENT_USER\Software\VirtuaMedia\ZoomPlayer", "OPTCPEnable", null);
+                Int32 tcpControlPort =
+                    (Int32) Registry.GetValue(@"HKEY_CURRENT_USER\Software\VirtuaMedia\ZoomPlayer", "OPTCPPort", null);
 
-            if (string.IsNullOrEmpty(PlayerPath) || !File.Exists(PlayerPath))
-            {
+                if (installDir != null)
+                {
+                    PlayerPath = string.Format("{0}\\zplayer.exe", installDir);
+
+                    if (File.Exists(PlayerPath))
+                    {
+                        // Check if TCP control server is enabled
+                        switch (tcpControlServerEnabled)
+                        {
+                            case 0:
+                                _tcpControlServerEnabled = false;
+                                break;
+                            case 1:
+                                _tcpControlServerEnabled = true;
+                                break;
+                        }
+
+                        // Retrieve TCP control port and fallback to default in case of error
+                        _tcpControlPort = tcpControlPort;
+
+                        //Debug.WriteLine("Zoom player - path: " + PlayerPath);
+                        //Debug.WriteLine("Zoom player - control server enabled: " + _tcpControlServerEnabled);
+                        //Debug.WriteLine("Zoom player - control server port: " + _tcpControlPort);
+
+                        Active = true;
+                        return;
+                    }
+                }
+
                 Active = false;
-                return;
             }
-
-            Active = true;
+            catch (Exception e)
+            {
+                Debug.WriteLine("Zoom player - Error during Init: " + e.Message);
+                Active = false;
+            }
         }
 
         public override void Play(VideoInfo video)
@@ -52,9 +87,9 @@ namespace JMMClient.VideoPlayers
                     if (video.ResumePosition > 0)
                     {
                         // Convert to seconds and timespan format
-                        Debug.WriteLine($"Server resume position in ms: {video.ResumePosition}");
+                        Debug.WriteLine($"Zoom player - Server resume position in ms: {video.ResumePosition}");
                         string resumeTimeSpan = TimeSpan.FromSeconds(video.ResumePosition / 1000).ToString(@"hh\:mm\:ss");
-                        Debug.WriteLine($"Resume position in timespan format: {resumeTimeSpan}");
+                        Debug.WriteLine($"Zoom player - Resume position in timespan format: {resumeTimeSpan}");
                         init += " /Seek:" + resumeTimeSpan;
                         Debug.WriteLine(video.Uri);
                         Debug.WriteLine(init);
@@ -76,7 +111,7 @@ namespace JMMClient.VideoPlayers
                 {
                     IsPlaying = true;
 
-                    if (AppSettings.ZoomPlayerTCPControlIntegration)
+                    if (_tcpControlServerEnabled)
                     {
                         Thread t = new Thread(() => StartPlayPositionRetrieval(video.Uri, true));
                         t.IsBackground = true;
@@ -110,12 +145,12 @@ namespace JMMClient.VideoPlayers
                     // Check if still running
                     if (!IsPlaying)
                     {
-                        Debug.WriteLine("After waiting 5 seconds ZP was no longer running, stopping playback record.");
+                        Debug.WriteLine("Zoom player - After waiting 5 seconds ZP was no longer running, stopping playback record.");
                         return;
                     }
                 }
 
-                var tc = new ZPConnection("localhost", int.Parse(AppSettings.ZoomPlayerTCPControlPort));
+                var tc = new ZPConnection("localhost", _tcpControlPort);
                 var playerInactive = false;
                 char[] charSeparator = {' '};
                 var videoDuration = "";
@@ -127,7 +162,7 @@ namespace JMMClient.VideoPlayers
                 }
                 else
                 {
-                    Debug.WriteLine("No connection could be made to zoom player API using port 4769 to store time code!");
+                    Debug.WriteLine("Zoom player - No connection could be made to zoom player API using port 4769 to store time code!");
                     return;
                 }
 
@@ -207,7 +242,7 @@ namespace JMMClient.VideoPlayers
                                                 if (!string.IsNullOrEmpty(videoFilenameReadOut) &&
                                                     videoFilenameReadOut.ToLower() != fileName.ToLower())
                                                 {
-                                                    Debug.WriteLine("Video filename didn't match original: " +
+                                                    Debug.WriteLine("Zoom player - Video filename didn't match original: " +
                                                                     videoFilenameReadOut);
                                                     return;
                                                 }
@@ -295,7 +330,7 @@ namespace JMMClient.VideoPlayers
                 }
                 catch (Exception)
                 {
-                    Debug.WriteLine("No connection could be made to client");
+                    Debug.WriteLine("Zoom player - No connection could be made to tcp control server");
                 }
             }
 

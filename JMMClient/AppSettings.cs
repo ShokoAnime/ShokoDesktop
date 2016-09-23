@@ -2653,44 +2653,6 @@ namespace JMMClient
             }
         }
 
-        public static bool ZoomPlayerTCPControlIntegration
-        {
-            get
-            {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string stringValue = appSettings["ZoomPlayerTCPControlIntegration"];
-                bool booleanValue = false;
-                bool.TryParse(stringValue, out booleanValue);
-
-                return booleanValue;
-            }
-            set
-            {
-                UpdateSetting("ZoomPlayerTCPControlIntegration", value.ToString());
-            }
-        }
-        public static string ZoomPlayerTCPControlPort
-        {
-            get
-            {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-
-                string value = appSettings["ZoomPlayerTCPControlPort"];
-                if (string.IsNullOrEmpty(value))
-                {
-                    // default value
-                    value = "4769";
-                    UpdateSetting("ZoomPlayerTCPControlPort", value);
-                }
-                return value;
-            }
-            set
-            {
-                UpdateSetting("ZoomPlayerTCPControlPort", value);
-            }
-        }
-
-
         public static void DebugSettingsToLog()
         {
             #region System Info

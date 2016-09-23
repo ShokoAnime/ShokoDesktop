@@ -46,9 +46,6 @@ namespace JMMClient.UserControls
             chkMpcIniIntegration.Click += new RoutedEventHandler(chkMpcIniIntegration_Click);
             chkMpcWebUiIntegration.Click += new RoutedEventHandler(chkMpcWebUiIntegration_Click);
 
-            chkZoomPlayerTCPControlIntegration.IsChecked = UserSettingsVM.Instance.ZoomPlayerTCPControlIntegration;
-            chkZoomPlayerTCPControlIntegration.Click += new RoutedEventHandler(chkZoomPlayerTCPControlIntegration_Click);
-
             cboDefaultPlayer.Items.Clear();
             cboDefaultPlayer.Items.Add("Internal MPV");
             cboDefaultPlayer.Items.Add("MPC");
@@ -92,7 +89,7 @@ namespace JMMClient.UserControls
         {
             get
             {
-                bool val = cboDefaultPlayer.SelectedIndex == 0 ? MainWindow.videoHandler.Active : MainWindow.videoHandler.IsActive((VideoPlayer) cboDefaultPlayer.SelectedIndex - 1);
+                bool val = MainWindow.videoHandler.IsActive((VideoPlayer) cboDefaultPlayer.SelectedIndex);
                 return val ? Visibility.Visible : Visibility.Hidden;
             }
         }
@@ -363,13 +360,6 @@ namespace JMMClient.UserControls
         void btnClearVLCLocation_Click(object sender, RoutedEventArgs e)
         {
             UserSettingsVM.Instance.VLCFolder = string.Empty;
-        }
-
-
-        private void chkZoomPlayerTCPControlIntegration_Click(object sender, RoutedEventArgs e)
-        {
-            UserSettingsVM.Instance.ZoomPlayerTCPControlIntegration = chkZoomPlayerTCPControlIntegration.IsChecked.Value;
-            MainWindow.videoHandler.Init();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)

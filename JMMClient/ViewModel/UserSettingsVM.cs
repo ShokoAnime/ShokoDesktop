@@ -1219,29 +1219,6 @@ namespace JMMClient
             }
         }
 
-        public bool ZoomPlayerTCPControlIntegration
-        {
-            get
-            {
-                return AppSettings.ZoomPlayerTCPControlIntegration;
-            }
-            set
-            {
-                AppSettings.ZoomPlayerTCPControlIntegration = value;
-                OnPropertyChanged(new PropertyChangedEventArgs("ZoomPlayerTCPControlIntegration"));
-            }
-        }
-
-        public string ZoomPlayerTCPControlPort
-        {
-            get { return AppSettings.ZoomPlayerTCPControlPort; }
-            set
-            {
-                AppSettings.ZoomPlayerTCPControlPort = value;
-                OnPropertyChanged(new PropertyChangedEventArgs("ZoomPlayerTCPControlPort"));
-            }
-        }
-
         public int VideoWatchedPct
         {
             get { return AppSettings.VideoWatchedPct; }
