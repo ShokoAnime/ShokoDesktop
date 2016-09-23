@@ -20,7 +20,7 @@ namespace JMMClient.UserControls
             Utils.PopulateScheduledComboBox(cboUpdateFrequency, JMMServerVM.Instance.Trakt_UpdateFrequency);
             cboUpdateFrequency.SelectionChanged += new SelectionChangedEventHandler(cboUpdateFrequency_SelectionChanged);
 
-            EvaulateVisibility();
+            EvaluateVisibility();
 
             btnTest.Click += new RoutedEventHandler(btnTest_Click);
 
@@ -33,7 +33,7 @@ namespace JMMClient.UserControls
         void chkTrakt_Enabled_Click(object sender, RoutedEventArgs e)
         {
             JMMServerVM.Instance.SaveServerSettingsAsync();
-            EvaulateVisibility();
+            EvaluateVisibility();
         }
 
         void settingChanged(object sender, RoutedEventArgs e)
@@ -60,10 +60,10 @@ namespace JMMClient.UserControls
         {
             JMMServerVM.Instance.AuthorizeTraktPIN(txtTraktPIN.Text.Trim());
             JMMServerVM.Instance.GetServerSettings();
-            EvaulateVisibility();
+            EvaluateVisibility();
         }
 
-        private void EvaulateVisibility()
+        private void EvaluateVisibility()
         {
             System.Windows.Visibility vis = System.Windows.Visibility.Collapsed;
             if (JMMServerVM.Instance.Trakt_IsEnabled) vis = System.Windows.Visibility.Visible;
@@ -102,7 +102,9 @@ namespace JMMClient.UserControls
                         validToken = true;
                     }
                     else
+                    {
                         tbValidity.Text = Properties.Resources.Trakt_TokenExpired;
+                    }
                 }
             }
             else
@@ -113,6 +115,10 @@ namespace JMMClient.UserControls
                 tbValidity.Visibility = System.Windows.Visibility.Visible;
             else
                 tbValidity.Visibility = System.Windows.Visibility.Collapsed;*/
+        }
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            EvaluateVisibility();
         }
     }
 }
