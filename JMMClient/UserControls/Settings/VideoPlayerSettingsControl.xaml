@@ -209,10 +209,10 @@
                     </StackPanel>
                 </Button>
 
-                <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="20" Margin="10,37,0,-42" Grid.Row="3"
+                <TextBox HorizontalAlignment="Left" Height="20" Margin="127,39,0,-2" Grid.Row="2"
                          TextWrapping="Wrap"
                          Text="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=MPCWebUIPort}"
-                         VerticalAlignment="Top" Width="50" />
+                         VerticalAlignment="Top" Width="50" Grid.ColumnSpan="2" Grid.RowSpan="2" />
                 <CheckBox x:Name="chkMpcIniIntegration"
                           Content="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_MPCFolder}"
                           HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" />
@@ -424,7 +424,7 @@
             </Grid>
         </Border>
         <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="11" Grid.ColumnSpan="3"
-        	Background="FloralWhite" Margin="0,0,0,215" Padding="5">
+        	Background="FloralWhite" Margin="0,0,0,0" Padding="5">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -451,18 +451,6 @@
                                                 Margin="5,4,20,3"
                                                 DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_ZoomPlayerSetupInstructions}"
                                                 URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_ZoomPlayer}" Grid.ColumnSpan="2" />
-            </Grid>
-        </Border>
-        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="11" Grid.ColumnSpan="3"
-        	Background="#F1F1F1" Margin="0,87,0,138" Padding="5">
-            <Grid>
-                <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="20" Margin="10,37,0,-42" Grid.Row="3"
-                         TextWrapping="Wrap"
-                         Text="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=ZoomPlayerTCPControlPort}"
-                         VerticalAlignment="Top" Width="50" />
-                <CheckBox x:Name="chkZoomPlayerTCPControlIntegration"
-                          Content="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_ZoomPlayerTCPControlPort}"
-                          HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Column="0" VerticalAlignment="Top"/>
             </Grid>
         </Border>
     </Grid>
