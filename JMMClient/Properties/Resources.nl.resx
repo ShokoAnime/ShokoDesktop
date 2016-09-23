@@ -4480,4 +4480,10 @@ In tegenstelling tot de andere ondersteunde mediaspelers is MPV het snelste als 
   <data name="RelationSettings_Exclude" xml:space="preserve">
     <value>De volgende betrekkingen uitsluiten</value>
   </data>
+  <data name="TvDB_UpdateImages" xml:space="preserve">
+    <value>Updaten Lokale Images</value>
+  </data>
+  <data name="TvDB_UpdateImages_Desc" xml:space="preserve">
+    <value>Dit zal alle lokale beelden bij te werken vanuit elke bron, met uitzondering van AniDB. Als je dezelfde map voor Desktop en Server te gebruiken, is het niet aan te raden om dit uit te voeren.!</value>
+  </data>
 </root>

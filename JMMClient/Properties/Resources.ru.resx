@@ -4480,4 +4480,10 @@
   <data name="RelationSettings_Exclude" xml:space="preserve">
     <value>Исключить следующие отношения</value>
   </data>
+  <data name="TvDB_UpdateImages" xml:space="preserve">
+    <value>Обновление локальных изображений</value>
+  </data>
+  <data name="TvDB_UpdateImages_Desc" xml:space="preserve">
+    <value>Это позволит обновить все локальные изображения из любого источника, исключая AniDB. Если вы используете ту же папку для настольных компьютеров и серверов, не рекомендуется запускать это.!</value>
+  </data>
 </root>

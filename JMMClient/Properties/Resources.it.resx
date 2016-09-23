@@ -4480,4 +4480,10 @@ A differenza di altri lettori multimediali supportati, MPV è il più veloce qua
   <data name="RelationSettings_Exclude" xml:space="preserve">
     <value>Escludere le seguenti relazioni</value>
   </data>
+  <data name="TvDB_UpdateImages" xml:space="preserve">
+    <value>Aggiornare le immagini locali</value>
+  </data>
+  <data name="TvDB_UpdateImages_Desc" xml:space="preserve">
+    <value>Questo aggiornerà tutte le immagini locali da ogni fonte, escludendo AniDB. Se si utilizza la stessa cartella per desktop e server, non è consigliabile eseguire questo.!</value>
+  </data>
 </root>

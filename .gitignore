@@ -184,3 +184,6 @@ FakesAssemblies/
 *.user
 JMMClient/Images/Unused/
 Installers/Output/
+
+# Jetbrains Files
+.idea/

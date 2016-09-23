@@ -4482,4 +4482,10 @@ Unlike the other supported media players, MPV is the fastest when it comes to st
   <data name="RelationSettings_Exclude" xml:space="preserve">
     <value>Exclude The Following Relations</value>
   </data>
+  <data name="TvDB_UpdateImages" xml:space="preserve">
+    <value>Update Local Images</value>
+  </data>
+  <data name="TvDB_UpdateImages_Desc" xml:space="preserve">
+    <value>This will update all local images from every source, excluding AniDB. If you use the same folder for Desktop and Server, it is not recommended to run this.</value>
+  </data>
 </root>

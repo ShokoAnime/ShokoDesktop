@@ -1127,6 +1127,7 @@ namespace JMMClient
                     agrp?.Populate(grpContract);
                     agrp?.PopulateSerieInfo(AllGroupsDictionary, AllSeriesDictionary);
                 }
+                UpdateAll();
             }
             catch (Exception ex)
             {

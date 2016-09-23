@@ -71,6 +71,7 @@ namespace JMMClient.Forms
             {
                 JMMServerVM.Instance.RevokeVote(ser.AniDB_ID);
                 MainListHelperVM.Instance.UpdateHeirarchy(ser);
+
             }
             catch (Exception ex)
             {
@@ -95,6 +96,7 @@ namespace JMMClient.Forms
 
                 // refresh the data
                 MainListHelperVM.Instance.UpdateHeirarchy(ser);
+
             }
             catch (Exception ex)
             {

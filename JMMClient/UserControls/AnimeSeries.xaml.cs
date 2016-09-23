@@ -1136,6 +1136,7 @@ namespace JMMClient.UserControls
                 {
                     ser.AniDB_Anime.Detail.CustomTags.Add(tag);
                     ser.AniDB_Anime.Detail.ViewCustomTags.Refresh();
+                    MainListHelperVM.Instance.UpdateAll();
                 }
 
             }
@@ -1187,6 +1188,7 @@ namespace JMMClient.UserControls
                     {
                         ser.AniDB_Anime.Detail.CustomTags.Remove(ctagToRemove);
                         ser.AniDB_Anime.Detail.ViewCustomTags.Refresh();
+                        MainListHelperVM.Instance.UpdateAll();
                     }
 
                 }
