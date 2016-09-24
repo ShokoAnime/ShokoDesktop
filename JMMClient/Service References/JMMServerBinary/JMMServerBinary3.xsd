@@ -1011,6 +1011,21 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="TraktScrobble">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="animeId" type="xs:int" />
+        <xs:element minOccurs="0" name="type" type="xs:int" />
+        <xs:element minOccurs="0" name="progress" type="xs:int" />
+        <xs:element minOccurs="0" name="status" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TraktScrobbleResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetAllUniqueAudioLanguages">
     <xs:complexType>
       <xs:sequence />

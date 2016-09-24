@@ -15,6 +15,7 @@ namespace JMMClient.VideoPlayers
     {
 
         private System.Timers.Timer playerWebUiTimer = null;
+        private long currentPosition;
 
         public override void Play(VideoInfo video)
         {
@@ -46,6 +47,8 @@ namespace JMMClient.VideoPlayers
                     process.WaitForExit();
                     StopWatcher();
                     IsPlaying = false;
+                    if (video != null)
+                        BaseVideoPlayer.PlaybackStopped(video, (long)currentPosition);
                 }
             });
 
@@ -271,6 +274,7 @@ namespace JMMClient.VideoPlayers
 
                     // dont worry about remainder, as we're checking against 1 s precision later anyway
                     filePositions[fileName] = mpcPos / 10000;
+                    currentPosition = mpcPos / 10000;
                 }
                 OnPositionChangeEvent(filePositions);
             }
@@ -324,6 +328,7 @@ namespace JMMClient.VideoPlayers
                             Dictionary<string, long> pos=new Dictionary<string, long>();
                             pos.Add(nowPlayingFile,(long)filePosition);
                             OnPositionChangeEvent(pos);
+                            currentPosition = (long)filePosition;
                         }
                     }
                     // Start timer again

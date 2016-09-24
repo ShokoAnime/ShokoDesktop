@@ -18086,7 +18086,10 @@ namespace JMMClient.JMMServerBinary {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/SetResumePosition", ReplyAction="http://tempuri.org/IJMMServer/SetResumePositionResponse")]
         void SetResumePosition(int videolocalid, int jmmuserID, long position);
-        
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IJMMServer/TraktScrobble", ReplyAction = "http://tempuri.org/IJMMServer/TraktScrobbleResponse")]
+        void TraktScrobble(int animeId, int type, int progress, int status);
+
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServer/GetAllUniqueAudioLanguages", ReplyAction="http://tempuri.org/IJMMServer/GetAllUniqueAudioLanguagesResponse")]
         System.Collections.Generic.List<string> GetAllUniqueAudioLanguages();
         
@@ -18916,7 +18919,12 @@ namespace JMMClient.JMMServerBinary {
         public void SetResumePosition(int videolocalid, int jmmuserID, long position) {
             base.Channel.SetResumePosition(videolocalid, jmmuserID, position);
         }
-        
+
+        public void TraktScrobble(int animeId, int type, int progress, int status)
+        {
+            base.Channel.TraktScrobble(animeId, type, progress, status);
+        }
+
         public System.Collections.Generic.List<string> GetAllUniqueAudioLanguages() {
             return base.Channel.GetAllUniqueAudioLanguages();
         }

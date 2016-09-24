@@ -402,6 +402,7 @@
     <Compile Include="UserControls\Settings\RelationSettings.xaml.cs">
       <DependentUpon>RelationSettings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\TraktHelper.cs" />
     <Compile Include="Utilities\TrulyObservableCollection.cs" />
     <Compile Include="VideoPlayers\BaseVideoPlayer.cs" />
     <Compile Include="VideoPlayers\Extensions.cs" />
