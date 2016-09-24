@@ -88,9 +88,13 @@ namespace JMMClient.Utilities
 
         public static void PlaybackStopped(VideoInfo info, long position)
         {
-            if(TraktEnabled())
+            if (TraktEnabled())
+            {
+                // Wait 1s in case of old commands
+                Thread.Sleep(1000);
                 traktHelper.TraktScrobble(TraktHelper.ScrobblePlayingStatus.Stop, info, (int) position,
-                (int) info.Duration);
+                    (int) info.Duration);
+            }
         }
 
         public abstract void Play(VideoInfo video);
