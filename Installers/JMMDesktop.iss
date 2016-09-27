@@ -44,7 +44,7 @@ Source: "..\JMMClient\bin\Release\GongSolutions.Wpf.DragDrop.xml"; DestDir: "{ap
 Source: "..\JMMClient\bin\Release\Infralution.Localization.Wpf.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\JMMClient\bin\Release\Jint.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\JMMClient\bin\Release\JMMDesktop.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\JMMDesktop.exe.config"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\JMMClient\bin\Release\JMMDesktop.exe.config"; DestDir: "{app}"; Flags: ignoreversion onlyifdoesntexist
 Source: "..\JMMClient\bin\Release\JMMDesktop.pdb"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\JMMClient\bin\Release\JMMDesktop.vshost.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\JMMClient\bin\Release\JMMDesktop.vshost.exe.config"; DestDir: "{app}"; Flags: ignoreversion
