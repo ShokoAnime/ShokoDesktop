@@ -91,7 +91,14 @@ namespace JMMClient
 
                 disabledSave = true;
                 string programlocation = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-                List<MigrationDirectory> migrationdirs = new List<MigrationDirectory>();
+                List<MigrationDirectory> migrationdirs = new List<MigrationDirectory>()
+                {
+                    new MigrationDirectory
+                    {
+                        From = Path.Combine(programlocation, "logs"),
+                        To = Path.Combine(ApplicationPath, "logs")
+                    }
+                };
 
                 string path = Path.Combine(ApplicationPath, "settings.json");
                 if (File.Exists(path))
@@ -171,6 +178,13 @@ namespace JMMClient
                 if (Directory.Exists(BaseImagesPath) && string.IsNullOrEmpty(ImagesPath))
                 {
                     ImagesPath = BaseImagesPath;
+                }
+                if (string.IsNullOrEmpty(ImagesPath))
+                {
+                    if (string.IsNullOrEmpty(JMMServerImagePath))
+                        ImagesPath = DefaultImagePath;
+                    else
+                        ImagesPath = JMMServerImagePath;
                 }
                 SaveSettings();
 
