@@ -3163,9 +3163,6 @@
   <data name="Search_FileSize" xml:space="preserve">
     <value>Rozmiar pliku</value>
   </data>
-  <data name="JMMServer_ProcessRunning" xml:space="preserve">
-    <value>Proces jest uruchomiony na serwerze, proszę spróbować orzeźwiającego po zakończeniu</value>
-  </data>
   <data name="JMMServer_ProcessQueued" xml:space="preserve">
     <value>Proces jest w kolejce na serwerze, proszę spróbować orzeźwiającego w kilka sekund</value>
   </data>
@@ -4487,5 +4484,44 @@ W przeciwieństwie do innych odtwarzaczy multimedialnych obsługiwanych MPV jest
   </data>
   <data name="TvDB_UpdateImages_Desc" xml:space="preserve">
     <value>Spowoduje to aktualizację wszystkich lokalnych obrazy z każdego źródła, z wyłączeniem AniDB. Jeśli używasz tego samego folderu dla komputerów i serwerów, nie jest to zalecane, aby uruchomić to.!</value>
+  </data>
+  <data name="ImportSettings_Server" xml:space="preserve">
+    <value>Serwer lokalny</value>
+  </data>
+  <data name="Settings_SetDefault" xml:space="preserve">
+    <value>Ustaw domyślne</value>
+  </data>
+  <data name="Settings_SetJMMServer" xml:space="preserve">
+    <value>Ustaw Folder JMMServer</value>
+  </data>
+  <data name="Migration_Header" xml:space="preserve">
+    <value>Stan migracji</value>
+  </data>
+  <data name="Migration_AdminFail" xml:space="preserve">
+    <value>JMM klient jest w stanie przeprowadzić migrację ustawień przy użyciu bieżącego dostępu użytkownika. Uruchom klienta JMM jako Administrator, aby rozpocząć migrację.</value>
+  </data>
+  <data name="Migration_AdminPass1" xml:space="preserve">
+    <value>JMM klienta będzie teraz rozpocząć migrację ustawień z tej lokalizacji, aby</value>
+  </data>
+  <data name="Migration_AdminPass2" xml:space="preserve">
+    <value>gdy proces ten jest kompletny JMM klienta uruchomi się nie są już potrzebne uprawnienia administracyjne, aby uruchomić.</value>
+  </data>
+  <data name="JMMServer_ProcessRunning" xml:space="preserve">
+    <value>Proces jest uruchomiona na JMM Server, proszę czekać i odświeżania raz zrobić currnetly.</value>
+  </data>
+  <data name="Migration_Error" xml:space="preserve">
+    <value>Błąd migracji ustawień:</value>
+  </data>
+  <data name="Migration_LoadError" xml:space="preserve">
+    <value>Błąd ładowania ustawień:</value>
+  </data>
+  <data name="Downloads_DisableRefresh" xml:space="preserve">
+    <value>Używać tylko po wyłączeniu funkcji automatycznego odświeżania</value>
+  </data>
+  <data name="IgnoredAnime_DeleteMessage" xml:space="preserve">
+    <value>Czy na pewno chcesz usunąć ten?</value>
+  </data>
+  <data name="ImportFolder_Delete" xml:space="preserve">
+    <value>Czy na pewno chcesz usunąć Folder importu: {0}? Wszystkie pliki w tym folderze również zostaną usunięte z bazy danych.</value>
   </data>
 </root>

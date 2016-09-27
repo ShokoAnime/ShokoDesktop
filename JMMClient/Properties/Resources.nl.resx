@@ -3161,9 +3161,6 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   <data name="Search_FileSize" xml:space="preserve">
     <value>Bestandsgrootte</value>
   </data>
-  <data name="JMMServer_ProcessRunning" xml:space="preserve">
-    <value>Proces wordt op server uitgevoerd, kunt u proberen verfrissende wanneer het heeft geëindigde</value>
-  </data>
   <data name="JMMServer_ProcessQueued" xml:space="preserve">
     <value>Proces is in de wachtrij op de server, probeer in een paar seconden te vernieuwen</value>
   </data>
@@ -4485,5 +4482,44 @@ In tegenstelling tot de andere ondersteunde mediaspelers is MPV het snelste als 
   </data>
   <data name="TvDB_UpdateImages_Desc" xml:space="preserve">
     <value>Dit zal alle lokale beelden bij te werken vanuit elke bron, met uitzondering van AniDB. Als je dezelfde map voor Desktop en Server te gebruiken, is het niet aan te raden om dit uit te voeren.!</value>
+  </data>
+  <data name="ImportSettings_Server" xml:space="preserve">
+    <value>Lokale Server</value>
+  </data>
+  <data name="Settings_SetDefault" xml:space="preserve">
+    <value>Standaardwaarden instellen</value>
+  </data>
+  <data name="Settings_SetJMMServer" xml:space="preserve">
+    <value>Zet de JMMServer map</value>
+  </data>
+  <data name="Migration_Header" xml:space="preserve">
+    <value>De migratiestatus van de</value>
+  </data>
+  <data name="Migration_AdminFail" xml:space="preserve">
+    <value>JMM Client is niet in staat om uw instellingen met behulp van de huidige gebruikerstoegang te migreren. JMM Client uitvoert als een beheerder om te beginnen met de migratie.</value>
+  </data>
+  <data name="Migration_AdminPass1" xml:space="preserve">
+    <value>JMM Client zal nu beginnen met het migreren van uw instellingen vanaf deze locatie te</value>
+  </data>
+  <data name="Migration_AdminPass2" xml:space="preserve">
+    <value>Zodra dit proces is volledig JMM Client opnieuw opstarten en niet langer nodig hebt beheerdersrechten nodig om uit te voeren.</value>
+  </data>
+  <data name="JMMServer_ProcessRunning" xml:space="preserve">
+    <value>Proces is currnetly op JMM Server uitgevoerd, gelieve te wachten en vernieuwen zodra gedaan.</value>
+  </data>
+  <data name="Migration_Error" xml:space="preserve">
+    <value>Instellingen voor het migreren van fout:</value>
+  </data>
+  <data name="Migration_LoadError" xml:space="preserve">
+    <value>Instellingen voor foutpagina laden:</value>
+  </data>
+  <data name="Downloads_DisableRefresh" xml:space="preserve">
+    <value>Alleen gebruiken als de auto verfrist is uitgeschakeld</value>
+  </data>
+  <data name="IgnoredAnime_DeleteMessage" xml:space="preserve">
+    <value>Weet u zeker dat u wilt verwijderen van dit?</value>
+  </data>
+  <data name="ImportFolder_Delete" xml:space="preserve">
+    <value>Weet u zeker dat u wilt verwijderen van de map importeren: {0}? Alle bestanden in deze map wordt ook verwijderd uit de database.</value>
   </data>
 </root>

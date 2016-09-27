@@ -3418,6 +3418,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Only use when auto refresh is disabled.
+        /// </summary>
+        public static string Downloads_DisableRefresh {
+            get {
+                return ResourceManager.GetString("Downloads_DisableRefresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Download.
         /// </summary>
         public static string Downloads_Download {
@@ -5029,6 +5038,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete this?.
+        /// </summary>
+        public static string IgnoredAnime_DeleteMessage {
+            get {
+                return ResourceManager.GetString("IgnoredAnime_DeleteMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This utility will show all anime series you have marked as ignored from the recommendations section. If you delete a series from this list, it&apos;s possible for it to show up in the recommendations section again..
         /// </summary>
         public static string IgnoredAnime_Note {
@@ -5169,6 +5187,15 @@ namespace JMMClient.Properties {
         public static string ImportFolder {
             get {
                 return ResourceManager.GetString("ImportFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete the Import Folder: {0}? Any files in this folder will also be removed from the database..
+        /// </summary>
+        public static string ImportFolder_Delete {
+            get {
+                return ResourceManager.GetString("ImportFolder_Delete", resourceCulture);
             }
         }
         
@@ -5488,7 +5515,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Process is queued on server, please try refreshing in a few seconds.
+        ///   Looks up a localized string similar to Process is queued on server, please try refreshing in a few seconds..
         /// </summary>
         public static string JMMServer_ProcessQueued {
             get {
@@ -5497,7 +5524,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Process is Running on server, please try refreshing when it has finished.
+        ///   Looks up a localized string similar to Process is currnetly running on JMM Server, please wait and refresh once done..
         /// </summary>
         public static string JMMServer_ProcessRunning {
             get {
@@ -6235,11 +6262,29 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error Migrating Settings:.
+        /// </summary>
+        public static string Migration_Error {
+            get {
+                return ResourceManager.GetString("Migration_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Migration Status.
         /// </summary>
         public static string Migration_Header {
             get {
                 return ResourceManager.GetString("Migration_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error Loading Settings:.
+        /// </summary>
+        public static string Migration_LoadError {
+            get {
+                return ResourceManager.GetString("Migration_LoadError", resourceCulture);
             }
         }
         

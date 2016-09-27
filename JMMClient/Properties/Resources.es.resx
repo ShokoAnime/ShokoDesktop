@@ -3161,9 +3161,6 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
   <data name="Search_FileSize" xml:space="preserve">
     <value>Tamaño del archivo</value>
   </data>
-  <data name="JMMServer_ProcessRunning" xml:space="preserve">
-    <value>Proceso ejecuta en servidor, por favor intente refrescante cuando ha terminado</value>
-  </data>
   <data name="JMMServer_ProcessQueued" xml:space="preserve">
     <value>Proceso se pone en cola en el servidor, por favor intente actualizar en unos segundos</value>
   </data>
@@ -4485,5 +4482,44 @@ A diferencia de los otros jugadores de medios compatibles, la MPV es el más rá
   </data>
   <data name="TvDB_UpdateImages_Desc" xml:space="preserve">
     <value>Esto actualizará todas las imágenes de todas las fuentes locales, excluyendo AniDB. Si utiliza la misma carpeta de escritorio y servidor, no es recomendable hacer funcionar esto.!</value>
+  </data>
+  <data name="ImportSettings_Server" xml:space="preserve">
+    <value>Servidor local</value>
+  </data>
+  <data name="Settings_SetDefault" xml:space="preserve">
+    <value>Ajuste por defecto</value>
+  </data>
+  <data name="Settings_SetJMMServer" xml:space="preserve">
+    <value>Establecer carpeta de JMMServer</value>
+  </data>
+  <data name="Migration_Header" xml:space="preserve">
+    <value>Estado de la migración</value>
+  </data>
+  <data name="Migration_AdminFail" xml:space="preserve">
+    <value>Cliente de JMM es incapaz de migrar los valores mediante el acceso del usuario actual. Ejecutar a cliente JMM como administrador para iniciar la migración.</value>
+  </data>
+  <data name="Migration_AdminPass1" xml:space="preserve">
+    <value>Cliente de JMM ahora comenzará a migrar la configuración de esta ubicación a</value>
+  </data>
+  <data name="Migration_AdminPass2" xml:space="preserve">
+    <value>una vez este proceso completo cliente de JMM reinicie y ya no necesitan privilegios administrativos para ejecutarse.</value>
+  </data>
+  <data name="JMMServer_ProcessRunning" xml:space="preserve">
+    <value>El proceso es currnetly ejecuta en servidor de JMM, por favor espere y actualizar una vez hecho.</value>
+  </data>
+  <data name="Migration_Error" xml:space="preserve">
+    <value>Migrar configuración de error:</value>
+  </data>
+  <data name="Migration_LoadError" xml:space="preserve">
+    <value>Configuración de carga de error:</value>
+  </data>
+  <data name="Downloads_DisableRefresh" xml:space="preserve">
+    <value>Utilice solamente cuando está deshabilitada la actualización automática</value>
+  </data>
+  <data name="IgnoredAnime_DeleteMessage" xml:space="preserve">
+    <value>¿Está seguro que desea eliminar este?</value>
+  </data>
+  <data name="ImportFolder_Delete" xml:space="preserve">
+    <value>¿Está seguro que desea eliminar la carpeta de importación: {0}? Los archivos de esta carpeta también se eliminará de la base de datos.</value>
   </data>
 </root>

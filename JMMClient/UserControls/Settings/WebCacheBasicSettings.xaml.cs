@@ -37,7 +37,7 @@ namespace JMMClient.UserControls
             }
 
             JMMServerVM.Instance.SaveServerSettingsAsync();
-            MessageBox.Show("Success", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show(Properties.Resources.Success, Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         void settingChanged(object sender, RoutedEventArgs e)

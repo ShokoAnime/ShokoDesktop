@@ -3161,9 +3161,6 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   <data name="Search_FileSize" xml:space="preserve">
     <value>Dimensione del file</value>
   </data>
-  <data name="JMMServer_ProcessRunning" xml:space="preserve">
-    <value>Processo è in esecuzione sul server, per favore provare rinfrescante quando ha finito</value>
-  </data>
   <data name="JMMServer_ProcessQueued" xml:space="preserve">
     <value>Processo è in coda sul server, prova ad aggiornare in pochi secondi</value>
   </data>
@@ -4485,5 +4482,44 @@ A differenza di altri lettori multimediali supportati, MPV è il più veloce qua
   </data>
   <data name="TvDB_UpdateImages_Desc" xml:space="preserve">
     <value>Questo aggiornerà tutte le immagini locali da ogni fonte, escludendo AniDB. Se si utilizza la stessa cartella per desktop e server, non è consigliabile eseguire questo.!</value>
+  </data>
+  <data name="ImportSettings_Server" xml:space="preserve">
+    <value>Server locale</value>
+  </data>
+  <data name="Settings_SetDefault" xml:space="preserve">
+    <value>Imposta predefinito</value>
+  </data>
+  <data name="Settings_SetJMMServer" xml:space="preserve">
+    <value>Impostare la cartella di JMMServer</value>
+  </data>
+  <data name="Migration_Header" xml:space="preserve">
+    <value>Stato della migrazione</value>
+  </data>
+  <data name="Migration_AdminFail" xml:space="preserve">
+    <value>JMM Client è in grado di migrare le impostazioni utilizzando l'accesso dell'utente corrente. Eseguire JMM Client come amministratore per avviare la migrazione.</value>
+  </data>
+  <data name="Migration_AdminPass1" xml:space="preserve">
+    <value>JMM Client ora inizierà la migrazione di impostazioni da questa posizione per</value>
+  </data>
+  <data name="Migration_AdminPass2" xml:space="preserve">
+    <value>una volta che questo processo è completo JMM Client verrà riavviato e non è più necessario privilegi di amministratore per l'esecuzione.</value>
+  </data>
+  <data name="JMMServer_ProcessRunning" xml:space="preserve">
+    <value>Processo è in esecuzione sul Server di JMM, per favore aspetta e aggiorna una volta finito currnetly.</value>
+  </data>
+  <data name="Migration_Error" xml:space="preserve">
+    <value>La migrazione delle impostazioni di errore:</value>
+  </data>
+  <data name="Migration_LoadError" xml:space="preserve">
+    <value>Errore caricamento impostazioni:</value>
+  </data>
+  <data name="Downloads_DisableRefresh" xml:space="preserve">
+    <value>Utilizzare solo quando l'aggiornamento automatico è disattivato</value>
+  </data>
+  <data name="IgnoredAnime_DeleteMessage" xml:space="preserve">
+    <value>Sei sicuro di che voler eliminare questo?</value>
+  </data>
+  <data name="ImportFolder_Delete" xml:space="preserve">
+    <value>Sei sicuro di voler eliminare la cartella di importazione: {0}? Anche qualsiasi file in questa cartella verranno rimossi dal database.</value>
   </data>
 </root>

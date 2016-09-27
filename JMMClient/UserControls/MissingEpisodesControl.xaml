@@ -156,7 +156,7 @@
                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Anime_Episodes}" Margin="5,0,0,0" Foreground="DarkGray"/>
                 </StackPanel>
 
-                <Border Style="{DynamicResource ToolbarBorderControlStyle}" Background="FloralWhite" Margin="0,0,0,5" Padding="5" DockPanel.Dock="Top" BorderThickness="0,1,0,1">
+                <Border Style="{DynamicResource ToolbarBorderControlStyle}" Background="FloralWhite" Margin="0,0,0,0" Padding="5" DockPanel.Dock="Top" BorderThickness="0,1,0,1">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"></RowDefinition>

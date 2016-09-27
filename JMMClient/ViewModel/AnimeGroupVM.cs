@@ -1097,13 +1097,13 @@ namespace JMMClient
         {
             if (string.IsNullOrEmpty(this.GroupName))
             {
-                MessageBox.Show("Group name must be populated");
+                MessageBox.Show(Properties.Resources.Anime_GroupName);
                 return false;
             }
 
             if (string.IsNullOrEmpty(this.SortName))
             {
-                MessageBox.Show("Sort name must be populated");
+                MessageBox.Show(Properties.Resources.Anime_SortName);
                 return false;
             }
 

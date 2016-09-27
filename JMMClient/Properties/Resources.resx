@@ -3341,10 +3341,10 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>File Size</value>
   </data>
   <data name="JMMServer_ProcessRunning" xml:space="preserve">
-    <value>Process is Running on server, please try refreshing when it has finished</value>
+    <value>Process is currnetly running on JMM Server, please wait and refresh once done.</value>
   </data>
   <data name="JMMServer_ProcessQueued" xml:space="preserve">
-    <value>Process is queued on server, please try refreshing in a few seconds</value>
+    <value>Process is queued on server, please try refreshing in a few seconds.</value>
   </data>
   <data name="Downloads_Details" xml:space="preserve">
     <value>Details</value>
@@ -4508,5 +4508,20 @@ Unlike the other supported media players, MPV is the fastest when it comes to st
   </data>
   <data name="Migration_AdminPass2" xml:space="preserve">
     <value>once this process is complete JMM Client will restart and no longer need Administrative Privileges to run.</value>
+  </data>
+  <data name="Migration_Error" xml:space="preserve">
+    <value>Error Migrating Settings:</value>
+  </data>
+  <data name="Migration_LoadError" xml:space="preserve">
+    <value>Error Loading Settings:</value>
+  </data>
+  <data name="Downloads_DisableRefresh" xml:space="preserve">
+    <value>Only use when auto refresh is disabled</value>
+  </data>
+  <data name="IgnoredAnime_DeleteMessage" xml:space="preserve">
+    <value>Are you sure you want to delete this?</value>
+  </data>
+  <data name="ImportFolder_Delete" xml:space="preserve">
+    <value>Are you sure you want to delete the Import Folder: {0}? Any files in this folder will also be removed from the database.</value>
   </data>
 </root>

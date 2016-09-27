@@ -52,7 +52,7 @@ namespace JMMClient.UserControls
                 JMMServerVM.Instance.clientBinaryHTTP.RescanManuallyLinkedFiles();
                 this.Cursor = Cursors.Arrow;
 
-                MessageBox.Show("Files queued for AniDB scan", "Complete", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(Properties.Resources.Unrecognized_AniDBScan, Properties.Resources.Complete, MessageBoxButton.OK, MessageBoxImage.Information);
 
             }
             catch (Exception ex)

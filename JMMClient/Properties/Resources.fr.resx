@@ -3161,9 +3161,6 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   <data name="Search_FileSize" xml:space="preserve">
     <value>Taille du fichier</value>
   </data>
-  <data name="JMMServer_ProcessRunning" xml:space="preserve">
-    <value>Processus s'exécute sur le serveur, s'il vous plaît essayer rafraîchissant quand c'est fini</value>
-  </data>
   <data name="JMMServer_ProcessQueued" xml:space="preserve">
     <value>Processus est mis en attente sur le serveur, s'il vous plaît essayez d'actualiser en quelques secondes</value>
   </data>
@@ -4485,5 +4482,44 @@ Contrairement à d’autres joueurs supports pris en charge, MPV est le plus rap
   </data>
   <data name="TvDB_UpdateImages_Desc" xml:space="preserve">
     <value>Cela mettra à jour toutes les images locales de toutes les sources, sauf AniDB. Si vous utilisez le même dossier pour Desktop et Server, il est recommandé de ne pas exécuter ce.!</value>
+  </data>
+  <data name="ImportSettings_Server" xml:space="preserve">
+    <value>Serveur local</value>
+  </data>
+  <data name="Settings_SetDefault" xml:space="preserve">
+    <value>Configuration par défaut</value>
+  </data>
+  <data name="Settings_SetJMMServer" xml:space="preserve">
+    <value>Définir le dossier de JMMServer</value>
+  </data>
+  <data name="Migration_Header" xml:space="preserve">
+    <value>État de la migration</value>
+  </data>
+  <data name="Migration_AdminFail" xml:space="preserve">
+    <value>JMM Client n’est pas en mesure de migrer vos paramètres à l’aide de l’accès de l’utilisateur actuel. Exécutez JMM Client en tant qu’administrateur pour démarrer la migration.</value>
+  </data>
+  <data name="Migration_AdminPass1" xml:space="preserve">
+    <value>JMM Client va maintenant commencer à migrer vos paramètres depuis cet emplacement à</value>
+  </data>
+  <data name="Migration_AdminPass2" xml:space="preserve">
+    <value>une fois ce processus complet JMM Client va redémarrer et n’est plus besoin de privilèges d’administrateur pour exécuter.</value>
+  </data>
+  <data name="JMMServer_ProcessRunning" xml:space="preserve">
+    <value>Processus est currnetly fonctionnant sur serveur de JMM, s’il vous plaît attendre et actualiser une fois fait.</value>
+  </data>
+  <data name="Migration_Error" xml:space="preserve">
+    <value>Migration des paramètres erreur :</value>
+  </data>
+  <data name="Migration_LoadError" xml:space="preserve">
+    <value>Paramètres de chargement d’erreur :</value>
+  </data>
+  <data name="Downloads_DisableRefresh" xml:space="preserve">
+    <value>Utiliser uniquement lors de l’actualisation automatique est désactivée</value>
+  </data>
+  <data name="IgnoredAnime_DeleteMessage" xml:space="preserve">
+    <value>Êtes-vous sûr de que vouloir supprimer cet élément ?</value>
+  </data>
+  <data name="ImportFolder_Delete" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir supprimer le dossier d’importation : {0} ? Tous les fichiers dans ce dossier seront également supprimés de la base de données.</value>
   </data>
 </root>

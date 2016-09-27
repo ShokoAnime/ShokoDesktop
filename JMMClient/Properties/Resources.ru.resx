@@ -3161,9 +3161,6 @@
   <data name="Search_FileSize" xml:space="preserve">
     <value>Размер файла</value>
   </data>
-  <data name="JMMServer_ProcessRunning" xml:space="preserve">
-    <value>Процесс работает на сервере, пожалуйста попробуйте обновить после завершения</value>
-  </data>
   <data name="JMMServer_ProcessQueued" xml:space="preserve">
     <value>Процесс помещен в очередь на сервере, пожалуйста попробуйте обновить через несколько секунд</value>
   </data>
@@ -4485,5 +4482,44 @@
   </data>
   <data name="TvDB_UpdateImages_Desc" xml:space="preserve">
     <value>Это позволит обновить все локальные изображения из любого источника, исключая AniDB. Если вы используете ту же папку для настольных компьютеров и серверов, не рекомендуется запускать это.!</value>
+  </data>
+  <data name="ImportSettings_Server" xml:space="preserve">
+    <value>Локальный сервер</value>
+  </data>
+  <data name="Settings_SetDefault" xml:space="preserve">
+    <value>Установить по умолчанию</value>
+  </data>
+  <data name="Settings_SetJMMServer" xml:space="preserve">
+    <value>Установить папку JMMServer</value>
+  </data>
+  <data name="Migration_Header" xml:space="preserve">
+    <value>Состояние миграции</value>
+  </data>
+  <data name="Migration_AdminFail" xml:space="preserve">
+    <value>JMM клиент не в состоянии перенести параметры с помощью доступа текущего пользователя. Запустите клиент JMM в качестве администратора начать процесс миграции.</value>
+  </data>
+  <data name="Migration_AdminPass1" xml:space="preserve">
+    <value>JMM клиент теперь начнет перенос параметров из этого местоположения в</value>
+  </data>
+  <data name="Migration_AdminPass2" xml:space="preserve">
+    <value>После завершения этого процесса завершения JMM клиент перезагрузится и больше не нужны привилегии администратора для запуска.</value>
+  </data>
+  <data name="JMMServer_ProcessRunning" xml:space="preserve">
+    <value>Процесс является currnetly, запущенный на сервере JMM, пожалуйста, подождите и обновить один раз сделать.</value>
+  </data>
+  <data name="Migration_Error" xml:space="preserve">
+    <value>Ошибка миграции параметров:</value>
+  </data>
+  <data name="Migration_LoadError" xml:space="preserve">
+    <value>Ошибка загрузки настройки:</value>
+  </data>
+  <data name="Downloads_DisableRefresh" xml:space="preserve">
+    <value>Используйте только когда автоматическое обновление отключено</value>
+  </data>
+  <data name="IgnoredAnime_DeleteMessage" xml:space="preserve">
+    <value>Вы уверены, что хотите удалить это?</value>
+  </data>
+  <data name="ImportFolder_Delete" xml:space="preserve">
+    <value>Вы действительно хотите удалить папку импорта: {0}? Все файлы в этой папке будут также удалены из базы данных.</value>
   </data>
 </root>

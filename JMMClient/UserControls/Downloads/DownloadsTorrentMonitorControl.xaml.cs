@@ -350,7 +350,7 @@ namespace JMMClient.UserControls
         {
             if (UserSettingsVM.Instance.UTorrentAutoRefresh)
             {
-                MessageBox.Show("Only use when auto refresh is disabled", "Warning", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(Properties.Resources.Downloads_DisableRefresh, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
 

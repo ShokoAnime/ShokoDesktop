@@ -51,12 +51,12 @@ namespace JMMClient.UserControls
                 {
                     ImportFolderVM ns = (ImportFolderVM)obj;
 
-                    MessageBoxResult res = MessageBox.Show(string.Format("Are you sure you want to delete the Import Folder: {0}\nAny files in this folder will also be removed from the database", ns.ImportFolderLocation), "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    MessageBoxResult res = MessageBox.Show(string.Format(Properties.Resources.ImportFolder_Delete, ns.ImportFolderLocation), Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
                     if (res == MessageBoxResult.Yes)
                     {
                         ns.Delete();
                         //JMMServerVM.Instance.RefreshImportFolders();
-                        MessageBox.Show("Process is running on the server, and may take a while to complete", "Running", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show(Properties.Resources.JMMServer_ProcessRunning, Properties.Resources.JMMServer_Running, MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 }
             }

@@ -115,7 +115,7 @@ namespace JMMClient.UserControls
 
             try
             {
-                if (MessageBox.Show("Are you sure you want to delete this?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                if (MessageBox.Show(Properties.Resources.IgnoredAnime_DeleteMessage, Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     this.Cursor = Cursors.Wait;
                     JMMServerVM.Instance.clientBinaryHTTP.RemoveIgnoreAnime(ign.IgnoreAnimeID);

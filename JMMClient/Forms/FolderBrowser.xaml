@@ -1,7 +1,7 @@
 ﻿<Window x:Class="JMMClient.Forms.FolderBrowser"
    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="{Resx ResxName=JMMServer.Properties.Resources, Key=ImportFolder_SelectImportFolder}" Height="Auto"
+        Title="{Resx ResxName=JMMDesktop.Properties.Resources, Key=ImportFolder_SelectImportFolder}" Height="Auto"
         MinWidth="400" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow"
         SizeToContent="WidthAndHeight" Icon="/JMMDesktop;component/Images/24_folder.png">
     
