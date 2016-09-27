@@ -91,9 +91,7 @@
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup />
-  <PropertyGroup>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
-  </PropertyGroup>
+  <PropertyGroup />
   <PropertyGroup>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
@@ -164,6 +162,10 @@
     </Reference>
     <Reference Include="Microsoft.Win32.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Win32.Primitives.4.0.1\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
@@ -328,6 +330,7 @@
     <Compile Include="Forms\ViewCommentForm.xaml.cs">
       <DependentUpon>ViewCommentForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MigrationDirectory.cs" />
     <Compile Include="Properties\Resources.de.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -398,6 +401,9 @@
     </Compile>
     <Compile Include="UserControls\PlayNextEpisodeControlV2.xaml.cs">
       <DependentUpon>PlayNextEpisodeControlV2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Settings\Migration.xaml.cs">
+      <DependentUpon>Migration.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Settings\RelationSettings.xaml.cs">
       <DependentUpon>RelationSettings.xaml</DependentUpon>
@@ -1337,6 +1343,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\Settings\Migration.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="UserControls\Settings\MovieDBSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1475,7 +1485,6 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="app.manifest" />
     <None Include="default.config" />
     <None Include="JMMDesktop.snk" />
     <None Include="packages.config">
