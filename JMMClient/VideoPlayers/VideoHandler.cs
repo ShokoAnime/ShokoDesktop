@@ -21,10 +21,12 @@ namespace JMMClient.VideoPlayers
     {
 
         private static Logger logger = LogManager.GetCurrentClassLogger();
+        private TraktHelper traktHelper = new TraktHelper();
         private Dictionary<int, VideoInfo> recentlyPlayedFiles = null;
 
         private System.Timers.Timer handleTimer = null;
-
+        private bool scrobbleLock;
+        public static long scrobblePosition;
 
         private List<FileSystemWatcher> watcherVids = null;
         Dictionary<string, string> previousFilePositions = new Dictionary<string, string>();
@@ -34,7 +36,6 @@ namespace JMMClient.VideoPlayers
 
 
         public List<IVideoPlayer> Players=new List<IVideoPlayer>();
-
 
         public VideoHandler()
         {
@@ -339,6 +340,25 @@ namespace JMMClient.VideoPlayers
                 {
                     logger.Info(string.Format("Video position for {0} has changed to {1}", v.Uri, kvp.Value));
                     v.ChangePosition(kvp.Value); //Set New Resume Position
+
+                    try
+                    {
+                        if (JMMServerVM.Instance.Trakt_IsEnabled &&
+                            !string.IsNullOrEmpty(JMMServerVM.Instance.Trakt_AuthToken)
+                            && !scrobbleLock)
+                        {
+                            scrobblePosition = kvp.Value;
+                            scrobbleLock = true;
+                            traktHelper.TraktScrobble(TraktHelper.ScrobblePlayingStatus.Start, v, (int) kvp.Value,
+                                (int) v.Duration);
+                            scrobbleLock = false;
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        scrobbleLock = false;
+                    }
+
                     if (!MayUpdateWatchStatus(v, kvp.Value))
                         return;
                 }
@@ -518,9 +538,6 @@ namespace JMMClient.VideoPlayers
 
             return null;
         }
-
-
-
     }
 
     public class VideoWatchedEventArgs : EventArgs

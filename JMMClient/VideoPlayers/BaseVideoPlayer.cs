@@ -1,6 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Security.RightsManagement;
+using System.Threading;
+
+using JMMClient.JMMServerBinary;
 using JMMClient.VideoPlayers;
 using NLog;
 
@@ -12,7 +17,7 @@ namespace JMMClient.Utilities
         public bool IsPlaying { get; set; }
         internal static Logger logger = LogManager.GetCurrentClassLogger();
         private FileSystemWatcher watcher = null;
-
+        private static TraktHelper traktHelper = new TraktHelper();
 
         internal string PlayerPath { get; set; }
         public bool Active { get; internal set; }
@@ -36,7 +41,6 @@ namespace JMMClient.Utilities
         }
         internal virtual void StartWatcher(string path)
         {
-
             if (!string.IsNullOrEmpty(path) && Directory.Exists(path))
             {
                 watcher = new FileSystemWatcher(path, "*.ini");
@@ -71,6 +75,25 @@ namespace JMMClient.Utilities
                 watcher.EnableRaisingEvents = false;
                 watcher.Dispose();
                 watcher = null;
+            }
+        }
+        public static bool TraktEnabled()
+        {
+            if (JMMServerVM.Instance.Trakt_IsEnabled && !string.IsNullOrEmpty(JMMServerVM.Instance.Trakt_AuthToken))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static void PlaybackStopped(VideoInfo info, long position)
+        {
+            if (TraktEnabled())
+            {
+                // Wait 1s in case of old commands
+                Thread.Sleep(1000);
+                traktHelper.TraktScrobble(TraktHelper.ScrobblePlayingStatus.Stop, info, (int) position,
+                    (int) info.Duration);
             }
         }
 

@@ -17,6 +17,7 @@ namespace JMMClient.VideoPlayers
     public class ZoomPlayerVideoPlayer : BaseVideoPlayer, IVideoPlayer
     {
         private bool _monitoringPositions;
+        private long currentPosition;
         private int _tcpControlPort = 4769;
         private bool _tcpControlServerEnabled = false;
 
@@ -113,13 +114,14 @@ namespace JMMClient.VideoPlayers
 
                     if (_tcpControlServerEnabled)
                     {
-                        Thread t = new Thread(() => StartPlayPositionRetrieval(video.Uri, true));
+                        Thread t = new Thread(() => StartPlayPositionRetrieval(video.Uri, true, TraktEnabled()));
                         t.IsBackground = true;
                         t.Start();
                     }
 
                     process.WaitForExit();
                     IsPlaying = false;
+                    PlaybackStopped(video, currentPosition);
                 }
             });
         }
@@ -130,7 +132,7 @@ namespace JMMClient.VideoPlayers
         }
 
         // Process Zoom player TCP control commands
-        private void StartPlayPositionRetrieval(string fileName, bool firstStart = false)
+        private void StartPlayPositionRetrieval(string fileName, bool firstStart = false, bool scrobbleEnabled = false)
         {
             double postitionTimeCodeMs = 0;
 
@@ -275,7 +277,14 @@ namespace JMMClient.VideoPlayers
                             StartPlayPositionRetrieval(fileName);
                         }
                     }
+
+                    // Keep updating positions if we have scrobble enabled
+                    if (scrobbleEnabled)
+                    {
+                        UpdateFilePosition(fileName, postitionTimeCodeMs);
+                    }
                 }
+
                 UpdateFilePosition(fileName, postitionTimeCodeMs);
             }
             catch (Exception)
@@ -288,7 +297,7 @@ namespace JMMClient.VideoPlayers
                 }
                 else
                 {
-                    StartPlayPositionRetrieval(fileName);
+                    StartPlayPositionRetrieval(fileName, false, scrobbleEnabled);
                 }
             }
         }
@@ -300,6 +309,7 @@ namespace JMMClient.VideoPlayers
             Dictionary<string, long> filePositions = new Dictionary<string, long>();
             filePositions.Add(fileName, (long)position);
             OnPositionChangeEvent(filePositions);
+            currentPosition = (long)position;
         }
 
         internal enum Verbs

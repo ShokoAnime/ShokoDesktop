@@ -77,8 +77,6 @@ namespace JMMClient.VideoPlayers
 
         internal void StartWatcher()
         {
-
-
             StopWatcher();
             timeTimer = new System.Timers.Timer();
             timeTimer.Elapsed += TimeTimer_Elapsed;
@@ -196,6 +194,8 @@ namespace JMMClient.VideoPlayers
             VideoInfoChange?.Invoke(info, (long) (Time*1000));
             Time = 0;
             StopWatcher();
+            if (info != null)
+                BaseVideoPlayer.PlaybackStopped(info, (long) Time);
         }
 
         private int prevvolume = 0;
