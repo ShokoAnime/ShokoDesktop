@@ -2177,7 +2177,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Image Path</value>
   </data>
   <data name="Settings_SelectFolder" xml:space="preserve">
-    <value>Select Folder</value>
+    <value>Select Custom Folder</value>
   </data>
   <data name="Settings_FilePort" xml:space="preserve">
     <value>File Port</value>
@@ -3364,6 +3364,9 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="ImportSettings_Default" xml:space="preserve">
     <value>Default</value>
   </data>
+  <data name="ImportSettings_Server" xml:space="preserve">
+    <value>Local Server</value>
+  </data>
   <data name="ImportSettings_Custom" xml:space="preserve">
     <value>Custom</value>
   </data>
@@ -4487,5 +4490,23 @@ Unlike the other supported media players, MPV is the fastest when it comes to st
   </data>
   <data name="TvDB_UpdateImages_Desc" xml:space="preserve">
     <value>This will update all local images from every source, excluding AniDB. If you use the same folder for Desktop and Server, it is not recommended to run this.</value>
+  </data>
+  <data name="Settings_SetDefault" xml:space="preserve">
+    <value>Set Default</value>
+  </data>
+  <data name="Settings_SetJMMServer" xml:space="preserve">
+    <value>Set JMMServer Folder</value>
+  </data>
+  <data name="Migration_Header" xml:space="preserve">
+    <value>Migration Status</value>
+  </data>
+  <data name="Migration_AdminFail" xml:space="preserve">
+    <value>JMM Client is unable to migrate your settings using the current user access. Run JMM Client as an Administrator to start the migration.</value>
+  </data>
+  <data name="Migration_AdminPass1" xml:space="preserve">
+    <value>JMM Client will now start migrating your settings from this location to</value>
+  </data>
+  <data name="Migration_AdminPass2" xml:space="preserve">
+    <value>once this process is complete JMM Client will restart and no longer need Administrative Privileges to run.</value>
   </data>
 </root>

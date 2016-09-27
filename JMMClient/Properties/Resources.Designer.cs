@@ -5263,6 +5263,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Local Server.
+        /// </summary>
+        public static string ImportSettings_Server {
+            get {
+                return ResourceManager.GetString("ImportSettings_Server", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Set file as watched if episode is watched.
         /// </summary>
         public static string ImportSettings_UseEpisodeStatus {
@@ -6195,6 +6204,42 @@ namespace JMMClient.Properties {
         public static string Metro_Trakt {
             get {
                 return ResourceManager.GetString("Metro_Trakt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to JMM Client is unable to migrate your settings using the current user access. Run JMM Client as an Administrator to start the migration..
+        /// </summary>
+        public static string Migration_AdminFail {
+            get {
+                return ResourceManager.GetString("Migration_AdminFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to JMM Client will now start migrating your settings from this location to.
+        /// </summary>
+        public static string Migration_AdminPass1 {
+            get {
+                return ResourceManager.GetString("Migration_AdminPass1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to once this process is complete JMM Client will restart and no longer need Administrative Privileges to run..
+        /// </summary>
+        public static string Migration_AdminPass2 {
+            get {
+                return ResourceManager.GetString("Migration_AdminPass2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Migration Status.
+        /// </summary>
+        public static string Migration_Header {
+            get {
+                return ResourceManager.GetString("Migration_Header", resourceCulture);
             }
         }
         
@@ -9286,11 +9331,29 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select Folder.
+        ///   Looks up a localized string similar to Select Custom Folder.
         /// </summary>
         public static string Settings_SelectFolder {
             get {
                 return ResourceManager.GetString("Settings_SelectFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set Default.
+        /// </summary>
+        public static string Settings_SetDefault {
+            get {
+                return ResourceManager.GetString("Settings_SetDefault", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set JMMServer Folder.
+        /// </summary>
+        public static string Settings_SetJMMServer {
+            get {
+                return ResourceManager.GetString("Settings_SetJMMServer", resourceCulture);
             }
         }
         

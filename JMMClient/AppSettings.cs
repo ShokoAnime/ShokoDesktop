@@ -3,8 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Configuration;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Threading;
+using System.Windows;
+using JMMClient.UserControls.Settings;
+using Newtonsoft.Json;
+using NLog.Targets;
 
 namespace JMMClient
 {
@@ -12,16 +18,202 @@ namespace JMMClient
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        public static void CreateDefaultConfig()
-        {
-            System.Reflection.Assembly assm = System.Reflection.Assembly.GetExecutingAssembly();
-            // check if the app config file exists
+        private static Dictionary<string, string> appSettings = new Dictionary<string, string>();
 
-            string appConfigPath = assm.Location + ".config";
-            string defaultConfigPath = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(assm.Location), "default.config");
-            if (!File.Exists(appConfigPath) && File.Exists(defaultConfigPath))
+        private static string Get(string key)
+        {
+            if (appSettings.ContainsKey(key))
+                return appSettings[key];
+            return null;
+        }
+
+        private static void Set(string key, string value)
+        {
+            string orig = Get(key);
+            if (value != orig)
             {
-                File.Copy(defaultConfigPath, appConfigPath);
+                appSettings[key] = value;
+                SaveSettings();
+            }
+        }
+
+
+        public static string DefaultInstance { get; set; } = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
+
+        public static string ApplicationPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), DefaultInstance);
+
+        public static string JMMServerPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), JMMServerInstance);
+
+        public static string DefaultImagePath => Path.Combine(ApplicationPath, "images");
+
+        public static string JMMServerImagePath
+        {
+            get
+            {
+                if (Directory.Exists(JMMServerPath) && File.Exists(Path.Combine(JMMServerPath, "settings.json")))
+                {
+                    Dictionary<string, string> serverSettings =
+                        JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(Path.Combine(JMMServerPath, "settings.json")));
+                    if (serverSettings.ContainsKey("ImagesPath"))
+                        return serverSettings["ImagesPath"];
+                }
+                return null;
+
+            }
+        }
+
+        private static bool disabledSave = false;
+        public static void SaveSettings()
+        {
+            if (disabledSave)
+                return;
+            lock (appSettings)
+            {
+                if (appSettings.Count == 1)
+                    return;//Somehow debugging may fuck up the settings so this shit will eject
+                string path = Path.Combine(ApplicationPath, "settings.json");
+                File.WriteAllText(path, JsonConvert.SerializeObject(appSettings));
+            }
+        }
+        /*
+                string appPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+                string logName = System.IO.Path.Combine(appPath, "AnimeEpisodes.txt");
+                */
+        public static void LoadSettings()
+        {
+            try
+            {
+                //Reconfigure log file to applicationpath
+                var target = (FileTarget)LogManager.Configuration.FindTargetByName("file");
+                target.FileName = ApplicationPath + "/logs/${shortdate}.txt";
+                LogManager.ReconfigExistingLoggers();
+
+
+                disabledSave = true;
+                string programlocation = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+                List<MigrationDirectory> migrationdirs = new List<MigrationDirectory>()
+                {
+                    new MigrationDirectory
+                    {
+                        From = Path.Combine(programlocation, "logs"),
+                        To = Path.Combine(ApplicationPath, "logs")
+                    }
+                };
+
+                string path = Path.Combine(ApplicationPath, "settings.json");
+                if (File.Exists(path))
+                    appSettings = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(path));
+                else
+                {
+                    NameValueCollection col = ConfigurationManager.AppSettings;
+                    appSettings = col.AllKeys.ToDictionary(a => a, a => col[a]);
+                }
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+                if (BaseImagesPathIsDefault || !Directory.Exists(BaseImagesPath))
+                {
+                    migrationdirs.Add(new MigrationDirectory
+                    {
+                        From = Path.Combine(programlocation, "images"),
+                        To = DefaultImagePath
+                    });
+                }
+                else if (Directory.Exists(BaseImagesPath))
+                {
+                    ImagesPath = BaseImagesPath;
+                }
+                bool migrate = !Directory.Exists(ApplicationPath) || File.Exists(Path.Combine(programlocation, "AnimeEpisodes.txt"));
+                foreach (MigrationDirectory m in migrationdirs)
+                {
+                    if (m.ShouldMigrate)
+                    {
+                        migrate = true;
+                        break;
+                    }
+                }
+                if (migrate)
+                {
+                    if (!Utils.IsAdministrator())
+                    {
+                        MessageBox.Show(Properties.Resources.Migration_AdminFail, Properties.Resources.Migration_Header,
+                            MessageBoxButton.OK, MessageBoxImage.Information);
+                        Application.Current.Shutdown();
+                        return;
+                    }
+                    Migration m = null;
+                    try
+                    {
+                        m = new Migration($"{Properties.Resources.Migration_AdminPass1} {ApplicationPath}, {Properties.Resources.Migration_AdminPass2}");
+                        m.Show();
+                        if (!Directory.Exists(ApplicationPath))
+                        {
+                            Directory.CreateDirectory(ApplicationPath);
+                        }
+                        Utils.GrantAccess(ApplicationPath);
+                        disabledSave = false;
+                        SaveSettings();
+                        foreach (MigrationDirectory md in migrationdirs)
+                        {
+                            if (!md.SafeMigrate())
+                            {
+                                break;
+                            }
+                        }
+                        if (File.Exists(Path.Combine(programlocation, "AnimeEpisodes.txt")))
+                        {
+                            File.Move(Path.Combine(programlocation, "AnimeEpisodes.txt"), AnimeEpisodesText);
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show("Error Migrating Settings: ", e.ToString());
+
+                    }
+
+                    m?.Close();
+                    Application.Current.Shutdown();
+                    return;
+                }
+                disabledSave = false;
+
+                if (Directory.Exists(BaseImagesPath) && string.IsNullOrEmpty(ImagesPath))
+                {
+                    ImagesPath = BaseImagesPath;
+                }
+                if (string.IsNullOrEmpty(ImagesPath))
+                {
+                    if (string.IsNullOrEmpty(JMMServerImagePath))
+                        ImagesPath = DefaultImagePath;
+                    else
+                        ImagesPath = JMMServerImagePath;
+                }
+                SaveSettings();
+
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Error Loading Settings: ", e.ToString());
+                Application.Current.Shutdown();
+                return;
+            }
+
+
+        }
+        public static string AnimeEpisodesText
+        {
+            get
+            {
+                string dir = Get("AnimeEpisodesText");
+                if (string.IsNullOrEmpty(dir))
+                {
+                    dir = Path.Combine(ApplicationPath, "AnimeEpisodes.txt");
+                    Set("AnimeEpisodesText", dir);
+                }
+                return dir;
+            }
+            set
+            {
+                Set("AnimeEpisodesText", value);
             }
         }
 
@@ -29,39 +221,56 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string cult = appSettings["Culture"];
+                
+                string cult = Get("Culture");
                 if (!string.IsNullOrEmpty(cult))
                     return cult;
                 else
                 {
                     // default value
                     cult = "en";
-                    UpdateSetting("Culture", cult);
+                    Set("Culture", cult);
                     return cult;
                 }
             }
             set
             {
-                UpdateSetting("Culture", value);
+                Set("Culture", value);
             }
         }
 
+        public static string JMMServerInstance
+        {
+            get
+            {
+                string instance = Get("JMMServerInstance");
+                if (string.IsNullOrEmpty(instance))
+                {
+                    instance = "JMMServer";
+                    JMMServerInstance = instance;
+                }
+                return instance;
+            }
+            set
+            {
+                Set("JMMServerInstance",value);
+            }
+        }
 
         public static AvailableEpisodeType Episodes_Availability
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                
                 int val = 1;
-                if (int.TryParse(appSettings["Episodes_Availability"], out val))
+                if (int.TryParse(Get("Episodes_Availability"), out val))
                     return (AvailableEpisodeType)val;
                 else
                     return AvailableEpisodeType.All; // default value
             }
             set
             {
-                UpdateSetting("Episodes_Availability", ((int)value).ToString());
+                Set("Episodes_Availability", ((int)value).ToString());
             }
         }
 
@@ -69,41 +278,51 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                
                 int val = 1;
-                if (int.TryParse(appSettings["Episodes_WatchedStatus"], out val))
+                if (int.TryParse(Get("Episodes_WatchedStatus"), out val))
                     return (WatchedStatus)val;
                 else
                     return WatchedStatus.All; // default value
             }
             set
             {
-                UpdateSetting("Episodes_WatchedStatus", ((int)value).ToString());
+                Set("Episodes_WatchedStatus", ((int)value).ToString());
             }
         }
 
-        public static string BaseImagesPath
+        public static string ImagesPath
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                return appSettings["BaseImagesPath"];
+                
+                return Get("ImagesPath");
             }
             set
             {
-                UpdateSetting("BaseImagesPath", value);
+                Set("ImagesPath", value);
                 JMMServerVM.Instance.BaseImagePath = Utils.GetBaseImagesPath();
             }
         }
 
-
-
-        public static bool BaseImagesPathIsDefault
+        private static string BaseImagesPath
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string basePath = appSettings["BaseImagesPathIsDefault"];
+                
+                return Get("BaseImagesPath");
+            }
+            set
+            {
+                Set("BaseImagesPath", value);
+                JMMServerVM.Instance.BaseImagePath = Utils.GetBaseImagesPath();
+            }
+        }
+        private static bool BaseImagesPathIsDefault
+        {
+            get
+            {
+                string basePath = Get("BaseImagesPathIsDefault");
                 if (!string.IsNullOrEmpty(basePath))
                 {
                     bool val = true;
@@ -113,31 +332,27 @@ namespace JMMClient
                 else return true;
 
             }
-            set
-            {
-                UpdateSetting("BaseImagesPathIsDefault", value.ToString());
-                JMMServerVM.Instance.BaseImagePath = Utils.GetBaseImagesPath();
-            }
+
         }
 
         public static string JMMServer_Address
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                
 
-                string val = appSettings["JMMServer_Address"];
+                string val = Get("JMMServer_Address");
                 if (string.IsNullOrEmpty(val))
                 {
                     // default value
                     val = "127.0.0.1";
-                    UpdateSetting("JMMServer_Address", val);
+                    Set("JMMServer_Address", val);
                 }
                 return val;
             }
             set
             {
-                UpdateSetting("JMMServer_Address", value);
+                Set("JMMServer_Address", value);
             }
         }
 
@@ -145,20 +360,20 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                
 
-                string val = appSettings["JMMServer_Port"];
+                string val = Get("JMMServer_Port");
                 if (string.IsNullOrEmpty(val))
                 {
                     // default value
                     val = "8111";
-                    UpdateSetting("JMMServer_Port", val);
+                    Set("JMMServer_Port", val);
                 }
                 return val;
             }
             set
             {
-                UpdateSetting("JMMServer_Port", value);
+                Set("JMMServer_Port", value);
             }
         }
 
@@ -166,20 +381,20 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                
 
-                string val = appSettings["JMMServer_FilePort"];
+                string val = Get("JMMServer_FilePort");
                 if (string.IsNullOrEmpty(val))
                 {
                     // default value
                     val = "8112";
-                    UpdateSetting("JMMServer_FilePort", val);
+                    Set("JMMServer_FilePort", val);
                 }
                 return val;
             }
             set
             {
-                UpdateSetting("JMMServer_FilePort", value);
+                Set("JMMServer_FilePort", value);
             }
         }
 
@@ -187,8 +402,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["DisplayHeight_GroupList"];
+                
+                string val = Get("DisplayHeight_GroupList");
                 int ival = 0;
                 if (int.TryParse(val, out ival))
                 {
@@ -202,7 +417,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("DisplayHeight_GroupList", value.ToString());
+                Set("DisplayHeight_GroupList", value.ToString());
             }
         }
 
@@ -210,8 +425,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["PlaylistHeader_Image_Height"];
+                
+                string val = Get("PlaylistHeader_Image_Height");
                 int ival = 0;
                 if (int.TryParse(val, out ival))
                 {
@@ -225,7 +440,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("PlaylistHeader_Image_Height", value.ToString());
+                Set("PlaylistHeader_Image_Height", value.ToString());
             }
         }
 
@@ -233,8 +448,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["PlaylistItems_Image_Height"];
+                
+                string val = Get("PlaylistItems_Image_Height");
                 int ival = 0;
                 if (int.TryParse(val, out ival))
                 {
@@ -248,7 +463,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("PlaylistItems_Image_Height", value.ToString());
+                Set("PlaylistItems_Image_Height", value.ToString());
             }
         }
 
@@ -256,8 +471,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["PlaylistEpisode_Image_Width"];
+                
+                string val = Get("PlaylistEpisode_Image_Width");
                 int ival = 0;
                 if (int.TryParse(val, out ival))
                 {
@@ -271,7 +486,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("PlaylistEpisode_Image_Width", value.ToString());
+                Set("PlaylistEpisode_Image_Width", value.ToString());
             }
         }
 
@@ -279,8 +494,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["PlaylistItems_ShowDetails"];
+                
+                string val = Get("PlaylistItems_ShowDetails");
                 bool bval = true;
                 if (bool.TryParse(val, out bval))
                     return bval;
@@ -289,7 +504,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("PlaylistItems_ShowDetails", value.ToString());
+                Set("PlaylistItems_ShowDetails", value.ToString());
             }
         }
 
@@ -297,8 +512,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["DisplayHeight_SeriesInfo"];
+                
+                string val = Get("DisplayHeight_SeriesInfo");
                 int ival = 0;
                 if (int.TryParse(val, out ival))
                 {
@@ -312,7 +527,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("DisplayHeight_SeriesInfo", value.ToString());
+                Set("DisplayHeight_SeriesInfo", value.ToString());
             }
         }
 
@@ -320,8 +535,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["DisplayWidth_EpisodeImage"];
+                
+                string val = Get("DisplayWidth_EpisodeImage");
                 int ival = 0;
                 if (int.TryParse(val, out ival))
                 {
@@ -335,7 +550,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("DisplayWidth_EpisodeImage", value.ToString());
+                Set("DisplayWidth_EpisodeImage", value.ToString());
             }
         }
 
@@ -343,8 +558,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["DisplayStyle_GroupList"];
+                
+                string val = Get("DisplayStyle_GroupList");
                 int ival = 0;
                 if (int.TryParse(val, out ival))
                 {
@@ -358,15 +573,15 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("DisplayStyle_GroupList", value.ToString());
+                Set("DisplayStyle_GroupList", value.ToString());
             }
         }
         public static int DefaultPlayer_GroupList
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["DefaultPlayer_GroupList"];
+                
+                string val = Get("DefaultPlayer_GroupList");
                 int ival = 0;
                 if (int.TryParse(val, out ival))
                 {
@@ -377,7 +592,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("DefaultPlayer_GroupList", value.ToString());
+                Set("DefaultPlayer_GroupList", value.ToString());
             }
         }
 
@@ -385,8 +600,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["DisplayHeight_DashImage"];
+                
+                string val = Get("DisplayHeight_DashImage");
                 int ival = 0;
                 if (int.TryParse(val, out ival))
                 {
@@ -405,7 +620,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("DisplayHeight_DashImage", value.ToString());
+                Set("DisplayHeight_DashImage", value.ToString());
             }
         }
 
@@ -413,8 +628,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["EpisodeImageOverviewStyle"];
+                
+                string val = Get("EpisodeImageOverviewStyle");
                 int ival = 0;
                 if (int.TryParse(val, out ival))
                 {
@@ -428,7 +643,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("EpisodeImageOverviewStyle", value.ToString());
+                Set("EpisodeImageOverviewStyle", value.ToString());
             }
         }
 
@@ -436,8 +651,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["HideEpisodeImageWhenUnwatched"];
+                
+                string val = Get("HideEpisodeImageWhenUnwatched");
                 bool bval = true;
                 if (bool.TryParse(val, out bval))
                     return bval;
@@ -446,7 +661,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("HideEpisodeImageWhenUnwatched", value.ToString());
+                Set("HideEpisodeImageWhenUnwatched", value.ToString());
             }
         }
 
@@ -454,8 +669,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["HideEpisodeOverviewWhenUnwatched"];
+                
+                string val = Get("HideEpisodeOverviewWhenUnwatched");
                 bool bval = true;
                 if (bool.TryParse(val, out bval))
                     return bval;
@@ -464,7 +679,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("HideEpisodeOverviewWhenUnwatched", value.ToString());
+                Set("HideEpisodeOverviewWhenUnwatched", value.ToString());
             }
         }
 
@@ -472,8 +687,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["HideDownloadButtonWhenFilesExist"];
+                
+                string val = Get("HideDownloadButtonWhenFilesExist");
                 bool bval = true;
                 if (bool.TryParse(val, out bval))
                     return bval;
@@ -482,7 +697,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("HideDownloadButtonWhenFilesExist", value.ToString());
+                Set("HideDownloadButtonWhenFilesExist", value.ToString());
             }
         }
 
@@ -490,8 +705,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["DisplayRatingDialogOnCompletion"];
+                
+                string val = Get("DisplayRatingDialogOnCompletion");
                 bool bval = true;
                 if (bool.TryParse(val, out bval))
                     return bval;
@@ -500,7 +715,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("DisplayRatingDialogOnCompletion", value.ToString());
+                Set("DisplayRatingDialogOnCompletion", value.ToString());
             }
         }
 
@@ -508,8 +723,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["DisplaySeriesSimple"];
+                
+                string val = Get("DisplaySeriesSimple");
                 bool bval = true;
                 if (bool.TryParse(val, out bval))
                     return bval;
@@ -518,7 +733,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("DisplaySeriesSimple", value.ToString());
+                Set("DisplaySeriesSimple", value.ToString());
             }
         }
 
@@ -526,8 +741,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["UseFanartOnSeries"];
+                
+                string val = Get("UseFanartOnSeries");
                 bool bval = true;
                 if (bool.TryParse(val, out bval))
                     return bval;
@@ -536,7 +751,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("UseFanartOnSeries", value.ToString());
+                Set("UseFanartOnSeries", value.ToString());
             }
         }
 
@@ -544,8 +759,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["AlwaysUseAniDBPoster"];
+                
+                string val = Get("AlwaysUseAniDBPoster");
                 bool bval = true;
                 if (bool.TryParse(val, out bval))
                     return bval;
@@ -554,7 +769,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("AlwaysUseAniDBPoster", value.ToString());
+                Set("AlwaysUseAniDBPoster", value.ToString());
             }
         }
 
@@ -562,8 +777,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["UseFanartOnPlaylistHeader"];
+                
+                string val = Get("UseFanartOnPlaylistHeader");
                 bool bval = true;
                 if (bool.TryParse(val, out bval))
                     return bval;
@@ -572,7 +787,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("UseFanartOnPlaylistHeader", value.ToString());
+                Set("UseFanartOnPlaylistHeader", value.ToString());
             }
         }
 
@@ -580,8 +795,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["UseFanartOnPlaylistItems"];
+                
+                string val = Get("UseFanartOnPlaylistItems");
                 bool bval = true;
                 if (bool.TryParse(val, out bval))
                     return bval;
@@ -590,7 +805,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("UseFanartOnPlaylistItems", value.ToString());
+                Set("UseFanartOnPlaylistItems", value.ToString());
             }
         }
 
@@ -598,13 +813,13 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["SeriesWidgetsOrder"];
+                
+                string val = Get("SeriesWidgetsOrder");
                 if (string.IsNullOrEmpty(val))
                 {
                     // default value
                     val = "5;2;1;6;4;3;7";
-                    UpdateSetting("SeriesWidgetsOrder", val);
+                    Set("SeriesWidgetsOrder", val);
                 }
 
                 // make sure the setting contains all the widgets
@@ -625,7 +840,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("SeriesWidgetsOrder", value);
+                Set("SeriesWidgetsOrder", value);
             }
         }
 
@@ -633,13 +848,13 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["DashboardWidgetsOrder"];
+                
+                string val = Get("DashboardWidgetsOrder");
                 if (string.IsNullOrEmpty(val))
                 {
                     // default value
                     val = "1;2;3;4;5;7;8";
-                    UpdateSetting("DashboardWidgetsOrder", val);
+                    Set("DashboardWidgetsOrder", val);
                 }
 
                 // make sure the setting contains all the widgets
@@ -663,7 +878,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("DashboardWidgetsOrder", value);
+                Set("DashboardWidgetsOrder", value);
             }
         }
 
@@ -671,13 +886,13 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["MissingEpsExportColumns"];
+                
+                string val = Get("MissingEpsExportColumns");
                 if (string.IsNullOrEmpty(val))
                 {
                     // default value
                     val = "1;1;1;1;1;1;1;1";
-                    UpdateSetting("MissingEpsExportColumns", val);
+                    Set("MissingEpsExportColumns", val);
                 }
 
                 // make sure the setting contains all the columns
@@ -686,14 +901,14 @@ namespace JMMClient
                 if (columns.Length != 8)
                 {
                     val = "1;1;1;1;1;1;1;1";
-                    UpdateSetting("MissingEpsExportColumns", val);
+                    Set("MissingEpsExportColumns", val);
                 }
 
                 return val;
             }
             set
             {
-                UpdateSetting("MissingEpsExportColumns", value);
+                Set("MissingEpsExportColumns", value);
             }
         }
 
@@ -701,8 +916,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["SeriesTvDBLinksExpanded"];
+                
+                string val = Get("SeriesTvDBLinksExpanded");
                 bool bval = true;
                 if (bool.TryParse(val, out bval))
                     return bval;
@@ -711,7 +926,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("SeriesTvDBLinksExpanded", value.ToString());
+                Set("SeriesTvDBLinksExpanded", value.ToString());
             }
         }
 
@@ -720,8 +935,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["TitlesExpanded"];
+                
+                string val = Get("TitlesExpanded");
                 bool bval = true;
                 if (bool.TryParse(val, out bval))
                     return bval;
@@ -730,7 +945,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("TitlesExpanded", value.ToString());
+                Set("TitlesExpanded", value.ToString());
             }
         }
 
@@ -738,8 +953,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["TagsExpanded"];
+                
+                string val = Get("TagsExpanded");
                 bool bval = true;
                 if (bool.TryParse(val, out bval))
                     return bval;
@@ -748,7 +963,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("TagsExpanded", value.ToString());
+                Set("TagsExpanded", value.ToString());
             }
         }
 
@@ -756,8 +971,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["CustomTagsExpanded"];
+                
+                string val = Get("CustomTagsExpanded");
                 bool bval = true;
                 if (bool.TryParse(val, out bval))
                     return bval;
@@ -766,7 +981,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("CustomTagsExpanded", value.ToString());
+                Set("CustomTagsExpanded", value.ToString());
             }
         }
 
@@ -774,8 +989,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["WindowFullScreen"];
+                
+                string val = Get("WindowFullScreen");
                 bool bval = true;
                 if (bool.TryParse(val, out bval))
                     return bval;
@@ -784,7 +999,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("WindowFullScreen", value.ToString());
+                Set("WindowFullScreen", value.ToString());
             }
         }
 
@@ -792,8 +1007,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["WindowNormal"];
+                
+                string val = Get("WindowNormal");
                 bool bval = true;
                 if (bool.TryParse(val, out bval))
                     return bval;
@@ -802,7 +1017,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("WindowNormal", value.ToString());
+                Set("WindowNormal", value.ToString());
             }
         }
 
@@ -810,8 +1025,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["SeriesNextEpisodeExpanded"];
+                
+                string val = Get("SeriesNextEpisodeExpanded");
                 bool bval = true;
                 if (bool.TryParse(val, out bval))
                     return bval;
@@ -820,7 +1035,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("SeriesNextEpisodeExpanded", value.ToString());
+                Set("SeriesNextEpisodeExpanded", value.ToString());
             }
         }
 
@@ -828,8 +1043,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["SeriesGroupExpanded"];
+                
+                string val = Get("SeriesGroupExpanded");
                 bool bval = true;
                 if (bool.TryParse(val, out bval))
                     return bval;
@@ -838,7 +1053,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("SeriesGroupExpanded", value.ToString());
+                Set("SeriesGroupExpanded", value.ToString());
             }
         }
 
@@ -846,8 +1061,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["DashWatchNextEpExpanded"];
+                
+                string val = Get("DashWatchNextEpExpanded");
                 bool bval = true;
                 if (bool.TryParse(val, out bval))
                     return bval;
@@ -856,7 +1071,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("DashWatchNextEpExpanded", value.ToString());
+                Set("DashWatchNextEpExpanded", value.ToString());
             }
         }
 
@@ -864,8 +1079,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["DashRecentlyWatchEpsExpanded"];
+                
+                string val = Get("DashRecentlyWatchEpsExpanded");
                 bool bval = true;
                 if (bool.TryParse(val, out bval))
                     return bval;
@@ -874,7 +1089,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("DashRecentlyWatchEpsExpanded", value.ToString());
+                Set("DashRecentlyWatchEpsExpanded", value.ToString());
             }
         }
 
@@ -882,8 +1097,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["DashSeriesMissingEpisodesExpanded"];
+                
+                string val = Get("DashSeriesMissingEpisodesExpanded");
                 bool bval = true;
                 if (bool.TryParse(val, out bval))
                     return bval;
@@ -892,7 +1107,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("DashSeriesMissingEpisodesExpanded", value.ToString());
+                Set("DashSeriesMissingEpisodesExpanded", value.ToString());
             }
         }
 
@@ -900,8 +1115,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["DashMiniCalendarExpanded"];
+                
+                string val = Get("DashMiniCalendarExpanded");
                 bool bval = true;
                 if (bool.TryParse(val, out bval))
                     return bval;
@@ -910,7 +1125,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("DashMiniCalendarExpanded", value.ToString());
+                Set("DashMiniCalendarExpanded", value.ToString());
             }
         }
 
@@ -918,8 +1133,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["DashRecommendationsWatchExpanded"];
+                
+                string val = Get("DashRecommendationsWatchExpanded");
                 bool bval = true;
                 if (bool.TryParse(val, out bval))
                     return bval;
@@ -928,7 +1143,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("DashRecommendationsWatchExpanded", value.ToString());
+                Set("DashRecommendationsWatchExpanded", value.ToString());
             }
         }
 
@@ -936,8 +1151,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["DashRecommendationsDownloadExpanded"];
+                
+                string val = Get("DashRecommendationsDownloadExpanded");
                 bool bval = true;
                 if (bool.TryParse(val, out bval))
                     return bval;
@@ -946,7 +1161,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("DashRecommendationsDownloadExpanded", value.ToString());
+                Set("DashRecommendationsDownloadExpanded", value.ToString());
             }
         }
 
@@ -954,8 +1169,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["DashRecentAdditionsExpanded"];
+                
+                string val = Get("DashRecentAdditionsExpanded");
                 bool bval = true;
                 if (bool.TryParse(val, out bval))
                     return bval;
@@ -964,7 +1179,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("DashRecentAdditionsExpanded", value.ToString());
+                Set("DashRecentAdditionsExpanded", value.ToString());
             }
         }
 
@@ -972,8 +1187,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["DashRecentAdditionsType"];
+                
+                string val = Get("DashRecentAdditionsType");
                 int bval = 0;
                 if (int.TryParse(val, out bval))
                     return bval;
@@ -982,7 +1197,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("DashRecentAdditionsType", value.ToString());
+                Set("DashRecentAdditionsType", value.ToString());
             }
         }
 
@@ -990,8 +1205,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["DashTraktFriendsExpanded"];
+                
+                string val = Get("DashTraktFriendsExpanded");
                 bool bval = true;
                 if (bool.TryParse(val, out bval))
                     return bval;
@@ -1000,7 +1215,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("DashTraktFriendsExpanded", value.ToString());
+                Set("DashTraktFriendsExpanded", value.ToString());
             }
         }
 
@@ -1008,8 +1223,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["Dash_WatchNext_Items"];
+                
+                string val = Get("Dash_WatchNext_Items");
                 int ival = 0;
                 if (int.TryParse(val, out ival))
                 {
@@ -1023,7 +1238,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("Dash_WatchNext_Items", value.ToString());
+                Set("Dash_WatchNext_Items", value.ToString());
             }
         }
 
@@ -1031,8 +1246,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["Dash_RecentAdditions_Items"];
+                
+                string val = Get("Dash_RecentAdditions_Items");
                 int ival = 0;
                 if (int.TryParse(val, out ival))
                 {
@@ -1046,7 +1261,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("Dash_RecentAdditions_Items", value.ToString());
+                Set("Dash_RecentAdditions_Items", value.ToString());
             }
         }
 
@@ -1054,8 +1269,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["Dash_WatchNext_Height"];
+                
+                string val = Get("Dash_WatchNext_Height");
                 int ival = 0;
                 if (int.TryParse(val, out ival))
                 {
@@ -1074,7 +1289,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("Dash_WatchNext_Height", value.ToString());
+                Set("Dash_WatchNext_Height", value.ToString());
             }
         }
 
@@ -1082,8 +1297,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["Dash_RecentAdditions_Height"];
+                
+                string val = Get("Dash_RecentAdditions_Height");
                 int ival = 0;
                 if (int.TryParse(val, out ival))
                 {
@@ -1102,7 +1317,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("Dash_RecentAdditions_Height", value.ToString());
+                Set("Dash_RecentAdditions_Height", value.ToString());
             }
         }
 
@@ -1110,16 +1325,16 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                
                 int val = 1;
-                if (int.TryParse(appSettings["Dash_WatchNext_Style"], out val))
+                if (int.TryParse(Get("Dash_WatchNext_Style"), out val))
                     return (DashWatchNextStyle)val;
                 else
                     return DashWatchNextStyle.Detailed; // default value
             }
             set
             {
-                UpdateSetting("Dash_WatchNext_Style", ((int)value).ToString());
+                Set("Dash_WatchNext_Style", ((int)value).ToString());
             }
         }
 
@@ -1133,8 +1348,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["Dash_RecentlyWatchedEp_Items"];
+                
+                string val = Get("Dash_RecentlyWatchedEp_Items");
                 int ival = 0;
                 if (int.TryParse(val, out ival))
                 {
@@ -1148,7 +1363,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("Dash_RecentlyWatchedEp_Items", value.ToString());
+                Set("Dash_RecentlyWatchedEp_Items", value.ToString());
             }
         }
 
@@ -1156,8 +1371,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["Dash_RecentlyWatchedEp_Height"];
+                
+                string val = Get("Dash_RecentlyWatchedEp_Height");
                 int ival = 0;
                 if (int.TryParse(val, out ival))
                 {
@@ -1176,7 +1391,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("Dash_RecentlyWatchedEp_Height", value.ToString());
+                Set("Dash_RecentlyWatchedEp_Height", value.ToString());
             }
         }
 
@@ -1185,8 +1400,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["Dash_MissingEps_Items"];
+                
+                string val = Get("Dash_MissingEps_Items");
                 int ival = 0;
                 if (int.TryParse(val, out ival))
                 {
@@ -1200,7 +1415,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("Dash_MissingEps_Items", value.ToString());
+                Set("Dash_MissingEps_Items", value.ToString());
             }
         }
 
@@ -1208,8 +1423,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["Dash_MissingEps_Height"];
+                
+                string val = Get("Dash_MissingEps_Height");
                 int ival = 0;
                 if (int.TryParse(val, out ival))
                 {
@@ -1228,7 +1443,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("Dash_MissingEps_Height", value.ToString());
+                Set("Dash_MissingEps_Height", value.ToString());
             }
         }
 
@@ -1236,8 +1451,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["Dash_MiniCalendarDays"];
+                
+                string val = Get("Dash_MiniCalendarDays");
                 int ival = 0;
                 if (int.TryParse(val, out ival))
                 {
@@ -1251,7 +1466,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("Dash_MiniCalendarDays", value.ToString());
+                Set("Dash_MiniCalendarDays", value.ToString());
             }
         }
 
@@ -1259,8 +1474,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["Dash_MiniCalendarUpcomingOnly"];
+                
+                string val = Get("Dash_MiniCalendarUpcomingOnly");
                 bool bval = false;
                 if (bool.TryParse(val, out bval))
                     return bval;
@@ -1269,7 +1484,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("Dash_MiniCalendarUpcomingOnly", value.ToString());
+                Set("Dash_MiniCalendarUpcomingOnly", value.ToString());
             }
         }
 
@@ -1277,8 +1492,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["Dash_MiniCalendar_Height"];
+                
+                string val = Get("Dash_MiniCalendar_Height");
                 int ival = 0;
                 if (int.TryParse(val, out ival))
                 {
@@ -1297,7 +1512,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("Dash_MiniCalendar_Height", value.ToString());
+                Set("Dash_MiniCalendar_Height", value.ToString());
             }
         }
 
@@ -1305,8 +1520,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["Dash_RecWatch_Height"];
+                
+                string val = Get("Dash_RecWatch_Height");
                 int ival = 0;
                 if (int.TryParse(val, out ival))
                 {
@@ -1325,7 +1540,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("Dash_RecWatch_Height", value.ToString());
+                Set("Dash_RecWatch_Height", value.ToString());
             }
         }
 
@@ -1333,8 +1548,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["Dash_RecWatch_Items"];
+                
+                string val = Get("Dash_RecWatch_Items");
                 int ival = 0;
                 if (int.TryParse(val, out ival))
                 {
@@ -1348,7 +1563,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("Dash_RecWatch_Items", value.ToString());
+                Set("Dash_RecWatch_Items", value.ToString());
             }
         }
 
@@ -1356,8 +1571,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["Dash_RecDownload_Height"];
+                
+                string val = Get("Dash_RecDownload_Height");
                 int ival = 0;
                 if (int.TryParse(val, out ival))
                 {
@@ -1376,7 +1591,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("Dash_RecDownload_Height", value.ToString());
+                Set("Dash_RecDownload_Height", value.ToString());
             }
         }
 
@@ -1384,8 +1599,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["Dash_RecDownload_Items"];
+                
+                string val = Get("Dash_RecDownload_Items");
                 int ival = 0;
                 if (int.TryParse(val, out ival))
                 {
@@ -1399,7 +1614,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("Dash_RecDownload_Items", value.ToString());
+                Set("Dash_RecDownload_Items", value.ToString());
             }
         }
 
@@ -1407,8 +1622,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["Dash_TraktFriends_Height"];
+                
+                string val = Get("Dash_TraktFriends_Height");
                 int ival = 0;
                 if (int.TryParse(val, out ival))
                 {
@@ -1427,7 +1642,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("Dash_TraktFriends_Height", value.ToString());
+                Set("Dash_TraktFriends_Height", value.ToString());
             }
         }
 
@@ -1435,8 +1650,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["Dash_TraktFriends_Items"];
+                
+                string val = Get("Dash_TraktFriends_Items");
                 int ival = 0;
                 if (int.TryParse(val, out ival))
                 {
@@ -1450,7 +1665,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("Dash_TraktFriends_Items", value.ToString());
+                Set("Dash_TraktFriends_Items", value.ToString());
             }
         }
 
@@ -1458,8 +1673,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["Dash_TraktFriends_AnimeOnly"];
+                
+                string val = Get("Dash_TraktFriends_AnimeOnly");
                 bool bval = false;
                 if (bool.TryParse(val, out bval))
                     return bval;
@@ -1468,7 +1683,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("Dash_TraktFriends_AnimeOnly", value.ToString());
+                Set("Dash_TraktFriends_AnimeOnly", value.ToString());
             }
         }
 
@@ -1476,8 +1691,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["AutoStartLocalJMMServer"];
+                
+                string val = Get("AutoStartLocalJMMServer");
                 bool bval = true;
                 if (bool.TryParse(val, out bval))
                     return bval;
@@ -1486,7 +1701,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("AutoStartLocalJMMServer", value.ToString());
+                Set("AutoStartLocalJMMServer", value.ToString());
             }
         }
 
@@ -1494,8 +1709,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["SeriesGroup_Image_Height"];
+                
+                string val = Get("SeriesGroup_Image_Height");
                 int ival = 0;
                 if (int.TryParse(val, out ival))
                 {
@@ -1514,7 +1729,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("SeriesGroup_Image_Height", value.ToString());
+                Set("SeriesGroup_Image_Height", value.ToString());
             }
         }
 
@@ -1522,8 +1737,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["DefaultWindowState"];
+                
+                string val = Get("DefaultWindowState");
                 int ival = 0;
                 if (int.TryParse(val, out ival))
                 {
@@ -1542,7 +1757,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("DefaultWindowState", ((int)value).ToString());
+                Set("DefaultWindowState", ((int)value).ToString());
             }
         }
 
@@ -1551,8 +1766,8 @@ namespace JMMClient
             get
             {
                 Dictionary<int, string> mappings = new Dictionary<int, string>();
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string mpgs = appSettings["ImportFolderMappings"];
+                
+                string mpgs = Get("ImportFolderMappings");
 
                 if (string.IsNullOrEmpty(mpgs)) return mappings;
 
@@ -1571,8 +1786,8 @@ namespace JMMClient
 
         public static void SetImportFolderMapping(int folderID, string localPath)
         {
-            NameValueCollection appSettings = ConfigurationManager.AppSettings;
-            string mpgs = appSettings["ImportFolderMappings"];
+            
+            string mpgs = Get("ImportFolderMappings");
 
             string output = "";
 
@@ -1602,15 +1817,15 @@ namespace JMMClient
                 output += string.Format("{0}|{1}", folderID, localPath);
             }
 
-            UpdateSetting("ImportFolderMappings", output);
+            Set("ImportFolderMappings", output);
         }
 
         public static void RemoveImportFolderMapping(int folderID)
         {
             if (ImportFolderMappings.ContainsKey(folderID))
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string mpgs = appSettings["ImportFolderMappings"];
+                
+                string mpgs = Get("ImportFolderMappings");
 
                 string output = "";
 
@@ -1629,7 +1844,7 @@ namespace JMMClient
                     }
                 }
 
-                UpdateSetting("ImportFolderMappings", output);
+                Set("ImportFolderMappings", output);
             }
         }
 
@@ -1641,29 +1856,18 @@ namespace JMMClient
                 if (output.Length > 0) output += ";";
                 output += string.Format("{0}|{1}", kvp.Key, kvp.Value);
             }
-            UpdateSetting("ImportFolderMappings", output);
+            Set("ImportFolderMappings", output);
         }
 
-        public static void UpdateSetting(string key, string value)
-        {
-            System.Configuration.Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 
-            if (config.AppSettings.Settings.AllKeys.Contains(key))
-                config.AppSettings.Settings[key].Value = value;
-            else
-                config.AppSettings.Settings.Add(key, value);
-
-            config.Save(ConfigurationSaveMode.Modified);
-            ConfigurationManager.RefreshSection("appSettings");
-        }
 
         public static bool TorrentBlackhole
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                
 
-                string val = appSettings["TorrentBlackhole"];
+                string val = Get("TorrentBlackhole");
                 bool bval = false;
                 if (bool.TryParse(val, out bval))
                     return bval;
@@ -1672,7 +1876,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("TorrentBlackhole", value.ToString());
+                Set("TorrentBlackhole", value.ToString());
             }
         }
 
@@ -1680,20 +1884,20 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                
 
-                string val = appSettings["TorrentBlackholeFolder"];
+                string val = Get("TorrentBlackholeFolder");
                 if (string.IsNullOrEmpty(val))
                 {
                     // default value
                     val = "";
-                    UpdateSetting("TorrentBlackholeFolder", val);
+                    Set("TorrentBlackholeFolder", val);
                 }
                 return val;
             }
             set
             {
-                UpdateSetting("TorrentBlackholeFolder", value);
+                Set("TorrentBlackholeFolder", value);
             }
         }
 
@@ -1701,20 +1905,20 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                
 
-                string val = appSettings["UTorrentAddress"];
+                string val = Get("UTorrentAddress");
                 if (string.IsNullOrEmpty(val))
                 {
                     // default value
                     val = "";
-                    UpdateSetting("UTorrentAddress", val);
+                    Set("UTorrentAddress", val);
                 }
                 return val;
             }
             set
             {
-                UpdateSetting("UTorrentAddress", value);
+                Set("UTorrentAddress", value);
             }
         }
 
@@ -1722,20 +1926,20 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                
 
-                string val = appSettings["UTorrentPort"];
+                string val = Get("UTorrentPort");
                 if (string.IsNullOrEmpty(val))
                 {
                     // default value
                     val = "";
-                    UpdateSetting("UTorrentPort", val);
+                    Set("UTorrentPort", val);
                 }
                 return val;
             }
             set
             {
-                UpdateSetting("UTorrentPort", value);
+                Set("UTorrentPort", value);
             }
         }
 
@@ -1743,20 +1947,20 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                
 
-                string val = appSettings["UTorrentUsername"];
+                string val = Get("UTorrentUsername");
                 if (string.IsNullOrEmpty(val))
                 {
                     // default value
                     val = "";
-                    UpdateSetting("UTorrentUsername", val);
+                    Set("UTorrentUsername", val);
                 }
                 return val;
             }
             set
             {
-                UpdateSetting("UTorrentUsername", value);
+                Set("UTorrentUsername", value);
             }
         }
 
@@ -1764,20 +1968,20 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                
 
-                string val = appSettings["UTorrentPassword"];
+                string val = Get("UTorrentPassword");
                 if (string.IsNullOrEmpty(val))
                 {
                     // default value
                     val = "";
-                    UpdateSetting("UTorrentPassword", val);
+                    Set("UTorrentPassword", val);
                 }
                 return val;
             }
             set
             {
-                UpdateSetting("UTorrentPassword", value);
+                Set("UTorrentPassword", value);
             }
         }
 
@@ -1785,9 +1989,9 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                
 
-                string val = appSettings["UTorrentRefreshInterval"];
+                string val = Get("UTorrentRefreshInterval");
                 int ival = 0;
                 if (int.TryParse(val, out ival))
                 {
@@ -1806,7 +2010,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("UTorrentRefreshInterval", value.ToString());
+                Set("UTorrentRefreshInterval", value.ToString());
             }
         }
 
@@ -1814,8 +2018,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["UTorrentAutoRefresh"];
+                
+                string val = Get("UTorrentAutoRefresh");
                 bool bval = false;
                 if (bool.TryParse(val, out bval))
                     return bval;
@@ -1824,7 +2028,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("UTorrentAutoRefresh", value.ToString());
+                Set("UTorrentAutoRefresh", value.ToString());
             }
         }
 
@@ -1832,8 +2036,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["TorrentSearchPreferOwnGroups"];
+                
+                string val = Get("TorrentSearchPreferOwnGroups");
                 bool bval = false;
                 if (bool.TryParse(val, out bval))
                     return bval;
@@ -1842,7 +2046,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("TorrentSearchPreferOwnGroups", value.ToString());
+                Set("TorrentSearchPreferOwnGroups", value.ToString());
             }
         }
 
@@ -1850,13 +2054,13 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["TorrentSources"];
+                
+                string val = Get("TorrentSources");
                 if (string.IsNullOrEmpty(val))
                 {
                     // default value
                     val = "1;4;5";
-                    UpdateSetting("TorrentSources", val);
+                    Set("TorrentSources", val);
                 }
 
                 // make sure the selected sources are valid
@@ -1884,7 +2088,7 @@ namespace JMMClient
                 {
                     // default value
                     val = "1;4;5";
-                    UpdateSetting("TorrentSources", val);
+                    Set("TorrentSources", val);
                 }
 
 
@@ -1892,7 +2096,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("TorrentSources", value);
+                Set("TorrentSources", value);
             }
         }
 
@@ -1900,20 +2104,20 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                
 
-                string val = appSettings["BakaBTUsername"];
+                string val = Get("BakaBTUsername");
                 if (string.IsNullOrEmpty(val))
                 {
                     // default value
                     val = "";
-                    UpdateSetting("BakaBTUsername", val);
+                    Set("BakaBTUsername", val);
                 }
                 return val;
             }
             set
             {
-                UpdateSetting("BakaBTUsername", value);
+                Set("BakaBTUsername", value);
             }
         }
 
@@ -1921,20 +2125,20 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                
 
-                string val = appSettings["BakaBTPassword"];
+                string val = Get("BakaBTPassword");
                 if (string.IsNullOrEmpty(val))
                 {
                     // default value
                     val = "";
-                    UpdateSetting("BakaBTPassword", val);
+                    Set("BakaBTPassword", val);
                 }
                 return val;
             }
             set
             {
-                UpdateSetting("BakaBTPassword", value);
+                Set("BakaBTPassword", value);
             }
         }
 
@@ -1942,8 +2146,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["BakaBTOnlyUseForSeriesSearches"];
+                
+                string val = Get("BakaBTOnlyUseForSeriesSearches");
                 bool bval = false;
                 if (bool.TryParse(val, out bval))
                     return bval;
@@ -1952,7 +2156,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("BakaBTOnlyUseForSeriesSearches", value.ToString());
+                Set("BakaBTOnlyUseForSeriesSearches", value.ToString());
             }
         }
 
@@ -1960,20 +2164,20 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                
 
-                string val = appSettings["AnimeBytesUsername"];
+                string val = Get("AnimeBytesUsername");
                 if (string.IsNullOrEmpty(val))
                 {
                     // default value
                     val = "";
-                    UpdateSetting("AnimeBytesUsername", val);
+                    Set("AnimeBytesUsername", val);
                 }
                 return val;
             }
             set
             {
-                UpdateSetting("AnimeBytesUsername", value);
+                Set("AnimeBytesUsername", value);
             }
         }
 
@@ -1981,20 +2185,20 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                
 
-                string val = appSettings["AnimeBytesPassword"];
+                string val = Get("AnimeBytesPassword");
                 if (string.IsNullOrEmpty(val))
                 {
                     // default value
                     val = "";
-                    UpdateSetting("AnimeBytesPassword", val);
+                    Set("AnimeBytesPassword", val);
                 }
                 return val;
             }
             set
             {
-                UpdateSetting("AnimeBytesPassword", value);
+                Set("AnimeBytesPassword", value);
             }
         }
 
@@ -2002,8 +2206,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["AnimeBytesOnlyUseForSeriesSearches"];
+                
+                string val = Get("AnimeBytesOnlyUseForSeriesSearches");
                 bool bval = false;
                 if (bool.TryParse(val, out bval))
                     return bval;
@@ -2012,7 +2216,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("AnimeBytesOnlyUseForSeriesSearches", value.ToString());
+                Set("AnimeBytesOnlyUseForSeriesSearches", value.ToString());
             }
         }
 
@@ -2020,8 +2224,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["UseStreaming"];
+                
+                string val = Get("UseStreaming");
                 bool bval = true;
                 if (bool.TryParse(val, out bval))
                     return bval;
@@ -2029,7 +2233,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("UseStreaming", value.ToString());
+                Set("UseStreaming", value.ToString());
             }
         }
 
@@ -2038,20 +2242,20 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                
 
-                string val = appSettings["MPCFolder"];
+                string val = Get("MPCFolder");
                 if (string.IsNullOrEmpty(val))
                 {
                     // default value
                     val = "";
-                    UpdateSetting("MPCFolder", val);
+                    Set("MPCFolder", val);
                 }
                 return val;
             }
             set
             {
-                UpdateSetting("MPCFolder", value);
+                Set("MPCFolder", value);
             }
         }
 
@@ -2059,20 +2263,20 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                
 
-                string value = appSettings["MPCWebUIUrl"];
+                string value = Get("MPCWebUIUrl");
                 if (string.IsNullOrEmpty(value))
                 {
                     // default value
                     value = "localhost";
-                    UpdateSetting("MPCWebUIUrl", value);
+                    Set("MPCWebUIUrl", value);
                 }
                 return value;
             }
             set
             {
-                UpdateSetting("MPCWebUIUrl", value);
+                Set("MPCWebUIUrl", value);
             }
         }
 
@@ -2080,20 +2284,20 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                
 
-                string value = appSettings["MPCWebUIPort"];
+                string value = Get("MPCWebUIPort");
                 if(string.IsNullOrEmpty(value))
                 {
                     // default value
                     value = "13579";
-                    UpdateSetting("MPCWebUIPort", value);
+                    Set("MPCWebUIPort", value);
                 }
                 return value;
             }
             set
             {
-                UpdateSetting("MPCWebUIPort", value);
+                Set("MPCWebUIPort", value);
             }
         }
 
@@ -2101,20 +2305,20 @@ namespace JMMClient
 		{
 			get
 			{
-				NameValueCollection appSettings = ConfigurationManager.AppSettings;
+				
 
-                string val = appSettings["PotPlayerFolder"];
+                string val = Get("PotPlayerFolder");
                 if (string.IsNullOrEmpty(val))
                 {
                     // default value
                     val = "";
-                    UpdateSetting("PotPlayerFolder", val);
+                    Set("PotPlayerFolder", val);
                 }
                 return val;
             }
             set
             {
-                UpdateSetting("PotPlayerFolder", value);
+                Set("PotPlayerFolder", value);
             }
         }
 
@@ -2122,20 +2326,20 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                
 
-                string val = appSettings["VLCFolder"];
+                string val = Get("VLCFolder");
                 if (string.IsNullOrEmpty(val))
                 {
                     // default value
                     val = "";
-                    UpdateSetting("VLCFolder", val);
+                    Set("VLCFolder", val);
                 }
                 return val;
             }
             set
             {
-                UpdateSetting("VLCFolder", value);
+                Set("VLCFolder", value);
             }
         }
 
@@ -2143,9 +2347,9 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                
 
-                string val = appSettings["VideoWatchedPct"];
+                string val = Get("VideoWatchedPct");
                 int ival = 0;
                 if (int.TryParse(val, out ival))
                 {
@@ -2164,7 +2368,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("VideoWatchedPct", value.ToString());
+                Set("VideoWatchedPct", value.ToString());
             }
         }
 
@@ -2172,8 +2376,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["VideoAutoSetWatched"];
+                
+                string val = Get("VideoAutoSetWatched");
                 bool bval = false;
                 if (bool.TryParse(val, out bval))
                     return bval;
@@ -2182,7 +2386,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("VideoAutoSetWatched", value.ToString());
+                Set("VideoAutoSetWatched", value.ToString());
             }
         }
 
@@ -2190,8 +2394,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string stringValue = appSettings["MPCIniIntegration"];
+                
+                string stringValue = Get("MPCIniIntegration");
                 bool booleanValue = false;
                 bool.TryParse(stringValue, out booleanValue);
                     
@@ -2199,7 +2403,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("MPCIniIntegration", value.ToString());
+                Set("MPCIniIntegration", value.ToString());
             }
         }
 
@@ -2207,8 +2411,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string stringValue = appSettings["MPCWebUiIntegration"];
+                
+                string stringValue = Get("MPCWebUiIntegration");
                 bool booleanValue = false;
                 bool.TryParse(stringValue, out booleanValue);
 
@@ -2216,7 +2420,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("MPCWebUiIntegration", value.ToString());
+                Set("MPCWebUiIntegration", value.ToString());
             }
         }
 
@@ -2224,8 +2428,8 @@ namespace JMMClient
 		{
 			get
 			{
-				NameValueCollection appSettings = ConfigurationManager.AppSettings;
-				string val = appSettings["MultipleFilesOnlyFinished"];
+				
+				string val = Get("MultipleFilesOnlyFinished");
 				bool bval = true;
 				if (bool.TryParse(val, out bval))
 					return bval;
@@ -2234,7 +2438,7 @@ namespace JMMClient
 			}
 			set
 			{
-				UpdateSetting("MultipleFilesOnlyFinished", value.ToString());
+				Set("MultipleFilesOnlyFinished", value.ToString());
 			}
 		}
 
@@ -2242,9 +2446,9 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                
 
-                string val = appSettings["FileSummaryTypeDefault"];
+                string val = Get("FileSummaryTypeDefault");
                 int ival = 0;
                 if (int.TryParse(val, out ival))
                 {
@@ -2263,7 +2467,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("FileSummaryTypeDefault", value.ToString());
+                Set("FileSummaryTypeDefault", value.ToString());
             }
         }
 
@@ -2271,9 +2475,9 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                
 
-                string val = appSettings["FileSummaryQualSortDefault"];
+                string val = Get("FileSummaryQualSortDefault");
                 int ival = 0;
                 if (int.TryParse(val, out ival))
                 {
@@ -2292,7 +2496,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("FileSummaryQualSortDefault", value.ToString());
+                Set("FileSummaryQualSortDefault", value.ToString());
             }
         }
 
@@ -2300,9 +2504,9 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                
 
-                string val = appSettings["AutoFileFirst"];
+                string val = Get("AutoFileFirst");
                 int ival = 0;
                 if (int.TryParse(val, out ival))
                 {
@@ -2321,7 +2525,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("AutoFileFirst", value.ToString());
+                Set("AutoFileFirst", value.ToString());
             }
         }
 
@@ -2329,9 +2533,9 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                
 
-                string val = appSettings["AutoFileSubsequent"];
+                string val = Get("AutoFileSubsequent");
                 int ival = 0;
                 if (int.TryParse(val, out ival))
                 {
@@ -2350,7 +2554,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("AutoFileSubsequent", value.ToString());
+                Set("AutoFileSubsequent", value.ToString());
             }
         }
 
@@ -2358,8 +2562,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["AutoFileSingleEpisode"];
+                
+                string val = Get("AutoFileSingleEpisode");
                 bool bval = true;
                 if (bool.TryParse(val, out bval))
                     return bval;
@@ -2368,7 +2572,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("AutoFileSingleEpisode", value.ToString());
+                Set("AutoFileSingleEpisode", value.ToString());
             }
         }
 
@@ -2376,8 +2580,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["DownloadsRecItems"];
+                
+                string val = Get("DownloadsRecItems");
                 int ival = 0;
                 if (int.TryParse(val, out ival))
                 {
@@ -2391,7 +2595,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("DownloadsRecItems", value.ToString());
+                Set("DownloadsRecItems", value.ToString());
             }
         }
 
@@ -2399,20 +2603,20 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                
 
-                string val = appSettings["LastLoginUsername"];
+                string val = Get("LastLoginUsername");
                 if (string.IsNullOrEmpty(val))
                 {
                     // default value
                     val = "";
-                    UpdateSetting("LastLoginUsername", val);
+                    Set("LastLoginUsername", val);
                 }
                 return val;
             }
             set
             {
-                UpdateSetting("LastLoginUsername", value);
+                Set("LastLoginUsername", value);
             }
         }
 
@@ -2420,16 +2624,16 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                
                 int val = 1;
-                if (int.TryParse(appSettings["DashboardType"], out val))
+                if (int.TryParse(Get("DashboardType"), out val))
                     return (DashboardType)val;
                 else
                     return DashboardType.Normal; // default value
             }
             set
             {
-                UpdateSetting("DashboardType", ((int)value).ToString());
+                Set("DashboardType", ((int)value).ToString());
             }
         }
 
@@ -2437,8 +2641,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["DashMetro_WatchNext_Items"];
+                
+                string val = Get("DashMetro_WatchNext_Items");
                 int ival = 0;
                 if (int.TryParse(val, out ival))
                 {
@@ -2452,7 +2656,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("DashMetro_WatchNext_Items", value.ToString());
+                Set("DashMetro_WatchNext_Items", value.ToString());
             }
         }
 
@@ -2460,8 +2664,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["DashMetro_RandomSeries_Items"];
+                
+                string val = Get("DashMetro_RandomSeries_Items");
                 int ival = 0;
                 if (int.TryParse(val, out ival))
                 {
@@ -2475,7 +2679,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("DashMetro_RandomSeries_Items", value.ToString());
+                Set("DashMetro_RandomSeries_Items", value.ToString());
             }
         }
 
@@ -2483,8 +2687,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["DashMetro_TraktActivity_Items"];
+                
+                string val = Get("DashMetro_TraktActivity_Items");
                 int ival = 0;
                 if (int.TryParse(val, out ival))
                 {
@@ -2498,7 +2702,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("DashMetro_TraktActivity_Items", value.ToString());
+                Set("DashMetro_TraktActivity_Items", value.ToString());
             }
         }
 
@@ -2506,8 +2710,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["DashMetro_NewEpisodes_Items"];
+                
+                string val = Get("DashMetro_NewEpisodes_Items");
                 int ival = 0;
                 if (int.TryParse(val, out ival))
                 {
@@ -2521,7 +2725,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("DashMetro_NewEpisodes_Items", value.ToString());
+                Set("DashMetro_NewEpisodes_Items", value.ToString());
             }
         }
 
@@ -2529,8 +2733,8 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["DashMetro_Image_Height"];
+                
+                string val = Get("DashMetro_Image_Height");
                 int ival = 0;
                 if (int.TryParse(val, out ival))
                 {
@@ -2549,7 +2753,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("DashMetro_Image_Height", value.ToString());
+                Set("DashMetro_Image_Height", value.ToString());
             }
         }
 
@@ -2557,16 +2761,16 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
+                
                 int val = 1;
-                if (int.TryParse(appSettings["DashMetroImageType"], out val))
+                if (int.TryParse(Get("DashMetroImageType"), out val))
                     return (DashboardMetroImageType)val;
                 else
                     return DashboardMetroImageType.Fanart; // default value
             }
             set
             {
-                UpdateSetting("DashMetroImageType", ((int)value).ToString());
+                Set("DashMetroImageType", ((int)value).ToString());
             }
         }
 
@@ -2574,13 +2778,13 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["DashboardMetroSectionOrder"];
+                
+                string val = Get("DashboardMetroSectionOrder");
                 if (string.IsNullOrEmpty(val))
                 {
                     // default value
                     val = "2:true;3:true;4:true";
-                    UpdateSetting("DashboardMetroSectionOrder", val);
+                    Set("DashboardMetroSectionOrder", val);
                 }
 
                 // make sure the setting contains all the widgets
@@ -2611,7 +2815,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("DashboardMetroSectionOrder", value);
+                Set("DashboardMetroSectionOrder", value);
             }
         }
 
@@ -2619,13 +2823,13 @@ namespace JMMClient
         {
             get
             {
-                NameValueCollection appSettings = ConfigurationManager.AppSettings;
-                string val = appSettings["DashboardMetroSectionVisibility"];
+                
+                string val = Get("DashboardMetroSectionVisibility");
                 if (string.IsNullOrEmpty(val))
                 {
                     // default value
                     val = "1;1;1";
-                    UpdateSetting("DashboardMetroSectionVisibility", val);
+                    Set("DashboardMetroSectionVisibility", val);
                 }
 
                 // make sure the setting contains all the widgets
@@ -2649,7 +2853,7 @@ namespace JMMClient
             }
             set
             {
-                UpdateSetting("DashboardMetroSectionVisibility", value);
+                Set("DashboardMetroSectionVisibility", value);
             }
         }
 

@@ -11,6 +11,7 @@ using System.Net;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
+using System.Security.Principal;
 using System.Text;
 using System.Threading;
 using System.Windows;
@@ -43,19 +44,17 @@ namespace JMMClient
 
         private static object assemblyLock = new object();
 
-        private static string appPath = "";
-        public static string GetAppPath()
-        {
-            if (string.IsNullOrEmpty(appPath))
-                appPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-
-            return appPath;
-        }
 
         public static IEnumerable<ScrollViewer> GetScrollViewers(DependencyObject control)
         {
             for (DependencyObject element = control; element != null; element = System.Windows.Media.VisualTreeHelper.GetParent(element))
                 if (element is ScrollViewer) yield return element as ScrollViewer;
+        }
+        public static bool IsAdministrator()
+        {
+            var identity = WindowsIdentity.GetCurrent();
+            var principal = new WindowsPrincipal(identity);
+            return principal.IsInRole(WindowsBuiltInRole.Administrator);
         }
 
         /// <summary>
@@ -436,32 +435,31 @@ namespace JMMClient
         {
             lock (assemblyLock)
             {
-                bool overrideFolder = false;
-                if (!AppSettings.BaseImagesPathIsDefault)
-                {
-                    if (!string.IsNullOrEmpty(AppSettings.BaseImagesPath))
-                    {
-                        if (Directory.Exists(AppSettings.BaseImagesPath)) overrideFolder = true;
-                    }
-                }
-
-                string filePath = "";
-                if (overrideFolder)
-                    filePath = AppSettings.BaseImagesPath;
-                else
-                {
-                    filePath = Path.Combine(Utils.GetAppPath(), "Images");
-                }
-
-
-                if (!Directory.Exists(filePath))
-                    Directory.CreateDirectory(filePath);
-
-                return filePath;
+                if (Directory.Exists(AppSettings.ImagesPath))
+                    return AppSettings.ImagesPath;
+                string serverpath = AppSettings.JMMServerImagePath;
+                if (Directory.Exists(serverpath))
+                    return serverpath;
+                serverpath = AppSettings.DefaultImagePath;
+                if (!Directory.Exists(serverpath))
+                    Directory.CreateDirectory(serverpath);
+                return serverpath;
             }
 
         }
+        public static void GrantAccess(string fullPath)
+        {
+            //C# version do not work, do not inherit permissions to childs.
+            Process proc = new Process();
 
+            proc.StartInfo.FileName = "icacls";
+            proc.StartInfo.Arguments = "\"" + fullPath + "\" /grant *S-1-1-0:(OI)(CI)F /T";
+            proc.StartInfo.Verb = "runas";
+            proc.StartInfo.CreateNoWindow = true;
+            proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            proc.StartInfo.UseShellExecute = true;
+            proc.Start();
+        }
         public static string GetBaseAniDBImagesPath()
         {
             string filePath = Path.Combine(GetBaseImagesPath(), "AniDB");

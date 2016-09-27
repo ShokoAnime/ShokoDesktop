@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using Pri.LongPath;
 
 namespace JMMClient.UserControls
 {
@@ -24,17 +25,26 @@ namespace JMMClient.UserControls
 
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
-            cboImagesPath.Items.Clear();
-            cboImagesPath.Items.Add(Properties.Resources.ImportSettings_Default);
-            cboImagesPath.Items.Add(Properties.Resources.ImportSettings_Custom);
-            cboImagesPath.SelectionChanged += new SelectionChangedEventHandler(cboImagesPath_SelectionChanged);
             btnChooseImagesFolder.Click += new RoutedEventHandler(btnChooseImagesFolder_Click);
+            btnSetDefaultFolder.Click += BtnSetDefaultFolder_Click;
+            btnSetJMMServer.Click += BtnSetJMMServer_Click;
 
-            if (AppSettings.BaseImagesPathIsDefault)
-                cboImagesPath.SelectedIndex = 0;
-            else
-                cboImagesPath.SelectedIndex = 1;
+        }
 
+        private void BtnSetJMMServer_Click(object sender, RoutedEventArgs e)
+        {
+            string path = AppSettings.JMMServerImagePath;
+            if (string.IsNullOrEmpty(path) || !Directory.Exists(path))
+                return;
+            AppSettings.ImagesPath = path;
+        }
+
+        private void BtnSetDefaultFolder_Click(object sender, RoutedEventArgs e)
+        {
+            string path = AppSettings.DefaultImagePath;
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
+            AppSettings.ImagesPath = path;
         }
 
         void btnChooseImagesFolder_Click(object sender, RoutedEventArgs e)
@@ -42,24 +52,11 @@ namespace JMMClient.UserControls
             System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                AppSettings.BaseImagesPath = dialog.SelectedPath;
+                AppSettings.ImagesPath = dialog.SelectedPath;
             }
         }
 
-        void cboImagesPath_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (cboImagesPath.SelectedIndex == 0)
-            {
-                AppSettings.BaseImagesPathIsDefault = true;
-                btnChooseImagesFolder.Visibility = Visibility.Hidden;
-            }
-            else
-            {
-                AppSettings.BaseImagesPathIsDefault = false;
-                btnChooseImagesFolder.Visibility = Visibility.Visible;
-            }
 
-        }
 
         void btnSave_Click(object sender, RoutedEventArgs e)
         {

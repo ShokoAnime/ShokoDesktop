@@ -27,6 +27,7 @@ namespace JMMClient
 			Thread.CurrentThread.CurrentUICulture = ci;
 
 			//string hello = ResGlobal.GetString("Favorite");*/
+            AppSettings.LoadSettings();
 
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             Application.Current.DispatcherUnhandledException += Current_DispatcherUnhandledException;
