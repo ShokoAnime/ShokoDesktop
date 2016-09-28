@@ -358,7 +358,7 @@ namespace JMMClient
             if (SearchResultCount > 100) return false;
 
             bool passed = false;
-           
+
             passed = GroupSearchFilterHelper.EvaluateSeriesTextSearch(ser, SeriesSearchTextBox.Text.Replace("'", "`"), SerSearchType);
 
             if (passed)
@@ -575,7 +575,7 @@ namespace JMMClient
                     if (wrapper == null)
                     {
                         CurrentWrapperList.Clear();
-                        foreach (GroupFilterVM grpFilter in AllGroupFiltersDictionary.Values.Where(a=>!a.GroupFilterParentId.HasValue).OrderBy(a=>a.FilterName))
+                        foreach (GroupFilterVM grpFilter in AllGroupFiltersDictionary.Values.Where(a => !a.GroupFilterParentId.HasValue).OrderBy(a => a.FilterName))
                         {
                             CurrentWrapperList.Add(grpFilter);
                         }
@@ -665,7 +665,7 @@ namespace JMMClient
             AllAnimeDictionary.Clear();
             AllGroupFiltersDictionary.Clear();
             ViewSeriesSearch.Refresh();
-            LastChange=DateTime.MinValue;
+            LastChange = DateTime.MinValue;
             OnRefreshed();
         }
 
@@ -680,7 +680,7 @@ namespace JMMClient
             {
                 System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()
                 {
-                    UpdateAll();                    
+                    UpdateAll();
                     OnRefreshed();
 
                 });
@@ -709,10 +709,10 @@ namespace JMMClient
                 {
                     object p = CurrentWrapper;
 
-                  
+
                     GroupFilterVM vms = AllGroupFiltersDictionary.Values.Where(a => a.GroupFilterID == 0).FirstOrDefault();
                     AllGroupFiltersDictionary.Clear();
-                    if (vms!=null)
+                    if (vms != null)
                         AllGroupFiltersDictionary.Add(0, vms);
                     foreach (JMMServerBinary.Contract_GroupFilter gf_con in gfRaw.OrderBy(a => a.GroupFilterName))
                     {
@@ -720,7 +720,7 @@ namespace JMMClient
                         gf.AllowEditing = !gf.IsLocked;
                         AllGroupFiltersDictionary[gf.GroupFilterID.Value] = gf;
                     }
-                  
+
                     //Restore previous condition
                     if (p is GroupFilterVM)
                     {
@@ -762,7 +762,7 @@ namespace JMMClient
         {
             try
             {
-                Contract_MainChanges changes= JMMServerVM.Instance.clientBinaryHTTP.GetAllChanges(LastChange, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+                Contract_MainChanges changes = JMMServerVM.Instance.clientBinaryHTTP.GetAllChanges(LastChange, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
                 AllAnimeDetailedDictionary = null;
                 //Update Anime Series
                 foreach (int sr in changes.Series.RemovedItems)
@@ -833,7 +833,7 @@ namespace JMMClient
                     }
                     else
                     {
-                        GroupFilterVM v=new GroupFilterVM(gf);
+                        GroupFilterVM v = new GroupFilterVM(gf);
                         AllGroupFiltersDictionary[gf.GroupFilterID.Value] = v;
                     }
                 }
@@ -851,6 +851,41 @@ namespace JMMClient
                 Utils.ShowErrorMessage(ex);
             }
         }
+
+        public void UpdateAnimeGroups()
+        {
+            Contract_MainChanges changes = JMMServerVM.Instance.clientBinaryHTTP.GetAllChanges(LastChange,
+                JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+
+            //Update Anime Groups
+            foreach (int gr in changes.Groups.RemovedItems)
+            {
+                if (AllGroupsDictionary.ContainsKey(gr))
+                {
+                    AnimeGroupVM vm = AllGroupsDictionary[gr];
+                    AllGroupsDictionary.Remove(gr);
+                }
+            }
+            foreach (Contract_AnimeGroup g in changes.Groups.ChangedItems)
+            {
+                AnimeGroupVM v;
+                if (AllGroupsDictionary.ContainsKey(g.AnimeGroupID))
+                {
+                    v = AllGroupsDictionary[g.AnimeGroupID];
+                    v.Populate(g);
+                }
+                else
+                {
+                    v = new AnimeGroupVM(g);
+                    AllGroupsDictionary[g.AnimeGroupID] = v;
+                }
+            }
+            foreach (AnimeGroupVM v in AllGroupsDictionary.Values)
+            {
+                v.PopulateSerieInfo(AllGroupsDictionary, AllSeriesDictionary);
+            }
+        }
+
         public void InitGroupsSeriesData()
         {
             LastChange = DateTime.MinValue;
@@ -875,7 +910,7 @@ namespace JMMClient
         {
             try
             {
-                return MainListHelperVM.Instance.AllSeriesDictionary.Values.FirstOrDefault(a => a.AniDB_ID == animeID);                
+                return MainListHelperVM.Instance.AllSeriesDictionary.Values.FirstOrDefault(a => a.AniDB_ID == animeID);
             }
             catch (Exception ex)
             {
@@ -907,10 +942,10 @@ namespace JMMClient
             try
             {
                 // get the episodes that this file applies to
-                List<JMMServerBinary.Contract_AnimeEpisode> eps = JMMServerVM.Instance.clientBinaryHTTP.GetEpisodesForFile(videoLocalID,JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+                List<JMMServerBinary.Contract_AnimeEpisode> eps = JMMServerVM.Instance.clientBinaryHTTP.GetEpisodesForFile(videoLocalID, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
                 foreach (JMMServerBinary.Contract_AnimeEpisode epcontract in eps)
                 {
-                    AnimeSeriesVM thisSeries=AllSeriesDictionary.SureGet(epcontract.AnimeSeriesID);
+                    AnimeSeriesVM thisSeries = AllSeriesDictionary.SureGet(epcontract.AnimeSeriesID);
                     if (thisSeries != null)
                         return thisSeries;
                 }
@@ -1096,9 +1131,9 @@ namespace JMMClient
                     ser.Populate(serContract);
                     // TODO update the episode list
                 }
-                List<JMMServerBinary.Contract_AnimeGroup> grps = JMMServerVM.Instance.clientBinaryHTTP.GetAllGroupsAboveSeries(ep.AnimeSeriesID,JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+                List<JMMServerBinary.Contract_AnimeGroup> grps = JMMServerVM.Instance.clientBinaryHTTP.GetAllGroupsAboveSeries(ep.AnimeSeriesID, JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
                 foreach (JMMServerBinary.Contract_AnimeGroup grpContract in grps)
-                { 
+                {
                     AnimeGroupVM agrp = AllGroupsDictionary.SureGet(grpContract.AnimeGroupID);
                     agrp?.Populate(grpContract);
                     agrp?.PopulateSerieInfo(AllGroupsDictionary, AllSeriesDictionary);
