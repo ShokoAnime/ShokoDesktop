@@ -426,7 +426,7 @@ namespace JMMClient
             try
             {
                 // Check for group name
-                if (Hierarchy.Count == 0)
+                if (Heirarchy.Count == 0)
                 {
                     AnimeGroupVM grp = MainListHelperVM.Instance.AllGroupsDictionary[contract.AnimeGroupID];
                     if (grp != null)
@@ -440,11 +440,11 @@ namespace JMMClient
                 }
                 else
                 {
-                    GroupName = Hierarchy.FirstOrDefault(g => g != null).GroupName;
+                    GroupName = Heirarchy.FirstOrDefault(g => g != null).GroupName;
                 }
 
                 // If failed to set revert to using series name
-                if (string.IsNullOrEmpty(GroupName))
+                if (string.IsNullOrEmpty(GroupName.Trim()))
                 {
                     GroupName = SeriesName;
                 }
@@ -1035,7 +1035,7 @@ namespace JMMClient
             return eps;
         }
 
-        public List<AnimeGroupVM> Hierarchy
+        public List<AnimeGroupVM> Heirarchy
         {
             get
             {
