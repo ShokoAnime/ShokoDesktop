@@ -4480,9 +4480,6 @@ In tegenstelling tot de andere ondersteunde mediaspelers is MPV het snelste als 
   <data name="TvDB_UpdateImages" xml:space="preserve">
     <value>Updaten Lokale Images</value>
   </data>
-  <data name="TvDB_UpdateImages_Desc" xml:space="preserve">
-    <value>Dit zal alle lokale beelden bij te werken vanuit elke bron, met uitzondering van AniDB. Als je dezelfde map voor Desktop en Server te gebruiken, is het niet aan te raden om dit uit te voeren.!</value>
-  </data>
   <data name="ImportSettings_Server" xml:space="preserve">
     <value>Lokale Server</value>
   </data>
@@ -4521,5 +4518,8 @@ In tegenstelling tot de andere ondersteunde mediaspelers is MPV het snelste als 
   </data>
   <data name="ImportFolder_Delete" xml:space="preserve">
     <value>Weet u zeker dat u wilt verwijderen van de map importeren: {0}? Alle bestanden in deze map wordt ook verwijderd uit de database.</value>
+  </data>
+  <data name="TvDB_UpdateImages_Desc" xml:space="preserve">
+    <value>Hiermee worden alle lokale beelden van elke bron, met uitzondering van de AniDB bijgewerkt. Voer deze opdracht niet als Server en bureaublad dezelfde map gebruikt zijn als al uw afbeeldingen wordt verwijderd.</value>
   </data>
 </root>

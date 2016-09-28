@@ -4480,9 +4480,6 @@
   <data name="TvDB_UpdateImages" xml:space="preserve">
     <value>Обновление локальных изображений</value>
   </data>
-  <data name="TvDB_UpdateImages_Desc" xml:space="preserve">
-    <value>Это позволит обновить все локальные изображения из любого источника, исключая AniDB. Если вы используете ту же папку для настольных компьютеров и серверов, не рекомендуется запускать это.!</value>
-  </data>
   <data name="ImportSettings_Server" xml:space="preserve">
     <value>Локальный сервер</value>
   </data>
@@ -4521,5 +4518,8 @@
   </data>
   <data name="ImportFolder_Delete" xml:space="preserve">
     <value>Вы действительно хотите удалить папку импорта: {0}? Все файлы в этой папке будут также удалены из базы данных.</value>
+  </data>
+  <data name="TvDB_UpdateImages_Desc" xml:space="preserve">
+    <value>Это обновит все местные изображения из всех источников, за исключением AniDB. Не выполняйте эту команду, если сервер и Desktop используют папку как он удалит все ваши изображения.</value>
   </data>
 </root>

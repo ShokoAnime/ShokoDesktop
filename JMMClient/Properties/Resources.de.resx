@@ -4480,9 +4480,6 @@ Im Gegensatz zu den anderen unterstützten Media-Playern ist MPV der schnellste 
   <data name="TvDB_UpdateImages" xml:space="preserve">
     <value>Aktualisieren Lokale Bilder</value>
   </data>
-  <data name="TvDB_UpdateImages_Desc" xml:space="preserve">
-    <value>Dadurch werden alle lokalen Bilder aus jeder Quelle zu aktualisieren, ohne AniDB. Wenn Sie den gleichen Ordner für Desktop- und Server verwenden, ist es das nicht empfohlen auszuführen.!</value>
-  </data>
   <data name="ImportSettings_Server" xml:space="preserve">
     <value>Lokaler Server</value>
   </data>
@@ -4521,5 +4518,8 @@ Im Gegensatz zu den anderen unterstützten Media-Playern ist MPV der schnellste 
   </data>
   <data name="ImportFolder_Delete" xml:space="preserve">
     <value>Sind Sie sicher, dass Sie den Import-Ordner löschen: {0}? Alle Dateien in diesem Ordner werden auch aus der Datenbank entfernt werden.</value>
+  </data>
+  <data name="TvDB_UpdateImages_Desc" xml:space="preserve">
+    <value>Dadurch werden alle lokalen Bilder aus jeder Quelle, ohne AniDB aktualisiert. Dieser Befehl nicht ausgeführt, wenn Server und Desktop im selben Ordner benutzen, da es alle Ihre Bilder gelöscht werden.</value>
   </data>
 </root>

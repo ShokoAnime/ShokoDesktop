@@ -11685,7 +11685,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This will update all local images from every source, excluding AniDB. If you use the same folder for Desktop and Server, it is not recommended to run this..
+        ///   Looks up a localized string similar to This will update all local images from every source, excluding AniDB. Do not run this command if Server and Desktop are using the same folder as it will delete all your images..
         /// </summary>
         public static string TvDB_UpdateImages_Desc {
             get {

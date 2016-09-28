@@ -4484,7 +4484,7 @@ Unlike the other supported media players, MPV is the fastest when it comes to st
     <value>Update Local Images</value>
   </data>
   <data name="TvDB_UpdateImages_Desc" xml:space="preserve">
-    <value>This will update all local images from every source, excluding AniDB. If you use the same folder for Desktop and Server, it is not recommended to run this.!</value>
+    <value>This will update all local images from every source, excluding AniDB. Do not run this command if Server and Desktop are using the same folder as it will delete all your images.</value>
   </data>
   <data name="ImportSettings_Server" xml:space="preserve">
     <value>Local Server</value>

@@ -4480,9 +4480,6 @@ Ao contrário de outros players de mídia suportados, MPV é o mais rápido quan
   <data name="TvDB_UpdateImages" xml:space="preserve">
     <value>Atualizar as imagens do local</value>
   </data>
-  <data name="TvDB_UpdateImages_Desc" xml:space="preserve">
-    <value>Isto irá atualizar todas as imagens locais de todas as fontes, excluindo AniDB. Se você usar a mesma pasta para desktop e servidor, não é recomendado para executar este.!</value>
-  </data>
   <data name="ImportSettings_Server" xml:space="preserve">
     <value>Servidor local</value>
   </data>
@@ -4521,5 +4518,8 @@ Ao contrário de outros players de mídia suportados, MPV é o mais rápido quan
   </data>
   <data name="ImportFolder_Delete" xml:space="preserve">
     <value>Tem certeza que deseja excluir a pasta importação: {0}? Todos os arquivos nessa pasta também serão removidos do banco de dados.</value>
+  </data>
+  <data name="TvDB_UpdateImages_Desc" xml:space="preserve">
+    <value>Isto irá atualizar todas as imagens de locais de cada fonte, excluindo AniDB. Não execute este comando se o servidor e Desktop estão usando a mesma pasta como ele excluirá todas as suas imagens.</value>
   </data>
 </root>

@@ -4480,9 +4480,6 @@ A diferencia de los otros jugadores de medios compatibles, la MPV es el más rá
   <data name="TvDB_UpdateImages" xml:space="preserve">
     <value>Actualización de imágenes locales</value>
   </data>
-  <data name="TvDB_UpdateImages_Desc" xml:space="preserve">
-    <value>Esto actualizará todas las imágenes de todas las fuentes locales, excluyendo AniDB. Si utiliza la misma carpeta de escritorio y servidor, no es recomendable hacer funcionar esto.!</value>
-  </data>
   <data name="ImportSettings_Server" xml:space="preserve">
     <value>Servidor local</value>
   </data>
@@ -4521,5 +4518,8 @@ A diferencia de los otros jugadores de medios compatibles, la MPV es el más rá
   </data>
   <data name="ImportFolder_Delete" xml:space="preserve">
     <value>¿Está seguro que desea eliminar la carpeta de importación: {0}? Los archivos de esta carpeta también se eliminará de la base de datos.</value>
+  </data>
+  <data name="TvDB_UpdateImages_Desc" xml:space="preserve">
+    <value>Esto actualizará todas las imágenes locales de cada fuente, excepto AniDB. No ejecute este comando si Server y Desktop utilizando la misma carpeta como eliminará todas tus imágenes.</value>
   </data>
 </root>

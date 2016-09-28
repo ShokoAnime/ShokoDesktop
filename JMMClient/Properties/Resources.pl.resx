@@ -4482,9 +4482,6 @@ W przeciwieństwie do innych odtwarzaczy multimedialnych obsługiwanych MPV jest
   <data name="TvDB_UpdateImages" xml:space="preserve">
     <value>Aktualizacja lokalne Images</value>
   </data>
-  <data name="TvDB_UpdateImages_Desc" xml:space="preserve">
-    <value>Spowoduje to aktualizację wszystkich lokalnych obrazy z każdego źródła, z wyłączeniem AniDB. Jeśli używasz tego samego folderu dla komputerów i serwerów, nie jest to zalecane, aby uruchomić to.!</value>
-  </data>
   <data name="ImportSettings_Server" xml:space="preserve">
     <value>Serwer lokalny</value>
   </data>
@@ -4523,5 +4520,8 @@ W przeciwieństwie do innych odtwarzaczy multimedialnych obsługiwanych MPV jest
   </data>
   <data name="ImportFolder_Delete" xml:space="preserve">
     <value>Czy na pewno chcesz usunąć Folder importu: {0}? Wszystkie pliki w tym folderze również zostaną usunięte z bazy danych.</value>
+  </data>
+  <data name="TvDB_UpdateImages_Desc" xml:space="preserve">
+    <value>Spowoduje to aktualizację wszystkich lokalnych obrazów z każdego źródła, z wyjątkiem AniDB. Nie uruchamiaj tego polecenia, jeśli serwer i pulpit są przy użyciu tego samego folderu jak usunie wszystkie obrazy.</value>
   </data>
 </root>
