@@ -197,12 +197,16 @@ namespace JMMClient.UserControls
                     VideoDetailedVM vid = obj as VideoDetailedVM;
                     //AnimeEpisodeVM ep = this.DataContext as AnimeEpisodeVM;
                     bool force = true;
-                    if (vid.VideoLocal_ResumePosition > 0)
+                    if (MainWindow.videoHandler.DefaultPlayer.Player.ToString() !=
+                        Enum.GetName(typeof(VideoPlayer), VideoPlayer.WindowsDefault))
                     {
-                        AskResumeVideo ask = new AskResumeVideo(vid.VideoLocal_ResumePosition);
-                        ask.Owner = Window.GetWindow(this);
-                        if (ask.ShowDialog() == true)
-                            force = false;
+                        if (vid.VideoLocal_ResumePosition > 0)
+                        {
+                            AskResumeVideo ask = new AskResumeVideo(vid.VideoLocal_ResumePosition);
+                            ask.Owner = Window.GetWindow(this);
+                            if (ask.ShowDialog() == true)
+                                force = false;
+                        }
                     }
                     MainWindow.videoHandler.PlayVideo(vid,force);
                 }

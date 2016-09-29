@@ -421,14 +421,14 @@ namespace JMMClient
         }
 
         // Try to find correct group name, forked over from MyAnime3
-        public void SetGroupNames(JMMServerBinary.Contract_AnimeSeries contract)
+        public void SetGroupNames(int AnimeGroupID)
         {
             try
             {
                 // Check for group name
                 if (Heirarchy.Count == 0)
                 {
-                    AnimeGroupVM grp = MainListHelperVM.Instance.AllGroupsDictionary[contract.AnimeGroupID];
+                    AnimeGroupVM grp = MainListHelperVM.Instance.AllGroupsDictionary[AnimeGroupID];
                     if (grp != null)
                     {
                         GroupName = grp.GroupName;
@@ -453,6 +453,7 @@ namespace JMMClient
             {
                 GroupName = SeriesName;
             }
+            GroupName = SeriesName;
         }
 
         #endregion
@@ -889,7 +890,7 @@ namespace JMMClient
             //PosterPath = AniDB_Anime.DefaultPosterPath;
 
             SetSeriesNames();
-            SetGroupNames(contract);
+            SetGroupNames(contract.AnimeGroupID);
         }
 
         public AnimeSeriesVM(JMMServerBinary.Contract_AnimeSeries contract)

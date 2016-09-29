@@ -1787,7 +1787,6 @@ namespace JMMClient
 
         public static void SetImportFolderMapping(int folderID, string localPath)
         {
-            
             string mpgs = Get("ImportFolderMappings");
 
             string output = "";
@@ -1795,20 +1794,34 @@ namespace JMMClient
             // check if we already have this in the existing settings
             bool exists = ImportFolderMappings.ContainsKey(folderID);
 
-            string[] arrmpgs = mpgs.Split(';');
-            foreach (string arrval in arrmpgs)
+            if (!string.IsNullOrEmpty(mpgs))
             {
-                if (string.IsNullOrEmpty(arrval)) continue;
+                string[] arrmpgs = mpgs.Split(';');
+                if (arrmpgs.Any())
+                {
+                    foreach (string arrval in arrmpgs)
+                    {
+                        if (string.IsNullOrEmpty(arrval)) continue;
 
-                if (output.Length > 0) output += ";";
+                        if (output.Length > 0) output += ";";
 
-                string[] vals = arrval.Split('|');
+                        string[] vals = arrval.Split('|');
 
-                int thisFolderID = int.Parse(vals[0]);
-                if (thisFolderID == folderID)
-                    output += string.Format("{0}|{1}", thisFolderID, localPath);
-                else
-                    output += string.Format("{0}|{1}", thisFolderID, vals[1]);
+                        int thisFolderID = 0;
+                        bool isFolderID = int.TryParse(vals[0], out thisFolderID);
+                        if (isFolderID)
+                        {
+                            if (thisFolderID == folderID)
+                                output += string.Format("{0}|{1}", thisFolderID, localPath);
+                            else
+                                output += string.Format("{0}|{1}", thisFolderID, vals[1]);
+                        }
+                        else
+                        {
+                            output += string.Format("{0}|{1}", thisFolderID, vals[1]);
+                        }
+                    }
+                }
             }
 
             // new entry
