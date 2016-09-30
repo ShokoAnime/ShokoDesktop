@@ -2188,50 +2188,20 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="VideoPlayer_MPC" xml:space="preserve">
     <value>Media Player Classic</value>
   </data>
-  <data name="VideoPlayer_MPCNote1" xml:space="preserve">
-    <value>For INI integration you must enable the following options in View &gt; Options &gt; Player; (1) Store settings to .ini file and (2) Keep history of recently watched files (3) Remember File Position. The location of the INI file is usually something like C:\Program Files (x86)\Combined Community Codec Pack\MPC</value>
-  </data>
   <data name="VideoPlayer_VLC" xml:space="preserve">
     <value>VLC</value>
   </data>
   <data name="VideoPlayer_VLCNote" xml:space="preserve">
-    <value>Any version of VLC can be used with JMM for general file playback. However only VLC version 2.2 and newer are able to take advantage of the video player integration as 'Resume from last position" is not available in older versions. VLC also enables the required settings by default so you don't need to do any additional configuration. The location of the VLC .ini file is usually something like C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini</value>
+    <value>In order to intergrate VLC with JMM Desktop, you must enable the Web UI via the following option in Tools &gt; Preferences (select All radio-button) &gt; Interface &gt; Main interfaces; Web.</value>
   </data>
   <data name="VideoPlayer_PotPlayer" xml:space="preserve">
     <value>PotPlayer</value>
   </data>
   <data name="VideoPlayer_PotPlayerNote" xml:space="preserve">
-    <value>For PotPlayer Integration you must enable the following options (1) Preferences &gt; General &gt; Store Settings to .ini file (2) Preferences &gt; Playback &gt; Play from latest point. The location of the PlotPlayer .ini file is usually something like C:\Users\username\AppData\Roaming\PotPlayer64\PotPlayer64.ini</value>
-  </data>
-  <data name="VideoPlayer_MPCINI" xml:space="preserve">
-    <value>Select MPC INI Folder</value>
-  </data>
-  <data name="VideoPlayer_VLCINI" xml:space="preserve">
-    <value>Select VLC INI Folder</value>
-  </data>
-  <data name="VideoPlayer_PotPlayerINI" xml:space="preserve">
-    <value>Select PotPlayer INI Folder</value>
-  </data>
-  <data name="VideoPlayer_MPCTest" xml:space="preserve">
-    <value>Test MPC INI File</value>
-  </data>
-  <data name="VideoPlayer_VLCTest" xml:space="preserve">
-    <value>Test VLC INI File</value>
-  </data>
-  <data name="VideoPlayer_PotPlayerTest" xml:space="preserve">
-    <value>Test PotPlayer INI File</value>
+    <value>PotPlayer is capable of local files and streaming playback.</value>
   </data>
   <data name="VideoPlayer_AutoMark" xml:space="preserve">
     <value>Automatically Mark Files As Watched When The Following Percentage Is Watched</value>
-  </data>
-  <data name="VideoPlayer_MPCFolder" xml:space="preserve">
-    <value>MPC INI Folder</value>
-  </data>
-  <data name="VideoPlayer_VLCFolder" xml:space="preserve">
-    <value>VLC INI Folder</value>
-  </data>
-  <data name="VideoPlayer_PotPlayerFolder" xml:space="preserve">
-    <value>PotPlayer INI Folder</value>
   </data>
   <data name="VideoPlayer_AutoFileNote1" xml:space="preserve">
     <value>You can setup how JMM will handle playback for episodes with more then one file. These settings are automatically applied to playlist playback but can be applied to single episode playback by enabling the option below.  </value>
@@ -3149,7 +3119,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Default Video Player</value>
   </data>
   <data name="VideoPlayer_DefaultNote" xml:space="preserve">
-    <value>By default, JMM Desktop will use the video player listed by Windows as the default video player. However, you can change the video player JMM Desktop uses by selecting one of the supported players from the list below. No configuration is required as JMM Desktop pulls the video player's .exe file location from your registry.</value>
+    <value>JMM Desktop is capable of using a variety of different video players for file playback. Listed below are supported video players and limited video players that are available for use with JMM Desktop. You can change the video player JMM Desktop uses by selecting one of the players from the list below. No configuration is required as JMM Desktop pulls the video player's .exe file location from your registry.</value>
   </data>
   <data name="VideoPlayer_DefaultPlayer" xml:space="preserve">
     <value>Default Player</value>
@@ -3369,39 +3339,6 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   </data>
   <data name="ImportSettings_Custom" xml:space="preserve">
     <value>Custom</value>
-  </data>
-  <data name="VideoPlayer_PotPlayerNotFound" xml:space="preserve">
-    <value>Pot Player Folder does not exist</value>
-  </data>
-  <data name="VideoPlayer_PotPlayerNotSelected" xml:space="preserve">
-    <value>Pot Player Folder not selected</value>
-  </data>
-  <data name="VideoPlayer_VLCNotFound" xml:space="preserve">
-    <value>VLC Folder does not exist</value>
-  </data>
-  <data name="VideoPlayer_MPCNotFound" xml:space="preserve">
-    <value>MPC Folder does not exist</value>
-  </data>
-  <data name="VideoPlayer_VLCNotSelected" xml:space="preserve">
-    <value>VLC Folder not selected</value>
-  </data>
-  <data name="VideoPlayer_MPCNotSelected" xml:space="preserve">
-    <value>MPC Folder not selected</value>
-  </data>
-  <data name="VideoPlayer_PotPlayerINIMissing" xml:space="preserve">
-    <value>No ini files found in the Pot Player Folder</value>
-  </data>
-  <data name="VideoPlayer_VLCINIMissing" xml:space="preserve">
-    <value>No ini files found in the VLC Folder</value>
-  </data>
-  <data name="VideoPlayer_MPCINIMissing" xml:space="preserve">
-    <value>No ini files found in the MPC Folder</value>
-  </data>
-  <data name="VideoPlayer_INIFound" xml:space="preserve">
-    <value>INI file found, but no history found for previous watched files</value>
-  </data>
-  <data name="VideoPlayer_INIFoundHistory" xml:space="preserve">
-    <value>INI file found. Sample of recently watched file...</value>
   </data>
   <data name="AniDBMyListDeleteLocal" xml:space="preserve">
     <value>Delete File (Local DB)</value>
@@ -4090,23 +4027,11 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="Video_Hi12P" xml:space="preserve">
     <value>12bit</value>
   </data>
-  <data name="VideoPlayer_MPCIntegrationTypeNote" xml:space="preserve">
-    <value>There are 2 types of MPC Integrations:</value>
-  </data>
   <data name="VideoPlayer_MPCWebUIPort" xml:space="preserve">
     <value>MPC Web UI Port</value>
   </data>
-  <data name="VideoPlayer_MPCNote2" xml:space="preserve">
-    <value>For Web UI integration you must enable the following option in View &gt; Options &gt; Player &gt; Web Interface; Listen On Port. The default listening port is 13579 which you can use, if you decide to change it make sure you change it in the box below.</value>
-  </data>
-  <data name="VideoPlayer_MPCClear" xml:space="preserve">
-    <value>Clear MPC INI Folder</value>
-  </data>
-  <data name="VideoPlayer_PotPlayerClear" xml:space="preserve">
-    <value>Clear Pot Player INI Folder</value>
-  </data>
-  <data name="VideoPlayer_VLCClear" xml:space="preserve">
-    <value>Clear VLC INI Folder</value>
+  <data name="VideoPlayer_MPCInfo" xml:space="preserve">
+    <value>In order to intergrate MPC with JMM Desktop, you must enable the Web UI via the following option in View &gt; Options &gt; Player &gt; Web Interface; Listen On Port. The default listening port is 13579 which you can use, if you decide to change it make sure you change it in the box below.</value>
   </data>
   <data name="AniDB_GetTitles" xml:space="preserve">
     <value>Getting AniDB Titles</value>
@@ -4334,9 +4259,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>https://github.com/rossy/mpv-install/blob/master/README.md</value>
   </data>
   <data name="VideoPlayer_MPVNote" xml:space="preserve">
-    <value>MPV is a lightweight media player that should be primarily used when streaming your collection. MPV was developed to run on a multitude of different operating systems so non-essential features, such as tracking, are not supported which prevents MPV from being able to relay your watched state to JMM. 
-
-Unlike the other supported media players, MPV is the fastest when it comes to streaming usually starting playback within seconds of opening the file. We recommend having a decent connection to JMM Server if you'd like to use MPV for steaming. If you start to notice constant stuttering during playback try switching to another supported media player.</value>
+    <value>If you decide to use your own version of MPV instead of the built-in version, make sure to associate playback with MPV. Otherwise JMM Desktop will not be able to use it. External MPV also supports streaming playback and is the recommend Limited Video Player to use.</value>
   </data>
   <data name="Tooltip_WebCache_TraktAssociations" xml:space="preserve">
     <value>Use the web cache to look up links between AniDB and Trakt. If not selected you will need to manually search for all Trakt links.</value>
@@ -4523,5 +4446,32 @@ Unlike the other supported media players, MPV is the fastest when it comes to st
   </data>
   <data name="ImportFolder_Delete" xml:space="preserve">
     <value>Are you sure you want to delete the Import Folder: {0}? Any files in this folder will also be removed from the database.</value>
+  </data>
+  <data name="VideoPlayer_WindowsDefault" xml:space="preserve">
+    <value>Windows Default</value>
+  </data>
+  <data name="VideoPlayer_WindowsDefaultNote" xml:space="preserve">
+    <value>If selected, will use the video player listed by Windows as the default player. Because of the wide range of players that can be used, only local playback of files is supported.</value>
+  </data>
+  <data name="VideoPlayer_LimitedPlayers" xml:space="preserve">
+    <value>Limited Players</value>
+  </data>
+  <data name="VideoPlayer_LimitedNote" xml:space="preserve">
+    <value>The video players listed below are not fully supported and are included for legacy reasons. These video players only support the playback of files.</value>
+  </data>
+  <data name="VideoPlayer_VLCWebUIPort" xml:space="preserve">
+    <value>VLC Web UI Port</value>
+  </data>
+  <data name="VideoPlayer_InternalMPV" xml:space="preserve">
+    <value>Internal MPV</value>
+  </data>
+  <data name="VideoPlayer_InternalMPVNote" xml:space="preserve">
+    <value>Our built-in video player, MPV is a lightweight media player developed to run on a multitude of different operating systems removing bloat to provide a fast and powerful video player. No additional setup is required to use the built-in MPV player.</value>
+  </data>
+  <data name="VideoPlayer_SupportedPlayers" xml:space="preserve">
+    <value>Supported Players</value>
+  </data>
+  <data name="VideoPlayer_SupportedNote" xml:space="preserve">
+    <value>The video players listed below are fully supported within JMM Desktop, each video player is capable of resuming playback, updating watched states and Trakt scrobbling. Please read the information below the video players name for any additional setup required.</value>
   </data>
 </root>

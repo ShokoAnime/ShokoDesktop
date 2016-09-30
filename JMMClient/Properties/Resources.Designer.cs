@@ -12585,7 +12585,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to By default, JMM Desktop will use the video player listed by Windows as the default video player. However, you can change the video player JMM Desktop uses by selecting one of the supported players from the list below. No configuration is required as JMM Desktop pulls the video player&apos;s .exe file location from your registry..
+        ///   Looks up a localized string similar to JMM Desktop is capable of using a variety of different video players for file playback. Listed below are supported video players and limited video players that are available for use with JMM Desktop. You can change the video player JMM Desktop uses by selecting one of the players from the list below. No configuration is required as JMM Desktop pulls the video player&apos;s .exe file location from your registry..
         /// </summary>
         public static string VideoPlayer_DefaultNote {
             get {
@@ -12612,29 +12612,47 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to INI file found, but no history found for previous watched files.
-        /// </summary>
-        public static string VideoPlayer_INIFound {
-            get {
-                return ResourceManager.GetString("VideoPlayer_INIFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to INI file found. Sample of recently watched file....
-        /// </summary>
-        public static string VideoPlayer_INIFoundHistory {
-            get {
-                return ResourceManager.GetString("VideoPlayer_INIFoundHistory", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Installed.
         /// </summary>
         public static string VideoPlayer_Installed {
             get {
                 return ResourceManager.GetString("VideoPlayer_Installed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Internal MPV.
+        /// </summary>
+        public static string VideoPlayer_InternalMPV {
+            get {
+                return ResourceManager.GetString("VideoPlayer_InternalMPV", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Our built-in video player, MPV is a lightweight media player developed to run on a multitude of different operating systems removing bloat to provide a fast and powerful video player. No additional setup is required to use the built-in MPV player..
+        /// </summary>
+        public static string VideoPlayer_InternalMPVNote {
+            get {
+                return ResourceManager.GetString("VideoPlayer_InternalMPVNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The video players listed below are not fully supported and are included for legacy reasons. These video players only support the playback of files..
+        /// </summary>
+        public static string VideoPlayer_LimitedNote {
+            get {
+                return ResourceManager.GetString("VideoPlayer_LimitedNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Limited Players.
+        /// </summary>
+        public static string VideoPlayer_LimitedPlayers {
+            get {
+                return ResourceManager.GetString("VideoPlayer_LimitedPlayers", resourceCulture);
             }
         }
         
@@ -12648,92 +12666,11 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Clear MPC INI Folder.
+        ///   Looks up a localized string similar to In order to intergrate MPC with JMM Desktop, you must enable the Web UI via the following option in View &gt; Options &gt; Player &gt; Web Interface; Listen On Port. The default listening port is 13579 which you can use, if you decide to change it make sure you change it in the box below..
         /// </summary>
-        public static string VideoPlayer_MPCClear {
+        public static string VideoPlayer_MPCInfo {
             get {
-                return ResourceManager.GetString("VideoPlayer_MPCClear", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to MPC INI Folder.
-        /// </summary>
-        public static string VideoPlayer_MPCFolder {
-            get {
-                return ResourceManager.GetString("VideoPlayer_MPCFolder", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select MPC INI Folder.
-        /// </summary>
-        public static string VideoPlayer_MPCINI {
-            get {
-                return ResourceManager.GetString("VideoPlayer_MPCINI", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No ini files found in the MPC Folder.
-        /// </summary>
-        public static string VideoPlayer_MPCINIMissing {
-            get {
-                return ResourceManager.GetString("VideoPlayer_MPCINIMissing", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to There are 2 types of MPC Integrations:.
-        /// </summary>
-        public static string VideoPlayer_MPCIntegrationTypeNote {
-            get {
-                return ResourceManager.GetString("VideoPlayer_MPCIntegrationTypeNote", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to For INI integration you must enable the following options in View &gt; Options &gt; Player; (1) Store settings to .ini file and (2) Keep history of recently watched files (3) Remember File Position. The location of the INI file is usually something like C:\Program Files (x86)\Combined Community Codec Pack\MPC.
-        /// </summary>
-        public static string VideoPlayer_MPCNote1 {
-            get {
-                return ResourceManager.GetString("VideoPlayer_MPCNote1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to For Web UI integration you must enable the following option in View &gt; Options &gt; Player &gt; Web Interface; Listen On Port. The default listening port is 13579 which you can use, if you decide to change it make sure you change it in the box below..
-        /// </summary>
-        public static string VideoPlayer_MPCNote2 {
-            get {
-                return ResourceManager.GetString("VideoPlayer_MPCNote2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to MPC Folder does not exist.
-        /// </summary>
-        public static string VideoPlayer_MPCNotFound {
-            get {
-                return ResourceManager.GetString("VideoPlayer_MPCNotFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to MPC Folder not selected.
-        /// </summary>
-        public static string VideoPlayer_MPCNotSelected {
-            get {
-                return ResourceManager.GetString("VideoPlayer_MPCNotSelected", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Test MPC INI File.
-        /// </summary>
-        public static string VideoPlayer_MPCTest {
-            get {
-                return ResourceManager.GetString("VideoPlayer_MPCTest", resourceCulture);
+                return ResourceManager.GetString("VideoPlayer_MPCInfo", resourceCulture);
             }
         }
         
@@ -12765,9 +12702,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MPV is a lightweight media player that should be primarily used when streaming your collection. MPV was developed to run on a multitude of different operating systems so non-essential features, such as tracking, are not supported which prevents MPV from being able to relay your watched state to JMM. 
-        ///
-        ///Unlike the other supported media players, MPV is the fastest when it comes to streaming usually starting playback within seconds of opening the file. We recommend having a decent connection to JMM Server if  [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to If you decide to use your own version of MPV instead of the built-in version, make sure to associate playback with MPV. Otherwise JMM Desktop will not be able to use it. External MPV also supports streaming playback and is the recommend Limited Video Player to use..
         /// </summary>
         public static string VideoPlayer_MPVNote {
             get {
@@ -12803,43 +12738,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Clear Pot Player INI Folder.
-        /// </summary>
-        public static string VideoPlayer_PotPlayerClear {
-            get {
-                return ResourceManager.GetString("VideoPlayer_PotPlayerClear", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to PotPlayer INI Folder.
-        /// </summary>
-        public static string VideoPlayer_PotPlayerFolder {
-            get {
-                return ResourceManager.GetString("VideoPlayer_PotPlayerFolder", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select PotPlayer INI Folder.
-        /// </summary>
-        public static string VideoPlayer_PotPlayerINI {
-            get {
-                return ResourceManager.GetString("VideoPlayer_PotPlayerINI", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No ini files found in the Pot Player Folder.
-        /// </summary>
-        public static string VideoPlayer_PotPlayerINIMissing {
-            get {
-                return ResourceManager.GetString("VideoPlayer_PotPlayerINIMissing", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to For PotPlayer Integration you must enable the following options (1) Preferences &gt; General &gt; Store Settings to .ini file (2) Preferences &gt; Playback &gt; Play from latest point. The location of the PlotPlayer .ini file is usually something like C:\Users\username\AppData\Roaming\PotPlayer64\PotPlayer64.ini.
+        ///   Looks up a localized string similar to PotPlayer is capable of local files and streaming playback..
         /// </summary>
         public static string VideoPlayer_PotPlayerNote {
             get {
@@ -12848,29 +12747,20 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pot Player Folder does not exist.
+        ///   Looks up a localized string similar to The video players listed below are fully supported within JMM Desktop, each video player is capable of resuming playback, updating watched states and Trakt scrobbling. Please read the information below the video players name for any additional setup required..
         /// </summary>
-        public static string VideoPlayer_PotPlayerNotFound {
+        public static string VideoPlayer_SupportedNote {
             get {
-                return ResourceManager.GetString("VideoPlayer_PotPlayerNotFound", resourceCulture);
+                return ResourceManager.GetString("VideoPlayer_SupportedNote", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pot Player Folder not selected.
+        ///   Looks up a localized string similar to Supported Players.
         /// </summary>
-        public static string VideoPlayer_PotPlayerNotSelected {
+        public static string VideoPlayer_SupportedPlayers {
             get {
-                return ResourceManager.GetString("VideoPlayer_PotPlayerNotSelected", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Test PotPlayer INI File.
-        /// </summary>
-        public static string VideoPlayer_PotPlayerTest {
-            get {
-                return ResourceManager.GetString("VideoPlayer_PotPlayerTest", resourceCulture);
+                return ResourceManager.GetString("VideoPlayer_SupportedPlayers", resourceCulture);
             }
         }
         
@@ -12893,43 +12783,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Clear VLC INI Folder.
-        /// </summary>
-        public static string VideoPlayer_VLCClear {
-            get {
-                return ResourceManager.GetString("VideoPlayer_VLCClear", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to VLC INI Folder.
-        /// </summary>
-        public static string VideoPlayer_VLCFolder {
-            get {
-                return ResourceManager.GetString("VideoPlayer_VLCFolder", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select VLC INI Folder.
-        /// </summary>
-        public static string VideoPlayer_VLCINI {
-            get {
-                return ResourceManager.GetString("VideoPlayer_VLCINI", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No ini files found in the VLC Folder.
-        /// </summary>
-        public static string VideoPlayer_VLCINIMissing {
-            get {
-                return ResourceManager.GetString("VideoPlayer_VLCINIMissing", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Any version of VLC can be used with JMM for general file playback. However only VLC version 2.2 and newer are able to take advantage of the video player integration as &apos;Resume from last position&quot; is not available in older versions. VLC also enables the required settings by default so you don&apos;t need to do any additional configuration. The location of the VLC .ini file is usually something like C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini.
+        ///   Looks up a localized string similar to In order to intergrate VLC with JMM Desktop, you must enable the Web UI via the following option in Tools &gt; Preferences (select All radio-button) &gt; Interface &gt; Main interfaces; Web..
         /// </summary>
         public static string VideoPlayer_VLCNote {
             get {
@@ -12938,29 +12792,29 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to VLC Folder does not exist.
+        ///   Looks up a localized string similar to VLC Web UI Port.
         /// </summary>
-        public static string VideoPlayer_VLCNotFound {
+        public static string VideoPlayer_VLCWebUIPort {
             get {
-                return ResourceManager.GetString("VideoPlayer_VLCNotFound", resourceCulture);
+                return ResourceManager.GetString("VideoPlayer_VLCWebUIPort", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to VLC Folder not selected.
+        ///   Looks up a localized string similar to Windows Default.
         /// </summary>
-        public static string VideoPlayer_VLCNotSelected {
+        public static string VideoPlayer_WindowsDefault {
             get {
-                return ResourceManager.GetString("VideoPlayer_VLCNotSelected", resourceCulture);
+                return ResourceManager.GetString("VideoPlayer_WindowsDefault", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Test VLC INI File.
+        ///   Looks up a localized string similar to If selected, will use the video player listed by Windows as the default player. Because of the wide range of players that can be used, only local playback of files is supported..
         /// </summary>
-        public static string VideoPlayer_VLCTest {
+        public static string VideoPlayer_WindowsDefaultNote {
             get {
-                return ResourceManager.GetString("VideoPlayer_VLCTest", resourceCulture);
+                return ResourceManager.GetString("VideoPlayer_WindowsDefaultNote", resourceCulture);
             }
         }
         

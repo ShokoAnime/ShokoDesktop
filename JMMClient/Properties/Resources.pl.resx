@@ -2125,24 +2125,6 @@
   <data name="VideoPlayer_PotPlayer" xml:space="preserve">
     <value>PotPlayer</value>
   </data>
-  <data name="VideoPlayer_MPCINI" xml:space="preserve">
-    <value>Wybierz Folder MPC INI</value>
-  </data>
-  <data name="VideoPlayer_VLCINI" xml:space="preserve">
-    <value>Wybierz Folder VLC INI</value>
-  </data>
-  <data name="VideoPlayer_PotPlayerINI" xml:space="preserve">
-    <value>Wybierz Folder PotPlayer INI</value>
-  </data>
-  <data name="VideoPlayer_MPCFolder" xml:space="preserve">
-    <value>MPC INI Folder</value>
-  </data>
-  <data name="VideoPlayer_VLCFolder" xml:space="preserve">
-    <value>VLC INI Folder</value>
-  </data>
-  <data name="VideoPlayer_PotPlayerFolder" xml:space="preserve">
-    <value>PotPlayer INI Folder</value>
-  </data>
   <data name="VideoPlayer_AutoFileEnable" xml:space="preserve">
     <value>Włączanie automatycznego wyboru pliku na pojedyncze odcinki</value>
   </data>
@@ -3190,39 +3172,6 @@
   <data name="Main_Paused" xml:space="preserve">
     <value>Wstrzymane z powodu bana od AniDB</value>
   </data>
-  <data name="VideoPlayer_PotPlayerNotFound" xml:space="preserve">
-    <value>Puli gracz Folder nie istnieje</value>
-  </data>
-  <data name="VideoPlayer_PotPlayerNotSelected" xml:space="preserve">
-    <value>Puli gracz nie wybranego folderu</value>
-  </data>
-  <data name="VideoPlayer_VLCNotFound" xml:space="preserve">
-    <value>VLC Folder nie istnieje</value>
-  </data>
-  <data name="VideoPlayer_MPCNotFound" xml:space="preserve">
-    <value>RPP Folder nie istnieje</value>
-  </data>
-  <data name="VideoPlayer_VLCNotSelected" xml:space="preserve">
-    <value>VLC nie wybranego folderu</value>
-  </data>
-  <data name="VideoPlayer_MPCNotSelected" xml:space="preserve">
-    <value>RPP nie wybranego folderu</value>
-  </data>
-  <data name="VideoPlayer_PotPlayerINIMissing" xml:space="preserve">
-    <value>Nie znaleziono w puli gracz Folder plików ini</value>
-  </data>
-  <data name="VideoPlayer_VLCINIMissing" xml:space="preserve">
-    <value>Nie znaleziono w folderze VLC plików ini</value>
-  </data>
-  <data name="VideoPlayer_MPCINIMissing" xml:space="preserve">
-    <value>Nie znaleziono w folderze MPC plików ini</value>
-  </data>
-  <data name="VideoPlayer_INIFound" xml:space="preserve">
-    <value>Znaleźć plik INI, ale bez historii znalezione dla poprzednich oglądane pliki</value>
-  </data>
-  <data name="VideoPlayer_INIFoundHistory" xml:space="preserve">
-    <value>Znaleziono pliku INI. Próbki pliku niedawno oglądałem...</value>
-  </data>
   <data name="AniDBMyListDeleteLocal" xml:space="preserve">
     <value>Usuń plik (lokalne DB)</value>
   </data>
@@ -3931,41 +3880,8 @@
   <data name="Video_Hi12P" xml:space="preserve">
     <value>12 bit</value>
   </data>
-  <data name="VideoPlayer_MPCIntegrationTypeNote" xml:space="preserve">
-    <value>There are 2 types of MPC Integrations:</value>
-  </data>
   <data name="VideoPlayer_MPCWebUIPort" xml:space="preserve">
     <value>MPC Web UI Port</value>
-  </data>
-  <data name="VideoPlayer_MPCNote1" xml:space="preserve">
-    <value>Integracji MPC, które należy włączyć dwie opcje (1) sklep ustawienia do pliku .ini i (2) zachować historię niedawno oglądałem plików. Zobacz poniższy zrzut ekranu więcej szczegółów. Lokalizacja MPC jest zazwyczaj coś w C:\Program Files (x 86) \Combined Community Codec Pack\MPC</value>
-  </data>
-  <data name="VideoPlayer_PotPlayerNote" xml:space="preserve">
-    <value>PotPlayer integracji należy włączyć następujące opcje (1) Preferencje &gt; ogólne &gt; ustawienia magazynu do ini plików (2) preferencje &gt; odtwarzania &gt; grać od ostatni punkt. Zobacz poniższy zrzut ekranu więcej szczegółów. Lokalizację pliku ini PlotPlayer zazwyczaj jest coś takiego jak C:\Users\username\AppData\Roaming\PotPlayer64\PotPlayer64.ini</value>
-  </data>
-  <data name="VideoPlayer_MPCNote2" xml:space="preserve">
-    <value>Integracji interfejsu użytkownika sieci Web należy włączyć następujące opcje w widoku &gt; Opcje &amp;gt; odtwarzacz &gt; interfejs sieci Web; Nasłuchiwać portu. Domyślny port nasłuchiwania jest 13579, którego można użyć, jeśli zdecydujesz się zmienić to upewnij się, że możesz zmienić go w polu poniżej.</value>
-  </data>
-  <data name="VideoPlayer_MPCTest" xml:space="preserve">
-    <value>MPC plik testowy</value>
-  </data>
-  <data name="VideoPlayer_VLCTest" xml:space="preserve">
-    <value>VLC plik testowy</value>
-  </data>
-  <data name="VideoPlayer_PotPlayerTest" xml:space="preserve">
-    <value>PotPlayer plik testowy</value>
-  </data>
-  <data name="VideoPlayer_MPCClear" xml:space="preserve">
-    <value>Wyczyścić Folder MPC INI</value>
-  </data>
-  <data name="VideoPlayer_PotPlayerClear" xml:space="preserve">
-    <value>Wyczyścić Folder INI puli gracz</value>
-  </data>
-  <data name="VideoPlayer_VLCClear" xml:space="preserve">
-    <value>Wyczyścić Folder VLC INI</value>
-  </data>
-  <data name="VideoPlayer_VLCNote" xml:space="preserve">
-    <value>VLC 2.2 + nagrywa ostatnio używanych plików i sygnatury czasowe domyślnie (i wyłączenie jest opcja "Zaawansowane"). Starsze wersje nie obsługują funkcji "Życiorys z ostatniej pozycji". Lokalizacja pliku .ini VLC jest zazwyczaj coś w stylu C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini</value>
   </data>
   <data name="GroupFilterConditionType_LatestEpisodeAirDate" xml:space="preserve">
     <value>Najnowszy odcinek Air Data</value>
@@ -4273,16 +4189,8 @@
   <data name="SeriesSimple_PlayUnwatched" xml:space="preserve">
     <value>Zagraj wszystkie nieobejrzanych</value>
   </data>
-  <data name="VideoPlayer_DefaultNote" xml:space="preserve">
-    <value>Domyślnie JMM pulpitu będzie używać odtwarzacza wideo wymienione przez system Windows jako domyślnego odtwarzacza wideo. Jednak można zmienić odtwarzacz wideo, JMM pulpitu używa wybierając jedną z obsługiwanych odtwarzaczy z poniższej listy. Konfiguracja nie jest wymagane, jak JMM Desktop ściąga lokalizację pliku .exe odtwarzacz wideo z rejestru systemu.</value>
-  </data>
   <data name="VideoPlayer_MPVInstall" xml:space="preserve">
     <value>Instrukcje instalacji MPV</value>
-  </data>
-  <data name="VideoPlayer_MPVNote" xml:space="preserve">
-    <value>MPV jest lekki odtwarzacz, który powinno przede wszystkim służyć podczas przesyłania strumieniowego w swojej kolekcji. MPV został opracowany, aby uruchomić na wielu różnych systemach operacyjnych, więc niepotrzebne funkcje, takie jak śledzenie, które uniemożliwia MPV przekaźnik stan obserwowany do JMM nie są obsługiwane. 
-
-W przeciwieństwie do innych odtwarzaczy multimedialnych obsługiwanych MPV jest najszybszy, jeśli chodzi o strumieniowe, zwykle w ciągu kilku sekund z otworzeniem pliku rozpoczęcie odtwarzania. Zaleca się posiadanie porządnego połączenia do serwera JMM, jeśli chcesz używać MPV do gotowania na parze. Jeśli zaczniesz zauważać jąkania stały podczas odtwarzania spróbować przełączyć do innego gracza obsługiwanych nośników.</value>
   </data>
   <data name="Tooltip_WebCache_TraktAssociations" xml:space="preserve">
     <value>Użyj pamięci podręcznej sieci web, aby znaleźć łącza między AniDB i Trakt. Jeśli nie wybrany trzeba będzie ręcznie wyszukać wszystkie linki Trakt.</value>
@@ -4523,5 +4431,47 @@ W przeciwieństwie do innych odtwarzaczy multimedialnych obsługiwanych MPV jest
   </data>
   <data name="TvDB_UpdateImages_Desc" xml:space="preserve">
     <value>Spowoduje to aktualizację wszystkich lokalnych obrazów z każdego źródła, z wyjątkiem AniDB. Nie uruchamiaj tego polecenia, jeśli serwer i pulpit są przy użyciu tego samego folderu jak usunie wszystkie obrazy.</value>
+  </data>
+  <data name="VideoPlayer_VLCNote" xml:space="preserve">
+    <value>W celu intergrate VLC z JMM pulpitu, należy włączyć interfejs sieci Web za pomocą następującej opcji w narzędzia &gt; Preferencje (wybierz przycisk radiowy wszystkie) &gt; Interfejs &gt; główne interfejsy; Www.</value>
+  </data>
+  <data name="VideoPlayer_PotPlayerNote" xml:space="preserve">
+    <value>PotPlayer jest zdolny do lokalnych plików i odtwarzania strumieniowego.</value>
+  </data>
+  <data name="VideoPlayer_DefaultNote" xml:space="preserve">
+    <value>JMM pulpitu jest w stanie używać wiele różnych odtwarzaczy wideo dla odtwarzania plików. Poniżej wymieniono obsługiwane odtwarzacze wideo i ogranicza odtwarzacze wideo, które są dostępne do użytku z pulpitu JMM. Można zmienić odtwarzacz wideo, JMM pulpitu używa wybierając jeden z graczy z listy poniżej. Konfiguracja nie jest wymagane, jak JMM Desktop ściąga lokalizację pliku .exe odtwarzacz wideo z rejestru systemu.</value>
+  </data>
+  <data name="VideoPlayer_MPCInfo" xml:space="preserve">
+    <value>Celu intergrate MPC z JMM pulpitu, należy włączyć interfejs sieci Web za pomocą następującej opcji w widoku &gt; Opcje &amp;gt; odtwarzacz &gt; interfejs sieci Web; Nasłuchiwać portu. Domyślny port nasłuchiwania jest 13579, którego można użyć, jeśli zdecydujesz się zmienić to upewnij się, że możesz zmienić go w polu poniżej.</value>
+  </data>
+  <data name="VideoPlayer_MPVNote" xml:space="preserve">
+    <value>Jeśli użytkownik zdecyduje się użyć własnej wersji MPV zamiast wbudowanych wersji, upewnij się skojarzyć odtwarzania z MPV. W przeciwnym razie JMM pulpitu nie będzie można go używać. MPV zewnętrznych również obsługuje strumieniowe odtwarzanie i polecam ograniczone Video Player używać.</value>
+  </data>
+  <data name="VideoPlayer_WindowsDefault" xml:space="preserve">
+    <value>Domyślnie Windows</value>
+  </data>
+  <data name="VideoPlayer_WindowsDefaultNote" xml:space="preserve">
+    <value>Jeśli zaznaczone, będzie używać odtwarzacza wideo wymienione przez system Windows jako domyślny odtwarzacz. Ze względu na szeroką gamę graczy, które mogą być używane tylko lokalnego odtwarzania plików jest obsługiwane.</value>
+  </data>
+  <data name="VideoPlayer_LimitedPlayers" xml:space="preserve">
+    <value>Ograniczone graczy</value>
+  </data>
+  <data name="VideoPlayer_LimitedNote" xml:space="preserve">
+    <value>Odtwarzacze wideo wymienione poniżej nie są w pełni obsługiwane i są uwzględniane dla starszych powodów. Te odtwarzacze wideo obsługują tylko odtwarzanie plików.</value>
+  </data>
+  <data name="VideoPlayer_VLCWebUIPort" xml:space="preserve">
+    <value>Port interfejsu użytkownika sieci Web VLC</value>
+  </data>
+  <data name="VideoPlayer_InternalMPV" xml:space="preserve">
+    <value>Wewnętrznego MPV</value>
+  </data>
+  <data name="VideoPlayer_InternalMPVNote" xml:space="preserve">
+    <value>Nasze wbudowany odtwarzacz wideo, MPV jest lekki media player opracowany do uruchamiania na wielu różnych systemach operacyjnych Usuwanie nadąć, aby zapewnić szybki i potężny odtwarzacz wideo. Bez dodatkowych instalacji jest wymagane do korzystania z wbudowanego odtwarzacza MPV.</value>
+  </data>
+  <data name="VideoPlayer_SupportedPlayers" xml:space="preserve">
+    <value>Obsługiwanych odtwarzaczy</value>
+  </data>
+  <data name="VideoPlayer_SupportedNote" xml:space="preserve">
+    <value>Odtwarzacze wideo wymienione poniżej są w pełni obsługiwane w ramach JMM Desktop, każdy odtwarzacz wideo jest w stanie wznawianie odtwarzania, Aktualizacja stanów obserwowanych i Trakt scrobbling. Proszę przeczytać informacje poniżej nazwę odtwarzaczy wideo dla wszelkich dodatkowych konfiguracji wymagane.</value>
   </data>
 </root>

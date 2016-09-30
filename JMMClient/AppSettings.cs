@@ -2315,7 +2315,28 @@ namespace JMMClient
             }
         }
 
-		public static string PotPlayerFolder
+        public static string VLCWebUIPort
+        {
+            get
+            {
+
+
+                string value = Get("VLCWebUIPort");
+                if (string.IsNullOrEmpty(value))
+                {
+                    // default value
+                    value = "13579";
+                    Set("VLCWebUIPort", value);
+                }
+                return value;
+            }
+            set
+            {
+                Set("VLCWebUIPort", value);
+            }
+        }
+
+        public static string PotPlayerFolder
 		{
 			get
 			{
@@ -2438,6 +2459,22 @@ namespace JMMClient
             }
         }
 
+        public static bool VLCWebUiIntegration
+        {
+            get
+            {
+
+                string stringValue = Get("VLCWebUiIntegration");
+                bool booleanValue = false;
+                bool.TryParse(stringValue, out booleanValue);
+
+                return booleanValue;
+            }
+            set
+            {
+                Set("VLCWebUiIntegration", value.ToString());
+            }
+        }    
         public static bool MultipleFilesOnlyFinished
 		{
 			get

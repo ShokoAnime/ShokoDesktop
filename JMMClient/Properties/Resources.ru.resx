@@ -2123,24 +2123,6 @@
   <data name="VideoPlayer_PotPlayer" xml:space="preserve">
     <value>PotPlayer</value>
   </data>
-  <data name="VideoPlayer_MPCINI" xml:space="preserve">
-    <value>Выберите папку MPC INI</value>
-  </data>
-  <data name="VideoPlayer_VLCINI" xml:space="preserve">
-    <value>Выберите папку VLC INI</value>
-  </data>
-  <data name="VideoPlayer_PotPlayerINI" xml:space="preserve">
-    <value>Выберите папку PotPlayer INI</value>
-  </data>
-  <data name="VideoPlayer_MPCFolder" xml:space="preserve">
-    <value>Папка MPC INI </value>
-  </data>
-  <data name="VideoPlayer_VLCFolder" xml:space="preserve">
-    <value>Папка  VLC INI</value>
-  </data>
-  <data name="VideoPlayer_PotPlayerFolder" xml:space="preserve">
-    <value>Папка PotPlayer INI</value>
-  </data>
   <data name="VideoPlayer_AutoFileEnable" xml:space="preserve">
     <value>Включить автоматический выбор файлов для единичных эпизодов</value>
   </data>
@@ -3188,39 +3170,6 @@
   <data name="Main_Paused" xml:space="preserve">
     <value>Приостановлено из-за ЗАПРЕТА от AniDB</value>
   </data>
-  <data name="VideoPlayer_PotPlayerNotFound" xml:space="preserve">
-    <value>Папка Pot Player не существует</value>
-  </data>
-  <data name="VideoPlayer_PotPlayerNotSelected" xml:space="preserve">
-    <value>Папка Pot Player не выбрана</value>
-  </data>
-  <data name="VideoPlayer_VLCNotFound" xml:space="preserve">
-    <value>Папка VLC не существует</value>
-  </data>
-  <data name="VideoPlayer_MPCNotFound" xml:space="preserve">
-    <value>Папка MPC не существует</value>
-  </data>
-  <data name="VideoPlayer_VLCNotSelected" xml:space="preserve">
-    <value>Папка VLC не выбрана</value>
-  </data>
-  <data name="VideoPlayer_MPCNotSelected" xml:space="preserve">
-    <value>Папка MPC не выбрана</value>
-  </data>
-  <data name="VideoPlayer_PotPlayerINIMissing" xml:space="preserve">
-    <value>INI файл не найден в папке Pot Player</value>
-  </data>
-  <data name="VideoPlayer_VLCINIMissing" xml:space="preserve">
-    <value>INI файл не найден в папке VLC</value>
-  </data>
-  <data name="VideoPlayer_MPCINIMissing" xml:space="preserve">
-    <value>INI файл не найден в папке MPC</value>
-  </data>
-  <data name="VideoPlayer_INIFound" xml:space="preserve">
-    <value>INI файл найден, но нет истории просмотра</value>
-  </data>
-  <data name="VideoPlayer_INIFoundHistory" xml:space="preserve">
-    <value>INI файл найден. Образец недавно просмотренного файла...</value>
-  </data>
   <data name="AniDBMyListDeleteLocal" xml:space="preserve">
     <value>Удалить файл (локальная БД)</value>
   </data>
@@ -3929,41 +3878,8 @@
   <data name="Video_Hi12P" xml:space="preserve">
     <value>12 бит</value>
   </data>
-  <data name="VideoPlayer_MPCIntegrationTypeNote" xml:space="preserve">
-    <value>Существуют 2 вида интеграции с MPC:</value>
-  </data>
   <data name="VideoPlayer_MPCWebUIPort" xml:space="preserve">
     <value>MPC Web UI Port</value>
-  </data>
-  <data name="VideoPlayer_MPCNote1" xml:space="preserve">
-    <value>Для интеграции через INI необходимо настроить View &gt; Options &gt; Player; (1) Store settings to .ini file and (2) Keep history of recently watched files (3) Remember File Position. INI файл как правило расположен в C:\Program Files (x86)\Combined Community Codec Pack\MPC</value>
-  </data>
-  <data name="VideoPlayer_PotPlayerNote" xml:space="preserve">
-    <value>Для интеграции с PotPlayer, необходимо включить следующие настройки (1) Preferences &gt; General &gt; Store Settings to .ini file (2) Preferences &gt; Playback &gt; Play from latest point. Расположение файла .ini PlotPlayer обычно C:\Users\username\AppData\Roaming\PotPlayer64\PotPlayer64.ini</value>
-  </data>
-  <data name="VideoPlayer_MPCNote2" xml:space="preserve">
-    <value>Для интеграции пользовательского веб-интерфейса необходимо включить наспройки View &gt; Options &gt; Player &gt; Web Interface; Listen On Port. По умолчанию используется порт 13579.</value>
-  </data>
-  <data name="VideoPlayer_MPCTest" xml:space="preserve">
-    <value>Проверить MPC INI</value>
-  </data>
-  <data name="VideoPlayer_VLCTest" xml:space="preserve">
-    <value>Проверить VLC INI</value>
-  </data>
-  <data name="VideoPlayer_PotPlayerTest" xml:space="preserve">
-    <value>Проверить PotPlayer INI</value>
-  </data>
-  <data name="VideoPlayer_MPCClear" xml:space="preserve">
-    <value>Очистить папку MPC INI</value>
-  </data>
-  <data name="VideoPlayer_PotPlayerClear" xml:space="preserve">
-    <value>Очистить папку Pot Player INI</value>
-  </data>
-  <data name="VideoPlayer_VLCClear" xml:space="preserve">
-    <value>Очистить папку VLC INI</value>
-  </data>
-  <data name="VideoPlayer_VLCNote" xml:space="preserve">
-    <value>Любая версия VLC может быть использована для просмотра. Однако только VLC 2.2 и выше содержит функцию "Продолжить с последней позиции", более старые версии не поддерживают эту функциональность. Эта настройка включена по умолчанию так что ничего дополнительно делать не нужно. Расположение файла .ini VLC обычно  C:\Users\username\AppData\Roaming\vlc\vlc-qt-interface.ini</value>
   </data>
   <data name="GroupFilterConditionType_LatestEpisodeAirDate" xml:space="preserve">
     <value>Дата эфира последнего эпизода</value>
@@ -4271,16 +4187,8 @@
   <data name="SeriesSimple_PlayUnwatched" xml:space="preserve">
     <value>Играть все непросмотренные</value>
   </data>
-  <data name="VideoPlayer_DefaultNote" xml:space="preserve">
-    <value>По умолчанию JMM Desktop будет использовать видео плеер, перечисленные в Windows как видеопроигрывателя по умолчанию. Однако вы можете изменить видео плеер, используемые модели памяти JMM Desktop, выбрав один из поддерживаемых игроков из списка ниже. Настройка не требуется, как модель памяти JMM Desktop тянет видео плеер .exe файлу из реестра.</value>
-  </data>
   <data name="VideoPlayer_MPVInstall" xml:space="preserve">
     <value>Инструкции по установке MPV</value>
-  </data>
-  <data name="VideoPlayer_MPVNote" xml:space="preserve">
-    <value>MPV является легкий мультимедийный проигрыватель, который должен использоваться в первую очередь при потоковой передаче вашей коллекции. MPV был разработан для запуска на множество различных операционных систем, поэтому неосновных функций, таких как отслеживание, которые предотвращает возможность передавать состояние наблюдаемых в JMM MPV не поддерживаются. 
-
-В отличие от других поддерживаемых медиа-плееров MPV является самым быстрым, когда дело доходит до потокового, обычно начиная воспроизведения в течение нескольких секунд при открытии файла. Мы рекомендуем, имея достойной подключение к серверу JMM, если вы хотите использовать MPV для спаривания. Если вы начинаете замечать постоянной заикания во время воспроизведения попробуйте другой Поддерживаемые проигрывателя.</value>
   </data>
   <data name="Tooltip_WebCache_TraktAssociations" xml:space="preserve">
     <value>Используйте Web-кэша для искать связи между AniDB и тракт. Если не выбран вам будет нужно вручную выполнить поиск всех ссылок тракт.</value>
@@ -4521,5 +4429,47 @@
   </data>
   <data name="TvDB_UpdateImages_Desc" xml:space="preserve">
     <value>Это обновит все местные изображения из всех источников, за исключением AniDB. Не выполняйте эту команду, если сервер и Desktop используют папку как он удалит все ваши изображения.</value>
+  </data>
+  <data name="VideoPlayer_VLCNote" xml:space="preserve">
+    <value>Для того, чтобы intergrate VLC с JMM, необходимо включить веб-интерфейса пользователя через следующий параметр в инструменты &gt; предпочтения (выбрать все радио кнопка) &gt; интерфейс &gt; основные интерфейсы; Web.</value>
+  </data>
+  <data name="VideoPlayer_PotPlayerNote" xml:space="preserve">
+    <value>PotPlayer локальных файлов и потокового воспроизведения.</value>
+  </data>
+  <data name="VideoPlayer_DefaultNote" xml:space="preserve">
+    <value>JMM Desktop может использовать множество различных видео-проигрыватели для воспроизведения файлов. Ниже перечислены поддерживаемые видео и ограниченные видео проигрыватели, которые доступны для использования с JMM Desktop. Вы можете изменить видео-плеер, который использует JMM Desktop, выбрав один из игроков из списка ниже. Никакой настройки не требуется, как JMM Desktop тянет видео плеер .exe расположение файла из реестра.</value>
+  </data>
+  <data name="VideoPlayer_MPCInfo" xml:space="preserve">
+    <value>Для того, чтобы intergrate MPC с JMM, необходимо включить веб-интерфейса пользователя через следующий параметр в представлении &gt; вариантов &gt; Player &gt; веб-интерфейс; Прослушать порт. По умолчанию, прослушивающего порта 13579, который можно использовать, если вы решите изменить это убедитесь, что вы измените его в поле ниже.</value>
+  </data>
+  <data name="VideoPlayer_MPVNote" xml:space="preserve">
+    <value>Если вы решили использовать свою собственную версию MPV вместо встроенной версии, убедитесь, что связать воспроизведение с MPV. В противном случае JMM Desktop не сможете использовать его. Внешняя MPV также поддерживает потоковое воспроизведение и рекомендуется ограниченное видео-плеер для использования.</value>
+  </data>
+  <data name="VideoPlayer_WindowsDefault" xml:space="preserve">
+    <value>Windows по умолчанию</value>
+  </data>
+  <data name="VideoPlayer_WindowsDefaultNote" xml:space="preserve">
+    <value>Если выбрано, будет использовать видео проигрыватель, перечисленных в Windows в качестве проигрывателя по умолчанию. Из-за широкого круга игроков, которые могут быть использованы только локальное воспроизведение файлов поддерживается.</value>
+  </data>
+  <data name="VideoPlayer_LimitedPlayers" xml:space="preserve">
+    <value>Ограниченные игроки</value>
+  </data>
+  <data name="VideoPlayer_LimitedNote" xml:space="preserve">
+    <value>Видео Игроки, перечисленные ниже не полностью поддерживаются и включены для прежних версий причин. Эти видео-проигрыватели поддерживают только воспроизведение файлов.</value>
+  </data>
+  <data name="VideoPlayer_VLCWebUIPort" xml:space="preserve">
+    <value>Порт интерфейса VLC Web</value>
+  </data>
+  <data name="VideoPlayer_InternalMPV" xml:space="preserve">
+    <value>Внутренняя MPV</value>
+  </data>
+  <data name="VideoPlayer_InternalMPVNote" xml:space="preserve">
+    <value>Наш встроенный видео-плеер, MPV является легкий медиа-плеер разработан для запуска на множество различных операционных систем, удаление наворотов обеспечить быстрый и мощный видеоплеер. Без дополнительной настройки необходимо использовать встроенный проигрыватель MPV.</value>
+  </data>
+  <data name="VideoPlayer_SupportedPlayers" xml:space="preserve">
+    <value>Поддерживаемые плееры</value>
+  </data>
+  <data name="VideoPlayer_SupportedNote" xml:space="preserve">
+    <value>Видео Игроки, перечисленные ниже, полностью поддерживаются в JMM Desktop, каждый видео проигрыватель способен возобновлять воспроизведение, обновление наблюдаемых государств и скробблинг Trakt. Пожалуйста, прочитайте информацию ниже название видео-проигрыватели для каких-либо дополнительных настроек требуется.</value>
   </data>
 </root>

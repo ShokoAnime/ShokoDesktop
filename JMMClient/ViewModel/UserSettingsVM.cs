@@ -1179,7 +1179,18 @@ namespace JMMClient
                 OnPropertyChanged(new PropertyChangedEventArgs("MPCWebUiIntegration"));
             }
         }
-
+        public bool VLCWebUiIntegration
+        {
+            get
+            {
+                return AppSettings.VLCWebUiIntegration;
+            }
+            set
+            {
+                AppSettings.VLCWebUiIntegration = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("VLCWebUiIntegration"));
+            }
+        }
         public string MPCFolder
 		{
 			get { return AppSettings.MPCFolder; }
@@ -1198,17 +1209,24 @@ namespace JMMClient
                 OnPropertyChanged(new PropertyChangedEventArgs("MPCWebUIPort"));
             }
         }
-
+        public string VLCWebUIPort
+        {
+            get { return AppSettings.VLCWebUIPort; }
+            set
+            {
+                AppSettings.VLCWebUIPort = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("VLCWebUIPort"));
+            }
+        }
         public string PotPlayerFolder
-		{
-			get { return AppSettings.PotPlayerFolder; }
-			set
-			{
-				AppSettings.PotPlayerFolder = value;
-				OnPropertyChanged(new PropertyChangedEventArgs("PotPlayerFolder"));
-			}
-		}
-
+        {
+            get { return AppSettings.PotPlayerFolder; }
+            set
+            {
+                AppSettings.PotPlayerFolder = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("PotPlayerFolder"));
+            }
+        }
         public string VLCFolder
         {
             get { return AppSettings.VLCFolder; }
@@ -1218,7 +1236,6 @@ namespace JMMClient
                 OnPropertyChanged(new PropertyChangedEventArgs("VLCFolder"));
             }
         }
-
         public int VideoWatchedPct
         {
             get { return AppSettings.VideoWatchedPct; }
@@ -1602,6 +1619,8 @@ namespace JMMClient
         public Visibility IsPotNotInstalled => MainWindow.videoHandler.IsActive(VideoPlayer.PotPlayer) ? Visibility.Hidden : Visibility.Visible;
         public Visibility IsZoomPlayerInstalled => MainWindow.videoHandler.IsActive(VideoPlayer.ZoomPlayer) ? Visibility.Visible : Visibility.Hidden;
         public Visibility IsZoomPlayerNotInstalled => MainWindow.videoHandler.IsActive(VideoPlayer.ZoomPlayer) ? Visibility.Hidden : Visibility.Visible;
+        public Visibility IsWindowsDefaultInstalled => MainWindow.videoHandler.IsActive(VideoPlayer.WindowsDefault) ? Visibility.Visible : Visibility.Hidden;
+        public Visibility IsWindowsDefaultNotInstalled => MainWindow.videoHandler.IsActive(VideoPlayer.WindowsDefault) ? Visibility.Hidden : Visibility.Visible;
 
         public void EnableDisableDashboardMetroSection(DashboardMetroProcessType swid, bool enabled)
         {

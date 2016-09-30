@@ -29,7 +29,7 @@
                             Command="{DynamicResource ScanFolderCommand}" CommandParameter="{Binding}" 
                             ToolTip="{Resx ResxName=JMMClient.Properties.Resources, Key=ScanFolder}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                <Image Width="24" Height="24" Stretch="Fill" Source="{Binding Path=Icon}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0"/>
+                                <Image Width="24" Height="24" Stretch="Fill" Source="{Binding Path=Icon}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"/>
 
                             </StackPanel>
                         </Button>
