@@ -413,6 +413,8 @@
     <Compile Include="VideoPlayers\BaseVideoPlayer.cs" />
     <Compile Include="VideoPlayers\Extensions.cs" />
     <Compile Include="VideoPlayers\IVideoPlayer.cs" />
+    <Compile Include="VideoPlayers\PotVideoPlayer.cs" />
+    <Compile Include="VideoPlayers\WindowsDefaultVideoPlayer.cs" />
     <Compile Include="VideoPlayers\MPCVideoPlayer.cs" />
     <Compile Include="VideoPlayers\ExternalMPVVideoPlayer.cs" />
     <Compile Include="VideoPlayers\MPVVideoPlayer.cs" />
@@ -420,7 +422,6 @@
       <DependentUpon>PlayerForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="VideoPlayers\mpv\VideoPlayer.cs" />
-    <Compile Include="VideoPlayers\PotVideoPlayer.cs" />
     <Compile Include="VideoPlayers\VideoInfo.cs" />
     <Compile Include="VideoPlayers\VLCVideoPlayer.cs" />
     <Compile Include="VideoPlayers\ZoomPlayerVideoPlayer.cs" />
@@ -1446,6 +1447,7 @@
     <EmbeddedResource Include="Properties\Resources.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.fr.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.it.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -1455,10 +1457,12 @@
     <EmbeddedResource Include="Properties\Resources.nl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.nl.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.pl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.pl.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.pt.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -1472,6 +1476,7 @@
     <EmbeddedResource Include="Properties\Resources.de.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.de.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.en-gb.resx">
       <SubType>Designer</SubType>

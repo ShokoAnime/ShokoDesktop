@@ -46,10 +46,11 @@ namespace JMMClient.VideoPlayers
             Players = new List<IVideoPlayer>();
             Players.Add(new MPVVideoPlayer());
             Players.Add(new MPCVideoPlayer());
-            Players.Add(new PotVideoPlayer());
             Players.Add(new VLCVideoPlayer());
-            Players.Add(new ExternalMPVVideoPlayer());
             Players.Add(new ZoomPlayerVideoPlayer());
+            Players.Add(new ExternalMPVVideoPlayer());
+            Players.Add(new PotVideoPlayer());
+            Players.Add(new WindowsDefaultVideoPlayer());
 
             foreach (IVideoPlayer v in Players)
             {
@@ -212,15 +213,15 @@ namespace JMMClient.VideoPlayers
             if (p != null && p.Active)
                 return p;
             return Players.FirstOrDefault(a => a.Active);
-        }
+        } 
 
         public bool IsActive(VideoPlayer p)
         {
             IVideoPlayer v = Players.FirstOrDefault(a => a.Player == p);
             if (v == null)
                 return false;
-            v.Init();
-            return v.Active;
+            v.Init();            
+			return v.Active;
         }
 
         public bool Active
@@ -257,6 +258,10 @@ namespace JMMClient.VideoPlayers
                 if (player == null)
                     throw new Exception("Please configure a Video Player");
                 VideoInfo info = vid.ToVideoInfo(forcebegining);
+                
+                if(player.Player == VideoPlayer.WindowsDefault && info.IsUrl)
+                    throw new Exception("Streaming is not supported from Windows default player, please select one of the supported ones from settings");
+
                 recentlyPlayedFiles[info.VideoLocalId] = info;
                 player.Play(info);
             }

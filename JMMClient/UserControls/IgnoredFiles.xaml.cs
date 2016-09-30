@@ -119,12 +119,16 @@ namespace JMMClient.UserControls
                 {
                     VideoLocalVM vid = obj as VideoLocalVM;
                     bool force = true;
-                    if (vid.ResumePosition > 0)
+                    if (MainWindow.videoHandler.DefaultPlayer.Player.ToString() !=
+                        Enum.GetName(typeof(VideoPlayer), VideoPlayer.WindowsDefault))
                     {
-                        AskResumeVideo ask = new AskResumeVideo(vid.ResumePosition);
-                        ask.Owner = Window.GetWindow(this);
-                        if (ask.ShowDialog() == true)
-                            force = false;
+                        if (vid.ResumePosition > 0)
+                        {
+                            AskResumeVideo ask = new AskResumeVideo(vid.ResumePosition);
+                            ask.Owner = Window.GetWindow(this);
+                            if (ask.ShowDialog() == true)
+                                force = false;
+                        }
                     }
                     MainWindow.videoHandler.PlayVideo(vid, force);
                 }

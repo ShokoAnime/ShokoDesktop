@@ -49,10 +49,12 @@ namespace JMMClient.UserControls
             cboDefaultPlayer.Items.Clear();
             cboDefaultPlayer.Items.Add("Internal MPV");
             cboDefaultPlayer.Items.Add("MPC");
-            cboDefaultPlayer.Items.Add("PotPlayer");
             cboDefaultPlayer.Items.Add("VLC");
-            cboDefaultPlayer.Items.Add("External MPV");
             cboDefaultPlayer.Items.Add("Zoom Player");
+            cboDefaultPlayer.Items.Add("------");
+            cboDefaultPlayer.Items.Add("External MPV");
+            cboDefaultPlayer.Items.Add("Pot Player");
+            cboDefaultPlayer.Items.Add("Windows default");
             switch (AppSettings.DefaultPlayer_GroupList)
             {
                 case (int)VideoPlayer.MPV:
@@ -61,17 +63,23 @@ namespace JMMClient.UserControls
                 case (int)VideoPlayer.MPC:
                     cboDefaultPlayer.SelectedIndex = 1;
                     break;
-                case (int)VideoPlayer.PotPlayer:
+                case (int)VideoPlayer.VLC:
                     cboDefaultPlayer.SelectedIndex = 2;
                     break;
-                case (int)VideoPlayer.VLC:
+                case (int)VideoPlayer.ZoomPlayer:
                     cboDefaultPlayer.SelectedIndex = 3;
                     break;
+                case 4:
+                    // Not handled, placeholder
+                    return;
                 case (int)VideoPlayer.ExternalMPV:
-                    cboDefaultPlayer.SelectedIndex = 4;
-                    break;
-                case (int)VideoPlayer.ZoomPlayer:
                     cboDefaultPlayer.SelectedIndex = 5;
+                    break;
+                case (int)VideoPlayer.PotPlayer:
+                    cboDefaultPlayer.SelectedIndex = 6;
+                    break;
+                case (int)VideoPlayer.WindowsDefault:
+                    cboDefaultPlayer.SelectedIndex = 7;
                     break;
                 default:
                     cboDefaultPlayer.SelectedIndex = 0;
@@ -89,6 +97,10 @@ namespace JMMClient.UserControls
         {
             get
             {
+                // If windows default player always mark as configured
+                if (cboDefaultPlayer.SelectedIndex == 7)
+                    return Visibility.Visible;
+
                 bool val = MainWindow.videoHandler.IsActive((VideoPlayer) cboDefaultPlayer.SelectedIndex);
                 return val ? Visibility.Visible : Visibility.Hidden;
             }
@@ -105,10 +117,16 @@ namespace JMMClient.UserControls
             {
                 case 0: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.MPV; break;
                 case 1: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.MPC; break;
-                case 2: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.PotPlayer; break;
-                case 3: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.VLC; break;
-                case 4: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.ExternalMPV; break;
-                case 5: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.ZoomPlayer; break;
+                case 2: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.VLC; break;
+                case 3: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.ZoomPlayer; break;
+                case 4:
+                    cboDefaultPlayer.SelectedIndex = cboDefaultPlayer.SelectedIndex + 1;
+                    return;
+                case 5: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.ExternalMPV; break;
+                case 6: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.PotPlayer;
+                    break;
+                case 7: UserSettingsVM.Instance.DefaultPlayer_GroupList = (int)VideoPlayer.WindowsDefault;
+                    break;
             }
             RefreshConfigured();
         }

@@ -530,7 +530,7 @@ namespace JMMClient.UserControls
 		        ser.SeriesNameOverride = newName;
 
 		        ser.SetSeriesNames();
-
+                ser.SetGroupNames(ser.AnimeGroupID);
 		        ser.Save();
 
 		        // prompt to change parent group name
@@ -541,7 +541,7 @@ namespace JMMClient.UserControls
 			        AnimeGroupVM thisGrp = MainListHelperVM.Instance.AllGroupsDictionary[ser.AnimeGroupID];
 			        if (thisGrp != null)
 			        {
-				        thisGrp.GroupName = ser.SeriesName;
+				        thisGrp.GroupName = ser.GroupName;
 				        thisGrp.SortName = ser.SeriesName;
 				        thisGrp.Save();
 			        }

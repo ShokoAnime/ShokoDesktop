@@ -492,12 +492,22 @@ namespace JMMClient.UserControls
                 if (ep.FilesForEpisode.Count == 1)
                 {
                     bool force = true;
-                    if (ep.FilesForEpisode[0].VideoLocal_ResumePosition > 0)
+                    if (MainWindow.videoHandler.DefaultPlayer.Player.ToString() !=
+                        Enum.GetName(typeof(VideoPlayer), VideoPlayer.WindowsDefault))
                     {
-                        AskResumeVideo ask = new AskResumeVideo(ep.FilesForEpisode[0].VideoLocal_ResumePosition);
-                        ask.Owner = Window.GetWindow(this);
-                        if (ask.ShowDialog() == true)
-                            force = false;
+
+                        if (MainWindow.videoHandler.DefaultPlayer.Player.ToString() !=
+                            Enum.GetName(typeof(VideoPlayer), VideoPlayer.WindowsDefault))
+                        {
+
+                            if (ep.FilesForEpisode[0].VideoLocal_ResumePosition > 0)
+                            {
+                                AskResumeVideo ask = new AskResumeVideo(ep.FilesForEpisode[0].VideoLocal_ResumePosition);
+                                ask.Owner = Window.GetWindow(this);
+                                if (ask.ShowDialog() == true)
+                                    force = false;
+                            }
+                        }
                     }
                     MainWindow.videoHandler.PlayVideo(ep.FilesForEpisode[0],force);
                 }
@@ -509,12 +519,16 @@ namespace JMMClient.UserControls
                         if (vid != null)
                         {
                             bool force = true;
-                            if (vid.VideoLocal_ResumePosition > 0)
+                            if (MainWindow.videoHandler.DefaultPlayer.Player.ToString() !=
+                                Enum.GetName(typeof(VideoPlayer), VideoPlayer.WindowsDefault))
                             {
-                                AskResumeVideo ask = new AskResumeVideo(vid.VideoLocal_ResumePosition);
-                                ask.Owner = Window.GetWindow(this);
-                                if (ask.ShowDialog() == true)
-                                    force = false;
+                                if (vid.VideoLocal_ResumePosition > 0)
+                                {
+                                    AskResumeVideo ask = new AskResumeVideo(vid.VideoLocal_ResumePosition);
+                                    ask.Owner = Window.GetWindow(this);
+                                    if (ask.ShowDialog() == true)
+                                        force = false;
+                                }
                             }
                             MainWindow.videoHandler.PlayVideo(vid, force);
                         }
@@ -896,12 +910,16 @@ namespace JMMClient.UserControls
                     if (ep.FilesForEpisode.Count == 1)
                     {
                         bool force = true;
-                        if (ep.FilesForEpisode[0].VideoLocal_ResumePosition > 0)
+                        if (MainWindow.videoHandler.DefaultPlayer.Player.ToString() !=
+                            Enum.GetName(typeof(VideoPlayer), VideoPlayer.WindowsDefault))
                         {
-                            AskResumeVideo ask = new AskResumeVideo(ep.FilesForEpisode[0].VideoLocal_ResumePosition);
-                            ask.Owner = Window.GetWindow(this);
-                            if (ask.ShowDialog() == true)
-                                force = false;
+                            if (ep.FilesForEpisode[0].VideoLocal_ResumePosition > 0)
+                            {
+                                AskResumeVideo ask = new AskResumeVideo(ep.FilesForEpisode[0].VideoLocal_ResumePosition);
+                                ask.Owner = Window.GetWindow(this);
+                                if (ask.ShowDialog() == true)
+                                    force = false;
+                            }
                         }
                         MainWindow.videoHandler.PlayVideo(ep.FilesForEpisode[0], force);
                     }
@@ -913,12 +931,16 @@ namespace JMMClient.UserControls
                             if (vid != null)
                             {
                                 bool force = true;
-                                if (vid.VideoLocal_ResumePosition > 0)
+                                if (MainWindow.videoHandler.DefaultPlayer.Player.ToString() !=
+                                    Enum.GetName(typeof(VideoPlayer), VideoPlayer.WindowsDefault))
                                 {
-                                    AskResumeVideo ask = new AskResumeVideo(vid.VideoLocal_ResumePosition);
-                                    ask.Owner = Window.GetWindow(this);
-                                    if (ask.ShowDialog() == true)
-                                        force = false;
+                                    if (vid.VideoLocal_ResumePosition > 0)
+                                    {
+                                        AskResumeVideo ask = new AskResumeVideo(vid.VideoLocal_ResumePosition);
+                                        ask.Owner = Window.GetWindow(this);
+                                        if (ask.ShowDialog() == true)
+                                            force = false;
+                                    }
                                 }
                                 MainWindow.videoHandler.PlayVideo(vid, force);
                             }
