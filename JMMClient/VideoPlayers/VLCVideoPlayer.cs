@@ -57,13 +57,13 @@ namespace JMMClient.VideoPlayers
             {
                 Process process;
                 // Parameters for web ui
-                string webUIParms = $" --http-host=localhost --http-port={webUIPort} --http-password={webUIPassword} ";
+                string webUIParams = $" --http-host=localhost --http-port={webUIPort} --http-password={webUIPassword} ";
 
                 if (video.IsPlaylist)
-                    process = Process.Start(PlayerPath, $"\"{video.Uri}\" {webUIParms}");
+                    process = Process.Start(PlayerPath, $"\"{video.Uri}\" {webUIParams}");
                 else
                 {
-                    string init = $"\"{video.Uri}\" {webUIParms}";
+                    string init = $"\"{video.Uri}\" {webUIParams}";
                     if (video.ResumePosition > 0)
                     {
                         double n = video.ResumePosition;
@@ -159,7 +159,7 @@ namespace JMMClient.VideoPlayers
                         // Parse result
                         if (responseString != null)
                         {
-                            // extract currently playing video informations
+                            // Extract currently playing video informations
                             nowPlayingFile = await GetNowPlayingFile();
                             if (!string.IsNullOrEmpty(nowPlayingFile))
                             {
@@ -168,9 +168,9 @@ namespace JMMClient.VideoPlayers
                                 // Parse number values for future aritmetics
 
                                 double webPosition;
-                                double webDuratiion;
+                                double webDuration;
                                 bool isDoublePosition = double.TryParse(nowPlayingFilePosition, out webPosition);
-                                bool isDoubleDuration = double.TryParse(nowPlayingFilePosition, out webDuratiion);
+                                bool isDoubleDuration = double.TryParse(nowPlayingFilePosition, out webDuration);
 
                                 double filePosition;
                                 double fileDuration;
@@ -179,7 +179,7 @@ namespace JMMClient.VideoPlayers
                                     // Convert miliseconds to seconds
                                     filePosition = webPosition*1000;
                                     if (isDoubleDuration)
-                                        fileDuration = webDuratiion*1000;
+                                        fileDuration = webDuration*1000;
 
                                     Dictionary<string, long> pos = new Dictionary<string, long>();
                                     pos.Add(nowPlayingFile, (long) filePosition);
@@ -205,7 +205,6 @@ namespace JMMClient.VideoPlayers
             string filename = "";
             string VLCUIPlaylistUrl = string.Format("http://localhost:{0}/requests/playlist.xml", webUIPort);
 
-            //<leaf ro="rw" *.*uri="(.*?)" current="current"\/>
             // Regex for extracting relevant information
             // Could do it properly with XML reader but this keeps it consistent with other players
             Regex fileRegex = new Regex("<leaf*.*uri=\"(.*?)\" current=\"current\"\\/>");
@@ -230,7 +229,7 @@ namespace JMMClient.VideoPlayers
                         // Parse result
                         if (responseString != null)
                         {
-                            // extract currently playing video informations, VLC will only reports filename not full path so skip that one
+                            // Extract filename and url decode so it matches
                             filename = HttpUtility.UrlDecode(fileRegex.Match(responseString).Groups[1].ToString());
                             filename = filename.Replace("file:", string.Empty).Replace("/", "\\").Trim();
                         }

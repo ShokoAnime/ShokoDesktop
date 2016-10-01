@@ -19,7 +19,6 @@ namespace JMMClient.VideoPlayers
         private bool _monitoringPositions;
         private long currentPosition;
         private int _tcpControlPort = 4769;
-        private bool _tcpControlServerEnabled = false;
 
         public VideoPlayer Player => VideoPlayer.ZoomPlayer;
 
@@ -30,39 +29,12 @@ namespace JMMClient.VideoPlayers
                 string installDir =
                     (string)
                         Registry.GetValue(@"HKEY_CURRENT_USER\Software\VirtuaMedia\ZoomPlayer", "InstallDirectory", null);
-                Int32 tcpControlServerEnabled =
-                    (Int32) Registry.GetValue(@"HKEY_CURRENT_USER\Software\VirtuaMedia\ZoomPlayer", "OPTCPEnable", null);
-                Int32 tcpControlPort =
-                    (Int32) Registry.GetValue(@"HKEY_CURRENT_USER\Software\VirtuaMedia\ZoomPlayer", "OPTCPPort", null);
-
                 if (installDir != null)
                 {
                     PlayerPath = string.Format("{0}\\zplayer.exe", installDir);
 
                     if (File.Exists(PlayerPath))
                     {
-                        if (tcpControlServerEnabled != null)
-                        {
-                            // Check if TCP control server is enabled
-                            switch (tcpControlServerEnabled)
-                            {
-                                case 0:
-                                    _tcpControlServerEnabled = false;
-                                    break;
-                                case 1:
-                                    _tcpControlServerEnabled = true;
-                                    break;
-                            }
-                        }
-
-                        // Retrieve TCP control port and fallback to default in case of error
-                        if (tcpControlPort != null)
-                            _tcpControlPort = tcpControlPort;
-
-                        //Debug.WriteLine("Zoom player - path: " + PlayerPath);
-                        //Debug.WriteLine("Zoom player - control server enabled: " + _tcpControlServerEnabled);
-                        //Debug.WriteLine("Zoom player - control server port: " + _tcpControlPort);
-
                         Active = true;
                         return;
                     }
@@ -82,22 +54,24 @@ namespace JMMClient.VideoPlayers
             if (IsPlaying)
                 return;
             Task.Factory.StartNew(() =>
-            {
+            {;
+                string tcpControlParam = $" /TCP:{_tcpControlPort} ";
                 Process process;
                 if (video.IsPlaylist)
-                    process = Process.Start(PlayerPath, '"' + video.Uri + '"');
+                    process = Process.Start(PlayerPath, $"\"{video.Uri}\" {tcpControlParam}");
                 else
                 {
                     string init = '"' + video.Uri + '"';
                     if (video.ResumePosition > 0)
                     {
                         // Convert to seconds and timespan format
-                        Debug.WriteLine($"Zoom player - Server resume position in ms: {video.ResumePosition}");
+                        //Debug.WriteLine($"Zoom player - Server resume position in ms: {video.ResumePosition}");
                         string resumeTimeSpan = TimeSpan.FromSeconds(video.ResumePosition / 1000).ToString(@"hh\:mm\:ss");
-                        Debug.WriteLine($"Zoom player - Resume position in timespan format: {resumeTimeSpan}");
+                        //Debug.WriteLine($"Zoom player - Resume position in timespan format: {resumeTimeSpan}");
                         init += " /Seek:" + resumeTimeSpan;
-                        Debug.WriteLine(video.Uri);
-                        Debug.WriteLine(init);
+                        init += tcpControlParam;
+                        //Debug.WriteLine(video.Uri);
+                        //Debug.WriteLine(init);
                     }
 
                     // Only subtitle track is supported via command line
@@ -116,12 +90,9 @@ namespace JMMClient.VideoPlayers
                 {
                     IsPlaying = true;
 
-                    if (_tcpControlServerEnabled)
-                    {
-                        Thread t = new Thread(() => StartPlayPositionRetrieval(video.Uri, true, TraktEnabled()));
-                        t.IsBackground = true;
-                        t.Start();
-                    }
+                    Thread t = new Thread(() => StartPlayPositionRetrieval(video.Uri, true, TraktEnabled()));
+                    t.IsBackground = true;
+                    t.Start();
 
                     process.WaitForExit();
                     IsPlaying = false;

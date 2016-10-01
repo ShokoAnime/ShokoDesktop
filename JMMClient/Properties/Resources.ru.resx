@@ -4373,15 +4373,6 @@
   <data name="VideoPlayer_ZoomPlayerNotFound" xml:space="preserve">
     <value>Zoom Player не найден</value>
   </data>
-  <data name="VideoPlayer_ZoomPlayerTCPControlPort" xml:space="preserve">
-    <value>Zoom Player TCP порт управления</value>
-  </data>
-  <data name="Link_ZoomPlayer" xml:space="preserve">
-    <value>http://Inmatrix.com/zplayer/options_system.shtml</value>
-  </data>
-  <data name="VideoPlayer_ZoomPlayerSetupInstructions" xml:space="preserve">
-    <value>Zoom Player установки инструкции, проверьте «Включить внешнее управление TCP (порт)» Глава</value>
-  </data>
   <data name="RelationSettings_Exclude" xml:space="preserve">
     <value>Исключить следующие отношения</value>
   </data>

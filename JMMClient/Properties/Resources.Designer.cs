@@ -5929,15 +5929,6 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://inmatrix.com/zplayer/options_system.shtml.
-        /// </summary>
-        public static string Link_ZoomPlayer {
-            get {
-                return ResourceManager.GetString("Link_ZoomPlayer", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Loading....
         /// </summary>
         public static string Loading {
@@ -12842,24 +12833,6 @@ namespace JMMClient.Properties {
         public static string VideoPlayer_ZoomPlayerNotFound {
             get {
                 return ResourceManager.GetString("VideoPlayer_ZoomPlayerNotFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Zoom Player setup instructions, check &quot;Enable External TCP Control (port)&quot; chapter.
-        /// </summary>
-        public static string VideoPlayer_ZoomPlayerSetupInstructions {
-            get {
-                return ResourceManager.GetString("VideoPlayer_ZoomPlayerSetupInstructions", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Zoom Player TCP control port.
-        /// </summary>
-        public static string VideoPlayer_ZoomPlayerTCPControlPort {
-            get {
-                return ResourceManager.GetString("VideoPlayer_ZoomPlayerTCPControlPort", resourceCulture);
             }
         }
         

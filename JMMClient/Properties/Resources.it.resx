@@ -4373,15 +4373,6 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   <data name="VideoPlayer_ZoomPlayerNotFound" xml:space="preserve">
     <value>Zoom Player non trovato</value>
   </data>
-  <data name="VideoPlayer_ZoomPlayerTCPControlPort" xml:space="preserve">
-    <value>Zoom porta di controllo TCP giocatore</value>
-  </data>
-  <data name="Link_ZoomPlayer" xml:space="preserve">
-    <value>http://InMatrix.com/ZPlayer/options_system.shtml</value>
-  </data>
-  <data name="VideoPlayer_ZoomPlayerSetupInstructions" xml:space="preserve">
-    <value>Zoom Player Istruzioni per l'installazione, controllare il capitolo "Abilita controllo esterno di TCP (porta)"</value>
-  </data>
   <data name="RelationSettings_Exclude" xml:space="preserve">
     <value>Escludere le seguenti relazioni</value>
   </data>

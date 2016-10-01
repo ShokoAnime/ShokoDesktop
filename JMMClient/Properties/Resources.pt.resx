@@ -4373,15 +4373,6 @@
   <data name="VideoPlayer_ZoomPlayerNotFound" xml:space="preserve">
     <value>Zoom Player não encontrado</value>
   </data>
-  <data name="VideoPlayer_ZoomPlayerTCPControlPort" xml:space="preserve">
-    <value>Ampliar a porta de controle de jogador TCP</value>
-  </data>
-  <data name="Link_ZoomPlayer" xml:space="preserve">
-    <value>http://Inmatrix.com/Zplayer/options_system.shtml</value>
-  </data>
-  <data name="VideoPlayer_ZoomPlayerSetupInstructions" xml:space="preserve">
-    <value>Instruções de instalação do jogador de zoom, ver capítulo "Habilitar controle externo de TCP (Porto)"</value>
-  </data>
   <data name="RelationSettings_Exclude" xml:space="preserve">
     <value>Excluir as seguintes relações</value>
   </data>
