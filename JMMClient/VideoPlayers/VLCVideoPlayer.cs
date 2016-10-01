@@ -161,28 +161,31 @@ namespace JMMClient.VideoPlayers
                         {
                             // extract currently playing video informations
                             nowPlayingFile = await GetNowPlayingFile();
-                            nowPlayingFilePosition = filePositionRegex.Match(responseString).Groups[1].ToString();
-                            nowPlayingFileDuration = fileDurationRegex.Match(responseString).Groups[1].ToString();
-                            // Parse number values for future aritmetics
-
-                            double webPosition;
-                            double webDuratiion;
-                            bool isDoublePosition = double.TryParse(nowPlayingFilePosition, out webPosition);
-                            bool isDoubleDuration = double.TryParse(nowPlayingFilePosition, out webDuratiion);
-
-                            double filePosition;
-                            double fileDuration;
-                            if (isDoublePosition)
+                            if (!string.IsNullOrEmpty(nowPlayingFile))
                             {
-                                // Convert miliseconds to seconds
-                                filePosition = webPosition*1000;
-                                if (isDoubleDuration)
-                                    fileDuration = webDuratiion*1000;
+                                nowPlayingFilePosition = filePositionRegex.Match(responseString).Groups[1].ToString();
+                                nowPlayingFileDuration = fileDurationRegex.Match(responseString).Groups[1].ToString();
+                                // Parse number values for future aritmetics
 
-                                Dictionary<string, long> pos = new Dictionary<string, long>();
-                                pos.Add(nowPlayingFile, (long) filePosition);
-                                OnPositionChangeEvent(pos);
-                                currentPosition = (long) filePosition;
+                                double webPosition;
+                                double webDuratiion;
+                                bool isDoublePosition = double.TryParse(nowPlayingFilePosition, out webPosition);
+                                bool isDoubleDuration = double.TryParse(nowPlayingFilePosition, out webDuratiion);
+
+                                double filePosition;
+                                double fileDuration;
+                                if (isDoublePosition)
+                                {
+                                    // Convert miliseconds to seconds
+                                    filePosition = webPosition*1000;
+                                    if (isDoubleDuration)
+                                        fileDuration = webDuratiion*1000;
+
+                                    Dictionary<string, long> pos = new Dictionary<string, long>();
+                                    pos.Add(nowPlayingFile, (long) filePosition);
+                                    OnPositionChangeEvent(pos);
+                                    currentPosition = (long) filePosition;
+                                }
                             }
                         }
                     }
@@ -229,7 +232,7 @@ namespace JMMClient.VideoPlayers
                         {
                             // extract currently playing video informations, VLC will only reports filename not full path so skip that one
                             filename = HttpUtility.UrlDecode(fileRegex.Match(responseString).Groups[1].ToString());
-                            filename = filename.Replace("file:", string.Empty).Replace("/", "\\");
+                            filename = filename.Replace("file:", string.Empty).Replace("/", "\\").Trim();
                         }
                     }
                 }
