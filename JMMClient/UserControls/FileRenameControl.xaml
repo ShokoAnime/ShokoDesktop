@@ -47,7 +47,7 @@
         </Grid.ColumnDefinitions>
 
 
-        <TabControl Grid.Row="0" Grid.Column="0" Margin="5" Name="tabTorrentDetails" TabStripPlacement="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+        <TabControl Grid.Row="0" Grid.Column="0" Margin="0" Name="tabTorrentDetails" TabStripPlacement="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
 
 
             <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Rename_Title}">
@@ -70,7 +70,7 @@
                         </Grid.ColumnDefinitions>
 
                         <!-- script selection -->
-                        <Border DockPanel.Dock="Top" Background="FloralWhite" BorderBrush="DarkGray" BorderThickness="1" Grid.Column="0" Grid.Row="0" Padding="2"  Grid.ColumnSpan="3">
+                        <Border DockPanel.Dock="Top" Background="FloralWhite" BorderBrush="DarkGray" BorderThickness="1" Grid.Column="0" Grid.Row="0" Padding="2" Grid.ColumnSpan="3">
                             <StackPanel Orientation="Vertical">
                                 
                                 <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" Margin="5">
