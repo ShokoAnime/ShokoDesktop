@@ -9,6 +9,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Web;
 using JMMClient.Utilities;
 using Microsoft.Win32;
 
@@ -18,18 +19,25 @@ namespace JMMClient.VideoPlayers
     {
         private System.Timers.Timer playerWebUiTimer = null;
         private long currentPosition;
-        private string nowPlayingFile;
 
         private static string webUIPort = "9001";
         private static string webUIPassword = "AnimePlayer";
 
         public override void Init()
         {
-            PlayerPath = Utils.CheckSysPath(new string[] { "vlc.exe" });
+            PlayerPath = Utils.CheckSysPath(new string[] {"vlc.exe"});
             if (string.IsNullOrEmpty(PlayerPath) && !File.Exists(PlayerPath))
-                PlayerPath = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\VLC media player", "DisplayIcon", null);
+                PlayerPath =
+                    (string)
+                        Registry.GetValue(
+                            @"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\VLC media player",
+                            "DisplayIcon", null);
             if (string.IsNullOrEmpty(PlayerPath) && !File.Exists(PlayerPath))
-                PlayerPath = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\VLC media player", "DisplayIcon", null);
+                PlayerPath =
+                    (string)
+                        Registry.GetValue(
+                            @"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\VLC media player",
+                            "DisplayIcon", null);
 
             if (string.IsNullOrEmpty(PlayerPath) && File.Exists(PlayerPath))
             {
@@ -38,8 +46,9 @@ namespace JMMClient.VideoPlayers
             }
             Active = true;
         }
+
         public VideoPlayer Player => VideoPlayer.VLC;
-      
+
         public override void Play(VideoInfo video)
         {
             if (IsPlaying)
@@ -73,13 +82,12 @@ namespace JMMClient.VideoPlayers
                 if (process != null)
                 {
                     IsPlaying = true;
-                    nowPlayingFile = video.Uri;
                     StartWatcher("");
                     process.WaitForExit();
                     StopWatcher();
                     IsPlaying = false;
                     if (video != null)
-                        BaseVideoPlayer.PlaybackStopped(video, (long)currentPosition);
+                        BaseVideoPlayer.PlaybackStopped(video, (long) currentPosition);
                 }
             });
         }
@@ -117,10 +125,11 @@ namespace JMMClient.VideoPlayers
             playerWebUiTimer.Stop();
 
             // Request
-            string VLCUIFullUrl = string.Format("http://localhost:{0}/requests/status.xml", webUIPort);
+            string VLCUIStatusUrl = string.Format("http://localhost:{0}/requests/status.xml", webUIPort);
 
             // Helper variables
             string responseString = "";
+            string nowPlayingFile;
             string nowPlayingFilePosition = "";
             string nowPlayingFileDuration = "";
 
@@ -136,10 +145,10 @@ namespace JMMClient.VideoPlayers
                 HttpClient client = new HttpClient();
                 var byteArray = Encoding.ASCII.GetBytes(":" + webUIPassword);
                 var header = new AuthenticationHeaderValue(
-                           "Basic", Convert.ToBase64String(byteArray));
+                    "Basic", Convert.ToBase64String(byteArray));
                 client.DefaultRequestHeaders.Authorization = header;
 
-                using (HttpResponseMessage response = await client.GetAsync(VLCUIFullUrl))
+                using (HttpResponseMessage response = await client.GetAsync(VLCUIStatusUrl))
                 using (HttpContent content = response.Content)
                 {
                     // Check if request was ok
@@ -150,8 +159,8 @@ namespace JMMClient.VideoPlayers
                         // Parse result
                         if (responseString != null)
                         {
-                            // extract currently playing video informations, VLC will only reports filename not full path so skip that one
-                            //nowPlayingFile = fileRegex.Match(responseString).Groups[1].ToString();
+                            // extract currently playing video informations
+                            nowPlayingFile = await GetNowPlayingFile();
                             nowPlayingFilePosition = filePositionRegex.Match(responseString).Groups[1].ToString();
                             nowPlayingFileDuration = fileDurationRegex.Match(responseString).Groups[1].ToString();
                             // Parse number values for future aritmetics
@@ -166,14 +175,14 @@ namespace JMMClient.VideoPlayers
                             if (isDoublePosition)
                             {
                                 // Convert miliseconds to seconds
-                                filePosition = webPosition * 1000;
-                                if(isDoubleDuration)
-                                    fileDuration = webDuratiion * 1000;
+                                filePosition = webPosition*1000;
+                                if (isDoubleDuration)
+                                    fileDuration = webDuratiion*1000;
 
                                 Dictionary<string, long> pos = new Dictionary<string, long>();
-                                pos.Add(nowPlayingFile, (long)filePosition);
+                                pos.Add(nowPlayingFile, (long) filePosition);
                                 OnPositionChangeEvent(pos);
-                                currentPosition = (long)filePosition;
+                                currentPosition = (long) filePosition;
                             }
                         }
                     }
@@ -181,11 +190,55 @@ namespace JMMClient.VideoPlayers
                     playerWebUiTimer?.Start();
                 }
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                logger.ErrorException(exception.ToString(), exception);
+                logger.ErrorException(ex.ToString(), ex);
                 playerWebUiTimer?.Start();
             }
+        }
+
+        private async Task<string> GetNowPlayingFile()
+        {
+            string filename = "";
+            string VLCUIPlaylistUrl = string.Format("http://localhost:{0}/requests/playlist.xml", webUIPort);
+
+            //<leaf ro="rw" *.*uri="(.*?)" current="current"\/>
+            // Regex for extracting relevant information
+            // Could do it properly with XML reader but this keeps it consistent with other players
+            Regex fileRegex = new Regex("<leaf*.*uri=\"(.*?)\" current=\"current\"\\/>");
+
+            try
+            {
+                // Make HTTP request to Web UI
+                HttpClient client = new HttpClient();
+                var byteArray = Encoding.ASCII.GetBytes(":" + webUIPassword);
+                var header = new AuthenticationHeaderValue(
+                    "Basic", Convert.ToBase64String(byteArray));
+                client.DefaultRequestHeaders.Authorization = header;
+
+                using (HttpResponseMessage response = await client.GetAsync(VLCUIPlaylistUrl))
+                using (HttpContent content = response.Content)
+                {
+                    // Check if request was ok
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        // Read the string
+                        string responseString = await content.ReadAsStringAsync();
+                        // Parse result
+                        if (responseString != null)
+                        {
+                            // extract currently playing video informations, VLC will only reports filename not full path so skip that one
+                            filename = HttpUtility.UrlDecode(fileRegex.Match(responseString).Groups[1].ToString());
+                            filename = filename.Replace("file:", string.Empty).Replace("/", "\\");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex){
+                logger.ErrorException(ex.ToString(), ex);
+            }
+
+            return filename;
         }
     }
 }
