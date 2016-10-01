@@ -84,7 +84,7 @@
 
 
         <!-- series list -->
-        <Border Grid.Row="1" Grid.Column="0" Margin="0,0,0,5" Background="White" BorderBrush="LightGray" BorderThickness="1">
+        <Border Grid.Row="1" Grid.Column="0" Margin="0,0,0,0" Background="White" BorderBrush="LightGray" BorderThickness="1">
 
             <DockPanel>
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Background="#F1F1F1">

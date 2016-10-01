@@ -35,7 +35,7 @@
 
 
 
-        <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Margin="0,0,5,5">
+        <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Margin="0,0,5,0">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -178,7 +178,7 @@
                   Grid.Column="1" ResizeBehavior="PreviousAndNext"
                   Width="2" Background="#FFBCBCBC" Grid.RowSpan="3" />
 
-        <Border Grid.Row="0" Grid.Column="2" Margin="5,0,5,5" Padding="5" Grid.RowSpan="3"  Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1">
+        <Border Grid.Row="0" Grid.Column="2" Margin="5,0,0,0" Padding="5" Grid.RowSpan="3"  Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1">
 
             <StackPanel Orientation="Vertical"
                         Visibility="{Binding Path=ShowAnimeDetails, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:RankingsControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">

@@ -34,7 +34,7 @@
         </Grid.ColumnDefinitions>
 
 
-        <TabControl Grid.Row="0" Grid.Column="0" Margin="5" Name="tabCommMaint" TabStripPlacement="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+        <TabControl Grid.Row="0" Grid.Column="0" Margin="0" Name="tabCommMaint" TabStripPlacement="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
 
 
             <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Trakt}">
@@ -143,7 +143,7 @@
             <!-- grid for data -->
             <DataGrid Name="dgTrakt" ItemsSource="{Binding Path=ViewTrakt, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:CommunityMaint}}}" DockPanel.Dock="Top"
                   AutoGenerateColumns="False" CanUserReorderColumns="True" CanUserResizeColumns="True" CanUserResizeRows="False" CanUserSortColumns="True" 
-                                  AlternatingRowBackground="Cornsilk"  AlternationCount="2" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="LightGray" Margin="5"
+                                  AlternatingRowBackground="Cornsilk"  AlternationCount="2" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="LightGray" Margin="0,0,0,0"
                                   AreRowDetailsFrozen="False" CanUserAddRows="False" CanUserDeleteRows="False">
                 <DataGrid.CellStyle>
                     <Style TargetType="DataGridCell">
