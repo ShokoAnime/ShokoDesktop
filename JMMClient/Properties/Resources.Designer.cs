@@ -12783,7 +12783,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to In order to intergrate VLC with JMM Desktop, you must enable the Web UI via the following option in Tools &gt; Preferences (select All radio-button) &gt; Interface &gt; Main interfaces; Web..
+        ///   Looks up a localized string similar to This uses the web interface to track playback progress, no setup required.
         /// </summary>
         public static string VideoPlayer_VLCNote {
             get {

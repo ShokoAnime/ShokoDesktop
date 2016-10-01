@@ -4,7 +4,10 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using JMMClient.Utilities;
 using Microsoft.Win32;
@@ -13,14 +16,22 @@ namespace JMMClient.VideoPlayers
 {
     public class VLCVideoPlayer : BaseVideoPlayer, IVideoPlayer
     {
+        private System.Timers.Timer playerWebUiTimer = null;
+        private long currentPosition;
+        private string nowPlayingFile;
+
+        private static string webUIPort = "9001";
+        private static string webUIPassword = "AnimePlayer";
+
         public override void Init()
         {
             PlayerPath = Utils.CheckSysPath(new string[] { "vlc.exe" });
-            if (string.IsNullOrEmpty(PlayerPath))
+            if (string.IsNullOrEmpty(PlayerPath) && !File.Exists(PlayerPath))
                 PlayerPath = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\VLC media player", "DisplayIcon", null);
-            if (string.IsNullOrEmpty(PlayerPath))
+            if (string.IsNullOrEmpty(PlayerPath) && !File.Exists(PlayerPath))
                 PlayerPath = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\VLC media player", "DisplayIcon", null);
-            if (string.IsNullOrEmpty(PlayerPath))
+
+            if (string.IsNullOrEmpty(PlayerPath) && File.Exists(PlayerPath))
             {
                 Active = false;
                 return;
@@ -36,11 +47,14 @@ namespace JMMClient.VideoPlayers
             Task.Factory.StartNew(() =>
             {
                 Process process;
+                // Parameters for web ui
+                string webUIParms = $" --http-host=localhost --http-port={webUIPort} --http-password={webUIPassword} ";
+
                 if (video.IsPlaylist)
-                    process = Process.Start(PlayerPath, '"' + video.Uri + '"');
+                    process = Process.Start(PlayerPath, $"\"{video.Uri}\" {webUIParms}");
                 else
                 {
-                    string init = '"' + video.Uri + '"';
+                    string init = $"\"{video.Uri}\" {webUIParms}";
                     if (video.ResumePosition > 0)
                     {
                         double n = video.ResumePosition;
@@ -59,104 +73,118 @@ namespace JMMClient.VideoPlayers
                 if (process != null)
                 {
                     IsPlaying = true;
-                    StartWatcher(AppSettings.VLCFolder);
+                    nowPlayingFile = video.Uri;
+                    StartWatcher("");
                     process.WaitForExit();
                     StopWatcher();
                     IsPlaying = false;
+                    if (video != null)
+                        BaseVideoPlayer.PlaybackStopped(video, (long)currentPosition);
                 }
             });
         }
 
+        internal override void StartWatcher(string dummy)
+        {
+            StopWatcher();
+            playerWebUiTimer = new System.Timers.Timer();
+            playerWebUiTimer.Elapsed += HandleWebUIRequest;
+            playerWebUiTimer.Interval = 2500;
+            playerWebUiTimer.Enabled = true;
+
+        }
+
+        internal override void StopWatcher()
+        {
+            if (playerWebUiTimer != null)
+            {
+                playerWebUiTimer.Stop();
+                playerWebUiTimer.Dispose();
+                playerWebUiTimer = null;
+            }
+            base.StopWatcher();
+        }
+
         internal override void FileChangeEvent(string filePath)
         {
+            // No longer used
+        }
+
+        // Make and handle VLC web UI request
+        private async void HandleWebUIRequest(object source, System.Timers.ElapsedEventArgs e)
+        {
+            // Stop timer for the time request is processed
+            playerWebUiTimer.Stop();
+
+            // Request
+            string VLCUIFullUrl = string.Format("http://localhost:{0}/requests/status.xml", webUIPort);
+
+            // Helper variables
+            string responseString = "";
+            string nowPlayingFilePosition = "";
+            string nowPlayingFileDuration = "";
+
+            // Regex for extracting relevant information
+            // Could do it properly with XML reader but this keeps it consistent with other players
+            Regex fileRegex = new Regex("info name=\"filename\">(.*?)</info>");
+            Regex filePositionRegex = new Regex("time>(.*?)</time>");
+            Regex fileDurationRegex = new Regex("length>(.*?)</length>");
+
             try
             {
-                if (!AppSettings.VideoAutoSetWatched)
-                    return;
+                // Make HTTP request to Web UI
+                HttpClient client = new HttpClient();
+                var byteArray = Encoding.ASCII.GetBytes(":" + webUIPassword);
+                var header = new AuthenticationHeaderValue(
+                           "Basic", Convert.ToBase64String(byteArray));
+                client.DefaultRequestHeaders.Authorization = header;
 
-                List<string> filePaths = new List<string>();
-                List<long> positions = new List<long>();
-
-                // Vlc ini file looks like
-                //
-                // ...
-                // [RecentsMRL]
-                // list=file://NAS/Anime/Gate%20Jieitai%20Kanochi%20nite%2C%20Kaku%20Tatakaeri/%5BHorribleSubs%5D%20GATE%20-%2007%20%5B720p%5D.mkv, file://NAS/Anime/Overlord/%5BHorribleSubs%5D%20OverLord%20-%2006%20%5B720p%5D.mkv
-                // times=0, 0
-                // ...
-                //
-                // and stores -1 for newly opened file, 0 for completed file, and a millisecond value for partial watched.
-                // it appears to update on file open, playlist item change, or vlc close
-
-                string[] lines = File.ReadAllLines(filePath);
-
-                bool foundSectionStart = false;
-
-                for (int i = 0; i < lines.Length; i++)
+                using (HttpResponseMessage response = await client.GetAsync(VLCUIFullUrl))
+                using (HttpContent content = response.Content)
                 {
-                    string line = lines[i];
-
-                    if (line.Equals("[RecentsMRL]", StringComparison.InvariantCultureIgnoreCase))
-                        foundSectionStart = true;
-
-                    if (foundSectionStart
-                        && line.Trim().ToLower().StartsWith("list="))
+                    // Check if request was ok
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
-                        filePaths.AddRange(
-                            line.Remove(0, 5)
-                                .Split(',')
-                                .Select(
-                                    f =>
-                                    {
-                                        Uri tmp = null;
-                                        if (Uri.TryCreate(f.Trim(), UriKind.Absolute, out tmp))
-                                            return tmp.LocalPath;
-                                        else
-                                            throw new UriFormatException("Unable to parse URI in VLC ini file");
-                                    }
-                                )
-                            );
+                        // Read the string
+                        responseString = await content.ReadAsStringAsync();
+                        // Parse result
+                        if (responseString != null)
+                        {
+                            // extract currently playing video informations, VLC will only reports filename not full path so skip that one
+                            //nowPlayingFile = fileRegex.Match(responseString).Groups[1].ToString();
+                            nowPlayingFilePosition = filePositionRegex.Match(responseString).Groups[1].ToString();
+                            nowPlayingFileDuration = fileDurationRegex.Match(responseString).Groups[1].ToString();
+                            // Parse number values for future aritmetics
+
+                            double webPosition;
+                            double webDuratiion;
+                            bool isDoublePosition = double.TryParse(nowPlayingFilePosition, out webPosition);
+                            bool isDoubleDuration = double.TryParse(nowPlayingFilePosition, out webDuratiion);
+
+                            double filePosition;
+                            double fileDuration;
+                            if (isDoublePosition)
+                            {
+                                // Convert miliseconds to seconds
+                                filePosition = webPosition * 1000;
+                                if(isDoubleDuration)
+                                    fileDuration = webDuratiion * 1000;
+
+                                Dictionary<string, long> pos = new Dictionary<string, long>();
+                                pos.Add(nowPlayingFile, (long)filePosition);
+                                OnPositionChangeEvent(pos);
+                                currentPosition = (long)filePosition;
+                            }
+                        }
                     }
-
-                    if (foundSectionStart
-                        && line.Trim().ToLower().StartsWith("times="))
-                    {
-                        positions.AddRange(
-                            line.Remove(0, 6)
-                                .Split(',')
-                                .Select(
-                                    p =>
-                                    {
-                                        long posMs = 0;
-                                        if (long.TryParse(p.Trim(), out posMs))
-                                            return posMs;
-                                        else
-                                            throw new FormatException("Unable to parse times in VLC ini file");
-                                    }
-                                )
-                            );
-
-                        break;
-                    }
+                    // Start timer again
+                    playerWebUiTimer?.Start();
                 }
-
-                if (filePaths.Count == 0)
-                    return;
-
-                if (filePaths.Count != positions.Count)
-                    throw new Exception("The count of Recent Files and Timestamps in the VLC ini file differ");
-
-                Dictionary<string, long> filePositions = new Dictionary<string, long>();
-
-                for (int i = 0; i < filePaths.Count; i++)
-                {
-                    filePositions[filePaths[i]] = positions[i];
-                }
-                OnPositionChangeEvent(filePositions);
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                logger.ErrorException(ex.ToString(), ex);
+                logger.ErrorException(exception.ToString(), exception);
+                playerWebUiTimer?.Start();
             }
         }
     }

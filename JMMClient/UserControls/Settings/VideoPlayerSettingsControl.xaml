@@ -257,28 +257,6 @@
         </Border>
 
         <!-- VLC Web UI -->
-        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="3"
-                Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
-            <Grid>
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-
-                <TextBox HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Column="1" Grid.Row="2"
-                         TextWrapping="Wrap" Text="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=VLCWebUIPort}"
-                         VerticalAlignment="Top" Width="50"/>
-                <CheckBox x:Name="chkVLCWebUiIntegration"
-                          Content="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_VLCWebUIPort}"
-                          HorizontalAlignment="Left" Margin="5,1,0,0" Grid.Column="0" Grid.Row="2" VerticalAlignment="Top"/>
-            </Grid>
-
-        </Border>
 
         <!-- Zoom Player -->
         <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="3"

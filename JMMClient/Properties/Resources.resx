@@ -2192,7 +2192,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>VLC</value>
   </data>
   <data name="VideoPlayer_VLCNote" xml:space="preserve">
-    <value>In order to intergrate VLC with JMM Desktop, you must enable the Web UI via the following option in Tools &gt; Preferences (select All radio-button) &gt; Interface &gt; Main interfaces; Web.</value>
+    <value>This uses the web interface to track playback progress, no setup required</value>
   </data>
   <data name="VideoPlayer_PotPlayer" xml:space="preserve">
     <value>PotPlayer</value>

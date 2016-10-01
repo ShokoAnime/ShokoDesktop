@@ -41,19 +41,23 @@ namespace JMMClient.VideoPlayers
 
                     if (File.Exists(PlayerPath))
                     {
-                        // Check if TCP control server is enabled
-                        switch (tcpControlServerEnabled)
+                        if (tcpControlServerEnabled != null)
                         {
-                            case 0:
-                                _tcpControlServerEnabled = false;
-                                break;
-                            case 1:
-                                _tcpControlServerEnabled = true;
-                                break;
+                            // Check if TCP control server is enabled
+                            switch (tcpControlServerEnabled)
+                            {
+                                case 0:
+                                    _tcpControlServerEnabled = false;
+                                    break;
+                                case 1:
+                                    _tcpControlServerEnabled = true;
+                                    break;
+                            }
                         }
 
                         // Retrieve TCP control port and fallback to default in case of error
-                        _tcpControlPort = tcpControlPort;
+                        if (tcpControlPort != null)
+                            _tcpControlPort = tcpControlPort;
 
                         //Debug.WriteLine("Zoom player - path: " + PlayerPath);
                         //Debug.WriteLine("Zoom player - control server enabled: " + _tcpControlServerEnabled);

@@ -143,8 +143,6 @@ namespace JMMClient.VideoPlayers
         }
         internal override void StartWatcher(string path)
         {
-
-
             StopWatcher();
             if (AppSettings.MPCIniIntegration)
                 base.StartWatcher(path);

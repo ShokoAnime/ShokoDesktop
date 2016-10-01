@@ -28,10 +28,8 @@ namespace JMMClient.UserControls
             chkAutoSetWatched.Click += new RoutedEventHandler(chkAutoSetWatched_Click);
 
             chkMpcWebUiIntegration.IsChecked = UserSettingsVM.Instance.MPCWebUiIntegration;
-            chkVLCWebUiIntegration.IsChecked = UserSettingsVM.Instance.VLCWebUiIntegration;
 
             chkMpcWebUiIntegration.Click += new RoutedEventHandler(chkMpcWebUiIntegration_Click);
-            chkVLCWebUiIntegration.Click += new RoutedEventHandler(chkVLCWebUiIntegration_Click);
 
             cboDefaultPlayer.Items.Clear();
             cboDefaultPlayer.Items.Add("Internal MPV");
@@ -139,7 +137,6 @@ namespace JMMClient.UserControls
 
         void chkVLCWebUiIntegration_Click(object sender, RoutedEventArgs e)
         {
-            UserSettingsVM.Instance.VLCWebUiIntegration = chkVLCWebUiIntegration.IsChecked.Value;
             MainWindow.videoHandler.Init();
         }      
 

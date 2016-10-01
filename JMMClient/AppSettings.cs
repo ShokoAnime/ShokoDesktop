@@ -2315,27 +2315,6 @@ namespace JMMClient
             }
         }
 
-        public static string VLCWebUIPort
-        {
-            get
-            {
-
-
-                string value = Get("VLCWebUIPort");
-                if (string.IsNullOrEmpty(value))
-                {
-                    // default value
-                    value = "13579";
-                    Set("VLCWebUIPort", value);
-                }
-                return value;
-            }
-            set
-            {
-                Set("VLCWebUIPort", value);
-            }
-        }
-
         public static string PotPlayerFolder
 		{
 			get
@@ -2354,27 +2333,6 @@ namespace JMMClient
             set
             {
                 Set("PotPlayerFolder", value);
-            }
-        }
-
-        public static string VLCFolder
-        {
-            get
-            {
-                
-
-                string val = Get("VLCFolder");
-                if (string.IsNullOrEmpty(val))
-                {
-                    // default value
-                    val = "";
-                    Set("VLCFolder", val);
-                }
-                return val;
-            }
-            set
-            {
-                Set("VLCFolder", value);
             }
         }
 
@@ -2458,23 +2416,7 @@ namespace JMMClient
                 Set("MPCWebUiIntegration", value.ToString());
             }
         }
-
-        public static bool VLCWebUiIntegration
-        {
-            get
-            {
-
-                string stringValue = Get("VLCWebUiIntegration");
-                bool booleanValue = false;
-                bool.TryParse(stringValue, out booleanValue);
-
-                return booleanValue;
-            }
-            set
-            {
-                Set("VLCWebUiIntegration", value.ToString());
-            }
-        }    
+   
         public static bool MultipleFilesOnlyFinished
 		{
 			get
