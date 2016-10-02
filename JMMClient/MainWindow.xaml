@@ -1616,7 +1616,7 @@
                     </StackPanel>
                 </TabItem.Header>
 
-                <usercontrols:SeriesSearchControl x:Name="seriesSearch" Width="{Binding Source={x:Static local:MainListHelperVM.Instance},Path=FullScrollerWidth}" Margin="0,5,0,0"/>
+                <usercontrols:SeriesSearchControl x:Name="seriesSearch" Margin="0,0,0,0"/>
 
             </TabItem>
 

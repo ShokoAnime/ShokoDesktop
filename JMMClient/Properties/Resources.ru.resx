@@ -2054,9 +2054,6 @@
   <data name="Download_FolderLocation" xml:space="preserve">
     <value>Местоположение папки</value>
   </data>
-  <data name="Download_Hash" xml:space="preserve">
-    <value>Хэш</value>
-  </data>
   <data name="Download_Queue" xml:space="preserve">
     <value>#</value>
   </data>
@@ -2342,18 +2339,6 @@
   <data name="Episode_RecalculateHash" xml:space="preserve">
     <value>Повторно вычислить хэш</value>
   </data>
-  <data name="Episode_Hash" xml:space="preserve">
-    <value>Хэш</value>
-  </data>
-  <data name="Episode_CRC32" xml:space="preserve">
-    <value>CRC32</value>
-  </data>
-  <data name="Episode_SHA1" xml:space="preserve">
-    <value>SHA1</value>
-  </data>
-  <data name="Episode_MD5" xml:space="preserve">
-    <value>MD5</value>
-  </data>
   <data name="Episode_DownloadSearch" xml:space="preserve">
     <value>Поиск загрузок для этого эпизода</value>
   </data>
@@ -2615,10 +2600,10 @@
   <data name="Unrecognized_ForceAniDB" xml:space="preserve">
     <value>Принудительно обновить данные из AniDB</value>
   </data>
-  <data name="Unrecognized_Hash" xml:space="preserve">
+  <data name="Hash" xml:space="preserve">
     <value>Хэш</value>
   </data>
-  <data name="Unrecognized_CRC32" xml:space="preserve">
+  <data name="CRC32" xml:space="preserve">
     <value>CRC32</value>
   </data>
   <data name="Unrecognized_Logs" xml:space="preserve">
@@ -3134,9 +3119,6 @@
   <data name="Search_FileName" xml:space="preserve">
     <value>Имя файла</value>
   </data>
-  <data name="Search_Hash" xml:space="preserve">
-    <value>Хэш</value>
-  </data>
   <data name="Search_Last100" xml:space="preserve">
     <value>Последние 100</value>
   </data>
@@ -3245,16 +3227,16 @@
   <data name="EpisodeDetail_CommandQueued" xml:space="preserve">
     <value>Команда поставлена в очередь для обработки на сервере</value>
   </data>
-  <data name="Unrecognized_Folder" xml:space="preserve">
+  <data name="Utilities_Folder" xml:space="preserve">
     <value>Папка</value>
   </data>
   <data name="Unrecognized_Date" xml:space="preserve">
     <value>Дата</value>
   </data>
-  <data name="Unrecognized_FileName" xml:space="preserve">
+  <data name="Utilities_FileName" xml:space="preserve">
     <value>Имя файла</value>
   </data>
-  <data name="Unrecognized_Size" xml:space="preserve">
+  <data name="Utilities_Size" xml:space="preserve">
     <value>Размер</value>
   </data>
   <data name="Unrecognized_CRC" xml:space="preserve">

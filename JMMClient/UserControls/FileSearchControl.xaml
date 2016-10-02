@@ -89,10 +89,10 @@
                     <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Path=FileDirectory}" Margin="3" />
                     <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Path=FormattedFileSize}" Margin="3" />
 
-                    <TextBlock Grid.Row="4" Grid.Column="0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_Hash}" Margin="3" FontWeight="DemiBold" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Hash}" Margin="3" FontWeight="DemiBold" VerticalAlignment="Center" HorizontalAlignment="Left" />
                     <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Path=Hash}" MinWidth="150" Margin="10,3,3,3" VerticalAlignment="Center" HorizontalAlignment="Left"/>
 
-                    <TextBlock Grid.Row="5" Grid.Column="0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_CRC32}" Margin="3" FontWeight="DemiBold" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                    <TextBlock Grid.Row="5" Grid.Column="0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CRC32}" Margin="3" FontWeight="DemiBold" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                     <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Path=CRC32}" MinWidth="150" Margin="10,3,3,3" VerticalAlignment="Center" HorizontalAlignment="Left"/>
 
                 </Grid>

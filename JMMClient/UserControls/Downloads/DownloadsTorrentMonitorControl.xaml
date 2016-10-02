@@ -101,7 +101,7 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                     <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Name}" Binding="{Binding Name}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Hash}" Binding="{Binding Hash}" IsReadOnly="True" Visibility="Hidden" />
+                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Hash}" Binding="{Binding Hash}" IsReadOnly="True" Visibility="Hidden" />
                     <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Queue}" Binding="{Binding TorrentQueueOrder}" IsReadOnly="True" />
                     <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Size}" Binding="{Binding SizeFormatted}" IsReadOnly="True" />
                     <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Done}" Binding="{Binding PercentProgressFormatted}" IsReadOnly="True" />

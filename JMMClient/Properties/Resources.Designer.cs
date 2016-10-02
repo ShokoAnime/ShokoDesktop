@@ -2635,6 +2635,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CRC32.
+        /// </summary>
+        public static string CRC32 {
+            get {
+                return ResourceManager.GetString("CRC32", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to TvDB and Other Non AniDB Links.
         /// </summary>
         public static string CrossRefSummary {
@@ -3157,15 +3166,6 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hash.
-        /// </summary>
-        public static string Download_Hash {
-            get {
-                return ResourceManager.GetString("Download_Hash", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to You haven&apos;t specified valid uTorrent credentials.
         /// </summary>
         public static string Download_InvalidCred {
@@ -3589,15 +3589,6 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CRC32.
-        /// </summary>
-        public static string Episode_CRC32 {
-            get {
-                return ResourceManager.GetString("Episode_CRC32", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Search downloads for this episode.
         /// </summary>
         public static string Episode_DownloadSearch {
@@ -3616,15 +3607,6 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hash.
-        /// </summary>
-        public static string Episode_Hash {
-            get {
-                return ResourceManager.GetString("Episode_Hash", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Less Info...
         /// </summary>
         public static string Episode_LessInfo {
@@ -3639,15 +3621,6 @@ namespace JMMClient.Properties {
         public static string Episode_Manual {
             get {
                 return ResourceManager.GetString("Episode_Manual", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to MD5.
-        /// </summary>
-        public static string Episode_MD5 {
-            get {
-                return ResourceManager.GetString("Episode_MD5", resourceCulture);
             }
         }
         
@@ -3675,15 +3648,6 @@ namespace JMMClient.Properties {
         public static string Episode_RecalculateHash {
             get {
                 return ResourceManager.GetString("Episode_RecalculateHash", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to SHA1.
-        /// </summary>
-        public static string Episode_SHA1 {
-            get {
-                return ResourceManager.GetString("Episode_SHA1", resourceCulture);
             }
         }
         
@@ -4975,6 +4939,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hash.
+        /// </summary>
+        public static string Hash {
+            get {
+                return ResourceManager.GetString("Hash", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hide Episode Image When Unwatched.
         /// </summary>
         public static string HideEpisodeImageWhenUnwatched {
@@ -6132,6 +6105,15 @@ namespace JMMClient.Properties {
         public static string Matches {
             get {
                 return ResourceManager.GetString("Matches", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MD5.
+        /// </summary>
+        public static string MD5 {
+            get {
+                return ResourceManager.GetString("MD5", resourceCulture);
             }
         }
         
@@ -8539,15 +8521,6 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hash.
-        /// </summary>
-        public static string Search_Hash {
-            get {
-                return ResourceManager.GetString("Search_Hash", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to ID.
         /// </summary>
         public static string Search_ID {
@@ -9390,6 +9363,15 @@ namespace JMMClient.Properties {
         public static string Settings_SetJMMServer {
             get {
                 return ResourceManager.GetString("Settings_SetJMMServer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SHA1.
+        /// </summary>
+        public static string SHA1 {
+            get {
+                return ResourceManager.GetString("SHA1", resourceCulture);
             }
         }
         
@@ -11739,15 +11721,6 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CRC32.
-        /// </summary>
-        public static string Unrecognized_CRC32 {
-            get {
-                return ResourceManager.GetString("Unrecognized_CRC32", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Date.
         /// </summary>
         public static string Unrecognized_Date {
@@ -11766,38 +11739,11 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File Name.
-        /// </summary>
-        public static string Unrecognized_FileName {
-            get {
-                return ResourceManager.GetString("Unrecognized_FileName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Folder.
-        /// </summary>
-        public static string Unrecognized_Folder {
-            get {
-                return ResourceManager.GetString("Unrecognized_Folder", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Force update information from AniDB.
         /// </summary>
         public static string Unrecognized_ForceAniDB {
             get {
                 return ResourceManager.GetString("Unrecognized_ForceAniDB", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hash.
-        /// </summary>
-        public static string Unrecognized_Hash {
-            get {
-                return ResourceManager.GetString("Unrecognized_Hash", resourceCulture);
             }
         }
         
@@ -11843,15 +11789,6 @@ namespace JMMClient.Properties {
         public static string Unrecognized_Rescan {
             get {
                 return ResourceManager.GetString("Unrecognized_Rescan", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Size.
-        /// </summary>
-        public static string Unrecognized_Size {
-            get {
-                return ResourceManager.GetString("Unrecognized_Size", resourceCulture);
             }
         }
         
@@ -12320,6 +12257,33 @@ namespace JMMClient.Properties {
         public static string UseThis {
             get {
                 return ResourceManager.GetString("UseThis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File Name.
+        /// </summary>
+        public static string Utilities_FileName {
+            get {
+                return ResourceManager.GetString("Utilities_FileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Folder.
+        /// </summary>
+        public static string Utilities_Folder {
+            get {
+                return ResourceManager.GetString("Utilities_Folder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size.
+        /// </summary>
+        public static string Utilities_Size {
+            get {
+                return ResourceManager.GetString("Utilities_Size", resourceCulture);
             }
         }
         

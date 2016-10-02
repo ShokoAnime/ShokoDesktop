@@ -2048,9 +2048,6 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   <data name="Download_FolderLocation" xml:space="preserve">
     <value>Maplocatie</value>
   </data>
-  <data name="Download_Hash" xml:space="preserve">
-    <value>Hash</value>
-  </data>
   <data name="Download_Queue" xml:space="preserve">
     <value>#</value>
   </data>
@@ -2336,18 +2333,6 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   <data name="Episode_RecalculateHash" xml:space="preserve">
     <value>Opnieuw berekenen Hash</value>
   </data>
-  <data name="Episode_Hash" xml:space="preserve">
-    <value>Hash</value>
-  </data>
-  <data name="Episode_CRC32" xml:space="preserve">
-    <value>CRC32</value>
-  </data>
-  <data name="Episode_SHA1" xml:space="preserve">
-    <value>SHA1</value>
-  </data>
-  <data name="Episode_MD5" xml:space="preserve">
-    <value>MD5</value>
-  </data>
   <data name="Episode_DownloadSearch" xml:space="preserve">
     <value>Zoek downloads voor deze aflevering</value>
   </data>
@@ -2609,10 +2594,10 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   <data name="Unrecognized_ForceAniDB" xml:space="preserve">
     <value>Kracht updategegevens van AniDB</value>
   </data>
-  <data name="Unrecognized_Hash" xml:space="preserve">
+  <data name="Hash" xml:space="preserve">
     <value>Hash</value>
   </data>
-  <data name="Unrecognized_CRC32" xml:space="preserve">
+  <data name="CRC32" xml:space="preserve">
     <value>CRC32</value>
   </data>
   <data name="Unrecognized_Logs" xml:space="preserve">
@@ -3134,9 +3119,6 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   <data name="Search_FileName" xml:space="preserve">
     <value>Bestandsnaam</value>
   </data>
-  <data name="Search_Hash" xml:space="preserve">
-    <value>Hash</value>
-  </data>
   <data name="Search_Last100" xml:space="preserve">
     <value>Laatste 100</value>
   </data>
@@ -3245,16 +3227,16 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   <data name="EpisodeDetail_CommandQueued" xml:space="preserve">
     <value>Opdracht in de wachtrij is gezet voor verwerking op de server</value>
   </data>
-  <data name="Unrecognized_Folder" xml:space="preserve">
+  <data name="Utilities_Folder" xml:space="preserve">
     <value>Map</value>
   </data>
   <data name="Unrecognized_Date" xml:space="preserve">
     <value>Datum</value>
   </data>
-  <data name="Unrecognized_FileName" xml:space="preserve">
+  <data name="Utilities_FileName" xml:space="preserve">
     <value>Bestandsnaam</value>
   </data>
-  <data name="Unrecognized_Size" xml:space="preserve">
+  <data name="Utilities_Size" xml:space="preserve">
     <value>Grootte</value>
   </data>
   <data name="Unrecognized_CRC" xml:space="preserve">

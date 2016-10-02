@@ -73,6 +73,8 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -116,15 +118,41 @@
                             </StackPanel>
                         </Button>
                     </StackPanel>
-                    <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Path=FileName}" Margin="3" />
-                    <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Path=FileDirectory}" Margin="3" />
-                    <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Path=FormattedFileSize}" Margin="3" />
 
-                    <TextBlock Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Unrecognized_Hash}" Margin="3" FontWeight="DemiBold" />
-                    <TextBlock Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Path=Hash}" Margin="3" />
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Utilities_FileName}" Margin="3" FontWeight="DemiBold" />
+                        <TextBlock Text="{Binding Path=FileName}" Margin="3" />
+                    </StackPanel>
 
-                    <TextBlock Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Unrecognized_CRC32}" Margin="3" FontWeight="DemiBold" />
-                    <TextBlock Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Path=CRC32}" Margin="3" />
+                    <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Utilities_Folder}" Margin="3" FontWeight="DemiBold" />
+                        <TextBlock Text="{Binding Path=FileDirectory}" Margin="3" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Utilities_Size}" Margin="3" FontWeight="DemiBold" />
+                        <TextBlock Text="{Binding Path=FormattedFileSize}" Margin="3" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Hash}" Margin="3" FontWeight="DemiBold" />
+                        <TextBlock Text="{Binding Path=Hash}" Margin="3" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2">
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CRC32}" Margin="3" FontWeight="DemiBold" />
+                        <TextBlock Text="{Binding Path=CRC32}" Margin="3" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2">
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SHA1}" Margin="3" FontWeight="DemiBold" />
+                        <TextBlock Text="{Binding Path=SHA1}" Margin="3" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2">
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=MD5}" Margin="3" FontWeight="DemiBold" />
+                        <TextBlock Text="{Binding Path=MD5}" Margin="3" />
+                    </StackPanel>
 
                 </Grid>
             </DataTemplate>

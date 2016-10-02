@@ -2054,9 +2054,6 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   <data name="Download_FolderLocation" xml:space="preserve">
     <value>Emplacement du dossier</value>
   </data>
-  <data name="Download_Hash" xml:space="preserve">
-    <value>Hachage</value>
-  </data>
   <data name="Download_Queue" xml:space="preserve">
     <value>#</value>
   </data>
@@ -2342,18 +2339,6 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   <data name="Episode_RecalculateHash" xml:space="preserve">
     <value>Recalculer le hachage</value>
   </data>
-  <data name="Episode_Hash" xml:space="preserve">
-    <value>Hachage</value>
-  </data>
-  <data name="Episode_CRC32" xml:space="preserve">
-    <value>CRC32</value>
-  </data>
-  <data name="Episode_SHA1" xml:space="preserve">
-    <value>SHA1</value>
-  </data>
-  <data name="Episode_MD5" xml:space="preserve">
-    <value>MD5</value>
-  </data>
   <data name="Episode_DownloadSearch" xml:space="preserve">
     <value>Rechercher téléchargements pour cet épisode</value>
   </data>
@@ -2615,10 +2600,10 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   <data name="Unrecognized_ForceAniDB" xml:space="preserve">
     <value>Information mise à jour force de AniDB</value>
   </data>
-  <data name="Unrecognized_Hash" xml:space="preserve">
+  <data name="Hash" xml:space="preserve">
     <value>Hachage</value>
   </data>
-  <data name="Unrecognized_CRC32" xml:space="preserve">
+  <data name="CRC32" xml:space="preserve">
     <value>CRC32</value>
   </data>
   <data name="Unrecognized_Logs" xml:space="preserve">
@@ -3134,9 +3119,6 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   <data name="Search_FileName" xml:space="preserve">
     <value>Nom de fichier</value>
   </data>
-  <data name="Search_Hash" xml:space="preserve">
-    <value>Hachage</value>
-  </data>
   <data name="Search_Last100" xml:space="preserve">
     <value>100 dernières années</value>
   </data>
@@ -3245,16 +3227,16 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   <data name="EpisodeDetail_CommandQueued" xml:space="preserve">
     <value>Commande a été mis en attente de traitement sur le serveur</value>
   </data>
-  <data name="Unrecognized_Folder" xml:space="preserve">
+  <data name="Utilities_Folder" xml:space="preserve">
     <value>Dossier</value>
   </data>
   <data name="Unrecognized_Date" xml:space="preserve">
     <value>Date</value>
   </data>
-  <data name="Unrecognized_FileName" xml:space="preserve">
+  <data name="Utilities_FileName" xml:space="preserve">
     <value>Nom de fichier</value>
   </data>
-  <data name="Unrecognized_Size" xml:space="preserve">
+  <data name="Utilities_Size" xml:space="preserve">
     <value>Taille</value>
   </data>
   <data name="Unrecognized_CRC" xml:space="preserve">

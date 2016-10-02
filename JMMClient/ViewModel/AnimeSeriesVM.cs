@@ -415,7 +415,7 @@ namespace JMMClient
 
             string ret = SeriesName;
             if (ret.Length > 30)
-                ret = ret.Substring(0, 28) + "...";
+                ret = ret.Substring(0, 26) + "...";
 
             SeriesNameTruncated = ret;
         }

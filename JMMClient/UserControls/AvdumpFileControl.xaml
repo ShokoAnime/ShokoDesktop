@@ -115,9 +115,21 @@
 
                     <StackPanel Orientation="Vertical" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"  Margin="5,0,2,2"
                                 Visibility="{Binding Path=DumpSingle, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AvdumpFileControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
-                        <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Path=VideoLocal.FileName}" Margin="3" />
-                        <TextBlock Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Path=VideoLocal.FileDirectory}" Margin="3" />
-                        <TextBlock Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Path=VideoLocal.FormattedFileSize}" Margin="3" />
+
+                        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3">
+                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Utilities_FileName}" Margin="3" FontWeight="DemiBold" />
+                            <TextBlock Text="{Binding Path=VideoLocal.FileName}" Margin="3" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3">
+                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Utilities_Folder}" Margin="3" FontWeight="DemiBold" />
+                            <TextBlock Text="{Binding Path=VideoLocal.FileDirectory}" Margin="3" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3">
+                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Utilities_Size}" Margin="3" FontWeight="DemiBold" />
+                            <TextBlock Text="{Binding Path=VideoLocal.FormattedFileSize}" Margin="3" />
+                        </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3">
                             <TextBlock Text="Hash" Margin="3" FontWeight="DemiBold" />
@@ -140,6 +152,7 @@
                          BorderThickness="1" ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="WrapWithOverflow"
                          HorizontalAlignment="Stretch"/>
                         </StackPanel >
+                        
                     </StackPanel >
 
                     <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"  Margin="5,0,2,2"

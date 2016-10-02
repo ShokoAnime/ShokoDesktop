@@ -2054,9 +2054,6 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
   <data name="Download_FolderLocation" xml:space="preserve">
     <value>Ubicación de la carpeta</value>
   </data>
-  <data name="Download_Hash" xml:space="preserve">
-    <value>Hash</value>
-  </data>
   <data name="Download_Queue" xml:space="preserve">
     <value>#</value>
   </data>
@@ -2342,18 +2339,6 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
   <data name="Episode_RecalculateHash" xml:space="preserve">
     <value>Volver a calcular el Hash</value>
   </data>
-  <data name="Episode_Hash" xml:space="preserve">
-    <value>Hash</value>
-  </data>
-  <data name="Episode_CRC32" xml:space="preserve">
-    <value>CRC32</value>
-  </data>
-  <data name="Episode_SHA1" xml:space="preserve">
-    <value>SHA1</value>
-  </data>
-  <data name="Episode_MD5" xml:space="preserve">
-    <value>MD5</value>
-  </data>
   <data name="Episode_DownloadSearch" xml:space="preserve">
     <value>Buscar descargas para este episodio</value>
   </data>
@@ -2615,10 +2600,10 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
   <data name="Unrecognized_ForceAniDB" xml:space="preserve">
     <value>Información de actualización de la fuerza de AniDB</value>
   </data>
-  <data name="Unrecognized_Hash" xml:space="preserve">
+  <data name="Hash" xml:space="preserve">
     <value>Hash</value>
   </data>
-  <data name="Unrecognized_CRC32" xml:space="preserve">
+  <data name="CRC32" xml:space="preserve">
     <value>CRC32</value>
   </data>
   <data name="Unrecognized_Logs" xml:space="preserve">
@@ -3134,9 +3119,6 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
   <data name="Search_FileName" xml:space="preserve">
     <value>Nombre de archivo</value>
   </data>
-  <data name="Search_Hash" xml:space="preserve">
-    <value>Hash</value>
-  </data>
   <data name="Search_Last100" xml:space="preserve">
     <value>Últimos 100</value>
   </data>
@@ -3245,16 +3227,16 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
   <data name="EpisodeDetail_CommandQueued" xml:space="preserve">
     <value>Comando ha sido cola de procesamiento en el servidor</value>
   </data>
-  <data name="Unrecognized_Folder" xml:space="preserve">
+  <data name="Utilities_Folder" xml:space="preserve">
     <value>Carpeta de</value>
   </data>
   <data name="Unrecognized_Date" xml:space="preserve">
     <value>Fecha</value>
   </data>
-  <data name="Unrecognized_FileName" xml:space="preserve">
+  <data name="Utilities_FileName" xml:space="preserve">
     <value>Nombre de archivo</value>
   </data>
-  <data name="Unrecognized_Size" xml:space="preserve">
+  <data name="Utilities_Size" xml:space="preserve">
     <value>Tamaño</value>
   </data>
   <data name="Unrecognized_CRC" xml:space="preserve">

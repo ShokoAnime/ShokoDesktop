@@ -11,7 +11,7 @@
     <UserControl.Resources>
 
         <ResourceDictionary>
-            
+
 
             <RoutedUICommand x:Key="OpenFolderCommand" Text="OpenFolderCommand" />
             <RoutedUICommand x:Key="DeleteFileCommand" Text="DeleteFileCommand" />
@@ -19,7 +19,7 @@
             <RoutedUICommand x:Key="RehashFileCommand" Text="RehashFileCommand" />
             <RoutedUICommand x:Key="RescanFileCommand" Text="RescanFileCommand" />
             <RoutedUICommand x:Key="PlayVideoCommand" Text="PlayVideoCommand" />
-            
+
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
@@ -60,7 +60,7 @@
                                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Delete}" Margin="0,0,5,0"/>
                             </StackPanel>
                         </Button>
-                        
+
                         <!-- ignore file -->
                         <Button Name="btnIgnoreFileEntryMultiple" Margin="0,0,2,2" Grid.Column="0" Grid.Row="3" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left"
                                 Command="{DynamicResource IgnoreFileCommand}" CommandParameter="{Binding}">
@@ -79,7 +79,7 @@
                                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Unrecognized_Rescan}" Margin="0,0,5,0"/>
                             </StackPanel>
                         </Button>
-                        
+
                         <!-- rehash file -->
                         <Button Name="btnRehashFileMultiple" Margin="0,0,2,2" Grid.Column="0" Grid.Row="3" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" 
                                 Command="{DynamicResource RehashFileCommand}" CommandParameter="{Binding}">
@@ -106,13 +106,16 @@
                     </StackPanel>
                 </Grid>
 
-                
+
             </DataTemplate>
 
             <!-- FileDetailsTemplate -->
             <DataTemplate x:Key="FileDetailsTemplate">
                 <Grid>
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
@@ -135,7 +138,7 @@
                                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Play}" Margin="0,0,5,0"/>
                             </StackPanel>
                         </Button>
-                        
+
                         <!-- delete file -->
                         <Button Name="btnDeleteFileEntry" Margin="0,0,2,2" Grid.Column="0" Grid.Row="3" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left"
                                 Command="{StaticResource DeleteFileCommand}" CommandParameter="{Binding}">
@@ -144,7 +147,7 @@
                                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Delete}" Margin="0,0,5,0"/>
                             </StackPanel>
                         </Button>
-                        
+
                         <!-- ignore file -->
                         <Button Name="btnIgnoreFileEntry" Margin="0,0,2,2" Grid.Column="0" Grid.Row="3" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" 
                                 Command="{StaticResource IgnoreFileCommand}" CommandParameter="{Binding}">
@@ -175,7 +178,9 @@
                             </StackPanel>
                         </Button>
 
- 
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
 
                         <!-- avdump2 file -->
                         <Button Name="btnAvdumpFile" Margin="0,0,2,2" Grid.Column="0" Grid.Row="3" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" 
@@ -195,15 +200,41 @@
                             </StackPanel>
                         </Button>
                     </StackPanel>
-                    <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Path=FileName}" Margin="3" />
-                    <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Path=FileDirectory}" Margin="3" />
-                    <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Path=FormattedFileSize}" Margin="3" />
 
-                    <TextBlock Grid.Row="4" Grid.Column="0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Unrecognized_Hash}" Margin="3" FontWeight="DemiBold" />
-                    <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Path=Hash}" Margin="10,3,3,3" />
+                    <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Utilities_FileName}" Margin="3" FontWeight="DemiBold" />
+                        <TextBlock Text="{Binding Path=FileName}" Margin="3" />
+                    </StackPanel>
 
-                    <TextBlock Grid.Row="5" Grid.Column="0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Unrecognized_CRC32}" Margin="3" FontWeight="DemiBold" />
-                    <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Path=CRC32}" Margin="10,3,3,3" />
+                    <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Utilities_Folder}" Margin="3" FontWeight="DemiBold" />
+                        <TextBlock Text="{Binding Path=FileDirectory}" Margin="3" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Utilities_Size}" Margin="3" FontWeight="DemiBold" />
+                        <TextBlock Text="{Binding Path=FormattedFileSize}" Margin="3" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2">
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Hash}" Margin="3" FontWeight="DemiBold" />
+                        <TextBlock Text="{Binding Path=Hash}" Margin="3" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2">
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CRC32}" Margin="3" FontWeight="DemiBold" />
+                        <TextBlock Text="{Binding Path=CRC32}" Margin="3" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2">
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SHA1}" Margin="3" FontWeight="DemiBold" />
+                        <TextBlock Text="{Binding Path=SHA1}" Margin="3" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2">
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=MD5}" Margin="3" FontWeight="DemiBold" />
+                        <TextBlock Text="{Binding Path=MD5}" Margin="3" />
+                    </StackPanel>
 
                 </Grid>
             </DataTemplate>
@@ -225,7 +256,7 @@
     </UserControl.CommandBindings>
 
     <Grid>
-        
+
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -239,7 +270,7 @@
         </Grid.ColumnDefinitions>
 
 
-        
+
         <!-- file list -->
         <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Margin="0,0,5,0" Background="White" BorderBrush="LightGray" BorderThickness="1">
 
@@ -315,16 +346,16 @@
                         </Style>
                     </DataGrid.CellStyle>
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Unrecognized_Folder}" Binding="{Binding FileDirectory}" IsReadOnly="True" Width="100" />
-                        <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Unrecognized_FileName}" Binding="{Binding FileName}" IsReadOnly="True" Width="300" />
-                        <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Unrecognized_Size}" Binding="{Binding FileSize}" IsReadOnly="True" />
-                        <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Unrecognized_Hash}" Binding="{Binding Hash}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Utilities_Folder}" Binding="{Binding FileDirectory}" IsReadOnly="True" Width="100" />
+                        <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Utilities_FileName}" Binding="{Binding FileName}" IsReadOnly="True" Width="300" />
+                        <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Utilities_Size}" Binding="{Binding FormattedFileSize}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Hash}" Binding="{Binding Hash}" IsReadOnly="True" />
                         <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Unrecognized_CRC}" Binding="{Binding CRC32}" IsReadOnly="True" />
                         <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Unrecognized_Date}" Binding="{Binding DateTimeUpdated}" IsReadOnly="True" />
 
                     </DataGrid.Columns>
                 </DataGrid>
-                
+
             </DockPanel>
 
 
@@ -356,7 +387,7 @@
                     <Image Source="/Images/16_link_add.png" Width="16" Height="16" Margin="5,0,0,0" VerticalAlignment="Center" ></Image>
                     <TextBlock  Margin="5,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AssociateFile}" VerticalAlignment="Center"/>
                 </StackPanel>
-                
+
 
                 <!-- single series and episode -->
                 <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Margin="0,0,0,5">
@@ -420,7 +451,7 @@
                        ItemsSource="{Binding Path=ViewSeries, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:UnrecognisedVideos}}}"
                         />
 
-                
+
 
                 <!-- multiple selected files -->
                 <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2" Margin="0,0,0,5" DockPanel.Dock="Top"
@@ -439,12 +470,12 @@
                                    Visibility="{Binding Path=MultipleVideosSelected, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:UnrecognisedVideos}}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         <TextBox Name="txtEndEpNumSingle" Margin="5,0,0,0" Width="40" VerticalAlignment="Center" Text="1"
                                  Visibility="{Binding Path=OneVideoSelected, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:UnrecognisedVideos}}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        
+
                     </StackPanel>
                 </StackPanel>
             </DockPanel>
-            
-            
+
+
 
         </Border>
 
@@ -455,7 +486,7 @@
                 <ContentControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Name="ccDetail" 
                                     ContentTemplate="{DynamicResource FileDetailsTemplate}">
 
-                    </ContentControl>
+                </ContentControl>
             </ScrollViewer>
         </Border>
 
@@ -472,6 +503,6 @@
 
 
     </Grid>
-    
-    
+
+
 </UserControl>

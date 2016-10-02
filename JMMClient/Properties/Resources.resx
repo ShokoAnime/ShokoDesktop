@@ -2125,9 +2125,6 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="Download_FolderLocation" xml:space="preserve">
     <value>Folder Location</value>
   </data>
-  <data name="Download_Hash" xml:space="preserve">
-    <value>Hash</value>
-  </data>
   <data name="Download_Queue" xml:space="preserve">
     <value>#</value>
   </data>
@@ -2443,18 +2440,6 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="Episode_RecalculateHash" xml:space="preserve">
     <value>Re-Calculate Hash</value>
   </data>
-  <data name="Episode_Hash" xml:space="preserve">
-    <value>Hash</value>
-  </data>
-  <data name="Episode_CRC32" xml:space="preserve">
-    <value>CRC32</value>
-  </data>
-  <data name="Episode_SHA1" xml:space="preserve">
-    <value>SHA1</value>
-  </data>
-  <data name="Episode_MD5" xml:space="preserve">
-    <value>MD5</value>
-  </data>
   <data name="Episode_DownloadSearch" xml:space="preserve">
     <value>Search downloads for this episode</value>
   </data>
@@ -2737,10 +2722,10 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="Unrecognized_ForceAniDB" xml:space="preserve">
     <value>Force update information from AniDB</value>
   </data>
-  <data name="Unrecognized_Hash" xml:space="preserve">
+  <data name="Hash" xml:space="preserve">
     <value>Hash</value>
   </data>
-  <data name="Unrecognized_CRC32" xml:space="preserve">
+  <data name="CRC32" xml:space="preserve">
     <value>CRC32</value>
   </data>
   <data name="Unrecognized_Rehash" xml:space="preserve">
@@ -3301,9 +3286,6 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="Search_FileName" xml:space="preserve">
     <value>File Name</value>
   </data>
-  <data name="Search_Hash" xml:space="preserve">
-    <value>Hash</value>
-  </data>
   <data name="Search_Last100" xml:space="preserve">
     <value>Last 100</value>
   </data>
@@ -3421,16 +3403,16 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="EpisodeDetail_CommandQueued" xml:space="preserve">
     <value>Command has been queued for processing on the server</value>
   </data>
-  <data name="Unrecognized_Folder" xml:space="preserve">
+  <data name="Utilities_Folder" xml:space="preserve">
     <value>Folder</value>
   </data>
   <data name="Unrecognized_Date" xml:space="preserve">
     <value>Date</value>
   </data>
-  <data name="Unrecognized_FileName" xml:space="preserve">
+  <data name="Utilities_FileName" xml:space="preserve">
     <value>File Name</value>
   </data>
-  <data name="Unrecognized_Size" xml:space="preserve">
+  <data name="Utilities_Size" xml:space="preserve">
     <value>Size</value>
   </data>
   <data name="Unrecognized_CRC" xml:space="preserve">
@@ -4464,5 +4446,11 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   </data>
   <data name="VideoPlayer_SupportedNote" xml:space="preserve">
     <value>The video players listed below are fully supported within JMM Desktop, each video player is capable of resuming playback, updating watched states and Trakt scrobbling. Please read the information below the video players name for any additional setup required.</value>
+  </data>
+  <data name="MD5" xml:space="preserve">
+    <value>MD5</value>
+  </data>
+  <data name="SHA1" xml:space="preserve">
+    <value>SHA1</value>
   </data>
 </root>

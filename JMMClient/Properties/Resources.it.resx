@@ -2051,9 +2051,6 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   <data name="Download_FolderLocation" xml:space="preserve">
     <value>Percorso della cartella</value>
   </data>
-  <data name="Download_Hash" xml:space="preserve">
-    <value>Hash</value>
-  </data>
   <data name="Download_Queue" xml:space="preserve">
     <value>n.</value>
   </data>
@@ -2339,18 +2336,6 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   <data name="Episode_RecalculateHash" xml:space="preserve">
     <value>Ri-calcolare Hash</value>
   </data>
-  <data name="Episode_Hash" xml:space="preserve">
-    <value>Hash</value>
-  </data>
-  <data name="Episode_CRC32" xml:space="preserve">
-    <value>CRC32</value>
-  </data>
-  <data name="Episode_SHA1" xml:space="preserve">
-    <value>SHA1</value>
-  </data>
-  <data name="Episode_MD5" xml:space="preserve">
-    <value>MD5</value>
-  </data>
   <data name="Episode_DownloadSearch" xml:space="preserve">
     <value>Cerca download per questo episodio</value>
   </data>
@@ -2612,10 +2597,10 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   <data name="Unrecognized_ForceAniDB" xml:space="preserve">
     <value>Informazioni sull'aggiornamento di forza da AniDB</value>
   </data>
-  <data name="Unrecognized_Hash" xml:space="preserve">
+  <data name="Hash" xml:space="preserve">
     <value>Hash</value>
   </data>
-  <data name="Unrecognized_CRC32" xml:space="preserve">
+  <data name="CRC32" xml:space="preserve">
     <value>CRC32</value>
   </data>
   <data name="Unrecognized_Logs" xml:space="preserve">
@@ -3134,9 +3119,6 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   <data name="Search_FileName" xml:space="preserve">
     <value>Nome del file</value>
   </data>
-  <data name="Search_Hash" xml:space="preserve">
-    <value>Hash</value>
-  </data>
   <data name="Search_Last100" xml:space="preserve">
     <value>Ultimi 100</value>
   </data>
@@ -3245,16 +3227,16 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   <data name="EpisodeDetail_CommandQueued" xml:space="preserve">
     <value>Comando è stata accodata per l'elaborazione sul server</value>
   </data>
-  <data name="Unrecognized_Folder" xml:space="preserve">
+  <data name="Utilities_Folder" xml:space="preserve">
     <value>Cartella</value>
   </data>
   <data name="Unrecognized_Date" xml:space="preserve">
     <value>Data</value>
   </data>
-  <data name="Unrecognized_FileName" xml:space="preserve">
+  <data name="Utilities_FileName" xml:space="preserve">
     <value>Nome del file</value>
   </data>
-  <data name="Unrecognized_Size" xml:space="preserve">
+  <data name="Utilities_Size" xml:space="preserve">
     <value>Dimensioni</value>
   </data>
   <data name="Unrecognized_CRC" xml:space="preserve">

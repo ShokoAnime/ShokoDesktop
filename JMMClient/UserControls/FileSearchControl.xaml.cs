@@ -31,7 +31,7 @@ namespace JMMClient.UserControls
         }
 
         private readonly string SearchTypeFileName = JMMClient.Properties.Resources.Search_FileName;
-        private readonly string SearchTypeHash = JMMClient.Properties.Resources.Search_Hash;
+        private readonly string SearchTypeHash = JMMClient.Properties.Resources.Hash;
         private readonly string SearchTypeTopOneHundred = JMMClient.Properties.Resources.Search_Last100;
 
         private readonly string SearchTypeFileSize = JMMClient.Properties.Resources.Search_FileSize;
@@ -55,7 +55,7 @@ namespace JMMClient.UserControls
 
             cboSearchType.Items.Clear();
             cboSearchType.Items.Add(JMMClient.Properties.Resources.Search_FileName);
-            cboSearchType.Items.Add(JMMClient.Properties.Resources.Search_Hash);
+            cboSearchType.Items.Add(JMMClient.Properties.Resources.Hash);
             cboSearchType.Items.Add(JMMClient.Properties.Resources.Search_Last100);
             cboSearchType.SelectedIndex = 0;
 

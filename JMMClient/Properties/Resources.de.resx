@@ -1739,9 +1739,6 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   <data name="Download_FolderLocation" xml:space="preserve">
     <value>Speicherort des Ordners</value>
   </data>
-  <data name="Download_Hash" xml:space="preserve">
-    <value>Hash</value>
-  </data>
   <data name="Download_Queue" xml:space="preserve">
     <value>#</value>
   </data>
@@ -2027,18 +2024,6 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   <data name="Episode_RecalculateHash" xml:space="preserve">
     <value>Hash neu berechnen</value>
   </data>
-  <data name="Episode_Hash" xml:space="preserve">
-    <value>Hash</value>
-  </data>
-  <data name="Episode_CRC32" xml:space="preserve">
-    <value>CRC32</value>
-  </data>
-  <data name="Episode_SHA1" xml:space="preserve">
-    <value>SHA1</value>
-  </data>
-  <data name="Episode_MD5" xml:space="preserve">
-    <value>MD5</value>
-  </data>
   <data name="Episode_DownloadSearch" xml:space="preserve">
     <value>Suche downloads für diese episode</value>
   </data>
@@ -2300,10 +2285,10 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   <data name="Unrecognized_ForceAniDB" xml:space="preserve">
     <value>Kraft-Update-Informationen von AniDB</value>
   </data>
-  <data name="Unrecognized_Hash" xml:space="preserve">
+  <data name="Hash" xml:space="preserve">
     <value>Hash</value>
   </data>
-  <data name="Unrecognized_CRC32" xml:space="preserve">
+  <data name="CRC32" xml:space="preserve">
     <value>CRC32</value>
   </data>
   <data name="Unrecognized_Logs" xml:space="preserve">
@@ -3131,9 +3116,6 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   <data name="Search_FileName" xml:space="preserve">
     <value>Dateiname</value>
   </data>
-  <data name="Search_Hash" xml:space="preserve">
-    <value>Hash</value>
-  </data>
   <data name="Search_Last100" xml:space="preserve">
     <value>Letzten 100</value>
   </data>
@@ -3242,16 +3224,16 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   <data name="EpisodeDetail_CommandQueued" xml:space="preserve">
     <value>Befehl hat für die Verarbeitung auf dem Server in der Warteschlange</value>
   </data>
-  <data name="Unrecognized_Folder" xml:space="preserve">
+  <data name="Utilities_Folder" xml:space="preserve">
     <value>Ordner</value>
   </data>
   <data name="Unrecognized_Date" xml:space="preserve">
     <value>Datum</value>
   </data>
-  <data name="Unrecognized_FileName" xml:space="preserve">
+  <data name="Utilities_FileName" xml:space="preserve">
     <value>Dateiname</value>
   </data>
-  <data name="Unrecognized_Size" xml:space="preserve">
+  <data name="Utilities_Size" xml:space="preserve">
     <value>Größe</value>
   </data>
   <data name="Unrecognized_CRC" xml:space="preserve">
