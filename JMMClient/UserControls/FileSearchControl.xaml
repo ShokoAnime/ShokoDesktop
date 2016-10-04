@@ -114,22 +114,22 @@
 
                     <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">
                         <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Hash}" Margin="3" FontWeight="DemiBold" />
-                        <TextBlock Text="{Binding Path=Hash}" Margin="3" />
+                        <TextBox Text="{Binding Path=Hash}" Margin="3" Background="Transparent" BorderThickness="0" IsReadOnly="True" />
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2">
                         <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CRC32}" Margin="3" FontWeight="DemiBold" />
-                        <TextBlock Text="{Binding Path=CRC32}" Margin="3" />
+                        <TextBox Text="{Binding Path=CRC32}" Margin="3" Background="Transparent" BorderThickness="0" IsReadOnly="True" />
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2">
                         <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SHA1}" Margin="3" FontWeight="DemiBold" />
-                        <TextBlock Text="{Binding Path=SHA1}" Margin="3" />
+                        <TextBox Text="{Binding Path=SHA1}" Margin="3" Background="Transparent" BorderThickness="0" IsReadOnly="True" />
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2">
                         <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=MD5}" Margin="3" FontWeight="DemiBold" />
-                        <TextBlock Text="{Binding Path=MD5}" Margin="3" />
+                        <TextBox Text="{Binding Path=MD5}" Margin="3" Background="Transparent" BorderThickness="0" IsReadOnly="True" />
                     </StackPanel>
 
                 </Grid>
