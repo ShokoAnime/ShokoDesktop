@@ -261,10 +261,10 @@
                         <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SHA1}" FontWeight="Bold" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="0" Grid.Row="3"/>
                         <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=MD5}" FontWeight="Bold" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="0" Grid.Row="4"/>
 
-                        <TextBox Text="{Binding Path=VideoLocal_Hash}" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="1" Grid.Row="1"/>
-                        <TextBox Text="{Binding Path=VideoLocal_CRC32}" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="1" Grid.Row="2"/>
-                        <TextBox Text="{Binding Path=VideoLocal_SHA1}" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="1" Grid.Row="3"/>
-                        <TextBox Text="{Binding Path=VideoLocal_MD5}" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="1" Grid.Row="4"/>
+                        <TextBox Text="{Binding Path=VideoLocal_Hash}" Background="Transparent" BorderThickness="0" IsReadOnly="True" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="1" Grid.Row="1"/>
+                        <TextBox Text="{Binding Path=VideoLocal_CRC32}"  Background="Transparent" BorderThickness="0" IsReadOnly="True" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="1" Grid.Row="2"/>
+                        <TextBox Text="{Binding Path=VideoLocal_SHA1}"  Background="Transparent" BorderThickness="0" IsReadOnly="True" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="1" Grid.Row="3"/>
+                        <TextBox Text="{Binding Path=VideoLocal_MD5}"  Background="Transparent" BorderThickness="0" IsReadOnly="True" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="1" Grid.Row="4"/>
                     </Grid>
 
                 </Grid>

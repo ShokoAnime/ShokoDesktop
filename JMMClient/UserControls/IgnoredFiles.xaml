@@ -95,7 +95,7 @@
                                 <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=PlayVideo}"/>
                             </Button.ToolTip>
                         </Button>
-                        
+
                         <Button Name="btnDeleteFileEntrySingle" Margin="0,0,2,2" Grid.Column="0" Grid.Row="3" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left"
                                 Command="{DynamicResource DeleteFileCommand}" CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
@@ -136,22 +136,22 @@
 
                     <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">
                         <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Hash}" Margin="3" FontWeight="DemiBold" />
-                        <TextBlock Text="{Binding Path=Hash}" Margin="3" />
+                        <TextBox Text="{Binding Path=Hash}" Margin="3" Background="Transparent" BorderThickness="0" IsReadOnly="True" />
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2">
                         <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CRC32}" Margin="3" FontWeight="DemiBold" />
-                        <TextBlock Text="{Binding Path=CRC32}" Margin="3" />
+                        <TextBox Text="{Binding Path=CRC32}" Margin="3" Background="Transparent" BorderThickness="0" IsReadOnly="True" />
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2">
                         <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SHA1}" Margin="3" FontWeight="DemiBold" />
-                        <TextBlock Text="{Binding Path=SHA1}" Margin="3" />
+                        <TextBox Text="{Binding Path=SHA1}" Margin="3" Background="Transparent" BorderThickness="0" IsReadOnly="True" />
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2">
                         <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=MD5}" Margin="3" FontWeight="DemiBold" />
-                        <TextBlock Text="{Binding Path=MD5}" Margin="3" />
+                        <TextBox Text="{Binding Path=MD5}" Margin="3" Background="Transparent" BorderThickness="0" IsReadOnly="True"  />
                     </StackPanel>
 
                 </Grid>
@@ -219,7 +219,7 @@
                   Grid.Column="1" ResizeBehavior="PreviousAndNext"
                   Width="2" Background="#FFBCBCBC" Grid.RowSpan="3" />
 
-      
+
 
         <!-- Currently selected file details -->
         <Border Grid.Row="0" Grid.Column="2" Margin="5,0,0,5" Padding="5" Background="AliceBlue" BorderBrush="LightGray" BorderThickness="1"
