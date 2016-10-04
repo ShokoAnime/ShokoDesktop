@@ -252,33 +252,42 @@ namespace JMMClient
                 _blockTabControlChanged = false;
             }));
         }
-        void btnSwitchUser_Click(object sender, RoutedEventArgs e)
-        {
-            // authenticate user
-            if (JMMServerVM.Instance.ServerOnline)
-            {
-                if (JMMServerVM.Instance.AuthenticateUser())
-                {
-                    MainListHelperVM.Instance.ClearData();
-                    MainListHelperVM.Instance.ShowChildWrappers(null);
 
-                    RecentAdditionsType addType = RecentAdditionsType.Episode;
-                    if (dash.cboDashRecentAdditionsType.SelectedIndex == 0) addType = RecentAdditionsType.Episode;
-                    if (dash.cboDashRecentAdditionsType.SelectedIndex == 1) addType = RecentAdditionsType.Series;
+       void btnSwitchUser_Click(object sender, RoutedEventArgs e)
+       {
+          // authenticate user
+          if (JMMServerVM.Instance.ServerOnline)
+          {
+             if (JMMServerVM.Instance.AuthenticateUser())
+             {
+                MainListHelperVM.Instance.ClearData();
+                MainListHelperVM.Instance.ShowChildWrappers(null);
 
-                    RefreshOptions opt = new RefreshOptions();
-                    opt.RecentAdditionType = addType;
-                    opt.RefreshRecentAdditions = true;
-                    opt.RefreshContinueWatching = true;
-                    opt.RefreshOtherWidgets = true;
-                    showDashboardWorker.RunWorkerAsync(opt);
+                RecentAdditionsType addType = RecentAdditionsType.Episode;
+                if (dash.cboDashRecentAdditionsType.SelectedIndex == 0) addType = RecentAdditionsType.Episode;
+                if (dash.cboDashRecentAdditionsType.SelectedIndex == 1) addType = RecentAdditionsType.Series;
 
-                    tabControl1.SelectedIndex = TAB_MAIN_Dashboard;
-                }
-            }
-        }
+                RefreshOptions opt = new RefreshOptions();
+                opt.RecentAdditionType = addType;
+                opt.RefreshRecentAdditions = true;
+                opt.RefreshContinueWatching = true;
+                opt.RefreshOtherWidgets = true;
 
-        void videoHandler_VideoWatchedEvent(VideoWatchedEventArgs ev)
+                // Check if worker is busy and cancel if needed
+                if (showDashboardWorker.IsBusy)
+                   showDashboardWorker.CancelAsync();
+
+                if (!showDashboardWorker.IsBusy)
+                  showDashboardWorker.RunWorkerAsync(opt);
+               else
+                  logger.Error("Failed to start showDashboardWorker for btnSwitchUser");
+
+                tabControl1.SelectedIndex = TAB_MAIN_Dashboard;
+             }
+          }
+       }
+
+       void videoHandler_VideoWatchedEvent(VideoWatchedEventArgs ev)
         {
             if (tabControl1.SelectedIndex == TAB_MAIN_Collection || tabControl1.SelectedIndex == TAB_MAIN_Pinned)
             {
