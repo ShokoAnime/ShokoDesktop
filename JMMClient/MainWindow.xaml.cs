@@ -545,22 +545,18 @@ namespace JMMClient
                 if (tempHeight > 0)
                     MainListHelperVM.Instance.FullScrollerHeight = tempHeight;
 
-
-                tempWidth = ScrollerPlaylist.ViewportWidth - 8;
+                tempWidth = ccPlaylist.ActualWidth - 8;
                 if (tempWidth > 0)
-                    MainListHelperVM.Instance.PlaylistScrollerWidth = tempWidth;
+                    MainListHelperVM.Instance.PlaylistWidth = tempWidth;
 
                 tempWidth = tabcDownloads.ActualWidth - 130;
                 if (tempWidth > 0)
                     MainListHelperVM.Instance.DownloadRecScrollerWidth = tempWidth;
-
-
             }
             catch (Exception ex)
             {
-                logger.ErrorException(ex.ToString(), ex);
+                logger.Error(ex, ex.ToString());
             }
-
         }
 
         void tabFileManager_SelectionChanged(object sender, SelectionChangedEventArgs e)
