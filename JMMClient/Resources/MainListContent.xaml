@@ -8,13 +8,7 @@
         <DataTemplate.Resources>
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         </DataTemplate.Resources>
-        <StackPanel Orientation="Vertical">
-            <usercontrols:GroupFilterAdmin Content="{Binding}"/>
-
-        </StackPanel>
-
-        
-
+        <usercontrols:GroupFilterAdmin Content="{Binding}"/>
     </DataTemplate >
 
     <!-- groupDetailTemplate-->

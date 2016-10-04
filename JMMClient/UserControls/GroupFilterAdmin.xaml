@@ -7,11 +7,8 @@
              xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="600">
-
-    <StackPanel Orientation="Vertical">
-
-        <StackPanel.Resources>
-
+    <Grid>
+        <Grid.Resources>
             <ResourceDictionary>
                 <ResourceDictionary.MergedDictionaries>
                     <ResourceDictionary Source="/Resources/Styles.xaml" />
@@ -90,26 +87,15 @@
                 </DataTemplate>
 
             </ResourceDictionary>
-
-
-        </StackPanel.Resources>
-
-        <Grid Margin="0,0,0,0" Name="grdSeriesSerach">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-
-
-        </Grid>
+        </Grid.Resources>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
         <!-- Toolbar when in read only mode -->
         <Border Grid.Column="0" Grid.Row="0" Name="panelGroupReadOnlyToolbar" Style="{DynamicResource ToolbarBorderControlStyle}"
@@ -153,26 +139,8 @@
             </StackPanel>
         </Border>
 
-        <!-- Filter name when not editing -->
-        <StackPanel Grid.Column="0" Grid.Row="1"  Orientation="Vertical" Name="panelGroupFilterReadOnly" VerticalAlignment="Center" Margin="10,10,0,10" 
-                    Visibility="{Binding Path=IsNotBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <TextBlock Margin="0,0,0,5" Text="{Binding FilterName}" FontSize="18" FontWeight="Bold" Name="labelGroupFilterName" />
-
-            <StackPanel Orientation="Horizontal" Margin="0,0,5,5">
-                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=GroupFilter_BaseCondition}" VerticalAlignment="Center" Margin="0,0,5,0"
-                           ToolTip="{usercontrols:Info Title=GroupFilter_BaseCondition, 
-                                                Body=Tooltip_GroupFilter_BaseCondition}"></TextBlock>
-                <ComboBox Grid.Row="0" Name="cboBaseCondition" VerticalAlignment="Center" IsEnabled="False"></ComboBox>
-            </StackPanel>
-
-            <StackPanel Orientation="Horizontal" Margin="0,0,5,5">
-                <CheckBox Name="chkApplyToSeries" IsChecked="{Binding Path=IsApplyToSeries}" VerticalAlignment="Center" IsEnabled="False" />
-                <TextBlock Margin="10,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=GroupFilter_ApplyToSeries}" Name="lblApplyToSeries" />
-            </StackPanel>
-        </StackPanel>
-
         <!-- Toolbar when in editing mode -->
-        <Border Grid.Column="0" Grid.Row="2"  Name="panelEditingToolbar" Style="{DynamicResource ToolbarBorderControlStyle}" 
+        <Border Grid.Column="0" Grid.Row="0" Name="panelEditingToolbar" Style="{DynamicResource ToolbarBorderControlStyle}" 
                     Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}">
             <StackPanel Orientation="Horizontal"  VerticalAlignment="Center" Margin="0,0,0,0" Background="#F1F1F1">
 
@@ -194,112 +162,123 @@
             </StackPanel>
         </Border>
 
-        <!-- Filter name when in editing mode -->
-        <StackPanel Grid.Column="0" Grid.Row="3"  Orientation="Vertical" Name="panelGroupFilterEditing" Margin="10,10,0,0"
-                    Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}">
+        <!-- Group Filter Conditions and Sorting  -->
+        <ScrollViewer Grid.Column="0" Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Margin="0">
+            <StackPanel Orientation="Vertical">
+                <!-- Filter name when not editing -->
+                <StackPanel Orientation="Vertical" Name="panelGroupFilterReadOnly" VerticalAlignment="Center" Margin="10,10,0,10" 
+                    Visibility="{Binding Path=IsNotBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <TextBlock Margin="0,0,0,5" Text="{Binding FilterName}" FontSize="18" FontWeight="Bold" Name="labelGroupFilterName" />
 
-            <TextBlock Margin="0,0,0,5" Text="{Binding FilterName}" FontSize="18" FontWeight="Bold"
-                      Visibility="{Binding Path=IsSystemGroupFilter, Converter={StaticResource BooleanToVisibilityConverter}}" />
-            <TextBox Margin="0,0,10,5" Text="{Binding FilterName}" FontSize="16" Padding="5" MinWidth="200" FontWeight="Bold" Name="txtFilterName"
-                     Visibility="{Binding Path=IsNotSystemGroupFilter, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-
-            <StackPanel Orientation="Horizontal" Margin="0,0,5,5">
-                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=GroupFilter_BaseCondition}" VerticalAlignment="Center" Margin="0,0,5,0"
+                    <StackPanel Orientation="Horizontal" Margin="0,0,5,5">
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=GroupFilter_BaseCondition}" VerticalAlignment="Center" Margin="0,0,5,0"
                            ToolTip="{usercontrols:Info Title=GroupFilter_BaseCondition, 
                                                 Body=Tooltip_GroupFilter_BaseCondition}"></TextBlock>
-                <ComboBox Grid.Row="0" Name="cboBaseConditionEditing" VerticalAlignment="Center"></ComboBox>
-            </StackPanel>
+                        <ComboBox Grid.Row="0" Name="cboBaseCondition" VerticalAlignment="Center" IsEnabled="False"></ComboBox>
+                    </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Margin="0,0,5,5">
-                <CheckBox Name="chkApplyToSeriesEditing" IsChecked="{Binding Path=IsApplyToSeries}" VerticalAlignment="Center"/>
-                <TextBlock Margin="10,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=GroupFilter_ApplyToSeries}" Name="lblApplyToSeriesEditing" />
-            </StackPanel>
-        </StackPanel>
-
-        <!-- Group Filter Conditions and Sorting  -->
-        <StackPanel Grid.Column="0" Grid.Row="4"  Orientation="Horizontal">
-
-            <!-- Group Filter Conditions-->
-            <StackPanel Orientation="Vertical">
-                <StackPanel Orientation="Horizontal">
-                    <Image Height="16" Width="16" Source="/Images/16_filter.png" Margin="10,0,0,0"/>
-                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=GroupFilterConditions}" Margin="5,10,0,10" FontWeight="DemiBold"></TextBlock>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,5,5">
+                        <CheckBox Name="chkApplyToSeries" IsChecked="{Binding Path=IsApplyToSeries}" VerticalAlignment="Center" IsEnabled="False" />
+                        <TextBlock Margin="10,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=GroupFilter_ApplyToSeries}" Name="lblApplyToSeries" />
+                    </StackPanel>
                 </StackPanel>
 
+                <!-- Filter name when in editing mode -->
+                <StackPanel Orientation="Vertical" Name="panelGroupFilterEditing" Margin="10,10,0,0"
+                    Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}">
 
+                    <TextBlock Margin="0,0,0,5" Text="{Binding FilterName}" FontSize="18" FontWeight="Bold"
+                      Visibility="{Binding Path=IsSystemGroupFilter, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    <TextBox Margin="0,0,10,5" Text="{Binding FilterName}" FontSize="16" Padding="5" MinWidth="200" FontWeight="Bold" Name="txtFilterName"
+                     Visibility="{Binding Path=IsNotSystemGroupFilter, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                <ListBox Margin="10,0,0,0" Name="lbFilterConditions" BorderThickness="0" Background="AntiqueWhite" Visibility="{Binding Path=IsNotBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                 HorizontalAlignment="Left" VerticalAlignment="Top" ItemTemplate="{DynamicResource FilterConditionTemplate}" ItemContainerStyle="{DynamicResource ListBoxItemStyleFolders}"
-                                 MaxWidth="500" ItemsSource="{Binding FilterConditions}">
-
-
-                </ListBox>
-                <ListBox Margin="10,0,0,0" Name="lbFilterConditions_Editing" BorderThickness="0" Background="AntiqueWhite" Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                 HorizontalAlignment="Left" VerticalAlignment="Top" ItemTemplate="{DynamicResource FilterConditionTemplate_Editing}" ItemContainerStyle="{DynamicResource ListBoxItemStyleFolders}"
-                                 MaxWidth="500" ItemsSource="{Binding FilterConditions}">
-
-
-                </ListBox>
-
-                <Border Margin="11,0,1,0" Style="{DynamicResource ToolbarBorderControlStyle}" Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <StackPanel Orientation="Horizontal"  Background="#F1F1F1">
-                        <Button HorizontalAlignment="Left" Name="btnAddCondition" Margin="5,5,5,5" Style="{DynamicResource FlatButtonStyle}" Width="Auto"
-                            Command="{DynamicResource NewFilterConditionCommand}" CommandParameter="{Binding}">
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                <Image Height="16" Width="16" Source="/Images/16_add.png" Margin="0,0,5,0"/>
-                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=New}" Margin="0,0,5,0"/>
-                            </StackPanel>
-                        </Button>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,5,5">
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=GroupFilter_BaseCondition}" VerticalAlignment="Center" Margin="0,0,5,0"
+                           ToolTip="{usercontrols:Info Title=GroupFilter_BaseCondition, 
+                                                Body=Tooltip_GroupFilter_BaseCondition}"></TextBlock>
+                        <ComboBox Grid.Row="0" Name="cboBaseConditionEditing" VerticalAlignment="Center"></ComboBox>
                     </StackPanel>
-                </Border>
-            </StackPanel>
 
-            <!-- Sorting-->
-            <StackPanel Orientation="Vertical">
-                <StackPanel Orientation="Horizontal">
-                    <Image Height="16" Width="16" Source="/Images/32_sort.png" Margin="10,0,0,0"/>
-                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=GroupFilterSorting}" Margin="5,10,0,10" FontWeight="DemiBold"></TextBlock>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,5,5">
+                        <CheckBox Name="chkApplyToSeriesEditing" IsChecked="{Binding Path=IsApplyToSeries}" VerticalAlignment="Center"/>
+                        <TextBlock Margin="10,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=GroupFilter_ApplyToSeries}" Name="lblApplyToSeriesEditing" />
+                    </StackPanel>
                 </StackPanel>
 
-
-
-                <ListBox Margin="10,0,0,0" Name="lbSorting" BorderThickness="0" Background="AntiqueWhite" Visibility="{Binding Path=IsNotBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                 HorizontalAlignment="Left" VerticalAlignment="Top" ItemTemplate="{DynamicResource SortingCriteriaTemplate}" ItemContainerStyle="{DynamicResource ListBoxItemStyleFolders}"
-                                 ItemsSource="{Binding SortCriteriaList}">
-
-
-                </ListBox>
-                <ListBox Margin="10,0,0,0" Name="lbSorting_Editing" BorderThickness="0" Background="AntiqueWhite" Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                 HorizontalAlignment="Left" VerticalAlignment="Top" ItemTemplate="{DynamicResource SortingCriteriaTemplate_Editing}" ItemContainerStyle="{DynamicResource ListBoxItemStyleFolders}"
-                                 ItemsSource="{Binding SortCriteriaList}">
-
-
-                </ListBox>
-
-                <Border Margin="11,0,1,0" Style="{DynamicResource ToolbarBorderControlStyle}" Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <StackPanel Orientation="Horizontal"  Background="#F1F1F1">
-                        <Button HorizontalAlignment="Left" Name="btnAddSorting" Margin="5,5,5,5" Style="{DynamicResource FlatButtonStyle}" Width="Auto"
-                                Command="{DynamicResource NewFilterSortingCommand}" CommandParameter="{Binding}">
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                <Image Height="16" Width="16" Source="/Images/16_add.png" Margin="0,0,5,0"/>
-                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=New}" Margin="0,0,5,0"/>
-                            </StackPanel>
-                        </Button>
+                <!-- Group Filter Conditions-->
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Height="16" Width="16" Source="/Images/16_filter.png" Margin="10,0,0,0"/>
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=GroupFilterConditions}" Margin="5,10,0,10" FontWeight="DemiBold"></TextBlock>
                     </StackPanel>
-                </Border>
 
+
+
+                    <ListBox Margin="10,0,0,0" Name="lbFilterConditions" BorderThickness="0" Background="AntiqueWhite" Visibility="{Binding Path=IsNotBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                        HorizontalAlignment="Left" VerticalAlignment="Top" ItemTemplate="{DynamicResource FilterConditionTemplate}" ItemContainerStyle="{DynamicResource ListBoxItemStyleFolders}"
+                                        MaxWidth="500" ItemsSource="{Binding FilterConditions}">
+
+
+                    </ListBox>
+                    <ListBox Margin="10,0,0,0" Name="lbFilterConditions_Editing" BorderThickness="0" Background="AntiqueWhite" Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                        HorizontalAlignment="Left" VerticalAlignment="Top" ItemTemplate="{DynamicResource FilterConditionTemplate_Editing}" ItemContainerStyle="{DynamicResource ListBoxItemStyleFolders}"
+                                        MaxWidth="500" ItemsSource="{Binding FilterConditions}">
+
+
+                    </ListBox>
+
+                    <Border Margin="11,0,1,0" Style="{DynamicResource ToolbarBorderControlStyle}" Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel Orientation="Horizontal"  Background="#F1F1F1">
+                            <Button HorizontalAlignment="Left" Name="btnAddCondition" Margin="5,5,5,5" Style="{DynamicResource FlatButtonStyle}" Width="Auto"
+                                Command="{DynamicResource NewFilterConditionCommand}" CommandParameter="{Binding}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="16" Width="16" Source="/Images/16_add.png" Margin="0,0,5,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=New}" Margin="0,0,5,0"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+                <!-- Sorting-->
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Height="16" Width="16" Source="/Images/32_sort.png" Margin="10,0,0,0"/>
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=GroupFilterSorting}" Margin="5,10,0,10" FontWeight="DemiBold"></TextBlock>
+                    </StackPanel>
+
+                    <ListBox Margin="10,0,0,0" Name="lbSorting" BorderThickness="0" Background="AntiqueWhite" Visibility="{Binding Path=IsNotBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                        HorizontalAlignment="Left" VerticalAlignment="Top" ItemTemplate="{DynamicResource SortingCriteriaTemplate}" ItemContainerStyle="{DynamicResource ListBoxItemStyleFolders}"
+                                        ItemsSource="{Binding SortCriteriaList}">
+                    </ListBox>
+                    <ListBox Margin="10,0,0,0" Name="lbSorting_Editing" BorderThickness="0" Background="AntiqueWhite" Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                        HorizontalAlignment="Left" VerticalAlignment="Top" ItemTemplate="{DynamicResource SortingCriteriaTemplate_Editing}" ItemContainerStyle="{DynamicResource ListBoxItemStyleFolders}"
+                                        ItemsSource="{Binding SortCriteriaList}">
+                    </ListBox>
+
+                    <Border Margin="11,0,1,0" Style="{DynamicResource ToolbarBorderControlStyle}" Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel Orientation="Horizontal"  Background="#F1F1F1">
+                            <Button HorizontalAlignment="Left" Name="btnAddSorting" Margin="5,5,5,5" Style="{DynamicResource FlatButtonStyle}" Width="Auto"
+                                    Command="{DynamicResource NewFilterSortingCommand}" CommandParameter="{Binding}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="16" Width="16" Source="/Images/16_add.png" Margin="0,0,5,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=New}" Margin="0,0,5,0"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=PreviewFilter}" Margin="10,10,0,10" FontWeight="DemiBold"></TextBlock>
+
+                <ListBox BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="10,0,0,10"
+                         VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
+                         ItemTemplate="{DynamicResource MainList_AnimeGroupSimpleTemplate}" 
+                         ItemContainerStyle="{DynamicResource ListBoxItemStyleFolders}"
+                         ItemsSource="{Binding Source={x:Static local:MainListHelperVM.Instance},Path=ViewGroupsForms}"
+                         Name="lbGroups" Background="AntiqueWhite" Width="Auto" MinWidth="300" HorizontalAlignment="Left"
+                         VerticalAlignment="Stretch" />
             </StackPanel>
-        </StackPanel>
-
-        <TextBlock Grid.Column="0" Grid.Row="5" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=PreviewFilter}" Margin="10,10,0,10" FontWeight="DemiBold"></TextBlock>
-
-        <ListBox Grid.Column="0" Grid.Row="6" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="10,0,0,10"
-                 VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
-                 ItemTemplate="{DynamicResource MainList_AnimeGroupSimpleTemplate}" 
-                 ItemContainerStyle="{DynamicResource ListBoxItemStyleFolders}"
-                 ItemsSource="{Binding Source={x:Static local:MainListHelperVM.Instance},Path=ViewGroupsForms}"
-                 Name="lbGroups" Background="AntiqueWhite" Width="Auto" MinWidth="300" HorizontalAlignment="Left"
-                 VerticalAlignment="Stretch" />
-
-    </StackPanel>
+        </ScrollViewer>
+    </Grid>
 </UserControl>
