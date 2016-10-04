@@ -144,6 +144,7 @@ namespace JMMClient
 
                 showDashboardWorker.DoWork += new DoWorkEventHandler(showDashboardWorker_DoWork);
                 showDashboardWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(showDashboardWorker_RunWorkerCompleted);
+                showDashboardWorker.WorkerSupportsCancellation = true;
 
                 MainListHelperVM.Instance.ViewGroups.Filter = GroupSearchFilter;
                 cboLanguages.SelectionChanged += new SelectionChangedEventHandler(cboLanguages_SelectionChanged);
@@ -658,8 +659,15 @@ namespace JMMClient
                             opt.RefreshRecentAdditions = true;
                             opt.RefreshContinueWatching = true;
                             opt.RefreshOtherWidgets = true;
-                            showDashboardWorker.RunWorkerAsync(opt);
+                            
+                            // Check if worker is busy and cancel if needed
+                            if(showDashboardWorker.IsBusy)
+                              showDashboardWorker.CancelAsync();
 
+                           if (!showDashboardWorker.IsBusy)
+                              showDashboardWorker.RunWorkerAsync(opt);
+                           else
+                              logger.Error("Failed to start showDashboardWorker for TAB_MAIN_Dashboard");
                         }
                     }
                     else
