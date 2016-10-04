@@ -120,11 +120,6 @@ namespace JMMClient.UserControls
             workerAvdump.RunWorkerCompleted += new RunWorkerCompletedEventHandler(workerAvdump_RunWorkerCompleted);
 
             this.DataContextChanged += new DependencyPropertyChangedEventHandler(AvdumpFileControl_DataContextChanged);
-
-            txtCRC32.Text = CRC32Value;
-            txtSHA1.Text = SHA1Value;
-            txtMD5.Text = MD5Value;
-
             AvdumpDetailsNotValid = string.IsNullOrEmpty(JMMServerVM.Instance.AniDB_AVDumpClientPort) || string.IsNullOrEmpty(JMMServerVM.Instance.AniDB_AVDumpKey);
 
             try
@@ -356,81 +351,5 @@ namespace JMMClient.UserControls
 
             return GroupSearchFilterHelper.EvaluateAnimeTextSearch(anime, txtAnimeSearch.Text);
         }
-
-        private string CRC32Value
-        {
-            get
-            {
-                if (this.DataContext == null)
-                    return "N/A";
-
-                if (this.DataContext.GetType() == typeof(AVDumpVM))
-                {
-                    AVDumpVM dump = this.DataContext as AVDumpVM;
-                    if (dump == null)
-                        return "N/A";
-
-                    // Check for all zeros or null/empty
-                    if (string.IsNullOrEmpty(dump.VideoLocal.CRC32))
-                        return "N/A";
-
-                    var isZero = dump.VideoLocal.CRC32.All(c => c == '0');
-                    if (!isZero)
-                        return dump.VideoLocal.CRC32;
-                }
-                return "N/A";
-            }
-        }
-
-        private string SHA1Value
-        {
-            get
-            {
-                if (this.DataContext == null)
-                    return "N/A";
-
-                if (this.DataContext.GetType() == typeof(AVDumpVM))
-                {
-                    AVDumpVM dump = this.DataContext as AVDumpVM;
-                    if (dump == null)
-                        return "N/A";
-
-                    // Check for all zeros or null/empty
-                    if (string.IsNullOrEmpty(dump.VideoLocal.SHA1))
-                        return "N/A";
-
-                    var isZero = dump.VideoLocal.SHA1.All(c => c == '0');
-                    if (!isZero)
-                        return dump.VideoLocal.SHA1;
-                }
-                return "N/A";
-            }
-        }
-
-        private string MD5Value
-        {
-            get
-            {
-                if (this.DataContext == null)
-                    return "N/A";
-
-                if (this.DataContext.GetType() == typeof(AVDumpVM))
-                {
-                    AVDumpVM dump = this.DataContext as AVDumpVM;
-                    if (dump == null)
-                        return "N/A";
-
-                    // Check for all zeros or null/empty
-                    if (string.IsNullOrEmpty(dump.VideoLocal.MD5))
-                        return "N/A";
-
-                    var isZero = dump.VideoLocal.MD5.All(c => c == '0');
-                    if (!isZero)
-                        return dump.VideoLocal.MD5;
-                }
-                return "N/A";
-            }
-        }
-
     }
 }

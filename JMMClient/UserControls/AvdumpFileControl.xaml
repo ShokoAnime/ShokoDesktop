@@ -137,15 +137,15 @@
                         </StackPanel>
                         <StackPanel Name="StackPanelCRC32"  Orientation="Horizontal" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3">
                             <TextBlock Text="CRC32" Margin="3" FontWeight="DemiBold" />
-                            <TextBox Name="txtCRC32" Text="{Binding Path=CRC32Value}" Margin="3" Background="Transparent" BorderThickness="0" IsReadOnly="True" />
+                            <TextBox Name="txtCRC32" Text="{Binding Path=VideoLocal.CRC32}" Margin="3" Background="Transparent" BorderThickness="0" IsReadOnly="True" />
                         </StackPanel>
                         <StackPanel Name="StackPanelSHA1"  Orientation="Horizontal" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3">
                             <TextBlock Text="SHA1" Margin="3" FontWeight="DemiBold" />
-                            <TextBox Name="txtSHA1"  Text="{Binding Path=SHA1Value}" Margin="3" Background="Transparent" BorderThickness="0" IsReadOnly="True" />
+                            <TextBox Name="txtSHA1"  Text="{Binding Path=VideoLocal.SHA1}" Margin="3" Background="Transparent" BorderThickness="0" IsReadOnly="True" />
                         </StackPanel>
                         <StackPanel  Name="StackPanelMD5" Orientation="Horizontal" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3">
                             <TextBlock Text="MD5" Margin="3" FontWeight="DemiBold" />
-                            <TextBox Name="txtMD5" Text="{Binding Path=MD5Value}" Margin="3" Background="Transparent" BorderThickness="0" IsReadOnly="True" />
+                            <TextBox Name="txtMD5" Text="{Binding Path=VideoLocal.MD5}" Margin="3" Background="Transparent" BorderThickness="0" IsReadOnly="True" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3">
                             <TextBox Name="txtOutput" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3" Height="100" Margin="0" Text="{Binding Path=AVDumpFullResult}"
