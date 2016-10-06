@@ -215,6 +215,8 @@ namespace JMMClient
 
                 UserSettingsVM.Instance.SetDashMetro_Image_Width();
                 MainListHelperVM.Instance.Refreshed += Instance_Refreshed;
+
+
             }
             catch (Exception ex)
             {

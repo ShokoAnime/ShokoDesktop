@@ -6,7 +6,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Description;
@@ -22,12 +24,30 @@ namespace JMMClient
         private System.Timers.Timer serverStatusTimer = null;
         private System.Timers.Timer saveTimer = null;
         private static DateTime lastVersionCheck = DateTime.Now.AddDays(-5);
-
         public object userLock = new object();
         public bool UserAuthenticated { get; set; }
         public JMMUserVM CurrentUser { get; set; }
-
         private JMMServerBinary.IJMMServer _clientBinaryHTTP = null;
+
+
+        #region Call_via_APIv2
+        public static WebRequest request = null;
+
+        public static Stream GetImage(string id, int imagetype, string thumb)
+        {
+            string url = string.Format(@"http://{0}:{1}/JMMServerImage2", AppSettings.JMMServer_Address, AppSettings.JMMServer_Port);
+
+            JMMClient.JMMServerVM.request = WebRequest.Create(url + "/GetImage/" + id + "/" + imagetype.ToString() + "/0");
+
+            using (var response = request.GetResponse())
+            using (Stream stream = response.GetResponseStream())
+            {
+                return stream;
+            }
+        }
+
+        #endregion
+
         public JMMServerBinary.IJMMServer clientBinaryHTTP
         {
             get
@@ -103,7 +123,7 @@ namespace JMMClient
 
             try
             {
-                string url = string.Format(@"http://{0}:{1}/JMMServerImage", AppSettings.JMMServer_Address, AppSettings.JMMServer_Port);
+                string url = string.Format(@"http://{0}:{1}/JMMServerImage2", AppSettings.JMMServer_Address, AppSettings.JMMServer_Port);
                 BasicHttpBinding binding = new BasicHttpBinding();
                 binding.MessageEncoding = WSMessageEncoding.Mtom;
                 binding.MaxReceivedMessageSize = 2147483647;

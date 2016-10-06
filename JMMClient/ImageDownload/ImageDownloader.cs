@@ -4,6 +4,7 @@ using System;
 using System.Collections.Concurrent;
 using System.ComponentModel;
 using System.IO;
+using System.Net;
 using System.Threading;
 
 namespace JMMClient.ImageDownload
@@ -586,16 +587,22 @@ namespace JMMClient.ImageDownload
                         OnImageDownloadEvent(new ImageDownloadEventArgs("", req, ImageDownloadEventType.Started));
                         if (fileExists) File.Delete(fileName);
 
-                        byte[] imageArray = null;
                         try
                         {
-                            imageArray = JMMServerVM.Instance.imageClient.GetImage(entityID, (int)req.ImageType, false);
+                            Stream ImageStream = JMMServerVM.GetImage(entityID, (int)req.ImageType, "0");
+                            if (ImageStream == null) return;
+                            using (var fileStream = File.Create(tempName))
+                            {
+                                ImageStream.Seek(0, SeekOrigin.Begin);
+                                ImageStream.CopyTo(fileStream);
+                            }
+
                         }
-                        catch { }
 
-                        if (imageArray == null) return;
-
-                        File.WriteAllBytes(tempName, imageArray);
+                        catch (Exception ex)
+                        {
+                            string x = ex.Message;
+                        }  
 
                         // move the file to it's final location
                         string fullPath = Path.GetDirectoryName(fileName);
@@ -604,9 +611,6 @@ namespace JMMClient.ImageDownload
 
                         // move the file to it's final location
                         File.Move(tempName, fileName);
-
-
-
                     }
 
 
@@ -636,16 +640,24 @@ namespace JMMClient.ImageDownload
                             OnImageDownloadEvent(new ImageDownloadEventArgs("", req, ImageDownloadEventType.Started));
                             if (fileExists) File.Delete(fileName);
 
-                            byte[] imageArray = null;
                             try
                             {
-                                imageArray = JMMServerVM.Instance.imageClient.GetImage(entityID, (int)req.ImageType, true);
+                                Stream ImageStream = JMMServerVM.GetImage(entityID, (int)req.ImageType, "0");
+                                if (ImageStream == null) return;
+                                using (var fileStream = File.Create(tempName))
+                                {
+                                    ImageStream.Seek(0, SeekOrigin.Begin);
+                                    ImageStream.CopyTo(fileStream);
+                                }
+
                             }
-                            catch { }
 
-                            if (imageArray == null) return;
+                            catch (Exception ex)
+                            {
+                                string x = ex.Message;
+                            }
 
-                            File.WriteAllBytes(tempName, imageArray);
+                            //File.WriteAllBytes(tempName, imageArray);
 
                             // move the file to it's final location
                             string fullPath = Path.GetDirectoryName(fileName);
