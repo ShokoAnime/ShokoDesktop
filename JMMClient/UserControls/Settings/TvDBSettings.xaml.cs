@@ -2,11 +2,13 @@
 using JMMClient.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Brushes = System.Windows.Media.Brushes;
 
 namespace JMMClient.UserControls
 {
@@ -32,10 +34,28 @@ namespace JMMClient.UserControls
             cboUpdateFrequency.SelectionChanged += new SelectionChangedEventHandler(cboUpdateFrequency_SelectionChanged);
 
             btnChangeLanguage.Click += new RoutedEventHandler(btnChangeLanguage_Click);
-			btnUpdateImages.Click += new RoutedEventHandler(btnUpdateImages_Click);
-		}
+            EvaluateVisibility();
+        }
 
-
+        private void EvaluateVisibility()
+        {
+            // If we have images path set to server path hide the button and hint text to prevent accidental presses (i.e. user error)
+            if (AppSettings.ImagesPath == AppSettings.JMMServerImagePath)
+            {
+                btnUpdateImages.Visibility = Visibility.Hidden;
+                btnUpdateImages.IsEnabled = false;
+                txtUpdateImagesHint.Visibility = Visibility.Hidden;
+                txtUpdateImagesHint.IsEnabled = false;
+            }
+            else
+            {
+                btnUpdateImages.Visibility = Visibility.Visible;
+                btnUpdateImages.IsEnabled = true;
+                btnUpdateImages.Click += new RoutedEventHandler(btnUpdateImages_Click);
+                txtUpdateImagesHint.Visibility = Visibility.Visible;
+                txtUpdateImagesHint.IsEnabled = true;
+            }
+        }
 
         void btnChangeLanguage_Click(object sender, RoutedEventArgs e)
         {
@@ -186,6 +206,11 @@ namespace JMMClient.UserControls
         void settingChanged(object sender, RoutedEventArgs e)
         {
             JMMServerVM.Instance.SaveServerSettingsAsync();
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            EvaluateVisibility();
         }
     }
 }
