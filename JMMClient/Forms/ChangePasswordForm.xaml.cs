@@ -13,7 +13,7 @@ namespace JMMClient.Forms
     public partial class ChangePasswordForm : Window
     {
         public JMMUserVM JMMUser = null;
-
+        public string newPassword = "";
         public ChangePasswordForm()
         {
             InitializeComponent();
@@ -31,15 +31,14 @@ namespace JMMClient.Forms
                 txtPassword.Focus();
                 return;
             }
-
             Window parentWindow = Window.GetWindow(this);
 
             try
             {
                 parentWindow.Cursor = Cursors.Wait;
                 JMMServerVM.Instance.clientBinaryHTTP.ChangePassword(JMMUser.JMMUserID.Value, txtPassword.Password);
+                newPassword = txtPassword.Password;
                 parentWindow.Cursor = Cursors.Arrow;
-
                 this.Close();
             }
             catch (Exception ex)

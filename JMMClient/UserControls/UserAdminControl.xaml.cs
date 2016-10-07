@@ -34,6 +34,13 @@ namespace JMMClient.UserControls
             set { SetValue(SelectedUserProperty, value); }
         }
 
+        public string selectedUserPassword = "";
+        public string SelectedUserPassword
+        {
+            get { return (selectedUserPassword); }
+            set { selectedUserPassword = value; }
+        }
+
         public UserAdminControl()
         {
             InitializeComponent();
@@ -63,6 +70,7 @@ namespace JMMClient.UserControls
                 frm.Owner = parentWindow;
                 frm.Init(SelectedUser);
                 frm.ShowDialog();
+                SelectedUserPassword = frm.newPassword;
             }
             catch (Exception ex)
             {
@@ -110,6 +118,7 @@ namespace JMMClient.UserControls
             SelectedUser.IsTraktUser = chkIsTrakt.IsChecked.Value ? 1 : 0;
             SelectedUser.CanEditServerSettings = chkEditSettings.IsChecked.Value ? 1 : 0;
             SelectedUser.PlexUsers = new HashSet<string>(txtPlexUsers.Text.Split(',').Select(a => a.Trim()).Where(a => !string.IsNullOrEmpty(a)));
+            SelectedUser.Password = SelectedUserPassword;
 
             try
             {
@@ -243,10 +252,11 @@ namespace JMMClient.UserControls
             txtPlexUsers.Text = "";
             txtUsername.Focus();
 
-            if (SelectedUser == null || !SelectedUser.JMMUserID.HasValue) return;
+            if (SelectedUser?.JMMUserID == null) return;
 
             btnChangePassword.Visibility = System.Windows.Visibility.Visible;
             txtUsername.Text = SelectedUser.Username;
+            SelectedUserPassword = SelectedUser.Password;
             txtTags.Text = string.Join(", ",SelectedUser.HideTags);
             chkIsAdmin.IsChecked = SelectedUser.IsAdminUser;
             chkIsAniDB.IsChecked = SelectedUser.IsAniDBUserBool;
