@@ -18,13 +18,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:8111/JMMServerImage2" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:8111/JMMServerImage" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="JMMServerImage2.xsd" MetadataType="Schema" ID="335fc998-0a3a-4136-85f8-1cf8af43706b" SourceId="1" SourceUrl="http://localhost:8111/JMMServerImage2?xsd=xsd0" />
-    <MetadataFile FileName="JMMServerImage21.xsd" MetadataType="Schema" ID="09bba86b-72f1-423c-ba15-b0a3961f4a09" SourceId="1" SourceUrl="http://localhost:8111/JMMServerImage2?xsd=xsd1" />
-    <MetadataFile FileName="JMMServerImage1.disco" MetadataType="Disco" ID="30e305f3-989a-49a2-865c-4cf7be0c5d74" SourceId="1" SourceUrl="http://localhost:8111/JMMServerImage2?disco" />
-    <MetadataFile FileName="JMMServiceImplementationImage1.wsdl" MetadataType="Wsdl" ID="b7fcb2fe-6281-4d35-a5d9-40e4638976b3" SourceId="1" SourceUrl="http://localhost:8111/JMMServerImage2?wsdl" />
+    <MetadataFile FileName="JMMServerImage2.xsd" MetadataType="Schema" ID="335fc998-0a3a-4136-85f8-1cf8af43706b" SourceId="1" SourceUrl="http://localhost:8111/JMMServerImage?xsd=xsd0" />
+    <MetadataFile FileName="JMMServerImage21.xsd" MetadataType="Schema" ID="09bba86b-72f1-423c-ba15-b0a3961f4a09" SourceId="1" SourceUrl="http://localhost:8111/JMMServerImage?xsd=xsd1" />
+    <MetadataFile FileName="JMMServerImage1.disco" MetadataType="Disco" ID="30e305f3-989a-49a2-865c-4cf7be0c5d74" SourceId="1" SourceUrl="http://localhost:8111/JMMServerImage?disco" />
+    <MetadataFile FileName="JMMServiceImplementationImage1.wsdl" MetadataType="Wsdl" ID="b7fcb2fe-6281-4d35-a5d9-40e4638976b3" SourceId="1" SourceUrl="http://localhost:8111/JMMServerImage?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

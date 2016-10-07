@@ -15,10 +15,10 @@ namespace JMMClient.JMMImageServer {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="JMMImageServer.IJMMServerImage")]
     public interface IJMMServerImage {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServerImage2/GetImage", ReplyAction="http://tempuri.org/IJMMServerImage2/GetImageResponse")]
-        System.IO.Stream GetImage(string entityID, int entityType, bool thumnbnailOnly);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServerImage/GetImage", ReplyAction="http://tempuri.org/IJMMServerImage/GetImageResponse")]
+        byte[] GetImage(string entityID, int entityType, bool thumnbnailOnly);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServerImage2/GetImageUsingPath", ReplyAction="http://tempuri.org/IJMMServerImage2/GetImageUsingPathResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJMMServerImage/GetImageUsingPath", ReplyAction="http://tempuri.org/IJMMServerImage/GetImageUsingPathResponse")]
         byte[] GetImageUsingPath(string serverImagePath);
     }
     
@@ -49,7 +49,7 @@ namespace JMMClient.JMMImageServer {
                 base(binding, remoteAddress) {
         }
         
-        public System.IO.Stream GetImage(string entityID, int entityType, bool thumnbnailOnly) {
+        public byte[] GetImage(string entityID, int entityType, bool thumnbnailOnly) {
             return base.Channel.GetImage(entityID, entityType, thumnbnailOnly);
         }
         

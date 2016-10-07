@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="httpLargeMessageStream_IJMMServerImage" contract="JMMImageServer.IJMMServerImage" bindingType="basicHttpBinding" address="http://localhost:8111/JMMServerImage2" bindingConfiguration="httpLargeMessageStream_IJMMServerImage">
+    <endpoint name="httpLargeMessageStream_IJMMServerImage" contract="JMMImageServer.IJMMServerImage" bindingType="basicHttpBinding" address="http://localhost:8111/JMMServerImage" bindingConfiguration="httpLargeMessageStream_IJMMServerImage">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:8111/JMMServerImage2</serializedValue>
+          <serializedValue>http://localhost:8111/JMMServerImage</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
