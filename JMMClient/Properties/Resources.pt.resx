@@ -4364,12 +4364,6 @@
   <data name="ImportSettings_Server" xml:space="preserve">
     <value>Servidor local</value>
   </data>
-  <data name="Settings_SetDefault" xml:space="preserve">
-    <value>Conjunto padrão</value>
-  </data>
-  <data name="Settings_SetJMMServer" xml:space="preserve">
-    <value>Definir a pasta de JMMServer</value>
-  </data>
   <data name="Migration_Header" xml:space="preserve">
     <value>Status de migração</value>
   </data>
@@ -4444,5 +4438,17 @@
   </data>
   <data name="VideoPlayer_SupportedNote" xml:space="preserve">
     <value>O players de vídeo listado abaixo são totalmente suportado dentro JMM Desktop, cada player de vídeo é capaz de retomar a reprodução, atualizando Estados assistidos e Trakt scrobbling. Por favor, leia as informações abaixo o nome de players de vídeo para qualquer configuração adicional necessária.</value>
+  </data>
+  <data name="Settings_SetDefault" xml:space="preserve">
+    <value>Usar padrão</value>
+  </data>
+  <data name="Settings_SetJMMServer" xml:space="preserve">
+    <value>Use a pasta JMMServer</value>
+  </data>
+  <data name="MD5" xml:space="preserve">
+    <value>MD5</value>
+  </data>
+  <data name="SHA1" xml:space="preserve">
+    <value>SHA1</value>
   </data>
 </root>

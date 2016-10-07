@@ -4366,12 +4366,6 @@
   <data name="ImportSettings_Server" xml:space="preserve">
     <value>Serwer lokalny</value>
   </data>
-  <data name="Settings_SetDefault" xml:space="preserve">
-    <value>Ustaw domyślne</value>
-  </data>
-  <data name="Settings_SetJMMServer" xml:space="preserve">
-    <value>Ustaw Folder JMMServer</value>
-  </data>
   <data name="Migration_Header" xml:space="preserve">
     <value>Stan migracji</value>
   </data>
@@ -4446,5 +4440,17 @@
   </data>
   <data name="VideoPlayer_SupportedNote" xml:space="preserve">
     <value>Odtwarzacze wideo wymienione poniżej są w pełni obsługiwane w ramach JMM Desktop, każdy odtwarzacz wideo jest w stanie wznawianie odtwarzania, Aktualizacja stanów obserwowanych i Trakt scrobbling. Proszę przeczytać informacje poniżej nazwę odtwarzaczy wideo dla wszelkich dodatkowych konfiguracji wymagane.</value>
+  </data>
+  <data name="Settings_SetDefault" xml:space="preserve">
+    <value>Użyj domyślnego</value>
+  </data>
+  <data name="Settings_SetJMMServer" xml:space="preserve">
+    <value>Użyj folderu JMMServer</value>
+  </data>
+  <data name="MD5" xml:space="preserve">
+    <value>MD5</value>
+  </data>
+  <data name="SHA1" xml:space="preserve">
+    <value>SHA1</value>
   </data>
 </root>

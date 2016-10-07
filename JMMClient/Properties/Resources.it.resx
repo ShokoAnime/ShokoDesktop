@@ -4364,12 +4364,6 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   <data name="ImportSettings_Server" xml:space="preserve">
     <value>Server locale</value>
   </data>
-  <data name="Settings_SetDefault" xml:space="preserve">
-    <value>Imposta predefinito</value>
-  </data>
-  <data name="Settings_SetJMMServer" xml:space="preserve">
-    <value>Impostare la cartella di JMMServer</value>
-  </data>
   <data name="Migration_Header" xml:space="preserve">
     <value>Stato della migrazione</value>
   </data>
@@ -4444,5 +4438,17 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   </data>
   <data name="VideoPlayer_SupportedNote" xml:space="preserve">
     <value>I lettori video elencati di seguito sono pienamente supportati all'interno di JMM Desktop, ogni lettore video è in grado di riprendere la riproduzione, l'aggiornamento stati guardati e Trakt scrobbling. Si prega di leggere le informazioni sotto il nome di lettori video per qualsiasi installazione aggiuntive necessarie.</value>
+  </data>
+  <data name="Settings_SetDefault" xml:space="preserve">
+    <value>Usa predefinito</value>
+  </data>
+  <data name="Settings_SetJMMServer" xml:space="preserve">
+    <value>Utilizzare la cartella di JMMServer</value>
+  </data>
+  <data name="MD5" xml:space="preserve">
+    <value>MD5</value>
+  </data>
+  <data name="SHA1" xml:space="preserve">
+    <value>SHA1</value>
   </data>
 </root>

@@ -4388,10 +4388,10 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>This will update all local images from every source, excluding AniDB. Do not run this command if Server and Desktop are using the same folder as it will delete all your images.</value>
   </data>
   <data name="Settings_SetDefault" xml:space="preserve">
-    <value>Set Default</value>
+    <value>Use Default</value>
   </data>
   <data name="Settings_SetJMMServer" xml:space="preserve">
-    <value>Set JMMServer Folder</value>
+    <value>Use JMMServer Folder</value>
   </data>
   <data name="Migration_Header" xml:space="preserve">
     <value>Migration Status</value>

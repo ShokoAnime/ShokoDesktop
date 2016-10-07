@@ -4364,12 +4364,6 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   <data name="ImportSettings_Server" xml:space="preserve">
     <value>Serveur local</value>
   </data>
-  <data name="Settings_SetDefault" xml:space="preserve">
-    <value>Configuration par défaut</value>
-  </data>
-  <data name="Settings_SetJMMServer" xml:space="preserve">
-    <value>Définir le dossier de JMMServer</value>
-  </data>
   <data name="Migration_Header" xml:space="preserve">
     <value>État de la migration</value>
   </data>
@@ -4444,5 +4438,17 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   </data>
   <data name="VideoPlayer_SupportedNote" xml:space="preserve">
     <value>Les lecteurs vidéo ci-dessous sont gérées au sein du Bureau de JMM, chaque lecteur vidéo est capable de reprendre la lecture, mise à jour des États regardés et Trakt scrobbling. Veuillez lire les informations ci-dessous le nom de lecteurs vidéo pour n’importe quelle installation additionnelle requise.</value>
+  </data>
+  <data name="Settings_SetDefault" xml:space="preserve">
+    <value>Utilisation par défaut</value>
+  </data>
+  <data name="Settings_SetJMMServer" xml:space="preserve">
+    <value>Utilisez le dossier JMMServer</value>
+  </data>
+  <data name="MD5" xml:space="preserve">
+    <value>MD5</value>
+  </data>
+  <data name="SHA1" xml:space="preserve">
+    <value>SHA1</value>
   </data>
 </root>

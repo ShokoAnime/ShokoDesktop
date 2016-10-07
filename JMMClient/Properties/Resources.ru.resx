@@ -4364,12 +4364,6 @@
   <data name="ImportSettings_Server" xml:space="preserve">
     <value>Локальный сервер</value>
   </data>
-  <data name="Settings_SetDefault" xml:space="preserve">
-    <value>Установить по умолчанию</value>
-  </data>
-  <data name="Settings_SetJMMServer" xml:space="preserve">
-    <value>Установить папку JMMServer</value>
-  </data>
   <data name="Migration_Header" xml:space="preserve">
     <value>Состояние миграции</value>
   </data>
@@ -4444,5 +4438,17 @@
   </data>
   <data name="VideoPlayer_SupportedNote" xml:space="preserve">
     <value>Видео Игроки, перечисленные ниже, полностью поддерживаются в JMM Desktop, каждый видео проигрыватель способен возобновлять воспроизведение, обновление наблюдаемых государств и скробблинг Trakt. Пожалуйста, прочитайте информацию ниже название видео-проигрыватели для каких-либо дополнительных настроек требуется.</value>
+  </data>
+  <data name="Settings_SetDefault" xml:space="preserve">
+    <value>Использовать по умолчанию</value>
+  </data>
+  <data name="Settings_SetJMMServer" xml:space="preserve">
+    <value>Используйте папку JMMServer</value>
+  </data>
+  <data name="MD5" xml:space="preserve">
+    <value>MD5</value>
+  </data>
+  <data name="SHA1" xml:space="preserve">
+    <value>SHA1</value>
   </data>
 </root>

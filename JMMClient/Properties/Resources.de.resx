@@ -4364,12 +4364,6 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   <data name="ImportSettings_Server" xml:space="preserve">
     <value>Lokaler Server</value>
   </data>
-  <data name="Settings_SetDefault" xml:space="preserve">
-    <value>Set Default</value>
-  </data>
-  <data name="Settings_SetJMMServer" xml:space="preserve">
-    <value>JMMServer Ordner</value>
-  </data>
   <data name="Migration_Header" xml:space="preserve">
     <value>Migrationsstatus</value>
   </data>
@@ -4444,5 +4438,17 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   </data>
   <data name="VideoPlayer_SupportedNote" xml:space="preserve">
     <value>Der video-Player unten aufgeführten werden vollständig innerhalb von JMM Desktop unterstützt, jedes video-Player ist in der Lage sind, fortsetzen der Wiedergabe, überwachten Staaten und Trakt Scrobbling aktualisieren. Bitte lesen Sie die Informationen unter dem Namen der video-Player für zusätzliche Konfiguration erforderlich.</value>
+  </data>
+  <data name="Settings_SetDefault" xml:space="preserve">
+    <value>Verwenden Sie Standard</value>
+  </data>
+  <data name="Settings_SetJMMServer" xml:space="preserve">
+    <value>JMMServer-Ordner verwenden</value>
+  </data>
+  <data name="MD5" xml:space="preserve">
+    <value>MD5</value>
+  </data>
+  <data name="SHA1" xml:space="preserve">
+    <value>SHA1</value>
   </data>
 </root>

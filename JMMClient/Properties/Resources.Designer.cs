@@ -9349,7 +9349,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Set Default.
+        ///   Looks up a localized string similar to Use Default.
         /// </summary>
         public static string Settings_SetDefault {
             get {
@@ -9358,7 +9358,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Set JMMServer Folder.
+        ///   Looks up a localized string similar to Use JMMServer Folder.
         /// </summary>
         public static string Settings_SetJMMServer {
             get {

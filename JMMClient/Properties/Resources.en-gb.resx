@@ -4358,9 +4358,6 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="VideoPlayer_ZoomPlayerNotFound" xml:space="preserve">
     <value>Zoom Player not found</value>
   </data>
-  <data name="VideoPlayer_ZoomPlayerTCPControlPort" xml:space="preserve">
-    <value>Zoom Player TCP control port</value>
-  </data>
   <data name="RelationSettings_Exclude" xml:space="preserve">
     <value>Exclude The Following Relations</value>
   </data>
@@ -4374,10 +4371,10 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Local Server</value>
   </data>
   <data name="Settings_SetDefault" xml:space="preserve">
-    <value>Set Default</value>
+    <value>Use Default</value>
   </data>
   <data name="Settings_SetJMMServer" xml:space="preserve">
-    <value>Set JMMServer Folder</value>
+    <value>Use JMMServer Folder</value>
   </data>
   <data name="Migration_Header" xml:space="preserve">
     <value>Migration Status</value>
@@ -4447,5 +4444,11 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   </data>
   <data name="VideoPlayer_SupportedNote" xml:space="preserve">
     <value>The video players listed below are fully supported within JMM Desktop, each video player is capable of resuming playback, updating watched states and Trakt scrobbling. Please read the information below the video players name for any additional setup required.</value>
+  </data>
+  <data name="MD5" xml:space="preserve">
+    <value>MD5</value>
+  </data>
+  <data name="SHA1" xml:space="preserve">
+    <value>SHA1</value>
   </data>
 </root>
