@@ -16493,7 +16493,10 @@ namespace JMMClient.JMMServerBinary {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool AutoGroupSeriesField;
-        
+
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool AutoGroupSeriesUseScoreAlgorithmField;
+
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string AutoGroupSeriesRelationExclusionsField;
         
@@ -16988,7 +16991,24 @@ namespace JMMClient.JMMServerBinary {
                 }
             }
         }
-        
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool AutoGroupSeriesUseScoreAlgorithm
+        {
+            get
+            {
+                return this.AutoGroupSeriesUseScoreAlgorithmField;
+            }
+            set
+            {
+                if ((this.AutoGroupSeriesUseScoreAlgorithmField.Equals(value) != true))
+                {
+                    this.AutoGroupSeriesUseScoreAlgorithmField = value;
+                    this.RaisePropertyChanged("AutoGroupSeriesUseScoreAlgorithm");
+                }
+            }
+        }
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string AutoGroupSeriesRelationExclusions {
             get {

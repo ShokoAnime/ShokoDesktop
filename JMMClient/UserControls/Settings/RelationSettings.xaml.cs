@@ -21,8 +21,10 @@ namespace JMMClient.UserControls
             EvaulateVisibility();
 
             chkRelationSettings_AutoGroupSeries.Click += chkRelationSettings_AutoGroupSeries_Click;
+	        chkRelationSettings_AutoGroupSeriesUseScoreAlgorithm.Click += chkRelationSettings_AutoGroupSeriesUseScoreAlgorithm_Click;
 
-            chkRelationSettings_OVA.Click += new RoutedEventHandler(settingChanged);
+	        chkRelationSettings_AllowDissimilarTitleExclusion.Click += new RoutedEventHandler(settingChanged);
+	        chkRelationSettings_OVA.Click += new RoutedEventHandler(settingChanged);
             chkRelationSettings_Movie.Click += new RoutedEventHandler(settingChanged);
             chkRelationSettings_SameSetting.Click += new RoutedEventHandler(settingChanged);
             chkRelationSettings_AltSetting.Click += new RoutedEventHandler(settingChanged);
@@ -43,7 +45,12 @@ namespace JMMClient.UserControls
             EvaulateVisibility();
         }
 
-        private void EvaulateVisibility()
+	    void chkRelationSettings_AutoGroupSeriesUseScoreAlgorithm_Click(object sender, RoutedEventArgs e)
+	    {
+		    JMMServerVM.Instance.SaveServerSettingsAsync();
+	    }
+
+	    private void EvaulateVisibility()
         {
             System.Windows.Visibility vis = System.Windows.Visibility.Collapsed;
             if (JMMServerVM.Instance.AutoGroupSeries) vis = System.Windows.Visibility.Visible;

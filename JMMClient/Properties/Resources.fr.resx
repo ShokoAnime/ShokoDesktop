@@ -4451,4 +4451,10 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   <data name="SHA1" xml:space="preserve">
     <value>SHA1</value>
   </data>
+  <data name="RelationSetting_AllowDissimilarExclusion" xml:space="preserve">
+    <value>Exclure les titres différents !</value>
+  </data>
+  <data name="ImportSettings_AutoGroupSeriesUseScoreAlgorithm" xml:space="preserve">
+    <value>Pondération de la Relation permet de déterminer les principales séries !</value>
+  </data>
 </root>

@@ -4451,4 +4451,10 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
   <data name="SHA1" xml:space="preserve">
     <value>SHA1</value>
   </data>
+  <data name="RelationSetting_AllowDissimilarExclusion" xml:space="preserve">
+    <value>¡Excluir títulos disímiles!</value>
+  </data>
+  <data name="ImportSettings_AutoGroupSeriesUseScoreAlgorithm" xml:space="preserve">
+    <value>¡Utilizar ponderación de la relación para determinar la serie principal!</value>
+  </data>
 </root>

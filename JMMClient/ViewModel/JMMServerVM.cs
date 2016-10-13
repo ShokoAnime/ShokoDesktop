@@ -343,6 +343,7 @@ namespace JMMClient
             // Import settings
             this.VideoExtensions = contract.VideoExtensions;
             this.AutoGroupSeries = contract.AutoGroupSeries;
+            this.AutoGroupSeriesUseScoreAlgorithm = contract.AutoGroupSeriesUseScoreAlgorithm;
             this.AutoGroupSeriesRelationExclusions = contract.AutoGroupSeriesRelationExclusions;
             this.UseEpisodeStatus = contract.Import_UseExistingFileWatchedStatus;
             this.RunImportOnStart = contract.RunImportOnStart;
@@ -464,6 +465,7 @@ namespace JMMClient
                 contract.VideoExtensions = this.VideoExtensions;
                 contract.Import_UseExistingFileWatchedStatus = this.UseEpisodeStatus;
                 contract.AutoGroupSeries = this.AutoGroupSeries;
+                contract.AutoGroupSeriesUseScoreAlgorithm = this.AutoGroupSeriesUseScoreAlgorithm;
                 contract.RunImportOnStart = this.RunImportOnStart;
                 contract.AutoGroupSeriesRelationExclusions = this.AutoGroupSeriesRelationExclusions;
                 contract.ScanDropFoldersOnStart = this.ScanDropFoldersOnStart;
@@ -1442,7 +1444,18 @@ namespace JMMClient
             }
         }
 
-        // The actual server setting
+	    private bool autoGroupSeriesUseScoreAlgorithm = false;
+	    public bool AutoGroupSeriesUseScoreAlgorithm
+	    {
+		    get { return autoGroupSeriesUseScoreAlgorithm; }
+		    set
+		    {
+			    autoGroupSeriesUseScoreAlgorithm = value;
+			    OnPropertyChanged(new PropertyChangedEventArgs("AutoGroupSeriesUseScoreAlgorithm"));
+		    }
+	    }
+
+	    // The actual server setting
         private string autoGroupSeriesRelationExclusions = "";
         private string AutoGroupSeriesRelationExclusions
         {
@@ -1465,7 +1478,7 @@ namespace JMMClient
             foreach (string a in AutoGroupSeriesRelationExclusions.Split('|'))
             {
                 // relation will always be lowercase, but a may not be yet
-                if (a.ToLowerInvariant().Equals(relation)) return true;
+                if (a.ToLowerInvariant().Equals(relation.ToLowerInvariant())) return true;
             }
             return false;
         }
@@ -1500,7 +1513,7 @@ namespace JMMClient
                     {
                         if (a.Length == 0) continue;
                         // add all except value and fix any uppercase
-                        if (!a.ToLowerInvariant().Equals(setting)) final += a.ToLowerInvariant() + "|";
+                        if (!a.ToLowerInvariant().Equals(setting.ToLowerInvariant())) final += a.ToLowerInvariant() + "|";
                     }
                     // this will be "" if all are unchecked
                     // remove last '|' added in previous loop
@@ -1511,7 +1524,19 @@ namespace JMMClient
             }
         }
 
-        public bool RelationExcludeOVA
+	    public bool RelationAllowDissimilarTitleExclusion
+	    {
+		    get
+		    {
+			    return isRelationInExclusion("AllowDissimilarTitleExclusion");
+		    }
+		    set
+		    {
+			    setRelationinExclusion("AllowDissimilarTitleExclusion", value);
+		    }
+	    }
+
+	    public bool RelationExcludeOVA
         {
             get
             {
