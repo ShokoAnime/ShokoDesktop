@@ -428,8 +428,9 @@ namespace JMMClient
                 // Check for group name
                 if (Heirarchy.Count == 0)
                 {
-                    AnimeGroupVM grp = MainListHelperVM.Instance.AllGroupsDictionary[AnimeGroupID];
-                    if (grp != null)
+                    AnimeGroupVM grp;
+
+                    if (MainListHelperVM.Instance.AllGroupsDictionary.TryGetValue(AnimeGroupID, out grp))
                     {
                         GroupName = grp.GroupName;
                     }
