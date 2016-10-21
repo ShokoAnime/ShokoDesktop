@@ -5236,6 +5236,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Use Relation Weighting to Determine Main Series.
+        /// </summary>
+        public static string ImportSettings_AutoGroupSeriesUseScoreAlgorithm {
+            get {
+                return ResourceManager.GetString("ImportSettings_AutoGroupSeriesUseScoreAlgorithm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Custom.
         /// </summary>
         public static string ImportSettings_Custom {
@@ -7581,6 +7590,15 @@ namespace JMMClient.Properties {
         public static string RelatedAnime {
             get {
                 return ResourceManager.GetString("RelatedAnime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exclude Dissimilar Titles.
+        /// </summary>
+        public static string RelationSetting_AllowDissimilarExclusion {
+            get {
+                return ResourceManager.GetString("RelationSetting_AllowDissimilarExclusion", resourceCulture);
             }
         }
         

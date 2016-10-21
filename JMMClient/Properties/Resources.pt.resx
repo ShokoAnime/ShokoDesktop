@@ -4451,4 +4451,10 @@
   <data name="SHA1" xml:space="preserve">
     <value>SHA1</value>
   </data>
+  <data name="RelationSetting_AllowDissimilarExclusion" xml:space="preserve">
+    <value>Exclui títulos diferentes!</value>
+  </data>
+  <data name="ImportSettings_AutoGroupSeriesUseScoreAlgorithm" xml:space="preserve">
+    <value>Use relação de ponderação para determinar a série principal!</value>
+  </data>
 </root>

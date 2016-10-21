@@ -4451,4 +4451,10 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   <data name="SHA1" xml:space="preserve">
     <value>SHA1</value>
   </data>
+  <data name="RelationSetting_AllowDissimilarExclusion" xml:space="preserve">
+    <value>Uitsluiten van ongelijke titels!</value>
+  </data>
+  <data name="ImportSettings_AutoGroupSeriesUseScoreAlgorithm" xml:space="preserve">
+    <value>Relatie weging gebruiken om te bepalen van de hoofdserie!</value>
+  </data>
 </root>

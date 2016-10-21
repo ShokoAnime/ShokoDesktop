@@ -4453,4 +4453,10 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="SHA1" xml:space="preserve">
     <value>SHA1</value>
   </data>
+  <data name="RelationSetting_AllowDissimilarExclusion" xml:space="preserve">
+    <value>Exclude Dissimilar Titles</value>
+  </data>
+  <data name="ImportSettings_AutoGroupSeriesUseScoreAlgorithm" xml:space="preserve">
+    <value>Use Relation Weighting to Determine Main Series</value>
+  </data>
 </root>

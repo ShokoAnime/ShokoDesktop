@@ -4451,4 +4451,10 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   <data name="SHA1" xml:space="preserve">
     <value>SHA1</value>
   </data>
+  <data name="RelationSetting_AllowDissimilarExclusion" xml:space="preserve">
+    <value>Unterschiedliche Titel auszuschließen!</value>
+  </data>
+  <data name="ImportSettings_AutoGroupSeriesUseScoreAlgorithm" xml:space="preserve">
+    <value>Verwenden Sie Beziehung Gewichtung Hauptserie bestimmen!</value>
+  </data>
 </root>
