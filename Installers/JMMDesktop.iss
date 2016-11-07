@@ -58,8 +58,6 @@ Source: "..\JMMClient\bin\Release\Microsoft.Data.OData.dll"; DestDir: "{app}"; F
 Source: "..\JMMClient\bin\Release\Microsoft.Data.OData.xml"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\JMMClient\bin\Release\Microsoft.Data.Services.Client.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\JMMClient\bin\Release\Microsoft.Data.Services.Client.xml"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\Microsoft.VisualStudio.HostingProcess.Utilities.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\Microsoft.VisualStudio.HostingProcess.Utilities.Sync.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\JMMClient\bin\Release\Microsoft.Win32.Primitives.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\JMMClient\bin\Release\Newtonsoft.Json.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\JMMClient\bin\Release\Newtonsoft.Json.xml"; DestDir: "{app}"; Flags: ignoreversion
