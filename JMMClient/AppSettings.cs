@@ -247,7 +247,7 @@ namespace JMMClient
                 string instance = Get("JMMServerInstance");
                 if (string.IsNullOrEmpty(instance))
                 {
-                    instance = "JMMServer";
+                    instance = "ShokoServer";
                     JMMServerInstance = instance;
                 }
                 return instance;
