@@ -165,20 +165,20 @@ namespace JMMClient
             if (string.IsNullOrEmpty(JMMServerPath))
                 return false;
 
-            logger.Info("Found JMM Server install path in reg");
+            logger.Info("Found ShokoServer install path in reg");
 
             Process proc = new Process();
             proc.StartInfo.ErrorDialog = false;
-            JMMServerPath = Path.Combine(JMMServerPath, "JMMServer.exe");
+            JMMServerPath = Path.Combine(JMMServerPath, "ShokoServer.exe");
             proc.StartInfo.FileName = JMMServerPath;
             proc.StartInfo.UseShellExecute = false;
             if (!File.Exists(JMMServerPath))
             {
-                logger.Info("No file found at reg path given for JMMServer");
+                logger.Info("No file found at reg path given for ShokoServer");
                 return false;
             }
 
-            Process[] pname = Process.GetProcessesByName("JMMServer");
+            Process[] pname = Process.GetProcessesByName("ShokoServer");
             if (pname.Length != 0) return true;
 
             try
@@ -188,7 +188,7 @@ namespace JMMClient
             }
             catch (Exception ex)
             {
-                logger.Error("Error starting JMM Server", ex);
+                logger.Error("Error starting ShokoServer", ex);
                 return false;
             }
         }
