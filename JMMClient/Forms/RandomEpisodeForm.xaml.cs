@@ -424,7 +424,6 @@ namespace JMMClient.Forms
                         bool foundCat = false;
                         if (cboCatFilter.SelectedIndex == 1) foundCat = true; // all
 
-                        int index = 0;
                         foreach (string cat in cats)
                         {
                             if (cat.Trim().Length == 0) continue;

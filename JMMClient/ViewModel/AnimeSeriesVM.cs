@@ -62,7 +62,7 @@ namespace JMMClient
                     return AniDB_Anime.AniDBRating;
 
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     return 0;
                 }
@@ -78,7 +78,7 @@ namespace JMMClient
                     return AniDB_Anime.AirDate;
 
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     return null;
                 }
@@ -94,7 +94,7 @@ namespace JMMClient
                     return AniDB_Anime.AirDate;
 
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     return null;
                 }

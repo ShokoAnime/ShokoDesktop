@@ -257,7 +257,7 @@ namespace JMMClient.UserControls
                 List<TorrentLinkVM> links = DownloadHelper.SearchTorrents(crit);
                 e.Result = links;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
             }

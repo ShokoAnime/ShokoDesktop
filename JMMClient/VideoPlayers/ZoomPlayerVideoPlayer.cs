@@ -2,13 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Net.Http;
 using System.Net.Sockets;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
 using JMMClient.Utilities;
 using Microsoft.Win32;
 
@@ -16,7 +13,6 @@ namespace JMMClient.VideoPlayers
 {
     public class ZoomPlayerVideoPlayer : BaseVideoPlayer, IVideoPlayer
     {
-        private bool _monitoringPositions;
         private long currentPosition;
         private int _tcpControlPort = 4769;
 

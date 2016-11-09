@@ -235,7 +235,7 @@ namespace JMMClient
             }
             catch (Exception ex)
             {
-                logger.ErrorException(ex.ToString(), ex);
+                logger.Error(ex, ex.ToString());
             }
         }
 
@@ -1007,7 +1007,7 @@ namespace JMMClient
 
                     return totalRating;
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     return 0;
                 }
@@ -1022,7 +1022,7 @@ namespace JMMClient
                 {
                     return TempVoteCount + VoteCount;
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     return 0;
                 }
@@ -1041,7 +1041,7 @@ namespace JMMClient
                         return AniDBTotalRating / (decimal)AniDBTotalVotes / (decimal)100;
 
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     return 0;
                 }

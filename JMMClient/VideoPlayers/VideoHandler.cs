@@ -197,15 +197,11 @@ namespace JMMClient.VideoPlayers
 
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                int a = 1;
+
             }
-            
-
         }
-
-
 
         private IVideoPlayer ResolvePlayer()
         {
@@ -281,7 +277,7 @@ namespace JMMClient.VideoPlayers
             }
             catch (Exception ex)
             {
-                logger.ErrorException(ex.ToString(), ex);
+                logger.Error(ex, ex.ToString());
             }
         }
 
@@ -431,7 +427,7 @@ namespace JMMClient.VideoPlayers
             }
             catch (Exception ex)
             {
-                logger.ErrorException(ex.ToString(), ex);
+                logger.Error(ex, ex.ToString());
             }
 
             return string.Empty;
@@ -469,7 +465,7 @@ namespace JMMClient.VideoPlayers
             }
             catch (Exception ex)
             {
-                logger.ErrorException(ex.ToString(), ex);
+                logger.Error(ex, ex.ToString());
             }
 
             return string.Empty;
@@ -538,7 +534,7 @@ namespace JMMClient.VideoPlayers
             }
             catch (Exception ex)
             {
-                logger.ErrorException(ex.ToString(), ex);
+                logger.Error(ex, ex.ToString());
             }
 
             return null;

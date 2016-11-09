@@ -153,7 +153,6 @@ namespace JMMClient.UserControls
                     }
                 }
 
-                bool foundDefault = false;
                 foreach (AnimeFolderSummary afs in folders.Values)
                 {
                     afs.IsDefaultFolder = false;
@@ -163,29 +162,12 @@ namespace JMMClient.UserControls
                         if (thisSeries.DefaultFolder.Equals(afs.FolderName, StringComparison.InvariantCultureIgnoreCase))
                         {
                             afs.IsDefaultFolder = true;
-                            foundDefault = true;
                         }
                     }
                     AnimeFolderSummaryRecords.Add(afs);
                 }
 
-                /*if (!foundDefault)
-                {
-                    if (!string.IsNullOrEmpty(thisSeries.DefaultFolder))
-                    {
-                        AnimeFolderSummary afs = new AnimeFolderSummary();
-                        afs.FolderName = thisSeries.DefaultFolder;
-                        afs.FileCount = 0;
-                        afs.TotalFileSize = 0;
-                        afs.IsDefaultFolder = true;
-                        AnimeFolderSummaryRecords.Add(afs);
-                    }
-                }*/
-
-
                 TotalFileSize = Utils.FormatFileSize(fileSize);
-
-
                 IsDataLoading = false;
                 IsDataFinishedLoading = true;
             }

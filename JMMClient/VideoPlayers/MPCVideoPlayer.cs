@@ -278,7 +278,7 @@ namespace JMMClient.VideoPlayers
             }
             catch (Exception ex)
             {
-                logger.ErrorException(ex.ToString(), ex);
+                logger.Error(ex, ex.ToString());
             }
         }
 
@@ -320,7 +320,6 @@ namespace JMMClient.VideoPlayers
                             nowPlayingFileDuration = fileDurationRegex.Match(responseString).Groups[1].ToString();
                             // Parse number values for future aritmetics
                             double filePosition;
-                            double fileDuration;
                             Double.TryParse(nowPlayingFilePosition, out filePosition);
 
                             Dictionary<string, long> pos=new Dictionary<string, long>();
@@ -335,7 +334,7 @@ namespace JMMClient.VideoPlayers
             }
             catch (Exception exception)
             {
-                logger.ErrorException(exception.ToString(), exception);
+                logger.Error(exception);
                 playerWebUiTimer?.Start();
             }
         }

@@ -95,7 +95,7 @@ namespace JMMClient.Downloads
                 }
                 catch (Exception ex)
                 {
-                    logger.ErrorException(ex.ToString(), ex);
+                    logger.Error(ex, ex.ToString());
                     return "";
                 }
 
@@ -105,7 +105,7 @@ namespace JMMClient.Downloads
             }
             catch (Exception ex)
             {
-                logger.ErrorException(ex.ToString(), ex);
+                logger.Error(ex, ex.ToString());
                 return "";
             }
         }
@@ -310,7 +310,7 @@ namespace JMMClient.Downloads
             }
             catch (Exception ex)
             {
-                logger.ErrorException(ex.ToString(), ex);
+                logger.Error(ex, ex.ToString());
                 return new List<TorrentLinkVM>();
             }
         }
@@ -338,7 +338,7 @@ namespace JMMClient.Downloads
             }
             catch (Exception ex)
             {
-                logger.ErrorException(ex.ToString(), ex);
+                logger.Error(ex, ex.ToString());
                 return new List<TorrentLinkVM>();
             }
 

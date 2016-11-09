@@ -205,7 +205,7 @@ namespace JMMClient.UserControls
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //Utils.ShowErrorMessage(ex);
             }

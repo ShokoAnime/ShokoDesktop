@@ -686,7 +686,7 @@ namespace JMMClient
 
                     return totalRating;
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     return 0;
                 }
@@ -707,7 +707,7 @@ namespace JMMClient
 
                     return cnt;
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     return 0;
                 }
@@ -728,7 +728,7 @@ namespace JMMClient
                     return Stat_AniDBRating / (decimal)100;
 
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     return 0;
                 }
