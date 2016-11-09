@@ -4,7 +4,7 @@
         xmlns:local="clr-namespace:JMMClient"
         xmlns:forms="clr-namespace:JMMClient.Forms"
         xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
-        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=PlayVideo}" Height="300" Width="700" ShowInTaskbar="False" WindowStyle="SingleBorderWindow" Icon="/JMMDesktop;component/Images/32_movie.png"
+        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=PlayVideo}" Height="300" Width="700" ShowInTaskbar="False" WindowStyle="SingleBorderWindow" Icon="/ShokoClient;component/Images/32_movie.png"
         WindowStartupLocation="CenterOwner" Topmost="False" SizeToContent="Height">
     <Grid Margin="10">
         <Grid.Resources>

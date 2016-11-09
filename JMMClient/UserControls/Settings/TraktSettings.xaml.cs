@@ -108,7 +108,7 @@ namespace JMMClient.UserControls
                 }
             }
             else
-                tbValidity.Text = Properties.Resources.Trakt_JMMNotAuth;
+                tbValidity.Text = Properties.Resources.Trakt_ShokoNotAuth;
 
             /*
             if (validToken)

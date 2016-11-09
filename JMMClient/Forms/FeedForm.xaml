@@ -6,7 +6,7 @@
         xmlns:forms="clr-namespace:JMMClient.Forms"
         ShowInTaskbar="False" WindowStyle="ToolWindow"
         WindowStartupLocation="CenterScreen" Topmost="False"
-        Title="JMM Desktop" MinHeight="250" MinWidth="500" Name="feedWindow" Icon="/JMMDesktop;component/Web%20Database.ico" ResizeMode="NoResize" Width="500" Height="250" SizeToContent="Height">
+        Title="JMM Desktop" MinHeight="250" MinWidth="500" Name="feedWindow" Icon="/ShokoClient;component/db.ico" ResizeMode="NoResize" Width="500" Height="250" SizeToContent="Height">
     <Window.Resources>
         <forms:HTMLEscapedCharactersConverter x:Key="HTMLEscapedCharactersConverter" />
         <XmlDataProvider x:Key="rssData" XPath="//item" Source="http://jmediamanager.org/feed/" />

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Diagnostics;
 using System.Text;
 using System.Windows;
 using System.IO;
@@ -14,15 +15,15 @@ namespace JMMClient
 		{
 			try
 			{
-				App app = new App();
+                App app = new App();
 				app.InitializeComponent();
 				app.Run();
 			}
 			catch (Exception ex)
 			{
-				File.WriteAllText(@"C:\jmmerror.txt", ex.ToString());
+				File.WriteAllText(@"shoko_error.txt", ex.ToString());
 				MessageBox.Show(ex.Message + "\r\r" + ex.StackTrace, "Application Exception", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 		}
-	}
+    }
 }

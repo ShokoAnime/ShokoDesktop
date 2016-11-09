@@ -4,7 +4,7 @@
         xmlns:local="clr-namespace:JMMClient"
         xmlns:forms="clr-namespace:JMMClient.Forms"
         xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
-        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=Search_TMDBForm}" Height="450" Width="700" ShowInTaskbar="False" WindowStyle="ToolWindow" Icon="/JMMDesktop;component/Images/32_tmdb.png"
+        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=Search_TMDBForm}" Height="450" Width="700" ShowInTaskbar="False" WindowStyle="ToolWindow" Icon="/ShokoClient;component/Images/32_tmdb.png"
         WindowStartupLocation="CenterOwner" Topmost="False">
     <Grid>
         <Grid.Resources>

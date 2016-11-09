@@ -4,7 +4,7 @@
         xmlns:local="clr-namespace:JMMClient"
         xmlns:forms="clr-namespace:JMMClient.Forms"
         xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
-        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=Select_TvDBLanguage}" Height="450" Width="550" ShowInTaskbar="False" WindowStyle="ToolWindow" Icon="/JMMDesktop;component/Images/32_tvdb.png"
+        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=Select_TvDBLanguage}" Height="450" Width="550" ShowInTaskbar="False" WindowStyle="ToolWindow" Icon="/ShokoClient;component/Images/32_tvdb.png"
         WindowStartupLocation="CenterOwner" Topmost="False">
     <Grid>
         <Grid.Resources>

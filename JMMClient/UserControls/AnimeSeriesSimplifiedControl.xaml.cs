@@ -306,7 +306,7 @@ namespace JMMClient.UserControls
 
             if (string.IsNullOrEmpty(JMMServerVM.Instance.Trakt_AuthToken))
             {
-                Utils.ShowErrorMessage(Properties.Resources.Anime_JMMAuth);
+                Utils.ShowErrorMessage(Properties.Resources.Anime_ShokoAuth);
                 txtCommentNew.Focus();
                 return;
             }

@@ -9,7 +9,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>JMMClient</RootNamespace>
-    <AssemblyName>JMMDesktop</AssemblyName>
+    <AssemblyName>ShokoClient</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -80,7 +80,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Web Database.ico</ApplicationIcon>
+    <ApplicationIcon>Images\db.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
@@ -1945,7 +1945,7 @@
     <Resource Include="Images\32_WebDatabase.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Web Database.ico" />
+    <Resource Include="Images\db.ico" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\32_sort.png" />

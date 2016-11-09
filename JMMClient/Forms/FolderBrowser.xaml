@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="{Resx ResxName=JMMDesktop.Properties.Resources, Key=ImportFolder_SelectImportFolder}" Height="Auto"
         MinWidth="400" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow"
-        SizeToContent="WidthAndHeight" Icon="/JMMDesktop;component/Images/24_folder.png">
+        SizeToContent="WidthAndHeight" Icon="/ShokoClient;component/Images/24_folder.png">
     
     <StackPanel Orientation="Vertical">
         <Border Margin="5,5,5,5" Padding="5" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1">

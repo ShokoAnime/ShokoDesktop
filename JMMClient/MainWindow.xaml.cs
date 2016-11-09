@@ -105,7 +105,7 @@ namespace JMMClient
             }
             catch (Exception ex)
             {
-                File.WriteAllText(@"C:\jmmerror.txt", ex.ToString());
+                File.WriteAllText(@"shoko_error.txt", ex.ToString());
             }
 
             try

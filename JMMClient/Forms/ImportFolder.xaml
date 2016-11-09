@@ -4,7 +4,7 @@
         xmlns:local="clr-namespace:JMMClient"
         xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="JMMClient.Forms.ImportFolder"
-        Title="{Resx Key=ImportFolder, ResxName=JMMClient.Properties.Resources}" Width="600" SizeToContent="Height" Icon="/JMMDesktop;component/Images/32_edit.png" ResizeMode="CanResize" WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow">
+        Title="{Resx Key=ImportFolder, ResxName=JMMClient.Properties.Resources}" Width="600" SizeToContent="Height" Icon="/ShokoClient;component/Images/32_edit.png" ResizeMode="CanResize" WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow">
 
     <Window.Resources>
         <ResourceDictionary>

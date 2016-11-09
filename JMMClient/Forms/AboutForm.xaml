@@ -5,7 +5,7 @@
         xmlns:local="clr-namespace:JMMClient"
         ShowInTaskbar="False" WindowStyle="ToolWindow"
         WindowStartupLocation="CenterScreen" Topmost="False" SizeToContent="WidthAndHeight"
-        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=ShokoDesktop}"  Name="aboutWindow" Icon="/JMMDesktop;component/Web%20Database.ico">
+        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=ShokoDesktop}"  Name="aboutWindow" Icon="/ShokoClient;component/db.ico">
 
     <Grid>
         <Grid.Resources>

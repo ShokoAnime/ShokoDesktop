@@ -8,7 +8,7 @@
         ShowInTaskbar="False" WindowStyle="ToolWindow"
         WindowStartupLocation="CenterScreen" Topmost="False" SizeToContent="WidthAndHeight"
         mc:Ignorable="d"
-        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=Update_JMMDesktop}" MinHeight="200" MinWidth="500" Icon="/JMMDesktop;component/Web%20Database.ico">
+        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=Update_JMMDesktop}" MinHeight="200" MinWidth="500" Icon="/ShokoClient;component/db.ico">
     <Grid>
         <Grid.Resources>
 
