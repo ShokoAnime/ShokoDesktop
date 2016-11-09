@@ -539,7 +539,7 @@ namespace JMMClient
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
                 string response = _clientBinaryHTTP.EnterTraktPIN(pin);
-                MessageBox.Show(response, Properties.Resources.JMMServer_TraktAuth, MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(response, Properties.Resources.ShokoServer_TraktAuth, MessageBoxButton.OK, MessageBoxImage.Information);
 
             }
             catch (Exception ex)

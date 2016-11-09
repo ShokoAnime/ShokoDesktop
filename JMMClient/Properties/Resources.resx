@@ -454,7 +454,7 @@
     <value>An import folder cannot be both the drop source and the drop destination</value>
   </data>
   <data name="MSG_ERR_ImportFolderLocationCheck" xml:space="preserve">
-    <value>The import folder location cannot be blank. Enter a valid path on JMM Server</value>
+    <value>The import folder location cannot be blank. Enter a valid path on Shoko Server</value>
   </data>
   <data name="TAB_UnrecognisedFiles" xml:space="preserve">
     <value>Unrecognized</value>
@@ -546,8 +546,8 @@
   <data name="ImportFolders" xml:space="preserve">
     <value>Import Folders</value>
   </data>
-  <data name="JMMServer" xml:space="preserve">
-    <value>JMM Server</value>
+  <data name="ShokoServer" xml:space="preserve">
+    <value>Shoko Server</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
@@ -586,7 +586,7 @@
     <value>Success!</value>
   </data>
   <data name="Info_SettingsEssential" xml:space="preserve">
-    <value>The essentials panel contains all settings that are required to run JMM. For the JMM Server and AniDB Login sections, you'll need to click the "Test And Save" button to save any changes you make. </value>
+    <value>The essentials panel contains all settings that are required to run Shoko. For the Shoko Server and AniDB Login sections, you'll need to click the "Test And Save" button to save any changes you make. </value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Search</value>
@@ -714,7 +714,7 @@
     <value>Get</value>
   </data>
   <data name="Info_SettingsWebCache" xml:space="preserve">
-    <value>The web cache is an online database created by the developers of JMM and MyAnime. It's purpose is to fill in the gaps which other databases don't cater for, and also make the import process quicker by sharing information with other users of JMM.</value>
+    <value>The web cache is an online database created by the developers of Shoko and MyAnime. It's purpose is to fill in the gaps which other databases don't cater for, and also make the import process quicker by sharing information with other users of Shoko.</value>
   </data>
   <data name="Send" xml:space="preserve">
     <value>Send</value>
@@ -1113,7 +1113,7 @@
     <value>Duplicate Files</value>
   </data>
   <data name="Info_DuplicateFiles" xml:space="preserve">
-    <value>This utility will show all instances where there are two or more files with the same hash. JMM only allows you to have one file with the same hash in your collection.</value>
+    <value>This utility will show all instances where there are two or more files with the same hash. Shoko only allows you to have one file with the same hash in your collection.</value>
   </data>
   <data name="Tooltip_DeleteDuplicateFileAll" xml:space="preserve">
     <value>Delete the database entry and the selected file on disk.</value>
@@ -1323,7 +1323,7 @@
     <value>Image Size</value>
   </data>
   <data name="Info_SettingsUserAdmin" xml:space="preserve">
-    <value>Users are stored in your database and can be accessed by any client that connects to your database. When adding a new user or updating an existing one, you must click the Save button otherwise your changes will not take effect. JMM requires at least one user with administrator rights selected.</value>
+    <value>Users are stored in your database and can be accessed by any client that connects to your database. When adding a new user or updating an existing one, you must click the Save button otherwise your changes will not take effect. Shoko requires at least one user with administrator rights selected.</value>
   </data>
   <data name="TAB_SettingsUsers" xml:space="preserve">
     <value>Users</value>
@@ -1500,7 +1500,7 @@
     <value>Avdump2</value>
   </data>
   <data name="AvdumpRequiredFilesLink" xml:space="preserve">
-    <value>Make sure you have all the required files in the same folder as JMM Desktop</value>
+    <value>Make sure you have all the required files in the same folder as Shoko Desktop</value>
   </data>
   <data name="AvdumpSettingsError" xml:space="preserve">
     <value>You haven't specified your API Key and/or Client Port</value>
@@ -1721,7 +1721,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Enter part of the name of the anime, or if you know the AniDB ID just enter that directly</value>
   </data>
   <data name="Link_CommunityRecommendation" xml:space="preserve">
-    <value>http://jmediamanager.org/faq/#what-are-community-recommendations</value>
+    <value>http://shokoanime.com/faq/#what-are-community-recommendations</value>
   </data>
   <data name="WhatsThis" xml:space="preserve">
     <value>What's This?</value>
@@ -1742,40 +1742,40 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Check For Updates</value>
   </data>
   <data name="Link_Blog" xml:space="preserve">
-    <value>http://jmediamanager.org/blog</value>
+    <value>http://shokoanime.com/blog</value>
   </data>
   <data name="Link_AniDBBanned" xml:space="preserve">
-    <value>http://jmediamanager.org/faq/#banned-from-anidb</value>
+    <value>http://shokoanime.com/faq/#banned-from-anidb</value>
   </data>
   <data name="Link_AniDBSettings" xml:space="preserve">
-    <value>http://jmediamanager.org/jmm-desktop/settings/#anidb</value>
+    <value>http://shokoanime.com/Shoko-desktop/settings/#anidb</value>
   </data>
   <data name="Link_FileRenaming" xml:space="preserve">
-    <value>http://jmediamanager.org/jmm-desktop/utilities/file-renaming/</value>
+    <value>http://shokoanime.com/Shoko-desktop/utilities/file-renaming/</value>
   </data>
   <data name="Link_GroupFilters" xml:space="preserve">
-    <value>http://jmediamanager.org/jmm-desktop/collection/filters/#what-are-filters</value>
+    <value>http://shokoanime.com/Shoko-desktop/collection/filters/#what-are-filters</value>
   </data>
   <data name="Link_ImportFolders" xml:space="preserve">
-    <value>http://jmediamanager.org/jmm-desktop/server/#import-folders</value>
+    <value>http://shokoanime.com/Shoko-desktop/server/#import-folders</value>
   </data>
   <data name="Link_MAL" xml:space="preserve">
-    <value>http://jmediamanager.org/jmm-desktop/settings/#community-sites</value>
+    <value>http://shokoanime.com/Shoko-desktop/settings/#community-sites</value>
   </data>
   <data name="Link_TMDb" xml:space="preserve">
-    <value>http://jmediamanager.org/jmm-desktop/settings/#community-sites</value>
+    <value>http://shokoanime.com/Shoko-desktop/settings/#community-sites</value>
   </data>
   <data name="Link_Trakt" xml:space="preserve">
-    <value>http://jmediamanager.org/jmm-desktop/settings/#community-sites</value>
+    <value>http://shokoanime.com/Shoko-desktop/settings/#community-sites</value>
   </data>
   <data name="Link_TvDB" xml:space="preserve">
-    <value>http://jmediamanager.org/jmm-desktop/settings/#community-sites</value>
+    <value>http://shokoanime.com/Shoko-desktop/settings/#community-sites</value>
   </data>
   <data name="Link_Downloads" xml:space="preserve">
-    <value>http://jmediamanager.org/jmm-desktop/downloads/</value>
+    <value>http://shokoanime.com/Shoko-desktop/downloads/</value>
   </data>
   <data name="Link_WebCache" xml:space="preserve">
-    <value>http://jmediamanager.org/jmm-desktop/settings/#web-cache</value>
+    <value>http://shokoanime.com/Shoko-desktop/settings/#web-cache</value>
   </data>
   <data name="UpdateFrequency_OneMonth" xml:space="preserve">
     <value>Once a Month</value>
@@ -1793,13 +1793,13 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>More Info</value>
   </data>
   <data name="Link_Changelog" xml:space="preserve">
-    <value>http://jmediamanager.org/changelog/</value>
+    <value>http://shokoanime.com/changelog/</value>
   </data>
   <data name="Link_Download" xml:space="preserve">
-    <value>http://jmediamanager.org/downloads/</value>
+    <value>http://shokoanime.com/downloads/</value>
   </data>
   <data name="Link_Site" xml:space="preserve">
-    <value>http://jmediamanager.org/</value>
+    <value>http://shokoanime.com/</value>
   </data>
   <data name="ReenterPassword" xml:space="preserve">
     <value>Re-enter Password</value>
@@ -1955,7 +1955,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Select the language you'd like episode titles and descriptions to be downloaded in from The TvDB. Please note that if an episode title or description is not available in the language you've selected, the default English version will be downloaded.</value>
   </data>
   <data name="Update_Update" xml:space="preserve">
-    <value>JMM Desktop Update Available!</value>
+    <value>Shoko Desktop Update Available!</value>
   </data>
   <data name="Update_UpdatePage" xml:space="preserve">
     <value>Update Page</value>
@@ -1984,8 +1984,8 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="ViewComments_Website" xml:space="preserve">
     <value>View on Website</value>
   </data>
-  <data name="JMMDesktop" xml:space="preserve">
-    <value>JMM Desktop</value>
+  <data name="ShokoDesktop" xml:space="preserve">
+    <value>Shoko Desktop</value>
   </data>
   <data name="MoreInformation" xml:space="preserve">
     <value>More Information</value>
@@ -2090,7 +2090,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Wrong Series?</value>
   </data>
   <data name="Tooltip_WrongSeries" xml:space="preserve">
-    <value>This is JMMs attempt to guess which series you are looking at so you can compare to your local collection. If you do not have the series in your collection it will be incorrect.</value>
+    <value>This is Shokos attempt to guess which series you are looking at so you can compare to your local collection. If you do not have the series in your collection it will be incorrect.</value>
   </data>
   <data name="Download_ResetCookie" xml:space="preserve">
     <value>Reset Cookie</value>
@@ -2201,7 +2201,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Automatically Mark Files As Watched When The Following Percentage Is Watched</value>
   </data>
   <data name="VideoPlayer_AutoFileNote1" xml:space="preserve">
-    <value>You can setup how JMM will handle playback for episodes with more then one file. These settings are automatically applied to playlist playback but can be applied to single episode playback by enabling the option below.  </value>
+    <value>You can setup how Shoko will handle playback for episodes with more then one file. These settings are automatically applied to playlist playback but can be applied to single episode playback by enabling the option below.  </value>
   </data>
   <data name="VideoPlayer_AutoFileNote2" xml:space="preserve">
     <value>Please note, if 'Release Group From Previously Played Episode' for 'Automatic File Selection - Subsequent Episodes In Series' is selected and you want to mark the file as watched instead of the episode. You'll need to uncheck 'Set File As Watched If Episode Is Watched" under Settings - Essental - Import Settings and then manually mark the file as watched, not episode as watched.</value>
@@ -2231,7 +2231,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Get Pin</value>
   </data>
   <data name="Trakt_Authorize" xml:space="preserve">
-    <value>Authorize JMM</value>
+    <value>Authorize Shoko</value>
   </data>
   <data name="Trakt_CurrentToken" xml:space="preserve">
     <value>Current token is valid until:</value>
@@ -2543,7 +2543,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Remove All Entries From AniDB</value>
   </data>
   <data name="MissingMyList_Note" xml:space="preserve">
-    <value>This utility will compare your current collection with your AniDB MyList and display any file discrepancies between the two. You can review the results and have JMM automatically remove all file discrepancies. Please note that JMM will use your current collection as the base and remove all entries in your AniDB MyList that are not present in your current collection. This utility runs in the background so you do not need to wait for the results. It may also take some time depending on how many file discrepancies there are so please be patient.</value>
+    <value>This utility will compare your current collection with your AniDB MyList and display any file discrepancies between the two. You can review the results and have Shoko automatically remove all file discrepancies. Please note that Shoko will use your current collection as the base and remove all entries in your AniDB MyList that are not present in your current collection. This utility runs in the background so you do not need to wait for the results. It may also take some time depending on how many file discrepancies there are so please be patient.</value>
   </data>
   <data name="Episode" xml:space="preserve">
     <value>Episode</value>
@@ -2687,7 +2687,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Auto Linking Enabled</value>
   </data>
   <data name="Tooltip_AutoLinkEnabledTvDB" xml:space="preserve">
-    <value>Auto linking from this anime to a TvDB series is currently enabled. If JMM Server finds a close match or community recommendation it will automatically create a link</value>
+    <value>Auto linking from this anime to a TvDB series is currently enabled. If Shoko Server finds a close match or community recommendation it will automatically create a link</value>
   </data>
   <data name="CommunityLinks_TraktTV" xml:space="preserve">
     <value>Trakt TV</value>
@@ -2696,19 +2696,19 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Auto linking from this anime to a Trakt series is currently disabled</value>
   </data>
   <data name="Tooltip_AutoLinkEnabledTrakt" xml:space="preserve">
-    <value>Auto linking from this anime to a Trakt series is currently enabled. If JMM Server finds a close match or community recommendation it will automatically create a link</value>
+    <value>Auto linking from this anime to a Trakt series is currently enabled. If Shoko Server finds a close match or community recommendation it will automatically create a link</value>
   </data>
   <data name="Tooltip_AutoLinkDisabledMAL" xml:space="preserve">
     <value>Auto linking from this anime to a MAL series is currently disabled</value>
   </data>
   <data name="Tooltip_AutoLinkEnabledMAL" xml:space="preserve">
-    <value>Auto linking from this anime to a MAL series is currently enabled. If JMM Server finds a close match or community recommendation it will automatically create a link</value>
+    <value>Auto linking from this anime to a MAL series is currently enabled. If Shoko Server finds a close match or community recommendation it will automatically create a link</value>
   </data>
   <data name="Tooltip_AutoLinkDisabledTMDb" xml:space="preserve">
     <value>Auto linking from this anime to a MovieDB series is currently disabled</value>
   </data>
   <data name="Tooltip_AutoLinkEnabledTMDb" xml:space="preserve">
-    <value>Auto linking from this anime to a MovieDB series is currently enabled. If JMM Server finds a close match or community recommendation it will automatically create a link</value>
+    <value>Auto linking from this anime to a MovieDB series is currently enabled. If Shoko Server finds a close match or community recommendation it will automatically create a link</value>
   </data>
   <data name="Tooltip_CommunityAdminTitle" xml:space="preserve">
     <value>Community Admin</value>
@@ -2747,7 +2747,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Update Local AniDB File Data</value>
   </data>
   <data name="UpdateAniDB_Info1" xml:space="preserve">
-    <value>Data that's related to files in your collection is automatically downloaded and stored in your local database when JMM first imports files. This process is only run once so if specific file data is missing on AniDB at the time of download, if will be missing in your database. Additionally, it's possible that future versions of JMM might use additional file data that’s available but was not downloaded when JMM initially imported your files. This utility will update and replace all stored file data with what's currently available on AniDB.</value>
+    <value>Data that's related to files in your collection is automatically downloaded and stored in your local database when Shoko first imports files. This process is only run once so if specific file data is missing on AniDB at the time of download, if will be missing in your database. Additionally, it's possible that future versions of Shoko might use additional file data that’s available but was not downloaded when Shoko initially imported your files. This utility will update and replace all stored file data with what's currently available on AniDB.</value>
   </data>
   <data name="UpdateAniDB_MissingInfo" xml:space="preserve">
     <value>Update Files with Missing Info</value>
@@ -2905,13 +2905,13 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="Ignore_AnimeID" xml:space="preserve">
     <value>Anime ID:</value>
   </data>
-  <data name="JMMServer_TraktAuth" xml:space="preserve">
+  <data name="ShokoServer_TraktAuth" xml:space="preserve">
     <value>Trakt Authorization Status</value>
   </data>
-  <data name="JMMServer_Success" xml:space="preserve">
+  <data name="ShokoServer_Success" xml:space="preserve">
     <value>Success</value>
   </data>
-  <data name="JMMServer_Error" xml:space="preserve">
+  <data name="ShokoServer_Error" xml:space="preserve">
     <value>Error</value>
   </data>
   <data name="Missing_Episode" xml:space="preserve">
@@ -2956,19 +2956,19 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="Tab_Bookmarks" xml:space="preserve">
     <value>Bookmarks</value>
   </data>
-  <data name="JMMServer_ImportFolders" xml:space="preserve">
+  <data name="ShokoServer_ImportFolders" xml:space="preserve">
     <value>Import Folders</value>
   </data>
-  <data name="JMMServer_ServerStatus" xml:space="preserve">
+  <data name="ShokoServer_ServerStatus" xml:space="preserve">
     <value>Server Status</value>
   </data>
   <data name="Tooltip_ClearHash" xml:space="preserve">
     <value>Clear all queued hash commands</value>
   </data>
-  <data name="JMMServer_Running" xml:space="preserve">
+  <data name="ShokoServer_Running" xml:space="preserve">
     <value>Running</value>
   </data>
-  <data name="JMMServer_Paused" xml:space="preserve">
+  <data name="ShokoServer_Paused" xml:space="preserve">
     <value>Paused</value>
   </data>
   <data name="Tooltip_ClearGeneral" xml:space="preserve">
@@ -2977,7 +2977,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="Tooltip_ClearImages" xml:space="preserve">
     <value>Clear all queued server image download commands</value>
   </data>
-  <data name="JMMServer_ServerImage" xml:space="preserve">
+  <data name="ShokoServer_ServerImage" xml:space="preserve">
     <value>Server Images Queue</value>
   </data>
   <data name="Tab_AniDBAVDump" xml:space="preserve">
@@ -3089,7 +3089,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Title Only</value>
   </data>
   <data name="Tooltip_User_PlexUsers" xml:space="preserve">
-    <value>Maps this comma separated users from plex to this JMM User. if the plex user is a friend (not home user), use 'External' as Plex User</value>
+    <value>Maps this comma separated users from plex to this Shoko User. if the plex user is a friend (not home user), use 'External' as Plex User</value>
   </data>
   <data name="User_Hide_Tags" xml:space="preserve">
     <value>Hide Tags</value>
@@ -3104,13 +3104,13 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Default Video Player</value>
   </data>
   <data name="VideoPlayer_DefaultNote" xml:space="preserve">
-    <value>JMM Desktop is capable of using a variety of different video players for file playback. Listed below are supported video players and limited video players that are available for use with JMM Desktop. You can change the video player JMM Desktop uses by selecting one of the players from the list below. No configuration is required as JMM Desktop pulls the video player's .exe file location from your registry.</value>
+    <value>Shoko Desktop is capable of using a variety of different video players for file playback. Listed below are supported video players and limited video players that are available for use with Shoko Desktop. You can change the video player Shoko Desktop uses by selecting one of the players from the list below. No configuration is required as Shoko Desktop pulls the video player's .exe file location from your registry.</value>
   </data>
   <data name="VideoPlayer_DefaultPlayer" xml:space="preserve">
     <value>Default Player</value>
   </data>
   <data name="Link_VideoPlayer" xml:space="preserve">
-    <value>http://jmediamanager.org/jmm-desktop/settings/#video-player</value>
+    <value>http://shokoanime.com/Shoko-desktop/settings/#video-player</value>
   </data>
   <data name="Search_Everything" xml:space="preserve">
     <value>Everything</value>
@@ -3292,10 +3292,10 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="Search_FileSize" xml:space="preserve">
     <value>File Size</value>
   </data>
-  <data name="JMMServer_ProcessRunning" xml:space="preserve">
-    <value>Process is currnetly running on JMM Server, please wait and refresh once done.</value>
+  <data name="ShokoServer_ProcessRunning" xml:space="preserve">
+    <value>Process is currnetly running on Shoko Server, please wait and refresh once done.</value>
   </data>
-  <data name="JMMServer_ProcessQueued" xml:space="preserve">
+  <data name="ShokoServer_ProcessQueued" xml:space="preserve">
     <value>Process is queued on server, please try refreshing in a few seconds.</value>
   </data>
   <data name="Downloads_Details" xml:space="preserve">
@@ -3467,7 +3467,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Project Page</value>
   </data>
   <data name="About_Blog" xml:space="preserve">
-    <value>JMM Blog</value>
+    <value>Shoko Blog</value>
   </data>
   <data name="About_MediaPortal" xml:space="preserve">
     <value>MediaPortal Forum</value>
@@ -3511,8 +3511,8 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="CommunityLinks_CheckingOnline" xml:space="preserve">
     <value>Checking Online...</value>
   </data>
-  <data name="Update_JMMDesktop" xml:space="preserve">
-    <value>JMM Desktop Updates</value>
+  <data name="Update_ShokoDesktop" xml:space="preserve">
+    <value>Shoko Desktop Updates</value>
   </data>
   <data name="Select_TvDBSeason" xml:space="preserve">
     <value>Switch TvDB Season</value>
@@ -3547,7 +3547,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="Search_InvalidMovieID" xml:space="preserve">
     <value>Please enter a valid number as the movie ID</value>
   </data>
-  <data name="JMMServer_Complete" xml:space="preserve">
+  <data name="ShokoServer_Complete" xml:space="preserve">
     <value>Complete!</value>
   </data>
   <data name="Trakt_TokenValid" xml:space="preserve">
@@ -3556,14 +3556,14 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="Trakt_TokenExpired" xml:space="preserve">
     <value>Your token has expired, please get a new one.</value>
   </data>
-  <data name="Trakt_JMMNotAuth" xml:space="preserve">
-    <value>You have not authorized JMM to access your Trakt account!</value>
+  <data name="Trakt_ShokoNotAuth" xml:space="preserve">
+    <value>You have not authorized Shoko to access your Trakt account!</value>
   </data>
   <data name="User_EnterUsername" xml:space="preserve">
     <value>Please enter a username</value>
   </data>
   <data name="User_PlexAssigned" xml:space="preserve">
-    <value>The Plex User '{0}' is already asigned to the JMM User '{1}'</value>
+    <value>The Plex User '{0}' is already asigned to the Shoko User '{1}'</value>
   </data>
   <data name="User_Delete" xml:space="preserve">
     <value>Are you sure you want to delete the User: {0}</value>
@@ -3676,8 +3676,8 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="Anime_TraktNotEnabled" xml:space="preserve">
     <value>You have not enabled Trakt, for more info go to 'Settings - Community Sites - Trakt TV'</value>
   </data>
-  <data name="Anime_JMMAuth" xml:space="preserve">
-    <value>You have not authorized JMM to use your Trakt account, for more info go to 'Settings - Community Sites - Trakt TV'</value>
+  <data name="Anime_ShokoAuth" xml:space="preserve">
+    <value>You have not authorized Shoko to use your Trakt account, for more info go to 'Settings - Community Sites - Trakt TV'</value>
   </data>
   <data name="Anime_SeriesNotFound" xml:space="preserve">
     <value>Anime series info not found</value>
@@ -3812,7 +3812,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Normal Window</value>
   </data>
   <data name="Tooltip_StylesExit" xml:space="preserve">
-    <value>Exit JMM Desktop</value>
+    <value>Exit Shoko Desktop</value>
   </data>
   <data name="Tooltip_AnimeFull" xml:space="preserve">
     <value>Full Series View</value>
@@ -3983,10 +3983,10 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Relation Settings</value>
   </data>
   <data name="RelationSettings_Info" xml:space="preserve">
-    <value>If enabled, JMM will group all related series in your collection based on the series relation graphs on AniDB. You can exclude certain types of relations by clicking the relation you don't want grouped.</value>
+    <value>If enabled, Shoko will group all related series in your collection based on the series relation graphs on AniDB. You can exclude certain types of relations by clicking the relation you don't want grouped.</value>
   </data>
   <data name="Link_RelationSettings" xml:space="preserve">
-    <value>http://jmediamanager.org/jmm-desktop/settings/#essential</value>
+    <value>http://shokoanime.com/Shoko-desktop/settings/#essential</value>
   </data>
   <data name="MAL_LoginCorrect" xml:space="preserve">
     <value>MAL login successful, settings saved.</value>
@@ -4013,7 +4013,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>MPC Web UI Port</value>
   </data>
   <data name="VideoPlayer_MPCInfo" xml:space="preserve">
-    <value>In order to intergrate MPC with JMM Desktop, you must enable the Web UI via the following option in View &gt; Options &gt; Player &gt; Web Interface; Listen On Port. The default listening port is 13579 which you can use, if you decide to change it make sure you change it in the box below.</value>
+    <value>In order to intergrate MPC with Shoko Desktop, you must enable the Web UI via the following option in View &gt; Options &gt; Player &gt; Web Interface; Listen On Port. The default listening port is 13579 which you can use, if you decide to change it make sure you change it in the box below.</value>
   </data>
   <data name="AniDB_GetTitles" xml:space="preserve">
     <value>Getting AniDB Titles</value>
@@ -4199,7 +4199,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Switch Language</value>
   </data>
   <data name="Language_Info" xml:space="preserve">
-    <value>JMM Desktop needs to restart to change the language, click OK to auto restart or Cancel to manually restart.</value>
+    <value>Shoko Desktop needs to restart to change the language, click OK to auto restart or Cancel to manually restart.</value>
   </data>
   <data name="UpdateAniDB_QueueCount" xml:space="preserve">
     <value>{0} Files will be queued for processing</value>
@@ -4232,7 +4232,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>NOT Configured Please Resolve</value>
   </data>
   <data name="Link_EnableStreaming" xml:space="preserve">
-    <value>http://jmediamanager.org/streaming/</value>
+    <value>http://shokoanime.com/streaming/</value>
   </data>
   <data name="VideoPlayer_MPVInstall" xml:space="preserve">
     <value>MPV Install Instructions</value>
@@ -4241,7 +4241,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>https://github.com/rossy/mpv-install/blob/master/README.md</value>
   </data>
   <data name="VideoPlayer_MPVNote" xml:space="preserve">
-    <value>If you decide to use your own version of MPV instead of the built-in version, make sure to associate playback with MPV. Otherwise JMM Desktop will not be able to use it. External MPV also supports streaming playback and is the recommend Limited Video Player to use.</value>
+    <value>If you decide to use your own version of MPV instead of the built-in version, make sure to associate playback with MPV. Otherwise Shoko Desktop will not be able to use it. External MPV also supports streaming playback and is the recommend Limited Video Player to use.</value>
   </data>
   <data name="Tooltip_WebCache_TraktAssociations" xml:space="preserve">
     <value>Use the web cache to look up links between AniDB and Trakt. If not selected you will need to manually search for all Trakt links.</value>
@@ -4250,13 +4250,13 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Help!</value>
   </data>
   <data name="Link_Help" xml:space="preserve">
-    <value>http://jmediamanager.org/jmm-desktop/</value>
+    <value>http://shokoanime.com/Shoko-desktop/</value>
   </data>
   <data name="Main_Discord" xml:space="preserve">
     <value>Discord</value>
   </data>
   <data name="Server_AutoStart" xml:space="preserve">
-    <value>AutoStart Local JMM Server</value>
+    <value>AutoStart Local Shoko Server</value>
   </data>
   <data name="TvDB_SearchInfo" xml:space="preserve">
     <value>The TvDB prohibits adult content, do not add adult related series to The TvDB or attempt to link them.</value>
@@ -4277,12 +4277,12 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>What are Group Filters?</value>
   </data>
   <data name="LearnMore_VideoPlayer" xml:space="preserve">
-    <value>Learn more about configuring a video player for use with JMM</value>
+    <value>Learn more about configuring a video player for use with Shoko</value>
   </data>
   <data name="LearnMore_ImportFolders" xml:space="preserve">
     <value>Learn more about import folders</value>
   </data>
-  <data name="JMMServer_ImportFoldersInfo" xml:space="preserve">
+  <data name="ShokoServer_ImportFoldersInfo" xml:space="preserve">
     <value>Fill out the form below to add an import folder. Input the folder's location, select the import type and then click Save to add the import folder.</value>
   </data>
   <data name="LearnMore_RelationSettings" xml:space="preserve">
@@ -4295,19 +4295,19 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>The display panel allows you to customize how series images and information is displayed.</value>
   </data>
   <data name="LearnMore_Downloads" xml:space="preserve">
-    <value>Learn more about using JMM to download anime</value>
+    <value>Learn more about using Shoko to download anime</value>
   </data>
-  <data name="JMMServer_DDInfo" xml:space="preserve">
+  <data name="ShokoServer_DDInfo" xml:space="preserve">
     <value>Please note, updating your drop destination will only affect new series being added. Series you've already imported will not be affected.</value>
   </data>
   <data name="MovieDB_Info" xml:space="preserve">
-    <value>While The Movie DB does index TV Series, JMM only supports linking movies.</value>
+    <value>While The Movie DB does index TV Series, Shoko only supports linking movies.</value>
   </data>
   <data name="LearnMore_ComLinking" xml:space="preserve">
     <value>Learn more about series linking</value>
   </data>
   <data name="Link_Linking" xml:space="preserve">
-    <value>http://jmediamanager.org/jmm-desktop/collection/collection-overview/#linking</value>
+    <value>http://shokoanime.com/Shoko-desktop/collection/collection-overview/#linking</value>
   </data>
   <data name="Anime_Filters" xml:space="preserve">
     <value>Filters</value>
@@ -4390,20 +4390,20 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="Settings_SetDefault" xml:space="preserve">
     <value>Use Default</value>
   </data>
-  <data name="Settings_SetJMMServer" xml:space="preserve">
-    <value>Use JMMServer Folder</value>
+  <data name="Settings_SetShokoServer" xml:space="preserve">
+    <value>Use ShokoServer Folder</value>
   </data>
   <data name="Migration_Header" xml:space="preserve">
     <value>Migration Status</value>
   </data>
   <data name="Migration_AdminFail" xml:space="preserve">
-    <value>JMM Client is unable to migrate your settings using the current user access. Run JMM Client as an Administrator to start the migration.</value>
+    <value>Shoko Client is unable to migrate your settings using the current user access. Run Shoko Client as an Administrator to start the migration.</value>
   </data>
   <data name="Migration_AdminPass1" xml:space="preserve">
-    <value>JMM Client will now start migrating your settings from this location to</value>
+    <value>Shoko Client will now start migrating your settings from this location to</value>
   </data>
   <data name="Migration_AdminPass2" xml:space="preserve">
-    <value>once this process is complete JMM Client will restart and no longer need Administrative Privileges to run.</value>
+    <value>once this process is complete Shoko Client will restart and no longer need Administrative Privileges to run.</value>
   </data>
   <data name="Migration_Error" xml:space="preserve">
     <value>Error Migrating Settings:</value>
@@ -4445,7 +4445,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Supported Players</value>
   </data>
   <data name="VideoPlayer_SupportedNote" xml:space="preserve">
-    <value>The video players listed below are fully supported within JMM Desktop, each video player is capable of resuming playback, updating watched states and Trakt scrobbling. Please read the information below the video players name for any additional setup required.</value>
+    <value>The video players listed below are fully supported within Shoko Desktop, each video player is capable of resuming playback, updating watched states and Trakt scrobbling. Please read the information below the video players name for any additional setup required.</value>
   </data>
   <data name="MD5" xml:space="preserve">
     <value>MD5</value>

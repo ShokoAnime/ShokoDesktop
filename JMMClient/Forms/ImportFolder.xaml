@@ -61,10 +61,10 @@
                         </Grid.RowDefinitions>
 
                         <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0" VerticalAlignment="Top"/>
-                        <TextBlock Grid.Column="1" Grid.Row="0" Margin="5,0,0,0" Text="{Resx Key=JMMServer_ImportFoldersInfo, ResxName=JMMClient.Properties.Resources}" TextWrapping="Wrap" />
+                        <TextBlock Grid.Column="1" Grid.Row="0" Margin="5,0,0,0" Text="{Resx Key=ShokoServer_ImportFoldersInfo, ResxName=JMMClient.Properties.Resources}" TextWrapping="Wrap" />
 
                         <Image Height="16" Width="16" Source="/Images/16_warning.png" Margin="5,2,4,0" Grid.Column="0" Grid.Row="1" VerticalAlignment="Top" />
-                        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Resx Key=JMMServer_DDInfo, ResxName=JMMClient.Properties.Resources}" Margin="5,0,0,0" TextWrapping="Wrap" />
+                        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Resx Key=ShokoServer_DDInfo, ResxName=JMMClient.Properties.Resources}" Margin="5,0,0,0" TextWrapping="Wrap" />
 
                         <usercontrols:HyperLinkStandard Grid.Row="2" Grid.Column="1" Margin="5,2,5,0" DisplayText="{Resx Key=LearnMore_ImportFolders, ResxName=JMMClient.Properties.Resources}" URL="{Resx Key=Link_ImportFolders, ResxName=JMMClient.Properties.Resources}"/>
 

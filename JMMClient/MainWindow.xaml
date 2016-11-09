@@ -522,13 +522,13 @@
                         </Grid.RowDefinitions>
 
                         <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6" Background="#FFE9ECEF" Margin="0,0,0,5">
-                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=JMMServer_ImportFolders}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ShokoServer_ImportFolders}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                         </Border>
 
                         <usercontrols:ImportFolderAdmin Grid.Row="1" Grid.ColumnSpan="6"/>
 
                         <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="6" Background="#FFE9ECEF" Margin="0,10,0,5">
-                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=JMMServer_ServerStatus}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ShokoServer_ServerStatus}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                         </Border>
 
 
@@ -562,9 +562,9 @@
                             <Image Height="16" Width="16" Source="Images/16_server_hash.png" Margin="10,0,5,0" VerticalAlignment="Center"/>
                             <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=QueueHasher}" Margin="0,0,0,0"/>
                             <TextBlock VerticalAlignment="Center" Text=" - " Margin="0,0,0,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=JMMServer_Running}" Margin="0,0,5,0"
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ShokoServer_Running}" Margin="0,0,5,0"
                                         Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=HasherQueueRunning, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=JMMServer_Paused}" Margin="0,0,5,0"
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ShokoServer_Paused}" Margin="0,0,5,0"
                                        Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=HasherQueuePaused, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         </StackPanel>
 
@@ -605,9 +605,9 @@
                             <Image Height="16" Width="16" Source="Images/16_server_connect.png" Margin="10,0,5,0" VerticalAlignment="Center"/>
                             <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=QueueGeneral}" Margin="0,0,0,0"/>
                             <TextBlock VerticalAlignment="Center" Text=" - " Margin="0,0,0,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=JMMServer_Running}" Margin="0,0,5,0"
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ShokoServer_Running}" Margin="0,0,5,0"
                                     Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=GeneralQueueRunning, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=JMMServer_Paused}" Margin="0,0,5,0"
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ShokoServer_Paused}" Margin="0,0,5,0"
                                     Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=GeneralQueuePaused, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         </StackPanel>
 
@@ -646,11 +646,11 @@
                         <!-- Server Images status -->
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="2" Grid.Row="5">
                             <Image Height="16" Width="16" Source="Images/16_image.png" Margin="10,0,5,0" VerticalAlignment="Center"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=JMMServer_ServerImage}" Margin="0,0,0,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ShokoServer_ServerImage}" Margin="0,0,0,0"/>
                             <TextBlock VerticalAlignment="Center" Text=" - " Margin="0,0,0,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=JMMServer_Running}" Margin="0,0,5,0"
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ShokoServer_Running}" Margin="0,0,5,0"
                                 Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ServerImageQueueRunning, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=JMMServer_Paused}" Margin="0,0,5,0"
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ShokoServer_Paused}" Margin="0,0,5,0"
                                 Visibility="{Binding Source={x:Static local:JMMServerVM.Instance}, Path=ServerImageQueuePaused, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         </StackPanel>
 
@@ -894,7 +894,7 @@
                                 </Border>
 
                                 <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="1" Background="#FFE9ECEF" Margin="0,0,0,5">
-                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=JMMServer}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ShokoServer}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                                 </Border>
 
                                 <usercontrols:JMMServerSettings Grid.Column="0" Grid.Row="2" Margin="5,0,0,10"/>

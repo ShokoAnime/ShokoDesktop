@@ -537,8 +537,8 @@
   <data name="ImportFolders" xml:space="preserve">
     <value>Importowane foldery</value>
   </data>
-  <data name="JMMServer" xml:space="preserve">
-    <value>Serwer JMM</value>
+  <data name="ShokoServer" xml:space="preserve">
+    <value>Serwer Shoko</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Hasło</value>
@@ -702,7 +702,7 @@
     <value>Pobierz</value>
   </data>
   <data name="Info_SettingsWebCache" xml:space="preserve">
-    <value>Web Cache to internetowa baza danych utworzona przez twórców JMM i MyAnime. Jej celem jest wypełnienie luki, której innych baz danych nie wypełniły, a także uczynić proces importowania szybszym poprzez wymianę informacji z innymi użytkownikami JMM.</value>
+    <value>Web Cache to internetowa baza danych utworzona przez twórców Shoko i MyAnime. Jej celem jest wypełnienie luki, której innych baz danych nie wypełniły, a także uczynić proces importowania szybszym poprzez wymianę informacji z innymi użytkownikami Shoko.</value>
   </data>
   <data name="Send" xml:space="preserve">
     <value>Wyślij</value>
@@ -1458,7 +1458,7 @@
     <value>Avdump2</value>
   </data>
   <data name="AvdumpRequiredFilesLink" xml:space="preserve">
-    <value>Upewnij się, że masz wszystkie wymagane pliki w folderze pulpitu JMM</value>
+    <value>Upewnij się, że masz wszystkie wymagane pliki w folderze pulpitu Shoko</value>
   </data>
   <data name="AvdumpSettingsError" xml:space="preserve">
     <value>Nie określono klucza API i/lub Port klienta</value>
@@ -1667,7 +1667,7 @@
     <value>Wpisz część nazwy anime, lub jeśli znasz AniDB ID po prostu wprowadzić bezpośrednio</value>
   </data>
   <data name="Link_CommunityRecommendation" xml:space="preserve">
-    <value>http://jmediamanager.org/FAQ/#What-are-Community-Recommendations</value>
+    <value>http://shokoanime.com/FAQ/#What-are-Community-Recommendations</value>
   </data>
   <data name="WhatsThis" xml:space="preserve">
     <value>Co to jest?</value>
@@ -1682,40 +1682,40 @@
     <value>Sprawdź Aktualizacje</value>
   </data>
   <data name="Link_Blog" xml:space="preserve">
-    <value>http://jmediamanager.org/blog</value>
+    <value>http://shokoanime.com/blog</value>
   </data>
   <data name="Link_AniDBBanned" xml:space="preserve">
-    <value>http://jmediamanager.org/FAQ/#banned-from-anidb</value>
+    <value>http://shokoanime.com/FAQ/#banned-from-anidb</value>
   </data>
   <data name="Link_AniDBSettings" xml:space="preserve">
-    <value>http://jmediamanager.org/JMM-Desktop/Settings/#anidb</value>
+    <value>http://shokoanime.com/Shoko-Desktop/Settings/#anidb</value>
   </data>
   <data name="Link_FileRenaming" xml:space="preserve">
-    <value>http://jmediamanager.org/JMM-Desktop/Utilities/File-renaming/</value>
+    <value>http://shokoanime.com/Shoko-Desktop/Utilities/File-renaming/</value>
   </data>
   <data name="Link_GroupFilters" xml:space="preserve">
-    <value>http://jmediamanager.org/jmm-desktop/collection/filters/#what-are-filters</value>
+    <value>http://shokoanime.com/Shoko-desktop/collection/filters/#what-are-filters</value>
   </data>
   <data name="Link_ImportFolders" xml:space="preserve">
-    <value>http://jmediamanager.org/jmm-desktop/server/#import-folders</value>
+    <value>http://shokoanime.com/Shoko-desktop/server/#import-folders</value>
   </data>
   <data name="Link_MAL" xml:space="preserve">
-    <value>http://jmediamanager.org/JMM-Desktop/Settings/#Community-sites</value>
+    <value>http://shokoanime.com/Shoko-Desktop/Settings/#Community-sites</value>
   </data>
   <data name="Link_TMDb" xml:space="preserve">
-    <value>http://jmediamanager.org/JMM-Desktop/Settings/#Community-sites</value>
+    <value>http://shokoanime.com/Shoko-Desktop/Settings/#Community-sites</value>
   </data>
   <data name="Link_Trakt" xml:space="preserve">
-    <value>http://jmediamanager.org/JMM-Desktop/Settings/#Community-sites</value>
+    <value>http://shokoanime.com/Shoko-Desktop/Settings/#Community-sites</value>
   </data>
   <data name="Link_TvDB" xml:space="preserve">
-    <value>http://jmediamanager.org/JMM-Desktop/Settings/#Community-sites</value>
+    <value>http://shokoanime.com/Shoko-Desktop/Settings/#Community-sites</value>
   </data>
   <data name="Link_Downloads" xml:space="preserve">
-    <value>http://jmediamanager.org/jmm-desktop/downloads/</value>
+    <value>http://shokoanime.com/Shoko-desktop/downloads/</value>
   </data>
   <data name="Link_WebCache" xml:space="preserve">
-    <value>http://jmediamanager.org/JMM-Desktop/Settings/#Web-cache</value>
+    <value>http://shokoanime.com/Shoko-Desktop/Settings/#Web-cache</value>
   </data>
   <data name="UpdateFrequency_OneMonth" xml:space="preserve">
     <value>Raz w miesiącu</value>
@@ -1733,13 +1733,13 @@
     <value>Więcej informacji na temat</value>
   </data>
   <data name="Link_Changelog" xml:space="preserve">
-    <value>http://jmediamanager.org/changelog/</value>
+    <value>http://shokoanime.com/changelog/</value>
   </data>
   <data name="Link_Download" xml:space="preserve">
-    <value>http://jmediamanager.org/downloads/</value>
+    <value>http://shokoanime.com/downloads/</value>
   </data>
   <data name="Link_Site" xml:space="preserve">
-    <value>http://jmediamanager.org/</value>
+    <value>http://shokoanime.com/</value>
   </data>
   <data name="ReenterPassword" xml:space="preserve">
     <value>Wprowadź ponownie hasło</value>
@@ -1886,7 +1886,7 @@
     <value>Sezon</value>
   </data>
   <data name="Update_Update" xml:space="preserve">
-    <value>JMM pulpitu dostępna aktualizacja!</value>
+    <value>Shoko pulpitu dostępna aktualizacja!</value>
   </data>
   <data name="Update_UpdatePage" xml:space="preserve">
     <value>Aktualizacja strony</value>
@@ -1915,8 +1915,8 @@
   <data name="ViewComments_Website" xml:space="preserve">
     <value>Widok na stronie</value>
   </data>
-  <data name="JMMDesktop" xml:space="preserve">
-    <value>JMM pulpitu</value>
+  <data name="ShokoDesktop" xml:space="preserve">
+    <value>Shoko pulpitu</value>
   </data>
   <data name="MoreInformation" xml:space="preserve">
     <value>Więcej informacji</value>
@@ -2021,7 +2021,7 @@
     <value>Źle serii?</value>
   </data>
   <data name="Tooltip_WrongSeries" xml:space="preserve">
-    <value>Jest to próba JMMs chyba serii, które patrzysz tak można porównać do swojej lokalnej kolekcji. Jeśli nie masz w swojej kolekcji serii będzie niepoprawny.</value>
+    <value>Jest to próba Shokos chyba serii, które patrzysz tak można porównać do swojej lokalnej kolekcji. Jeśli nie masz w swojej kolekcji serii będzie niepoprawny.</value>
   </data>
   <data name="Download_ResetCookie" xml:space="preserve">
     <value>Zresetować plik Cookie</value>
@@ -2141,7 +2141,7 @@
     <value>Dostać Pin</value>
   </data>
   <data name="Trakt_Authorize" xml:space="preserve">
-    <value>Autoryzować JMM</value>
+    <value>Autoryzować Shoko</value>
   </data>
   <data name="Trakt_CurrentToken" xml:space="preserve">
     <value>Bieżący token jest ważne do:</value>
@@ -2567,7 +2567,7 @@
     <value>Automatyczne łączenie włączone</value>
   </data>
   <data name="Tooltip_AutoLinkEnabledTvDB" xml:space="preserve">
-    <value>Automatyczne łączenie z tego anime do serii TvDB jest obecnie włączona. Jeśli serwer JMM znajdzie blisko meczu lub Wspólnoty zalecenie automatycznie stworzy link</value>
+    <value>Automatyczne łączenie z tego anime do serii TvDB jest obecnie włączona. Jeśli serwer Shoko znajdzie blisko meczu lub Wspólnoty zalecenie automatycznie stworzy link</value>
   </data>
   <data name="CommunityLinks_TraktTV" xml:space="preserve">
     <value>Trakt TV</value>
@@ -2576,19 +2576,19 @@
     <value>Automatyczne łączenie z tego anime do serii Trakt jest obecnie wyłączone</value>
   </data>
   <data name="Tooltip_AutoLinkEnabledTrakt" xml:space="preserve">
-    <value>Automatyczne łączenie z tego anime do serii Trakt jest obecnie włączona. Jeśli serwer JMM znajdzie blisko meczu lub Wspólnoty zalecenie automatycznie stworzy link</value>
+    <value>Automatyczne łączenie z tego anime do serii Trakt jest obecnie włączona. Jeśli serwer Shoko znajdzie blisko meczu lub Wspólnoty zalecenie automatycznie stworzy link</value>
   </data>
   <data name="Tooltip_AutoLinkDisabledMAL" xml:space="preserve">
     <value>Automatyczne łączenie z tego anime do serii MAL jest obecnie wyłączone</value>
   </data>
   <data name="Tooltip_AutoLinkEnabledMAL" xml:space="preserve">
-    <value>Automatyczne łączenie z tego anime do serii MAL jest obecnie włączona. Jeśli serwer JMM znajdzie blisko meczu lub Wspólnoty zalecenie automatycznie stworzy link</value>
+    <value>Automatyczne łączenie z tego anime do serii MAL jest obecnie włączona. Jeśli serwer Shoko znajdzie blisko meczu lub Wspólnoty zalecenie automatycznie stworzy link</value>
   </data>
   <data name="Tooltip_AutoLinkDisabledTMDb" xml:space="preserve">
     <value>Automatyczne łączenie z tego anime do serii MovieDB jest obecnie wyłączone</value>
   </data>
   <data name="Tooltip_AutoLinkEnabledTMDb" xml:space="preserve">
-    <value>Automatyczne łączenie z tego anime do serii MovieDB jest obecnie włączona. Jeśli serwer JMM znajdzie blisko meczu lub Wspólnoty zalecenie automatycznie stworzy link</value>
+    <value>Automatyczne łączenie z tego anime do serii MovieDB jest obecnie włączona. Jeśli serwer Shoko znajdzie blisko meczu lub Wspólnoty zalecenie automatycznie stworzy link</value>
   </data>
   <data name="Tooltip_CommunityAdminTitle" xml:space="preserve">
     <value>Wspólnoty Admin</value>
@@ -2758,10 +2758,10 @@
   <data name="Ignore_AnimeID" xml:space="preserve">
     <value>Anime ID:</value>
   </data>
-  <data name="JMMServer_Success" xml:space="preserve">
+  <data name="ShokoServer_Success" xml:space="preserve">
     <value>Sukces</value>
   </data>
-  <data name="JMMServer_Error" xml:space="preserve">
+  <data name="ShokoServer_Error" xml:space="preserve">
     <value>Błąd</value>
   </data>
   <data name="Missing_Episode" xml:space="preserve">
@@ -2803,19 +2803,19 @@
   <data name="Tab_Bookmarks" xml:space="preserve">
     <value>Zakładki</value>
   </data>
-  <data name="JMMServer_ImportFolders" xml:space="preserve">
+  <data name="ShokoServer_ImportFolders" xml:space="preserve">
     <value>Importuj foldery</value>
   </data>
-  <data name="JMMServer_ServerStatus" xml:space="preserve">
+  <data name="ShokoServer_ServerStatus" xml:space="preserve">
     <value>Status serwera</value>
   </data>
   <data name="Tooltip_ClearHash" xml:space="preserve">
     <value>Wyczyść wszystkie polecenia kolejce mieszania</value>
   </data>
-  <data name="JMMServer_Running" xml:space="preserve">
+  <data name="ShokoServer_Running" xml:space="preserve">
     <value>Systemem</value>
   </data>
-  <data name="JMMServer_Paused" xml:space="preserve">
+  <data name="ShokoServer_Paused" xml:space="preserve">
     <value>Wstrzymana</value>
   </data>
   <data name="Tooltip_ClearGeneral" xml:space="preserve">
@@ -2824,7 +2824,7 @@
   <data name="Tooltip_ClearImages" xml:space="preserve">
     <value>Wyczyść wszystkie komendy Pobierz obraz kolejce serwera</value>
   </data>
-  <data name="JMMServer_ServerImage" xml:space="preserve">
+  <data name="ShokoServer_ServerImage" xml:space="preserve">
     <value>Serwera obrazów kolejki</value>
   </data>
   <data name="Tab_AniDBAVDump" xml:space="preserve">
@@ -2924,7 +2924,7 @@
     <value>Tytuł tylko</value>
   </data>
   <data name="Tooltip_User_PlexUsers" xml:space="preserve">
-    <value>Mapuje ten oddzielone przecinkami użytkowników z obiektu typu plex dla tego użytkownika JMM. Jeśli użytkownik obiektu typu plex jest przyjacielem (nie ognisko domowe użytkownik), użyj "Zewnętrzne" jako obiekt typu Plex użytkownika</value>
+    <value>Mapuje ten oddzielone przecinkami użytkowników z obiektu typu plex dla tego użytkownika Shoko. Jeśli użytkownik obiektu typu plex jest przyjacielem (nie ognisko domowe użytkownik), użyj "Zewnętrzne" jako obiekt typu Plex użytkownika</value>
   </data>
   <data name="User_Hide_Tags" xml:space="preserve">
     <value>Ukryj Tagi</value>
@@ -2942,7 +2942,7 @@
     <value>Domyślnego odtwarzacza</value>
   </data>
   <data name="Link_VideoPlayer" xml:space="preserve">
-    <value>http://jmediamanager.org/jmm-desktop/settings/#video-player</value>
+    <value>http://shokoanime.com/Shoko-desktop/settings/#video-player</value>
   </data>
   <data name="Search_Everything" xml:space="preserve">
     <value>Wszystko</value>
@@ -3127,7 +3127,7 @@
   <data name="Search_FileSize" xml:space="preserve">
     <value>Rozmiar pliku</value>
   </data>
-  <data name="JMMServer_ProcessQueued" xml:space="preserve">
+  <data name="ShokoServer_ProcessQueued" xml:space="preserve">
     <value>Proces jest w kolejce na serwerze, proszę spróbować orzeźwiającego w kilka sekund</value>
   </data>
   <data name="Downloads_Details" xml:space="preserve">
@@ -3307,7 +3307,7 @@
   <data name="Sort_Exception" xml:space="preserve">
     <value>Wyjątek w MultiSort podczas sortowania listy</value>
   </data>
-  <data name="JMMServer_TraktAuth" xml:space="preserve">
+  <data name="ShokoServer_TraktAuth" xml:space="preserve">
     <value>Trakt autoryzacji</value>
   </data>
   <data name="Group_GroupCount" xml:space="preserve">
@@ -3332,7 +3332,7 @@
     <value>Strona projektu</value>
   </data>
   <data name="About_Blog" xml:space="preserve">
-    <value>JMM Blog</value>
+    <value>Shoko Blog</value>
   </data>
   <data name="About_MediaPortal" xml:space="preserve">
     <value>MediaPortal Forum</value>
@@ -3376,8 +3376,8 @@
   <data name="CommunityLinks_CheckingOnline" xml:space="preserve">
     <value>Sprawdzanie Online...</value>
   </data>
-  <data name="Update_JMMDesktop" xml:space="preserve">
-    <value>JMM pulpit aktualizacje</value>
+  <data name="Update_ShokoDesktop" xml:space="preserve">
+    <value>Shoko pulpit aktualizacje</value>
   </data>
   <data name="Select_TvDBSeason" xml:space="preserve">
     <value>Przełącznik TvDB sezon</value>
@@ -3412,7 +3412,7 @@
   <data name="Search_InvalidMovieID" xml:space="preserve">
     <value>Proszę podać prawidłowy numer jako identyfikator filmu</value>
   </data>
-  <data name="JMMServer_Complete" xml:space="preserve">
+  <data name="ShokoServer_Complete" xml:space="preserve">
     <value>Kompletny!</value>
   </data>
   <data name="Trakt_TokenValid" xml:space="preserve">
@@ -3421,14 +3421,14 @@
   <data name="Trakt_TokenExpired" xml:space="preserve">
     <value>Token wygasła, podobać się dostać pewien nowy jeden.</value>
   </data>
-  <data name="Trakt_JMMNotAuth" xml:space="preserve">
-    <value>Nie udzieliły JMM dostęp do konta Trakt!</value>
+  <data name="Trakt_ShokoNotAuth" xml:space="preserve">
+    <value>Nie udzieliły Shoko dostęp do konta Trakt!</value>
   </data>
   <data name="User_EnterUsername" xml:space="preserve">
     <value>Wprowadź nazwę użytkownika</value>
   </data>
   <data name="User_PlexAssigned" xml:space="preserve">
-    <value>Obiekt typu Plex użytkownika '{0}' jest już asigned do użytkownika JMM '{1}'</value>
+    <value>Obiekt typu Plex użytkownika '{0}' jest już asigned do użytkownika Shoko '{1}'</value>
   </data>
   <data name="User_Delete" xml:space="preserve">
     <value>Czy na pewno chcesz usunąć użytkownika: {0}</value>
@@ -3541,8 +3541,8 @@
   <data name="Anime_TraktNotEnabled" xml:space="preserve">
     <value>Nie włączono Trakt, więcej przejść do 'Ustawienia - Wspólnoty witryn - Trakt TV'</value>
   </data>
-  <data name="Anime_JMMAuth" xml:space="preserve">
-    <value>Nie masz upoważniony JMM używać konta Trakt, więcej przejść do 'Ustawienia - Wspólnoty witryn - Trakt TV'</value>
+  <data name="Anime_ShokoAuth" xml:space="preserve">
+    <value>Nie masz upoważniony Shoko używać konta Trakt, więcej przejść do 'Ustawienia - Wspólnoty witryn - Trakt TV'</value>
   </data>
   <data name="Anime_SeriesNotFound" xml:space="preserve">
     <value>Nie można odnaleźć informacji serii anime</value>
@@ -3674,7 +3674,7 @@
     <value>Normalne okno</value>
   </data>
   <data name="Tooltip_StylesExit" xml:space="preserve">
-    <value>Zjazd JMM pulpitu</value>
+    <value>Zjazd Shoko pulpitu</value>
   </data>
   <data name="Tooltip_AnimeFull" xml:space="preserve">
     <value>Widok pełny serii</value>
@@ -3806,10 +3806,10 @@
     <value>Anime nazwa - Romaji</value>
   </data>
   <data name="UpdateAniDB_Info1" xml:space="preserve">
-    <value>Dane, które jest związane z plików w swojej kolekcji jest automatycznie pobierane i przechowywane w lokalnej bazie danych, gdy JMM najpierw importuje pliki. Proces ten prowadzony jest tylko raz tak, jeśli określony plik danych jest brak AniDB w momencie pobrania, jeśli będzie brakować w bazie danych. Dodatkowo jest to możliwe, że przyszłe wersje JMM może używać dodatkowego pliku danych, który jest dostępny, ale nie został pobrany podczas JMM początkowo importowane pliki. To narzędzie będzie aktualizować i zastąpić wszystkich danych przechowywanych plików z tym, co jest obecnie dostępna na AniDB.</value>
+    <value>Dane, które jest związane z plików w swojej kolekcji jest automatycznie pobierane i przechowywane w lokalnej bazie danych, gdy Shoko najpierw importuje pliki. Proces ten prowadzony jest tylko raz tak, jeśli określony plik danych jest brak AniDB w momencie pobrania, jeśli będzie brakować w bazie danych. Dodatkowo jest to możliwe, że przyszłe wersje Shoko może używać dodatkowego pliku danych, który jest dostępny, ale nie został pobrany podczas Shoko początkowo importowane pliki. To narzędzie będzie aktualizować i zastąpić wszystkich danych przechowywanych plików z tym, co jest obecnie dostępna na AniDB.</value>
   </data>
   <data name="Info_SettingsUserAdmin" xml:space="preserve">
-    <value>Użytkowników są przechowywane w bazie danych i mogą być udostępniane przez każdego klienta, który łączy się z bazą danych. Kiedy Dodawanie nowego użytkownika lub aktualizacji istniejącej, należy kliknij przycisk Zapisz inaczej zmiany nie będą obowiązywać. JMM wymaga co najmniej jeden użytkownik z prawami administratora zaznaczone.</value>
+    <value>Użytkowników są przechowywane w bazie danych i mogą być udostępniane przez każdego klienta, który łączy się z bazą danych. Kiedy Dodawanie nowego użytkownika lub aktualizacji istniejącej, należy kliknij przycisk Zapisz inaczej zmiany nie będą obowiązywać. Shoko wymaga co najmniej jeden użytkownik z prawami administratora zaznaczone.</value>
   </data>
   <data name="MAL_LoginCorrect" xml:space="preserve">
     <value>MAL logowanie udane, zapisane ustawienia.</value>
@@ -3854,7 +3854,7 @@
     <value>Ustawienia relacji</value>
   </data>
   <data name="Link_RelationSettings" xml:space="preserve">
-    <value>http://jmediamanager.org/JMM-Desktop/Settings/#Essential</value>
+    <value>http://shokoanime.com/Shoko-Desktop/Settings/#Essential</value>
   </data>
   <data name="Video_Hi08P" xml:space="preserve">
     <value>8-bitowa</value>
@@ -4067,7 +4067,7 @@
     <value>Zmień język</value>
   </data>
   <data name="Language_Info" xml:space="preserve">
-    <value>JMM pulpitu Uruchom ponownie aby zmienić język, kliknij przycisk OK aby auto restart lub Anuluj, aby ręcznie ponownie uruchomić.!</value>
+    <value>Shoko pulpitu Uruchom ponownie aby zmienić język, kliknij przycisk OK aby auto restart lub Anuluj, aby ręcznie ponownie uruchomić.!</value>
   </data>
   <data name="Unrecognized_Rehash" xml:space="preserve">
     <value>Wszystkie rehash</value>
@@ -4112,7 +4112,7 @@
     <value>Wybierz język, chcieliby odcinek tytuły i opisy do pobrania w z The TvDB. Należy pamiętać, że jeśli odcinek tytuł lub opis nie jest dostępny w wybranym języku, domyślna wersja zostanie pobrany.</value>
   </data>
   <data name="Info_DuplicateFiles" xml:space="preserve">
-    <value>To narzędzie pokaże wszystkie wystąpienia w przypadku, gdy istnieją dwa lub więcej plików z tego samego skrótu. JMM pozwala tylko jeden plik z taką samą wartość mieszania w swojej kolekcji.</value>
+    <value>To narzędzie pokaże wszystkie wystąpienia w przypadku, gdy istnieją dwa lub więcej plików z tego samego skrótu. Shoko pozwala tylko jeden plik z taką samą wartość mieszania w swojej kolekcji.</value>
   </data>
   <data name="Info_MultipleFiles" xml:space="preserve">
     <value>To narzędzie pokaże wszystkie wystąpienia, gdzie masz wiele plików na tym samym odcinku. Będzie być w stanie wyświetlić każde wystąpienie i zdecydować, które z nich chcesz zachować.</value>
@@ -4130,7 +4130,7 @@
     <value>Wyświetlić brakujące pliki</value>
   </data>
   <data name="MissingMyList_Note" xml:space="preserve">
-    <value>To narzędzie będzie porównanie bieżącej kolekcji z Twoim AniDB MyList i wyświetlenie dowolnego pliku rozbieżności między dwoma. Możesz przejrzeć wyniki i automatycznie usunąć wszystkie rozbieżności plik JMM. Należy pamiętać, że JMM będzie używać bieżącej kolekcji jako podstawy i Usuń wszystkie wpisy w Twoim AniDB MyList, które nie są obecne w bieżącej kolekcji. To narzędzie działa w tle, więc nie trzeba czekać na wyniki. To może również zająć trochę czasu, w zależności od tego, jak wiele rozbieżności plik istnieje więc proszę o cierpliwość.</value>
+    <value>To narzędzie będzie porównanie bieżącej kolekcji z Twoim AniDB MyList i wyświetlenie dowolnego pliku rozbieżności między dwoma. Możesz przejrzeć wyniki i automatycznie usunąć wszystkie rozbieżności plik Shoko. Należy pamiętać, że Shoko będzie używać bieżącej kolekcji jako podstawy i Usuń wszystkie wpisy w Twoim AniDB MyList, które nie są obecne w bieżącej kolekcji. To narzędzie działa w tle, więc nie trzeba czekać na wyniki. To może również zająć trochę czasu, w zależności od tego, jak wiele rozbieżności plik istnieje więc proszę o cierpliwość.</value>
   </data>
   <data name="SeriesWithoutFiles_Note" xml:space="preserve">
     <value>To narzędzie pokaże wszystkie serie w swojej kolekcji, który nie ma żadnych plików. Usuwanie z serii z kolekcji spowoduje również usunięcie grupy, jeśli istnieją nie inne serie w tej grupie, czy też żadnych dodatkowych serii w tej grupie nie ma plików. </value>
@@ -4157,7 +4157,7 @@
     <value>NIE skonfigurowano proszę rozwiązać</value>
   </data>
   <data name="Link_EnableStreaming" xml:space="preserve">
-    <value>http://jmediamanager.org/streaming/</value>
+    <value>http://shokoanime.com/streaming/</value>
   </data>
   <data name="Tooltip_QueueImages" xml:space="preserve">
     <value>Obrazy czeka do pobrania</value>
@@ -4178,7 +4178,7 @@
     <value>Użyj pamięci podręcznej sieci web, aby znaleźć łącza między AniDB i Trakt. Jeśli nie wybrany trzeba będzie ręcznie wyszukać wszystkie linki Trakt.</value>
   </data>
   <data name="Link_Help" xml:space="preserve">
-    <value>http://jmediamanager.org/jmm-desktop/</value>
+    <value>http://shokoanime.com/Shoko-desktop/</value>
   </data>
   <data name="Tab_Help" xml:space="preserve">
     <value>Pomoc!</value>
@@ -4187,13 +4187,13 @@
     <value>Discord</value>
   </data>
   <data name="Server_AutoStart" xml:space="preserve">
-    <value>AutoStart lokalnego serwera JMM</value>
+    <value>AutoStart lokalnego serwera Shoko</value>
   </data>
   <data name="Info_SettingsEssential" xml:space="preserve">
-    <value>Panelu essentials zawiera wszystkie ustawienia, które są wymagane do uruchomienia JMM. Dla sekcji JMM serwera i logowania AniDB trzeba będzie kliknij przycisk "Test i Zapisz", aby zapisać wszelkie zmiany, które wprowadzasz. </value>
+    <value>Panelu essentials zawiera wszystkie ustawienia, które są wymagane do uruchomienia Shoko. Dla sekcji Shoko serwera i logowania AniDB trzeba będzie kliknij przycisk "Test i Zapisz", aby zapisać wszelkie zmiany, które wprowadzasz. </value>
   </data>
   <data name="RelationSettings_Info" xml:space="preserve">
-    <value>Jeśli włączone, JMM będą grupować wszystkie związanym z serii w swojej kolekcji, w oparciu o wykresy relacji serii na AniDB. Można wykluczyć niektóre rodzaje stosunków klikając relacji, które nie mają zgrupowanej.</value>
+    <value>Jeśli włączone, Shoko będą grupować wszystkie związanym z serii w swojej kolekcji, w oparciu o wykresy relacji serii na AniDB. Można wykluczyć niektóre rodzaje stosunków klikając relacji, które nie mają zgrupowanej.</value>
   </data>
   <data name="Command_LinkAniDBTvDB" xml:space="preserve">
     <value>Aktualizowanie stowarzyszenia TvDB zmieniono: {0}!</value>
@@ -4235,12 +4235,12 @@
     <value>Co to są filtry grupy?</value>
   </data>
   <data name="LearnMore_VideoPlayer" xml:space="preserve">
-    <value>Dowiedz się więcej o konfigurowaniu odtwarzacz wideo do użytku z JMM</value>
+    <value>Dowiedz się więcej o konfigurowaniu odtwarzacz wideo do użytku z Shoko</value>
   </data>
   <data name="LearnMore_ImportFolders" xml:space="preserve">
     <value>Dowiedz się więcej o Importuj foldery</value>
   </data>
-  <data name="JMMServer_ImportFoldersInfo" xml:space="preserve">
+  <data name="ShokoServer_ImportFoldersInfo" xml:space="preserve">
     <value>Wypełnij poniższy formularz, aby dodać folder importu. Wprowadź lokalizację folderu, wybierz typ importu i następnie kliknij przycisk Zapisz, aby dodać folder importu.</value>
   </data>
   <data name="Info_Downloads" xml:space="preserve">
@@ -4256,16 +4256,16 @@
     <value>Panel wyświetlacza pozwala dostosować sposób wyświetlania serii obrazów i informacje.</value>
   </data>
   <data name="LearnMore_Downloads" xml:space="preserve">
-    <value>Więcej informacji o używaniu JMM do pobrania anime</value>
+    <value>Więcej informacji o używaniu Shoko do pobrania anime</value>
   </data>
-  <data name="JMMServer_DDInfo" xml:space="preserve">
+  <data name="ShokoServer_DDInfo" xml:space="preserve">
     <value>Uwaga: aktualizowanie miejsca docelowego upuszczania wpłynie tylko na nowa seria dodawana. Nie wpływają na serii, które już zostały zaimportowane.</value>
   </data>
   <data name="Link_Linking" xml:space="preserve">
-    <value>http://jmediamanager.org/jmm-desktop/collection/collection-overview/#linking</value>
+    <value>http://shokoanime.com/Shoko-desktop/collection/collection-overview/#linking</value>
   </data>
   <data name="MovieDB_Info" xml:space="preserve">
-    <value>Podczas gdy The Movie DB indeksu serii TV, JMM obsługuje tylko łączenia filmów.</value>
+    <value>Podczas gdy The Movie DB indeksu serii TV, Shoko obsługuje tylko łączenia filmów.</value>
   </data>
   <data name="LearnMore_ComLinking" xml:space="preserve">
     <value>Dowiedz się więcej o serii łączącej</value>
@@ -4286,7 +4286,7 @@
     <value>Automatycznie oznaczyć pliki jak oglądałem, kiedy oglądałem następujący odsetek</value>
   </data>
   <data name="VideoPlayer_AutoFileNote1" xml:space="preserve">
-    <value>Można skonfigurować, jak JMM będzie obsługiwać odtwarzanie odcinków z więcej niż jeden plik. Te ustawienia są automatycznie stosowane do listy odtwarzania, ale mogą być stosowane do jednego odcinka odtwarzania przez włączenie opcji poniżej.  </value>
+    <value>Można skonfigurować, jak Shoko będzie obsługiwać odtwarzanie odcinków z więcej niż jeden plik. Te ustawienia są automatycznie stosowane do listy odtwarzania, ale mogą być stosowane do jednego odcinka odtwarzania przez włączenie opcji poniżej.  </value>
   </data>
   <data name="VideoPlayer_AutoFileNote2" xml:space="preserve">
     <value>Uwaga: Jeśli 'Wydaniu Grupa z wcześniej grał odcinek' dla 'Automatyczny wybór pliku - kolejnych odcinków w serii' jest zaznaczone i chcesz oznaczyć plik jako oglądałem zamiast odcinek. Najpierw musisz odznaczyć ' Ustaw plik jako oglądałem jeśli odcinek jest oglądać "w obszarze Ustawienia importu ustawień - komputera - i następnie ręcznie oznaczyć plik jako patrzył, nie odcinek jak oglądałem.</value>
@@ -4370,16 +4370,16 @@
     <value>Stan migracji</value>
   </data>
   <data name="Migration_AdminFail" xml:space="preserve">
-    <value>JMM klient jest w stanie przeprowadzić migrację ustawień przy użyciu bieżącego dostępu użytkownika. Uruchom klienta JMM jako Administrator, aby rozpocząć migrację.</value>
+    <value>Shoko klient jest w stanie przeprowadzić migrację ustawień przy użyciu bieżącego dostępu użytkownika. Uruchom klienta Shoko jako Administrator, aby rozpocząć migrację.</value>
   </data>
   <data name="Migration_AdminPass1" xml:space="preserve">
-    <value>JMM klienta będzie teraz rozpocząć migrację ustawień z tej lokalizacji, aby</value>
+    <value>Shoko klienta będzie teraz rozpocząć migrację ustawień z tej lokalizacji, aby</value>
   </data>
   <data name="Migration_AdminPass2" xml:space="preserve">
-    <value>gdy proces ten jest kompletny JMM klienta uruchomi się nie są już potrzebne uprawnienia administracyjne, aby uruchomić.</value>
+    <value>gdy proces ten jest kompletny Shoko klienta uruchomi się nie są już potrzebne uprawnienia administracyjne, aby uruchomić.</value>
   </data>
-  <data name="JMMServer_ProcessRunning" xml:space="preserve">
-    <value>Proces jest uruchomiona na JMM Server, proszę czekać i odświeżania raz zrobić currnetly.</value>
+  <data name="ShokoServer_ProcessRunning" xml:space="preserve">
+    <value>Proces jest uruchomiona na Shoko Server, proszę czekać i odświeżania raz zrobić currnetly.</value>
   </data>
   <data name="Migration_Error" xml:space="preserve">
     <value>Błąd migracji ustawień:</value>
@@ -4400,19 +4400,19 @@
     <value>Spowoduje to aktualizację wszystkich lokalnych obrazów z każdego źródła, z wyjątkiem AniDB. Nie uruchamiaj tego polecenia, jeśli serwer i pulpit są przy użyciu tego samego folderu jak usunie wszystkie obrazy.</value>
   </data>
   <data name="VideoPlayer_VLCNote" xml:space="preserve">
-    <value>W celu intergrate VLC z JMM pulpitu, należy włączyć interfejs sieci Web za pomocą następującej opcji w narzędzia &gt; Preferencje (wybierz przycisk radiowy wszystkie) &gt; Interfejs &gt; główne interfejsy; Www.</value>
+    <value>W celu intergrate VLC z Shoko pulpitu, należy włączyć interfejs sieci Web za pomocą następującej opcji w narzędzia &gt; Preferencje (wybierz przycisk radiowy wszystkie) &gt; Interfejs &gt; główne interfejsy; Www.</value>
   </data>
   <data name="VideoPlayer_PotPlayerNote" xml:space="preserve">
     <value>PotPlayer jest zdolny do lokalnych plików i odtwarzania strumieniowego.</value>
   </data>
   <data name="VideoPlayer_DefaultNote" xml:space="preserve">
-    <value>JMM pulpitu jest w stanie używać wiele różnych odtwarzaczy wideo dla odtwarzania plików. Poniżej wymieniono obsługiwane odtwarzacze wideo i ogranicza odtwarzacze wideo, które są dostępne do użytku z pulpitu JMM. Można zmienić odtwarzacz wideo, JMM pulpitu używa wybierając jeden z graczy z listy poniżej. Konfiguracja nie jest wymagane, jak JMM Desktop ściąga lokalizację pliku .exe odtwarzacz wideo z rejestru systemu.</value>
+    <value>Shoko pulpitu jest w stanie używać wiele różnych odtwarzaczy wideo dla odtwarzania plików. Poniżej wymieniono obsługiwane odtwarzacze wideo i ogranicza odtwarzacze wideo, które są dostępne do użytku z pulpitu Shoko. Można zmienić odtwarzacz wideo, Shoko pulpitu używa wybierając jeden z graczy z listy poniżej. Konfiguracja nie jest wymagane, jak Shoko Desktop ściąga lokalizację pliku .exe odtwarzacz wideo z rejestru systemu.</value>
   </data>
   <data name="VideoPlayer_MPCInfo" xml:space="preserve">
-    <value>Celu intergrate MPC z JMM pulpitu, należy włączyć interfejs sieci Web za pomocą następującej opcji w widoku &gt; Opcje &amp;gt; odtwarzacz &gt; interfejs sieci Web; Nasłuchiwać portu. Domyślny port nasłuchiwania jest 13579, którego można użyć, jeśli zdecydujesz się zmienić to upewnij się, że możesz zmienić go w polu poniżej.</value>
+    <value>Celu intergrate MPC z Shoko pulpitu, należy włączyć interfejs sieci Web za pomocą następującej opcji w widoku &gt; Opcje &amp;gt; odtwarzacz &gt; interfejs sieci Web; Nasłuchiwać portu. Domyślny port nasłuchiwania jest 13579, którego można użyć, jeśli zdecydujesz się zmienić to upewnij się, że możesz zmienić go w polu poniżej.</value>
   </data>
   <data name="VideoPlayer_MPVNote" xml:space="preserve">
-    <value>Jeśli użytkownik zdecyduje się użyć własnej wersji MPV zamiast wbudowanych wersji, upewnij się skojarzyć odtwarzania z MPV. W przeciwnym razie JMM pulpitu nie będzie można go używać. MPV zewnętrznych również obsługuje strumieniowe odtwarzanie i polecam ograniczone Video Player używać.</value>
+    <value>Jeśli użytkownik zdecyduje się użyć własnej wersji MPV zamiast wbudowanych wersji, upewnij się skojarzyć odtwarzania z MPV. W przeciwnym razie Shoko pulpitu nie będzie można go używać. MPV zewnętrznych również obsługuje strumieniowe odtwarzanie i polecam ograniczone Video Player używać.</value>
   </data>
   <data name="VideoPlayer_WindowsDefault" xml:space="preserve">
     <value>Domyślnie Windows</value>
@@ -4439,13 +4439,13 @@
     <value>Obsługiwanych odtwarzaczy</value>
   </data>
   <data name="VideoPlayer_SupportedNote" xml:space="preserve">
-    <value>Odtwarzacze wideo wymienione poniżej są w pełni obsługiwane w ramach JMM Desktop, każdy odtwarzacz wideo jest w stanie wznawianie odtwarzania, Aktualizacja stanów obserwowanych i Trakt scrobbling. Proszę przeczytać informacje poniżej nazwę odtwarzaczy wideo dla wszelkich dodatkowych konfiguracji wymagane.</value>
+    <value>Odtwarzacze wideo wymienione poniżej są w pełni obsługiwane w ramach Shoko Desktop, każdy odtwarzacz wideo jest w stanie wznawianie odtwarzania, Aktualizacja stanów obserwowanych i Trakt scrobbling. Proszę przeczytać informacje poniżej nazwę odtwarzaczy wideo dla wszelkich dodatkowych konfiguracji wymagane.</value>
   </data>
   <data name="Settings_SetDefault" xml:space="preserve">
     <value>Użyj domyślnego</value>
   </data>
-  <data name="Settings_SetJMMServer" xml:space="preserve">
-    <value>Użyj folderu JMMServer</value>
+  <data name="Settings_SetShokoServer" xml:space="preserve">
+    <value>Użyj folderu ShokoServer</value>
   </data>
   <data name="MD5" xml:space="preserve">
     <value>MD5</value>

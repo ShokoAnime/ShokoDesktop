@@ -342,18 +342,18 @@ namespace JMMClient
             {
                 
 
-                string val = Get("JMMServer_Address");
+                string val = Get("ShokoServer_Address");
                 if (string.IsNullOrEmpty(val))
                 {
                     // default value
                     val = "127.0.0.1";
-                    Set("JMMServer_Address", val);
+                    Set("ShokoServer_Address", val);
                 }
                 return val;
             }
             set
             {
-                Set("JMMServer_Address", value);
+                Set("ShokoServer_Address", value);
             }
         }
 
@@ -363,18 +363,18 @@ namespace JMMClient
             {
                 
 
-                string val = Get("JMMServer_Port");
+                string val = Get("ShokoServer_Port");
                 if (string.IsNullOrEmpty(val))
                 {
                     // default value
                     val = "8111";
-                    Set("JMMServer_Port", val);
+                    Set("ShokoServer_Port", val);
                 }
                 return val;
             }
             set
             {
-                Set("JMMServer_Port", value);
+                Set("ShokoServer_Port", value);
             }
         }
 
@@ -384,18 +384,18 @@ namespace JMMClient
             {
                 
 
-                string val = Get("JMMServer_FilePort");
+                string val = Get("ShokoServer_FilePort");
                 if (string.IsNullOrEmpty(val))
                 {
                     // default value
                     val = "8112";
-                    Set("JMMServer_FilePort", val);
+                    Set("ShokoServer_FilePort", val);
                 }
                 return val;
             }
             set
             {
-                Set("JMMServer_FilePort", value);
+                Set("ShokoServer_FilePort", value);
             }
         }
 
@@ -2886,9 +2886,9 @@ namespace JMMClient
             logger.Info("Episodes_WatchedStatus: {0}", Episodes_WatchedStatus);
             logger.Info("BaseImagesPath: {0}", BaseImagesPath);
             logger.Info("BaseImagesPathIsDefault: {0}", BaseImagesPathIsDefault);
-            logger.Info("JMMServer_Address: {0}", JMMServer_Address);
-            logger.Info("JMMServer_Port: {0}", JMMServer_Port);
-            logger.Info("JMMServer_FilePort: {0}", JMMServer_FilePort);
+            logger.Info("ShokoServer_Address: {0}", JMMServer_Address);
+            logger.Info("ShokoServer_Port: {0}", JMMServer_Port);
+            logger.Info("ShokoServer_FilePort: {0}", JMMServer_FilePort);
             logger.Info("EpisodeImageOverviewStyle: {0}", EpisodeImageOverviewStyle);
             logger.Info("HideEpisodeImageWhenUnwatched: {0}", HideEpisodeImageWhenUnwatched);
             logger.Info("HideEpisodeOverviewWhenUnwatched: {0}", HideEpisodeOverviewWhenUnwatched);

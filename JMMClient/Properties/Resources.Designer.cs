@@ -61,7 +61,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JMM Blog.
+        ///   Looks up a localized string similar to Shoko Blog.
         /// </summary>
         public static string About_Blog {
             get {
@@ -808,15 +808,6 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have not authorized JMM to use your Trakt account, for more info go to &apos;Settings - Community Sites - Trakt TV&apos;.
-        /// </summary>
-        public static string Anime_JMMAuth {
-            get {
-                return ResourceManager.GetString("Anime_JMMAuth", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Message.
         /// </summary>
         public static string Anime_Message {
@@ -912,6 +903,15 @@ namespace JMMClient.Properties {
         public static string Anime_SeriesNotFound {
             get {
                 return ResourceManager.GetString("Anime_SeriesNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have not authorized Shoko to use your Trakt account, for more info go to &apos;Settings - Community Sites - Trakt TV&apos;.
+        /// </summary>
+        public static string Anime_ShokoAuth {
+            get {
+                return ResourceManager.GetString("Anime_ShokoAuth", resourceCulture);
             }
         }
         
@@ -1321,7 +1321,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Make sure you have all the required files in the same folder as JMM Desktop.
+        ///   Looks up a localized string similar to Make sure you have all the required files in the same folder as Shoko Desktop.
         /// </summary>
         public static string AvdumpRequiredFilesLink {
             get {
@@ -5317,7 +5317,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This utility will show all instances where there are two or more files with the same hash. JMM only allows you to have one file with the same hash in your collection..
+        ///   Looks up a localized string similar to This utility will show all instances where there are two or more files with the same hash. Shoko only allows you to have one file with the same hash in your collection..
         /// </summary>
         public static string Info_DuplicateFiles {
             get {
@@ -5344,7 +5344,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The essentials panel contains all settings that are required to run JMM. For the JMM Server and AniDB Login sections, you&apos;ll need to click the &quot;Test And Save&quot; button to save any changes you make. .
+        ///   Looks up a localized string similar to The essentials panel contains all settings that are required to run Shoko. For the Shoko Server and AniDB Login sections, you&apos;ll need to click the &quot;Test And Save&quot; button to save any changes you make. .
         /// </summary>
         public static string Info_SettingsEssential {
             get {
@@ -5362,7 +5362,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Users are stored in your database and can be accessed by any client that connects to your database. When adding a new user or updating an existing one, you must click the Save button otherwise your changes will not take effect. JMM requires at least one user with administrator rights selected..
+        ///   Looks up a localized string similar to Users are stored in your database and can be accessed by any client that connects to your database. When adding a new user or updating an existing one, you must click the Save button otherwise your changes will not take effect. Shoko requires at least one user with administrator rights selected..
         /// </summary>
         public static string Info_SettingsUserAdmin {
             get {
@@ -5371,7 +5371,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The web cache is an online database created by the developers of JMM and MyAnime. It&apos;s purpose is to fill in the gaps which other databases don&apos;t cater for, and also make the import process quicker by sharing information with other users of JMM..
+        ///   Looks up a localized string similar to The web cache is an online database created by the developers of Shoko and MyAnime. It&apos;s purpose is to fill in the gaps which other databases don&apos;t cater for, and also make the import process quicker by sharing information with other users of Shoko..
         /// </summary>
         public static string Info_SettingsWebCache {
             get {
@@ -5425,141 +5425,6 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JMM Desktop.
-        /// </summary>
-        public static string JMMDesktop {
-            get {
-                return ResourceManager.GetString("JMMDesktop", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to JMM Server.
-        /// </summary>
-        public static string JMMServer {
-            get {
-                return ResourceManager.GetString("JMMServer", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Complete!.
-        /// </summary>
-        public static string JMMServer_Complete {
-            get {
-                return ResourceManager.GetString("JMMServer_Complete", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Please note, updating your drop destination will only affect new series being added. Series you&apos;ve already imported will not be affected..
-        /// </summary>
-        public static string JMMServer_DDInfo {
-            get {
-                return ResourceManager.GetString("JMMServer_DDInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Error.
-        /// </summary>
-        public static string JMMServer_Error {
-            get {
-                return ResourceManager.GetString("JMMServer_Error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Import Folders.
-        /// </summary>
-        public static string JMMServer_ImportFolders {
-            get {
-                return ResourceManager.GetString("JMMServer_ImportFolders", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Fill out the form below to add an import folder. Input the folder&apos;s location, select the import type and then click Save to add the import folder..
-        /// </summary>
-        public static string JMMServer_ImportFoldersInfo {
-            get {
-                return ResourceManager.GetString("JMMServer_ImportFoldersInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Paused.
-        /// </summary>
-        public static string JMMServer_Paused {
-            get {
-                return ResourceManager.GetString("JMMServer_Paused", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Process is queued on server, please try refreshing in a few seconds..
-        /// </summary>
-        public static string JMMServer_ProcessQueued {
-            get {
-                return ResourceManager.GetString("JMMServer_ProcessQueued", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Process is currnetly running on JMM Server, please wait and refresh once done..
-        /// </summary>
-        public static string JMMServer_ProcessRunning {
-            get {
-                return ResourceManager.GetString("JMMServer_ProcessRunning", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Running.
-        /// </summary>
-        public static string JMMServer_Running {
-            get {
-                return ResourceManager.GetString("JMMServer_Running", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Server Images Queue.
-        /// </summary>
-        public static string JMMServer_ServerImage {
-            get {
-                return ResourceManager.GetString("JMMServer_ServerImage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Server Status.
-        /// </summary>
-        public static string JMMServer_ServerStatus {
-            get {
-                return ResourceManager.GetString("JMMServer_ServerStatus", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Success.
-        /// </summary>
-        public static string JMMServer_Success {
-            get {
-                return ResourceManager.GetString("JMMServer_Success", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Trakt Authorization Status.
-        /// </summary>
-        public static string JMMServer_TraktAuth {
-            get {
-                return ResourceManager.GetString("JMMServer_TraktAuth", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         public static string Language {
@@ -5569,7 +5434,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JMM Desktop needs to restart to change the language, click OK to auto restart or Cancel to manually restart..
+        ///   Looks up a localized string similar to Shoko Desktop needs to restart to change the language, click OK to auto restart or Cancel to manually restart..
         /// </summary>
         public static string Language_Info {
             get {
@@ -5659,7 +5524,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Learn more about using JMM to download anime.
+        ///   Looks up a localized string similar to Learn more about using Shoko to download anime.
         /// </summary>
         public static string LearnMore_Downloads {
             get {
@@ -5695,7 +5560,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Learn more about configuring a video player for use with JMM.
+        ///   Looks up a localized string similar to Learn more about configuring a video player for use with Shoko.
         /// </summary>
         public static string LearnMore_VideoPlayer {
             get {
@@ -5713,7 +5578,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://jmediamanager.org/faq/#banned-from-anidb.
+        ///   Looks up a localized string similar to http://shokoanime.com/faq/#banned-from-anidb.
         /// </summary>
         public static string Link_AniDBBanned {
             get {
@@ -5722,7 +5587,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/settings/#anidb.
+        ///   Looks up a localized string similar to http://shokoanime.com/Shoko-desktop/settings/#anidb.
         /// </summary>
         public static string Link_AniDBSettings {
             get {
@@ -5731,7 +5596,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://jmediamanager.org/blog.
+        ///   Looks up a localized string similar to http://shokoanime.com/blog.
         /// </summary>
         public static string Link_Blog {
             get {
@@ -5740,7 +5605,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://jmediamanager.org/changelog/.
+        ///   Looks up a localized string similar to http://shokoanime.com/changelog/.
         /// </summary>
         public static string Link_Changelog {
             get {
@@ -5749,7 +5614,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://jmediamanager.org/faq/#what-are-community-recommendations.
+        ///   Looks up a localized string similar to http://shokoanime.com/faq/#what-are-community-recommendations.
         /// </summary>
         public static string Link_CommunityRecommendation {
             get {
@@ -5758,7 +5623,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://jmediamanager.org/downloads/.
+        ///   Looks up a localized string similar to http://shokoanime.com/downloads/.
         /// </summary>
         public static string Link_Download {
             get {
@@ -5767,7 +5632,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/downloads/.
+        ///   Looks up a localized string similar to http://shokoanime.com/Shoko-desktop/downloads/.
         /// </summary>
         public static string Link_Downloads {
             get {
@@ -5776,7 +5641,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://jmediamanager.org/streaming/.
+        ///   Looks up a localized string similar to http://shokoanime.com/streaming/.
         /// </summary>
         public static string Link_EnableStreaming {
             get {
@@ -5785,7 +5650,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/utilities/file-renaming/.
+        ///   Looks up a localized string similar to http://shokoanime.com/Shoko-desktop/utilities/file-renaming/.
         /// </summary>
         public static string Link_FileRenaming {
             get {
@@ -5794,7 +5659,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/collection/filters/#what-are-filters.
+        ///   Looks up a localized string similar to http://shokoanime.com/Shoko-desktop/collection/filters/#what-are-filters.
         /// </summary>
         public static string Link_GroupFilters {
             get {
@@ -5803,7 +5668,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/.
+        ///   Looks up a localized string similar to http://shokoanime.com/Shoko-desktop/.
         /// </summary>
         public static string Link_Help {
             get {
@@ -5812,7 +5677,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/server/#import-folders.
+        ///   Looks up a localized string similar to http://shokoanime.com/Shoko-desktop/server/#import-folders.
         /// </summary>
         public static string Link_ImportFolders {
             get {
@@ -5821,7 +5686,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/collection/collection-overview/#linking.
+        ///   Looks up a localized string similar to http://shokoanime.com/Shoko-desktop/collection/collection-overview/#linking.
         /// </summary>
         public static string Link_Linking {
             get {
@@ -5830,7 +5695,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/settings/#community-sites.
+        ///   Looks up a localized string similar to http://shokoanime.com/Shoko-desktop/settings/#community-sites.
         /// </summary>
         public static string Link_MAL {
             get {
@@ -5848,7 +5713,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/settings/#essential.
+        ///   Looks up a localized string similar to http://shokoanime.com/Shoko-desktop/settings/#essential.
         /// </summary>
         public static string Link_RelationSettings {
             get {
@@ -5857,7 +5722,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://jmediamanager.org/.
+        ///   Looks up a localized string similar to http://shokoanime.com/.
         /// </summary>
         public static string Link_Site {
             get {
@@ -5866,7 +5731,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/settings/#community-sites.
+        ///   Looks up a localized string similar to http://shokoanime.com/Shoko-desktop/settings/#community-sites.
         /// </summary>
         public static string Link_TMDb {
             get {
@@ -5875,7 +5740,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/settings/#community-sites.
+        ///   Looks up a localized string similar to http://shokoanime.com/Shoko-desktop/settings/#community-sites.
         /// </summary>
         public static string Link_Trakt {
             get {
@@ -5884,7 +5749,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/settings/#community-sites.
+        ///   Looks up a localized string similar to http://shokoanime.com/Shoko-desktop/settings/#community-sites.
         /// </summary>
         public static string Link_TvDB {
             get {
@@ -5893,7 +5758,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/settings/#video-player.
+        ///   Looks up a localized string similar to http://shokoanime.com/Shoko-desktop/settings/#video-player.
         /// </summary>
         public static string Link_VideoPlayer {
             get {
@@ -5902,7 +5767,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://jmediamanager.org/jmm-desktop/settings/#web-cache.
+        ///   Looks up a localized string similar to http://shokoanime.com/Shoko-desktop/settings/#web-cache.
         /// </summary>
         public static string Link_WebCache {
             get {
@@ -6217,7 +6082,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JMM Client is unable to migrate your settings using the current user access. Run JMM Client as an Administrator to start the migration..
+        ///   Looks up a localized string similar to Shoko Client is unable to migrate your settings using the current user access. Run Shoko Client as an Administrator to start the migration..
         /// </summary>
         public static string Migration_AdminFail {
             get {
@@ -6226,7 +6091,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JMM Client will now start migrating your settings from this location to.
+        ///   Looks up a localized string similar to Shoko Client will now start migrating your settings from this location to.
         /// </summary>
         public static string Migration_AdminPass1 {
             get {
@@ -6235,7 +6100,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to once this process is complete JMM Client will restart and no longer need Administrative Privileges to run..
+        ///   Looks up a localized string similar to once this process is complete Shoko Client will restart and no longer need Administrative Privileges to run..
         /// </summary>
         public static string Migration_AdminPass2 {
             get {
@@ -6442,7 +6307,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This utility will compare your current collection with your AniDB MyList and display any file discrepancies between the two. You can review the results and have JMM automatically remove all file discrepancies. Please note that JMM will use your current collection as the base and remove all entries in your AniDB MyList that are not present in your current collection. This utility runs in the background so you do not need to wait for the results. It may also take some time depending on how many file discrepan [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to This utility will compare your current collection with your AniDB MyList and display any file discrepancies between the two. You can review the results and have Shoko automatically remove all file discrepancies. Please note that Shoko will use your current collection as the base and remove all entries in your AniDB MyList that are not present in your current collection. This utility runs in the background so you do not need to wait for the results. It may also take some time depending on how many file discr [rest of string was truncated]&quot;;.
         /// </summary>
         public static string MissingMyList_Note {
             get {
@@ -6514,7 +6379,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to While The Movie DB does index TV Series, JMM only supports linking movies..
+        ///   Looks up a localized string similar to While The Movie DB does index TV Series, Shoko only supports linking movies..
         /// </summary>
         public static string MovieDB_Info {
             get {
@@ -6631,7 +6496,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The import folder location cannot be blank. Enter a valid path on JMM Server.
+        ///   Looks up a localized string similar to The import folder location cannot be blank. Enter a valid path on Shoko Server.
         /// </summary>
         public static string MSG_ERR_ImportFolderLocationCheck {
             get {
@@ -7711,7 +7576,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If enabled, JMM will group all related series in your collection based on the series relation graphs on AniDB. You can exclude certain types of relations by clicking the relation you don&apos;t want grouped..
+        ///   Looks up a localized string similar to If enabled, Shoko will group all related series in your collection based on the series relation graphs on AniDB. You can exclude certain types of relations by clicking the relation you don&apos;t want grouped..
         /// </summary>
         public static string RelationSettings_Info {
             get {
@@ -9241,7 +9106,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AutoStart Local JMM Server.
+        ///   Looks up a localized string similar to AutoStart Local Shoko Server.
         /// </summary>
         public static string Server_AutoStart {
             get {
@@ -9376,11 +9241,11 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use JMMServer Folder.
+        ///   Looks up a localized string similar to Use ShokoServer Folder.
         /// </summary>
-        public static string Settings_SetJMMServer {
+        public static string Settings_SetShokoServer {
             get {
-                return ResourceManager.GetString("Settings_SetJMMServer", resourceCulture);
+                return ResourceManager.GetString("Settings_SetShokoServer", resourceCulture);
             }
         }
         
@@ -9390,6 +9255,141 @@ namespace JMMClient.Properties {
         public static string SHA1 {
             get {
                 return ResourceManager.GetString("SHA1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shoko Desktop.
+        /// </summary>
+        public static string ShokoDesktop {
+            get {
+                return ResourceManager.GetString("ShokoDesktop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shoko Server.
+        /// </summary>
+        public static string ShokoServer {
+            get {
+                return ResourceManager.GetString("ShokoServer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Complete!.
+        /// </summary>
+        public static string ShokoServer_Complete {
+            get {
+                return ResourceManager.GetString("ShokoServer_Complete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please note, updating your drop destination will only affect new series being added. Series you&apos;ve already imported will not be affected..
+        /// </summary>
+        public static string ShokoServer_DDInfo {
+            get {
+                return ResourceManager.GetString("ShokoServer_DDInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string ShokoServer_Error {
+            get {
+                return ResourceManager.GetString("ShokoServer_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import Folders.
+        /// </summary>
+        public static string ShokoServer_ImportFolders {
+            get {
+                return ResourceManager.GetString("ShokoServer_ImportFolders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fill out the form below to add an import folder. Input the folder&apos;s location, select the import type and then click Save to add the import folder..
+        /// </summary>
+        public static string ShokoServer_ImportFoldersInfo {
+            get {
+                return ResourceManager.GetString("ShokoServer_ImportFoldersInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paused.
+        /// </summary>
+        public static string ShokoServer_Paused {
+            get {
+                return ResourceManager.GetString("ShokoServer_Paused", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Process is queued on server, please try refreshing in a few seconds..
+        /// </summary>
+        public static string ShokoServer_ProcessQueued {
+            get {
+                return ResourceManager.GetString("ShokoServer_ProcessQueued", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Process is currnetly running on Shoko Server, please wait and refresh once done..
+        /// </summary>
+        public static string ShokoServer_ProcessRunning {
+            get {
+                return ResourceManager.GetString("ShokoServer_ProcessRunning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Running.
+        /// </summary>
+        public static string ShokoServer_Running {
+            get {
+                return ResourceManager.GetString("ShokoServer_Running", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Server Images Queue.
+        /// </summary>
+        public static string ShokoServer_ServerImage {
+            get {
+                return ResourceManager.GetString("ShokoServer_ServerImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Server Status.
+        /// </summary>
+        public static string ShokoServer_ServerStatus {
+            get {
+                return ResourceManager.GetString("ShokoServer_ServerStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Success.
+        /// </summary>
+        public static string ShokoServer_Success {
+            get {
+                return ResourceManager.GetString("ShokoServer_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trakt Authorization Status.
+        /// </summary>
+        public static string ShokoServer_TraktAuth {
+            get {
+                return ResourceManager.GetString("ShokoServer_TraktAuth", resourceCulture);
             }
         }
         
@@ -10371,7 +10371,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Auto linking from this anime to a MAL series is currently enabled. If JMM Server finds a close match or community recommendation it will automatically create a link.
+        ///   Looks up a localized string similar to Auto linking from this anime to a MAL series is currently enabled. If Shoko Server finds a close match or community recommendation it will automatically create a link.
         /// </summary>
         public static string Tooltip_AutoLinkEnabledMAL {
             get {
@@ -10389,7 +10389,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Auto linking from this anime to a MovieDB series is currently enabled. If JMM Server finds a close match or community recommendation it will automatically create a link.
+        ///   Looks up a localized string similar to Auto linking from this anime to a MovieDB series is currently enabled. If Shoko Server finds a close match or community recommendation it will automatically create a link.
         /// </summary>
         public static string Tooltip_AutoLinkEnabledTMDb {
             get {
@@ -10398,7 +10398,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Auto linking from this anime to a Trakt series is currently enabled. If JMM Server finds a close match or community recommendation it will automatically create a link.
+        ///   Looks up a localized string similar to Auto linking from this anime to a Trakt series is currently enabled. If Shoko Server finds a close match or community recommendation it will automatically create a link.
         /// </summary>
         public static string Tooltip_AutoLinkEnabledTrakt {
             get {
@@ -10407,7 +10407,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Auto linking from this anime to a TvDB series is currently enabled. If JMM Server finds a close match or community recommendation it will automatically create a link.
+        ///   Looks up a localized string similar to Auto linking from this anime to a TvDB series is currently enabled. If Shoko Server finds a close match or community recommendation it will automatically create a link.
         /// </summary>
         public static string Tooltip_AutoLinkEnabledTvDB {
             get {
@@ -10965,7 +10965,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Exit JMM Desktop.
+        ///   Looks up a localized string similar to Exit Shoko Desktop.
         /// </summary>
         public static string Tooltip_StylesExit {
             get {
@@ -11163,7 +11163,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Maps this comma separated users from plex to this JMM User. if the plex user is a friend (not home user), use &apos;External&apos; as Plex User.
+        ///   Looks up a localized string similar to Maps this comma separated users from plex to this Shoko User. if the plex user is a friend (not home user), use &apos;External&apos; as Plex User.
         /// </summary>
         public static string Tooltip_User_PlexUsers {
             get {
@@ -11253,7 +11253,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This is JMMs attempt to guess which series you are looking at so you can compare to your local collection. If you do not have the series in your collection it will be incorrect..
+        ///   Looks up a localized string similar to This is Shokos attempt to guess which series you are looking at so you can compare to your local collection. If you do not have the series in your collection it will be incorrect..
         /// </summary>
         public static string Tooltip_WrongSeries {
             get {
@@ -11307,7 +11307,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Authorize JMM.
+        ///   Looks up a localized string similar to Authorize Shoko.
         /// </summary>
         public static string Trakt_Authorize {
             get {
@@ -11379,15 +11379,6 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have not authorized JMM to access your Trakt account!.
-        /// </summary>
-        public static string Trakt_JMMNotAuth {
-            get {
-                return ResourceManager.GetString("Trakt_JMMNotAuth", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to No seasons available, check the Trakt ID again.
         /// </summary>
         public static string Trakt_NoSeasons {
@@ -11420,6 +11411,15 @@ namespace JMMClient.Properties {
         public static string Trakt_SearchInfo {
             get {
                 return ResourceManager.GetString("Trakt_SearchInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have not authorized Shoko to access your Trakt account!.
+        /// </summary>
+        public static string Trakt_ShokoNotAuth {
+            get {
+                return ResourceManager.GetString("Trakt_ShokoNotAuth", resourceCulture);
             }
         }
         
@@ -11865,16 +11865,16 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JMM Desktop Updates.
+        ///   Looks up a localized string similar to Shoko Desktop Updates.
         /// </summary>
-        public static string Update_JMMDesktop {
+        public static string Update_ShokoDesktop {
             get {
-                return ResourceManager.GetString("Update_JMMDesktop", resourceCulture);
+                return ResourceManager.GetString("Update_ShokoDesktop", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JMM Desktop Update Available!.
+        ///   Looks up a localized string similar to Shoko Desktop Update Available!.
         /// </summary>
         public static string Update_Update {
             get {
@@ -11910,7 +11910,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Data that&apos;s related to files in your collection is automatically downloaded and stored in your local database when JMM first imports files. This process is only run once so if specific file data is missing on AniDB at the time of download, if will be missing in your database. Additionally, it&apos;s possible that future versions of JMM might use additional file data that’s available but was not downloaded when JMM initially imported your files. This utility will update and replace all stored file data with what&apos; [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Data that&apos;s related to files in your collection is automatically downloaded and stored in your local database when Shoko first imports files. This process is only run once so if specific file data is missing on AniDB at the time of download, if will be missing in your database. Additionally, it&apos;s possible that future versions of Shoko might use additional file data that’s available but was not downloaded when Shoko initially imported your files. This utility will update and replace all stored file data with [rest of string was truncated]&quot;;.
         /// </summary>
         public static string UpdateAniDB_Info1 {
             get {
@@ -12225,7 +12225,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The Plex User &apos;{0}&apos; is already asigned to the JMM User &apos;{1}&apos;.
+        ///   Looks up a localized string similar to The Plex User &apos;{0}&apos; is already asigned to the Shoko User &apos;{1}&apos;.
         /// </summary>
         public static string User_PlexAssigned {
             get {
@@ -12513,7 +12513,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can setup how JMM will handle playback for episodes with more then one file. These settings are automatically applied to playlist playback but can be applied to single episode playback by enabling the option below.  .
+        ///   Looks up a localized string similar to You can setup how Shoko will handle playback for episodes with more then one file. These settings are automatically applied to playlist playback but can be applied to single episode playback by enabling the option below.  .
         /// </summary>
         public static string VideoPlayer_AutoFileNote1 {
             get {
@@ -12558,7 +12558,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JMM Desktop is capable of using a variety of different video players for file playback. Listed below are supported video players and limited video players that are available for use with JMM Desktop. You can change the video player JMM Desktop uses by selecting one of the players from the list below. No configuration is required as JMM Desktop pulls the video player&apos;s .exe file location from your registry..
+        ///   Looks up a localized string similar to Shoko Desktop is capable of using a variety of different video players for file playback. Listed below are supported video players and limited video players that are available for use with Shoko Desktop. You can change the video player Shoko Desktop uses by selecting one of the players from the list below. No configuration is required as Shoko Desktop pulls the video player&apos;s .exe file location from your registry..
         /// </summary>
         public static string VideoPlayer_DefaultNote {
             get {
@@ -12639,7 +12639,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to In order to intergrate MPC with JMM Desktop, you must enable the Web UI via the following option in View &gt; Options &gt; Player &gt; Web Interface; Listen On Port. The default listening port is 13579 which you can use, if you decide to change it make sure you change it in the box below..
+        ///   Looks up a localized string similar to In order to intergrate MPC with Shoko Desktop, you must enable the Web UI via the following option in View &gt; Options &gt; Player &gt; Web Interface; Listen On Port. The default listening port is 13579 which you can use, if you decide to change it make sure you change it in the box below..
         /// </summary>
         public static string VideoPlayer_MPCInfo {
             get {
@@ -12675,7 +12675,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If you decide to use your own version of MPV instead of the built-in version, make sure to associate playback with MPV. Otherwise JMM Desktop will not be able to use it. External MPV also supports streaming playback and is the recommend Limited Video Player to use..
+        ///   Looks up a localized string similar to If you decide to use your own version of MPV instead of the built-in version, make sure to associate playback with MPV. Otherwise Shoko Desktop will not be able to use it. External MPV also supports streaming playback and is the recommend Limited Video Player to use..
         /// </summary>
         public static string VideoPlayer_MPVNote {
             get {
@@ -12720,7 +12720,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The video players listed below are fully supported within JMM Desktop, each video player is capable of resuming playback, updating watched states and Trakt scrobbling. Please read the information below the video players name for any additional setup required..
+        ///   Looks up a localized string similar to The video players listed below are fully supported within Shoko Desktop, each video player is capable of resuming playback, updating watched states and Trakt scrobbling. Please read the information below the video players name for any additional setup required..
         /// </summary>
         public static string VideoPlayer_SupportedNote {
             get {

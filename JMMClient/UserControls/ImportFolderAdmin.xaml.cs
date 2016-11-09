@@ -56,7 +56,7 @@ namespace JMMClient.UserControls
                     {
                         ns.Delete();
                         //JMMServerVM.Instance.RefreshImportFolders();
-                        MessageBox.Show(Properties.Resources.JMMServer_ProcessRunning, Properties.Resources.JMMServer_Running, MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show(Properties.Resources.ShokoServer_ProcessRunning, Properties.Resources.ShokoServer_Running, MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 }
             }

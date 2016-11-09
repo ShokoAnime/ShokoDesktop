@@ -563,7 +563,7 @@ namespace JMMClient.UserControls
         {
             JMMServerVM.Instance.clientBinaryHTTP.UpdateCalendarData();
 
-            MessageBox.Show(JMMClient.Properties.Resources.JMMServer_ProcessQueued, JMMClient.Properties.Resources.JMMServer_Running, MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show(JMMClient.Properties.Resources.ShokoServer_ProcessQueued, JMMClient.Properties.Resources.ShokoServer_Running, MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void CommandBinding_ToggleWatchedStatus(object sender, ExecutedRoutedEventArgs e)
@@ -781,7 +781,7 @@ namespace JMMClient.UserControls
                 {
 
                     JMMServerVM.Instance.SyncVotes();
-                    MessageBox.Show(JMMClient.Properties.Resources.JMMServer_ProcessRunning, JMMClient.Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show(JMMClient.Properties.Resources.ShokoServer_ProcessRunning, JMMClient.Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             catch (Exception ex)
