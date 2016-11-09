@@ -25,7 +25,7 @@ namespace JMMClient.AutoUpdates
             try
             {
                 // get the latest version as according to the release
-                string uri = string.Format("http://www.jmediamanager.org/latestdownloads/versions.xml");
+                string uri = string.Format("http://shokoanime.com/files/versions.xml");
                 string xml = Utils.DownloadWebPage(uri);
 
                 XmlSerializer x = new XmlSerializer(typeof(AutoUpdates.JMMVersions));
