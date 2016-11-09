@@ -4459,4 +4459,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="ImportSettings_AutoGroupSeriesUseScoreAlgorithm" xml:space="preserve">
     <value>Use Relation Weighting to Determine Main Series</value>
   </data>
+  <data name="Migration_ProgramDataError" xml:space="preserve">
+    <value>Error occured during migration of programdata folder!</value>
+  </data>
 </root>

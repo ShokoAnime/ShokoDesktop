@@ -18,10 +18,14 @@ namespace JMMClient
 
         public App()
         {
-            // Migrate programdata folder from JMMDesktop to ShokoClient
-            MigrateProgramDataLocation();
-
-            /*ResGlobal = new ResourceManager("JMMClient.Properties.Resources", typeof(App).Assembly);
+            // Migrate programdata folder from JMMServer to ShokoServer
+            // this needs to run before UnhandledExceptionManager.AddHandler(), because that will probably lock the log file
+            if (!MigrateProgramDataLocation())
+            {
+                MessageBox.Show(JMMClient.Properties.Resources.Migration_ProgramDataError,
+                    JMMClient.Properties.Resources.ShokoDesktop, MessageBoxButton.OK, MessageBoxImage.Error);
+                Environment.Exit(1);
+            }            /*ResGlobal = new ResourceManager("JMMClient.Properties.Resources", typeof(App).Assembly);
 
 			// Set application startup culture based on config settings
 			string culture = AppSettings.Culture;
@@ -36,7 +40,7 @@ namespace JMMClient
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             Application.Current.DispatcherUnhandledException += Current_DispatcherUnhandledException;
         }
-        public void MigrateProgramDataLocation()
+        public bool MigrateProgramDataLocation()
         {
             string oldApplicationPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "JMMDesktop");
             string newApplicationPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
@@ -47,13 +51,17 @@ namespace JMMClient
 
                     Directory.Move(oldApplicationPath, newApplicationPath);
                     logger.Log(LogLevel.Info, "Successfully migrated programdata folder.");
+                    return true;
                 }
                 catch (Exception e)
                 {
                     logger.Log(LogLevel.Error, "Error occured during MigrateProgramDataLocation()");
                     logger.Error(e);
+                    return false;
                 }
             }
+
+            return true;
         }
 
         void Current_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)

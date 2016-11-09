@@ -6136,6 +6136,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error occured during migration of programdata folder!.
+        /// </summary>
+        public static string Migration_ProgramDataError {
+            get {
+                return ResourceManager.GetString("Migration_ProgramDataError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Missing.
         /// </summary>
         public static string Missing {
