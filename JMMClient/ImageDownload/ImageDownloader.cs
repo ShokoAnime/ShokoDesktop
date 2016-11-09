@@ -660,7 +660,7 @@ namespace JMMClient.ImageDownload
             }
             catch (Exception ex)
             {
-                logger.ErrorException(ex.ToString(), ex);
+                logger.Error(ex, ex.ToString());
             }
 
         }
@@ -680,7 +680,7 @@ namespace JMMClient.ImageDownload
                         }
                         catch (Exception ex)
                         {
-                            logger.ErrorException(ex.ToString(), ex);
+                            logger.Error(ex, ex.ToString());
                         }
                         OnQueueUpdateEvent(new QueueUpdateEventArgs(this.QueueCount));
                     }
@@ -700,7 +700,7 @@ namespace JMMClient.ImageDownload
                 {
                     imagesToDownload.Remove(req);
                     OnQueueUpdateEvent(new QueueUpdateEventArgs(this.QueueCount));
-                    logger.ErrorException(ex.ToString(), ex);
+                    logger.Error(ex, ex.ToString());
                 }
             }
             */

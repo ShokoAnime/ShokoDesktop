@@ -55,7 +55,7 @@ namespace JMMClient
                 }
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 MessageBox.Show($"We are unable to move the directory '{From}' to '{To}', please move the directory with explorer", "Migration ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;

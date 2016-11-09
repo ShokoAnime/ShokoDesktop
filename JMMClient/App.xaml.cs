@@ -58,7 +58,7 @@ namespace JMMClient
 
         void Current_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
-            logger.ErrorException(e.Exception.ToString(), e.Exception);
+            logger.Error(e.Exception, e.Exception.ToString());
             e.Handled = true;
         }
 
@@ -66,7 +66,7 @@ namespace JMMClient
         {
             Exception ex = e.ExceptionObject as Exception;
             if (ex != null)
-                logger.ErrorException(ex.ToString(), ex);
+                logger.Error(ex, ex.ToString());
         }
 
     }

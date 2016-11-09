@@ -18,8 +18,6 @@ namespace JMMClient.UserControls
 
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
-            EvaulateVisibility();
-
             chkRelationSettings_AutoGroupSeries.Click += chkRelationSettings_AutoGroupSeries_Click;
 	        chkRelationSettings_AutoGroupSeriesUseScoreAlgorithm.Click += chkRelationSettings_AutoGroupSeriesUseScoreAlgorithm_Click;
 
@@ -42,25 +40,12 @@ namespace JMMClient.UserControls
         void chkRelationSettings_AutoGroupSeries_Click(object sender, RoutedEventArgs e)
         {
             JMMServerVM.Instance.SaveServerSettingsAsync();
-            EvaulateVisibility();
         }
 
 	    void chkRelationSettings_AutoGroupSeriesUseScoreAlgorithm_Click(object sender, RoutedEventArgs e)
 	    {
 		    JMMServerVM.Instance.SaveServerSettingsAsync();
 	    }
-
-	    private void EvaulateVisibility()
-        {
-            System.Windows.Visibility vis = System.Windows.Visibility.Collapsed;
-            if (JMMServerVM.Instance.AutoGroupSeries) vis = System.Windows.Visibility.Visible;
-
-            //visRelations_Row1.Visibility = vis;
-            //visRelations_Row2.Visibility = vis;
-            //visRelations_Row3.Visibility = vis;
-            //visRelations_Info.Visibility = vis;
-
-        }
 
         void btnRecreateGroups_Click(object sender, RoutedEventArgs e)
         {

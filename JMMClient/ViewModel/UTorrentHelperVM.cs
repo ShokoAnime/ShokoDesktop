@@ -116,7 +116,7 @@ namespace JMMClient
             }
             catch (Exception ex)
             {
-                logger.ErrorException(ex.ToString(), ex);
+                logger.Error(ex, ex.ToString());
                 return false;
             }
 
@@ -134,7 +134,7 @@ namespace JMMClient
             }
             catch (Exception ex)
             {
-                logger.ErrorException(ex.ToString(), ex);
+                logger.Error(ex, ex.ToString());
                 return false;
             }
 
@@ -150,7 +150,7 @@ namespace JMMClient
             }
             catch (Exception ex)
             {
-                logger.ErrorException(ex.ToString(), ex);
+                logger.Error(ex, ex.ToString());
                 return torFiles;
             }
 

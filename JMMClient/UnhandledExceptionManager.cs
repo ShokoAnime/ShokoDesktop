@@ -131,7 +131,7 @@ namespace JMMClient
             {
                 return System.IO.File.GetLastWriteTime(objAssembly.Location);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return DateTime.MaxValue;
             }
@@ -316,16 +316,13 @@ namespace JMMClient
                 ExceptionToFile();
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //-- generic catch because any exceptions inside the UEH
                 //-- will cause the code to terminate immediately
             }
 
             System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.Default;
-
-            //-- display message to the user - this is disabled for now since we don't have a UI for exceptions.
-            ExceptionToUI();
 
             //if (Variables.AppSettings.KillAppOnException)
             //{
@@ -439,23 +436,6 @@ namespace JMMClient
         }
 
         //--
-        //-- display a dialog to the user; otherwise we just terminate with no alert at all!
-        //--
-
-        private static void ExceptionToUI()
-        {
-            const string _strWhatHappened = "There was an unexpected error in (app). This may be due to a programming bug.";
-            string _strHowUserAffected = null;
-            const string _strWhatUserCanDo = "Restart (app), and try repeating your last action. Try alternative methods of performing the same action.";
-
-            _strHowUserAffected = "The action you requested was not performed.";
-
-
-            //ApplicationController.ShowError(_strHowUserAffected, FormatExceptionForUser(false));
-
-        }
-
-        //--
         //-- for non-web hosted apps, returns:
         //--   "[path]\bin\YourAssemblyName."
         //-- for web hosted apps, returns URL with non-filesystem chars removed:
@@ -486,7 +466,7 @@ namespace JMMClient
                 TakeScreenshotPrivate(GetApplicationPath() + _strScreenshotName);
                 _blnLogToScreenshotOK = true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 _blnLogToScreenshotOK = false;
             }
@@ -502,7 +482,7 @@ namespace JMMClient
                 System.Diagnostics.EventLog.WriteEntry(System.AppDomain.CurrentDomain.FriendlyName, Environment.NewLine + _strException, EventLogEntryType.Error);
                 _blnLogToEventLogOK = true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 _blnLogToEventLogOK = false;
             }
@@ -552,7 +532,7 @@ namespace JMMClient
                 //return System.Security.Principal.WindowsIdentity.GetCurrent().Name();
                 return WindowsIdentity.GetCurrent().Name;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return "";
             }
@@ -567,7 +547,7 @@ namespace JMMClient
             {
                 return System.Environment.UserDomainName + "\\" + System.Environment.UserName;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return "";
             }
@@ -873,7 +853,7 @@ namespace JMMClient
                 string strIP = System.Net.Dns.GetHostByName(System.Net.Dns.GetHostName()).AddressList[0].ToString();
                 return strIP;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return "127.0.0.1";
             }
@@ -937,7 +917,7 @@ namespace JMMClient
             {
                 strTemp = ConfigurationSettings.AppSettings.Get(_strClassName + "/" + strKey);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 if (blnDefault == null)
                 {

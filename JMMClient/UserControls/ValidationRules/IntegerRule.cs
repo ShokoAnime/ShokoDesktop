@@ -17,7 +17,7 @@ namespace JMMClient
                     parameter = int.Parse((String)value);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return new ValidationResult(false, "Must be an integer");
             }

@@ -87,8 +87,7 @@ namespace JMMClient.UserControls
             spEpisodeLabel.Visibility = vis;
             spEpisodeData.Visibility = vis;
 
-
-            bool validToken = false;
+            
             if (!string.IsNullOrEmpty(JMMServerVM.Instance.Trakt_AuthToken))
             {
                 long validUntil = 0;
@@ -99,7 +98,6 @@ namespace JMMClient.UserControls
                     if (validDate.HasValue && DateTime.Now < validDate.Value)
                     {
                         tbValidity.Text = string.Format(Properties.Resources.Trakt_TokenValid, validDate.ToString());
-                        validToken = true;
                     }
                     else
                     {
@@ -109,13 +107,8 @@ namespace JMMClient.UserControls
             }
             else
                 tbValidity.Text = Properties.Resources.Trakt_ShokoNotAuth;
-
-            /*
-            if (validToken)
-                tbValidity.Visibility = System.Windows.Visibility.Visible;
-            else
-                tbValidity.Visibility = System.Windows.Visibility.Collapsed;*/
         }
+
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             EvaluateVisibility();

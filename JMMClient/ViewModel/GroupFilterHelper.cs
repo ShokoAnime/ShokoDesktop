@@ -415,7 +415,7 @@ namespace JMMClient.ViewModel
 
                 return new DateTime(year, month, day);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return DateTime.Today;
             }

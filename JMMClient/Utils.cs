@@ -79,7 +79,7 @@ namespace JMMClient
                 }
             } catch (Exception ex)
             {
-                logger.LogException(LogLevel.Error, "Invalid PATH variable.", ex);
+                logger.Log(LogLevel.Error, ex, "Invalid PATH variable.");
             }
             return null;
         }
@@ -307,13 +307,13 @@ namespace JMMClient
         public static void ShowErrorMessage(string msg, Exception ex)
         {
             System.Windows.Forms.MessageBox.Show(msg, Properties.Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            logger.ErrorException(ex.ToString(), ex);
+            logger.Error(ex, ex.ToString());
         }
 
         public static void ShowErrorMessage(Exception ex)
         {
             System.Windows.Forms.MessageBox.Show(ex.Message, Properties.Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            logger.ErrorException(ex.ToString(), ex);
+            logger.Error(ex, ex.ToString());
         }
 
         public static void ShowErrorMessage(string msg)
@@ -1060,7 +1060,7 @@ namespace JMMClient
                 // Display the command output.
                 Console.WriteLine(result);
             }
-            catch (Exception objException)
+            catch (Exception)
             {
                 // Log the exception
             }

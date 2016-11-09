@@ -261,7 +261,7 @@ namespace JMMClient.UserControls
             {
                 this.Cursor = Cursors.Arrow;
                 Utils.ShowErrorMessage("SetWatchedStatusOnSeries: " + ex.Message);
-                logger.ErrorException(ex.ToString(), ex);
+                logger.Error(ex, ex.ToString());
             }
         }
 
