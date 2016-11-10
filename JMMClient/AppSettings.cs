@@ -111,7 +111,7 @@ namespace JMMClient
                 }
                 else
                 {
-                    LoadSettingsFromFile();
+                    LoadSettingsFromFile(true);
 
                 }
 
@@ -206,19 +206,23 @@ namespace JMMClient
             }
         }
 
-        public static void LoadSettingsFromFile()
+        public static void LoadSettingsFromFile(bool locateAutomatically)
         {
             try
             {
-                // Try to locate old config if we don't have new format one (JSON) in several locations
-                string configFile = @"C:\Program Files (x86)\JMM\JMM Desktop\JMMDesktop.exe.config";
+                string configFile = "";
+                if (locateAutomatically)
+                {
+                    // Try to locate old config if we don't have new format one (JSON) in several locations
+                    configFile = @"C:\Program Files (x86)\JMM\JMM Desktop\JMMDesktop.exe.config";
 
-                if (!File.Exists(configFile))
-                    configFile = @"C:\Program Files (x86)\JMM Desktop\JMMDesktop.exe.config";
-                if(!File.Exists(configFile))
-                    configFile = "JMMDesktop.exe.config";
-                if (!File.Exists(configFile))
-                    configFile = "old.config";
+                    if (!File.Exists(configFile))
+                        configFile = @"C:\Program Files (x86)\JMM Desktop\JMMDesktop.exe.config";
+                    if (!File.Exists(configFile))
+                        configFile = "JMMDesktop.exe.config";
+                    if (!File.Exists(configFile))
+                        configFile = "old.config";
+                }
 
                 // Ask user if they want to find config manually
                 if (!File.Exists(configFile))
