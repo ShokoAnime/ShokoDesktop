@@ -1488,10 +1488,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.ru.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="app.config">
+    <None Include="testing.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="default.config" />
+    <None Include="app.config" />
     <None Include="JMMDesktop.snk" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
