@@ -111,7 +111,7 @@ namespace JMMClient
                 }
                 else
                 {
-                    LoadSettingsFromFile(true);
+                    LoadSettingsManuallyFromFile(true);
 
                 }
 
@@ -206,7 +206,7 @@ namespace JMMClient
             }
         }
 
-        public static void LoadSettingsFromFile(bool locateAutomatically)
+        public static void LoadSettingsManuallyFromFile(bool locateAutomatically)
         {
             try
             {
@@ -237,6 +237,10 @@ namespace JMMClient
                 }
                 else
                 {
+                    // Store default settings for later use
+                    var colDefault = ConfigurationManager.AppSettings;
+                    var appSettingDefault = colDefault.AllKeys.ToDictionary(a => a, a => colDefault[a]);
+
                     var col = GetNameValueCollectionSection("appSettings", configFile);
 
                     // if old settings found store and replace with new ShokoServer naming if needed
@@ -254,6 +258,19 @@ namespace JMMClient
                                 appSettings.Add(newKey, setting.Value);
                             }
                         }
+
+                        // Check if we missed any setting keys and re-add from stock one
+                        foreach (var setting in appSettingDefault)
+                        {
+                            if (!string.IsNullOrEmpty(setting.Value))
+                            {
+                                if (!appSettings.ContainsKey(setting.Key))
+                                {
+                                    string newKey = setting.Key.Replace("JMMServer", "ShokoServer");
+                                    appSettings.Add(newKey, setting.Value);
+                                }
+                            }
+                        }
                     }
                     else
                     {
@@ -264,8 +281,11 @@ namespace JMMClient
             }
             catch (Exception e)
             {
-                logger.Log(LogLevel.Error, string.Format("Error occured during LoadSettingsLegacy: {0}", e.Message));
-            }   
+                // Load default settings as otherwise will fail to start entirely
+                var col = ConfigurationManager.AppSettings;
+                appSettings = col.AllKeys.ToDictionary(a => a, a => col[a]);
+                logger.Log(LogLevel.Error, string.Format("Error occured during LoadSettingsManuallyFromFile: {0}", e.Message));
+            }
         }
 
         public static string LocateLegacyConfigFile()
