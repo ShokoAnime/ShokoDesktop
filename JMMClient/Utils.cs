@@ -188,7 +188,7 @@ namespace JMMClient
             }
             catch (Exception ex)
             {
-                logger.Error("Error starting ShokoServer", ex);
+                logger.Error(ex, "Error starting ShokoServer");
                 return false;
             }
         }

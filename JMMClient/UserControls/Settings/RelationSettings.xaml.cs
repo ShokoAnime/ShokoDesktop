@@ -54,7 +54,7 @@ namespace JMMClient.UserControls
                 Window parentWindow = Window.GetWindow(this);
                 parentWindow.Cursor = Cursors.Wait;
 
-                JMMServerVM.Instance.clientBinaryHTTP.RecreateAllGroups();
+                JMMServerVM.Instance.clientBinaryHTTP.RecreateAllGroups(false);
                 MainListHelperVM.Instance.RefreshGroupsSeriesData();
                 MainListHelperVM.Instance.ShowChildWrappers(null);
 
