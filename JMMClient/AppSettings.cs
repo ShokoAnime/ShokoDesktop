@@ -8,9 +8,12 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows;
+using System.Windows.Forms;
 using JMMClient.UserControls.Settings;
 using Newtonsoft.Json;
 using NLog.Targets;
+using Application = System.Windows.Application;
+using MessageBox = System.Windows.MessageBox;
 
 namespace JMMClient
 {
@@ -216,6 +219,11 @@ namespace JMMClient
                     configFile = "JMMDesktop.exe.config";
                 if (!File.Exists(configFile))
                     configFile = "old.config";
+
+                // Ask user if they want to find config manually
+                if (!File.Exists(configFile))
+                    configFile = LocateLegacyConfigFile();
+
                 if (!File.Exists(configFile))
                     return;
 
@@ -245,7 +253,29 @@ namespace JMMClient
             catch (Exception e)
             {
                 logger.Log(LogLevel.Error, string.Format("Error occured during LoadSettingsLegacy: {0}", e.Message));
+            }   
+        }
+
+        public static string LocateLegacyConfigFile()
+        {
+            string configPath = "";
+            MessageBoxResult dr = MessageBox.Show(Properties.Resources.LocateSettingsFileQuestion, Properties.Resources.LocateSettingsFile, MessageBoxButton.YesNo);
+            switch (dr)
+            {
+                case MessageBoxResult.Yes:
+                    OpenFileDialog openFileDialog = new OpenFileDialog();
+                    openFileDialog.Filter = "JMM config|JMMDesktop.exe.config";
+
+                    DialogResult browseFile = openFileDialog.ShowDialog();
+                    if (browseFile == DialogResult.OK && !string.IsNullOrEmpty(openFileDialog.FileName.Trim()))
+                    {
+                        configPath = openFileDialog.FileName;
+                    }
+
+                    break;
             }
+
+            return configPath;
         }
 
         public static string AnimeEpisodesText

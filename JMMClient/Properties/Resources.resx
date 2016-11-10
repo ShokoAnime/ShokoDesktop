@@ -4462,4 +4462,10 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="Migration_ProgramDataError" xml:space="preserve">
     <value>Error occured during migration of programdata folder!</value>
   </data>
+  <data name="LocateSettingsFile" xml:space="preserve">
+    <value>Locate settings file</value>
+  </data>
+  <data name="LocateSettingsFileQuestion" xml:space="preserve">
+    <value>No previous configuration found, do you want to manually locate an existing configuration?</value>
+  </data>
 </root>

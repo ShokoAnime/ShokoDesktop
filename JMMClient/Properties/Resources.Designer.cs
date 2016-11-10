@@ -5803,6 +5803,24 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Locate settings file.
+        /// </summary>
+        public static string LocateSettingsFile {
+            get {
+                return ResourceManager.GetString("LocateSettingsFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No previous configuration found, do you want to manually locate an existing configuration?.
+        /// </summary>
+        public static string LocateSettingsFileQuestion {
+            get {
+                return ResourceManager.GetString("LocateSettingsFileQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login.
         /// </summary>
         public static string Login {
