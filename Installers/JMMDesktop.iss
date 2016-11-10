@@ -6,17 +6,17 @@
 ; Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 AppId={{AD24689F-020C-4C53-B649-99BB49ED6238}
-AppName=JMM Desktop
+AppName=Shoko Client
 AppVersion=3.7.0.0
-;AppVerName=JMM Desktop 3.7.0.0
+;AppVerName=Shoko Client 3.7.0.0
 AppPublisher=JMM
 AppPublisherURL=https://github.com/japanesemediamanager
 AppSupportURL=https://github.com/japanesemediamanager
 AppUpdatesURL=https://github.com/japanesemediamanager
-DefaultDirName={pf}\JMM\JMM Desktop
-DefaultGroupName=JMM Desktop
+DefaultDirName={pf}\JMM\Shoko Client
+DefaultGroupName=Shoko Client
 AllowNoIcons=yes
-OutputBaseFilename=JMM_Desktop_Setup
+OutputBaseFilename=Shoko_Client_Setup
 Compression=lzma2/ultra64
 SolidCompression=yes
 
@@ -43,12 +43,12 @@ Source: "..\JMMClient\bin\Release\GongSolutions.Wpf.DragDrop.pdb"; DestDir: "{ap
 Source: "..\JMMClient\bin\Release\GongSolutions.Wpf.DragDrop.xml"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\JMMClient\bin\Release\Infralution.Localization.Wpf.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\JMMClient\bin\Release\Jint.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\JMMDesktop.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\JMMDesktop.exe.config"; DestDir: "{app}"; Flags: ignoreversion onlyifdoesntexist
-Source: "..\JMMClient\bin\Release\JMMDesktop.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\JMMDesktop.vshost.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\JMMDesktop.vshost.exe.config"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\JMMDesktop.vshost.exe.manifest"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\JMMClient\bin\Release\ShokoClient.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\JMMClient\bin\Release\ShokoClient.exe.config"; DestDir: "{app}"; Flags: ignoreversion onlyifdoesntexist
+Source: "..\JMMClient\bin\Release\ShokoClient.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\JMMClient\bin\Release\ShokoClient.vshost.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\JMMClient\bin\Release\ShokoClient.vshost.exe.config"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\JMMClient\bin\Release\ShokoClient.vshost.exe.manifest"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\JMMClient\bin\Release\MahApps.Metro.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\JMMClient\bin\Release\MahApps.Metro.pdb"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\JMMClient\bin\Release\MahApps.Metro.xml"; DestDir: "{app}"; Flags: ignoreversion
@@ -97,14 +97,14 @@ Source: "..\JMMClient\bin\Release\x86\*"; DestDir: "{app}\x86"; Flags: ignorever
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
-Name: "{group}\JMM Desktop"; Filename: "{app}\JMMDesktop.exe"
-Name: "{group}\{cm:UninstallProgram,JMM Desktop}"; Filename: "{uninstallexe}"
-Name: "{commondesktop}\JMM Desktop"; Filename: "{app}\JMMDesktop.exe"; Tasks: desktopicon
-Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\JMM Desktop"; Filename: "{app}\JMMDesktop.exe"; Tasks: quicklaunchicon
+Name: "{group}\Shoko Client"; Filename: "{app}\ShokoClient.exe"
+Name: "{group}\{cm:UninstallProgram,Shoko Client}"; Filename: "{uninstallexe}"
+Name: "{commondesktop}\Shoko Client"; Filename: "{app}\ShokoClient.exe"; Tasks: desktopicon
+Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\Shoko Client"; Filename: "{app}\ShokoClient.exe"; Tasks: quicklaunchicon
 
 [Run]
-Filename: "{app}\JMMDesktop.exe"; Flags: nowait postinstall skipifsilent shellexec; Description: "{cm:LaunchProgram,JMM Desktop}"
-Filename: "http://jmediamanager.org/version-3-6-brings-speed-and-streaming/"; Flags: shellexec runasoriginaluser postinstall; Description: "View Release Notes"
+Filename: "{app}\ShokoClient.exe"; Flags: nowait postinstall skipifsilent shellexec; Description: "{cm:LaunchProgram,Shoko Client}"
+Filename: "http://shokoanime.com/version-3-6-brings-speed-and-streaming/"; Flags: shellexec runasoriginaluser postinstall; Description: "View Release Notes"
 
 [Dirs]
 Name: "{app}"; Permissions: users-full

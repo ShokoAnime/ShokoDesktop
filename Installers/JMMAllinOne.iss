@@ -12,7 +12,7 @@ AppPublisher=Japanese Media Manager
 AppPublisherURL=https://github.com/japanesemediamanager
 AppSupportURL=https://github.com/japanesemediamanager
 AppUpdatesURL=https://github.com/japanesemediamanager
-OutputBaseFilename=JMM_Setup
+OutputBaseFilename=Shoko_Client_Setup
 DefaultDirName={pf}\JMM
 Compression=lzma
 SolidCompression=yes
@@ -25,25 +25,25 @@ MinVersion=0,6.1
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Files]
-Source: ".\Output\JMM_Desktop_Setup.exe"; DestDir: "{tmp}"; Flags: ignoreversion; Components: Desktop
-Source: "..\..\jmmserver\Installers\Output\JMM_Server_Setup.exe"; DestDir: "{tmp}"; Flags: ignoreversion; Components: Server
+Source: ".\Output\Shoko_Client_Setup.exe"; DestDir: "{tmp}"; Flags: ignoreversion; Components: Desktop
+Source: "..\..\jmmserver\Installers\Output\Shoko_Server_Setup.exe"; DestDir: "{tmp}"; Flags: ignoreversion; Components: Server
 
 [Components]
 Name: "Server"; Description: "JMM Server"; Types: Main
-Name: "Desktop"; Description: "JMM Desktop"; Types: Main
+Name: "Desktop"; Description: "Shoko Client"; Types: Main
 
 [Tasks]
 Name: "Firewall"; Description: "Firewall Exception"; Components: Server
 Name: "DesktopShortcuts"; Description: "Desktop Shortcuts"; Components: Desktop or Server
 
 [Run]
-Filename: "{tmp}\JMM_Desktop_Setup.exe"; Parameters: "/SILENT /NORESTART /DIR=""{app}\JMM Desktop"" /TASKS=""desktopicon"""; WorkingDir: "{tmp}"; Flags: runascurrentuser waituntilterminated; Components: Desktop; Tasks: DesktopShortcuts
-Filename: "{tmp}\JMM_Desktop_Setup.exe"; Parameters: "/SILENT /NORESTART /DIR=""{app}\JMM Desktop"" /TASKS=""!desktopicon"""; WorkingDir: "{tmp}"; Flags: runascurrentuser waituntilterminated; Components: Desktop; Tasks: not DesktopShortcuts
-Filename: "{tmp}\JMM_Server_Setup.exe"; Parameters: "/SILENT /NORESTART /DIR=""{app}\JMM Server"" /TASKS=""firewall,desktopicon"""; WorkingDir: "{tmp}"; Flags: runascurrentuser waituntilterminated; Components: Server; Tasks: Firewall and DesktopShortcuts
-Filename: "{tmp}\JMM_Server_Setup.exe"; Parameters: "/SILENT /NORESTART /DIR=""{app}\JMM Server"" /TASKS=""!firewall,desktopicon"""; WorkingDir: "{tmp}"; Flags: runascurrentuser waituntilterminated; Components: Server; Tasks: not Firewall and DesktopShortcuts 
-Filename: "{tmp}\JMM_Server_Setup.exe"; Parameters: "/SILENT /NORESTART /DIR=""{app}\JMM Server"" /TASKS=""firewall,!desktopicon"""; WorkingDir: "{tmp}"; Flags: runascurrentuser waituntilterminated; Components: Server; Tasks: Firewall and  not DesktopShortcuts
-Filename: "{tmp}\JMM_Server_Setup.exe"; Parameters: "/SILENT /NORESTART /DIR=""{app}\JMM Server"" /TASKS=""!firewall,!desktopicon"""; WorkingDir: "{tmp}"; Flags: runascurrentuser waituntilterminated; Components: Server; Tasks: not Firewall and not DesktopShortcuts
-Filename: "{app}\JMM Desktop\JMMDesktop.exe"; Description: "{cm:LaunchProgram,JMM Desktop}"; Flags: nowait postinstall skipifsilent
+Filename: "{tmp}\Shoko_Client_Setup.exe"; Parameters: "/SILENT /NORESTART /DIR=""{app}\Shoko Client"" /TASKS=""desktopicon"""; WorkingDir: "{tmp}"; Flags: runascurrentuser waituntilterminated; Components: Desktop; Tasks: DesktopShortcuts
+Filename: "{tmp}\Shoko_Client_Setup.exe"; Parameters: "/SILENT /NORESTART /DIR=""{app}\Shoko Client"" /TASKS=""!desktopicon"""; WorkingDir: "{tmp}"; Flags: runascurrentuser waituntilterminated; Components: Desktop; Tasks: not DesktopShortcuts
+Filename: "{tmp}\Shoko_Server_Setup.exe"; Parameters: "/SILENT /NORESTART /DIR=""{app}\Shoko Server"" /TASKS=""firewall,desktopicon"""; WorkingDir: "{tmp}"; Flags: runascurrentuser waituntilterminated; Components: Server; Tasks: Firewall and DesktopShortcuts
+Filename: "{tmp}\Shoko_Server_Setup.exe"; Parameters: "/SILENT /NORESTART /DIR=""{app}\Shoko Server"" /TASKS=""!firewall,desktopicon"""; WorkingDir: "{tmp}"; Flags: runascurrentuser waituntilterminated; Components: Server; Tasks: not Firewall and DesktopShortcuts 
+Filename: "{tmp}\Shoko_Server_Setup.exe"; Parameters: "/SILENT /NORESTART /DIR=""{app}\Shoko Server"" /TASKS=""firewall,!desktopicon"""; WorkingDir: "{tmp}"; Flags: runascurrentuser waituntilterminated; Components: Server; Tasks: Firewall and  not DesktopShortcuts
+Filename: "{tmp}\Shoko_Server_Setup.exe"; Parameters: "/SILENT /NORESTART /DIR=""{app}\Shoko Server"" /TASKS=""!firewall,!desktopicon"""; WorkingDir: "{tmp}"; Flags: runascurrentuser waituntilterminated; Components: Server; Tasks: not Firewall and not DesktopShortcuts
+Filename: "{app}\Shoko Client\ShokoClient.exe"; Description: "{cm:LaunchProgram,Shoko Client}"; Flags: nowait postinstall skipifsilent
 
 [Types]
 Name: "Main"; Description: "Main"; Flags: iscustom
