@@ -36,7 +36,7 @@
             get
             {
                 if (string.IsNullOrEmpty(image))
-                    return string.Format("pack://application:,,,/{0};component/Images/blankposter.png", Constants.AssemblyName);
+                    return string.Format("pack://application:,,,/{0};component/Images/blankposter.png", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
 
                 return image;
             }

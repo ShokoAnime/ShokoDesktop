@@ -33,7 +33,7 @@ namespace JMMClient.ViewModel
                     MainWindow.imageHelper.DownloadImage(req);
                     if (File.Exists(ImagePathPlain)) return ImagePathPlain;
 
-                    string packUriBlank = string.Format("pack://application:,,,/{0};component/Images/blankposter.png", Constants.AssemblyName);
+                    string packUriBlank = string.Format("pack://application:,,,/{0};component/Images/blankposter.png", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
                     return packUriBlank;
                 }
 

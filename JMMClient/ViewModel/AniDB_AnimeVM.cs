@@ -415,7 +415,7 @@ namespace JMMClient
                     MainWindow.imageHelper.DownloadImage(req);
                     if (File.Exists(fileName)) return fileName;
 
-                    string packUriBlank = string.Format("pack://application:,,,/{0};component/Images/blankposter.png", Constants.AssemblyName);
+                    string packUriBlank = string.Format("pack://application:,,,/{0};component/Images/blankposter.png", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
                     return packUriBlank;
                 }
                 return fileName;
@@ -839,7 +839,7 @@ namespace JMMClient
 		{
 			get
 			{
-				string packUriBlank = string.Format("pack://application:,,,/{0};component/Images/blankposter.png", Constants.AssemblyName);
+				string packUriBlank = string.Format("pack://application:,,,/{0};component/Images/blankposter.png", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
 
 				// this should be randomised or use the default 
 				if (DefaultFanart != null)
@@ -883,7 +883,7 @@ namespace JMMClient
         {
             get
             {
-                string packUriBlank = string.Format("pack://application:,,,/{0};component/Images/blankposter.png", Constants.AssemblyName);
+                string packUriBlank = string.Format("pack://application:,,,/{0};component/Images/blankposter.png", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
 
                 // this should be randomised or use the default 
                 if (DefaultFanart != null)

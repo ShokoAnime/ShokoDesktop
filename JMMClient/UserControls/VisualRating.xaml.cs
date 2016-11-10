@@ -37,9 +37,9 @@ namespace JMMClient.UserControls
         {
             try
             {
-                string packUriFullStar = string.Format("pack://application:,,,/{0};component/Images/star_48.png", Constants.AssemblyName);
-                string packUriHalfStar = string.Format("pack://application:,,,/{0};component/Images/star_half_48.png", Constants.AssemblyName);
-                string packUriStarOff = string.Format("pack://application:,,,/{0};component/Images/star_off_48.png", Constants.AssemblyName);
+                string packUriFullStar = string.Format("pack://application:,,,/{0};component/Images/star_48.png", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+                string packUriHalfStar = string.Format("pack://application:,,,/{0};component/Images/star_half_48.png", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+                string packUriStarOff = string.Format("pack://application:,,,/{0};component/Images/star_off_48.png", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
 
                 VisualRating input = (VisualRating)d;
 

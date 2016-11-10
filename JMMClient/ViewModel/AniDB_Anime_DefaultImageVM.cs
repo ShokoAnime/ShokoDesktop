@@ -110,7 +110,7 @@ namespace JMMClient.ViewModel
                 if (!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
                     return fileName;
                 else
-                    return string.Format("pack://application:,,,/{0};component/Images/blankposter.png", Constants.AssemblyName);
+                    return string.Format("pack://application:,,,/{0};component/Images/blankposter.png", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
 
             }
         }
@@ -216,7 +216,7 @@ namespace JMMClient.ViewModel
                 if (!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
                     return fileName;
                 else
-                    return string.Format("pack://application:,,,/{0};component/Images/blankposter.png", Constants.AssemblyName);
+                    return string.Format("pack://application:,,,/{0};component/Images/blankposter.png", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
 
             }
         }

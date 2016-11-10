@@ -241,7 +241,7 @@ namespace JMMClient.ViewModel
 
                 Recommended_DisplayName = Properties.Resources.Recommendation_Missing;
                 Recommended_AnimeInfoExists = false;
-                Recommended_PosterPath = string.Format("pack://application:,,,/{0};component/Images/blankposter.png", Constants.AssemblyName);
+                Recommended_PosterPath = string.Format("pack://application:,,,/{0};component/Images/blankposter.png", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
                 Recommended_Description = Properties.Resources.Recommendation_Overview;
             }
 

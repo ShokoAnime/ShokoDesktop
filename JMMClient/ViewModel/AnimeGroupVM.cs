@@ -537,7 +537,7 @@ namespace JMMClient
         {
             get
             {
-                string packUriBlank = string.Format("pack://application:,,,/{0};component/Images/blankposter.png", Constants.AssemblyName);
+                string packUriBlank = string.Format("pack://application:,,,/{0};component/Images/blankposter.png", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
 
                 List<string> allPosters = GetPosterFilenames();
                 string posterName = "";

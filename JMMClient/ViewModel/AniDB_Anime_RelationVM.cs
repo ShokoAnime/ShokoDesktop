@@ -157,7 +157,7 @@ namespace JMMClient.ViewModel
 
                 DisplayName = Properties.Resources.AniDB_DataMissing;
                 AnimeInfoExists = false;
-                PosterPath = string.Format("pack://application:,,,/{0};component/Images/blankposter.png", Constants.AssemblyName);
+                PosterPath = string.Format("pack://application:,,,/{0};component/Images/blankposter.png", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
             }
 
             AnimeInfoNotExists = !AnimeInfoExists;

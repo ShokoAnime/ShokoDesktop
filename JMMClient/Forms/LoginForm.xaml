@@ -5,7 +5,7 @@
         xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
         ShowInTaskbar="True" WindowStyle="SingleBorderWindow"
         WindowStartupLocation="CenterScreen" Topmost="False" SizeToContent="WidthAndHeight"
-        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=Login_UserLogin}" Name="loginWindow" Icon="/ShokoClient;component/db.ico">
+        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=Login_UserLogin}" Name="loginWindow" Icon="/Images/db.ico">
 
     <Grid Margin="10">
         <Grid.Resources>
