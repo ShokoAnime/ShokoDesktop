@@ -111,7 +111,7 @@ namespace JMMClient
                 }
                 else
                 {
-                    LoadSettingsLegacy();
+                    LoadSettingsFromFile();
 
                 }
 
@@ -206,7 +206,7 @@ namespace JMMClient
             }
         }
 
-        public static void LoadSettingsLegacy()
+        public static void LoadSettingsFromFile()
         {
             try
             {
@@ -227,27 +227,35 @@ namespace JMMClient
                 if (!File.Exists(configFile))
                     return;
 
-                var col = GetNameValueCollectionSection("appSettings", configFile);
-
-                // if old settings found store and replace with new ShokoServer naming if needed
-                // else fallback on current one we have
-                if (col.Count > 0)
+                if (configFile.ToLower().Contains("settings.json"))
                 {
-                    appSettings.Clear();
-                    Dictionary<string, string> appSettingsBeforeRename = col.AllKeys.ToDictionary(a => a, a => col[a]);
-                    foreach (var setting in appSettingsBeforeRename)
-                    {
-                        if (!string.IsNullOrEmpty(setting.Value))
-                        {
-                            string newKey = setting.Key.Replace("JMMServer", "ShokoServer");
-                            appSettings.Add(newKey, setting.Value);
-                        }
-                    }
+                    appSettings = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(configFile));
                 }
                 else
                 {
-                    col = ConfigurationManager.AppSettings;
-                    appSettings = col.AllKeys.ToDictionary(a => a, a => col[a]);
+                    var col = GetNameValueCollectionSection("appSettings", configFile);
+
+                    // if old settings found store and replace with new ShokoServer naming if needed
+                    // else fallback on current one we have
+                    if (col.Count > 0)
+                    {
+                        appSettings.Clear();
+                        Dictionary<string, string> appSettingsBeforeRename = col.AllKeys.ToDictionary(a => a,
+                            a => col[a]);
+                        foreach (var setting in appSettingsBeforeRename)
+                        {
+                            if (!string.IsNullOrEmpty(setting.Value))
+                            {
+                                string newKey = setting.Key.Replace("JMMServer", "ShokoServer");
+                                appSettings.Add(newKey, setting.Value);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        col = ConfigurationManager.AppSettings;
+                        appSettings = col.AllKeys.ToDictionary(a => a, a => col[a]);
+                    }
                 }
             }
             catch (Exception e)
@@ -264,7 +272,7 @@ namespace JMMClient
             {
                 case MessageBoxResult.Yes:
                     OpenFileDialog openFileDialog = new OpenFileDialog();
-                    openFileDialog.Filter = "JMM config|JMMDesktop.exe.config";
+                    openFileDialog.Filter = "JMM config|JMMDesktop.exe.config;settings.json";
 
                     DialogResult browseFile = openFileDialog.ShowDialog();
                     if (browseFile == DialogResult.OK && !string.IsNullOrEmpty(openFileDialog.FileName.Trim()))
