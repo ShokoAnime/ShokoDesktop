@@ -113,7 +113,7 @@ namespace JMMClient
                 }
                 else
                 {
-                    LoadSettingsManuallyFromFile(true);
+                    LoadLegacySettingsFromFile(true);
 
                 }
 
@@ -208,7 +208,7 @@ namespace JMMClient
             }
         }
 
-        public static void LoadSettingsManuallyFromFile(bool locateAutomatically)
+        public static void LoadLegacySettingsFromFile(bool locateAutomatically)
         {
             try
             {
