@@ -160,7 +160,7 @@ namespace JMMClient
             catch { }
             
 
-            string JMMServerPath = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{898530ED-CFC7-4744-B2B8-A8D98A2FA06C}_is1", "InstallLocation", null);
+            string JMMServerPath = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{0BA2D22B-A0B7-48F8-8AA1-BAAEFC2034CB}_is1", "InstallLocation", null);
 
             if (string.IsNullOrEmpty(JMMServerPath))
                 return false;
