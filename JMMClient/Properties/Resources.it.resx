@@ -4368,7 +4368,7 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
     <value>Stato della migrazione</value>
   </data>
   <data name="Migration_AdminPass2" xml:space="preserve">
-    <value>una volta che questo processo è completo Shoko Client verrà riavviato e non è più necessario privilegi di amministratore per l'esecuzione.</value>
+    <value>una volta che questo processo è completo Shoko Desktop verrà riavviato e non è più necessario privilegi di amministratore per l'esecuzione.</value>
   </data>
   <data name="ShokoServer_ProcessRunning" xml:space="preserve">
     <value>Processo è in esecuzione sul Server di Shoko, per favore aspetta e aggiorna una volta finito currnetly.</value>
@@ -4452,7 +4452,7 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
     <value>Utilizzare relazione ponderazione per determinare la serie principale!</value>
   </data>
   <data name="Migration_AdminFail" xml:space="preserve">
-    <value>Shoko Desktop è in grado di migrare le impostazioni utilizzando l'accesso dell'utente corrente. Eseguire Shoko Client come amministratore per avviare la migrazione.</value>
+    <value>Shoko Desktop è in grado di migrare le impostazioni utilizzando l'accesso dell'utente corrente. Eseguire Shoko Desktop come amministratore per avviare la migrazione.</value>
   </data>
   <data name="Migration_AdminPass1" xml:space="preserve">
     <value>Shoko Desktop ora inizierà la migrazione di impostazioni da questa posizione per</value>

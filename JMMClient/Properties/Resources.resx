@@ -4397,13 +4397,13 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Migration Status</value>
   </data>
   <data name="Migration_AdminFail" xml:space="preserve">
-    <value>Shoko Desktop is unable to migrate your settings using the current user access. Run Shoko Client as an Administrator to start the migration.</value>
+    <value>Shoko Desktop is unable to migrate your settings using the current user access. Run Shoko Desktop as an Administrator to start the migration.</value>
   </data>
   <data name="Migration_AdminPass1" xml:space="preserve">
     <value>Shoko Desktop will now start migrating your settings from this location to</value>
   </data>
   <data name="Migration_AdminPass2" xml:space="preserve">
-    <value>once this process is complete Shoko Client will restart and no longer need Administrative Privileges to run.</value>
+    <value>once this process is complete Shoko Desktop will restart and no longer need Administrative Privileges to run.</value>
   </data>
   <data name="Migration_Error" xml:space="preserve">
     <value>Error Migrating Settings:</value>

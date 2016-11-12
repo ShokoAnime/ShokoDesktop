@@ -6118,7 +6118,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Shoko Desktop is unable to migrate your settings using the current user access. Run Shoko Client as an Administrator to start the migration..
+        ///   Looks up a localized string similar to Shoko Desktop is unable to migrate your settings using the current user access. Run Shoko Desktop as an Administrator to start the migration..
         /// </summary>
         public static string Migration_AdminFail {
             get {
@@ -6136,7 +6136,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to once this process is complete Shoko Client will restart and no longer need Administrative Privileges to run..
+        ///   Looks up a localized string similar to once this process is complete Shoko Desktop will restart and no longer need Administrative Privileges to run..
         /// </summary>
         public static string Migration_AdminPass2 {
             get {

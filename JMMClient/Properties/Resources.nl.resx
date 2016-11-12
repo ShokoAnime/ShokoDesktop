@@ -4368,7 +4368,7 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>De migratiestatus van de</value>
   </data>
   <data name="Migration_AdminPass2" xml:space="preserve">
-    <value>Zodra dit proces is volledig Shoko Client opnieuw opstarten en niet langer nodig hebt beheerdersrechten nodig om uit te voeren.</value>
+    <value>Zodra dit proces is volledig Shoko Desktop opnieuw opstarten en niet langer nodig hebt beheerdersrechten nodig om uit te voeren.</value>
   </data>
   <data name="ShokoServer_ProcessRunning" xml:space="preserve">
     <value>Proces is currnetly op Shoko Server uitgevoerd, gelieve te wachten en vernieuwen zodra gedaan.</value>
@@ -4452,7 +4452,7 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
     <value>Relatie weging gebruiken om te bepalen van de hoofdserie!</value>
   </data>
   <data name="Migration_AdminFail" xml:space="preserve">
-    <value>Shoko Desktop is niet in staat om uw instellingen met behulp van de huidige gebruikerstoegang te migreren. Shoko Client uitvoert als een beheerder om te beginnen met de migratie.</value>
+    <value>Shoko Desktop is niet in staat om uw instellingen met behulp van de huidige gebruikerstoegang te migreren. Shoko Desktop uitvoert als een beheerder om te beginnen met de migratie.</value>
   </data>
   <data name="Migration_AdminPass1" xml:space="preserve">
     <value>Shoko bureaublad zal nu beginnen met het migreren van uw instellingen vanaf deze locatie te</value>

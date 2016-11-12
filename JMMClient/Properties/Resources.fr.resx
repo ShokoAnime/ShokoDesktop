@@ -4368,7 +4368,7 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
     <value>État de la migration</value>
   </data>
   <data name="Migration_AdminPass2" xml:space="preserve">
-    <value>une fois ce processus complet Shoko Client va redémarrer et n’est plus besoin de privilèges d’administrateur pour exécuter.</value>
+    <value>une fois ce processus complet Shoko Desktop va redémarrer et n’est plus besoin de privilèges d’administrateur pour exécuter.</value>
   </data>
   <data name="ShokoServer_ProcessRunning" xml:space="preserve">
     <value>Processus est currnetly fonctionnant sur serveur de Shoko, s’il vous plaît attendre et actualiser une fois fait.</value>
@@ -4452,7 +4452,7 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
     <value>Pondération de la Relation permet de déterminer les principales séries !</value>
   </data>
   <data name="Migration_AdminFail" xml:space="preserve">
-    <value>Shoko Desktop ne peut pas migrer vos paramètres à l’aide de l’accès de l’utilisateur actuel. Exécuter Shoko Client en tant qu’administrateur pour démarrer la migration.</value>
+    <value>Shoko Desktop ne peut pas migrer vos paramètres à l’aide de l’accès de l’utilisateur actuel. Exécuter Shoko Desktop en tant qu’administrateur pour démarrer la migration.</value>
   </data>
   <data name="Migration_AdminPass1" xml:space="preserve">
     <value>Shoko Bureau va maintenant commencer à migrer vos paramètres depuis cet emplacement à</value>
