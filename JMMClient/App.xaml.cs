@@ -109,7 +109,7 @@ namespace JMMClient
                     catch
                         (Exception e)
                     {
-                        logger.Log(LogLevel.Error, "Error occured during uninstall of JMMDesktop");
+                        logger.Log(LogLevel.Error, "Error occured during uninstall of JMM Desktop");
                     }
                 }
                 else
