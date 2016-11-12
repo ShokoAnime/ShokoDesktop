@@ -4468,4 +4468,10 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="LocateSettingsFileQuestion" xml:space="preserve">
     <value>No previous configuration found, do you want to manually locate an existing configuration?</value>
   </data>
+  <data name="DuplicateInstallDetected" xml:space="preserve">
+    <value>Duplicate install detected</value>
+  </data>
+  <data name="DuplicateInstallDetectedQuestion" xml:space="preserve">
+    <value>You have both Shoko Desktop and JMM Desktop installed. Do you want to uninstall JMM Desktop?</value>
+  </data>
 </root>

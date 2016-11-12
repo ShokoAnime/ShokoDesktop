@@ -4,7 +4,7 @@
         xmlns:local="clr-namespace:JMMClient"
         xmlns:forms="clr-namespace:JMMClient.Forms"
         xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
-        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=GroupFilter_Condition}" Icon="/ShokoClient;component/Images/16_filter.png" MinWidth="400" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner">
+        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=GroupFilter_Condition}" Icon="/ShokoDesktop;component/Images/16_filter.png" MinWidth="400" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner">
 
     <Grid>
 

@@ -4,7 +4,7 @@
         xmlns:local="clr-namespace:JMMClient"
         xmlns:forms="clr-namespace:JMMClient.Forms"
         xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
-        Title="Select Series/Group" Height="400" Width="550" ShowInTaskbar="False" WindowStyle="ToolWindow" Icon="/ShokoClient;component/Images/32_television.png"
+        Title="Select Series/Group" Height="400" Width="550" ShowInTaskbar="False" WindowStyle="ToolWindow" Icon="/ShokoDesktop;component/Images/32_television.png"
         WindowStartupLocation="CenterOwner" Topmost="False">
     <Grid>
 

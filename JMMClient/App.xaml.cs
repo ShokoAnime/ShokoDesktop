@@ -1,8 +1,13 @@
 ﻿using NLog;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Resources;
 using System.Windows;
+using System.Management;
+using Microsoft.Win32;
 
 namespace JMMClient
 {
@@ -37,6 +42,13 @@ namespace JMMClient
 			//string hello = ResGlobal.GetString("Favorite");*/
             AppSettings.LoadSettings();
 
+            // First check if we have a settings.json in case migration had issues as otherwise might clear out existing old configurations
+            string path = Path.Combine(AppSettings.ApplicationPath, "settings.json");
+            if (File.Exists(path))
+            {
+                UninstallJMMDesktop();
+            }
+
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             Application.Current.DispatcherUnhandledException += Current_DispatcherUnhandledException;
         }
@@ -62,6 +74,49 @@ namespace JMMClient
             }
 
             return true;
+        }
+
+        void UninstallJMMDesktop()
+        {
+            // Check in registry if installed
+            string jmmDesktopUninstallPath =
+                (string)
+                    Registry.GetValue(
+                        @"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{AD24689F-020C-4C53-B649-99BB49ED6238}_is1",
+                        "UninstallString", null);
+
+            if (!string.IsNullOrEmpty(jmmDesktopUninstallPath))
+            {
+                // Ask if user wants to uninstall
+                MessageBoxResult dr =
+                    MessageBox.Show(JMMClient.Properties.Resources.DuplicateInstallDetectedQuestion,
+                        JMMClient.Properties.Resources.DuplicateInstallDetected, MessageBoxButton.YesNo);
+                if (dr == MessageBoxResult.Yes)
+                {
+                    try
+                    {
+                        // Check for old JMM Client and ask to uninstall if found
+                        ProcessStartInfo startInfo = new ProcessStartInfo();
+                        startInfo.FileName = jmmDesktopUninstallPath;
+                        startInfo.Arguments = " /SILENT";
+                        startInfo.CreateNoWindow = true;
+
+                        Process p = Process.Start(startInfo);
+                        p?.Start();
+
+                        logger.Log(LogLevel.Info, "JMM Desktop successfully uninstalled");
+                    }
+                    catch
+                        (Exception e)
+                    {
+                        logger.Log(LogLevel.Error, "Error occured during uninstall of JMMDesktop");
+                    }
+                }
+                else
+                {
+                    logger.Log(LogLevel.Info, "User cancelled JMM Desktop uninstall");
+                }
+            }
         }
 
         void Current_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)

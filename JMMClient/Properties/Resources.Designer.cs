@@ -3553,6 +3553,24 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Duplicate install detected.
+        /// </summary>
+        public static string DuplicateInstallDetected {
+            get {
+                return ResourceManager.GetString("DuplicateInstallDetected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have both Shoko Desktop and JMM Desktop installed. Do you want to uninstall JMM Desktop?.
+        /// </summary>
+        public static string DuplicateInstallDetectedQuestion {
+            get {
+                return ResourceManager.GetString("DuplicateInstallDetectedQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
         public static string Edit {

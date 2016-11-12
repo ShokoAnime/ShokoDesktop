@@ -8,11 +8,11 @@ using System.Security;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ShokoClient")]
+[assembly: AssemblyTitle("ShokoDesktop")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("JMM")]
-[assembly: AssemblyProduct("ShokoClient")]
+[assembly: AssemblyProduct("ShokoDesktop")]
 [assembly: AssemblyCopyright("JMM")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -52,8 +52,8 @@ using System.Security;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("3.7.0.0")]
-[assembly: AssemblyFileVersion("3.7.0.0")]
+[assembly: AssemblyVersion("3.7.0.903")]
+[assembly: AssemblyFileVersion("3.7.0.903")]
 [assembly: AllowPartiallyTrustedCallers]
 [assembly: AssemblyKeyFile("JMMDesktop.snk")]
 [assembly: SecurityRules(SecurityRuleSet.Level1)]

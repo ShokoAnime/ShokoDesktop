@@ -4,7 +4,7 @@
         xmlns:local="clr-namespace:JMMClient"
         xmlns:forms="clr-namespace:JMMClient.Forms"
         xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
-        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=Select_MALStart}" Width="600" ShowInTaskbar="False" WindowStyle="ToolWindow" Icon="/ShokoClient;component/Images/32_mal.png"
+        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=Select_MALStart}" Width="600" ShowInTaskbar="False" WindowStyle="ToolWindow" Icon="/ShokoDesktop;component/Images/32_mal.png"
         WindowStartupLocation="CenterOwner" Topmost="False" SizeToContent="Height">
     <Grid>
         <Grid.Resources>
