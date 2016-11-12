@@ -8,7 +8,7 @@
 ; Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 
-AppId={{AD24689F-020C-4C53-B649-99BB49ED6238}
+AppId={EFA49A76-085F-4E64-AEC4-6ACA707A5D91}
 AppName=Shoko Desktop
 AppVersion=3.7.0.0
 ;AppVerName=Shoko Desktop 3.7.0.0
@@ -16,7 +16,7 @@ AppPublisher=JMM
 AppPublisherURL=https://github.com/japanesemediamanager
 AppSupportURL=https://github.com/japanesemediamanager
 AppUpdatesURL=https://github.com/japanesemediamanager
-DefaultDirName={pf}\JMM\Shoko Desktop
+DefaultDirName={pf}\Shoko\Shoko Desktop
 DefaultGroupName=Shoko Desktop
 AllowNoIcons=yes
 OutputBaseFilename=Shoko_Desktop_Setup_{#AppVer}
