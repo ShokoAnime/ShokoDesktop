@@ -5,7 +5,7 @@
         xmlns:downloads="clr-namespace:JMMClient.Downloads"
         xmlns:usercontrols="clr-namespace:JMMClient.UserControls"
         WindowStartupLocation="CenterScreen" UseLayoutRounding="True"
-        Title="Shoko Client" Height="700" Width="1350" x:Name="mainWindow" Icon="/ShokoClient;component/Images/db.ico" >
+        Title="Shoko Desktop" Height="700" Width="1350" x:Name="mainWindow" Icon="/ShokoDesktop;component/Images/db.ico" >
 
 
 

@@ -8,11 +8,11 @@ using System.Security;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ShokoClient")]
+[assembly: AssemblyTitle("ShokoDesktop")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("JMM")]
-[assembly: AssemblyProduct("ShokoClient")]
+[assembly: AssemblyProduct("ShokoDesktop")]
 [assembly: AssemblyCopyright("JMM")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

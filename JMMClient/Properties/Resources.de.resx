@@ -4368,7 +4368,7 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
     <value>Migrationsstatus</value>
   </data>
   <data name="Migration_AdminPass2" xml:space="preserve">
-    <value>Sobald dieser Vorgang ist komplett Shoko Client neu starten und nicht mehr benötigen Administratorrechte zum Ausführen.</value>
+    <value>Sobald dieser Vorgang ist komplett Shoko Desktop neu starten und nicht mehr benötigen Administratorrechte zum Ausführen.</value>
   </data>
   <data name="ShokoServer_ProcessRunning" xml:space="preserve">
     <value>Prozess ist Currnetly auf Shoko Server ausgeführt, bitte warten und aktualisieren anschließend.</value>
@@ -4452,7 +4452,7 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
     <value>Verwenden Sie Beziehung Gewichtung Hauptserie bestimmen!</value>
   </data>
   <data name="Migration_AdminFail" xml:space="preserve">
-    <value>Shoko Desktop ist nicht in der Lage, Ihre Einstellungen mit dem aktuellen Benutzerzugriff zu migrieren. Führen Sie Shoko Client als Administrator zu Beginn der Migration aus.</value>
+    <value>Shoko Desktop ist nicht in der Lage, Ihre Einstellungen mit dem aktuellen Benutzerzugriff zu migrieren. Führen Sie Shoko Desktop als Administrator zu Beginn der Migration aus.</value>
   </data>
   <data name="Migration_AdminPass1" xml:space="preserve">
     <value>Shoko Desktop startet nun Ihre Einstellungen von diesem Standort zu migrieren</value>

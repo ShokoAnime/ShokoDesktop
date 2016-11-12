@@ -4452,7 +4452,7 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
     <value>¡Utilizar ponderación de la relación para determinar la serie principal!</value>
   </data>
   <data name="Migration_AdminFail" xml:space="preserve">
-    <value>Escritorio de Shoko es incapaz de migrar los valores mediante el acceso del usuario actual. Ejecutar a Shoko cliente como administrador para iniciar la migración.</value>
+    <value>Escritorio de Shoko es incapaz de migrar los valores mediante el acceso del usuario actual. Ejecutar a Shoko Desktope como administrador para iniciar la migración.</value>
   </data>
   <data name="Migration_AdminPass1" xml:space="preserve">
     <value>Escritorio de Shoko ahora comenzará a migrar la configuración de esta ubicación a</value>
