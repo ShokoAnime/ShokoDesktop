@@ -92,7 +92,6 @@ namespace JMMClient
                 {
                     try
                     {
-                        // Check for old JMM Client and ask to uninstall if found
                         ProcessStartInfo startInfo = new ProcessStartInfo();
                         startInfo.FileName = jmmDesktopUninstallPath;
                         startInfo.Arguments = " /SILENT";
