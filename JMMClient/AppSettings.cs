@@ -10,10 +10,12 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Forms;
 using JMMClient.UserControls.Settings;
+using Microsoft.Win32;
 using Newtonsoft.Json;
 using NLog.Targets;
 using Application = System.Windows.Application;
 using MessageBox = System.Windows.MessageBox;
+using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
 
 namespace JMMClient
 {
@@ -213,8 +215,19 @@ namespace JMMClient
                 string configFile = "";
                 if (locateAutomatically)
                 {
+                    // First try to locate it from old JMM Desktop installer entry
+                    string jmmDesktopInstallLocation = (string) Registry.GetValue(
+                        @"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{AD24689F-020C-4C53-B649-99BB49ED6238}_is1",
+                        "InstallLocation", null);
+
+                    if (!string.IsNullOrEmpty(jmmDesktopInstallLocation))
+                    {
+                        configFile = Path.Combine(jmmDesktopInstallLocation, "JMMDesktop.exe.config");
+                    }
+
                     // Try to locate old config if we don't have new format one (JSON) in several locations
-                    configFile = @"C:\Program Files (x86)\JMM\JMM Desktop\JMMDesktop.exe.config";
+                    if (!File.Exists(configFile))
+                        configFile = @"C:\Program Files (x86)\JMM\JMM Desktop\JMMDesktop.exe.config";
 
                     if (!File.Exists(configFile))
                         configFile = @"C:\Program Files (x86)\JMM Desktop\JMMDesktop.exe.config";
