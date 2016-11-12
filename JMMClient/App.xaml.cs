@@ -1,5 +1,6 @@
 ﻿using NLog;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Resources;
@@ -57,8 +58,23 @@ namespace JMMClient
             {
                 try
                 {
+                    List<MigrationDirectory> migrationdirs = new List<MigrationDirectory>()
+                    {
+                        new MigrationDirectory
+                        {
+                            From = oldApplicationPath,
+                            To = newApplicationPath
+                        }
+                    };
 
-                    Directory.Move(oldApplicationPath, newApplicationPath);
+                    foreach (MigrationDirectory md in migrationdirs)
+                    {
+                        if (!md.SafeMigrate())
+                        {
+                            break;
+                        }
+                    }
+
                     logger.Log(LogLevel.Info, "Successfully migrated programdata folder.");
                     return true;
                 }
@@ -84,7 +100,7 @@ namespace JMMClient
 
             if (!string.IsNullOrEmpty(jmmDesktopUninstallPath))
             {
-                // Ask if user wants to uninstall
+                // Ask if user wants to uninstall first
                 MessageBoxResult dr =
                     MessageBox.Show(JMMClient.Properties.Resources.DuplicateInstallDetectedQuestion,
                         JMMClient.Properties.Resources.DuplicateInstallDetected, MessageBoxButton.YesNo);
@@ -92,7 +108,6 @@ namespace JMMClient
                 {
                     try
                     {
-                        // Check for old JMM Client and ask to uninstall if found
                         ProcessStartInfo startInfo = new ProcessStartInfo();
                         startInfo.FileName = jmmDesktopUninstallPath;
                         startInfo.Arguments = " /SILENT";
