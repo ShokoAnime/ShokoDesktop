@@ -4369,12 +4369,6 @@
   <data name="Migration_Header" xml:space="preserve">
     <value>Stan migracji</value>
   </data>
-  <data name="Migration_AdminFail" xml:space="preserve">
-    <value>Shoko klient jest w stanie przeprowadzić migrację ustawień przy użyciu bieżącego dostępu użytkownika. Uruchom klienta Shoko jako Administrator, aby rozpocząć migrację.</value>
-  </data>
-  <data name="Migration_AdminPass1" xml:space="preserve">
-    <value>Shoko klienta będzie teraz rozpocząć migrację ustawień z tej lokalizacji, aby</value>
-  </data>
   <data name="Migration_AdminPass2" xml:space="preserve">
     <value>gdy proces ten jest kompletny Shoko klienta uruchomi się nie są już potrzebne uprawnienia administracyjne, aby uruchomić.</value>
   </data>
@@ -4458,5 +4452,20 @@
   </data>
   <data name="ImportSettings_AutoGroupSeriesUseScoreAlgorithm" xml:space="preserve">
     <value>Stosunek wagowy umożliwia określenie głównych serii!</value>
+  </data>
+  <data name="Migration_AdminFail" xml:space="preserve">
+    <value>Shoko pulpitu nie jest w stanie przeprowadzić migrację ustawień przy użyciu bieżącego dostępu użytkownika. Uruchom klienta Shoko jako Administrator, aby rozpocząć migrację.</value>
+  </data>
+  <data name="Migration_AdminPass1" xml:space="preserve">
+    <value>Shoko pulpitu będzie teraz rozpocząć migrację ustawień z tej lokalizacji, aby</value>
+  </data>
+  <data name="Migration_ProgramDataError" xml:space="preserve">
+    <value>Wystąpił błąd podczas migracji programdata folder!</value>
+  </data>
+  <data name="LocateSettingsFile" xml:space="preserve">
+    <value>Zlokalizuj plik ustawień</value>
+  </data>
+  <data name="LocateSettingsFileQuestion" xml:space="preserve">
+    <value>Poprzednia konfiguracja nie znaleziony, czy chcesz ręcznie zlokalizować istniejącej konfiguracji?</value>
   </data>
 </root>

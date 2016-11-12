@@ -4397,10 +4397,10 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Migration Status</value>
   </data>
   <data name="Migration_AdminFail" xml:space="preserve">
-    <value>Shoko Client is unable to migrate your settings using the current user access. Run Shoko Client as an Administrator to start the migration.</value>
+    <value>Shoko Desktop is unable to migrate your settings using the current user access. Run Shoko Client as an Administrator to start the migration.</value>
   </data>
   <data name="Migration_AdminPass1" xml:space="preserve">
-    <value>Shoko Client will now start migrating your settings from this location to</value>
+    <value>Shoko Desktop will now start migrating your settings from this location to</value>
   </data>
   <data name="Migration_AdminPass2" xml:space="preserve">
     <value>once this process is complete Shoko Client will restart and no longer need Administrative Privileges to run.</value>
@@ -4460,7 +4460,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Use Relation Weighting to Determine Main Series</value>
   </data>
   <data name="Migration_ProgramDataError" xml:space="preserve">
-    <value>Error occured during migration of programdata folder!</value>
+    <value>Error occurred during migration of programdata folder!</value>
   </data>
   <data name="LocateSettingsFile" xml:space="preserve">
     <value>Locate settings file</value>

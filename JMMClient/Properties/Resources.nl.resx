@@ -4367,12 +4367,6 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   <data name="Migration_Header" xml:space="preserve">
     <value>De migratiestatus van de</value>
   </data>
-  <data name="Migration_AdminFail" xml:space="preserve">
-    <value>Shoko Client is niet in staat om uw instellingen met behulp van de huidige gebruikerstoegang te migreren. Shoko Client uitvoert als een beheerder om te beginnen met de migratie.</value>
-  </data>
-  <data name="Migration_AdminPass1" xml:space="preserve">
-    <value>Shoko Client zal nu beginnen met het migreren van uw instellingen vanaf deze locatie te</value>
-  </data>
   <data name="Migration_AdminPass2" xml:space="preserve">
     <value>Zodra dit proces is volledig Shoko Client opnieuw opstarten en niet langer nodig hebt beheerdersrechten nodig om uit te voeren.</value>
   </data>
@@ -4456,5 +4450,20 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   </data>
   <data name="ImportSettings_AutoGroupSeriesUseScoreAlgorithm" xml:space="preserve">
     <value>Relatie weging gebruiken om te bepalen van de hoofdserie!</value>
+  </data>
+  <data name="Migration_AdminFail" xml:space="preserve">
+    <value>Shoko Desktop is niet in staat om uw instellingen met behulp van de huidige gebruikerstoegang te migreren. Shoko Client uitvoert als een beheerder om te beginnen met de migratie.</value>
+  </data>
+  <data name="Migration_AdminPass1" xml:space="preserve">
+    <value>Shoko bureaublad zal nu beginnen met het migreren van uw instellingen vanaf deze locatie te</value>
+  </data>
+  <data name="Migration_ProgramDataError" xml:space="preserve">
+    <value>Er is een fout opgetreden tijdens de migratie van programdata map!</value>
+  </data>
+  <data name="LocateSettingsFile" xml:space="preserve">
+    <value>Zoek instellingenbestand</value>
+  </data>
+  <data name="LocateSettingsFileQuestion" xml:space="preserve">
+    <value>Geen eerdere configuratie gevonden, wilt u een bestaande configuratieset handmatig te zoeken?</value>
   </data>
 </root>

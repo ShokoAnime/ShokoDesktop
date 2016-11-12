@@ -4367,12 +4367,6 @@
   <data name="Migration_Header" xml:space="preserve">
     <value>Status de migração</value>
   </data>
-  <data name="Migration_AdminFail" xml:space="preserve">
-    <value>Shoko cliente é incapaz de migrar as configurações usando o acesso de usuário atual. Execute Shoko cliente como administrador para iniciar a migração.</value>
-  </data>
-  <data name="Migration_AdminPass1" xml:space="preserve">
-    <value>Shoko cliente irá agora começar a migrar suas configurações a partir desta localização para</value>
-  </data>
   <data name="Migration_AdminPass2" xml:space="preserve">
     <value>uma vez que este processo é cliente Shoko completo irá reiniciar e já não precisa de privilégios administrativos para executar.</value>
   </data>
@@ -4456,5 +4450,20 @@
   </data>
   <data name="ImportSettings_AutoGroupSeriesUseScoreAlgorithm" xml:space="preserve">
     <value>Use relação de ponderação para determinar a série principal!</value>
+  </data>
+  <data name="Migration_AdminFail" xml:space="preserve">
+    <value>Shoko Desktop é incapaz de migrar as configurações usando o acesso de usuário atual. Execute o cliente de Shoko como administrador para iniciar a migração.</value>
+  </data>
+  <data name="Migration_AdminPass1" xml:space="preserve">
+    <value>Shoko Desktop irá agora começar a migrar suas configurações a partir desta localização para</value>
+  </data>
+  <data name="Migration_ProgramDataError" xml:space="preserve">
+    <value>Ocorreu um erro durante a migração de pasta programdata!</value>
+  </data>
+  <data name="LocateSettingsFile" xml:space="preserve">
+    <value>Localize o arquivo de configurações</value>
+  </data>
+  <data name="LocateSettingsFileQuestion" xml:space="preserve">
+    <value>Nenhuma configuração anterior encontrado, você quer localizar manualmente uma configuração existente?</value>
   </data>
 </root>

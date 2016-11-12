@@ -4367,12 +4367,6 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
   <data name="Migration_Header" xml:space="preserve">
     <value>Estado de la migración</value>
   </data>
-  <data name="Migration_AdminFail" xml:space="preserve">
-    <value>Cliente de Shoko es incapaz de migrar los valores mediante el acceso del usuario actual. Ejecutar a cliente Shoko como administrador para iniciar la migración.</value>
-  </data>
-  <data name="Migration_AdminPass1" xml:space="preserve">
-    <value>Cliente de Shoko ahora comenzará a migrar la configuración de esta ubicación a</value>
-  </data>
   <data name="Migration_AdminPass2" xml:space="preserve">
     <value>una vez este proceso completo cliente de Shoko reinicie y ya no necesitan privilegios administrativos para ejecutarse.</value>
   </data>
@@ -4456,5 +4450,20 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
   </data>
   <data name="ImportSettings_AutoGroupSeriesUseScoreAlgorithm" xml:space="preserve">
     <value>¡Utilizar ponderación de la relación para determinar la serie principal!</value>
+  </data>
+  <data name="Migration_AdminFail" xml:space="preserve">
+    <value>Escritorio de Shoko es incapaz de migrar los valores mediante el acceso del usuario actual. Ejecutar a Shoko cliente como administrador para iniciar la migración.</value>
+  </data>
+  <data name="Migration_AdminPass1" xml:space="preserve">
+    <value>Escritorio de Shoko ahora comenzará a migrar la configuración de esta ubicación a</value>
+  </data>
+  <data name="Migration_ProgramDataError" xml:space="preserve">
+    <value>¡Error durante la migración de programdata carpeta!</value>
+  </data>
+  <data name="LocateSettingsFile" xml:space="preserve">
+    <value>Localice el archivo de configuración</value>
+  </data>
+  <data name="LocateSettingsFileQuestion" xml:space="preserve">
+    <value>Ninguna configuración anterior encontrado, ¿quieres localizar manualmente una configuración existente?</value>
   </data>
 </root>

@@ -4367,12 +4367,6 @@
   <data name="Migration_Header" xml:space="preserve">
     <value>Состояние миграции</value>
   </data>
-  <data name="Migration_AdminFail" xml:space="preserve">
-    <value>Shoko клиент не в состоянии перенести параметры с помощью доступа текущего пользователя. Запустите клиент Shoko в качестве администратора начать процесс миграции.</value>
-  </data>
-  <data name="Migration_AdminPass1" xml:space="preserve">
-    <value>Shoko клиент теперь начнет перенос параметров из этого местоположения в</value>
-  </data>
   <data name="Migration_AdminPass2" xml:space="preserve">
     <value>После завершения этого процесса завершения Shoko клиент перезагрузится и больше не нужны привилегии администратора для запуска.</value>
   </data>
@@ -4456,5 +4450,20 @@
   </data>
   <data name="ImportSettings_AutoGroupSeriesUseScoreAlgorithm" xml:space="preserve">
     <value>Используйте отношение весов для определения основной серии!</value>
+  </data>
+  <data name="Migration_AdminFail" xml:space="preserve">
+    <value>Сёко Desktop не удается перенести параметры с помощью доступа текущего пользователя. Запустите клиент Shoko в качестве администратора начать процесс миграции.</value>
+  </data>
+  <data name="Migration_AdminPass1" xml:space="preserve">
+    <value>Сёко Desktop теперь будет начать перенос параметров из этого местоположения в</value>
+  </data>
+  <data name="Migration_ProgramDataError" xml:space="preserve">
+    <value>Произошла ошибка при миграции папки programdata!</value>
+  </data>
+  <data name="LocateSettingsFile" xml:space="preserve">
+    <value>Найдите файл параметров</value>
+  </data>
+  <data name="LocateSettingsFileQuestion" xml:space="preserve">
+    <value>Нет предыдущей конфигурации найден, вы хотите, чтобы вручную найти существующую конфигурацию?</value>
   </data>
 </root>

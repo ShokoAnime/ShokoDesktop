@@ -4367,12 +4367,6 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   <data name="Migration_Header" xml:space="preserve">
     <value>État de la migration</value>
   </data>
-  <data name="Migration_AdminFail" xml:space="preserve">
-    <value>Shoko Client n’est pas en mesure de migrer vos paramètres à l’aide de l’accès de l’utilisateur actuel. Exécutez Shoko Client en tant qu’administrateur pour démarrer la migration.</value>
-  </data>
-  <data name="Migration_AdminPass1" xml:space="preserve">
-    <value>Shoko Client va maintenant commencer à migrer vos paramètres depuis cet emplacement à</value>
-  </data>
   <data name="Migration_AdminPass2" xml:space="preserve">
     <value>une fois ce processus complet Shoko Client va redémarrer et n’est plus besoin de privilèges d’administrateur pour exécuter.</value>
   </data>
@@ -4456,5 +4450,20 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   </data>
   <data name="ImportSettings_AutoGroupSeriesUseScoreAlgorithm" xml:space="preserve">
     <value>Pondération de la Relation permet de déterminer les principales séries !</value>
+  </data>
+  <data name="Migration_AdminFail" xml:space="preserve">
+    <value>Shoko Desktop ne peut pas migrer vos paramètres à l’aide de l’accès de l’utilisateur actuel. Exécuter Shoko Client en tant qu’administrateur pour démarrer la migration.</value>
+  </data>
+  <data name="Migration_AdminPass1" xml:space="preserve">
+    <value>Shoko Bureau va maintenant commencer à migrer vos paramètres depuis cet emplacement à</value>
+  </data>
+  <data name="Migration_ProgramDataError" xml:space="preserve">
+    <value>Erreur s’est produite lors de la migration de dossier programdata !</value>
+  </data>
+  <data name="LocateSettingsFile" xml:space="preserve">
+    <value>Localisez le fichier de paramètres</value>
+  </data>
+  <data name="LocateSettingsFileQuestion" xml:space="preserve">
+    <value>Aucune configuration précédente ne trouvée, vous voulez localiser manuellement une configuration existante ?</value>
   </data>
 </root>

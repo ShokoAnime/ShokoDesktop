@@ -6100,7 +6100,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Shoko Client is unable to migrate your settings using the current user access. Run Shoko Client as an Administrator to start the migration..
+        ///   Looks up a localized string similar to Shoko Desktop is unable to migrate your settings using the current user access. Run Shoko Client as an Administrator to start the migration..
         /// </summary>
         public static string Migration_AdminFail {
             get {
@@ -6109,7 +6109,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Shoko Client will now start migrating your settings from this location to.
+        ///   Looks up a localized string similar to Shoko Desktop will now start migrating your settings from this location to.
         /// </summary>
         public static string Migration_AdminPass1 {
             get {
@@ -6154,7 +6154,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error occured during migration of programdata folder!.
+        ///   Looks up a localized string similar to Error occurred during migration of programdata folder!.
         /// </summary>
         public static string Migration_ProgramDataError {
             get {
