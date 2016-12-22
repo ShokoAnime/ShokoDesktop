@@ -4367,9 +4367,6 @@
   <data name="Migration_Header" xml:space="preserve">
     <value>Состояние миграции</value>
   </data>
-  <data name="Migration_AdminPass2" xml:space="preserve">
-    <value>После завершения этого процесса завершения Shoko клиент перезагрузится и больше не нужны привилегии администратора для запуска.</value>
-  </data>
   <data name="ShokoServer_ProcessRunning" xml:space="preserve">
     <value>Процесс является currnetly, запущенный на сервере Shoko, пожалуйста, подождите и обновить один раз сделать.</value>
   </data>
@@ -4465,5 +4462,14 @@
   </data>
   <data name="LocateSettingsFileQuestion" xml:space="preserve">
     <value>Нет предыдущей конфигурации найден, вы хотите, чтобы вручную найти существующую конфигурацию?</value>
+  </data>
+  <data name="DuplicateInstallDetected" xml:space="preserve">
+    <value>Дублирование установки обнаружен!</value>
+  </data>
+  <data name="DuplicateInstallDetectedQuestion" xml:space="preserve">
+    <value>У вас есть как Шоко Desktop и JMM Desktop установлена. Вы хотите, чтобы удалить JMM Desktop ?!</value>
+  </data>
+  <data name="Migration_AdminPass2" xml:space="preserve">
+    <value>как только этот процесс будет завершен Шоко Desktop будет закрыт и больше не требуется прав администратора.!</value>
   </data>
 </root>

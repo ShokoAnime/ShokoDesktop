@@ -4367,9 +4367,6 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   <data name="Migration_Header" xml:space="preserve">
     <value>Stato della migrazione</value>
   </data>
-  <data name="Migration_AdminPass2" xml:space="preserve">
-    <value>una volta che questo processo è completo Shoko Desktop verrà riavviato e non è più necessario privilegi di amministratore per l'esecuzione.</value>
-  </data>
   <data name="ShokoServer_ProcessRunning" xml:space="preserve">
     <value>Processo è in esecuzione sul Server di Shoko, per favore aspetta e aggiorna una volta finito currnetly.</value>
   </data>
@@ -4465,5 +4462,14 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   </data>
   <data name="LocateSettingsFileQuestion" xml:space="preserve">
     <value>Nessuna configurazione precedente trovato, si desidera individuare manualmente una configurazione esistente?</value>
+  </data>
+  <data name="DuplicateInstallDetected" xml:space="preserve">
+    <value>Duplicate installare rilevato!</value>
+  </data>
+  <data name="DuplicateInstallDetectedQuestion" xml:space="preserve">
+    <value>Hai sia Shoko Desktop e JMM desktop installati. Vuoi disinstallare JMM desktop ?!</value>
+  </data>
+  <data name="Migration_AdminPass2" xml:space="preserve">
+    <value>Una volta che questo processo è completo Shoko Desktop si chiude e non è più necessario disporre di privilegi amministrativi per l&amp;#39;esecuzione.!</value>
   </data>
 </root>

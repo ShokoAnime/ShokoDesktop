@@ -4403,7 +4403,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Shoko Desktop will now start migrating your settings from this location to</value>
   </data>
   <data name="Migration_AdminPass2" xml:space="preserve">
-    <value>once this process is complete Shoko Desktop will restart and no longer need Administrative Privileges to run.</value>
+    <value>once this process is complete Shoko Desktop will close and no longer need Administrative Privileges to run.</value>
   </data>
   <data name="Migration_Error" xml:space="preserve">
     <value>Error Migrating Settings:</value>

@@ -4367,9 +4367,6 @@
   <data name="Migration_Header" xml:space="preserve">
     <value>Status de migração</value>
   </data>
-  <data name="Migration_AdminPass2" xml:space="preserve">
-    <value>uma vez que este processo é cliente Shoko completo irá reiniciar e já não precisa de privilégios administrativos para executar.</value>
-  </data>
   <data name="ShokoServer_ProcessRunning" xml:space="preserve">
     <value>O processo é currnetly sendo executado no servidor de Shoko, por favor espere e atualizar uma vez feito.</value>
   </data>
@@ -4465,5 +4462,14 @@
   </data>
   <data name="LocateSettingsFileQuestion" xml:space="preserve">
     <value>Nenhuma configuração anterior encontrado, você quer localizar manualmente uma configuração existente?</value>
+  </data>
+  <data name="DuplicateInstallDetected" xml:space="preserve">
+    <value>Duplique instale detectado!</value>
+  </data>
+  <data name="DuplicateInstallDetectedQuestion" xml:space="preserve">
+    <value>Você tem tanto Shoko Desktop e JMM Desktop instalado. Você deseja desinstalar JMM área de trabalho ?!</value>
+  </data>
+  <data name="Migration_AdminPass2" xml:space="preserve">
+    <value>uma vez que este processo estiver concluído Shoko área de trabalho será fechado e não precisa de privilégios administrativos para executar.!</value>
   </data>
 </root>

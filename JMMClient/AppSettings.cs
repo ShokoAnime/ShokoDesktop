@@ -152,15 +152,16 @@ namespace JMMClient
                     try
                     {
                         m = new Migration($"{Properties.Resources.Migration_AdminPass1} {ApplicationPath}, {Properties.Resources.Migration_AdminPass2}");
-                        m.Show();
-                        if (!Directory.Exists(ApplicationPath))
+	                    m.Show();
+	                    if (!Directory.Exists(ApplicationPath))
                         {
                             Directory.CreateDirectory(ApplicationPath);
                         }
                         Utils.GrantAccess(ApplicationPath);
                         disabledSave = false;
                         SaveSettings();
-                        foreach (MigrationDirectory md in migrationdirs)
+
+	                    foreach (MigrationDirectory md in migrationdirs)
                         {
                             if (!md.SafeMigrate())
                             {
@@ -175,13 +176,13 @@ namespace JMMClient
                     catch (Exception e)
                     {
                         MessageBox.Show(Properties.Resources.Migration_Error + " ", e.ToString());
-
+	                    logger.Error(e, "Error occured during LoadSettings: {0}", e.ToString());
                     }
 
                     m?.Close();
-                    System.Windows.Forms.Application.Restart();
-                    Application.Current.Shutdown();
-                    return;
+                    Thread.Sleep(5000);
+	                Application.Current.Shutdown();
+	                return;
                 }
                 disabledSave = false;
 
@@ -202,7 +203,8 @@ namespace JMMClient
             }
             catch (Exception e)
             {
-                MessageBox.Show(Properties.Resources.Migration_LoadError + " ", e.ToString());
+	            logger.Error(e, "Error occured during LoadSettings: {0}", e.ToString());
+	            MessageBox.Show(Properties.Resources.Migration_LoadError + " ", e.ToString());
                 Application.Current.Shutdown();
                 return;
             }
@@ -241,10 +243,17 @@ namespace JMMClient
                 if (!File.Exists(configFile))
                     configFile = LocateLegacyConfigFile();
 
-                if (!File.Exists(configFile))
-                    return;
+	            if (!File.Exists(configFile))
+	            {
+					// first run or cancelled file selection
+		            // Load default settings as otherwise will fail to start entirely
+		            var col = ConfigurationManager.AppSettings;
+		            appSettings = col.AllKeys.ToDictionary(a => a, a => col[a]);
+		            logger.Log(LogLevel.Error, string.Format("Settings file was not selected, using default."));
+		            return;
+	            }
 
-                if (configFile.ToLower().Contains("settings.json"))
+	            if (configFile.ToLower().Contains("settings.json"))
                 {
                     appSettings = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(configFile));
                 }

@@ -4380,7 +4380,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>Migration Status</value>
   </data>
   <data name="Migration_AdminPass2" xml:space="preserve">
-    <value>once this process is complete Shoko Desktop will restart and no longer need Administrative Privileges to run.</value>
+    <value>once this process is complete Shoko Desktop will close and no longer need Administrative Privileges to run.</value>
   </data>
   <data name="Migration_Error" xml:space="preserve">
     <value>Error Migrating Settings:</value>
@@ -4465,5 +4465,11 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   </data>
   <data name="Migration_ProgramDataError" xml:space="preserve">
     <value>Error occurred during migration of programdata folder!</value>
+  </data>
+  <data name="DuplicateInstallDetected" xml:space="preserve">
+    <value>Duplicate install detected!</value>
+  </data>
+  <data name="DuplicateInstallDetectedQuestion" xml:space="preserve">
+    <value>You have both Shoko Desktop and JMM Desktop installed. Do you want to uninstall JMM Desktop?!</value>
   </data>
 </root>

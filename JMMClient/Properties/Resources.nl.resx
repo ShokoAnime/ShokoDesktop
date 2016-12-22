@@ -4367,9 +4367,6 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   <data name="Migration_Header" xml:space="preserve">
     <value>De migratiestatus van de</value>
   </data>
-  <data name="Migration_AdminPass2" xml:space="preserve">
-    <value>Zodra dit proces is volledig Shoko Desktop opnieuw opstarten en niet langer nodig hebt beheerdersrechten nodig om uit te voeren.</value>
-  </data>
   <data name="ShokoServer_ProcessRunning" xml:space="preserve">
     <value>Proces is currnetly op Shoko Server uitgevoerd, gelieve te wachten en vernieuwen zodra gedaan.</value>
   </data>
@@ -4465,5 +4462,14 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   </data>
   <data name="LocateSettingsFileQuestion" xml:space="preserve">
     <value>Geen eerdere configuratie gevonden, wilt u een bestaande configuratieset handmatig te zoeken?</value>
+  </data>
+  <data name="DuplicateInstallDetected" xml:space="preserve">
+    <value>Dupliceren installeren ontdekt!</value>
+  </data>
+  <data name="DuplicateInstallDetectedQuestion" xml:space="preserve">
+    <value>Je hebt zowel Shoko Desktop en JMM Desktop geïnstalleerd. Wilt u JMM Desktop verwijderen ?!</value>
+  </data>
+  <data name="Migration_AdminPass2" xml:space="preserve">
+    <value>Zodra dit proces is voltooid Shoko Desktop zal sluiten en Administratieve voorrechten niet langer nodig om te draaien.!</value>
   </data>
 </root>

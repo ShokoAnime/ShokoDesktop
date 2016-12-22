@@ -4367,9 +4367,6 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
   <data name="Migration_Header" xml:space="preserve">
     <value>Estado de la migración</value>
   </data>
-  <data name="Migration_AdminPass2" xml:space="preserve">
-    <value>una vez este proceso completo cliente de Shoko reinicie y ya no necesitan privilegios administrativos para ejecutarse.</value>
-  </data>
   <data name="ShokoServer_ProcessRunning" xml:space="preserve">
     <value>El proceso es currnetly ejecuta en servidor de Shoko, por favor espere y actualizar una vez hecho.</value>
   </data>
@@ -4465,5 +4462,14 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
   </data>
   <data name="LocateSettingsFileQuestion" xml:space="preserve">
     <value>Ninguna configuración anterior encontrado, ¿quieres localizar manualmente una configuración existente?</value>
+  </data>
+  <data name="DuplicateInstallDetected" xml:space="preserve">
+    <value>Duplicar instalar detectado!</value>
+  </data>
+  <data name="DuplicateInstallDetectedQuestion" xml:space="preserve">
+    <value>Tiene instalados tanto Shoko escritorio y JMM escritorio. ¿Quieres desinstalar JMM escritorio ?!</value>
+  </data>
+  <data name="Migration_AdminPass2" xml:space="preserve">
+    <value>Una vez que este proceso se haya completado Shoko escritorio se cerrará y ya no necesita privilegios de administrador para funcionar.!</value>
   </data>
 </root>
