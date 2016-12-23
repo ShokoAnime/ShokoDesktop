@@ -32,6 +32,35 @@ namespace JMMClient.UserControls
             set { SetValue(IsCollapsedProperty, value); }
         }
 
+        public bool IsLocalFile
+        {
+            get
+            {
+                VideoLocalVM vidLocal = this.DataContext as VideoLocalVM;
+                if (vidLocal != null)
+                {
+                    if (!string.IsNullOrEmpty(vidLocal.LocalFileSystemFullPath))
+                        return true;
+                    return false;
+                }
+                return true;
+            }
+        }
+
+        public bool IsHashed
+        {
+            get
+            {
+                VideoLocalVM vidLocal = this.DataContext as VideoLocalVM;
+                if (vidLocal != null)
+                {
+                    if (!string.IsNullOrEmpty(vidLocal.Hash))
+                        return true;
+                    return false;
+                }
+                return true;
+            }
+        }
         private static void isExpandedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             //EpisodeDetail input = (EpisodeDetail)d;

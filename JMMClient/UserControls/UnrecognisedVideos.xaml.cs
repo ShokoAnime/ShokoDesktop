@@ -151,6 +151,7 @@ namespace JMMClient.UserControls
             btnRefreshSeriesList.Click += new RoutedEventHandler(btnRefreshSeriesList_Click);
         }
 
+
         private void DgVideos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -165,13 +166,15 @@ namespace JMMClient.UserControls
                 MultipleTypeRange = cboMultiType.SelectedIndex == 0;
                 MultipleTypeSingle = cboMultiType.SelectedIndex == 1;
 
-
+                Visibility visible = Visibility.Visible;
 
                 // if only one video selected
                 if (OneVideoSelected)
                 {
                     VideoLocalVM vid = dgVideos.SelectedItem as VideoLocalVM;
                     ccDetail.Content = vid;
+                    if (vid!=null && !vid.IsHashed)
+                        visible = Visibility.Hidden;
                 }
 
                 // if only one video selected
@@ -190,9 +193,11 @@ namespace JMMClient.UserControls
                     }
 
                     ccDetailMultiple.Content = mv;
+                    if (!mv.AllHaveHashes)
+                        visible = Visibility.Hidden;
                 }
-
                 SetConfirmDetails();
+                Confirm1.Visibility = Confirm2.Visibility = visible;
             }
             catch (Exception ex)
             {
@@ -245,7 +250,7 @@ namespace JMMClient.UserControls
                 if (!JMMServerVM.Instance.ServerOnline) return;
 
                 this.Cursor = Cursors.Wait;
-                foreach (VideoLocalVM vid in UnrecognisedFiles)
+                foreach (VideoLocalVM vid in UnrecognisedFiles.Where(a=>a.IsHashed))
                 {
                     JMMServerVM.Instance.clientBinaryHTTP.RehashFile(vid.VideoLocalID);
                 }
@@ -534,7 +539,7 @@ namespace JMMClient.UserControls
             {
                 VideoLocalVM vid = obj as VideoLocalVM;
 
-                if (File.Exists(vid.LocalFileSystemFullPath))
+                if (vid.IsLocalFile && File.Exists(vid.LocalFileSystemFullPath))
                 {
                     Utils.OpenFolderAndSelectFile(vid.LocalFileSystemFullPath);
                 }
@@ -706,16 +711,20 @@ namespace JMMClient.UserControls
                 if (obj.GetType() == typeof(VideoLocalVM))
                 {
                     VideoLocalVM vid = obj as VideoLocalVM;
-                    EnableDisableControls(false);
+                    if (vid.IsLocalFile)
+                    {
+                        EnableDisableControls(false);
 
-                    JMMServerVM.Instance.clientBinaryHTTP.RehashFile(vid.VideoLocalID);
+                        JMMServerVM.Instance.clientBinaryHTTP.RehashFile(vid.VideoLocalID);
+                    }
                 }
                 if (obj.GetType() == typeof(MultipleVideos))
                 {
                     MultipleVideos mv = obj as MultipleVideos;
-                    foreach (int id in mv.VideoLocalIDs)
+                    foreach(VideoLocalVM v in mv.VideoLocals)
                     {
-                        JMMServerVM.Instance.clientBinaryHTTP.RehashFile(id);
+                        if (v.IsLocalFile)
+                            JMMServerVM.Instance.clientBinaryHTTP.RehashFile(v.VideoLocalID);
                     }
                 }
 
@@ -742,15 +751,16 @@ namespace JMMClient.UserControls
                 {
                     VideoLocalVM vid = obj as VideoLocalVM;
                     EnableDisableControls(false);
-
-                    JMMServerVM.Instance.clientBinaryHTTP.RescanFile(vid.VideoLocalID);
+                    if (vid.IsHashed)
+                        JMMServerVM.Instance.clientBinaryHTTP.RescanFile(vid.VideoLocalID);
                 }
                 if (obj.GetType() == typeof(MultipleVideos))
                 {
                     MultipleVideos mv = obj as MultipleVideos;
-                    foreach (int id in mv.VideoLocalIDs)
+                    foreach (VideoLocalVM v in mv.VideoLocals)
                     {
-                        JMMServerVM.Instance.clientBinaryHTTP.RescanFile(id);
+                        if (v.IsHashed)
+                            JMMServerVM.Instance.clientBinaryHTTP.RescanFile(v.VideoLocalID);
                     }
                 }
 

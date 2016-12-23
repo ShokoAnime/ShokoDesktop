@@ -108,7 +108,25 @@ namespace JMMClient.ViewModel
                 return match;
             }
         }
+        public bool IsLocalFile
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(LocalFileSystemFullPath))
+                    return false;
+                return true;
+            }
+        }
 
+        public bool IsHashed
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(Hash))
+                        return false;
+                return true;
+            }
+        }
         public VideoLocalVM(JMMServerBinary.Contract_VideoLocal contract)
         {
             this.CRC32 = contract.CRC32;

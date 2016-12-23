@@ -73,6 +73,7 @@
 
                         <!-- Rescan File -->
                         <Button Margin="0,0,2,2" Grid.Column="0" Grid.Row="3" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" 
+                                Visibility="{Binding Path=SomeHaveHashes, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 Command="{DynamicResource RescanFileCommand}" CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="0,0,5,0"/>
@@ -82,6 +83,7 @@
 
                         <!-- rehash file -->
                         <Button Name="btnRehashFileMultiple" Margin="0,0,2,2" Grid.Column="0" Grid.Row="3" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" 
+                                Visibility="{Binding Path=SomeAreLocal, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 Command="{DynamicResource RehashFileCommand}" CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Image Height="16" Width="16" Source="/Images/16_server_hash.png" Margin="0,0,5,0"/>
@@ -91,7 +93,8 @@
 
                         <!-- avdump2 file -->
                         <Button Name="btnAvdumpFile" Margin="0,0,2,2" Grid.Column="0" Grid.Row="3" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" 
-                                Command="{DynamicResource AvdumpFileCommand}" CommandParameter="{Binding}">
+                                Command="{DynamicResource AvdumpFileCommand}" CommandParameter="{Binding}"
+                                Visibility="{Binding Path=SomeAreLocal, Converter={StaticResource BooleanToVisibilityConverter}}" >
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Image Height="16" Width="16" Source="/Images/32_anidb.png" Margin="0,0,5,0"/>
                                 <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Avdump}" Margin="0,0,5,0"/>
@@ -159,6 +162,7 @@
 
                         <!-- Rescan File -->
                         <Button Name="btnRescanFile" Margin="0,0,2,2" Grid.Column="0" Grid.Row="3" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" 
+                                Visibility="{Binding Path=IsHashed, Converter={StaticResource BooleanToVisibilityConverter}}" 
                                 Command="{StaticResource RescanFileCommand}" CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="0,0,5,0"/>
@@ -171,6 +175,7 @@
 
                         <!-- rehash file -->
                         <Button Name="btnRehashFile" Margin="0,0,2,2" Grid.Column="0" Grid.Row="3" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" 
+                                Visibility="{Binding Path=IsLocalFile, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 Command="{StaticResource RehashFileCommand}" CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Image Height="16" Width="16" Source="/Images/16_server_hash.png" Margin="0,0,5,0"/>
@@ -184,6 +189,7 @@
 
                         <!-- avdump2 file -->
                         <Button Name="btnAvdumpFile" Margin="0,0,2,2" Grid.Column="0" Grid.Row="3" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" 
+                                Visibility="{Binding Path=IsLocalFile, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 Command="{DynamicResource AvdumpFileCommand}" CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Image Height="16" Width="16" Source="/Images/32_anidb.png" Margin="0,0,5,0"/>
@@ -193,6 +199,7 @@
 
                         <!-- open folder location -->
                         <Button Name="btnOpenFolderLocation" Margin="0,0,2,2" Grid.Column="0" Grid.Row="3" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left"
+                                Visibility="{Binding Path=IsLocalFile, Converter={StaticResource BooleanToVisibilityConverter}}"
                                 Command="{StaticResource OpenFolderCommand}" CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Image Height="16" Width="16" Source="/Images/24_folder.png" Margin="0,0,5,0"/>
@@ -369,9 +376,9 @@
                   Width="2" Background="#FFBCBCBC" Grid.RowSpan="3" />
 
         <!-- Confirm association -->
-        <Border Grid.Row="0" Grid.Column="2" Margin="5,0,0,5" Padding="5" Background="White" BorderBrush="LightGray" BorderThickness="1">
+        <Border  Grid.Row="0" Grid.Column="2" Margin="5,0,0,5" Padding="5" Background="White" BorderBrush="LightGray" BorderThickness="1">
 
-            <Grid>
+            <Grid Name="Confirm1">
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -412,7 +419,7 @@
         <!-- Selected series and episode details -->
         <Border Grid.Row="1" Grid.Column="2" Margin="5,5,0,5" Padding="5" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1">
 
-            <DockPanel >
+            <DockPanel Name="Confirm2">
 
                 <StackPanel Orientation="Vertical"  DockPanel.Dock="Top">
                     <StackPanel Orientation="Horizontal"  Margin="0,0,0,5">
