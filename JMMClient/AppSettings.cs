@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Configuration;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -43,11 +44,16 @@ namespace JMMClient
         }
 
 
-        public static string DefaultInstance { get; set; } = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
+        public static string DefaultInstance { get; set; } =
+            System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
 
-        public static string ApplicationPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), DefaultInstance);
+        public static string ApplicationPath
+            => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), DefaultInstance)
+            ;
 
-        public static string JMMServerPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), JMMServerInstance);
+        public static string JMMServerPath
+            =>
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), JMMServerInstance);
 
         public static string DefaultImagePath => Path.Combine(ApplicationPath, "images");
 
@@ -58,7 +64,8 @@ namespace JMMClient
                 if (Directory.Exists(JMMServerPath) && File.Exists(Path.Combine(JMMServerPath, "settings.json")))
                 {
                     Dictionary<string, string> serverSettings =
-                        JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(Path.Combine(JMMServerPath, "settings.json")));
+                        JsonConvert.DeserializeObject<Dictionary<string, string>>(
+                            File.ReadAllText(Path.Combine(JMMServerPath, "settings.json")));
                     if (serverSettings.ContainsKey("ImagesPath"))
                         return serverSettings["ImagesPath"];
                 }
@@ -68,6 +75,7 @@ namespace JMMClient
         }
 
         private static bool disabledSave = false;
+
         public static void SaveSettings()
         {
             if (disabledSave)
@@ -75,28 +83,31 @@ namespace JMMClient
             lock (appSettings)
             {
                 if (appSettings.Count <= 1)
-                    return;//Somehow debugging may fuck up the settings so this shit will eject
+                    return; //Somehow debugging may fuck up the settings so this shit will eject
 
                 string path = Path.Combine(ApplicationPath, "settings.json");
                 File.WriteAllText(path, JsonConvert.SerializeObject(appSettings));
             }
         }
+
         /*
                 string appPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
                 string logName = System.IO.Path.Combine(appPath, "AnimeEpisodes.txt");
                 */
+
         public static void LoadSettings()
         {
             try
             {
                 //Reconfigure log file to applicationpath
-                var target = (FileTarget)LogManager.Configuration.FindTargetByName("file");
+                var target = (FileTarget) LogManager.Configuration.FindTargetByName("file");
                 target.FileName = ApplicationPath + "/logs/${shortdate}.txt";
                 LogManager.ReconfigExistingLoggers();
 
 
                 disabledSave = true;
-                string programlocation = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+                string programlocation =
+                    Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
                 List<MigrationDirectory> migrationdirs = new List<MigrationDirectory>()
                 {
                     new MigrationDirectory
@@ -130,7 +141,8 @@ namespace JMMClient
                 {
                     ImagesPath = BaseImagesPath;
                 }
-                bool migrate = !Directory.Exists(ApplicationPath) || File.Exists(Path.Combine(programlocation, "AnimeEpisodes.txt"));
+                bool migrate = !Directory.Exists(ApplicationPath) ||
+                               File.Exists(Path.Combine(programlocation, "AnimeEpisodes.txt"));
                 foreach (MigrationDirectory m in migrationdirs)
                 {
                     if (m.ShouldMigrate)
@@ -151,17 +163,25 @@ namespace JMMClient
                     Migration m = null;
                     try
                     {
-                        m = new Migration($"{Properties.Resources.Migration_AdminPass1} {ApplicationPath}, {Properties.Resources.Migration_AdminPass2}");
-	                    m.Show();
-	                    if (!Directory.Exists(ApplicationPath))
+                        m =
+                            new Migration(
+                                $"{Properties.Resources.Migration_AdminPass1} {ApplicationPath}, {Properties.Resources.Migration_AdminPass2}");
+                        m.Show();
+                        if (!Directory.Exists(ApplicationPath))
                         {
                             Directory.CreateDirectory(ApplicationPath);
                         }
-                        Utils.GrantAccess(ApplicationPath);
+
+                        // Grant access is causing errors during migration so use workaround script for now
+                        //Utils.GrantAccess(ApplicationPath);
+                        bool setProgramdataPermissions = SetProgramDataFolderPermission(ApplicationPath);
+                        if (!setProgramdataPermissions)
+                            logger.Info("Failed to set programdata permissions.");
+
                         disabledSave = false;
                         SaveSettings();
 
-	                    foreach (MigrationDirectory md in migrationdirs)
+                        foreach (MigrationDirectory md in migrationdirs)
                         {
                             if (!md.SafeMigrate())
                             {
@@ -176,13 +196,13 @@ namespace JMMClient
                     catch (Exception e)
                     {
                         MessageBox.Show(Properties.Resources.Migration_Error + " ", e.ToString());
-	                    logger.Error(e, "Error occured during LoadSettings: {0}", e.ToString());
+                        logger.Error(e, "Error occured during LoadSettings: {0}", e.ToString());
                     }
 
                     m?.Close();
                     Thread.Sleep(5000);
-	                Application.Current.Shutdown();
-	                return;
+                    Application.Current.Shutdown();
+                    return;
                 }
                 disabledSave = false;
 
@@ -203,8 +223,8 @@ namespace JMMClient
             }
             catch (Exception e)
             {
-	            logger.Error(e, "Error occured during LoadSettings: {0}", e.ToString());
-	            MessageBox.Show(Properties.Resources.Migration_LoadError + " ", e.ToString());
+                logger.Error(e, "Error occured during LoadSettings: {0}", e.ToString());
+                MessageBox.Show(Properties.Resources.Migration_LoadError + " ", e.ToString());
                 Application.Current.Shutdown();
                 return;
             }
@@ -243,17 +263,17 @@ namespace JMMClient
                 if (!File.Exists(configFile))
                     configFile = LocateLegacyConfigFile();
 
-	            if (!File.Exists(configFile))
-	            {
-					// first run or cancelled file selection
-		            // Load default settings as otherwise will fail to start entirely
-		            var col = ConfigurationManager.AppSettings;
-		            appSettings = col.AllKeys.ToDictionary(a => a, a => col[a]);
-		            logger.Log(LogLevel.Error, string.Format("Settings file was not selected, using default."));
-		            return;
-	            }
+                if (!File.Exists(configFile))
+                {
+                    // first run or cancelled file selection
+                    // Load default settings as otherwise will fail to start entirely
+                    var col = ConfigurationManager.AppSettings;
+                    appSettings = col.AllKeys.ToDictionary(a => a, a => col[a]);
+                    logger.Log(LogLevel.Error, string.Format("Settings file was not selected, using default."));
+                    return;
+                }
 
-	            if (configFile.ToLower().Contains("settings.json"))
+                if (configFile.ToLower().Contains("settings.json"))
                 {
                     appSettings = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(configFile));
                 }
@@ -306,14 +326,16 @@ namespace JMMClient
                 // Load default settings as otherwise will fail to start entirely
                 var col = ConfigurationManager.AppSettings;
                 appSettings = col.AllKeys.ToDictionary(a => a, a => col[a]);
-                logger.Log(LogLevel.Error, string.Format("Error occured during LoadSettingsManuallyFromFile: {0}", e.Message));
+                logger.Log(LogLevel.Error,
+                    string.Format("Error occured during LoadSettingsManuallyFromFile: {0}", e.Message));
             }
         }
 
         public static string LocateLegacyConfigFile()
         {
             string configPath = "";
-            MessageBoxResult dr = MessageBox.Show(Properties.Resources.LocateSettingsFileQuestion, Properties.Resources.LocateSettingsFile, MessageBoxButton.YesNo);
+            MessageBoxResult dr = MessageBox.Show(Properties.Resources.LocateSettingsFileQuestion,
+                Properties.Resources.LocateSettingsFile, MessageBoxButton.YesNo);
             switch (dr)
             {
                 case MessageBoxResult.Yes:
@@ -331,6 +353,46 @@ namespace JMMClient
 
             return configPath;
         }
+
+        public static bool SetProgramDataFolderPermission(string ApplicationPath)
+        {
+            string exeLocation = System.Reflection.Assembly.GetEntryAssembly().Location;
+            string scriptSetProgramDataFolderPermissions = Path.Combine(exeLocation,
+                "Scripts\\SetProgramDataFolderPermissions.bat");
+
+            try
+            {
+                if (Directory.Exists(ApplicationPath) && File.Exists(scriptSetProgramDataFolderPermissions))
+                {
+                    logger.Info("Setting programdata folder permissions via batch script.");
+                    ProcessStartInfo si = new ProcessStartInfo();
+                    si.CreateNoWindow = true;
+                    si.FileName = scriptSetProgramDataFolderPermissions;
+                    si.UseShellExecute = false;
+                    Process.Start(si);
+                    logger.Info("Completed setting programdata folder permissions via batch script.");
+                    return true;
+                }
+                else
+                {
+                    logger.Error(
+                        "Error during SetProgramDataFolderPermission: programdata location = {0} [exists = {1}] | script location = {2} [exists = {3}]",
+                        ApplicationPath, Directory.Exists(ApplicationPath), scriptSetProgramDataFolderPermissions,
+                        File.Exists(scriptSetProgramDataFolderPermissions));
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error("Unexpected error during SetProgramDataFolderPermission: {0}", ex);
+                logger.Error("Programdata location = {0} [exists = {1}] | script location = {2} [exists = {3}]",
+                    ApplicationPath, Directory.Exists(ApplicationPath), scriptSetProgramDataFolderPermissions,
+                    File.Exists(scriptSetProgramDataFolderPermissions));
+
+                return false;
+            }
+        }
+
 
         public static string AnimeEpisodesText
         {

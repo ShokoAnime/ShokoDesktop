@@ -1490,6 +1490,9 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.ru.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Scripts\SetProgramDataFolderPermissions.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="testing.config">
       <SubType>Designer</SubType>
     </None>
