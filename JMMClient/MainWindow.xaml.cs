@@ -23,6 +23,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Navigation;
 using System.Windows.Threading;
+using JMMClient.AutoUpdates;
 using JMMClient.VideoPlayers;
 
 namespace JMMClient
@@ -491,8 +492,8 @@ namespace JMMClient
                 // get the latest version as according to the release
                 if (!forceShowForm)
                 {
-                    AutoUpdates.JMMVersions verInfo = AutoUpdates.JMMAutoUpdatesHelper.GetLatestVersionInfo();
-                    if (verInfo == null) return;
+                    //AutoUpdates.JMMVersions verInfo = AutoUpdates.JMMAutoUpdatesHelper.GetLatestVersionInfo();
+                    //if (verInfo == null) return;
 
                     // get the user's version
                     System.Reflection.Assembly a = System.Reflection.Assembly.GetExecutingAssembly();
@@ -503,7 +504,11 @@ namespace JMMClient
                     }
                     System.Reflection.AssemblyName an = a.GetName();
 
-                    verNew = verInfo.versions.DesktopVersionAbs;
+                    verNew =
+                        JMMAutoUpdatesHelper.ConvertToAbsoluteVersion(
+                            JMMAutoUpdatesHelper.GetLatestVersionNumber(AppSettings.UpdateChannel));
+
+                    //verNew = verInfo.versions.DesktopVersionAbs;
 
                     verCurrent = (an.Version.Revision * 100) +
                         (an.Version.Build * 100 * 100) +

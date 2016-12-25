@@ -1,6 +1,7 @@
 ﻿using NLog;
 using System;
 using System.IO;
+using System.Xml;
 using System.Xml.Serialization;
 
 namespace JMMClient.AutoUpdates
@@ -20,6 +21,7 @@ namespace JMMClient.AutoUpdates
                 (int.Parse(numbers[0]) * 100 * 100 * 100 * 100);
         }
 
+        /*
         public static AutoUpdates.JMMVersions GetLatestVersionInfo()
         {
             try
@@ -40,6 +42,30 @@ namespace JMMClient.AutoUpdates
                 logger.Error(ex, ex.ToString());
                 return null;
             }
+        }*/
+
+        public static string GetLatestVersionNumber(string channel)
+        {
+            string versionNumer = "";
+            try
+            {
+
+                // get the latest version as according to the release
+                string uri = "http://shokoanime.com/files/versions.xml";
+                string xml = Utils.DownloadWebPage(uri);
+
+                XmlDocument xmldoc = new XmlDocument();
+                xmldoc.LoadXml(xml);
+                // Load something into xmldoc
+                var nodeVersion = xmldoc.SelectSingleNode(string.Format("//shokoserver/{0}/version", channel));
+                versionNumer = nodeVersion.InnerText;
+            }
+            catch (Exception ex)
+            {
+                logger.Error("Error during GetLatestVersionNumber: " + ex.Message);
+            }
+
+            return versionNumer;
         }
     }
 }

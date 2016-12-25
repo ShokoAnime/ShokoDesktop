@@ -12,6 +12,10 @@ namespace JMMClient.Forms
             InitializeComponent();
 
             btnUpdates.Click += new RoutedEventHandler(btnUpdates_Click);
+            cbUpdateChannel.Items.Add("stable");
+            cbUpdateChannel.Items.Add("beta");
+            cbUpdateChannel.Items.Add("alpha");
+            cbUpdateChannel.Text = AppSettings.UpdateChannel;
         }
 
         void btnUpdates_Click(object sender, RoutedEventArgs e)
@@ -21,6 +25,12 @@ namespace JMMClient.Forms
 
             this.Close();
             mdw.CheckForUpdatesNew(true);
+        }
+
+        private void cbUpdateChannel_DropDownClosed(object sender, System.EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(cbUpdateChannel.Text))
+                AppSettings.UpdateChannel = cbUpdateChannel.Text;
         }
     }
 }
