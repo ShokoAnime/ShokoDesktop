@@ -57,7 +57,7 @@ namespace JMMClient.AutoUpdates
                 XmlDocument xmldoc = new XmlDocument();
                 xmldoc.LoadXml(xml);
                 // Load something into xmldoc
-                var nodeVersion = xmldoc.SelectSingleNode(string.Format("//shokoserver/{0}/version", channel));
+                var nodeVersion = xmldoc.SelectSingleNode(string.Format("//shokoclient/{0}/version", channel));
                 versionNumer = nodeVersion.InnerText;
             }
             catch (Exception ex)
