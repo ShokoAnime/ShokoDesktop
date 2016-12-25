@@ -49,7 +49,6 @@ namespace JMMClient.AutoUpdates
             string versionNumer = "";
             try
             {
-
                 // get the latest version as according to the release
                 string uri = "http://shokoanime.com/files/versions.xml";
                 string xml = Utils.DownloadWebPage(uri);
@@ -57,7 +56,7 @@ namespace JMMClient.AutoUpdates
                 XmlDocument xmldoc = new XmlDocument();
                 xmldoc.LoadXml(xml);
                 // Load something into xmldoc
-                var nodeVersion = xmldoc.SelectSingleNode(string.Format("//shokoclient/{0}/version", channel));
+                var nodeVersion = xmldoc.SelectSingleNode(string.Format("//versioncheck/shokoclient/{0}/version", channel));
                 versionNumer = nodeVersion.InnerText;
             }
             catch (Exception ex)
