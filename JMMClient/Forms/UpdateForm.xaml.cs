@@ -10,6 +10,15 @@ namespace JMMClient.Forms
         public UpdateForm()
         {
             InitializeComponent();
+            tbUpdateAvailable.Visibility = IsNewVersionAvailable() ? Visibility.Visible : Visibility.Hidden;
+        }
+
+        public bool IsNewVersionAvailable()
+        {
+            if (JMMServerVM.Instance.ApplicationVersion == JMMServerVM.Instance.ApplicationVersionLatest)
+                return false;
+
+            return true;
         }
     }
 }

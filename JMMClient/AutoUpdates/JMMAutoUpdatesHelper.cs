@@ -56,7 +56,7 @@ namespace JMMClient.AutoUpdates
                 XmlDocument xmldoc = new XmlDocument();
                 xmldoc.LoadXml(xml);
                 // Load something into xmldoc
-                var nodeVersion = xmldoc.SelectSingleNode(string.Format("//versioncheck/shokoclient/{0}/version", channel));
+                var nodeVersion = xmldoc.SelectSingleNode(string.Format("//versioncheck/shokoclient/{0}/version", channel.ToLower()));
                 versionNumber = nodeVersion.InnerText;
                 JMMServerVM.Instance.ApplicationVersionLatest = versionNumber;
             }

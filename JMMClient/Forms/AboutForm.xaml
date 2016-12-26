@@ -96,8 +96,6 @@
                 </StackPanel>
             </Button>
         </StackPanel>
-        <ComboBox x:Name="cbUpdateChannel" HorizontalAlignment="Left" Margin="285,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="85" DropDownClosed="cbUpdateChannel_DropDownClosed"/>
-
-
+        <ComboBox x:Name="cbUpdateChannel" HorizontalAlignment="Left" Margin="285,7,0,0" Grid.Row="2" VerticalAlignment="Top" Width="85" DropDownClosed="cbUpdateChannel_DropDownClosed" RenderTransformOrigin="-0.155,0.434" Text="{Binding Source={x:Static local:UserSettingsVM.Instance},Path=UpdateChannel}" SelectionChanged="cbUpdateChannel_SelectionChanged"/>
     </Grid>
 </Window>

@@ -509,11 +509,13 @@ namespace JMMClient
                             JMMAutoUpdatesHelper.GetLatestVersionNumber(AppSettings.UpdateChannel));
 
                     //verNew = verInfo.versions.DesktopVersionAbs;
-
                     verCurrent = (an.Version.Revision * 100) +
                         (an.Version.Build * 100 * 100) +
                         (an.Version.Minor * 100 * 100 * 100) +
                         (an.Version.Major * 100 * 100 * 100 * 100);
+
+                    //string compareMessage = string.Format("Current version: {0} / new version:{1}", verCurrent, verNew);
+                    //MessageBox.Show(compareMessage);
                 }
 
                 if (forceShowForm || verNew > verCurrent)

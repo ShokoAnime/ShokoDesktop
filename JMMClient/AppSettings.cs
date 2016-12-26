@@ -3048,13 +3048,11 @@ namespace JMMClient
         {
             get
             {
-
-
                 string val = Get("UpdateChannel");
                 if (string.IsNullOrEmpty(val))
                 {
                     // default value
-                    val = "stable";
+                    val = "Stable";
                     Set("UpdateChannel", val);
                 }
                 return val;
