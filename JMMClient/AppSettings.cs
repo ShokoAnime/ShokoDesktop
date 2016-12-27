@@ -386,26 +386,19 @@ namespace JMMClient
 
 
                 proc.Start();
-
-                StreamReader reader = proc.StandardOutput;
-                cmdOutput += reader.ReadToEnd();
-
                 proc.WaitForExit();
 
                 exitCode = proc.ExitCode;
-                reader.Close();
                 proc.Close();
 
                 File.Delete(BatchFile);
 
                 if (exitCode == 0)
                 {
-                    logger.Info("SetProgramDataFolderPermission batch output: " + cmdOutput);
                     logger.Info("Successfully set SetProgramDataFolderPermission.");
                 }
                 else
                 {
-                    logger.Info("SetProgramDataFolderPermission batch output: " + cmdOutput);
                     logger.Error("SetProgramDataFolderPermission returned error code: " +
                                  exitCode);
                 }
