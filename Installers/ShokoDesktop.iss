@@ -93,6 +93,7 @@ Source: "..\JMMClient\bin\Release\nl\*"; DestDir: "{app}\nl"; Flags: ignoreversi
 Source: "..\JMMClient\bin\Release\pl\*"; DestDir: "{app}\pl"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "..\JMMClient\bin\Release\pt\*"; DestDir: "{app}\pt"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "..\JMMClient\bin\Release\ru\*"; DestDir: "{app}\ru"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "..\JMMClient\bin\Release\Scripts\*"; DestDir: "{app}\Scripts\"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "..\JMMClient\bin\Release\x64\*"; DestDir: "{app}\x64"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "..\JMMClient\bin\Release\x86\*"; DestDir: "{app}\x86"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
@@ -105,7 +106,7 @@ Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\Shoko Desktop"; Fi
 
 [Run]
 Filename: "{app}\ShokoDesktop.exe"; Flags: nowait postinstall skipifsilent shellexec; Description: "{cm:LaunchProgram,Shoko Desktop}"
-Filename: "http://jmediamanager.org/jmm-is-now-shoko-version-3-7-beta/"; Flags: shellexec runasoriginaluser postinstall; Description: "View 3.7 BETA Release Notes"
+Filename: "http://shokoanime.com/shoko-version-3-7-released/"; Flags: shellexec runasoriginaluser postinstall; Description: "View 3.7 Release Notes"
 
 [Dirs]
 Name: "{app}"; Permissions: users-full
