@@ -356,41 +356,68 @@ namespace JMMClient
 
         public static bool SetProgramDataFolderPermission(string ApplicationPath)
         {
-            string exeLocation = System.Reflection.Assembly.GetEntryAssembly().Location;
-            string scriptSetProgramDataFolderPermissions = Path.Combine(exeLocation,
-                "Scripts\\SetProgramDataFolderPermissions.bat");
+            //C# version did not work, do not inherit permissions to childs.
+            string BatchFile = Path.Combine(System.IO.Path.GetTempPath(), "SetProgramDataFolderPermissions.bat");
+            int exitCode = -1;
+            Process proc = new Process();
+
+            proc.StartInfo.FileName = "cmd.exe";
+            proc.StartInfo.Arguments = $@"/c {BatchFile}";
+            proc.StartInfo.Verb = "runas";
+            proc.StartInfo.CreateNoWindow = true;
+            proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            proc.StartInfo.UseShellExecute = true;
 
             try
             {
-                if (Directory.Exists(ApplicationPath) && File.Exists(scriptSetProgramDataFolderPermissions))
+                StreamWriter BatchFileStream = new StreamWriter(BatchFile);
+                string cmdOutput = "";
+
+                //Cleanup previous
+                try
                 {
-                    logger.Info("Setting programdata folder permissions via batch script.");
-                    ProcessStartInfo si = new ProcessStartInfo();
-                    si.CreateNoWindow = true;
-                    si.FileName = scriptSetProgramDataFolderPermissions;
-                    si.UseShellExecute = false;
-                    Process.Start(si);
-                    logger.Info("Completed setting programdata folder permissions via batch script.");
-                    return true;
+                    BatchFileStream.WriteLine(@"icacls C:\ProgramData\ShokoDesktop /grant *S-1-1-0:(OI)(CI)F /T");
+                    BatchFileStream.WriteLine(@"icacls C:\ProgramData\ShokoServer /grant *S-1-1-0:(OI)(CI)F /T");
+                }
+                finally
+                {
+                    BatchFileStream.Close();
+                }
+
+
+                proc.Start();
+
+                StreamReader reader = proc.StandardOutput;
+                cmdOutput += reader.ReadToEnd();
+
+                proc.WaitForExit();
+
+                exitCode = proc.ExitCode;
+                reader.Close();
+                proc.Close();
+
+                File.Delete(BatchFile);
+
+                if (exitCode == 0)
+                {
+                    logger.Info("SetProgramDataFolderPermission batch output: " + cmdOutput);
+                    logger.Info("Successfully set SetProgramDataFolderPermission.");
                 }
                 else
                 {
-                    logger.Error(
-                        "Error during SetProgramDataFolderPermission: programdata location = {0} [exists = {1}] | script location = {2} [exists = {3}]",
-                        ApplicationPath, Directory.Exists(ApplicationPath), scriptSetProgramDataFolderPermissions,
-                        File.Exists(scriptSetProgramDataFolderPermissions));
-                    return false;
+                    logger.Info("SetProgramDataFolderPermission batch output: " + cmdOutput);
+                    logger.Error("SetProgramDataFolderPermission returned error code: " +
+                                 exitCode);
                 }
             }
             catch (Exception ex)
             {
                 logger.Error("Unexpected error during SetProgramDataFolderPermission: {0}", ex);
-                logger.Error("Programdata location = {0} [exists = {1}] | script location = {2} [exists = {3}]",
-                    ApplicationPath, Directory.Exists(ApplicationPath), scriptSetProgramDataFolderPermissions,
-                    File.Exists(scriptSetProgramDataFolderPermissions));
 
                 return false;
             }
+
+            return true;
         }
 
 
