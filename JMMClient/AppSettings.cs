@@ -108,14 +108,27 @@ namespace JMMClient
                 disabledSave = true;
                 string programlocation =
                     Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-                List<MigrationDirectory> migrationdirs = new List<MigrationDirectory>()
+                List<MigrationDirectory> migrationdirs = new List<MigrationDirectory>();
+
+                migrationdirs.Add(new MigrationDirectory
                 {
-                    new MigrationDirectory
+                    From = Path.Combine(programlocation, "logs"),
+                    To = Path.Combine(ApplicationPath, "logs")
+                });
+
+                // Check and see if we have old JMM Desktop installation and add to migration if needed
+                string jmmDesktopInstallLocation = (string)Registry.GetValue(
+                    @"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{AD24689F-020C-4C53-B649-99BB49ED6238}_is1",
+                    "InstallLocation", null);
+
+                if (!string.IsNullOrEmpty(jmmDesktopInstallLocation))
+                {
+                    migrationdirs.Add(new MigrationDirectory
                     {
-                        From = Path.Combine(programlocation, "logs"),
+                        From = Path.Combine(jmmDesktopInstallLocation, "logs"),
                         To = Path.Combine(ApplicationPath, "logs")
-                    }
-                };
+                    });
+                }
 
                 string path = Path.Combine(ApplicationPath, "settings.json");
                 if (File.Exists(path))
@@ -136,11 +149,21 @@ namespace JMMClient
                         From = Path.Combine(programlocation, "images"),
                         To = DefaultImagePath
                     });
+
+                    if (!string.IsNullOrEmpty(jmmDesktopInstallLocation))
+                    {
+                        migrationdirs.Add(new MigrationDirectory
+                        {
+                            From = Path.Combine(jmmDesktopInstallLocation, "images"),
+                            To = DefaultImagePath
+                        });
+                    }
                 }
                 else if (Directory.Exists(BaseImagesPath))
                 {
                     ImagesPath = BaseImagesPath;
                 }
+
                 bool migrate = !Directory.Exists(ApplicationPath) ||
                                File.Exists(Path.Combine(programlocation, "AnimeEpisodes.txt"));
                 foreach (MigrationDirectory m in migrationdirs)
