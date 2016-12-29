@@ -134,10 +134,7 @@ namespace JMMClient
                   ProcessStartInfo startInfo = new ProcessStartInfo();
                   startInfo.FileName = jmmDesktopUninstallPath;
                   startInfo.Arguments = " /SILENT";
-                  startInfo.CreateNoWindow = true;
-
-                  Process p = Process.Start(startInfo);
-                  p?.Start();
+                  Process.Start(startInfo);
 
                   logger.Log(LogLevel.Info, "JMM Desktop successfully uninstalled");
                 }
