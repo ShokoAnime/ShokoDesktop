@@ -468,7 +468,9 @@ namespace JMMClient
                 //Cleanup previous
                 try
                 {
-                    BatchFileStream.WriteLine($"{"icacls"} \"{fullPath}\" {"/grant *S-1-1-0:(OI)(CI)F /T"}");
+                    string batchLine = $"{"icacls"} \"{fullPath}\" {"/grant *S-1-1-0:(OI)(CI)F /T"}";
+                    logger.Log(LogLevel.Info, "GrantAccess batch line: " + batchLine);
+                    BatchFileStream.WriteLine(batchLine);
                 }
                 finally
                 {

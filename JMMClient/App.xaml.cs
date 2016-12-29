@@ -27,24 +27,28 @@ namespace JMMClient
             {
                 MessageBox.Show(JMMClient.Properties.Resources.Migration_ProgramDataError,
                     JMMClient.Properties.Resources.ShokoDesktop, MessageBoxButton.OK, MessageBoxImage.Error);
-                Environment.Exit(1);
-            }            /*ResGlobal = new ResourceManager("JMMClient.Properties.Resources", typeof(App).Assembly);
+                Environment.Exit(0);
+            }
+            /*ResGlobal = new ResourceManager("JMMClient.Properties.Resources", typeof(App).Assembly);
 
-			// Set application startup culture based on config settings
-			string culture = AppSettings.Culture;
+			      // Set application startup culture based on config settings
+			      string culture = AppSettings.Culture;
 
-			CultureInfo ci = new CultureInfo(culture);
-			Thread.CurrentThread.CurrentCulture = ci;
-			Thread.CurrentThread.CurrentUICulture = ci;
+			      CultureInfo ci = new CultureInfo(culture);
+			      Thread.CurrentThread.CurrentCulture = ci;
+			      Thread.CurrentThread.CurrentUICulture = ci;
 
-			//string hello = ResGlobal.GetString("Favorite");*/
+			      //string hello = ResGlobal.GetString("Favorite");*/
             AppSettings.LoadSettings();
 
             // First check if we have a settings.json in case migration had issues as otherwise might clear out existing old configurations
-            string path = Path.Combine(AppSettings.ApplicationPath, "settings.json");
-            if (File.Exists(path))
+            if (!string.IsNullOrEmpty(AppSettings.ApplicationPath))
             {
+              string path = Path.Combine(AppSettings.ApplicationPath, "settings.json");
+              if (File.Exists(path))
+              {
                 UninstallJMMDesktop();
+              }
             }
 
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
@@ -52,83 +56,105 @@ namespace JMMClient
         }
         public bool MigrateProgramDataLocation()
         {
-            string oldApplicationPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "JMMDesktop");
-            string newApplicationPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+          try
+          {
+            logger.Log(LogLevel.Info, "Checking to see if we have an old programdata folder for JMMDesktop");
+
+            string oldApplicationPath =
+              Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "JMMDesktop");
+            string newApplicationPath =
+              Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData),
+                System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
             if (Directory.Exists(oldApplicationPath) && !Directory.Exists(newApplicationPath))
             {
-                try
-                {
-                    List<MigrationDirectory> migrationdirs = new List<MigrationDirectory>()
-                    {
-                        new MigrationDirectory
-                        {
-                            From = oldApplicationPath,
-                            To = newApplicationPath
-                        }
-                    };
+              logger.Log(LogLevel.Info, "Found old programdata folder for JMMDesktop and migrating");
 
-                    foreach (MigrationDirectory md in migrationdirs)
-                    {
-                        if (!md.SafeMigrate())
-                        {
-                            break;
-                        }
-                    }
-
-                    logger.Log(LogLevel.Info, "Successfully migrated programdata folder.");
-                    return true;
-                }
-                catch (Exception e)
+              try
+              {
+                List<MigrationDirectory> migrationdirs = new List<MigrationDirectory>()
                 {
-                    logger.Log(LogLevel.Error, "Error occured during MigrateProgramDataLocation()");
-                    logger.Error(e);
-                    return false;
+                  new MigrationDirectory
+                  {
+                    From = oldApplicationPath,
+                    To = newApplicationPath
+                  }
+                };
+
+                foreach (MigrationDirectory md in migrationdirs)
+                {
+                  if (!md.SafeMigrate())
+                  {
+                    break;
+                  }
                 }
+
+                logger.Log(LogLevel.Info, "Successfully migrated old programdata folder.");
+                return true;
+              }
+              catch (Exception ex)
+              {
+                logger.Log(LogLevel.Error, "Error occured during MigrateProgramDataLocation()");
+                logger.Error(ex);
+                return false;
+              }
             }
-
-            return true;
+          }
+          catch (Exception ex)
+          {
+            logger.Log(LogLevel.Error, "Error occured during MigrateProgramDataLocation()");
+            logger.Error(ex);
+          }
+          return true;
         }
 
         void UninstallJMMDesktop()
         {
+          try
+          {
             // Check in registry if installed
             string jmmDesktopUninstallPath =
-                (string)
-                    Registry.GetValue(
-                        @"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{AD24689F-020C-4C53-B649-99BB49ED6238}_is1",
-                        "UninstallString", null);
+              (string)
+              Registry.GetValue(
+                @"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{AD24689F-020C-4C53-B649-99BB49ED6238}_is1",
+                "UninstallString", null);
 
             if (!string.IsNullOrEmpty(jmmDesktopUninstallPath))
             {
-                // Ask if user wants to uninstall first
-                MessageBoxResult dr =
-                    MessageBox.Show(JMMClient.Properties.Resources.DuplicateInstallDetectedQuestion,
-                        JMMClient.Properties.Resources.DuplicateInstallDetected, MessageBoxButton.YesNo);
-                if (dr == MessageBoxResult.Yes)
+              // Ask if user wants to uninstall first
+              MessageBoxResult dr =
+                MessageBox.Show(JMMClient.Properties.Resources.DuplicateInstallDetectedQuestion,
+                  JMMClient.Properties.Resources.DuplicateInstallDetected, MessageBoxButton.YesNo);
+              if (dr == MessageBoxResult.Yes)
+              {
+                try
                 {
-                    try
-                    {
-                        ProcessStartInfo startInfo = new ProcessStartInfo();
-                        startInfo.FileName = jmmDesktopUninstallPath;
-                        startInfo.Arguments = " /SILENT";
-                        startInfo.CreateNoWindow = true;
+                  ProcessStartInfo startInfo = new ProcessStartInfo();
+                  startInfo.FileName = jmmDesktopUninstallPath;
+                  startInfo.Arguments = " /SILENT";
+                  startInfo.CreateNoWindow = true;
 
-                        Process p = Process.Start(startInfo);
-                        p?.Start();
+                  Process p = Process.Start(startInfo);
+                  p?.Start();
 
-                        logger.Log(LogLevel.Info, "JMM Desktop successfully uninstalled");
-                    }
-                    catch
-                        (Exception e)
-                    {
-                        logger.Log(LogLevel.Error, "Error occured during uninstall of JMM Desktop");
-                    }
+                  logger.Log(LogLevel.Info, "JMM Desktop successfully uninstalled");
                 }
-                else
+                catch
+                  (Exception e)
                 {
-                    logger.Log(LogLevel.Info, "User cancelled JMM Desktop uninstall");
+                  logger.Log(LogLevel.Error, "Error occured during uninstall of JMM Desktop");
                 }
+              }
+              else
+              {
+                logger.Log(LogLevel.Info, "User cancelled JMM Desktop uninstall");
+              }
             }
+          }
+          catch (Exception ex)
+          {
+            logger.Log(LogLevel.Error, "Error occured during UninstallJMMDesktop()");
+            logger.Error(ex);
+          }
         }
 
         void Current_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)

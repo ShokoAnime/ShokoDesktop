@@ -115,10 +115,18 @@ namespace JMMClient
                     To = Path.Combine(ApplicationPath, "logs")
                 });
 
-                // Check and see if we have old JMM Desktop installation and add to migration if needed
-                string jmmDesktopInstallLocation = (string)Registry.GetValue(
+                string jmmDesktopInstallLocation = "";
+                try
+                {
+                  // Check and see if we have old JMM Desktop installation and add to migration if needed
+                  jmmDesktopInstallLocation = (string) Registry.GetValue(
                     @"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{AD24689F-020C-4C53-B649-99BB49ED6238}_is1",
                     "InstallLocation", null);
+                }
+                catch (Exception ex)
+                {
+                    logger.Log(LogLevel.Error, "Error occured in LoadSettings() during jmmDesktopInstallLocation readout: " + ex.Message);
+                }
 
                 if (!string.IsNullOrEmpty(jmmDesktopInstallLocation))
                 {
@@ -181,9 +189,8 @@ namespace JMMClient
                         MessageBox.Show(Properties.Resources.Migration_AdminFail, Properties.Resources.Migration_Header,
                             MessageBoxButton.OK, MessageBoxImage.Information);
 
+                        Application.Current.Shutdown();
                         Environment.Exit(0);
-                        //Application.Current.Shutdown();
-                        return;
                     }
 
                     logger.Info("User is admin so starting migration.");
@@ -246,8 +253,6 @@ namespace JMMClient
                         ImagesPath = JMMServerImagePath;
                 }
                 SaveSettings();
-
-
             }
             catch (Exception e)
             {
