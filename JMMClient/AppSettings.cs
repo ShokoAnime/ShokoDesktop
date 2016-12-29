@@ -104,7 +104,6 @@ namespace JMMClient
                 target.FileName = ApplicationPath + "/logs/${shortdate}.txt";
                 LogManager.ReconfigExistingLoggers();
 
-
                 disabledSave = true;
                 string programlocation =
                     Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
@@ -178,12 +177,19 @@ namespace JMMClient
                 {
                     if (!Utils.IsAdministrator())
                     {
+                        logger.Error("Needed to migrate but user wasn't admin, prompting for restart as admin and shutting down afterwards.");
                         MessageBox.Show(Properties.Resources.Migration_AdminFail, Properties.Resources.Migration_Header,
                             MessageBoxButton.OK, MessageBoxImage.Information);
-                        Application.Current.Shutdown();
+
+                        Environment.Exit(0);
+                        //Application.Current.Shutdown();
                         return;
                     }
+
+                    logger.Info("User is admin so starting migration.");
+
                     Migration m = null;
+
                     try
                     {
                         m =
@@ -196,10 +202,9 @@ namespace JMMClient
                         }
 
                         // Grant access is causing errors during migration so use workaround script for now
-                        //Utils.GrantAccess(ApplicationPath);
-                        bool setProgramdataPermissions = SetProgramDataFolderPermission(ApplicationPath);
-                        if (!setProgramdataPermissions)
-                            logger.Info("Failed to set programdata permissions.");
+                        logger.Info("Setting up programdata permissions.");
+                        Utils.GrantAccess(ApplicationPath);
+                        logger.Info("Completed setup of programdata permissions.");
 
                         disabledSave = false;
                         SaveSettings();
@@ -376,66 +381,6 @@ namespace JMMClient
 
             return configPath;
         }
-
-        public static bool SetProgramDataFolderPermission(string ApplicationPath)
-        {
-            //C# version did not work, do not inherit permissions to childs.
-            string BatchFile = Path.Combine(System.IO.Path.GetTempPath(), "SetProgramDataFolderPermissions.bat");
-            int exitCode = -1;
-            Process proc = new Process();
-
-            proc.StartInfo.FileName = "cmd.exe";
-            proc.StartInfo.Arguments = $@"/c {BatchFile}";
-            proc.StartInfo.Verb = "runas";
-            proc.StartInfo.CreateNoWindow = true;
-            proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-            proc.StartInfo.UseShellExecute = true;
-
-            try
-            {
-                StreamWriter BatchFileStream = new StreamWriter(BatchFile);
-                string cmdOutput = "";
-
-                //Cleanup previous
-                try
-                {
-                    BatchFileStream.WriteLine(@"icacls C:\ProgramData\ShokoDesktop /grant *S-1-1-0:(OI)(CI)F /T");
-                    BatchFileStream.WriteLine(@"icacls C:\ProgramData\ShokoServer /grant *S-1-1-0:(OI)(CI)F /T");
-                }
-                finally
-                {
-                    BatchFileStream.Close();
-                }
-
-
-                proc.Start();
-                proc.WaitForExit();
-
-                exitCode = proc.ExitCode;
-                proc.Close();
-
-                File.Delete(BatchFile);
-
-                if (exitCode == 0)
-                {
-                    logger.Info("Successfully set SetProgramDataFolderPermission.");
-                }
-                else
-                {
-                    logger.Error("SetProgramDataFolderPermission returned error code: " +
-                                 exitCode);
-                }
-            }
-            catch (Exception ex)
-            {
-                logger.Error("Unexpected error during SetProgramDataFolderPermission: {0}", ex);
-
-                return false;
-            }
-
-            return true;
-        }
-
 
         public static string AnimeEpisodesText
         {
