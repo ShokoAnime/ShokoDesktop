@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Resources;
+using System.Threading;
 using System.Windows;
 using Microsoft.Win32;
 
@@ -47,7 +48,9 @@ namespace JMMClient
               string path = Path.Combine(AppSettings.ApplicationPath, "settings.json");
               if (File.Exists(path))
               {
-                UninstallJMMDesktop();
+                Thread t = new Thread(UninstallJMMDesktop);
+                t.IsBackground = true;
+                t.Start();
               }
             }
 
