@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace JMMClient.Forms
@@ -37,10 +40,9 @@ namespace JMMClient.Forms
             set { SetValue(IsExistingGroupProperty, value); }
         }
 
-        public List<AnimeGroupVM> AllGroups {
-            get { return MainListHelperVM.Instance.AllGroupsDictionary.Select(a=>a.Value).ToList(); }
-        }
-       
+        public ICollectionView ViewGroups { get; set; }
+        public ObservableCollection<AnimeGroupVM> AllGroups { get; set; }
+
         //private AnimeSeriesVM animeSeries = null;
 
         public MoveSeries()
@@ -178,9 +180,21 @@ namespace JMMClient.Forms
 
         public void Init(AnimeSeriesVM series)
         {
+            AllGroups = new ObservableCollection<AnimeGroupVM>();
+            ViewGroups = CollectionViewSource.GetDefaultView(AllGroups);
+            ViewGroups.SortDescriptions.Add(new SortDescription("SortName", ListSortDirection.Ascending));
+
+            List<JMMServerBinary.Contract_AnimeGroup> grpsRaw = JMMServerVM.Instance.clientBinaryHTTP.GetAllGroups(JMMServerVM.Instance.CurrentUser.JMMUserID.Value);
+
+            foreach (JMMServerBinary.Contract_AnimeGroup grp in grpsRaw)
+            {
+                AnimeGroupVM grpNew = new AnimeGroupVM(grp);
+                AllGroups.Add(grpNew);
+            }
+
+            ViewGroups.Filter = GroupSearchFilter;
+
             Series = series;
-            MainListHelperVM.Instance.ViewGroupsForms.Filter = GroupSearchFilter;
-            MainListHelperVM.Instance.SetGroupFilterSortingOnForms(null);
 
             txtGroupName.Text = Series.SeriesName;
             txtGroupSortName.Text = Series.SeriesName;
@@ -188,7 +202,7 @@ namespace JMMClient.Forms
 
         void txtGroupSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            MainListHelperVM.Instance.ViewGroupsForms.Refresh();
+            ViewGroups.Refresh();
         }
 
         private bool GroupSearchFilter(object obj)

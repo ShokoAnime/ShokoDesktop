@@ -7,7 +7,7 @@ namespace JMMClient
     {
         public static bool EvaluateGroupTextSearch(AnimeGroupVM grp, string filterText)
         {
-            if (String.IsNullOrEmpty(filterText) || grp == null)
+            if (string.IsNullOrEmpty(filterText) || grp == null)
                 return true;
 
             // do this so that when viewing sub groups they don't get filtered
@@ -23,23 +23,23 @@ namespace JMMClient
             index = grp.SortName.IndexOf(filterText, 0, StringComparison.InvariantCultureIgnoreCase);
             if (index > -1) return true;
 
-			// check the tags
-			if (grp.Stat_AllTags != null && grp.Stat_AllTags.Count>0)
-			{
+            // check the tags
+            if (grp.Stat_AllTags != null && grp.Stat_AllTags.Count > 0)
+            {
 
-			    if (grp.Stat_AllTags.Contains(filterText, StringComparer.InvariantCultureIgnoreCase))
-			        return true;
-			}
+                if (grp.Stat_AllTags.Contains(filterText, StringComparer.InvariantCultureIgnoreCase))
+                    return true;
+            }
 
             // check the custom tags
-            if (grp.Stat_AllCustomTags != null && grp.Stat_AllCustomTags.Count>0)
+            if (grp.Stat_AllCustomTags != null && grp.Stat_AllCustomTags.Count > 0)
             {
                 if (grp.Stat_AllCustomTags.Contains(filterText, StringComparer.InvariantCultureIgnoreCase))
                     return true;
             }
 
-			// search the titles (romaji name, english names) etc from anidb
-			if (grp.Stat_AllTitles != null && grp.Stat_AllTitles.Count > 0)
+            // search the titles (romaji name, english names) etc from anidb
+            if (grp.Stat_AllTitles != null && grp.Stat_AllTitles.Count > 0)
             {
                 if (grp.Stat_AllTitles.SubContains(filterText))
                     return true;
@@ -50,7 +50,7 @@ namespace JMMClient
 
         public static bool EvaluateSeriesTextSearch(AnimeSeriesVM series, string filterText, SeriesSearchType searchType)
         {
-            if (String.IsNullOrEmpty(filterText) || series == null)
+            if (string.IsNullOrEmpty(filterText) || series == null)
                 return true;
 
             if (!string.IsNullOrEmpty(series.SeriesNameOverride))
@@ -69,7 +69,7 @@ namespace JMMClient
 
         public static bool EvaluateAnimeTextSearch(AniDB_AnimeVM anime, string filterText, SeriesSearchType searchType)
         {
-            if (String.IsNullOrEmpty(filterText) || anime == null)
+            if (string.IsNullOrEmpty(filterText) || anime == null)
                 return true;
 
             // search the romaji name, english names etc from anidb
@@ -77,15 +77,15 @@ namespace JMMClient
                 return true;
 
 
-			if (searchType == SeriesSearchType.Everything)
-			{
+            if (searchType == SeriesSearchType.Everything)
+            {
                 // check the tags
                 if (anime.AllTags.Contains(filterText, StringComparer.InvariantCultureIgnoreCase))
                     return true;
-			}
+            }
 
-			return false;
-		}
+            return false;
+        }
 
         public static bool EvaluateAnimeTextSearch(AniDB_AnimeVM anime, string filterText)
         {

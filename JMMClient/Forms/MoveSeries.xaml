@@ -112,7 +112,7 @@
                  Visibility="{Binding Path=IsExistingGroup, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:MoveSeries}}, Converter={StaticResource BooleanToVisibilityConverter}}"
                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemTemplate="{DynamicResource MainList_AnimeGroupSimpleTemplate}" 
                         ItemContainerStyle="{DynamicResource ListBoxItemStyle}" 
-                        ItemsSource="{Binding Path=AllGroups, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:MoveSeries}}}"
+                        ItemsSource="{Binding Path=ViewGroups, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:MoveSeries}}}"
                         />
 
         
