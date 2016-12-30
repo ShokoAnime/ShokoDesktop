@@ -1126,8 +1126,6 @@ namespace JMMClient
         {
             string BatchFile = Path.Combine(System.IO.Path.GetTempPath(), "RestartAsAdmin.bat");
             var exeName = Process.GetCurrentProcess().MainModule.FileName;
-
-            int exitCode = -1;
             Process proc = new Process();
 
             proc.StartInfo.FileName = "cmd.exe";
@@ -1141,12 +1139,11 @@ namespace JMMClient
             {
                 StreamWriter BatchFileStream = new StreamWriter(BatchFile);
 
-                //Cleanup previous
                 try
                 {
                     // Wait a few seconds to allow shutdown later on, use task kill just in case still running
                     string batchline = $"timeout 5 && taskkill /F /IM {System.AppDomain.CurrentDomain.FriendlyName} /fi \"memusage gt 2\" && \"{exeName}\"";
-                    Debug.WriteLine(LogLevel.Info, "RestartAsAdmin batch line: " + batchline);
+                    logger.Log(LogLevel.Info, "RestartAsAdmin batch line: " + batchline);
                     BatchFileStream.WriteLine(batchline);
                 }
                 finally
@@ -1160,7 +1157,7 @@ namespace JMMClient
             }
             catch (Exception ex)
             {
-                logger.Log(LogLevel.Info, "Error occured during RestartAsAdmin(): " + ex.Message);
+                logger.Log(LogLevel.Error, "Error occured during RestartAsAdmin(): " + ex.Message);
             }
         }
     }
