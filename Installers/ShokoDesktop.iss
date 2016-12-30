@@ -10,7 +10,7 @@
 
 AppId={{EFA49A76-085F-4E64-AEC4-6ACA707A5D91}
 AppName=Shoko Desktop
-AppVersion=3.7.0.0
+AppVersion=3.7.0.1
 AppVerName=Shoko Desktop
 AppPublisher=JMM
 AppPublisherURL=https://github.com/japanesemediamanager
@@ -93,7 +93,6 @@ Source: "..\JMMClient\bin\Release\nl\*"; DestDir: "{app}\nl"; Flags: ignoreversi
 Source: "..\JMMClient\bin\Release\pl\*"; DestDir: "{app}\pl"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "..\JMMClient\bin\Release\pt\*"; DestDir: "{app}\pt"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "..\JMMClient\bin\Release\ru\*"; DestDir: "{app}\ru"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "..\JMMClient\bin\Release\Scripts\*"; DestDir: "{app}\Scripts\"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "..\JMMClient\bin\Release\x64\*"; DestDir: "{app}\x64"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "..\JMMClient\bin\Release\x86\*"; DestDir: "{app}\x86"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
