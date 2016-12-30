@@ -104,6 +104,8 @@ namespace JMMClient
                 target.FileName = ApplicationPath + "/logs/${shortdate}.txt";
                 LogManager.ReconfigExistingLoggers();
 
+                bool startedWithFreshConfig = false;
+
                 disabledSave = true;
                 string programlocation =
                     Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
@@ -144,8 +146,8 @@ namespace JMMClient
                 }
                 else
                 {
-                    LoadLegacySettingsFromFile(true);
-
+                    startedWithFreshConfig = true;
+                    LoadLegacySettingsFromFile(true);                   
                 }
 
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
@@ -181,18 +183,18 @@ namespace JMMClient
                         break;
                     }
                 }
+
                 if (migrate)
                 {
                     if (!Utils.IsAdministrator())
                     {
-                        logger.Error("Needed to migrate but user wasn't admin, prompting for restart as admin and shutting down afterwards.");
-                        MessageBox.Show(Properties.Resources.Migration_AdminFail, Properties.Resources.Migration_Header,
-                            MessageBoxButton.OK, MessageBoxImage.Information);
+                        logger.Info("Needed to migrate but user wasn't admin, restarting as admin.");
+                        //MessageBox.Show(Properties.Resources.Migration_AdminFail, Properties.Resources.Migration_Header,
+                        //    MessageBoxButton.OK, MessageBoxImage.Information);
 
-                        Application.Current.Shutdown();
-                        Environment.Exit(0);
+                        Utils.RestartAsAdmin();
+                        return;
                     }
-
                     logger.Info("User is admin so starting migration.");
 
                     Migration m = null;
@@ -253,6 +255,12 @@ namespace JMMClient
                         ImagesPath = JMMServerImagePath;
                 }
                 SaveSettings();
+
+                // Just in case start once for new configurations as admin to set permissions if needed
+                if (startedWithFreshConfig && !Utils.IsAdministrator())
+                {
+                    Utils.RestartAsAdmin();
+                }
             }
             catch (Exception e)
             {
