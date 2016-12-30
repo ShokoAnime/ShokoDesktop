@@ -259,6 +259,7 @@ namespace JMMClient
                 // Just in case start once for new configurations as admin to set permissions if needed
                 if (startedWithFreshConfig && !Utils.IsAdministrator())
                 {
+                    logger.Info("User has fresh config, restarting once as admin.");
                     Utils.RestartAsAdmin();
                 }
             }
