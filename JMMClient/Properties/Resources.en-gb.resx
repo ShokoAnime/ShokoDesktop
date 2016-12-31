@@ -4373,9 +4373,6 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="Settings_SetDefault" xml:space="preserve">
     <value>Use Default</value>
   </data>
-  <data name="Settings_SetShokoServer" xml:space="preserve">
-    <value>Use ShokoServer Folder</value>
-  </data>
   <data name="Migration_Header" xml:space="preserve">
     <value>Migration Status</value>
   </data>
@@ -4471,5 +4468,8 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   </data>
   <data name="DuplicateInstallDetectedQuestion" xml:space="preserve">
     <value>You have both Shoko Desktop and JMM Desktop installed. Do you want to uninstall JMM Desktop?!</value>
+  </data>
+  <data name="Settings_SetShokoServer" xml:space="preserve">
+    <value>Use Shoko Server Folder</value>
   </data>
 </root>

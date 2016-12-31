@@ -4433,9 +4433,6 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   <data name="Settings_SetDefault" xml:space="preserve">
     <value>Verwenden Sie Standard</value>
   </data>
-  <data name="Settings_SetShokoServer" xml:space="preserve">
-    <value>ShokoServer-Ordner verwenden</value>
-  </data>
   <data name="MD5" xml:space="preserve">
     <value>MD5</value>
   </data>
@@ -4471,5 +4468,8 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   </data>
   <data name="Migration_AdminPass2" xml:space="preserve">
     <value>Sobald dieser Prozess abgeschlossen ist, Shoko-Desktop schließen und nicht mehr von Administratorrechten ausführen müssen.!</value>
+  </data>
+  <data name="Settings_SetShokoServer" xml:space="preserve">
+    <value>Shoko Serverordner zu verwenden</value>
   </data>
 </root>

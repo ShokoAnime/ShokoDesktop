@@ -4433,9 +4433,6 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   <data name="Settings_SetDefault" xml:space="preserve">
     <value>Utilisation par défaut</value>
   </data>
-  <data name="Settings_SetShokoServer" xml:space="preserve">
-    <value>Utilisez le dossier ShokoServer</value>
-  </data>
   <data name="MD5" xml:space="preserve">
     <value>MD5</value>
   </data>
@@ -4471,5 +4468,8 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   </data>
   <data name="Migration_AdminPass2" xml:space="preserve">
     <value>une fois ce processus terminé Shoko Desktop fermer et n&amp;#39;a plus besoin de privilèges administratifs pour exécuter.!</value>
+  </data>
+  <data name="Settings_SetShokoServer" xml:space="preserve">
+    <value>Utiliser le dossier du serveur de Shoko</value>
   </data>
 </root>

@@ -4433,9 +4433,6 @@
   <data name="Settings_SetDefault" xml:space="preserve">
     <value>Usar padrão</value>
   </data>
-  <data name="Settings_SetShokoServer" xml:space="preserve">
-    <value>Use a pasta ShokoServer</value>
-  </data>
   <data name="MD5" xml:space="preserve">
     <value>MD5</value>
   </data>
@@ -4471,5 +4468,8 @@
   </data>
   <data name="Migration_AdminPass2" xml:space="preserve">
     <value>uma vez que este processo estiver concluído Shoko área de trabalho será fechado e não precisa de privilégios administrativos para executar.!</value>
+  </data>
+  <data name="Settings_SetShokoServer" xml:space="preserve">
+    <value>Use a pasta do servidor de Shoko</value>
   </data>
 </root>

@@ -4433,9 +4433,6 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
   <data name="Settings_SetDefault" xml:space="preserve">
     <value>Valor por defecto</value>
   </data>
-  <data name="Settings_SetShokoServer" xml:space="preserve">
-    <value>Use la carpeta ShokoServer</value>
-  </data>
   <data name="MD5" xml:space="preserve">
     <value>MD5</value>
   </data>
@@ -4471,5 +4468,8 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
   </data>
   <data name="Migration_AdminPass2" xml:space="preserve">
     <value>Una vez que este proceso se haya completado Shoko escritorio se cerrará y ya no necesita privilegios de administrador para funcionar.!</value>
+  </data>
+  <data name="Settings_SetShokoServer" xml:space="preserve">
+    <value>Use la carpeta de servidor de Shoko</value>
   </data>
 </root>

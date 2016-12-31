@@ -4433,9 +4433,6 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   <data name="Settings_SetDefault" xml:space="preserve">
     <value>Usa predefinito</value>
   </data>
-  <data name="Settings_SetShokoServer" xml:space="preserve">
-    <value>Utilizzare la cartella di ShokoServer</value>
-  </data>
   <data name="MD5" xml:space="preserve">
     <value>MD5</value>
   </data>
@@ -4471,5 +4468,8 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   </data>
   <data name="Migration_AdminPass2" xml:space="preserve">
     <value>Una volta che questo processo è completo Shoko Desktop si chiude e non è più necessario disporre di privilegi amministrativi per l&amp;#39;esecuzione.!</value>
+  </data>
+  <data name="Settings_SetShokoServer" xml:space="preserve">
+    <value>Utilizzare la cartella Server di Shoko</value>
   </data>
 </root>

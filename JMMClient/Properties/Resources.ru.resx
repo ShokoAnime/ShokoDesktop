@@ -4433,9 +4433,6 @@
   <data name="Settings_SetDefault" xml:space="preserve">
     <value>Использовать по умолчанию</value>
   </data>
-  <data name="Settings_SetShokoServer" xml:space="preserve">
-    <value>Используйте папку ShokoServer</value>
-  </data>
   <data name="MD5" xml:space="preserve">
     <value>MD5</value>
   </data>
@@ -4471,5 +4468,8 @@
   </data>
   <data name="Migration_AdminPass2" xml:space="preserve">
     <value>как только этот процесс будет завершен Шоко Desktop будет закрыт и больше не требуется прав администратора.!</value>
+  </data>
+  <data name="Settings_SetShokoServer" xml:space="preserve">
+    <value>Используйте папку сервера Шоко</value>
   </data>
 </root>

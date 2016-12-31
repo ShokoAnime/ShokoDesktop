@@ -4435,9 +4435,6 @@
   <data name="Settings_SetDefault" xml:space="preserve">
     <value>Użyj domyślnego</value>
   </data>
-  <data name="Settings_SetShokoServer" xml:space="preserve">
-    <value>Użyj folderu ShokoServer</value>
-  </data>
   <data name="MD5" xml:space="preserve">
     <value>MD5</value>
   </data>
@@ -4473,5 +4470,8 @@
   </data>
   <data name="Migration_AdminPass2" xml:space="preserve">
     <value>po zakończeniu tego procesu Shoko pulpitu zostanie zamknięta i nie wymaga uprawnień administracyjnych do uruchomienia.!</value>
+  </data>
+  <data name="Settings_SetShokoServer" xml:space="preserve">
+    <value>Użyj folderu serwera Shoko</value>
   </data>
 </root>

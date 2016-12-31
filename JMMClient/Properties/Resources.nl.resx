@@ -4433,9 +4433,6 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   <data name="Settings_SetDefault" xml:space="preserve">
     <value>Standaard gebruiken</value>
   </data>
-  <data name="Settings_SetShokoServer" xml:space="preserve">
-    <value>Map van de ShokoServer gebruiken</value>
-  </data>
   <data name="MD5" xml:space="preserve">
     <value>MD5</value>
   </data>
@@ -4471,5 +4468,8 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   </data>
   <data name="Migration_AdminPass2" xml:space="preserve">
     <value>Zodra dit proces is voltooid Shoko Desktop zal sluiten en Administratieve voorrechten niet langer nodig om te draaien.!</value>
+  </data>
+  <data name="Settings_SetShokoServer" xml:space="preserve">
+    <value>Gebruik Shoko servermap</value>
   </data>
 </root>

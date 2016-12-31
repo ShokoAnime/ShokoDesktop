@@ -83,7 +83,7 @@
             <Button Name="btnSetJMMServer" Style="{DynamicResource RoundButtonStyle}" Margin="10,0,0,0">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                     <Image Height="16" Width="16" Source="/Images/24_folder.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Settings_SetJMMServer}" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Settings_SetShokoServer}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
             <Button Name="btnChooseImagesFolder" Style="{DynamicResource RoundButtonStyle}" Margin="10,0,0,0">

@@ -6136,7 +6136,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to once this process is complete Shoko Desktop will restart and no longer need Administrative Privileges to run..
+        ///   Looks up a localized string similar to once this process is complete Shoko Desktop will close and no longer need Administrative Privileges to run..
         /// </summary>
         public static string Migration_AdminPass2 {
             get {
@@ -9286,7 +9286,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use ShokoServer Folder.
+        ///   Looks up a localized string similar to Use Shoko Server Folder.
         /// </summary>
         public static string Settings_SetShokoServer {
             get {
