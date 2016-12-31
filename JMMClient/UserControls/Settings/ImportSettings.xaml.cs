@@ -34,9 +34,13 @@ namespace JMMClient.UserControls
         private void BtnSetJMMServer_Click(object sender, RoutedEventArgs e)
         {
             string path = AppSettings.JMMServerImagePath;
-            if (string.IsNullOrEmpty(path) || !Directory.Exists(path))
-                return;
-            AppSettings.ImagesPath = path;
+          if (string.IsNullOrEmpty(path) || !Directory.Exists(path))
+          {
+            if(path != null)
+              MessageBox.Show(string.Format(Properties.Resources.Settings_SetShokoServerFolderNonExistent, path));
+            return;
+          }
+          AppSettings.ImagesPath = path;
         }
 
         private void BtnSetDefaultFolder_Click(object sender, RoutedEventArgs e)

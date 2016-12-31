@@ -9295,6 +9295,15 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Shoko image path doesn&apos;t exist: {0}.
+        /// </summary>
+        public static string Settings_SetShokoServerFolderNonExistent {
+            get {
+                return ResourceManager.GetString("Settings_SetShokoServerFolderNonExistent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SHA1.
         /// </summary>
         public static string SHA1 {
