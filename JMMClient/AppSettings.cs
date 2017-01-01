@@ -113,11 +113,15 @@ namespace JMMClient
                         Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
                     List<MigrationDirectory> migrationdirs = new List<MigrationDirectory>();
 
-                    migrationdirs.Add(new MigrationDirectory
+                    if (!string.IsNullOrEmpty(programlocation) && !string.IsNullOrEmpty(ApplicationPath))
                     {
-                        From = Path.Combine(programlocation, "logs"),
-                        To = Path.Combine(ApplicationPath, "logs")
-                    });
+
+                        migrationdirs.Add(new MigrationDirectory
+                        {
+                            From = Path.Combine(programlocation, "logs"),
+                            To = Path.Combine(ApplicationPath, "logs")
+                        });
+                    }
 
                     string jmmDesktopInstallLocation = "";
                     try
@@ -147,11 +151,15 @@ namespace JMMClient
                                 catch (Exception){}
                             }
                         }
-                        migrationdirs.Add(new MigrationDirectory
+
+                        if (!string.IsNullOrEmpty(jmmDesktopInstallLocation) && !string.IsNullOrEmpty(ApplicationPath))
                         {
-                            From = Path.Combine(jmmDesktopInstallLocation, "logs"),
-                            To = Path.Combine(ApplicationPath, "logs")
-                        });
+                            migrationdirs.Add(new MigrationDirectory
+                            {
+                                From = Path.Combine(jmmDesktopInstallLocation, "logs"),
+                                To = Path.Combine(ApplicationPath, "logs")
+                            });
+                        }
                     }
 
                     string path = Path.Combine(ApplicationPath, "settings.json");
@@ -168,11 +176,14 @@ namespace JMMClient
                     Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
                     if (BaseImagesPathIsDefault || !Directory.Exists(BaseImagesPath))
                     {
-                        migrationdirs.Add(new MigrationDirectory
+                        if (!string.IsNullOrEmpty(programlocation))
                         {
-                            From = Path.Combine(programlocation, "images"),
-                            To = DefaultImagePath
-                        });
+                            migrationdirs.Add(new MigrationDirectory
+                            {
+                                From = Path.Combine(programlocation, "images"),
+                                To = DefaultImagePath
+                            });
+                        }
 
                         if (!string.IsNullOrEmpty(jmmDesktopInstallLocation))
                         {
@@ -188,8 +199,14 @@ namespace JMMClient
                         ImagesPath = BaseImagesPath;
                     }
 
-                    bool migrate = !Directory.Exists(ApplicationPath) ||
-                                   File.Exists(Path.Combine(programlocation, "AnimeEpisodes.txt"));
+                    bool migrate = false;
+
+                    if (!string.IsNullOrEmpty(ApplicationPath) && !string.IsNullOrEmpty(programlocation))
+                    {
+                        migrate = !Directory.Exists(ApplicationPath) ||
+                                  File.Exists(Path.Combine(programlocation, "AnimeEpisodes.txt"));
+                    }
+
                     foreach (MigrationDirectory m in migrationdirs)
                     {
                         if (m.ShouldMigrate)
@@ -240,9 +257,13 @@ namespace JMMClient
                                     break;
                                 }
                             }
-                            if (File.Exists(Path.Combine(programlocation, "AnimeEpisodes.txt")))
+
+                            if (!string.IsNullOrEmpty(programlocation))
                             {
-                                File.Move(Path.Combine(programlocation, "AnimeEpisodes.txt"), AnimeEpisodesText);
+                                if (File.Exists(Path.Combine(programlocation, "AnimeEpisodes.txt")))
+                                {
+                                    File.Move(Path.Combine(programlocation, "AnimeEpisodes.txt"), AnimeEpisodesText);
+                                }
                             }
                         }
                         catch (Exception e)
