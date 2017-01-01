@@ -133,12 +133,12 @@ namespace JMMClient
                             "Error occured in LoadSettings() during jmmDesktopInstallLocation readout: " + ex.Message);
                     }
 
-                    if (!string.IsNullOrEmpty(jmmDesktopInstallLocation))
+                    if (!string.IsNullOrEmpty(ApplicationPath))
                     {
                         // Check if programdata is write-able
-                        if (Directory.Exists(jmmDesktopInstallLocation))
+                        if (Directory.Exists(ApplicationPath))
                         {
-                            if (!IsDirectoryWritable(jmmDesktopInstallLocation))
+                            if (!Utils.IsDirectoryWritable(ApplicationPath))
                             {
                                 try
                                 {
@@ -442,30 +442,6 @@ namespace JMMClient
             }
 
             return configPath;
-        }
-
-        public static bool IsDirectoryWritable(string dirPath, bool throwIfFails = false)
-        {
-            try
-            {
-                using (FileStream fs = File.Create(
-                    Path.Combine(
-                        dirPath,
-                        Path.GetRandomFileName()
-                    ),
-                    1,
-                    FileOptions.DeleteOnClose)
-                )
-                { }
-                return true;
-            }
-            catch
-            {
-                if (throwIfFails)
-                    throw;
-                else
-                    return false;
-            }
         }
 
         public static string AnimeEpisodesText
