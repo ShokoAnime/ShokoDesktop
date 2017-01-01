@@ -99,174 +99,222 @@ namespace JMMClient
         {
             try
             {
-                //Reconfigure log file to applicationpath
-                var target = (FileTarget) LogManager.Configuration.FindTargetByName("file");
-                target.FileName = ApplicationPath + "/logs/${shortdate}.txt";
-                LogManager.ReconfigExistingLoggers();
-
-                bool startedWithFreshConfig = false;
-
-                disabledSave = true;
-                string programlocation =
-                    Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-                List<MigrationDirectory> migrationdirs = new List<MigrationDirectory>();
-
-                migrationdirs.Add(new MigrationDirectory
-                {
-                    From = Path.Combine(programlocation, "logs"),
-                    To = Path.Combine(ApplicationPath, "logs")
-                });
-
-                string jmmDesktopInstallLocation = "";
                 try
                 {
-                  // Check and see if we have old JMM Desktop installation and add to migration if needed
-                  jmmDesktopInstallLocation = (string) Registry.GetValue(
-                    @"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{AD24689F-020C-4C53-B649-99BB49ED6238}_is1",
-                    "InstallLocation", null);
-                }
-                catch (Exception ex)
-                {
-                    logger.Log(LogLevel.Error, "Error occured in LoadSettings() during jmmDesktopInstallLocation readout: " + ex.Message);
-                }
+                    //Reconfigure log file to applicationpath
+                    var target = (FileTarget) LogManager.Configuration.FindTargetByName("file");
+                    target.FileName = ApplicationPath + "/logs/${shortdate}.txt";
+                    LogManager.ReconfigExistingLoggers();
 
-                if (!string.IsNullOrEmpty(jmmDesktopInstallLocation))
-                {
+                    bool startedWithFreshConfig = false;
+
+                    disabledSave = true;
+                    string programlocation =
+                        Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+                    List<MigrationDirectory> migrationdirs = new List<MigrationDirectory>();
+
                     migrationdirs.Add(new MigrationDirectory
                     {
-                        From = Path.Combine(jmmDesktopInstallLocation, "logs"),
+                        From = Path.Combine(programlocation, "logs"),
                         To = Path.Combine(ApplicationPath, "logs")
                     });
-                }
 
-                string path = Path.Combine(ApplicationPath, "settings.json");
-                if (File.Exists(path))
-                {
-                    appSettings = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(path));
-                }
-                else
-                {
-                    startedWithFreshConfig = true;
-                    LoadLegacySettingsFromFile(true);                   
-                }
-
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
-                if (BaseImagesPathIsDefault || !Directory.Exists(BaseImagesPath))
-                {
-                    migrationdirs.Add(new MigrationDirectory
+                    string jmmDesktopInstallLocation = "";
+                    try
                     {
-                        From = Path.Combine(programlocation, "images"),
-                        To = DefaultImagePath
-                    });
+                        // Check and see if we have old JMM Desktop installation and add to migration if needed
+                        jmmDesktopInstallLocation = (string) Registry.GetValue(
+                            @"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{AD24689F-020C-4C53-B649-99BB49ED6238}_is1",
+                            "InstallLocation", null);
+                    }
+                    catch (Exception ex)
+                    {
+                        logger.Log(LogLevel.Error,
+                            "Error occured in LoadSettings() during jmmDesktopInstallLocation readout: " + ex.Message);
+                    }
 
                     if (!string.IsNullOrEmpty(jmmDesktopInstallLocation))
                     {
-                        migrationdirs.Add(new MigrationDirectory
+                        // Check if programdata is write-able
+                        if (Directory.Exists(jmmDesktopInstallLocation))
                         {
-                            From = Path.Combine(jmmDesktopInstallLocation, "images"),
-                            To = DefaultImagePath
-                        });
-                    }
-                }
-                else if (Directory.Exists(BaseImagesPath))
-                {
-                    ImagesPath = BaseImagesPath;
-                }
-
-                bool migrate = !Directory.Exists(ApplicationPath) ||
-                               File.Exists(Path.Combine(programlocation, "AnimeEpisodes.txt"));
-                foreach (MigrationDirectory m in migrationdirs)
-                {
-                    if (m.ShouldMigrate)
-                    {
-                        migrate = true;
-                        break;
-                    }
-                }
-
-                if (migrate)
-                {
-                    if (!Utils.IsAdministrator())
-                    {
-                        logger.Info("Needed to migrate but user wasn't admin, restarting as admin.");
-                        //MessageBox.Show(Properties.Resources.Migration_AdminFail, Properties.Resources.Migration_Header,
-                        //    MessageBoxButton.OK, MessageBoxImage.Information);
-
-                        Utils.RestartAsAdmin();
-                        return;
-                    }
-                    logger.Info("User is admin so starting migration.");
-
-                    Migration m = null;
-
-                    try
-                    {
-                        m =
-                            new Migration(
-                                $"{Properties.Resources.Migration_AdminPass1} {ApplicationPath}, {Properties.Resources.Migration_AdminPass2}");
-                        m.Show();
-                        if (!Directory.Exists(ApplicationPath))
-                        {
-                            Directory.CreateDirectory(ApplicationPath);
-                        }
-
-                        // Grant access is causing errors during migration so use workaround script for now
-                        logger.Info("Setting up programdata permissions.");
-                        Utils.GrantAccess(ApplicationPath);
-                        logger.Info("Completed setup of programdata permissions.");
-
-                        disabledSave = false;
-                        SaveSettings();
-
-                        foreach (MigrationDirectory md in migrationdirs)
-                        {
-                            if (!md.SafeMigrate())
+                            if (!IsDirectoryWritable(jmmDesktopInstallLocation))
                             {
-                                break;
+                                try
+                                {
+                                    Utils.GrantAccess(ApplicationPath);
+                                }
+                                catch (Exception){}
                             }
                         }
-                        if (File.Exists(Path.Combine(programlocation, "AnimeEpisodes.txt")))
+                        migrationdirs.Add(new MigrationDirectory
                         {
-                            File.Move(Path.Combine(programlocation, "AnimeEpisodes.txt"), AnimeEpisodesText);
+                            From = Path.Combine(jmmDesktopInstallLocation, "logs"),
+                            To = Path.Combine(ApplicationPath, "logs")
+                        });
+                    }
+
+                    string path = Path.Combine(ApplicationPath, "settings.json");
+                    if (File.Exists(path))
+                    {
+                        appSettings = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(path));
+                    }
+                    else
+                    {
+                        startedWithFreshConfig = true;
+                        LoadLegacySettingsFromFile(true);
+                    }
+
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+                    if (BaseImagesPathIsDefault || !Directory.Exists(BaseImagesPath))
+                    {
+                        migrationdirs.Add(new MigrationDirectory
+                        {
+                            From = Path.Combine(programlocation, "images"),
+                            To = DefaultImagePath
+                        });
+
+                        if (!string.IsNullOrEmpty(jmmDesktopInstallLocation))
+                        {
+                            migrationdirs.Add(new MigrationDirectory
+                            {
+                                From = Path.Combine(jmmDesktopInstallLocation, "images"),
+                                To = DefaultImagePath
+                            });
                         }
                     }
-                    catch (Exception e)
+                    else if (Directory.Exists(BaseImagesPath))
                     {
-                        MessageBox.Show(Properties.Resources.Migration_Error + " ", e.ToString());
-                        logger.Error(e, "Error occured during LoadSettings: {0}", e.ToString());
+                        ImagesPath = BaseImagesPath;
                     }
 
-                    m?.Close();
-                    Thread.Sleep(5000);
-                    Application.Current.Shutdown();
-                    return;
-                }
-                disabledSave = false;
+                    bool migrate = !Directory.Exists(ApplicationPath) ||
+                                   File.Exists(Path.Combine(programlocation, "AnimeEpisodes.txt"));
+                    foreach (MigrationDirectory m in migrationdirs)
+                    {
+                        if (m.ShouldMigrate)
+                        {
+                            migrate = true;
+                            break;
+                        }
+                    }
 
-                if (Directory.Exists(BaseImagesPath) && string.IsNullOrEmpty(ImagesPath))
-                {
-                    ImagesPath = BaseImagesPath;
-                }
-                if (string.IsNullOrEmpty(ImagesPath))
-                {
-                    if (string.IsNullOrEmpty(JMMServerImagePath))
-                        ImagesPath = DefaultImagePath;
-                    else
-                        ImagesPath = JMMServerImagePath;
-                }
-                SaveSettings();
+                    if (migrate)
+                    {
+                        if (!Utils.IsAdministrator())
+                        {
+                            logger.Info("Needed to migrate but user wasn't admin, restarting as admin.");
+                            //MessageBox.Show(Properties.Resources.Migration_AdminFail, Properties.Resources.Migration_Header,
+                            //    MessageBoxButton.OK, MessageBoxImage.Information);
 
-                // Just in case start once for new configurations as admin to set permissions if needed
-                if (startedWithFreshConfig && !Utils.IsAdministrator())
+                            Utils.RestartAsAdmin();
+                            return;
+                        }
+                        logger.Info("User is admin so starting migration.");
+
+                        Migration m = null;
+
+                        try
+                        {
+                            m =
+                                new Migration(
+                                    $"{Properties.Resources.Migration_AdminPass1} {ApplicationPath}, {Properties.Resources.Migration_AdminPass2}");
+                            m.Show();
+                            if (!Directory.Exists(ApplicationPath))
+                            {
+                                Directory.CreateDirectory(ApplicationPath);
+                            }
+
+                            // Grant access is causing errors during migration so use workaround script for now
+                            logger.Info("Setting up programdata permissions.");
+                            Utils.GrantAccess(ApplicationPath);
+                            logger.Info("Completed setup of programdata permissions.");
+
+                            disabledSave = false;
+                            SaveSettings();
+
+                            foreach (MigrationDirectory md in migrationdirs)
+                            {
+                                if (!md.SafeMigrate())
+                                {
+                                    break;
+                                }
+                            }
+                            if (File.Exists(Path.Combine(programlocation, "AnimeEpisodes.txt")))
+                            {
+                                File.Move(Path.Combine(programlocation, "AnimeEpisodes.txt"), AnimeEpisodesText);
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            MessageBox.Show(Properties.Resources.Migration_Error + " ", e.ToString());
+                            logger.Error(e, "Error occured during LoadSettings: {0}", e.ToString());
+                        }
+
+                        m?.Close();
+                        Thread.Sleep(5000);
+                        Application.Current.Shutdown();
+                        return;
+                    }
+                    disabledSave = false;
+
+                    if (Directory.Exists(BaseImagesPath) && string.IsNullOrEmpty(ImagesPath))
+                    {
+                        ImagesPath = BaseImagesPath;
+                    }
+                    if (string.IsNullOrEmpty(ImagesPath))
+                    {
+                        if (string.IsNullOrEmpty(JMMServerImagePath))
+                            ImagesPath = DefaultImagePath;
+                        else
+                            ImagesPath = JMMServerImagePath;
+                    }
+                    SaveSettings();
+
+                    // Just in case start once for new configurations as admin to set permissions if needed
+                    if (startedWithFreshConfig && !Utils.IsAdministrator())
+                    {
+                        logger.Info("User has fresh config, restarting once as admin.");
+                        Utils.RestartAsAdmin();
+                    }
+                }
+                catch (UnauthorizedAccessException ex)
                 {
-                    logger.Info("User has fresh config, restarting once as admin.");
-                    Utils.RestartAsAdmin();
+                    logger.Error(ex, $"Error occured during LoadSettings (UnauthorizedAccessException): {ex}");
+                    var message = "Failed to set folder permissions, do you want to automatically retry as admin?";
+
+                    if (!Utils.IsAdministrator())
+                        message = "Failed to set folder permissions, do you want to try and reset folder permissions?";
+
+                    System.Windows.Forms.DialogResult dr =
+                        System.Windows.Forms.MessageBox.Show(message, "Failed to set folder permissions",
+                            MessageBoxButtons.YesNo);
+
+                    switch (dr)
+                    {
+                        case DialogResult.Yes:
+                            // gonna try grant access again in advance
+                            try
+                            {
+                                Utils.GrantAccess(ApplicationPath);
+                            }
+                            catch (Exception)
+                            {
+                            }
+                            Utils.RestartAsAdmin();
+                            break;
+                        case DialogResult.No:
+                            System.Windows.Application.Current.Shutdown();
+                            Environment.Exit(0);
+                            break;
+                    }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                logger.Error(e, "Error occured during LoadSettings: {0}", e.ToString());
-                MessageBox.Show(Properties.Resources.Migration_LoadError + " ", e.ToString());
+                logger.Error(ex, $"Error occured during LoadSettings: {ex}");
+                MessageBox.Show(Properties.Resources.Migration_LoadError + " " + ex,
+                    Properties.Resources.Migration_LoadError);
                 Application.Current.Shutdown();
                 return;
             }
@@ -394,6 +442,30 @@ namespace JMMClient
             }
 
             return configPath;
+        }
+
+        public static bool IsDirectoryWritable(string dirPath, bool throwIfFails = false)
+        {
+            try
+            {
+                using (FileStream fs = File.Create(
+                    Path.Combine(
+                        dirPath,
+                        Path.GetRandomFileName()
+                    ),
+                    1,
+                    FileOptions.DeleteOnClose)
+                )
+                { }
+                return true;
+            }
+            catch
+            {
+                if (throwIfFails)
+                    throw;
+                else
+                    return false;
+            }
         }
 
         public static string AnimeEpisodesText
