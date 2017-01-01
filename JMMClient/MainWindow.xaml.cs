@@ -92,6 +92,18 @@ namespace JMMClient
 
         BackgroundWorker showDashboardWorker = new BackgroundWorker();
 
+        // Locks
+        private Object lockDashBoardTab = new Object();
+        private Object lockCollectionsTab = new Object();
+        private Object lockPlaylistsTab = new Object();
+        private Object lockBookmarksTab = new Object();
+        private Object lockServerTab = new Object();
+        private Object lockUtilitiesTab = new Object();
+        private Object lockSettingsTab = new Object();
+        private Object lockPinnedTab = new Object();
+        private Object lockDownloadsTab = new Object();
+        private Object lockSearchTab = new Object();
+
         public static VideoHandler videoHandler = new VideoHandler();
         private bool _blockTabControlChanged;
 
@@ -638,7 +650,7 @@ namespace JMMClient
         void showDashboardWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             RefreshOptions opt = e.Argument as RefreshOptions;
-
+            
             DashboardVM.Instance.RefreshData(opt.RefreshContinueWatching, opt.RefreshRecentAdditions,
                 opt.RefreshOtherWidgets, opt.RecentAdditionType);
         }
@@ -657,60 +669,68 @@ namespace JMMClient
 
                 if (tabIndex == TAB_MAIN_Dashboard)
                 {
-                    if (dash.Visibility == System.Windows.Visibility.Visible)
+                    lock (lockDashBoardTab)
                     {
-                        if (DashboardVM.Instance.EpsWatchNext_Recent.Count == 0 && DashboardVM.Instance.SeriesMissingEps.Count == 0
-                            && DashboardVM.Instance.MiniCalendar.Count == 0 && DashboardVM.Instance.RecommendationsWatch.Count == 0
-                            && DashboardVM.Instance.RecommendationsDownload.Count == 0)
+                        if (dash.Visibility == System.Windows.Visibility.Visible)
                         {
-                            tabControl1.IsEnabled = false;
-                            this.Cursor = Cursors.Wait;
+                            if (DashboardVM.Instance.EpsWatchNext_Recent.Count == 0 &&
+                                DashboardVM.Instance.SeriesMissingEps.Count == 0
+                                && DashboardVM.Instance.MiniCalendar.Count == 0 &&
+                                DashboardVM.Instance.RecommendationsWatch.Count == 0
+                                && DashboardVM.Instance.RecommendationsDownload.Count == 0)
+                            {
+                                tabControl1.IsEnabled = false;
+                                this.Cursor = Cursors.Wait;
 
-                            RecentAdditionsType addType = RecentAdditionsType.Episode;
-                            if (dash.cboDashRecentAdditionsType.SelectedIndex == 0) addType = RecentAdditionsType.Episode;
-                            if (dash.cboDashRecentAdditionsType.SelectedIndex == 1) addType = RecentAdditionsType.Series;
+                                RecentAdditionsType addType = RecentAdditionsType.Episode;
+                                if (dash.cboDashRecentAdditionsType.SelectedIndex == 0)
+                                    addType = RecentAdditionsType.Episode;
+                                if (dash.cboDashRecentAdditionsType.SelectedIndex == 1)
+                                    addType = RecentAdditionsType.Series;
 
-                            RefreshOptions opt = new RefreshOptions();
-                            opt.RecentAdditionType = addType;
-                            opt.RefreshRecentAdditions = true;
-                            opt.RefreshContinueWatching = true;
-                            opt.RefreshOtherWidgets = true;
-                            
-                            // Check if worker is busy and cancel if needed
-                            if(showDashboardWorker.IsBusy)
-                              showDashboardWorker.CancelAsync();
+                                RefreshOptions opt = new RefreshOptions();
+                                opt.RecentAdditionType = addType;
+                                opt.RefreshRecentAdditions = true;
+                                opt.RefreshContinueWatching = true;
+                                opt.RefreshOtherWidgets = true;
 
-                           if (!showDashboardWorker.IsBusy)
-                              showDashboardWorker.RunWorkerAsync(opt);
-                           else
-                              logger.Error("Failed to start showDashboardWorker for TAB_MAIN_Dashboard");
+                                // Check if worker is busy and cancel if needed
+                                if (showDashboardWorker.IsBusy)
+                                    showDashboardWorker.CancelAsync();
+
+                                if (!showDashboardWorker.IsBusy)
+                                    showDashboardWorker.RunWorkerAsync(opt);
+                                else
+                                    logger.Error("Failed to start showDashboardWorker for TAB_MAIN_Dashboard");
+                            }
                         }
-                    }
-                    else
-                    {
-                        if (DashboardMetroVM.Instance.ContinueWatching.Count == 0)
-                            dashMetro.RefreshAllData();
-                    }
+                        else
+                        {
+                            if (DashboardMetroVM.Instance.ContinueWatching.Count == 0)
+                                dashMetro.RefreshAllData();
+                        }
 
-                    if (JMMServerVM.Instance.AllCustomTags.Count == 0) JMMServerVM.Instance.RefreshAllCustomTags();
+                        if (JMMServerVM.Instance.AllCustomTags.Count == 0) JMMServerVM.Instance.RefreshAllCustomTags();
+                    }
                 }
 
                 if (tabIndex == TAB_MAIN_Collection)
                 {
-
-                    if (MainListHelperVM.Instance.AllGroupsDictionary.Count == 0)
+                    lock (lockCollectionsTab)
                     {
-                        MainListHelperVM.Instance.RefreshGroupsSeriesData();
-                    }
+                        if (MainListHelperVM.Instance.AllGroupsDictionary.Count == 0)
+                        {
+                            MainListHelperVM.Instance.RefreshGroupsSeriesData();
+                        }
 
-                    if (MainListHelperVM.Instance.CurrentWrapper == null && lbGroupsSeries.Items.Count == 0)
-                    {
-                        MainListHelperVM.Instance.SearchTextBox = txtGroupSearch;
-                        MainListHelperVM.Instance.CurrentGroupFilter = MainListHelperVM.Instance.AllGroupFilter;
-                        MainListHelperVM.Instance.ShowChildWrappers(MainListHelperVM.Instance.CurrentWrapper);
-                        lbGroupsSeries.SelectedIndex = 0;
+                        if (MainListHelperVM.Instance.CurrentWrapper == null && lbGroupsSeries.Items.Count == 0)
+                        {
+                            MainListHelperVM.Instance.SearchTextBox = txtGroupSearch;
+                            MainListHelperVM.Instance.CurrentGroupFilter = MainListHelperVM.Instance.AllGroupFilter;
+                            MainListHelperVM.Instance.ShowChildWrappers(MainListHelperVM.Instance.CurrentWrapper);
+                            lbGroupsSeries.SelectedIndex = 0;
+                        }
                     }
-
                     if (JMMServerVM.Instance.AllCustomTags.Count == 0) JMMServerVM.Instance.RefreshAllCustomTags();
                 }
 
@@ -723,51 +743,81 @@ namespace JMMClient
 
                 if (tabIndex == TAB_MAIN_Playlists)
                 {
-                    if (PlaylistHelperVM.Instance.Playlists == null || PlaylistHelperVM.Instance.Playlists.Count == 0) PlaylistHelperVM.Instance.RefreshData();
-                    if (lbPlaylists.Items.Count > 0 && lbPlaylists.SelectedIndex < 0)
-                        lbPlaylists.SelectedIndex = 0;
+                    lock (lockPlaylistsTab)
+                    {
+                        if (PlaylistHelperVM.Instance.Playlists == null ||
+                            PlaylistHelperVM.Instance.Playlists.Count == 0) PlaylistHelperVM.Instance.RefreshData();
+                        if (lbPlaylists.Items.Count > 0 && lbPlaylists.SelectedIndex < 0)
+                            lbPlaylists.SelectedIndex = 0;
+                    }
 
                 }
 
                 if (tabIndex == TAB_MAIN_Bookmarks)
                 {
-                    if (MainListHelperVM.Instance.BookmarkedAnime == null || MainListHelperVM.Instance.BookmarkedAnime.Count == 0) MainListHelperVM.Instance.RefreshBookmarkedAnime();
+                    lock (lockBookmarksTab)
+                    {
+                        if (MainListHelperVM.Instance.BookmarkedAnime == null ||
+                            MainListHelperVM.Instance.BookmarkedAnime.Count == 0)
+                            MainListHelperVM.Instance.RefreshBookmarkedAnime();
 
-                    if (ucBookmarks.lbBookmarks.Items.Count > 0)
-                        ucBookmarks.lbBookmarks.SelectedIndex = 0;
+                        if (ucBookmarks.lbBookmarks.Items.Count > 0)
+                            ucBookmarks.lbBookmarks.SelectedIndex = 0;
+                    }
 
                 }
 
                 if (tabIndex == TAB_MAIN_Search)
                 {
-                    if (MainListHelperVM.Instance.AllSeriesDictionary == null || MainListHelperVM.Instance.AllSeriesDictionary.Count == 0) MainListHelperVM.Instance.RefreshGroupsSeriesData();
+                    lock (lockSearchTab)
+                    {
+                        if (MainListHelperVM.Instance.AllSeriesDictionary == null ||
+                            MainListHelperVM.Instance.AllSeriesDictionary.Count == 0)
+                            MainListHelperVM.Instance.RefreshGroupsSeriesData();
+                    }
                 }
 
                 if (tabIndex == TAB_MAIN_Server)
                 {
-                    if (JMMServerVM.Instance.FolderProviders.Count == 0) JMMServerVM.Instance.RefreshCloudAccounts();
-                    if (JMMServerVM.Instance.ImportFolders.Count == 0) JMMServerVM.Instance.RefreshImportFolders();
+                    lock (lockServerTab)
+                    {
+                        if (JMMServerVM.Instance.FolderProviders.Count == 0)
+                            JMMServerVM.Instance.RefreshCloudAccounts();
+                        if (JMMServerVM.Instance.ImportFolders.Count == 0) JMMServerVM.Instance.RefreshImportFolders();
+                    }
                 }
 
                 if (tabIndex == TAB_MAIN_Settings)
                 {
-                    if (JMMServerVM.Instance.FolderProviders.Count == 0)JMMServerVM.Instance.RefreshCloudAccounts();
-                    if (JMMServerVM.Instance.ImportFolders.Count == 0) JMMServerVM.Instance.RefreshImportFolders();
-                    if (JMMServerVM.Instance.SelectedLanguages.Count == 0) JMMServerVM.Instance.RefreshNamingLanguages();
-                    if (JMMServerVM.Instance.AllUsers.Count == 0) JMMServerVM.Instance.RefreshAllUsers();
-                    if (JMMServerVM.Instance.AllTags.Count == 0) JMMServerVM.Instance.RefreshAllTags();
-                    if (JMMServerVM.Instance.AllCustomTags.Count == 0) JMMServerVM.Instance.RefreshAllCustomTags();
+                    lock (lockSettingsTab)
+                    {
+                        if (JMMServerVM.Instance.FolderProviders.Count == 0)
+                            JMMServerVM.Instance.RefreshCloudAccounts();
+                        if (JMMServerVM.Instance.ImportFolders.Count == 0) JMMServerVM.Instance.RefreshImportFolders();
+                        if (JMMServerVM.Instance.SelectedLanguages.Count == 0)
+                            JMMServerVM.Instance.RefreshNamingLanguages();
+                        if (JMMServerVM.Instance.AllUsers.Count == 0) JMMServerVM.Instance.RefreshAllUsers();
+                        if (JMMServerVM.Instance.AllTags.Count == 0) JMMServerVM.Instance.RefreshAllTags();
+                        if (JMMServerVM.Instance.AllCustomTags.Count == 0) JMMServerVM.Instance.RefreshAllCustomTags();
+                    }
                 }
 
                 if (tabIndex == TAB_MAIN_Pinned)
                 {
-                    if (JMMServerVM.Instance.AllCustomTags.Count == 0) JMMServerVM.Instance.RefreshAllCustomTags();
+                    lock (lockPinnedTab)
+                    {
+                        if (JMMServerVM.Instance.AllCustomTags.Count == 0) JMMServerVM.Instance.RefreshAllCustomTags();
+                    }
                 }
 
                 if (tabIndex == TAB_MAIN_Downloads)
                 {
-                    if (UserSettingsVM.Instance.SelectedTorrentSources.Count == 0 || UserSettingsVM.Instance.UnselectedTorrentSources.Count == 0)
-                        UserSettingsVM.Instance.RefreshTorrentSources();
+                    lock (lockDownloadsTab)
+                    {
+                        if (UserSettingsVM.Instance.SelectedTorrentSources.Count == 0 ||
+                            UserSettingsVM.Instance.UnselectedTorrentSources.Count == 0)
+                            UserSettingsVM.Instance.RefreshTorrentSources();
+                    }
                 }
             }
             catch (Exception ex)
