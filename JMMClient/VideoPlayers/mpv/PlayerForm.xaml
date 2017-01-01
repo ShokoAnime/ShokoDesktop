@@ -5,6 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JMMClient.VideoPlayers.mpv"
         mc:Ignorable="d"
-        Title="JMM Player" MinHeight="200" MinWidth="320">
+        Title="Shoko Player" MinHeight="200" MinWidth="320">
     <local:VideoPlayer x:Name="video" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Height="Auto"/>
 </Window>
