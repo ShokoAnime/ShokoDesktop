@@ -2188,8 +2188,8 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="VideoPlayer_VLC" xml:space="preserve">
     <value>VLC</value>
   </data>
-  <data name="VideoPlayer_VLCNote" xml:space="preserve">
-    <value>This uses the web interface to track playback progress, no setup required</value>
+  <data name="VideoPlayer_VLCInfo" xml:space="preserve">
+    <value>In order to integrate VLC with Shoko Desktop, you must enable the Web UI via the following option in Tools &gt; Preferences (select All radio-button) &gt; Interface &gt; Main interfaces &gt; Web.</value>
   </data>
   <data name="VideoPlayer_PotPlayer" xml:space="preserve">
     <value>PotPlayer</value>
@@ -4013,7 +4013,7 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>MPC Web UI Port</value>
   </data>
   <data name="VideoPlayer_MPCInfo" xml:space="preserve">
-    <value>In order to intergrate MPC with Shoko Desktop, you must enable the Web UI via the following option in View &gt; Options &gt; Player &gt; Web Interface; Listen On Port. The default listening port is 13579 which you can use, if you decide to change it make sure you change it in the box below.</value>
+    <value>In order to integrate MPC with Shoko Desktop, you must enable the Web UI via the following option in View &gt; Options &gt; Player &gt; Web Interface &gt; Listen On Port. The default listening port is 13579 which you can use, if you decide to change it make sure you change it in the box below.</value>
   </data>
   <data name="AniDB_GetTitles" xml:space="preserve">
     <value>Getting AniDB Titles</value>
@@ -4372,8 +4372,8 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="VideoPlayer_ZoomPlayer" xml:space="preserve">
     <value>Zoom Player</value>
   </data>
-  <data name="VideoPlayer_ZoomPlayerNote" xml:space="preserve">
-    <value>Requires TCP web control port to be enabled in Zoom Player for position retrieval.</value>
+  <data name="VideoPlayer_ZoomPlayerInfo" xml:space="preserve">
+    <value>No setup required, simply select Zoom Player as your Video Player.</value>
   </data>
   <data name="VideoPlayer_ZoomPlayerNotFound" xml:space="preserve">
     <value>Zoom Player not found</value>
@@ -4431,9 +4431,6 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   </data>
   <data name="VideoPlayer_LimitedNote" xml:space="preserve">
     <value>The video players listed below are not fully supported and are included for legacy reasons. These video players only support the playback of files.</value>
-  </data>
-  <data name="VideoPlayer_VLCWebUIPort" xml:space="preserve">
-    <value>VLC Web UI Port</value>
   </data>
   <data name="VideoPlayer_InternalMPV" xml:space="preserve">
     <value>Internal MPV</value>

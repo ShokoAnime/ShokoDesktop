@@ -4349,9 +4349,6 @@
   <data name="VideoPlayer_ZoomPlayer" xml:space="preserve">
     <value>Zoom Player</value>
   </data>
-  <data name="VideoPlayer_ZoomPlayerNote" xml:space="preserve">
-    <value>Требует порта управления TCP web включаемого в Zoom Player для получения позиции.</value>
-  </data>
   <data name="VideoPlayer_ZoomPlayerNotFound" xml:space="preserve">
     <value>Zoom Player не найден</value>
   </data>
@@ -4388,17 +4385,11 @@
   <data name="TvDB_UpdateImages_Desc" xml:space="preserve">
     <value>Это обновит все местные изображения из всех источников, за исключением AniDB. Не выполняйте эту команду, если сервер и Desktop используют папку как он удалит все ваши изображения.</value>
   </data>
-  <data name="VideoPlayer_VLCNote" xml:space="preserve">
-    <value>Для того, чтобы intergrate VLC с Shoko, необходимо включить веб-интерфейса пользователя через следующий параметр в инструменты &gt; предпочтения (выбрать все радио кнопка) &gt; интерфейс &gt; основные интерфейсы; Web.</value>
-  </data>
   <data name="VideoPlayer_PotPlayerNote" xml:space="preserve">
     <value>PotPlayer локальных файлов и потокового воспроизведения.</value>
   </data>
   <data name="VideoPlayer_DefaultNote" xml:space="preserve">
     <value>Shoko Desktop может использовать множество различных видео-проигрыватели для воспроизведения файлов. Ниже перечислены поддерживаемые видео и ограниченные видео проигрыватели, которые доступны для использования с Shoko Desktop. Вы можете изменить видео-плеер, который использует Shoko Desktop, выбрав один из игроков из списка ниже. Никакой настройки не требуется, как Shoko Desktop тянет видео плеер .exe расположение файла из реестра.</value>
-  </data>
-  <data name="VideoPlayer_MPCInfo" xml:space="preserve">
-    <value>Для того, чтобы intergrate MPC с Shoko, необходимо включить веб-интерфейса пользователя через следующий параметр в представлении &gt; вариантов &gt; Player &gt; веб-интерфейс; Прослушать порт. По умолчанию, прослушивающего порта 13579, который можно использовать, если вы решите изменить это убедитесь, что вы измените его в поле ниже.</value>
   </data>
   <data name="VideoPlayer_MPVNote" xml:space="preserve">
     <value>Если вы решили использовать свою собственную версию MPV вместо встроенной версии, убедитесь, что связать воспроизведение с MPV. В противном случае Shoko Desktop не сможете использовать его. Внешняя MPV также поддерживает потоковое воспроизведение и рекомендуется ограниченное видео-плеер для использования.</value>
@@ -4414,9 +4405,6 @@
   </data>
   <data name="VideoPlayer_LimitedNote" xml:space="preserve">
     <value>Видео Игроки, перечисленные ниже не полностью поддерживаются и включены для прежних версий причин. Эти видео-проигрыватели поддерживают только воспроизведение файлов.</value>
-  </data>
-  <data name="VideoPlayer_VLCWebUIPort" xml:space="preserve">
-    <value>Порт интерфейса VLC Web</value>
   </data>
   <data name="VideoPlayer_InternalMPV" xml:space="preserve">
     <value>Внутренняя MPV</value>
@@ -4471,5 +4459,17 @@
   </data>
   <data name="Settings_SetShokoServer" xml:space="preserve">
     <value>Используйте папку сервера Шоко</value>
+  </data>
+  <data name="VideoPlayer_VLCInfo" xml:space="preserve">
+    <value>Для того, чтобы интегрировать VLC с Шоко рабочим столом, необходимо включить веб-интерфейса Пользователя через следующий параметр в инструменты &gt; предпочтения (выбрать все радио кнопка) &gt; интерфейс &gt; основные интерфейсы &gt; Web.</value>
+  </data>
+  <data name="VideoPlayer_MPCInfo" xml:space="preserve">
+    <value>Для того, чтобы интегрировать MPC с Шоко рабочим столом, необходимо включить веб-интерфейса Пользователя через следующий параметр в представлении &gt; вариантов &gt; Player &gt; веб-интерфейс &gt; слушать на порту. По умолчанию, прослушивающего порта 13579, который можно использовать, если вы решите изменить это убедитесь, что вы измените его в поле ниже.</value>
+  </data>
+  <data name="VideoPlayer_ZoomPlayerInfo" xml:space="preserve">
+    <value>Нет установки необходимо, просто выберите Zoom Player видео плеер.</value>
+  </data>
+  <data name="Settings_SetShokoServerFolderNonExistent" xml:space="preserve">
+    <value>Сёко изображение путь не существует: {0}</value>
   </data>
 </root>

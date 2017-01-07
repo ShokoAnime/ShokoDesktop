@@ -4351,9 +4351,6 @@
   <data name="VideoPlayer_ZoomPlayer" xml:space="preserve">
     <value>Zoom Player</value>
   </data>
-  <data name="VideoPlayer_ZoomPlayerNote" xml:space="preserve">
-    <value>Wymaga TCP port sterowania sieci web mają być włączone w Zoom Player do pozycji pobieranie.</value>
-  </data>
   <data name="VideoPlayer_ZoomPlayerNotFound" xml:space="preserve">
     <value>Zoom Player nie znaleziono</value>
   </data>
@@ -4390,17 +4387,11 @@
   <data name="TvDB_UpdateImages_Desc" xml:space="preserve">
     <value>Spowoduje to aktualizację wszystkich lokalnych obrazów z każdego źródła, z wyjątkiem AniDB. Nie uruchamiaj tego polecenia, jeśli serwer i pulpit są przy użyciu tego samego folderu jak usunie wszystkie obrazy.</value>
   </data>
-  <data name="VideoPlayer_VLCNote" xml:space="preserve">
-    <value>W celu intergrate VLC z Shoko pulpitu, należy włączyć interfejs sieci Web za pomocą następującej opcji w narzędzia &gt; Preferencje (wybierz przycisk radiowy wszystkie) &gt; Interfejs &gt; główne interfejsy; Www.</value>
-  </data>
   <data name="VideoPlayer_PotPlayerNote" xml:space="preserve">
     <value>PotPlayer jest zdolny do lokalnych plików i odtwarzania strumieniowego.</value>
   </data>
   <data name="VideoPlayer_DefaultNote" xml:space="preserve">
     <value>Shoko pulpitu jest w stanie używać wiele różnych odtwarzaczy wideo dla odtwarzania plików. Poniżej wymieniono obsługiwane odtwarzacze wideo i ogranicza odtwarzacze wideo, które są dostępne do użytku z pulpitu Shoko. Można zmienić odtwarzacz wideo, Shoko pulpitu używa wybierając jeden z graczy z listy poniżej. Konfiguracja nie jest wymagane, jak Shoko Desktop ściąga lokalizację pliku .exe odtwarzacz wideo z rejestru systemu.</value>
-  </data>
-  <data name="VideoPlayer_MPCInfo" xml:space="preserve">
-    <value>Celu intergrate MPC z Shoko pulpitu, należy włączyć interfejs sieci Web za pomocą następującej opcji w widoku &gt; Opcje &amp;gt; odtwarzacz &gt; interfejs sieci Web; Nasłuchiwać portu. Domyślny port nasłuchiwania jest 13579, którego można użyć, jeśli zdecydujesz się zmienić to upewnij się, że możesz zmienić go w polu poniżej.</value>
   </data>
   <data name="VideoPlayer_MPVNote" xml:space="preserve">
     <value>Jeśli użytkownik zdecyduje się użyć własnej wersji MPV zamiast wbudowanych wersji, upewnij się skojarzyć odtwarzania z MPV. W przeciwnym razie Shoko pulpitu nie będzie można go używać. MPV zewnętrznych również obsługuje strumieniowe odtwarzanie i polecam ograniczone Video Player używać.</value>
@@ -4416,9 +4407,6 @@
   </data>
   <data name="VideoPlayer_LimitedNote" xml:space="preserve">
     <value>Odtwarzacze wideo wymienione poniżej nie są w pełni obsługiwane i są uwzględniane dla starszych powodów. Te odtwarzacze wideo obsługują tylko odtwarzanie plików.</value>
-  </data>
-  <data name="VideoPlayer_VLCWebUIPort" xml:space="preserve">
-    <value>Port interfejsu użytkownika sieci Web VLC</value>
   </data>
   <data name="VideoPlayer_InternalMPV" xml:space="preserve">
     <value>Wewnętrznego MPV</value>
@@ -4473,5 +4461,17 @@
   </data>
   <data name="Settings_SetShokoServer" xml:space="preserve">
     <value>Użyj folderu serwera Shoko</value>
+  </data>
+  <data name="VideoPlayer_VLCInfo" xml:space="preserve">
+    <value>W celu zintegrowania VLC z Shoko pulpitu, należy włączyć Interfejs sieci Web za pomocą następującej opcji w narzędzia &gt; Preferencje (wybierz przycisk radiowy wszystkie) &gt; Interfejs &gt; główne interfejsy &gt; sieci Web.</value>
+  </data>
+  <data name="VideoPlayer_MPCInfo" xml:space="preserve">
+    <value>W celu zintegrowania MPC z Shoko pulpitu, należy włączyć Interfejs sieci Web za pomocą następującej opcji w widoku &gt; opcje &gt; Player &gt; interfejs www &gt; nasłuchiwania na porcie. Domyślny port nasłuchiwania jest 13579, którego można użyć, jeśli zdecydujesz się zmienić to upewnij się, że możesz zmienić go w polu poniżej.</value>
+  </data>
+  <data name="VideoPlayer_ZoomPlayerInfo" xml:space="preserve">
+    <value>Bez konfiguracji wymagane, wybierz po prostu Zoom Player jako odtwarzacza wideo.</value>
+  </data>
+  <data name="Settings_SetShokoServerFolderNonExistent" xml:space="preserve">
+    <value>Ścieżka obrazu Shoko nie istnieje: {0}</value>
   </data>
 </root>

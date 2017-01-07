@@ -12693,7 +12693,7 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to In order to intergrate MPC with Shoko Desktop, you must enable the Web UI via the following option in View &gt; Options &gt; Player &gt; Web Interface; Listen On Port. The default listening port is 13579 which you can use, if you decide to change it make sure you change it in the box below..
+        ///   Looks up a localized string similar to In order to integrate MPC with Shoko Desktop, you must enable the Web UI via the following option in View &gt; Options &gt; Player &gt; Web Interface &gt; Listen On Port. The default listening port is 13579 which you can use, if you decide to change it make sure you change it in the box below..
         /// </summary>
         public static string VideoPlayer_MPCInfo {
             get {
@@ -12810,20 +12810,11 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This uses the web interface to track playback progress, no setup required.
+        ///   Looks up a localized string similar to In order to integrate VLC with Shoko Desktop, you must enable the Web UI via the following option in Tools &gt; Preferences (select All radio-button) &gt; Interface &gt; Main interfaces &gt; Web..
         /// </summary>
-        public static string VideoPlayer_VLCNote {
+        public static string VideoPlayer_VLCInfo {
             get {
-                return ResourceManager.GetString("VideoPlayer_VLCNote", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to VLC Web UI Port.
-        /// </summary>
-        public static string VideoPlayer_VLCWebUIPort {
-            get {
-                return ResourceManager.GetString("VideoPlayer_VLCWebUIPort", resourceCulture);
+                return ResourceManager.GetString("VideoPlayer_VLCInfo", resourceCulture);
             }
         }
         
@@ -12855,11 +12846,11 @@ namespace JMMClient.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Requires TCP web control port to be enabled in Zoom Player for position retrieval..
+        ///   Looks up a localized string similar to No setup required, simply select Zoom Player as your Video Player..
         /// </summary>
-        public static string VideoPlayer_ZoomPlayerNote {
+        public static string VideoPlayer_ZoomPlayerInfo {
             get {
-                return ResourceManager.GetString("VideoPlayer_ZoomPlayerNote", resourceCulture);
+                return ResourceManager.GetString("VideoPlayer_ZoomPlayerInfo", resourceCulture);
             }
         }
         

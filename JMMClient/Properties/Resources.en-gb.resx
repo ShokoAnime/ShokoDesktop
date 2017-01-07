@@ -4352,9 +4352,6 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="VideoPlayer_ZoomPlayer" xml:space="preserve">
     <value>Zoom Player</value>
   </data>
-  <data name="VideoPlayer_ZoomPlayerNote" xml:space="preserve">
-    <value>Requires TCP web control port to be enabled in Zoom Player for position retrieval.</value>
-  </data>
   <data name="VideoPlayer_ZoomPlayerNotFound" xml:space="preserve">
     <value>Zoom Player not found</value>
   </data>
@@ -4394,17 +4391,11 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="ImportFolder_Delete" xml:space="preserve">
     <value>Are you sure you want to delete the Import Folder: {0}? Any files in this folder will also be removed from the database.</value>
   </data>
-  <data name="VideoPlayer_VLCNote" xml:space="preserve">
-    <value>In order to intergrate VLC with Shoko Desktop, you must enable the Web UI via the following option in Tools &gt; Preferences (select All radio-button) &gt; Interface &gt; Main interfaces; Web.</value>
-  </data>
   <data name="VideoPlayer_PotPlayerNote" xml:space="preserve">
     <value>PotPlayer is capable of local files and streaming playback.</value>
   </data>
   <data name="VideoPlayer_DefaultNote" xml:space="preserve">
     <value>Shoko Desktop is capable of using a variety of different video players for file playback. Listed below are supported video players and limited video players that are available for use with Shoko Desktop. You can change the video player Shoko Desktop uses by selecting one of the players from the list below. No configuration is required as Shoko Desktop pulls the video player's .exe file location from your registry.</value>
-  </data>
-  <data name="VideoPlayer_MPCInfo" xml:space="preserve">
-    <value>In order to intergrate MPC with Shoko Desktop, you must enable the Web UI via the following option in View &gt; Options &gt; Player &gt; Web Interface; Listen On Port. The default listening port is 13579 which you can use, if you decide to change it make sure you change it in the box below.</value>
   </data>
   <data name="VideoPlayer_MPVNote" xml:space="preserve">
     <value>If you decide to use your own version of MPV instead of the built-in version, make sure to associate playback with MPV. Otherwise Shoko Desktop will not be able to use it. External MPV also supports streaming playback and is the recommend Limited Video Player to use.</value>
@@ -4420,9 +4411,6 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   </data>
   <data name="VideoPlayer_LimitedNote" xml:space="preserve">
     <value>The video players listed below are not fully supported and are included for legacy reasons. These video players only support the playback of files.</value>
-  </data>
-  <data name="VideoPlayer_VLCWebUIPort" xml:space="preserve">
-    <value>VLC Web UI Port</value>
   </data>
   <data name="VideoPlayer_InternalMPV" xml:space="preserve">
     <value>Internal MPV</value>
@@ -4471,5 +4459,17 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   </data>
   <data name="Settings_SetShokoServer" xml:space="preserve">
     <value>Use Shoko Server Folder</value>
+  </data>
+  <data name="VideoPlayer_VLCInfo" xml:space="preserve">
+    <value>In order to integrate VLC with Shoko Desktop, you must enable the Web UI via the following option in Tools &gt; Preferences (select All radio-button) &gt; Interface &gt; Main interfaces &gt; Web.</value>
+  </data>
+  <data name="VideoPlayer_MPCInfo" xml:space="preserve">
+    <value>In order to integrate MPC with Shoko Desktop, you must enable the Web UI via the following option in View &gt; Options &gt; Player &gt; Web Interface &gt; Listen On Port. The default listening port is 13579 which you can use, if you decide to change it make sure you change it in the box below.</value>
+  </data>
+  <data name="VideoPlayer_ZoomPlayerInfo" xml:space="preserve">
+    <value>No setup required, simply select Zoom Player as your Video Player.</value>
+  </data>
+  <data name="Settings_SetShokoServerFolderNonExistent" xml:space="preserve">
+    <value>Shoko image path doesn't exist: {0}</value>
   </data>
 </root>

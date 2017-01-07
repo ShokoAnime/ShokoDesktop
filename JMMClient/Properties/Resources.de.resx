@@ -4349,9 +4349,6 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   <data name="VideoPlayer_ZoomPlayer" xml:space="preserve">
     <value>Zoom Player</value>
   </data>
-  <data name="VideoPlayer_ZoomPlayerNote" xml:space="preserve">
-    <value>Benötigt TCP-Web Control Port in Zoom Player für Position Abruf aktiviert werden.</value>
-  </data>
   <data name="VideoPlayer_ZoomPlayerNotFound" xml:space="preserve">
     <value>Zoom Player nicht gefunden</value>
   </data>
@@ -4388,17 +4385,11 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   <data name="TvDB_UpdateImages_Desc" xml:space="preserve">
     <value>Dadurch werden alle lokalen Bilder aus jeder Quelle, ohne AniDB aktualisiert. Dieser Befehl nicht ausgeführt, wenn Server und Desktop im selben Ordner benutzen, da es alle Ihre Bilder gelöscht werden.</value>
   </data>
-  <data name="VideoPlayer_VLCNote" xml:space="preserve">
-    <value>Um VLC mit Shoko Desktop intergrate, müssen Sie die Web-UI über die folgende Option im Tools aktivieren &gt; Präferenzen (Wählen Sie alle Optionsfeld) &gt; Schnittstelle &gt; Main-Schnittstellen; Web.</value>
-  </data>
   <data name="VideoPlayer_PotPlayerNote" xml:space="preserve">
     <value>PotPlayer ist in der Lage, lokale Dateien und Streaming-Wiedergabe.</value>
   </data>
   <data name="VideoPlayer_DefaultNote" xml:space="preserve">
     <value>Shoko Desktop ist in der Lage mit einer Vielzahl von verschiedenen video-Player für die Dateiwiedergabe. Unten aufgeführten unterstützten video-Playern und begrenzte video-Playern, die für die Verwendung mit Shoko Desktop verfügbar sind. Den video-Player, die, den Shoko Desktop verwendet, indem Sie einen der Spieler aus der Liste unten auswählen, können Sie ändern. Es ist keine Konfiguration erforderlich, wie Shoko Desktop der video-Player .exe Dateispeicherort aus der Registrierung zieht.</value>
-  </data>
-  <data name="VideoPlayer_MPCInfo" xml:space="preserve">
-    <value>Um MPC mit Shoko Desktop intergrate, müssen Sie in der Ansicht im Web-UI über die folgende Option aktivieren &gt; Optionen &gt; Spieler &gt; Web-Interface; Hören Sie auf Port. Der Standard Port hören ist 13579, die Sie verwenden können, wenn Sie ändern möchten, stellen Sie sicher Sie es in das folgende Feld ändern.</value>
   </data>
   <data name="VideoPlayer_MPVNote" xml:space="preserve">
     <value>Wenn Sie sich entscheiden, Ihre eigene Version des MPV anstelle der integrierten Version verwenden, stellen Sie sicher, MPV Wiedergabe zugeordnet. Shoko Desktop werden sonst nicht in der Lage, es zu benutzen. Externen MPV auch Streaming-Wiedergabe unterstützt und empfiehlt begrenzte Video Player zu verwenden.</value>
@@ -4414,9 +4405,6 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   </data>
   <data name="VideoPlayer_LimitedNote" xml:space="preserve">
     <value>Die unten aufgeführten video-Player werden nicht vollständig unterstützt und legacy Gründen enthalten sind. Nur unterstützt diese video-Player die Wiedergabe von Dateien.</value>
-  </data>
-  <data name="VideoPlayer_VLCWebUIPort" xml:space="preserve">
-    <value>VLC-Web-UI-Port</value>
   </data>
   <data name="VideoPlayer_InternalMPV" xml:space="preserve">
     <value>Interne MPV</value>
@@ -4471,5 +4459,17 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   </data>
   <data name="Settings_SetShokoServer" xml:space="preserve">
     <value>Shoko Serverordner zu verwenden</value>
+  </data>
+  <data name="VideoPlayer_VLCInfo" xml:space="preserve">
+    <value>Um VLC mit Shoko Desktop zu integrieren, müssen Sie die Web-UI über die folgende Option im Tools aktivieren &gt; Präferenzen (Wählen Sie alle Optionsfeld) &gt; Schnittstelle &gt; Main Schnittstellen &gt; Web.</value>
+  </data>
+  <data name="VideoPlayer_MPCInfo" xml:space="preserve">
+    <value>Um MPC mit Shoko Desktop zu integrieren, müssen Sie die Web-UI über die folgende Option in der Ansicht aktivieren &gt; Optionen &gt; Spieler &gt; Webinterface &gt; hören auf Port. Der Standard Port hören ist 13579, die Sie verwenden können, wenn Sie ändern möchten, stellen Sie sicher Sie es in das folgende Feld ändern.</value>
+  </data>
+  <data name="VideoPlayer_ZoomPlayerInfo" xml:space="preserve">
+    <value>Keine Einrichtung erforderlich, als Ihr Video-Player wählen Sie Zoom Player.</value>
+  </data>
+  <data name="Settings_SetShokoServerFolderNonExistent" xml:space="preserve">
+    <value>Shoko-Image-Pfad ist nicht vorhanden: {0}</value>
   </data>
 </root>
