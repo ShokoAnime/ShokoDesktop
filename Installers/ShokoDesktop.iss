@@ -10,7 +10,7 @@
 
 AppId={{EFA49A76-085F-4E64-AEC4-6ACA707A5D91}
 AppName=Shoko Desktop
-AppVersion=3.7.0.1
+AppVersion=3.7.0.3
 AppVerName=Shoko Desktop
 AppPublisher=JMM
 AppPublisherURL=https://github.com/japanesemediamanager
