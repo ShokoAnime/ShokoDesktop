@@ -1,0 +1,85 @@
+﻿<UserControl x:Class="Shoko.Desktop.UserControls.Settings.LanguagePreferenceSettings"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Shoko.Desktop.ViewModel"
+             xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="600">
+
+    <UserControl.Resources>
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Styles.xaml" />
+                <ResourceDictionary Source="/Resources/MainListStyles.xaml" />
+                <ResourceDictionary Source="/Resources/MainListContent.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+
+            <!-- languageTemplate-->
+            <DataTemplate x:Key="languageTemplate">
+                <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
+                    <Image Height="16" Width="16" Source="{Binding Path=FlagImage}" Margin="0,0,5,0">
+                        <Image.ToolTip>
+                            <TextBlock Text="{Binding Path=Language}"></TextBlock>
+                        </Image.ToolTip>
+                    </Image>
+
+                    <TextBlock Margin="2,0,10,0" Text="{Binding Path=LanguageDescription}" />
+                </StackPanel>
+            </DataTemplate>
+
+        </ResourceDictionary>
+
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+
+        <ListBox Grid.Column="0" Grid.Row="2" BorderThickness="1" Background="Transparent" MaxHeight="300" Width="250" Name="lbUnselectedLanguages"
+                 Margin="0,0,10,0"
+                 ItemsSource="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=UnselectedLanguages}"
+                 ItemTemplate="{StaticResource languageTemplate}">
+        </ListBox>
+
+        <StackPanel Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Margin="0,0,10,0">
+            <Button Name="btnMoveRight" Content=">" Width="60" Margin="0,0,0,5" />
+            <Button Name="btnMoveLeft" Content="&lt;" Width="60" Margin="0,0,0,5" />
+            <Button Name="btnMoveUp" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Up}" Width="60" Margin="0,0,0,5" />
+            <Button Name="btnMoveDown" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Down}" Width="60" Margin="0,0,0,5" />
+        </StackPanel>
+
+        <ListBox Grid.Column="2" Grid.Row="2" BorderThickness="1" Background="Transparent" MaxHeight="300" Width="250" Name="lbSelectedLanguages"
+                 ItemsSource="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=SelectedLanguages}"
+                 ItemTemplate="{StaticResource languageTemplate}">
+        </ListBox>
+    
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Margin="5,0,0,5">
+            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Language_UseSynonyms}" VerticalAlignment="Center" Margin="0,0,10,3"
+                       ToolTip="{usercontrols:Info Title=Language_UseSynonyms, Body=Tooltip_LanguageUseSynonyms}"></TextBlock>
+            <CheckBox Name="chkLanguageUseSynonyms" IsChecked="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=Language_UseSynonyms}" VerticalAlignment="Center"
+                      ToolTip="{usercontrols:Info Title=Language_UseSynonyms, Body=Tooltip_LanguageUseSynonyms}"/>
+        </StackPanel>
+
+        <Button HorizontalAlignment="Left" Name="btnRenameGroups" Margin="5,0,0,5" Style="{DynamicResource FlatButtonStyle}" Width="Auto" Grid.Column="2" Grid.Row="0">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="0,0,5,0"/>
+                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Language_Rename}" Margin="0,0,5,0"/>
+            </StackPanel>
+        </Button>
+
+    </Grid>
+</UserControl>

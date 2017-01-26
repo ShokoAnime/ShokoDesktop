@@ -1,0 +1,494 @@
+﻿<UserControl x:Class="Shoko.Desktop.UserControls.EpisodeDetail"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
+             xmlns:local="clr-namespace:Shoko.Desktop.ViewModel"
+             xmlns:viewModel="clr-namespace:Shoko.Desktop.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+
+            <RoutedUICommand x:Key="OpenFolderCommand" Text="OpenFolderCommand" />
+            <RoutedUICommand x:Key="PlayVideoCommand" Text="PlayVideoCommand" />
+            <RoutedUICommand x:Key="PlayEpisodeCommand" Text="PlayEpisodeCommand" />
+            <RoutedUICommand x:Key="DeleteLinkCommand" Text="DeleteLinkCommand" />
+            <RoutedUICommand x:Key="DeleteFileCommand" Text="DeleteFileCommand" />
+            <RoutedUICommand x:Key="ForceAddMyListCommand" Text="ForceAddMyListCommand" />
+            <RoutedUICommand x:Key="ForceUpdateCommand" Text="ForceUpdateCommand" />
+            <RoutedUICommand x:Key="ToggleFileDetailsCommand" Text="ToggleFileDetailsCommand" />
+            <RoutedUICommand x:Key="RehashFileCommand" Text="RehashFileCommand" />
+            <RoutedUICommand x:Key="ToggleVariationCommand" Text="ToggleVariationCommand" />
+
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+
+            <!-- VideoDetailedTemplate -->
+            <DataTemplate x:Key="VideoDetailedTemplate">
+                <Grid Margin="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <Border BorderThickness="0,0,0,1" BorderBrush="LightGray"  Grid.Column="0" Grid.Row="0" Background="#F1F1F1" Margin="0,0,0,10">
+
+                        <!-- General Contextual buttons toolbar -->
+                        <StackPanel Orientation="Horizontal">
+
+                            <!-- Play button-->
+                            <Button Name="btnPlay" Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center"
+                            Visibility="{Binding Path=FileIsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            Command="{DynamicResource PlayVideoCommand}" CommandParameter="{Binding}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="16" Width="16" Source="/Images/32_resume.png" Margin="0,0,2,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Play}" Margin="0,0,2,0" Foreground="Black"/>
+                                </StackPanel>
+                            </Button>
+
+                            <!-- Set watched/unwatched button-->
+                            <Button Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource ToggleWatchedStatusCommand}" CommandParameter="{Binding}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="16" Width="16" Source="/Images/32_eye.png" Margin="2,0,2,0"
+                                    Visibility="{Binding Path=Watched, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        <Image.ToolTip>
+                                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_Watched}"/>
+                                        </Image.ToolTip>
+                                    </Image>
+                                    <Image Height="16" Width="16" Source="/Images/32_eye2.png" Margin="2,0,2,0"
+                                    Visibility="{Binding Path=Watched, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
+                                        <Image.ToolTip>
+                                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_Unwatched}"/>
+                                        </Image.ToolTip>
+                                    </Image>
+                                </StackPanel>
+
+                            </Button>
+
+                            <!-- open folder button-->
+                            <Button Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource OpenFolderCommand}" 
+                                CommandParameter="{Binding}" Visibility="{Binding Path=FileIsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}" >
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="16" Width="16" Source="/Images/24_folder.png" Margin="2,0,2,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=OpenFolder}" Margin="2,0,2,0" Foreground="Black"/>
+                                </StackPanel>
+                                <Button.ToolTip>
+                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=OpenFolder}"/>
+                                </Button.ToolTip>
+                            </Button>
+
+                            <!-- delete link button-->
+                            <Button Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource DeleteLinkCommand}" 
+                                CommandParameter="{Binding}" Visibility="{Binding Path=IsAutoAssociation, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="16" Width="16" Source="../Images/16_link_remove.png" Margin="2,0,2,0" VerticalAlignment="Center">
+                                    </Image>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=DeleteLink}" Margin="2,0,2,0" Foreground="Black"/>
+                                </StackPanel>
+                                <Button.ToolTip>
+                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_DeleteLink}"/>
+                                </Button.ToolTip>
+                            </Button>
+
+                            <!-- delete button-->
+                            <Button Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource DeleteFileCommand}" 
+                                CommandParameter="{Binding}" >
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="16" Width="16" Source="/Images/32_trash.png" Margin="2,0,2,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Delete}" Margin="2,0,2,0" Foreground="Black"/>
+                                </StackPanel>
+                            </Button>
+
+                            <!-- Is Variation-->
+                            <CheckBox Content="{Resx ResxName=JMMClient.Properties.Resources, Key=IsVariation}" Margin="2,0,2,0" IsChecked="{Binding Path=Variation, Mode=OneWay}" Command="{StaticResource ToggleVariationCommand}" 
+                                CommandParameter="{Binding}" VerticalAlignment="Center"
+                                       ToolTip="{usercontrols:Info Title=IsVariation, 
+                                                Body=Tooltip_IsVariation}">
+
+                            </CheckBox>
+
+                            <!-- more Info-->
+                            <Button Margin="0,0,5,1" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource ToggleFileDetailsCommand}" 
+                                CommandParameter="{Binding}" Visibility="{Binding Path=ShowMoreDetails, Converter={StaticResource InverseBooleanToVisibilityConverter}}" >
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_MoreInfo}" Margin="2,0,2,0" Foreground="Black"/>
+                                </StackPanel>
+                            </Button>
+
+                            <!-- less Info-->
+                            <Button Margin="0,0,5,1" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource ToggleFileDetailsCommand}" 
+                                CommandParameter="{Binding}" Visibility="{Binding Path=ShowMoreDetails, Converter={StaticResource BooleanToVisibilityConverter}}" >
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_LessInfo}" Margin="2,0,2,0" Foreground="Black"/>
+                                </StackPanel>
+                            </Button>
+
+
+                        </StackPanel>
+                    </Border>
+
+                    <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Margin="10,2,10,10">
+
+
+
+                        <Label Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Video_HD}" Style="{DynamicResource VideoDefStyle}" VerticalAlignment="Center" Margin="0,0,10,0"
+                               Visibility="{Binding Path=IsHD, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <Label Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Video_FullHD}" Style="{DynamicResource VideoDefStyle}" VerticalAlignment="Center" Margin="0,0,10,0"
+                               Visibility="{Binding Path=IsFullHD, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <Label Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Video_Bluray}" Style="{DynamicResource VideoDefStyle_Source}" VerticalAlignment="Center" Margin="0,0,10,0"
+                               Visibility="{Binding Path=IsBluRay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <Label Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Video_DVD}" Style="{DynamicResource VideoDefStyle_Source}" VerticalAlignment="Center" Margin="0,0,10,0"
+                               Visibility="{Binding Path=IsDVD, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <Label Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Video_Hi08P}" Style="{DynamicResource VideoDefStyle_Hi08P}" VerticalAlignment="Center" Margin="0,0,10,0"
+                               Visibility="{Binding Path=IsHi08P, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <Label Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Video_Hi10P}" Style="{DynamicResource VideoDefStyle_Hi10P}" VerticalAlignment="Center" Margin="0,0,10,0"
+                               Visibility="{Binding Path=IsHi10P, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <Label Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Video_Hi12P}" Style="{DynamicResource VideoDefStyle_Hi12P}" VerticalAlignment="Center" Margin="0,0,10,0"
+                               Visibility="{Binding Path=IsHi12P, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                        <usercontrols:HyperLinkStandard Margin="0,0,10,0" VerticalAlignment="Center" DisplayText="{Binding Path=ReleaseGroupName}" URL="{Binding Path=ReleaseGroupAniDBURL}" 
+                                Visibility="{Binding Path=HasReleaseGroup, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                        <TextBlock Text="{Binding Path=AniDB_Anime_GroupNameShort}" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0"
+                                   Visibility="{Binding Path=IsAutoAssociation, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_Manual}" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0"
+                                   Visibility="{Binding Path=IsAutoAssociation, Converter={StaticResource InverseBooleanToVisibilityConverter}}"/>
+
+                        <TextBlock Text="{Binding Path=FormattedFileSize}" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0" />
+                        <TextBlock Text="{Binding Path=VideoInfoSummary}" VerticalAlignment="Center" Margin="0,0,10,0" />
+
+                        <!-- file version -->
+                        <TextBlock Text="V" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,0,0" />
+                        <TextBlock Text="{Binding Path=AniDB_File_FileVersion}" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0" />
+
+                        <!-- user watched date -->
+                        <StackPanel Orientation="Horizontal" Margin="15,0,0,0" Visibility="{Binding Path=Watched, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Image Height="16" Width="16" Source="/Images/24_calendar.png" Margin="0,0,5,0" VerticalAlignment="Center"/>
+                            <TextBlock Margin="5,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=LastWatched}" VerticalAlignment="Center" />
+                            <TextBlock Margin="5,0,0,0" Text="{Binding Path=LastWatchedDescription}" FontWeight="Bold" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2" Margin="10,2,10,10">
+                        <Image Height="16" Width="16" Source="/Images/16_tick.png" VerticalAlignment="Center" Margin="0,0,5,0"
+                               Visibility="{Binding Path=FileIsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Image.ToolTip>
+                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_FileFound}"/>
+                            </Image.ToolTip>
+                        </Image>
+                        <Image Height="16" Width="16" Source="/Images/16_exclamation.png" VerticalAlignment="Center" Margin="0,0,5,0"
+                               Visibility="{Binding Path=FileIsAvailable, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
+                            <Image.ToolTip>
+                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_FileNotFound}"/>
+                            </Image.ToolTip>
+                        </Image>
+                        <TextBlock Text="{Binding Path=FileName}"  VerticalAlignment="Center">
+                            <TextBlock.ToolTip>
+                                <TextBlock Text="{Binding Path=FullPath}"/>
+                            </TextBlock.ToolTip>
+                        </TextBlock>
+                    </StackPanel>
+
+                    <Grid Grid.Column="0" Grid.Row="3" Margin="0,2,10,10" Visibility="{Binding Path=ShowMoreDetails, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <Border BorderThickness="0,1,1,1" BorderBrush="LightGray"  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Background="#F1F1F1" Margin="0,0,0,10">
+                            <StackPanel Orientation="Horizontal" >
+                                <!-- force add to anidb MyList-->
+                                <Button Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource ForceAddMyListCommand}" 
+                                CommandParameter="{Binding}" Visibility="{Binding Path=FileIsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}" >
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                        <Image Height="16" Width="16" Source="/Images/16_add.png" Margin="2,0,2,0"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=MyList}" Margin="5,0,5,0" Foreground="Black"/>
+                                    </StackPanel>
+                                    <Button.ToolTip>
+                                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_MyList}"/>
+                                    </Button.ToolTip>
+                                </Button>
+
+                                <!-- force update anidb -->
+                                <Button Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource ForceUpdateCommand}" 
+                                CommandParameter="{Binding}" >
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                        <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="2,0,2,0"/>
+                                        <TextBlock VerticalAlignment="Center" Text="Update Info" Margin="5,0,5,0" Foreground="Black"/>
+                                    </StackPanel>
+                                    <Button.ToolTip>
+                                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_ForceAniDBUpdate}"/>
+                                    </Button.ToolTip>
+                                </Button>
+
+                                <!-- rehash file -->
+                                <Button Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource RehashFileCommand}" 
+                                CommandParameter="{Binding}" >
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                        <Image Height="16" Width="16" Source="/Images/16_server_hash.png" Margin="2,0,2,0"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Rehash}" Margin="0,0,5,0"/>
+                                    </StackPanel>
+                                    <Button.ToolTip>
+                                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_RecalculateHash}"/>
+                                    </Button.ToolTip>
+                                </Button>
+
+                                <!-- Link to AniDB -->
+                                <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="AniDB" URL="{Binding Path=AniDB_SiteURL}" Margin="0,0,5,0"
+                                         Visibility="{Binding Path=HasAniDBFile, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                            </StackPanel >
+                        </Border>
+
+
+
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Hash}" FontWeight="Bold" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="0" Grid.Row="1"/>
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CRC32}" FontWeight="Bold" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="0" Grid.Row="2"/>
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SHA1}" FontWeight="Bold" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="0" Grid.Row="3"/>
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=MD5}" FontWeight="Bold" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="0" Grid.Row="4"/>
+
+                        <TextBox Text="{Binding Path=VideoLocal_Hash}" Background="Transparent" BorderThickness="0" IsReadOnly="True" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="1" Grid.Row="1"/>
+                        <TextBox Text="{Binding Path=VideoLocal_CRC32}"  Background="Transparent" BorderThickness="0" IsReadOnly="True" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="1" Grid.Row="2"/>
+                        <TextBox Text="{Binding Path=VideoLocal_SHA1}"  Background="Transparent" BorderThickness="0" IsReadOnly="True" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="1" Grid.Row="3"/>
+                        <TextBox Text="{Binding Path=VideoLocal_MD5}"  Background="Transparent" BorderThickness="0" IsReadOnly="True" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="1" Grid.Row="4"/>
+                    </Grid>
+
+                </Grid>
+            </DataTemplate>
+
+        </ResourceDictionary>
+
+
+
+    </UserControl.Resources>
+
+    <UserControl.CommandBindings>
+        <CommandBinding Command="{StaticResource OpenFolderCommand}" Executed="CommandBinding_OpenFolder" />
+        <CommandBinding Command="{StaticResource PlayVideoCommand}" Executed="CommandBinding_PlayVideo" />
+        <CommandBinding Command="{StaticResource PlayEpisodeCommand}" Executed="CommandBinding_PlayEpisode" />
+        <CommandBinding Command="{StaticResource DeleteLinkCommand}" Executed="CommandBinding_DeleteLink" />
+        <CommandBinding Command="{StaticResource DeleteFileCommand}" Executed="CommandBinding_DeleteFile" />
+        <CommandBinding Command="{StaticResource ForceAddMyListCommand}" Executed="CommandBinding_ForceAddMyList" />
+        <CommandBinding Command="{StaticResource ForceUpdateCommand}" Executed="CommandBinding_ForceUpdate" />
+        <CommandBinding Command="{StaticResource ToggleFileDetailsCommand}" Executed="CommandBinding_ToggleFileDetails" />
+        <CommandBinding Command="{StaticResource RehashFileCommand}" Executed="CommandBinding_RehashFile" />
+        <CommandBinding Command="{StaticResource ToggleVariationCommand}" Executed="CommandBinding_ToggleVariation" />
+    </UserControl.CommandBindings>
+
+    <Grid Margin="3" Name="epDetailMainGrid">
+
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Button Name="btnToggleExpander" Grid.Column="0" Grid.Row="0" Style="{DynamicResource FlatButtonStyle}" Margin="0,0,5,0">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+
+                <Image Height="16" Width="16" Source="/Images/16_toggle_open.png" Margin="2,0,2,0"
+                       Visibility="{Binding Path=IsCollapsed, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:EpisodeDetail}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                </Image>
+                <Image Height="16" Width="16" Source="/Images/16_toggle_close.png" Margin="2,0,2,0"
+                       Visibility="{Binding Path=IsExpanded, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:EpisodeDetail}}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            </StackPanel>
+        </Button>
+
+
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2">
+            <TextBlock Name="tbEpisodeNumberAndName" Text="{Binding Path=EpisodeNumberAndName}" FontWeight="DemiBold" Foreground="Black" VerticalAlignment="Center" />
+
+            <Button Name="btnToggleWatched" Margin="5,0,0,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center"
+                        Visibility="{Binding Path=HasFiles, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        Command="{DynamicResource ToggleWatchedStatusCommand}" CommandParameter="{Binding}">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                    <Image Height="16" Width="16" Source="/Images/32_eye.png" Margin="2,0,2,0"
+                           Visibility="{Binding Path=Watched, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Image.ToolTip>
+                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_Watched}"/>
+                        </Image.ToolTip>
+                    </Image>
+                    <Image Height="16" Width="16" Source="/Images/32_eye2.png" Margin="2,0,2,0"
+                           Visibility="{Binding Path=Watched, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
+                        <Image.ToolTip>
+                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_Unwatched}"/>
+                        </Image.ToolTip>
+                    </Image>
+                </StackPanel>
+            </Button>
+
+            <!-- Play episode button -->
+            <Button Name="btnPlay" Margin="2,0,0,0" Style="{DynamicResource FlatButtonStyle}"
+                    Command="{DynamicResource PlayEpisodeCommand}" CommandParameter="{Binding}"
+                        Visibility="{Binding Path=OneFileOnly, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                    <Image Height="16" Width="16" Source="/Images/32_resume.png" Margin="0,0,2,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Play}" Margin="2,0,2,0"/>
+                </StackPanel>
+            </Button>
+
+            <!-- download button -->
+            <Button Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Name="btnSearchDownloads"
+                    Command="{DynamicResource ShowTorrentSearchCommand}" CommandParameter="{Binding}"
+                    Visibility="{Binding Path=ShowDownloadButton, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:EpisodeDetail}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                    <Image Height="16" Width="16" Source="/Images/24_download.png" Margin="2,0,2,0">
+                        <Image.ToolTip>
+                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_DownloadSearch}"/>
+                        </Image.ToolTip>
+                    </Image>
+
+                </StackPanel>
+            </Button>
+
+            <!-- add to playlist button -->
+            <Button Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Name="btnPlaylistAdd" >
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                    <Image Height="16" Width="16" Source="/Images/32_playlist_add.png" Margin="2,0,2,0">
+                        <Image.ToolTip>
+                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_PlaylistAdd}"/>
+                        </Image.ToolTip>
+                    </Image>
+
+                </StackPanel>
+            </Button>
+
+            <!-- link to tvdb button -->
+            <Button Margin="0,2,0,2" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Name="btnTvDBLinkAdd" 
+                     Visibility="{Binding Path=TvDBLinkMissing, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                    <Image Height="16" Width="16" Source="/Images/16_link_edit.png" Margin="2,0,2,0"/>
+                </StackPanel>
+                <Button.ToolTip>
+                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_TvDBOverride}"/>
+                </Button.ToolTip>
+            </Button>
+
+            <!-- remove link to tvdb button -->
+            <Button Margin="0,2,0,2" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Name="btnTvDBLinkRemove" 
+                     Visibility="{Binding Path=TvDBLinkExists, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                    <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="2,0,2,0"/>
+                </StackPanel>
+                <Button.ToolTip>
+                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_TvDBRemove}"/>
+                </Button.ToolTip>
+            </Button>
+
+            <!-- update episode data button -->
+            <Button Margin="0,2,0,2" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Name="btnUpdateEpisode" >
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                    <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="2,0,2,0"/>
+                </StackPanel>
+                <Button.ToolTip>
+                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_AniDBForceUpdate}"/>
+                </Button.ToolTip>
+            </Button>
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,2,0,2">
+                <Image Height="16" Width="16" Source="/Images/16_multiplefiles.png" Margin="0,0,5,0"
+                           Visibility="{Binding Path=MultipleFiles, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                <Image Height="16" Width="16" Source="/Images/16_exclamation.png" Margin="0,0,5,0"
+                           Visibility="{Binding Path=NoFiles, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Image.ToolTip>
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_ZeroFiles}"/>
+                    </Image.ToolTip>
+                </Image>
+                <Image Height="16" Width="16" Source="/Images/24_calendar.png" Margin="0,0,5,0"
+                           Visibility="{Binding Path=FutureDated, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Image.ToolTip>
+                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_FutureDated}"/>
+                    </Image.ToolTip>
+                </Image>
+                <TextBlock Name="tbFileDetails" Text="{Binding Path=FileDetails}" VerticalAlignment="Center"/>
+                <TextBlock Name="tbFileDetailsGroups" VerticalAlignment="Center" Margin="15,0,0,0" FontWeight="Bold"
+                           Visibility="{Binding Path=IsExpanded, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:EpisodeDetail}}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            </StackPanel>
+
+        </StackPanel>
+
+        <!-- Row 1 -->
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0,0,5" 
+                    Visibility="{Binding Path=IsExpanded, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:EpisodeDetail}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Image Height="16" Width="16" Source="/Images/24_calendar.png" Margin="0,0,0,0" VerticalAlignment="Center"/>
+            <TextBlock Name="tbAirDate" Text="{Binding Path=AirDateAsString}" Margin="2,0,0,0" VerticalAlignment="Center" />
+            <Image Height="16" Width="16" Source="/Images/32_clock.png" Margin="15,0,0,0" VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding Path=RunTime}" Margin="2,0,0,0" VerticalAlignment="Center" />
+            <TextBlock Text="{Binding Path=AniDBRatingFormatted}" Margin="10,0,0,0" VerticalAlignment="Center" />
+
+            <!-- user watched date -->
+            <StackPanel Orientation="Horizontal" Margin="15,0,0,0" Visibility="{Binding Path=Watched, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Image Height="16" Width="16" Source="/Images/24_calendar.png" Margin="0,0,5,0" VerticalAlignment="Center"/>
+                <TextBlock Margin="5,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=LastWatched}" VerticalAlignment="Center" />
+                <TextBlock Margin="5,0,0,0" Text="{Binding Path=LastWatchedDescription}" FontWeight="Bold" VerticalAlignment="Center"/>
+            </StackPanel>
+
+        </StackPanel>
+
+        <!-- episode image overview in summary -->
+        <Image Grid.Column="1" Grid.Row="2" Width="{Binding Source={x:Static viewModel:VM_UserSettings.Instance},Path=DisplayWidth_EpisodeImage}" Source="{Binding EpisodeImageLoading}" 
+                    Visibility="{Binding Path=ShowEpisodeImageInSummary, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:EpisodeDetail}}, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Margin="0,5,0,5" VerticalAlignment="Top">
+            <Image.ToolTip>
+                <Image Stretch="Fill" HorizontalAlignment="Center" Width="400" Source="{Binding EpisodeImageLoading}">
+                </Image>
+            </Image.ToolTip>
+        </Image>
+
+        <TextBlock Grid.Column="2" Grid.Row="2" Text="{Binding EpisodeOverviewLoading}" HorizontalAlignment="Stretch" Margin="10,5,0,5" VerticalAlignment="Top"  TextWrapping="Wrap"
+                       Visibility="{Binding Path=ShowEpisodeOverviewInSummary, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:EpisodeDetail}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+        </TextBlock>
+
+        <!-- episode image overview in Expanded -->
+        <Image Grid.Column="1" Grid.Row="2" Width="{Binding Source={x:Static viewModel:VM_UserSettings.Instance},Path=DisplayWidth_EpisodeImage}" Source="{Binding EpisodeImageLoading}" 
+                    Visibility="{Binding Path=ShowEpisodeImageInExpanded, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:EpisodeDetail}}, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Margin="0,5,0,5" VerticalAlignment="Top">
+            <Image.ToolTip>
+                <Image Stretch="Fill" HorizontalAlignment="Center" Width="400" Source="{Binding EpisodeImageLoading}">
+                </Image>
+            </Image.ToolTip>
+        </Image>
+
+        <TextBlock Grid.Column="2" Grid.Row="2" Text="{Binding EpisodeOverviewLoading}" HorizontalAlignment="Stretch" Margin="10,5,0,5" VerticalAlignment="Top"  TextWrapping="Wrap"
+                       Visibility="{Binding Path=ShowEpisodeOverviewInExpanded, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:EpisodeDetail}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+        </TextBlock>
+
+
+
+
+        <ListBox Name="lbFiles" BorderThickness="0" BorderBrush="DarkGray" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch"  Margin="0,0,0,10" Padding="0"
+                ItemTemplate="{DynamicResource VideoDetailedTemplate}"
+                Visibility="{Binding Path=IsExpanded, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:EpisodeDetail}}, Converter={StaticResource BooleanToVisibilityConverter}}"
+                Background="Transparent" ItemContainerStyle="{DynamicResource ListBoxItemStyleMultipleFiles}"  VerticalAlignment="Stretch" >
+            <ListBox.Template>
+                <ControlTemplate>
+                    <ItemsPresenter />
+                </ControlTemplate>
+            </ListBox.Template>
+        </ListBox>
+
+    </Grid>
+</UserControl>

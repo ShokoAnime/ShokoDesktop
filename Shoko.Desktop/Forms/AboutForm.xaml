@@ -1,0 +1,101 @@
+﻿<Window x:Class="Shoko.Desktop.Forms.AboutForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
+        xmlns:local="clr-namespace:Shoko.Desktop.ViewModel"
+        ShowInTaskbar="False" WindowStyle="ToolWindow"
+        WindowStartupLocation="CenterScreen" Topmost="False" SizeToContent="WidthAndHeight"
+        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=ShokoDesktop}"  Name="aboutWindow" Icon="/Images/db.ico">
+
+    <Grid>
+        <Grid.Resources>
+
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="/Resources/Styles.xaml" />
+                    <ResourceDictionary Source="/Resources/MainListStyles.xaml" />
+                    <ResourceDictionary Source="/Resources/MainListContent.xaml" />
+                </ResourceDictionary.MergedDictionaries>
+
+                <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+
+            </ResourceDictionary>
+
+
+
+        </Grid.Resources>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+
+        <!-- Selected series details -->
+
+        <Border Grid.Row="0" Grid.Column="0" Margin="0" Padding="5" Background="White" BorderBrush="LightGray" BorderThickness="1">
+            <StackPanel Orientation="Horizontal"  Margin="0,0,0,5">
+                <Image Height="24" Width="24" Source="/Images/32_WebDatabase.png" Margin="0,0,5,0"/>
+
+                <TextBlock Margin="5,0,0,0" FontWeight="DemiBold" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ShokoDesktop}" FontSize="20" VerticalAlignment="Center"/>
+                <TextBlock Margin="10,0,0,0" FontWeight="DemiBold" FontSize="20" Foreground="DarkGray" Text="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=ApplicationVersion}" VerticalAlignment="Center"/>
+
+
+
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="1" Grid.Column="0" Margin="0" Background="#F1F1F1" BorderBrush="LightGray" BorderThickness="1">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Margin="5,6"  Text="{Resx ResxName=JMMClient.Properties.Resources, Key=About_Home}"  VerticalAlignment="Center"/>
+                <usercontrols:HyperLinkStandard Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin="5,6,5,5" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_Site}"
+                                                                        URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_Site}"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Margin="5,4.864,5,6"  Text="{Resx ResxName=JMMClient.Properties.Resources, Key=About_Project}"  VerticalAlignment="Center"/>
+                <usercontrols:HyperLinkStandard Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="5,4.864,5,5" DisplayText="https://github.com/japanesemediamanager"
+                                                                        URL="https://github.com/japanesemediamanager"/>
+
+                <TextBlock Grid.Row="2" Grid.Column="0" Margin="5,6"  Text="{Resx ResxName=JMMClient.Properties.Resources, Key=About_Blog}"  VerticalAlignment="Center"/>
+                <usercontrols:HyperLinkStandard Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="5,5,5,6" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_Blog}" 
+                                                                        URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_Blog}"/>
+
+                <TextBlock Grid.Row="3" Grid.Column="0" Margin="5,6"  Text="{Resx ResxName=JMMClient.Properties.Resources, Key=About_MediaPortal}"  VerticalAlignment="Center"/>
+                <usercontrols:HyperLinkStandard Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Margin="5,5,5,6" DisplayText="MyAnime 3"
+                                                                        URL="http://forum.team-mediaportal.com/threads/my-anime-3.107475/"/>
+
+
+
+            </Grid>
+
+
+        </Border>
+
+        <StackPanel Grid.Row="2" Grid.Column="0"  Orientation="Horizontal" HorizontalAlignment="Center" Margin="5,5,0,10">
+            <Button Name="btnUpdates" Margin="0,0,0,0" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CheckForUpdate}" Margin="0,0,5,0"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        <ComboBox x:Name="cbUpdateChannel" HorizontalAlignment="Left" Margin="285,7,0,0" Grid.Row="2" VerticalAlignment="Top" Width="85" DropDownClosed="cbUpdateChannel_DropDownClosed" RenderTransformOrigin="-0.155,0.434" Text="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=UpdateChannel}" SelectionChanged="cbUpdateChannel_SelectionChanged"/>
+    </Grid>
+</Window>

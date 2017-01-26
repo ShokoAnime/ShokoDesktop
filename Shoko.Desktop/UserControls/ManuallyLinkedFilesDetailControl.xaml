@@ -1,0 +1,138 @@
+﻿<UserControl x:Class="Shoko.Desktop.UserControls.ManuallyLinkedFilesDetailControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <RoutedUICommand x:Key="DeleteLinkCommand" Text="DeleteLinkCommand" />
+            <RoutedUICommand x:Key="AvdumpFileCommand" Text="AvdumpFileCommand" />
+            <RoutedUICommand x:Key="PlayVideoCommand" Text="PlayVideoCommand" />
+            <RoutedUICommand x:Key="RescanFileCommand" Text="RescanFileCommand" />
+            
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+
+            <!-- EpisodeTemplate -->
+            <DataTemplate x:Key="EpisodeTemplate">
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+
+                    <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Margin="0,0,0,0">
+
+                        <!-- play video button-->
+                        <Button Margin="0,0,10,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{StaticResource PlayVideoCommand}"
+                                 CommandParameter="{Binding}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/32_resume.png" Margin="2,0,2,0" VerticalAlignment="Center"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Play}" Margin="5,0,5,0"/>
+                            </StackPanel>
+                            <Button.ToolTip>
+                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=PlayVideo}"/>
+                            </Button.ToolTip>
+                        </Button>
+
+                        <!-- Rescan File -->
+                        <Button Name="btnRescanFile" Margin="0,0,10,0" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" 
+                                Command="{StaticResource RescanFileCommand}" CommandParameter="{Binding}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="0,0,5,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search_Rescan}" Margin="0,0,5,0"/>
+                            </StackPanel>
+                            <Button.ToolTip>
+                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_AniDBForceUpdate}"/>
+                            </Button.ToolTip>
+                        </Button>
+
+                        <!-- delete link button-->
+                        <Button Margin="0,0,10,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{StaticResource DeleteLinkCommand}"
+                                 CommandParameter="{Binding}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/16_link_remove.png" Margin="2,0,2,0" VerticalAlignment="Center">
+                                </Image>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=DeleteLink}" Margin="5,0,5,0"/>
+                            </StackPanel>
+                            <Button.ToolTip>
+                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_DeleteLink}"/>
+                            </Button.ToolTip>
+                        </Button>
+
+                        <!-- avdump2 file -->
+                        <Button Name="btnAvdumpFile" Margin="0,0,2,2" Grid.Column="0" Grid.Row="3" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" 
+                                Visibility="{Binding Path=IsLocalFile, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:ManuallyLinkedFilesDetailControl}}, Converter={StaticResource BooleanToVisibilityConverter}}"                                
+                                Command="{StaticResource AvdumpFileCommand}" CommandParameter="{Binding}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <Image Height="16" Width="16" Source="/Images/32_anidb.png" Margin="0,0,5,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Avdump}" Margin="0,0,5,0"/>
+                            </StackPanel>
+                        </Button>
+
+                        <TextBlock Text="{Binding Path=AnimeName}" FontWeight="Bold" Foreground="Black" VerticalAlignment="Center" Margin="10,0,0,0" />
+                        <TextBlock Text="{Binding Path=EpisodeNumberAndName}" FontWeight="Normal" Foreground="Black" VerticalAlignment="Center" Margin="10,0,0,0" />
+                    </StackPanel>
+
+                </Grid>
+            </DataTemplate>
+        </ResourceDictionary>
+        
+    </UserControl.Resources>
+
+    <UserControl.CommandBindings>
+        <CommandBinding Command="{StaticResource DeleteLinkCommand}" Executed="CommandBinding_DeleteLink" />
+        <CommandBinding Command="{StaticResource AvdumpFileCommand}" Executed="CommandBinding_AvdumpFile" />
+        <CommandBinding Command="{StaticResource PlayVideoCommand}" Executed="CommandBinding_PlayVideo" />
+        <CommandBinding Command="{StaticResource RescanFileCommand}" Executed="CommandBinding_RescanFile" />
+    </UserControl.CommandBindings>
+
+    <Grid Margin="3">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Button Name="btnToggleExpander" Grid.Column="0" Grid.Row="0" Style="{DynamicResource FlatButtonStyle}" Margin="0,0,5,0">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+
+                <Image Height="16" Width="16" Source="../Images/16_toggle_open.png" Margin="2,0,2,0"
+                       Visibility="{Binding Path=IsCollapsed, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:ManuallyLinkedFilesDetailControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                </Image>
+                <Image Height="16" Width="16" Source="../Images/16_toggle_close.png" Margin="2,0,2,0"
+                       Visibility="{Binding Path=IsExpanded, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:ManuallyLinkedFilesDetailControl}}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            </StackPanel>
+        </Button>
+
+
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0">
+            
+            <TextBlock Text="{Binding Path=FileName}" FontWeight="Regular" Foreground="Black" VerticalAlignment="Center" />
+
+        </StackPanel>
+
+
+        <ListBox Name="lbEpisodes" BorderThickness="0" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch"  Margin="5,5,5,5"
+                ItemTemplate="{DynamicResource EpisodeTemplate}"
+                Visibility="{Binding Path=IsExpanded, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:ManuallyLinkedFilesDetailControl}}, Converter={StaticResource BooleanToVisibilityConverter}}"
+                Background="Transparent" ItemContainerStyle="{DynamicResource ListBoxItemStyleFiles}"  VerticalAlignment="Stretch" >
+
+        </ListBox>
+
+
+    </Grid>
+</UserControl>

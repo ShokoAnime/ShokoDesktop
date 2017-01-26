@@ -1,0 +1,82 @@
+﻿<Window x:Class="Shoko.Desktop.Forms.ViewCommentForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:Shoko.Desktop.ViewModel"
+        xmlns:forms="clr-namespace:Shoko.Desktop.Forms"
+        xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
+        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=ViewComment_Comment}" Height="400" Width="500"  Icon="/Images/trakt-icon-shouts.png" SizeToContent="Height" 
+        WindowStartupLocation="CenterOwner" ShowInTaskbar="False">
+    <Grid>
+        <Grid.Resources>
+
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="/Resources/Styles.xaml" />
+                    <ResourceDictionary Source="/Resources/MainListStyles.xaml" />
+                    <ResourceDictionary Source="/Resources/MainListContent.xaml" />
+                </ResourceDictionary.MergedDictionaries>
+
+                <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+
+            </ResourceDictionary>
+
+
+
+        </Grid.Resources>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        
+        
+        <Border Grid.Row="0" Grid.Column="0" Margin="5,5,5,5" Padding="5" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Column="0" Grid.Row="0"  Margin="5" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ViewComments_FromTrakt}" FontSize="14" Foreground="DarkGreen"  x:Name="txtFrom"
+                                   VerticalAlignment="Center" FontWeight="Bold"/>
+
+
+
+                <TextBlock Grid.Column="0" Grid.Row="1" Margin="5" Grid.ColumnSpan="2" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ViewComments_Username}" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" x:Name="txtUsername"
+                                   Foreground="Black" ToolTipService.ShowDuration="60000"/>
+
+                <TextBlock Grid.Column="1" Grid.Row="1" Margin="15,5,5,5" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ViewComments_CommentDate}" FontSize="12" HorizontalAlignment="Left" x:Name="txtDate" 
+                                   Foreground="DarkGray" VerticalAlignment="Center" ToolTipService.ShowDuration="60000">
+                </TextBlock>
+            </Grid>
+
+        </Border>
+
+        <Border Grid.Row="1" Grid.Column="0" Margin="5" Padding="5" Background="White" BorderBrush="LightGray" BorderThickness="1">
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Name="ScrollerComments" Grid.Column="0" Grid.Row="0" Margin="0,0,0,0">
+                <TextBlock Grid.Column="0" Grid.Row="2" Margin="5" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ViewComments_Comments}" FontSize="14" TextWrapping="Wrap" Grid.ColumnSpan="2" HorizontalAlignment="Left" x:Name="txtComment"
+                                       Foreground="Black" VerticalAlignment="Top" ToolTipService.ShowDuration="60000">
+               
+                </TextBlock>
+            </ScrollViewer>
+        </Border>
+
+        <Border Grid.Row="2" Grid.Column="0" Margin="5,5,5,5" Padding="5" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1">
+            <usercontrols:HyperLinkStandard x:Name="urlWebsite" VerticalAlignment="Center" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=ViewComments_Website}" URL="" Margin="0,0,0,0"/>    
+        </Border>
+        
+
+
+
+
+    </Grid>
+</Window>

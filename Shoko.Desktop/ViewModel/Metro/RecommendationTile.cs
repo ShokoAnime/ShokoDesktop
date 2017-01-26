@@ -1,0 +1,22 @@
+﻿using System;
+using Shoko.Desktop.ViewModel.Server;
+// ReSharper disable InconsistentNaming
+
+namespace Shoko.Desktop.ViewModel.Metro
+{
+    public class RecommendationTile
+    {
+        public string AnimeName { get; set; }
+        public string Details { get; set; }
+        public String Picture { get; set; }
+        public long Height { get; set; }
+        public String TileSize { get; set; }
+        public VM_AnimeSeries_User AnimeSeries { get; set; }
+        public string URL { get; set; }
+        public string Source { get; set; }
+        public string Description { get; set; }
+        public int AnimeID { get; set; }
+        public int SimilarAnimeID { get; set; }
+        public bool HasSeries { get; set; }
+    }
+}

@@ -1,0 +1,100 @@
+﻿<UserControl x:Class="Shoko.Desktop.UserControls.Settings.DisplayImageSizesSettings"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:extToolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
+             xmlns:local="clr-namespace:Shoko.Desktop.ViewModel"
+             xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:wpfHelpers="clr-namespace:Shoko.Desktop.WPFHelpers"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="600">
+
+    <UserControl.Resources>
+
+        <ResourceDictionary>
+
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+            <wpfHelpers:UriToImageConverter x:Key="LocalUriToImageConverter"/>
+
+        </ResourceDictionary>
+
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Group List -->
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Margin="0,5,15,0">
+            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ImageSize_GroupList}"  VerticalAlignment="Top"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" Margin="0,5,5,0">
+            <xctk:IntegerUpDown Name="udImageSize_GroupList" Minimum="30" Maximum="300" DefaultValue="80" Increment="10" VerticalAlignment="Top" 
+                                      ToolTip="{usercontrols:Info Title=ImageSize_GroupList, 
+                                       Body=Tooltip_ImageSize_GroupList}" Value="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=DisplayHeight_GroupList}"  />
+        </StackPanel>
+
+        <Border BorderThickness="1,1,1,1" BorderBrush="DarkGray" Grid.Row="0" Grid.Column="2">
+            <Image Margin="3,3,5,3" Height="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=DisplayHeight_GroupList}" 
+                   MaxWidth="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=DisplayHeight_GroupList}" HorizontalAlignment="Left" VerticalAlignment="Top"
+                    Source="/Images/Samples/Naruto.jpg">
+            </Image>
+        </Border>
+
+
+        <!-- Series Poster -->
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Margin="0,5,15,0">
+            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ImageSize_SeriesPoster}"  VerticalAlignment="Top"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" Margin="0,5,5,0">
+            <xctk:IntegerUpDown Name="udImageSize_SeriesPoster" Minimum="30" Maximum="300" DefaultValue="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=DisplayHeight_SeriesInfo}" Increment="10" VerticalAlignment="Top" 
+                                      ToolTip="{usercontrols:Info Title=ImageSize_SeriesPoster, 
+                                       Body=Tooltip_ImageSize_SeriesPoster}" Value="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=DisplayHeight_SeriesInfo}"  />
+        </StackPanel>
+
+        <Border BorderThickness="1,1,1,1" BorderBrush="DarkGray" Grid.Row="1" Grid.Column="2" >
+            <Image Margin="3,3,5,3" Height="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=DisplayHeight_SeriesInfo}" 
+                   MaxWidth="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=DisplayHeight_SeriesInfo}" HorizontalAlignment="Left" VerticalAlignment="Top"
+                    Source="/Images/Samples/Naruto.jpg">
+            </Image>
+        </Border>
+
+        <!-- Episode Image -->
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2" Margin="0,5,15,0">
+            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ImageSize_EpisodeImage}"  VerticalAlignment="Top"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Margin="0,5,5,0">
+            <xctk:IntegerUpDown Name="udImageSize_EpisodeImage" Minimum="10" Maximum="400" 
+                 DefaultValue="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=DisplayWidth_EpisodeImage}" Increment="10" VerticalAlignment="Top"
+                 ToolTip="{usercontrols:Info Title=ImageSize_EpisodeImage, 
+                 Body=Tooltip_ImageSize_EpisodeImage}" Value="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=DisplayWidth_EpisodeImage}"/>
+        </StackPanel>
+
+        <Border BorderThickness="1,1,1,1" BorderBrush="DarkGray" Grid.Row="2" Grid.Column="2" >
+            <Image Margin="3,3,5,3" Width="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=DisplayWidth_EpisodeImage}" 
+                   MaxWidth="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=DisplayWidth_EpisodeImage}" HorizontalAlignment="Left" VerticalAlignment="Top"
+                    Source="/Images/Samples/Episode.jpg">
+            </Image>
+        </Border>
+
+        
+
+    </Grid>
+</UserControl>

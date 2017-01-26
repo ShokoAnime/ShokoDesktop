@@ -1,0 +1,368 @@
+﻿<UserControl x:Class="Shoko.Desktop.UserControls.PlaylistControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:debug="clr-namespace:System.Diagnostics;assembly=System"
+             xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
+             xmlns:dd="clr-namespace:GongSolutions.Wpf.DragDrop;assembly=GongSolutions.Wpf.DragDrop"
+             xmlns:local="clr-namespace:Shoko.Desktop.ViewModel"
+             xmlns:viewModel="clr-namespace:Shoko.Desktop.ViewModel"
+             xmlns:dataTemplateSelectors="clr-namespace:Shoko.Desktop.DataTemplateSelectors"
+             d:DesignHeight="300" d:DesignWidth="600">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Styles.xaml" />
+                <ResourceDictionary Source="/Resources/MainListStyles.xaml" />
+                <ResourceDictionary Source="/Resources/MainListContent.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+            <dataTemplateSelectors:PlaylistTemplateSelector x:Key="PlaylistTemplateSelector"/>
+
+            <!-- Playlist_AnimeSeriesTemplate-->
+            <DataTemplate x:Key="Playlist_AnimeSeriesTemplate">
+                <DataTemplate.Resources>
+                    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+                </DataTemplate.Resources>
+                <Grid Margin="3" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition MaxHeight="35" />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Margin="0,0,5,5">
+                        <!-- delete item button -->
+                        <Button HorizontalAlignment="Left" Margin="0,0,10,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto"
+                            Command="{DynamicResource DeletePlaylistItemCommand}" CommandParameter="{Binding}" 
+                            ToolTip="{Resx ResxName=JMMClient.Properties.Resources, Key=Delete}" VerticalAlignment="Center">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <Image Height="16" Width="16" Source="/Images/16_cancel.png"/>
+
+                            </StackPanel>
+                        </Button>
+                        <TextBlock Margin="0,0,10,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Series}" FontSize="16" Foreground="DarkGray" VerticalAlignment="Center" />
+                        <TextBlock Margin="0,0,0,0" Text="{Binding Path=Series.SeriesName}" FontWeight="Bold" FontSize="16" VerticalAlignment="Center" />
+
+                        <!-- show pinned series button -->
+                        <Button Margin="10,5,0,5" Style="{DynamicResource RoundButtonStyle}" VerticalAlignment="Center"
+                                Command="{DynamicResource ShowPinnedSeriesCommand}" CommandParameter="{Binding}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/32_pin.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000">
+                                    <Image.ToolTip>
+                                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_PinSeries}"/>
+                                    </Image.ToolTip>
+                                </Image>
+
+                            </StackPanel>
+                        </Button>
+
+                        <!-- Play episode button -->
+                        <Button Margin="5,0,0,0" Style="{DynamicResource RoundButtonStyle}" Command="{DynamicResource PlayEpisodeCommand}" CommandParameter="{Binding}"
+                            VerticalAlignment="Center">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/32_resume.png" Margin="0,0,5,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Play}" Margin="0,0,5,0"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>              
+
+
+                </Grid>
+            </DataTemplate>
+
+            <!-- Playlist_AnimeEpisodeTemplate-->
+            <DataTemplate x:Key="Playlist_AnimeEpisodeTemplate">
+                <DataTemplate.Resources>
+                    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+                </DataTemplate.Resources>
+                <Grid Margin="3" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition MaxHeight="35" />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Margin="0,0,5,5">
+                        <!-- delete item button -->
+                        <Button HorizontalAlignment="Left" Margin="0,0,10,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto"
+                            Command="{DynamicResource DeletePlaylistItemCommand}" CommandParameter="{Binding}" 
+                            ToolTip="{Resx ResxName=JMMClient.Properties.Resources, Key=Delete}" VerticalAlignment="Center">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <Image Height="16" Width="16" Source="/Images/16_cancel.png"/>
+
+                            </StackPanel>
+                        </Button>
+                        <TextBlock Margin="0,0,10,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode}" FontSize="16" Foreground="DarkGray" VerticalAlignment="Center" />
+                        <TextBlock Margin="0,0,10,0" Text="{Binding Path=Series.SeriesName}" FontWeight="Bold" FontSize="16" VerticalAlignment="Center" />
+                        <TextBlock Margin="0,0,0,0" Text="{Binding Path=Episode.EpisodeNumberAndNameWithTypeTruncated}" FontWeight="Bold" FontSize="16" Foreground="DarkGreen" VerticalAlignment="Center" />
+
+                        <!-- show pinned series button -->
+                        <Button Margin="10,5,0,5" Style="{DynamicResource RoundButtonStyle}" VerticalAlignment="Center"
+                                Command="{DynamicResource ShowPinnedSeriesCommand}" CommandParameter="{Binding}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/32_pin.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000">
+                                    <Image.ToolTip>
+                                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_PinSeries}"/>
+                                    </Image.ToolTip>
+                                </Image>
+
+                            </StackPanel>
+                        </Button>
+
+                        <!-- Toggle watched button -->
+                        <Button Name="btnToggleWatched" Margin="5,0,0,0" Style="{DynamicResource RoundButtonStyle}" VerticalAlignment="Center"
+                        Visibility="{Binding Path=Episode.HasFiles, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        Command="{DynamicResource ToggleWatchedStatusCommand}" CommandParameter="{Binding}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/32_eye.png" Margin="2,0,2,0"
+                           Visibility="{Binding Path=Episode.Watched, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <Image.ToolTip>
+                                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_Watched}"/>
+                                    </Image.ToolTip>
+                                </Image>
+                                <Image Height="16" Width="16" Source="/Images/32_eye2.png" Margin="2,0,2,0"
+                           Visibility="{Binding Path=Episode.Unwatched, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <Image.ToolTip>
+                                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_Unwatched}"/>
+                                    </Image.ToolTip>
+                                </Image>
+                            </StackPanel>
+                        </Button>
+
+                        <!-- Play episode button -->
+                        <Button Margin="5,0,0,0" Style="{DynamicResource RoundButtonStyle}" Command="{DynamicResource PlayEpisodeCommand}" CommandParameter="{Binding}"
+                            VerticalAlignment="Center">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/32_resume.png" Margin="0,0,5,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Play}" Margin="0,0,5,0"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+
+
+
+                </Grid>
+            </DataTemplate>
+
+            <RoutedUICommand x:Key="ToggleWatchedStatusCommand" Text="ToggleWatchedStatusCommand" />
+            <RoutedUICommand x:Key="PlayEpisodeCommand" Text="PlayEpisodeCommand" />
+
+        </ResourceDictionary>
+
+        
+
+    </UserControl.Resources>
+
+    <UserControl.CommandBindings>
+
+        <CommandBinding Command="{StaticResource ToggleWatchedStatusCommand}" Executed="CommandBinding_ToggleWatchedStatus" />
+        <CommandBinding Command="{StaticResource PlayEpisodeCommand}" Executed="CommandBinding_PlayEpisode" />
+    </UserControl.CommandBindings>
+
+
+    <Grid Margin="0,0,0,0" Name="grdPlaylistMain" Width="{Binding ElementName=ScrollerPlaylist, Path=ViewportWidth}"
+              Visibility="{Binding Path=HasPlaylists, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:PlaylistControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Border Style="{DynamicResource ToolbarBorderControlStyle}" Margin="0,0,0,0" Background="#F1F1F1" Padding="3" BorderThickness="0" Grid.Row="0">
+
+                <StackPanel Orientation="Horizontal"  VerticalAlignment="Center" Margin="0,0,0,0" Background="#F1F1F1">
+
+                <!-- Play All -->
+                <Button Name="btnPlayAll" Margin="10,2,2,2" Style="{DynamicResource FlatButtonStyle}"
+                                         Visibility="{Binding Path=IsReadOnly, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                        <Image Height="16" Width="16" Source="/Images/32_play_all.png" Margin="0,0,3,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Playlist_PlayAll}" Margin="0,0,0,0"/>
+                    </StackPanel>
+                </Button>
+
+                <!-- Random Playlist -->
+                <Button Name="btnRandomEpisode" Margin="10,2,2,2" Style="{DynamicResource FlatButtonStyle}">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                        <Image Height="16" Width="16" Source="/Images/32_dice.png" Margin="0,0,3,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Playlist_Random}" Margin="0,0,0,0"/>
+                    </StackPanel>
+                </Button>
+
+                <!-- Edit Playlist -->
+                    <Button Name="btnEditPlaylist" Margin="10,2,2,2" Style="{DynamicResource FlatButtonStyle}"
+                                         Visibility="{Binding Path=IsReadOnly, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                            <Image Height="16" Width="16" Source="/Images/32_playlist_edit.png" Margin="0,0,3,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Edit}" Margin="0,0,0,0"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- Finish Editing Playlist -->
+                    <Button Name="btnEditPlaylistFinish" Margin="10,2,2,2" Style="{DynamicResource FlatButtonStyle}"
+                                         Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                            <Image Height="16" Width="16" Source="/Images/32_playlist_accept.png" Margin="0,0,3,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=FinishEditing}" Margin="0,0,0,0"/>
+                        </StackPanel>
+                    </Button>
+
+                <!-- Delete Playlist -->
+                <Button Name="btnDeletePlaylist" Margin="10,2,2,2" Style="{DynamicResource FlatButtonStyle}" Command="{DynamicResource DeletePlaylistCommand}" CommandParameter="{Binding}">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                        <Image Height="16" Width="16" Source="/Images/32_playlist_delete.png" Margin="0,0,3,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Delete}" Margin="0,0,0,0"/>
+                    </StackPanel>
+                </Button>
+
+                <ToggleButton IsChecked="True" Name="togFanart" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Playlist_UseFanart}" Margin="10,2,2,2" VerticalAlignment="Center" Style="{DynamicResource ToggleButtonStyle}" Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}">
+                </ToggleButton>
+
+                </StackPanel>
+
+            </Border >
+
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1">
+            <StackPanel Orientation="Vertical">
+                <Grid Margin="0,0,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Playlist details (locked) -->
+                    <Border BorderThickness="1" BorderBrush="DarkGray" Background="FloralWhite" Padding="5" Margin="5" CornerRadius="4" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
+                            Visibility="{Binding Path=IsReadOnly, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="5,0,10,0" Text="{Binding PlaylistName}" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" />
+
+                        <CheckBox Name="chkPlayWatchedLocked" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Playlist_PlayWatched}" VerticalAlignment="Center" Margin="10,0,0,0" IsEnabled="False"
+                                      IsChecked="{Binding Path=PlayWatchedBool}"/>
+
+                        <CheckBox Name="chkPlayUnwatchedLocked" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Playlist_PlayUnwatched}" VerticalAlignment="Center" Margin="10,0,0,0" IsEnabled="False"
+                                      IsChecked="{Binding Path=PlayUnwatchedBool}"/>
+
+                        <TextBlock Margin="10,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Playlist_Default}" VerticalAlignment="Center" IsEnabled="False" Foreground="DarkGray"/>
+
+                            <ComboBox Grid.Row="0" Name="cboPlayOrderLocked" VerticalAlignment="Center" Margin="5,0,0,0" IsEnabled="False"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Playlist details (editing) -->
+                    <Border BorderThickness="1" BorderBrush="DarkGray" Background="FloralWhite" Padding="5"  Margin="5" CornerRadius="4" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
+                            Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox Margin="5,0,10,0" Text="{Binding PlaylistName}" FontSize="16"  MinWidth="200" FontWeight="Bold" Name="txtPlaylistName" VerticalAlignment="Center"/>
+
+                        <CheckBox Name="chkPlayWatchedEdit" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Playlist_PlayWatched}" VerticalAlignment="Center" Margin="10,0,0,0"
+                                      IsChecked="{Binding Path=PlayWatchedBool}"/>
+
+                        <CheckBox Name="chkPlayUnwatchedEdit" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Playlist_PlayUnwatched}" VerticalAlignment="Center" Margin="10,0,0,0"
+                                      IsChecked="{Binding Path=PlayUnwatchedBool}"/>
+
+                        <TextBlock Margin="10,0,0,2" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Playlist_Default}" VerticalAlignment="Center" />
+
+                            <ComboBox Grid.Row="0" Name="cboPlayOrderEdit" VerticalAlignment="Center" Margin="10,0,0,0" />
+                        </StackPanel>
+                    </Border>
+
+
+
+                    <!-- Poster/Fanart Image -->
+
+                    <Rectangle Margin="10,10,10,10" Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Top" Name="imgFanart"
+                                        Visibility="{Binding Path=AniDB_Anime.UseFanartOnPlaylistHeader, Converter={StaticResource BooleanToVisibilityConverter}}" 
+                               RadiusX="5" RadiusY="5" Width="{Binding Source={x:Static viewModel:VM_UserSettings.Instance},Path=PlaylistHeader_Image_Width}" 
+                                       Height="{Binding Source={x:Static viewModel:VM_UserSettings.Instance},Path=PlaylistHeader_Image_Height}">
+                        <Rectangle.Effect>
+                            <DropShadowEffect Opacity="0.5"/>
+                        </Rectangle.Effect>
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="{Binding Path=AniDB_Anime.FanartPathThenPosterPathForPlaylistHeader}">
+
+                            </ImageBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+
+                    <Image Height="{Binding Source={x:Static viewModel:VM_UserSettings.Instance},Path=PlaylistHeader_Image_Height}" 
+                                   Source="{Binding Path=AniDB_Anime.FanartPathThenPosterPathForPlaylistHeader}" x:Name="myImage"
+                                   Margin="10,10,10,10" Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Top"
+                                   Visibility="{Binding Path=AniDB_Anime.UsePosterOnPlaylistHeader, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Image.ToolTip>
+                            <Image Stretch="Fill" HorizontalAlignment="Center" Height="400" Source="{Binding AniDB_Anime.FanartPathThenPosterPathForPlaylistHeader}">
+                            </Image>
+                        </Image.ToolTip>
+                        <Image.Effect>
+                            <DropShadowEffect Opacity="0.5"/>
+                        </Image.Effect>
+                    </Image>
+
+                    <!-- Image size Buttons -->
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1"  Margin="10,10,0,0"
+                                        Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                        <Button Margin="0,0,0,0" Style="{DynamicResource FlatButtonStyle}" Name="btnIncreaseHeaderImageSize">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/16_add.png" Margin="0,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button Margin="0,0,0,0" Style="{DynamicResource FlatButtonStyle}"  Name="btnDecreaseHeaderImageSize">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/16_minus.png" Margin="0,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+
+                    <TextBlock VerticalAlignment="Top" Text="{Binding Path=Series.SeriesName}" FontWeight="Bold" FontSize="18" Margin="10,3,0,0" Grid.Row="1" Grid.Column="2" />
+
+                    <!-- Play Next Episode -->
+                    <usercontrols:PlayNextEpisodeControl x:Name="ucNextEpisodePlaylist" Grid.Row="2" Grid.Column="2" Grid.RowSpan="2" Margin="0,0,0,0" />
+
+                </Grid>
+
+                <!-- Header -->
+                <Border Style="{DynamicResource ToolbarBorderControlStyle}" Padding="6" Background="#F1F1F1">
+                
+                    <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Playlist_Items}" FontSize="16" Foreground="DarkGray" VerticalAlignment="Center"/>
+
+                   
+                    </StackPanel>
+                </Border>
+
+                <ListBox Name="lbPlaylistItems" BorderThickness="0" HorizontalAlignment="Stretch"  Margin="0" 
+                     VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
+                     ItemsSource="{Binding PlaylistObjects}"  ItemTemplateSelector="{StaticResource PlaylistTemplateSelector}"
+                     Background="Transparent" ItemContainerStyle="{DynamicResource ListBoxItemStyle}"  VerticalAlignment="Stretch"
+                     dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True" dd:DragDrop.DropHandler="{Binding}">
+                    <ListBox.Template>
+                        <ControlTemplate>
+                            <ItemsPresenter />
+                        </ControlTemplate>
+                    </ListBox.Template>
+                </ListBox>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="Shoko.Desktop.UserControls.Settings.AniDBDownloadSettings"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Shoko.Desktop.ViewModel"
+             xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="600">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Margin="0,5,15,0">
+            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AniDBDownloadCharacters}" VerticalAlignment="Center"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" Margin="0,5,5,0">
+            <CheckBox Name="chkDownloadCharacters" IsChecked="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=AniDB_DownloadCharacters}" VerticalAlignment="Center"
+                      ToolTip="{usercontrols:Info Title=AniDBDownloadCharacters, 
+                                                Body=Tooltip_AniDBDownloadCharacters}"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Margin="0,5,15,0">
+            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AniDBDownloadCreators}" VerticalAlignment="Center"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" Margin="0,5,5,0">
+            <CheckBox Name="chkDownloadCreators" IsChecked="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=AniDB_DownloadCreators}" VerticalAlignment="Center"
+                      ToolTip="{usercontrols:Info Title=AniDBDownloadCreators, 
+                                                Body=Tooltip_AniDBDownloadCreators}"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2" Margin="0,5,15,0">
+            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AniDBDownloadReviews}" VerticalAlignment="Center"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Margin="0,5,5,0">
+            <CheckBox Name="chkDownloadReviews" IsChecked="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=AniDB_DownloadReviews}" VerticalAlignment="Center"
+                      ToolTip="{usercontrols:Info Title=AniDBDownloadReviews, 
+                                                Body=Tooltip_AniDBDownloadReviews}"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="3" Margin="0,5,15,0">
+            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AniDBDownloadReleaseGroups}" VerticalAlignment="Center"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3" Margin="0,5,5,0">
+            <CheckBox Name="chkDownloadGroups" IsChecked="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=AniDB_DownloadReleaseGroups}" VerticalAlignment="Center"
+                      ToolTip="{usercontrols:Info Title=AniDBDownloadReleaseGroups, 
+                                                Body=Tooltip_AniDBDownloadReleaseGroups}"/>
+        </StackPanel>
+
+    </Grid>
+</UserControl>
