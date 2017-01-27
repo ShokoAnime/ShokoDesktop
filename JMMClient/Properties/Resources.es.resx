@@ -4472,4 +4472,10 @@ Desconocido de la marca - deja el archivo en la lista, pero cambia el estado a d
   <data name="Settings_SetShokoServerFolderNonExistent" xml:space="preserve">
     <value>No existe ruta de imagen Shoko: {0}</value>
   </data>
+  <data name="Command_CheckingFile" xml:space="preserve">
+    <value>Comprobando archivo de Hashes: {0}!</value>
+  </data>
+  <data name="Command_RefreshGroupFilter" xml:space="preserve">
+    <value>Actualizar filtro de Grupo: {0}</value>
+  </data>
 </root>

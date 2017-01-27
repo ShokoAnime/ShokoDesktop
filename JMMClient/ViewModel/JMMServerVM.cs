@@ -1942,12 +1942,12 @@ namespace JMMClient
         private enum QueueStateEnum
         {
             AnimeInfo = 1, DeleteError, DownloadImage, DownloadMalWatched, DownloadTvDBImages, FileInfo, GetCalendar, GetEpisodeList, GetFileInfo, GetReleaseGroup,
-            GetReleaseInfo, GetReviewInfo, GettingTvDB, GetUpdatedAnime, HashingFile, Idle, Paused, Queued, ReadingMedia, Refresh, SearchMal, SearchTMDb, SearchTrakt,
+            GetReleaseInfo, GetReviewInfo, GettingTvDB, GetUpdatedAnime, HashingFile, Idle, Paused, Queued, ReadingMedia, RefreshAnime, SearchMal, SearchTMDb, SearchTrakt,
             SearchTvDB, SendAnimeAzure, SendAnimeFull, SendAnimeTitle, SendAnonymousData, StartingGeneral, StartingHasher, StartingImages, SyncMyList, SyncTrakt,
             SyncTraktEpisodes, SyncTraktSeries, SyncVotes, TraktAddHistory, UpdateMALWatched, UpdateMyListInfo, UpdateMyListStats, UpdateTrakt, UpdateTraktData, UploadMALWatched,
             VoteAnime, WebCacheDeleteXRefAniDBMAL, WebCacheDeleteXRefAniDBOther, WebCacheDeleteXRefAniDBTrakt, WebCacheDeleteXRefAniDBTvDB, WebCacheDeleteXRefFileEpisode, WebCacheSendXRefAniDBMAL,
             WebCacheSendXRefAniDBOther, WebCacheSendXRefAniDBTrakt, WebCacheSendXRefAniDBTvDB, WebCacheSendXRefFileEpisode, AniDB_MyListAdd, AniDB_MyListDelete, AniDB_GetTitles, Actions_SyncVotes,
-            LinkAniDBTvDB
+            LinkAniDBTvDB, CheckingFile, RefreshGroupFilter
         };
 
         private struct QueueStateStruct
@@ -2001,7 +2001,7 @@ namespace JMMClient
                         return JMMClient.Properties.Resources.Command_Queued;
                     case QueueStateEnum.ReadingMedia:
                         return JMMClient.Properties.Resources.Command_ReadingMedia;
-                    case QueueStateEnum.Refresh:
+                    case QueueStateEnum.RefreshAnime:
                         return JMMClient.Properties.Resources.Command_Refresh;
                     case QueueStateEnum.SearchMal:
                         return JMMClient.Properties.Resources.Command_SearchMal;
@@ -2081,6 +2081,10 @@ namespace JMMClient
                         return JMMClient.Properties.Resources.Actions_SyncVotes;
                     case QueueStateEnum.LinkAniDBTvDB:
                         return JMMClient.Properties.Resources.Command_LinkAniDBTvDB;
+                    case QueueStateEnum.CheckingFile:
+                        return JMMClient.Properties.Resources.Command_CheckingFile;
+                    case QueueStateEnum.RefreshGroupFilter:
+                        return JMMClient.Properties.Resources.Command_RefreshGroupFilter;
                     default:
                         throw new System.Exception("Unknown queue state format string"); ;
                 }

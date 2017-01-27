@@ -4472,4 +4472,10 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   <data name="Settings_SetShokoServerFolderNonExistent" xml:space="preserve">
     <value>Shoko immagine percorso non esiste: {0}</value>
   </data>
+  <data name="Command_CheckingFile" xml:space="preserve">
+    <value>Controllo File per hash: {0}!</value>
+  </data>
+  <data name="Command_RefreshGroupFilter" xml:space="preserve">
+    <value>Rinfrescante gruppo filtro: {0}</value>
+  </data>
 </root>

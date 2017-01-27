@@ -4472,4 +4472,10 @@
   <data name="Settings_SetShokoServerFolderNonExistent" xml:space="preserve">
     <value>Caminho de imagem Shoko não existe: {0}</value>
   </data>
+  <data name="Command_CheckingFile" xml:space="preserve">
+    <value>Verificando o arquivo para Hashes: {0}!</value>
+  </data>
+  <data name="Command_RefreshGroupFilter" xml:space="preserve">
+    <value>Atualizando o filtro de Grupo: {0}</value>
+  </data>
 </root>

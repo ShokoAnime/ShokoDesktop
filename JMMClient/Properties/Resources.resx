@@ -4474,4 +4474,10 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
   <data name="Settings_SetShokoServerFolderNonExistent" xml:space="preserve">
     <value>Shoko image path doesn't exist: {0}</value>
   </data>
+  <data name="Command_CheckingFile" xml:space="preserve">
+    <value>Checking File for Hashes: {0}</value>
+  </data>
+  <data name="Command_RefreshGroupFilter" xml:space="preserve">
+    <value>Refreshing Group Filter: {0}</value>
+  </data>
 </root>

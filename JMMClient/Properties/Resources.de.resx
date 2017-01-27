@@ -4472,4 +4472,10 @@ Mark-Unknown - bleibt die Datei auf Ihrer Liste, aber ändert den Zustand unbeka
   <data name="Settings_SetShokoServerFolderNonExistent" xml:space="preserve">
     <value>Shoko-Image-Pfad ist nicht vorhanden: {0}</value>
   </data>
+  <data name="Command_CheckingFile" xml:space="preserve">
+    <value>Hashes Datei gesucht: {0}!</value>
+  </data>
+  <data name="Command_RefreshGroupFilter" xml:space="preserve">
+    <value>Erfrischende Gruppenfilter: {0}</value>
+  </data>
 </root>

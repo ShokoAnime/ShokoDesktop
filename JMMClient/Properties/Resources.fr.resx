@@ -4472,4 +4472,10 @@ Marque inconnue -, laisse le fichier sur votre liste, mais remplace l'état inco
   <data name="Settings_SetShokoServerFolderNonExistent" xml:space="preserve">
     <value>Chemin de l’image Shoko n’existe pas : {0}</value>
   </data>
+  <data name="Command_CheckingFile" xml:space="preserve">
+    <value>Recherchant les hachages de fichier : {0} !</value>
+  </data>
+  <data name="Command_RefreshGroupFilter" xml:space="preserve">
+    <value>Rafraîchissant de filtre de groupe : {0}</value>
+  </data>
 </root>
