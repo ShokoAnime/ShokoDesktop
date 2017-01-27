@@ -4474,4 +4474,10 @@
   <data name="Settings_SetShokoServerFolderNonExistent" xml:space="preserve">
     <value>Ścieżka obrazu Shoko nie istnieje: {0}</value>
   </data>
+  <data name="Command_CheckingFile" xml:space="preserve">
+    <value>Sprawdzanie pliku skrótów: {0}!</value>
+  </data>
+  <data name="Command_RefreshGroupFilter" xml:space="preserve">
+    <value>Odświeżanie filtr grupy: {0}</value>
+  </data>
 </root>

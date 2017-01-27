@@ -4472,4 +4472,10 @@
   <data name="Settings_SetShokoServerFolderNonExistent" xml:space="preserve">
     <value>Сёко изображение путь не существует: {0}</value>
   </data>
+  <data name="Command_CheckingFile" xml:space="preserve">
+    <value>Проверка файла хэшей: {0}!</value>
+  </data>
+  <data name="Command_RefreshGroupFilter" xml:space="preserve">
+    <value>Освежающий фильтр группы: {0}</value>
+  </data>
 </root>

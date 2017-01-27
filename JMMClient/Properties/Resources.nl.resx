@@ -4472,4 +4472,10 @@ Mark Unknown - laat het bestand op uw lijst, maar wijzigt de status unkown.</val
   <data name="Settings_SetShokoServerFolderNonExistent" xml:space="preserve">
     <value>Shoko afbeeldingen pad bestaat niet: {0}</value>
   </data>
+  <data name="Command_CheckingFile" xml:space="preserve">
+    <value>Controleren van bestand hashes: {0}!</value>
+  </data>
+  <data name="Command_RefreshGroupFilter" xml:space="preserve">
+    <value>Verfrissende groepeerfilter: {0}</value>
+  </data>
 </root>
