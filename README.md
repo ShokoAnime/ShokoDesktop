@@ -7,5 +7,5 @@ Shoko is an anime cataloging program designed to automate the cataloging of your
 #Learn More About Shoko
 http://shokoanime.com/
 
-#Learn More About Shoko Server
+#Learn More About Shoko Desktop
 http://shokoanime.com/shoko-desktop/
