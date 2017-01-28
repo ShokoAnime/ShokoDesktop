@@ -139,8 +139,8 @@ namespace Shoko.Desktop.UserControls
             txtStartEpNum.TextChanged += new TextChangedEventHandler(txtStartEpNum_TextChanged);
             txtEndEpNumSingle.TextChanged += new TextChangedEventHandler(txtEndEpNumSingle_TextChanged);
 
-            cboMultiType.Items.Add(Properties.Resources.MultiTypeRange);
-            cboMultiType.Items.Add(Properties.Resources.MultiTypeSingle);
+            cboMultiType.Items.Add(Shoko.Commons.Properties.Resources.MultiTypeRange);
+            cboMultiType.Items.Add(Shoko.Commons.Properties.Resources.MultiTypeSingle);
             cboMultiType.SelectedIndex = 1;
 
             cboMultiType.SelectionChanged += new SelectionChangedEventHandler(cboMultiType_SelectionChanged);
@@ -262,7 +262,7 @@ namespace Shoko.Desktop.UserControls
                 }
                 Cursor = Cursors.Arrow;
 
-                MessageBox.Show(Properties.Resources.Unrecognized_AniDBQueue, Properties.Resources.Complete, MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(Shoko.Commons.Properties.Resources.Unrecognized_AniDBQueue, Shoko.Commons.Properties.Resources.Complete, MessageBoxButton.OK, MessageBoxImage.Information);
 
             }
             catch (Exception ex)
@@ -285,7 +285,7 @@ namespace Shoko.Desktop.UserControls
                 VM_ShokoServer.Instance.ShokoServices.RescanUnlinkedFiles();
                 Cursor = Cursors.Arrow;
 
-                MessageBox.Show(Properties.Resources.Unrecognized_AniDBScan, Properties.Resources.Complete, MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(Shoko.Commons.Properties.Resources.Unrecognized_AniDBScan, Shoko.Commons.Properties.Resources.Complete, MessageBoxButton.OK, MessageBoxImage.Information);
 
             }
             catch (Exception ex)
@@ -396,13 +396,13 @@ namespace Shoko.Desktop.UserControls
                         if (series.LatestRegularEpisodeNumber < endEpNum || startEpNum <= 0 && endEpNum <= 0 && endEpNum <= startEpNum)
                         {
                             // otherwise allow the user to refresh it from anidb
-                            MessageBoxResult res = MessageBox.Show(Properties.Resources.MSG_ERR_InvalidEpGetAnime, Properties.Resources.Error, MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
+                            MessageBoxResult res = MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_InvalidEpGetAnime, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
                             if (res == MessageBoxResult.Yes)
                             {
                                 result = VM_ShokoServer.Instance.ShokoServices.UpdateAnimeData(series.AniDB_ID);
                                 if (result.Length > 0)
                                 {
-                                    MessageBox.Show(result, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                                    MessageBox.Show(result, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                                     EnableDisableControls(true);
                                     return;
                                 }
@@ -411,7 +411,7 @@ namespace Shoko.Desktop.UserControls
                                     // check again
                                     if (series.LatestRegularEpisodeNumber < endEpNum)
                                     {
-                                        MessageBox.Show(Properties.Resources.MSG_ERR_InvalidEp, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                                        MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_InvalidEp, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Exclamation);
                                         EnableDisableControls(true);
                                         return;
                                     }
@@ -428,7 +428,7 @@ namespace Shoko.Desktop.UserControls
                         result = VM_ShokoServer.Instance.ShokoServices.AssociateSingleFileWithMultipleEpisodes(vid.VideoLocalID, series.AnimeSeriesID, startEpNum, endEpNum);
                         if (result.Length > 0)
                         {
-                            MessageBox.Show(result, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(result, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         }
                         else
                         {
@@ -443,7 +443,7 @@ namespace Shoko.Desktop.UserControls
                         string result = VM_ShokoServer.Instance.ShokoServices.AssociateSingleFile(vid.VideoLocalID, ep.AnimeEpisodeID);
                         if (result.Length > 0)
                         {
-                            MessageBox.Show(result, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(result, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         }
                         else
                         {
@@ -471,13 +471,13 @@ namespace Shoko.Desktop.UserControls
                     if (series.LatestRegularEpisodeNumber < endEpNum && startEpNum > 0)
                     {
                         // otherwise allow the user to refresh it from anidb
-                        MessageBoxResult res = MessageBox.Show(Properties.Resources.MSG_ERR_InvalidEpGetAnime, Properties.Resources.Error, MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
+                        MessageBoxResult res = MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_InvalidEpGetAnime, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
                         if (res == MessageBoxResult.Yes)
                         {
                             string result = VM_ShokoServer.Instance.ShokoServices.UpdateAnimeData(series.AniDB_ID);
                             if (result.Length > 0)
                             {
-                                MessageBox.Show(result, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                                MessageBox.Show(result, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                                 EnableDisableControls(true);
                                 return;
                             }
@@ -486,7 +486,7 @@ namespace Shoko.Desktop.UserControls
                                 // check again
                                 if (series.LatestRegularEpisodeNumber < endEpNum)
                                 {
-                                    MessageBox.Show(Properties.Resources.MSG_ERR_InvalidEp, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                                    MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_InvalidEp, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Exclamation);
                                     EnableDisableControls(true);
                                     return;
                                 }
@@ -512,7 +512,7 @@ namespace Shoko.Desktop.UserControls
                     string msg = VM_ShokoServer.Instance.ShokoServices.AssociateMultipleFiles(vidIDs, series.AnimeSeriesID, startEpNum, MultipleTypeSingle);
                     if (msg.Length > 0)
                     {
-                        MessageBox.Show(msg, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(msg, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     else
                     {
@@ -551,7 +551,7 @@ namespace Shoko.Desktop.UserControls
                 }
                 else
                 {
-                    MessageBox.Show(Properties.Resources.MSG_ERR_FileNotFound, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_FileNotFound, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -572,7 +572,7 @@ namespace Shoko.Desktop.UserControls
 
                     string result = VM_ShokoServer.Instance.ShokoServices.SetIgnoreStatusOnFile(vid.VideoLocalID, true);
                     if (result.Length > 0)
-                        MessageBox.Show(result, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(result, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     else
                         RefreshUnrecognisedFiles();
 
@@ -584,7 +584,7 @@ namespace Shoko.Desktop.UserControls
                     {
                         string result = VM_ShokoServer.Instance.ShokoServices.SetIgnoreStatusOnFile(id, true);
                         if (result.Length > 0)
-                            MessageBox.Show(result, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(result, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     RefreshUnrecognisedFiles();
                 }
@@ -643,8 +643,8 @@ namespace Shoko.Desktop.UserControls
 		        {
 			        VM_VideoLocal vid = obj as VM_VideoLocal;
 
-			        AskDeleteFile dlg = new AskDeleteFile(string.Format(Properties.Resources.DeleteFile_Title, vid.FileName),
-				        Properties.Resources.Unrecognized_ConfirmDelete + "\r\n\r\n" + Properties.Resources.DeleteFile_Confirm,
+			        AskDeleteFile dlg = new AskDeleteFile(string.Format(Shoko.Commons.Properties.Resources.DeleteFile_Title, vid.FileName),
+                        Shoko.Commons.Properties.Resources.Unrecognized_ConfirmDelete + "\r\n\r\n" + Shoko.Commons.Properties.Resources.DeleteFile_Confirm,
 				        vid.Places);
 			        dlg.Owner = Window.GetWindow(this);
 			        bool? res = dlg.ShowDialog();
@@ -661,7 +661,7 @@ namespace Shoko.Desktop.UserControls
 						        tresult += result + "\r\n";
 				        }
 				        if (!string.IsNullOrEmpty(tresult))
-					        MessageBox.Show(tresult, Properties.Resources.Error, MessageBoxButton.OK,
+					        MessageBox.Show(tresult, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK,
 						        MessageBoxImage.Error);
 				        RefreshUnrecognisedFiles();
 			        }
@@ -671,8 +671,8 @@ namespace Shoko.Desktop.UserControls
 		        if (obj.GetType() == typeof(MultipleVideos))
 		        {
 			        MultipleVideos mv = obj as MultipleVideos;
-			        AskDeleteFile dlg = new AskDeleteFile(Properties.Resources.DeleteFile_Multiple,
-				        Properties.Resources.Unrecognized_DeleteSelected + "\r\n\r\n" + Properties.Resources.DeleteFile_Confirm,
+			        AskDeleteFile dlg = new AskDeleteFile(Shoko.Commons.Properties.Resources.DeleteFile_Multiple,
+                        Shoko.Commons.Properties.Resources.Unrecognized_DeleteSelected + "\r\n\r\n" + Shoko.Commons.Properties.Resources.DeleteFile_Confirm,
 				        mv.VideoLocals.SelectMany(a => a.Places).ToList());
 			        dlg.Owner = Window.GetWindow(this);
 			        bool? res = dlg.ShowDialog();
@@ -687,7 +687,7 @@ namespace Shoko.Desktop.UserControls
 						        tresult += result + "\r\n";
 				        }
 				        if (!string.IsNullOrEmpty(tresult))
-					        MessageBox.Show(tresult, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+					        MessageBox.Show(tresult, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 				        RefreshUnrecognisedFiles();
 			        }
 		        }
@@ -734,7 +734,7 @@ namespace Shoko.Desktop.UserControls
                     }
                 }
 
-                MessageBox.Show(Properties.Resources.MSG_INFO_AddedQueueCmds, Properties.Resources.Done, MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_INFO_AddedQueueCmds, Shoko.Commons.Properties.Resources.Done, MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
@@ -770,7 +770,7 @@ namespace Shoko.Desktop.UserControls
                     }
                 }
 
-                MessageBox.Show(Properties.Resources.MSG_INFO_AddedQueueCmds, Properties.Resources.Done, MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_INFO_AddedQueueCmds, Shoko.Commons.Properties.Resources.Done, MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {

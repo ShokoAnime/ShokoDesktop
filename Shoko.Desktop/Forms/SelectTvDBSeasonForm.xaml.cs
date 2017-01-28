@@ -144,14 +144,14 @@ namespace Shoko.Desktop.Forms
             {
                 if (cboSeasonNumber.Items.Count == 0)
                 {
-                    MessageBox.Show(Properties.Resources.TvDB_NoSeasons, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Shoko.Commons.Properties.Resources.TvDB_NoSeasons, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
                 VM_AniDB_Episode aniEp = cboAniDBEpisodeNumber.SelectedItem as VM_AniDB_Episode;
                 if (aniEp == null)
                 {
-                    MessageBox.Show(Properties.Resources.TvDB_NoAniDB, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Shoko.Commons.Properties.Resources.TvDB_NoAniDB, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
                 AnimeEpisodeNumber = aniEp.EpisodeNumber;
@@ -159,7 +159,7 @@ namespace Shoko.Desktop.Forms
                 VM_TvDB_Episode tvep = cboEpisodeNumber.SelectedItem as VM_TvDB_Episode;
                 if (tvep == null)
                 {
-                    MessageBox.Show(Properties.Resources.TvDB_NoTvDB, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Shoko.Commons.Properties.Resources.TvDB_NoTvDB, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
                 TvDBEpisodeNumber = tvep.EpisodeNumber;
@@ -175,7 +175,7 @@ namespace Shoko.Desktop.Forms
                 string res = VM_ShokoServer.Instance.ShokoServices.LinkAniDBTvDB(AnimeID, AnimeEpisodeType, AnimeEpisodeNumber,
                     TvDBID, TvDBSeason, TvDBEpisodeNumber, CrossRef_AniDB_TvDBV2ID);
                 if (res.Length > 0)
-                    MessageBox.Show(res, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(res, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                 else
                 {
                     DialogResult = true;
@@ -224,8 +224,8 @@ namespace Shoko.Desktop.Forms
             }
 
             cboEpisodeType.Items.Clear();
-            cboEpisodeType.Items.Add(Properties.Resources.Anime_Episodes);
-            if (hasSpecials) cboEpisodeType.Items.Add(Properties.Resources.Anime_Specials);
+            cboEpisodeType.Items.Add(Shoko.Commons.Properties.Resources.Anime_Episodes);
+            if (hasSpecials) cboEpisodeType.Items.Add(Shoko.Commons.Properties.Resources.Anime_Specials);
 
             cboEpisodeType.SelectionChanged += new SelectionChangedEventHandler(cboEpisodeType_SelectionChanged);
 

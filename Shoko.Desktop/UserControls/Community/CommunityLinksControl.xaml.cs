@@ -187,7 +187,7 @@ namespace Shoko.Desktop.UserControls.Community
             if (!VM_ShokoServer.Instance.ServerOnline) return;
 
             Cursor = Cursors.Wait;
-            SearchStatus = string.Format(Properties.Resources.Community_Searching);
+            SearchStatus = string.Format(Shoko.Commons.Properties.Resources.Community_Searching);
 
             txtSearch.Text = crit.AnimeID.ToString();
 
@@ -288,7 +288,7 @@ namespace Shoko.Desktop.UserControls.Community
             if (!VM_ShokoServer.Instance.ServerOnline) return;
 
             Cursor = Cursors.Wait;
-            SearchStatus = string.Format(Properties.Resources.Community_Searching);
+            SearchStatus = string.Format(Shoko.Commons.Properties.Resources.Community_Searching);
 
             txtSearch.Text = crit.AnimeID.ToString();
 
@@ -346,7 +346,7 @@ namespace Shoko.Desktop.UserControls.Community
         {
             if (!VM_ShokoServer.Instance.ServerOnline) return;
 
-            SearchStatus = Properties.Resources.Community_Searching;
+            SearchStatus = Shoko.Commons.Properties.Resources.Community_Searching;
 
             btnRandomAnime.IsEnabled = false;
             btnSearch.IsEnabled = false;
@@ -363,7 +363,7 @@ namespace Shoko.Desktop.UserControls.Community
                     {
                         SearchCriteria crit = new SearchCriteria();
                         crit.AnimeID = link.RandomAnimeID;
-                        crit.ExtraInfo = string.Format(Properties.Resources.Community_TvDBApproval, link.AnimeNeedingApproval);
+                        crit.ExtraInfo = string.Format(Shoko.Commons.Properties.Resources.Community_TvDBApproval, link.AnimeNeedingApproval);
 
                         PerformTvDBSearch(crit);
                     }
@@ -377,7 +377,7 @@ namespace Shoko.Desktop.UserControls.Community
                     {
                         SearchCriteria crit = new SearchCriteria();
                         crit.AnimeID = link.RandomAnimeID;
-                        crit.ExtraInfo = string.Format(Properties.Resources.Community_TraktApproval, link.AnimeNeedingApproval);
+                        crit.ExtraInfo = string.Format(Shoko.Commons.Properties.Resources.Community_TraktApproval, link.AnimeNeedingApproval);
 
                         PerformTraktSearch(crit);
                     }
@@ -426,7 +426,7 @@ namespace Shoko.Desktop.UserControls.Community
                     if (string.IsNullOrEmpty(res))
                         xref.IsAdminApproved = 1;
                     else
-                        MessageBox.Show(res, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(res, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 
                 }
                 if (obj.GetType() == typeof(VM_CrossRef_AniDB_TraktV2))
@@ -437,7 +437,7 @@ namespace Shoko.Desktop.UserControls.Community
                     if (string.IsNullOrEmpty(res))
                         xref.IsAdminApproved = 1;
                     else
-                        MessageBox.Show(res, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(res, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 
                 }
             }
@@ -464,7 +464,7 @@ namespace Shoko.Desktop.UserControls.Community
                     if (string.IsNullOrEmpty(res))
                         xref.IsAdminApproved = 0;
                     else
-                        MessageBox.Show(res, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(res, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 
                 }
                 if (obj.GetType() == typeof(VM_CrossRef_AniDB_TraktV2))
@@ -475,7 +475,7 @@ namespace Shoko.Desktop.UserControls.Community
                     if (string.IsNullOrEmpty(res))
                         xref.IsAdminApproved = 0;
                     else
-                        MessageBox.Show(res, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(res, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 
                 }
             }

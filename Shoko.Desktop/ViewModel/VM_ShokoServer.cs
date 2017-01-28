@@ -14,6 +14,8 @@ using Nancy.Rest.Client;
 using NLog;
 using Shoko.Commons.Extensions;
 using Shoko.Commons.Languages;
+using Shoko.Commons.Notification;
+using Shoko.Commons.Properties;
 using Shoko.Commons.Queue;
 using Shoko.Models.Enums;
 using Shoko.Desktop.Forms;
@@ -159,7 +161,7 @@ namespace Shoko.Desktop.ViewModel
                 mappings.Add(typeof(GroupFilterCondition), typeof(VM_GroupFilterCondition));
                 mappings.Add(typeof(CL_IgnoreAnime), typeof(VM_IgnoreAnime));
                 mappings.Add(typeof(ImportFolder), typeof(VM_ImportFolder));
-                mappings.Add(typeof(JMMUser), typeof(VM_ShokoServer));
+                mappings.Add(typeof(JMMUser), typeof(VM_JMMUser));
                 mappings.Add(typeof(CL_MALAnime_Response), typeof(VM_MALAnime_Response));
                 mappings.Add(typeof(CL_MissingEpisode), typeof(VM_MissingEpisode));
                 mappings.Add(typeof(CL_MissingFile), typeof(VM_MissingFile));
@@ -196,7 +198,7 @@ namespace Shoko.Desktop.ViewModel
             catch (Exception ex)
             {
                 logger.Trace("Unable to connect to JMM Server. Internal exception given: " + ex.Message);
-                //Utils.ShowErrorMessage(ex);
+                Utils.ShowErrorMessage(ex);
                 return false;
             }
 
@@ -518,7 +520,7 @@ namespace Shoko.Desktop.ViewModel
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
                 string response = ShokoServices.EnterTraktPIN(pin);
-                MessageBox.Show(response, Resources.ShokoServer_TraktAuth, MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(response, Shoko.Commons.Properties.Resources.ShokoServer_TraktAuth, MessageBoxButton.OK, MessageBoxImage.Information);
 
             }
             catch (Exception ex)

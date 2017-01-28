@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using GongSolutions.Wpf.DragDrop;
+using Shoko.Commons.Notification;
 using Shoko.Desktop.Utilities;
 using Shoko.Desktop.ViewModel.Helpers;
 using Shoko.Models.Client;

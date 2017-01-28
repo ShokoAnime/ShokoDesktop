@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows;
+using Shoko.Commons.Notification;
 using Shoko.Commons.Utils;
 using Shoko.Desktop.Utilities;
 using Shoko.Models.Enums;
@@ -468,10 +469,10 @@ namespace Shoko.Desktop.ViewModel.Server
                     DateTime yesterday = today.AddDays(-1);
 
                     if (WatchedDate.Value.Day == today.Day && WatchedDate.Value.Month == today.Month && WatchedDate.Value.Year == today.Year)
-                        return Properties.Resources.Today;
+                        return Shoko.Commons.Properties.Resources.Today;
 
                     if (WatchedDate.Value.Day == yesterday.Day && WatchedDate.Value.Month == yesterday.Month && WatchedDate.Value.Year == yesterday.Year)
-                        return Properties.Resources.Yesterday;
+                        return Shoko.Commons.Properties.Resources.Yesterday;
 
                     return WatchedDate.Value.ToString("dd MMM yyyy", Commons.Culture.Global);
                 }
@@ -544,7 +545,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        public string AniDBRatingFormatted => $"{Formatting.FormatAniDBRating((double) AniDBRating)} ({AniDBTotalVotes} {Properties.Resources.Votes})";
+        public string AniDBRatingFormatted => $"{Formatting.FormatAniDBRating((double) AniDBRating)} ({AniDBTotalVotes} {Shoko.Commons.Properties.Resources.Votes})";
 
 
         public string EpisodeCountFormatted
@@ -567,32 +568,32 @@ namespace Shoko.Desktop.ViewModel.Server
                     // Multiple Episodes, Multiple Specials
                     if (epCountSpecial > 1)
                     {
-                        return $"{epCountNormal} {Properties.Resources.Anime_Episodes} ({epCountSpecial} {Properties.Resources.Anime_Specials})";
+                        return $"{epCountNormal} {Shoko.Commons.Properties.Resources.Anime_Episodes} ({epCountSpecial} {Shoko.Commons.Properties.Resources.Anime_Specials})";
                     }
                     // Multiple Episodes, No Specials
                     if (epCountSpecial <= 0)
                     {
-                        return $"{epCountNormal} {Properties.Resources.Anime_Episodes} ({epCountSpecial} {Properties.Resources.Anime_Specials})";
+                        return $"{epCountNormal} {Shoko.Commons.Properties.Resources.Anime_Episodes} ({epCountSpecial} {Shoko.Commons.Properties.Resources.Anime_Specials})";
                     }
-                    return $"{epCountNormal} {Properties.Resources.Anime_Episodes} ({epCountSpecial} {Properties.Resources.Anime_Special})";
+                    return $"{epCountNormal} {Shoko.Commons.Properties.Resources.Anime_Episodes} ({epCountSpecial} {Shoko.Commons.Properties.Resources.Anime_Special})";
                 }
                 // No Episodes, No Specials 
                 if (epCountNormal <= 0)
                 {
-                    return $"{epCountNormal} {Properties.Resources.Anime_Episodes} ({epCountSpecial} {Properties.Resources.Anime_Specials})";
+                    return $"{epCountNormal} {Shoko.Commons.Properties.Resources.Anime_Episodes} ({epCountSpecial} {Shoko.Commons.Properties.Resources.Anime_Specials})";
                 }
 
                 // Single Episode, Multiple Specials
                 if (epCountSpecial >= 1)
                 {
-                    return $"{epCountNormal} {Properties.Resources.Anime_Episode} ({epCountSpecial} {Properties.Resources.Anime_Specials})";
+                    return $"{epCountNormal} {Shoko.Commons.Properties.Resources.Anime_Episode} ({epCountSpecial} {Shoko.Commons.Properties.Resources.Anime_Specials})";
                 }
                 // Single Episodes, No Specials
                 if (epCountSpecial <= 0)
                 {
-                    return $"{epCountNormal} {Properties.Resources.Anime_Episode} ({epCountSpecial} {Properties.Resources.Anime_Specials})";
+                    return $"{epCountNormal} {Shoko.Commons.Properties.Resources.Anime_Episode} ({epCountSpecial} {Shoko.Commons.Properties.Resources.Anime_Specials})";
                 }
-                return $"{epCountNormal} {Properties.Resources.Anime_Episode} ({epCountSpecial} {Properties.Resources.Anime_Special})";
+                return $"{epCountNormal} {Shoko.Commons.Properties.Resources.Anime_Episode} ({epCountSpecial} {Shoko.Commons.Properties.Resources.Anime_Special})";
             }
         }
 
@@ -601,8 +602,8 @@ namespace Shoko.Desktop.ViewModel.Server
             get
             {
                 if (AnimeGroupParentID.HasValue)
-                    return Properties.Resources.SubGroup;
-                return Properties.Resources.Group;
+                    return Shoko.Commons.Properties.Resources.SubGroup;
+                return Shoko.Commons.Properties.Resources.Group;
             }
         }
 
@@ -849,13 +850,13 @@ namespace Shoko.Desktop.ViewModel.Server
         {
             if (string.IsNullOrEmpty(GroupName))
             {
-                MessageBox.Show(Properties.Resources.Anime_GroupName);
+                MessageBox.Show(Shoko.Commons.Properties.Resources.Anime_GroupName);
                 return false;
             }
 
             if (string.IsNullOrEmpty(SortName))
             {
-                MessageBox.Show(Properties.Resources.Anime_SortName);
+                MessageBox.Show(Shoko.Commons.Properties.Resources.Anime_SortName);
                 return false;
             }
 

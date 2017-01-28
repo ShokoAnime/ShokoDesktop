@@ -29,7 +29,7 @@ namespace Shoko.Desktop.Forms
         {
             if (!txtPassword.Password.Equals(txtPasswordConfirm.Password))
             {
-                MessageBox.Show(Properties.Resources.User_PasswordMatch, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Shoko.Commons.Properties.Resources.User_PasswordMatch, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                 txtPassword.Focus();
                 return;
             }

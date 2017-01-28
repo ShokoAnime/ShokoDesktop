@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using Shoko.Commons.Notification;
 using Shoko.Desktop.ViewModel.Helpers;
 using Shoko.Models.Client;
 

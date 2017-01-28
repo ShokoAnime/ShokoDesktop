@@ -232,7 +232,7 @@ namespace Shoko.Desktop.UserControls
                 if (ep.AniDB_Anime == null || ep.AniDB_Anime.TvSummary == null || ep.AniDB_Anime.TvSummary.CrossRefTvDBV2 == null ||
                     ep.AniDB_Anime.TvSummary.CrossRefTvDBV2.Count == 0)
                 {
-                    Utils.ShowErrorMessage(Properties.Resources.EpisodeDetail_TvDBLink);
+                    Utils.ShowErrorMessage(Shoko.Commons.Properties.Resources.EpisodeDetail_TvDBLink);
                     return;
                 }
 
@@ -279,7 +279,7 @@ namespace Shoko.Desktop.UserControls
                 Separator sep = new Separator();
 
                 MenuItem itemNew = new MenuItem();
-                itemNew.Header = Properties.Resources.EpisodeDetail_NewPlaylist;
+                itemNew.Header = Shoko.Commons.Properties.Resources.EpisodeDetail_NewPlaylist;
                 itemNew.Click += new RoutedEventHandler(playlistMenuItem_Click);
                 cmd = new PlaylistMenuCommand(PlaylistItemType.SingleEpisode, -1); // new playlist
                 itemNew.CommandParameter = cmd;
@@ -318,7 +318,7 @@ namespace Shoko.Desktop.UserControls
                 if (item != null && item.CommandParameter != null)
                 {
                     PlaylistMenuCommand cmd = item.CommandParameter as PlaylistMenuCommand;
-                    Debug.Write(Properties.Resources.EpisodeDetail_PlaylistMenu + cmd.ToString() + Environment.NewLine);
+                    Debug.Write(Shoko.Commons.Properties.Resources.EpisodeDetail_PlaylistMenu + cmd.ToString() + Environment.NewLine);
 
                     VM_AnimeEpisode_User ep = DataContext as VM_AnimeEpisode_User;
                     if (ep == null) return;
@@ -335,7 +335,7 @@ namespace Shoko.Desktop.UserControls
                         pl = (VM_Playlist)VM_ShokoServer.Instance.ShokoServices.GetPlaylist(cmd.PlaylistID);
                         if (pl == null)
                         {
-                            MessageBox.Show(Properties.Resources.EpisodeDetail_PlaylistMissing, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(Shoko.Commons.Properties.Resources.EpisodeDetail_PlaylistMissing, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                             return;
                         }
                     }
@@ -394,7 +394,7 @@ namespace Shoko.Desktop.UserControls
                     }
                     else
                     {
-                        MessageBox.Show(Properties.Resources.MSG_ERR_FileNotFound, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_FileNotFound, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
             }
@@ -422,7 +422,7 @@ namespace Shoko.Desktop.UserControls
                     string res = VM_ShokoServer.Instance.ShokoServices.RemoveAssociationOnFile(vid.VideoLocalID, ep.AniDB_EpisodeID);
                     if (res.Length > 0)
                     {
-                        MessageBox.Show(res, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(res, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     else
                     {
@@ -453,7 +453,7 @@ namespace Shoko.Desktop.UserControls
                 {
                     VM_VideoDetailed vid = obj as VM_VideoDetailed;
                     VM_AnimeEpisode_User ep = DataContext as VM_AnimeEpisode_User;
-                    AskDeleteFile dlg=new AskDeleteFile(string.Format(Properties.Resources.DeleteFile_Title,vid.GetFileName()), Properties.Resources.EpisodeDetail_ConfirmDelete+"\r\n\r\n"+Properties.Resources.DeleteFile_Confirm,vid.Places);
+                    AskDeleteFile dlg=new AskDeleteFile(string.Format(Shoko.Commons.Properties.Resources.DeleteFile_Title,vid.GetFileName()), Shoko.Commons.Properties.Resources.EpisodeDetail_ConfirmDelete+"\r\n\r\n"+ Shoko.Commons.Properties.Resources.DeleteFile_Confirm,vid.Places);
                     dlg.Owner = Window.GetWindow(this);
                     bool? res=dlg.ShowDialog();
                     if (res.HasValue && res.Value)
@@ -467,7 +467,7 @@ namespace Shoko.Desktop.UserControls
                                 tresult += result + "\r\n";
                         }
                         if (!string.IsNullOrEmpty(tresult))
-                            MessageBox.Show(tresult, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(tresult, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         if (ep != null)
                         {
                             VM_MainListHelper.Instance.RefreshHeirarchy(ep);
@@ -596,7 +596,7 @@ namespace Shoko.Desktop.UserControls
                 }
 
 
-                MessageBox.Show(Properties.Resources.MSG_INFO_AddedQueueCmds, Properties.Resources.Done, MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_INFO_AddedQueueCmds, Shoko.Commons.Properties.Resources.Done, MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
@@ -619,7 +619,7 @@ namespace Shoko.Desktop.UserControls
 
                     VM_ShokoServer.Instance.ShokoServices.ForceAddFileToMyList(vid.VideoLocal_Hash);
 
-                    MessageBox.Show(Properties.Resources.EpisodeDetail_CommandQueued, Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show(Shoko.Commons.Properties.Resources.EpisodeDetail_CommandQueued, Shoko.Commons.Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
 
                 }
 
@@ -651,7 +651,7 @@ namespace Shoko.Desktop.UserControls
 
                     VM_ShokoServer.Instance.ShokoServices.UpdateFileData(vid.VideoLocalID);
 
-                    MessageBox.Show(Properties.Resources.EpisodeDetail_CommandQueued, Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show(Shoko.Commons.Properties.Resources.EpisodeDetail_CommandQueued, Shoko.Commons.Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
 
                 }
 
@@ -683,7 +683,7 @@ namespace Shoko.Desktop.UserControls
 
                     string result = VM_ShokoServer.Instance.ShokoServices.SetVariationStatusOnFile(vid.VideoLocalID, vid.Variation);
                     if (result.Length > 0)
-                        MessageBox.Show(result, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(result, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             catch (Exception ex)
@@ -718,7 +718,7 @@ namespace Shoko.Desktop.UserControls
                                     grpList += ", ";
                                 grpList += rg.GroupName;
                             }
-                            tbFileDetailsGroups.Text = Properties.Resources.GroupsAvailableFrom + " " + grpList;
+                            tbFileDetailsGroups.Text = Shoko.Commons.Properties.Resources.GroupsAvailableFrom + " " + grpList;
                         }
                     }
                 }

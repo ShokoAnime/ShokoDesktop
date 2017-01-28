@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 using DevExpress.Xpf.Editors.Helpers;
+using Shoko.Desktop.ViewModel.Helpers;
+
 // ReSharper disable InconsistentNaming
 
-namespace Shoko.Desktop.ViewModel.Helpers
+namespace Shoko.Commons.Notification
 {
     public static class INotifyPropertyChangedExtensions
-    {
         public static void OnPropertyChanged(this INotifyPropertyChangedExt cls, Expression<Func<object>> selectorExpression)
         {
             var me = selectorExpression.Body as MemberExpression;

@@ -25,7 +25,7 @@ namespace Shoko.Desktop.ViewModel
         {
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
-            List<VM_AvailableEpisodeTypeContainer> eptypes = new List<VM_AvailableEpisodeTypeContainer> {new VM_AvailableEpisodeTypeContainer(AvailableEpisodeType.All, Properties.Resources.Episodes_AvAll), new VM_AvailableEpisodeTypeContainer(AvailableEpisodeType.Available, Properties.Resources.Episodes_AvOnly), new VM_AvailableEpisodeTypeContainer(AvailableEpisodeType.NoFiles, Properties.Resources.Episodes_AvMissing)};
+            List<VM_AvailableEpisodeTypeContainer> eptypes = new List<VM_AvailableEpisodeTypeContainer> {new VM_AvailableEpisodeTypeContainer(AvailableEpisodeType.All, Shoko.Commons.Properties.Resources.Episodes_AvAll), new VM_AvailableEpisodeTypeContainer(AvailableEpisodeType.Available, Shoko.Commons.Properties.Resources.Episodes_AvOnly), new VM_AvailableEpisodeTypeContainer(AvailableEpisodeType.NoFiles, Shoko.Commons.Properties.Resources.Episodes_AvMissing)};
             return eptypes;
         }
     }

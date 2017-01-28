@@ -21,8 +21,8 @@ namespace Shoko.Desktop.UserControls
     /// </summary>
     public partial class EpisodeList : UserControl
     {
-        //private readonly string AvEpsOnly = JMMClient.Properties.Resources.Episodes_AvOnly;
-        //private readonly string AllEps = JMMClient.Properties.Resources.Episodes_AvAll;
+        //private readonly string AvEpsOnly = Shoko.Commons.Properties.Resources.Episodes_AvOnly;
+        //private readonly string AllEps = Shoko.Commons.Properties.Resources.Episodes_AvAll;
 
         public static readonly DependencyProperty IsEpisodeSelectedProperty = DependencyProperty.Register("IsEpisodeSelected",
             typeof(bool), typeof(EpisodeList), new UIPropertyMetadata(false, null));

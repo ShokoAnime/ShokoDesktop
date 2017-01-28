@@ -100,16 +100,16 @@ namespace Shoko.Desktop.UserControls.Settings
                     DateTime? validDate = Utils.GetUTCDate(validUntil);
                     if (validDate.HasValue && DateTime.Now < validDate.Value)
                     {
-                        tbValidity.Text = string.Format(Properties.Resources.Trakt_TokenValid, validDate.ToString());
+                        tbValidity.Text = string.Format(Shoko.Commons.Properties.Resources.Trakt_TokenValid, validDate.ToString());
                     }
                     else
                     {
-                        tbValidity.Text = Properties.Resources.Trakt_TokenExpired;
+                        tbValidity.Text = Shoko.Commons.Properties.Resources.Trakt_TokenExpired;
                     }
                 }
             }
             else
-                tbValidity.Text = Properties.Resources.Trakt_ShokoNotAuth;
+                tbValidity.Text = Shoko.Commons.Properties.Resources.Trakt_ShokoNotAuth;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)

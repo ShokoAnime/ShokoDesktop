@@ -146,7 +146,7 @@ namespace Shoko.Desktop.Forms
                 string res = VM_ShokoServer.Instance.ShokoServices.RemoveLinkAniDBTraktForAnime(AnimeID);
                 if (res.Length > 0)
                 {
-                    MessageBox.Show(res, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(res, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     Cursor = Cursors.Arrow;
                     return;
                 }
@@ -158,7 +158,7 @@ namespace Shoko.Desktop.Forms
                         xref.TraktID, xref.TraktSeasonNumber, xref.TraktStartEpisodeNumber, null);
                     if (res.Length > 0)
                     {
-                        MessageBox.Show(res, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(res, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         Cursor = Cursors.Arrow;
                         return;
                     }
@@ -299,7 +299,7 @@ namespace Shoko.Desktop.Forms
             TraktSettings OP = new TraktSettings();
             var host = new Window();
             host.Content = OP;
-            host.Title = Properties.Resources.Trakt_CheckCred;
+            host.Title = Shoko.Commons.Properties.Resources.Trakt_CheckCred;
             host.Width = 630;
             host.Height = 240;
             host.WindowStartupLocation = WindowStartupLocation.CenterScreen;

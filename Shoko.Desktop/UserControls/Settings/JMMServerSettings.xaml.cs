@@ -49,12 +49,12 @@ namespace Shoko.Desktop.UserControls.Settings
                         VM_MainListHelper.Instance.ClearData();
                         VM_MainListHelper.Instance.RefreshGroupsSeriesData();
                     }
-                    //MessageBox.Show(Properties.Resources.Success, "", MessageBoxButton.OK, MessageBoxImage.Information);
+                    //MessageBox.Show(Shoko.Commons.Properties.Resources.Success, "", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

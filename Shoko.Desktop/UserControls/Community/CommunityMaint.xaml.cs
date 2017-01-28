@@ -63,9 +63,9 @@ namespace Shoko.Desktop.UserControls.Community
         private bool stopWorker = false;
         BackgroundWorker dataWorker = new BackgroundWorker();
 
-        private readonly string FilterTypeAll = Properties.Resources.Random_All;
-        private readonly string FilterTypeMissing = Properties.Resources.Community_LinkMissing;
-        private readonly string FilterTypeDifferent = Properties.Resources.Community_LinkDifferent;
+        private readonly string FilterTypeAll = Shoko.Commons.Properties.Resources.Random_All;
+        private readonly string FilterTypeMissing = Shoko.Commons.Properties.Resources.Community_LinkMissing;
+        private readonly string FilterTypeDifferent = Shoko.Commons.Properties.Resources.Community_LinkDifferent;
 
         public CommunityMaint()
         {
@@ -82,10 +82,10 @@ namespace Shoko.Desktop.UserControls.Community
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
             cboFilterType.Items.Clear();
-            cboFilterType.Items.Add(Properties.Resources.Random_All);
-            cboFilterType.Items.Add(Properties.Resources.Community_LinkMissing);
+            cboFilterType.Items.Add(Shoko.Commons.Properties.Resources.Random_All);
+            cboFilterType.Items.Add(Shoko.Commons.Properties.Resources.Community_LinkMissing);
             //cboFilterType.Items.Add(FilterTypeIncorrect);
-            cboFilterType.Items.Add(Properties.Resources.Community_LinkDifferent);
+            cboFilterType.Items.Add(Shoko.Commons.Properties.Resources.Community_LinkDifferent);
             cboFilterType.SelectionChanged += new SelectionChangedEventHandler(cboFilterType_SelectionChanged);
             cboFilterType.SelectedIndex = 0;
 
@@ -139,7 +139,7 @@ namespace Shoko.Desktop.UserControls.Community
             ShowStopButton = true;
             //ShowPauseButton = true;
 
-            WorkerStatus = Properties.Resources.Community_GettingData;
+            WorkerStatus = Shoko.Commons.Properties.Resources.Community_GettingData;
 
             TraktResults.Clear();
 
@@ -167,7 +167,7 @@ namespace Shoko.Desktop.UserControls.Community
         {
             ViewTrakt.Refresh();
             TraktWorkerStatusContainer status = e.UserState as TraktWorkerStatusContainer;
-            WorkerStatus = string.Format(Properties.Resources.Community_TraktProgress, status.CurrentAction, status.CurrentSeries, status.TotalSeriesCount, status.CurrentSeriesString);
+            WorkerStatus = string.Format(Shoko.Commons.Properties.Resources.Community_TraktProgress, status.CurrentAction, status.CurrentSeries, status.TotalSeriesCount, status.CurrentSeriesString);
         }
 
         void dataWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -178,7 +178,7 @@ namespace Shoko.Desktop.UserControls.Community
             ShowStopButton = false;
             //ShowPauseButton = false;
 
-            WorkerStatus = Properties.Resources.Complete;
+            WorkerStatus = Shoko.Commons.Properties.Resources.Complete;
 
             stopWorker = false;
             EnableDisableControls(true);
@@ -212,7 +212,7 @@ namespace Shoko.Desktop.UserControls.Community
 
             Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()
             {
-                WorkerStatus = Properties.Resources.Community_TraktRef;
+                WorkerStatus = Shoko.Commons.Properties.Resources.Community_TraktRef;
             });
 
             // get all the trakt links
@@ -227,7 +227,7 @@ namespace Shoko.Desktop.UserControls.Community
                 counter++;
                 //Thread.Sleep(200);
 
-                dataWorker.ReportProgress(0, new TraktWorkerStatusContainer(Properties.Resources.Community_TraktPopulating, allSeries.Count, counter, ser.SeriesName));
+                dataWorker.ReportProgress(0, new TraktWorkerStatusContainer(Shoko.Commons.Properties.Resources.Community_TraktPopulating, allSeries.Count, counter, ser.SeriesName));
 
                 TraktSeriesData trakt = new TraktSeriesData(ser);
 
@@ -254,12 +254,12 @@ namespace Shoko.Desktop.UserControls.Community
                 if (problemCount == job.MaxProblems) return;
 
                 curFile++;
-                dataWorker.ReportProgress(0, new TraktWorkerStatusContainer(Properties.Resources.Community_TraktSeriesCheck, job.TraktData.Count, curFile, data.SeriesName));
+                dataWorker.ReportProgress(0, new TraktWorkerStatusContainer(Shoko.Commons.Properties.Resources.Community_TraktSeriesCheck, job.TraktData.Count, curFile, data.SeriesName));
 
                 if (stopWorker) return;
                 if (job.CheckTraktLinks)
                 {
-                    data.Status = Properties.Resources.Community_TraktDataCheck;
+                    data.Status = Shoko.Commons.Properties.Resources.Community_TraktDataCheck;
                     bool valid = true;
 
                     if (data.HasUserTraktLink)
@@ -280,7 +280,7 @@ namespace Shoko.Desktop.UserControls.Community
                 if (stopWorker) return;
                 if (job.CheckCommunityLinks)
                 {
-                    data.Status = Properties.Resources.Community_TraktCompare;
+                    data.Status = Shoko.Commons.Properties.Resources.Community_TraktCompare;
 
                     List<Azure_CrossRef_AniDB_Trakt> xrefs = VM_ShokoServer.Instance.ShokoServices.GetTraktCrossRefWebCache(data.AnimeID, false);
                     List<VM_CrossRef_AniDB_TraktV2> commTraktLinks = new List<VM_CrossRef_AniDB_TraktV2>();

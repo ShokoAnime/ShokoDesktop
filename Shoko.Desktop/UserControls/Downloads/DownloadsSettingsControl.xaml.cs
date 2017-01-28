@@ -32,7 +32,7 @@ namespace Shoko.Desktop.UserControls.Downloads
         {
             if (!VM_UTorrentHelper.Instance.AreCredentialsValid())
             {
-                MessageBox.Show(Properties.Resources.Downloads_uTorrentDetails, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Shoko.Commons.Properties.Resources.Downloads_uTorrentDetails, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                 txtServer.Focus();
                 return;
             }
@@ -47,10 +47,10 @@ namespace Shoko.Desktop.UserControls.Downloads
             IsEnabled = true;
 
             if (success)
-                MessageBox.Show(Properties.Resources.Downloads_Connected, Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(Shoko.Commons.Properties.Resources.Downloads_Connected, Shoko.Commons.Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
             else
             {
-                MessageBox.Show(Properties.Resources.Downloads_Failed, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Shoko.Commons.Properties.Resources.Downloads_Failed, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                 txtServer.Focus();
                 return;
             }

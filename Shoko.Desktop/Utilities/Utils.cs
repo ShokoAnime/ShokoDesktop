@@ -88,12 +88,12 @@ namespace Shoko.Desktop.Utilities
         public static void PopulateScheduledComboBox(System.Windows.Controls.ComboBox cbo, ScheduledUpdateFrequency curFrequency)
         {
             cbo.Items.Clear();
-            cbo.Items.Add(Properties.Resources.UpdateFrequency_6Hours);
-            cbo.Items.Add(Properties.Resources.UpdateFrequency_12Hours);
-            cbo.Items.Add(Properties.Resources.UpdateFrequency_Daily);
-            cbo.Items.Add(Properties.Resources.UpdateFrequency_OneWeek);
-            cbo.Items.Add(Properties.Resources.UpdateFrequency_OneMonth);
-            cbo.Items.Add(Properties.Resources.UpdateFrequency_Never);
+            cbo.Items.Add(Shoko.Commons.Properties.Resources.UpdateFrequency_6Hours);
+            cbo.Items.Add(Shoko.Commons.Properties.Resources.UpdateFrequency_12Hours);
+            cbo.Items.Add(Shoko.Commons.Properties.Resources.UpdateFrequency_Daily);
+            cbo.Items.Add(Shoko.Commons.Properties.Resources.UpdateFrequency_OneWeek);
+            cbo.Items.Add(Shoko.Commons.Properties.Resources.UpdateFrequency_OneMonth);
+            cbo.Items.Add(Shoko.Commons.Properties.Resources.UpdateFrequency_Never);
 
             switch (curFrequency)
             {
@@ -306,19 +306,19 @@ namespace Shoko.Desktop.Utilities
 
         public static void ShowErrorMessage(string msg, Exception ex)
         {
-            System.Windows.Forms.MessageBox.Show(msg, Properties.Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            System.Windows.Forms.MessageBox.Show(msg, Shoko.Commons.Properties.Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
             logger.Error(ex, ex.ToString());
         }
 
         public static void ShowErrorMessage(Exception ex)
         {
-            System.Windows.Forms.MessageBox.Show(ex.Message, Properties.Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            System.Windows.Forms.MessageBox.Show(ex.Message, Shoko.Commons.Properties.Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
             logger.Error(ex, ex.ToString());
         }
 
         public static void ShowErrorMessage(string msg)
         {
-            System.Windows.Forms.MessageBox.Show(msg, Properties.Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            System.Windows.Forms.MessageBox.Show(msg, Shoko.Commons.Properties.Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
             logger.Error(msg);
         }
 

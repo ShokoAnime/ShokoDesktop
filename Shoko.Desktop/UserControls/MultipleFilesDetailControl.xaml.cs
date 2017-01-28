@@ -71,7 +71,7 @@ namespace Shoko.Desktop.UserControls
                     VM_VideoDetailed vid = obj as VM_VideoDetailed;
 
 
-                    AskDeleteFile dlg = new AskDeleteFile(string.Format(Properties.Resources.DeleteFile_Title, vid.GetFileName()), Properties.Resources.MultipleFiles_ConfirmDelete + "\r\n\r\n" + Properties.Resources.DeleteFile_Confirm, vid.Places);
+                    AskDeleteFile dlg = new AskDeleteFile(string.Format(Shoko.Commons.Properties.Resources.DeleteFile_Title, vid.GetFileName()), Shoko.Commons.Properties.Resources.MultipleFiles_ConfirmDelete + "\r\n\r\n" + Shoko.Commons.Properties.Resources.DeleteFile_Confirm, vid.Places);
                     dlg.Owner = Window.GetWindow(this);
                     bool? res = dlg.ShowDialog();
                     if (res.HasValue && res.Value)
@@ -87,7 +87,7 @@ namespace Shoko.Desktop.UserControls
                                 tresult += result + "\r\n";
                         }
                         if (!string.IsNullOrEmpty(tresult))
-                            MessageBox.Show(tresult, Properties.Resources.Error, MessageBoxButton.OK,
+                            MessageBox.Show(tresult, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK,
                                 MessageBoxImage.Error);
                         VM_AnimeEpisode_User ep = DataContext as VM_AnimeEpisode_User;
                         if (ep != null)
@@ -126,7 +126,7 @@ namespace Shoko.Desktop.UserControls
 
                     string result = VM_ShokoServer.Instance.ShokoServices.SetVariationStatusOnFile(vid.VideoLocalID, vid.Variation);
                     if (result.Length > 0)
-                        MessageBox.Show(result, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(result, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             catch (Exception ex)

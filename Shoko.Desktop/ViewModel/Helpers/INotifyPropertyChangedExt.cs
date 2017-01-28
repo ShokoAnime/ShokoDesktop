@@ -1,6 +1,6 @@
 using System.ComponentModel;
 
-namespace Shoko.Desktop.ViewModel.Helpers
+namespace Shoko.Commons.Notification
 {
     public interface INotifyPropertyChangedExt : INotifyPropertyChanged
     {

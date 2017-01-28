@@ -22,7 +22,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AniDBScheduleCalendar}"  VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AniDBScheduleCalendar}"  VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Margin="0,5,5,0">
@@ -31,7 +31,7 @@
 
         <!--AniDBScheduleHTTP-->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AniDBScheduleHTTP}" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AniDBScheduleHTTP}" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" Margin="0,5,5,0">
@@ -40,7 +40,7 @@
 
         <!--AniDBScheduleMyList-->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AniDBScheduleMyList}" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AniDBScheduleMyList}" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Margin="0,5,5,0">
@@ -49,7 +49,7 @@
 
         <!--AniDBScheduleMyListStats-->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="3" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AniDBScheduleMyListStats}" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AniDBScheduleMyListStats}" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3" Margin="0,5,5,0">
@@ -58,7 +58,7 @@
 
         <!--AniDBScheduleMyListStats-->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="4" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Settings_AutoUpdateInfo}" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Settings_AutoUpdateInfo}" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="4" Margin="0,5,5,0">

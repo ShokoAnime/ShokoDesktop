@@ -53,9 +53,9 @@ namespace Shoko.Desktop.Forms
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
             cboVoteType.Items.Clear();
-            cboVoteType.Items.Add(Properties.Resources.VoteTypeAnimeTemporary);
+            cboVoteType.Items.Add(Shoko.Commons.Properties.Resources.VoteTypeAnimeTemporary);
             if (ser.AniDBAnime.AniDBAnime.FinishedAiring)
-                cboVoteType.Items.Add(Properties.Resources.VoteTypeAnimePermanent);
+                cboVoteType.Items.Add(Shoko.Commons.Properties.Resources.VoteTypeAnimePermanent);
 
             if (ser.AniDBAnime.AniDBAnime.FinishedAiring && ser.AllFilesWatched)
                 cboVoteType.SelectedIndex = 1;
@@ -92,8 +92,8 @@ namespace Shoko.Desktop.Forms
                 decimal rating = (decimal)ev.RatingValue;
 
                 int voteType = 1;
-                if (cboVoteType.SelectedItem.ToString() == Properties.Resources.VoteTypeAnimeTemporary) voteType = 2;
-                if (cboVoteType.SelectedItem.ToString() == Properties.Resources.VoteTypeAnimePermanent) voteType = 1;
+                if (cboVoteType.SelectedItem.ToString() == Shoko.Commons.Properties.Resources.VoteTypeAnimeTemporary) voteType = 2;
+                if (cboVoteType.SelectedItem.ToString() == Shoko.Commons.Properties.Resources.VoteTypeAnimePermanent) voteType = 1;
 
                 VM_ShokoServer.Instance.VoteAnime(ser.AniDB_ID, rating, voteType);
 

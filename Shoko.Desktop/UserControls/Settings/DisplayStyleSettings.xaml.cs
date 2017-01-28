@@ -14,8 +14,8 @@ namespace Shoko.Desktop.UserControls.Settings
             InitializeComponent();
 
             cboStyleGroupList.Items.Clear();
-            cboStyleGroupList.Items.Add(Properties.Resources.Style_GroupList_MediumDetail);
-            cboStyleGroupList.Items.Add(Properties.Resources.Style_GroupList_Simple);
+            cboStyleGroupList.Items.Add(Shoko.Commons.Properties.Resources.Style_GroupList_MediumDetail);
+            cboStyleGroupList.Items.Add(Shoko.Commons.Properties.Resources.Style_GroupList_Simple);
 
             switch (AppSettings.DisplayStyle_GroupList)
             {
@@ -35,9 +35,9 @@ namespace Shoko.Desktop.UserControls.Settings
             cboStyleGroupList.SelectionChanged += new SelectionChangedEventHandler(cboStyleGroupList_SelectionChanged);
 
             cboStyleEpisodeDetail.Items.Clear();
-            cboStyleEpisodeDetail.Items.Add(Properties.Resources.EpisodeDetailStyle_Option1);
-            cboStyleEpisodeDetail.Items.Add(Properties.Resources.EpisodeDetailStyle_Option2);
-            cboStyleEpisodeDetail.Items.Add(Properties.Resources.EpisodeDetailStyle_Option3);
+            cboStyleEpisodeDetail.Items.Add(Shoko.Commons.Properties.Resources.EpisodeDetailStyle_Option1);
+            cboStyleEpisodeDetail.Items.Add(Shoko.Commons.Properties.Resources.EpisodeDetailStyle_Option2);
+            cboStyleEpisodeDetail.Items.Add(Shoko.Commons.Properties.Resources.EpisodeDetailStyle_Option3);
 
             switch (AppSettings.EpisodeImageOverviewStyle)
             {

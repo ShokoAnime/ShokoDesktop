@@ -10,6 +10,7 @@ using System.Windows.Data;
 using System.Windows.Threading;
 using NLog;
 using Shoko.Commons.Extensions;
+using Shoko.Commons.Notification;
 using Shoko.Desktop.Utilities;
 using Shoko.Models.Enums;
 using Shoko.Desktop.ViewModel.Helpers;

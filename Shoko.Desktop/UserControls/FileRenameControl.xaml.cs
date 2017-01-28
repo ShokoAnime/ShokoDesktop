@@ -45,7 +45,7 @@ namespace Shoko.Desktop.UserControls
             set
             {
                 SetValue(FileCountProperty, value);
-                FileCountStatus = string.Format(Properties.Resources.Rename_Files, value);
+                FileCountStatus = string.Format(Shoko.Commons.Properties.Resources.Rename_Files, value);
             }
         }
 
@@ -112,13 +112,13 @@ namespace Shoko.Desktop.UserControls
             set { SetValue(WorkerStatusProperty, value); }
         }
 
-        private readonly string LoadTypeRandom = Properties.Resources.Rename_Random;
-        private readonly string LoadTypeSeries = Properties.Resources.Rename_Series;
-        private readonly string LoadTypeAll = Properties.Resources.Rename_All;
+        private readonly string LoadTypeRandom = Shoko.Commons.Properties.Resources.Rename_Random;
+        private readonly string LoadTypeSeries = Shoko.Commons.Properties.Resources.Rename_Series;
+        private readonly string LoadTypeAll = Shoko.Commons.Properties.Resources.Rename_All;
 
-        private readonly string FilterTypeAll = Properties.Resources.Random_All;
-        private readonly string FilterTypeFailed = Properties.Resources.Rename_Failed;
-        private readonly string FilterTypePassed = Properties.Resources.Rename_Passed;
+        private readonly string FilterTypeAll = Shoko.Commons.Properties.Resources.Random_All;
+        private readonly string FilterTypeFailed = Shoko.Commons.Properties.Resources.Rename_Failed;
+        private readonly string FilterTypePassed = Shoko.Commons.Properties.Resources.Rename_Passed;
 
         private int? defaultScriptID = null;
 
@@ -190,17 +190,17 @@ namespace Shoko.Desktop.UserControls
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
             cboLoadType.Items.Clear();
-            cboLoadType.Items.Add(Properties.Resources.Rename_Random);
-            cboLoadType.Items.Add(Properties.Resources.Rename_Series);
-            cboLoadType.Items.Add(Properties.Resources.Rename_All);
+            cboLoadType.Items.Add(Shoko.Commons.Properties.Resources.Rename_Random);
+            cboLoadType.Items.Add(Shoko.Commons.Properties.Resources.Rename_Series);
+            cboLoadType.Items.Add(Shoko.Commons.Properties.Resources.Rename_All);
             cboLoadType.SelectedIndex = 0;
 
             cboLoadType.SelectionChanged += new SelectionChangedEventHandler(cboLoadType_SelectionChanged);
 
             cboFilterType.Items.Clear();
-            cboFilterType.Items.Add(Properties.Resources.Random_All);
-            cboFilterType.Items.Add(Properties.Resources.Rename_Failed);
-            cboFilterType.Items.Add(Properties.Resources.Rename_Passed);
+            cboFilterType.Items.Add(Shoko.Commons.Properties.Resources.Random_All);
+            cboFilterType.Items.Add(Shoko.Commons.Properties.Resources.Rename_Failed);
+            cboFilterType.Items.Add(Shoko.Commons.Properties.Resources.Rename_Passed);
             cboFilterType.SelectionChanged += new SelectionChangedEventHandler(cboFilterType_SelectionChanged);
             cboFilterType.SelectedIndex = 0;
 
@@ -236,8 +236,8 @@ namespace Shoko.Desktop.UserControls
                 if (cboScript.SelectedItem == null) return;
                 VM_RenameScript script = cboScript.SelectedItem as VM_RenameScript;
 
-                string msg = string.Format(Properties.Resources.Rename_DeleteScript, script.ScriptName);
-                MessageBoxResult res = MessageBox.Show(msg, Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                string msg = string.Format(Shoko.Commons.Properties.Resources.Rename_DeleteScript, script.ScriptName);
+                MessageBoxResult res = MessageBox.Show(msg, Shoko.Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
                 if (res == MessageBoxResult.Yes)
                 {
@@ -292,14 +292,14 @@ namespace Shoko.Desktop.UserControls
             try
             {
                 DialogText dlg = new DialogText();
-                dlg.Init(Properties.Resources.Rename_EnterScriptName, "");
+                dlg.Init(Shoko.Commons.Properties.Resources.Rename_EnterScriptName, "");
                 dlg.Owner = Window.GetWindow(this);
                 bool? res = dlg.ShowDialog();
                 if (res.HasValue && res.Value)
                 {
                     if (string.IsNullOrEmpty(dlg.EnteredText))
                     {
-                        Utils.ShowErrorMessage(Properties.Resources.Rename_BlankScript);
+                        Utils.ShowErrorMessage(Shoko.Commons.Properties.Resources.Rename_BlankScript);
                         return;
                     }
 
@@ -446,7 +446,7 @@ namespace Shoko.Desktop.UserControls
         {
             ViewFiles.Refresh();
             WorkerStatusContainer status = e.UserState as WorkerStatusContainer;
-            WorkerStatus = string.Format(Properties.Resources.Rename_Changed, status.CurrentFile, status.TotalFileCount);
+            WorkerStatus = string.Format(Shoko.Commons.Properties.Resources.Rename_Changed, status.CurrentFile, status.TotalFileCount);
         }
 
         void renameWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -494,8 +494,8 @@ namespace Shoko.Desktop.UserControls
 
         void btnRenameFiles_Click(object sender, RoutedEventArgs e)
         {
-            string msg = string.Format(Properties.Resources.Rename_Confirm);
-            MessageBoxResult res = MessageBox.Show(msg, Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            string msg = string.Format(Shoko.Commons.Properties.Resources.Rename_Confirm);
+            MessageBoxResult res = MessageBox.Show(msg, Shoko.Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
             if (res != MessageBoxResult.Yes) return;
 
@@ -516,7 +516,7 @@ namespace Shoko.Desktop.UserControls
         {
             ViewFiles.Refresh();
             WorkerStatusContainer status = e.UserState as WorkerStatusContainer;
-            WorkerStatus = string.Format(Properties.Resources.Rename_Changed, status.CurrentFile, status.TotalFileCount);
+            WorkerStatus = string.Format(Shoko.Commons.Properties.Resources.Rename_Changed, status.CurrentFile, status.TotalFileCount);
         }
 
         void previewWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

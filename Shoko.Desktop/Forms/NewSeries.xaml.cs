@@ -232,7 +232,7 @@ namespace Shoko.Desktop.Forms
 
                 if (IsAnimeNotSelected)
                 {
-                    MessageBox.Show(Properties.Resources.NewSeries_SelectAnime, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Shoko.Commons.Properties.Resources.NewSeries_SelectAnime, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     txtAnimeSearch.Focus();
                     return;
                 }
@@ -241,7 +241,7 @@ namespace Shoko.Desktop.Forms
                 {
                     if (lbGroups.SelectedItem == null)
                     {
-                        MessageBox.Show(Properties.Resources.MSG_ERR_GroupSelectionRequired, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_GroupSelectionRequired, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         lbGroups.Focus();
                         return;
                     }
@@ -256,7 +256,7 @@ namespace Shoko.Desktop.Forms
                 {
                     if (txtGroupName.Text.Trim().Length == 0)
                     {
-                        MessageBox.Show(Properties.Resources.MSG_ERR_GroupNameRequired, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_GroupNameRequired, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         txtGroupName.Focus();
                         return;
                     }
@@ -298,7 +298,7 @@ namespace Shoko.Desktop.Forms
                 if (response.ErrorMessage.Length > 0)
                 {
                     Cursor = Cursors.Arrow;
-                    MessageBox.Show(response.ErrorMessage, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(response.ErrorMessage, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 

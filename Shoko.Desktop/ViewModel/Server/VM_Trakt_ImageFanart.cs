@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.IO;
+using Shoko.Commons.Notification;
 using Shoko.Models.Enums;
 using Shoko.Desktop.ImageDownload;
 using Shoko.Desktop.Utilities;

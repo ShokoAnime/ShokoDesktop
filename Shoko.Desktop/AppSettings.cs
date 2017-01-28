@@ -224,7 +224,7 @@ namespace Shoko.Desktop
                         if (!Utils.IsAdministrator())
                         {
                             logger.Info("Needed to migrate but user wasn't admin, restarting as admin.");
-                            //MessageBox.Show(Properties.Resources.Migration_AdminFail, Properties.Resources.Migration_Header,
+                            //MessageBox.Show(Shoko.Commons.Properties.Resources.Migration_AdminFail, Shoko.Commons.Properties.Resources.Migration_Header,
                             //    MessageBoxButton.OK, MessageBoxImage.Information);
 
                             Utils.RestartAsAdmin();
@@ -238,7 +238,7 @@ namespace Shoko.Desktop
                         {
                             m =
                                 new Migration(
-                                    $"{Properties.Resources.Migration_AdminPass1} {ApplicationPath}, {Properties.Resources.Migration_AdminPass2}");
+                                    $"{Shoko.Commons.Properties.Resources.Migration_AdminPass1} {ApplicationPath}, {Shoko.Commons.Properties.Resources.Migration_AdminPass2}");
                             m.Show();
                             if (!Directory.Exists(ApplicationPath))
                             {
@@ -271,7 +271,7 @@ namespace Shoko.Desktop
                         }
                         catch (Exception e)
                         {
-                            MessageBox.Show(Properties.Resources.Migration_Error + " ", e.ToString());
+                            MessageBox.Show(Shoko.Commons.Properties.Resources.Migration_Error + " ", e.ToString());
                             logger.Error(e, "Error occured during LoadSettings: {0}", e.ToString());
                         }
 
@@ -337,8 +337,8 @@ namespace Shoko.Desktop
             catch (Exception ex)
             {
                 logger.Error(ex, $"Error occured during LoadSettings: {ex}");
-                MessageBox.Show(Properties.Resources.Migration_LoadError + " " + ex,
-                    Properties.Resources.Migration_LoadError);
+                MessageBox.Show(Shoko.Commons.Properties.Resources.Migration_LoadError + " " + ex,
+                    Shoko.Commons.Properties.Resources.Migration_LoadError);
                 Application.Current.Shutdown();
                 return;
             }
@@ -448,8 +448,8 @@ namespace Shoko.Desktop
         public static string LocateLegacyConfigFile()
         {
             string configPath = "";
-            MessageBoxResult dr = MessageBox.Show(Properties.Resources.LocateSettingsFileQuestion,
-                Properties.Resources.LocateSettingsFile, MessageBoxButton.YesNo);
+            MessageBoxResult dr = MessageBox.Show(Shoko.Commons.Properties.Resources.LocateSettingsFileQuestion,
+                Shoko.Commons.Properties.Resources.LocateSettingsFile, MessageBoxButton.YesNo);
             switch (dr)
             {
                 case MessageBoxResult.Yes:

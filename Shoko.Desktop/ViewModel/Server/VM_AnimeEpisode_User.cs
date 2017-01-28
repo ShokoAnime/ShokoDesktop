@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using Shoko.Commons.Extensions;
+using Shoko.Commons.Notification;
 using Shoko.Commons.Utils;
 using Shoko.Desktop.Utilities;
 using Shoko.Desktop.ViewModel.Helpers;
@@ -253,13 +254,13 @@ namespace Shoko.Desktop.ViewModel.Server
             {
                 if (MultipleFiles)
                 {
-                    return string.Format("{0} " + Properties.Resources.Anime_Files, LocalFileCount);
+                    return string.Format("{0} " + Shoko.Commons.Properties.Resources.Anime_Files, LocalFileCount);
                 }
                 if (NoFiles && !FutureDated)
                 {
-                    return string.Format("{0} " + Properties.Resources.Anime_Files, LocalFileCount);
+                    return string.Format("{0} " + Shoko.Commons.Properties.Resources.Anime_Files, LocalFileCount);
                 }
-                return string.Format("{0} " + Properties.Resources.Anime_File, LocalFileCount);
+                return string.Format("{0} " + Shoko.Commons.Properties.Resources.Anime_File, LocalFileCount);
             }
         }
 
@@ -309,7 +310,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        public string AniDBRatingFormatted => $"{Properties.Resources.Rating}: {AniDB_Rating} ({AniDB_Votes} {Properties.Resources.Votes})";
+        public string AniDBRatingFormatted => $"{Shoko.Commons.Properties.Resources.Rating}: {AniDB_Rating} ({AniDB_Votes} {Shoko.Commons.Properties.Resources.Votes})";
 
         private bool showEpisodeImageInSummary = true;
         public bool ShowEpisodeImageInSummary
@@ -383,13 +384,13 @@ namespace Shoko.Desktop.ViewModel.Server
 
                 if (WatchedDate.Value.Day == today.Day && WatchedDate.Value.Month == today.Month && WatchedDate.Value.Year == today.Year)
                 {
-                    LastWatchedDescription = Properties.Resources.Today;
+                    LastWatchedDescription = Shoko.Commons.Properties.Resources.Today;
                     return;
                 }
 
                 if (WatchedDate.Value.Day == yesterday.Day && WatchedDate.Value.Month == yesterday.Month && WatchedDate.Value.Year == yesterday.Year)
                 {
-                    LastWatchedDescription = Properties.Resources.Yesterday;
+                    LastWatchedDescription = Shoko.Commons.Properties.Resources.Yesterday;
                     return;
                 }
 

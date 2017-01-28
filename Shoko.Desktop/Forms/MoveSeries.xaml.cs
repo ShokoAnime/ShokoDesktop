@@ -120,7 +120,7 @@ namespace Shoko.Desktop.Forms
             {
                 if (lbGroups.SelectedItem == null)
                 {
-                    MessageBox.Show(Properties.Resources.MSG_ERR_GroupSelectionRequired, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_GroupSelectionRequired, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     lbGroups.Focus();
                     return;
                 }
@@ -137,7 +137,7 @@ namespace Shoko.Desktop.Forms
             {
                 if (txtGroupName.Text.Trim().Length == 0)
                 {
-                    MessageBox.Show(Properties.Resources.MSG_ERR_GroupNameRequired, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_GroupNameRequired, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     txtGroupName.Focus();
                     return;
                 }

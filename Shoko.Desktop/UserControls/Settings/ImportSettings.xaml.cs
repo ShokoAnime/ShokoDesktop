@@ -38,7 +38,7 @@ namespace Shoko.Desktop.UserControls.Settings
           if (string.IsNullOrEmpty(path) || !Directory.Exists(path))
           {
             if(path != null)
-              MessageBox.Show(string.Format(Properties.Resources.Settings_SetShokoServerFolderNonExistent, path));
+              MessageBox.Show(string.Format(Shoko.Commons.Properties.Resources.Settings_SetShokoServerFolderNonExistent, path));
             return;
           }
           AppSettings.ImagesPath = path;

@@ -28,7 +28,7 @@ namespace Shoko.Desktop.Forms
                 {
                     VM_Trakt_CommentUser trakt = comment as VM_Trakt_CommentUser;
 
-                    txtFrom.Text = Properties.Resources.ViewComment_FromTrakt;
+                    txtFrom.Text = Shoko.Commons.Properties.Resources.ViewComment_FromTrakt;
                     txtUsername.Text = trakt.User.Username;
                     txtDate.Text = ((VM_Trakt_Comment)trakt.Comment).CommentDateString;
                     txtComment.Text = trakt.CommentText;
@@ -40,7 +40,7 @@ namespace Shoko.Desktop.Forms
                 {
                     VM_AniDB_Recommendation anidb = comment as VM_AniDB_Recommendation;
 
-                    txtFrom.Text = Properties.Resources.ViewComment_FromAniDB;
+                    txtFrom.Text = Shoko.Commons.Properties.Resources.ViewComment_FromAniDB;
                     txtUsername.Text = anidb.UserID.ToString();
                     txtDate.Text = anidb.GetRecommendationTypeText();
                     txtComment.Text = anidb.GetComment();

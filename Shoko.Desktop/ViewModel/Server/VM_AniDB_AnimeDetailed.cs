@@ -3,6 +3,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
 using Shoko.Commons.Extensions;
+using Shoko.Commons.Notification;
+using Shoko.Commons.Properties;
 using Shoko.Commons.Utils;
 using Shoko.Desktop.Properties;
 using Shoko.Desktop.ViewModel.Helpers;

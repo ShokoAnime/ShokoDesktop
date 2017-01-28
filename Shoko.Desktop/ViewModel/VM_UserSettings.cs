@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
+using Shoko.Commons.Notification;
 using Shoko.Desktop.Downloads;
 using Shoko.Desktop.Enums;
 using Shoko.Desktop.Utilities;

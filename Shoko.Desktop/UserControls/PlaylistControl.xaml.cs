@@ -51,14 +51,14 @@ namespace Shoko.Desktop.UserControls
             togFanart.Click += new RoutedEventHandler(togFanart_Click);
 
             cboPlayOrderEdit.Items.Clear();
-            cboPlayOrderEdit.Items.Add(Properties.Resources.PlaylistPlayOrderSeq);
-            cboPlayOrderEdit.Items.Add(Properties.Resources.PlaylistPlayOrderRandom);
+            cboPlayOrderEdit.Items.Add(Shoko.Commons.Properties.Resources.PlaylistPlayOrderSeq);
+            cboPlayOrderEdit.Items.Add(Shoko.Commons.Properties.Resources.PlaylistPlayOrderRandom);
             cboPlayOrderEdit.SelectedIndex = 0;
 
 
             cboPlayOrderLocked.Items.Clear();
-            cboPlayOrderLocked.Items.Add(Properties.Resources.PlaylistPlayOrderSeq);
-            cboPlayOrderLocked.Items.Add(Properties.Resources.PlaylistPlayOrderRandom);
+            cboPlayOrderLocked.Items.Add(Shoko.Commons.Properties.Resources.PlaylistPlayOrderSeq);
+            cboPlayOrderLocked.Items.Add(Shoko.Commons.Properties.Resources.PlaylistPlayOrderRandom);
             cboPlayOrderLocked.SelectedIndex = 0;
 
             btnRandomEpisode.Click += new RoutedEventHandler(btnRandomEpisode_Click);
@@ -335,7 +335,7 @@ namespace Shoko.Desktop.UserControls
                         newStatus, VM_ShokoServer.Instance.CurrentUser.JMMUserID);
                     if (!string.IsNullOrEmpty(response.ErrorMessage))
                     {
-                        MessageBox.Show(response.ErrorMessage, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(response.ErrorMessage, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
                     }
 
@@ -354,7 +354,7 @@ namespace Shoko.Desktop.UserControls
                         newStatus, VM_ShokoServer.Instance.CurrentUser.JMMUserID);
                     if (!string.IsNullOrEmpty(response.ErrorMessage))
                     {
-                        MessageBox.Show(response.ErrorMessage, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(response.ErrorMessage, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
                     }
 

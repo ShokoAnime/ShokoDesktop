@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Globalization;
 using System.Threading;
+using Shoko.Commons.Notification;
 using Shoko.Desktop.ViewModel.Helpers;
 using Shoko.Models.Client;
 
@@ -151,7 +152,7 @@ namespace Shoko.Desktop.ViewModel.Server
             {
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
-                DisplayName = Properties.Resources.AniDB_DataMissing;
+                DisplayName = Shoko.Commons.Properties.Resources.AniDB_DataMissing;
                 AnimeInfoExists = false;
                 PosterPath = $"pack://application:,,,/{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name};component/Images/blankposter.png";
             }

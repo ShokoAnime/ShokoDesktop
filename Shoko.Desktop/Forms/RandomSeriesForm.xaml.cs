@@ -89,7 +89,7 @@ namespace Shoko.Desktop.Forms
         }
 
         public static readonly DependencyProperty SelectedTagsFilterProperty = DependencyProperty.Register("SelectedTagsFilter",
-            typeof(string), typeof(RandomSeriesForm), new UIPropertyMetadata(Properties.Resources.Random_Any, null));
+            typeof(string), typeof(RandomSeriesForm), new UIPropertyMetadata(Shoko.Commons.Properties.Resources.Random_Any, null));
 
         public string SelectedTagsFilter
         {
@@ -109,8 +109,8 @@ namespace Shoko.Desktop.Forms
             lbTags.MouseDoubleClick += new MouseButtonEventHandler(lbTags_MouseDoubleClick);
 
             cboCatFilter.Items.Clear();
-            cboCatFilter.Items.Add(Properties.Resources.Random_Any);
-            cboCatFilter.Items.Add(Properties.Resources.Random_All);
+            cboCatFilter.Items.Add(Shoko.Commons.Properties.Resources.Random_Any);
+            cboCatFilter.Items.Add(Shoko.Commons.Properties.Resources.Random_All);
             cboCatFilter.SelectedIndex = 0;
         }
 
@@ -152,7 +152,7 @@ namespace Shoko.Desktop.Forms
             TagsExpanded = true;
 
             txtSelectedTags.Text = SelectedTags;
-            if (SelectedTagsFilter.Equals(Properties.Resources.Random_Any))
+            if (SelectedTagsFilter.Equals(Shoko.Commons.Properties.Resources.Random_Any))
                 cboCatFilter.SelectedIndex = 0;
             else
                 cboCatFilter.SelectedIndex = 1;

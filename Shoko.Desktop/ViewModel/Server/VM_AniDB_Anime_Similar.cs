@@ -2,6 +2,8 @@
 using System.Globalization;
 using System.Reflection;
 using System.Threading;
+using Shoko.Commons.Notification;
+using Shoko.Commons.Properties;
 using Shoko.Commons.Utils;
 using Shoko.Desktop.Properties;
 using Shoko.Desktop.ViewModel.Helpers;

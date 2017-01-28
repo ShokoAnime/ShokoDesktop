@@ -4,7 +4,7 @@
         xmlns:local="clr-namespace:Shoko.Desktop.ViewModel"
         xmlns:forms="clr-namespace:Shoko.Desktop.Forms"
         xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
-        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=Select_TvDBLanguage}" Height="450" Width="550" ShowInTaskbar="False" WindowStyle="ToolWindow" Icon="/ShokoDesktop;component/Images/32_tvdb.png"
+        Title="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Select_TvDBLanguage}" Height="450" Width="550" ShowInTaskbar="False" WindowStyle="ToolWindow" Icon="/ShokoDesktop;component/Images/32_tvdb.png"
         WindowStartupLocation="CenterOwner" Topmost="False">
     <Grid>
         <Grid.Resources>
@@ -45,7 +45,7 @@
                                     Command="{DynamicResource UseThisCommand}" CommandParameter="{Binding}">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                     <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,5,0"/>
-                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=UseThis}" Margin="0,0,5,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=UseThis}" Margin="0,0,5,0"/>
                                 </StackPanel>
                             </Button>
                         </StackPanel>
@@ -86,7 +86,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Image Grid.Row="0" Grid.Column="0" Height="16" Width="16" VerticalAlignment="Top" Source="/Images/32_info.png" Margin="5,2,4,0"/>
-                <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TvDB_DefaultLanguage}" Margin="0,0,0,0" />
+                <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TvDB_DefaultLanguage}" Margin="0,0,0,0" />
             </Grid>
         </Border>
 
@@ -104,7 +104,7 @@
             <Button Name="btnClose" Margin="0,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Close}" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Close}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
         </StackPanel>

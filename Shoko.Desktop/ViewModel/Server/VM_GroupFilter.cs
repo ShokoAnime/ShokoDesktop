@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using Shoko.Commons.Extensions;
+using Shoko.Commons.Notification;
 using Shoko.Desktop.Utilities;
 using Shoko.Desktop.ViewModel.Helpers;
 using Shoko.Models.Client;
@@ -186,9 +187,9 @@ namespace Shoko.Desktop.ViewModel.Server
                 int groupsCount = GroupsCount;
                 string summ = "";
                 if (groupsCount > 1)
-                    summ = string.Format(Childs.Count > 0 ? "{0} " + Properties.Resources.Anime_Filters : "{0} " + Properties.Resources.Anime_Groups, groupsCount);
+                    summ = string.Format(Childs.Count > 0 ? "{0} " + Shoko.Commons.Properties.Resources.Anime_Filters : "{0} " + Shoko.Commons.Properties.Resources.Anime_Groups, groupsCount);
                 else if (groupsCount > 0)
-                    summ = string.Format(Childs.Count > 0 ? "{0} " + Properties.Resources.Anime_Filter : "{0} " + Properties.Resources.Anime_Group, groupsCount);
+                    summ = string.Format(Childs.Count > 0 ? "{0} " + Shoko.Commons.Properties.Resources.Anime_Filter : "{0} " + Shoko.Commons.Properties.Resources.Anime_Group, groupsCount);
                 return summ;
             }
         }
@@ -344,7 +345,7 @@ namespace Shoko.Desktop.ViewModel.Server
         {
             if (string.IsNullOrEmpty(GroupFilterName))
             {
-                MessageBox.Show(Properties.Resources.Anime_FilterName, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Shoko.Commons.Properties.Resources.Anime_FilterName, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 

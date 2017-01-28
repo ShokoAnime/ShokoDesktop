@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using Shoko.Commons.Notification;
 using Shoko.Models.Enums;
 using Shoko.Desktop.ViewModel.Helpers;
 using Shoko.Desktop.ViewModel.Server;

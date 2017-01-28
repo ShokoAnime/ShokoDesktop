@@ -120,7 +120,7 @@ namespace Shoko.Desktop.Forms
         }
 
         public static readonly DependencyProperty SelectedTagFilterProperty = DependencyProperty.Register("SelectedTagFilter",
-            typeof(string), typeof(RandomEpisodeForm), new UIPropertyMetadata(Properties.Resources.Random_Any, null));
+            typeof(string), typeof(RandomEpisodeForm), new UIPropertyMetadata(Shoko.Commons.Properties.Resources.Random_Any, null));
 
         public string SelectedTagFilter
         {
@@ -139,8 +139,8 @@ namespace Shoko.Desktop.Forms
             lbTags.MouseDoubleClick += new MouseButtonEventHandler(lbTags_MouseDoubleClick);
 
             cboCatFilter.Items.Clear();
-            cboCatFilter.Items.Add(Properties.Resources.Random_Any);
-            cboCatFilter.Items.Add(Properties.Resources.Random_All);
+            cboCatFilter.Items.Add(Shoko.Commons.Properties.Resources.Random_Any);
+            cboCatFilter.Items.Add(Shoko.Commons.Properties.Resources.Random_All);
             cboCatFilter.SelectedIndex = 0;
         }
 
@@ -173,7 +173,7 @@ namespace Shoko.Desktop.Forms
                         newStatus, VM_ShokoServer.Instance.CurrentUser.JMMUserID);
                     if (!string.IsNullOrEmpty(response.ErrorMessage))
                     {
-                        MessageBox.Show(response.ErrorMessage, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(response.ErrorMessage, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
                     }
 
@@ -229,7 +229,7 @@ namespace Shoko.Desktop.Forms
             TagsExpanded = true;
 
             txtSelectedTags.Text = SelectedTags;
-            if (SelectedTagFilter.Equals(Properties.Resources.Random_Any))
+            if (SelectedTagFilter.Equals(Shoko.Commons.Properties.Resources.Random_Any))
                 cboCatFilter.SelectedIndex = 0;
             else
                 cboCatFilter.SelectedIndex = 1;

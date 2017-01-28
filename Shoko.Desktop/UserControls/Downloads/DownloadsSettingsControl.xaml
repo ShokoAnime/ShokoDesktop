@@ -26,17 +26,17 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1">
-            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Server}" Margin="0,5,5,0" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Download_Server}" Margin="0,5,5,0" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
             <TextBox Name="txtServer" Width="300" Margin="0,5,5,0" VerticalAlignment="Center" Text="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=UTorrentAddress}"/>
-            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Port}" Margin="10,5,5,0" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Port}" Margin="10,5,5,0" VerticalAlignment="Center"></TextBlock>
             <TextBox Name="txtPort" Width="50" Margin="0,5,5,0" VerticalAlignment="Center" Text="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=UTorrentPort}"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2">
-            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Username}" Margin="0,5,3,0" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Username}" Margin="0,5,3,0" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2">
@@ -45,7 +45,7 @@
 
 
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="3">
-            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Password}" Margin="0,5,3,0" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Password}" Margin="0,5,3,0" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3">
@@ -54,7 +54,7 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="4" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_RefreshInterval}" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Download_RefreshInterval}" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="4" Margin="0,5,5,0">
@@ -63,7 +63,7 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="5" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_AutoRefresh}" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Download_AutoRefresh}" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="5" Margin="0,5,5,0">
@@ -73,7 +73,7 @@
         <Button Name="btnTest" Margin="0,8,2,2" Grid.Column="0" Grid.Row="7"  HorizontalAlignment="Left" Style="{DynamicResource RoundButtonStyle}">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                 <Image Height="16" Width="16" Source="/Images/16_save.png" Margin="0,0,5,0"/>
-                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TestAndSave}" Margin="0,0,5,0"/>
+                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TestAndSave}" Margin="0,0,5,0"/>
             </StackPanel>
         </Button>
 

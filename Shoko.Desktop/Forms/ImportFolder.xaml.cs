@@ -120,14 +120,14 @@ namespace Shoko.Desktop.Forms
                 // An import folder cannot be both the drop source and the drop destination
                 if (chkDropDestination.IsChecked.HasValue && chkDropSource.IsChecked.HasValue && chkDropDestination.IsChecked.Value && chkDropSource.IsChecked.Value)
                 {
-                    MessageBox.Show(Properties.Resources.MSG_ERR_DropSourceDestCheck, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_DropSourceDestCheck, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
                 // The import folder location cannot be blank. Enter a valid path on OMM Server
                 if (string.IsNullOrEmpty(txtImportFolderLocation.Text))
                 {
-                    MessageBox.Show(Properties.Resources.MSG_ERR_ImportFolderLocationCheck, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_ImportFolderLocationCheck, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     txtImportFolderLocation.Focus();
                     return;
                 }

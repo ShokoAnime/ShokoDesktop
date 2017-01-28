@@ -100,7 +100,7 @@ namespace Shoko.Desktop.Forms
                 int.TryParse(txtEpNumber.Text, out epNumber);
                 if (epNumber <= 0 || epNumber > 2500)
                 {
-                    MessageBox.Show(Properties.Resources.Select_ValidEpisode, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Shoko.Commons.Properties.Resources.Select_ValidEpisode, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     txtEpNumber.Focus();
                     return;
                 }
@@ -111,7 +111,7 @@ namespace Shoko.Desktop.Forms
                 else
                     res = VM_ShokoServer.Instance.ShokoServices.LinkAniDBMAL(AnimeID, MALID, MALTitle, epType, epNumber);
                 if (res.Length > 0)
-                    MessageBox.Show(res, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(res, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                 else
                 {
                     DialogResult = true;

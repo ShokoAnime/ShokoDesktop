@@ -53,12 +53,12 @@ namespace Shoko.Desktop.UserControls
                 {
                     VM_ImportFolder ns = (VM_ImportFolder)obj;
 
-                    MessageBoxResult res = MessageBox.Show(string.Format(Properties.Resources.ImportFolder_Delete, ns.ImportFolderLocation), Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    MessageBoxResult res = MessageBox.Show(string.Format(Shoko.Commons.Properties.Resources.ImportFolder_Delete, ns.ImportFolderLocation), Shoko.Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
                     if (res == MessageBoxResult.Yes)
                     {
                         ns.Delete();
                         //VM_ShokoServer.Instance.RefreshImportFolders();
-                        MessageBox.Show(Properties.Resources.ShokoServer_ProcessRunning, Properties.Resources.ShokoServer_Running, MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show(Shoko.Commons.Properties.Resources.ShokoServer_ProcessRunning, Shoko.Commons.Properties.Resources.ShokoServer_Running, MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 }
             }

@@ -218,7 +218,7 @@ namespace Shoko.Desktop.UserControls.Downloads
 
                 ShowSubGroupSuggestions(vidQualListTemp);
 
-                TorrentSearchStatus = string.Format(Properties.Resources.Downloads_Results, links.Count);
+                TorrentSearchStatus = string.Format(Shoko.Commons.Properties.Resources.Downloads_Results, links.Count);
             }
             catch (Exception ex)
             {
@@ -269,7 +269,7 @@ namespace Shoko.Desktop.UserControls.Downloads
         public void PerformSearch(DownloadSearchCriteria crit)
         {
             Cursor = Cursors.Wait;
-            TorrentSearchStatus = string.Format(Properties.Resources.Downloads_Searching);
+            TorrentSearchStatus = string.Format(Shoko.Commons.Properties.Resources.Downloads_Searching);
 
             try
             {
@@ -441,7 +441,7 @@ namespace Shoko.Desktop.UserControls.Downloads
             if (torLink == null) return;
 
             MenuItem itemStart = new MenuItem();
-            itemStart.Header = Properties.Resources.Downloads_Download;
+            itemStart.Header = Shoko.Commons.Properties.Resources.Downloads_Download;
             itemStart.Click += new RoutedEventHandler(torrentDownload);
             itemStart.CommandParameter = torLink;
             m.Items.Add(itemStart);
@@ -449,7 +449,7 @@ namespace Shoko.Desktop.UserControls.Downloads
             if (!string.IsNullOrEmpty(torLink.TorrentLink))
             {
                 MenuItem itemLink = new MenuItem();
-                itemLink.Header = Properties.Resources.Downloads_GoWebsite;
+                itemLink.Header = Shoko.Commons.Properties.Resources.Downloads_GoWebsite;
                 itemLink.Click += new RoutedEventHandler(torrentBrowseWebsite);
                 itemLink.CommandParameter = torLink;
                 m.Items.Add(itemLink);

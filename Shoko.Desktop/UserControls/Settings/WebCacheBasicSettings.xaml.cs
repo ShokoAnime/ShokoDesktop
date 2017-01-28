@@ -39,7 +39,7 @@ namespace Shoko.Desktop.UserControls.Settings
             }
 
             VM_ShokoServer.Instance.SaveServerSettingsAsync();
-            MessageBox.Show(Properties.Resources.Success, Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show(Shoko.Commons.Properties.Resources.Success, Shoko.Commons.Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         void settingChanged(object sender, RoutedEventArgs e)

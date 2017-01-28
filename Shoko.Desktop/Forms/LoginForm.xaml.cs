@@ -67,7 +67,7 @@ namespace Shoko.Desktop.Forms
                 else
                 {
                     txtPassword.Focus();
-                    txtStatus.Text = Properties.Resources.Login_IncorrectPassword;
+                    txtStatus.Text = Shoko.Commons.Properties.Resources.Login_IncorrectPassword;
                 }
             }
         }

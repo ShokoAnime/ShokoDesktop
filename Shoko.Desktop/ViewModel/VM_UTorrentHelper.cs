@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Data;
 using NLog;
+using Shoko.Commons.Notification;
 using Shoko.Desktop.Downloads;
 using Shoko.Desktop.Utilities;
 using Shoko.Desktop.ViewModel.Helpers;

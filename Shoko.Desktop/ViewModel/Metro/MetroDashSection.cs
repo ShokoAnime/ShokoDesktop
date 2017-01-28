@@ -18,12 +18,12 @@ namespace Shoko.Desktop.ViewModel.Metro
             {
                 switch (SectionType)
                 {
-                    case DashboardMetroProcessType.ContinueWatching: return Properties.Resources.Metro_Continue;
-                    case DashboardMetroProcessType.NewEpisodes: return Properties.Resources.Metro_New;
-                    case DashboardMetroProcessType.RandomSeries: return Properties.Resources.Metro_Random;
-                    case DashboardMetroProcessType.TraktActivity: return Properties.Resources.Metro_Trakt;
+                    case DashboardMetroProcessType.ContinueWatching: return Shoko.Commons.Properties.Resources.Metro_Continue;
+                    case DashboardMetroProcessType.NewEpisodes: return Shoko.Commons.Properties.Resources.Metro_New;
+                    case DashboardMetroProcessType.RandomSeries: return Shoko.Commons.Properties.Resources.Metro_Random;
+                    case DashboardMetroProcessType.TraktActivity: return Shoko.Commons.Properties.Resources.Metro_Trakt;
                 }
-                return Properties.Resources.Metro_Continue;
+                return Shoko.Commons.Properties.Resources.Metro_Continue;
             }
         }
     }

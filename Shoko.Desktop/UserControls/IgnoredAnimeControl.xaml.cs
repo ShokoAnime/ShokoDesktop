@@ -118,7 +118,7 @@ namespace Shoko.Desktop.UserControls
 
             try
             {
-                if (MessageBox.Show(Properties.Resources.IgnoredAnime_DeleteMessage, Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                if (MessageBox.Show(Shoko.Commons.Properties.Resources.IgnoredAnime_DeleteMessage, Shoko.Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     Cursor = Cursors.Wait;
                     VM_ShokoServer.Instance.ShokoServices.RemoveIgnoreAnime(ign.IgnoreAnimeID);

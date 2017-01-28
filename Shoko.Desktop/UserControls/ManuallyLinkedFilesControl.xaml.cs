@@ -56,7 +56,7 @@ namespace Shoko.Desktop.UserControls
                 VM_ShokoServer.Instance.ShokoServices.RescanManuallyLinkedFiles();
                 Cursor = Cursors.Arrow;
 
-                MessageBox.Show(Properties.Resources.Unrecognized_AniDBScan, Properties.Resources.Complete, MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(Shoko.Commons.Properties.Resources.Unrecognized_AniDBScan, Shoko.Commons.Properties.Resources.Complete, MessageBoxButton.OK, MessageBoxImage.Information);
 
             }
             catch (Exception ex)

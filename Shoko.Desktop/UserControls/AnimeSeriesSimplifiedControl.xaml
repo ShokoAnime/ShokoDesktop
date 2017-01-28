@@ -92,7 +92,7 @@
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="16" Width="16" Source="/Images/32_trakt.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000">
                                         <Image.ToolTip>
-                                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_TraktLink}"/>
+                                            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SeriesSimple_TraktLink}"/>
                                         </Image.ToolTip>
                                     </Image>
 
@@ -104,7 +104,7 @@
                                     Visibility="{Binding Path=TraktLinkExists, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="3" Foreground="DarkGray" FontWeight="Bold" FontSize="14" VerticalAlignment="Center" Margin="5,0,0,0"/>
-                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_Comments}" Foreground="DarkGray" FontWeight="Normal" FontSize="14" VerticalAlignment="Center" Margin="5,0,0,0" />
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SeriesSimple_Comments}" Foreground="DarkGray" FontWeight="Normal" FontSize="14" VerticalAlignment="Center" Margin="5,0,0,0" />
                                 </StackPanel>
 
                             </Border>
@@ -135,7 +135,7 @@
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="24" Width="24" Source="/Images/32_eye.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000">
                                         <Image.ToolTip>
-                                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_Watched}"/>
+                                            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_Watched}"/>
                                         </Image.ToolTip>
                                     </Image>
                                 </StackPanel>
@@ -148,7 +148,7 @@
                                     <Image Height="24" Width="24" Source="/Images/32_resume.png" Margin="0,0,0,0"/>
                                 </StackPanel>
                                 <Button.ToolTip>
-                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_Play}"/>
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SeriesSimple_Play}"/>
                                 </Button.ToolTip>
                             </Button>
                         </StackPanel>
@@ -160,7 +160,7 @@
                                    Foreground="Black" VerticalAlignment="Center">
                             </TextBlock>
 
-                            <TextBlock Margin="15,5,5,5" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_Watched}" FontSize="12" FontWeight="Normal"
+                            <TextBlock Margin="15,5,5,5" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SeriesSimple_Watched}" FontSize="12" FontWeight="Normal"
                                    Foreground="Black" VerticalAlignment="Center">
                             </TextBlock>
 
@@ -238,7 +238,7 @@
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="24" Width="24" Source="/Images/32_eye2.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000">
                                         <Image.ToolTip>
-                                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_Unwatched}"/>
+                                            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_Unwatched}"/>
                                         </Image.ToolTip>
                                     </Image>
 
@@ -252,7 +252,7 @@
                                     <Image Height="24" Width="24" Source="/Images/32_resume.png" Margin="0,0,0,0"/>
                                 </StackPanel>
                                 <Button.ToolTip>
-                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_Play}"/>
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SeriesSimple_Play}"/>
                                 </Button.ToolTip>
                             </Button>
                         </StackPanel>
@@ -330,7 +330,7 @@
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="24" Width="24" Source="/Images/32_eye2.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000">
                                         <Image.ToolTip>
-                                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_Unwatched}"/>
+                                            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_Unwatched}"/>
                                         </Image.ToolTip>
                                     </Image>
 
@@ -344,7 +344,7 @@
                                     <Image Height="24" Width="24" Source="/Images/32_resume.png" Margin="0,0,0,0"/>
                                 </StackPanel>
                                 <Button.ToolTip>
-                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_Play}"/>
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SeriesSimple_Play}"/>
                                 </Button.ToolTip>
                             </Button>
                         </StackPanel>
@@ -417,7 +417,7 @@
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="24" Width="24" Source="/Images/32_eye2.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000">
                                         <Image.ToolTip>
-                                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_Unwatched}"/>
+                                            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_Unwatched}"/>
                                         </Image.ToolTip>
                                     </Image>
 
@@ -431,7 +431,7 @@
                                     <Image Height="24" Width="24" Source="/Images/32_resume.png" Margin="0,0,0,0"/>
                                 </StackPanel>
                                 <Button.ToolTip>
-                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_Play}"/>
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SeriesSimple_Play}"/>
                                 </Button.ToolTip>
                             </Button>
                         </StackPanel>
@@ -499,12 +499,12 @@
                         </TextBlock>
 
                         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2" Margin="5,2,5,5" Grid.ColumnSpan="2" HorizontalAlignment="Left">
-                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_From}" FontSize="12" VerticalAlignment="Center" />
+                            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SeriesSimple_From}" FontSize="12" VerticalAlignment="Center" />
                             <TextBlock Text="{Binding Path=Source}" FontSize="14" VerticalAlignment="Center" Margin="5,0,0,0" FontWeight="Bold"/>
                             <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="5,0,0,0" VerticalAlignment="Center"
                                    Visibility="{Binding Path=HasSeries, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <Image.ToolTip>
-                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_AlreadyHave}"/>
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SeriesSimple_AlreadyHave}"/>
                                 </Image.ToolTip>
                             </Image>
                         </StackPanel>
@@ -514,7 +514,7 @@
                             <!-- Details -->
                             <Button Margin="0,0,0,0" VerticalAlignment="Center" Command="{StaticResource RecDetailsCommand}" CommandParameter="{Binding}">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_ViewSeries}" VerticalAlignment="Center" FontSize="12" FontWeight="Normal"/>
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SeriesSimple_ViewSeries}" VerticalAlignment="Center" FontSize="12" FontWeight="Normal"/>
                                 </StackPanel>
                             </Button>
 
@@ -523,7 +523,7 @@
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="24" Width="24" Source="/Images/24_vote_up.png" Margin="2,0,2,0" VerticalAlignment="Center">
                                         <Image.ToolTip>
-                                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_VoteUp}"/>
+                                            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SeriesSimple_VoteUp}"/>
                                         </Image.ToolTip>
                                     </Image>
                                 </StackPanel>
@@ -534,7 +534,7 @@
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center"  >
                                     <Image Height="24" Width="24" Source="/Images/24_vote_down.png" Margin="2,0,2,0" VerticalAlignment="Center">
                                         <Image.ToolTip>
-                                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_VoteDown}"/>
+                                            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SeriesSimple_VoteDown}"/>
                                         </Image.ToolTip>
                                     </Image>
                                 </StackPanel>
@@ -564,7 +564,7 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"  Margin="5,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_FromTrakt}" FontSize="14" Foreground="DarkGreen" 
+                        <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"  Margin="5,0,0,0" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SeriesSimple_FromTrakt}" FontSize="14" Foreground="DarkGreen" 
                                    VerticalAlignment="Center" FontWeight="Bold"/>
 
                         <TextBlock Grid.Column="1" Grid.Row="1" Margin="15,0,0,0" Text="{Binding Path=Comment.CommentDateString}" FontSize="12" HorizontalAlignment="Left"
@@ -582,7 +582,7 @@
                             <Button Style="{StaticResource RoundButtonStyle}" VerticalAlignment="Center"
                             Command="{StaticResource ViewCommentCommand}" CommandParameter="{Binding}">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_View}"/>
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SeriesSimple_View}"/>
 
                                 </StackPanel>
                             </Button>
@@ -609,7 +609,7 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Margin="5,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_FromAniDB}" FontSize="14" Foreground="DarkBlue" VerticalAlignment="Center" FontWeight="Bold"/>
+                        <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Margin="5,0,0,0" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SeriesSimple_FromAniDB}" FontSize="14" Foreground="DarkBlue" VerticalAlignment="Center" FontWeight="Bold"/>
 
                         <TextBlock Grid.Column="0" Grid.Row="1" Margin="5,0,0,0" Text="{Binding Path=UserID}" VerticalAlignment="Center" FontSize="14" FontWeight="Bold"
                                    Foreground="Black" ToolTipService.ShowDuration="60000">
@@ -628,7 +628,7 @@
                             <Button Style="{StaticResource RoundButtonStyle}" VerticalAlignment="Center"
                             Command="{StaticResource ViewCommentCommand}" CommandParameter="{Binding}">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_View}"/>
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SeriesSimple_View}"/>
 
                                 </StackPanel>
                             </Button>
@@ -763,7 +763,7 @@
                 </Button>
 
                 <!-- show pinned series button -->
-                <Button Margin="2,0,2,0" Style="{StaticResource FlatButtonStyle}" VerticalAlignment="Center" ToolTip="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_PinSeries}"
+                <Button Margin="2,0,2,0" Style="{StaticResource FlatButtonStyle}" VerticalAlignment="Center" ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_PinSeries}"
                                         Command="{DynamicResource ShowPinnedSeriesCommand}" CommandParameter="{Binding}">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                         <Image Height="32" Width="32" Source="/Images/Metro/pin.png" Margin="2,0,2,0">
@@ -772,7 +772,7 @@
                     </StackPanel>
                 </Button>
 
-                <Button Name="btnSwitchView" Margin="0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" ToolTip="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AnimeFull}" Visibility="Collapsed">
+                <Button Name="btnSwitchView" Margin="0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_AnimeFull}" Visibility="Collapsed">
                     <Image Height="32" Width="32" Source="/Images/Metro/details.png" Margin="2,0,2,0"/>
 
                 </Button>
@@ -867,7 +867,7 @@
                         </Rectangle.Fill>
                     </Rectangle>
 
-                    <TextBlock Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_Aired}" FontWeight="Bold"  HorizontalAlignment="Stretch" Margin="10,5,5,5" 
+                    <TextBlock Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SeriesSimple_Aired}" FontWeight="Bold"  HorizontalAlignment="Stretch" Margin="10,5,5,5" 
                             VerticalAlignment="Top" TextWrapping="Wrap" Foreground="Black" FontSize="16" >
                     </TextBlock>
 
@@ -875,7 +875,7 @@
                             VerticalAlignment="Top" TextWrapping="Wrap" Foreground="Black" FontSize="16" >
                     </TextBlock>
 
-                    <TextBlock Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="1" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_Episodes}" FontWeight="Bold"  HorizontalAlignment="Stretch" Margin="10,5,5,5" 
+                    <TextBlock Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="1" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SeriesSimple_Episodes}" FontWeight="Bold"  HorizontalAlignment="Stretch" Margin="10,5,5,5" 
                             VerticalAlignment="Top" TextWrapping="Wrap" Foreground="Black" FontSize="16" >
                     </TextBlock>
 
@@ -900,14 +900,14 @@
                             </usercontrols:VisualRating>
                             <TextBlock Padding="5" Text="{Binding Path=AniDB_Anime.AniDBRatingFormatted}" VerticalAlignment="Center">
                                 <TextBlock.ToolTip>
-                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AniDBRating}"></TextBlock>
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AniDBRating}"></TextBlock>
                                 </TextBlock.ToolTip>
                         </TextBlock>
 
                             <!-- User rating if the user has NOT voted -->
                             <StackPanel Orientation="Horizontal">
 
-                                <TextBlock Margin="5,0,5,0"  Foreground="DarkBlue" FontFamily="Segoe UI" FontSize="15" FontWeight="Bold" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_MyVote}" VerticalAlignment="Center"/>
+                                <TextBlock Margin="5,0,5,0"  Foreground="DarkBlue" FontFamily="Segoe UI" FontSize="15" FontWeight="Bold" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SeriesSimple_MyVote}" VerticalAlignment="Center"/>
 
                                 <usercontrols:RatingControl x:Name="cRating" Width="280" Height="24" RatingValue="{Binding Path=AniDB_Anime.Detail.UserRating}" />
 
@@ -921,7 +921,7 @@
                             <Button Name="btnPlayNextEp" Margin="0" VerticalAlignment="Top" >
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="24" Width="24" Source="/Images/32_resume.png" Margin="2,0,2,0" VerticalAlignment="Center"/>
-                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_PlayNext}" FontSize="14" VerticalAlignment="Center" Margin="2,0,8,0"/>
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SeriesSimple_PlayNext}" FontSize="14" VerticalAlignment="Center" Margin="2,0,8,0"/>
                                 </StackPanel>
 
                             </Button>
@@ -929,7 +929,7 @@
                             <Button Name="btnPlayAllEps" VerticalAlignment="Top" Margin="12,0,2,0">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="24" Width="24" Source="/Images/32_resume.png" Margin="2,0,2,0" VerticalAlignment="Center"/>
-                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_PlayUnwatched}" FontSize="14" VerticalAlignment="Center" Margin="2,0,0,0"/>
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SeriesSimple_PlayUnwatched}" FontSize="14" VerticalAlignment="Center" Margin="2,0,0,0"/>
                                     <TextBlock Text="(" FontSize="14" VerticalAlignment="Center" Margin="5,0,0,0"/>
                                     <TextBlock Text="{Binding Path=UnwatchedEpisodeCount, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeSeriesSimplifiedControl}}}" FontSize="14" VerticalAlignment="Center" Margin="2,0,2,0"/>
                                     <TextBlock Text=")" FontSize="14" VerticalAlignment="Center" Margin="0,0,5,0"/>
@@ -941,7 +941,7 @@
 
 
                                 <TextBox Name="txtCommentNew" Height="30" Width="300" HorizontalAlignment="Stretch" DockPanel.Dock="Left" TextWrapping="Wrap" 
-                         VerticalScrollBarVisibility="Visible" AcceptsReturn="True" Foreground="DarkGray" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_YourSay}" FontSize="14" />
+                         VerticalScrollBarVisibility="Visible" AcceptsReturn="True" Foreground="DarkGray" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SeriesSimple_YourSay}" FontSize="14" />
 
                                 <StackPanel  Orientation="Horizontal" DockPanel.Dock="Left" VerticalAlignment="Top" Margin="10,0,0,0">
 
@@ -949,7 +949,7 @@
 
                                         <Border BorderThickness="0" BorderBrush="Navy" Background="{StaticResource GreenGradientBrush}" Padding="6,3,3,3" CornerRadius="4">
                                             <StackPanel Orientation="Horizontal">
-                                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_CommentTrakt}" Foreground="White" FontWeight="Bold" FontSize="12" VerticalAlignment="Center"/>
+                                                <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SeriesSimple_CommentTrakt}" Foreground="White" FontWeight="Bold" FontSize="12" VerticalAlignment="Center"/>
                                                 <Image Height="16" Width="16" Source="/Images/trakt-icon-shouts.png" Margin="10,0,4,0" VerticalAlignment="Center"/>
                                             </StackPanel>
 
@@ -959,7 +959,7 @@
 
                                     <StackPanel Orientation="Horizontal" Margin="5" VerticalAlignment="Center">
                                         <CheckBox Name="chkSpoiler" VerticalAlignment="Center"/>
-                                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_Spoiler}" Foreground="Black" FontFamily="Segoe UI" FontSize="15" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,0,0"/>
+                                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SeriesSimple_Spoiler}" Foreground="Black" FontFamily="Segoe UI" FontSize="15" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,0,0"/>
 
                                     </StackPanel>
 
@@ -980,7 +980,7 @@
 
                 <!-- Play Next Episode -->
 
-                <TextBlock VerticalAlignment="Top" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_Episodes}" Foreground="DarkBlue" FontFamily="Segoe UI"  FontSize="20" Margin="5,10,0,0"  Grid.Row="3" Grid.Column="0"/>
+                <TextBlock VerticalAlignment="Top" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SeriesSimple_Episodes}" Foreground="DarkBlue" FontFamily="Segoe UI"  FontSize="20" Margin="5,10,0,0"  Grid.Row="3" Grid.Column="0"/>
 
 
                 <ListBox x:Name="lbEpisodes" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="0"   HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="5,5,0,5"
@@ -1002,7 +1002,7 @@
 
 
                 <!-- Characters -->
-                <TextBlock VerticalAlignment="Top" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_Characters}" Foreground="DarkBlue" FontFamily="Segoe UI"  FontSize="20" Margin="5,10,0,0"  Grid.Row="5" Grid.Column="0"/>
+                <TextBlock VerticalAlignment="Top" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SeriesSimple_Characters}" Foreground="DarkBlue" FontFamily="Segoe UI"  FontSize="20" Margin="5,10,0,0"  Grid.Row="5" Grid.Column="0"/>
 
                 <ListBox x:Name="lbChars" Grid.Row="6" Grid.Column="0" BorderThickness="0" Grid.ColumnSpan="3"  HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="5,5,0,5"
                  VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
@@ -1022,7 +1022,7 @@
                 </ListBox>
 
                 <!-- Recommendations -->
-                <TextBlock VerticalAlignment="Top" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_AlsoLike}" Foreground="DarkBlue" FontFamily="Segoe UI"  FontSize="20" Margin="5,10,0,0"  Grid.Row="7" Grid.Column="0"/>
+                <TextBlock VerticalAlignment="Top" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SeriesSimple_AlsoLike}" Foreground="DarkBlue" FontFamily="Segoe UI"  FontSize="20" Margin="5,10,0,0"  Grid.Row="7" Grid.Column="0"/>
 
                 <ListBox x:Name="lbRecommendations" Grid.Row="8" Grid.Column="0" BorderThickness="0" Grid.ColumnSpan="3"  HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="5,5,0,5"
                  VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True"
@@ -1046,17 +1046,17 @@
                 <!-- Comments -->
                 <StackPanel Orientation="Horizontal" Margin="5,10,0,0"  Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="3">
 
-                    <TextBlock VerticalAlignment="Top" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_PeopleSaying}" Foreground="DarkBlue" FontFamily="Segoe UI"  FontSize="20" Margin="0,0,10,0" />
+                    <TextBlock VerticalAlignment="Top" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SeriesSimple_PeopleSaying}" Foreground="DarkBlue" FontFamily="Segoe UI"  FontSize="20" Margin="0,0,10,0" />
 
                     <!-- refresh comments button -->
-                    <Button x:Name="btnRefreshComments"  Margin="0,0,2,2" Style="{StaticResource FlatButtonStyle}" VerticalAlignment="Center" ToolTip="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_AnimeUpdateAniDBInfo}"
+                    <Button x:Name="btnRefreshComments"  Margin="0,0,2,2" Style="{StaticResource FlatButtonStyle}" VerticalAlignment="Center" ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_AnimeUpdateAniDBInfo}"
                         Visibility="{Binding Path=IsNotLoadingComments, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeSeriesSimplifiedControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                             <Image Height="22" Width="22" Source="/Images/Metro/refresh.png" Margin="2,0,2,0"/>
                         </StackPanel>
                     </Button>
 
-                    <TextBlock VerticalAlignment="Top" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SeriesSimple_Loading}" Foreground="Green" FontFamily="Segoe UI"  FontSize="20" Margin="0,0,0,0"
+                    <TextBlock VerticalAlignment="Top" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SeriesSimple_Loading}" Foreground="Green" FontFamily="Segoe UI"  FontSize="20" Margin="0,0,0,0"
                            Visibility="{Binding Path=IsLoadingComments, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeSeriesSimplifiedControl}}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                 </StackPanel>

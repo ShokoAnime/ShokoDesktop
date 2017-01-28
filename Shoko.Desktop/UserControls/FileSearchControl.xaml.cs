@@ -35,11 +35,11 @@ namespace Shoko.Desktop.UserControls
             set { SetValue(FileCountProperty, value); }
         }
 
-        private readonly string SearchTypeFileName = Properties.Resources.Search_FileName;
-        private readonly string SearchTypeHash = Properties.Resources.Hash;
-        private readonly string SearchTypeTopOneHundred = Properties.Resources.Search_Last100;
+        private readonly string SearchTypeFileName = Shoko.Commons.Properties.Resources.Search_FileName;
+        private readonly string SearchTypeHash = Shoko.Commons.Properties.Resources.Hash;
+        private readonly string SearchTypeTopOneHundred = Shoko.Commons.Properties.Resources.Search_Last100;
 
-        private readonly string SearchTypeFileSize = Properties.Resources.Search_FileSize;
+        private readonly string SearchTypeFileSize = Shoko.Commons.Properties.Resources.Search_FileSize;
 
         BackgroundWorker getDetailsWorker = new BackgroundWorker();
         private int displayingVidID = 0;
@@ -59,9 +59,9 @@ namespace Shoko.Desktop.UserControls
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
             cboSearchType.Items.Clear();
-            cboSearchType.Items.Add(Properties.Resources.Search_FileName);
-            cboSearchType.Items.Add(Properties.Resources.Hash);
-            cboSearchType.Items.Add(Properties.Resources.Search_Last100);
+            cboSearchType.Items.Add(Shoko.Commons.Properties.Resources.Search_FileName);
+            cboSearchType.Items.Add(Shoko.Commons.Properties.Resources.Hash);
+            cboSearchType.Items.Add(Shoko.Commons.Properties.Resources.Search_Last100);
             cboSearchType.SelectedIndex = 0;
 
             cboSearchType.SelectionChanged += new SelectionChangedEventHandler(cboSearchType_SelectionChanged);
@@ -145,7 +145,7 @@ namespace Shoko.Desktop.UserControls
 
                 if (txtFileSearch.Text.Trim().Length == 0 && searchType != FileSearchCriteria.LastOneHundred)
                 {
-                    MessageBox.Show(Properties.Resources.Seach_Criteria, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Shoko.Commons.Properties.Resources.Seach_Criteria, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     txtFileSearch.Focus();
                     return;
                 }
@@ -202,7 +202,7 @@ namespace Shoko.Desktop.UserControls
                 }
                 else
                 {
-                    MessageBox.Show(Properties.Resources.MSG_ERR_FileNotFound, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_FileNotFound, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -226,7 +226,7 @@ namespace Shoko.Desktop.UserControls
                     VM_ShokoServer.Instance.ShokoServices.RehashFile(vid.VideoLocalID);
                 }
 
-                MessageBox.Show(Properties.Resources.MSG_INFO_AddedQueueCmds, "Done", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_INFO_AddedQueueCmds, "Done", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
@@ -253,7 +253,7 @@ namespace Shoko.Desktop.UserControls
                     VM_ShokoServer.Instance.ShokoServices.RescanFile(vid.VideoLocalID);
                 }
 
-                MessageBox.Show(Properties.Resources.MSG_INFO_AddedQueueCmds, Properties.Resources.Done, MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_INFO_AddedQueueCmds, Shoko.Commons.Properties.Resources.Done, MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {

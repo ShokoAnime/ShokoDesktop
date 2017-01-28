@@ -28,8 +28,8 @@ namespace Shoko.Desktop.UserControls
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
 
-            cboSearchType.Items.Add(Properties.Resources.Search_TitleOnly);
-            cboSearchType.Items.Add(Properties.Resources.Search_Everything);
+            cboSearchType.Items.Add(Shoko.Commons.Properties.Resources.Search_TitleOnly);
+            cboSearchType.Items.Add(Shoko.Commons.Properties.Resources.Search_Everything);
             cboSearchType.SelectedIndex = 0;
             cboSearchType.SelectionChanged += new SelectionChangedEventHandler(cboSearchType_SelectionChanged);
         }

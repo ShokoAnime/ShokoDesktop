@@ -161,7 +161,7 @@ namespace Shoko.Desktop.UserControls
                     }
                     else
                     {
-                        MessageBox.Show(Properties.Resources.MSG_ERR_FileNotFound, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_FileNotFound, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
             }
@@ -195,7 +195,7 @@ namespace Shoko.Desktop.UserControls
 
                     string result = VM_ShokoServer.Instance.ShokoServices.SetIgnoreStatusOnFile(vid.VideoLocalID, false);
                     if (result.Length > 0)
-                        MessageBox.Show(result, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(result, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     else
                         RefreshIgnoredFiles();
 
@@ -207,7 +207,7 @@ namespace Shoko.Desktop.UserControls
                     {
                         string result = VM_ShokoServer.Instance.ShokoServices.SetIgnoreStatusOnFile(id, false);
                         if (result.Length > 0)
-                            MessageBox.Show(result, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(result, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     RefreshIgnoredFiles();
                 }
@@ -234,7 +234,7 @@ namespace Shoko.Desktop.UserControls
                     VM_VideoLocal vid = obj as VM_VideoLocal;
 
 
-                    AskDeleteFile dlg = new AskDeleteFile(string.Format(Properties.Resources.DeleteFile_Title, vid.FileName), Properties.Resources.Unrecognized_ConfirmDelete + "\r\n\r\n" + Properties.Resources.DeleteFile_Confirm, vid.Places);
+                    AskDeleteFile dlg = new AskDeleteFile(string.Format(Shoko.Commons.Properties.Resources.DeleteFile_Title, vid.FileName), Shoko.Commons.Properties.Resources.Unrecognized_ConfirmDelete + "\r\n\r\n" + Shoko.Commons.Properties.Resources.DeleteFile_Confirm, vid.Places);
                     dlg.Owner = Window.GetWindow(this);
                     bool? res = dlg.ShowDialog();
                     if (res.HasValue && res.Value)
@@ -249,7 +249,7 @@ namespace Shoko.Desktop.UserControls
                                 tresult += result + "\r\n";
                         }
                         if (!string.IsNullOrEmpty(tresult))
-                            MessageBox.Show(tresult, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(tresult, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         RefreshIgnoredFiles();
                     }
 
@@ -259,7 +259,7 @@ namespace Shoko.Desktop.UserControls
                 if (obj.GetType() == typeof(MultipleVideos))
                 {
                     MultipleVideos mv = obj as MultipleVideos;
-                    AskDeleteFile dlg = new AskDeleteFile(Properties.Resources.DeleteFile_Multiple, Properties.Resources.Unrecognized_DeleteSelected + "\r\n\r\n" + Properties.Resources.DeleteFile_Confirm, mv.VideoLocals.SelectMany(a=>a.Places).ToList());
+                    AskDeleteFile dlg = new AskDeleteFile(Shoko.Commons.Properties.Resources.DeleteFile_Multiple, Shoko.Commons.Properties.Resources.Unrecognized_DeleteSelected + "\r\n\r\n" + Shoko.Commons.Properties.Resources.DeleteFile_Confirm, mv.VideoLocals.SelectMany(a=>a.Places).ToList());
                     dlg.Owner = Window.GetWindow(this);
                     bool? res = dlg.ShowDialog();
                     if (res.HasValue && res.Value)
@@ -274,7 +274,7 @@ namespace Shoko.Desktop.UserControls
                                 tresult += result + "\r\n";
                         }
                         if (!string.IsNullOrEmpty(tresult))
-                            MessageBox.Show(tresult, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(tresult, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         RefreshIgnoredFiles();
                     }
                 }

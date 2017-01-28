@@ -72,7 +72,7 @@ namespace Shoko.Desktop.UserControls
                 if (ba == null) return;
 
                 DialogTextMultiline dlg = new DialogTextMultiline();
-                dlg.Init(Properties.Resources.Bookmarks_Notes + " ", ba.Notes);
+                dlg.Init(Shoko.Commons.Properties.Resources.Bookmarks_Notes + " ", ba.Notes);
                 dlg.Owner = Window.GetWindow(this);
                 bool? res = dlg.ShowDialog();
                 if (res.HasValue && res.Value)
@@ -101,7 +101,7 @@ namespace Shoko.Desktop.UserControls
                 if (ba == null) return;
 
                 DialogInteger dlg = new DialogInteger();
-                dlg.Init(Properties.Resources.Bookmarks_Priority + " ", ba.Priority, 1, 100);
+                dlg.Init(Shoko.Commons.Properties.Resources.Bookmarks_Priority + " ", ba.Priority, 1, 100);
                 dlg.Owner = Window.GetWindow(this);
                 bool? res = dlg.ShowDialog();
                 if (res.HasValue && res.Value)
@@ -129,15 +129,15 @@ namespace Shoko.Desktop.UserControls
                 VM_BookmarkedAnime ba = obj as VM_BookmarkedAnime;
                 if (ba == null) return;
 
-                MessageBoxResult res = MessageBox.Show(string.Format(Properties.Resources.Bookmarks_Delete, ba.Anime.FormattedTitle),
-                        Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                MessageBoxResult res = MessageBox.Show(string.Format(Shoko.Commons.Properties.Resources.Bookmarks_Delete, ba.Anime.FormattedTitle),
+                        Shoko.Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
                 if (res == MessageBoxResult.Yes)
                 {
                     Cursor = Cursors.Wait;
                     string result = VM_ShokoServer.Instance.ShokoServices.DeleteBookmarkedAnime(ba.BookmarkedAnimeID);
                     if (result.Length > 0)
-                        MessageBox.Show(result, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(result, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     else
                     {
                         VM_MainListHelper.Instance.BookmarkedAnime.Remove(ba);

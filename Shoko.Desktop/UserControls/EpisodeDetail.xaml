@@ -49,7 +49,7 @@
                             Command="{DynamicResource PlayVideoCommand}" CommandParameter="{Binding}">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="16" Width="16" Source="/Images/32_resume.png" Margin="0,0,2,0"/>
-                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Play}" Margin="0,0,2,0" Foreground="Black"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Play}" Margin="0,0,2,0" Foreground="Black"/>
                                 </StackPanel>
                             </Button>
 
@@ -59,13 +59,13 @@
                                     <Image Height="16" Width="16" Source="/Images/32_eye.png" Margin="2,0,2,0"
                                     Visibility="{Binding Path=Watched, Converter={StaticResource BooleanToVisibilityConverter}}">
                                         <Image.ToolTip>
-                                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_Watched}"/>
+                                            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_Watched}"/>
                                         </Image.ToolTip>
                                     </Image>
                                     <Image Height="16" Width="16" Source="/Images/32_eye2.png" Margin="2,0,2,0"
                                     Visibility="{Binding Path=Watched, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
                                         <Image.ToolTip>
-                                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_Unwatched}"/>
+                                            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_Unwatched}"/>
                                         </Image.ToolTip>
                                     </Image>
                                 </StackPanel>
@@ -77,10 +77,10 @@
                                 CommandParameter="{Binding}" Visibility="{Binding Path=FileIsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}" >
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="16" Width="16" Source="/Images/24_folder.png" Margin="2,0,2,0"/>
-                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=OpenFolder}" Margin="2,0,2,0" Foreground="Black"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=OpenFolder}" Margin="2,0,2,0" Foreground="Black"/>
                                 </StackPanel>
                                 <Button.ToolTip>
-                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=OpenFolder}"/>
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=OpenFolder}"/>
                                 </Button.ToolTip>
                             </Button>
 
@@ -90,10 +90,10 @@
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="16" Width="16" Source="../Images/16_link_remove.png" Margin="2,0,2,0" VerticalAlignment="Center">
                                     </Image>
-                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=DeleteLink}" Margin="2,0,2,0" Foreground="Black"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteLink}" Margin="2,0,2,0" Foreground="Black"/>
                                 </StackPanel>
                                 <Button.ToolTip>
-                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_DeleteLink}"/>
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_DeleteLink}"/>
                                 </Button.ToolTip>
                             </Button>
 
@@ -102,12 +102,12 @@
                                 CommandParameter="{Binding}" >
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="16" Width="16" Source="/Images/32_trash.png" Margin="2,0,2,0"/>
-                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Delete}" Margin="2,0,2,0" Foreground="Black"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Delete}" Margin="2,0,2,0" Foreground="Black"/>
                                 </StackPanel>
                             </Button>
 
                             <!-- Is Variation-->
-                            <CheckBox Content="{Resx ResxName=JMMClient.Properties.Resources, Key=IsVariation}" Margin="2,0,2,0" IsChecked="{Binding Path=Variation, Mode=OneWay}" Command="{StaticResource ToggleVariationCommand}" 
+                            <CheckBox Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=IsVariation}" Margin="2,0,2,0" IsChecked="{Binding Path=Variation, Mode=OneWay}" Command="{StaticResource ToggleVariationCommand}" 
                                 CommandParameter="{Binding}" VerticalAlignment="Center"
                                        ToolTip="{usercontrols:Info Title=IsVariation, 
                                                 Body=Tooltip_IsVariation}">
@@ -118,7 +118,7 @@
                             <Button Margin="0,0,5,1" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource ToggleFileDetailsCommand}" 
                                 CommandParameter="{Binding}" Visibility="{Binding Path=ShowMoreDetails, Converter={StaticResource InverseBooleanToVisibilityConverter}}" >
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_MoreInfo}" Margin="2,0,2,0" Foreground="Black"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Episode_MoreInfo}" Margin="2,0,2,0" Foreground="Black"/>
                                 </StackPanel>
                             </Button>
 
@@ -126,7 +126,7 @@
                             <Button Margin="0,0,5,1" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource ToggleFileDetailsCommand}" 
                                 CommandParameter="{Binding}" Visibility="{Binding Path=ShowMoreDetails, Converter={StaticResource BooleanToVisibilityConverter}}" >
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_LessInfo}" Margin="2,0,2,0" Foreground="Black"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Episode_LessInfo}" Margin="2,0,2,0" Foreground="Black"/>
                                 </StackPanel>
                             </Button>
 
@@ -138,19 +138,19 @@
 
 
 
-                        <Label Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Video_HD}" Style="{DynamicResource VideoDefStyle}" VerticalAlignment="Center" Margin="0,0,10,0"
+                        <Label Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Video_HD}" Style="{DynamicResource VideoDefStyle}" VerticalAlignment="Center" Margin="0,0,10,0"
                                Visibility="{Binding Path=IsHD, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <Label Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Video_FullHD}" Style="{DynamicResource VideoDefStyle}" VerticalAlignment="Center" Margin="0,0,10,0"
+                        <Label Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Video_FullHD}" Style="{DynamicResource VideoDefStyle}" VerticalAlignment="Center" Margin="0,0,10,0"
                                Visibility="{Binding Path=IsFullHD, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <Label Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Video_Bluray}" Style="{DynamicResource VideoDefStyle_Source}" VerticalAlignment="Center" Margin="0,0,10,0"
+                        <Label Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Video_Bluray}" Style="{DynamicResource VideoDefStyle_Source}" VerticalAlignment="Center" Margin="0,0,10,0"
                                Visibility="{Binding Path=IsBluRay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <Label Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Video_DVD}" Style="{DynamicResource VideoDefStyle_Source}" VerticalAlignment="Center" Margin="0,0,10,0"
+                        <Label Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Video_DVD}" Style="{DynamicResource VideoDefStyle_Source}" VerticalAlignment="Center" Margin="0,0,10,0"
                                Visibility="{Binding Path=IsDVD, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <Label Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Video_Hi08P}" Style="{DynamicResource VideoDefStyle_Hi08P}" VerticalAlignment="Center" Margin="0,0,10,0"
+                        <Label Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Video_Hi08P}" Style="{DynamicResource VideoDefStyle_Hi08P}" VerticalAlignment="Center" Margin="0,0,10,0"
                                Visibility="{Binding Path=IsHi08P, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <Label Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Video_Hi10P}" Style="{DynamicResource VideoDefStyle_Hi10P}" VerticalAlignment="Center" Margin="0,0,10,0"
+                        <Label Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Video_Hi10P}" Style="{DynamicResource VideoDefStyle_Hi10P}" VerticalAlignment="Center" Margin="0,0,10,0"
                                Visibility="{Binding Path=IsHi10P, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <Label Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Video_Hi12P}" Style="{DynamicResource VideoDefStyle_Hi12P}" VerticalAlignment="Center" Margin="0,0,10,0"
+                        <Label Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Video_Hi12P}" Style="{DynamicResource VideoDefStyle_Hi12P}" VerticalAlignment="Center" Margin="0,0,10,0"
                                Visibility="{Binding Path=IsHi12P, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                         <usercontrols:HyperLinkStandard Margin="0,0,10,0" VerticalAlignment="Center" DisplayText="{Binding Path=ReleaseGroupName}" URL="{Binding Path=ReleaseGroupAniDBURL}" 
@@ -158,7 +158,7 @@
 
                         <TextBlock Text="{Binding Path=AniDB_Anime_GroupNameShort}" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0"
                                    Visibility="{Binding Path=IsAutoAssociation, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_Manual}" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0"
+                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Episode_Manual}" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0"
                                    Visibility="{Binding Path=IsAutoAssociation, Converter={StaticResource InverseBooleanToVisibilityConverter}}"/>
 
                         <TextBlock Text="{Binding Path=FormattedFileSize}" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,10,0" />
@@ -171,7 +171,7 @@
                         <!-- user watched date -->
                         <StackPanel Orientation="Horizontal" Margin="15,0,0,0" Visibility="{Binding Path=Watched, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <Image Height="16" Width="16" Source="/Images/24_calendar.png" Margin="0,0,5,0" VerticalAlignment="Center"/>
-                            <TextBlock Margin="5,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=LastWatched}" VerticalAlignment="Center" />
+                            <TextBlock Margin="5,0,0,0" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=LastWatched}" VerticalAlignment="Center" />
                             <TextBlock Margin="5,0,0,0" Text="{Binding Path=LastWatchedDescription}" FontWeight="Bold" VerticalAlignment="Center"/>
                         </StackPanel>
                     </StackPanel>
@@ -180,13 +180,13 @@
                         <Image Height="16" Width="16" Source="/Images/16_tick.png" VerticalAlignment="Center" Margin="0,0,5,0"
                                Visibility="{Binding Path=FileIsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <Image.ToolTip>
-                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_FileFound}"/>
+                                <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_FileFound}"/>
                             </Image.ToolTip>
                         </Image>
                         <Image Height="16" Width="16" Source="/Images/16_exclamation.png" VerticalAlignment="Center" Margin="0,0,5,0"
                                Visibility="{Binding Path=FileIsAvailable, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
                             <Image.ToolTip>
-                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_FileNotFound}"/>
+                                <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_FileNotFound}"/>
                             </Image.ToolTip>
                         </Image>
                         <TextBlock Text="{Binding Path=FileName}"  VerticalAlignment="Center">
@@ -218,10 +218,10 @@
                                 CommandParameter="{Binding}" Visibility="{Binding Path=FileIsAvailable, Converter={StaticResource BooleanToVisibilityConverter}}" >
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                         <Image Height="16" Width="16" Source="/Images/16_add.png" Margin="2,0,2,0"/>
-                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=MyList}" Margin="5,0,5,0" Foreground="Black"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MyList}" Margin="5,0,5,0" Foreground="Black"/>
                                     </StackPanel>
                                     <Button.ToolTip>
-                                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_MyList}"/>
+                                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_MyList}"/>
                                     </Button.ToolTip>
                                 </Button>
 
@@ -233,7 +233,7 @@
                                         <TextBlock VerticalAlignment="Center" Text="Update Info" Margin="5,0,5,0" Foreground="Black"/>
                                     </StackPanel>
                                     <Button.ToolTip>
-                                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_ForceAniDBUpdate}"/>
+                                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Episode_ForceAniDBUpdate}"/>
                                     </Button.ToolTip>
                                 </Button>
 
@@ -242,10 +242,10 @@
                                 CommandParameter="{Binding}" >
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                         <Image Height="16" Width="16" Source="/Images/16_server_hash.png" Margin="2,0,2,0"/>
-                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Rehash}" Margin="0,0,5,0"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Rehash}" Margin="0,0,5,0"/>
                                     </StackPanel>
                                     <Button.ToolTip>
-                                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_RecalculateHash}"/>
+                                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Episode_RecalculateHash}"/>
                                     </Button.ToolTip>
                                 </Button>
 
@@ -257,10 +257,10 @@
 
 
 
-                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Hash}" FontWeight="Bold" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="0" Grid.Row="1"/>
-                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CRC32}" FontWeight="Bold" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="0" Grid.Row="2"/>
-                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SHA1}" FontWeight="Bold" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="0" Grid.Row="3"/>
-                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=MD5}" FontWeight="Bold" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="0" Grid.Row="4"/>
+                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Hash}" FontWeight="Bold" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="0" Grid.Row="1"/>
+                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CRC32}" FontWeight="Bold" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="0" Grid.Row="2"/>
+                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SHA1}" FontWeight="Bold" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="0" Grid.Row="3"/>
+                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MD5}" FontWeight="Bold" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="0" Grid.Row="4"/>
 
                         <TextBox Text="{Binding Path=VideoLocal_Hash}" Background="Transparent" BorderThickness="0" IsReadOnly="True" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="1" Grid.Row="1"/>
                         <TextBox Text="{Binding Path=VideoLocal_CRC32}"  Background="Transparent" BorderThickness="0" IsReadOnly="True" VerticalAlignment="Center" Margin="10,3,10,0" Grid.Column="1" Grid.Row="2"/>
@@ -328,13 +328,13 @@
                     <Image Height="16" Width="16" Source="/Images/32_eye.png" Margin="2,0,2,0"
                            Visibility="{Binding Path=Watched, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <Image.ToolTip>
-                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_Watched}"/>
+                            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_Watched}"/>
                         </Image.ToolTip>
                     </Image>
                     <Image Height="16" Width="16" Source="/Images/32_eye2.png" Margin="2,0,2,0"
                            Visibility="{Binding Path=Watched, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
                         <Image.ToolTip>
-                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_Unwatched}"/>
+                            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_Unwatched}"/>
                         </Image.ToolTip>
                     </Image>
                 </StackPanel>
@@ -346,7 +346,7 @@
                         Visibility="{Binding Path=OneFileOnly, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                     <Image Height="16" Width="16" Source="/Images/32_resume.png" Margin="0,0,2,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Play}" Margin="2,0,2,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Play}" Margin="2,0,2,0"/>
                 </StackPanel>
             </Button>
 
@@ -357,7 +357,7 @@
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                     <Image Height="16" Width="16" Source="/Images/24_download.png" Margin="2,0,2,0">
                         <Image.ToolTip>
-                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_DownloadSearch}"/>
+                            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Episode_DownloadSearch}"/>
                         </Image.ToolTip>
                     </Image>
 
@@ -369,7 +369,7 @@
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                     <Image Height="16" Width="16" Source="/Images/32_playlist_add.png" Margin="2,0,2,0">
                         <Image.ToolTip>
-                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_PlaylistAdd}"/>
+                            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Episode_PlaylistAdd}"/>
                         </Image.ToolTip>
                     </Image>
 
@@ -383,7 +383,7 @@
                     <Image Height="16" Width="16" Source="/Images/16_link_edit.png" Margin="2,0,2,0"/>
                 </StackPanel>
                 <Button.ToolTip>
-                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_TvDBOverride}"/>
+                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Episode_TvDBOverride}"/>
                 </Button.ToolTip>
             </Button>
 
@@ -394,7 +394,7 @@
                     <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="2,0,2,0"/>
                 </StackPanel>
                 <Button.ToolTip>
-                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_TvDBRemove}"/>
+                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Episode_TvDBRemove}"/>
                 </Button.ToolTip>
             </Button>
 
@@ -404,7 +404,7 @@
                     <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="2,0,2,0"/>
                 </StackPanel>
                 <Button.ToolTip>
-                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_AniDBForceUpdate}"/>
+                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Episode_AniDBForceUpdate}"/>
                 </Button.ToolTip>
             </Button>
 
@@ -414,13 +414,13 @@
                 <Image Height="16" Width="16" Source="/Images/16_exclamation.png" Margin="0,0,5,0"
                            Visibility="{Binding Path=NoFiles, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Image.ToolTip>
-                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_ZeroFiles}"/>
+                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_ZeroFiles}"/>
                     </Image.ToolTip>
                 </Image>
                 <Image Height="16" Width="16" Source="/Images/24_calendar.png" Margin="0,0,5,0"
                            Visibility="{Binding Path=FutureDated, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Image.ToolTip>
-                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_FutureDated}"/>
+                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_FutureDated}"/>
                     </Image.ToolTip>
                 </Image>
                 <TextBlock Name="tbFileDetails" Text="{Binding Path=FileDetails}" VerticalAlignment="Center"/>
@@ -442,7 +442,7 @@
             <!-- user watched date -->
             <StackPanel Orientation="Horizontal" Margin="15,0,0,0" Visibility="{Binding Path=Watched, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Image Height="16" Width="16" Source="/Images/24_calendar.png" Margin="0,0,5,0" VerticalAlignment="Center"/>
-                <TextBlock Margin="5,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=LastWatched}" VerticalAlignment="Center" />
+                <TextBlock Margin="5,0,0,0" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=LastWatched}" VerticalAlignment="Center" />
                 <TextBlock Margin="5,0,0,0" Text="{Binding Path=LastWatchedDescription}" FontWeight="Bold" VerticalAlignment="Center"/>
             </StackPanel>
 

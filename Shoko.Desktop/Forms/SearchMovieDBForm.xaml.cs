@@ -99,7 +99,7 @@ namespace Shoko.Desktop.Forms
                 int.TryParse(txtMovieID.Text, out id);
                 if (id <= 0)
                 {
-                    MessageBox.Show(Properties.Resources.Search_InvalidMovieID, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Shoko.Commons.Properties.Resources.Search_InvalidMovieID, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     txtMovieID.Focus();
                     return;
                 }
@@ -145,7 +145,7 @@ namespace Shoko.Desktop.Forms
         {
             string res = VM_ShokoServer.Instance.ShokoServices.LinkAniDBOther(AnimeID, movieID, (int)CrossRefType.MovieDB);
             if (res.Length > 0)
-                MessageBox.Show(res, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(res, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
             else
             {
                 DialogResult = true;

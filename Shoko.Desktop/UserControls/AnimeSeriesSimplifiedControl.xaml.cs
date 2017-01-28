@@ -273,7 +273,7 @@ namespace Shoko.Desktop.UserControls
             string msg = e.Result.ToString();
             Cursor = Cursors.Arrow;
 
-            MessageBox.Show(msg, Properties.Resources.Anime_Message, MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show(msg, Shoko.Commons.Properties.Resources.Anime_Message, MessageBoxButton.OK, MessageBoxImage.Information);
             txtCommentNew.Text = "";
             btnSubmitComment.IsEnabled = true;
 
@@ -306,14 +306,14 @@ namespace Shoko.Desktop.UserControls
         {
             if (!VM_ShokoServer.Instance.Trakt_IsEnabled)
             {
-                Utils.ShowErrorMessage(Properties.Resources.Anime_TraktNotEnabled);
+                Utils.ShowErrorMessage(Shoko.Commons.Properties.Resources.Anime_TraktNotEnabled);
                 txtCommentNew.Focus();
                 return;
             }
 
             if (string.IsNullOrEmpty(VM_ShokoServer.Instance.Trakt_AuthToken))
             {
-                Utils.ShowErrorMessage(Properties.Resources.Anime_ShokoAuth);
+                Utils.ShowErrorMessage(Shoko.Commons.Properties.Resources.Anime_ShokoAuth);
                 txtCommentNew.Focus();
                 return;
             }
@@ -321,7 +321,7 @@ namespace Shoko.Desktop.UserControls
             VM_AnimeSeries_User animeSeries = (VM_AnimeSeries_User)DataContext;
             if (animeSeries == null)
             {
-                Utils.ShowErrorMessage(Properties.Resources.Anime_SeriesNotFound);
+                Utils.ShowErrorMessage(Shoko.Commons.Properties.Resources.Anime_SeriesNotFound);
                 txtCommentNew.Focus();
                 return;
             }
@@ -329,14 +329,14 @@ namespace Shoko.Desktop.UserControls
             string commentText = txtCommentNew.Text.Trim();
             if (string.IsNullOrEmpty(commentText))
             {
-                Utils.ShowErrorMessage(Properties.Resources.Anime_EnterText);
+                Utils.ShowErrorMessage(Shoko.Commons.Properties.Resources.Anime_EnterText);
                 txtCommentNew.Focus();
                 return;
             }
 
             if (commentText.Length > 2000)
             {
-                Utils.ShowErrorMessage(string.Format(Properties.Resources.Anime_CommentText, commentText.Length));
+                Utils.ShowErrorMessage(string.Format(Shoko.Commons.Properties.Resources.Anime_CommentText, commentText.Length));
                 txtCommentNew.Focus();
                 return;
             }
@@ -351,7 +351,7 @@ namespace Shoko.Desktop.UserControls
                 if (animeSeries.AniDBAnime.AniDBAnime.traktSummary.traktDetails == null ||
                     animeSeries.AniDBAnime.AniDBAnime.traktSummary.traktDetails.Count == 0)
                 {
-                    Utils.ShowErrorMessage(string.Format(Properties.Resources.Anime_NoTrakt));
+                    Utils.ShowErrorMessage(string.Format(Shoko.Commons.Properties.Resources.Anime_NoTrakt));
                     txtCommentNew.Focus();
                     btnSubmitComment.IsEnabled = true;
                     return;
@@ -361,7 +361,7 @@ namespace Shoko.Desktop.UserControls
                 if (animeSeries.AniDBAnime.AniDBAnime.traktSummary.traktDetails != null &&
                     animeSeries.AniDBAnime.AniDBAnime.traktSummary.traktDetails.Count > 1)
                 {
-                    Utils.ShowErrorMessage(string.Format(Properties.Resources.Anime_MultiTrakt));
+                    Utils.ShowErrorMessage(string.Format(Shoko.Commons.Properties.Resources.Anime_MultiTrakt));
                     txtCommentNew.Focus();
                     btnSubmitComment.IsEnabled = true;
                     return;
@@ -387,7 +387,7 @@ namespace Shoko.Desktop.UserControls
             }
             else
             {
-                Utils.ShowErrorMessage(string.Format(Properties.Resources.Anime_NoTrakt));
+                Utils.ShowErrorMessage(string.Format(Shoko.Commons.Properties.Resources.Anime_NoTrakt));
                 txtCommentNew.Focus();
                 btnSubmitComment.IsEnabled = true;
             }
@@ -439,12 +439,12 @@ namespace Shoko.Desktop.UserControls
             txtCommentNew.Foreground = Brushes.DarkGray;
 
             if (txtCommentNew.Text.Trim().Length == 0)
-                txtCommentNew.Text = Properties.Resources.Anime_YourSay;
+                txtCommentNew.Text = Shoko.Commons.Properties.Resources.Anime_YourSay;
         }
 
         void txtCommentNew_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (txtCommentNew.Text.Equals(Properties.Resources.Anime_YourSay, StringComparison.InvariantCultureIgnoreCase))
+            if (txtCommentNew.Text.Equals(Shoko.Commons.Properties.Resources.Anime_YourSay, StringComparison.InvariantCultureIgnoreCase))
                 txtCommentNew.Text = "";
 
             txtCommentNew.Foreground = Brushes.Black;
@@ -979,7 +979,7 @@ namespace Shoko.Desktop.UserControls
                         newStatus, VM_ShokoServer.Instance.CurrentUser.JMMUserID);
                     if (!string.IsNullOrEmpty(response.ErrorMessage))
                     {
-                        MessageBox.Show(response.ErrorMessage, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(response.ErrorMessage, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
                     }
 

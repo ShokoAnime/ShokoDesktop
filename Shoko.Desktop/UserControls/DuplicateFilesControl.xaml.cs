@@ -136,7 +136,7 @@ namespace Shoko.Desktop.UserControls
                     if (File.Exists(df.GetLocalFilePath1()))
                         Utils.OpenFolderAndSelectFile(df.GetLocalFilePath1());
                     else
-                        MessageBox.Show(Properties.Resources.MSG_ERR_FileNotFound, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_FileNotFound, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 
                 }
             }
@@ -159,7 +159,7 @@ namespace Shoko.Desktop.UserControls
                     if (File.Exists(df.GetLocalFilePath2()))
                         Utils.OpenFolderAndSelectFile(df.GetLocalFilePath2());
                     else
-                        MessageBox.Show(Properties.Resources.MSG_ERR_FileNotFound, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_FileNotFound, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 
                 }
             }
@@ -226,15 +226,15 @@ namespace Shoko.Desktop.UserControls
                 {
                     CL_DuplicateFile df = obj as CL_DuplicateFile;
 
-                    MessageBoxResult res = MessageBox.Show(string.Format(Properties.Resources.DuplicateFiles_ConfirmDelete),
-                        Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    MessageBoxResult res = MessageBox.Show(string.Format(Shoko.Commons.Properties.Resources.DuplicateFiles_ConfirmDelete),
+                        Shoko.Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
                     if (res == MessageBoxResult.Yes)
                     {
                         Cursor = Cursors.Wait;
                         string result = VM_ShokoServer.Instance.ShokoServices.DeleteDuplicateFile(df.DuplicateFileID, 1);
                         if (result.Length > 0)
-                            MessageBox.Show(result, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(result, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         else
                         {
                             DuplicateFilesCollection.Remove(df);
@@ -266,15 +266,15 @@ namespace Shoko.Desktop.UserControls
                 {
                     CL_DuplicateFile df = obj as CL_DuplicateFile;
 
-                    MessageBoxResult res = MessageBox.Show(string.Format(Properties.Resources.DuplicateFiles_ConfirmDelete),
-                        Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    MessageBoxResult res = MessageBox.Show(string.Format(Shoko.Commons.Properties.Resources.DuplicateFiles_ConfirmDelete),
+                        Shoko.Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
                     if (res == MessageBoxResult.Yes)
                     {
                         Cursor = Cursors.Wait;
                         string result = VM_ShokoServer.Instance.ShokoServices.DeleteDuplicateFile(df.DuplicateFileID, 2);
                         if (result.Length > 0)
-                            MessageBox.Show(result, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(result, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         else
                         {
                             DuplicateFilesCollection.Remove(df);
@@ -306,15 +306,15 @@ namespace Shoko.Desktop.UserControls
                 {
                     CL_DuplicateFile df = obj as CL_DuplicateFile;
 
-                    MessageBoxResult res = MessageBox.Show(string.Format(Properties.Resources.DuplicateFiles_DeleteEntry),
-                        Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    MessageBoxResult res = MessageBox.Show(string.Format(Shoko.Commons.Properties.Resources.DuplicateFiles_DeleteEntry),
+                        Shoko.Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
 
                     if (res == MessageBoxResult.Yes)
                     {
                         Cursor = Cursors.Wait;
                         string result = VM_ShokoServer.Instance.ShokoServices.DeleteDuplicateFile(df.DuplicateFileID, 0);
                         if (result.Length > 0)
-                            MessageBox.Show(result, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(result, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         else
                         {
                             DuplicateFilesCollection.Remove(df);

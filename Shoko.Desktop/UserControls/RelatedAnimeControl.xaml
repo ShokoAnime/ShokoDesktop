@@ -58,7 +58,7 @@
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                         <Image Height="16" Width="16" Source="/Images/32_television.png" Margin="1,0,1,0">
                                             <Image.ToolTip>
-                                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_CreateSeries}"/>
+                                                <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_CreateSeries}"/>
                                             </Image.ToolTip>
                                         </Image>
                                     </StackPanel>
@@ -71,7 +71,7 @@
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                         <Image Height="16" Width="16" Source="/Images/32_pin.png" Margin="1,0,1,0">
                                             <Image.ToolTip>
-                                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_PinSeries}"/>
+                                                <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_PinSeries}"/>
                                             </Image.ToolTip>
                                         </Image>
                                     </StackPanel>
@@ -84,7 +84,7 @@
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                         <Image Height="16" Width="16" Source="/Images/16_bookmark.png" Margin="1,0,1,0" ToolTipService.ShowDuration="60000">
                                             <Image.ToolTip>
-                                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Related_Bookmark}"/>
+                                                <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Related_Bookmark}"/>
                                             </Image.ToolTip>
                                         </Image>
                                     </StackPanel>
@@ -97,7 +97,7 @@
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                         <Image Height="16" Width="16" Source="/Images/24_download.png" Margin="1,0,1,0">
                                             <Image.ToolTip>
-                                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Related_Search}"/>
+                                                <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Related_Search}"/>
                                             </Image.ToolTip>
                                         </Image>
                                     </StackPanel>
@@ -157,14 +157,14 @@
     <StackPanel Orientation="Vertical" Margin="0,0,0,0">
         <Border BorderBrush="LightGray" BorderThickness="1" Background="#FFE9ECEF">
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=RelatedAnime}" Margin="5,5,0,5" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=RelatedAnime}" Margin="5,5,0,5" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
 
                 <!-- Update Series Info -->
                 <Button x:Name="btnGetRelMissingInfo" Margin="10,0,5,0" Style="{DynamicResource FlatButtonStyle}"
                         Visibility="{Binding Path=DataExists, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:RelatedAnimeControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                         <Image Height="16" Width="16" Source="/Images/32_anidb.png" Margin="0,0,5,0"/>
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=GetMissingData}" Margin="0,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=GetMissingData}" Margin="0,0,0,0"/>
                     </StackPanel>
                 </Button>
             </StackPanel>

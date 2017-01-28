@@ -28,8 +28,8 @@ namespace Shoko.Desktop
             // this needs to run before UnhandledExceptionManager.AddHandler(), because that will probably lock the log file
             if (!MigrateProgramDataLocation())
             {
-                MessageBox.Show(Desktop.Properties.Resources.Migration_ProgramDataError,
-                    Desktop.Properties.Resources.ShokoDesktop, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Shoko.Commons.Properties.Resources.Migration_ProgramDataError,
+                    Shoko.Commons.Properties.Resources.ShokoDesktop, MessageBoxButton.OK, MessageBoxImage.Error);
                 Environment.Exit(0);
             }
 
@@ -38,7 +38,7 @@ namespace Shoko.Desktop
             // Try to load culture info first, without it could fail UI startup
             try
             {
-                ResGlobal = new ResourceManager("JMMClient.Properties.Resources", typeof(App).Assembly);
+                ResGlobal = new ResourceManager("Shoko.Commons.Properties.Resources", typeof(App).Assembly);
 
                 // Set application startup culture based on config settings
                 string culture = AppSettings.Culture;
@@ -148,8 +148,8 @@ namespace Shoko.Desktop
             {
               // Ask if user wants to uninstall first
               MessageBoxResult dr =
-                MessageBox.Show(Desktop.Properties.Resources.DuplicateInstallDetectedQuestion,
-                  Desktop.Properties.Resources.DuplicateInstallDetected, MessageBoxButton.YesNo);
+                MessageBox.Show(Shoko.Commons.Properties.Resources.DuplicateInstallDetectedQuestion,
+                  Shoko.Commons.Properties.Resources.DuplicateInstallDetected, MessageBoxButton.YesNo);
               if (dr == MessageBoxResult.Yes)
               {
                 try

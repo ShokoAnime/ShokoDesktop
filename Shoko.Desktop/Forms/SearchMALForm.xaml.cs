@@ -110,14 +110,14 @@ namespace Shoko.Desktop.Forms
                 int.TryParse(txtMALID.Text, out id);
                 if (id <= 0)
                 {
-                    MessageBox.Show(Properties.Resources.Search_InvalidMAL, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Shoko.Commons.Properties.Resources.Search_InvalidMAL, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     txtMALID.Focus();
                     return;
                 }
 
                 if (string.IsNullOrEmpty(txtMALTitle.Text.Trim()))
                 {
-                    MessageBox.Show(Properties.Resources.Search_EnterTitle, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Shoko.Commons.Properties.Resources.Search_EnterTitle, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     txtMALTitle.Focus();
                     return;
                 }
@@ -180,7 +180,7 @@ namespace Shoko.Desktop.Forms
         {
             string res = VM_ShokoServer.Instance.ShokoServices.LinkAniDBMAL(AnimeID, malID, malTitle, epType, epNumber);
             if (res.Length > 0)
-                MessageBox.Show(res, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(res, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
             else
             {
                 DialogResult = true;
@@ -313,7 +313,7 @@ namespace Shoko.Desktop.Forms
             MALSettings OP = new MALSettings();
             var host = new Window();
             host.Content = OP;
-            host.Title = Properties.Resources.MAL_CheckCred;
+            host.Title = Shoko.Commons.Properties.Resources.MAL_CheckCred;
             host.Width = 475;
             host.Height = 190;
             host.WindowStartupLocation = WindowStartupLocation.CenterScreen;

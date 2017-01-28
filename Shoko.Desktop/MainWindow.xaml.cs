@@ -394,7 +394,7 @@ namespace Shoko.Desktop
             try
             {
                 VM_ShokoServer.Instance.ShokoServices.RefreshAllMediaInfo();
-                MessageBox.Show(Properties.Resources.Main_ProcessRunning, Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(Shoko.Commons.Properties.Resources.Main_ProcessRunning, Shoko.Commons.Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
@@ -954,7 +954,7 @@ namespace Shoko.Desktop
 
                 if (isLanguageChanged)
                 {
-                    result = System.Windows.Forms.MessageBox.Show(Properties.Resources.Language_Info, Properties.Resources.Language_Switch, System.Windows.Forms.MessageBoxButtons.OKCancel, System.Windows.Forms.MessageBoxIcon.Information);
+                    result = System.Windows.Forms.MessageBox.Show(Shoko.Commons.Properties.Resources.Language_Info, Shoko.Commons.Properties.Resources.Language_Switch, System.Windows.Forms.MessageBoxButtons.OKCancel, System.Windows.Forms.MessageBoxIcon.Information);
                     if (result == System.Windows.Forms.DialogResult.OK)
                     {
                         System.Windows.Forms.Application.Restart();
@@ -1100,7 +1100,7 @@ namespace Shoko.Desktop
                         newStatus, VM_ShokoServer.Instance.CurrentUser.JMMUserID);
                     if (!string.IsNullOrEmpty(response.ErrorMessage))
                     {
-                        MessageBox.Show(response.ErrorMessage, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(response.ErrorMessage, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
                     }
 
@@ -1683,7 +1683,7 @@ namespace Shoko.Desktop
                     bool seriesExists = VM_ShokoServer.Instance.ShokoServices.GetSeriesExistingForAnime(anime.AnimeID);
                     if (seriesExists)
                     {
-                        MessageBox.Show(Properties.Resources.ERROR_SeriesExists, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(Shoko.Commons.Properties.Resources.ERROR_SeriesExists, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
                     }
 
@@ -2333,7 +2333,7 @@ namespace Shoko.Desktop
                     VM_ImportFolder fldr = (VM_ImportFolder)obj;
 
                     VM_ShokoServer.Instance.ShokoServices.ScanFolder(fldr.ImportFolderID);
-                    MessageBox.Show(Properties.Resources.Import_Running, Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show(Shoko.Commons.Properties.Resources.Import_Running, Shoko.Commons.Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             catch (Exception ex)
@@ -2356,8 +2356,8 @@ namespace Shoko.Desktop
                 {
                     VM_GroupFilter gf = (VM_GroupFilter)obj;
 
-                    MessageBoxResult res = MessageBox.Show(string.Format(Properties.Resources.Filter_DeleteGroup, gf.GroupFilterName),
-                    Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    MessageBoxResult res = MessageBox.Show(string.Format(Shoko.Commons.Properties.Resources.Filter_DeleteGroup, gf.GroupFilterName),
+                    Shoko.Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
                     if (res == MessageBoxResult.Yes)
                     {
                         // remove from group list
@@ -2522,7 +2522,7 @@ namespace Shoko.Desktop
                 VM_GroupFilter gfNew = new VM_GroupFilter();
                 gfNew.Locked = 0;
 
-                gfNew.GroupFilterName = Properties.Resources.Filter_New;
+                gfNew.GroupFilterName = Shoko.Commons.Properties.Resources.Filter_New;
                 gfNew.ApplyToSeries = 0;
                 gfNew.BaseCondition = (int)GroupFilterBaseCondition.Include;
                
@@ -2551,8 +2551,8 @@ namespace Shoko.Desktop
                 {
                     VM_GroupFilterCondition gfc = (VM_GroupFilterCondition)obj;
 
-                    MessageBoxResult res = MessageBox.Show(string.Format(Properties.Resources.Filter_DeleteCondition, gfc.NiceDescription),
-                    Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    MessageBoxResult res = MessageBox.Show(string.Format(Shoko.Commons.Properties.Resources.Filter_DeleteCondition, gfc.NiceDescription),
+                    Shoko.Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
                     if (res == MessageBoxResult.Yes)
                     {
                         // remove from group list
@@ -2752,8 +2752,8 @@ namespace Shoko.Desktop
                 {
                     VM_GroupFilterSortingCriteria gfsc = (VM_GroupFilterSortingCriteria)obj;
 
-                    MessageBoxResult res = MessageBox.Show(string.Format(Properties.Resources.Filter_DeleteSort),
-                    Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    MessageBoxResult res = MessageBox.Show(string.Format(Shoko.Commons.Properties.Resources.Filter_DeleteSort),
+                    Shoko.Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
                     if (res == MessageBoxResult.Yes)
                     {
                         // find the sorting condition
@@ -2893,8 +2893,8 @@ namespace Shoko.Desktop
 
             try
             {
-                MessageBoxResult res = MessageBox.Show(string.Format(Properties.Resources.Playlist_Delete, pl.PlaylistName),
-                    Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
+                MessageBoxResult res = MessageBox.Show(string.Format(Shoko.Commons.Properties.Resources.Playlist_Delete, pl.PlaylistName),
+                    Shoko.Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (res == MessageBoxResult.Yes)
                 {
                     Cursor = Cursors.Wait;
@@ -2939,7 +2939,7 @@ namespace Shoko.Desktop
                 if (pl == null)
                 {
                     Cursor = Cursors.Arrow;
-                    MessageBox.Show(Properties.Resources.Filter_PlaylistMissing, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Shoko.Commons.Properties.Resources.Filter_PlaylistMissing, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
@@ -3095,7 +3095,7 @@ namespace Shoko.Desktop
             try
             {
                 VM_ShokoServer.Instance.RunImport();
-                MessageBox.Show(Properties.Resources.Import_Running, Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(Shoko.Commons.Properties.Resources.Import_Running, Shoko.Commons.Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
@@ -3108,12 +3108,12 @@ namespace Shoko.Desktop
         {
             try
             {
-                MessageBoxResult res = MessageBox.Show(string.Format(Properties.Resources.Main_RunProcess),
-                    Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
+                MessageBoxResult res = MessageBox.Show(string.Format(Shoko.Commons.Properties.Resources.Main_RunProcess),
+                    Shoko.Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (res == MessageBoxResult.Yes)
                 {
                     VM_ShokoServer.Instance.RemoveMissingFiles();
-                    MessageBox.Show(Properties.Resources.Process_Running, Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show(Shoko.Commons.Properties.Resources.Process_Running, Shoko.Commons.Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             catch (Exception ex)
@@ -3127,7 +3127,7 @@ namespace Shoko.Desktop
             try
             {
                 VM_ShokoServer.Instance.SyncMyList();
-                MessageBox.Show(Properties.Resources.Process_Running, Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(Shoko.Commons.Properties.Resources.Process_Running, Shoko.Commons.Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
@@ -3140,7 +3140,7 @@ namespace Shoko.Desktop
             try
             {
                 VM_ShokoServer.Instance.SyncVotes();
-                MessageBox.Show(Properties.Resources.Process_Running, Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(Shoko.Commons.Properties.Resources.Process_Running, Shoko.Commons.Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
@@ -3153,7 +3153,7 @@ namespace Shoko.Desktop
             try
             {
                 VM_ShokoServer.Instance.ShokoServices.SyncMALUpload();
-                MessageBox.Show(Properties.Resources.Process_Queued, Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(Shoko.Commons.Properties.Resources.Process_Queued, Shoko.Commons.Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
@@ -3166,7 +3166,7 @@ namespace Shoko.Desktop
             try
             {
                 VM_ShokoServer.Instance.ShokoServices.SyncMALDownload();
-                MessageBox.Show(Properties.Resources.Process_Queued, Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(Shoko.Commons.Properties.Resources.Process_Queued, Shoko.Commons.Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {

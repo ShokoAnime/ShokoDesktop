@@ -80,7 +80,7 @@ namespace Shoko.Desktop.UserControls
         {
             if (workerAvdump.IsBusy)
             {
-                Utils.ShowErrorMessage(Properties.Resources.AVDump_WorkerRunning);
+                Utils.ShowErrorMessage(Shoko.Commons.Properties.Resources.AVDump_WorkerRunning);
                 return;
             }
 
@@ -139,7 +139,7 @@ namespace Shoko.Desktop.UserControls
                     if (tempDump == null) continue;
 
                     tempDump.IsBeingDumped = true;
-                    tempDump.DumpStatus = Properties.Resources.AVDump_Processing;
+                    tempDump.DumpStatus = Shoko.Commons.Properties.Resources.AVDump_Processing;
 
                     //Create process
                     System.Diagnostics.Process pProcess = new System.Diagnostics.Process();
@@ -150,10 +150,10 @@ namespace Shoko.Desktop.UserControls
 
                     if (!File.Exists(filePath))
                     {
-                        tempDump.AVDumpFullResult = Properties.Resources.AVDump_Missing + " " + filePath;
+                        tempDump.AVDumpFullResult = Shoko.Commons.Properties.Resources.AVDump_Missing + " " + filePath;
                         tempDump.ED2KDump = Utils.GetED2KDump(tempDump.AVDumpFullResult);
                         tempDump.IsBeingDumped = false;
-                        tempDump.DumpStatus = Properties.Resources.AVDump_Error;
+                        tempDump.DumpStatus = Shoko.Commons.Properties.Resources.AVDump_Error;
                         tempDump.HasBeenDumped = false;
 
                         continue;
@@ -161,10 +161,10 @@ namespace Shoko.Desktop.UserControls
 
                     if (string.IsNullOrEmpty(Commons.Extensions.Models.GetLocalFileSystemFullPath(dump.VideoLocal)) || (!File.Exists(Commons.Extensions.Models.GetLocalFileSystemFullPath(dump.VideoLocal))))
                     {
-                        tempDump.AVDumpFullResult = Properties.Resources.AVDump_VideoMissing + " " + Commons.Extensions.Models.GetLocalFileSystemFullPath(dump.VideoLocal) ?? string.Empty;
+                        tempDump.AVDumpFullResult = Shoko.Commons.Properties.Resources.AVDump_VideoMissing + " " + Commons.Extensions.Models.GetLocalFileSystemFullPath(dump.VideoLocal) ?? string.Empty;
                         tempDump.ED2KDump = Utils.GetED2KDump(tempDump.AVDumpFullResult);
                         tempDump.IsBeingDumped = false;
-                        tempDump.DumpStatus = Properties.Resources.AVDump_Error;
+                        tempDump.DumpStatus = Shoko.Commons.Properties.Resources.AVDump_Error;
                         tempDump.HasBeenDumped = false;
 
                         return;
@@ -194,13 +194,13 @@ namespace Shoko.Desktop.UserControls
                     if (string.IsNullOrEmpty(tempDump.ED2KDump))
                     {
                         tempDump.IsBeingDumped = false;
-                        tempDump.DumpStatus = Properties.Resources.AVDump_Error;
+                        tempDump.DumpStatus = Shoko.Commons.Properties.Resources.AVDump_Error;
                         tempDump.HasBeenDumped = false;
                     }
                     else
                     {
                         tempDump.IsBeingDumped = false;
-                        tempDump.DumpStatus = Properties.Resources.AVDump_Complete;
+                        tempDump.DumpStatus = Shoko.Commons.Properties.Resources.AVDump_Complete;
                         tempDump.HasBeenDumped = true;
                     }
                 }
@@ -273,7 +273,7 @@ namespace Shoko.Desktop.UserControls
                 }
                 else
                 {
-                    MessageBox.Show(Properties.Resources.MSG_ERR_FileNotFound, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_FileNotFound, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }

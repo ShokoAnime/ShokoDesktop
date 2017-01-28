@@ -9,9 +9,9 @@ using System.Security;
 [assembly: AssemblyTitle("ShokoDesktop")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("JMM")]
+[assembly: AssemblyCompany("Shoko")]
 [assembly: AssemblyProduct("ShokoDesktop")]
-[assembly: AssemblyCopyright("JMM")]
+[assembly: AssemblyCopyright("Shoko")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -53,5 +53,4 @@ using System.Security;
 [assembly: AssemblyVersion("3.7.0.3")]
 [assembly: AssemblyFileVersion("3.7.0.3")]
 [assembly: AllowPartiallyTrustedCallers]
-[assembly: AssemblyKeyFile("JMMDesktop.snk")]
 [assembly: SecurityRules(SecurityRuleSet.Level1)]

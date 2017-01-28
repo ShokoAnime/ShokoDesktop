@@ -142,7 +142,7 @@ namespace Shoko.Desktop.Forms
             {
                 if (cboSeasonNumber.Items.Count == 0)
                 {
-                    MessageBox.Show(Properties.Resources.Trakt_NoSeasons, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Shoko.Commons.Properties.Resources.Trakt_NoSeasons, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
@@ -163,7 +163,7 @@ namespace Shoko.Desktop.Forms
                 string res = VM_ShokoServer.Instance.ShokoServices.LinkAniDBTrakt(AnimeID, AnimeEpisodeType, AnimeEpisodeNumber,
                     TraktID, TraktSeason, TraktEpisodeNumber, CrossRef_AniDB_TraktV2ID);
                 if (res.Length > 0)
-                    MessageBox.Show(res, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(res, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                 else
                 {
                     DialogResult = true;
@@ -213,8 +213,8 @@ namespace Shoko.Desktop.Forms
             }
 
             cboEpisodeType.Items.Clear();
-            cboEpisodeType.Items.Add(Properties.Resources.Anime_Episodes);
-            if (hasSpecials) cboEpisodeType.Items.Add(Properties.Resources.Anime_Specials);
+            cboEpisodeType.Items.Add(Shoko.Commons.Properties.Resources.Anime_Episodes);
+            if (hasSpecials) cboEpisodeType.Items.Add(Shoko.Commons.Properties.Resources.Anime_Specials);
 
             cboEpisodeType.SelectionChanged += new SelectionChangedEventHandler(cboEpisodeType_SelectionChanged);
 

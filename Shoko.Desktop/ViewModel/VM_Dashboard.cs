@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Windows.Data;
 using NLog;
 using Shoko.Commons.Extensions;
+using Shoko.Commons.Notification;
 using Shoko.Models.Enums;
 using Shoko.Desktop.UserControls;
 using Shoko.Desktop.Utilities;

@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Linq;
 using Shoko.Commons.Extensions;
+using Shoko.Commons.Notification;
 using Shoko.Models.Enums;
 using Shoko.Desktop.Utilities;
 using Shoko.Desktop.ViewModel.Helpers;

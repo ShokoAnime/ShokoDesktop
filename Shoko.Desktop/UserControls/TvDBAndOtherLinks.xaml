@@ -56,7 +56,7 @@
 
                         <usercontrols:HyperLinkStandard DisplayText="{Binding Path=MALTitle}" VerticalAlignment="Center" URL="{Binding Path=SiteURL}" Margin="10,0,0,0"/>
 
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_Start}" Margin="10,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_Start}" Margin="10,0,0,0"/>
                         <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=StartEpisodeTypeString}" Margin="5,0,0,0"/>
                         <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=StartEpisodeNumber}" Margin="5,0,0,0"/>
 
@@ -96,11 +96,11 @@
 
                         <usercontrols:HyperLinkStandard DisplayText="{Binding Path=TvDBTitle}" VerticalAlignment="Center" URL="{Binding Path=SeriesURL}" Margin="5,0,0,0"/>
 
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AniDBStart}" Margin="10,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_AniDBStart}" Margin="10,0,0,0"/>
                         <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=AniDBStartEpisodeTypeString}" Margin="5,0,0,0"/>
                         <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=AniDBStartEpisodeNumber}" Margin="5,0,0,0"/>
 
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_TvDB}" Margin="10,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_TvDB}" Margin="10,0,0,0"/>
                         <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=TvDBSeasonNumberString}" Margin="5,0,0,0"/>
                         <TextBlock VerticalAlignment="Center" Text="/" Margin="5,0,0,0"/>
                         <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=TvDBStartEpisodeNumberString}" Margin="5,0,0,0"/>
@@ -163,11 +163,11 @@
 
                         <usercontrols:HyperLinkStandard DisplayText="{Binding Path=TraktTitle}" VerticalAlignment="Center" URL="{Binding Path=ShowURL}" Margin="5,0,0,0"/>
 
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AniDBStart}" Margin="10,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_AniDBStart}" Margin="10,0,0,0"/>
                         <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=AniDBStartEpisodeTypeString}" Margin="5,0,0,0"/>
                         <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=AniDBStartEpisodeNumber}" Margin="5,0,0,0"/>
 
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_Trakt}" Margin="10,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_Trakt}" Margin="10,0,0,0"/>
                         <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=TraktSeasonNumberString}" Margin="5,0,0,0"/>
                         <TextBlock VerticalAlignment="Center" Text="/" Margin="5,0,0,0"/>
                         <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Path=TraktStartEpisodeNumberString}" Margin="5,0,0,0"/>
@@ -283,14 +283,14 @@
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
                     <Image Height="24" Width="24" Source="/Images/32_tvdb.png" Margin="0,0,10,2" VerticalAlignment="Center"/>
-                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TheTvDB}" Width="120" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TheTvDB}" Width="120" VerticalAlignment="Center"/>
                     <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,0,2" VerticalAlignment="Center"/>
 
                     <!-- search button -->
                     <Button Name="btnSearchExistingTvDB" Margin="20,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/32_search.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
@@ -302,7 +302,7 @@
                             Body=Tooltip_AutoLinkDisabledTvDB}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
@@ -314,7 +314,7 @@
                             Body=Tooltip_AutoLinkEnabledTvDB}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
@@ -344,14 +344,14 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10,0,0,0" VerticalAlignment="Center" 
                     Visibility="{Binding Path=AniDB_AnimeCrossRefs.TvDBCrossRefMissing, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Image Height="24" Width="24" Source="/Images/32_tvdb.png" Margin="0,0,10,2" VerticalAlignment="Center"/>
-            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TheTvDB}" Width="120" VerticalAlignment="Center"/>
+            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TheTvDB}" Width="120" VerticalAlignment="Center"/>
             <Image Height="16" Width="16" Source="/Images/16_warning.png" Margin="0,0,0,2" VerticalAlignment="Center"/>
 
             <!-- search button -->
             <Button Name="btnSearchTvDB" Margin="20,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/32_search.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
 
@@ -363,7 +363,7 @@
                             Body=Tooltip_AutoLinkDisabledTvDB}">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
 
@@ -375,7 +375,7 @@
                             Body=Tooltip_AutoLinkEnabledTvDB}">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
 
@@ -400,14 +400,14 @@
                 <StackPanel Orientation="Horizontal">
 
                     <Image Height="24" Width="24" Source="/Images/32_trakt.png" Margin="0,0,10,2" VerticalAlignment="Center"/>
-                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_TraktTV}" Width="120" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_TraktTV}" Width="120" VerticalAlignment="Center"/>
                     <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,0,2" VerticalAlignment="Center"/>
 
                     <!-- search button -->
                     <Button Name="btnSearchExistingTrakt" Margin="20,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/32_search.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
@@ -419,7 +419,7 @@
                                     Body=Tooltip_AutoLinkDisabledTrakt}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
@@ -431,7 +431,7 @@
                                     Body=Tooltip_AutoLinkEnabledTrakt}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
@@ -461,14 +461,14 @@
         <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10,10,0,0" VerticalAlignment="Center" 
                     Visibility="{Binding Path=AniDB_AnimeCrossRefs.TraktCrossRefMissing, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Image Height="24" Width="24" Source="/Images/32_trakt.png" Margin="0,0,10,2" VerticalAlignment="Center"/>
-            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_TraktTV}" Width="120" VerticalAlignment="Center"/>
+            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_TraktTV}" Width="120" VerticalAlignment="Center"/>
             <Image Height="16" Width="16" Source="/Images/16_warning.png" Margin="0,0,0,2" VerticalAlignment="Center"/>
 
             <!-- search button -->
             <Button Name="btnSearchTrakt" Margin="20,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/32_search.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
 
@@ -480,7 +480,7 @@
                             Body=Tooltip_AutoLinkDisabledTrakt}">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
 
@@ -492,7 +492,7 @@
                             Body=Tooltip_AutoLinkEnabledTrakt}">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
 
@@ -516,14 +516,14 @@
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
                     <Image Height="24" Width="24" Source="/Images/32_mal.png" Margin="0,0,10,2" VerticalAlignment="Center"/>
-                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_MAL}" Width="120" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_MAL}" Width="120" VerticalAlignment="Center"/>
                     <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,0,2" VerticalAlignment="Center"/>
 
                     <!-- search button -->
                     <Button Name="btnSearchExistingMAL" Margin="20,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/32_search.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
@@ -535,7 +535,7 @@
                             Body=Tooltip_AutoLinkDisabledMAL}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
@@ -547,7 +547,7 @@
                             Body=Tooltip_AutoLinkEnabledMAL}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
@@ -568,14 +568,14 @@
         <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="10,10,0,0" VerticalAlignment="Center" 
                     Visibility="{Binding Path=AniDB_AnimeCrossRefs.MALCrossRefMissing, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Image Height="24" Width="24" Source="/Images/32_mal.png" Margin="0,0,10,2" VerticalAlignment="Center"/>
-            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_MAL}" Width="120" VerticalAlignment="Center"/>
+            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_MAL}" Width="120" VerticalAlignment="Center"/>
             <Image Height="16" Width="16" Source="/Images/16_warning.png" Margin="0,0,0,2" VerticalAlignment="Center"/>
 
             <!-- search button -->
             <Button Name="btnSearchMAL" Margin="20,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/32_search.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
 
@@ -590,14 +590,14 @@
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
                     <Image Height="24" Width="24" Source="/Images/32_tmdb.png" Margin="0,0,10,2" VerticalAlignment="Center"/>
-                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TheMovieDB}" Width="120" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TheMovieDB}" Width="120" VerticalAlignment="Center"/>
                     <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,0,2" VerticalAlignment="Center"/>
 
                     <!-- search button -->
                     <Button Name="btnSearchExistingMovieDB" Margin="20,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/32_search.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
@@ -608,7 +608,7 @@
                             ToolTip="{usercontrols:Info Title=Tooltip_AutoLinkDisabledTitle, Body=Tooltip_AutoLinkDisabledTMDb}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
@@ -619,7 +619,7 @@
                             ToolTip="{usercontrols:Info Title=Tooltip_AutoLinkEnabledTitle, Body=Tooltip_AutoLinkEnabledTMDb}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
@@ -638,7 +638,7 @@
 
                         <usercontrols:HyperLinkStandard DisplayText="{Binding Path=AniDB_AnimeCrossRefs.MovieDB_Movie.MovieId, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}}" VerticalAlignment="Center" URL="{Binding Path=AniDB_AnimeCrossRefs.MovieDB_Movie.SiteURL, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}}" Margin="10,0,0,0"/>
 
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_Movie}" Margin="10,0,0,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_Movie}" Margin="10,0,0,0"/>
                         <TextBlock FontWeight="Medium" Margin="5,0,0,0" VerticalAlignment="Center" Text="{Binding Path=AniDB_AnimeCrossRefs.MovieDB_Movie.MovieName, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}}" />
 
                         <!-- Delete Link Button -->
@@ -666,14 +666,14 @@
         <StackPanel Grid.Row="6" Orientation="Horizontal" Margin="10,10,0,0" VerticalAlignment="Center" 
                     Visibility="{Binding Path=AniDB_AnimeCrossRefs.MovieDBCrossRefMissing, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TvDBAndOtherLinks}}, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Image Height="24" Width="24" Source="/Images/32_tmdb.png" Margin="0,0,10,2" VerticalAlignment="Center"/>
-            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TheMovieDB}" Width="120" VerticalAlignment="Center"/>
+            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TheMovieDB}" Width="120" VerticalAlignment="Center"/>
             <Image Height="16" Width="16" Source="/Images/16_warning.png" Margin="0,0,0,2" VerticalAlignment="Center"/>
 
             <!-- search button -->
             <Button Name="btnSearchMovieDB" Margin="20,0,2,2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/32_search.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
 
@@ -685,7 +685,7 @@
                             Body=Tooltip_AutoLinkDisabledTMDb}">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
 
@@ -697,7 +697,7 @@
                             Body=Tooltip_AutoLinkEnabledTMDb}">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
 
@@ -716,7 +716,7 @@
                     Body=Tooltip_CommunityAdminInfo}">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/16_Star.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_CommunityAdminTitle}" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_CommunityAdminTitle}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
             

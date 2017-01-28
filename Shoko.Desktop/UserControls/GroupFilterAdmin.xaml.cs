@@ -23,13 +23,13 @@ namespace Shoko.Desktop.UserControls
 
 
             cboBaseCondition.Items.Clear();
-            cboBaseCondition.Items.Add(Properties.Resources.GroupFilter_BaseCondition_IncludeAll);
-            cboBaseCondition.Items.Add(Properties.Resources.GroupFilter_BaseCondition_ExcludeAll);
+            cboBaseCondition.Items.Add(Shoko.Commons.Properties.Resources.GroupFilter_BaseCondition_IncludeAll);
+            cboBaseCondition.Items.Add(Shoko.Commons.Properties.Resources.GroupFilter_BaseCondition_ExcludeAll);
 
             cboBaseConditionEditing.SelectedIndex = 0;
             cboBaseConditionEditing.Items.Clear();
-            cboBaseConditionEditing.Items.Add(Properties.Resources.GroupFilter_BaseCondition_IncludeAll);
-            cboBaseConditionEditing.Items.Add(Properties.Resources.GroupFilter_BaseCondition_ExcludeAll);
+            cboBaseConditionEditing.Items.Add(Shoko.Commons.Properties.Resources.GroupFilter_BaseCondition_IncludeAll);
+            cboBaseConditionEditing.Items.Add(Shoko.Commons.Properties.Resources.GroupFilter_BaseCondition_ExcludeAll);
 
             cboBaseConditionEditing.SelectionChanged += new SelectionChangedEventHandler(cboBaseConditionEditing_SelectionChanged);
 

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows.Data;
 using NLog;
 using Shoko.Commons.Extensions;
+using Shoko.Commons.Notification;
 using Shoko.Desktop.Enums;
 using Shoko.Desktop.Utilities;
 using Shoko.Desktop.ViewModel.Helpers;

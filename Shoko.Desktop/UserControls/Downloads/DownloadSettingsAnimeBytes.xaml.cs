@@ -34,7 +34,7 @@ namespace Shoko.Desktop.UserControls.Downloads
 
             if (string.IsNullOrEmpty(txtUsername.Text))
             {
-                MessageBox.Show(Properties.Resources.Downloads_AnimeBytesDetails, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Shoko.Commons.Properties.Resources.Downloads_AnimeBytesDetails, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                 txtUsername.Focus();
                 return;
             }
@@ -53,10 +53,10 @@ namespace Shoko.Desktop.UserControls.Downloads
             IsEnabled = true;
 
             if (!string.IsNullOrEmpty(VM_UserSettings.Instance.AnimeBytesCookieHeader))
-                MessageBox.Show(Properties.Resources.Downloads_Connected, Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(Shoko.Commons.Properties.Resources.Downloads_Connected, Shoko.Commons.Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
             else
             {
-                MessageBox.Show(Properties.Resources.Downloads_Failed, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Shoko.Commons.Properties.Resources.Downloads_Failed, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                 txtUsername.Focus();
                 return;
             }

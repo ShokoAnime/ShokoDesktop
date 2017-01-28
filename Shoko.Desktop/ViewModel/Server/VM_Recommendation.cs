@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Globalization;
 using System.Threading;
+using Shoko.Commons.Notification;
 using Shoko.Desktop.ViewModel.Helpers;
 using Shoko.Models.Client;
 // ReSharper disable InconsistentNaming
@@ -28,10 +29,10 @@ namespace Shoko.Desktop.ViewModel.Server
                 if (value == null)
                 {
                     Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
-                    Recommended_DisplayName = Properties.Resources.Recommendation_Missing;
+                    Recommended_DisplayName = Shoko.Commons.Properties.Resources.Recommendation_Missing;
                     Recommended_AnimeInfoExists = false;
                     Recommended_PosterPath = $"pack://application:,,,/{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name};component/Images/blankposter.png";
-                    Recommended_Description = Properties.Resources.Recommendation_Overview;
+                    Recommended_Description = Shoko.Commons.Properties.Resources.Recommendation_Overview;
                 }
                 else
                 {

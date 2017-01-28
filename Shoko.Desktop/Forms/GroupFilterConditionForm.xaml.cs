@@ -205,7 +205,7 @@ namespace Shoko.Desktop.Forms
             {
                 if (dpDate.SelectedDate == null)
                 {
-                    MessageBox.Show(Properties.Resources.MSG_ERR_SelectDate, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_SelectDate, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     dpDate.Focus();
                     return;
                 }
@@ -220,7 +220,7 @@ namespace Shoko.Desktop.Forms
             {
                 if (txtParameter.Text.Trim().Length == 0)
                 {
-                    MessageBox.Show(Properties.Resources.MSG_ERR_EnterValue, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_EnterValue, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     txtParameter.Focus();
                     return;
                 }
@@ -230,7 +230,7 @@ namespace Shoko.Desktop.Forms
                     decimal.TryParse(txtParameter.Text, style, culture, out dRating);
                     if (dRating <= 0 || dRating > 10)
                     {
-                        MessageBox.Show(Properties.Resources.MSG_ERR_RatingValue, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_RatingValue, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         txtParameter.Focus();
                         return;
                     }
@@ -244,7 +244,7 @@ namespace Shoko.Desktop.Forms
             {
                 if (txtParameter.Text.Trim().Length == 0)
                 {
-                    MessageBox.Show(Properties.Resources.MSG_ERR_EnterValue, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_EnterValue, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     txtParameter.Focus();
                     return;
                 }
@@ -253,7 +253,7 @@ namespace Shoko.Desktop.Forms
                     int parmInt = -1;
                     if (!int.TryParse(txtParameter.Text, out parmInt))
                     {
-                        MessageBox.Show(Properties.Resources.GroupFilter_IntegerOnly, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(Shoko.Commons.Properties.Resources.GroupFilter_IntegerOnly, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         txtParameter.Focus();
                         return;
                     }
@@ -267,7 +267,7 @@ namespace Shoko.Desktop.Forms
             {
                 if (txtParameter.Text.Trim().Length == 0)
                 {
-                    MessageBox.Show(Properties.Resources.MSG_ERR_EnterValue, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_EnterValue, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     txtParameter.Focus();
                     return;
                 }
@@ -277,7 +277,7 @@ namespace Shoko.Desktop.Forms
                     int.TryParse(txtParameter.Text, out days);
                     if (days < 1 || days > int.MaxValue)
                     {
-                        MessageBox.Show(Properties.Resources.MSG_ERR_DaysValue, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_DaysValue, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         txtParameter.Focus();
                         return;
                     }
@@ -292,7 +292,7 @@ namespace Shoko.Desktop.Forms
             {
                 if (txtSelectedTags.Text.Trim().Length == 0)
                 {
-                    MessageBox.Show(Properties.Resources.MSG_ERR_EnterValue, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_EnterValue, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     txtParameter.Focus();
                     return;
                 }
@@ -318,7 +318,7 @@ namespace Shoko.Desktop.Forms
             {
                 if (txtSelectedCustomTags.Text.Trim().Length == 0)
                 {
-                    MessageBox.Show(Properties.Resources.MSG_ERR_EnterValue, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_EnterValue, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     txtSelectedCustomTags.Focus();
                     return;
                 }
@@ -345,7 +345,7 @@ namespace Shoko.Desktop.Forms
 
                 if (txtSelectedVideoQuality.Text.Trim().Length == 0)
                 {
-                    MessageBox.Show(Properties.Resources.MSG_ERR_EnterValue, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_EnterValue, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     txtParameter.Focus();
                     return;
                 }
@@ -372,7 +372,7 @@ namespace Shoko.Desktop.Forms
 
                 if (txtSelectedAudioLanguages.Text.Trim().Length == 0)
                 {
-                    MessageBox.Show(Properties.Resources.MSG_ERR_EnterValue, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_EnterValue, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     txtParameter.Focus();
                     return;
                 }
@@ -399,7 +399,7 @@ namespace Shoko.Desktop.Forms
 
                 if (txtSelectedSubtitleLanguages.Text.Trim().Length == 0)
                 {
-                    MessageBox.Show(Properties.Resources.MSG_ERR_EnterValue, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_EnterValue, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     txtParameter.Focus();
                     return;
                 }
@@ -427,7 +427,7 @@ namespace Shoko.Desktop.Forms
 
                 if (txtSelectedAnimeTypes.Text.Trim().Length == 0)
                 {
-                    MessageBox.Show(Properties.Resources.MSG_ERR_EnterValue, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_EnterValue, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     txtParameter.Focus();
                     return;
                 }
@@ -453,7 +453,7 @@ namespace Shoko.Desktop.Forms
             {
                 if (lbGroups.SelectedItem == null)
                 {
-                    MessageBox.Show(Properties.Resources.MSG_ERR_GroupSelectionRequired, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_GroupSelectionRequired, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     lbGroups.Focus();
                     return;
                 }
@@ -468,7 +468,7 @@ namespace Shoko.Desktop.Forms
             {
                 if (txtParameter.Text.Trim().Length == 0)
                 {
-                    MessageBox.Show(Properties.Resources.MSG_ERR_EnterValue, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_EnterValue, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     txtParameter.Focus();
                     return;
                 }
@@ -657,12 +657,12 @@ namespace Shoko.Desktop.Forms
         private void PopulateAnimeTypes()
         {
             AllAnimeTypes = new ObservableCollection<string>();
-            AllAnimeTypes.Add(Properties.Resources.AnimeType_Movie);
-            AllAnimeTypes.Add(Properties.Resources.AnimeType_Other);
-            AllAnimeTypes.Add(Properties.Resources.AnimeType_OVA);
-            AllAnimeTypes.Add(Properties.Resources.AnimeType_TVSeries);
-            AllAnimeTypes.Add(Properties.Resources.AnimeType_TVSpecial);
-            AllAnimeTypes.Add(Properties.Resources.AnimeType_Web);
+            AllAnimeTypes.Add(Shoko.Commons.Properties.Resources.AnimeType_Movie);
+            AllAnimeTypes.Add(Shoko.Commons.Properties.Resources.AnimeType_Other);
+            AllAnimeTypes.Add(Shoko.Commons.Properties.Resources.AnimeType_OVA);
+            AllAnimeTypes.Add(Shoko.Commons.Properties.Resources.AnimeType_TVSeries);
+            AllAnimeTypes.Add(Shoko.Commons.Properties.Resources.AnimeType_TVSpecial);
+            AllAnimeTypes.Add(Shoko.Commons.Properties.Resources.AnimeType_Web);
         }
 
         private void PopulateAnimeGroups()

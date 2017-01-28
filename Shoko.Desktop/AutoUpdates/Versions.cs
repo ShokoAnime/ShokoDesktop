@@ -15,11 +15,11 @@
             return $"Server: {serverversion} --- Desktop: {desktopversion}";
         }
 
-        public long ServerVersionAbs => JMMAutoUpdatesHelper.ConvertToAbsoluteVersion(serverversion);
+        public long ServerVersionAbs => ShokoAutoUpdatesHelper.ConvertToAbsoluteVersion(serverversion);
 
         public string ServerVersionFriendly => serverversion;
 
-        public long DesktopVersionAbs => JMMAutoUpdatesHelper.ConvertToAbsoluteVersion(desktopversion);
+        public long DesktopVersionAbs => ShokoAutoUpdatesHelper.ConvertToAbsoluteVersion(desktopversion);
 
         public string DesktopVersionFriendly => desktopversion;
     }

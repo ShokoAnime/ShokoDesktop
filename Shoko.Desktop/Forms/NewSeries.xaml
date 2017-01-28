@@ -4,7 +4,7 @@
         xmlns:local="clr-namespace:Shoko.Desktop.ViewModel"
         xmlns:forms="clr-namespace:Shoko.Desktop.Forms"
         xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
-        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=NewSeries_CreateNew}" Icon="/ShokoDesktop;component/Images/32_television.png" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner" ShowInTaskbar="False">
+        Title="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=NewSeries_CreateNew}" Icon="/ShokoDesktop;component/Images/32_television.png" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner" ShowInTaskbar="False">
     <Grid>
 
         <Grid.Resources>
@@ -43,7 +43,7 @@
                                     Command="{DynamicResource UseThisCommand}" CommandParameter="{Binding}">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                     <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,5,0"/>
-                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=UseThis}" Margin="0,0,5,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=UseThis}" Margin="0,0,5,0"/>
                                 </StackPanel>
                             </Button>
 
@@ -52,7 +52,7 @@
                         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1"
                                     Visibility="{Binding Path=SeriesExists, Converter={StaticResource BooleanToVisibilityConverter}}">
 
-                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=NewSeries_AlreadyAttached}" FontSize="12" HorizontalAlignment="Left"  Margin="7,0,0,0" Foreground="DarkRed" VerticalAlignment="Center" />
+                            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=NewSeries_AlreadyAttached}" FontSize="12" HorizontalAlignment="Left"  Margin="7,0,0,0" Foreground="DarkRed" VerticalAlignment="Center" />
                             <TextBlock Text="{Binding Path=AnimeSeriesName}" FontSize="12" HorizontalAlignment="Left"  Margin="7,0,0,0" Foreground="DarkRed" VerticalAlignment="Center" />
 
                         </StackPanel>
@@ -101,7 +101,7 @@
             <DockPanel >
 
                 <StackPanel Orientation="Horizontal"  Margin="0,0,0,5" DockPanel.Dock="Top">
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=NewSeries_Step1}" Margin="5,0,0,0" FontWeight="Bold" FontSize="14" />
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=NewSeries_Step1}" Margin="5,0,0,0" FontWeight="Bold" FontSize="14" />
                 </StackPanel>
 
                 <StackPanel x:Name="pnlAnime1"  Orientation="Horizontal"  Margin="0,0,0,5" DockPanel.Dock="Top"
@@ -109,7 +109,7 @@
 
 
 
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=NewSeries_SearchBy}" Margin="5,0,0,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=NewSeries_SearchBy}" Margin="5,0,0,0"/>
                     <TextBox Name="txtAnimeSearch" Width="180" Margin="5,2,2,0" BorderThickness="1" VerticalAlignment="Center"
                              ToolTip="{usercontrols:Info Title=NewSeries_Search, 
                                                 Body=Tooltip_NewSeries_Search}"/>
@@ -118,7 +118,7 @@
 
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                             <Image Height="16" Width="16" Source="/Images/32_search.png" Margin="0,0,3,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search}" Margin="0,0,0,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Search}" Margin="0,0,0,0"/>
                         </StackPanel>
 
 
@@ -150,21 +150,21 @@
             <DockPanel >
 
                 <StackPanel Orientation="Horizontal"  Margin="0,0,0,10" DockPanel.Dock="Top">
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=NewSeries_Step2}" Margin="5,0,0,0" FontWeight="Bold" FontSize="14" />
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=NewSeries_Step2}" Margin="5,0,0,0" FontWeight="Bold" FontSize="14" />
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal"  Margin="0,0,0,5" DockPanel.Dock="Top" VerticalAlignment="Center"
                             Visibility="{Binding Path=IsAnimeSelected, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:NewSeries}}, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Image Height="16" Width="16" Source="/Images/24_folder.png" Margin="5,0,5,0" VerticalAlignment="Center"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SelectGroup}" Margin="0,0,0,0" />
-                    <RadioButton Name="rbGroupExisting" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=Existing}" Margin="5,2,0,0" VerticalAlignment="Center"/>
-                    <RadioButton Name="rbGroupNew" Content="{Resx ResxName=JMMClient.Properties.Resources, Key=New}" Margin="5,2,0,0" VerticalAlignment="Center"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SelectGroup}" Margin="0,0,0,0" />
+                    <RadioButton Name="rbGroupExisting" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Existing}" Margin="5,2,0,0" VerticalAlignment="Center"/>
+                    <RadioButton Name="rbGroupNew" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=New}" Margin="5,2,0,0" VerticalAlignment="Center"/>
 
                     <Button Name="btnStep1" Style="{DynamicResource FlatButtonStyle}" Margin="10,0,0,0" VerticalAlignment="Center">
 
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                             <Image Height="16" Width="16" Source="/Images/32_redo.png" Margin="0,0,3,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=NewSeries_BackToStep1}" Margin="0,0,0,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=NewSeries_BackToStep1}" Margin="0,0,0,0"/>
                         </StackPanel>
 
 
@@ -210,9 +210,9 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Row="0" Grid.Column="0" FontWeight="Bold" Margin="5,0,5,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=GroupName}"/>
+                        <TextBlock Grid.Row="0" Grid.Column="0" FontWeight="Bold" Margin="5,0,5,0" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=GroupName}"/>
                         <TextBox Grid.Row="0" Grid.Column="1"  MinWidth="300" Margin="5,0,0,5" Text="" Name="txtGroupName"/>
-                        <TextBlock Grid.Row="1" Grid.Column="0" FontWeight="Bold" Margin="5,0,5,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SortName}"/>
+                        <TextBlock Grid.Row="1" Grid.Column="0" FontWeight="Bold" Margin="5,0,5,0" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SortName}"/>
                         <TextBox Grid.Row="1" Grid.Column="1"  MinWidth="300" Margin="5,0,0,5" Text="" Name="txtGroupSortName"/>
                     </Grid>
                 </StackPanel>
@@ -228,13 +228,13 @@
             <Button Name="btnConfirm" Margin="0,0,2,2" Grid.Column="0" Grid.Row="3" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/16_tick.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Confirm}" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Confirm}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
             <Button Name="btnCancel" Margin="0,0,2,2" Grid.Column="0" Grid.Row="3" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Cancel}" Margin="0,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Cancel}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
         </StackPanel>

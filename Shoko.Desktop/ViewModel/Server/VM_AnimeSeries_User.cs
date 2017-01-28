@@ -8,6 +8,7 @@ using System.Threading;
 using System.Windows;
 using NLog;
 using Shoko.Commons.Extensions;
+using Shoko.Commons.Notification;
 using Shoko.Desktop.Utilities;
 using Shoko.Desktop.ViewModel.Helpers;
 using Shoko.Models.Client;
@@ -323,10 +324,10 @@ namespace Shoko.Desktop.ViewModel.Server
                     DateTime yesterday = today.AddDays(-1);
 
                     if (WatchedDate.Value.Day == today.Day && WatchedDate.Value.Month == today.Month && WatchedDate.Value.Year == today.Year)
-                        return Properties.Resources.Today;
+                        return Shoko.Commons.Properties.Resources.Today;
 
                     if (WatchedDate.Value.Day == yesterday.Day && WatchedDate.Value.Month == yesterday.Month && WatchedDate.Value.Year == yesterday.Year)
-                        return Properties.Resources.Yesterday;
+                        return Shoko.Commons.Properties.Resources.Yesterday;
 
                     return WatchedDate.Value.ToString("dd MMM yyyy", Commons.Culture.Global);
                 }
@@ -347,26 +348,26 @@ namespace Shoko.Desktop.ViewModel.Server
                     // Multiple Episodes, Multiple Specials
                     if (AniDBAnime.AniDBAnime.EpisodeCountSpecial > 1)
                     {
-                        return $"{AniDBAnime.AniDBAnime.EpisodeCountNormal} {Properties.Resources.Anime_Episodes} ({AniDBAnime.AniDBAnime.EpisodeCountSpecial} {Properties.Resources.Anime_Specials})";
+                        return $"{AniDBAnime.AniDBAnime.EpisodeCountNormal} {Shoko.Commons.Properties.Resources.Anime_Episodes} ({AniDBAnime.AniDBAnime.EpisodeCountSpecial} {Shoko.Commons.Properties.Resources.Anime_Specials})";
                     }
                     // Multiple Episodes, No Specials
                     if (AniDBAnime.AniDBAnime.EpisodeCountSpecial <= 0)
                     {
-                        return $"{AniDBAnime.AniDBAnime.EpisodeCountNormal} {Properties.Resources.Anime_Episodes} ({AniDBAnime.AniDBAnime.EpisodeCountSpecial} {Properties.Resources.Anime_Specials})";
+                        return $"{AniDBAnime.AniDBAnime.EpisodeCountNormal} {Shoko.Commons.Properties.Resources.Anime_Episodes} ({AniDBAnime.AniDBAnime.EpisodeCountSpecial} {Shoko.Commons.Properties.Resources.Anime_Specials})";
                     }
-                    return $"{AniDBAnime.AniDBAnime.EpisodeCountNormal} {Properties.Resources.Anime_Episodes} ({AniDBAnime.AniDBAnime.EpisodeCountSpecial} {Properties.Resources.Anime_Special})";
+                    return $"{AniDBAnime.AniDBAnime.EpisodeCountNormal} {Shoko.Commons.Properties.Resources.Anime_Episodes} ({AniDBAnime.AniDBAnime.EpisodeCountSpecial} {Shoko.Commons.Properties.Resources.Anime_Special})";
                 }
                 // Single Episode, Multiple Specials
                 if (AniDBAnime.AniDBAnime.EpisodeCountSpecial > 1)
                 {
-                    return $"{AniDBAnime.AniDBAnime.EpisodeCountNormal} {Properties.Resources.Anime_Episode} ({AniDBAnime.AniDBAnime.EpisodeCountSpecial} {Properties.Resources.Anime_Specials})";
+                    return $"{AniDBAnime.AniDBAnime.EpisodeCountNormal} {Shoko.Commons.Properties.Resources.Anime_Episode} ({AniDBAnime.AniDBAnime.EpisodeCountSpecial} {Shoko.Commons.Properties.Resources.Anime_Specials})";
                 }
                 // Single Episodes, No Specials
                 if (AniDBAnime.AniDBAnime.EpisodeCountSpecial <= 0)
                 {
-                    return $"{AniDBAnime.AniDBAnime.EpisodeCountNormal} {Properties.Resources.Anime_Episode} ({AniDBAnime.AniDBAnime.EpisodeCountSpecial} {Properties.Resources.Anime_Specials})";
+                    return $"{AniDBAnime.AniDBAnime.EpisodeCountNormal} {Shoko.Commons.Properties.Resources.Anime_Episode} ({AniDBAnime.AniDBAnime.EpisodeCountSpecial} {Shoko.Commons.Properties.Resources.Anime_Specials})";
                 }
-                return $"{AniDBAnime.AniDBAnime.EpisodeCountNormal} {Properties.Resources.Anime_Episode} ({AniDBAnime.AniDBAnime.EpisodeCountSpecial} {Properties.Resources.Anime_Special})";
+                return $"{AniDBAnime.AniDBAnime.EpisodeCountNormal} {Shoko.Commons.Properties.Resources.Anime_Episode} ({AniDBAnime.AniDBAnime.EpisodeCountSpecial} {Shoko.Commons.Properties.Resources.Anime_Special})";
             }
         }
 
@@ -378,9 +379,9 @@ namespace Shoko.Desktop.ViewModel.Server
 
                 if (AniDBAnime.AniDBAnime.EpisodeCountNormal > 1)
                 {
-                    return $"{AniDBAnime.AniDBAnime.EpisodeCountNormal} {Properties.Resources.Anime_Episodes}";
+                    return $"{AniDBAnime.AniDBAnime.EpisodeCountNormal} {Shoko.Commons.Properties.Resources.Anime_Episodes}";
                 }
-                return $"{AniDBAnime.AniDBAnime.EpisodeCountNormal} {Properties.Resources.Anime_Episode}";
+                return $"{AniDBAnime.AniDBAnime.EpisodeCountNormal} {Shoko.Commons.Properties.Resources.Anime_Episode}";
             }
         }
 

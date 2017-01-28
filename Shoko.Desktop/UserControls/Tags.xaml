@@ -32,7 +32,7 @@
                                     <TextBlock FontWeight="Bold" Text="{Binding Path=TagName}"></TextBlock>
                                     <TextBlock Margin="10,0,0,0" Text="("></TextBlock>
                                     <TextBlock Text="{Binding Path=Approval}"></TextBlock>
-                                    <TextBlock Margin="4,0,0,0" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TagApproval}"></TextBlock>
+                                    <TextBlock Margin="4,0,0,0" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TagApproval}"></TextBlock>
                                     <TextBlock Text=")"></TextBlock>
                                 </StackPanel>
                                 <TextBlock Text="{Binding Path=TagDescription}"></TextBlock>

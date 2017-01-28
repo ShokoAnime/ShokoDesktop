@@ -43,7 +43,7 @@ namespace Shoko.Desktop.Forms
 
                 if (string.IsNullOrWhiteSpace(txtTagName.Text))
                 {
-                    MessageBox.Show(Properties.Resources.CustomTag_EnterName, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Shoko.Commons.Properties.Resources.CustomTag_EnterName, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     txtTagName.Focus();
                     return;
                 }
@@ -57,7 +57,7 @@ namespace Shoko.Desktop.Forms
 
                 if (!string.IsNullOrEmpty(resp.ErrorMessage))
                 {
-                    MessageBox.Show(res, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(res, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
                 else
@@ -97,7 +97,7 @@ namespace Shoko.Desktop.Forms
 
                 if (res.Length > 0)
                 {
-                    MessageBox.Show(res, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(res, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
                 {

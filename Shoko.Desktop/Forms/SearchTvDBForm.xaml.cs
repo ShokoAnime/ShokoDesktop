@@ -112,7 +112,7 @@ namespace Shoko.Desktop.Forms
                 int.TryParse(txtSeriesID.Text, out id);
                 if (id <= 0)
                 {
-                    MessageBox.Show(Properties.Resources.Search_InvalidTvDB, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Shoko.Commons.Properties.Resources.Search_InvalidTvDB, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     txtSeriesID.Focus();
                     return;
                 }
@@ -155,7 +155,7 @@ namespace Shoko.Desktop.Forms
                 string res = VM_ShokoServer.Instance.ShokoServices.RemoveLinkAniDBTvDBForAnime(AnimeID);
                 if (res.Length > 0)
                 {
-                    MessageBox.Show(res, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(res, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     Cursor = Cursors.Arrow;
                     return;
                 }
@@ -168,7 +168,7 @@ namespace Shoko.Desktop.Forms
                         xref.TvDBID, xref.TvDBSeasonNumber, xref.TvDBStartEpisodeNumber, null);
                     if (res.Length > 0)
                     {
-                        MessageBox.Show(res, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(res, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         Cursor = Cursors.Arrow;
                         return;
                     }

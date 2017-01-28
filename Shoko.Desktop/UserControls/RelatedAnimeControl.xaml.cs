@@ -48,7 +48,7 @@ namespace Shoko.Desktop.UserControls
             {
                 if (DataContext == null) { return ""; }
                 VM_AnimeSeries_User series = (VM_AnimeSeries_User)DataContext;
-                return series.SeriesName + " " + Properties.Resources.NoRelatedAnime;
+                return series.SeriesName + " " + Shoko.Commons.Properties.Resources.NoRelatedAnime;
             }
         }
 

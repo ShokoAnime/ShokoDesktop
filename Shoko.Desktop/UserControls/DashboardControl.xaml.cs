@@ -178,8 +178,8 @@ namespace Shoko.Desktop.UserControls
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
             cboDashWatchNextStyle.Items.Clear();
-            cboDashWatchNextStyle.Items.Add(Properties.Resources.DashWatchNextStyle_Simple);
-            cboDashWatchNextStyle.Items.Add(Properties.Resources.DashWatchNextStyle_Detailed);
+            cboDashWatchNextStyle.Items.Add(Shoko.Commons.Properties.Resources.DashWatchNextStyle_Simple);
+            cboDashWatchNextStyle.Items.Add(Shoko.Commons.Properties.Resources.DashWatchNextStyle_Detailed);
 
             if (VM_UserSettings.Instance.Dash_WatchNext_Style == DashWatchNextStyle.Simple)
                 cboDashWatchNextStyle.SelectedIndex = 0;
@@ -189,8 +189,8 @@ namespace Shoko.Desktop.UserControls
             cboDashWatchNextStyle.SelectionChanged += new SelectionChangedEventHandler(cboDashWatchNextStyle_SelectionChanged);
 
             cboDashRecentAdditionsType.Items.Clear();
-            cboDashRecentAdditionsType.Items.Add(Properties.Resources.Anime_Episodes);
-            cboDashRecentAdditionsType.Items.Add(Properties.Resources.Series);
+            cboDashRecentAdditionsType.Items.Add(Shoko.Commons.Properties.Resources.Anime_Episodes);
+            cboDashRecentAdditionsType.Items.Add(Shoko.Commons.Properties.Resources.Series);
             cboDashRecentAdditionsType.SelectedIndex = AppSettings.DashRecentAdditionsType;
             cboDashRecentAdditionsType.SelectionChanged += new SelectionChangedEventHandler(cboDashRecentAdditionsType_SelectionChanged);
 
@@ -285,7 +285,7 @@ namespace Shoko.Desktop.UserControls
         void cboDashWatchNextStyle_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-            if (cboDashWatchNextStyle.SelectedItem.ToString() == Properties.Resources.DashWatchNextStyle_Simple)
+            if (cboDashWatchNextStyle.SelectedItem.ToString() == Shoko.Commons.Properties.Resources.DashWatchNextStyle_Simple)
                 VM_UserSettings.Instance.Dash_WatchNext_Style = DashWatchNextStyle.Simple;
             else
                 VM_UserSettings.Instance.Dash_WatchNext_Style = DashWatchNextStyle.Detailed;
@@ -568,7 +568,7 @@ namespace Shoko.Desktop.UserControls
         {
             VM_ShokoServer.Instance.ShokoServices.UpdateCalendarData();
 
-            MessageBox.Show(Properties.Resources.ShokoServer_ProcessQueued, Properties.Resources.ShokoServer_Running, MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show(Shoko.Commons.Properties.Resources.ShokoServer_ProcessQueued, Shoko.Commons.Properties.Resources.ShokoServer_Running, MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void CommandBinding_ToggleWatchedStatus(object sender, ExecutedRoutedEventArgs e)
@@ -604,7 +604,7 @@ namespace Shoko.Desktop.UserControls
                         newStatus, VM_ShokoServer.Instance.CurrentUser.JMMUserID);
                     if (!string.IsNullOrEmpty(response.ErrorMessage))
                     {
-                        MessageBox.Show(response.ErrorMessage, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(response.ErrorMessage, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
                     }
 
@@ -786,7 +786,7 @@ namespace Shoko.Desktop.UserControls
                 {
 
                     VM_ShokoServer.Instance.SyncVotes();
-                    MessageBox.Show(Properties.Resources.ShokoServer_ProcessRunning, Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show(Shoko.Commons.Properties.Resources.ShokoServer_ProcessRunning, Shoko.Commons.Properties.Resources.Success, MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             catch (Exception ex)

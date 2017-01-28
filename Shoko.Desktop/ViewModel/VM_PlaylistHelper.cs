@@ -7,6 +7,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Data;
 using Shoko.Commons.Extensions;
+using Shoko.Commons.Notification;
 using Shoko.Models.Enums;
 using Shoko.Desktop.Forms;
 using Shoko.Desktop.Utilities;
@@ -105,14 +106,14 @@ namespace Shoko.Desktop.ViewModel
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
                 DialogText dlg = new DialogText();
-                dlg.Init(Properties.Resources.Playlist_Name + " ", "");
+                dlg.Init(Shoko.Commons.Properties.Resources.Playlist_Name + " ", "");
                 dlg.Owner = owner;
                 bool? res = dlg.ShowDialog();
                 if (res.HasValue && res.Value)
                 {
                     if (string.IsNullOrEmpty(dlg.EnteredText))
                     {
-                        Utils.ShowErrorMessage(Properties.Resources.Playlist_NameBlank);
+                        Utils.ShowErrorMessage(Shoko.Commons.Properties.Resources.Playlist_NameBlank);
                         return null;
                     }
 

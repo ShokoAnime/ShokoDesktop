@@ -114,7 +114,7 @@ namespace Shoko.Desktop.UserControls.Settings
         private void RefreshConfigured()
         {
             TextDefaultConfigured.Visibility = DefaultConfigured;
-            TextDefaultConfigured.Text = Properties.Resources.VideoPlayer_Configured + " (" + ActivePlayer + ")";
+            TextDefaultConfigured.Text = Shoko.Commons.Properties.Resources.VideoPlayer_Configured + " (" + ActivePlayer + ")";
             TextDefaultNotConfigured.Visibility = DefaultNotConfigured;
         }
 

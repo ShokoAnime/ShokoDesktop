@@ -40,7 +40,7 @@
 
         <!-- Group List -->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ImageSize_GroupList}"  VerticalAlignment="Top"></TextBlock>
+            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ImageSize_GroupList}"  VerticalAlignment="Top"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" Margin="0,5,5,0">
@@ -59,7 +59,7 @@
 
         <!-- Series Poster -->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ImageSize_SeriesPoster}"  VerticalAlignment="Top"></TextBlock>
+            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ImageSize_SeriesPoster}"  VerticalAlignment="Top"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" Margin="0,5,5,0">
@@ -77,7 +77,7 @@
 
         <!-- Episode Image -->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ImageSize_EpisodeImage}"  VerticalAlignment="Top"></TextBlock>
+            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ImageSize_EpisodeImage}"  VerticalAlignment="Top"></TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Margin="0,5,5,0">

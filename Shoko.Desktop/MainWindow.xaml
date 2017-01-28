@@ -113,7 +113,7 @@
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="{Binding Path=GroupCount}" />
                     <TextBlock Text=" " />
-                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Group_GroupCount}" />
+                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Group_GroupCount}" />
                 </StackPanel>
             </DataTemplate>
 
@@ -227,7 +227,7 @@
             <TabItem x:Name="tabDashboard" Style="{DynamicResource tabMainItem}"
                      Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <TabItem.Header>
-                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_Dashboard}" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
+                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_Dashboard}" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
                 </TabItem.Header>
 
                 <Grid>
@@ -241,7 +241,7 @@
             <TabItem x:Name="tabSeries" Style="{DynamicResource tabMainItem}"
                      Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <TabItem.Header>
-                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_SeriesEpisodes}" Margin="2,0,0,0" VerticalAlignment="Center"
+                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_SeriesEpisodes}" Margin="2,0,0,0" VerticalAlignment="Center"
                                 Foreground="White" FontWeight="Bold"/>
                 </TabItem.Header>
 
@@ -278,28 +278,28 @@
                                     <Button Name="btnToolbarBack" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource BackCommand}">
                                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                             <Image Height="16" Width="16" Source="/Images/32_back.png" Margin="0,0,5,0"/>
-                                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Back}" Margin="0,0,5,0"/>
+                                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Back}" Margin="0,0,5,0"/>
                                         </StackPanel>
                                     </Button>
                                     <!-- Refresh -->
                                     <Button Name="btnToolbarRefresh" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource RefreshCommand}">
                                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                             <Image Height="16" Width="16" Source="/Images/32_refresh.png" Margin="0,0,5,0"/>
-                                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Refresh}" Margin="0,0,5,0"/>
+                                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Refresh}" Margin="0,0,5,0"/>
                                         </StackPanel>
                                     </Button>
                                     <!-- New Group Filter -->
                                     <Button Name="btnToolbarNewGroupFilter" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource NewGroupFilterCommand}">
                                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                             <Image Height="16" Width="16" Source="/Images/24_folder_filter.png" Margin="0,0,5,0"/>
-                                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=NewGroupFilter}" Margin="0,0,5,0"/>
+                                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=NewGroupFilter}" Margin="0,0,5,0"/>
                                         </StackPanel>
                                     </Button>
                                     <!-- New Group -->
                                     <Button Name="btnToolbarNewGroup" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource NewGroupCommand}">
                                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                             <Image Height="16" Width="16" Source="/Images/24_folder_group.png" Margin="0,0,5,0"/>
-                                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=NewGroup}" Margin="0,0,5,0"/>
+                                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=NewGroup}" Margin="0,0,5,0"/>
                                         </StackPanel>
                                     </Button>
                                 </StackPanel>
@@ -312,7 +312,7 @@
                                         <Button Name="btnToolbarSort" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}">
                                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                                 <Image Height="16" Width="16" Source="/Images/32_sort.png" Margin="0,0,5,0"/>
-                                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=QuickSort}" Margin="0,0,5,0"/>
+                                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=QuickSort}" Margin="0,0,5,0"/>
                                             </StackPanel>
                                         </Button>
 
@@ -377,14 +377,14 @@
                             <Button  Name="btnAddSubGroup" Margin="3,2,2,2" Style="{DynamicResource FlatButtonStyle}" Command="{DynamicResource AddSubGroupCommand}" CommandParameter="{Binding Source={x:Static local:VM_MainListHelper.Instance}, Path=CurrentWrapper}">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="16" Width="16" Source="/Images/24_folder_group.png" Margin="0,0,3,0"/>
-                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AddSubGroup}" Margin="0,0,0,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AddSubGroup}" Margin="0,0,0,0"/>
                                 </StackPanel>
                             </Button>
                             <!-- add series -->
                             <Button  Name="btnAddSeries" Margin="3,2,2,2" Style="{DynamicResource FlatButtonStyle}" Command="{DynamicResource CreateSeriesFromAnimeCommand}" CommandParameter="{Binding Source={x:Static local:VM_MainListHelper.Instance}, Path=CurrentWrapper}">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="16" Width="16" Source="/Images/32_television.png" Margin="0,0,3,0"/>
-                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=NewSeries}" Margin="0,0,0,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=NewSeries}" Margin="0,0,0,0"/>
                                 </StackPanel>
                             </Button>
                         </StackPanel>
@@ -407,7 +407,7 @@
                      Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tab_Playlists}" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
+                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_Playlists}" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
                     </StackPanel>
                 </TabItem.Header>
 
@@ -443,7 +443,7 @@
                             <Button Name="btnRefreshPlaylists" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource RefreshPlaylistCommand}">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="16" Width="16" Source="/Images/32_refresh.png" Margin="0,0,5,0"/>
-                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Refresh}" Margin="0,0,5,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Refresh}" Margin="0,0,5,0"/>
                                 </StackPanel>
                             </Button>
 
@@ -451,7 +451,7 @@
                             <Button  Name="btnAddPlaylist" Margin="3,2,2,2" Style="{DynamicResource FlatButtonStyle}" Command="{DynamicResource AddPlaylistCommand}">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="16" Width="16" Source="/Images/32_playlist_add.png" Margin="0,0,3,0"/>
-                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Playlist_NewPlaylist}" Margin="0,0,0,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Playlist_NewPlaylist}" Margin="0,0,0,0"/>
                                 </StackPanel>
                             </Button>
 
@@ -473,7 +473,7 @@
                      Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tab_Bookmarks}" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
+                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_Bookmarks}" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
                     </StackPanel>
                 </TabItem.Header>
 
@@ -492,7 +492,7 @@
 
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_Server}" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
+                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_Server}" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
                     </StackPanel>
                 </TabItem.Header>
 
@@ -526,13 +526,13 @@
                         </Grid.RowDefinitions>
 
                         <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6" Background="#FFE9ECEF" Margin="0,0,0,5">
-                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ShokoServer_ImportFolders}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ShokoServer_ImportFolders}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                         </Border>
 
                         <usercontrols:ImportFolderAdmin Grid.Row="1" Grid.ColumnSpan="6"/>
 
                         <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="6" Background="#FFE9ECEF" Margin="0,10,0,5">
-                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ShokoServer_ServerStatus}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ShokoServer_ServerStatus}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                         </Border>
 
 
@@ -542,7 +542,7 @@
                                 <Image Height="16" Width="16" Source="/Images/16_clear.png" Margin="0,0,0,0"/>
                             </StackPanel>
                             <Button.ToolTip>
-                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_ClearHash}" Foreground="Black" FontWeight="DemiBold"/>
+                                <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_ClearHash}" Foreground="Black" FontWeight="DemiBold"/>
                             </Button.ToolTip>
                         </Button>
 
@@ -564,11 +564,11 @@
                         <!-- Hasher status -->
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="2" Grid.Row="3">
                             <Image Height="16" Width="16" Source="Images/16_server_hash.png" Margin="10,0,5,0" VerticalAlignment="Center"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=QueueHasher}" Margin="0,0,0,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=QueueHasher}" Margin="0,0,0,0"/>
                             <TextBlock VerticalAlignment="Center" Text=" - " Margin="0,0,0,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ShokoServer_Running}" Margin="0,0,5,0"
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ShokoServer_Running}" Margin="0,0,5,0"
                                         Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=HasherQueueRunning, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ShokoServer_Paused}" Margin="0,0,5,0"
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ShokoServer_Paused}" Margin="0,0,5,0"
                                        Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=HasherQueuePaused, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         </StackPanel>
 
@@ -585,7 +585,7 @@
                                 <Image Height="16" Width="16" Source="/Images/16_clear.png" Margin="0,0,0,0"/>
                             </StackPanel>
                             <Button.ToolTip>
-                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_ClearGeneral}" Foreground="Black" FontWeight="DemiBold"/>
+                                <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_ClearGeneral}" Foreground="Black" FontWeight="DemiBold"/>
                             </Button.ToolTip>
                         </Button>
 
@@ -607,11 +607,11 @@
                         <!-- General status -->
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="2" Grid.Row="4">
                             <Image Height="16" Width="16" Source="Images/16_server_connect.png" Margin="10,0,5,0" VerticalAlignment="Center"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=QueueGeneral}" Margin="0,0,0,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=QueueGeneral}" Margin="0,0,0,0"/>
                             <TextBlock VerticalAlignment="Center" Text=" - " Margin="0,0,0,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ShokoServer_Running}" Margin="0,0,5,0"
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ShokoServer_Running}" Margin="0,0,5,0"
                                     Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=GeneralQueueRunning, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ShokoServer_Paused}" Margin="0,0,5,0"
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ShokoServer_Paused}" Margin="0,0,5,0"
                                     Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=GeneralQueuePaused, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         </StackPanel>
 
@@ -628,7 +628,7 @@
                                 <Image Height="16" Width="16" Source="/Images/16_clear.png" Margin="0,0,0,0"/>
                             </StackPanel>
                             <Button.ToolTip>
-                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_ClearGeneral}" Foreground="Black" FontWeight="DemiBold"/>
+                                <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_ClearGeneral}" Foreground="Black" FontWeight="DemiBold"/>
                             </Button.ToolTip>
                         </Button>
 
@@ -650,11 +650,11 @@
                         <!-- Server Images status -->
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="2" Grid.Row="5">
                             <Image Height="16" Width="16" Source="Images/16_image.png" Margin="10,0,5,0" VerticalAlignment="Center"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ShokoServer_ServerImage}" Margin="0,0,0,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ShokoServer_ServerImage}" Margin="0,0,0,0"/>
                             <TextBlock VerticalAlignment="Center" Text=" - " Margin="0,0,0,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ShokoServer_Running}" Margin="0,0,5,0"
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ShokoServer_Running}" Margin="0,0,5,0"
                                 Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ServerImageQueueRunning, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ShokoServer_Paused}" Margin="0,0,5,0"
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ShokoServer_Paused}" Margin="0,0,5,0"
                                 Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ServerImageQueuePaused, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         </StackPanel>
 
@@ -664,14 +664,14 @@
 
 
                         <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="6" Background="#FFE9ECEF" Margin="0,10,0,5">
-                            <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ServerActions}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ServerActions}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                         </Border>
 
                         <!-- Run Import -->
                         <Button HorizontalAlignment="Left" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="6" Name="btnRunImport" Margin="10,0,0,0" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource RunImportCommand}" Width="Auto">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                 <Image Height="16" Width="16" Source="/Images/16_update_data.png" Margin="0,0,5,0"/>
-                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=RunImport}" Margin="0,0,5,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=RunImport}" Margin="0,0,5,0"/>
                             </StackPanel>
                         </Button>
 
@@ -682,7 +682,7 @@
                                                 Body=Tooltip_RemoveMissingFiles}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                 <Image Height="16" Width="16" Source="/Images/16_update_data.png" Margin="0,0,5,0"/>
-                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=RemoveMissingFiles}" Margin="0,0,5,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=RemoveMissingFiles}" Margin="0,0,5,0"/>
                             </StackPanel>
                         </Button>
 
@@ -692,7 +692,7 @@
                                                 Body=Tooltip_UpdateMediaInfo}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                 <Image Height="16" Width="16" Source="/Images/16_update_data.png" Margin="0,0,5,0"/>
-                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=UpdateMediaInfo}" Margin="0,0,5,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=UpdateMediaInfo}" Margin="0,0,5,0"/>
                             </StackPanel>
                         </Button>
 
@@ -701,13 +701,13 @@
                             <Button HorizontalAlignment="Left" Name="btnSyncMyList" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource SyncMyListCommand}" Width="Auto">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="0,0,5,0"/>
-                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SyncMyList}" Margin="0,0,5,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SyncMyList}" Margin="0,0,5,0"/>
                                 </StackPanel>
                             </Button>
                             <Button HorizontalAlignment="Left" Name="btnSyncVotes" Margin="10,0,0,0" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource SyncVotesCommand}" Width="Auto">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                     <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="0,0,5,0"/>
-                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SyncVotes}" Margin="0,0,5,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SyncVotes}" Margin="0,0,5,0"/>
                                 </StackPanel>
                             </Button>
                         </StackPanel>
@@ -719,7 +719,7 @@
                                         ToolTip="{usercontrols:Info Title=SyncMalUp, 
                                                 Body=Tooltip_SyncMalUp}">
                                     <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="0,0,5,0"/>
-                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SyncMalUp}" Margin="0,0,5,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SyncMalUp}" Margin="0,0,5,0"/>
                                 </StackPanel>
                             </Button>
                             <Button HorizontalAlignment="Left" Name="btnSyncMalDown" Margin="10,0,0,0" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource SyncMALDownCommand}" Width="Auto">
@@ -727,7 +727,7 @@
                                         ToolTip="{usercontrols:Info Title=SyncMalDown, 
                                                 Body=Tooltip_SyncMalDown}">
                                     <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="0,0,5,0"/>
-                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=SyncMalDown}" Margin="0,0,5,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SyncMalDown}" Margin="0,0,5,0"/>
                                 </StackPanel>
                             </Button>
                         </StackPanel>
@@ -744,7 +744,7 @@
 
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_Utilities}" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
+                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_Utilities}" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
                     </StackPanel>
                 </TabItem.Header>
 
@@ -757,77 +757,77 @@
                         </Style>
                     </TabControl.Resources>
 
-                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_UnrecognisedFiles}" Name="tabUnrecognisedFiles">
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_UnrecognisedFiles}" Name="tabUnrecognisedFiles">
 
                         <usercontrols:UnrecognisedVideos x:Name="unRecVids"/>
                     </TabItem>
 
-                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_IgnoredFiles}" Name="tabIgnoredFiles">
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_IgnoredFiles}" Name="tabIgnoredFiles">
 
                         <usercontrols:IgnoredFiles x:Name="ignoredFiles"/>
                     </TabItem>
 
-                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_ManuallyLinked}" Name="tabManuallyLinked">
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_ManuallyLinked}" Name="tabManuallyLinked">
 
                         <usercontrols:ManuallyLinkedFilesControl x:Name="linkedFiles"/>
                     </TabItem>
 
-                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_DuplicateFiles}" Name="tabDuplicateFiles">
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_DuplicateFiles}" Name="tabDuplicateFiles">
 
                         <usercontrols:DuplicateFilesControl x:Name="duplicateFiles"/>
                     </TabItem>
 
-                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_MultipleFiles}" Name="tabMultipleFiles">
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_MultipleFiles}" Name="tabMultipleFiles">
 
                         <usercontrols:MultipleFilesControl x:Name="multipleFiles"/>
                     </TabItem>
 
-                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_MissingFiles}" Name="tabMissingFiles">
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_MissingFiles}" Name="tabMissingFiles">
 
                         <usercontrols:MissingMyListFilesControl x:Name="missingFiles"/>
                     </TabItem>
 
-                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_SeriesWithoutFiles}" Name="tabSeriesWithoutFiles">
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_SeriesWithoutFiles}" Name="tabSeriesWithoutFiles">
 
                         <usercontrols:SeriesWithoutFilesControl x:Name="SeriesWithoutFiles"/>
                     </TabItem>
 
-                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_MissingEpisodes}" Name="tabMissingEpisodes">
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_MissingEpisodes}" Name="tabMissingEpisodes">
 
                         <usercontrols:MissingEpisodesControl x:Name="missingEpisodes"/>
                     </TabItem>
 
-                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_IgnoredAnime}" Name="tabIgnoredAnime">
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_IgnoredAnime}" Name="tabIgnoredAnime">
 
                         <usercontrols:IgnoredAnimeControl x:Name="ignoredAnime"/>
                     </TabItem>
 
-                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Tab_AniDBAVDump}" Name="tabAvdump">
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_AniDBAVDump}" Name="tabAvdump">
 
                         <usercontrols:AvdumpBatchControl x:Name="avdumpBatch"/>
                     </TabItem>
 
-                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Tab_FileSearch}" Name="tabFileSearch">
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_FileSearch}" Name="tabFileSearch">
 
                         <usercontrols:FileSearchControl x:Name="fileSearch"/>
                     </TabItem>
 
-                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Tab_FileRename}" Name="tabFileRenaming">
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_FileRename}" Name="tabFileRenaming">
 
                         <usercontrols:FileRenameControl x:Name="fileRenaming"/>
                     </TabItem>
 
-                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Tab_UpdateAniDB}" Name="tabUpdateAniDBData">
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_UpdateAniDB}" Name="tabUpdateAniDBData">
 
                         <usercontrols:UpdateAniDBDataControl x:Name="updateAniDBData"/>
                     </TabItem>
 
-                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Tab_CommunityData}" Name="tabCommMaint">
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_CommunityData}" Name="tabCommMaint">
 
                         <community:CommunityMaint x:Name="commMaint"/>
                     </TabItem>
 
-                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Tab_MyVotes}" Name="tabRankings">
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_MyVotes}" Name="tabRankings">
 
                         <usercontrols:RankingsControl x:Name="rankings"/>
                     </TabItem>
@@ -843,7 +843,7 @@
 
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Settings}" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
+                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Settings}" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
                     </StackPanel>
                 </TabItem.Header>
 
@@ -857,7 +857,7 @@
                     </TabControl.Resources>
 
                     <!-- Essential settings tab -->
-                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_SettingsEssential}" Name="tabSettingsEssential">
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_SettingsEssential}" Name="tabSettingsEssential">
 
                         <ScrollViewer>
                             <Grid>
@@ -893,19 +893,19 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0" VerticalAlignment="Top"/>
-                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Info_SettingsEssential}" Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1" />
+                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Info_SettingsEssential}" Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1" />
                                     </Grid>
                                 </Border>
 
                                 <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="1" Background="#FFE9ECEF" Margin="0,0,0,5">
-                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ShokoServer}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ShokoServer}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                                 </Border>
 
                                 <settings:JMMServerSettings Grid.Column="0" Grid.Row="2" Margin="5,0,0,10"/>
 
                                 <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="3" Background="#FFE9ECEF" Margin="0,0,0,5"
                                         Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                    <TextBlock  Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AniDBLogin}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock  Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AniDBLogin}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                                 </Border>
 
                                 <settings:AniDBLoginSettings Grid.Column="0" Grid.Row="4" Margin="5,0,0,10"
@@ -928,15 +928,15 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Image Height="16" Width="16" Source="/Images/32_admin.png" Margin="5,2,5,0" Grid.Column="0" VerticalAlignment="Top"/>
-                                        <usercontrols:HyperLinkStandard Margin="0,0,20,0" VerticalAlignment="Center" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=AniDBSignup}" Grid.Column="1"
+                                        <usercontrols:HyperLinkStandard Margin="0,0,20,0" VerticalAlignment="Center" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AniDBSignup}" Grid.Column="1"
                                                                         URL="http://anidb.net"/>
 
                                         <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="2" VerticalAlignment="Top"/>
-                                        <usercontrols:HyperLinkStandard Margin="0,0,20,0" VerticalAlignment="Center" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=AvdumpInfoLink}" Grid.Column="3"
+                                        <usercontrols:HyperLinkStandard Margin="0,0,20,0" VerticalAlignment="Center" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AvdumpInfoLink}" Grid.Column="3"
                                                                         URL="http://wiki.anidb.net/w/Avdump2"/>
 
                                         <Image Height="16" Width="16" Source="/Images/32_key.png" Margin="5,2,4,0" Grid.Column="4" VerticalAlignment="Top"/>
-                                        <usercontrols:HyperLinkStandard Margin="0,0,20,0" VerticalAlignment="Center" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=AvdumpKeyEditLink}" Grid.Column="5"
+                                        <usercontrols:HyperLinkStandard Margin="0,0,20,0" VerticalAlignment="Center" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AvdumpKeyEditLink}" Grid.Column="5"
                                                                         URL="http://anidb.net/perl-bin/animedb.pl?show=profile"/>
 
 
@@ -945,7 +945,7 @@
 
                                 <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="6" Background="#FFE9ECEF" Margin="0,0,0,5"
                                         Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                    <TextBlock  Text="{Resx ResxName=JMMClient.Properties.Resources, Key=ImportFolders}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock  Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ImportFolders}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                                 </Border>
 
                                 <usercontrols:ImportFolderAdmin Grid.Column="0" Grid.Row="7" Margin="0,0,0,10"
@@ -953,7 +953,7 @@
 
                                 <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="8" Background="#FFE9ECEF" Margin="0,0,0,5"
                                         Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                    <TextBlock  Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_Settings_ImportSettings}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock  Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_Settings_ImportSettings}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                                 </Border>
 
                                 <settings:ImportSettings Grid.Column="0" Grid.Row="9" Margin="0,0,0,10"
@@ -961,7 +961,7 @@
 
                                 <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="10" Background="#FFE9ECEF" Margin="0,0,0,5"
                                         Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                    <TextBlock  Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_Settings_RelationSettings}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock  Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_Settings_RelationSettings}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                                 </Border>
 
                                 <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="11"  Background="#F1F1F1" Margin="0,0,0,5" Padding="5" Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
@@ -977,9 +977,9 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0" VerticalAlignment="Top"/>
-                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=RelationSettings_Info}" Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1" Grid.Row="0"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=RelationSettings_Info}" Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1" Grid.Row="0"/>
 
-                                        <usercontrols:HyperLinkStandard Margin="0,0,0,0" VerticalAlignment="Center" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=LearnMore_RelationSettings}"  Grid.Column="1" Grid.Row="1" URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_RelationSettings}"/>
+                                        <usercontrols:HyperLinkStandard Margin="0,0,0,0" VerticalAlignment="Center" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=LearnMore_RelationSettings}"  Grid.Column="1" Grid.Row="1" URL="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Link_RelationSettings}"/>
                                     </Grid>
                                 </Border>
 
@@ -992,7 +992,7 @@
                     </TabItem>
 
                     <!-- AniDB Settings tab -->
-                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_SettingsAniDB}" Name="tabSettingsAniDB"
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_SettingsAniDB}" Name="tabSettingsAniDB"
                              Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
 
                         <ScrollViewer>
@@ -1020,7 +1020,7 @@
 
                                 <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="0" Background="#FFE9ECEF" Margin="0,0,0,5"
                                         Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                    <TextBlock  Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AniDBLogin}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock  Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AniDBLogin}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                                 </Border>
 
                                 <settings:AniDBLoginSettings Grid.Column="0" Grid.Row="1" Margin="5,0,0,10"
@@ -1042,15 +1042,15 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Image Height="16" Width="16" Source="/Images/32_admin.png" Margin="5,2,5,0" Grid.Column="0" VerticalAlignment="Top"/>
-                                        <usercontrols:HyperLinkStandard Margin="0,0,20,0" VerticalAlignment="Center" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=AniDBSignup}" Grid.Column="1"
+                                        <usercontrols:HyperLinkStandard Margin="0,0,20,0" VerticalAlignment="Center" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AniDBSignup}" Grid.Column="1"
                                                                         URL="http://anidb.net"/>
 
                                         <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="2" VerticalAlignment="Top"/>
-                                        <usercontrols:HyperLinkStandard Margin="0,0,20,0" VerticalAlignment="Center" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=AvdumpInfoLink}" Grid.Column="3"
+                                        <usercontrols:HyperLinkStandard Margin="0,0,20,0" VerticalAlignment="Center" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AvdumpInfoLink}" Grid.Column="3"
                                                                         URL="http://wiki.anidb.net/w/Avdump2"/>
 
                                         <Image Height="16" Width="16" Source="/Images/32_key.png" Margin="5,2,4,0" Grid.Column="4" VerticalAlignment="Top"/>
-                                        <usercontrols:HyperLinkStandard Margin="0,0,20,0" VerticalAlignment="Center" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=AvdumpKeyEditLink}" Grid.Column="5"
+                                        <usercontrols:HyperLinkStandard Margin="0,0,20,0" VerticalAlignment="Center" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AvdumpKeyEditLink}" Grid.Column="5"
                                                                         URL="http://anidb.net/perl-bin/animedb.pl?show=profile"/>
 
 
@@ -1059,7 +1059,7 @@
 
                                 <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="3" Background="#FFE9ECEF" Margin="0,0,0,5"
                                         Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                    <TextBlock  Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AniDBDownloadOptions}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock  Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AniDBDownloadOptions}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                                 </Border>
 
                                 <settings:AniDBDownloadSettings Grid.Column="0" Grid.Row="4" Margin="5,0,0,10"
@@ -1067,7 +1067,7 @@
 
                                 <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="5" Background="#FFE9ECEF" Margin="0,0,0,5"
                                         Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                    <TextBlock  Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AniDBMylistOptions}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock  Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AniDBMylistOptions}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                                 </Border>
 
                                 <settings:AniDBMyListSettings Grid.Column="0" Grid.Row="6" Margin="5,0,0,10"
@@ -1085,14 +1085,14 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0" VerticalAlignment="Top"/>
-                                        <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=LearnMore_AniDBOptions}" Grid.Column="1"
-                                                                        URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_AniDBSettings}"/>
+                                        <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=LearnMore_AniDBOptions}" Grid.Column="1"
+                                                                        URL="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Link_AniDBSettings}"/>
                                     </Grid>
                                 </Border>
 
                                 <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="8" Background="#FFE9ECEF" Margin="0,0,0,5"
                                         Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                    <TextBlock  Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AniDBScheduleOptions}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock  Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AniDBScheduleOptions}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                                 </Border>
 
                                 <settings:AniDBScheduledUpdates Grid.Column="0" Grid.Row="9" Margin="5,0,0,10"
@@ -1100,7 +1100,7 @@
 
                                 <!-- Languages -->
                                 <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="10" Background="#FFE9ECEF" Margin="0,0,0,5">
-                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_Settings_Language}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_Settings_Language}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                                 </Border>
 
                                 <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="11"  Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
@@ -1115,7 +1115,7 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0" VerticalAlignment="Top"/>
-                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Info_SettingsLanguage}" Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Info_SettingsLanguage}" Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1"/>
                                     </Grid>
                                 </Border>
 
@@ -1127,7 +1127,7 @@
                     </TabItem>
 
                     <!-- TvDB / MovieDB Settings tab -->
-                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_SettingsOnlineDB}" Name="tabSettingsOnlineDB"
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_SettingsOnlineDB}" Name="tabSettingsOnlineDB"
                              Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
 
                         <ScrollViewer>
@@ -1154,9 +1154,9 @@
 
                                     <StackPanel Orientation="Horizontal">
                                         <Image Height="24" Width="24" Source="/Images/32_tvdb.png" Margin="5,0,5,0" Grid.Column="0" VerticalAlignment="Center"/>
-                                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_SettingsOnlineDB_TvDB}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
-                                        <usercontrols:HyperLinkStandard VerticalAlignment="Center" Margin="5,0,0,0" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=WhatsThis}"
-                                                                        URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_TvDB}"/>
+                                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_SettingsOnlineDB_TvDB}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                        <usercontrols:HyperLinkStandard VerticalAlignment="Center" Margin="5,0,0,0" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=WhatsThis}"
+                                                                        URL="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Link_TvDB}"/>
                                     </StackPanel>
 
                                 </Border>
@@ -1167,9 +1167,9 @@
 
                                     <StackPanel Orientation="Horizontal">
                                         <Image Height="24" Width="24" Source="/Images/32_tmdb.png" Margin="5,0,5,0" Grid.Column="0" VerticalAlignment="Center"/>
-                                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_SettingsOnlineDB_MovieDB}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
-                                        <usercontrols:HyperLinkStandard VerticalAlignment="Center" Margin="5,0,0,0" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=WhatsThis}"
-                                                                        URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_TMDb}"/>
+                                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_SettingsOnlineDB_MovieDB}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                        <usercontrols:HyperLinkStandard VerticalAlignment="Center" Margin="5,0,0,0" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=WhatsThis}"
+                                                                        URL="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Link_TMDb}"/>
                                     </StackPanel>
 
 
@@ -1181,9 +1181,9 @@
 
                                     <StackPanel Orientation="Horizontal">
                                         <Image Height="24" Width="24" Source="/Images/32_trakt.png" Margin="5,0,5,0" Grid.Column="0" VerticalAlignment="Center"/>
-                                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_SettingsOnlineDB_Trakt}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
-                                        <usercontrols:HyperLinkStandard VerticalAlignment="Center" Margin="5,0,0,0" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=WhatsThis}"
-                                                                        URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_Trakt}"/>
+                                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_SettingsOnlineDB_Trakt}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                        <usercontrols:HyperLinkStandard VerticalAlignment="Center" Margin="5,0,0,0" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=WhatsThis}"
+                                                                        URL="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Link_Trakt}"/>
                                     </StackPanel>
 
                                 </Border>
@@ -1193,9 +1193,9 @@
                                 <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="6" Background="#FFE9ECEF" Padding="4" Margin="0,0,0,5">
                                     <StackPanel Orientation="Horizontal">
                                         <Image Height="24" Width="24" Source="/Images/32_mal.png" Margin="5,0,5,0" Grid.Column="0" VerticalAlignment="Center"/>
-                                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_SettingsOnlineDB_MAL}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
-                                        <usercontrols:HyperLinkStandard VerticalAlignment="Center" Margin="5,0,0,0" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=WhatsThis}"
-                                                                        URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_MAL}"/>
+                                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_SettingsOnlineDB_MAL}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                        <usercontrols:HyperLinkStandard VerticalAlignment="Center" Margin="5,0,0,0" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=WhatsThis}"
+                                                                        URL="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Link_MAL}"/>
                                     </StackPanel>
 
                                 </Border>
@@ -1207,7 +1207,7 @@
                     </TabItem>
 
                     <!-- Web Cache Settings tab -->
-                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_SettingsWebCache}" Name="tabSettingsWebCache"
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_SettingsWebCache}" Name="tabSettingsWebCache"
                              Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
 
                         <ScrollViewer>
@@ -1241,14 +1241,14 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0" VerticalAlignment="Top"/>
-                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Info_SettingsWebCache}" Margin="0,1,5,0" TextWrapping="Wrap" Grid.Column="1"/>
-                                        <usercontrols:HyperLinkStandard Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="0,0,5,0" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=LearnMore_WebCache}"
-                                                                        URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_WebCache}"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Info_SettingsWebCache}" Margin="0,1,5,0" TextWrapping="Wrap" Grid.Column="1"/>
+                                        <usercontrols:HyperLinkStandard Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="0,0,5,0" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=LearnMore_WebCache}"
+                                                                        URL="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Link_WebCache}"/>
                                     </Grid>
                                 </Border>
 
                                 <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="1" Background="#FFE9ECEF" Margin="0,0,0,5">
-                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_SettingsWebCache}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_SettingsWebCache}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                                 </Border>
 
                                 <settings:WebCacheBasicSettings Grid.Column="0" Grid.Row="2" Margin="5,0,0,10"/>
@@ -1258,7 +1258,7 @@
                     </TabItem>
 
                     <!-- Display options tab -->
-                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_SettingsDisplay}" Name="tabSettingDisplay"
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_SettingsDisplay}" Name="tabSettingDisplay"
                              Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <ScrollViewer>
                             
@@ -1292,14 +1292,14 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0" VerticalAlignment="Top"/>
-                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Info_SettingsDisplay}" Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Info_SettingsDisplay}" Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1"/>
                                     </Grid>
                                 </Border>
                                 
                                 <!-- Styles -->
 
                                 <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="3" Background="#FFE9ECEF" Margin="0,0,0,5">
-                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_SettingsStyle}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_SettingsStyle}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                                 </Border>
   
 
@@ -1307,7 +1307,7 @@
 
                                 <!-- Image Sizes -->
                                 <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="6" Background="#FFE9ECEF" Margin="0,0,0,5">
-                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_SettingsImageSizes}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_SettingsImageSizes}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                                 </Border>
 
                                 <settings:DisplayImageSizesSettings Grid.Column="0" Grid.Row="7" Margin="5,0,0,10"/>
@@ -1318,7 +1318,7 @@
                     </TabItem>
 
                     <!-- Users tab -->
-                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_SettingsUsers}" Name="tabSettingUsers"
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_SettingsUsers}" Name="tabSettingUsers"
                              Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=IsAdminUser, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <ScrollViewer>
                             <Grid>
@@ -1344,7 +1344,7 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0" VerticalAlignment="Top"/>
-                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Info_SettingsUserAdmin}" Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Info_SettingsUserAdmin}" Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1"/>
                                     </Grid>
                                 </Border>
 
@@ -1358,7 +1358,7 @@
                     </TabItem>
 
                     <!-- Video Player tab -->
-                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_VideoPlayer}" Name="tabSettingVideoPlayer"
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_VideoPlayer}" Name="tabSettingVideoPlayer"
                              Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <ScrollViewer>
                             <Grid>
@@ -1383,7 +1383,7 @@
 
 
                                 <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="0" Background="#FFE9ECEF" Margin="0,0,0,5">
-                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_VideoPlayer}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_VideoPlayer}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                                 </Border>
 
 
@@ -1391,7 +1391,7 @@
                                 <settings:VideoPlayerSettingsControl Grid.Column="0" Grid.Row="1" Margin="5,0,0,10"/>
 
                                 <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="2" Background="#FFE9ECEF" Margin="0,0,0,5">
-                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=VideoPlayer_AutoFile}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_AutoFile}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                                 </Border>
 
 
@@ -1410,7 +1410,7 @@
                      Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_Pinned}" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
+                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_Pinned}" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
                     </StackPanel>
                 </TabItem.Header>
                 <TabControl Name="tabPinned" VerticalAlignment="Stretch" TabStripPlacement="Left"
@@ -1424,7 +1424,7 @@
 
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tab_Downloads}" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
+                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_Downloads}" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
                     </StackPanel>
                 </TabItem.Header>
 
@@ -1439,32 +1439,32 @@
 
 
 
-                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Tab_uTorrent}" Name="tabuTorrent">
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_uTorrent}" Name="tabuTorrent">
                         <downloads1:DownloadsTorrentMonitorControl/>
 
                     </TabItem>
 
-                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Tab_SearchTorrents}" Name="tabSearchTorrents">
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_SearchTorrents}" Name="tabSearchTorrents">
                         <downloads1:DownloadsSearchTorrentsControl x:Name="ucTorrentSearch"/>
 
                     </TabItem>
 
-                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Tab_BrowseTorrents}" Name="tabBrowseTorrents">
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_BrowseTorrents}" Name="tabBrowseTorrents">
                         <downloads1:DownloadsBrowseTorrentsControl/>
 
                     </TabItem>
 
-                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=TAB_MissingEpisodes}" Name="tabDownloadsMissingEpisodes">
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_MissingEpisodes}" Name="tabDownloadsMissingEpisodes">
                         <usercontrols:MissingEpisodesControl/>
 
                     </TabItem>
 
-                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Tab_Recommendations}" Name="tabRecommendations">
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_Recommendations}" Name="tabRecommendations">
                         <downloads1:DownloadRecommendationsControl/>
 
                     </TabItem>
 
-                    <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Tab_Settings}" Name="tabDownloadSettings">
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_Settings}" Name="tabDownloadSettings">
 
                         <ScrollViewer>
                             <Grid>
@@ -1507,33 +1507,33 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0" VerticalAlignment="Top"/>
-                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Info_Downloads}" Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Info_Downloads}" Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1"/>
 
-                                        <usercontrols:HyperLinkStandard Margin="0,0,0,0" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=LearnMore_Downloads}" 
-                                                                        URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_Downloads}"/>
+                                        <usercontrols:HyperLinkStandard Margin="0,0,0,0" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=LearnMore_Downloads}" 
+                                                                        URL="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Link_Downloads}"/>
                                     </Grid>
                                 </Border>
 
                                 <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="1" Background="#FFE9ECEF" Margin="0,0,0,5">
-                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Downloads_uTorrentWebUI}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Downloads_uTorrentWebUI}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                                 </Border>
 
                                 <downloads1:DownloadsSettingsControl Grid.Column="0" Grid.Row="2" Margin="5,0,0,10"/>
 
                                 <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="3" Background="#FFE9ECEF" Margin="0,0,0,5">
-                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Downloads_TorrentBlackHole}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Downloads_TorrentBlackHole}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                                 </Border>
 
                                 <downloads1:DownloadsTorrentBlackHole Grid.Column="0" Grid.Row="4" Margin="5,0,0,10"/>
 
                                 <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="5" Background="#FFE9ECEF" Margin="0,0,0,5">
-                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Downloads_TorrentDefault}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Downloads_TorrentDefault}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                                 </Border>
 
                                 <downloads1:DownloadSettingsTorSources Grid.Column="0" Grid.Row="6" Margin="5,0,0,10"/>
 
                                 <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="7" Background="#FFE9ECEF" Margin="0,0,0,5">
-                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Downloads_BakaBT}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Downloads_BakaBT}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                                 </Border>
 
                                 <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="8"  Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
@@ -1550,9 +1550,9 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0" VerticalAlignment="Top"/>
-                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Downloads_BakaBTInfo}" Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Downloads_BakaBTInfo}" Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1"/>
 
-                                        <usercontrols:HyperLinkStandard Margin="5,0,20,0" VerticalAlignment="Center" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=Downloads_GoTo}"  Grid.Column="2"
+                                        <usercontrols:HyperLinkStandard Margin="5,0,20,0" VerticalAlignment="Center" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Downloads_GoTo}"  Grid.Column="2"
                                                                         URL="http://bakabt.me"/>
                                     </Grid>
                                 </Border>
@@ -1560,7 +1560,7 @@
                                 <downloads1:DownloadSettingsBakaBT Grid.Column="0" Grid.Row="9" Margin="5,0,0,10"/>
 
                                 <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="10" Background="#FFE9ECEF" Margin="0,0,0,5">
-                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Downloads_AnimeBytes}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Downloads_AnimeBytes}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                                 </Border>
 
                                 <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="11"  Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
@@ -1577,9 +1577,9 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0" VerticalAlignment="Top"/>
-                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Downloads_AnimeBytesInfo}" Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Downloads_AnimeBytesInfo}" Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1"/>
 
-                                        <usercontrols:HyperLinkStandard Margin="5,0,20,0" VerticalAlignment="Center" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=Downloads_GoTo}"  Grid.Column="2"
+                                        <usercontrols:HyperLinkStandard Margin="5,0,20,0" VerticalAlignment="Center" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Downloads_GoTo}"  Grid.Column="2"
                                                                         URL="http://animebytes.tv"/>
                                     </Grid>
                                 </Border>
@@ -1604,7 +1604,7 @@
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
                         <Image Height="20" Source="/Images/32_search.png" Margin="0,0,5,0"/>
-                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tab_Search}" Margin="0,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
+                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_Search}" Margin="0,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
                     </StackPanel>
                 </TabItem.Header>
 
@@ -1614,8 +1614,8 @@
 
             <TabItem Name="tabHelp" Style="{DynamicResource tabMainItem}">
                 <TabItem.Header>
-                    <Hyperlink Cursor="Arrow" TextDecorations="{x:Null}" NavigateUri="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_Help}" RequestNavigate="Hyperlink_RequestNavigate">
-                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tab_Help}" Margin="0,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold" />
+                    <Hyperlink Cursor="Arrow" TextDecorations="{x:Null}" NavigateUri="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Link_Help}" RequestNavigate="Hyperlink_RequestNavigate">
+                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_Help}" Margin="0,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold" />
                     </Hyperlink>
                 </TabItem.Header>
             </TabItem>
@@ -1625,7 +1625,7 @@
                      Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowCommunity, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
-                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tab_Community}" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
+                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_Community}" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
                     </StackPanel>
                 </TabItem.Header>
 
@@ -1672,7 +1672,7 @@
                         <Image.ToolTip>
                             <StackPanel Orientation="Vertical">
                                 <Border Background="SteelBlue">
-                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_QueueHasher}" FontWeight="Bold" Foreground="White" Padding="6"/>
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_QueueHasher}" FontWeight="Bold" Foreground="White" Padding="6"/>
                                 </Border>
                                 <TextBlock Margin="4,4,0,4" Text="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=HasherQueueState}"/>
                             </StackPanel>
@@ -1686,7 +1686,7 @@
                         <Image.ToolTip>
                             <StackPanel Orientation="Vertical">
                                 <Border Background="SteelBlue">
-                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_QueueGeneral}" FontWeight="Bold" Foreground="White" Padding="6"/>
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_QueueGeneral}" FontWeight="Bold" Foreground="White" Padding="6"/>
                                 </Border>
                                 <TextBlock Margin="4,4,0,4" Text="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=GeneralQueueState}"/>
                             </StackPanel>
@@ -1700,7 +1700,7 @@
                         <Image.ToolTip>
                             <StackPanel Orientation="Vertical">
                                 <Border Background="SteelBlue">
-                                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_QueueImages}" FontWeight="Bold" Foreground="White" Padding="6"/>
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_QueueImages}" FontWeight="Bold" Foreground="White" Padding="6"/>
                                 </Border>
                                 <TextBlock Margin="4,4,0,4" Text="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=ServerImageQueueState}"/>
                             </StackPanel>
@@ -1714,7 +1714,7 @@
                         Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=AdminMessagesAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                             <Image Height="16" Width="16" Source="/Images/32_mail.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Main_Messages}" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Main_Messages}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
@@ -1723,13 +1723,13 @@
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,4,0,4"
                                 Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=IsBanned, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <Image Height="16" Width="16" Source="/Images/16_exclamation.png" Margin="0,0,5,0"/>
-                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Main_Paused}" Margin="0,0,0,0" FontWeight="Bold"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Main_Paused}" Margin="0,0,0,0" FontWeight="Bold"/>
                         <TextBlock VerticalAlignment="Center" Margin="0,0,0,0" Text="(" FontWeight="Bold"/>
                         <TextBlock VerticalAlignment="Center" Text="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=BanOrigin}" FontWeight="Bold"/>
                         <TextBlock VerticalAlignment="Center" Margin="0,0,0,0" Text=")" FontWeight="Bold"/>
                         <TextBlock VerticalAlignment="Center" Margin="10,0,0,0" Text="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=BanReason}"/>
-                        <usercontrols:HyperLinkStandard VerticalAlignment="Center" Margin="10,0,0,0" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=WhatDoesThisMean}" Grid.Column="1"
-                                                                        URL="{Resx ResxName=JMMClient.Properties.Resources, Key=Link_AniDBBanned}"/>
+                        <usercontrols:HyperLinkStandard VerticalAlignment="Center" Margin="10,0,0,0" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=WhatDoesThisMean}" Grid.Column="1"
+                                                                        URL="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Link_AniDBBanned}"/>
                     </StackPanel>
 
 
@@ -1743,7 +1743,7 @@
                     <Button Name="btnSwitchUser"  Margin="2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/64_user.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Main_User}" FontWeight="Bold" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Main_User}" FontWeight="Bold" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
@@ -1760,19 +1760,19 @@
                     <Button x:Name="btnFeed"  Margin="2,2,2,0" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Top">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="Images/32_feed.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Main_Feed}" Margin="0,0,0,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Main_Feed}" Margin="0,0,0,0"/>
                         </StackPanel>
                     </Button>
                     <Button x:Name="btnDiscord"  Margin="2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="Images/16_discord.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Main_Discord}" Margin="0,0,0,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Main_Discord}" Margin="0,0,0,0"/>
                         </StackPanel>
                     </Button>
                     <Button x:Name="btnAbout"  Margin="2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="Images/32_info.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Main_About}" Margin="0,0,0,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Main_About}" Margin="0,0,0,0"/>
                         </StackPanel>
                     </Button>
 

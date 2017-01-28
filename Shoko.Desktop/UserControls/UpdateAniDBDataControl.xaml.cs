@@ -56,7 +56,7 @@ namespace Shoko.Desktop.UserControls
 
                 int filesQueued = VM_ShokoServer.Instance.ShokoServices.UpdateAniDBFileData(chkMissingInfo.IsChecked.Value, chkOutofDate.IsChecked.Value, true);
 
-                MessageBox.Show(string.Format(Properties.Resources.UpdateAniDB_QueueCount, filesQueued), Properties.Resources.UpdateAniDB_UpdateAniDB, MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(string.Format(Shoko.Commons.Properties.Resources.UpdateAniDB_QueueCount, filesQueued), Shoko.Commons.Properties.Resources.UpdateAniDB_UpdateAniDB, MessageBoxButton.OK, MessageBoxImage.Information);
 
                 wdw.Cursor = Cursors.Arrow;
             }
@@ -75,7 +75,7 @@ namespace Shoko.Desktop.UserControls
 
                 int filesQueued = VM_ShokoServer.Instance.ShokoServices.UpdateAniDBFileData(chkMissingInfo.IsChecked.Value, chkOutofDate.IsChecked.Value, false);
 
-                MessageBox.Show(string.Format(Properties.Resources.UpdateAniDB_QueueActual, filesQueued), Properties.Resources.UpdateAniDB_UpdateAniDB, MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(string.Format(Shoko.Commons.Properties.Resources.UpdateAniDB_QueueActual, filesQueued), Shoko.Commons.Properties.Resources.UpdateAniDB_UpdateAniDB, MessageBoxButton.OK, MessageBoxImage.Information);
 
                 wdw.Cursor = Cursors.Arrow;
             }

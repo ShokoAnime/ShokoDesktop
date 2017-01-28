@@ -101,20 +101,20 @@ namespace Shoko.Desktop.UserControls
 
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
-            cboCollection.Items.Add(Properties.Resources.Random_All);
-            cboCollection.Items.Add(Properties.Resources.Rankings_InCollection);
-            cboCollection.Items.Add(Properties.Resources.Rankings_AllEpisodes);
-            cboCollection.Items.Add(Properties.Resources.Rankings_NotWatched);
+            cboCollection.Items.Add(Shoko.Commons.Properties.Resources.Random_All);
+            cboCollection.Items.Add(Shoko.Commons.Properties.Resources.Rankings_InCollection);
+            cboCollection.Items.Add(Shoko.Commons.Properties.Resources.Rankings_AllEpisodes);
+            cboCollection.Items.Add(Shoko.Commons.Properties.Resources.Rankings_NotWatched);
             cboCollection.SelectedIndex = 1;
 
-            cboWatched.Items.Add(Properties.Resources.Random_All);
-            cboWatched.Items.Add(Properties.Resources.Rankings_AllWatched);
-            cboWatched.Items.Add(Properties.Resources.Rankings_NotWatched);
+            cboWatched.Items.Add(Shoko.Commons.Properties.Resources.Random_All);
+            cboWatched.Items.Add(Shoko.Commons.Properties.Resources.Rankings_AllWatched);
+            cboWatched.Items.Add(Shoko.Commons.Properties.Resources.Rankings_NotWatched);
             cboWatched.SelectedIndex = 0;
 
-            cboVoted.Items.Add(Properties.Resources.Random_All);
-            cboVoted.Items.Add(Properties.Resources.Rankings_Voted);
-            cboVoted.Items.Add(Properties.Resources.Rankings_NotVoted);
+            cboVoted.Items.Add(Shoko.Commons.Properties.Resources.Random_All);
+            cboVoted.Items.Add(Shoko.Commons.Properties.Resources.Rankings_Voted);
+            cboVoted.Items.Add(Shoko.Commons.Properties.Resources.Rankings_NotVoted);
             cboVoted.SelectedIndex = 0;
 
             workerFiles.DoWork += new DoWorkEventHandler(workerFiles_DoWork);
@@ -150,7 +150,7 @@ namespace Shoko.Desktop.UserControls
 
                 if (animeRanking.AnimeSeries == null)
                 {
-                    MessageBox.Show(Properties.Resources.Rankings_AnimeNotInCollection);
+                    MessageBox.Show(Shoko.Commons.Properties.Resources.Rankings_AnimeNotInCollection);
                     return;
                 }
 
@@ -179,7 +179,7 @@ namespace Shoko.Desktop.UserControls
             btnRefresh.IsEnabled = false;
             AllRankings.Clear();
 
-            StatusMessage = Properties.Resources.Loading;
+            StatusMessage = Shoko.Commons.Properties.Resources.Loading;
 
             RankingRefreshOptions opt = new RankingRefreshOptions()
             {

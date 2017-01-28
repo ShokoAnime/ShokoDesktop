@@ -24,7 +24,7 @@ namespace Shoko.Desktop.ViewModel
         {
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
-            List<VM_WatchedStatusContainer> statuses = new List<VM_WatchedStatusContainer> {new VM_WatchedStatusContainer(WatchedStatus.All, Properties.Resources.Episodes_Watched_All), new VM_WatchedStatusContainer(WatchedStatus.Unwatched, Properties.Resources.Episodes_Watched_Unwatched), new VM_WatchedStatusContainer(WatchedStatus.Watched, Properties.Resources.Episodes_Watched_Watched)};
+            List<VM_WatchedStatusContainer> statuses = new List<VM_WatchedStatusContainer> {new VM_WatchedStatusContainer(WatchedStatus.All, Shoko.Commons.Properties.Resources.Episodes_Watched_All), new VM_WatchedStatusContainer(WatchedStatus.Unwatched, Shoko.Commons.Properties.Resources.Episodes_Watched_Unwatched), new VM_WatchedStatusContainer(WatchedStatus.Watched, Shoko.Commons.Properties.Resources.Episodes_Watched_Watched)};
             return statuses;
         }
     }

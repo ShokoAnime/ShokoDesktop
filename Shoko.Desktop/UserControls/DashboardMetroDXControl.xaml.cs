@@ -152,8 +152,8 @@ namespace Shoko.Desktop.UserControls
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
             cboImageType.Items.Clear();
-            cboImageType.Items.Add(Properties.Resources.Fanart);
-            cboImageType.Items.Add(Properties.Resources.Posters);
+            cboImageType.Items.Add(Shoko.Commons.Properties.Resources.Fanart);
+            cboImageType.Items.Add(Shoko.Commons.Properties.Resources.Posters);
 
             if (AppSettings.DashMetroImageType == DashboardMetroImageType.Fanart)
                 cboImageType.SelectedIndex = 0;

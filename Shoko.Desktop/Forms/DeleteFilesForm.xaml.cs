@@ -114,7 +114,7 @@ namespace Shoko.Desktop.Forms
             if (inProgress)
             {
                 e.Cancel = true;
-                MessageBox.Show(Properties.Resources.DeleteFiles_Wait, Properties.Resources.Stop, MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(Shoko.Commons.Properties.Resources.DeleteFiles_Wait, Shoko.Commons.Properties.Resources.Stop, MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
 
@@ -123,8 +123,8 @@ namespace Shoko.Desktop.Forms
 
         void btnOK_Click(object sender, RoutedEventArgs e)
         {
-            string msg = string.Format(Properties.Resources.DeleteFiles_Confirm, vids.Count);
-            MessageBoxResult res = MessageBox.Show(msg, Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            string msg = string.Format(Shoko.Commons.Properties.Resources.DeleteFiles_Confirm, vids.Count);
+            MessageBoxResult res = MessageBox.Show(msg, Shoko.Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
             if (res == MessageBoxResult.Yes)
             {
@@ -157,7 +157,7 @@ namespace Shoko.Desktop.Forms
             foreach (VM_VideoDetailed vid in vids)
             {
                 i++;
-                string msg = string.Format(Properties.Resources.DeleteFiles_Deleting, i, vids.Count);
+                string msg = string.Format(Shoko.Commons.Properties.Resources.DeleteFiles_Deleting, i, vids.Count);
                 deleteFilesWorker.ReportProgress(0, msg);
                 //Thread.Sleep(500);
                 foreach (CL_VideoLocal_Place n in vid.Places)
@@ -177,7 +177,7 @@ namespace Shoko.Desktop.Forms
 
             }
 
-            deleteFilesWorker.ReportProgress(100, Properties.Resources.Done);
+            deleteFilesWorker.ReportProgress(100, Shoko.Commons.Properties.Resources.Done);
         }
         Dictionary<string, bool> chks=new Dictionary<string, bool>();
         private Dictionary<int, Tuple<string, BitmapImage>> dict=new Dictionary<int, Tuple<string, BitmapImage>>();

@@ -5,7 +5,7 @@
         xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
         ShowInTaskbar="False" WindowStyle="ToolWindow"
         WindowStartupLocation="CenterScreen" Topmost="False" SizeToContent="Manual"
-        Title="{Resx ResxName=JMMClient.Properties.Resources, Key=AdminMessageTitle}" Height="300" Width="500">
+        Title="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AdminMessageTitle}" Height="300" Width="500">
     <Grid>
         <Grid.Resources>
             <ResourceDictionary>
@@ -45,7 +45,7 @@
                         <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" Margin="10,10,5,5" Grid.Column="1" Grid.Row="0" VerticalAlignment="Top">
 
                             <TextBlock Text="{Binding Path=MessageDateAsDate}" FontWeight="Bold" FontSize="14" Foreground="DarkBlue" VerticalAlignment="Center"/>
-                            <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="{Resx ResxName=JMMClient.Properties.Resources, Key=MoreInformation}" URL="{Binding Path=MessageURL}" Margin="10,0,0,0"
+                            <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MoreInformation}" URL="{Binding Path=MessageURL}" Margin="10,0,0,0"
                                                      Visibility="{Binding Path=HasMessageURL, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                         </StackPanel>
@@ -74,7 +74,7 @@
             <StackPanel Orientation="Horizontal"  Margin="0,0,0,5">
                 <Image Height="24" Width="24" Source="/Images/32_WebDatabase.png" Margin="0,0,5,0"/>
 
-                <TextBlock Margin="5,0,0,0" FontWeight="DemiBold" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=AdminMessageTitle}" FontSize="20" VerticalAlignment="Center"/>
+                <TextBlock Margin="5,0,0,0" FontWeight="DemiBold" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AdminMessageTitle}" FontSize="20" VerticalAlignment="Center"/>
 
             </StackPanel>
         </Border>

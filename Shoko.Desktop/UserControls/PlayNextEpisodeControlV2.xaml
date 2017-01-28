@@ -88,7 +88,7 @@
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                         <Image Height="24" Width="24" Source="/Images/32_eye2.png" Margin="2,0,2,0" ToolTipService.ShowDuration="60000">
                             <Image.ToolTip>
-                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_Unwatched}"/>
+                                <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_Unwatched}"/>
                             </Image.ToolTip>
                         </Image>
 
@@ -102,7 +102,7 @@
                         <Image Height="24" Width="24" Source="/Images/32_resume.png" Margin="0,0,0,0"/>
                     </StackPanel>
                     <Button.ToolTip>
-                        <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Play}"/>
+                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Play}"/>
                     </Button.ToolTip>
                 </Button>
             </StackPanel>

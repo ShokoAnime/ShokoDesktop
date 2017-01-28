@@ -36,10 +36,10 @@
                                  CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                 <Image Height="16" Width="16" Source="/Images/32_resume.png" Margin="2,0,2,0" VerticalAlignment="Center"/>
-                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Play}" Margin="5,0,5,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Play}" Margin="5,0,5,0"/>
                             </StackPanel>
                             <Button.ToolTip>
-                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=PlayVideo}"/>
+                                <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=PlayVideo}"/>
                             </Button.ToolTip>
                         </Button>
 
@@ -48,10 +48,10 @@
                                 Command="{StaticResource RescanFileCommand}" CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="0,0,5,0"/>
-                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Search_Rescan}" Margin="0,0,5,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Search_Rescan}" Margin="0,0,5,0"/>
                             </StackPanel>
                             <Button.ToolTip>
-                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Episode_AniDBForceUpdate}"/>
+                                <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Episode_AniDBForceUpdate}"/>
                             </Button.ToolTip>
                         </Button>
 
@@ -61,10 +61,10 @@
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                 <Image Height="16" Width="16" Source="/Images/16_link_remove.png" Margin="2,0,2,0" VerticalAlignment="Center">
                                 </Image>
-                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=DeleteLink}" Margin="5,0,5,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteLink}" Margin="5,0,5,0"/>
                             </StackPanel>
                             <Button.ToolTip>
-                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_DeleteLink}"/>
+                                <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_DeleteLink}"/>
                             </Button.ToolTip>
                         </Button>
 
@@ -74,7 +74,7 @@
                                 Command="{StaticResource AvdumpFileCommand}" CommandParameter="{Binding}">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Image Height="16" Width="16" Source="/Images/32_anidb.png" Margin="0,0,5,0"/>
-                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Avdump}" Margin="0,0,5,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Avdump}" Margin="0,0,5,0"/>
                             </StackPanel>
                         </Button>
 

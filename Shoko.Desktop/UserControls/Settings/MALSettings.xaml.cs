@@ -15,10 +15,10 @@ namespace Shoko.Desktop.UserControls.Settings
             InitializeComponent();
 
             cboUpdateFrequency.Items.Clear();
-            cboUpdateFrequency.Items.Add(Properties.Resources.UpdateFrequency_Daily);
-            cboUpdateFrequency.Items.Add(Properties.Resources.UpdateFrequency_12Hours);
-            cboUpdateFrequency.Items.Add(Properties.Resources.UpdateFrequency_6Hours);
-            cboUpdateFrequency.Items.Add(Properties.Resources.UpdateFrequency_Never);
+            cboUpdateFrequency.Items.Add(Shoko.Commons.Properties.Resources.UpdateFrequency_Daily);
+            cboUpdateFrequency.Items.Add(Shoko.Commons.Properties.Resources.UpdateFrequency_12Hours);
+            cboUpdateFrequency.Items.Add(Shoko.Commons.Properties.Resources.UpdateFrequency_6Hours);
+            cboUpdateFrequency.Items.Add(Shoko.Commons.Properties.Resources.UpdateFrequency_Never);
 
             switch (VM_ShokoServer.Instance.MAL_UpdateFrequency)
             {

@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using Shoko.Models.Enums;
 using Shoko.Commons.Extensions;
+using Shoko.Commons.Notification;
 using Shoko.Desktop.ViewModel.Helpers;
 // ReSharper disable InconsistentNaming
 

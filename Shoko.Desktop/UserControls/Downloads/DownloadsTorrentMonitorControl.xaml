@@ -44,7 +44,7 @@
                     <Button Name="btnRefresh" Margin="2,2,2,2" Style="{DynamicResource RoundButtonStyle}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                             <Image Height="16" Width="16" Source="/Images/32_refresh.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Refresh}" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Refresh}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
@@ -101,17 +101,17 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Name}" Binding="{Binding Name}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Hash}" Binding="{Binding Hash}" IsReadOnly="True" Visibility="Hidden" />
-                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Queue}" Binding="{Binding TorrentQueueOrder}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Size}" Binding="{Binding SizeFormatted}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Done}" Binding="{Binding PercentProgressFormatted}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Status}" Binding="{Binding StatusFormatted}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Seeds}" Binding="{Binding SeedsFormatted}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Peers}" Binding="{Binding PeersFormatted}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_DownSpeed}" Binding="{Binding DownloadSpeedFormatted}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_UpSpeed}" Binding="{Binding UploadSpeedFormatted}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Ratio}" Binding="{Binding RatioFormatted}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Download_Name}" Binding="{Binding Name}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Hash}" Binding="{Binding Hash}" IsReadOnly="True" Visibility="Hidden" />
+                    <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Download_Queue}" Binding="{Binding TorrentQueueOrder}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Download_Size}" Binding="{Binding SizeFormatted}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Download_Done}" Binding="{Binding PercentProgressFormatted}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Download_Status}" Binding="{Binding StatusFormatted}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Download_Seeds}" Binding="{Binding SeedsFormatted}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Download_Peers}" Binding="{Binding PeersFormatted}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Download_DownSpeed}" Binding="{Binding DownloadSpeedFormatted}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Download_UpSpeed}" Binding="{Binding UploadSpeedFormatted}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Download_Ratio}" Binding="{Binding RatioFormatted}" IsReadOnly="True" />
 
                 </DataGrid.Columns>
             </DataGrid>
@@ -139,7 +139,7 @@
 
                 <StackPanel Orientation="Horizontal" Margin="10,5,10,5">
                     <Image Height="16" Width="16" Source="/Images/16_exclamation.png" Margin="0,0,5,0"/>
-                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_InvalidCred}" FontWeight="Bold" VerticalAlignment="Center" Foreground="Black"/>
+                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Download_InvalidCred}" FontWeight="Bold" VerticalAlignment="Center" Foreground="Black"/>
                 </StackPanel>
             </Border>
 
@@ -147,7 +147,7 @@
                             Background="FloralWhite">
 
                 <StackPanel Orientation="Horizontal" Margin="30,5,10,5">
-                    <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_EnterCred}" VerticalAlignment="Center" Foreground="Black"/>
+                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Download_EnterCred}" VerticalAlignment="Center" Foreground="Black"/>
 
                 </StackPanel>
             </Border>
@@ -163,7 +163,7 @@
         <TabControl Grid.Row="2" Grid.Column="0" Margin="5" Padding="5" Name="tabTorrentDetails" TabStripPlacement="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
 
 
-            <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Downloads_Details}">
+            <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Downloads_Details}">
 
                 <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                     <Grid Visibility="{Binding Path=HasAttachedSeries, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type downloads:DownloadsTorrentMonitorControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
@@ -198,7 +198,7 @@
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                                         <Image Height="16" Width="16" Source="/Images/32_pin.png" Margin="1,0,1,0" ToolTipService.ShowDuration="60000">
                                             <Image.ToolTip>
-                                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Tooltip_PinSeries}"/>
+                                                <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_PinSeries}"/>
                                             </Image.ToolTip>
                                         </Image>
 
@@ -206,7 +206,7 @@
                                 </Button>
 
                                 <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="15,0,5,0" ToolTipService.ShowDuration="60000"/>
-                                <TextBlock Text="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_WrongSeries}" Foreground="Black" FontWeight="DemiBold" 
+                                <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Download_WrongSeries}" Foreground="Black" FontWeight="DemiBold" 
                                         VerticalAlignment="Center" ToolTipService.ShowDuration="60000"
                                         ToolTip="{usercontrols:Info Title=Wrong Series, 
                                                 Body=Tooltip_WrongSeries}">
@@ -258,7 +258,7 @@
                 </ScrollViewer>
             </TabItem>
 
-            <TabItem Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Files}">
+            <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Files}">
 
                 <DataGrid Name="dgTorrentFiles" AutoGenerateColumns="False" CanUserReorderColumns="True" CanUserResizeColumns="True" CanUserResizeRows="False" CanUserSortColumns="True" 
                                   AlternatingRowBackground="Cornsilk"  AlternationCount="2" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="LightGray" 
@@ -278,10 +278,10 @@
                         </Style>
                     </DataGrid.CellStyle>
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Name}" Binding="{Binding FileName}" IsReadOnly="True" />
-                        <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Size}" Binding="{Binding FileSizeFormatted}" IsReadOnly="True" />
-                        <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Downloaded}" Binding="{Binding DownloadedFormatted}" IsReadOnly="True" />
-                        <DataGridTextColumn Header="{Resx ResxName=JMMClient.Properties.Resources, Key=Download_Priority}" Binding="{Binding PriorityFormatted}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Download_Name}" Binding="{Binding FileName}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Download_Size}" Binding="{Binding FileSizeFormatted}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Download_Downloaded}" Binding="{Binding DownloadedFormatted}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Download_Priority}" Binding="{Binding PriorityFormatted}" IsReadOnly="True" />
 
                     </DataGrid.Columns>
                 </DataGrid>

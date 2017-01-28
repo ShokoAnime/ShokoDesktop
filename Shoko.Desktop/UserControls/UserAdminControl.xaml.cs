@@ -85,7 +85,7 @@ namespace Shoko.Desktop.UserControls
         {
             if (string.IsNullOrEmpty(txtUsername.Text.Trim()))
             {
-                MessageBox.Show(Properties.Resources.User_EnterUsername, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Shoko.Commons.Properties.Resources.User_EnterUsername, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                 txtUsername.Focus();
                 return;
             }
@@ -102,7 +102,7 @@ namespace Shoko.Desktop.UserControls
                             {
                                 if (n.Trim().ToLower() == m.Trim().ToLower())
                                 {
-                                    MessageBox.Show(string.Format(Properties.Resources.User_PlexAssigned, n.Trim(), us.Username), Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                                    MessageBox.Show(string.Format(Shoko.Commons.Properties.Resources.User_PlexAssigned, n.Trim(), us.Username), Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                                     txtPlexUsers.Focus();
                                     return;
                                 }
@@ -130,7 +130,7 @@ namespace Shoko.Desktop.UserControls
                 Cursor = Cursors.Arrow;
                 if (ret.Length > 0)
                 {
-                    MessageBox.Show(ret, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(ret, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     txtUsername.Focus();
                 }
 
@@ -159,7 +159,7 @@ namespace Shoko.Desktop.UserControls
                 {
                     VM_JMMUser user = (VM_JMMUser)obj;
 
-                    MessageBoxResult res = MessageBox.Show(string.Format(Properties.Resources.User_Delete, user.Username),
+                    MessageBoxResult res = MessageBox.Show(string.Format(Shoko.Commons.Properties.Resources.User_Delete, user.Username),
                     "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
                     if (res == MessageBoxResult.Yes)
                     {
@@ -167,7 +167,7 @@ namespace Shoko.Desktop.UserControls
                         {
                             if (user.JMMUserID == VM_ShokoServer.Instance.CurrentUser.JMMUserID)
                             {
-                                MessageBox.Show(Properties.Resources.User_DeleteError, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                                MessageBox.Show(Shoko.Commons.Properties.Resources.User_DeleteError, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                                 return;
                             }
                         }
@@ -176,7 +176,7 @@ namespace Shoko.Desktop.UserControls
                         string ret = VM_ShokoServer.Instance.ShokoServices.DeleteUser(user.JMMUserID);
                         Cursor = Cursors.Arrow;
                         if (ret.Length > 0)
-                            MessageBox.Show(ret, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(ret, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 
                         VM_ShokoServer.Instance.RefreshAllUsers();
 

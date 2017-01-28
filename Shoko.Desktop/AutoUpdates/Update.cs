@@ -14,6 +14,6 @@
             return $"{version} - {change}";
         }
 
-        public long VersionAbs => JMMAutoUpdatesHelper.ConvertToAbsoluteVersion(version);
+        public long VersionAbs => ShokoAutoUpdatesHelper.ConvertToAbsoluteVersion(version);
     }
 }

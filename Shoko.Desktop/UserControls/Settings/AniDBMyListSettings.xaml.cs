@@ -19,17 +19,17 @@ namespace Shoko.Desktop.UserControls.Settings
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
             cboStorageState.Items.Clear();
-            cboStorageState.Items.Add(Properties.Resources.AniDBMyListUnknown);
-            cboStorageState.Items.Add(Properties.Resources.AniDBMyListHDD);
-            cboStorageState.Items.Add(Properties.Resources.AniDBMyListDVD);
+            cboStorageState.Items.Add(Shoko.Commons.Properties.Resources.AniDBMyListUnknown);
+            cboStorageState.Items.Add(Shoko.Commons.Properties.Resources.AniDBMyListHDD);
+            cboStorageState.Items.Add(Shoko.Commons.Properties.Resources.AniDBMyListDVD);
             cboStorageState.SelectedIndex = 0;
 
             cboDeleteAction.Items.Clear();
-            cboDeleteAction.Items.Add(Properties.Resources.AniDBMyListDelete);
-            cboDeleteAction.Items.Add(Properties.Resources.AniDBMyListDeleteLocal);
-            cboDeleteAction.Items.Add(Properties.Resources.AniDBMyListMarkDeleted);
-            cboDeleteAction.Items.Add(Properties.Resources.AniDBMyListMarkExternal);
-            cboDeleteAction.Items.Add(Properties.Resources.AniDBMyListMarkUnknown);
+            cboDeleteAction.Items.Add(Shoko.Commons.Properties.Resources.AniDBMyListDelete);
+            cboDeleteAction.Items.Add(Shoko.Commons.Properties.Resources.AniDBMyListDeleteLocal);
+            cboDeleteAction.Items.Add(Shoko.Commons.Properties.Resources.AniDBMyListMarkDeleted);
+            cboDeleteAction.Items.Add(Shoko.Commons.Properties.Resources.AniDBMyListMarkExternal);
+            cboDeleteAction.Items.Add(Shoko.Commons.Properties.Resources.AniDBMyListMarkUnknown);
             cboDeleteAction.SelectedIndex = 0;
 
             Loaded += new RoutedEventHandler(AniDBMyListSettings_Loaded);

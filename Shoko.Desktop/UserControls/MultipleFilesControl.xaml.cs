@@ -144,7 +144,7 @@ namespace Shoko.Desktop.UserControls
             CurrentEpisodes.Clear();
             EpisodeCount = 0;
 
-            StatusMessage = Properties.Resources.Loading;
+            StatusMessage = Shoko.Commons.Properties.Resources.Loading;
 
 
             MultipleFilesRefreshOptions opt = new MultipleFilesRefreshOptions()
@@ -178,7 +178,7 @@ namespace Shoko.Desktop.UserControls
                     }
                     else
                     {
-                        MessageBox.Show(Properties.Resources.MSG_ERR_FileNotFound, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_FileNotFound, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
             }

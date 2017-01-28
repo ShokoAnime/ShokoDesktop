@@ -100,9 +100,9 @@ namespace Shoko.Desktop.UserControls
             btnSelectColumns.Click += new RoutedEventHandler(btnSelectColumns_Click);
 
             cboAiringFilter.Items.Clear();
-            cboAiringFilter.Items.Add(Properties.Resources.Random_All);
-            cboAiringFilter.Items.Add(Properties.Resources.MissingEpisodes_StillAiring);
-            cboAiringFilter.Items.Add(Properties.Resources.MissingEpisodes_FinishedAiring);
+            cboAiringFilter.Items.Add(Shoko.Commons.Properties.Resources.Random_All);
+            cboAiringFilter.Items.Add(Shoko.Commons.Properties.Resources.MissingEpisodes_StillAiring);
+            cboAiringFilter.Items.Add(Shoko.Commons.Properties.Resources.MissingEpisodes_FinishedAiring);
             cboAiringFilter.SelectedIndex = 0;
         }
 
@@ -123,7 +123,7 @@ namespace Shoko.Desktop.UserControls
                 ReadyToExport = false;
                 Cursor = Cursors.Wait;
 
-                StatusMessage = Properties.Resources.Exporting;
+                StatusMessage = Shoko.Commons.Properties.Resources.Exporting;
 
                 string appPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
                 string logName = Path.Combine(appPath, "AnimeEpisodes.txt");
@@ -206,7 +206,7 @@ namespace Shoko.Desktop.UserControls
 
             AiringState state = (AiringState)cboAiringFilter.SelectedIndex;
 
-            StatusMessage = Properties.Resources.Loading;
+            StatusMessage = Shoko.Commons.Properties.Resources.Loading;
             WorkRequest wr = new WorkRequest(chkMyGroupsOnly.IsChecked.Value, chkRegularEpisodesOnly.IsChecked.Value, state);
 
             workerFiles.RunWorkerAsync(wr);

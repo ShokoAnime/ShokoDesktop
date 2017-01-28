@@ -12,7 +12,7 @@ namespace Shoko.Desktop.Forms
         public AskResumeVideo(long position)
         {
             InitializeComponent();
-            txtDesc.Text=string.Format(Properties.Resources.Resume_Message,TimeSpan.FromMilliseconds(position).ToString("hh\\:mm\\:ss"));
+            txtDesc.Text=string.Format(Shoko.Commons.Properties.Resources.Resume_Message,TimeSpan.FromMilliseconds(position).ToString("hh\\:mm\\:ss"));
             btnConfirm.Click += BtnConfirm_Click;
             btnCancel.Click += BtnCancel_Click;
         }

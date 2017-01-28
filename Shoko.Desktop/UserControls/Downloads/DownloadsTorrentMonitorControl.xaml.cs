@@ -353,7 +353,7 @@ namespace Shoko.Desktop.UserControls.Downloads
         {
             if (VM_UserSettings.Instance.UTorrentAutoRefresh)
             {
-                MessageBox.Show(Properties.Resources.Downloads_DisableRefresh, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(Shoko.Commons.Properties.Resources.Downloads_DisableRefresh, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
 

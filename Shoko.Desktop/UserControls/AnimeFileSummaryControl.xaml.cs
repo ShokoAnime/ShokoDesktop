@@ -134,13 +134,13 @@ namespace Shoko.Desktop.UserControls
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
             cboSortGroupQual.Items.Clear();
-            cboSortGroupQual.Items.Add(Properties.Resources.Anime_QualityRanking);
-            cboSortGroupQual.Items.Add(Properties.Resources.Anime_ReleaseGroup);
+            cboSortGroupQual.Items.Add(Shoko.Commons.Properties.Resources.Anime_QualityRanking);
+            cboSortGroupQual.Items.Add(Shoko.Commons.Properties.Resources.Anime_ReleaseGroup);
             cboSortGroupQual.SelectionChanged += new SelectionChangedEventHandler(cboSortGroupQual_SelectionChanged);
 
             cboFileSummaryType.Items.Clear();
-            cboFileSummaryType.Items.Add(Properties.Resources.Anime_GroupDetails);
-            cboFileSummaryType.Items.Add(Properties.Resources.Anime_GroupSummary);
+            cboFileSummaryType.Items.Add(Shoko.Commons.Properties.Resources.Anime_GroupDetails);
+            cboFileSummaryType.Items.Add(Shoko.Commons.Properties.Resources.Anime_GroupSummary);
             cboFileSummaryType.SelectedIndex = 0;
             cboFileSummaryType.SelectionChanged += new SelectionChangedEventHandler(cboFileSummaryType_SelectionChanged);
 
