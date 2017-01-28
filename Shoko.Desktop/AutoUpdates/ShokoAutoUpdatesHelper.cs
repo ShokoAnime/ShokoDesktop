@@ -6,7 +6,7 @@ using Shoko.Desktop.ViewModel;
 
 namespace Shoko.Desktop.AutoUpdates
 {
-    public class JMMAutoUpdatesHelper
+    public class ShokoAutoUpdatesHelper
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 

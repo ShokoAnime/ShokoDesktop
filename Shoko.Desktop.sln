@@ -71,7 +71,4 @@ Global
 		{EDFFFC1F-5192-4DF7-A2D7-4706DFC5965A} = {6AA78E82-4829-4CCF-9553-97F37B97F1BB}
 		{2B35AE98-E24B-4A09-B1FB-230B90111B46} = {6AA78E82-4829-4CCF-9553-97F37B97F1BB}
 	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_SaveFilesImmediatelyUponChange = False
-	EndGlobalSection
 EndGlobal

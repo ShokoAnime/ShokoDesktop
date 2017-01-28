@@ -5,7 +5,7 @@ namespace Shoko.Desktop.AutoUpdates
     /// <remarks/>
     [XmlType(AnonymousType = true)]
     [XmlRoot("shokoclient", Namespace = "", IsNullable = false)]
-    public partial class JMMVersions
+    public partial class ShokoVersions
     {
         [XmlElement("versions")]
         public Versions versions { get; set; }

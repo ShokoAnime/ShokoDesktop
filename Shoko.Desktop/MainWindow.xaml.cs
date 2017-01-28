@@ -524,8 +524,8 @@ namespace Shoko.Desktop
                     System.Reflection.AssemblyName an = a.GetName();
 
                     verNew =
-                        JMMAutoUpdatesHelper.ConvertToAbsoluteVersion(
-                            JMMAutoUpdatesHelper.GetLatestVersionNumber(AppSettings.UpdateChannel));
+                        ShokoAutoUpdatesHelper.ConvertToAbsoluteVersion(
+                            ShokoAutoUpdatesHelper.GetLatestVersionNumber(AppSettings.UpdateChannel));
 
                     //verNew = verInfo.versions.DesktopVersionAbs;
                     verCurrent = (an.Version.Revision * 100) +
