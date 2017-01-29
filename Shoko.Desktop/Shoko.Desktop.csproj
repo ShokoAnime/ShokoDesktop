@@ -377,7 +377,6 @@
     <Compile Include="VideoPlayers\VLCVideoPlayer.cs" />
     <Compile Include="VideoPlayers\ZoomPlayerVideoPlayer.cs" />
     <Compile Include="ViewModel\VM_FanartContainer.cs" />
-    <Compile Include="ViewModel\Helpers\INotifyPropertyChangedExt.cs" />
     <Compile Include="ViewModel\Server\VM_AniDB_Episode.cs" />
     <Compile Include="ViewModel\Server\VM_AniDB_Recommendation.cs" />
     <Compile Include="ViewModel\Server\VM_AnimeTitle.cs" />
@@ -740,7 +739,6 @@
     <Compile Include="Utilities\ShowSelectedInExplorer.cs" />
     <Compile Include="VideoPlayers\VideoHandler.cs" />
     <Compile Include="ViewModel\Server\VM_AniDB_AnimeCrossRefs.cs" />
-    <Compile Include="ViewModel\Helpers\INotifyPropertyChangedExtensions.cs" />
     <Compile Include="ViewModel\Server\VM_AniDB_Anime.cs" />
     <Compile Include="ViewModel\VM_PosterContainer.cs" />
     <Compile Include="ViewModel\Server\VM_AniDB_Anime_DefaultImage.cs" />
@@ -1791,7 +1789,6 @@
     <PreBuildEvent>xcopy "$(ProjectDir)Dependencies\x64\*" "$(TargetDir)x64\" /S /R /I /Y
 xcopy "$(ProjectDir)Dependencies\x86\*" "$(TargetDir)x86\" /S /R /I /Y</PreBuildEvent>
   </PropertyGroup>
-  <Import Project="$(SolutionDir)packages\StrongNamer.0.0.3\build\StrongNamer.targets" Condition="Exists('$(SolutionDir)packages\StrongNamer.0.0.3\build\StrongNamer.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>

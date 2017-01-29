@@ -13,7 +13,7 @@ using Shoko.Models.Server;
 
 namespace Shoko.Desktop.ViewModel.Server
 {
-    public class VM_AniDB_AnimeCrossRefs : CL_AniDB_AnimeCrossRefs, INotifyPropertyChangedExt
+    public class VM_AniDB_AnimeCrossRefs : CL_AniDB_AnimeCrossRefs, INotifyPropertyChanged, INotifyPropertyChangedExt
     {
 
         private VM_AniDB_Anime anime;

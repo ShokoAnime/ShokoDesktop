@@ -11,9 +11,9 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resources/Styles.xaml" />
-                <ResourceDictionary Source="/Resources/MainListStyles.xaml" />
-                <ResourceDictionary Source="/Resources/MainListContent.xaml" />
+                <ResourceDictionary Source="/ShokoDesktop;component/Resources/Styles.xaml" />
+                <ResourceDictionary Source="/ShokoDesktop;component/Resources/MainListStyles.xaml" />
+                <ResourceDictionary Source="/ShokoDesktop;component/Resources/MainListContent.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
@@ -80,10 +80,10 @@
 
             <StackPanel Orientation="Horizontal">
                 <!-- User rating if the user has voted -->
-                <StackPanel Orientation="Horizontal" Visibility="{Binding Path=AniDB_Anime.Detail.UserHasVoted, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <usercontrols:VisualRating Margin="5,0,0,0" Rating="{Binding Path=AniDB_Anime.Detail.UserRating}" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Visibility="{Binding Path=AniDBAnime.UserHasVoted, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <usercontrols:VisualRating Margin="5,0,0,0" Rating="{Binding Path=AniDBAnime.UserRating}" VerticalAlignment="Center">
                     </usercontrols:VisualRating>
-                    <TextBlock Padding="5" Text="{Binding Path=AniDB_Anime.Detail.UserRatingFormatted}" VerticalAlignment="Center">
+                    <TextBlock Padding="5" Text="{Binding Path=AniDBAnime.UserRatingFormatted}" VerticalAlignment="Center">
                                     <TextBlock.ToolTip>
                                         <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=UserVote}"></TextBlock>
                                     </TextBlock.ToolTip>
@@ -99,7 +99,7 @@
 
 
                 <!-- User rating if the user has NOT voted -->
-                <StackPanel Orientation="Horizontal" Visibility="{Binding Path=AniDB_Anime.Detail.UserHasNotVoted, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <StackPanel Orientation="Horizontal" Visibility="{Binding Path=AniDBAnime.UserHasNotVoted, Converter={StaticResource BooleanToVisibilityConverter}}">
 
                     <TextBlock Padding="5,10,5,10" FontWeight="Heavy" FontSize="14" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VoteNow}" VerticalAlignment="Center"/>
 

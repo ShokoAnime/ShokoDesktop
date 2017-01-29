@@ -8,7 +8,7 @@ using Shoko.Models.Client;
 
 namespace Shoko.Desktop.ViewModel.Server
 {
-    public class VM_Recommendation : CL_Recommendation, INotifyPropertyChangedExt
+    public class VM_Recommendation : CL_Recommendation, INotifyPropertyChanged, INotifyPropertyChangedExt
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propname)

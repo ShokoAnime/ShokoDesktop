@@ -7,7 +7,7 @@ using Shoko.Models.Client;
 
 namespace Shoko.Desktop.ViewModel.Server
 {
-    public class VM_AnimeRating : CL_AnimeRating, INotifyPropertyChangedExt
+    public class VM_AnimeRating : CL_AnimeRating, INotifyPropertyChanged, INotifyPropertyChangedExt
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propname)

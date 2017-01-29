@@ -10,7 +10,7 @@ using Shoko.Models.Server;
 
 namespace Shoko.Desktop.ViewModel.Server
 {
-    public class VM_MovieDB_Poster : MovieDB_Poster, INotifyPropertyChangedExt
+    public class VM_MovieDB_Poster : MovieDB_Poster, INotifyPropertyChanged, INotifyPropertyChangedExt
     {
 
         public event PropertyChangedEventHandler PropertyChanged;

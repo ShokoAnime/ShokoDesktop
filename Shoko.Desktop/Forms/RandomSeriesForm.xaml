@@ -11,9 +11,9 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resources/Styles.xaml" />
-                <ResourceDictionary Source="/Resources/MainListStyles.xaml" />
-                <ResourceDictionary Source="/Resources/MainListContent.xaml" />
+                <ResourceDictionary Source="/ShokoDesktop;component/Resources/Styles.xaml" />
+                <ResourceDictionary Source="/ShokoDesktop;component/Resources/MainListStyles.xaml" />
+                <ResourceDictionary Source="/ShokoDesktop;component/Resources/MainListContent.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>

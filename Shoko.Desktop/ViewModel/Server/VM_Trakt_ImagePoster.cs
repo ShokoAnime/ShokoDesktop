@@ -12,7 +12,7 @@ using Shoko.Models.Server;
 
 namespace Shoko.Desktop.ViewModel.Server
 {
-    public class VM_Trakt_ImagePoster : Trakt_ImagePoster, INotifyPropertyChangedExt
+    public class VM_Trakt_ImagePoster : Trakt_ImagePoster, INotifyPropertyChanged, INotifyPropertyChangedExt
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propname)

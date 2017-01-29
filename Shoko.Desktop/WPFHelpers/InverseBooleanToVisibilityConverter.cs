@@ -5,6 +5,7 @@ using System.Windows.Data;
 
 namespace Shoko.Desktop.WPFHelpers
 {
+    [ValueConversion(typeof(bool), typeof(Visibility))]
     public sealed class InverseBooleanToVisibilityConverter : IValueConverter
     {
         // Methods
@@ -25,4 +26,6 @@ namespace Shoko.Desktop.WPFHelpers
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => ((value is Visibility) && (((Visibility)value) == Visibility.Collapsed));
     }
+    
+
 }

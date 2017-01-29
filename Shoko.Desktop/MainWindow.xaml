@@ -120,7 +120,7 @@
             <!-- groupFilterTemplate-->
             <DataTemplate x:Key="groupFilterTemplate">
                 <StackPanel >
-                    <TextBlock Text="{Binding Path=FilterName}" />
+                    <TextBlock Text="{Binding Path=GroupFilterName}" />
                 </StackPanel>
             </DataTemplate>
 
@@ -993,7 +993,7 @@
 
                     <!-- AniDB Settings tab -->
                     <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_SettingsAniDB}" Name="tabSettingsAniDB"
-                             Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}" >
 
                         <ScrollViewer>
                             <Grid>

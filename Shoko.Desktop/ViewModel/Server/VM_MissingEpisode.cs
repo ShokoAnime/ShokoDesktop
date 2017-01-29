@@ -9,7 +9,7 @@ using Shoko.Models.Enums;
 
 namespace Shoko.Desktop.ViewModel.Server
 {
-    public class VM_MissingEpisode : CL_MissingEpisode, INotifyPropertyChangedExt
+    public class VM_MissingEpisode : CL_MissingEpisode, INotifyPropertyChanged, INotifyPropertyChangedExt
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propname)

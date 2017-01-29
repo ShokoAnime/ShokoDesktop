@@ -9,7 +9,7 @@ using Shoko.Models.Server;
 
 namespace Shoko.Desktop.ViewModel.Server
 {
-    public class VM_RenameScript : RenameScript, INotifyPropertyChangedExt
+    public class VM_RenameScript : RenameScript, INotifyPropertyChanged, INotifyPropertyChangedExt
     {
 
 

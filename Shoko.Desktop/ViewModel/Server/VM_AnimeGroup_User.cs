@@ -24,7 +24,7 @@ namespace Shoko.Desktop.ViewModel.Server
     /// When we want to get the extended details about a group we will get AnimeGroupDetailedVM record
     /// 
     /// </summary>
-    public class VM_AnimeGroup_User : CL_AnimeGroup_User, IListWrapper, INotifyPropertyChangedExt
+    public class VM_AnimeGroup_User : CL_AnimeGroup_User, IListWrapper, INotifyPropertyChanged, INotifyPropertyChangedExt
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propname)

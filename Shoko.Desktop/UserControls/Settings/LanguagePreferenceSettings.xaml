@@ -12,9 +12,9 @@
 
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resources/Styles.xaml" />
-                <ResourceDictionary Source="/Resources/MainListStyles.xaml" />
-                <ResourceDictionary Source="/Resources/MainListContent.xaml" />
+                <ResourceDictionary Source="/ShokoDesktop;component/Resources/Styles.xaml" />
+                <ResourceDictionary Source="/ShokoDesktop;component/Resources/MainListStyles.xaml" />
+                <ResourceDictionary Source="/ShokoDesktop;component/Resources/MainListContent.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
@@ -70,7 +70,7 @@
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Margin="5,0,0,5">
             <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Language_UseSynonyms}" VerticalAlignment="Center" Margin="0,0,10,3"
                        ToolTip="{usercontrols:Info Title=Language_UseSynonyms, Body=Tooltip_LanguageUseSynonyms}"></TextBlock>
-            <CheckBox Name="chkLanguageUseSynonyms" IsChecked="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=Language_UseSynonyms}" VerticalAlignment="Center"
+            <CheckBox Name="chkLanguageUseSynonyms" IsChecked="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=LanguageUseSynonyms}" VerticalAlignment="Center"
                       ToolTip="{usercontrols:Info Title=Language_UseSynonyms, Body=Tooltip_LanguageUseSynonyms}"/>
         </StackPanel>
 

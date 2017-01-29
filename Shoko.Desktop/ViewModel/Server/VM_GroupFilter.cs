@@ -15,7 +15,7 @@ using Shoko.Models.Server;
 
 namespace Shoko.Desktop.ViewModel.Server
 {
-    public class VM_GroupFilter : CL_GroupFilter, IListWrapper, INotifyPropertyChangedExt
+    public class VM_GroupFilter : CL_GroupFilter, IListWrapper, INotifyPropertyChanged, INotifyPropertyChangedExt
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propname)

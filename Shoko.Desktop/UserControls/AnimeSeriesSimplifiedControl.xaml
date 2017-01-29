@@ -23,7 +23,7 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
-                <ResourceDictionary Source="/Resources/Metro.xaml" />
+                <ResourceDictionary Source="/ShokoDesktop;component/Resources/Metro.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <dataTemplateSelectors:PeopleSayingTemplateSelector x:Key="PeopleSayingTemplateSelector"/>
@@ -841,27 +841,27 @@
 
                     <!-- Fanart Image -->
                     <Rectangle Margin="5,10,10,10" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Top" Name="imgFanart"
-                           Visibility="{Binding Path=AniDB_Anime.UseFanartOnSeries, Converter={StaticResource BooleanToVisibilityConverter}}"
+                           Visibility="{Binding Path=AniDBAnime.AniDBAnime.UseFanartOnSeries, Converter={StaticResource BooleanToVisibilityConverter}}"
                            RadiusX="5" RadiusY="5" Width="444" Height="250">
                         <Rectangle.Effect>
                             <DropShadowEffect Opacity="0.5"/>
                         </Rectangle.Effect>
                         <Rectangle.Fill>
-                            <ImageBrush ImageSource="{Binding Path=AniDB_Anime.FanartPathThenPosterPath}" RenderOptions.BitmapScalingMode="HighQuality">
+                            <ImageBrush ImageSource="{Binding Path=AniDBAnime.AniDBAnime.FanartPathThenPosterPath}" RenderOptions.BitmapScalingMode="HighQuality">
 
                             </ImageBrush>
                         </Rectangle.Fill>
                     </Rectangle>
 
                     <Rectangle Margin="5,10,10,10" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Top"
-                           Visibility="{Binding Path=AniDB_Anime.UsePosterOnSeries, Converter={StaticResource BooleanToVisibilityConverter}}"
+                           Visibility="{Binding Path=AniDBAnime.AniDBAnime.UsePosterOnSeries, Converter={StaticResource BooleanToVisibilityConverter}}"
                            RadiusX="5" RadiusY="5" Width="{Binding Path=PosterWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AnimeSeriesSimplifiedControl}}}" 
                            Height="250">
                         <Rectangle.Effect>
                             <DropShadowEffect Opacity="0.5"/>
                         </Rectangle.Effect>
                         <Rectangle.Fill>
-                            <ImageBrush ImageSource="{Binding Path=AniDB_Anime.FanartPathThenPosterPath}" RenderOptions.BitmapScalingMode="HighQuality">
+                            <ImageBrush ImageSource="{Binding Path=AniDBAnime.AniDBAnime.FanartPathThenPosterPath}" RenderOptions.BitmapScalingMode="HighQuality">
 
                             </ImageBrush>
                         </Rectangle.Fill>
@@ -871,7 +871,7 @@
                             VerticalAlignment="Top" TextWrapping="Wrap" Foreground="Black" FontSize="16" >
                     </TextBlock>
 
-                    <TextBlock Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="1" Text="{Binding Path=AniDB_Anime.AirDateAndEndDate}" HorizontalAlignment="Stretch" Margin="10,5,5,5" 
+                    <TextBlock Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="1" Text="{Binding Path=AniDBAnime.AniDBAnime.AirDateAndEndDate}" HorizontalAlignment="Stretch" Margin="10,5,5,5" 
                             VerticalAlignment="Top" TextWrapping="Wrap" Foreground="Black" FontSize="16" >
                     </TextBlock>
 
@@ -879,7 +879,7 @@
                             VerticalAlignment="Top" TextWrapping="Wrap" Foreground="Black" FontSize="16" >
                     </TextBlock>
 
-                    <TextBlock Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="1" Text="{Binding Path=AniDB_Anime.EpisodeCountFormatted}" HorizontalAlignment="Stretch" Margin="10,5,5,5" 
+                    <TextBlock Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="1" Text="{Binding Path=AniDBAnime.AniDBAnime.EpisodeCountFormatted}" HorizontalAlignment="Stretch" Margin="10,5,5,5" 
                             VerticalAlignment="Top" TextWrapping="Wrap" Foreground="Black" FontSize="16" >
                     </TextBlock>
 
@@ -896,9 +896,9 @@
 
                         <!-- Rating -->
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                            <usercontrols:VisualRating Rating="{Binding Path=AniDB_Anime.AniDBRating}" VerticalAlignment="Center" ImageSize="32">
+                            <usercontrols:VisualRating Rating="{Binding Path=AniDBAnime.AniDBAnime.AniDBRating}" VerticalAlignment="Center" ImageSize="32">
                             </usercontrols:VisualRating>
-                            <TextBlock Padding="5" Text="{Binding Path=AniDB_Anime.AniDBRatingFormatted}" VerticalAlignment="Center">
+                            <TextBlock Padding="5" Text="{Binding Path=AniDBAnime.AniDBAnime.AniDBRatingFormatted}" VerticalAlignment="Center">
                                 <TextBlock.ToolTip>
                                     <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AniDBRating}"></TextBlock>
                                 </TextBlock.ToolTip>
@@ -909,7 +909,7 @@
 
                                 <TextBlock Margin="5,0,5,0"  Foreground="DarkBlue" FontFamily="Segoe UI" FontSize="15" FontWeight="Bold" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SeriesSimple_MyVote}" VerticalAlignment="Center"/>
 
-                                <usercontrols:RatingControl x:Name="cRating" Width="280" Height="24" RatingValue="{Binding Path=AniDB_Anime.Detail.UserRating}" />
+                                <usercontrols:RatingControl x:Name="cRating" Width="280" Height="24" RatingValue="{Binding Path=AniDBAnime.UserRating}" />
 
                             </StackPanel>
 

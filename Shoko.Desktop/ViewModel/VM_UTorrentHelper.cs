@@ -13,7 +13,7 @@ using Shoko.Desktop.ViewModel.Helpers;
 
 namespace Shoko.Desktop.ViewModel
 {
-    public class VM_UTorrentHelper : INotifyPropertyChangedExt
+    public class VM_UTorrentHelper :INotifyPropertyChanged, INotifyPropertyChangedExt
     {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 

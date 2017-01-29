@@ -14,9 +14,9 @@
         <ResourceDictionary>
 
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resources/Styles.xaml" />
-                <ResourceDictionary Source="/Resources/MainListStyles.xaml" />
-                <ResourceDictionary Source="/Resources/MainListContent.xaml" />
+                <ResourceDictionary Source="/ShokoDesktop;component/Resources/Styles.xaml" />
+                <ResourceDictionary Source="/ShokoDesktop;component/Resources/MainListStyles.xaml" />
+                <ResourceDictionary Source="/ShokoDesktop;component/Resources/MainListContent.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
@@ -41,7 +41,7 @@
                     </Grid.RowDefinitions>
 
                     <Image  Height="80"  Margin="5,3,10,5" Grid.Column="0" Grid.Row="0" Grid.RowSpan="5"
-                               HorizontalAlignment="Left" Source="{Binding Path=AniDB_Anime.PosterPathWithRandoms}" ToolTipService.ShowDuration="60000">
+                               HorizontalAlignment="Left" Source="{Binding Path=AniDBAnime.AniDBAnime.PosterPathWithRandoms}" ToolTipService.ShowDuration="60000">
                         <Image.Effect>
                             <DropShadowEffect Opacity="0.5"/>
                         </Image.Effect>
@@ -57,11 +57,11 @@
                                         <RowDefinition />
                                     </Grid.RowDefinitions>
 
-                                    <Image Grid.Column="0" Grid.Row="0" Height="400" Source="{Binding AniDB_Anime.PosterPathWithRandoms}" 
+                                    <Image Grid.Column="0" Grid.Row="0" Height="400" Source="{Binding AniDBAnime.AniDBAnime.PosterPathWithRandoms}" 
                                                 Margin="10,5,0,5" VerticalAlignment="Top" HorizontalAlignment="Left">
                                     </Image>
 
-                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding AniDB_Anime.Description}" Foreground="Black"  HorizontalAlignment="Left" Margin="10,5,0,5" 
+                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding AniDBAnime.AniDBAnime.Description}" Foreground="Black"  HorizontalAlignment="Left" Margin="10,5,0,5" 
                                                    VerticalAlignment="Top"  TextWrapping="Wrap">
                                     </TextBlock>
                                 </Grid>
@@ -80,8 +80,8 @@
 
                             </StackPanel>
                         </Button>
-                        <TextBlock Text="{Binding Path=AniDB_Anime.FormattedTitle}" FontWeight="Bold" FontSize="14" VerticalAlignment="Center" />
-                        <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="{Binding Path=AnimeID}" URL="{Binding Path=AniDB_Anime.AniDB_SiteURL}" Margin="5,0,0,0"/>
+                        <TextBlock Text="{Binding Path=AniDBAnime.AniDBAnime.FormattedTitle}" FontWeight="Bold" FontSize="14" VerticalAlignment="Center" />
+                        <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="{Binding Path=AnimeID}" URL="{Binding Path=AniDBAnime.AniDBAnime.AniDB_SiteURL}" Margin="5,0,0,0"/>
                        
                     </StackPanel>
 

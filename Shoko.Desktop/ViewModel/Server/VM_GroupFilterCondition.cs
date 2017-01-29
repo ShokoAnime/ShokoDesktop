@@ -10,7 +10,7 @@ using Shoko.Models.Server;
 
 namespace Shoko.Desktop.ViewModel.Server
 {
-    public class VM_GroupFilterCondition : GroupFilterCondition, INotifyPropertyChangedExt
+    public class VM_GroupFilterCondition : GroupFilterCondition, INotifyPropertyChanged, INotifyPropertyChangedExt
     {
 
         public event PropertyChangedEventHandler PropertyChanged;

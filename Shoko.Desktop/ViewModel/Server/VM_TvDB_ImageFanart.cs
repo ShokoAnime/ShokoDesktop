@@ -11,7 +11,7 @@ using Shoko.Models.Server;
 
 namespace Shoko.Desktop.ViewModel.Server
 {
-    public class VM_TvDB_ImageFanart : TvDB_ImageFanart, INotifyPropertyChangedExt
+    public class VM_TvDB_ImageFanart : TvDB_ImageFanart, INotifyPropertyChanged, INotifyPropertyChangedExt
     {
 
         public event PropertyChangedEventHandler PropertyChanged;

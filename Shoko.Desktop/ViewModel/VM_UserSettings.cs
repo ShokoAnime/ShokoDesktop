@@ -15,7 +15,7 @@ using Shoko.Models.Enums;
 
 namespace Shoko.Desktop.ViewModel
 {
-    public class VM_UserSettings : INotifyPropertyChangedExt
+    public class VM_UserSettings :INotifyPropertyChanged, INotifyPropertyChangedExt
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propname)

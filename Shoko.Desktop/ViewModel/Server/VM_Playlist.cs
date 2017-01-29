@@ -16,7 +16,7 @@ using Shoko.Models.Server;
 
 namespace Shoko.Desktop.ViewModel.Server
 {
-    public class VM_Playlist : Playlist, IDropTarget, INotifyPropertyChangedExt
+    public class VM_Playlist : Playlist, IDropTarget, INotifyPropertyChanged, INotifyPropertyChangedExt
     {
 
 

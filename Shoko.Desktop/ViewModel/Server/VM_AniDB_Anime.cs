@@ -20,7 +20,7 @@ using Shoko.Models.Client;
 
 namespace Shoko.Desktop.ViewModel.Server
 {
-    public class VM_AniDB_Anime : CL_AniDB_Anime, INotifyPropertyChangedExt
+    public class VM_AniDB_Anime : CL_AniDB_Anime, INotifyPropertyChanged, INotifyPropertyChangedExt
     {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
         private static readonly Random fanartRandom = new Random();

@@ -7,7 +7,7 @@ using Shoko.Models.Server;
 
 namespace Shoko.Desktop.ViewModel.Server
 {
-    public class VM_TvDB_Series : TvDB_Series, INotifyPropertyChangedExt
+    public class VM_TvDB_Series : TvDB_Series, INotifyPropertyChanged, INotifyPropertyChangedExt
     {
 
 

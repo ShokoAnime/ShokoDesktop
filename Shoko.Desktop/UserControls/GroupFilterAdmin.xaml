@@ -11,9 +11,9 @@
         <Grid.Resources>
             <ResourceDictionary>
                 <ResourceDictionary.MergedDictionaries>
-                    <ResourceDictionary Source="/Resources/Styles.xaml" />
-                    <ResourceDictionary Source="/Resources/MainListStyles.xaml" />
-                    <ResourceDictionary Source="/Resources/MainListContent.xaml" />
+                    <ResourceDictionary Source="/ShokoDesktop;component/Resources/Styles.xaml" />
+                    <ResourceDictionary Source="/ShokoDesktop;component/Resources/MainListStyles.xaml" />
+                    <ResourceDictionary Source="/ShokoDesktop;component/Resources/MainListContent.xaml" />
                 </ResourceDictionary.MergedDictionaries>
 
                 <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
@@ -99,7 +99,7 @@
 
         <!-- Toolbar when in read only mode -->
         <Border Grid.Column="0" Grid.Row="0" Name="panelGroupReadOnlyToolbar" Style="{DynamicResource ToolbarBorderControlStyle}"
-                Visibility="{Binding Path=IsNotBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}">
+                Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
             <StackPanel Orientation="Horizontal"  VerticalAlignment="Center" Margin="0,0,0,0" Background="#F1F1F1">
 
                 <!-- Edit Group Filter -->
@@ -167,8 +167,8 @@
             <StackPanel Orientation="Vertical">
                 <!-- Filter name when not editing -->
                 <StackPanel Orientation="Vertical" Name="panelGroupFilterReadOnly" VerticalAlignment="Center" Margin="10,10,0,10" 
-                    Visibility="{Binding Path=IsNotBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <TextBlock Margin="0,0,0,5" Text="{Binding FilterName}" FontSize="18" FontWeight="Bold" Name="labelGroupFilterName" />
+                    Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
+                    <TextBlock Margin="0,0,0,5" Text="{Binding GroupFilterName}" FontSize="18" FontWeight="Bold" Name="labelGroupFilterName" />
 
                     <StackPanel Orientation="Horizontal" Margin="0,0,5,5">
                         <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=GroupFilter_BaseCondition}" VerticalAlignment="Center" Margin="0,0,5,0"
@@ -187,9 +187,9 @@
                 <StackPanel Orientation="Vertical" Name="panelGroupFilterEditing" Margin="10,10,0,0"
                     Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}">
 
-                    <TextBlock Margin="0,0,0,5" Text="{Binding FilterName}" FontSize="18" FontWeight="Bold"
+                    <TextBlock Margin="0,0,0,5" Text="{Binding GroupFilterName}" FontSize="18" FontWeight="Bold"
                       Visibility="{Binding Path=IsSystemGroupFilter, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                    <TextBox Margin="0,0,10,5" Text="{Binding FilterName}" FontSize="16" Padding="5" MinWidth="200" FontWeight="Bold" Name="txtFilterName"
+                    <TextBox Margin="0,0,10,5" Text="{Binding GroupFilterName}" FontSize="16" Padding="5" MinWidth="200" FontWeight="Bold" Name="txtFilterName"
                      Visibility="{Binding Path=IsNotSystemGroupFilter, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                     <StackPanel Orientation="Horizontal" Margin="0,0,5,5">
@@ -214,7 +214,7 @@
 
 
 
-                    <ListBox Margin="10,0,0,0" Name="lbFilterConditions" BorderThickness="0" Background="AntiqueWhite" Visibility="{Binding Path=IsNotBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    <ListBox Margin="10,0,0,0" Name="lbFilterConditions" BorderThickness="0" Background="AntiqueWhite" Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource InverseBooleanToVisibilityConverter}}"
                                         HorizontalAlignment="Left" VerticalAlignment="Top" ItemTemplate="{DynamicResource FilterConditionTemplate}" ItemContainerStyle="{DynamicResource ListBoxItemStyleFolders}"
                                         MaxWidth="500" ItemsSource="{Binding FilterConditions}">
 
@@ -247,7 +247,7 @@
                         <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=GroupFilterSorting}" Margin="5,10,0,10" FontWeight="DemiBold"></TextBlock>
                     </StackPanel>
 
-                    <ListBox Margin="10,0,0,0" Name="lbSorting" BorderThickness="0" Background="AntiqueWhite" Visibility="{Binding Path=IsNotBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    <ListBox Margin="10,0,0,0" Name="lbSorting" BorderThickness="0" Background="AntiqueWhite" Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource InverseBooleanToVisibilityConverter}}"
                                         HorizontalAlignment="Left" VerticalAlignment="Top" ItemTemplate="{DynamicResource SortingCriteriaTemplate}" ItemContainerStyle="{DynamicResource ListBoxItemStyleFolders}"
                                         ItemsSource="{Binding SortCriteriaList}">
                     </ListBox>

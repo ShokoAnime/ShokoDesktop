@@ -7,7 +7,7 @@ using Shoko.Models.Client;
 
 namespace Shoko.Desktop.ViewModel.Server
 {
-    public class VM_Trakt_Show : CL_Trakt_Show, INotifyPropertyChangedExt
+    public class VM_Trakt_Show : CL_Trakt_Show, INotifyPropertyChanged, INotifyPropertyChangedExt
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propname)

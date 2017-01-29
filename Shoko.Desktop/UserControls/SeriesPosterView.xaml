@@ -12,9 +12,9 @@
 
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resources/Styles.xaml" />
-                <ResourceDictionary Source="/Resources/MainListStyles.xaml" />
-                <ResourceDictionary Source="/Resources/MainListContent.xaml" />
+                <ResourceDictionary Source="/ShokoDesktop;component/Resources/Styles.xaml" />
+                <ResourceDictionary Source="/ShokoDesktop;component/Resources/MainListStyles.xaml" />
+                <ResourceDictionary Source="/ShokoDesktop;component/Resources/MainListContent.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
@@ -74,14 +74,14 @@
                 <!--Years-->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0">
                     <Image Height="14" Width="14" Source="/Images/24_calendar.png" Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                    <TextBlock Margin="5,0,0,0" Text="{Binding Path=AniDB_Anime.BeginYearAndEndYear}" VerticalAlignment="Center" FontSize="11" HorizontalAlignment="Left"/>
+                    <TextBlock Margin="5,0,0,0" Text="{Binding Path=AniDBAnime.AniDBAnime.BeginYearAndEndYear}" VerticalAlignment="Center" FontSize="11" HorizontalAlignment="Left"/>
                 </StackPanel>
 
                 <!--Episode counts-->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0">
                     <Image Name="imgAnimeType" Height="14" Width="14" Margin="5,0,0,0" Source="/Images/32_television.png" VerticalAlignment="Center">
                         <Image.ToolTip>
-                            <TextBlock Text="{Binding Path=AniDB_Anime.AnimeTypeDescription}"></TextBlock>
+                            <TextBlock Text="{Binding Path=AniDBAnime.AniDBAnime.AnimeTypeDescription}"></TextBlock>
                         </Image.ToolTip>
                     </Image>
 

@@ -20,7 +20,7 @@ using AniDBVoteType = Shoko.Models.Enums.AniDBVoteType;
 
 namespace Shoko.Desktop.ViewModel.Server
 {
-    public class VM_AnimeSeries_User : CL_AnimeSeries_User, IListWrapper, INotifyPropertyChangedExt
+    public class VM_AnimeSeries_User : CL_AnimeSeries_User, IListWrapper, INotifyPropertyChanged, INotifyPropertyChangedExt
     {
 
         public event PropertyChangedEventHandler PropertyChanged;

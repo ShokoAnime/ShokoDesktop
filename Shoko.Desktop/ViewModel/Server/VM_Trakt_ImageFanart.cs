@@ -12,7 +12,7 @@ using Shoko.Models.Server;
 
 namespace Shoko.Desktop.ViewModel.Server
 {
-    public class VM_Trakt_ImageFanart : Trakt_ImageFanart, INotifyPropertyChangedExt
+    public class VM_Trakt_ImageFanart : Trakt_ImageFanart, INotifyPropertyChanged, INotifyPropertyChangedExt
     {
 
 

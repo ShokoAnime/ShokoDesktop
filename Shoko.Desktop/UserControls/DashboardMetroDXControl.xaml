@@ -31,7 +31,7 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
-                <ResourceDictionary Source="/Resources/Metro.xaml" />
+                <ResourceDictionary Source="/ShokoDesktop;component/Resources/Metro.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <ImageBrush x:Key="noise" ImageSource="/Images/Backgrounds/subtlenet2.png" TileMode="Tile" Viewport="0,0 128,128" ViewportUnits="Absolute" />

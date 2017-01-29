@@ -15,7 +15,7 @@ using Shoko.Models.Enums;
 
 namespace Shoko.Desktop.ViewModel.Server
 {
-    public class VM_AnimeEpisode_User : CL_AnimeEpisode_User, IListWrapper, INotifyPropertyChangedExt
+    public class VM_AnimeEpisode_User : CL_AnimeEpisode_User, IListWrapper, INotifyPropertyChanged, INotifyPropertyChangedExt
     {
      
         public int ObjectType => 4;

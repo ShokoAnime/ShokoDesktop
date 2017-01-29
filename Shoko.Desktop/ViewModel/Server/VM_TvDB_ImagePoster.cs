@@ -11,7 +11,7 @@ using Shoko.Models.Server;
 
 namespace Shoko.Desktop.ViewModel.Server
 {
-    public class VM_TvDB_ImagePoster : TvDB_ImagePoster, INotifyPropertyChangedExt
+    public class VM_TvDB_ImagePoster : TvDB_ImagePoster, INotifyPropertyChanged, INotifyPropertyChangedExt
     {
 
 

@@ -36,7 +36,7 @@ using Timer = System.Timers.Timer;
 
 namespace Shoko.Desktop.ViewModel
 {
-    public class VM_ShokoServer : INotifyPropertyChangedExt
+    public class VM_ShokoServer :INotifyPropertyChanged, INotifyPropertyChangedExt
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private static VM_ShokoServer _instance;
@@ -188,6 +188,8 @@ namespace Shoko.Desktop.ViewModel
                 mappings.Add(typeof(CL_VideoDetailed), typeof(VM_VideoDetailed));
                 mappings.Add(typeof(CL_VideoLocal_Renamed), typeof(VM_VideoLocal_Renamed));
                 mappings.Add(typeof(CL_VideoLocal), typeof(VM_VideoLocal));
+                mappings.Add(typeof(CrossRef_AniDB_TraktV2), typeof(VM_CrossRef_AniDB_TraktV2));
+                mappings.Add(typeof(CrossRef_AniDB_TvDBV2), typeof(VM_CrossRef_AniDB_TvDBV2));
                 _shokoservices = ClientFactory.Create<IShokoServer>($"http://{AppSettings.JMMServer_Address}:{AppSettings.JMMServer_Port}/",mappings);
                 // try connecting to see if the server is responding
                 Instance.ShokoServices.GetServerStatus();
@@ -758,13 +760,16 @@ namespace Shoko.Desktop.ViewModel
             }
         }
 
-        private bool serverOnline;
+        private bool serverOnline = true;
         public bool ServerOnline
         {
-            get { return serverOnline; }
+            get
+            {
+                return serverOnline;
+            }
             set
             {
-                serverOnline  = this.SetField(serverOnline ,value);
+                serverOnline  = this.SetField(serverOnline,value);
                 SetShowServerSettings();
             }
         }

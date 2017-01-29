@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
@@ -16,7 +17,7 @@ using Shoko.Models.Server;
 
 namespace Shoko.Desktop.ViewModel.Server
 {
-    public class VM_AniDB_AnimeDetailed : CL_AniDB_AnimeDetailed, INotifyPropertyChangedExt
+    public class VM_AniDB_AnimeDetailed : CL_AniDB_AnimeDetailed, INotifyPropertyChanged, INotifyPropertyChangedExt
     {
         private int AnimeID => AniDBAnime.AnimeID;
 
@@ -53,6 +54,7 @@ namespace Shoko.Desktop.ViewModel.Server
             set
             {
                 base.CustomTags = value.OrderBy(a => a.TagName.ToLowerInvariant()).ToList();
+                ViewCustomTags = CollectionViewSource.GetDefaultView(CustomTags);
                 ViewCustomTags.Refresh();
             }
         }
@@ -74,7 +76,7 @@ namespace Shoko.Desktop.ViewModel.Server
 
         public VM_AniDB_AnimeDetailed()
         {
-            ViewCustomTags = CollectionViewSource.GetDefaultView(CustomTags);
+            
         }
 
         public new AniDB_Vote UserVote
@@ -87,7 +89,21 @@ namespace Shoko.Desktop.ViewModel.Server
 
         public bool UserHasNotVoted => UserVote==null;
 
-        public decimal UserRating => UserVote?.VoteValue ?? 0;
+        public decimal UserRating
+        {
+            get
+            {
+                if (UserVote == null)
+                    return 0m;
+                return Convert.ToDecimal(UserVote.VoteValue) / 100m;
+            }
+            set
+            {
+                if (UserVote == null)
+                    return;
+                UserVote.VoteValue = Convert.ToInt32(value / 100);
+            }
+        }
 
         public string UserRatingFormatted
         {

@@ -10,7 +10,7 @@ using Shoko.Models.Server;
 
 namespace Shoko.Desktop.ViewModel.Server
 {
-    public class VM_MovieDB_Fanart : MovieDB_Fanart, INotifyPropertyChangedExt
+    public class VM_MovieDB_Fanart : MovieDB_Fanart, INotifyPropertyChanged, INotifyPropertyChangedExt
     {
 
 

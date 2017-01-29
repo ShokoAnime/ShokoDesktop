@@ -8,7 +8,7 @@ using Shoko.Models.Azure;
 
 namespace Shoko.Desktop.ViewModel.Server
 {
-    public class VM_CrossRef_AniDB_TraktV2 : Azure_CrossRef_AniDB_Trakt, INotifyPropertyChangedExt
+    public class VM_CrossRef_AniDB_TraktV2 : Azure_CrossRef_AniDB_Trakt, INotifyPropertyChanged, INotifyPropertyChangedExt
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propname)

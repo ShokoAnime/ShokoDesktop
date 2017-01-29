@@ -11,7 +11,7 @@ using Shoko.Models.Client;
 
 namespace Shoko.Desktop.ViewModel.Server
 {
-    public class VM_AniDB_Character : CL_AniDB_Character, INotifyPropertyChangedExt
+    public class VM_AniDB_Character : CL_AniDB_Character, INotifyPropertyChanged, INotifyPropertyChangedExt
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propname)

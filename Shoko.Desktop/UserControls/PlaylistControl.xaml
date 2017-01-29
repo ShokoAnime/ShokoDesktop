@@ -15,9 +15,9 @@
         <ResourceDictionary>
             
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resources/Styles.xaml" />
-                <ResourceDictionary Source="/Resources/MainListStyles.xaml" />
-                <ResourceDictionary Source="/Resources/MainListContent.xaml" />
+                <ResourceDictionary Source="/ShokoDesktop;component/Resources/Styles.xaml" />
+                <ResourceDictionary Source="/ShokoDesktop;component/Resources/MainListStyles.xaml" />
+                <ResourceDictionary Source="/ShokoDesktop;component/Resources/MainListContent.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
@@ -291,25 +291,25 @@
                     <!-- Poster/Fanart Image -->
 
                     <Rectangle Margin="10,10,10,10" Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Top" Name="imgFanart"
-                                        Visibility="{Binding Path=AniDB_Anime.UseFanartOnPlaylistHeader, Converter={StaticResource BooleanToVisibilityConverter}}" 
+                                        Visibility="{Binding Path=AniDBAnime.AniDBAnime.UseFanartOnPlaylistHeader, Converter={StaticResource BooleanToVisibilityConverter}}" 
                                RadiusX="5" RadiusY="5" Width="{Binding Source={x:Static viewModel:VM_UserSettings.Instance},Path=PlaylistHeader_Image_Width}" 
                                        Height="{Binding Source={x:Static viewModel:VM_UserSettings.Instance},Path=PlaylistHeader_Image_Height}">
                         <Rectangle.Effect>
                             <DropShadowEffect Opacity="0.5"/>
                         </Rectangle.Effect>
                         <Rectangle.Fill>
-                            <ImageBrush ImageSource="{Binding Path=AniDB_Anime.FanartPathThenPosterPathForPlaylistHeader}">
+                            <ImageBrush ImageSource="{Binding Path=AniDBAnime.AniDBAnime.FanartPathThenPosterPathForPlaylistHeader}">
 
                             </ImageBrush>
                         </Rectangle.Fill>
                     </Rectangle>
 
                     <Image Height="{Binding Source={x:Static viewModel:VM_UserSettings.Instance},Path=PlaylistHeader_Image_Height}" 
-                                   Source="{Binding Path=AniDB_Anime.FanartPathThenPosterPathForPlaylistHeader}" x:Name="myImage"
+                                   Source="{Binding Path=AniDBAnime.AniDBAnime.FanartPathThenPosterPathForPlaylistHeader}" x:Name="myImage"
                                    Margin="10,10,10,10" Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Top"
-                                   Visibility="{Binding Path=AniDB_Anime.UsePosterOnPlaylistHeader, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                   Visibility="{Binding Path=AniDBAnime.AniDBAnime.UsePosterOnPlaylistHeader, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <Image.ToolTip>
-                            <Image Stretch="Fill" HorizontalAlignment="Center" Height="400" Source="{Binding AniDB_Anime.FanartPathThenPosterPathForPlaylistHeader}">
+                            <Image Stretch="Fill" HorizontalAlignment="Center" Height="400" Source="{Binding AniDBAnime.AniDBAnime.FanartPathThenPosterPathForPlaylistHeader}">
                             </Image>
                         </Image.ToolTip>
                         <Image.Effect>

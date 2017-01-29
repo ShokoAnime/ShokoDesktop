@@ -13,7 +13,7 @@ using Shoko.Models.Client;
 
 namespace Shoko.Desktop.ViewModel.Server
 {
-    public class VM_AniDB_Anime_Similar : CL_AniDB_Anime_Similar, INotifyPropertyChangedExt
+    public class VM_AniDB_Anime_Similar : CL_AniDB_Anime_Similar, INotifyPropertyChanged, INotifyPropertyChangedExt
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propname)

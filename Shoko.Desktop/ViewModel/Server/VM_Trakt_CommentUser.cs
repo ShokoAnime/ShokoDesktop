@@ -6,7 +6,7 @@ using Shoko.Models.Client;
 
 namespace Shoko.Desktop.ViewModel.Server
 {
-    public class VM_Trakt_CommentUser : CL_Trakt_CommentUser, INotifyPropertyChangedExt
+    public class VM_Trakt_CommentUser : CL_Trakt_CommentUser, INotifyPropertyChanged, INotifyPropertyChangedExt
     {
 
 

@@ -17,10 +17,10 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resources/Styles.xaml" />
-                <ResourceDictionary Source="/Resources/DashboardStyles.xaml" />
-                <ResourceDictionary Source="/Resources/MainListStyles.xaml" />
-                <ResourceDictionary Source="/Resources/MainListContent.xaml" />
+                <ResourceDictionary Source="/ShokoDesktop;component/Resources/Styles.xaml" />
+                <ResourceDictionary Source="/ShokoDesktop;component/Resources/DashboardStyles.xaml" />
+                <ResourceDictionary Source="/ShokoDesktop;component/Resources/MainListStyles.xaml" />
+                <ResourceDictionary Source="/ShokoDesktop;component/Resources/MainListContent.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
@@ -57,7 +57,7 @@
                         <StackPanel Height="{Binding Source={x:Static viewModel:VM_UserSettings.Instance}, Path=Dash_WatchNext_Height}"
                                     Orientation="Horizontal">
                             <Border BorderThickness="1" BorderBrush="DarkGray" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                <Image Source="{Binding Path=AniDB_Anime.PosterPathWithRandoms}" Style="{StaticResource DashAnimePoster}"
+                                <Image Source="{Binding Path=AniDBAnime.AniDBAnime.PosterPathWithRandoms}" Style="{StaticResource DashAnimePoster}"
                                        MaxWidth="{Binding Source={x:Static viewModel:VM_UserSettings.Instance}, Path=Dash_WatchNext_Height}">
                                     <Image.ToolTip>
                                         <customToolTips:CustomToolTip>
@@ -117,7 +117,7 @@
                                     Height="{Binding Source={x:Static viewModel:VM_UserSettings.Instance}, Path=Dash_WatchNext_Height}">
                             <!-- Anime image -->
                             <Border BorderThickness="1" BorderBrush="DarkGray" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                <Image Source="{Binding Path=AniDB_Anime.PosterPathWithRandoms}" Style="{StaticResource DashAnimePoster}"
+                                <Image Source="{Binding Path=AniDBAnime.AniDBAnime.PosterPathWithRandoms}" Style="{StaticResource DashAnimePoster}"
                                        MaxWidth="{Binding Source={x:Static viewModel:VM_UserSettings.Instance}, Path=Dash_WatchNext_Height}"/>
                             </Border>
 
@@ -194,7 +194,7 @@
                         <StackPanel Orientation="Horizontal" Height="{Binding Source={x:Static viewModel:VM_UserSettings.Instance}, Path=Dash_RecentlyWatchedEp_Height}">
                             <!-- Anime image -->
                             <Border BorderThickness="1" BorderBrush="DarkGray" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                <Image Source="{Binding Path=AniDB_Anime.PosterPathWithRandoms}" Style="{StaticResource DashAnimePoster}"
+                                <Image Source="{Binding Path=AniDBAnime.AniDBAnime.PosterPathWithRandoms}" Style="{StaticResource DashAnimePoster}"
                                        MaxWidth="{Binding Source={x:Static viewModel:VM_UserSettings.Instance}, Path=Dash_RecentlyWatchedEp_Height}"/>
                             </Border>
                             
@@ -249,7 +249,7 @@
                             <StackPanel Orientation="Horizontal" Margin="0,5,0,5"
                                         Height="{Binding Source={x:Static viewModel:VM_UserSettings.Instance}, Path=Dash_MissingEps_Height}">
                                 <Border BorderThickness="1" BorderBrush="DarkGray" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                    <Image Source="{Binding Path=AniDB_Anime.PosterPathWithRandoms}" Style="{StaticResource DashAnimePoster}"
+                                    <Image Source="{Binding Path=AniDBAnime.AniDBAnime.PosterPathWithRandoms}" Style="{StaticResource DashAnimePoster}"
                                            MaxWidth="{Binding Source={x:Static viewModel:VM_UserSettings.Instance}, Path=Dash_MissingEps_Height}"/>
                                 </Border>
                             </StackPanel>
@@ -275,7 +275,7 @@
 
                                 <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=LatestEp_Anime}" Foreground="Black"
                                            VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="0"/>
-                                <TextBlock Text="{Binding Path=AniDB_Anime.LatestEpisodeNumber}" Foreground="Black" FontWeight="Bold"
+                                <TextBlock Text="{Binding Path=AniDBAnime.AniDBAnime.LatestEpisodeNumber}" Foreground="Black" FontWeight="Bold"
                                            VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="2" Grid.Row="0" Margin="8,0,0,0"/>
                                 <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MissingEpisodeCount}" Foreground="Black"
                                            VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1"/>
@@ -708,7 +708,7 @@
                                     Height="{Binding Source={x:Static viewModel:VM_UserSettings.Instance}, Path=Dash_RecentAdditions_Height}">
                             <!-- Anime image -->
                             <Border BorderThickness="1" BorderBrush="DarkGray" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                <Image Source="{Binding Path=AniDB_Anime.PosterPathWithRandoms}" Style="{StaticResource DashAnimePoster}"
+                                <Image Source="{Binding Path=AniDBAnime.AniDBAnime.PosterPathWithRandoms}" Style="{StaticResource DashAnimePoster}"
                                        MaxWidth="{Binding Source={x:Static viewModel:VM_UserSettings.Instance}, Path=Dash_RecentAdditions_Height}"/>
                             </Border>
 
@@ -788,7 +788,7 @@
                                     Height="{Binding Source={x:Static viewModel:VM_UserSettings.Instance},Path=Dash_RecentAdditions_Height}">
                             <!-- Anime image -->
                             <Border BorderThickness="1" BorderBrush="DarkGray" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                <Image Source="{Binding Path=AniDB_Anime.PosterPathWithRandoms}" Style="{StaticResource DashAnimePoster}"
+                                <Image Source="{Binding Path=AniDBAnime.AniDBAnime.PosterPathWithRandoms}" Style="{StaticResource DashAnimePoster}"
                                        MaxWidth="{Binding Source={x:Static viewModel:VM_UserSettings.Instance}, Path=Dash_RecentAdditions_Height}"/>
                             </Border>
 
@@ -809,8 +809,8 @@
                             </Grid.ColumnDefinitions>
                             
                             <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0">
-                                <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="{Binding Path=AniDB_Anime.AnimeID}"
-                                                                URL="{Binding Path=AniDB_Anime.AniDB_SiteURL}" Margin="7,0,0,0"/>
+                                <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="{Binding Path=AniDBAnime.AniDBAnime.AnimeID}"
+                                                                URL="{Binding Path=AniDBAnime.AniDBAnime.AniDB_SiteURL}" Margin="7,0,0,0"/>
 
                                 <!-- Show pinned series button -->
                                 <Button Margin="5,0,0,0" Style="{DynamicResource RoundButtonStyle}" VerticalAlignment="Center"

@@ -21,7 +21,7 @@ using Shoko.Models.Client;
 
 namespace Shoko.Desktop.ViewModel
 {
-    public class VM_MainListHelper : INotifyPropertyChangedExt
+    public class VM_MainListHelper :INotifyPropertyChanged, INotifyPropertyChangedExt
     {
         private static VM_MainListHelper _instance;
         public ICollectionView ViewGroups { get; set; }

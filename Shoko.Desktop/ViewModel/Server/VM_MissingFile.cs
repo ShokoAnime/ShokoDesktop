@@ -8,7 +8,7 @@ using Shoko.Models.Enums;
 
 namespace Shoko.Desktop.ViewModel.Server
 {
-    public class VM_MissingFile : CL_MissingFile, INotifyPropertyChangedExt
+    public class VM_MissingFile : CL_MissingFile, INotifyPropertyChanged, INotifyPropertyChangedExt
     {
         public new VM_AnimeSeries_User AnimeSeries
         {

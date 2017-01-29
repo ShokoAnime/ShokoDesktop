@@ -12,7 +12,7 @@ using Shoko.Models.Client;
 
 namespace Shoko.Desktop.ViewModel.Server
 {
-    public class VM_VideoDetailed : CL_VideoDetailed, IListWrapper, INotifyPropertyChangedExt
+    public class VM_VideoDetailed : CL_VideoDetailed, IListWrapper, INotifyPropertyChanged, INotifyPropertyChangedExt
     {
 
 

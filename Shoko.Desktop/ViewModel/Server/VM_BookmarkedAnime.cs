@@ -8,7 +8,7 @@ using Shoko.Models.Client;
 
 namespace Shoko.Desktop.ViewModel.Server
 {
-    public class VM_BookmarkedAnime : CL_BookmarkedAnime, INotifyPropertyChangedExt
+    public class VM_BookmarkedAnime : CL_BookmarkedAnime, INotifyPropertyChanged, INotifyPropertyChangedExt
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propname)
