@@ -37,21 +37,21 @@ namespace Shoko.Desktop.ViewModel
         public bool CredentialsValid
         {
             get { return credentialsValid; }
-            set { credentialsValid = this.SetField(credentialsValid, value); }
+            set { this.SetField(()=>credentialsValid,value); }
         }
 
         private bool credentialsInvalid = true;
         public bool CredentialsInvalid
         {
             get { return credentialsInvalid; }
-            set { credentialsInvalid = this.SetField(credentialsInvalid, value); }
+            set { this.SetField(()=>credentialsInvalid,value); }
         }
 
         private string downloadSpeedSummaryFormatted = @"0 KB/sec";
         public string DownloadSpeedSummaryFormatted
         {
             get { return downloadSpeedSummaryFormatted; }
-            set { downloadSpeedSummaryFormatted = this.SetField(downloadSpeedSummaryFormatted, value); }
+            set { this.SetField(()=>downloadSpeedSummaryFormatted,value); }
         }
 
         private string uploadSpeedSummaryFormatted = @"0 KB/sec";
@@ -60,7 +60,7 @@ namespace Shoko.Desktop.ViewModel
             get { return uploadSpeedSummaryFormatted; }
             set
             {
-                uploadSpeedSummaryFormatted = this.SetField(uploadSpeedSummaryFormatted, value);
+                this.SetField(()=>uploadSpeedSummaryFormatted,value);
             }
         }
 
@@ -70,7 +70,7 @@ namespace Shoko.Desktop.ViewModel
             get { return connectionStatus; }
             set
             {
-                connectionStatus = this.SetField(connectionStatus, value);
+                this.SetField(()=>connectionStatus,value);
             }
         }
 

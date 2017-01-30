@@ -88,7 +88,7 @@ namespace Shoko.Desktop.ViewModel
             get { return isImageEnabled; }
             set
             {
-                isImageEnabled = this.SetField(isImageEnabled, value);
+                this.SetField(()=>isImageEnabled,value);
             }
         }
 
@@ -100,7 +100,7 @@ namespace Shoko.Desktop.ViewModel
             get { return isImageDefault; }
             set
             {
-                isImageDefault = this.SetField(isImageDefault, value);
+                this.SetField(()=>isImageDefault,value);
             }
         }
 
@@ -112,7 +112,7 @@ namespace Shoko.Desktop.ViewModel
             get { return posterSource; }
             set
             {
-                posterSource = this.SetField(posterSource, value);
+                this.SetField(()=>posterSource,value);
             }
         }
     }

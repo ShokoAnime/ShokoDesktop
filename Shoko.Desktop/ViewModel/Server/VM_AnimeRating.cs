@@ -31,21 +31,21 @@ namespace Shoko.Desktop.ViewModel.Server
             }
             set
             {
-                userRating = this.SetField(userRating, value);
+                this.SetField(()=>userRating,value);
             }
         }
 
         public new VM_AniDB_AnimeDetailed AnimeDetailed
         {
             get { return (VM_AniDB_AnimeDetailed)base.AnimeDetailed; }
-            set { base.AnimeDetailed = this.SetField(base.AnimeDetailed, value); }
+            set { this.SetField(()=>base.AnimeDetailed,(r)=> base.AnimeDetailed = r, value); }
         }
 
         
         public new VM_AnimeSeries_User AnimeSeries
         {
             get { return (VM_AnimeSeries_User)base.AnimeSeries; }
-            set { base.AnimeSeries = this.SetField(base.AnimeSeries, value); }
+            set { this.SetField(()=>base.AnimeSeries,(r)=> base.AnimeSeries = r, value); }
         }
 
     }

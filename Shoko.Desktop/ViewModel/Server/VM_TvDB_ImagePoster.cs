@@ -56,13 +56,13 @@ namespace Shoko.Desktop.ViewModel.Server
         public new int Enabled
         {
             get { return base.Enabled; }
-            set { base.Enabled = this.SetField(base.Enabled, value, () => Enabled, () => IsImageEnabled); }
+            set { this.SetField(()=>base.Enabled,(r)=> base.Enabled = r, value, () => Enabled, () => IsImageEnabled); }
         }
         private bool isImageDefault;
         public bool IsImageDefault
         {
             get { return isImageDefault; }
-            set { isImageDefault = this.SetField(isImageDefault, value); }
+            set { this.SetField(()=>isImageDefault,value); }
         }
 
     }

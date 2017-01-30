@@ -55,7 +55,7 @@ namespace Shoko.Desktop.ViewModel.Server
         public new int MissingEpisodeCount
         {
             get { return base.MissingEpisodeCount; }
-            set { base.MissingEpisodeCount = this.SetField(base.MissingEpisodeCount, value, () => MissingEpisodeCount, () => HasMissingEpisodesAny, () => HasMissingEpisodesAllDifferentToGroups); }
+            set { this.SetField(()=>base.MissingEpisodeCount,(r)=> base.MissingEpisodeCount = r, value, () => MissingEpisodeCount, () => HasMissingEpisodesAny, () => HasMissingEpisodesAllDifferentToGroups); }
         }
         
         public DateTime? Stat_SeriesCreatedDate => DateTimeCreated;
@@ -66,7 +66,7 @@ namespace Shoko.Desktop.ViewModel.Server
         public new int UnwatchedEpisodeCount
         {
             get { return base.UnwatchedEpisodeCount; }
-            set { base.UnwatchedEpisodeCount = this.SetField(base.UnwatchedEpisodeCount, value); }
+            set { this.SetField(()=>base.UnwatchedEpisodeCount,(r)=> base.UnwatchedEpisodeCount = r, value); }
         }
 
         #endregion
@@ -83,7 +83,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return (VM_AniDB_AnimeDetailed)base.AniDBAnime; }
             set
             {
-                base.AniDBAnime = this.SetField(base.AniDBAnime, value);
+                this.SetField(()=>base.AniDBAnime,(r)=> base.AniDBAnime = r, value);
                 VM_MainListHelper.Instance.AllAnimeDictionary[AniDBAnime.AniDBAnime.AnimeID] = AniDBAnime.AniDBAnime;
             }
         }
@@ -101,7 +101,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return base.TvDB_Series.CastList<VM_TvDB_Series>(); }
             set
             {
-                base.TvDB_Series = this.SetField(base.TvDB_Series, value.CastList<TvDB_Series>(),()=>SeriesName);
+                this.SetField(()=>base.TvDB_Series,(r)=> base.TvDB_Series = r, value.CastList<TvDB_Series>(),()=>SeriesName);
             }
         }
 
@@ -114,14 +114,14 @@ namespace Shoko.Desktop.ViewModel.Server
         public Boolean IsReadOnly
         {
             get { return isReadOnly; }
-            set { isReadOnly = this.SetField(isReadOnly, value); }
+            set { this.SetField(()=>isReadOnly, value); }
         }
 
         private Boolean isBeingEdited;
         public Boolean IsBeingEdited
         {
             get { return isBeingEdited; }
-            set { isBeingEdited = this.SetField(isBeingEdited,value); }
+            set { this.SetField(()=>isBeingEdited,value); }
         }
 
         public Boolean IsSeriesNameOverridden => !string.IsNullOrEmpty(SeriesNameOverride);
@@ -131,21 +131,21 @@ namespace Shoko.Desktop.ViewModel.Server
         public new string SeriesNameOverride
         {
             get { return base.SeriesNameOverride; }
-            set { base.SeriesNameOverride = this.SetField(base.SeriesNameOverride, value, ()=>SeriesNameOverride, ()=>IsSeriesNameOverridden,()=>SeriesName,()=>SeriesNameTruncated); }
+            set { this.SetField(()=>base.SeriesNameOverride,(r)=> base.SeriesNameOverride = r, value, ()=>SeriesNameOverride, ()=>IsSeriesNameOverridden,()=>SeriesName,()=>SeriesNameTruncated); }
         }
 
 
         public new int AnimeGroupID
         {
             get { return base.AnimeGroupID; }
-            set { base.AnimeGroupID = this.SetField(base.AnimeGroupID, value); }
+            set { this.SetField(()=>base.AnimeGroupID,(r)=> base.AnimeGroupID = r, value); }
         }
 
        
         public new int WatchedCount
         {
             get { return base.WatchedCount; }
-            set { base.WatchedCount = this.SetField(base.WatchedCount, value); }
+            set { this.SetField(()=>base.WatchedCount,(r)=> base.WatchedCount = r, value); }
         }
 
         public bool IsFave
@@ -169,7 +169,7 @@ namespace Shoko.Desktop.ViewModel.Server
         public new int MissingEpisodeCountGroups
         {
             get { return base.MissingEpisodeCountGroups; }
-            set { base.MissingEpisodeCountGroups = this.SetField(base.MissingEpisodeCountGroups, value,()=>MissingEpisodeCountGroups, ()=> HasMissingEpisodesAny, ()=> HasMissingEpisodesAllDifferentToGroups, ()=> HasMissingEpisodesGroups); }
+            set { this.SetField(()=>base.MissingEpisodeCountGroups, (r)=>base.MissingEpisodeCountGroups=r, value,()=>MissingEpisodeCountGroups, ()=> HasMissingEpisodesAny, ()=> HasMissingEpisodesAllDifferentToGroups, ()=> HasMissingEpisodesGroups); }
         }
 
         private string posterPath;
@@ -178,7 +178,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return posterPath ?? AniDBAnime.AniDBAnime.DefaultPosterPath; }
             set
             {
-                posterPath = this.SetField(posterPath, value);
+                this.SetField(()=>posterPath, value);
             }
         }
 
@@ -243,7 +243,7 @@ namespace Shoko.Desktop.ViewModel.Server
         public new string DefaultFolder
         {
             get { return base.DefaultFolder; }
-            set { base.DefaultFolder = this.SetField(base.DefaultFolder, value); }
+            set { this.SetField(()=>base.DefaultFolder,(r)=> base.DefaultFolder = r, value); }
         }
 
 
@@ -570,13 +570,6 @@ namespace Shoko.Desktop.ViewModel.Server
 
 
 
-        public void RefreshBase()
-        {
-            VM_AnimeSeries_User contract = (VM_AnimeSeries_User)VM_ShokoServer.Instance.ShokoServices.GetSeries(AnimeSeriesID,
-                VM_ShokoServer.Instance.CurrentUser.JMMUserID);
-            Populate(contract);
-            allEpisodes = null;
-        }
 
 
 

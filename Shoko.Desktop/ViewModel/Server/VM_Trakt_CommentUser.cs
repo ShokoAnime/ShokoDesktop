@@ -23,7 +23,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return isCommentExpanded; }
             set
             {
-                isCommentExpanded = this.SetField(isCommentExpanded, value);
+                this.SetField(()=>isCommentExpanded,value);
             }
         }
 

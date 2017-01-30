@@ -57,7 +57,7 @@ namespace Shoko.Desktop.ViewModel
             get { return isReadOnly; }
             set
             {
-                isReadOnly = this.SetField(isReadOnly, value);
+                this.SetField(()=>isReadOnly,value);
             }
         }
 
@@ -67,7 +67,7 @@ namespace Shoko.Desktop.ViewModel
             get { return isBeingEdited; }
             set
             {
-                isBeingEdited = this.SetField(isBeingEdited, value);
+                this.SetField(()=>isBeingEdited,value);
             }
         }
 
@@ -77,7 +77,7 @@ namespace Shoko.Desktop.ViewModel
             get { return isLoadingData; }
             set
             {
-                isLoadingData = this.SetField(isLoadingData,value);
+                this.SetField(()=>isLoadingData,value);
             }
         }
 

@@ -85,7 +85,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return recommended_DisplayName; }
             set
             {
-                recommended_DisplayName = this.SetField(recommended_DisplayName, value);
+                this.SetField(()=>recommended_DisplayName,value);
             }
         }
 
@@ -95,7 +95,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return basedOn_DisplayName; }
             set
             {
-                basedOn_DisplayName = this.SetField(basedOn_DisplayName, value);
+                this.SetField(()=>basedOn_DisplayName,(r)=> basedOn_DisplayName = r, value);
             }
         }
 
@@ -105,7 +105,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return recommended_Description; }
             set
             {
-                recommended_Description = this.SetField(recommended_Description, value);
+                this.SetField(()=>recommended_Description,value);
             }
         }
 
@@ -116,7 +116,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return recommended_AniDB_SiteURL; }
             set
             {
-                recommended_AniDB_SiteURL = this.SetField(recommended_AniDB_SiteURL, value);
+                this.SetField(()=>recommended_AniDB_SiteURL,value);
             }
         }
 
@@ -126,7 +126,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return basedOn_AniDB_SiteURL; }
             set
             {
-                basedOn_AniDB_SiteURL = this.SetField(BasedOn_AniDB_SiteURL,value);
+                this.SetField(()=>BasedOn_AniDB_SiteURL,(r)=> BasedOn_AniDB_SiteURL = r, value);
             }
         }
 
@@ -136,7 +136,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return recommended_LocalSeriesExists; }
             set
             {
-                recommended_LocalSeriesExists = this.SetField(recommended_LocalSeriesExists, value);
+                this.SetField(()=>recommended_LocalSeriesExists,value);
             }
         }
 
@@ -146,7 +146,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return recommended_AnimeInfoExists; }
             set
             {
-                recommended_AnimeInfoExists = this.SetField(recommended_AnimeInfoExists, value);
+                this.SetField(()=>recommended_AnimeInfoExists,value);
             }
         }
 
@@ -158,7 +158,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return recommended_ShowCreateSeriesButton; }
             set
             {
-                recommended_ShowCreateSeriesButton = this.SetField(recommended_ShowCreateSeriesButton, value);
+                this.SetField(()=>recommended_ShowCreateSeriesButton,value);
             }
         }
 
@@ -168,7 +168,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return recommended_PosterPath; }
             set
             {
-                recommended_PosterPath = this.SetField(recommended_PosterPath, value);
+                this.SetField(()=>recommended_PosterPath,value);
             }
         }
 
@@ -178,7 +178,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return basedOn_PosterPath; }
             set
             {
-                basedOn_PosterPath = this.SetField(basedOn_PosterPath, value);
+                this.SetField(()=>basedOn_PosterPath,(r)=> basedOn_PosterPath = r, value);
             }
         }
 
@@ -188,7 +188,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return recommended_ApprovalRating; }
             set
             {
-                recommended_ApprovalRating = this.SetField(recommended_ApprovalRating, value);
+                this.SetField(()=>recommended_ApprovalRating,value);
             }
         }
 
@@ -198,7 +198,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return basedOnVoteValueFormatted; }
             set
             {
-                basedOnVoteValueFormatted = this.SetField(basedOnVoteValueFormatted, value);
+                this.SetField(()=>basedOnVoteValueFormatted,(r)=> basedOnVoteValueFormatted = r, value);
             }
         }
     }

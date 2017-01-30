@@ -50,7 +50,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return base.TvDBSeries.CastList<VM_TvDB_Series>(); }
             set
             {
-                this.SetField(base.TvDBSeries, value.CastList<TvDB_Series>(), () => TvDBSeries, () => TvDBCrossRefExists, () => TvDBCrossRefMissing);
+                this.SetField(()=>base.TvDBSeries, (r)=>base.TvDBSeries=r, value.CastList<TvDB_Series>(), () => TvDBSeries, () => TvDBCrossRefExists, () => TvDBCrossRefMissing);
             }
         }
 
@@ -92,7 +92,7 @@ namespace Shoko.Desktop.ViewModel.Server
         public new List<VM_TvDB_Episode> TvDBEpisodes
         {
             get { return base.TvDBEpisodes.CastList<VM_TvDB_Episode>(); }
-            set { base.TvDBEpisodes= this.SetField(base.TvDBEpisodes, value.CastList<TvDB_Episode>()); }
+            set { this.SetField(()=>base.TvDBEpisodes, (r)=>base.TvDBEpisodes=r, value.CastList<TvDB_Episode>(),()=>TvDBEpisodes); }
         }
         public new List<VM_TvDB_ImageFanart> TvDBImageFanarts
         {
@@ -105,7 +105,7 @@ namespace Shoko.Desktop.ViewModel.Server
                     contract.IsImageDefault = isDefault;
                     AllFanarts.Add(new VM_FanartContainer(ImageEntityType.TvDB_FanArt, contract));
                 }
-                base.TvDBImageFanarts = this.SetField(base.TvDBImageFanarts, value.CastList<TvDB_ImageFanart>());
+                this.SetField(()=>base.TvDBImageFanarts,(r)=> base.TvDBImageFanarts = r, value.CastList<TvDB_ImageFanart>());
             }
         }
         public new List<VM_TvDB_ImagePoster> TvDBImagePosters
@@ -119,7 +119,7 @@ namespace Shoko.Desktop.ViewModel.Server
                     contract.IsImageDefault = isDefault;
                     AllPosters.Add(new VM_PosterContainer(ImageEntityType.TvDB_Cover, contract));
                 }
-                base.TvDBImagePosters = this.SetField(base.TvDBImagePosters, value.CastList<TvDB_ImagePoster>());
+                this.SetField(()=>base.TvDBImagePosters,(r)=> base.TvDBImagePosters = r, value.CastList<TvDB_ImagePoster>());
             }
         }
         public new List<VM_TvDB_ImageWideBanner> TvDBImageWideBanners
@@ -132,7 +132,7 @@ namespace Shoko.Desktop.ViewModel.Server
                     bool isDefault = anime?.DefaultImageFanart != null && anime.DefaultImageFanart.ImageParentType == (int)ImageEntityType.TvDB_Banner && anime.DefaultImageFanart.ImageParentID == contract.TvDB_ImageWideBannerID;
                     contract.IsImageDefault = isDefault;
                 }
-                base.TvDBImageWideBanners = this.SetField(base.TvDBImageWideBanners, value.CastList<TvDB_ImageWideBanner>());
+                this.SetField(()=>base.TvDBImageWideBanners,(r)=> base.TvDBImageWideBanners = r, value.CastList<TvDB_ImageWideBanner>());
             }
         }
 
@@ -150,7 +150,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return (VM_MovieDB_Movie)base.MovieDBMovie; }
             set
             {
-                base.MovieDBMovie=this.SetField(base.MovieDBMovie, value, ()=>MovieDBMovie, () => MovieDBCrossRefExists, () => MovieDBCrossRefMissing);
+                this.SetField(()=>base.MovieDBMovie, (r)=>base.MovieDBMovie=r, value, ()=>MovieDBMovie, () => MovieDBCrossRefExists, () => MovieDBCrossRefMissing);
             }
         }
 
@@ -159,7 +159,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return base.CrossRef_AniDB_MovieDB; }
             set
             {
-                base.CrossRef_AniDB_MovieDB = this.SetField(base.CrossRef_AniDB_MovieDB, value, () => CrossRef_AniDB_MovieDB, () => MovieDBCrossRefExists, ()=>MovieDBCrossRefMissing);
+                this.SetField(()=>base.CrossRef_AniDB_MovieDB,(r)=> base.CrossRef_AniDB_MovieDB = r, value, () => CrossRef_AniDB_MovieDB, () => MovieDBCrossRefExists, ()=>MovieDBCrossRefMissing);
             }
         }
 
@@ -174,7 +174,7 @@ namespace Shoko.Desktop.ViewModel.Server
                     contract.IsImageDefault = isDefault;
                     AllFanarts.Add(new VM_FanartContainer(ImageEntityType.MovieDB_FanArt, contract));
                 }
-                base.MovieDBFanarts = this.SetField(base.MovieDBFanarts, value.CastList<MovieDB_Fanart>());
+                this.SetField(()=>base.MovieDBFanarts,(r)=> base.MovieDBFanarts = r, value.CastList<MovieDB_Fanart>());
             }
         }
         public new List<VM_MovieDB_Poster> MovieDBPosters
@@ -188,7 +188,7 @@ namespace Shoko.Desktop.ViewModel.Server
                     contract.IsImageDefault = isDefault;
                     AllPosters.Add(new VM_PosterContainer(ImageEntityType.MovieDB_Poster, contract));
                 }
-                base.MovieDBPosters = this.SetField(base.MovieDBPosters, value.CastList<MovieDB_Poster>());
+                this.SetField(()=>base.MovieDBPosters,(r)=> base.MovieDBPosters = r, value.CastList<MovieDB_Poster>());
             }
         }
 
@@ -202,7 +202,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return allPosters; }
             set
             {
-                allPosters = this.SetField(allPosters, value);
+                this.SetField(()=>allPosters, value);
             }
         }
 
@@ -212,7 +212,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return allFanarts; }
             set
             {
-                allFanarts = this.SetField(allFanarts, value);
+                this.SetField(()=>allFanarts, value);
             }
         }
 
@@ -227,7 +227,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return base.TraktShows.CastList<VM_Trakt_Show>(); }
             set
             {
-                this.SetField(base.TraktShows,value.CastList<CL_Trakt_Show>(), ()=>TraktShows, () => TraktCrossRefExists, () => TraktCrossRefMissing);
+                this.SetField(()=>base.TraktShows,(r)=>base.TraktShows=r, value.CastList<CL_Trakt_Show>(), ()=>TraktShows, () => TraktCrossRefExists, () => TraktCrossRefMissing);
             }
         }
 
@@ -242,7 +242,7 @@ namespace Shoko.Desktop.ViewModel.Server
                     contract.IsImageDefault = isDefault;
                     AllFanarts.Add(new VM_FanartContainer(ImageEntityType.Trakt_Fanart, contract));
                 }
-                base.TraktImageFanarts = this.SetField(base.TraktImageFanarts, value.CastList<Trakt_ImageFanart>());
+                this.SetField(()=>base.TraktImageFanarts,(r)=> base.TraktImageFanarts = r, value.CastList<Trakt_ImageFanart>());
             }
         }
 
@@ -257,7 +257,7 @@ namespace Shoko.Desktop.ViewModel.Server
                     contract.IsImageDefault = isDefault;
                     AllPosters.Add(new VM_PosterContainer(ImageEntityType.Trakt_Poster, contract));
                 }
-                base.TraktImagePosters = this.SetField(base.TraktImagePosters, value.CastList<Trakt_ImagePoster>());
+                this.SetField(()=>base.TraktImagePosters,(r)=> base.TraktImagePosters = r, value.CastList<Trakt_ImagePoster>());
             }
         }
 

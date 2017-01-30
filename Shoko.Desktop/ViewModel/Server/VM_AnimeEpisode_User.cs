@@ -36,7 +36,7 @@ namespace Shoko.Desktop.ViewModel.Server
         public string DisplayTypeLabel
         {
             get { return displayTypeLabel; }
-            set { displayTypeLabel = this.SetField(displayTypeLabel, value); }
+            set { this.SetField(()=>displayTypeLabel,value); }
         }
 
         private int episodeOrder;
@@ -45,7 +45,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return episodeOrder; }
             set
             {
-                episodeOrder = this.SetField(episodeOrder, value);
+                this.SetField(()=>episodeOrder,value);
                 SetDisplayDetails();
             }
         }
@@ -71,7 +71,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return base.WatchedCount; }
             set
             {
-                base.WatchedCount = this.SetField(base.WatchedCount, value, ()=>Watched, ()=>IsWatched);
+                this.SetField(()=>base.WatchedCount,(r)=> base.WatchedCount = r, value, ()=>Watched, ()=>IsWatched);
                 // episode image / overview in summary
                 bool se1 = false;
                 bool se2 = false;
@@ -131,7 +131,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return base.WatchedDate; }
             set 
             {
-                base.WatchedDate = this.SetField(base.WatchedDate, value);
+                this.SetField(()=>base.WatchedDate,(r)=> base.WatchedDate = r, value);
                 SetLastWatchedDescription();
             }
         }
@@ -142,7 +142,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return episodeName; }
             set
             {
-                episodeName = this.SetField(episodeName, value);
+                this.SetField(()=>episodeName,value);
                 SetEpisodeNameVariants();
             }
         }
@@ -151,49 +151,49 @@ namespace Shoko.Desktop.ViewModel.Server
         public string EpisodeNumberAndName
         {
             get { return episodeNumberAndName; }
-            set { episodeNumberAndName = this.SetField(episodeNumberAndName, value); }
+            set { this.SetField(()=>episodeNumberAndName,value); }
         }
 
         private string episodeNumberAndNameTruncated = "";
         public string EpisodeNumberAndNameTruncated
         {
             get { return episodeNumberAndNameTruncated; }
-            set { episodeNumberAndNameTruncated = this.SetField(episodeNumberAndNameTruncated, value); }
+            set { this.SetField(()=>episodeNumberAndNameTruncated,value); }
         }
 
         private string episodeNumberAndNameWithType = "";
         public string EpisodeNumberAndNameWithType
         {
             get { return episodeNumberAndNameWithType; }
-            set { episodeNumberAndNameWithType = this.SetField(episodeNumberAndNameWithType, value); }
+            set { this.SetField(()=>episodeNumberAndNameWithType,value); }
         }
 
         private string episodeNumberWithType = "";
         public string EpisodeNumberWithType
         {
             get { return episodeNumberWithType; }
-            set { episodeNumberWithType = this.SetField(episodeNumberWithType, value); }
+            set { this.SetField(()=>episodeNumberWithType,value); }
         }
 
         private string episodeNumberAndNameWithTypeTruncated = "";
         public string EpisodeNumberAndNameWithTypeTruncated
         {
             get { return episodeNumberAndNameWithTypeTruncated; }
-            set { episodeNumberAndNameWithTypeTruncated = this.SetField(episodeNumberAndNameWithType, value); }
+            set { this.SetField(()=>episodeNumberAndNameWithType,value); }
         }
 
         private string episodeTypeAndNumber = "";
         public string EpisodeTypeAndNumber
         {
             get { return episodeTypeAndNumber; }
-            set { episodeTypeAndNumber = this.SetField(episodeTypeAndNumber, value); }
+            set { this.SetField(()=>episodeTypeAndNumber,value); }
         }
 
         private string episodeTypeAndNumberAbsolute = "";
         public string EpisodeTypeAndNumberAbsolute
         {
             get { return episodeTypeAndNumberAbsolute; }
-            set { episodeTypeAndNumberAbsolute = this.SetField(episodeTypeAndNumberAbsolute, value); }
+            set { this.SetField(()=>episodeTypeAndNumberAbsolute,value); }
         }
 
         public bool Watched => WatchedCount > 0;
@@ -202,14 +202,14 @@ namespace Shoko.Desktop.ViewModel.Server
         public bool TvDBLinkExists
         {
             get { return tvDBLinkExists; }
-            set { tvDBLinkExists = this.SetField(tvDBLinkExists, value); }
+            set { this.SetField(()=>tvDBLinkExists,value); }
         }
 
         private bool tvDBLinkMissing = true;
         public bool TvDBLinkMissing
         {
             get { return tvDBLinkMissing; }
-            set { tvDBLinkMissing = this.SetField(tvDBLinkMissing, value); }
+            set { this.SetField(()=>tvDBLinkMissing,value); }
         }
 
 
@@ -217,27 +217,27 @@ namespace Shoko.Desktop.ViewModel.Server
         public bool TraktLinkExists
         {
             get { return traktLinkExists; }
-            set { traktLinkExists = this.SetField(traktLinkExists, value); }
+            set { this.SetField(()=>traktLinkExists,value); }
         }
 
         private bool traktLinkMissing = true;
         public bool TraktLinkMissing
         {
             get { return traktLinkMissing; }
-            set { traktLinkMissing = this.SetField(traktLinkMissing, value); }
+            set { this.SetField(()=>traktLinkMissing,value); }
         }
 
         private string traktEpisodeURL = "";
         public string TraktEpisodeURL
         {
             get { return traktEpisodeURL; }
-            set { traktEpisodeURL = this.SetField(traktEpisodeURL, value); }
+            set { this.SetField(()=>traktEpisodeURL,value); }
         }
 
         public new int LocalFileCount
         {
             get { return base.LocalFileCount; }
-            set { base.LocalFileCount = this.SetField(base.LocalFileCount, value, ()=>LocalFileCount, ()=>OneFileOnly, ()=>NoFiles, ()=>HasFiles, ()=>FileDetails, ()=>MultipleFiles); }
+            set { this.SetField(()=>base.LocalFileCount,(r)=> base.LocalFileCount = r, value, ()=>LocalFileCount, ()=>OneFileOnly, ()=>NoFiles, ()=>HasFiles, ()=>FileDetails, ()=>MultipleFiles); }
         }
 
         public bool OneFileOnly => base.LocalFileCount == 1;
@@ -270,7 +270,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return episodeOverviewLoading; }
             set
             {
-                episodeOverviewLoading = this.SetField(episodeOverviewLoading, value);
+                this.SetField(()=>episodeOverviewLoading,value);
 
                 string trunc = EpisodeOverviewLoading;
                 if (!string.IsNullOrEmpty(trunc) && EpisodeOverviewLoading.Length > 500)
@@ -286,7 +286,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return episodeOverviewTruncated; }
             set
             {
-                episodeOverviewTruncated = this.SetField(episodeOverviewTruncated, value);
+                this.SetField(()=>episodeOverviewTruncated,value);
             }
         }
 
@@ -296,7 +296,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return episodeImageLoading; }
             set
             {
-                episodeImageLoading = this.SetField(episodeImageLoading, value);
+                this.SetField(()=>episodeImageLoading,value);
             }
         }
 
@@ -306,7 +306,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return airDateAsString; }
             set
             {
-                airDateAsString = this.SetField(airDateAsString, value);
+                this.SetField(()=>airDateAsString,value);
             }
         }
 
@@ -318,7 +318,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return showEpisodeImageInSummary; }
             set
             {
-                showEpisodeImageInSummary = this.SetField(showEpisodeImageInSummary, value);
+                this.SetField(()=>showEpisodeImageInSummary,value);
             }
         }
 
@@ -328,7 +328,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return showEpisodeOverviewInSummary; }
             set
             {
-                showEpisodeOverviewInSummary = this.SetField(showEpisodeOverviewInSummary, value);
+                this.SetField(()=>showEpisodeOverviewInSummary,value);
             }
         }
 
@@ -339,7 +339,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return showEpisodeImageInExpanded; }
             set
             {
-                showEpisodeImageInExpanded = this.SetField(showEpisodeImageInExpanded, value);
+                this.SetField(()=>showEpisodeImageInExpanded,value);
             }
         }
 
@@ -349,7 +349,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return showEpisodeOverviewInExpanded; }
             set
             {
-                showEpisodeOverviewInExpanded = this.SetField(showEpisodeOverviewInExpanded, value);
+                this.SetField(()=>showEpisodeOverviewInExpanded,value);
             }
         }
 
@@ -359,7 +359,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return showEpisodeImageInDashboard; }
             set
             {
-                showEpisodeImageInDashboard = this.SetField(showEpisodeImageInDashboard, value);
+                this.SetField(()=>showEpisodeImageInDashboard,value);
             }
         }
 
@@ -369,7 +369,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return lastWatchedDescription; }
             set
             {
-                lastWatchedDescription = this.SetField(lastWatchedDescription, value);
+                this.SetField(()=>lastWatchedDescription,value);
             }
         }
 
@@ -863,10 +863,17 @@ namespace Shoko.Desktop.ViewModel.Server
             get
             {
                 if (animeSeries != null) return animeSeries;
-
-                VM_AnimeSeries_User  rawSeries = (VM_AnimeSeries_User)VM_ShokoServer.Instance.ShokoServices.GetSeries(AnimeSeriesID, VM_ShokoServer.Instance.CurrentUser.JMMUserID);
+                VM_AnimeSeries_User rawSeries;
+                if (VM_MainListHelper.Instance.AllSeriesDictionary.TryGetValue(AnimeSeriesID, out rawSeries) == false)
+                {
+                    // get the series
+                    rawSeries = (VM_AnimeSeries_User)VM_ShokoServer.Instance.ShokoServices.GetSeries(AnimeSeriesID, VM_ShokoServer.Instance.CurrentUser.JMMUserID);
+                    if (rawSeries != null)
+                    {
+                        VM_MainListHelper.Instance.AllSeriesDictionary[AnimeSeriesID] = rawSeries;
+                    }
+                }
                 if (rawSeries == null) return null;
-
                 animeSeries = rawSeries;
                 return animeSeries;
             }

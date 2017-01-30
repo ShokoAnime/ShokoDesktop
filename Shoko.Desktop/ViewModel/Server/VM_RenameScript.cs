@@ -24,7 +24,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return base.ScriptName; }
             set
             {
-                base.ScriptName = this.SetField(base.ScriptName, value);
+                this.SetField(()=>base.ScriptName,(r)=> base.ScriptName = r, value);
             }
         }
 
@@ -33,7 +33,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return base.Script; }
             set
             {
-                base.Script = this.SetField(base.Script, value, ()=>Script, ()=>ScriptNameLong);
+                this.SetField(()=>base.Script,(r)=> base.Script = r, value, ()=>Script, ()=>ScriptNameLong);
 
             }
         }
@@ -43,7 +43,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return base.IsEnabledOnImport; }
             set
             {
-                base.IsEnabledOnImport = this.SetField(base.IsEnabledOnImport, value, ()=>IsEnabledOnImport, ()=>IsEnabledOnImportBool);
+                this.SetField(()=>base.IsEnabledOnImport,(r)=> base.IsEnabledOnImport = r, value, ()=>IsEnabledOnImport, ()=>IsEnabledOnImportBool);
             }
         }
 

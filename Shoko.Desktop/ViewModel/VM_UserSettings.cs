@@ -240,7 +240,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.TagsExpanded; }
             set
             {
-                AppSettings.TagsExpanded = this.SetField(AppSettings.TagsExpanded, value,()=> TagsExpanded, ()=>TagsCollapsed);
+                this.SetField(()=>AppSettings.TagsExpanded,value,()=> TagsExpanded, ()=>TagsCollapsed);
             }
         }
 
@@ -251,7 +251,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.CustomTagsExpanded; }
             set
             {
-                AppSettings.CustomTagsExpanded = this.SetField(AppSettings.CustomTagsExpanded, value, ()=>CustomTagsCollapsed, ()=>CustomTagsExpanded);
+                this.SetField(()=>AppSettings.CustomTagsExpanded,value, ()=>CustomTagsCollapsed, ()=>CustomTagsExpanded);
             }
         }
 
@@ -262,7 +262,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.TitlesExpanded; }
             set
             {
-                AppSettings.TitlesExpanded = this.SetField(AppSettings.TitlesExpanded, value,()=>TitlesExpanded,()=>TitlesCollapsed);
+                this.SetField(()=>AppSettings.TitlesExpanded,value,()=>TitlesExpanded,()=>TitlesCollapsed);
             }
         }
 
@@ -273,7 +273,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.SeriesTvDBLinksExpanded; }
             set
             {
-                AppSettings.SeriesTvDBLinksExpanded = this.SetField(AppSettings.SeriesTvDBLinksExpanded, value,()=>SeriesTvDBLinksExpanded, ()=>SeriesTvDBLinksCollapsed);
+                this.SetField(()=>AppSettings.SeriesTvDBLinksExpanded,value,()=>SeriesTvDBLinksExpanded, ()=>SeriesTvDBLinksCollapsed);
             }
         }
 
@@ -284,7 +284,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.SeriesNextEpisodeExpanded; }
             set
             {
-                AppSettings.SeriesNextEpisodeExpanded  = this.SetField(AppSettings.SeriesNextEpisodeExpanded , value,()=>SeriesNextEpisodeExpanded, ()=>SeriesNextEpisodeCollapsed);
+                this.SetField(()=>AppSettings.SeriesNextEpisodeExpanded,value,()=>SeriesNextEpisodeExpanded, ()=>SeriesNextEpisodeCollapsed);
             }
         }
 
@@ -295,7 +295,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.SeriesGroupExpanded; }
             set
             {
-                AppSettings.SeriesGroupExpanded  = this.SetField(AppSettings.SeriesGroupExpanded , value, ()=>SeriesGroupExpanded, ()=>SeriesGroupCollapsed);
+                this.SetField(()=>AppSettings.SeriesGroupExpanded,value, ()=>SeriesGroupExpanded, ()=>SeriesGroupCollapsed);
             }
         }
 
@@ -306,7 +306,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.DashWatchNextEpExpanded; }
             set
             {
-                AppSettings.DashWatchNextEpExpanded  = this.SetField(AppSettings.DashWatchNextEpExpanded , value, ()=>DashWatchNextEpExpanded, ()=>DashWatchNextEpCollapsed);
+                this.SetField(()=>AppSettings.DashWatchNextEpExpanded,value, ()=>DashWatchNextEpExpanded, ()=>DashWatchNextEpCollapsed);
             }
         }
 
@@ -318,7 +318,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.DashRecentlyWatchEpsExpanded; }
             set
             {
-                AppSettings.DashRecentlyWatchEpsExpanded  = this.SetField(AppSettings.DashRecentlyWatchEpsExpanded , value, ()=>DashRecentAdditionsExpanded, ()=>DashRecentAdditionsCollapsed);
+                this.SetField(()=>AppSettings.DashRecentlyWatchEpsExpanded,value, ()=>DashRecentAdditionsExpanded, ()=>DashRecentAdditionsCollapsed);
             }
         }
 
@@ -330,7 +330,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.DashSeriesMissingEpisodesExpanded; }
             set
             {
-                AppSettings.DashSeriesMissingEpisodesExpanded  = this.SetField(AppSettings.DashSeriesMissingEpisodesExpanded , value, ()=>DashSeriesMissingEpisodesExpanded, ()=>DashSeriesMissingEpisodesCollapsed);
+                this.SetField(()=>AppSettings.DashSeriesMissingEpisodesExpanded,value, ()=>DashSeriesMissingEpisodesExpanded, ()=>DashSeriesMissingEpisodesCollapsed);
             }
         }
 
@@ -341,7 +341,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.DashMiniCalendarExpanded; }
             set
             {
-                AppSettings.DashMiniCalendarExpanded  = this.SetField(AppSettings.DashMiniCalendarExpanded , value,()=>DashMiniCalendarExpanded, ()=>DashMiniCalendarCollapsed);
+                this.SetField(()=>AppSettings.DashMiniCalendarExpanded,value,()=>DashMiniCalendarExpanded, ()=>DashMiniCalendarCollapsed);
             }
         }
 
@@ -352,7 +352,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.DashRecommendationsWatchExpanded; }
             set
             {
-                AppSettings.DashRecommendationsWatchExpanded  = this.SetField(AppSettings.DashRecommendationsWatchExpanded , value, ()=>DashRecommendationsWatchExpanded, ()=>DashRecommendationsWatchCollapsed);
+                this.SetField(()=>AppSettings.DashRecommendationsWatchExpanded,value, ()=>DashRecommendationsWatchExpanded, ()=>DashRecommendationsWatchCollapsed);
             }
         }
 
@@ -363,7 +363,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.DashRecommendationsDownloadExpanded; }
             set
             {
-                AppSettings.DashRecommendationsDownloadExpanded  = this.SetField(AppSettings.DashRecommendationsDownloadExpanded , value, ()=>DashRecommendationsDownloadExpanded, ()=>DashRecommendationsDownloadCollapsed);
+                this.SetField(()=>AppSettings.DashRecommendationsDownloadExpanded,value, ()=>DashRecommendationsDownloadExpanded, ()=>DashRecommendationsDownloadCollapsed);
             }
         }
 
@@ -374,7 +374,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.DashRecentAdditionsExpanded; }
             set
             {
-                AppSettings.DashRecentAdditionsExpanded  = this.SetField(AppSettings.DashRecentAdditionsExpanded , value, ()=>DashRecentAdditionsExpanded, ()=>DashRecentAdditionsCollapsed);
+                this.SetField(()=>AppSettings.DashRecentAdditionsExpanded,value, ()=>DashRecentAdditionsExpanded, ()=>DashRecentAdditionsCollapsed);
             }
         }
 
@@ -383,7 +383,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.DashRecentAdditionsType; }
             set
             {
-                AppSettings.DashRecentAdditionsType  = this.SetField(AppSettings.DashRecentAdditionsType , value);
+                this.SetField(()=>AppSettings.DashRecentAdditionsType,value);
             }
         }
 
@@ -396,7 +396,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.DisplayHeight_GroupList; }
             set
             {
-                AppSettings.DisplayHeight_GroupList  = this.SetField(AppSettings.DisplayHeight_GroupList , value);
+                this.SetField(()=>AppSettings.DisplayHeight_GroupList,value);
             }
         }
 
@@ -407,7 +407,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.DisplayHeight_SeriesInfo; }
             set
             {
-                AppSettings.DisplayHeight_SeriesInfo  = this.SetField(AppSettings.DisplayHeight_SeriesInfo , value);
+                this.SetField(()=>AppSettings.DisplayHeight_SeriesInfo,value);
             }
         }
 
@@ -416,7 +416,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.DisplayWidth_EpisodeImage; }
             set
             {
-                AppSettings.DisplayWidth_EpisodeImage  = this.SetField(AppSettings.DisplayWidth_EpisodeImage , value);
+                this.SetField(()=>AppSettings.DisplayWidth_EpisodeImage,value);
             }
         }
 
@@ -425,7 +425,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.DisplayStyle_GroupList; }
             set
             {
-                AppSettings.DisplayStyle_GroupList  = this.SetField(AppSettings.DisplayStyle_GroupList , value);
+                this.SetField(()=>AppSettings.DisplayStyle_GroupList,value);
             }
         }
 
@@ -434,7 +434,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.DisplayHeight_DashImage; }
             set
             {
-                AppSettings.DisplayHeight_DashImage  = this.SetField(AppSettings.DisplayHeight_DashImage , value);
+                this.SetField(()=>AppSettings.DisplayHeight_DashImage,value);
             }
         }
 
@@ -443,7 +443,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.Dash_WatchNext_Items; }
             set
             {
-                AppSettings.Dash_WatchNext_Items  = this.SetField(AppSettings.Dash_WatchNext_Items , value);
+                this.SetField(()=>AppSettings.Dash_WatchNext_Items,value);
             }
         }
 
@@ -452,7 +452,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.Dash_RecentAdditions_Items; }
             set
             {
-                AppSettings.Dash_RecentAdditions_Items  = this.SetField(AppSettings.Dash_RecentAdditions_Items , value);
+                this.SetField(()=>AppSettings.Dash_RecentAdditions_Items,value);
             }
         }
 
@@ -461,7 +461,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.Dash_WatchNext_Height; }
             set
             {
-                AppSettings.Dash_WatchNext_Height  = this.SetField(AppSettings.Dash_WatchNext_Height , value);
+                this.SetField(()=>AppSettings.Dash_WatchNext_Height,value);
             }
         }
 
@@ -473,7 +473,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.DashMetro_WatchNext_Items; }
             set
             {
-                AppSettings.DashMetro_WatchNext_Items  = this.SetField(AppSettings.DashMetro_WatchNext_Items , value);
+                this.SetField(()=>AppSettings.DashMetro_WatchNext_Items,value);
             }
         }
 
@@ -482,7 +482,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.DashMetro_RandomSeries_Items; }
             set
             {
-                AppSettings.DashMetro_RandomSeries_Items  = this.SetField(AppSettings.DashMetro_RandomSeries_Items , value);
+                this.SetField(()=>AppSettings.DashMetro_RandomSeries_Items,value);
             }
         }
 
@@ -492,7 +492,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.DashMetro_NewEpisodes_Items; }
             set
             {
-                AppSettings.DashMetro_NewEpisodes_Items  = this.SetField(AppSettings.DashMetro_NewEpisodes_Items , value);
+                this.SetField(()=>AppSettings.DashMetro_NewEpisodes_Items,value);
             }
         }
 
@@ -501,7 +501,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.DashMetro_Image_Height; }
             set
             {
-                AppSettings.DashMetro_Image_Height  = this.SetField(AppSettings.DashMetro_Image_Height , value);
+                this.SetField(()=>AppSettings.DashMetro_Image_Height,value);
                 SetDashMetro_Image_Width();
             }
         }
@@ -511,7 +511,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.UseStreaming;  }
             set
             {
-                AppSettings.UseStreaming  = this.SetField(AppSettings.UseStreaming , value);
+                this.SetField(()=>AppSettings.UseStreaming,value);
 
             }
         }
@@ -535,7 +535,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.Dash_RecentAdditions_Height; }
             set
             {
-                AppSettings.Dash_RecentAdditions_Height  = this.SetField(AppSettings.Dash_RecentAdditions_Height , value);
+                this.SetField(()=>AppSettings.Dash_RecentAdditions_Height,value);
             }
         }
 
@@ -545,7 +545,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.SeriesGroup_Image_Height; }
             set
             {
-                AppSettings.SeriesGroup_Image_Height  = this.SetField(AppSettings.SeriesGroup_Image_Height , value);
+                this.SetField(()=>AppSettings.SeriesGroup_Image_Height,value);
                 int width = (int)(SeriesGroup_Image_Height * 1.77777777);
                 SeriesGroup_Image_Width = width;
             }
@@ -570,7 +570,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.PlaylistHeader_Image_Height; }
             set
             {
-                AppSettings.PlaylistHeader_Image_Height  = this.SetField(AppSettings.PlaylistHeader_Image_Height , value);
+                this.SetField(()=>AppSettings.PlaylistHeader_Image_Height,value);
                 int width = (int)(PlaylistHeader_Image_Height * 1.77777777);
                 PlaylistHeader_Image_Width = width;
             }
@@ -595,7 +595,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.PlaylistItems_Image_Height; }
             set
             {
-                AppSettings.PlaylistItems_Image_Height  = this.SetField(AppSettings.PlaylistItems_Image_Height , value);
+                this.SetField(()=>AppSettings.PlaylistItems_Image_Height,value);
             }
         }
 
@@ -604,7 +604,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.PlaylistEpisode_Image_Width; }
             set
             {
-                AppSettings.PlaylistEpisode_Image_Width  = this.SetField(AppSettings.PlaylistEpisode_Image_Width , value);
+                this.SetField(()=>AppSettings.PlaylistEpisode_Image_Width,value);
             }
         }
 
@@ -613,7 +613,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.PlaylistItems_ShowDetails; }
             set
             {
-                AppSettings.PlaylistItems_ShowDetails  = this.SetField(AppSettings.PlaylistItems_ShowDetails , value);
+                this.SetField(()=>AppSettings.PlaylistItems_ShowDetails,value);
             }
         }
 
@@ -623,7 +623,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.Dash_RecentlyWatchedEp_Items; }
             set
             {
-                AppSettings.Dash_RecentlyWatchedEp_Items  = this.SetField(AppSettings.Dash_RecentlyWatchedEp_Items , value);
+                this.SetField(()=>AppSettings.Dash_RecentlyWatchedEp_Items,value);
             }
         }
 
@@ -632,7 +632,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.Dash_RecentlyWatchedEp_Height; }
             set
             {
-                AppSettings.Dash_RecentlyWatchedEp_Height  = this.SetField(AppSettings.Dash_RecentlyWatchedEp_Height , value);
+                this.SetField(()=>AppSettings.Dash_RecentlyWatchedEp_Height,value);
             }
         }
 
@@ -647,7 +647,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.Dash_WatchNext_Style; }
             set
             {
-                AppSettings.Dash_WatchNext_Style  = this.SetField(AppSettings.Dash_WatchNext_Style , value);
+                this.SetField(()=>AppSettings.Dash_WatchNext_Style,value);
             }
         }
 
@@ -656,7 +656,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.Dash_MissingEps_Items; }
             set
             {
-                AppSettings.Dash_MissingEps_Items  = this.SetField(AppSettings.Dash_MissingEps_Items , value);
+                this.SetField(()=>AppSettings.Dash_MissingEps_Items,value);
             }
         }
 
@@ -665,7 +665,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.Dash_MissingEps_Height; }
             set
             {
-                AppSettings.Dash_MissingEps_Height  = this.SetField(AppSettings.Dash_MissingEps_Height , value);
+                this.SetField(()=>AppSettings.Dash_MissingEps_Height,value);
             }
         }
 
@@ -674,7 +674,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.Dash_MiniCalendarDays; }
             set
             {
-                AppSettings.Dash_MiniCalendarDays  = this.SetField(AppSettings.Dash_MiniCalendarDays , value);
+                this.SetField(()=>AppSettings.Dash_MiniCalendarDays,value);
             }
         }
 
@@ -683,7 +683,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.Dash_MiniCalendarUpcomingOnly; }
             set
             {
-                AppSettings.Dash_MiniCalendarUpcomingOnly  = this.SetField(AppSettings.Dash_MiniCalendarUpcomingOnly , value);
+                this.SetField(()=>AppSettings.Dash_MiniCalendarUpcomingOnly,value);
             }
         }
 
@@ -692,7 +692,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.Dash_MiniCalendar_Height; }
             set
             {
-                AppSettings.Dash_MiniCalendar_Height  = this.SetField(AppSettings.Dash_MiniCalendar_Height , value);
+                this.SetField(()=>AppSettings.Dash_MiniCalendar_Height,value);
             }
         }
 
@@ -701,7 +701,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.Dash_RecWatch_Height; }
             set
             {
-                AppSettings.Dash_RecWatch_Height  = this.SetField(AppSettings.Dash_RecWatch_Height , value);
+                this.SetField(()=>AppSettings.Dash_RecWatch_Height,value);
             }
         }
 
@@ -710,7 +710,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.Dash_RecWatch_Items; }
             set
             {
-                AppSettings.Dash_RecWatch_Items  = this.SetField(AppSettings.Dash_RecWatch_Items , value);
+                this.SetField(()=>AppSettings.Dash_RecWatch_Items,value);
             }
         }
 
@@ -719,7 +719,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.Dash_RecDownload_Height; }
             set
             {
-                AppSettings.Dash_RecDownload_Height  = this.SetField(AppSettings.Dash_RecDownload_Height , value);
+                this.SetField(()=>AppSettings.Dash_RecDownload_Height,value);
             }
         }
 
@@ -728,7 +728,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.Dash_RecDownload_Items; }
             set
             {
-                AppSettings.Dash_RecDownload_Items  = this.SetField(AppSettings.Dash_RecDownload_Items , value);
+                this.SetField(()=>AppSettings.Dash_RecDownload_Items,value);
             }
         }
 
@@ -737,7 +737,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.EpisodeImageOverviewStyle; }
             set
             {
-                AppSettings.EpisodeImageOverviewStyle  = this.SetField(AppSettings.EpisodeImageOverviewStyle , value);
+                this.SetField(()=>AppSettings.EpisodeImageOverviewStyle,value);
             }
         }
 
@@ -746,7 +746,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.HideEpisodeImageWhenUnwatched; }
             set
             {
-                AppSettings.HideEpisodeImageWhenUnwatched  = this.SetField(AppSettings.HideEpisodeImageWhenUnwatched , value);
+                this.SetField(()=>AppSettings.HideEpisodeImageWhenUnwatched,value);
             }
         }
 
@@ -755,7 +755,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.HideEpisodeOverviewWhenUnwatched; }
             set
             {
-                AppSettings.HideEpisodeOverviewWhenUnwatched  = this.SetField(AppSettings.HideEpisodeOverviewWhenUnwatched , value);
+                this.SetField(()=>AppSettings.HideEpisodeOverviewWhenUnwatched,value);
             }
         }
 
@@ -766,7 +766,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.HideDownloadButtonWhenFilesExist; }
             set
             {
-                AppSettings.HideDownloadButtonWhenFilesExist  = this.SetField(AppSettings.HideDownloadButtonWhenFilesExist , value,()=>HideDownloadButtonWhenFilesExist, ()=>ShowDownloadButtonWhenFilesExist);
+                this.SetField(()=>AppSettings.HideDownloadButtonWhenFilesExist,value,()=>HideDownloadButtonWhenFilesExist, ()=>ShowDownloadButtonWhenFilesExist);
             }
         }
 
@@ -775,7 +775,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.DisplayRatingDialogOnCompletion; }
             set
             {
-                AppSettings.DisplayRatingDialogOnCompletion  = this.SetField(AppSettings.DisplayRatingDialogOnCompletion , value);
+                this.SetField(()=>AppSettings.DisplayRatingDialogOnCompletion,value);
             }
         }
 
@@ -784,7 +784,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.UseFanartOnSeries; }
             set
             {
-                AppSettings.UseFanartOnSeries  = this.SetField(AppSettings.UseFanartOnSeries , value);
+                this.SetField(()=>AppSettings.UseFanartOnSeries,value);
             }
         }
 
@@ -793,7 +793,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.AlwaysUseAniDBPoster; }
             set
             {
-                AppSettings.AlwaysUseAniDBPoster  = this.SetField(AppSettings.AlwaysUseAniDBPoster , value);
+                this.SetField(()=>AppSettings.AlwaysUseAniDBPoster,value);
             }
         }
 
@@ -802,7 +802,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.UseFanartOnPlaylistHeader; }
             set
             {
-                AppSettings.UseFanartOnPlaylistHeader  = this.SetField(AppSettings.UseFanartOnPlaylistHeader , value);
+                this.SetField(()=>AppSettings.UseFanartOnPlaylistHeader,value);
             }
         }
 
@@ -811,7 +811,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.UseFanartOnPlaylistItems; }
             set
             {
-                AppSettings.UseFanartOnPlaylistItems  = this.SetField(AppSettings.UseFanartOnPlaylistItems , value);
+                this.SetField(()=>AppSettings.UseFanartOnPlaylistItems,value);
             }
         }
 
@@ -820,7 +820,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.TorrentBlackhole; }
             set
             {
-                AppSettings.TorrentBlackhole  = this.SetField(AppSettings.TorrentBlackhole , value);
+                this.SetField(()=>AppSettings.TorrentBlackhole,value);
             }
         }
 
@@ -829,7 +829,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.TorrentBlackholeFolder; }
             set
             {
-                AppSettings.TorrentBlackholeFolder  = this.SetField(AppSettings.TorrentBlackholeFolder , value);
+                this.SetField(()=>AppSettings.TorrentBlackholeFolder,value);
             }
         }
 
@@ -839,7 +839,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.UTorrentAddress; }
             set
             {
-                AppSettings.UTorrentAddress  = this.SetField(AppSettings.UTorrentAddress , value);
+                this.SetField(()=>AppSettings.UTorrentAddress,value);
             }
         }
 
@@ -848,7 +848,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.UTorrentPort; }
             set
             {
-                AppSettings.UTorrentPort  = this.SetField(AppSettings.UTorrentPort , value);
+                this.SetField(()=>AppSettings.UTorrentPort,value);
             }
         }
 
@@ -857,7 +857,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.UTorrentUsername; }
             set
             {
-                AppSettings.UTorrentUsername  = this.SetField(AppSettings.UTorrentUsername , value);
+                this.SetField(()=>AppSettings.UTorrentUsername,value);
             }
         }
 
@@ -866,7 +866,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.UTorrentPassword; }
             set
             {
-                AppSettings.UTorrentPassword  = this.SetField(AppSettings.UTorrentPassword , value);
+                this.SetField(()=>AppSettings.UTorrentPassword,value);
             }
         }
 
@@ -875,7 +875,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.UTorrentRefreshInterval; }
             set
             {
-                AppSettings.UTorrentRefreshInterval  = this.SetField(AppSettings.UTorrentRefreshInterval , value);
+                this.SetField(()=>AppSettings.UTorrentRefreshInterval,value);
             }
         }
 
@@ -884,7 +884,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.UTorrentAutoRefresh; }
             set
             {
-                AppSettings.UTorrentAutoRefresh  = this.SetField(AppSettings.UTorrentAutoRefresh , value);
+                this.SetField(()=>AppSettings.UTorrentAutoRefresh,value);
             }
         }
 
@@ -893,7 +893,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.TorrentSearchPreferOwnGroups; }
             set
             {
-                AppSettings.TorrentSearchPreferOwnGroups  = this.SetField(AppSettings.TorrentSearchPreferOwnGroups , value);
+                this.SetField(()=>AppSettings.TorrentSearchPreferOwnGroups,value);
             }
         }
 
@@ -902,7 +902,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.BakaBTUsername; }
             set
             {
-                AppSettings.BakaBTUsername  = this.SetField(AppSettings.BakaBTUsername , value);
+                this.SetField(()=>AppSettings.BakaBTUsername,value);
             }
         }
 
@@ -911,7 +911,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.BakaBTPassword; }
             set
             {
-                AppSettings.BakaBTPassword  = this.SetField(AppSettings.BakaBTPassword , value);
+                this.SetField(()=>AppSettings.BakaBTPassword,value);
             }
         }
 
@@ -920,7 +920,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.BakaBTOnlyUseForSeriesSearches; }
             set
             {
-                AppSettings.BakaBTOnlyUseForSeriesSearches  = this.SetField(AppSettings.BakaBTOnlyUseForSeriesSearches , value);
+                this.SetField(()=>AppSettings.BakaBTOnlyUseForSeriesSearches,value);
             }
         }
 
@@ -930,7 +930,7 @@ namespace Shoko.Desktop.ViewModel
             get { return bakaBTCookieHeader; }
             set
             {
-                bakaBTCookieHeader = this.SetField(bakaBTCookieHeader, value);
+                this.SetField(()=>bakaBTCookieHeader,value);
                 BakaBTCookieHeaderSet = !string.IsNullOrEmpty(value);
             }
         }
@@ -941,7 +941,7 @@ namespace Shoko.Desktop.ViewModel
             get { return bakaBTCookieHeaderSet; }
             set
             {
-                bakaBTCookieHeaderSet = this.SetField(bakaBTCookieHeaderSet, value);
+                this.SetField(()=>bakaBTCookieHeaderSet,value);
             }
         }
 
@@ -955,7 +955,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.AnimeBytesUsername; }
             set
             {
-                AppSettings.AnimeBytesUsername  = this.SetField(AppSettings.AnimeBytesUsername , value);
+                this.SetField(()=>AppSettings.AnimeBytesUsername,value);
             }
         }
 
@@ -964,7 +964,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.AnimeBytesPassword; }
             set
             {
-                AppSettings.AnimeBytesPassword  = this.SetField(AppSettings.AnimeBytesPassword , value);
+                this.SetField(()=>AppSettings.AnimeBytesPassword,value);
             }
         }
 
@@ -973,7 +973,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.AnimeBytesOnlyUseForSeriesSearches; }
             set
             {
-                AppSettings.AnimeBytesOnlyUseForSeriesSearches  = this.SetField(AppSettings.AnimeBytesOnlyUseForSeriesSearches , value);
+                this.SetField(()=>AppSettings.AnimeBytesOnlyUseForSeriesSearches,value);
             }
         }
 
@@ -986,7 +986,7 @@ namespace Shoko.Desktop.ViewModel
             get { return animeBytesCookieHeader; }
             set
             {
-                animeBytesCookieHeader = this.SetField(animeBytesCookieHeader, value);
+                this.SetField(()=>animeBytesCookieHeader,value);
                 AnimeBytesCookieHeaderSet = !string.IsNullOrEmpty(value);
             }
         }
@@ -997,7 +997,7 @@ namespace Shoko.Desktop.ViewModel
             get { return animeBytesCookieHeaderSet; }
             set
             {
-                animeBytesCookieHeaderSet = this.SetField(animeBytesCookieHeaderSet, value);
+                this.SetField(()=>animeBytesCookieHeaderSet,value);
             }
         }
 
@@ -1009,7 +1009,7 @@ namespace Shoko.Desktop.ViewModel
             }
             set
             {
-                AppSettings.MPCIniIntegration  = this.SetField(AppSettings.MPCIniIntegration , value);
+                this.SetField(()=>AppSettings.MPCIniIntegration,value);
             }
         }
 
@@ -1021,7 +1021,7 @@ namespace Shoko.Desktop.ViewModel
             }
             set
             {
-                AppSettings.MPCWebUiIntegration  = this.SetField(AppSettings.MPCWebUiIntegration , value);
+                this.SetField(()=>AppSettings.MPCWebUiIntegration,value);
             }
         }
         public string MPCFolder
@@ -1029,7 +1029,7 @@ namespace Shoko.Desktop.ViewModel
 			get { return AppSettings.MPCFolder; }
 			set
 			{
-				AppSettings.MPCFolder  = this.SetField(AppSettings.MPCFolder , value);
+				this.SetField(()=>AppSettings.MPCFolder,value);
 			}
 		}
 
@@ -1037,7 +1037,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.MPCWebUIPort; }
             set
             {
-                AppSettings.MPCWebUIPort  = this.SetField(AppSettings.MPCWebUIPort , value);
+                this.SetField(()=>AppSettings.MPCWebUIPort,value);
             }
         }
         public string PotPlayerFolder
@@ -1045,7 +1045,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.PotPlayerFolder; }
             set
             {
-                AppSettings.PotPlayerFolder  = this.SetField(AppSettings.PotPlayerFolder , value);
+                this.SetField(()=>AppSettings.PotPlayerFolder,value);
             }
         }
         public int VideoWatchedPct
@@ -1053,7 +1053,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.VideoWatchedPct; }
             set
             {
-                AppSettings.VideoWatchedPct  = this.SetField(AppSettings.VideoWatchedPct , value);
+                this.SetField(()=>AppSettings.VideoWatchedPct,value);
             }
         }
 
@@ -1062,7 +1062,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.VideoAutoSetWatched; }
             set
             {
-                AppSettings.VideoAutoSetWatched  = this.SetField(AppSettings.VideoAutoSetWatched , value);
+                this.SetField(()=>AppSettings.VideoAutoSetWatched,value);
             }
         }
 
@@ -1071,7 +1071,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.DownloadsRecItems; }
             set
             {
-                AppSettings.DownloadsRecItems  = this.SetField(AppSettings.DownloadsRecItems , value);
+                this.SetField(()=>AppSettings.DownloadsRecItems,value);
             }
         }
 
@@ -1261,7 +1261,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.WindowFullScreen; }
             set
             {
-                AppSettings.WindowFullScreen  = this.SetField(AppSettings.WindowFullScreen , value);
+                this.SetField(()=>AppSettings.WindowFullScreen,value);
             }
         }
 
@@ -1270,7 +1270,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.WindowNormal; }
             set
             {
-                AppSettings.WindowNormal  = this.SetField(AppSettings.WindowNormal , value);
+                this.SetField(()=>AppSettings.WindowNormal,value);
             }
         }
 
@@ -1279,7 +1279,7 @@ namespace Shoko.Desktop.ViewModel
             get { return AppSettings.DefaultPlayer_GroupList; }
             set
             {
-                AppSettings.DefaultPlayer_GroupList  = this.SetField(AppSettings.DefaultPlayer_GroupList , value);
+                this.SetField(()=>AppSettings.DefaultPlayer_GroupList,value);
             }
         }
 

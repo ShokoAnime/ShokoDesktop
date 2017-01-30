@@ -134,14 +134,14 @@ namespace Shoko.Desktop.ViewModel.Server
         public new int ImageEnabled
         {
             get { return base.ImageEnabled; }
-            set { base.ImageEnabled = this.SetField(base.ImageEnabled, value, () => IsImageEnabled); }
+            set { this.SetField(()=>base.ImageEnabled,(r)=> base.ImageEnabled = r, value, () => IsImageEnabled); }
         }
 
 
         public bool IsImageEnabled
         {
             get { return ImageEnabled==1; }
-            set { ImageEnabled = this.SetField(ImageEnabled, value ? 1 : 0); }
+            set { this.SetField(()=>ImageEnabled, value ? 1 : 0); }
         }
 
 
@@ -156,7 +156,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
             set
             {
-                isImageDefault = this.SetField(isImageDefault, value);
+                this.SetField(()=>isImageDefault, value);
             }
         }
 
@@ -165,7 +165,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return base.DisableExternalLinksFlag; }
             set
             {
-                base.DisableExternalLinksFlag = this.SetField(base.DisableExternalLinksFlag, value, ()=> IsTvDBLinkEnabled, ()=> IsTraktLinkEnabled, ()=> IsMALLinkEnabled, ()=>IsMovieDBLinkEnabled);                
+                this.SetField(()=>base.DisableExternalLinksFlag,(r)=> base.DisableExternalLinksFlag = r, value, ()=> IsTvDBLinkEnabled, ()=> IsTraktLinkEnabled, ()=> IsMALLinkEnabled, ()=>IsMovieDBLinkEnabled);                
             }
         }
 

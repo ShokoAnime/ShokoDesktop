@@ -21,7 +21,7 @@ namespace Shoko.Desktop.ViewModel.Server
         public new int IsAdminApproved
         {
             get { return base.IsAdminApproved; }
-            set { base.IsAdminApproved = this.SetField(base.IsAdminApproved, value, () => IsAdminApproved, () => IsAdminApprovedBool, () => IsAdminApprovedImage); }
+            set { this.SetField(()=>base.IsAdminApproved,(r)=> base.IsAdminApproved = r, value, () => IsAdminApproved, () => IsAdminApprovedBool, () => IsAdminApprovedImage); }
         }
 
         public bool IsAdminApprovedBool => IsAdminApproved == 1;

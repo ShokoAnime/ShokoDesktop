@@ -567,7 +567,7 @@ namespace Shoko.Desktop.ViewModel
             get { return isBanned; }
             set
             {
-                isBanned  = this.SetField(isBanned ,value);
+                this.SetField(()=>isBanned,value);
             }
         }
 
@@ -577,7 +577,7 @@ namespace Shoko.Desktop.ViewModel
             get { return adminMessagesAvailable; }
             set
             {
-                adminMessagesAvailable  = this.SetField(adminMessagesAvailable ,value);
+                this.SetField(()=>adminMessagesAvailable,value);
             }
         }
 
@@ -587,7 +587,7 @@ namespace Shoko.Desktop.ViewModel
             get { return isAdminUser; }
             set
             {
-                isAdminUser  = this.SetField(isAdminUser ,value);
+                this.SetField(()=>isAdminUser,value);
             }
         }
 
@@ -597,7 +597,7 @@ namespace Shoko.Desktop.ViewModel
             get { return banReason; }
             set
             {
-                banReason  = this.SetField(banReason ,value);
+                this.SetField(()=>banReason,value);
             }
         }
 
@@ -607,7 +607,7 @@ namespace Shoko.Desktop.ViewModel
             get { return banOrigin; }
             set
             {
-                banOrigin  = this.SetField(banOrigin ,value);
+                this.SetField(()=>banOrigin,value);
             }
         }
 
@@ -617,7 +617,7 @@ namespace Shoko.Desktop.ViewModel
             get { return baseImagePath; }
             set
             {
-                baseImagePath  = this.SetField(baseImagePath ,value);
+                this.SetField(()=>baseImagePath,value);
             }
         }
 
@@ -627,7 +627,7 @@ namespace Shoko.Desktop.ViewModel
             get { return baseImagesPathIsDefault; }
             set
             {
-                baseImagesPathIsDefault  = this.SetField(baseImagesPathIsDefault ,value);
+                this.SetField(()=>baseImagesPathIsDefault,value);
             }
         }
 
@@ -637,7 +637,7 @@ namespace Shoko.Desktop.ViewModel
             get { return username; }
             set
             {
-                username  = this.SetField(username ,value);
+                this.SetField(()=>username,value);
             }
         }
 
@@ -647,7 +647,7 @@ namespace Shoko.Desktop.ViewModel
             get { return hasherQueueCount; }
             set
             {
-                hasherQueueCount  = this.SetField(hasherQueueCount ,value);
+                this.SetField(()=>hasherQueueCount,value);
             }
         }
 
@@ -657,7 +657,7 @@ namespace Shoko.Desktop.ViewModel
             get { return hasherQueueState; }
             set
             {
-                hasherQueueState  = this.SetField(hasherQueueState ,value);
+                this.SetField(()=>hasherQueueState,value);
             }
         }
 
@@ -667,7 +667,7 @@ namespace Shoko.Desktop.ViewModel
             get { return serverImageQueueCount; }
             set
             {
-                serverImageQueueCount  = this.SetField(serverImageQueueCount ,value);
+                this.SetField(()=>serverImageQueueCount,value);
             }
         }
 
@@ -677,7 +677,7 @@ namespace Shoko.Desktop.ViewModel
             get { return serverImageQueueState; }
             set
             {
-                serverImageQueueState  = this.SetField(serverImageQueueState ,value);
+                this.SetField(()=>serverImageQueueState,value);
             }
         }
 
@@ -687,7 +687,7 @@ namespace Shoko.Desktop.ViewModel
             get { return generalQueueCount; }
             set
             {
-                generalQueueCount  = this.SetField(generalQueueCount ,value);
+                this.SetField(()=>generalQueueCount,value);
             }
         }
 
@@ -697,7 +697,7 @@ namespace Shoko.Desktop.ViewModel
             get { return generalQueueState; }
             set
             {
-                generalQueueState  = this.SetField(generalQueueState ,value);
+                this.SetField(()=>generalQueueState,value);
             }
         }
 
@@ -707,7 +707,7 @@ namespace Shoko.Desktop.ViewModel
             get { return hasherQueuePaused; }
             set
             {
-                hasherQueuePaused  = this.SetField(hasherQueuePaused ,value);
+                this.SetField(()=>hasherQueuePaused,value);
             }
         }
 
@@ -717,7 +717,7 @@ namespace Shoko.Desktop.ViewModel
             get { return hasherQueueRunning; }
             set
             {
-                hasherQueueRunning  = this.SetField(hasherQueueRunning ,value);
+                this.SetField(()=>hasherQueueRunning,value);
             }
         }
 
@@ -727,7 +727,7 @@ namespace Shoko.Desktop.ViewModel
             get { return serverImageQueuePaused; }
             set
             {
-                serverImageQueuePaused  = this.SetField(serverImageQueuePaused ,value);
+                this.SetField(()=>serverImageQueuePaused,value);
             }
         }
 
@@ -737,7 +737,7 @@ namespace Shoko.Desktop.ViewModel
             get { return serverImageQueueRunning; }
             set
             {
-                serverImageQueueRunning  = this.SetField(serverImageQueueRunning ,value);
+                this.SetField(()=>serverImageQueueRunning,value);
             }
         }
 
@@ -747,7 +747,7 @@ namespace Shoko.Desktop.ViewModel
             get { return generalQueuePaused; }
             set
             {
-                generalQueuePaused  = this.SetField(generalQueuePaused ,value);
+                this.SetField(()=>generalQueuePaused,value);
             }
         }
 
@@ -757,7 +757,7 @@ namespace Shoko.Desktop.ViewModel
             get { return generalQueueRunning; }
             set
             {
-                generalQueueRunning  = this.SetField(generalQueueRunning ,value);
+                this.SetField(()=>generalQueueRunning,value);
             }
         }
 
@@ -770,7 +770,7 @@ namespace Shoko.Desktop.ViewModel
             }
             set
             {
-                serverOnline  = this.SetField(serverOnline,value);
+                this.SetField(()=>serverOnline,value);
                 SetShowServerSettings();
             }
         }
@@ -781,7 +781,7 @@ namespace Shoko.Desktop.ViewModel
             get { return showCommunity; }
             set
             {
-                showCommunity  = this.SetField(showCommunity ,value);
+                this.SetField(()=>showCommunity,value);
             }
         }
 
@@ -791,7 +791,7 @@ namespace Shoko.Desktop.ViewModel
             get { return showServerSettings; }
             set
             {
-                showServerSettings  = this.SetField(showServerSettings ,value);
+                this.SetField(()=>showServerSettings,value);
             }
         }
 
@@ -801,7 +801,7 @@ namespace Shoko.Desktop.ViewModel
             get { return newVersionAvailable; }
             set
             {
-                newVersionAvailable  = this.SetField(newVersionAvailable ,value);
+                this.SetField(()=>newVersionAvailable,value);
             }
         }
 
@@ -811,7 +811,7 @@ namespace Shoko.Desktop.ViewModel
             get { return newVersionNumber; }
             set
             {
-                newVersionNumber  = this.SetField(newVersionNumber ,value);
+                this.SetField(()=>newVersionNumber,value);
             }
         }
 
@@ -821,7 +821,7 @@ namespace Shoko.Desktop.ViewModel
             get { return newVersionDownloadLink; }
             set
             {
-                newVersionDownloadLink  = this.SetField(newVersionDownloadLink ,value);
+                this.SetField(()=>newVersionDownloadLink,value);
             }
         }
 
@@ -831,7 +831,7 @@ namespace Shoko.Desktop.ViewModel
             get { return applicationVersion; }
             set
             {
-                applicationVersion  = this.SetField(applicationVersion ,value);
+                this.SetField(()=>applicationVersion,value);
             }
         }
 
@@ -841,7 +841,7 @@ namespace Shoko.Desktop.ViewModel
             get { return applicationVersionLatest; }
             set
             {
-                applicationVersionLatest  = this.SetField(applicationVersionLatest ,value);
+                this.SetField(()=>applicationVersionLatest,value);
             }
         }
 
@@ -856,7 +856,7 @@ namespace Shoko.Desktop.ViewModel
             get { return aniDB_Username; }
             set
             {
-                aniDB_Username  = this.SetField(aniDB_Username ,value);
+                this.SetField(()=>aniDB_Username,value);
             }
         }
 
@@ -866,7 +866,7 @@ namespace Shoko.Desktop.ViewModel
             get { return aniDB_Password; }
             set
             {
-                aniDB_Password  = this.SetField(aniDB_Password ,value);
+                this.SetField(()=>aniDB_Password,value);
             }
         }
 
@@ -876,7 +876,7 @@ namespace Shoko.Desktop.ViewModel
             get { return aniDB_ServerAddress; }
             set
             {
-                aniDB_ServerAddress  = this.SetField(aniDB_ServerAddress ,value);
+                this.SetField(()=>aniDB_ServerAddress,value);
             }
         }
 
@@ -886,7 +886,7 @@ namespace Shoko.Desktop.ViewModel
             get { return aniDB_ServerPort; }
             set
             {
-                aniDB_ServerPort  = this.SetField(aniDB_ServerPort ,value);
+                this.SetField(()=>aniDB_ServerPort,value);
             }
         }
 
@@ -896,7 +896,7 @@ namespace Shoko.Desktop.ViewModel
             get { return aniDB_ClientPort; }
             set
             {
-                aniDB_ClientPort  = this.SetField(aniDB_ClientPort ,value);
+                this.SetField(()=>aniDB_ClientPort,value);
             }
         }
 
@@ -906,7 +906,7 @@ namespace Shoko.Desktop.ViewModel
             get { return aniDB_AVDumpClientPort; }
             set
             {
-                aniDB_AVDumpClientPort  = this.SetField(aniDB_AVDumpClientPort ,value);
+                this.SetField(()=>aniDB_AVDumpClientPort,value);
             }
         }
 
@@ -916,7 +916,7 @@ namespace Shoko.Desktop.ViewModel
             get { return aniDB_AVDumpKey; }
             set
             {
-                aniDB_AVDumpKey  = this.SetField(aniDB_AVDumpKey ,value);
+                this.SetField(()=>aniDB_AVDumpKey,value);
             }
         }
 
@@ -926,7 +926,7 @@ namespace Shoko.Desktop.ViewModel
             get { return aniDB_DownloadRelatedAnime; }
             set
             {
-                aniDB_DownloadRelatedAnime  = this.SetField(aniDB_DownloadRelatedAnime ,value);
+                this.SetField(()=>aniDB_DownloadRelatedAnime,value);
             }
         }
 
@@ -936,7 +936,7 @@ namespace Shoko.Desktop.ViewModel
             get { return aniDB_DownloadSimilarAnime; }
             set
             {
-                aniDB_DownloadSimilarAnime  = this.SetField(aniDB_DownloadSimilarAnime ,value);
+                this.SetField(()=>aniDB_DownloadSimilarAnime,value);
             }
         }
 
@@ -946,7 +946,7 @@ namespace Shoko.Desktop.ViewModel
             get { return aniDB_DownloadReviews; }
             set
             {
-                aniDB_DownloadReviews  = this.SetField(aniDB_DownloadReviews ,value);
+                this.SetField(()=>aniDB_DownloadReviews,value);
             }
         }
 
@@ -956,7 +956,7 @@ namespace Shoko.Desktop.ViewModel
             get { return aniDB_DownloadReleaseGroups; }
             set
             {
-                aniDB_DownloadReleaseGroups  = this.SetField(aniDB_DownloadReleaseGroups ,value);
+                this.SetField(()=>aniDB_DownloadReleaseGroups,value);
             }
         }
 
@@ -966,7 +966,7 @@ namespace Shoko.Desktop.ViewModel
             get { return aniDB_MyList_AddFiles; }
             set
             {
-                aniDB_MyList_AddFiles  = this.SetField(aniDB_MyList_AddFiles ,value);
+                this.SetField(()=>aniDB_MyList_AddFiles,value);
             }
         }
 
@@ -976,7 +976,7 @@ namespace Shoko.Desktop.ViewModel
             get { return aniDB_MyList_StorageState; }
             set
             {
-                aniDB_MyList_StorageState  = this.SetField(aniDB_MyList_StorageState ,value);
+                this.SetField(()=>aniDB_MyList_StorageState,value);
             }
         }
 
@@ -986,7 +986,7 @@ namespace Shoko.Desktop.ViewModel
             get { return aniDB_MyList_DeleteType; }
             set
             {
-                aniDB_MyList_DeleteType  = this.SetField(aniDB_MyList_DeleteType ,value);
+                this.SetField(()=>aniDB_MyList_DeleteType,value);
             }
         }
 
@@ -996,7 +996,7 @@ namespace Shoko.Desktop.ViewModel
             get { return aniDB_MyList_ReadWatched; }
             set
             {
-                aniDB_MyList_ReadWatched  = this.SetField(aniDB_MyList_ReadWatched ,value);
+                this.SetField(()=>aniDB_MyList_ReadWatched,value);
             }
         }
 
@@ -1006,7 +1006,7 @@ namespace Shoko.Desktop.ViewModel
             get { return aniDB_MyList_ReadUnwatched; }
             set
             {
-                aniDB_MyList_ReadUnwatched  = this.SetField(aniDB_MyList_ReadUnwatched ,value);
+                this.SetField(()=>aniDB_MyList_ReadUnwatched,value);
             }
         }
 
@@ -1016,7 +1016,7 @@ namespace Shoko.Desktop.ViewModel
             get { return aniDB_MyList_SetWatched; }
             set
             {
-                aniDB_MyList_SetWatched  = this.SetField(aniDB_MyList_SetWatched ,value);
+                this.SetField(()=>aniDB_MyList_SetWatched,value);
             }
         }
 
@@ -1026,7 +1026,7 @@ namespace Shoko.Desktop.ViewModel
             get { return aniDB_MyList_SetUnwatched; }
             set
             {
-                aniDB_MyList_SetUnwatched  = this.SetField(aniDB_MyList_SetUnwatched ,value);
+                this.SetField(()=>aniDB_MyList_SetUnwatched,value);
             }
         }
 
@@ -1036,7 +1036,7 @@ namespace Shoko.Desktop.ViewModel
             get { return aniDB_MyList_UpdateFrequency; }
             set
             {
-                aniDB_MyList_UpdateFrequency  = this.SetField(aniDB_MyList_UpdateFrequency ,value);
+                this.SetField(()=>aniDB_MyList_UpdateFrequency,value);
             }
         }
 
@@ -1046,7 +1046,7 @@ namespace Shoko.Desktop.ViewModel
             get { return aniDB_MyListStats_UpdateFrequency; }
             set
             {
-                aniDB_MyListStats_UpdateFrequency  = this.SetField(aniDB_MyListStats_UpdateFrequency ,value);
+                this.SetField(()=>aniDB_MyListStats_UpdateFrequency,value);
             }
         }
 
@@ -1056,7 +1056,7 @@ namespace Shoko.Desktop.ViewModel
             get { return aniDB_Calendar_UpdateFrequency; }
             set
             {
-                aniDB_Calendar_UpdateFrequency  = this.SetField(aniDB_Calendar_UpdateFrequency ,value);
+                this.SetField(()=>aniDB_Calendar_UpdateFrequency,value);
             }
         }
 
@@ -1066,7 +1066,7 @@ namespace Shoko.Desktop.ViewModel
             get { return aniDB_Anime_UpdateFrequency; }
             set
             {
-                aniDB_Anime_UpdateFrequency  = this.SetField(aniDB_Anime_UpdateFrequency ,value);
+                this.SetField(()=>aniDB_Anime_UpdateFrequency,value);
             }
         }
 
@@ -1076,7 +1076,7 @@ namespace Shoko.Desktop.ViewModel
             get { return aniDB_File_UpdateFrequency; }
             set
             {
-                aniDB_File_UpdateFrequency  = this.SetField(aniDB_File_UpdateFrequency ,value);
+                this.SetField(()=>aniDB_File_UpdateFrequency,value);
             }
         }
 
@@ -1086,7 +1086,7 @@ namespace Shoko.Desktop.ViewModel
             get { return aniDB_DownloadCharacters; }
             set
             {
-                aniDB_DownloadCharacters  = this.SetField(aniDB_DownloadCharacters ,value);
+                this.SetField(()=>aniDB_DownloadCharacters,value);
             }
         }
 
@@ -1096,7 +1096,7 @@ namespace Shoko.Desktop.ViewModel
             get { return aniDB_DownloadCreators; }
             set
             {
-                aniDB_DownloadCreators  = this.SetField(aniDB_DownloadCreators ,value);
+                this.SetField(()=>aniDB_DownloadCreators,value);
             }
         }
 
@@ -1106,7 +1106,7 @@ namespace Shoko.Desktop.ViewModel
             get { return webCache_Address; }
             set
             {
-                webCache_Address  = this.SetField(webCache_Address ,value);
+                this.SetField(()=>webCache_Address,value);
             }
         }
 
@@ -1116,7 +1116,7 @@ namespace Shoko.Desktop.ViewModel
             get { return webCache_Anonymous; }
             set
             {
-                webCache_Anonymous  = this.SetField(webCache_Anonymous ,value);
+                this.SetField(()=>webCache_Anonymous,value);
             }
         }
 
@@ -1126,7 +1126,7 @@ namespace Shoko.Desktop.ViewModel
             get { return webCache_XRefFileEpisode_Get; }
             set
             {
-                webCache_XRefFileEpisode_Get  = this.SetField(webCache_XRefFileEpisode_Get ,value);
+                this.SetField(()=>webCache_XRefFileEpisode_Get,value);
             }
         }
 
@@ -1136,7 +1136,7 @@ namespace Shoko.Desktop.ViewModel
             get { return webCache_XRefFileEpisode_Send; }
             set
             {
-                webCache_XRefFileEpisode_Send  = this.SetField(webCache_XRefFileEpisode_Send ,value);
+                this.SetField(()=>webCache_XRefFileEpisode_Send,value);
             }
         }
 
@@ -1146,7 +1146,7 @@ namespace Shoko.Desktop.ViewModel
             get { return webCache_TvDB_Get; }
             set
             {
-                webCache_TvDB_Get  = this.SetField(webCache_TvDB_Get ,value);
+                this.SetField(()=>webCache_TvDB_Get,value);
             }
         }
 
@@ -1156,7 +1156,7 @@ namespace Shoko.Desktop.ViewModel
             get { return webCache_TvDB_Send; }
             set
             {
-                webCache_TvDB_Send  = this.SetField(webCache_TvDB_Send ,value);
+                this.SetField(()=>webCache_TvDB_Send,value);
             }
         }
 
@@ -1166,7 +1166,7 @@ namespace Shoko.Desktop.ViewModel
             get { return webCache_Trakt_Get; }
             set
             {
-                webCache_Trakt_Get  = this.SetField(webCache_Trakt_Get ,value);
+                this.SetField(()=>webCache_Trakt_Get,value);
             }
         }
 
@@ -1176,7 +1176,7 @@ namespace Shoko.Desktop.ViewModel
             get { return webCache_Trakt_Send; }
             set
             {
-                webCache_Trakt_Send  = this.SetField(webCache_Trakt_Send ,value);
+                this.SetField(()=>webCache_Trakt_Send,value);
             }
         }
 
@@ -1187,7 +1187,7 @@ namespace Shoko.Desktop.ViewModel
             get { return webCache_MAL_Get; }
             set
             {
-                webCache_MAL_Get  = this.SetField(webCache_MAL_Get ,value);
+                this.SetField(()=>webCache_MAL_Get,value);
             }
         }
 
@@ -1197,7 +1197,7 @@ namespace Shoko.Desktop.ViewModel
             get { return webCache_MAL_Send; }
             set
             {
-                webCache_MAL_Send  = this.SetField(webCache_MAL_Send ,value);
+                this.SetField(()=>webCache_MAL_Send,value);
             }
         }
 
@@ -1207,7 +1207,7 @@ namespace Shoko.Desktop.ViewModel
             get { return webCache_UserInfo; }
             set
             {
-                webCache_UserInfo  = this.SetField(webCache_UserInfo ,value);
+                this.SetField(()=>webCache_UserInfo,value);
             }
         }
 
@@ -1218,7 +1218,7 @@ namespace Shoko.Desktop.ViewModel
             get { return tvDB_AutoFanart; }
             set
             {
-                tvDB_AutoFanart  = this.SetField(tvDB_AutoFanart ,value);
+                this.SetField(()=>tvDB_AutoFanart,value);
             }
         }
 
@@ -1228,7 +1228,7 @@ namespace Shoko.Desktop.ViewModel
             get { return tvDB_AutoFanartAmount; }
             set
             {
-                tvDB_AutoFanartAmount  = this.SetField(tvDB_AutoFanartAmount ,value);
+                this.SetField(()=>tvDB_AutoFanartAmount,value);
             }
         }
 
@@ -1238,7 +1238,7 @@ namespace Shoko.Desktop.ViewModel
             get { return tvDB_AutoWideBanners; }
             set
             {
-                tvDB_AutoWideBanners  = this.SetField(tvDB_AutoWideBanners ,value);
+                this.SetField(()=>tvDB_AutoWideBanners,value);
             }
         }
 
@@ -1248,7 +1248,7 @@ namespace Shoko.Desktop.ViewModel
             get { return tvDB_AutoWideBannersAmount; }
             set
             {
-                tvDB_AutoWideBannersAmount  = this.SetField(tvDB_AutoWideBannersAmount ,value);
+                this.SetField(()=>tvDB_AutoWideBannersAmount,value);
             }
         }
 
@@ -1258,7 +1258,7 @@ namespace Shoko.Desktop.ViewModel
             get { return tvDB_AutoPosters; }
             set
             {
-                tvDB_AutoPosters  = this.SetField(tvDB_AutoPosters ,value);
+                this.SetField(()=>tvDB_AutoPosters,value);
             }
         }
 
@@ -1268,7 +1268,7 @@ namespace Shoko.Desktop.ViewModel
             get { return tvDB_AutoPostersAmount; }
             set
             {
-                tvDB_AutoPostersAmount  = this.SetField(tvDB_AutoPostersAmount ,value);
+                this.SetField(()=>tvDB_AutoPostersAmount,value);
             }
         }
 
@@ -1278,7 +1278,7 @@ namespace Shoko.Desktop.ViewModel
             get { return tvDB_Language; }
             set
             {
-                tvDB_Language  = this.SetField(tvDB_Language ,value);
+                this.SetField(()=>tvDB_Language,value);
             }
         }
 
@@ -1288,7 +1288,7 @@ namespace Shoko.Desktop.ViewModel
             get { return tvDB_UpdateFrequency; }
             set
             {
-                tvDB_UpdateFrequency  = this.SetField(tvDB_UpdateFrequency ,value);
+                this.SetField(()=>tvDB_UpdateFrequency,value);
             }
         }
 
@@ -1299,7 +1299,7 @@ namespace Shoko.Desktop.ViewModel
             get { return movieDB_AutoFanart; }
             set
             {
-                movieDB_AutoFanart  = this.SetField(movieDB_AutoFanart ,value);
+                this.SetField(()=>movieDB_AutoFanart,value);
             }
         }
 
@@ -1309,7 +1309,7 @@ namespace Shoko.Desktop.ViewModel
             get { return movieDB_AutoFanartAmount; }
             set
             {
-                movieDB_AutoFanartAmount  = this.SetField(movieDB_AutoFanartAmount ,value);
+                this.SetField(()=>movieDB_AutoFanartAmount,value);
             }
         }
 
@@ -1319,7 +1319,7 @@ namespace Shoko.Desktop.ViewModel
             get { return movieDB_AutoPosters; }
             set
             {
-                movieDB_AutoPosters  = this.SetField(movieDB_AutoPosters ,value);
+                this.SetField(()=>movieDB_AutoPosters,value);
             }
         }
 
@@ -1329,7 +1329,7 @@ namespace Shoko.Desktop.ViewModel
             get { return movieDB_AutoPostersAmount; }
             set
             {
-                movieDB_AutoPostersAmount  = this.SetField(movieDB_AutoPostersAmount ,value);
+                this.SetField(()=>movieDB_AutoPostersAmount,value);
             }
         }
 
@@ -1339,7 +1339,7 @@ namespace Shoko.Desktop.ViewModel
             get { return videoExtensions; }
             set
             {
-                videoExtensions  = this.SetField(videoExtensions ,value);
+                this.SetField(()=>videoExtensions,value);
             }
         }
 
@@ -1349,7 +1349,7 @@ namespace Shoko.Desktop.ViewModel
             get { return autoGroupSeries; }
             set
             {
-                autoGroupSeries  = this.SetField(autoGroupSeries ,value);
+                this.SetField(()=>autoGroupSeries,value);
             }
         }
 
@@ -1359,7 +1359,7 @@ namespace Shoko.Desktop.ViewModel
 		    get { return autoGroupSeriesUseScoreAlgorithm; }
 		    set
 		    {
-			    autoGroupSeriesUseScoreAlgorithm  = this.SetField(autoGroupSeriesUseScoreAlgorithm ,value);
+			    this.SetField(()=>autoGroupSeriesUseScoreAlgorithm,value);
 		    }
 	    }
 
@@ -1373,7 +1373,7 @@ namespace Shoko.Desktop.ViewModel
             }
             set
             {
-                autoGroupSeriesRelationExclusions  = this.SetField(autoGroupSeriesRelationExclusions ,value);
+                this.SetField(()=>autoGroupSeriesRelationExclusions,value);
             }
         }
 
@@ -1581,7 +1581,7 @@ namespace Shoko.Desktop.ViewModel
             get { return useEpisodeStatus; }
             set
             {
-                useEpisodeStatus  = this.SetField(useEpisodeStatus ,value);
+                this.SetField(()=>useEpisodeStatus,value);
             }
         }
 
@@ -1591,7 +1591,7 @@ namespace Shoko.Desktop.ViewModel
             get { return runImportOnStart; }
             set
             {
-                runImportOnStart  = this.SetField(runImportOnStart ,value);
+                this.SetField(()=>runImportOnStart,value);
             }
         }
 
@@ -1601,7 +1601,7 @@ namespace Shoko.Desktop.ViewModel
             get { return scanDropFoldersOnStart; }
             set
             {
-                scanDropFoldersOnStart  = this.SetField(scanDropFoldersOnStart ,value);
+                this.SetField(()=>scanDropFoldersOnStart,value);
             }
         }
 
@@ -1612,7 +1612,7 @@ namespace Shoko.Desktop.ViewModel
             get { return hash_CRC32; }
             set
             {
-                hash_CRC32  = this.SetField(hash_CRC32 ,value);
+                this.SetField(()=>hash_CRC32,value);
             }
         }
 
@@ -1622,7 +1622,7 @@ namespace Shoko.Desktop.ViewModel
             get { return hash_MD5; }
             set
             {
-                hash_MD5  = this.SetField(hash_MD5 ,value);
+                this.SetField(()=>hash_MD5,value);
             }
         }
 
@@ -1632,7 +1632,7 @@ namespace Shoko.Desktop.ViewModel
             get { return hash_SHA1; }
             set
             {
-                hash_SHA1  = this.SetField(hash_SHA1 ,value);
+                this.SetField(()=>hash_SHA1,value);
             }
         }
 
@@ -1642,7 +1642,7 @@ namespace Shoko.Desktop.ViewModel
             get { return languagePreference; }
             set
             {
-                languagePreference  = this.SetField(languagePreference ,value);
+                this.SetField(()=>languagePreference,value);
             }
         }
 
@@ -1652,7 +1652,7 @@ namespace Shoko.Desktop.ViewModel
             get { return languageUseSynonyms; }
             set
             {
-                languageUseSynonyms  = this.SetField(languageUseSynonyms ,value);
+                this.SetField(()=>languageUseSynonyms,value);
             }
         }
 
@@ -1662,7 +1662,7 @@ namespace Shoko.Desktop.ViewModel
             get { return episodeTitleSource; }
             set
             {
-                episodeTitleSource  = this.SetField(episodeTitleSource ,value);
+                this.SetField(()=>episodeTitleSource,value);
             }
         }
 
@@ -1672,7 +1672,7 @@ namespace Shoko.Desktop.ViewModel
             get { return seriesDescriptionSource; }
             set
             {
-                seriesDescriptionSource  = this.SetField(seriesDescriptionSource ,value);
+                this.SetField(()=>seriesDescriptionSource,value);
             }
         }
 
@@ -1682,7 +1682,7 @@ namespace Shoko.Desktop.ViewModel
             get { return seriesNameSource; }
             set
             {
-                seriesNameSource  = this.SetField(seriesNameSource ,value);
+                this.SetField(()=>seriesNameSource,value);
             }
         }
 
@@ -1692,7 +1692,7 @@ namespace Shoko.Desktop.ViewModel
             get { return trakt_IsEnabled; }
             set
             {
-                trakt_IsEnabled  = this.SetField(trakt_IsEnabled ,value);
+                this.SetField(()=>trakt_IsEnabled,value);
             }
         }
 
@@ -1702,7 +1702,7 @@ namespace Shoko.Desktop.ViewModel
             get { return trakt_AuthToken; }
             set
             {
-                trakt_AuthToken  = this.SetField(trakt_AuthToken ,value);
+                this.SetField(()=>trakt_AuthToken,value);
             }
         }
 
@@ -1712,7 +1712,7 @@ namespace Shoko.Desktop.ViewModel
             get { return trakt_RefreshToken; }
             set
             {
-                trakt_RefreshToken  = this.SetField(trakt_RefreshToken ,value);
+                this.SetField(()=>trakt_RefreshToken,value);
             }
         }
 
@@ -1722,7 +1722,7 @@ namespace Shoko.Desktop.ViewModel
             get { return trakt_TokenExpirationDate; }
             set
             {
-                trakt_TokenExpirationDate  = this.SetField(trakt_TokenExpirationDate ,value);
+                this.SetField(()=>trakt_TokenExpirationDate,value);
             }
         }
 
@@ -1732,7 +1732,7 @@ namespace Shoko.Desktop.ViewModel
             get { return trakt_DownloadFanart; }
             set
             {
-                trakt_DownloadFanart  = this.SetField(trakt_DownloadFanart ,value);
+                this.SetField(()=>trakt_DownloadFanart,value);
             }
         }
 
@@ -1742,7 +1742,7 @@ namespace Shoko.Desktop.ViewModel
             get { return trakt_DownloadPosters; }
             set
             {
-                trakt_DownloadPosters  = this.SetField(trakt_DownloadPosters ,value);
+                this.SetField(()=>trakt_DownloadPosters,value);
             }
         }
 
@@ -1752,7 +1752,7 @@ namespace Shoko.Desktop.ViewModel
             get { return trakt_DownloadEpisodes; }
             set
             {
-                trakt_DownloadEpisodes  = this.SetField(trakt_DownloadEpisodes ,value);
+                this.SetField(()=>trakt_DownloadEpisodes,value);
             }
         }
 
@@ -1762,7 +1762,7 @@ namespace Shoko.Desktop.ViewModel
             get { return mAL_Username; }
             set
             {
-                mAL_Username  = this.SetField(mAL_Username ,value);
+                this.SetField(()=>mAL_Username,value);
             }
         }
 
@@ -1772,7 +1772,7 @@ namespace Shoko.Desktop.ViewModel
             get { return mAL_Password; }
             set
             {
-                mAL_Password  = this.SetField(mAL_Password ,value);
+                this.SetField(()=>mAL_Password,value);
             }
         }
 
@@ -1782,7 +1782,7 @@ namespace Shoko.Desktop.ViewModel
             get { return mAL_UpdateFrequency; }
             set
             {
-                mAL_UpdateFrequency  = this.SetField(mAL_UpdateFrequency ,value);
+                this.SetField(()=>mAL_UpdateFrequency,value);
             }
         }
 
@@ -1792,7 +1792,7 @@ namespace Shoko.Desktop.ViewModel
             get { return mAL_NeverDecreaseWatchedNums; }
             set
             {
-                mAL_NeverDecreaseWatchedNums  = this.SetField(mAL_NeverDecreaseWatchedNums ,value);
+                this.SetField(()=>mAL_NeverDecreaseWatchedNums,value);
             }
         }
 
@@ -1802,7 +1802,7 @@ namespace Shoko.Desktop.ViewModel
             get { return trakt_UpdateFrequency; }
             set
             {
-                trakt_UpdateFrequency  = this.SetField(trakt_UpdateFrequency ,value);
+                this.SetField(()=>trakt_UpdateFrequency,value);
             }
         }
 
@@ -1812,7 +1812,7 @@ namespace Shoko.Desktop.ViewModel
             get { return trakt_SyncFrequency; }
             set
             {
-                trakt_SyncFrequency  = this.SetField(trakt_SyncFrequency ,value);
+                this.SetField(()=>trakt_SyncFrequency,value);
             }
         }
 

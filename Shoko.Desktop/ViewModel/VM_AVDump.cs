@@ -25,7 +25,7 @@ namespace Shoko.Desktop.ViewModel
             get { return fullPath; }
             set
             {
-                fullPath = this.SetField(fullPath,value);
+                this.SetField(()=>fullPath,value);
             }
         }
 
@@ -35,7 +35,7 @@ namespace Shoko.Desktop.ViewModel
             get { return fileSize; }
             set
             {
-                fileSize = this.SetField(fileSize, value);
+                this.SetField(()=>fileSize,value);
             }
         }
 
@@ -45,7 +45,7 @@ namespace Shoko.Desktop.ViewModel
             get { return eD2KDump; }
             set
             {
-                eD2KDump = this.SetField(ED2KDump, value);
+                this.SetField(()=>ED2KDump,value);
             }
         }
 
@@ -55,7 +55,7 @@ namespace Shoko.Desktop.ViewModel
             get { return aVDumpFullResult; }
             set
             {
-                aVDumpFullResult = this.SetField(aVDumpFullResult, value);
+                this.SetField(()=>aVDumpFullResult,value);
             }
         }
 
@@ -65,7 +65,7 @@ namespace Shoko.Desktop.ViewModel
             get { return hasBeenDumped; }
             set
             {
-                hasBeenDumped = this.SetField(hasBeenDumped, value);
+                this.SetField(()=>hasBeenDumped,value);
             }
         }
 
@@ -75,7 +75,7 @@ namespace Shoko.Desktop.ViewModel
             get { return isBeingDumped; }
             set
             {
-                isBeingDumped = this.SetField(isBeingDumped, value);
+                this.SetField(()=>isBeingDumped,value);
             }
         }
 
@@ -85,7 +85,7 @@ namespace Shoko.Desktop.ViewModel
             get { return dumpStatus; }
             set
             {
-                dumpStatus = this.SetField(dumpStatus, value);
+                this.SetField(()=>dumpStatus,value);
             }
         }
 
@@ -95,7 +95,7 @@ namespace Shoko.Desktop.ViewModel
             get { return videoLocal; }
             set
             {
-                videoLocal = this.SetField(videoLocal, value);
+                this.SetField(()=>videoLocal,value);
             }
         }
 

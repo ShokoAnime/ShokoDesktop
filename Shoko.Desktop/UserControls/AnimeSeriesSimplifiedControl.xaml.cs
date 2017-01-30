@@ -803,7 +803,7 @@ namespace Shoko.Desktop.UserControls
             VM_AnimeSeries_User ser = DataContext as VM_AnimeSeries_User;
             if (ser == null) return;
 
-            ser.RefreshBase();
+            VM_MainListHelper.Instance.UpdateAll();
 
             UnwatchedEpisodeCount = ser.UnwatchedEpisodeCount;
 
@@ -842,7 +842,7 @@ namespace Shoko.Desktop.UserControls
                 logger.Error(ex, ex.ToString());
             }
 
-            RefreshData();
+            //RefreshData();
         }
 
         private void RefreshUnwatchedEpisodes()

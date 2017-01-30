@@ -1182,8 +1182,7 @@ namespace Shoko.Desktop.UserControls
         {
             VM_AnimeSeries_User ser = DataContext as VM_AnimeSeries_User;
             if (ser == null) return;
-
-            ser.RefreshBase();
+            VM_MainListHelper.Instance.UpdateAll();
 
             LoadSeries();
         }

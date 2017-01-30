@@ -35,7 +35,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return aniDB_Anime; }
             set
             {
-                aniDB_Anime = this.SetField(aniDB_Anime, value);
+                this.SetField(()=>aniDB_Anime,value);
             }
         }
 
@@ -45,7 +45,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return series; }
             set
             {
-                series = this.SetField(series, value);
+                this.SetField(()=>series,value);
             }
         }
 
@@ -55,7 +55,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return nextEpisode; }
             set
             {
-                nextEpisode = this.SetField(nextEpisode, value);
+                this.SetField(()=>nextEpisode,value);
             }
         }
 
@@ -65,7 +65,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return isReadOnly; }
             set
             {
-                isReadOnly = this.SetField(isReadOnly, value);
+                this.SetField(()=>isReadOnly,value);
             }
         }
 
@@ -75,7 +75,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return isBeingEdited; }
             set
             {
-                isBeingEdited = this.SetField(isBeingEdited, value);
+                this.SetField(()=>isBeingEdited,value);
             }
         }
 
@@ -84,7 +84,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return base.PlaylistName; }
             set
             {
-                base.PlaylistName = this.SetField(base.PlaylistName, value);
+                this.SetField(()=>base.PlaylistName,(r)=> base.PlaylistName = r, value);
             }
         }
 
@@ -95,7 +95,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return base.PlayWatched; }
             set
             {
-                base.PlayWatched = this.SetField(base.PlayWatched, value, ()=>PlayWatched, ()=>PlayUnwatchedBool);
+                this.SetField(()=>base.PlayWatched,(r)=> base.PlayWatched = r, value, ()=>PlayWatched, ()=>PlayUnwatchedBool);
             }
         }
         public new int PlayUnwatched
@@ -103,7 +103,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return base.PlayUnwatched; }
             set
             {
-                base.PlayUnwatched = this.SetField(base.PlayUnwatched, value, ()=>PlayUnwatched, ()=>PlayUnwatchedBool);
+                this.SetField(()=>base.PlayUnwatched,(r)=> base.PlayUnwatched = r, value, ()=>PlayUnwatched, ()=>PlayUnwatchedBool);
             }
         }
         public bool PlayUnwatchedBool => PlayUnwatched==1;
@@ -285,7 +285,7 @@ namespace Shoko.Desktop.ViewModel.Server
                         if (pli.ItemType == PlaylistItemType.AnimeSeries)
                         {
                             VM_AnimeSeries_User ser = (VM_AnimeSeries_User)pli.PlaylistItem;
-                            ser.RefreshBase();
+                            VM_MainListHelper.Instance.UpdateAll();
                             ser.RefreshEpisodes();
 
                             List<VM_AnimeEpisode_User> eps = ser.AllEpisodes.OrderBy(a=>a.EpisodeType).ThenBy(a=>a.EpisodeNumber).ToList();
@@ -326,7 +326,7 @@ namespace Shoko.Desktop.ViewModel.Server
                     if (pli.ItemType == PlaylistItemType.AnimeSeries)
                     {
                         VM_AnimeSeries_User ser = (VM_AnimeSeries_User) pli.PlaylistItem;
-                        ser.RefreshBase();
+                        VM_MainListHelper.Instance.UpdateAll();
                         ser.RefreshEpisodes();
 
                         List<VM_AnimeEpisode_User> eps = ser.AllEpisodes;
@@ -383,7 +383,7 @@ namespace Shoko.Desktop.ViewModel.Server
                     if (pli.ItemType == PlaylistItemType.AnimeSeries)
                     {
                         VM_AnimeSeries_User ser = (VM_AnimeSeries_User)pli.PlaylistItem;
-                        ser.RefreshBase();
+                        VM_MainListHelper.Instance.UpdateAll();
                         ser.RefreshEpisodes();
 
                         List<VM_AnimeEpisode_User> eps = ser.AllEpisodes.OrderBy(a=>a.EpisodeType).ThenBy(a=>a.EpisodeNumber).ToList();
@@ -415,7 +415,7 @@ namespace Shoko.Desktop.ViewModel.Server
                     if (pli.ItemType == PlaylistItemType.AnimeSeries)
                     {
                         VM_AnimeSeries_User ser = (VM_AnimeSeries_User)pli.PlaylistItem;
-                        ser.RefreshBase();
+                        VM_MainListHelper.Instance.UpdateAll();
                         ser.RefreshEpisodes();
 
                         List<VM_AnimeEpisode_User> eps = ser.AllEpisodes;

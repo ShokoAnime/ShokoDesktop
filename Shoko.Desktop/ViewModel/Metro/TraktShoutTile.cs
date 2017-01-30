@@ -20,7 +20,7 @@ namespace Shoko.Desktop.ViewModel.Metro
             get { return showName; }
             set
             {
-                showName = this.SetField(showName, value);
+                this.SetField(()=>showName,value);
             }
         }
 
@@ -30,7 +30,7 @@ namespace Shoko.Desktop.ViewModel.Metro
             get { return friendName; }
             set
             {
-                friendName = this.SetField(friendName, value);
+                this.SetField(()=>friendName,value);
             }
         }
 
@@ -40,7 +40,7 @@ namespace Shoko.Desktop.ViewModel.Metro
             get { return details; }
             set
             {
-                details = this.SetField(details, value);
+                this.SetField(()=>details,value);
             }
         }
 
@@ -50,7 +50,7 @@ namespace Shoko.Desktop.ViewModel.Metro
             get { return shoutText; }
             set
             {
-                shoutText = this.SetField(shoutText, value);
+                this.SetField(()=>shoutText,value);
             }
         }
 
@@ -60,7 +60,7 @@ namespace Shoko.Desktop.ViewModel.Metro
             get { return shoutDateString; }
             set
             {
-                shoutDateString = this.SetField(shoutDateString, value);
+                this.SetField(()=>shoutDateString,value);
             }
         }
 
@@ -70,7 +70,7 @@ namespace Shoko.Desktop.ViewModel.Metro
             get { return showPicture; }
             set
             {
-                showPicture = this.SetField(showPicture, value);
+                this.SetField(()=>showPicture,value);
             }
         }
 
@@ -80,7 +80,7 @@ namespace Shoko.Desktop.ViewModel.Metro
             get { return uRL; }
             set
             {
-                uRL = this.SetField(uRL, value);
+                this.SetField(()=>uRL,value);
             }
         }
 
@@ -93,7 +93,7 @@ namespace Shoko.Desktop.ViewModel.Metro
             get { return friendPicture; }
             set
             {
-                friendPicture = this.SetField(friendPicture,value);
+                this.SetField(()=>friendPicture,value);
             }
         }
 
@@ -103,7 +103,7 @@ namespace Shoko.Desktop.ViewModel.Metro
             get { return onlineShowPicture; }
             set
             {
-                onlineShowPicture = this.SetField(onlineShowPicture, value);
+                this.SetField(()=>onlineShowPicture,value);
             }
         }
 
@@ -113,7 +113,7 @@ namespace Shoko.Desktop.ViewModel.Metro
             get { return onlineFriendPicture; }
             set
             {
-                onlineFriendPicture = this.SetField(OnlineFriendPicture,value);
+                this.SetField(()=>OnlineFriendPicture,value);
             }
         }
     }

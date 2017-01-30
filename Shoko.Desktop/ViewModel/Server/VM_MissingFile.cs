@@ -13,7 +13,7 @@ namespace Shoko.Desktop.ViewModel.Server
         public new VM_AnimeSeries_User AnimeSeries
         {
             get { return (VM_AnimeSeries_User) base.AnimeSeries; }
-            set { base.AnimeSeries = this.SetField(base.AnimeSeries, value, ()=>HasSeriesData); }
+            set { this.SetField(()=>base.AnimeSeries,(r)=> base.AnimeSeries = r, value, ()=>HasSeriesData); }
         }
 
         public string AniDB_SiteURL => string.Format(Models.Constants.URLS.AniDB_Series, AnimeID);
@@ -33,13 +33,13 @@ namespace Shoko.Desktop.ViewModel.Server
         public new int EpisodeType
         {
             get { return base.EpisodeType; }
-            set { base.EpisodeType = this.SetField(base.EpisodeType, value, ()=> EpisodeType, ()=>EpisodeTypeAndNumber); }
+            set { this.SetField(()=>base.EpisodeType,(r)=> base.EpisodeType = r, value, ()=> EpisodeType, ()=>EpisodeTypeAndNumber); }
         }
 
         public new int EpisodeNumber
         {
             get { return base.EpisodeNumber; }
-            set { base.EpisodeNumber = this.SetField(base.EpisodeNumber, value, () => EpisodeNumber, ()=>EpisodeTypeAndNumber); }
+            set { this.SetField(()=>base.EpisodeNumber,(r)=> base.EpisodeNumber = r, value, () => EpisodeNumber, ()=>EpisodeTypeAndNumber); }
         }
 
 

@@ -105,7 +105,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return base.Locked; }
             set
             {
-                base.Locked = this.SetField(base.Locked, value,()=>IsLocked);
+                this.SetField(()=>base.Locked,(r)=> base.Locked = r, value,()=>IsLocked);
             }
         }
 
@@ -117,7 +117,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return isBeingEdited; }
             set
             {
-                isBeingEdited = this.SetField(isBeingEdited, value);
+                this.SetField(()=>isBeingEdited, value);
             }
         }
 
@@ -127,7 +127,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return base.GroupFilterName; }
             set
             {
-                base.GroupFilterName = this.SetField(base.GroupFilterName, value);
+                this.SetField(()=>base.GroupFilterName,(r)=> base.GroupFilterName = r, value);
             }
         }
 
@@ -136,7 +136,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return base.FilterType; }
             set
             {
-                base.FilterType = this.SetField(base.FilterType, value);
+                this.SetField(()=>base.FilterType,(r)=> base.FilterType = r, value);
                 if (value == (int) GroupFilterType.ContinueWatching)
                     Locked = 1;
             }
@@ -147,7 +147,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return base.ApplyToSeries; }
             set
             {
-                base.ApplyToSeries = this.SetField(base.ApplyToSeries, value,()=>ApplyToSeries, ()=>IsApplyToSeries);
+                this.SetField(()=>base.ApplyToSeries,(r)=> base.ApplyToSeries = r, value,()=>ApplyToSeries, ()=>IsApplyToSeries);
             }
         }
 
@@ -162,7 +162,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return base.BaseCondition; }
             set
             {
-                base.BaseCondition = this.SetField(base.BaseCondition, value);
+                this.SetField(()=>base.BaseCondition,(r)=> base.BaseCondition = r, value);
             }
         }
 
@@ -171,7 +171,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return base.ParentGroupFilterID; }
             set
             {
-                base.ParentGroupFilterID = this.SetField(base.ParentGroupFilterID, value);
+                this.SetField(()=>base.ParentGroupFilterID,(r)=> base.ParentGroupFilterID = r, value);
             }
         }
 
@@ -180,7 +180,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return base.InvisibleInClients; }
             set
             {
-                base.InvisibleInClients = this.SetField(base.InvisibleInClients, value);
+                this.SetField(()=>base.InvisibleInClients,(r)=> base.InvisibleInClients = r, value);
             }
         }
 
@@ -210,7 +210,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
             set
             {
-                _groupsCount = this.SetField(_groupsCount, value);
+                this.SetField(()=>_groupsCount, value);
             }
         }
 

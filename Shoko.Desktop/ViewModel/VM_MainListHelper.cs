@@ -104,7 +104,7 @@ namespace Shoko.Desktop.ViewModel
             get { return currentWrapper; }
             set
             {
-                currentWrapper  = this.SetField(currentWrapper ,value);
+                this.SetField(()=>currentWrapper,value);
             }
         }
 
@@ -114,7 +114,7 @@ namespace Shoko.Desktop.ViewModel
             get { return fullScrollerWidth; }
             set
             {
-                fullScrollerWidth  = this.SetField(fullScrollerWidth ,value);
+                this.SetField(()=>fullScrollerWidth,value);
             }
         }
 
@@ -124,7 +124,7 @@ namespace Shoko.Desktop.ViewModel
             get { return fullScrollerHeight; }
             set
             {
-                fullScrollerHeight  = this.SetField(fullScrollerHeight ,value);
+                this.SetField(()=>fullScrollerHeight,value);
             }
         }
 
@@ -134,7 +134,7 @@ namespace Shoko.Desktop.ViewModel
             get { return downloadRecScrollerWidth; }
             set
             {
-                downloadRecScrollerWidth  = this.SetField(downloadRecScrollerWidth ,value);
+                this.SetField(()=>downloadRecScrollerWidth,value);
             }
         }
 
@@ -144,7 +144,7 @@ namespace Shoko.Desktop.ViewModel
             get { return mainScrollerWidth; }
             set
             {
-                mainScrollerWidth  = this.SetField(mainScrollerWidth ,value);
+                this.SetField(()=>mainScrollerWidth,value);
 
 
                 double temp = mainScrollerWidth - 10;
@@ -164,7 +164,7 @@ namespace Shoko.Desktop.ViewModel
             get { return playlistWidth; }
             set
             {
-                playlistWidth  = this.SetField(playlistWidth ,value);
+                this.SetField(()=>playlistWidth,value);
 
             }
         }
@@ -175,7 +175,7 @@ namespace Shoko.Desktop.ViewModel
             get { return mainScrollerChildrenWidth; }
             set
             {
-                mainScrollerChildrenWidth  = this.SetField(mainScrollerChildrenWidth ,value);
+                this.SetField(()=>mainScrollerChildrenWidth,value);
             }
         }
 
@@ -185,7 +185,7 @@ namespace Shoko.Desktop.ViewModel
             get { return mainScrollerSeriesChildrenWidth; }
             set
             {
-                mainScrollerSeriesChildrenWidth  = this.SetField(mainScrollerSeriesChildrenWidth ,value);
+                this.SetField(()=>mainScrollerSeriesChildrenWidth,value);
             }
         }
 
@@ -195,7 +195,7 @@ namespace Shoko.Desktop.ViewModel
             get { return currentWrapperIsGroup; }
             set
             {
-                currentWrapperIsGroup  = this.SetField(currentWrapperIsGroup ,value);
+                this.SetField(()=>currentWrapperIsGroup,value);
             }
         }
 
@@ -205,7 +205,7 @@ namespace Shoko.Desktop.ViewModel
             get { return currentListWrapperIsGroup; }
             set
             {
-                currentListWrapperIsGroup  = this.SetField(currentListWrapperIsGroup ,value);
+                this.SetField(()=>currentListWrapperIsGroup,value);
             }
         }
 
@@ -215,7 +215,7 @@ namespace Shoko.Desktop.ViewModel
             get { return showEpisodes; }
             set
             {
-                showEpisodes  = this.SetField(showEpisodes ,value);
+                this.SetField(()=>showEpisodes,value);
             }
         }
 
@@ -225,7 +225,7 @@ namespace Shoko.Desktop.ViewModel
             get { return currentSeries; }
             set
             {
-                currentSeries  = this.SetField(currentSeries ,value);
+                this.SetField(()=>currentSeries,value);
             }
         }
 
@@ -336,8 +336,7 @@ namespace Shoko.Desktop.ViewModel
                     VM_AnimeSeries_User ser = AllSeriesDictionary.Values.FirstOrDefault(a => a.AniDB_ID == anime.AnimeID);
                     if (ser != null)
                     {
-                        ser.RefreshBase();
-                        ser.AniDBAnime.RefreshBase();
+                        VM_MainListHelper.Instance.UpdateAll();
                         AllSeriesDictionary[ser.AnimeSeriesID] = ser;
                     }
                 }
@@ -848,7 +847,7 @@ namespace Shoko.Desktop.ViewModel
         {
             try
             {
-                return Instance.AllSeriesDictionary.Values.FirstOrDefault(a => a.AniDB_ID == animeID);
+                return AllSeriesDictionary.Values.FirstOrDefault(a => a.AniDB_ID == animeID);
             }
             catch (Exception ex)
             {
@@ -1060,18 +1059,10 @@ namespace Shoko.Desktop.ViewModel
         {
             try
             {
-                // update the attached series
-                CL_AnimeSeries_User serContract = VM_ShokoServer.Instance.ShokoServices.GetSeries(ep.AnimeSeriesID, VM_ShokoServer.Instance.CurrentUser.JMMUserID);
-                VM_AnimeSeries_User ser = AllSeriesDictionary.SureGet(serContract.AnimeSeriesID);
-                ser?.Populate((VM_AnimeSeries_User)serContract);
-                // TODO update the episode list
-                List<CL_AnimeGroup_User> grps = VM_ShokoServer.Instance.ShokoServices.GetAllGroupsAboveSeries(ep.AnimeSeriesID, VM_ShokoServer.Instance.CurrentUser.JMMUserID);
-                foreach (CL_AnimeGroup_User grpContract in grps)
-                {
-                    VM_AnimeGroup_User agrp = AllGroupsDictionary.SureGet(grpContract.AnimeGroupID);
-                    agrp?.Populate(grpContract);
-                    agrp?.PopulateSerieInfo(AllGroupsDictionary, AllSeriesDictionary);
-                }
+                UpdateAll();
+                VM_AnimeSeries_User ser = AllSeriesDictionary.SureGet(ep.AnimeSeriesID);
+                if (ser != null)
+                    UpdateAboveGroups(ser);
             }
             catch (Exception ex)
             {
@@ -1079,24 +1070,30 @@ namespace Shoko.Desktop.ViewModel
             }
         }
 
+        public void UpdateAboveGroups(VM_AnimeSeries_User ser)
+        {
+            int? groupID = ser.AnimeGroupID;
+            List<CL_AnimeGroup_User> grps = new List<CL_AnimeGroup_User>();
+            while (groupID.HasValue)
+            {
+                VM_AnimeGroup_User grp = AllGroupsDictionary.SureGet(groupID.Value);
+                if (grp != null)
+                {
+                    grp.PopulateSerieInfo(AllGroupsDictionary, AllSeriesDictionary);
+                }
+                else
+                {
+                    groupID = null;
+                }
+            }
+        }
+
         public void UpdateHeirarchy(VM_AnimeSeries_User ser)
         {
             try
             {
-                // update the attached series
-                // refresh the data
-                ser.RefreshBase();
-                ser.AniDBAnime.RefreshBase();
-
-                List<CL_AnimeGroup_User> grps = VM_ShokoServer.Instance.ShokoServices.GetAllGroupsAboveSeries(ser.AnimeSeriesID,
-                    VM_ShokoServer.Instance.CurrentUser.JMMUserID);
-                foreach (CL_AnimeGroup_User grpContract in grps)
-                {
-                    VM_AnimeGroup_User agrp = AllGroupsDictionary.SureGet(grpContract.AnimeGroupID);
-                    agrp?.Populate(grpContract);
-                    agrp?.PopulateSerieInfo(AllGroupsDictionary, AllSeriesDictionary);
-                }
                 UpdateAll();
+                UpdateAboveGroups(ser);
             }
             catch (Exception ex)
             {

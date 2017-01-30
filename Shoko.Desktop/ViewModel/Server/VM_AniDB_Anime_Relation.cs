@@ -57,7 +57,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return displayName; }
             set
             {
-                displayName = this.SetField(displayName, value);
+                this.SetField(()=>displayName,value);
             }
         }
 
@@ -66,14 +66,14 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return base.AnimeID; }
             set
             {
-                base.AnimeID = this.SetField(base.AnimeID, value);
+                this.SetField(()=>base.AnimeID,(r)=> base.AnimeID = r, value);
             }
         }
 
         public new int RelatedAnimeID
         {
             get { return base.RelatedAnimeID; }
-            set { base.RelatedAnimeID = this.SetField(base.RelatedAnimeID, value, () => AniDB_SiteURL); }
+            set { this.SetField(()=>base.RelatedAnimeID,(r)=> base.RelatedAnimeID = r, value, () => AniDB_SiteURL); }
         }
 
         public string AniDB_SiteURL => string.Format(Models.Constants.URLS.AniDB_Series, RelatedAnimeID);
@@ -84,7 +84,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return localSeriesExists; }
             set
             {
-                localSeriesExists = this.SetField(localSeriesExists, value);
+                this.SetField(()=>localSeriesExists,value);
             }
         }
 
@@ -94,7 +94,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return animeInfoExists; }
             set
             {
-                animeInfoExists = this.SetField(animeInfoExists, value);
+                this.SetField(()=>animeInfoExists,value);
             }
         }
 
@@ -104,7 +104,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return showCreateSeriesButton; }
             set
             {
-                showCreateSeriesButton = this.SetField(showCreateSeriesButton, value);
+                this.SetField(()=>showCreateSeriesButton,value);
             }
         }
 
@@ -114,7 +114,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return posterPath; }
             set
             {
-                posterPath = this.SetField(posterPath, value);
+                this.SetField(()=>posterPath,value);
             }
         }
 
@@ -124,7 +124,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return sortPriority; }
             set
             {
-                sortPriority = this.SetField(sortPriority, value);
+                this.SetField(()=>sortPriority,value);
             }
         }
 

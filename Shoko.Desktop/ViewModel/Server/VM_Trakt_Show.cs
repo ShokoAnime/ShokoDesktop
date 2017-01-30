@@ -20,7 +20,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return base.Title ?? ""; }
             set
             {
-                base.Title = this.SetField(base.Title, value);
+                this.SetField(()=>base.Title,(r)=> base.Title = r, value);
             }
         }
 
@@ -29,7 +29,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return base.URL; }
             set
             {
-                base.URL = this.SetField(base.URL, value);
+                this.SetField(()=>base.URL,(r)=> base.URL = r, value);
             }
         }
 

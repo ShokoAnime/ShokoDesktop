@@ -3458,7 +3458,7 @@ namespace Shoko.Desktop
                 {
 
                     VM_AnimeSeries_User series = obj as VM_AnimeSeries_User;
-                    series.RefreshBase();
+                    //series.RefreshBase();
                     //VM_MainListHelper.Instance.LastAnimeSeriesID = series.AnimeSeriesID.Value;
                     VM_MainListHelper.Instance.CurrentSeries = series;
                 }

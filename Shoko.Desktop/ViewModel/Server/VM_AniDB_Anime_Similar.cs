@@ -46,12 +46,12 @@ namespace Shoko.Desktop.ViewModel.Server
         public new int Approval
         {
             get { return base.Approval; }
-            set { base.Approval = this.SetField(base.Approval, value, () => ApprovalPercentage, () => ApprovalRating); }
+            set { this.SetField(()=>base.Approval,(r)=> base.Approval = r, value, () => ApprovalPercentage, () => ApprovalRating); }
         }
         public new int Total
         {
             get { return base.Total; }
-            set { base.Total = this.SetField(base.Total, value, () => ApprovalPercentage, () => ApprovalRating);  }
+            set { this.SetField(()=>base.Total,(r)=> base.Total = r, value, () => ApprovalPercentage, () => ApprovalRating);  }
         }
 
         private string displayName = "";
@@ -70,7 +70,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return base.AnimeID; }
             set
             {
-                base.AnimeID = this.SetField(base.AnimeID, value);
+                this.SetField(()=>base.AnimeID,(r)=> base.AnimeID = r, value);
             }
         }
 
@@ -101,7 +101,7 @@ namespace Shoko.Desktop.ViewModel.Server
         public new int SimilarAnimeID
         {
             get { return base.SimilarAnimeID; }
-            set { base.SimilarAnimeID = this.SetField(base.SimilarAnimeID, value, () => AniDB_SiteURL); }
+            set { this.SetField(()=>base.SimilarAnimeID,(r)=> base.SimilarAnimeID = r, value, () => AniDB_SiteURL); }
             
         }
         public string AniDB_SiteURL => string.Format(Models.Constants.URLS.AniDB_Series, SimilarAnimeID);
@@ -112,7 +112,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return localSeriesExists; }
             set
             {
-                localSeriesExists = this.SetField(localSeriesExists, value);
+                this.SetField(()=>localSeriesExists, value);
             }
         }
 
@@ -122,7 +122,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return animeInfoExists; }
             set
             {
-                animeInfoExists = this.SetField(animeInfoExists, value);
+                this.SetField(()=>animeInfoExists, value);
             }
         }
 
@@ -133,7 +133,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return showCreateSeriesButton; }
             set
             {
-                showCreateSeriesButton = this.SetField(showCreateSeriesButton, value);
+                this.SetField(()=>showCreateSeriesButton, value);
             }
         }
 
@@ -143,7 +143,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return posterPath; }
             set
             {
-                posterPath = this.SetField(posterPath, value);
+                this.SetField(()=>posterPath, value);
             }
         }
 

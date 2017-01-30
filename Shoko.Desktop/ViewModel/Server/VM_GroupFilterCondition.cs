@@ -25,7 +25,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return base.ConditionType; }
             set
             {
-                base.ConditionType = this.SetField(base.ConditionType,value, ()=>ConditionType, ()=> ConditionTypeEnum, ()=>ConditionTypeString, ()=>ConditionParameterString, ()=>NiceDescription);
+                this.SetField(()=>base.ConditionType,(r)=> base.ConditionType = r, value, ()=>ConditionType, ()=> ConditionTypeEnum, ()=>ConditionTypeString, ()=>ConditionParameterString, ()=>NiceDescription);
             }
         }
 
@@ -34,7 +34,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return base.ConditionOperator; }
             set
             {
-                base.ConditionOperator = this.SetField(base.ConditionOperator, value, ()=>ConditionOperator, ()=>ConditionOperatorEnum, ()=>ConditionOperatorString, () => ConditionParameterString, () => NiceDescription);
+                this.SetField(()=>base.ConditionOperator,(r)=> base.ConditionOperator = r, value, ()=>ConditionOperator, ()=>ConditionOperatorEnum, ()=>ConditionOperatorString, () => ConditionParameterString, () => NiceDescription);
             }
         }
 
@@ -43,7 +43,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return base.ConditionParameter; }
             set
             {
-                base.ConditionParameter = this.SetField(base.ConditionParameter, value, () => ConditionParameter, () => ConditionParameterString, () => NiceDescription);
+                this.SetField(()=>base.ConditionParameter,(r)=> base.ConditionParameter = r, value, () => ConditionParameter, () => ConditionParameterString, () => NiceDescription);
             }
         }
 

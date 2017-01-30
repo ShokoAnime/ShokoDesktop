@@ -84,14 +84,14 @@ namespace Shoko.Desktop.ViewModel.Server
         public new int? AnimeGroupParentID
         {
             get { return base.AnimeGroupParentID; }
-            set { base.AnimeGroupParentID = this.SetField(base.AnimeGroupParentID, value); }
+            set { this.SetField(()=>base.AnimeGroupParentID,(r)=> base.AnimeGroupParentID = r, value); }
         }
 
 
         public new int? DefaultAnimeSeriesID
         {
             get { return base.DefaultAnimeSeriesID; }
-            set { base.DefaultAnimeSeriesID = this.SetField(base.DefaultAnimeSeriesID, value, ()=>DefaultAnimeSeriesID,()=>HasDefaultSeries); }
+            set { this.SetField(()=>base.DefaultAnimeSeriesID,(r)=> base.DefaultAnimeSeriesID = r, value, ()=>DefaultAnimeSeriesID,()=>HasDefaultSeries); }
         }
 
         public bool HasDefaultSeries => base.DefaultAnimeSeriesID.HasValue;
@@ -100,20 +100,20 @@ namespace Shoko.Desktop.ViewModel.Server
         public bool IsReadOnly
         {
             get { return isReadOnly; }
-            set { isReadOnly = this.SetField(isReadOnly, value); }
+            set { this.SetField(()=>isReadOnly, value); }
         }
 
         private bool isBeingEdited;
         public bool IsBeingEdited
         {
             get { return isBeingEdited; }
-            set { isBeingEdited = this.SetField(isBeingEdited, value); }
+            set { this.SetField(()=>isBeingEdited, value); }
         }
 
          public new string GroupName
         {
             get { return base.GroupName; }
-            set { base.GroupName = this.SetField(base.GroupName, value); }
+            set { this.SetField(()=>base.GroupName,(r)=> base.GroupName = r, value); }
         }
 
         public new int IsFave
@@ -121,7 +121,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return base.IsFave; }
             set
             {
-                base.IsFave = this.SetField(base.IsFave, value, ()=>IsFave, ()=>BIsFave);
+                this.SetField(()=>base.IsFave,(r)=> base.IsFave = r, value, ()=>IsFave, ()=>BIsFave);
             }
         }
 
@@ -130,13 +130,13 @@ namespace Shoko.Desktop.ViewModel.Server
         public new decimal? Stat_UserVoteTemporary
         {
             get  { return  base. Stat_UserVoteTemporary; }
-            set { base.Stat_UserVoteTemporary = this.SetField(base.Stat_UserVoteTemporary, value, () => Stat_UserVoteTemporary, () => UserHasVotedAny); }
+            set { this.SetField(()=>base.Stat_UserVoteTemporary,(r)=> base.Stat_UserVoteTemporary = r, value, () => Stat_UserVoteTemporary, () => UserHasVotedAny); }
         }
 
         public new decimal? Stat_UserVotePermanent
         {
             get { return base.Stat_UserVotePermanent; }
-            set { base.Stat_UserVotePermanent = this.SetField(base.Stat_UserVotePermanent, value, ()=>Stat_UserVotePermanent, ()=> UserHasVoted, () => UserHasVotedAny); }
+            set { this.SetField(()=>base.Stat_UserVotePermanent,(r)=> base.Stat_UserVotePermanent = r, value, ()=>Stat_UserVotePermanent, ()=> UserHasVoted, () => UserHasVotedAny); }
         }
         public bool UserHasVoted => Stat_UserVotePermanent.HasValue;
         public bool UserHasVotedAny => Stat_UserVotePermanent.HasValue || Stat_UserVoteTemporary.HasValue;
@@ -145,47 +145,47 @@ namespace Shoko.Desktop.ViewModel.Server
         public new int WatchedEpisodeCount
         {
             get { return base.WatchedEpisodeCount; }
-            set { base.WatchedEpisodeCount = this.SetField(base.WatchedEpisodeCount, value); }
+            set { this.SetField(()=>base.WatchedEpisodeCount,(r)=> base.WatchedEpisodeCount = r, value); }
         }
 
          public new int UnwatchedEpisodeCount
         {
             get { return base.UnwatchedEpisodeCount; }
-            set { base.UnwatchedEpisodeCount = this.SetField(base.UnwatchedEpisodeCount, value); }
+            set { this.SetField(()=>base.UnwatchedEpisodeCount,(r)=> base.UnwatchedEpisodeCount = r, value); }
         }
 
 
         public new int WatchedCount
         {
             get { return base.WatchedCount; }
-            set { base.WatchedCount = this.SetField(base.WatchedCount, value); }
+            set { this.SetField(()=>base.WatchedCount,(r)=> base.WatchedCount = r, value); }
         }
 
        
         public new DateTime? EpisodeAddedDate
         {
             get { return base.EpisodeAddedDate; }
-            set { base.EpisodeAddedDate = this.SetField(base.EpisodeAddedDate, value); 
+            set { this.SetField(()=>base.EpisodeAddedDate,(r)=> base.EpisodeAddedDate = r, value); 
             }
         }
 
          public new DateTime? WatchedDate
         {
             get { return base.WatchedDate; }
-            set { base.WatchedDate = this.SetField(base.WatchedDate, value); }
+            set { this.SetField(()=>base.WatchedDate,(r)=> base.WatchedDate = r, value); }
         }
 
 
          public new string SortName
         {
             get { return base.SortName; }
-            set { base.SortName = this.SetField(base.SortName, value); }
+            set { this.SetField(()=>base.SortName,(r)=> base.SortName = r, value); }
         }
 
         public new string Description
         {
             get { return base.Description; }
-            set { base.Description = this.SetField(base.Description, value); }
+            set { this.SetField(()=>base.Description,(r)=> base.Description = r, value); }
         }
 
         #endregion

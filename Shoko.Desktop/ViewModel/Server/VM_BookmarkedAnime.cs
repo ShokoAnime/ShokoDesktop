@@ -21,7 +21,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return (VM_AniDB_Anime)base.Anime; }
             set
             {
-                base.Anime = this.SetField(base.Anime, value);
+                this.SetField(()=>base.Anime,(r)=> base.Anime = r, value);
             }
         }
 
@@ -30,7 +30,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return base.AnimeID; }
             set
             {
-                base.AnimeID = this.SetField(base.AnimeID, value);
+                this.SetField(()=>base.AnimeID,(r)=> base.AnimeID = r, value);
             }
         }
 
@@ -39,7 +39,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return base.Priority; }
             set
             {
-                base.Priority = this.SetField(base.Priority, value);
+                this.SetField(()=>base.Priority,(r)=> base.Priority = r, value);
             }
         }
 
@@ -48,7 +48,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return base.Notes; }
             set
             {
-                base.Notes = this.SetField(base.Notes, value);
+                this.SetField(()=>base.Notes,(r)=> base.Notes = r, value);
             }
         }
 
@@ -57,7 +57,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return base.Downloading; }
             set
             {
-                base.Downloading= this.SetField(base.Downloading,value, ()=>Downloading, ()=>DownloadingBool);
+                this.SetField(()=>base.Downloading,(r)=>base.Downloading=r, value, ()=>Downloading, ()=>DownloadingBool);
             }
         }
 

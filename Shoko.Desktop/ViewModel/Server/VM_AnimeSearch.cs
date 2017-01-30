@@ -20,25 +20,25 @@ namespace Shoko.Desktop.ViewModel.Server
         public new int AnimeID
         {
             get { return base.AnimeID; }
-            set { base.AnimeID = this.SetField(base.AnimeID, value); }
+            set { this.SetField(()=>base.AnimeID,(r)=> base.AnimeID = r, value); }
         }
 
         public new string MainTitle
         {
             get { return base.MainTitle; }
-            set { base.MainTitle = this.SetField(base.MainTitle,value); }
+            set { this.SetField(()=>base.MainTitle,(r)=> base.MainTitle = r, value); }
         }
 
 		public new HashSet<string> Titles
 		{
 			get { return base.Titles; }
-			set { base.Titles = this.SetField(base.Titles, value); }
+			set { this.SetField(()=>base.Titles,(r)=> base.Titles = r, value); }
 		}
 
         public new bool SeriesExists
         {
             get { return base.SeriesExists; }
-            set { base.SeriesExists = this.SetField(base.SeriesExists, value); }
+            set { this.SetField(()=>base.SeriesExists,(r)=> base.SeriesExists = r, value); }
         }
 
 

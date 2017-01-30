@@ -24,7 +24,7 @@ namespace Shoko.Desktop.ViewModel
             get { return sortType; }
             set
             {
-                sortType = this.SetField(sortType, value);
+                this.SetField(()=>sortType,value);
                 GroupFilterSortingString = sortType.GetTextForEnum_Sorting();
             }
         }
@@ -35,7 +35,7 @@ namespace Shoko.Desktop.ViewModel
             get { return sortDirection; }
             set
             {
-                sortDirection = this.SetField(sortDirection, value);
+                this.SetField(()=>sortDirection,value);
                 GroupFilterSortDirectionString = sortDirection.GetTextForEnum_SortDirection();
             }
         }
@@ -46,7 +46,7 @@ namespace Shoko.Desktop.ViewModel
             get { return groupFilterSortingString; }
             set
             {
-                groupFilterSortingString = this.SetField(groupFilterSortingString, value);
+                this.SetField(()=>groupFilterSortingString,value);
             }
         }
 
@@ -56,7 +56,7 @@ namespace Shoko.Desktop.ViewModel
             get { return groupFilterSortDirectionString; }
             set
             {
-                groupFilterSortDirectionString = this.SetField(groupFilterSortDirectionString, value);
+                this.SetField(()=>groupFilterSortDirectionString,value);
             }
         }
 

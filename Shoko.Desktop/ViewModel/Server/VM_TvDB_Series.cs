@@ -22,7 +22,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return base.SeriesName; }
             set
             {
-                base.SeriesName = this.SetField(base.SeriesName, value);
+                this.SetField(()=>base.SeriesName,(r)=> base.SeriesName = r, value);
             }
         }
 
@@ -33,7 +33,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return base.SeriesID; }
             set
             {
-                base.SeriesID = this.SetField(base.SeriesID, value,()=>SeriesID, ()=>SeriesURL);
+                this.SetField(()=>base.SeriesID,(r)=> base.SeriesID = r, value,()=>SeriesID, ()=>SeriesURL);
             }
         }
 

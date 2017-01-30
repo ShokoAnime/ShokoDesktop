@@ -30,7 +30,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return base.CrossRefSource; }
             set
             {
-                base.CrossRefSource = this.SetField(base.CrossRefSource, value, () => CrossRefSource, () => IsAutoAssociation);
+                this.SetField(()=>base.CrossRefSource,(r)=> base.CrossRefSource = r, value, () => CrossRefSource, () => IsAutoAssociation);
             }
         }
 
@@ -70,7 +70,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return base.VideoLocal_IsWatched; }
             set
             {
-                base.VideoLocal_IsWatched = this.SetField(base.VideoLocal_IsWatched, value, ()=>VideoLocal_IsWatched, ()=>Watched);
+                this.SetField(()=>base.VideoLocal_IsWatched,(r)=> base.VideoLocal_IsWatched = r, value, ()=>VideoLocal_IsWatched, ()=>Watched);
             }
         }
 
@@ -79,7 +79,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return base.VideoLocal_IsIgnored; }
             set
             {
-                base.VideoLocal_IsIgnored = this.SetField(base.VideoLocal_IsIgnored, value, () => VideoLocal_IsIgnored, () => Ignored);
+                this.SetField(()=>base.VideoLocal_IsIgnored,(r)=> base.VideoLocal_IsIgnored = r, value, () => VideoLocal_IsIgnored, () => Ignored);
             }
         }
 
@@ -91,7 +91,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return base.VideoLocal_IsVariation; }
             set
             {
-                base.VideoLocal_IsVariation = this.SetField(base.VideoLocal_IsVariation,value, ()=>VideoLocal_IsVariation, ()=>Variation);
+                this.SetField(()=>base.VideoLocal_IsVariation,(r)=> base.VideoLocal_IsVariation = r, value, ()=>VideoLocal_IsVariation, ()=>Variation);
             }
         }
 
@@ -104,7 +104,7 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return showMoreDetails; }
             set
             {
-                showMoreDetails = this.SetField(showMoreDetails, value);
+                this.SetField(()=>showMoreDetails,value);
             }
         }
 
@@ -114,7 +114,7 @@ namespace Shoko.Desktop.ViewModel.Server
             {
                 return base.VideoLocal_WatchedDate;
             }
-            set { base.VideoLocal_WatchedDate = this.SetField(base.VideoLocal_WatchedDate, value); }
+            set { this.SetField(()=>base.VideoLocal_WatchedDate,(r)=> base.VideoLocal_WatchedDate = r, value); }
         }
 
 

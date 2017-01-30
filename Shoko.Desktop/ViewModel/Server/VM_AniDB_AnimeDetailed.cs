@@ -84,7 +84,7 @@ namespace Shoko.Desktop.ViewModel.Server
         public new AniDB_Vote UserVote
         {
             get { return base.UserVote; }
-            set { base.UserVote = this.SetField(base.UserVote, value, () => UserHasVoted, () => UserHasNotVoted, ()=>UserRating, ()=>UserRatingFormatted); }
+            set { this.SetField(()=>base.UserVote,(r)=> base.UserVote = r, value, () => UserHasVoted, () => UserHasNotVoted, ()=>UserRating, ()=>UserRatingFormatted); }
         }
 
         public bool UserHasVoted => UserVote!=null;
@@ -123,10 +123,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        public void RefreshBase()
-        {
-            Populate((VM_AniDB_AnimeDetailed)VM_ShokoServer.Instance.ShokoServices.GetAnimeDetailed(AnimeID));
-        }
+
 
         public void Populate(VM_AniDB_AnimeDetailed contract)
         {

@@ -43,7 +43,7 @@ namespace Shoko.Desktop.ViewModel
             get { return isLoadingData; }
             set
             {
-                isLoadingData = this.SetField(isLoadingData, value);
+                this.SetField(()=>isLoadingData,value);
             }
         }
 
