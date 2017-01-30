@@ -194,7 +194,7 @@
                     <StackPanel Orientation="Horizontal">
 
                         <TextBlock VerticalAlignment="Center" Foreground="Black" Margin="7,0,5,0"
-                           Text="{Binding Path=NumberOfShouts, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TraktCommentsShowControl}}}" />
+                           Text="{Binding Path=NumberOfComments, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:TraktCommentsShowControl}}}" />
                         <TextBlock VerticalAlignment="Center" Foreground="Black" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TraktShouts_Comments}" Margin="0,0,5,0"/>
 
                         <!-- Refresh -->

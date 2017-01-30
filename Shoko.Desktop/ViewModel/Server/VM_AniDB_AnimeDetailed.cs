@@ -48,6 +48,8 @@ namespace Shoko.Desktop.ViewModel.Server
             set { base.Tags = value.OrderByDescending(a => a.Weight).ToList(); }
         }
 
+        public List<CL_AnimeTag> TagsSummary => Tags.Take(5).ToList();
+
         public new List<CustomTag> CustomTags
         {
             get { return base.CustomTags; }

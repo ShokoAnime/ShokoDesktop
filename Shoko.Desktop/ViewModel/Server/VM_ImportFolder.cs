@@ -17,7 +17,7 @@ namespace Shoko.Desktop.ViewModel.Server
 
         public string LocalPath => CloudID.HasValue ? string.Empty : (ImportFolderID != 0 ? FolderMappings.Instance.GetMapping(ImportFolderID) : LocalPathTemp);
 
-        public bool LocalPathIsValid => FolderMappings.Instance.IsValid(ImportFolderID);
+        public bool LocalPathIsValid => FolderMappings.Instance.IsValid(this);
 
         public bool IsCloud => CloudID.HasValue;
 

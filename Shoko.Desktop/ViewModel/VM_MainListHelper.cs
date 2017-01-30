@@ -40,8 +40,8 @@ namespace Shoko.Desktop.ViewModel
 
         public DateTime LastChange { get; set; } = DateTime.MinValue;
 
-        public Dictionary<int, VM_AnimeGroup_User> AllGroupsDictionary { get; set; }
-        public Dictionary<int, VM_AnimeSeries_User> AllSeriesDictionary { get; set; }
+        public ObservableListDictionary<int, VM_AnimeGroup_User> AllGroupsDictionary { get; set; }
+        public ObservableListDictionary<int, VM_AnimeSeries_User> AllSeriesDictionary { get; set; }
         public Dictionary<int, VM_AniDB_Anime> AllAnimeDictionary { get; set; }
         public Dictionary<int, VM_GroupFilter> AllGroupFiltersDictionary { get; set; }
 
@@ -262,8 +262,8 @@ namespace Shoko.Desktop.ViewModel
             BookmarkedAnime = new ObservableCollection<VM_BookmarkedAnime>();
 
 
-            AllGroupsDictionary = new Dictionary<int, VM_AnimeGroup_User>();
-            AllSeriesDictionary = new Dictionary<int, VM_AnimeSeries_User>();
+            AllGroupsDictionary = new ObservableListDictionary<int, VM_AnimeGroup_User>();
+            AllSeriesDictionary = new ObservableListDictionary<int, VM_AnimeSeries_User>();
             AllAnimeDictionary = new Dictionary<int, VM_AniDB_Anime>();
             AllGroupFiltersDictionary = new Dictionary<int, VM_GroupFilter>();
             ViewGroups = CollectionViewSource.GetDefaultView(CurrentWrapperList);

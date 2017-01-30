@@ -300,6 +300,8 @@
     <Compile Include="Enums\DashboardWidgets.cs" />
     <Compile Include="Enums\DashWatchNextStyle.cs" />
     <Compile Include="Utilities\ObservableCollectionEx.cs" />
+    <Compile Include="Utilities\ObservableListDictionary.cs" />
+    <Compile Include="ViewModel\Server\VM_GroupVideoQuality.cs" />
     <Compile Include="ViewModel\VM_AvailableEpisodeTypeContainer.cs" />
     <Compile Include="ViewModel\VM_WatchedStatusContainer.cs" />
     <Compile Include="Enums\MetroViews.cs" />

@@ -355,6 +355,7 @@ namespace Shoko.Desktop.UserControls
             }
         }
 
+
         void communityWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             try

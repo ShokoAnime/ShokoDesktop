@@ -64,7 +64,7 @@
         <ListBox Grid.Column="2" Grid.Row="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                  Visibility="{Binding Source={x:Static local:VM_UserSettings.Instance}, Path=TagsExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
                     Background="Transparent" Padding="0" BorderThickness="0" VerticalAlignment="Center"
-                    ItemTemplate="{DynamicResource animeTagTemplate}" ItemsSource="{Binding Path=AnimeTags}">
+                    ItemTemplate="{DynamicResource animeTagTemplate}" ItemsSource="{Binding Path=Tags}">
             <ListBox.Template>
                 <ControlTemplate>
                     <ItemsPresenter />

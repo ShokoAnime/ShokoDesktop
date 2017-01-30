@@ -15,7 +15,7 @@ namespace Shoko.Desktop.VideoPlayers
             {
                 Process process;
                 process = Process.Start(video.Uri);
-                process.WaitForExit();
+                process?.WaitForExit();
                 StopWatcher();
                 IsPlaying = false;
 

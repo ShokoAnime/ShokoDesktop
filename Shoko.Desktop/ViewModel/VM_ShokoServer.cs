@@ -190,6 +190,7 @@ namespace Shoko.Desktop.ViewModel
                 mappings.Add(typeof(CL_VideoLocal), typeof(VM_VideoLocal));
                 mappings.Add(typeof(CrossRef_AniDB_TraktV2), typeof(VM_CrossRef_AniDB_TraktV2));
                 mappings.Add(typeof(CrossRef_AniDB_TvDBV2), typeof(VM_CrossRef_AniDB_TvDBV2));
+                mappings.Add(typeof(CL_GroupVideoQuality), typeof(VM_GroupVideoQuality));
                 _shokoservices = ClientFactory.Create<IShokoServer>($"http://{AppSettings.JMMServer_Address}:{AppSettings.JMMServer_Port}/",mappings);
                 // try connecting to see if the server is responding
                 Instance.ShokoServices.GetServerStatus();

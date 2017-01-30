@@ -151,9 +151,13 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        public bool IsApplyToSeries => ApplyToSeries == 1;
+        public bool IsApplyToSeries
+        {
+            get { return ApplyToSeries == 1; }
+            set { ApplyToSeries = value ? 1 : 0; }
+        }
 
-		public new int BaseCondition
+        public new int BaseCondition
 		{
             get { return base.BaseCondition; }
             set

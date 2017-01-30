@@ -187,7 +187,7 @@
 
                         <!-- Enable Image    shown when image is disabled -->
                         <Button Margin="0,0,5,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Command="{DynamicResource EnableImageCommand}" 
-                                Visibility="{Binding Path=IsImageEnabled, Converter={StaticResource InverseToVisibilityConverter}}" CommandParameter="{Binding}" >
+                                Visibility="{Binding Path=IsImageEnabled, Converter={StaticResource  InverseBooleanToVisibilityConverter}}" CommandParameter="{Binding}" >
                             <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="2,0,2,0"/>
                             <Button.ToolTip>
                                 <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Image_Disabled}"/>
@@ -760,7 +760,7 @@
                                     <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled"  VerticalAlignment="Top"
                                              Visibility="{Binding Source={x:Static viewModel:VM_UserSettings.Instance}, Path=TagsCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}"
                                              Background="Transparent" Padding="0" BorderThickness="0" 
-                                             ItemTemplate="{DynamicResource animeTagTemplate}" ItemsSource="{Binding Path=AniDBAnime.AnimeTagsSummary}">
+                                             ItemTemplate="{DynamicResource animeTagTemplate}" ItemsSource="{Binding Path=AniDBAnime.TagsSummary}">
                                         <ListBox.Template>
                                             <ControlTemplate>
                                                 <ItemsPresenter />
@@ -777,7 +777,7 @@
                                 <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="35,0,0,0"
                                          Visibility="{Binding Source={x:Static viewModel:VM_UserSettings.Instance}, Path=TagsExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
                                          Background="Transparent" Padding="0" BorderThickness="0" VerticalAlignment="Center"
-                                         ItemTemplate="{DynamicResource animeTagTemplate}" ItemsSource="{Binding Path=AniDBAnime.AnimeTags}">
+                                         ItemTemplate="{DynamicResource animeTagTemplate}" ItemsSource="{Binding Path=AniDBAnime.Tags}">
                                     <ListBox.Template>
                                         <ControlTemplate>
                                             <ItemsPresenter />
@@ -838,7 +838,7 @@
                                     </ListBox>
                                 </StackPanel>
 
-                                <usercontrols:Titles DataContext="{Binding Path=AniDBAnime.AniDBAnime.Detail}" Margin="0,0,0,0"
+                                <usercontrols:Titles DataContext="{Binding Path=AniDBAnime}" Margin="0,0,0,0"
                                                      Visibility="{Binding Source={x:Static viewModel:VM_UserSettings.Instance}, Path=TitlesExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                             </StackPanel>
 

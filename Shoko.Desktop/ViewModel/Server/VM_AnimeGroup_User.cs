@@ -43,14 +43,14 @@ namespace Shoko.Desktop.ViewModel.Server
         public HashSet<int> AllSeries { get; set; }
 
 
-        public void PopulateSerieInfo(Dictionary<int, VM_AnimeGroup_User> groups, Dictionary<int, VM_AnimeSeries_User> series)
+        public void PopulateSerieInfo(ObservableListDictionary<int, VM_AnimeGroup_User> groups, ObservableListDictionary<int, VM_AnimeSeries_User> series)
         {
             List<int> allgroups = RecursiveGetGroups(groups, this).Select(a => a.AnimeGroupID).ToList();
             AllSeries = new HashSet<int>(series.Values.Where(a => allgroups.Contains(a.AnimeGroupID)).Select(a => a.AnimeSeriesID));
             DirectSeries = new HashSet<int>(series.Values.Where(a => a.AnimeGroupID == AnimeGroupID).Select(a => a.AnimeSeriesID));
         }
 
-        private List<VM_AnimeGroup_User> RecursiveGetGroups(Dictionary<int, VM_AnimeGroup_User> groups, VM_AnimeGroup_User initialgrp)
+        private List<VM_AnimeGroup_User> RecursiveGetGroups(ObservableListDictionary<int, VM_AnimeGroup_User> groups, VM_AnimeGroup_User initialgrp)
         {
             List<VM_AnimeGroup_User> ls = groups.Values.Where(a => a.AnimeGroupParentID.HasValue && a.AnimeGroupParentID.Value == initialgrp.AnimeGroupID).ToList();
             foreach (VM_AnimeGroup_User v in ls.ToList())

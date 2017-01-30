@@ -188,9 +188,9 @@
                     Visibility="{Binding Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}">
 
                     <TextBlock Margin="0,0,0,5" Text="{Binding GroupFilterName}" FontSize="18" FontWeight="Bold"
-                      Visibility="{Binding Path=IsSystemGroupFilter, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                      Visibility="{Binding Path=IsLocked, Converter={StaticResource BooleanToVisibilityConverter}}" />
                     <TextBox Margin="0,0,10,5" Text="{Binding GroupFilterName}" FontSize="16" Padding="5" MinWidth="200" FontWeight="Bold" Name="txtFilterName"
-                     Visibility="{Binding Path=IsNotSystemGroupFilter, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                     Visibility="{Binding Path=IsLocked, Converter={StaticResource InverseBooleanToVisibilityConverter}}"/>
 
                     <StackPanel Orientation="Horizontal" Margin="0,0,5,5">
                         <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=GroupFilter_BaseCondition}" VerticalAlignment="Center" Margin="0,0,5,0"

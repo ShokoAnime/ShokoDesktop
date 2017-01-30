@@ -41,9 +41,9 @@ namespace Shoko.Desktop.ViewModel.Server
 
         #region TvDB
 
-        public bool TvDBCrossRefExists => !(Obs_CrossRef_AniDB_TvDB.Count == 0 || TvDBSeries.Count == 0);
+        public bool TvDBCrossRefExists => !(Obs_CrossRef_AniDB_TvDB.Count == 0);
 
-        public bool TvDBCrossRefMissing => (Obs_CrossRef_AniDB_TvDB.Count == 0 || TvDBSeries.Count == 0);
+        public bool TvDBCrossRefMissing => (Obs_CrossRef_AniDB_TvDB.Count == 0);
 
         public new List<VM_TvDB_Series> TvDBSeries
         {
@@ -56,8 +56,21 @@ namespace Shoko.Desktop.ViewModel.Server
 
 
 
-        private readonly ObservableCollectionEx<VM_CrossRef_AniDB_TvDBV2> crossRef_AniDB_TvDB=new ObservableCollectionEx<VM_CrossRef_AniDB_TvDBV2>();
-        public ObservableCollectionEx<VM_CrossRef_AniDB_TvDBV2> Obs_CrossRef_AniDB_TvDB => crossRef_AniDB_TvDB;
+        private ObservableCollectionEx<VM_CrossRef_AniDB_TvDBV2> crossRef_AniDB_TvDB;
+
+        public ObservableCollectionEx<VM_CrossRef_AniDB_TvDBV2> Obs_CrossRef_AniDB_TvDB
+        {
+            get
+            {
+                if (crossRef_AniDB_TvDB == null)
+                {
+                    crossRef_AniDB_TvDB = new ObservableCollectionEx<VM_CrossRef_AniDB_TvDBV2>();
+                    if (base.CrossRef_AniDB_TvDB.Count > 0)
+                        crossRef_AniDB_TvDB.ReplaceRange(base.CrossRef_AniDB_TvDB.Cast<VM_CrossRef_AniDB_TvDBV2>());
+                }
+                return crossRef_AniDB_TvDB;
+            }
+        }
         
         // ReSharper disable once UnusedMember.Local
         private new List<CrossRef_AniDB_TvDBV2> CrossRef_AniDB_TvDB
@@ -260,8 +273,22 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        private readonly ObservableCollectionEx<VM_CrossRef_AniDB_TraktV2> crossRef_AniDB_Trakt=new ObservableCollectionEx<VM_CrossRef_AniDB_TraktV2>();
-        public ObservableCollectionEx<VM_CrossRef_AniDB_TraktV2> Obs_CrossRef_AniDB_Trakt => crossRef_AniDB_Trakt;
+        private ObservableCollectionEx<VM_CrossRef_AniDB_TraktV2> crossRef_AniDB_Trakt;
+
+        public ObservableCollectionEx<VM_CrossRef_AniDB_TraktV2> Obs_CrossRef_AniDB_Trakt
+        {
+            get
+            {
+                if (crossRef_AniDB_Trakt == null)
+                {
+                    crossRef_AniDB_Trakt = new ObservableCollectionEx<VM_CrossRef_AniDB_TraktV2>();
+                    if (base.CrossRef_AniDB_Trakt.Count > 0)
+                        crossRef_AniDB_Trakt.ReplaceRange(base.CrossRef_AniDB_Trakt.Cast<VM_CrossRef_AniDB_TraktV2>());
+                }
+                return crossRef_AniDB_Trakt;
+            }
+        }
+
 
 
         public bool TraktCrossRefExists => !(CrossRef_AniDB_Trakt == null || CrossRef_AniDB_Trakt.Count == 0 || TraktShows == null || TraktShows.Count == 0);
@@ -283,12 +310,24 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        private readonly ObservableCollectionEx<CrossRef_AniDB_MAL> crossRef_AniDB_MAL = new ObservableCollectionEx<CrossRef_AniDB_MAL>();
-        public ObservableCollectionEx<CrossRef_AniDB_MAL> Obs_CrossRef_AniDB_MAL => crossRef_AniDB_MAL;
-        
-        public bool MALCrossRefExists => !(CrossRef_AniDB_MAL == null || CrossRef_AniDB_MAL.Count == 0);
+        private ObservableCollectionEx<CrossRef_AniDB_MAL> crossRef_AniDB_MAL;
+        public ObservableCollectionEx<CrossRef_AniDB_MAL> Obs_CrossRef_AniDB_MAL
+        {
+            get
+            {
+                if (crossRef_AniDB_MAL == null)
+                {
+                    crossRef_AniDB_MAL = new ObservableCollectionEx<CrossRef_AniDB_MAL>();
+                    if (base.CrossRef_AniDB_MAL.Count > 0)
+                        crossRef_AniDB_MAL.ReplaceRange(base.CrossRef_AniDB_MAL);
+                }
+                return crossRef_AniDB_MAL;
+            }
+        }
 
-        public bool MalCrossRefMissing => (CrossRef_AniDB_MAL == null || CrossRef_AniDB_MAL.Count == 0);
+        public bool MALCrossRefExists => !(Obs_CrossRef_AniDB_MAL == null || Obs_CrossRef_AniDB_MAL.Count == 0);
+
+        public bool MalCrossRefMissing => (Obs_CrossRef_AniDB_MAL == null || Obs_CrossRef_AniDB_MAL.Count == 0);
 
         #endregion
 
