@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Shoko.Desktop.Downloads;
+using Shoko.Commons.Downloads;
 using Shoko.Desktop.Utilities;
 using Shoko.Desktop.ViewModel;
 using Shoko.Desktop.ViewModel.Server;

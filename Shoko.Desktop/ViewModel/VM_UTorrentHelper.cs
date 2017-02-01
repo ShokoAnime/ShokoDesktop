@@ -5,7 +5,8 @@ using System.ComponentModel;
 using System.Windows.Data;
 using NLog;
 using Shoko.Commons.Notification;
-using Shoko.Desktop.Downloads;
+using Shoko.Commons.Downloads;
+using Shoko.Commons.Utils;
 using Shoko.Desktop.Utilities;
 using Shoko.Desktop.ViewModel.Helpers;
 
@@ -13,7 +14,7 @@ using Shoko.Desktop.ViewModel.Helpers;
 
 namespace Shoko.Desktop.ViewModel
 {
-    public class VM_UTorrentHelper :INotifyPropertyChanged, INotifyPropertyChangedExt
+    public class VM_UTorrentHelper : INotifyPropertyChangedExt
     {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -81,8 +82,13 @@ namespace Shoko.Desktop.ViewModel
 
             ConnectionStatus = "Not Connected";
             uTorrent = new UTorrentHelper();
-
+            uTorrent.InfoEvent += UTorrent_InfoEvent;
             uTorrent.ListRefreshedEvent += uTorrent_ListRefreshedEvent;
+        }
+
+        private void UTorrent_InfoEvent(string data)
+        {
+            ConnectionStatus = data;
         }
 
         public bool ValidateCredentials()
@@ -210,8 +216,8 @@ namespace Shoko.Desktop.ViewModel
                 }
             }
 
-            DownloadSpeedSummaryFormatted = Utils.FormatByteSize(dSpeed) + "/sec";
-            UploadSpeedSummaryFormatted = Utils.FormatByteSize(uSpeed) + "/sec";
+            DownloadSpeedSummaryFormatted = Misc.FormatByteSize(dSpeed) + "/sec";
+            UploadSpeedSummaryFormatted = Misc.FormatByteSize(uSpeed) + "/sec";
 
             System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate {
                 ViewTorrents.Refresh();

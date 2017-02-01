@@ -9,7 +9,7 @@ using Shoko.Desktop.ViewModel.Server;
 
 namespace Shoko.Desktop.ViewModel
 {
-    public class VM_AVDump :INotifyPropertyChanged, INotifyPropertyChangedExt
+    public class VM_AVDump : INotifyPropertyChangedExt
     {
 
         public event PropertyChangedEventHandler PropertyChanged;

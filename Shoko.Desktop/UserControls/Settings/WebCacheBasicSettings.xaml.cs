@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using Shoko.Commons.Utils;
 using Shoko.Desktop.Utilities;
 using Shoko.Desktop.ViewModel;
 
@@ -30,7 +31,7 @@ namespace Shoko.Desktop.UserControls.Settings
         {
             // test to see if this server is valid
             string uri = string.Format("http://{0}/GetPing.aspx", VM_ShokoServer.Instance.WebCache_Address);
-            string xml = Utils.DownloadWebPage(uri);
+            string xml = Misc.DownloadWebPage(uri);
 
             if (!xml.Trim().Contains("PONG"))
             {

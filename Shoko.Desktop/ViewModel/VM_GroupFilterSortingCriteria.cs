@@ -7,7 +7,7 @@ using Shoko.Desktop.ViewModel.Helpers;
 
 namespace Shoko.Desktop.ViewModel
 {
-    public class VM_GroupFilterSortingCriteria :INotifyPropertyChanged, INotifyPropertyChangedExt
+    public class VM_GroupFilterSortingCriteria : INotifyPropertyChangedExt
     {
 
         public event PropertyChangedEventHandler PropertyChanged;

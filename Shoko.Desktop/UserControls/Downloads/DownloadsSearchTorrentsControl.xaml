@@ -64,7 +64,7 @@
                     </Button>
 
                     <Button Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}"
-                            Visibility="{Binding Path=IsDisabled, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            Visibility="{Binding Path=IsEnabled, Converter={StaticResource InverseBooleanToVisibilityConverter}}"
                             Command="{StaticResource ToggleSourceCommand}" CommandParameter="{Binding}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
 

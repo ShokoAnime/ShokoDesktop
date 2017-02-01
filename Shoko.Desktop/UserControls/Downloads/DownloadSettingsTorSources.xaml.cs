@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using Shoko.Desktop.Downloads;
+using Shoko.Commons.Downloads;
 using Shoko.Desktop.ViewModel;
 
 namespace Shoko.Desktop.UserControls.Downloads
@@ -25,9 +25,9 @@ namespace Shoko.Desktop.UserControls.Downloads
 
             if (lbSelectedTorrentSources.SelectedItem == null) return;
 
-            TorrentSourceVM ts = lbSelectedTorrentSources.SelectedItem as TorrentSourceVM;
+            VM_TorrentSource ts = lbSelectedTorrentSources.SelectedItem as VM_TorrentSource;
 
-            int newPos = VM_UserSettings.Instance.MoveDownTorrentSource(ts.TorrentSource);
+            int newPos = VM_UserSettings.Instance.MoveDownTorrentSource(ts.TorrentSourceType);
             if (newPos >= 0)
             {
                 lbSelectedTorrentSources.SelectedIndex = newPos;
@@ -39,9 +39,9 @@ namespace Shoko.Desktop.UserControls.Downloads
         {
             if (lbSelectedTorrentSources.SelectedItem == null) return;
 
-            TorrentSourceVM ts = lbSelectedTorrentSources.SelectedItem as TorrentSourceVM;
+            VM_TorrentSource ts = lbSelectedTorrentSources.SelectedItem as VM_TorrentSource;
 
-            int newPos = VM_UserSettings.Instance.MoveUpTorrentSource(ts.TorrentSource);
+            int newPos = VM_UserSettings.Instance.MoveUpTorrentSource(ts.TorrentSourceType);
             if (newPos >= 0)
             {
                 lbSelectedTorrentSources.SelectedIndex = newPos;
@@ -53,18 +53,18 @@ namespace Shoko.Desktop.UserControls.Downloads
         {
             if (lbSelectedTorrentSources.SelectedItem == null) return;
 
-            TorrentSourceVM ts = lbSelectedTorrentSources.SelectedItem as TorrentSourceVM;
+            VM_TorrentSource ts = lbSelectedTorrentSources.SelectedItem as VM_TorrentSource;
 
-            VM_UserSettings.Instance.RemoveTorrentSource(ts.TorrentSource);
+            VM_UserSettings.Instance.RemoveTorrentSource(ts.TorrentSourceType);
         }
 
         void btnMoveRight_Click(object sender, RoutedEventArgs e)
         {
             if (lbUnselectedTorrentSources.SelectedItem == null) return;
 
-            TorrentSourceVM ts = lbUnselectedTorrentSources.SelectedItem as TorrentSourceVM;
+            VM_TorrentSource ts = lbUnselectedTorrentSources.SelectedItem as VM_TorrentSource;
 
-            VM_UserSettings.Instance.AddTorrentSource(ts.TorrentSource);
+            VM_UserSettings.Instance.AddTorrentSource(ts.TorrentSourceType);
         }
     }
 }

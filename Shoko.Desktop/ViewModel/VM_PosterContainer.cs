@@ -7,7 +7,7 @@ using Shoko.Desktop.ViewModel.Server;
 
 namespace Shoko.Desktop.ViewModel
 {
-    public class VM_PosterContainer :INotifyPropertyChanged, INotifyPropertyChangedExt
+    public class VM_PosterContainer : INotifyPropertyChangedExt
     {
         public ImageEntityType ImageType { get; set; }
         public object PosterObject { get; set; }

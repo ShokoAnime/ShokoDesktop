@@ -1158,7 +1158,20 @@ namespace Shoko.Desktop.ViewModel.Server
 
         }
 
-
+        public List<string> ToSearchParameters()
+        {
+            List<string> parms=new List<string>();
+            // only use the first 2 words of the anime's title
+            string[] titles = MainTitle.Split(' ');
+            int i = 0;
+            foreach (string s in titles)
+            {
+                i++;
+                parms.Add(s.Trim());
+                if (i == 2) break;
+            }
+            return parms;
+        }
 
     }
 

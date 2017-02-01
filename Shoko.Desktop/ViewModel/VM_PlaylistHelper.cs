@@ -19,7 +19,7 @@ using Shoko.Models.Server;
 
 namespace Shoko.Desktop.ViewModel
 {
-    public class VM_PlaylistHelper :INotifyPropertyChanged, INotifyPropertyChangedExt
+    public class VM_PlaylistHelper : INotifyPropertyChangedExt
     {
 
         private static VM_PlaylistHelper _instance;

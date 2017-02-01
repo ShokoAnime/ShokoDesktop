@@ -146,11 +146,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dependencies\Infralution.Localization.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="jint, Version=2.10.3.0, Culture=neutral, PublicKeyToken=2e92ba9c8d81157f, processorArchitecture=MSIL">
-      <HintPath>$(SolutionDir)packages\jint.2.10.3\lib\net45\jint.dll</HintPath>
-    </Reference>
-    <Reference Include="MahApps.Metro, Version=1.4.1.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
-      <HintPath>$(SolutionDir)packages\MahApps.Metro.1.4.1\lib\net45\MahApps.Metro.dll</HintPath>
+    <Reference Include="MahApps.Metro, Version=1.4.2.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.4.2\lib\net45\MahApps.Metro.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Data.Edm, Version=5.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>$(SolutionDir)packages\Microsoft.Data.Edm.5.8.1\lib\net40\Microsoft.Data.Edm.dll</HintPath>
@@ -216,7 +213,7 @@
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>$(SolutionDir)packages\MahApps.Metro.1.4.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <HintPath>..\packages\MahApps.Metro.1.4.2\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -270,30 +267,7 @@
     <Compile Include="DataTemplateSelectors\RecDownloadTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\RecWatchTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\WatchingEpisodeTemplateSelector.cs" />
-    <Compile Include="Downloads\CloudflareEvader.cs" />
-    <Compile Include="Downloads\TorrentsSukebei.cs" />
-    <Compile Include="Downloads\CsvParser.cs" />
-    <Compile Include="Downloads\CsvStream.cs" />
-    <Compile Include="Downloads\DownloadHelper.cs" />
-    <Compile Include="Downloads\DownloadSearchCriteria.cs" />
-    <Compile Include="Downloads\ITorrentSource.cs" />
-    <Compile Include="Downloads\JSONHelper.cs" />
-    <Compile Include="Downloads\ListRefreshedEventArgs.cs" />
-    <Compile Include="Downloads\SubGroupSimple.cs" />
-    <Compile Include="Downloads\Torrent.cs" />
-    <Compile Include="Downloads\TorrentFile.cs" />
-    <Compile Include="Downloads\TorrentFileList.cs" />
-    <Compile Include="Downloads\TorrentLink.cs" />
-    <Compile Include="Downloads\TorrentList.cs" />
-    <Compile Include="Downloads\TorrentsAnimeBytes.cs" />
-    <Compile Include="Downloads\TorrentsBakaBT.cs" />
-    <Compile Include="Downloads\TorrentsNyaa.cs" />
-    <Compile Include="Downloads\TorrentSourceVM.cs" />
-    <Compile Include="Downloads\TorrentsTokyoToshokan.cs" />
-    <Compile Include="Downloads\UTorrentHelper.cs" />
-    <Compile Include="Downloads\WebClientEx.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="ViewModel\VM_TorrentSource.cs" />
     <Compile Include="Enums\DashboardMetroImageType.cs" />
     <Compile Include="Enums\DashboardMetroProcessType.cs" />
     <Compile Include="Enums\DashboardType.cs" />

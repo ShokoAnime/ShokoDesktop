@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq.Expressions;
+using System.Reflection;
 using System.Windows;
 using Shoko.Commons.Notification;
-using Shoko.Desktop.Downloads;
+using Shoko.Commons.Downloads;
 using Shoko.Desktop.Enums;
 using Shoko.Desktop.Utilities;
 using Shoko.Desktop.ViewModel.Helpers;
@@ -15,7 +17,7 @@ using Shoko.Models.Enums;
 
 namespace Shoko.Desktop.ViewModel
 {
-    public class VM_UserSettings :INotifyPropertyChanged, INotifyPropertyChangedExt
+    public class VM_UserSettings : INotifyPropertyChangedExt, ITorrentSettings
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propname)
@@ -26,25 +28,48 @@ namespace Shoko.Desktop.ViewModel
         private static VM_UserSettings _instance;
         public static VM_UserSettings Instance => _instance ?? (_instance = new VM_UserSettings());
 
-        public ObservableCollection<TorrentSourceVM> UnselectedTorrentSources { get; set; }
-        public ObservableCollection<TorrentSourceVM> SelectedTorrentSources { get; set; }
-        public ObservableCollection<TorrentSourceVM> AllTorrentSources { get; set; }
-        public ObservableCollection<TorrentSourceVM> CurrentSearchTorrentSources { get; set; }
+        public ObservableCollection<TorrentSource> UnselectedTorrentSources { get; set; }
+        public ObservableCollection<TorrentSource> SelectedTorrentSources { get; set; }
+        public ObservableCollection<TorrentSource> AllTorrentSources { get; set; }
+        public ObservableCollection<TorrentSource> CurrentSearchTorrentSources { get; set; }
 
         public VM_UserSettings()
         {
-            UnselectedTorrentSources = new ObservableCollection<TorrentSourceVM>();
-            SelectedTorrentSources = new ObservableCollection<TorrentSourceVM>();
-            AllTorrentSources = new ObservableCollection<TorrentSourceVM>(GetAllTorrentSources());
-            CurrentSearchTorrentSources = new ObservableCollection<TorrentSourceVM>();
+            UnselectedTorrentSources = new ObservableCollection<TorrentSource>();
+            SelectedTorrentSources = new ObservableCollection<TorrentSource>();
+            AllTorrentSources = new ObservableCollection<TorrentSource>(GetAllTorrentSources());
+            CurrentSearchTorrentSources = new ObservableCollection<TorrentSource>();
         }
 
-        public List<TorrentSourceVM> GetAllTorrentSources()
+        public List<TorrentSource> GetAllTorrentSources()
         {
-            List<TorrentSourceVM> sources = new List<TorrentSourceVM> {new TorrentSourceVM(TorrentSourceType.TokyoToshokanAnime, true), new TorrentSourceVM(TorrentSourceType.TokyoToshokanAll, true), new TorrentSourceVM(TorrentSourceType.Nyaa, true), new TorrentSourceVM(TorrentSourceType.Sukebei, true), new TorrentSourceVM(TorrentSourceType.BakaBT, true), new TorrentSourceVM(TorrentSourceType.AnimeBytes, true)};
-
-
+            List<TorrentSource> sources = new List<TorrentSource> {new VM_TorrentSource(TorrentSourceType.TokyoToshokanAnime, true), new VM_TorrentSource(TorrentSourceType.TokyoToshokanAll, true), new VM_TorrentSource(TorrentSourceType.Nyaa, true), new VM_TorrentSource(TorrentSourceType.Sukebei, true), new VM_TorrentSource(TorrentSourceType.BakaBT, true), new VM_TorrentSource(TorrentSourceType.AnimeBytes, true)};
             return sources;
+        }
+
+        public object GetTorrentSetting(Expression<Func<object>> expr)
+        {
+            PropertyInfo prop = ResolveProperty(expr);
+            return prop.GetValue(this);
+        }
+
+        public void SetTorrentSetting(Expression<Func<object>> expr, object value)
+        {
+            PropertyInfo prop = ResolveProperty(expr);
+            prop.SetValue(this, value);
+        }
+        private PropertyInfo ResolveProperty(Expression<Func<object>> expr)
+        {
+            var member = expr.Body as MemberExpression;
+            if (member == null)
+            {
+                var ue = expr.Body as UnaryExpression;
+                if (ue != null)
+                    member = ue.Operand as MemberExpression;
+            }
+            if (member != null)
+                return GetType().GetProperty(member.Member.Name);
+            return null;
         }
 
         public void RefreshTorrentSources()
@@ -64,17 +89,17 @@ namespace Shoko.Desktop.ViewModel
                     int.TryParse(src, out iSrc);
 
 
-                    TorrentSourceVM selSource = new TorrentSourceVM((TorrentSourceType)iSrc, true);
+                    VM_TorrentSource selSource = new VM_TorrentSource((TorrentSourceType)iSrc, true);
                     if ((TorrentSourceType)iSrc != TorrentSourceType.AnimeSuki)
                         SelectedTorrentSources.Add(selSource);
                 }
 
-                foreach (TorrentSourceVM src in GetAllTorrentSources())
+                foreach (VM_TorrentSource src in GetAllTorrentSources())
                 {
                     bool inSelected = false;
-                    foreach (TorrentSourceVM selSource in SelectedTorrentSources)
+                    foreach (VM_TorrentSource selSource in SelectedTorrentSources)
                     {
-                        if (src.TorrentSource == selSource.TorrentSource)
+                        if (src.TorrentSourceType == selSource.TorrentSourceType)
                         {
                             inSelected = true;
                             break;
@@ -86,19 +111,19 @@ namespace Shoko.Desktop.ViewModel
 
 
                 CurrentSearchTorrentSources.Clear();
-                foreach (TorrentSourceVM src in GetAllTorrentSources())
+                foreach (VM_TorrentSource src in GetAllTorrentSources())
                 {
                     bool inSelected = false;
-                    foreach (TorrentSourceVM selSource in SelectedTorrentSources)
+                    foreach (VM_TorrentSource selSource in SelectedTorrentSources)
                     {
-                        if (src.TorrentSource == selSource.TorrentSource)
+                        if (src.TorrentSourceType == selSource.TorrentSourceType)
                         {
                             inSelected = true;
                             break;
                         }
                     }
 
-                    TorrentSourceVM newSource = new TorrentSourceVM(src.TorrentSource, inSelected);
+                    VM_TorrentSource newSource = new VM_TorrentSource(src.TorrentSourceType, inSelected);
                     CurrentSearchTorrentSources.Add(newSource);
                 }
             }

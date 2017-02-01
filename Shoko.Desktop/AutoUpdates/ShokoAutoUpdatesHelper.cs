@@ -1,6 +1,7 @@
 ﻿using NLog;
 using System;
 using System.Xml;
+using Shoko.Commons.Utils;
 using Shoko.Desktop.Utilities;
 using Shoko.Desktop.ViewModel;
 
@@ -51,7 +52,7 @@ namespace Shoko.Desktop.AutoUpdates
             {
                 // get the latest version as according to the release
                 string uri = "http://shokoanime.com/files/versions.xml";
-                string xml = Utils.DownloadWebPage(uri);
+                string xml = Misc.DownloadWebPage(uri);
 
                 XmlDocument xmldoc = new XmlDocument();
                 xmldoc.LoadXml(xml);

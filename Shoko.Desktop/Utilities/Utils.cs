@@ -39,9 +39,6 @@ namespace Shoko.Desktop.Utilities
         extern static IntPtr GetProcAddress(IntPtr hModule, string methodName);
 
         #region PrettyFilesize
-        [DllImport("Shlwapi.dll", CharSet = CharSet.Auto)]
-        static extern long StrFormatByteSize(long fileSize,
-        [MarshalAs(UnmanagedType.LPTStr)] StringBuilder buffer, int bufferSize);
 
         private static object assemblyLock = new object();
 
@@ -114,12 +111,6 @@ namespace Shoko.Desktop.Utilities
             return Path.Combine(path, fileName);
         }
 
-        public static string FormatByteSize(long fileSize)
-        {
-            StringBuilder sbBuffer = new StringBuilder(20);
-            StrFormatByteSize(fileSize, sbBuffer, 20);
-            return sbBuffer.ToString();
-        }
         #endregion
 
         public static string GetED2KDump(string result)
@@ -209,99 +200,6 @@ namespace Shoko.Desktop.Utilities
             DateTime thisDate = new DateTime(1970, 1, 1, 0, 0, 0);
             thisDate = thisDate.AddSeconds(secs);
             return thisDate;
-        }
-
-        public static string DownloadWebPage(string url)
-        {
-            return DownloadWebPage(url, null, false);
-        }
-
-        public static string DownloadWebPage(string url, string cookieHeader, bool setUserAgent)
-        {
-            try
-            {
-                logger.Trace("DownloadWebPage: {0}", url);
-
-                HttpWebRequest webReq = (HttpWebRequest)WebRequest.Create(url);
-                webReq.Timeout = 30000; // 30 seconds
-                webReq.Proxy = null;
-                webReq.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip,deflate");
-
-                if (!string.IsNullOrEmpty(cookieHeader))
-                    webReq.Headers.Add("Cookie", cookieHeader);
-                if (setUserAgent)
-                    webReq.UserAgent = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)";
-
-                webReq.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
-
-                HttpWebResponse WebResponse = (HttpWebResponse)webReq.GetResponse();
-
-                Stream responseStream = WebResponse.GetResponseStream();
-                String enco = WebResponse.CharacterSet;
-                Encoding encoding = null;
-                if (!String.IsNullOrEmpty(enco))
-                    encoding = Encoding.GetEncoding(WebResponse.CharacterSet);
-                if (encoding == null)
-                    encoding = Encoding.Default;
-                StreamReader Reader = new StreamReader(responseStream, encoding);
-
-                string output = Reader.ReadToEnd();
-
-                WebResponse.Close();
-                responseStream.Close();
-
-                //logger.Trace("DownloadWebPage Response: {0}", output);
-
-                return output;
-            }
-            catch (Exception ex)
-            {
-                string msg = "---------- ERROR IN DOWNLOAD WEB PAGE ---------" + Environment.NewLine +
-                    url + Environment.NewLine +
-                    ex.ToString() + Environment.NewLine + "------------------------------------";
-                logger.Error(msg);
-
-                // if the error is a 404 error it may mean that there is a bad series association
-                // so lets log it to the web cache so we can investigate
-                if (ex.ToString().Contains("(404) Not Found"))
-                {
-                }
-
-                return "";
-            }
-        }
-
-        public static void DownloadFile(string url, string destFile, string cookieHeader, bool setUserAgent)
-        {
-            try
-            {
-                logger.Trace("DownloadFile: {0}", url);
-
-
-                using (WebClient client = new WebClient())
-                {
-                    if (!string.IsNullOrEmpty(cookieHeader))
-                        client.Headers.Add("Cookie", cookieHeader);
-                    if (setUserAgent)
-                        client.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)");
-
-                    client.DownloadFile(url, destFile);
-                }
-
-            }
-            catch (Exception ex)
-            {
-                string msg = "---------- ERROR IN DOWNLOAD WEB PAGE ---------" + Environment.NewLine +
-                    url + Environment.NewLine +
-                    ex.ToString() + Environment.NewLine + "------------------------------------";
-                logger.Error(msg);
-
-                // if the error is a 404 error it may mean that there is a bad series association
-                // so lets log it to the web cache so we can investigate
-                if (ex.ToString().Contains("(404) Not Found"))
-                {
-                }
-            }
         }
 
         public static void ShowErrorMessage(string msg, Exception ex)

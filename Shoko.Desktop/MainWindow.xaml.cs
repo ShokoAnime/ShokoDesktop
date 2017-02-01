@@ -18,7 +18,7 @@ using System.Windows.Navigation;
 using System.Windows.Threading;
 using Shoko.Commons.Extensions;
 using Shoko.Desktop.AutoUpdates;
-using Shoko.Desktop.Downloads;
+using Shoko.Commons.Downloads;
 using Shoko.Desktop.Enums;
 using Shoko.Desktop.Forms;
 using Shoko.Desktop.ImageDownload;
@@ -1893,7 +1893,7 @@ namespace Shoko.Desktop
                 if (obj.GetType() == typeof(VM_AnimeEpisode_User))
                 {
                     VM_AnimeEpisode_User ep = (VM_AnimeEpisode_User)obj;
-                    DownloadSearchCriteria crit = new DownloadSearchCriteria(DownloadSearchType.Episode, ep);
+                    DownloadSearchCriteria crit = new DownloadSearchCriteria(DownloadSearchType.Episode, ep.ToSearchParameters(), ep.AniDB_Anime, ep);
                     ShowTorrentSearch(crit);
                 }
 
@@ -1906,7 +1906,7 @@ namespace Shoko.Desktop
                         VM_ShokoServer.Instance.CurrentUser.JMMUserID);
                     if (contract != null)
                     {
-                        DownloadSearchCriteria crit = new DownloadSearchCriteria(DownloadSearchType.Episode, contract);
+                        DownloadSearchCriteria crit = new DownloadSearchCriteria(DownloadSearchType.Episode, contract.ToSearchParameters(), contract.AniDB_Anime, contract);
                         ShowTorrentSearch(crit);
                     }
                 }
@@ -1923,42 +1923,42 @@ namespace Shoko.Desktop
                     VM_Recommendation rec = obj as VM_Recommendation;
                     if (rec == null) return;
 
-                    DownloadSearchCriteria crit = new DownloadSearchCriteria(DownloadSearchType.Series, rec.Recommended_AniDB_Anime);
+                    DownloadSearchCriteria crit = new DownloadSearchCriteria(DownloadSearchType.Series, rec.Recommended_AniDB_Anime.ToSearchParameters(),rec.Recommended_AniDB_Anime,null);
                     ShowTorrentSearch(crit);
                 }
 
                 if (obj.GetType() == typeof(VM_AniDB_Anime))
                 {
                     VM_AniDB_Anime anime = (VM_AniDB_Anime)obj;
-                    DownloadSearchCriteria crit = new DownloadSearchCriteria(DownloadSearchType.Series, anime);
+                    DownloadSearchCriteria crit = new DownloadSearchCriteria(DownloadSearchType.Series, anime.ToSearchParameters(),anime, null);
                     ShowTorrentSearch(crit);
                 }
 
                 if (obj.GetType() == typeof(VM_AnimeSeries_User))
                 {
                     VM_AnimeSeries_User ser = (VM_AnimeSeries_User)obj;
-                    DownloadSearchCriteria crit = new DownloadSearchCriteria(DownloadSearchType.Series, ser.AniDBAnime.AniDBAnime);
+                    DownloadSearchCriteria crit = new DownloadSearchCriteria(DownloadSearchType.Series, ser.AniDBAnime.AniDBAnime.ToSearchParameters(), ser.AniDBAnime.AniDBAnime, null);
                     ShowTorrentSearch(crit);
                 }
 
                 if (obj.GetType() == typeof(VM_AniDB_Anime_Similar))
                 {
                     VM_AniDB_Anime_Similar sim = (VM_AniDB_Anime_Similar)obj;
-                    DownloadSearchCriteria crit = new DownloadSearchCriteria(DownloadSearchType.Series, sim.AniDB_Anime);
+                    DownloadSearchCriteria crit = new DownloadSearchCriteria(DownloadSearchType.Series, sim.AniDB_Anime.ToSearchParameters(), sim.AniDB_Anime,null);
                     ShowTorrentSearch(crit);
                 }
 
                 if (obj.GetType() == typeof(VM_AniDB_Anime_Relation))
                 {
                     VM_AniDB_Anime_Relation rel = (VM_AniDB_Anime_Relation)obj;
-                    DownloadSearchCriteria crit = new DownloadSearchCriteria(DownloadSearchType.Series, rel.AniDB_Anime);
+                    DownloadSearchCriteria crit = new DownloadSearchCriteria(DownloadSearchType.Series, rel.AniDB_Anime.ToSearchParameters(),rel.AniDB_Anime,null);
                     ShowTorrentSearch(crit);
                 }
 
                 if (obj.GetType() == typeof(VM_BookmarkedAnime))
                 {
                     VM_BookmarkedAnime ba = (VM_BookmarkedAnime)obj;
-                    DownloadSearchCriteria crit = new DownloadSearchCriteria(DownloadSearchType.Series, ba.Anime);
+                    DownloadSearchCriteria crit = new DownloadSearchCriteria(DownloadSearchType.Series, ba.Anime.ToSearchParameters(), ba.Anime,null);
                     ShowTorrentSearch(crit);
                 }
 

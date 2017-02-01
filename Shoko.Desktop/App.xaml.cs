@@ -9,6 +9,8 @@ using System.Threading;
 using System.Windows;
 using Microsoft.Win32;
 using Shoko.Commons;
+using Shoko.Commons.Downloads;
+using Shoko.Desktop.ViewModel;
 
 namespace Shoko.Desktop
 {
@@ -55,6 +57,7 @@ namespace Shoko.Desktop
             logger.Info("App startup - Culture set up");
             logger.Info("App startup - Loading settings...");
             FolderMappings.Instance.SetLoadAndSaveCallback(AppSettings.GetMappings,AppSettings.SetMappings);
+            TorrentSettings.Instance.SetGetAndSetCallback(VM_UserSettings.Instance.GetTorrentSetting, VM_UserSettings.Instance.SetTorrentSetting, VM_TorrentSource.Create);
             AppSettings.LoadSettings();
             logger.Info("App startup - Loaded settings");
 

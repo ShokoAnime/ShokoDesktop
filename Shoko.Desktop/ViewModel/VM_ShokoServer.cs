@@ -36,7 +36,7 @@ using Timer = System.Timers.Timer;
 
 namespace Shoko.Desktop.ViewModel
 {
-    public class VM_ShokoServer :INotifyPropertyChanged, INotifyPropertyChangedExt
+    public class VM_ShokoServer : INotifyPropertyChangedExt
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private static VM_ShokoServer _instance;

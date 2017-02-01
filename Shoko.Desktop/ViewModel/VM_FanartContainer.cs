@@ -7,7 +7,7 @@ using Shoko.Desktop.ViewModel.Server;
 
 namespace Shoko.Desktop.ViewModel
 {
-    public class VM_FanartContainer :INotifyPropertyChanged, INotifyPropertyChangedExt
+    public class VM_FanartContainer : INotifyPropertyChangedExt
     {
         public ImageEntityType ImageType { get; set; }
         public object FanartObject { get; set; }

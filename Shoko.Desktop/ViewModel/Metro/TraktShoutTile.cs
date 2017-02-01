@@ -6,7 +6,7 @@ using Shoko.Desktop.ViewModel.Helpers;
 
 namespace Shoko.Desktop.ViewModel.Metro
 {
-    public class TraktShoutTile :INotifyPropertyChanged, INotifyPropertyChangedExt
+    public class TraktShoutTile : INotifyPropertyChangedExt
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propname)

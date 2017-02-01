@@ -254,13 +254,13 @@ namespace Shoko.Desktop.ViewModel.Server
             {
                 if (MultipleFiles)
                 {
-                    return string.Format("{0} " + Shoko.Commons.Properties.Resources.Anime_Files, LocalFileCount);
+                    return string.Format("{0} " + Commons.Properties.Resources.Anime_Files, LocalFileCount);
                 }
                 if (NoFiles && !FutureDated)
                 {
-                    return string.Format("{0} " + Shoko.Commons.Properties.Resources.Anime_Files, LocalFileCount);
+                    return string.Format("{0} " + Commons.Properties.Resources.Anime_Files, LocalFileCount);
                 }
-                return string.Format("{0} " + Shoko.Commons.Properties.Resources.Anime_File, LocalFileCount);
+                return string.Format("{0} " + Commons.Properties.Resources.Anime_File, LocalFileCount);
             }
         }
 
@@ -310,7 +310,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        public string AniDBRatingFormatted => $"{Shoko.Commons.Properties.Resources.Rating}: {AniDB_Rating} ({AniDB_Votes} {Shoko.Commons.Properties.Resources.Votes})";
+        public string AniDBRatingFormatted => $"{Commons.Properties.Resources.Rating}: {AniDB_Rating} ({AniDB_Votes} {Commons.Properties.Resources.Votes})";
 
         private bool showEpisodeImageInSummary = true;
         public bool ShowEpisodeImageInSummary
@@ -384,13 +384,13 @@ namespace Shoko.Desktop.ViewModel.Server
 
                 if (WatchedDate.Value.Day == today.Day && WatchedDate.Value.Month == today.Month && WatchedDate.Value.Year == today.Year)
                 {
-                    LastWatchedDescription = Shoko.Commons.Properties.Resources.Today;
+                    LastWatchedDescription = Commons.Properties.Resources.Today;
                     return;
                 }
 
                 if (WatchedDate.Value.Day == yesterday.Day && WatchedDate.Value.Month == yesterday.Month && WatchedDate.Value.Year == yesterday.Year)
                 {
-                    LastWatchedDescription = Shoko.Commons.Properties.Resources.Yesterday;
+                    LastWatchedDescription = Commons.Properties.Resources.Yesterday;
                     return;
                 }
 
@@ -1035,6 +1035,26 @@ namespace Shoko.Desktop.ViewModel.Server
             // check settings to see if we need to hide episodes
             childFiles.AddRange(allFiles);
             return childFiles;
+        }
+
+        public List<string> ToSearchParameters()
+        {
+            List<string> parms = new List<string>();
+            if (AniDB_Anime == null) RefreshAnime();
+            VM_AniDB_Anime anime = AniDB_Anime;
+            if (anime == null) return parms;
+
+            // only use the first 2 words of the anime's title
+            string[] titles = anime.MainTitle.Split(' ');
+            int i = 0;
+            foreach (string s in titles)
+            {
+                i++;
+                parms.Add(s.Trim());
+                if (i == 2) break;
+            }
+            parms.Add(EpisodeNumber.ToString().PadLeft(2, '0'));
+            return parms;
         }
     }
 }

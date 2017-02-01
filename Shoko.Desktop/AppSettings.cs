@@ -343,7 +343,6 @@ namespace Shoko.Desktop
                 return;
             }
         }
-
         public static void LoadLegacySettingsFromFile(bool locateAutomatically)
         {
             try

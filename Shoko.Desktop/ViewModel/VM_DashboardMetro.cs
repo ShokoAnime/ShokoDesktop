@@ -17,7 +17,7 @@ using Shoko.Desktop.ViewModel.Server;
 
 namespace Shoko.Desktop.ViewModel
 {
-    public class VM_DashboardMetro :INotifyPropertyChanged, INotifyPropertyChangedExt
+    public class VM_DashboardMetro : INotifyPropertyChangedExt
     {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 

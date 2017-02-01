@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
+using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -11,8 +12,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using DevExpress.Data.PLinq.Helpers;
 using Shoko.Commons.Extensions;
-using Shoko.Desktop.Downloads;
+using Shoko.Commons.Downloads;
 using Shoko.Desktop.Utilities;
 using Shoko.Desktop.ViewModel;
 using Shoko.Desktop.ViewModel.Server;
@@ -30,7 +32,7 @@ namespace Shoko.Desktop.UserControls.Downloads
         BackgroundWorker searchWorker = new BackgroundWorker();
 
         public ICollectionView ViewTorrentLinks { get; set; }
-        public ObservableCollection<TorrentLinkVM> TorrentLinks { get; set; }
+        public ObservableCollection<TorrentLink> TorrentLinks { get; set; }
         public ObservableCollection<SubGroupSimple> SubGroups { get; set; }
 
         public static readonly DependencyProperty TorrentCountProperty = DependencyProperty.Register("TorrentCount",
@@ -84,7 +86,7 @@ namespace Shoko.Desktop.UserControls.Downloads
 
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
-            TorrentLinks = new ObservableCollection<TorrentLinkVM>();
+            TorrentLinks = new ObservableCollection<TorrentLink>();
             ViewTorrentLinks = CollectionViewSource.GetDefaultView(TorrentLinks);
             ViewTorrentLinks.Filter = LinkSearchFilter;
 
@@ -114,9 +116,9 @@ namespace Shoko.Desktop.UserControls.Downloads
 
             try
             {
-                if (obj.GetType() == typeof(TorrentSourceVM))
+                if (obj.GetType() == typeof(VM_TorrentSource))
                 {
-                    TorrentSourceVM src = (TorrentSourceVM)obj;
+                    VM_TorrentSource src = (VM_TorrentSource)obj;
                     src.IsEnabled = !src.IsEnabled;
                 }
 
@@ -179,10 +181,10 @@ namespace Shoko.Desktop.UserControls.Downloads
         {
             try
             {
-                List<TorrentLinkVM> links = e.Result as List<TorrentLinkVM>;
+                List<TorrentLink> links = e.Result as List<TorrentLink>;
                 TorrentCount = links.Count;
 
-                foreach (TorrentLinkVM link in links)
+                foreach (TorrentLink link in links)
                     TorrentLinks.Add(link);
 
                 ViewTorrentLinks.Refresh();
@@ -191,7 +193,7 @@ namespace Shoko.Desktop.UserControls.Downloads
 
                 if (CurrentSearchCriteria.SearchType == DownloadSearchType.Episode)
                 {
-                    VM_AnimeEpisode_User ep = CurrentSearchCriteria.SearchParameter as VM_AnimeEpisode_User;
+                    VM_AnimeEpisode_User ep = CurrentSearchCriteria.Episode as VM_AnimeEpisode_User;
                     if (ep.AniDB_Anime == null) ep.RefreshAnime();
                     if (ep.AniDB_Anime != null)
                     {
@@ -205,7 +207,7 @@ namespace Shoko.Desktop.UserControls.Downloads
                 }
                 if (CurrentSearchCriteria.SearchType == DownloadSearchType.Series)
                 {
-                    VM_AniDB_Anime anime = CurrentSearchCriteria.SearchParameter as VM_AniDB_Anime;
+                    VM_AniDB_Anime anime = CurrentSearchCriteria.Anime as VM_AniDB_Anime;
                     if (anime != null)
                     {
                         List<CL_GroupVideoQuality> summ = VM_ShokoServer.Instance.ShokoServices.GetGroupVideoQualitySummary(anime.AnimeID).CastList<CL_GroupVideoQuality>();
@@ -257,7 +259,7 @@ namespace Shoko.Desktop.UserControls.Downloads
             try
             {
                 DownloadSearchCriteria crit = e.Argument as DownloadSearchCriteria;
-                List<TorrentLinkVM> links = DownloadHelper.SearchTorrents(crit);
+                List<TorrentLink> links = DownloadHelper.SearchTorrents(crit);
                 e.Result = links;
             }
             catch (Exception)
@@ -279,7 +281,7 @@ namespace Shoko.Desktop.UserControls.Downloads
                 if (crit.SearchType != DownloadSearchType.Manual)
                 {
                     string desc = "";
-                    foreach (string parm in crit.GetParms())
+                    foreach (string parm in crit.SearchParameter)
                     {
                         if (!string.IsNullOrEmpty(desc))
                             desc += " ";
@@ -306,7 +308,7 @@ namespace Shoko.Desktop.UserControls.Downloads
         {
             if (string.IsNullOrEmpty(txtSearch.Text)) return;
 
-            DownloadSearchCriteria crit = new DownloadSearchCriteria(DownloadSearchType.Manual, txtSearch.Text.Trim());
+            DownloadSearchCriteria crit = new DownloadSearchCriteria(DownloadSearchType.Manual, (txtSearch.Text.Trim().Split(new [] {' '},StringSplitOptions.RemoveEmptyEntries)).ToList(),null,null);
             PerformSearch(crit);
         }
 
@@ -359,7 +361,7 @@ namespace Shoko.Desktop.UserControls.Downloads
             {
                 if (details.SearchCritera.SearchType == DownloadSearchType.Episode)
                 {
-                    VM_AnimeEpisode_User ep = details.SearchCritera.SearchParameter as VM_AnimeEpisode_User;
+                    VM_AnimeEpisode_User ep = details.SearchCritera.Episode as VM_AnimeEpisode_User;
                     VM_AnimeSeries_User ser = VM_MainListHelper.Instance.GetSeries(ep.AnimeSeriesID);
                     if (ser != null)
                     {
@@ -370,7 +372,7 @@ namespace Shoko.Desktop.UserControls.Downloads
 
                 if (details.SearchCritera.SearchType == DownloadSearchType.Series)
                 {
-                    VM_AniDB_Anime anime = details.SearchCritera.SearchParameter as VM_AniDB_Anime;
+                    VM_AniDB_Anime anime = details.SearchCritera.Anime as VM_AniDB_Anime;
                     VM_AnimeSeries_User ser = VM_MainListHelper.Instance.GetSeriesForAnime(anime.AnimeID);
                     if (ser != null)
                     {
@@ -399,7 +401,7 @@ namespace Shoko.Desktop.UserControls.Downloads
         {
             DataGrid _DataGrid = sender as DataGrid;
 
-            TorrentLinkVM torLink = _DataGrid.SelectedItem as TorrentLinkVM;
+            TorrentLink torLink = _DataGrid.SelectedItem as TorrentLink;
             if (torLink == null) return;
 
             DetailsContainer details = new DetailsContainer();
@@ -413,7 +415,7 @@ namespace Shoko.Desktop.UserControls.Downloads
         {
             DataGrid _DataGrid = sender as DataGrid;
 
-            TorrentLinkVM torLink = _DataGrid.SelectedItem as TorrentLinkVM;
+            TorrentLink torLink = _DataGrid.SelectedItem as TorrentLink;
             if (torLink == null) return;
 
             DetailsContainer details = new DetailsContainer();
@@ -437,7 +439,7 @@ namespace Shoko.Desktop.UserControls.Downloads
 
             ContextMenu m = new ContextMenu();
 
-            TorrentLinkVM torLink = dgTorrents.SelectedItem as TorrentLinkVM;
+            TorrentLink torLink = dgTorrents.SelectedItem as TorrentLink;
             if (torLink == null) return;
 
             MenuItem itemStart = new MenuItem();
@@ -446,7 +448,7 @@ namespace Shoko.Desktop.UserControls.Downloads
             itemStart.CommandParameter = torLink;
             m.Items.Add(itemStart);
 
-            if (!string.IsNullOrEmpty(torLink.TorrentLink))
+            if (!string.IsNullOrEmpty(torLink.TorrentInfoLink))
             {
                 MenuItem itemLink = new MenuItem();
                 itemLink.Header = Shoko.Commons.Properties.Resources.Downloads_GoWebsite;
@@ -474,7 +476,7 @@ namespace Shoko.Desktop.UserControls.Downloads
                     parentWindow.Cursor = Cursors.Wait;
                     IsEnabled = false;
 
-                    TorrentLinkVM torLink = item.CommandParameter as TorrentLinkVM;
+                    TorrentLink torLink = item.CommandParameter as TorrentLink;
 
                     Uri uri = new Uri(torLink.TorrentLinkFull);
                     Process.Start(new ProcessStartInfo(uri.AbsoluteUri));
@@ -517,7 +519,7 @@ namespace Shoko.Desktop.UserControls.Downloads
                     parentWindow.Cursor = Cursors.Wait;
                     IsEnabled = false;
 
-                    TorrentLinkVM torLink = item.CommandParameter as TorrentLinkVM;
+                    TorrentLink torLink = item.CommandParameter as TorrentLink;
                     torLink.Source.PopulateTorrentDownloadLink(ref torLink);
 
                     if (!AppSettings.TorrentBlackhole)
@@ -553,7 +555,7 @@ namespace Shoko.Desktop.UserControls.Downloads
 
         private bool LinkSearchFilter(object obj)
         {
-            TorrentLinkVM torLink = obj as TorrentLinkVM;
+            TorrentLink torLink = obj as TorrentLink;
             if (torLink == null) return true;
 
             int index = torLink.TorrentName.IndexOf(txtFileSearch.Text.Trim(), 0, StringComparison.InvariantCultureIgnoreCase);
@@ -575,7 +577,7 @@ namespace Shoko.Desktop.UserControls.Downloads
 
     public class DetailsContainer
     {
-        public TorrentLinkVM TorLink { get; set; }
+        public TorrentLink TorLink { get; set; }
         public DownloadSearchCriteria SearchCritera { get; set; }
     }
 }
