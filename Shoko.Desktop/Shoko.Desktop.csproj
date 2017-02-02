@@ -11,15 +11,13 @@
     <RootNamespace>Shoko.Desktop</RootNamespace>
     <AssemblyName>ShokoDesktop</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -34,6 +32,7 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -1343,11 +1342,8 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <Import Project="$(SolutionDir)\Nancy.Rest.Annotations.Link.csproj" />
   <ItemGroup>
-    <ProjectReference Include="$(SolutionDir)Nancy.Rest.Client\Nancy.Rest.Annotations\Nancy.Rest.Annotations.csproj">
-      <Project>{2b35ae98-e24b-4a09-b1fb-230b90111b46}</Project>
-      <Name>Nancy.Rest.Annotations</Name>
-    </ProjectReference>
     <ProjectReference Include="$(SolutionDir)Nancy.Rest.Client\Nancy.Rest.Client.csproj">
       <Project>{edfffc1f-5192-4df7-a2d7-4706dfc5965a}</Project>
       <Name>Nancy.Rest.Client</Name>
@@ -1763,7 +1759,8 @@
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>xcopy "$(ProjectDir)Dependencies\x64\*" "$(TargetDir)x64\" /S /R /I /Y
-xcopy "$(ProjectDir)Dependencies\x86\*" "$(TargetDir)x86\" /S /R /I /Y</PreBuildEvent>
+xcopy "$(ProjectDir)Dependencies\x86\*" "$(TargetDir)x86\" /S /R /I /Y
+</PreBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

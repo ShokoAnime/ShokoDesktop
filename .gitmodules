@@ -1,3 +1,6 @@
 [submodule "Nancy.Rest.Client"]
 	path = Nancy.Rest.Client
 	url = https://github.com/maxpiva/Nancy.Rest.Client
+[submodule "Shoko.Commons"]
+	path = Shoko.Commons
+	url = https://github.com/japanesemediamanager/Shoko.Commons

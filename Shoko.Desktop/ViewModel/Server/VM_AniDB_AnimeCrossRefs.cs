@@ -66,26 +66,17 @@ namespace Shoko.Desktop.ViewModel.Server
                 {
                     crossRef_AniDB_TvDB = new ObservableCollectionEx<VM_CrossRef_AniDB_TvDBV2>();
                     if (base.CrossRef_AniDB_TvDB.Count > 0)
+                    {
                         crossRef_AniDB_TvDB.ReplaceRange(base.CrossRef_AniDB_TvDB.Cast<VM_CrossRef_AniDB_TvDBV2>());
+                        this.OnPropertyChanged(() => TvDBCrossRefExists);
+                        this.OnPropertyChanged(() => TvDBCrossRefMissing);
+                    }
                 }
                 return crossRef_AniDB_TvDB;
             }
         }
         
-        // ReSharper disable once UnusedMember.Local
-        private new List<CrossRef_AniDB_TvDBV2> CrossRef_AniDB_TvDB
-        {
-            get { return Obs_CrossRef_AniDB_TvDB.CastList<CrossRef_AniDB_TvDBV2>(); }
-            set
-            {
-                crossRef_AniDB_TvDB.ReplaceRange(value.CastList<VM_CrossRef_AniDB_TvDBV2>());
-                this.OnPropertyChanged(() => Obs_CrossRef_AniDB_TvDB);
-                this.OnPropertyChanged(() => TvDBCrossRefExists);
-                this.OnPropertyChanged(() => TvDBCrossRefMissing);
 
-            }
-
-        }
 
 
 
@@ -261,17 +252,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        private new List<CrossRef_AniDB_TraktV2> CrossRef_AniDB_Trakt
-        {
-            get { return Obs_CrossRef_AniDB_Trakt.CastList<CrossRef_AniDB_TraktV2>(); }
-            set
-            {
-                crossRef_AniDB_Trakt.ReplaceRange(value.CastList<VM_CrossRef_AniDB_TraktV2>());
-                this.OnPropertyChanged(() => Obs_CrossRef_AniDB_Trakt);
-                this.OnPropertyChanged(() => TraktCrossRefExists);
-                this.OnPropertyChanged(() => TraktCrossRefMissing);
-            }
-        }
+
 
         private ObservableCollectionEx<VM_CrossRef_AniDB_TraktV2> crossRef_AniDB_Trakt;
 
@@ -283,7 +264,11 @@ namespace Shoko.Desktop.ViewModel.Server
                 {
                     crossRef_AniDB_Trakt = new ObservableCollectionEx<VM_CrossRef_AniDB_TraktV2>();
                     if (base.CrossRef_AniDB_Trakt.Count > 0)
+                    {
                         crossRef_AniDB_Trakt.ReplaceRange(base.CrossRef_AniDB_Trakt.Cast<VM_CrossRef_AniDB_TraktV2>());
+                        this.OnPropertyChanged(() => TraktCrossRefExists);
+                        this.OnPropertyChanged(() => TraktCrossRefMissing);
+                    }
                 }
                 return crossRef_AniDB_Trakt;
             }
@@ -298,17 +283,7 @@ namespace Shoko.Desktop.ViewModel.Server
 
         #region MAL
 
-        private new List<CrossRef_AniDB_MAL> CrossRef_AniDB_MAL
-        {
-            get { return Obs_CrossRef_AniDB_MAL.ToList(); }
-            set
-            {
-                crossRef_AniDB_MAL.ReplaceRange(value);
-                this.OnPropertyChanged(() => Obs_CrossRef_AniDB_Trakt);
-                this.OnPropertyChanged(()=> MALCrossRefExists);
-                this.OnPropertyChanged(() => MalCrossRefMissing);
-            }
-        }
+
 
         private ObservableCollectionEx<CrossRef_AniDB_MAL> crossRef_AniDB_MAL;
         public ObservableCollectionEx<CrossRef_AniDB_MAL> Obs_CrossRef_AniDB_MAL
@@ -319,7 +294,11 @@ namespace Shoko.Desktop.ViewModel.Server
                 {
                     crossRef_AniDB_MAL = new ObservableCollectionEx<CrossRef_AniDB_MAL>();
                     if (base.CrossRef_AniDB_MAL.Count > 0)
+                    {
                         crossRef_AniDB_MAL.ReplaceRange(base.CrossRef_AniDB_MAL);
+                        this.OnPropertyChanged(() => MALCrossRefExists);
+                        this.OnPropertyChanged(() => MalCrossRefMissing);
+                    }
                 }
                 return crossRef_AniDB_MAL;
             }
