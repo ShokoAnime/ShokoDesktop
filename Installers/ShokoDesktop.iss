@@ -10,7 +10,7 @@
 
 AppId={{EFA49A76-085F-4E64-AEC4-6ACA707A5D91}
 AppName=Shoko Desktop
-AppVersion=3.7.0.3
+AppVersion=3.7.0.4
 AppVerName=Shoko Desktop
 AppPublisher=JMM
 AppPublisherURL=https://github.com/japanesemediamanager
@@ -31,6 +31,16 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; OnlyBelowVersion: 0,6.1
 
 [Files]
+Source: "..\JMMClient\bin\Release\System.Spatial.xml"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\JMMClient\bin\Release\System.Windows.Interactivity.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\JMMClient\bin\Release\Xceed.Wpf.AvalonDock.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\JMMClient\bin\Release\Xceed.Wpf.AvalonDock.Themes.Aero.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\JMMClient\bin\Release\Xceed.Wpf.AvalonDock.Themes.Metro.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\JMMClient\bin\Release\Xceed.Wpf.AvalonDock.Themes.VS2010.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\JMMClient\bin\Release\Xceed.Wpf.DataGrid.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\JMMClient\bin\Release\Xceed.Wpf.Toolkit.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\JMMClient\bin\Release\DevExpress.Data.v12.2.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\JMMClient\bin\Release\DevExpress.PivotGrid.v12.2.Core.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\JMMClient\bin\Release\DevExpress.Printing.v12.2.Core.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\JMMClient\bin\Release\DevExpress.Xpf.Core.v12.2.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\JMMClient\bin\Release\DevExpress.Xpf.Core.v12.2.Extensions.dll"; DestDir: "{app}"; Flags: ignoreversion
@@ -45,11 +55,7 @@ Source: "..\JMMClient\bin\Release\GongSolutions.Wpf.DragDrop.dll"; DestDir: "{ap
 Source: "..\JMMClient\bin\Release\GongSolutions.Wpf.DragDrop.pdb"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\JMMClient\bin\Release\GongSolutions.Wpf.DragDrop.xml"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\JMMClient\bin\Release\Infralution.Localization.Wpf.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\Jint.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\ShokoDesktop.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\ShokoDesktop.exe.config"; DestDir: "{app}"; Flags: ignoreversion onlyifdoesntexist
-Source: "..\JMMClient\bin\Release\ShokoDesktop.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\ShokoDesktop.vshost.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\JMMClient\bin\Release\jint.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\JMMClient\bin\Release\MahApps.Metro.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\JMMClient\bin\Release\MahApps.Metro.pdb"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\JMMClient\bin\Release\MahApps.Metro.xml"; DestDir: "{app}"; Flags: ignoreversion
@@ -66,6 +72,12 @@ Source: "..\JMMClient\bin\Release\NLog.dll"; DestDir: "{app}"; Flags: ignorevers
 Source: "..\JMMClient\bin\Release\NLog.xml"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\JMMClient\bin\Release\Pri.LongPath.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\JMMClient\bin\Release\ReuxablesLegacy.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\JMMClient\bin\Release\ShokoDesktop.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\JMMClient\bin\Release\ShokoDesktop.exe.config"; DestDir: "{app}"; Flags: ignoreversion onlyifdoesntexist
+Source: "..\JMMClient\bin\Release\ShokoDesktop.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\JMMClient\bin\Release\ShokoDesktop.vshost.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\JMMClient\bin\Release\ShokoDesktop.vshost.exe.config"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\JMMClient\bin\Release\ShokoDesktop.vshost.exe.manifest"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\JMMClient\bin\Release\System.Diagnostics.DiagnosticSource.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\JMMClient\bin\Release\System.Diagnostics.DiagnosticSource.xml"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\JMMClient\bin\Release\System.Net.Http.dll"; DestDir: "{app}"; Flags: ignoreversion
@@ -74,16 +86,6 @@ Source: "..\JMMClient\bin\Release\System.Security.Cryptography.Encoding.dll"; De
 Source: "..\JMMClient\bin\Release\System.Security.Cryptography.Primitives.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\JMMClient\bin\Release\System.Security.Cryptography.X509Certificates.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\JMMClient\bin\Release\System.Spatial.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\System.Spatial.xml"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\System.Windows.Interactivity.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\Xceed.Wpf.AvalonDock.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\Xceed.Wpf.AvalonDock.Themes.Aero.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\Xceed.Wpf.AvalonDock.Themes.Metro.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\Xceed.Wpf.AvalonDock.Themes.VS2010.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\Xceed.Wpf.DataGrid.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\Xceed.Wpf.Toolkit.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\DevExpress.Data.v12.2.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\JMMClient\bin\Release\DevExpress.PivotGrid.v12.2.Core.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\JMMClient\bin\Release\de\*"; DestDir: "{app}\de"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "..\JMMClient\bin\Release\en-gb\*"; DestDir: "{app}\en-gb"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "..\JMMClient\bin\Release\es\*"; DestDir: "{app}\es"; Flags: ignoreversion recursesubdirs createallsubdirs
