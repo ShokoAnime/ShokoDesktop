@@ -1,0 +1,1780 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B44B8402-A60B-4462-94FE-388DAB208360}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Shoko.Desktop</RootNamespace>
+    <AssemblyName>ShokoDesktop</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+    <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+    <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Images\db.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Shoko.Desktop.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v12.2">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v12.2.Core">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.PivotGrid.v12.2.Core">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Core.v12.2">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Core.v12.2.Extensions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Printing.v12.2.Core">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Printing.v12.2">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Grid.v12.2">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Grid.v12.2.Core">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Layout.v12.2.Core">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.LayoutControl.v12.2">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.PivotGrid.v12.2">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GongSolutions.Wpf.DragDrop, Version=1.1.0.0, Culture=neutral, PublicKeyToken=e33b67d3bb5581e4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(SolutionDir)packages\gong-wpf-dragdrop.1.1.0\lib\net46\GongSolutions.Wpf.DragDrop.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ImpromptuInterface, Version=6.2.2.0, Culture=neutral, PublicKeyToken=0b1781c923b2975b, processorArchitecture=MSIL">
+      <HintPath>..\packages\ImpromptuInterface.6.2.2\lib\net40\ImpromptuInterface.dll</HintPath>
+    </Reference>
+    <Reference Include="Infralution.Localization.Wpf, Version=2.1.1.0, Culture=neutral, PublicKeyToken=547ccae517a004b5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dependencies\Infralution.Localization.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=1.4.2.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
+      <HintPath>$(SolutionDir)packages\MahApps.Metro.1.4.2\lib\net45\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Edm, Version=5.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>$(SolutionDir)packages\Microsoft.Data.Edm.5.8.1\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>$(SolutionDir)packages\Microsoft.Data.OData.5.8.1\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>$(SolutionDir)packages\Microsoft.Data.Services.Client.5.8.1\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Win32.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>$(SolutionDir)packages\Microsoft.Win32.Primitives.4.3.0\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.Rest.Annotations, Version=1.4.3.25274, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nancy.Rest.Annotations.1.4.3.1-beta\lib\net452\Nancy.Rest.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.Rest.Client, Version=1.4.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nancy.Rest.Client.1.4.3.1-beta\lib\net452\Nancy.Rest.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>$(SolutionDir)packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>$(SolutionDir)packages\NLog.4.4.1\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="Pri.LongPath, Version=2.0.42.0, Culture=neutral, PublicKeyToken=e33b67d3bb5581e4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(SolutionDir)packages\Pri.LongPath.2.0.42\lib\net45\Pri.LongPath.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, PublicKeyToken=e33b67d3bb5581e4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(SolutionDir)packages\RestSharp.105.2.3\lib\net46\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="ReuxablesLegacy, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>Dependencies\ReuxablesLegacy.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Diagnostics.Contracts" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>$(SolutionDir)packages\System.Diagnostics.DiagnosticSource.4.3.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Net.Http, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>$(SolutionDir)packages\System.Net.Http.4.3.0\lib\net46\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>$(SolutionDir)packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net461\System.Security.Cryptography.Algorithms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>$(SolutionDir)packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>$(SolutionDir)packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>$(SolutionDir)packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Spatial, Version=5.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>$(SolutionDir)packages\System.Spatial.5.8.1\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>$(SolutionDir)\packages\MahApps.Metro.1.4.2\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>$(SolutionDir)packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>$(SolutionDir)packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>$(SolutionDir)packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>$(SolutionDir)packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>$(SolutionDir)packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>$(SolutionDir)packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="AutoUpdates\ShokoAutoUpdatesHelper.cs" />
+    <Compile Include="AutoUpdates\ShokoVersions.cs" />
+    <Compile Include="AutoUpdates\Update.cs" />
+    <Compile Include="AutoUpdates\Updates.cs" />
+    <Compile Include="AutoUpdates\Versions.cs" />
+    <Compile Include="DataTemplateSelectors\BreadCrumbTemplateSelector.cs" />
+    <Compile Include="DataTemplateSelectors\CharacterTemplateSelector.cs" />
+    <Compile Include="DataTemplateSelectors\DashRecentAdditionsTemplateSelector.cs" />
+    <Compile Include="DataTemplateSelectors\DashWatchNextTemplateSelector.cs" />
+    <Compile Include="DataTemplateSelectors\PeopleSayingTemplateSelector.cs" />
+    <Compile Include="DataTemplateSelectors\PlaylistTemplateSelector.cs" />
+    <Compile Include="DataTemplateSelectors\RecDownloadTemplateSelector.cs" />
+    <Compile Include="DataTemplateSelectors\RecWatchTemplateSelector.cs" />
+    <Compile Include="DataTemplateSelectors\WatchingEpisodeTemplateSelector.cs" />
+    <Compile Include="ViewModel\VM_TorrentSource.cs" />
+    <Compile Include="Enums\DashboardMetroImageType.cs" />
+    <Compile Include="Enums\DashboardMetroProcessType.cs" />
+    <Compile Include="Enums\DashboardType.cs" />
+    <Compile Include="Enums\DashboardWidgets.cs" />
+    <Compile Include="Enums\DashWatchNextStyle.cs" />
+    <Compile Include="Utilities\ObservableCollectionEx.cs" />
+    <Compile Include="Utilities\ObservableListDictionary.cs" />
+    <Compile Include="ViewModel\Server\VM_GroupVideoQuality.cs" />
+    <Compile Include="ViewModel\VM_AvailableEpisodeTypeContainer.cs" />
+    <Compile Include="ViewModel\VM_WatchedStatusContainer.cs" />
+    <Compile Include="Enums\MetroViews.cs" />
+    <Compile Include="Enums\VideoPlayer.cs" />
+    <Compile Include="Forms\AboutForm.xaml.cs">
+      <DependentUpon>AboutForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AdminMessagesForm.xaml.cs">
+      <DependentUpon>AdminMessagesForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AskResumeVideo.xaml.cs">
+      <DependentUpon>AskResumeVideo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AskDeleteFile.xaml.cs">
+      <DependentUpon>AskDeleteFile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FolderBrowser.xaml.cs">
+      <DependentUpon>FolderBrowser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FeedForm.xaml.cs">
+      <DependentUpon>FeedForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UpdateForm.xaml.cs">
+      <DependentUpon>UpdateForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ViewCommentForm.xaml.cs">
+      <DependentUpon>ViewCommentForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPFHelpers\ImageSourceConverter.cs" />
+    <Compile Include="WPFHelpers\InverseBooleanConverter.cs" />
+    <Compile Include="WPFHelpers\InverseBooleanToVisibilityConverter.cs" />
+    <Compile Include="MigrationDirectory.cs" />
+    <Compile Include="UserControls\AnimeFolderSummaryControl.xaml.cs">
+      <DependentUpon>AnimeFolderSummaryControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\AnimeSeriesContainerControl.xaml.cs">
+      <DependentUpon>AnimeSeriesContainerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Community\CommunityMaint.xaml.cs">
+      <DependentUpon>CommunityMaint.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Custom ToolTips\CharacterSeiyuuToolTip.xaml.cs">
+      <DependentUpon>CharacterSeiyuuToolTip.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Custom ToolTips\EpisodeDetailsToolTip.xaml.cs">
+      <DependentUpon>EpisodeDetailsToolTip.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Downloads\DownloadsTorrentBlackHole.xaml.cs">
+      <DependentUpon>DownloadsTorrentBlackHole.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PlayNextEpisodeControlV2.xaml.cs">
+      <DependentUpon>PlayNextEpisodeControlV2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Settings\Migration.xaml.cs">
+      <DependentUpon>Migration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Settings\RelationSettings.xaml.cs">
+      <DependentUpon>RelationSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\TraktHelper.cs" />
+    <Compile Include="Utilities\TrulyObservableCollection.cs" />
+    <Compile Include="VideoPlayers\BaseVideoPlayer.cs" />
+    <Compile Include="VideoPlayers\Extensions.cs" />
+    <Compile Include="VideoPlayers\IVideoPlayer.cs" />
+    <Compile Include="VideoPlayers\PotVideoPlayer.cs" />
+    <Compile Include="VideoPlayers\WindowsDefaultVideoPlayer.cs" />
+    <Compile Include="VideoPlayers\MPCVideoPlayer.cs" />
+    <Compile Include="VideoPlayers\ExternalMPVVideoPlayer.cs" />
+    <Compile Include="VideoPlayers\MPVVideoPlayer.cs" />
+    <Compile Include="VideoPlayers\mpv\PlayerForm.xaml.cs">
+      <DependentUpon>PlayerForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VideoPlayers\mpv\VideoPlayer.cs" />
+    <Compile Include="VideoPlayers\VideoInfo.cs" />
+    <Compile Include="VideoPlayers\VLCVideoPlayer.cs" />
+    <Compile Include="VideoPlayers\ZoomPlayerVideoPlayer.cs" />
+    <Compile Include="ViewModel\VM_FanartContainer.cs" />
+    <Compile Include="ViewModel\Server\VM_AniDB_Episode.cs" />
+    <Compile Include="ViewModel\Server\VM_AniDB_Recommendation.cs" />
+    <Compile Include="ViewModel\Server\VM_AnimeTitle.cs" />
+    <Compile Include="ViewModel\Server\VM_CrossRef_AniDB_MAL.cs" />
+    <Compile Include="ViewModel\Server\VM_CrossRef_AniDB_MAL_Response.cs" />
+    <Compile Include="ViewModel\Server\VM_DuplicateFile.cs" />
+    <Compile Include="ViewModel\Server\VM_GroupFileSummary.cs" />
+    <Compile Include="ViewModel\Server\VM_MovieDBMovieSearch_Response.cs" />
+    <Compile Include="ViewModel\Server\VM_TvDB_Language.cs" />
+    <Compile Include="ViewModel\Server\VM_TVDB_Series_Search_Response.cs" />
+    <Compile Include="ViewModel\Server\VM_VideoLocal_Renamed.cs" />
+    <Compile Include="ViewModel\Server\VM_AniDB_Character.cs" />
+    <Compile Include="ViewModel\Server\VM_AniDB_Seiyuu.cs" />
+    <Compile Include="Forms\ChangePasswordForm.xaml.cs">
+      <DependentUpon>ChangePasswordForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DeleteFilesForm.xaml.cs">
+      <DependentUpon>DeleteFilesForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DeleteSeriesGroupForm.xaml.cs">
+      <DependentUpon>DeleteSeriesGroupForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DialogInteger.xaml.cs">
+      <DependentUpon>DialogInteger.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DialogText.xaml.cs">
+      <DependentUpon>DialogText.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DialogTextMultiline.xaml.cs">
+      <DependentUpon>DialogTextMultiline.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GroupFilterConditionForm.xaml.cs">
+      <DependentUpon>GroupFilterConditionForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GroupFilterSortingForm.xaml.cs">
+      <DependentUpon>GroupFilterSortingForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ImportFolder.xaml.cs">
+      <DependentUpon>ImportFolder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LoginForm.xaml.cs">
+      <DependentUpon>LoginForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ManageCustomTags.xaml.cs">
+      <DependentUpon>ManageCustomTags.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MissingEpsColumnsForm.xaml.cs">
+      <DependentUpon>MissingEpsColumnsForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MoveSeries.xaml.cs">
+      <DependentUpon>MoveSeries.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\NewSeries.xaml.cs">
+      <DependentUpon>NewSeries.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PlayVideosForEpisodeForm.xaml.cs">
+      <DependentUpon>PlayVideosForEpisodeForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RandomEpisodeForm.xaml.cs">
+      <DependentUpon>RandomEpisodeForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RandomSeriesForm.xaml.cs">
+      <DependentUpon>RandomSeriesForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RateSeriesForm.xaml.cs">
+      <DependentUpon>RateSeriesForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SearchMALForm.xaml.cs">
+      <DependentUpon>SearchMALForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SearchMovieDBForm.xaml.cs">
+      <DependentUpon>SearchMovieDBForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SearchTraktForm.xaml.cs">
+      <DependentUpon>SearchTraktForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SearchTvDBForm.xaml.cs">
+      <DependentUpon>SearchTvDBForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SelectAniDBTitleForm.xaml.cs">
+      <DependentUpon>SelectAniDBTitleForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SelectDefaultSeriesForm.xaml.cs">
+      <DependentUpon>SelectDefaultSeriesForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SelectGroupSeriesForm.xaml.cs">
+      <DependentUpon>SelectGroupSeriesForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SelectMALStartForm.xaml.cs">
+      <DependentUpon>SelectMALStartForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SelectTraktSeasonForm.xaml.cs">
+      <DependentUpon>SelectTraktSeasonForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SelectTvDBEpisodeForm.xaml.cs">
+      <DependentUpon>SelectTvDBEpisodeForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SelectTvDBLanguage.xaml.cs">
+      <DependentUpon>SelectTvDBLanguage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SelectTvDBSeasonForm.xaml.cs">
+      <DependentUpon>SelectTvDBSeasonForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\Helpers\GroupSearchFilterHelper.cs" />
+    <Compile Include="ImageDownload\BlockingList.cs" />
+    <Compile Include="ImageDownload\ImageDownloader.cs" />
+    <Compile Include="ImageDownload\ImageDownloadRequest.cs" />
+    <Compile Include="WPFHelpers\ImageSourceHelper.cs" />
+    <Compile Include="IListWrapper.cs" />
+    <Compile Include="DataTemplateSelectors\MainListTemplateSelector.cs" />
+    <Compile Include="ViewModel\Metro\ContinueWatchingTile.cs" />
+    <Compile Include="ViewModel\Metro\MetroDashSection.cs" />
+    <Compile Include="ViewModel\Metro\NavContainer.cs" />
+    <Compile Include="ViewModel\Metro\NewEpisodeTile.cs" />
+    <Compile Include="ViewModel\Metro\RandomSeriesTile.cs" />
+    <Compile Include="ViewModel\Metro\RecommendationTile.cs" />
+    <Compile Include="ViewModel\Metro\TraktShoutTile.cs" />
+    <Compile Include="ViewModel\VM_MoveSeriesDetails.cs" />
+    <Compile Include="WPFHelpers\StringFormatConverter.cs" />
+    <Compile Include="Utilities\UnhandledExceptionManager.cs" />
+    <Compile Include="WPFHelpers\UriToImageConverter.cs" />
+    <Compile Include="UserControls\AnimeFileSummaryControl.xaml.cs">
+      <DependentUpon>AnimeFileSummaryControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\AnimeGroupControl.xaml.cs">
+      <DependentUpon>AnimeGroupControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\AnimeSeries.xaml.cs">
+      <DependentUpon>AnimeSeries.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\AvdumpBatchControl.xaml.cs">
+      <DependentUpon>AvdumpBatchControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\AvdumpFileControl.xaml.cs">
+      <DependentUpon>AvdumpFileControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\BookmarksControl.xaml.cs">
+      <DependentUpon>BookmarksControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CloseableTabItem.cs" />
+    <Compile Include="UserControls\Community\CommunityLinksControl.xaml.cs">
+      <DependentUpon>CommunityLinksControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\AnimeSeriesSimplifiedControl.xaml.cs">
+      <DependentUpon>AnimeSeriesSimplifiedControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Custom ToolTips\CustomToolTip.cs" />
+    <Compile Include="UserControls\DashboardControl.xaml.cs">
+      <DependentUpon>DashboardControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Custom ToolTips\DashboardEpisodeOverviewTooltipContent.xaml.cs">
+      <DependentUpon>DashboardEpisodeOverviewTooltipContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\DashboardMetroDXControl.xaml.cs">
+      <DependentUpon>DashboardMetroDXControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\DashboardEpisodeOverview.xaml.cs">
+      <DependentUpon>DashboardEpisodeOverview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Downloads\DownloadRecommendationsControl.xaml.cs">
+      <DependentUpon>DownloadRecommendationsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Downloads\DownloadsBrowseTorrentsControl.xaml.cs">
+      <DependentUpon>DownloadsBrowseTorrentsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Downloads\DownloadSettingsAnimeBytes.xaml.cs">
+      <DependentUpon>DownloadSettingsAnimeBytes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Downloads\DownloadSettingsBakaBT.xaml.cs">
+      <DependentUpon>DownloadSettingsBakaBT.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Downloads\DownloadSettingsTorSources.xaml.cs">
+      <DependentUpon>DownloadSettingsTorSources.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Downloads\DownloadsSearchTorrentsControl.xaml.cs">
+      <DependentUpon>DownloadsSearchTorrentsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Downloads\DownloadsSettingsControl.xaml.cs">
+      <DependentUpon>DownloadsSettingsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Downloads\DownloadsTorrentMonitorControl.xaml.cs">
+      <DependentUpon>DownloadsTorrentMonitorControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\DuplicateFileDetailControl.xaml.cs">
+      <DependentUpon>DuplicateFileDetailControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\DuplicateFilesControl.xaml.cs">
+      <DependentUpon>DuplicateFilesControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\EpisodeDetail.xaml.cs">
+      <DependentUpon>EpisodeDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\EpisodeList.xaml.cs">
+      <DependentUpon>EpisodeList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ExternalAnimeLinksControl.xaml.cs">
+      <DependentUpon>ExternalAnimeLinksControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\FileRenameControl.xaml.cs">
+      <DependentUpon>FileRenameControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\FileSearchControl.xaml.cs">
+      <DependentUpon>FileSearchControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\GroupFilterAdmin.xaml.cs">
+      <DependentUpon>GroupFilterAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\HyperLinkStandard.xaml.cs">
+      <DependentUpon>HyperLinkStandard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\IgnoredAnimeControl.xaml.cs">
+      <DependentUpon>IgnoredAnimeControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\IgnoredFiles.xaml.cs">
+      <DependentUpon>IgnoredFiles.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ImportFolderAdmin.xaml.cs">
+      <DependentUpon>ImportFolderAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Info.cs" />
+    <Compile Include="UserControls\InfoPopup.xaml.cs">
+      <DependentUpon>InfoPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ManuallyLinkedFilesControl.xaml.cs">
+      <DependentUpon>ManuallyLinkedFilesControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ManuallyLinkedFilesDetailControl.xaml.cs">
+      <DependentUpon>ManuallyLinkedFilesDetailControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MissingEpisodesControl.xaml.cs">
+      <DependentUpon>MissingEpisodesControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MissingMyListFilesControl.xaml.cs">
+      <DependentUpon>MissingMyListFilesControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MultipleAvdumps.cs" />
+    <Compile Include="UserControls\MultipleFilesControl.xaml.cs">
+      <DependentUpon>MultipleFilesControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MultipleFilesDetailControl.xaml.cs">
+      <DependentUpon>MultipleFilesDetailControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MultipleVideos.cs" />
+    <Compile Include="UserControls\PasswordBoxAssistant.cs" />
+    <Compile Include="UserControls\PlaylistControl.xaml.cs">
+      <DependentUpon>PlaylistControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PlayNextEpisodeControl.xaml.cs">
+      <DependentUpon>PlayNextEpisodeControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\RankingsControl.xaml.cs">
+      <DependentUpon>RankingsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\RatingControl.xaml.cs">
+      <DependentUpon>RatingControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\RelatedAnimeControl.xaml.cs">
+      <DependentUpon>RelatedAnimeControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SeriesPosterView.xaml.cs">
+      <DependentUpon>SeriesPosterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SeriesSearchControl.xaml.cs">
+      <DependentUpon>SeriesSearchControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SeriesWithoutFilesControl.xaml.cs">
+      <DependentUpon>SeriesWithoutFilesControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Settings\AniDBDownloadSettings.xaml.cs">
+      <DependentUpon>AniDBDownloadSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Settings\AniDBLoginSettings.xaml.cs">
+      <DependentUpon>AniDBLoginSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Settings\AniDBMyListSettings.xaml.cs">
+      <DependentUpon>AniDBMyListSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Settings\AniDBScheduledUpdates.xaml.cs">
+      <DependentUpon>AniDBScheduledUpdates.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Settings\DisplayImageSizesSettings.xaml.cs">
+      <DependentUpon>DisplayImageSizesSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Settings\DisplayStyleSettings.xaml.cs">
+      <DependentUpon>DisplayStyleSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Settings\ImportSettings.xaml.cs">
+      <DependentUpon>ImportSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Settings\JMMServerSettings.xaml.cs">
+      <DependentUpon>JMMServerSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Settings\LanguagePreferenceSettings.xaml.cs">
+      <DependentUpon>LanguagePreferenceSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Settings\MALSettings.xaml.cs">
+      <DependentUpon>MALSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Settings\MovieDBSettings.xaml.cs">
+      <DependentUpon>MovieDBSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Settings\VideoPlayerSettingsControl.xaml.cs">
+      <DependentUpon>VideoPlayerSettingsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Settings\TraktSettings.xaml.cs">
+      <DependentUpon>TraktSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Settings\TvDBSettings.xaml.cs">
+      <DependentUpon>TvDBSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Settings\VideoPlayerOptionsControl.xaml.cs">
+      <DependentUpon>VideoPlayerOptionsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Settings\WebCacheBasicSettings.xaml.cs">
+      <DependentUpon>WebCacheBasicSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SimilarAnimeControl.xaml.cs">
+      <DependentUpon>SimilarAnimeControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SmartImage.xaml.cs">
+      <DependentUpon>SmartImage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Tags.xaml.cs">
+      <DependentUpon>Tags.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Titles.xaml.cs">
+      <DependentUpon>Titles.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TraktShoutControl.xaml.cs">
+      <DependentUpon>TraktShoutControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TraktShoutsShowControl.xaml.cs">
+      <DependentUpon>TraktShoutsShowControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TruncatedTextBlock.xaml.cs">
+      <DependentUpon>TruncatedTextBlock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TvDBAndOtherLinks.xaml.cs">
+      <DependentUpon>TvDBAndOtherLinks.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UnrecognisedVideos.xaml.cs">
+      <DependentUpon>UnrecognisedVideos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UpdateAniDBDataControl.xaml.cs">
+      <DependentUpon>UpdateAniDBDataControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserAdminControl.xaml.cs">
+      <DependentUpon>UserAdminControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ValidationRules\IntegerRule.cs" />
+    <Compile Include="UserControls\VisualRating.xaml.cs">
+      <DependentUpon>VisualRating.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\UserCulture.cs" />
+    <Compile Include="WPFHelpers\DragAndDrop.cs" />
+    <Compile Include="WPFHelpers\ImageAsyncHelper.cs" />
+    <Compile Include="Utilities\RenameHelper.cs" />
+    <Compile Include="Utilities\RenameTag.cs" />
+    <Compile Include="Utilities\RenameTest.cs" />
+    <Compile Include="Utilities\ShowSelectedInExplorer.cs" />
+    <Compile Include="VideoPlayers\VideoHandler.cs" />
+    <Compile Include="ViewModel\Server\VM_AniDB_AnimeCrossRefs.cs" />
+    <Compile Include="ViewModel\Server\VM_AniDB_Anime.cs" />
+    <Compile Include="ViewModel\VM_PosterContainer.cs" />
+    <Compile Include="ViewModel\Server\VM_AniDB_Anime_DefaultImage.cs" />
+    <Compile Include="ViewModel\Server\VM_AniDB_Anime_Relation.cs" />
+    <Compile Include="ViewModel\Server\VM_AniDB_Anime_Similar.cs" />
+    <Compile Include="ViewModel\VM_AnimeEpisodeType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModel\Server\VM_AnimeEpisode_User.cs" />
+    <Compile Include="ViewModel\Server\VM_AnimeGroup_User.cs" />
+    <Compile Include="ViewModel\Server\VM_AniDB_AnimeDetailed.cs" />
+    <Compile Include="ViewModel\Server\VM_AnimeRating.cs" />
+    <Compile Include="ViewModel\Server\VM_AnimeSearch.cs" />
+    <Compile Include="ViewModel\VM_AVDump.cs" />
+    <Compile Include="ViewModel\Server\VM_BookmarkedAnime.cs" />
+    <Compile Include="ViewModel\Server\VM_CloudAccount.cs" />
+    <Compile Include="ViewModel\Server\VM_CrossRef_AniDB_TraktV2.cs" />
+    <Compile Include="ViewModel\VM_TraktDetails.cs" />
+    <Compile Include="ViewModel\VM_TraktSummary.cs" />
+    <Compile Include="ViewModel\VM_TvDBDetails.cs" />
+    <Compile Include="ViewModel\Server\VM_CrossRef_AniDB_TvDBV2.cs" />
+    <Compile Include="ViewModel\VM_DashboardMetro.cs" />
+    <Compile Include="ViewModel\VM_Dashboard.cs" />
+    <Compile Include="ViewModel\VM_ExternalSiteLink.cs" />
+    <Compile Include="ViewModel\Server\VM_GroupFilterCondition.cs" />
+    <Compile Include="ViewModel\VM_GroupFilterSortingCriteria.cs" />
+    <Compile Include="ViewModel\Server\VM_IgnoreAnime.cs" />
+    <Compile Include="ViewModel\Server\VM_JMMUser.cs" />
+    <Compile Include="ViewModel\VM_MainListHelper.cs" />
+    <Compile Include="ViewModel\Server\VM_AnimeSeries_User.cs" />
+    <Compile Include="AppSettings.cs" />
+    <Compile Include="Utilities\ExtensionMethods.cs" />
+    <Compile Include="ViewModel\Server\VM_ImportFolder.cs" />
+    <Compile Include="ViewModel\VM_ShokoServer.cs" />
+    <Compile Include="ViewModel\Server\VM_MALAnime_Response.cs" />
+    <Compile Include="ViewModel\Server\VM_MissingEpisode.cs" />
+    <Compile Include="ViewModel\Server\VM_MissingFile.cs" />
+    <Compile Include="ViewModel\Server\VM_MovieDB_Fanart.cs" />
+    <Compile Include="ViewModel\Server\VM_MovieDB_Movie.cs" />
+    <Compile Include="ViewModel\Server\VM_MovieDB_Poster.cs" />
+    <Compile Include="ViewModel\VM_PlaylistHelper.cs" />
+    <Compile Include="ViewModel\VM_PlaylistItem.cs" />
+    <Compile Include="ViewModel\Helpers\PlaylistModifiedEventArgs.cs" />
+    <Compile Include="ViewModel\Server\VM_Playlist.cs" />
+    <Compile Include="ViewModel\Server\VM_Recommendation.cs" />
+    <Compile Include="ViewModel\Server\VM_RenameScript.cs" />
+    <Compile Include="ViewModel\Server\VM_Trakt_Episode.cs" />
+    <Compile Include="ViewModel\Server\VM_Trakt_ImageFanart.cs" />
+    <Compile Include="ViewModel\Server\VM_Trakt_ImagePoster.cs" />
+    <Compile Include="ViewModel\VM_Trakt_CommentPost.cs" />
+    <Compile Include="ViewModel\Server\VM_Trakt_CommentUser.cs" />
+    <Compile Include="ViewModel\Server\VM_Trakt_Comment.cs" />
+    <Compile Include="ViewModel\Server\VM_Trakt_Show.cs" />
+    <Compile Include="ViewModel\VM_TvDBSummary.cs" />
+    <Compile Include="ViewModel\Server\VM_TvDB_Episode.cs" />
+    <Compile Include="ViewModel\Server\VM_TvDB_ImageFanart.cs" />
+    <Compile Include="ViewModel\Server\VM_TvDB_ImagePoster.cs" />
+    <Compile Include="ViewModel\Server\VM_TvDB_ImageWideBanner.cs" />
+    <Compile Include="ViewModel\Server\VM_TvDB_Series.cs" />
+    <Compile Include="ViewModel\VM_UserSettings.cs" />
+    <Compile Include="ViewModel\VM_UTorrentHelper.cs" />
+    <Compile Include="ViewModel\Server\VM_VideoDetailed.cs" />
+    <Compile Include="ViewModel\Server\VM_GroupFilter.cs" />
+    <Compile Include="DataTemplateSelectors\GroupsSeriesDataTemplateSelector.cs" />
+    <Compile Include="Utilities\Utils.cs" />
+    <Compile Include="ViewModel\Server\VM_VideoLocal.cs" />
+    <Page Include="Forms\AboutForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\AdminMessagesForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\AskResumeVideo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Forms\ChangePasswordForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\FolderBrowser.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Forms\DeleteFilesForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\DeleteSeriesGroupForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\DialogInteger.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\AskDeleteFile.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Forms\DialogText.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\DialogTextMultiline.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\FeedForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Forms\GroupFilterConditionForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\GroupFilterSortingForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\ImportFolder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\LoginForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\ManageCustomTags.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\MissingEpsColumnsForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\MoveSeries.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\NewSeries.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\PlayVideosForEpisodeForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\RandomEpisodeForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\RandomSeriesForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\RateSeriesForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\SearchMALForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\SearchMovieDBForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\SearchTraktForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\SearchTvDBForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\SelectAniDBTitleForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\SelectDefaultSeriesForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\SelectGroupSeriesForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\SelectMALStartForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\SelectTraktSeasonForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\SelectTvDBEpisodeForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\SelectTvDBLanguage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\SelectTvDBSeasonForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UpdateForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\ViewCommentForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Resources\DashboardStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Icons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\IconsNonShared.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\MainListContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\MainListStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Metro.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\AnimeFileSummaryControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\AnimeFolderSummaryControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\AnimeGroupControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\AnimeSeries.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\AnimeSeriesContainerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\AvdumpBatchControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\AvdumpFileControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\BookmarksControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Community\CommunityLinksControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Community\CommunityMaint.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\AnimeSeriesSimplifiedControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Custom ToolTips\CharacterSeiyuuToolTip.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Custom ToolTips\EpisodeDetailsToolTip.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\DashboardControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Custom ToolTips\DashboardEpisodeOverviewTooltipContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\DashboardMetroDXControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\DashboardEpisodeOverview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Downloads\DownloadRecommendationsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Downloads\DownloadsBrowseTorrentsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Downloads\DownloadSettingsAnimeBytes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Downloads\DownloadSettingsBakaBT.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Downloads\DownloadSettingsTorSources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Downloads\DownloadsSearchTorrentsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Downloads\DownloadsSettingsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Downloads\DownloadsTorrentBlackHole.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Downloads\DownloadsTorrentMonitorControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\DuplicateFileDetailControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\DuplicateFilesControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\EpisodeDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\EpisodeList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ExternalAnimeLinksControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\FileRenameControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\FileSearchControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\GroupFilterAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\HyperLinkStandard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\IgnoredAnimeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\IgnoredFiles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ImportFolderAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\InfoPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ManuallyLinkedFilesControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ManuallyLinkedFilesDetailControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\MissingEpisodesControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\MissingMyListFilesControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\MultipleFilesControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\MultipleFilesDetailControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\PlaylistControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\PlayNextEpisodeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\PlayNextEpisodeControlV2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\RankingsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\RatingControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\RelatedAnimeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\SeriesPosterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\SeriesSearchControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\SeriesWithoutFilesControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Settings\AniDBDownloadSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Settings\AniDBLoginSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Settings\AniDBMyListSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Settings\AniDBScheduledUpdates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Settings\DisplayImageSizesSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Settings\DisplayStyleSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Settings\ImportSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Settings\JMMServerSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Settings\LanguagePreferenceSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Settings\MALSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Settings\Migration.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\Settings\MovieDBSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Settings\RelationSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Settings\VideoPlayerSettingsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Settings\TraktSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Settings\TvDBSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Settings\VideoPlayerOptionsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Settings\WebCacheBasicSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\SimilarAnimeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\SmartImage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Tags.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Titles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\TraktShoutControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\TraktShoutsShowControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\TruncatedTextBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\TvDBAndOtherLinks.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UnrecognisedVideos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UpdateAniDBDataControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UserAdminControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\VisualRating.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VideoPlayers\mpv\PlayerForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="packages.config" />
+    <Resource Include="Resources\Entypo.ttf" />
+    <None Include="testing.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="app.config" />
+    <None Include="Shoko.Desktop.snk" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="$(SolutionDir)Shoko.Commons\Shoko.Commons.csproj">
+      <Project>{e0399140-9902-4f38-909d-85e42717ec30}</Project>
+      <Name>Shoko.Commons</Name>
+    </ProjectReference>
+    <ProjectReference Include="$(SolutionDir)Shoko.Commons\Shoko.Models\Shoko.Models.csproj">
+      <Project>{f73f9df6-580a-4341-b516-8717626f9d42}</Project>
+      <Name>Shoko.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\32_Refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16_filter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16_windowlist.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16_videofile.png" />
+    <Resource Include="Images\32_dvd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\32_back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16_blankstar.png" />
+    <Resource Include="Images\16_star.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Flags\au_australia.gif" />
+    <Resource Include="Images\Flags\de_germany.gif" />
+    <Resource Include="Images\Flags\uk_unitedkingdom.gif" />
+    <Resource Include="Images\Flags\us.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Flags\jp.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Flags\ar.gif" />
+    <Resource Include="Images\Flags\lt.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Flags\cn.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Flags\fr.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Flags\bd.gif" />
+    <Resource Include="Images\Flags\bg.gif" />
+    <Resource Include="Images\Flags\br.gif" />
+    <Resource Include="Images\Flags\ca.gif" />
+    <Resource Include="Images\Flags\cz.gif" />
+    <Resource Include="Images\Flags\dk.gif" />
+    <Resource Include="Images\Flags\es.gif" />
+    <Resource Include="Images\Flags\et.gif" />
+    <Resource Include="Images\Flags\fi.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Flags\gl.gif" />
+    <Resource Include="Images\Flags\gr.gif" />
+    <Resource Include="Images\Flags\hu.gif" />
+    <Resource Include="Images\Flags\il.gif" />
+    <Resource Include="Images\Flags\it.gif" />
+    <Resource Include="Images\Flags\ko.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Flags\mn.gif" />
+    <Resource Include="Images\Flags\my.gif" />
+    <Resource Include="Images\Flags\nl.gif" />
+    <Resource Include="Images\Flags\no.gif" />
+    <Resource Include="Images\Flags\pl.gif" />
+    <Resource Include="Images\Flags\ro.gif" />
+    <Resource Include="Images\Flags\ru.gif" />
+    <Resource Include="Images\Flags\se.gif" />
+    <Resource Include="Images\Flags\sk.gif" />
+    <Resource Include="Images\Flags\sl.gif" />
+    <Resource Include="Images\Flags\sr.gif" />
+    <Resource Include="Images\Flags\sv.gif" />
+    <Resource Include="Images\Flags\th.gif" />
+    <Resource Include="Images\Flags\tr.gif" />
+    <Resource Include="Images\Flags\ua.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Flags\vi.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16_multiplefiles.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16_award.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16_exclamation.png" />
+    <Resource Include="Images\16_tick.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\32_clock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16_television.png" />
+    <Resource Include="Images\32_movie.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\star_48.png" />
+    <Resource Include="Images\star_half_48.png" />
+    <Resource Include="Images\star_off_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\blankposter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16_server_connect.png" />
+    <Resource Include="Images\16_server_hash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16_link_add.png" />
+    <Resource Include="Images\16_link_remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\32_sync.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\32_redo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Samples\Naruto.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\32_WebDatabase.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\db.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\32_sort.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16_down.png" />
+    <Resource Include="Images\16_up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\32_trash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\32_pin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\64_navdown.png" />
+    <Resource Include="Images\64_navup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16_switch.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\EpisodeThumb_NotFound.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Samples\Episode.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16_heart.png" />
+    <Resource Include="Images\16_heart_empty.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\64_user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16_minus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\navbar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16_clipboard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16_heart_break.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\trakt-icon-scrobble.png" />
+    <Resource Include="Images\trakt-icon-shouts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\32_discussion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\32_playlist_accept.png" />
+    <Resource Include="Images\32_playlist_add.png" />
+    <Resource Include="Images\32_playlist_delete.png" />
+    <Resource Include="Images\32_playlist_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\32_dice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\32_new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16_columns.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Torrents\tor_downloading.png" />
+    <Resource Include="Images\Torrents\tor_queued.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Torrents\tor_paused.png" />
+    <Resource Include="Images\Torrents\tor_seeding.png" />
+    <Resource Include="Images\Torrents\tor_stopped.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Torrents\tor_finished.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Torrents\tor_queuedseed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="PostBuild.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16_preview.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Backgrounds\shattered.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Backgrounds\subtlenet2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\blankfanart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\trakt_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Metro\cancel.png" />
+    <Resource Include="Images\Metro\cancel2.png" />
+    <Resource Include="Images\Metro\check.png" />
+    <Resource Include="Images\Metro\checkmark.png" />
+    <Resource Include="Images\Metro\delete.png" />
+    <Resource Include="Images\Metro\folder.png" />
+    <Resource Include="Images\Metro\home.png" />
+    <Resource Include="Images\Metro\ok.png" />
+    <Resource Include="Images\Metro\plus.png" />
+    <Resource Include="Images\Metro\refresh.png" />
+    <Resource Include="Images\Metro\save.png" />
+    <Resource Include="Images\Metro\search.png" />
+    <Resource Include="Images\Metro\search2.png" />
+    <Resource Include="Images\Metro\settings.png" />
+    <Resource Include="Images\Metro\settings2.png" />
+    <Resource Include="Images\Metro\sinchronize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Metro\reload_32.png" />
+    <Resource Include="Images\Metro\reload_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Metro\settings_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Metro\MetroDash_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Metro\MetroDash2_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Metro\Row.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Metro\ArrowHead-Down.png" />
+    <Resource Include="Images\Metro\ArrowHead-Up.png" />
+    <Resource Include="Images\Metro\check_false.png" />
+    <Resource Include="Images\Metro\check_true.png" />
+    <Resource Include="Images\Metro\down.png" />
+    <Resource Include="Images\Metro\up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Metro\add.png" />
+    <Resource Include="Images\Metro\minus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Metro\close.png" />
+    <Resource Include="Images\Metro\maximize.png" />
+    <Resource Include="Images\Metro\minimize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Metro\fullscreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ToDo.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\32_mail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Dependencies\AutomaticUpdaterWPF.dll" />
+    <Content Include="Dependencies\DevExpress.Data.v12.2.dll" />
+    <Content Include="Dependencies\DevExpress.Data.v12.2.resources.dll" />
+    <Content Include="Dependencies\DevExpress.PivotGrid.v12.2.Core.dll" />
+    <Content Include="Dependencies\DevExpress.PivotGrid.v12.2.Core.resources.dll" />
+    <Content Include="Dependencies\DevExpress.Printing.v12.2.Core.dll" />
+    <Content Include="Dependencies\DevExpress.Printing.v12.2.Core.resources.dll" />
+    <Content Include="Dependencies\DevExpress.Xpf.Core.v12.2.dll" />
+    <Content Include="Dependencies\DevExpress.Xpf.Core.v12.2.Extensions.dll" />
+    <Content Include="Dependencies\DevExpress.Xpf.Core.v12.2.resources.dll" />
+    <Content Include="Dependencies\DevExpress.Xpf.Grid.v12.2.Core.dll" />
+    <Content Include="Dependencies\DevExpress.Xpf.Grid.v12.2.Core.resources.dll" />
+    <Content Include="Dependencies\DevExpress.Xpf.Grid.v12.2.dll" />
+    <Content Include="Dependencies\DevExpress.Xpf.Layout.v12.2.Core.dll" />
+    <Content Include="Dependencies\DevExpress.Xpf.LayoutControl.v12.2.dll" />
+    <Content Include="Dependencies\DevExpress.Xpf.LayoutControl.v12.2.resources.dll" />
+    <Content Include="Dependencies\DevExpress.Xpf.PivotGrid.v12.2.dll" />
+    <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.Core.dll" />
+    <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.dll" />
+    <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.resources.dll" />
+    <Resource Include="Resources\Entypo-license.txt" />
+    <Resource Include="Resources\WindowsIcons-license.txt" />
+    <Resource Include="Images\16_folder.png" />
+    <Resource Include="Images\32_play_all.png" />
+    <Resource Include="Images\Metro\pin.png" />
+    <Resource Include="Images\Flags\lv.gif" />
+    <Resource Include="Images\32_edit.png" />
+    <Resource Include="Images\32_edit_accept.png" />
+    <Resource Include="Images\32_edit_delete.png" />
+    <Resource Include="Images\16_ignore.png" />
+    <Resource Include="Images\32_television.png" />
+    <Resource Include="Images\16_discord.png" />
+    <Resource Include="Images\32_discord.png" />
+    <Resource Include="Images\Metro\refresh_32.png" />
+    <Resource Include="Images\32_key.png" />
+    <Resource Include="Images\16_hourglass.png" />
+    <Resource Include="Images\32_simple.png" />
+    <Resource Include="Images\24_cut.png" />
+    <Resource Include="Images\16_link_edit.png" />
+    <Resource Include="Images\32_settings.png" />
+    <Resource Include="Images\16_toggle_close.png" />
+    <Resource Include="Images\16_toggle_open.png" />
+    <Resource Include="Images\24_vote_down.png" />
+    <Resource Include="Images\24_vote_up.png" />
+    <Resource Include="Images\16_warning.png" />
+    <Resource Include="Images\32_admin.png" />
+    <Resource Include="Images\32_search.png" />
+    <Resource Include="Images\Sources.txt" />
+    <Resource Include="Images\16_add.png" />
+    <Resource Include="Images\24_calendar.png" />
+    <Resource Include="Images\24_download.png" />
+    <Resource Include="Images\24_folder_filter.png" />
+    <Resource Include="Images\24_folder_group.png" />
+    <Resource Include="Images\16_cancel.png" />
+    <Resource Include="Images\16_clear.png" />
+    <Resource Include="Images\16_folder_video.png" />
+    <Resource Include="Images\16_save.png" />
+    <Resource Include="Images\16_update_data.png" />
+    <Resource Include="Images\24_folder.png" />
+    <Resource Include="Images\24_folder_down.png" />
+    <Resource Include="Images\24_folder_find.png" />
+    <Resource Include="Images\24_folder_up.png" />
+    <Resource Include="Images\32_eye.png" />
+    <Resource Include="Images\32_eye2.png" />
+    <Resource Include="Images\32_info.png" />
+    <Resource Include="Images\16_bookmark.png" />
+    <Resource Include="Images\16_bookmark_add.png" />
+    <Resource Include="Images\16_image.png" />
+    <Resource Include="Images\16_info.png" />
+    <Resource Include="Images\16_link.png" />
+    <Resource Include="Images\16_pause.png" />
+    <Resource Include="Images\32_anidb.png" />
+    <Resource Include="Images\32_mal.png" />
+    <Resource Include="Images\32_resume.png" />
+    <Resource Include="Images\32_tmdb.png" />
+    <Resource Include="Images\32_trakt.png" />
+    <Resource Include="Images\32_tvdb.png" />
+    <Resource Include="Images\Flags\pt.gif" />
+    <Resource Include="Images\Metro\details.png" />
+    <Resource Include="Images\16_feed.png" />
+    <Resource Include="Images\32_feed.png" />
+    <Resource Include="Images\Metro\back.png" />
+    <Resource Include="Images\placeholder.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

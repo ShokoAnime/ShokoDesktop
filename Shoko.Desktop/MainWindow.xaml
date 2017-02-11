@@ -1,0 +1,1786 @@
+﻿<Window x:Class="Shoko.Desktop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:Shoko.Desktop.ViewModel"
+        xmlns:downloads="clr-namespace:Shoko.Commons.Downloads"
+        xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
+        xmlns:community="clr-namespace:Shoko.Desktop.UserControls.Community"
+        xmlns:settings="clr-namespace:Shoko.Desktop.UserControls.Settings"
+        xmlns:downloads1="clr-namespace:Shoko.Desktop.UserControls.Downloads"
+        xmlns:dataTemplateSelectors="clr-namespace:Shoko.Desktop.DataTemplateSelectors"
+        WindowStartupLocation="CenterScreen" UseLayoutRounding="True"
+        Title="Shoko Desktop" Height="700" Width="1350" x:Name="mainWindow" Icon="/ShokoDesktop;component/Images/db.ico" >
+
+
+
+    <Window.Resources>
+        <ResourceDictionary>
+
+
+            <dataTemplateSelectors:MainListTemplateSelector x:Key="MainListTemplateSelector"/>
+            <dataTemplateSelectors:BreadCrumbTemplateSelector x:Key="BreadCrumbTemplateSelector"/>
+            <dataTemplateSelectors:GroupsSeriesDataTemplateSelector x:Key="myDataTemplateSelector"/>
+            <dataTemplateSelectors:PlaylistTemplateSelector x:Key="PlaylistTemplateSelector"/>
+
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+
+            <RoutedUICommand x:Key="WindowFullScreenCommand" Text="WindowFullScreenCommand" />
+            <RoutedUICommand x:Key="WindowNormalCommand" Text="WindowNormalCommand" />
+            <RoutedUICommand x:Key="WindowCloseCommand" Text="WindowCloseCommand" />
+            <RoutedUICommand x:Key="WindowMinimizeCommand" Text="WindowMinimizeCommand" />
+
+            <RoutedUICommand x:Key="RevokeVoteCommand" Text="RevokeVoteCommand" />
+            <RoutedUICommand x:Key="ShowPinnedSeriesCommand" Text="ShowPinnedSeriesCommand" />
+            <RoutedUICommand x:Key="ShowTorrentSearchCommand" Text="ShowTorrentSearchCommand" />
+            <RoutedUICommand x:Key="EditTraktCredentialsCommand" Text="EditTraktCredentialsCommand" />
+            <RoutedUICommand x:Key="AvdumpFileCommand" Text="AvdumpFileCommand" />
+            <RoutedUICommand x:Key="CreateSeriesFromAnimeCommand" Text="CreateSeriesFromAnimeCommand" />
+            <RoutedUICommand x:Key="AddPlaylistCommand" Text="AddPlaylistCommand" />
+            <RoutedUICommand x:Key="DeletePlaylistCommand" Text="DeletePlaylistCommand" />
+            <RoutedUICommand x:Key="RefreshPlaylistCommand" Text="RefreshPlaylistCommand" />
+            <RoutedUICommand x:Key="DeletePlaylistItemCommand" Text="DeletePlaylistItemCommand" />
+            <RoutedUICommand x:Key="ShowWebCacheAdminCommand" Text="ShowWebCacheAdminCommand" />
+
+
+
+
+            <RoutedUICommand x:Key="RefreshCommand" Text="RefreshCommand" />
+            <RoutedUICommand x:Key="SearchCommand" Text="SearchCommand" />
+            <RoutedUICommand x:Key="BackCommand" Text="BackCommand" />
+            <RoutedUICommand x:Key="ClearSearchCommand" Text="ClearSearchCommand" />
+            <RoutedUICommand x:Key="BreadCrumbCommand" Text="BreadCrumbCommand" />
+
+            <RoutedUICommand x:Key="SaveCommand" Text="SaveCommand" />
+            <RoutedUICommand x:Key="EditCommand" Text="EditCommand" />
+            <RoutedUICommand x:Key="CancelCommand" Text="CancelCommand" />
+            <RoutedUICommand x:Key="DeleteCommand" Text="DeleteCommand" />
+
+            <RoutedUICommand x:Key="ToggleFaveCommand" Text="ToggleFaveCommand" />
+            <RoutedUICommand x:Key="RunImportCommand" Text="RunImportCommand" />
+            <RoutedUICommand x:Key="RemoveMissingFilesCommand" Text="RemoveMissingFilesCommand" />
+            <RoutedUICommand x:Key="SyncMyListCommand" Text="SyncMyListCommand" />
+            <RoutedUICommand x:Key="SyncVotesCommand" Text="SyncVotesCommand" />
+            <RoutedUICommand x:Key="ScanFolderCommand" Text="ScanFolderCommand" />
+            <RoutedUICommand x:Key="SyncMALUpCommand" Text="SyncMALUpCommand" />
+            <RoutedUICommand x:Key="SyncMALDownCommand" Text="SyncMALDownCommand" />
+
+            <RoutedUICommand x:Key="ToggleExpandTagsCommand" Text="ToggleExpandTagsCommand" />
+            <RoutedUICommand x:Key="ToggleExpandTitlesCommand" Text="ToggleExpandTitlesCommand" />
+            <RoutedUICommand x:Key="ToggleWatchedStatusCommand" Text="ToggleWatchedStatusCommand" />
+
+            <RoutedUICommand x:Key="NewGroupFilterCommand" Text="NewGroupFilterCommand" />
+            <RoutedUICommand x:Key="DeleteFilterConditionCommand" Text="DeleteFilterConditionCommand" />
+            <RoutedUICommand x:Key="NewFilterConditionCommand" Text="NewFilterConditionCommand" />
+
+            <RoutedUICommand x:Key="NewFilterSortingCommand" Text="NewFilterSortingCommand" />
+            <RoutedUICommand x:Key="DeleteFilterSortCommand" Text="DeleteFilterSortCommand" />
+            <RoutedUICommand x:Key="MoveUpFilterSortCommand" Text="MoveUpFilterSortCommand" />
+            <RoutedUICommand x:Key="MoveDownFilterSortCommand" Text="MoveDownFilterSortCommand" />
+
+            <RoutedUICommand x:Key="NewGroupCommand" Text="NewGroupCommand" />
+            <RoutedUICommand x:Key="ViewGroupCommand" Text="NewGroupCommand" />
+            <RoutedUICommand x:Key="DeleteGroupCommand" Text="DeleteGroupCommand" />
+            <RoutedUICommand x:Key="AddSubGroupCommand" Text="AddSubGroupCommand" />
+            <RoutedUICommand x:Key="NewSeriesCommand" Text="NewSeriesCommand" />
+            <RoutedUICommand x:Key="DeleteSeriesCommand" Text="DeleteSeriesCommand" />
+            <RoutedUICommand x:Key="MoveSeriesCommand" Text="MoveSeriesCommand" />
+
+            <RoutedUICommand x:Key="BookmarkAnimeCommand" Text="BookmarkAnimeCommand" />
+            <RoutedUICommand x:Key="RefreshBookmarksCommand" Text="RefreshBookmarksCommand" />
+
+
+            <RoutedUICommand x:Key="HasherQueuePauseCommand" Text="HasherQueuePauseCommand" />
+            <RoutedUICommand x:Key="HasherQueueResumeCommand" Text="HasherQueueResumeCommand" />
+            <RoutedUICommand x:Key="GeneralQueuePauseCommand" Text="GeneralQueuePauseCommand" />
+            <RoutedUICommand x:Key="GeneralQueueResumeCommand" Text="GeneralQueueResumeCommand" />
+            <RoutedUICommand x:Key="ServerImageQueuePauseCommand" Text="ServerImageQueuePauseCommand" />
+            <RoutedUICommand x:Key="ServerImageQueueResumeCommand" Text="ServerImageQueueResumeCommand" />
+
+            <RoutedUICommand x:Key="IncrementSeriesImageSizeCommand" Text="IncrementSeriesImageSizeCommand" />
+            <RoutedUICommand x:Key="DecrementSeriesImageSizeCommand" Text="DecrementSeriesImageSizeCommand" />
+
+            <!-- groupTemplate-->
+            <DataTemplate x:Key="groupTemplate">
+                <Border BorderBrush="AliceBlue" BorderThickness="1">
+                    <StackPanel >
+                        <TextBlock Text="{Binding Path=GroupName}" />
+                    </StackPanel>
+                </Border>
+            </DataTemplate>
+
+            <!-- groupCountTemplate-->
+            <DataTemplate x:Key="groupCountTemplate">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding Path=GroupCount}" />
+                    <TextBlock Text=" " />
+                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Group_GroupCount}" />
+                </StackPanel>
+            </DataTemplate>
+
+            <!-- groupFilterTemplate-->
+            <DataTemplate x:Key="groupFilterTemplate">
+                <StackPanel >
+                    <TextBlock Text="{Binding Path=GroupFilterName}" />
+                </StackPanel>
+            </DataTemplate>
+
+
+            <!-- userLanguageTemplate-->
+            <DataTemplate x:Key="userLanguageTemplate">
+                <StackPanel Orientation="Horizontal">
+                    <Image Height="16" Width="16" Source="{Binding Path=FlagImage}" Margin="0,0,5,0"/>
+                    <TextBlock Text="{Binding Path=LanguageName}" />
+                </StackPanel>
+            </DataTemplate>
+
+        </ResourceDictionary>
+
+    </Window.Resources>
+
+    <Window.CommandBindings>
+
+        <CommandBinding Command="{StaticResource IncrementSeriesImageSizeCommand}" Executed="CommandBinding_IncrementSeriesImageSize" />
+        <CommandBinding Command="{StaticResource DecrementSeriesImageSizeCommand}" Executed="CommandBinding_DecrementSeriesImageSize" />
+
+        <CommandBinding Command="{StaticResource WindowFullScreenCommand}" Executed="CommandBinding_WindowFullScreen" />
+        <CommandBinding Command="{StaticResource WindowNormalCommand}" Executed="CommandBinding_WindowNormal" />
+        <CommandBinding Command="{StaticResource WindowCloseCommand}" Executed="CommandBinding_WindowClose" />
+        <CommandBinding Command="{StaticResource WindowMinimizeCommand}" Executed="CommandBinding_WindowMinimize" />
+
+        <CommandBinding Command="{StaticResource RevokeVoteCommand}" Executed="CommandBinding_RevokeVote" />
+        <CommandBinding Command="{StaticResource ShowPinnedSeriesCommand}" Executed="CommandBinding_ShowPinnedSeries" />
+        <CommandBinding Command="{StaticResource EditTraktCredentialsCommand}" Executed="CommandBinding_EditTraktCredentials" />
+        <CommandBinding Command="{StaticResource AvdumpFileCommand}" Executed="CommandBinding_AvdumpFile" />
+        <CommandBinding Command="{StaticResource CreateSeriesFromAnimeCommand}" Executed="CommandBinding_CreateSeriesFromAnime" />
+        <CommandBinding Command="{StaticResource AddPlaylistCommand}" Executed="CommandBinding_AddPlaylist" />
+        <CommandBinding Command="{StaticResource DeletePlaylistCommand}" Executed="CommandBinding_DeletePlaylist" />
+        <CommandBinding Command="{StaticResource RefreshPlaylistCommand}" Executed="CommandBinding_RefreshPlaylist" />
+        <CommandBinding Command="{StaticResource DeletePlaylistItemCommand}" Executed="CommandBinding_DeletePlaylistItem" />
+
+        <CommandBinding Command="{StaticResource RefreshCommand}" Executed="CommandBinding_Refresh" />
+        <CommandBinding Command="{StaticResource SearchCommand}" Executed="CommandBinding_Search" />
+        <CommandBinding Command="{StaticResource BackCommand}" Executed="CommandBinding_Back" />
+        <CommandBinding Command="{StaticResource ClearSearchCommand}" Executed="CommandBinding_ClearSearch" />
+        <CommandBinding Command="{StaticResource BreadCrumbCommand}" Executed="CommandBinding_BreadCrumbSelect" />
+
+        <CommandBinding Command="{StaticResource SaveCommand}" Executed="CommandBinding_Save" />
+        <CommandBinding Command="{StaticResource EditCommand}" Executed="CommandBinding_Edit" />
+        <CommandBinding Command="{StaticResource CancelCommand}" Executed="CommandBinding_Cancel" />
+        <CommandBinding Command="{StaticResource DeleteCommand}" Executed="CommandBinding_Delete" />
+
+        <CommandBinding Command="{StaticResource ToggleFaveCommand}" Executed="CommandBinding_ToggleFave" />
+        <CommandBinding Command="{StaticResource RunImportCommand}" Executed="CommandBinding_RunImport" />
+        <CommandBinding Command="{StaticResource RemoveMissingFilesCommand}" Executed="CommandBinding_RemoveMissingFiles" />
+        <CommandBinding Command="{StaticResource SyncMyListCommand}" Executed="CommandBinding_SyncMyList" />
+        <CommandBinding Command="{StaticResource SyncVotesCommand}" Executed="CommandBinding_SyncVotes" />
+        <CommandBinding Command="{StaticResource ScanFolderCommand}" Executed="CommandBinding_ScanFolder" />
+        <CommandBinding Command="{StaticResource SyncMALUpCommand}" Executed="CommandBinding_SyncMALUp" />
+        <CommandBinding Command="{StaticResource SyncMALDownCommand}" Executed="CommandBinding_SyncMALDown" />
+
+        <CommandBinding Command="{StaticResource ToggleExpandTagsCommand}" Executed="CommandBinding_ToggleExpandTags" />
+        <CommandBinding Command="{StaticResource ToggleExpandTitlesCommand}" Executed="CommandBinding_ToggleExpandTitles" />
+        <CommandBinding Command="{StaticResource ToggleWatchedStatusCommand}" Executed="CommandBinding_ToggleWatchedStatus" />
+
+        <CommandBinding Command="{StaticResource NewGroupFilterCommand}" Executed="CommandBinding_NewGroupFilter" />
+        <CommandBinding Command="{StaticResource DeleteFilterConditionCommand}" Executed="CommandBinding_DeleteFilterCondition" />
+        <CommandBinding Command="{StaticResource NewFilterConditionCommand}" Executed="CommandBinding_NewFilterCondition" />
+
+        <CommandBinding Command="{StaticResource NewFilterSortingCommand}" Executed="CommandBinding_NewFilterSorting" />
+        <CommandBinding Command="{StaticResource DeleteFilterSortCommand}" Executed="CommandBinding_DeleteFilterSort" />
+        <CommandBinding Command="{StaticResource MoveUpFilterSortCommand}" Executed="CommandBinding_MoveUpFilterSort" />
+        <CommandBinding Command="{StaticResource MoveDownFilterSortCommand}" Executed="CommandBinding_MoveDownFilterSort" />
+
+        <CommandBinding Command="{StaticResource NewGroupCommand}" Executed="CommandBinding_NewGroup" />
+        <CommandBinding Command="{StaticResource ViewGroupCommand}" Executed="CommandBinding_ViewGroup" />
+        <CommandBinding Command="{StaticResource DeleteGroupCommand}" Executed="CommandBinding_DeleteGroup" />
+        <CommandBinding Command="{StaticResource AddSubGroupCommand}" Executed="CommandBinding_AddSubGroup" />
+        <CommandBinding Command="{StaticResource NewSeriesCommand}" Executed="CommandBinding_NewSeries" />
+        <CommandBinding Command="{StaticResource DeleteSeriesCommand}" Executed="CommandBinding_DeleteSeries" />
+        <CommandBinding Command="{StaticResource MoveSeriesCommand}" Executed="CommandBinding_MoveSeries" />
+
+        <CommandBinding Command="{StaticResource BookmarkAnimeCommand}" Executed="CommandBinding_BookmarkAnime" />
+        <CommandBinding Command="{StaticResource RefreshBookmarksCommand}" Executed="CommandBinding_RefreshBookmarks" />
+
+        <CommandBinding Command="{StaticResource HasherQueuePauseCommand}" Executed="CommandBinding_HasherQueuePause" />
+        <CommandBinding Command="{StaticResource HasherQueueResumeCommand}" Executed="CommandBinding_HasherQueueResume" />
+        <CommandBinding Command="{StaticResource GeneralQueuePauseCommand}" Executed="CommandBinding_GeneralQueuePause" />
+        <CommandBinding Command="{StaticResource GeneralQueueResumeCommand}" Executed="CommandBinding_GeneralQueueResume" />
+        <CommandBinding Command="{StaticResource ServerImageQueuePauseCommand}" Executed="CommandBinding_ServerImageQueuePause" />
+        <CommandBinding Command="{StaticResource ServerImageQueueResumeCommand}" Executed="CommandBinding_ServerImageQueueResume" />
+
+        <CommandBinding Command="{StaticResource ShowTorrentSearchCommand}" Executed="CommandBinding_ShowTorrentSearch" />
+        <CommandBinding Command="{StaticResource ShowWebCacheAdminCommand}" Executed="CommandBinding_ShowWebCacheAdmin" />
+    </Window.CommandBindings>
+
+    <Grid Margin="0">
+        <Grid.ColumnDefinitions>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <TabControl Grid.Column="0" Grid.Row="0" x:Name="tabControl1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0"  
+                    Style="{DynamicResource tabMain}" >
+
+            <!-- Dashboard tab-->
+            <TabItem x:Name="tabDashboard" Style="{DynamicResource tabMainItem}"
+                     Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <TabItem.Header>
+                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_Dashboard}" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
+                </TabItem.Header>
+
+                <Grid>
+                    <usercontrols:DashboardControl x:Name="dash" Margin="0,0,0,0" Visibility="Collapsed"/>
+                    <usercontrols:DashboardMetroDXControl x:Name="dashMetro" Margin="0,0,0,0" Visibility="Collapsed"/>
+                    <usercontrols:AnimeSeriesSimplifiedControl x:Name="tileContinueWatching" Margin="0,0,0,0" Visibility="Collapsed"/>
+                </Grid>
+            </TabItem>
+
+            <!-- Collection tab-->
+            <TabItem x:Name="tabSeries" Style="{DynamicResource tabMainItem}"
+                     Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <TabItem.Header>
+                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_SeriesEpisodes}" Margin="2,0,0,0" VerticalAlignment="Center"
+                                Foreground="White" FontWeight="Bold"/>
+                </TabItem.Header>
+
+                <Grid x:Name="grdMain">
+
+                    <Grid.Resources>
+
+
+                    </Grid.Resources>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="210*" />
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="551*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <GridSplitter HorizontalAlignment="Right" 
+                  VerticalAlignment="Stretch" Grid.Row="1"
+                  Grid.Column="1" ResizeBehavior="PreviousAndNext"
+                  Width="2" Background="#FFBCBCBC" Grid.RowSpan="3" />
+
+                    <!-- toolbar container -->
+                    <StackPanel Orientation="Vertical" Grid.ColumnSpan="3" Grid.Row="0" Name="tbSeriesEpisodes">
+                        <!-- top toolbar container -->
+                        <Border Style="{DynamicResource ToolbarBorderControlStyle}" >
+                            <StackPanel Orientation="Horizontal"  Background="#F1F1F1">
+
+                                <!-- General Contextual buttons toolbar -->
+                                <StackPanel Orientation="Horizontal">
+                                    <!-- Back -->
+                                    <Button Name="btnToolbarBack" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource BackCommand}">
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                            <Image Height="16" Width="16" Source="/Images/32_back.png" Margin="0,0,5,0"/>
+                                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Back}" Margin="0,0,5,0"/>
+                                        </StackPanel>
+                                    </Button>
+                                    <!-- Refresh -->
+                                    <Button Name="btnToolbarRefresh" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource RefreshCommand}">
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                            <Image Height="16" Width="16" Source="/Images/32_refresh.png" Margin="0,0,5,0"/>
+                                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Refresh}" Margin="0,0,5,0"/>
+                                        </StackPanel>
+                                    </Button>
+                                    <!-- New Group Filter -->
+                                    <Button Name="btnToolbarNewGroupFilter" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource NewGroupFilterCommand}">
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                            <Image Height="16" Width="16" Source="/Images/24_folder_filter.png" Margin="0,0,5,0"/>
+                                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=NewGroupFilter}" Margin="0,0,5,0"/>
+                                        </StackPanel>
+                                    </Button>
+                                    <!-- New Group -->
+                                    <Button Name="btnToolbarNewGroup" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource NewGroupCommand}">
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                            <Image Height="16" Width="16" Source="/Images/24_folder_group.png" Margin="0,0,5,0"/>
+                                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=NewGroup}" Margin="0,0,5,0"/>
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+
+                                <Border BorderThickness="1,0,1,0" BorderBrush="LightGray" Visibility="{Binding Source={x:Static local:VM_MainListHelper.Instance}, Path=CurrentWrapperIsGroup, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <StackPanel Orientation="Horizontal" >
+
+                                        <ComboBox Name="cboGroupSort" Margin="10,2,5,2"></ComboBox>
+                                        <!-- New Group -->
+                                        <Button Name="btnToolbarSort" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}">
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                                <Image Height="16" Width="16" Source="/Images/32_sort.png" Margin="0,0,5,0"/>
+                                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=QuickSort}" Margin="0,0,5,0"/>
+                                            </StackPanel>
+                                        </Button>
+
+                                    </StackPanel>
+                                </Border>
+
+                                <!-- Search box for groups -->
+                                <Border>
+                                    <StackPanel Orientation="Horizontal" >
+                                        <Image Source="Images/32_search.png" Width="16" Height="16" Margin="5,0,0,0" ></Image>
+
+                                        <TextBox Name="txtGroupSearch" Width="180" Margin="10,3,0,3" BorderThickness="1" VerticalAlignment="Center" ToolTip="{usercontrols:Info Title=Search, Body=Tooltip_GroupSearch}">
+
+                                        </TextBox>
+                                        <Button Name="btnClearSearch" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource ClearSearchCommand}">
+                                            <Image Height="16" Width="16" Source="Images/16_cancel.png" Margin="0,0,0,0"/>
+                                        </Button>
+                                    </StackPanel>
+                                </Border>
+
+                            </StackPanel>
+                        </Border>
+
+                        <!-- breadcrumb toolbar container -->
+                        <Border Style="{DynamicResource BreadCrumbBorderStyle}">
+                            <StackPanel Orientation="Horizontal" Background="AliceBlue">
+
+                                <!-- Bread crumb toolbar -->
+                                <ListBox x:Name="lbBreadCrumbs" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="Transparent" Padding="0"
+                                    BorderThickness="0" VerticalAlignment="Center"
+                                    ItemTemplateSelector="{StaticResource BreadCrumbTemplateSelector}"
+                                    ItemsSource="{Binding Source={x:Static local:VM_MainListHelper.Instance},Path=BreadCrumbs}">
+                                    <ListBox.Template>
+                                        <ControlTemplate>
+                                            <ItemsPresenter />
+                                        </ControlTemplate>
+                                    </ListBox.Template>
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Orientation="Horizontal" />
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+
+                                </ListBox>
+
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+
+                    <ContentControl VerticalAlignment="Stretch"  Name="ccDetail" HorizontalAlignment="Stretch"
+                                    ContentTemplateSelector="{StaticResource myDataTemplateSelector}" Grid.Column="2" Grid.Row="1">
+                    </ContentControl>
+
+                    <!--<ContentControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Name="ccDetail" Grid.Column="2" Grid.Row="1"
+                                    ContentTemplateSelector="{StaticResource myDataTemplateSelector}" >
+                    </ContentControl>-->
+
+                    <DockPanel Grid.Row="1" Grid.RowSpan="3">
+                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Background="#F1F1F1"
+                                    Visibility="{Binding Source={x:Static local:VM_MainListHelper.Instance}, Path=CurrentListWrapperIsGroup, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <!-- add sub group -->
+                            <Button  Name="btnAddSubGroup" Margin="3,2,2,2" Style="{DynamicResource FlatButtonStyle}" Command="{DynamicResource AddSubGroupCommand}" CommandParameter="{Binding Source={x:Static local:VM_MainListHelper.Instance}, Path=CurrentWrapper}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="16" Width="16" Source="/Images/24_folder_group.png" Margin="0,0,3,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AddSubGroup}" Margin="0,0,0,0"/>
+                                </StackPanel>
+                            </Button>
+                            <!-- add series -->
+                            <Button  Name="btnAddSeries" Margin="3,2,2,2" Style="{DynamicResource FlatButtonStyle}" Command="{DynamicResource CreateSeriesFromAnimeCommand}" CommandParameter="{Binding Source={x:Static local:VM_MainListHelper.Instance}, Path=CurrentWrapper}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="16" Width="16" Source="/Images/32_television.png" Margin="0,0,3,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=NewSeries}" Margin="0,0,0,0"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                        <ListBox DockPanel.Dock="Top" Name="lbGroupsSeries" BorderThickness="0" Background="Transparent" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Standard" 
+                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemTemplateSelector="{StaticResource MainListTemplateSelector}" 
+                         ItemContainerStyle="{DynamicResource ListBoxItemStyle}" ItemsSource="{Binding Source={x:Static local:VM_MainListHelper.Instance},Path=ViewGroups}"
+                         >
+
+                        </ListBox>
+                    </DockPanel>
+
+
+
+
+                </Grid>
+            </TabItem>
+
+            <!-- Playlists tab-->
+            <TabItem Name="tabPlaylists" Style="{DynamicResource tabMainItem}"
+                     Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_Playlists}" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
+                    </StackPanel>
+                </TabItem.Header>
+
+                <Grid Name="grdPlaylists">
+
+                    <Grid.Resources>
+
+
+                    </Grid.Resources>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="130*" />
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="551*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <GridSplitter HorizontalAlignment="Right" 
+                  VerticalAlignment="Stretch" Grid.Row="0"
+                  Grid.Column="1" ResizeBehavior="PreviousAndNext"
+                  Width="2" Background="#FFBCBCBC" Grid.RowSpan="1" />
+
+
+                    <ContentControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Name="ccPlaylist" ContentTemplate="{DynamicResource Playlist_DetailTemplate}"
+                                    Grid.Column="2" Grid.Row="0">
+                    </ContentControl>
+
+                    <DockPanel Grid.Row="0" Grid.RowSpan="1">
+                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Background="#F1F1F1">
+
+                            <!-- Refresh -->
+                            <Button Name="btnRefreshPlaylists" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource RefreshPlaylistCommand}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="16" Width="16" Source="/Images/32_refresh.png" Margin="0,0,5,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Refresh}" Margin="0,0,5,0"/>
+                                </StackPanel>
+                            </Button>
+
+                            <!-- new playlist -->
+                            <Button  Name="btnAddPlaylist" Margin="3,2,2,2" Style="{DynamicResource FlatButtonStyle}" Command="{DynamicResource AddPlaylistCommand}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="16" Width="16" Source="/Images/32_playlist_add.png" Margin="0,0,3,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Playlist_NewPlaylist}" Margin="0,0,0,0"/>
+                                </StackPanel>
+                            </Button>
+
+                        </StackPanel>
+                        <ListBox DockPanel.Dock="Top" Name="lbPlaylists" BorderThickness="0" Background="Transparent" 
+                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemTemplateSelector="{StaticResource PlaylistTemplateSelector}" 
+                         ItemContainerStyle="{DynamicResource ListBoxItemStyle}" ItemsSource="{Binding Source={x:Static local:VM_PlaylistHelper.Instance},Path=ViewPlaylists}"
+                         >
+
+                        </ListBox>
+                    </DockPanel>
+
+                </Grid>
+
+            </TabItem>
+
+            <!-- Bookmarks tab-->
+            <TabItem Name="tabBookmarks" Style="{DynamicResource tabMainItem}"
+                     Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_Bookmarks}" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
+                    </StackPanel>
+                </TabItem.Header>
+
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Name="ScrollerBookmarks" Padding="0,0,0,0" >
+                    <usercontrols:BookmarksControl x:Name="ucBookmarks"/>
+
+                </ScrollViewer>
+
+
+
+            </TabItem>
+
+            <!-- Server tab-->
+            <TabItem Name="tabServer" Style="{DynamicResource tabMainItem}"
+                     Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_Server}" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
+                    </StackPanel>
+                </TabItem.Header>
+
+                <ScrollViewer>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6" Background="#FFE9ECEF" Margin="0,0,0,5">
+                            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ShokoServer_ImportFolders}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                        </Border>
+
+                        <usercontrols:ImportFolderAdmin Grid.Row="1" Grid.ColumnSpan="6"/>
+
+                        <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="6" Background="#FFE9ECEF" Margin="0,10,0,5">
+                            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ShokoServer_ServerStatus}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                        </Border>
+
+
+                        <!-- Hasher clear -->
+                        <Button Name="btnClearHasherQueue" Grid.Column="0" Grid.Row="3" Margin="10,2,2,2" Style="{DynamicResource RoundButtonStyle}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/16_clear.png" Margin="0,0,0,0"/>
+                            </StackPanel>
+                            <Button.ToolTip>
+                                <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_ClearHash}" Foreground="Black" FontWeight="DemiBold"/>
+                            </Button.ToolTip>
+                        </Button>
+
+                        <!-- Hasher pause -->
+                        <Button Grid.Column="1" Grid.Row="3" Margin="2,2,2,2" Style="{DynamicResource RoundButtonStyle}" Command="{StaticResource HasherQueuePauseCommand}"
+                        Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=HasherQueueRunning, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/16_pause.png" Margin="0,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+                        <!-- Hasher resume -->
+                        <Button Grid.Column="1" Grid.Row="3" Margin="2,2,2,2" Style="{DynamicResource RoundButtonStyle}" Command="{StaticResource HasherQueueResumeCommand}"
+                        Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=HasherQueuePaused, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/32_resume.png" Margin="0,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+
+                        <!-- Hasher status -->
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="2" Grid.Row="3">
+                            <Image Height="16" Width="16" Source="Images/16_server_hash.png" Margin="10,0,5,0" VerticalAlignment="Center"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=QueueHasher}" Margin="0,0,0,0"/>
+                            <TextBlock VerticalAlignment="Center" Text=" - " Margin="0,0,0,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ShokoServer_Running}" Margin="0,0,5,0"
+                                        Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=HasherQueueRunning, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ShokoServer_Paused}" Margin="0,0,5,0"
+                                       Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=HasherQueuePaused, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        </StackPanel>
+
+                        <TextBlock Grid.Column="3" Grid.Row="3" Margin="4,4,0,4" Text="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=HasherQueueCount}"  VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="4" Grid.Row="3" Margin="20,4,0,4" Text="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=HasherQueueState}"  VerticalAlignment="Center"/>
+
+
+
+
+
+                        <!-- General clear -->
+                        <Button Name="btnClearGeneralQueue" Grid.Column="0" Grid.Row="4" Margin="10,2,2,2" Style="{DynamicResource RoundButtonStyle}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/16_clear.png" Margin="0,0,0,0"/>
+                            </StackPanel>
+                            <Button.ToolTip>
+                                <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_ClearGeneral}" Foreground="Black" FontWeight="DemiBold"/>
+                            </Button.ToolTip>
+                        </Button>
+
+                        <!-- General pause -->
+                        <Button Grid.Column="1" Grid.Row="4" Margin="2,2,2,2" Style="{DynamicResource RoundButtonStyle}" Command="{StaticResource GeneralQueuePauseCommand}"
+                        Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=GeneralQueueRunning, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/16_pause.png" Margin="0,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+                        <!-- General resume -->
+                        <Button Grid.Column="1" Grid.Row="4" Margin="2,2,2,2" Style="{DynamicResource RoundButtonStyle}" Command="{StaticResource GeneralQueueResumeCommand}"
+                        Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=GeneralQueuePaused, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/32_resume.png" Margin="0,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+
+                        <!-- General status -->
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="2" Grid.Row="4">
+                            <Image Height="16" Width="16" Source="Images/16_server_connect.png" Margin="10,0,5,0" VerticalAlignment="Center"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=QueueGeneral}" Margin="0,0,0,0"/>
+                            <TextBlock VerticalAlignment="Center" Text=" - " Margin="0,0,0,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ShokoServer_Running}" Margin="0,0,5,0"
+                                    Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=GeneralQueueRunning, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ShokoServer_Paused}" Margin="0,0,5,0"
+                                    Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=GeneralQueuePaused, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        </StackPanel>
+
+
+
+                        <TextBlock Grid.Column="3" Grid.Row="4" Margin="4,4,0,4" Text="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=GeneralQueueCount}"  VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="4" Grid.Row="4" Margin="20,4,0,4" Text="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=GeneralQueueState}"  VerticalAlignment="Center"/>
+
+
+
+                        <!-- ServerImage clear -->
+                        <Button Name="btnClearServerImageQueue" Grid.Column="0" Grid.Row="5" Margin="10,2,2,2" Style="{DynamicResource RoundButtonStyle}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/16_clear.png" Margin="0,0,0,0"/>
+                            </StackPanel>
+                            <Button.ToolTip>
+                                <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_ClearGeneral}" Foreground="Black" FontWeight="DemiBold"/>
+                            </Button.ToolTip>
+                        </Button>
+
+                        <!-- ServerImage pause -->
+                        <Button Grid.Column="1" Grid.Row="5" Margin="2,2,2,2" Style="{DynamicResource RoundButtonStyle}" Command="{StaticResource ServerImageQueuePauseCommand}"
+                        Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ServerImageQueueRunning, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/16_pause.png" Margin="0,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+                        <!-- ServerImage resume -->
+                        <Button Grid.Column="1" Grid.Row="5" Margin="2,2,2,2" Style="{DynamicResource RoundButtonStyle}" Command="{StaticResource ServerImageQueueResumeCommand}"
+                        Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ServerImageQueuePaused, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/32_resume.png" Margin="0,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+
+                        <!-- Server Images status -->
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="2" Grid.Row="5">
+                            <Image Height="16" Width="16" Source="Images/16_image.png" Margin="10,0,5,0" VerticalAlignment="Center"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ShokoServer_ServerImage}" Margin="0,0,0,0"/>
+                            <TextBlock VerticalAlignment="Center" Text=" - " Margin="0,0,0,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ShokoServer_Running}" Margin="0,0,5,0"
+                                Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ServerImageQueueRunning, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ShokoServer_Paused}" Margin="0,0,5,0"
+                                Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ServerImageQueuePaused, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        </StackPanel>
+
+
+                        <TextBlock Grid.Column="3" Grid.Row="5" Margin="4,4,0,4" Text="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=ServerImageQueueCount}"  VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="4" Grid.Row="5" Margin="20,4,0,4" Text="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=ServerImageQueueState}"  VerticalAlignment="Center"/>
+
+
+                        <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="6" Background="#FFE9ECEF" Margin="0,10,0,5">
+                            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ServerActions}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                        </Border>
+
+                        <!-- Run Import -->
+                        <Button HorizontalAlignment="Left" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="6" Name="btnRunImport" Margin="10,0,0,0" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource RunImportCommand}" Width="Auto">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/16_update_data.png" Margin="0,0,5,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=RunImport}" Margin="0,0,5,0"/>
+                            </StackPanel>
+                        </Button>
+
+                        <!-- Remove Missing Files -->
+                        <Button Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="6" HorizontalAlignment="Left" Name="btnRemoveMissingFiles" Margin="10,0,0,0" Style="{DynamicResource FlatButtonStyle}" 
+                            Command="{StaticResource RemoveMissingFilesCommand}" Width="Auto"
+                            ToolTip="{usercontrols:Info Title=RemoveMissingFiles, 
+                                                Body=Tooltip_RemoveMissingFiles}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/16_update_data.png" Margin="0,0,5,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=RemoveMissingFiles}" Margin="0,0,5,0"/>
+                            </StackPanel>
+                        </Button>
+
+                        <!-- Update Media Info -->
+                        <Button Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="6" HorizontalAlignment="Left" Name="btnUpdateMediaInfo" Margin="10,0,0,0" Style="{DynamicResource FlatButtonStyle}" 
+                            Width="Auto" ToolTip="{usercontrols:Info Title=UpdateMediaInfo, 
+                                                Body=Tooltip_UpdateMediaInfo}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/16_update_data.png" Margin="0,0,5,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=UpdateMediaInfo}" Margin="0,0,5,0"/>
+                            </StackPanel>
+                        </Button>
+
+                        <!-- My List Sync -->
+                        <StackPanel Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="6" Margin="10,0,0,0" Orientation="Horizontal">
+                            <Button HorizontalAlignment="Left" Name="btnSyncMyList" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource SyncMyListCommand}" Width="Auto">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="0,0,5,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SyncMyList}" Margin="0,0,5,0"/>
+                                </StackPanel>
+                            </Button>
+                            <Button HorizontalAlignment="Left" Name="btnSyncVotes" Margin="10,0,0,0" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource SyncVotesCommand}" Width="Auto">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                    <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="0,0,5,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SyncVotes}" Margin="0,0,5,0"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+
+                        <!-- MAL Sync -->
+                        <StackPanel Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="6" Margin="10,0,0,0" Orientation="Horizontal">
+                            <Button HorizontalAlignment="Left" Name="btnSyncMalUp" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource SyncMALUpCommand}" Width="Auto">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" 
+                                        ToolTip="{usercontrols:Info Title=SyncMalUp, 
+                                                Body=Tooltip_SyncMalUp}">
+                                    <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="0,0,5,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SyncMalUp}" Margin="0,0,5,0"/>
+                                </StackPanel>
+                            </Button>
+                            <Button HorizontalAlignment="Left" Name="btnSyncMalDown" Margin="10,0,0,0" Style="{DynamicResource FlatButtonStyle}" Command="{StaticResource SyncMALDownCommand}" Width="Auto">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" 
+                                        ToolTip="{usercontrols:Info Title=SyncMalDown, 
+                                                Body=Tooltip_SyncMalDown}">
+                                    <Image Height="16" Width="16" Source="/Images/32_sync.png" Margin="0,0,5,0"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SyncMalDown}" Margin="0,0,5,0"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+
+                    </Grid>
+                </ScrollViewer>
+
+
+            </TabItem>
+
+            <!-- Utilities tab -->
+            <TabItem Name="tabFiles" Style="{DynamicResource tabMainItem}"
+                     Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_Utilities}" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
+                    </StackPanel>
+                </TabItem.Header>
+
+                <TabControl Name="tabFileManager" TabStripPlacement="Left" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,10,5,5">
+
+                    <TabControl.Resources>
+                        <Style TargetType="{x:Type TabItem}">
+                            <Setter Property="Padding" Value="6" />
+
+                        </Style>
+                    </TabControl.Resources>
+
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_UnrecognisedFiles}" Name="tabUnrecognisedFiles">
+
+                        <usercontrols:UnrecognisedVideos x:Name="unRecVids"/>
+                    </TabItem>
+
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_IgnoredFiles}" Name="tabIgnoredFiles">
+
+                        <usercontrols:IgnoredFiles x:Name="ignoredFiles"/>
+                    </TabItem>
+
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_ManuallyLinked}" Name="tabManuallyLinked">
+
+                        <usercontrols:ManuallyLinkedFilesControl x:Name="linkedFiles"/>
+                    </TabItem>
+
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_DuplicateFiles}" Name="tabDuplicateFiles">
+
+                        <usercontrols:DuplicateFilesControl x:Name="duplicateFiles"/>
+                    </TabItem>
+
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_MultipleFiles}" Name="tabMultipleFiles">
+
+                        <usercontrols:MultipleFilesControl x:Name="multipleFiles"/>
+                    </TabItem>
+
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_MissingFiles}" Name="tabMissingFiles">
+
+                        <usercontrols:MissingMyListFilesControl x:Name="missingFiles"/>
+                    </TabItem>
+
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_SeriesWithoutFiles}" Name="tabSeriesWithoutFiles">
+
+                        <usercontrols:SeriesWithoutFilesControl x:Name="SeriesWithoutFiles"/>
+                    </TabItem>
+
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_MissingEpisodes}" Name="tabMissingEpisodes">
+
+                        <usercontrols:MissingEpisodesControl x:Name="missingEpisodes"/>
+                    </TabItem>
+
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_IgnoredAnime}" Name="tabIgnoredAnime">
+
+                        <usercontrols:IgnoredAnimeControl x:Name="ignoredAnime"/>
+                    </TabItem>
+
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_AniDBAVDump}" Name="tabAvdump">
+
+                        <usercontrols:AvdumpBatchControl x:Name="avdumpBatch"/>
+                    </TabItem>
+
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_FileSearch}" Name="tabFileSearch">
+
+                        <usercontrols:FileSearchControl x:Name="fileSearch"/>
+                    </TabItem>
+
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_FileRename}" Name="tabFileRenaming">
+
+                        <usercontrols:FileRenameControl x:Name="fileRenaming"/>
+                    </TabItem>
+
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_UpdateAniDB}" Name="tabUpdateAniDBData">
+
+                        <usercontrols:UpdateAniDBDataControl x:Name="updateAniDBData"/>
+                    </TabItem>
+
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_CommunityData}" Name="tabCommMaint">
+
+                        <community:CommunityMaint x:Name="commMaint"/>
+                    </TabItem>
+
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_MyVotes}" Name="tabRankings">
+
+                        <usercontrols:RankingsControl x:Name="rankings"/>
+                    </TabItem>
+
+                </TabControl>
+
+
+
+            </TabItem>
+
+            <!-- Settings tab -->
+            <TabItem Name="tabSettings" Style="{DynamicResource tabMainItem}">
+
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Settings}" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
+                    </StackPanel>
+                </TabItem.Header>
+
+                <TabControl Name="tabSettingsChild" TabStripPlacement="Left" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,10,5,5">
+
+                    <TabControl.Resources>
+                        <Style TargetType="{x:Type TabItem}">
+                            <Setter Property="Padding" Value="6" />
+
+                        </Style>
+                    </TabControl.Resources>
+
+                    <!-- Essential settings tab -->
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_SettingsEssential}" Name="tabSettingsEssential">
+
+                        <ScrollViewer>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="0"  Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="25"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0" VerticalAlignment="Top"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Info_SettingsEssential}" Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1" />
+                                    </Grid>
+                                </Border>
+
+                                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="1" Background="#FFE9ECEF" Margin="0,0,0,5">
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ShokoServer}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                </Border>
+
+                                <settings:JMMServerSettings Grid.Column="0" Grid.Row="2" Margin="5,0,0,10"/>
+
+                                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="3" Background="#FFE9ECEF" Margin="0,0,0,5"
+                                        Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <TextBlock  Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AniDBLogin}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                </Border>
+
+                                <settings:AniDBLoginSettings Grid.Column="0" Grid.Row="4" Margin="5,0,0,10"
+                                        Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                                <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="5"  Background="#F1F1F1" Margin="0,0,0,5" Padding="5"
+                                        Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="25"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="25"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="25"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Image Height="16" Width="16" Source="/Images/32_admin.png" Margin="5,2,5,0" Grid.Column="0" VerticalAlignment="Top"/>
+                                        <usercontrols:HyperLinkStandard Margin="0,0,20,0" VerticalAlignment="Center" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AniDBSignup}" Grid.Column="1"
+                                                                        URL="http://anidb.net"/>
+
+                                        <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="2" VerticalAlignment="Top"/>
+                                        <usercontrols:HyperLinkStandard Margin="0,0,20,0" VerticalAlignment="Center" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AvdumpInfoLink}" Grid.Column="3"
+                                                                        URL="http://wiki.anidb.net/w/Avdump2"/>
+
+                                        <Image Height="16" Width="16" Source="/Images/32_key.png" Margin="5,2,4,0" Grid.Column="4" VerticalAlignment="Top"/>
+                                        <usercontrols:HyperLinkStandard Margin="0,0,20,0" VerticalAlignment="Center" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AvdumpKeyEditLink}" Grid.Column="5"
+                                                                        URL="http://anidb.net/perl-bin/animedb.pl?show=profile"/>
+
+
+                                    </Grid>
+                                </Border>
+
+                                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="6" Background="#FFE9ECEF" Margin="0,0,0,5"
+                                        Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <TextBlock  Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ImportFolders}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                </Border>
+
+                                <usercontrols:ImportFolderAdmin Grid.Column="0" Grid.Row="7" Margin="0,0,0,10"
+                                        Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="8" Background="#FFE9ECEF" Margin="0,0,0,5"
+                                        Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <TextBlock  Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_Settings_ImportSettings}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                </Border>
+
+                                <settings:ImportSettings Grid.Column="0" Grid.Row="9" Margin="0,0,0,10"
+                                        Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="10" Background="#FFE9ECEF" Margin="0,0,0,5"
+                                        Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <TextBlock  Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_Settings_RelationSettings}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                </Border>
+
+                                <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="11"  Background="#F1F1F1" Margin="0,0,0,5" Padding="5" Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="25"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0" VerticalAlignment="Top"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=RelationSettings_Info}" Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1" Grid.Row="0"/>
+
+                                        <usercontrols:HyperLinkStandard Margin="0,0,0,0" VerticalAlignment="Center" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=LearnMore_RelationSettings}"  Grid.Column="1" Grid.Row="1" URL="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Link_RelationSettings}"/>
+                                    </Grid>
+                                </Border>
+
+                                <settings:RelationSettings Grid.Column="0" Grid.Row="12" Margin="0,0,0,10"
+                                        Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                            </Grid>
+                        </ScrollViewer>
+
+                    </TabItem>
+
+                    <!-- AniDB Settings tab -->
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_SettingsAniDB}" Name="tabSettingsAniDB"
+                            Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}" >
+
+                        <ScrollViewer>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+
+                                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="0" Background="#FFE9ECEF" Margin="0,0,0,5"
+                                        Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <TextBlock  Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AniDBLogin}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                </Border>
+
+                                <settings:AniDBLoginSettings Grid.Column="0" Grid.Row="1" Margin="5,0,0,10"
+                                        Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                                <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="2"  Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="25"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="25"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="25"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Image Height="16" Width="16" Source="/Images/32_admin.png" Margin="5,2,5,0" Grid.Column="0" VerticalAlignment="Top"/>
+                                        <usercontrols:HyperLinkStandard Margin="0,0,20,0" VerticalAlignment="Center" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AniDBSignup}" Grid.Column="1"
+                                                                        URL="http://anidb.net"/>
+
+                                        <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="2" VerticalAlignment="Top"/>
+                                        <usercontrols:HyperLinkStandard Margin="0,0,20,0" VerticalAlignment="Center" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AvdumpInfoLink}" Grid.Column="3"
+                                                                        URL="http://wiki.anidb.net/w/Avdump2"/>
+
+                                        <Image Height="16" Width="16" Source="/Images/32_key.png" Margin="5,2,4,0" Grid.Column="4" VerticalAlignment="Top"/>
+                                        <usercontrols:HyperLinkStandard Margin="0,0,20,0" VerticalAlignment="Center" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AvdumpKeyEditLink}" Grid.Column="5"
+                                                                        URL="http://anidb.net/perl-bin/animedb.pl?show=profile"/>
+
+
+                                    </Grid>
+                                </Border>
+
+                                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="3" Background="#FFE9ECEF" Margin="0,0,0,5"
+                                        Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <TextBlock  Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AniDBDownloadOptions}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                </Border>
+
+                                <settings:AniDBDownloadSettings Grid.Column="0" Grid.Row="4" Margin="5,0,0,10"
+                                        Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="5" Background="#FFE9ECEF" Margin="0,0,0,5"
+                                        Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <TextBlock  Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AniDBMylistOptions}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                </Border>
+
+                                <settings:AniDBMyListSettings Grid.Column="0" Grid.Row="6" Margin="5,0,0,10"
+                                        Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                                <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="7"  Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="25"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0" VerticalAlignment="Top"/>
+                                        <usercontrols:HyperLinkStandard VerticalAlignment="Center" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=LearnMore_AniDBOptions}" Grid.Column="1"
+                                                                        URL="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Link_AniDBSettings}"/>
+                                    </Grid>
+                                </Border>
+
+                                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="8" Background="#FFE9ECEF" Margin="0,0,0,5"
+                                        Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <TextBlock  Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AniDBScheduleOptions}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                </Border>
+
+                                <settings:AniDBScheduledUpdates Grid.Column="0" Grid.Row="9" Margin="5,0,0,10"
+                                        Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                                <!-- Languages -->
+                                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="10" Background="#FFE9ECEF" Margin="0,0,0,5">
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_Settings_Language}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                </Border>
+
+                                <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="11"  Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="25"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0" VerticalAlignment="Top"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Info_SettingsLanguage}" Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1"/>
+                                    </Grid>
+                                </Border>
+
+                                <settings:LanguagePreferenceSettings Grid.Column="0" Grid.Row="12" Margin="5,0,0,10"/>
+
+                            </Grid>
+                        </ScrollViewer>
+
+                    </TabItem>
+
+                    <!-- TvDB / MovieDB Settings tab -->
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_SettingsOnlineDB}" Name="tabSettingsOnlineDB"
+                             Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                        <ScrollViewer>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="0" Background="#FFE9ECEF" Padding="4" Margin="0,0,0,5">
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Height="24" Width="24" Source="/Images/32_tvdb.png" Margin="5,0,5,0" Grid.Column="0" VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_SettingsOnlineDB_TvDB}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                        <usercontrols:HyperLinkStandard VerticalAlignment="Center" Margin="5,0,0,0" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=WhatsThis}"
+                                                                        URL="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Link_TvDB}"/>
+                                    </StackPanel>
+
+                                </Border>
+
+                                <settings:TvDBSettings Grid.Column="0" Grid.Row="1" Margin="5,0,0,10"/>
+
+                                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="2" Background="#FFE9ECEF" Padding="4" Margin="0,0,0,5">
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Height="24" Width="24" Source="/Images/32_tmdb.png" Margin="5,0,5,0" Grid.Column="0" VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_SettingsOnlineDB_MovieDB}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                        <usercontrols:HyperLinkStandard VerticalAlignment="Center" Margin="5,0,0,0" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=WhatsThis}"
+                                                                        URL="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Link_TMDb}"/>
+                                    </StackPanel>
+
+
+                                </Border>
+
+                                <settings:MovieDBSettings Grid.Column="0" Grid.Row="3" Margin="5,0,0,10"/>
+
+                                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="4" Background="#FFE9ECEF" Padding="4" Margin="0,0,0,5">
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Height="24" Width="24" Source="/Images/32_trakt.png" Margin="5,0,5,0" Grid.Column="0" VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_SettingsOnlineDB_Trakt}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                        <usercontrols:HyperLinkStandard VerticalAlignment="Center" Margin="5,0,0,0" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=WhatsThis}"
+                                                                        URL="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Link_Trakt}"/>
+                                    </StackPanel>
+
+                                </Border>
+
+                                <settings:TraktSettings Grid.Column="0" Grid.Row="5" Margin="5,0,0,10"/>
+
+                                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="6" Background="#FFE9ECEF" Padding="4" Margin="0,0,0,5">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Height="24" Width="24" Source="/Images/32_mal.png" Margin="5,0,5,0" Grid.Column="0" VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_SettingsOnlineDB_MAL}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                        <usercontrols:HyperLinkStandard VerticalAlignment="Center" Margin="5,0,0,0" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=WhatsThis}"
+                                                                        URL="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Link_MAL}"/>
+                                    </StackPanel>
+
+                                </Border>
+
+                                <settings:MALSettings Grid.Column="0" Grid.Row="7" Margin="5,0,0,10"/>
+
+                            </Grid>
+                        </ScrollViewer>
+                    </TabItem>
+
+                    <!-- Web Cache Settings tab -->
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_SettingsWebCache}" Name="tabSettingsWebCache"
+                             Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                        <ScrollViewer>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="0"  Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="25"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0" VerticalAlignment="Top"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Info_SettingsWebCache}" Margin="0,1,5,0" TextWrapping="Wrap" Grid.Column="1"/>
+                                        <usercontrols:HyperLinkStandard Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="0,0,5,0" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=LearnMore_WebCache}"
+                                                                        URL="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Link_WebCache}"/>
+                                    </Grid>
+                                </Border>
+
+                                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="1" Background="#FFE9ECEF" Margin="0,0,0,5">
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_SettingsWebCache}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                </Border>
+
+                                <settings:WebCacheBasicSettings Grid.Column="0" Grid.Row="2" Margin="5,0,0,10"/>
+
+                            </Grid>
+                        </ScrollViewer>
+                    </TabItem>
+
+                    <!-- Display options tab -->
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_SettingsDisplay}" Name="tabSettingDisplay"
+                             Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <ScrollViewer>
+                            
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+
+                                <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="1"  Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="25"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0" VerticalAlignment="Top"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Info_SettingsDisplay}" Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1"/>
+                                    </Grid>
+                                </Border>
+                                
+                                <!-- Styles -->
+
+                                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="3" Background="#FFE9ECEF" Margin="0,0,0,5">
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_SettingsStyle}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                </Border>
+  
+
+                                <settings:DisplayStyleSettings Grid.Column="0" Grid.Row="5" Margin="5,0,0,10"/>
+
+                                <!-- Image Sizes -->
+                                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="6" Background="#FFE9ECEF" Margin="0,0,0,5">
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_SettingsImageSizes}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                </Border>
+
+                                <settings:DisplayImageSizesSettings Grid.Column="0" Grid.Row="7" Margin="5,0,0,10"/>
+
+
+                            </Grid>
+                        </ScrollViewer>
+                    </TabItem>
+
+                    <!-- Users tab -->
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_SettingsUsers}" Name="tabSettingUsers"
+                             Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=IsAdminUser, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <ScrollViewer>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+
+                                <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="0"  Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="25"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0" VerticalAlignment="Top"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Info_SettingsUserAdmin}" Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1"/>
+                                    </Grid>
+                                </Border>
+
+
+
+                                <usercontrols:UserAdminControl x:Name="ucUserAdmin" Grid.Column="0" Grid.Row="1" Margin="5,0,0,10"/>
+
+
+                            </Grid>
+                        </ScrollViewer>
+                    </TabItem>
+
+                    <!-- Video Player tab -->
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_VideoPlayer}" Name="tabSettingVideoPlayer"
+                             Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <ScrollViewer>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+
+
+
+
+                                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="0" Background="#FFE9ECEF" Margin="0,0,0,5">
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_VideoPlayer}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                </Border>
+
+
+
+                                <settings:VideoPlayerSettingsControl Grid.Column="0" Grid.Row="1" Margin="5,0,0,10"/>
+
+                                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="2" Background="#FFE9ECEF" Margin="0,0,0,5">
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VideoPlayer_AutoFile}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                </Border>
+
+
+                                <settings:VideoPlayerOptionsControl Grid.Column="0" Grid.Row="3" Margin="5,0,0,10"/>
+
+                            </Grid>
+                        </ScrollViewer>
+                    </TabItem>
+
+                </TabControl>
+
+            </TabItem>
+
+            <!-- Sticky tab-->
+            <TabItem Name="tabSticky" Style="{DynamicResource tabMainItem}"
+                     Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_Pinned}" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabControl Name="tabPinned" VerticalAlignment="Stretch" TabStripPlacement="Left"
+                                Width="{Binding Source={x:Static local:VM_MainListHelper.Instance},Path=FullScrollerWidth}" Margin="5,5,5,5"  />
+
+            </TabItem>
+
+            <!-- Downloads tab -->
+            <TabItem Name="tabDownloads" Style="{DynamicResource tabMainItem}"
+                     Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_Downloads}" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
+                    </StackPanel>
+                </TabItem.Header>
+
+                <TabControl Name="tabcDownloads" TabStripPlacement="Left" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,10,5,5">
+
+                    <TabControl.Resources>
+                        <Style TargetType="{x:Type TabItem}">
+                            <Setter Property="Padding" Value="6" />
+
+                        </Style>
+                    </TabControl.Resources>
+
+
+
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_uTorrent}" Name="tabuTorrent">
+                        <downloads1:DownloadsTorrentMonitorControl/>
+
+                    </TabItem>
+
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_SearchTorrents}" Name="tabSearchTorrents">
+                        <downloads1:DownloadsSearchTorrentsControl x:Name="ucTorrentSearch"/>
+
+                    </TabItem>
+
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_BrowseTorrents}" Name="tabBrowseTorrents">
+                        <downloads1:DownloadsBrowseTorrentsControl/>
+
+                    </TabItem>
+
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_MissingEpisodes}" Name="tabDownloadsMissingEpisodes">
+                        <usercontrols:MissingEpisodesControl/>
+
+                    </TabItem>
+
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_Recommendations}" Name="tabRecommendations">
+                        <downloads1:DownloadRecommendationsControl/>
+
+                    </TabItem>
+
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_Settings}" Name="tabDownloadSettings">
+
+                        <ScrollViewer>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="0"  Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="25"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0" VerticalAlignment="Top"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Info_Downloads}" Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1"/>
+
+                                        <usercontrols:HyperLinkStandard Margin="0,0,0,0" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=LearnMore_Downloads}" 
+                                                                        URL="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Link_Downloads}"/>
+                                    </Grid>
+                                </Border>
+
+                                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="1" Background="#FFE9ECEF" Margin="0,0,0,5">
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Downloads_uTorrentWebUI}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                </Border>
+
+                                <downloads1:DownloadsSettingsControl Grid.Column="0" Grid.Row="2" Margin="5,0,0,10"/>
+
+                                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="3" Background="#FFE9ECEF" Margin="0,0,0,5">
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Downloads_TorrentBlackHole}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                </Border>
+
+                                <downloads1:DownloadsTorrentBlackHole Grid.Column="0" Grid.Row="4" Margin="5,0,0,10"/>
+
+                                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="5" Background="#FFE9ECEF" Margin="0,0,0,5">
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Downloads_TorrentDefault}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                </Border>
+
+                                <downloads1:DownloadSettingsTorSources Grid.Column="0" Grid.Row="6" Margin="5,0,0,10"/>
+
+                                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="7" Background="#FFE9ECEF" Margin="0,0,0,5">
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Downloads_BakaBT}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                </Border>
+
+                                <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="8"  Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="25"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0" VerticalAlignment="Top"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Downloads_BakaBTInfo}" Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1"/>
+
+                                        <usercontrols:HyperLinkStandard Margin="5,0,20,0" VerticalAlignment="Center" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Downloads_GoTo}"  Grid.Column="2"
+                                                                        URL="http://bakabt.me"/>
+                                    </Grid>
+                                </Border>
+
+                                <downloads1:DownloadSettingsBakaBT Grid.Column="0" Grid.Row="9" Margin="5,0,0,10"/>
+
+                                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="10" Background="#FFE9ECEF" Margin="0,0,0,5">
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Downloads_AnimeBytes}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                </Border>
+
+                                <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="11"  Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="25"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0" VerticalAlignment="Top"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Downloads_AnimeBytesInfo}" Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1"/>
+
+                                        <usercontrols:HyperLinkStandard Margin="5,0,20,0" VerticalAlignment="Center" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Downloads_GoTo}"  Grid.Column="2"
+                                                                        URL="http://animebytes.tv"/>
+                                    </Grid>
+                                </Border>
+
+                                <downloads1:DownloadSettingsAnimeBytes Grid.Column="0" Grid.Row="12" Margin="5,0,0,10"/>
+
+                            </Grid>
+                        </ScrollViewer>
+
+
+                    </TabItem>
+
+                </TabControl>
+
+
+
+            </TabItem>
+
+            <!-- Search tab-->
+            <TabItem Name="tabSearch" Style="{DynamicResource tabMainItem}"
+                     Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ServerOnline, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Height="20" Source="/Images/32_search.png" Margin="0,0,5,0"/>
+                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_Search}" Margin="0,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
+                    </StackPanel>
+                </TabItem.Header>
+
+                <usercontrols:SeriesSearchControl x:Name="seriesSearch" Margin="0,0,0,0"/>
+
+            </TabItem>
+
+            <TabItem Name="tabHelp" Style="{DynamicResource tabMainItem}">
+                <TabItem.Header>
+                    <Hyperlink Cursor="Arrow" TextDecorations="{x:Null}" NavigateUri="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Link_Help}" RequestNavigate="Hyperlink_RequestNavigate">
+                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_Help}" Margin="0,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold" />
+                    </Hyperlink>
+                </TabItem.Header>
+            </TabItem>
+
+            <!-- Community tab-->
+            <TabItem Name="tabCommunity" Style="{DynamicResource tabMainItem}"
+                     Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowCommunity, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
+                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_Community}" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
+                    </StackPanel>
+                </TabItem.Header>
+
+                <TabControl Name="tabcCommunity" TabStripPlacement="Left" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,10,5,5">
+
+                    <TabControl.Resources>
+                        <Style TargetType="{x:Type TabItem}">
+                            <Setter Property="Padding" Value="6" />
+
+                        </Style>
+                    </TabControl.Resources>
+
+
+
+
+
+                    <TabItem Header="Links" Name="tabComLinks">
+                        <community:CommunityLinksControl x:Name="ucComLinks"/>
+
+                    </TabItem>
+
+                    <TabItem Header="Stats" Name="tabComStats">
+
+                        <TextBlock Margin="10" Text="Not Yet Implemented" FontSize="20"/>
+                    </TabItem>
+
+
+
+
+
+                </TabControl>
+
+            </TabItem>
+
+        </TabControl>
+
+        <!-- bottom status bar container -->
+        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Height="30" Grid.Row="1" Background="#F1F1F1">
+            <DockPanel >
+                <StackPanel Orientation="Horizontal"  Background="#F1F1F1" DockPanel.Dock="Left">
+
+                    <!-- hasher command queue -->
+                    <Image Height="16" Width="16" Source="/Images/16_server_hash.png" Margin="5,4,0,4" VerticalAlignment="Center">
+                        <Image.ToolTip>
+                            <StackPanel Orientation="Vertical">
+                                <Border Background="SteelBlue">
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_QueueHasher}" FontWeight="Bold" Foreground="White" Padding="6"/>
+                                </Border>
+                                <TextBlock Margin="4,4,0,4" Text="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=HasherQueueState}"/>
+                            </StackPanel>
+                        </Image.ToolTip>
+                    </Image>
+                    <TextBlock Name="tbHasherQueueCount" Margin="4,4,0,4" Text="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=HasherQueueCount}"  VerticalAlignment="Center">
+                    </TextBlock>
+
+                    <!-- general command queue -->
+                    <Image Height="16" Width="16" Source="/Images/16_server_connect.png" Margin="15,4,0,4" VerticalAlignment="Center">
+                        <Image.ToolTip>
+                            <StackPanel Orientation="Vertical">
+                                <Border Background="SteelBlue">
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_QueueGeneral}" FontWeight="Bold" Foreground="White" Padding="6"/>
+                                </Border>
+                                <TextBlock Margin="4,4,0,4" Text="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=GeneralQueueState}"/>
+                            </StackPanel>
+                        </Image.ToolTip>
+                    </Image>
+                    <TextBlock Name="tbGeneralQueueCount" Margin="4,4,0,4" Text="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=GeneralQueueCount}"  VerticalAlignment="Center">
+                    </TextBlock>
+
+                    <!-- Image download queue -->
+                    <Image Height="16" Width="16" Source="/Images/16_image.png" Margin="15,4,0,4" VerticalAlignment="Center">
+                        <Image.ToolTip>
+                            <StackPanel Orientation="Vertical">
+                                <Border Background="SteelBlue">
+                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_QueueImages}" FontWeight="Bold" Foreground="White" Padding="6"/>
+                                </Border>
+                                <TextBlock Margin="4,4,0,4" Text="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=ServerImageQueueState}"/>
+                            </StackPanel>
+                        </Image.ToolTip>
+                    </Image>
+                    <TextBlock Name="tbImageDownloadQueueStatus" Margin="4,4,0,4" Text="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=ServerImageQueueCount}" VerticalAlignment="Center">
+                    </TextBlock>
+
+                    <!-- Admin Messages -->
+                    <Button Name="btnAdminMessages" Margin="10,2,2,2" Style="{DynamicResource FlatButtonStyle}"
+                        Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=AdminMessagesAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                            <Image Height="16" Width="16" Source="/Images/32_mail.png" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Main_Messages}" Margin="0,0,5,0"/>
+                        </StackPanel>
+                    </Button>
+
+
+                    <!--banned message-->
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,4,0,4"
+                                Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=IsBanned, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Image Height="16" Width="16" Source="/Images/16_exclamation.png" Margin="0,0,5,0"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Main_Paused}" Margin="0,0,0,0" FontWeight="Bold"/>
+                        <TextBlock VerticalAlignment="Center" Margin="0,0,0,0" Text="(" FontWeight="Bold"/>
+                        <TextBlock VerticalAlignment="Center" Text="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=BanOrigin}" FontWeight="Bold"/>
+                        <TextBlock VerticalAlignment="Center" Margin="0,0,0,0" Text=")" FontWeight="Bold"/>
+                        <TextBlock VerticalAlignment="Center" Margin="10,0,0,0" Text="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=BanReason}"/>
+                        <usercontrols:HyperLinkStandard VerticalAlignment="Center" Margin="10,0,0,0" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=WhatDoesThisMean}" Grid.Column="1"
+                                                                        URL="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Link_AniDBBanned}"/>
+                    </StackPanel>
+
+
+
+                </StackPanel>
+
+
+
+                <StackPanel Orientation="Horizontal"   DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="5,0,10,0">
+
+                    <Button Name="btnSwitchUser"  Margin="2" Style="{DynamicResource RoundButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <Image Height="16" Width="16" Source="/Images/64_user.png" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Main_User}" FontWeight="Bold" Margin="0,0,5,0"/>
+                        </StackPanel>
+                    </Button>
+
+                    <TextBlock VerticalAlignment="Center" Text="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=Username}" Margin="0,0,5,0"/>
+
+                    <ComboBox Grid.Row="0" Name="cboLanguages" Margin="5,3,0,3" HorizontalAlignment="Left"
+                              ItemTemplate="{StaticResource userLanguageTemplate}"></ComboBox>
+
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal"   DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="5,0,5,0">
+
+
+                    <Button x:Name="btnFeed"  Margin="2,2,2,0" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <Image Height="16" Width="16" Source="Images/32_feed.png" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Main_Feed}" Margin="0,0,0,0"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="btnDiscord"  Margin="2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <Image Height="16" Width="16" Source="Images/16_discord.png" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Main_Discord}" Margin="0,0,0,0"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="btnAbout"  Margin="2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <Image Height="16" Width="16" Source="Images/32_info.png" Margin="0,0,5,0"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Main_About}" Margin="0,0,0,0"/>
+                        </StackPanel>
+                    </Button>
+
+
+                </StackPanel>
+            </DockPanel>
+        </Border>
+    </Grid>
+
+</Window>
+

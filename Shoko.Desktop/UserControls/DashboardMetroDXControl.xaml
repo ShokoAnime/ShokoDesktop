@@ -1,0 +1,587 @@
+﻿<UserControl x:Class="Shoko.Desktop.UserControls.DashboardMetroDXControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+            xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+            xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+            xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+            xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts"
+            xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvmsample"
+       
+             xmlns:local="clr-namespace:Shoko.Desktop.ViewModel"
+             xmlns:extToolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
+             xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
+             xmlns:MahControls="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:MahShared="http://metro.mahapps.com/winfx/xaml/shared"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:wpfHelpers="clr-namespace:Shoko.Desktop.WPFHelpers"
+             xmlns:metro="clr-namespace:Shoko.Desktop.ViewModel.Metro"
+             mc:Ignorable="d"
+            d:DesignHeight="800" d:DesignWidth="1000">
+
+
+    <UserControl.Resources>
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+                <ResourceDictionary Source="/ShokoDesktop;component/Resources/Metro.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <ImageBrush x:Key="noise" ImageSource="/Images/Backgrounds/subtlenet2.png" TileMode="Tile" Viewport="0,0 128,128" ViewportUnits="Absolute" />
+
+            <wpfHelpers:StringFormatConverter x:Key="StringFormatConverter" />
+            <wpfHelpers:ImageSourceConverter x:Key="ImageSourceConverter" />
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+
+            <RoutedUICommand x:Key="MoveUpSectionCommand" Text="MoveUpSectionCommand" />
+            <RoutedUICommand x:Key="MoveDownSectionCommand" Text="MoveDownSectionCommand" />
+            <RoutedUICommand x:Key="EnableSectionCommand" Text="EnableSectionCommand" />
+            <RoutedUICommand x:Key="DisableSectionCommand" Text="DisableSectionCommand" />
+
+            
+
+            <Style x:Key="VerticalTile" TargetType="dxlc:Tile">
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                <Setter Property="Size" Value="Small" />
+                <Setter Property="HeaderTemplate">
+                    <Setter.Value>
+                        <DataTemplate />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="ContentTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Image Source="{Binding}" Stretch="None" />
+                                <TextBlock Text="{Binding Path=Header, RelativeSource={RelativeSource AncestorType=dxlc:Tile}}" FontSize="14" Margin="0,5,0,0" HorizontalAlignment="Center" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="HorizontalTile" TargetType="dxlc:Tile">
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                <Setter Property="Size" Value="Large" />
+                <Setter Property="HeaderTemplate">
+                    <Setter.Value>
+                        <DataTemplate />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="ContentTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{Binding}" Stretch="None" />
+                                <TextBlock Text="{Binding Path=Header, RelativeSource={RelativeSource AncestorType=dxlc:Tile}}" FontSize="14" Margin="20,0,0,0" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="FlatTile" TargetType="dxlc:Tile">
+                <Setter Property="Size" Value="Large" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="VerticalHeaderAlignment" Value="Stretch" />
+            </Style>
+
+            <!-- ContinueWatchingTile -->
+            <DataTemplate DataType="{x:Type metro:ContinueWatchingTile}">
+
+                <Border BorderBrush="DarkGray" BorderThickness="1">
+                    <Grid Background="Transparent">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Margin="0" Stretch="Uniform" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" 
+                               RenderOptions.BitmapScalingMode="HighQuality" wpfHelpers:ImageAsyncHelper.SourceUri="{Binding Picture}">
+                        </Image>
+
+                        <Border HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0" VerticalAlignment="Top" BorderThickness="2,0,0,2" BorderBrush="Black" Background="{StaticResource GreenGradientBrush}">
+                            <TextBlock Margin="5" FontSize="16" Text="{Binding UnwatchedEpisodes}" FontWeight="ExtraBold"  />
+                        </Border>
+
+                        <Border VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">
+                            <Border.Background>
+                                <SolidColorBrush Color="Black" Opacity="0.6"/>
+                            </Border.Background>
+                            <StackPanel Margin="6,2,6,3">
+                                <TextBlock FontSize="12" Text="{Binding AnimeName}" />
+                                <TextBlock FontSize="12" Text="{Binding EpisodeDetails}" TextWrapping="Wrap" />
+                            </StackPanel>
+                        </Border>
+
+                    </Grid>
+                </Border>
+            </DataTemplate>
+
+            <!-- RandomSeriesTile -->
+            <DataTemplate DataType="{x:Type metro:RandomSeriesTile}">
+
+                <Border BorderBrush="DarkGray" BorderThickness="1">
+                    <Grid Background="Transparent">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Margin="0" Stretch="Uniform" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" RenderOptions.BitmapScalingMode="HighQuality">
+                            <Image.Source>
+                                <BitmapImage UriSource="{Binding Path=Picture}" />
+                            </Image.Source>
+                        </Image>
+
+                        <Border VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">
+                            <Border.Background>
+                                <SolidColorBrush Color="Black" Opacity="0.6"/>
+                            </Border.Background>
+                            <StackPanel Margin="6,2,6,3">
+                                <TextBlock FontSize="12" Text="{Binding AnimeName}" />
+                                <TextBlock FontSize="12" Text="{Binding Details}" />
+                            </StackPanel>
+                        </Border>
+
+                    </Grid>
+                </Border>
+            </DataTemplate>
+
+            <!-- NewEpisodeTile -->
+            <DataTemplate DataType="{x:Type metro:NewEpisodeTile}">
+
+                <Border BorderBrush="DarkGray" BorderThickness="1">
+                    <Grid Background="Transparent">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Margin="0" Stretch="Uniform" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="3" 
+                               RenderOptions.BitmapScalingMode="HighQuality" wpfHelpers:ImageAsyncHelper.SourceUri="{Binding Picture}">
+                        </Image>
+
+                        <Border VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">
+                            <Border.Background>
+                                <SolidColorBrush Color="Black" Opacity="0.6"/>
+                            </Border.Background>
+                            <StackPanel Margin="6,2,6,3">
+                                <TextBlock FontSize="12" Text="{Binding AnimeName}" FontWeight="Bold" />
+                                <TextBlock FontSize="12" Text="{Binding EpisodeDetails}" />
+                            </StackPanel>
+                        </Border>
+
+                    </Grid>
+                </Border>
+            </DataTemplate>
+
+            <!-- MetroSectionTemplate -->
+            <DataTemplate x:Key="MetroSectionTemplate">
+
+                <StackPanel Orientation="Horizontal">
+                    <Button HorizontalAlignment="Left" Name="btnEnable" Margin="5,0,0,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto"
+                            Visibility="{Binding Path=Disabled, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            Command="{StaticResource EnableSectionCommand}" CommandParameter="{Binding}" 
+                            ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_MetroEnable}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                            <Image Height="26" Width="26" Source="/Images/Metro/check_false.png" Margin="0,0,0,0"/>
+
+                        </StackPanel>
+                    </Button>
+
+                    <Button HorizontalAlignment="Left" Name="btnDisable" Margin="5,0,0,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto"
+                            Visibility="{Binding Path=Enabled, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            Command="{StaticResource DisableSectionCommand}" CommandParameter="{Binding}" 
+                            ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tooltip_MetroEnable}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                            <Image Height="26" Width="26" Source="/Images/Metro/check_true.png" Margin="0,0,0,0"/>
+
+                        </StackPanel>
+                    </Button>
+
+                    <Button HorizontalAlignment="Left" Margin="5,0,0,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto"
+                                    Command="{StaticResource MoveUpSectionCommand}" CommandParameter="{Binding}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                            <Image Height="26" Width="26" Source="/Images/Metro/up.png" Margin="0,0,0,0"/>
+
+                        </StackPanel>
+                    </Button>
+
+                    <Button HorizontalAlignment="Left" Margin="5,0,5,0" Style="{DynamicResource FlatButtonStyle}" Width="Auto"
+                                    Command="{StaticResource MoveDownSectionCommand}" CommandParameter="{Binding}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                            <Image Height="26" Width="26" Source="/Images/Metro/down.png" Margin="0,0,0,0"/>
+
+                        </StackPanel>
+                    </Button>
+                    
+                    <TextBlock Margin="5,0,10,0" Text="{Binding Path=SectionName}" VerticalAlignment="Center" FontWeight="DemiBold" FontSize="16"/>
+                    
+                </StackPanel>
+            </DataTemplate>
+            
+        </ResourceDictionary>
+        
+        
+
+
+    </UserControl.Resources>
+
+    <UserControl.CommandBindings>
+
+        <CommandBinding Command="{StaticResource MoveUpSectionCommand}" Executed="CommandBinding_MoveUpSection" />
+        <CommandBinding Command="{StaticResource MoveDownSectionCommand}" Executed="CommandBinding_MoveDownSection" />
+        <CommandBinding Command="{StaticResource EnableSectionCommand}" Executed="CommandBinding_EnableSectionCommand" />
+        <CommandBinding Command="{StaticResource DisableSectionCommand}" Executed="CommandBinding_DisableSectionCommand" />
+
+
+    </UserControl.CommandBindings>
+
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Name="ScrollerDashMetroDX" Grid.Column="0" Grid.Row="0" Margin="0" PanningMode="HorizontalOnly"
+                  Style="{StaticResource FavsScrollViewer}">
+
+
+        <Grid x:Name="LayoutRoot" Height="{Binding ElementName=ScrollerDashMetroDX, Path=ViewportHeight}" Margin="10,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- settings -->
+            <Grid Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Margin="5,10,20,0" 
+                  Visibility="{Binding Source={x:Static local:VM_DashboardMetro.Instance}, Path=IsBeingEdited, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" IsHitTestVisible="False" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Metro_Options}" Foreground="Black" FontSize="24" FontWeight="Bold" />
+
+                <TextBlock Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4" IsHitTestVisible="False" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Metro_General}" Foreground="DarkBlue" FontSize="16" FontWeight="Bold" Margin="0,10,0,0"/>
+
+                <!-- Height Buttons -->
+                <StackPanel Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4" Orientation="Horizontal" Margin="10,2,2,2" >
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ImageSize}" Margin="0,0,3,0" Foreground="Black"/>
+
+                    <Button Name="btnContinueWatchingIncrease" Margin="0,2,0,2" Style="{DynamicResource FlatButtonStyle}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                            <Image Height="26" Width="26" Source="/Images/Metro/add.png" Margin="0,0,0,0"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Name="btnContinueWatchingReduce" Margin="0,2,0,2" Style="{DynamicResource FlatButtonStyle}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                            <Image Height="26" Width="26" Source="/Images/Metro/minus.png" Margin="0,0,0,0"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+
+                <!-- Posters or fanart -->
+                <StackPanel Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4" Orientation="Horizontal" Margin="10,2,2,2" >
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Metro_ImageType}" Margin="0,0,3,0" Foreground="Black"/>
+
+                    <ComboBox Name="cboImageType" VerticalAlignment="Center">
+                    </ComboBox>
+                </StackPanel>
+
+
+                <!-- Number of Items - Continue Watching -->
+                <TextBlock Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="1" IsHitTestVisible="False" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Metro_Continue}" Foreground="DarkBlue" FontSize="16" FontWeight="Bold" Margin="0,10,0,0"/>
+
+                
+                <StackPanel Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="4" Orientation="Horizontal" Margin="10,10,2,2" >
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Items}" Margin="0,0,5,0" Foreground="Black"/>
+                    <xctk:IntegerUpDown Name="udItemsContinueWatching" Minimum="1" Maximum="100" DefaultValue="10" VerticalAlignment="Center" 
+                                      Value="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=DashMetro_WatchNext_Items}" />
+                </StackPanel>
+
+                <!-- Number of Items - Random Series -->
+                <TextBlock Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="1" IsHitTestVisible="False" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Metro_Random}" Foreground="DarkBlue" FontSize="16" FontWeight="Bold" Margin="0,10,0,0"/>
+
+               
+                <StackPanel Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="4" Orientation="Horizontal" Margin="10,10,2,2" >
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Items}" Margin="0,0,5,0" Foreground="Black"/>
+                    <xctk:IntegerUpDown Name="udItemsRandomSeries" Minimum="1" Maximum="100" DefaultValue="5" VerticalAlignment="Center" 
+                                      Value="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=DashMetro_RandomSeries_Items}" />
+                </StackPanel>
+
+                <!-- Number of Items - New Episodes -->
+                <TextBlock Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="1" IsHitTestVisible="False" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Metro_New}" Foreground="DarkBlue" FontSize="16" FontWeight="Bold" Margin="0,10,0,0"/>
+
+                
+                <StackPanel Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="4" Orientation="Horizontal" Margin="10,10,2,2" >
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Metro_Items}" Margin="0,0,5,0" Foreground="Black"/>
+                    <xctk:IntegerUpDown Name="udItemsNewEpisodes" Minimum="1" Maximum="100" DefaultValue="5" VerticalAlignment="Center" 
+                                      Value="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=DashMetro_NewEpisodes_Items}" />
+                </StackPanel>
+
+                <!-- Sections -->
+                <TextBlock Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="6" IsHitTestVisible="False" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Metro_Sections}" Foreground="DarkBlue" FontSize="16" FontWeight="Bold" Margin="0,10,0,0"/>
+
+                <ListBox Margin="10,10,0,10" BorderThickness="0" Background="Transparent" Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="4"
+                         HorizontalAlignment="Left" VerticalAlignment="Top" 
+                         ItemTemplate="{StaticResource MetroSectionTemplate}"
+                         ItemsSource="{Binding Path=ViewSections, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}"/>
+
+            </Grid>
+
+
+            <!-- ************************** -->
+            <!-- Top tool bar -->
+            <!-- ************************** -->
+            <StackPanel Orientation="Horizontal" 
+                        Grid.Column="1" 
+                        Grid.Row="0" Margin="10,5,0,10">
+
+                
+
+                <!-- Edit Dashboard -->
+                <Button Name="btnOptions" Margin="0,2,2,2" Style="{DynamicResource FlatButtonStyle}" ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Dashboard_Settings}"
+                                         Visibility="{Binding Source={x:Static local:VM_DashboardMetro.Instance}, Path=IsReadOnly, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        >
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                        <Image Height="24" Width="24" Source="/Images/Metro/settings.png" Margin="0,0,0,0" RenderOptions.BitmapScalingMode="HighQuality"/>
+                    </StackPanel>
+
+                </Button>
+
+                <!-- Toggle Dash -->
+                <Button Name="btnToggleDash" Margin="0,2,2,2" Style="{DynamicResource FlatButtonStyle}" ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Dashboard_Regular}">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                        <Image Height="24" Width="24" Source="/Images/Metro/Row.png" Margin="0,0,0,0"/>
+                    </StackPanel>
+                </Button>
+
+            </StackPanel>
+
+
+            <!-- ************************** -->
+            <!-- Continue Watching -->
+            <!-- ************************** -->
+            <StackPanel Orientation="Horizontal" 
+                        Grid.Column="{Binding Path=Dash_ContinueWatching_Column, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" 
+                        Visibility="{Binding Path=Dash_ContinueWatching_Visibility, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}"
+                        Grid.Row="1" Margin="10,5,0,17">
+                <TextBlock IsHitTestVisible="False"  Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Metro_Continue}" Foreground="Black" FontSize="24" FontFamily="Segoe UI" FontWeight="Bold"  VerticalAlignment="Center"/>
+
+                <!-- Refresh -->
+                <Button Name="btnRefresh" Margin="12,2,2,2" Style="{DynamicResource FlatButtonStyle}" ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Metro_Refresh}">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                        <Image Height="24" Width="24" Source="/Images/Metro/refresh_32.png" Margin="0,0,0,0"/>
+                    </StackPanel>
+                </Button>
+
+            </StackPanel>
+
+            <dxlc:TileLayoutControl Name="tileLayoutControl1" Grid.Row="2"
+                                    Grid.Column="{Binding Path=Dash_ContinueWatching_Column, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" 
+                        Visibility="{Binding Path=Dash_ContinueWatching_Visibility, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}"
+                                AllowDrop="True"  Margin="10,0,0,0" Padding="0,0,30,10"
+                                DragOver="tileLayoutControl1_DragOver"
+                                Drop="tileLayoutControl1_Drop"
+                                ItemsSource="{Binding Source={x:Static local:VM_DashboardMetro.Instance}, Path=ViewContinueWatching}"
+                                    TileClick="tileLayoutContinueWatching_TileClick">
+                <dxlc:TileLayoutControl.Resources>
+                    <Style TargetType="{x:Type dxlc:Tile}">
+                        <Style.Triggers>
+
+                            <Trigger Property="Size" Value="Small">
+                                <Setter Property="Width" Value="35"/>
+                                <Setter Property="Height" Value="35"/>
+                                <Setter Property="AnimateContentChange" Value="True"/>
+                            </Trigger>
+
+                            <Trigger Property="Size" Value="Large">
+                                <Setter Property="Width" Value="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=DashMetro_Image_Width}"/>
+                                <Setter Property="Height" Value="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=DashMetro_Image_Height}"/>
+                                <Setter Property="AnimateContentChange" Value="True"/>
+                            </Trigger>
+
+                        </Style.Triggers>
+                    </Style>
+                </dxlc:TileLayoutControl.Resources>
+            </dxlc:TileLayoutControl>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="30,5,0,17"
+                        Grid.Column="{Binding Path=Dash_ContinueWatching_Column, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" 
+                        Visibility="{Binding Path=IsLoadingContinueWatching, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                <MahControls:ProgressRing IsActive="{Binding Path=IsLoadingContinueWatching, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" VerticalAlignment="Top" Foreground="DarkBlue" />
+            </StackPanel>
+
+            <!-- ************************** -->
+            <!-- Random Series -->
+            <!-- ************************** -->
+            <StackPanel Orientation="Horizontal" 
+                        Grid.Column="{Binding Path=Dash_RandomSeries_Column, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" 
+                        Visibility="{Binding Path=Dash_RandomSeries_Visibility, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}"
+                        Grid.Row="1" Margin="10,5,0,17">
+                <TextBlock  IsHitTestVisible="False" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Metro_Random}" 
+                       Foreground="Black" FontSize="24" FontFamily="Segoe UI" FontWeight="Bold"   />
+
+                <!-- Refresh -->
+                <Button Name="btnRefreshRandomSeries" Margin="12,2,2,2" Style="{DynamicResource FlatButtonStyle}" ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Metro_Refresh}">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                        <Image Height="24" Width="24" Source="/Images/Metro/refresh_32.png" Margin="0,0,0,0"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+
+            <dxlc:TileLayoutControl Name="tileLayoutRandomSeries"
+                                    Grid.Column="{Binding Path=Dash_RandomSeries_Column, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" 
+                        Visibility="{Binding Path=Dash_RandomSeries_Visibility, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}"
+                                    Grid.Row="2"
+                                AllowDrop="True"  Margin="10,0,0,0" Padding="0,0,30,10"
+                                DragOver="tileLayoutControl1_DragOver"
+                                Drop="tileLayoutControl1_Drop"
+                                ItemsSource="{Binding Source={x:Static local:VM_DashboardMetro.Instance}, Path=ViewRandomSeries}"
+                                    TileClick="tileLayoutRandomSeries_TileClick">
+                
+                <dxlc:TileLayoutControl.Resources>
+                    
+                    <Style TargetType="{x:Type dxlc:Tile}">
+                        <Style.Triggers>
+
+                            <Trigger Property="Size" Value="Small">
+                                <Setter Property="Width" Value="35"/>
+                                <Setter Property="Height" Value="35"/>
+                            </Trigger>
+
+                            <Trigger Property="Size" Value="Large">
+                                <Setter Property="Width" Value="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=DashMetro_Image_Width}"/>
+                                <Setter Property="Height" Value="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=DashMetro_Image_Height}"/>
+                            </Trigger>
+
+                        </Style.Triggers>
+                    </Style>
+                </dxlc:TileLayoutControl.Resources>
+            </dxlc:TileLayoutControl>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="30,5,0,17"
+                        Grid.Column="{Binding Path=Dash_RandomSeries_Column, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" 
+                        Visibility="{Binding Path=IsLoadingRandomSeries, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                <MahControls:ProgressRing IsActive="{Binding Path=IsLoadingRandomSeries, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" VerticalAlignment="Top" Foreground="DarkBlue" />
+            </StackPanel>
+
+            <!-- ************************** -->
+            <!-- New Episodes -->
+            <!-- ************************** -->
+            <StackPanel Orientation="Horizontal" 
+                        Grid.Column="{Binding Path=Dash_NewEpisodes_Column, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" 
+                        Visibility="{Binding Path=Dash_NewEpisodes_Visibility, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}"
+                        Grid.Row="1" Margin="10,5,0,17">
+                <TextBlock  IsHitTestVisible="False" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Metro_New}" 
+                       Foreground="Black" FontSize="24" FontFamily="Segoe UI" FontWeight="Bold"   />
+
+                <!-- Refresh -->
+                <Button Name="btnRefreshNewEpisodes" Margin="12,2,2,2" Style="{DynamicResource FlatButtonStyle}" ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Metro_Refresh}">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                        <Image Height="24" Width="24" Source="/Images/Metro/refresh_32.png" Margin="0,0,0,0"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+
+            <dxlc:TileLayoutControl Name="tileLayoutNewEpisodes" 
+                                    Grid.Column="{Binding Path=Dash_NewEpisodes_Column, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" 
+                        Visibility="{Binding Path=Dash_NewEpisodes_Visibility, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}"
+                                    Grid.Row="2"
+                                AllowDrop="True"  Margin="10,0,0,0" Padding="0,0,30,10"
+                                DragOver="tileLayoutControl1_DragOver"
+                                Drop="tileLayoutControl1_Drop"
+                                ItemsSource="{Binding Source={x:Static local:VM_DashboardMetro.Instance}, Path=NewEpisodes}"
+                                    TileClick="tileLayoutNewEpisodes_TileClick">
+
+                <dxlc:TileLayoutControl.Resources>
+
+                    <Style TargetType="{x:Type dxlc:Tile}">
+                        <Style.Triggers>
+
+                            <Trigger Property="Size" Value="Small">
+                                <Setter Property="Width" Value="35"/>
+                                <Setter Property="Height" Value="35"/>
+                            </Trigger>
+
+                            <Trigger Property="Size" Value="Large">
+                                <Setter Property="Width" Value="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=DashMetro_Image_Width}"/>
+                                <Setter Property="Height" Value="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=DashMetro_Image_Height}"/>
+                            </Trigger>
+
+                        </Style.Triggers>
+                    </Style>
+                </dxlc:TileLayoutControl.Resources>
+            </dxlc:TileLayoutControl>
+
+            <StackPanel Orientation="Horizontal" 
+                        Grid.Column="{Binding Path=Dash_NewEpisodes_Column, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" 
+                        Grid.Row="2" Margin="30,5,0,17"
+                        Visibility="{Binding Path=IsLoadingNewEpisodes, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                <MahControls:ProgressRing IsActive="{Binding Path=IsLoadingNewEpisodes, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:DashboardMetroDXControl}}}" VerticalAlignment="Top" Foreground="DarkBlue" />
+            </StackPanel>
+
+        </Grid>
+
+    </ScrollViewer>
+</UserControl>

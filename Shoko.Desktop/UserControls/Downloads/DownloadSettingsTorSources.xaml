@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="Shoko.Desktop.UserControls.Downloads.DownloadSettingsTorSources"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Shoko.Desktop.ViewModel"
+             xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="600">
+    <UserControl.Resources>
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/ShokoDesktop;component/Resources/Styles.xaml" />
+                <ResourceDictionary Source="/ShokoDesktop;component/Resources/MainListStyles.xaml" />
+                <ResourceDictionary Source="/ShokoDesktop;component/Resources/MainListContent.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+
+            <!-- torrentSourceTemplate-->
+            <DataTemplate x:Key="torrentSourceTemplate">
+                <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
+                    <TextBlock Margin="2,0,10,0" Text="{Binding Path=TorrentSourceName}" />
+                </StackPanel>
+            </DataTemplate>
+
+        </ResourceDictionary>
+
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Available}" FontWeight="Bold" Grid.Column="0" Grid.Row="0" Margin="0,0,0,5" />
+
+        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Selected}" FontWeight="Bold" Grid.Column="2" Grid.Row="0" Margin="0,0,0,5" />
+
+        <ListBox Grid.Column="0" Grid.Row="1" BorderThickness="1" Background="Transparent" MaxHeight="300" Width="250" Name="lbUnselectedTorrentSources"
+                 Margin="0,0,10,0"
+                 ItemsSource="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=UnselectedTorrentSources}"
+                 ItemTemplate="{StaticResource torrentSourceTemplate}">
+        </ListBox>
+
+        <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="0,0,10,0">
+            <Button Name="btnMoveRight" Content=">" Width="60" Margin="0,0,0,5" />
+            <Button Name="btnMoveLeft" Content="&lt;" Width="60" Margin="0,0,0,5" />
+            <Button Name="btnMoveUp" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Up}" Width="60" Margin="0,0,0,5" />
+            <Button Name="btnMoveDown" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Down}" Width="60" Margin="0,0,0,5" />
+        </StackPanel>
+
+        <ListBox Grid.Column="2" Grid.Row="1" BorderThickness="1" Background="Transparent" MaxHeight="300" Width="250" Name="lbSelectedTorrentSources"
+                 ItemsSource="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=SelectedTorrentSources}"
+                 ItemTemplate="{StaticResource torrentSourceTemplate}">
+        </ListBox>
+
+      
+
+    </Grid>
+</UserControl>

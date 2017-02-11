@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="Shoko.Desktop.UserControls.Settings.AniDBScheduledUpdates"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Shoko.Desktop.ViewModel"
+             xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="600">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Margin="0,5,15,0">
+            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AniDBScheduleCalendar}"  VerticalAlignment="Center"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Margin="0,5,5,0">
+            <ComboBox Grid.Row="0" Name="cboUpdateFrequencyCalendar" VerticalAlignment="Center"></ComboBox>
+        </StackPanel>
+
+        <!--AniDBScheduleHTTP-->
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Margin="0,5,15,0">
+            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AniDBScheduleHTTP}" VerticalAlignment="Center"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" Margin="0,5,5,0">
+            <ComboBox Grid.Row="0" Name="cboUpdateFrequencyAnime" VerticalAlignment="Center"></ComboBox>
+        </StackPanel>
+
+        <!--AniDBScheduleMyList-->
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2" Margin="0,5,15,0">
+            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AniDBScheduleMyList}" VerticalAlignment="Center"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Margin="0,5,5,0">
+            <ComboBox Grid.Row="0" Name="cboUpdateFrequencyMyList" VerticalAlignment="Center"></ComboBox>
+        </StackPanel>
+
+        <!--AniDBScheduleMyListStats-->
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="3" Margin="0,5,15,0">
+            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AniDBScheduleMyListStats}" VerticalAlignment="Center"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3" Margin="0,5,5,0">
+            <ComboBox Grid.Row="0" Name="cboUpdateFrequencyMyListStats" VerticalAlignment="Center"></ComboBox>
+        </StackPanel>
+
+        <!--AniDBScheduleMyListStats-->
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="4" Margin="0,5,15,0">
+            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Settings_AutoUpdateInfo}" VerticalAlignment="Center"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="4" Margin="0,5,5,0">
+            <ComboBox Grid.Row="0" Name="cboUpdateFrequencyAniDBFiles" VerticalAlignment="Center"></ComboBox>
+        </StackPanel>
+
+    </Grid>
+</UserControl>
