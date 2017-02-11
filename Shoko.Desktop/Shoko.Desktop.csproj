@@ -1762,9 +1762,8 @@
     </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>xcopy "$(ProjectDir)Dependencies\x64\*" "$(TargetDir)x64\" /S /R /I /Y
-xcopy "$(ProjectDir)Dependencies\x86\*" "$(TargetDir)x86\" /S /R /I /Y
-</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

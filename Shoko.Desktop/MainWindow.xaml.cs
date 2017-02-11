@@ -508,34 +508,24 @@ namespace Shoko.Desktop
                 long verCurrent = 0;
                 long verNew = 0;
 
-                // get the latest version as according to the release
-                if (!forceShowForm)
+                // get the user's version
+                System.Reflection.Assembly a = System.Reflection.Assembly.GetExecutingAssembly();
+                if (a == null)
                 {
-                    //AutoUpdates.JMMVersions verInfo = AutoUpdates.JMMAutoUpdatesHelper.GetLatestVersionInfo();
-                    //if (verInfo == null) return;
+                    logger.Error("Could not get current version");
+                    return;
+                }
+                System.Reflection.AssemblyName an = a.GetName();
 
-                    // get the user's version
-                    System.Reflection.Assembly a = System.Reflection.Assembly.GetExecutingAssembly();
-                    if (a == null)
-                    {
-                        logger.Error("Could not get current version");
-                        return;
-                    }
-                    System.Reflection.AssemblyName an = a.GetName();
-
-                    verNew =
+                verNew =
                         ShokoAutoUpdatesHelper.ConvertToAbsoluteVersion(
                             ShokoAutoUpdatesHelper.GetLatestVersionNumber(AppSettings.UpdateChannel));
 
-                    //verNew = verInfo.versions.DesktopVersionAbs;
-                    verCurrent = (an.Version.Revision * 100) +
-                        (an.Version.Build * 100 * 100) +
-                        (an.Version.Minor * 100 * 100 * 100) +
-                        (an.Version.Major * 100 * 100 * 100 * 100);
-
-                    //string compareMessage = string.Format("Current version: {0} / new version:{1}", verCurrent, verNew);
-                    //MessageBox.Show(compareMessage);
-                }
+                //verNew = verInfo.versions.DesktopVersionAbs;
+                verCurrent = (an.Version.Revision * 100) +
+                    (an.Version.Build * 100 * 100) +
+                    (an.Version.Minor * 100 * 100 * 100) +
+                    (an.Version.Major * 100 * 100 * 100 * 100);
 
                 if (forceShowForm || verNew > verCurrent)
                 {
