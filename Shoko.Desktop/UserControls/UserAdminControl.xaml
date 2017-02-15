@@ -163,6 +163,14 @@
                             </StackPanel>
                         </Button>
 
+                        <!-- Link To Plex -->
+                        <Button x:Name="btnPlexLink" Margin="10,2,2,2" Style="{DynamicResource RoundButtonStyle}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <Image Height="16" Width="16" Source="/Images/32_plex.png" Margin="0,0,3,0"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Plex_Link}" Margin="0,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+
                     </StackPanel>
                 </StackPanel>
             </Border>

@@ -275,6 +275,9 @@
     <Compile Include="DataTemplateSelectors\RecDownloadTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\RecWatchTemplateSelector.cs" />
     <Compile Include="DataTemplateSelectors\WatchingEpisodeTemplateSelector.cs" />
+    <Compile Include="Forms\LinkPlexForm.xaml.cs">
+      <DependentUpon>LinkPlexForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\VM_TorrentSource.cs" />
     <Compile Include="Enums\DashboardMetroImageType.cs" />
     <Compile Include="Enums\DashboardMetroProcessType.cs" />
@@ -846,6 +849,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\ImportFolder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\LinkPlexForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1692,6 +1699,7 @@
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.Core.dll" />
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.dll" />
     <Content Include="Dependencies\DevExpress.Xpf.Printing.v12.2.resources.dll" />
+    <Resource Include="Images\32_plex.png" />
     <Resource Include="Resources\Entypo-license.txt" />
     <Resource Include="Resources\WindowsIcons-license.txt" />
     <Resource Include="Images\16_folder.png" />

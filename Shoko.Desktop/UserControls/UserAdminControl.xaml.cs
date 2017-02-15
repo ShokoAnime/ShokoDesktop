@@ -61,6 +61,22 @@ namespace Shoko.Desktop.UserControls
             btnNewUser.Click += new RoutedEventHandler(btnNewUser_Click);
             btnSave.Click += new RoutedEventHandler(btnSave_Click);
             btnChangePassword.Click += new RoutedEventHandler(btnChangePassword_Click);
+            btnPlexLink.Click += new RoutedEventHandler(btnPlexLink_Click);
+        }
+
+        private void btnPlexLink_Click(object sender, RoutedEventArgs routedEventArgs)
+        {
+            try
+            {
+                Window parentWindow = Window.GetWindow(this);
+
+                LinkPlexForm frm = new LinkPlexForm(SelectedUser) {Owner = parentWindow};
+                frm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
         }
 
         void btnChangePassword_Click(object sender, RoutedEventArgs e)
