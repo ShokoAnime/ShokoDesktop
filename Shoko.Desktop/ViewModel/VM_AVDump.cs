@@ -45,7 +45,7 @@ namespace Shoko.Desktop.ViewModel
             get { return eD2KDump; }
             set
             {
-                this.SetField(()=>ED2KDump,value);
+                this.SetField(()=>eD2KDump,value);
             }
         }
 
