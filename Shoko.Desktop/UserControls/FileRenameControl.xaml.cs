@@ -601,7 +601,7 @@ namespace Shoko.Desktop.UserControls
 
                 if (LoadTypeIsRandom)
                 {
-                    rawVids = VM_ShokoServer.Instance.ShokoServices.RandomFileRenamePreview(udRandomFiles.Value.Value, VM_ShokoServer.Instance.CurrentUser.JMMUserID).CastList<VM_VideoLocal>();
+                    rawVids = VM_ShokoServer.Instance.ShokoServices.RandomFileRenamePreview(udRandomFiles.Value.Value, VM_ShokoServer.Instance.CurrentUser.JMMUserID).OrderByNatural(a => a.Places.First().FilePath).CastList<VM_VideoLocal>();
 
                     /*List<int> testIDs = new List<int>();
 
@@ -644,17 +644,15 @@ namespace Shoko.Desktop.UserControls
                             VM_AnimeGroup_User grp = frm.SelectedObject as VM_AnimeGroup_User;
                             foreach (VM_AnimeSeries_User ser in grp.AllAnimeSeries)
                             {
-                 
-
                                 rawVids.AddRange(VM_ShokoServer.Instance.ShokoServices.GetVideoLocalsForAnime(ser.AniDB_ID,
-                                VM_ShokoServer.Instance.CurrentUser.JMMUserID).Cast<VM_VideoLocal>());
+                                VM_ShokoServer.Instance.CurrentUser.JMMUserID).OrderByNatural(a => a.Places.First().FilePath).Cast<VM_VideoLocal>());
                             }
                         }
                         if (frm.SelectedObject.GetType() == typeof(VM_AnimeSeries_User))
                         {
                             VM_AnimeSeries_User ser = frm.SelectedObject as VM_AnimeSeries_User;
                             rawVids.AddRange(VM_ShokoServer.Instance.ShokoServices.GetVideoLocalsForAnime(ser.AniDB_ID,
-                                VM_ShokoServer.Instance.CurrentUser.JMMUserID).Cast<VM_VideoLocal>());
+                                VM_ShokoServer.Instance.CurrentUser.JMMUserID).OrderByNatural(a => a.Places.First().FilePath).Cast<VM_VideoLocal>());
                         }
                     }
                 }

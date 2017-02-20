@@ -158,7 +158,7 @@ namespace Shoko.Desktop.UserControls
                 EnableDisableControls(false);
 
                 List<VM_VideoLocal> rawVids = VM_ShokoServer.Instance.ShokoServices.SearchForFiles(
-                    (int)searchType, txtFileSearch.Text, VM_ShokoServer.Instance.CurrentUser.JMMUserID).CastList<VM_VideoLocal>();
+                    (int)searchType, txtFileSearch.Text, VM_ShokoServer.Instance.CurrentUser.JMMUserID).OrderByNatural(a => a.Places.First().FilePath).CastList<VM_VideoLocal>();
 
                 foreach (VM_VideoLocal raw in rawVids)
                     FileResults.Add(raw);
