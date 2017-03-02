@@ -166,8 +166,8 @@
     <Reference Include="Nancy.Rest.Annotations, Version=1.4.3.25274, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Nancy.Rest.Annotations.1.4.3.1-beta\lib\net452\Nancy.Rest.Annotations.dll</HintPath>
     </Reference>
-    <Reference Include="Nancy.Rest.Client, Version=1.4.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Nancy.Rest.Client.1.4.3.1-beta\lib\net452\Nancy.Rest.Client.dll</HintPath>
+    <Reference Include="Nancy.Rest.Client, Version=1.4.3.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Nancy.Rest.Client.1.4.3.2-beta\lib\net452\Nancy.Rest.Client.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>$(SolutionDir)packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
