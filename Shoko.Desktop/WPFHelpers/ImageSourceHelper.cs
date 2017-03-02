@@ -31,6 +31,7 @@ namespace Shoko.Desktop.WPFHelpers
         {
             if (stream == null) return null;
             BitmapImage bi = null;
+
             BackgroundHelper.DoWithDispatcher(dispatcher, () =>
             {
                 try

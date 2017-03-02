@@ -12,7 +12,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
-using DevExpress.Data.PLinq.Helpers;
 using Shoko.Commons.Extensions;
 using Shoko.Commons.Downloads;
 using Shoko.Desktop.Utilities;
