@@ -34,7 +34,7 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <ListBox Width="150" Height="100" Grid.Column="0" Grid.Row="1" x:Name="lstPlexIDs" Margin="0,1,1,1" SelectionMode="Single"/>
+                <ListBox Width="150" Height="100" Grid.Column="0" Grid.Row="1" x:Name="lstPlexIDs" Margin="0,1,1,1" SelectionMode="Single" ItemsSource="{Binding Source={x:Static viewModel:VM_ShokoServer.Instance},Path=Plex_Sections}"></ListBox>
                 <TextBox Width="150" Grid.Column="0" Grid.Row="0" Margin="0,1,1,1" x:Name="txtNewItem"/>
 
                 <StackPanel Grid.Column="1" Grid.Row="1">

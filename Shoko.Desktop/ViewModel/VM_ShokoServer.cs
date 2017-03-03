@@ -364,8 +364,8 @@ namespace Shoko.Desktop.ViewModel
             MAL_UpdateFrequency = (ScheduledUpdateFrequency)contract.MAL_UpdateFrequency;
             MAL_NeverDecreaseWatchedNums = contract.MAL_NeverDecreaseWatchedNums;
 
-            Plex_ServerHost = contract.Plex_ServerHost;
-
+            Plex_ServerHost = contract.Plex_ServerHost ?? "";
+            Plex_Sections = string.IsNullOrEmpty(contract.Plex_Sections) ? new ObservableCollection<int>() : new ObservableCollection<int>(contract.Plex_Sections.Split(',').Select(int.Parse).ToList());
         }
 
 
@@ -1830,8 +1830,8 @@ namespace Shoko.Desktop.ViewModel
             set { this.SetField(() => plex_ServerHost, value); }
         }
 
-        private List<int> plex_Sections = new List<int>();
-        public List<int> Plex_Sections
+        private ObservableCollection<int> plex_Sections = new ObservableCollection<int>();
+        public ObservableCollection<int> Plex_Sections
         {
             get { return plex_Sections; }
             set { this.SetField(() => plex_Sections, value); }

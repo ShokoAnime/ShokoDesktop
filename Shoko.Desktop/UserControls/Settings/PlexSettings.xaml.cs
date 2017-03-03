@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,8 +25,6 @@ namespace Shoko.Desktop.UserControls.Settings
         public PlexSettings()
         {
             InitializeComponent();
-            var items = VM_ShokoServer.Instance.Plex_Sections;
-            items.ForEach(a => lstPlexIDs.Items.Add(a));
 
             btnAdd.Click += BtnAddOnClick;
             btnRemove.Click += BtnRemoveOnClick;
@@ -35,11 +34,9 @@ namespace Shoko.Desktop.UserControls.Settings
                 VM_ShokoServer.Instance.SaveServerSettingsAsync();
             };
         }
-
         private void BtnRemoveOnClick(object sender, RoutedEventArgs routedEventArgs)
         {
             VM_ShokoServer.Instance.Plex_Sections.Remove((int)lstPlexIDs.SelectedItem);
-            lstPlexIDs.Items.RemoveAt(lstPlexIDs.SelectedIndex);
             VM_ShokoServer.Instance.SaveServerSettingsAsync();
         }
 
@@ -58,7 +55,6 @@ namespace Shoko.Desktop.UserControls.Settings
                 return;
             }
 
-            lstPlexIDs.Items.Add(item);
             VM_ShokoServer.Instance.Plex_Sections.Add(item);
 
             VM_ShokoServer.Instance.SaveServerSettingsAsync();
