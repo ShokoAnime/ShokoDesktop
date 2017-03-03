@@ -1085,6 +1085,7 @@ namespace Shoko.Desktop.ViewModel
                 {
                     groupID = null;
                 }
+                groupID = grp.AnimeGroupParentID;
             }
         }
 
