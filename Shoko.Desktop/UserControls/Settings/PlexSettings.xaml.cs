@@ -29,6 +29,11 @@ namespace Shoko.Desktop.UserControls.Settings
 
             btnAdd.Click += BtnAddOnClick;
             btnRemove.Click += BtnRemoveOnClick;
+            txtPlexHost.LostKeyboardFocus += (sender, args) =>
+            {
+                VM_ShokoServer.Instance.Plex_ServerHost = txtPlexHost.Text;
+                VM_ShokoServer.Instance.SaveServerSettingsAsync();
+            };
         }
 
         private void BtnRemoveOnClick(object sender, RoutedEventArgs routedEventArgs)
