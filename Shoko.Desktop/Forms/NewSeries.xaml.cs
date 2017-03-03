@@ -301,7 +301,7 @@ namespace Shoko.Desktop.Forms
                     MessageBox.Show(response.ErrorMessage, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
-
+                AnimeSeries = (VM_AnimeSeries_User)response.Result;
                 VM_MainListHelper.Instance.AllSeriesDictionary[response.Result.AnimeSeriesID] = (VM_AnimeSeries_User) response.Result;
 
             }
