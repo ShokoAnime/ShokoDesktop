@@ -879,6 +879,8 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="*"/>
+                                    <RowDefinition />
+                                    <RowDefinition />
                                 </Grid.RowDefinitions>
 
                                 <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="0"  Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
@@ -984,6 +986,14 @@
                                 </Border>
 
                                 <settings:RelationSettings Grid.Column="0" Grid.Row="12" Margin="0,0,0,10"
+                                        Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="13" Background="#FFE9ECEF" Margin="0,0,0,5"
+                                        Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <TextBlock  Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_Settings_PlexSettings}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                                </Border>
+
+                                <settings:PlexSettings Grid.Column="0" Grid.Row="14" Margin="0,0,0,10"
                                         Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                             </Grid>

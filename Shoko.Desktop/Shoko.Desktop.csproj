@@ -278,6 +278,9 @@
     <Compile Include="Forms\LinkPlexForm.xaml.cs">
       <DependentUpon>LinkPlexForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Settings\PlexSettings.xaml.cs">
+      <DependentUpon>PlexSettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\VM_TorrentSource.cs" />
     <Compile Include="Enums\DashboardMetroImageType.cs" />
     <Compile Include="Enums\DashboardMetroProcessType.cs" />
@@ -1253,6 +1256,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\Settings\MovieDBSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Settings\PlexSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

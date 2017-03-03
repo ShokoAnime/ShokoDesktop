@@ -363,6 +363,9 @@ namespace Shoko.Desktop.ViewModel
             MAL_Password = contract.MAL_Password;
             MAL_UpdateFrequency = (ScheduledUpdateFrequency)contract.MAL_UpdateFrequency;
             MAL_NeverDecreaseWatchedNums = contract.MAL_NeverDecreaseWatchedNums;
+
+            Plex_ServerHost = contract.Plex_ServerHost;
+
         }
 
 
@@ -483,6 +486,10 @@ namespace Shoko.Desktop.ViewModel
                 contract.MAL_Password = MAL_Password;
                 contract.MAL_UpdateFrequency = (int)MAL_UpdateFrequency;
                 contract.MAL_NeverDecreaseWatchedNums = MAL_NeverDecreaseWatchedNums;
+                
+                //plex
+                contract.Plex_ServerHost = Plex_ServerHost;
+                contract.Plex_Sections = string.Join(",", Plex_Sections);
 
                 CL_Response response = Instance.ShokoServices.SaveServerSettings(contract);
                 if (response.ErrorMessage.Length > 0)
@@ -1814,6 +1821,20 @@ namespace Shoko.Desktop.ViewModel
             {
                 this.SetField(()=>trakt_SyncFrequency,value);
             }
+        }
+
+        private string plex_ServerHost = "";
+        public string Plex_ServerHost
+        {
+            get { return plex_ServerHost; }
+            set { this.SetField(() => plex_ServerHost, value); }
+        }
+
+        private List<int> plex_Sections = new List<int>();
+        public List<int> Plex_Sections
+        {
+            get { return plex_Sections; }
+            set { this.SetField(() => plex_Sections, value); }
         }
 
         public ObservableCollection<Azure_AdminMessage> AdminMessages { get; set; }
