@@ -1080,12 +1080,12 @@ namespace Shoko.Desktop.ViewModel
                 if (grp != null)
                 {
                     grp.PopulateSerieInfo(AllGroupsDictionary, AllSeriesDictionary);
+                    groupID = grp.AnimeGroupParentID;
                 }
                 else
                 {
                     groupID = null;
                 }
-                groupID = grp.AnimeGroupParentID;
             }
         }
 
