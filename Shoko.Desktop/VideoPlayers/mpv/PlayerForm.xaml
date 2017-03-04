@@ -3,8 +3,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Shoko.Desktop.VideoPlayers.mpv"
+        xmlns:Wrapper="clr-namespace:NutzCode.MPVPlayer.WPF.Wrapper;assembly=NutzCode.MPVPlayer.WPF.Wrapper"
         mc:Ignorable="d"
-        Title="Shoko Player" MinHeight="200" MinWidth="320">
-    <local:VideoPlayer x:Name="video" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Height="Auto"/>
+        WindowStyle="None" d:DesignWidth="640" d:DesignHeight="480" ResizeMode="NoResize" Background="Black" >
+    <WindowChrome.WindowChrome>
+        <WindowChrome
+            ResizeBorderThickness="0" CornerRadius="0,0,0,0"
+            CaptionHeight="0" 
+            GlassFrameThickness="1">
+        </WindowChrome>
+    </WindowChrome.WindowChrome>
+    <Grid>
+        <Wrapper:Player x:Name="Player" ResizeBorderSize="4" UseBorderlessWindow="True"/>
+    </Grid>
 </Window>

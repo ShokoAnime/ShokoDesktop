@@ -2,6 +2,8 @@
 using System.Timers;
 using System.Windows;
 using System.Windows.Input;
+using NutzCode.MPVPlayer.WPF.Wrapper;
+using NutzCode.MPVPlayer.WPF.Wrapper.Models;
 
 namespace Shoko.Desktop.VideoPlayers.mpv
 {
@@ -10,161 +12,56 @@ namespace Shoko.Desktop.VideoPlayers.mpv
     /// </summary>
     public partial class PlayerForm : Window
     {
+        private VideoInfo _vinfo;
+        public event BaseVideoPlayer.FilePositionHandler FilePosition;
+
+
         public PlayerForm(MPVVideoPlayer player)
         {
             InitializeComponent();
-            video.Player = player;
-            KeyUp += VideoPlayer_KeyUp;
-            MouseDown += PlayerForm_MouseDown;
-            Closed += PlayerForm_Closed;
-            clickTimer=new Timer();
-            clickTimer.Elapsed += ClickTimer_Elapsed;
+            Player.SetTopControl(this);
+            Player.PositionChanged += (position) =>
+            {
+                _vinfo?.ChangePosition(position*1000);
+            };
+            Player.SettingsChange += (settings) =>
+            {
+                AppSettings.MpvPlayerSettings = settings;
+            };
         }
-
-        public void Resize(int width, int height)
+        public void Stop()
         {
-            Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)delegate ()
-            {
-                double rel = (double)width / (double)height;
-                double currentrel = (double)video.ActualWidth / (double)video.ActualHeight;
-                if (Math.Abs(currentrel - rel) > double.Epsilon)
-                {
-                    double h = video.ActualWidth / rel;
-                    if (h <= video.ActualHeight)
-                    {
-                        double delta = video.ActualHeight - h;
-                        Height = Height - delta;
-                        Top = Top + (delta/2);
-                    }
-                    else
-                    {
-                        double w = video.ActualHeight * rel;
-                        double delta = video.ActualWidth - w;
-                        Width = ActualWidth - delta;
-                        Left = Left + (delta/2);
-                    }
-                }
-            });
-            
-        }
-        private void ClickTimer_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            if (mSingleClick)
-            {
-                clickTimer.Stop();
-                mSingleClick = false;
-                if (video.Player.IsPaused)
-                    video.Player.Play();
-                else
-                    video.Player.Pause();
-            }
-        }
-
-        private bool mSingleClick;
-        private Timer clickTimer = new Timer();
-        private void PlayerForm_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ClickCount < 2)
-            {
-                mSingleClick = true;
-                clickTimer.Interval = System.Windows.Forms.SystemInformation.DoubleClickTime;
-                clickTimer.Start();
-            }
-            else if (e.ClickCount == 2)
-            {
-                clickTimer.Stop();
-                mSingleClick = false;
-                SwitchStates();
-            }
-
-
-
+            Player.Pause();
+            _vinfo?.ForceChange((long)(Player.Time*1000));
+            FilePosition?.Invoke(_vinfo, (long)(Player.Time * 1000));
+            if (_vinfo != null)
+                BaseVideoPlayer.PlaybackStopped(_vinfo, (long)Player.Time);
         }
 
 
 
-        private bool _inStateChange;
 
-        protected override void OnStateChanged(EventArgs e)
+        public void Quit()
         {
-            if (WindowState == WindowState.Maximized && !_inStateChange)
-            {
-                _inStateChange = true;
-                WindowState = WindowState.Normal;
-                WindowStyle = WindowStyle.None;
-                WindowState = WindowState.Maximized;
-                ResizeMode = ResizeMode.NoResize;
-                _inStateChange = false;
-            }
-            base.OnStateChanged(e);
-        }
-
-        public void Init()
-        {
-
-        }
-
-        private void Maximize()
-        {
-            WindowStyle = WindowStyle.None;
-            WindowState = WindowState.Maximized;
-            ResizeMode = ResizeMode.NoResize;
-        }
-
-        private void Normal()
-        {
-            WindowState = WindowState.Normal;
-            ResizeMode = ResizeMode.CanResize;
-            WindowStyle = WindowStyle.SingleBorderWindow;
-
-        }
-
-        private void SwitchStates()
-        {
-            if (WindowState == WindowState.Maximized)
-            {
-                Normal();
-            }
-            else
-            {
-                Maximize();
-            }
-        }
-        private void VideoPlayer_KeyUp(object sender, KeyEventArgs e)
-        {
-
-            video.Player.ProcessKey(e);
-            if (e.Key == Key.Escape)
-            {
-                if (WindowState == WindowState.Maximized)
-                {
-                    SwitchStates();
-                }
-                else
-                {
-                    video.Player.Stop();
-                    Close();
-                }
-            }
-            if (e.Key == Key.Q)
-            {
-                video.Player.Stop();
-                Close();
-            }
-            if ((e.Key == Key.F11) || (e.Key==Key.Return))
-            {
-                SwitchStates();
-            }
-
-        }
-        private void PlayerForm_Closed(object sender, EventArgs e)
-        {
-            video.Player.Quit();
+            Player.Pause();
+            _vinfo?.ForceChange((long)(Player.Time * 1000));
+            FilePosition?.Invoke(_vinfo, (long)(Player.Time * 1000));
+            if (_vinfo != null)
+                BaseVideoPlayer.PlaybackStopped(_vinfo, (long)Player.Time);
+            Player.Close();
         }
 
         public void Play(VideoInfo info)
         {
-            video.PlayVideoInfo(info);
+            _vinfo = info;
+            PlayRequest r=new PlayRequest();
+            r.Autoplay = true;
+            r.ExternalSubtitles = info.SubtitlePaths;
+            r.IsPlaylist = info.IsPlaylist;
+            r.TakeScreenshotOnStart = false;
+            r.ResumePosition = info.ResumePosition;
+            r.Uri = info.Uri;
+            Player.Play(r, AppSettings.MpvPlayerSettings);
         }
     }
 }

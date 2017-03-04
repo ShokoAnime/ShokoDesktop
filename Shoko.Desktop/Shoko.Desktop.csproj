@@ -362,7 +362,6 @@
     <Compile Include="VideoPlayers\mpv\PlayerForm.xaml.cs">
       <DependentUpon>PlayerForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="VideoPlayers\mpv\VideoPlayer.cs" />
     <Compile Include="VideoPlayers\VideoInfo.cs" />
     <Compile Include="VideoPlayers\VLCVideoPlayer.cs" />
     <Compile Include="VideoPlayers\ZoomPlayerVideoPlayer.cs" />
@@ -1374,6 +1373,10 @@
       <Project>{f73f9df6-580a-4341-b516-8717626f9d42}</Project>
       <Name>Shoko.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MPVPlayer.WPF.Wrapper\NutzCode.MPVPlayer.WPF.Wrapper.csproj">
+      <Project>{423508fa-bc96-454a-ad46-7f38b6b1d0d2}</Project>
+      <Name>NutzCode.MPVPlayer.WPF.Wrapper</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\32_Refresh.png" />
@@ -1773,8 +1776,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>xcopy "$(SolutionDir)Shoko.Desktop\Dependencies\x64\*" "$(TargetDir)x64\" /S /R /I /Y
+xcopy "$(SolutionDir)Shoko.Desktop\Dependencies\x86\*" "$(TargetDir)x86\" /S /R /I /Y
+</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>

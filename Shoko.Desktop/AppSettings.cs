@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 using NLog.Targets;
+using NutzCode.MPVPlayer.WPF.Wrapper.Models;
 using Shoko.Desktop.Enums;
 using Shoko.Models.Enums;
 using Shoko.Desktop.UserControls.Settings;
@@ -559,6 +560,32 @@ namespace Shoko.Desktop
             }
         }
 
+        public static PlayerSettings MpvPlayerSettings
+        {
+            get
+            {
+                PlayerSettings result;
+                string data = Get("MpvPlayerSettings");
+                if (!string.IsNullOrEmpty(data))
+                {
+                    result = JsonConvert.DeserializeObject<PlayerSettings>(data);
+                }
+                else
+                {
+                    result=new PlayerSettings();
+                    MpvPlayerSettings = result;
+                }
+                return result;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    string settings = JsonConvert.SerializeObject(value);
+                    Set("MpvPlayerSettings",settings);
+                }
+            }
+        }
         public static string ImagesPath
         {
             get
@@ -856,7 +883,7 @@ namespace Shoko.Desktop
                     return ival;
                 }
                 else
-                    return (int)VideoPlayer.WindowsDefault; // default value
+                    return (int) VideoPlayer.MPV;
             }
             set
             {
