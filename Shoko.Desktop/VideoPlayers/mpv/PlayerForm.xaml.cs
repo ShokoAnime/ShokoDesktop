@@ -59,7 +59,7 @@ namespace Shoko.Desktop.VideoPlayers.mpv
             r.ExternalSubtitles = info.SubtitlePaths;
             r.IsPlaylist = info.IsPlaylist;
             r.TakeScreenshotOnStart = false;
-            r.ResumePosition = info.ResumePosition;
+            r.ResumePosition = info.ResumePosition/1000;
             r.Uri = info.Uri;
             Player.Play(r, AppSettings.MpvPlayerSettings);
         }
