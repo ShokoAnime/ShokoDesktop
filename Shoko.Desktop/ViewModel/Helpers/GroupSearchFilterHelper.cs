@@ -4,6 +4,7 @@ using Shoko.Commons.Extensions;
 using Shoko.Desktop.Utilities;
 using Shoko.Models.Enums;
 using Shoko.Desktop.ViewModel.Server;
+using Shoko.Commons.Utils;
 
 namespace Shoko.Desktop.ViewModel.Helpers
 {
@@ -27,6 +28,20 @@ namespace Shoko.Desktop.ViewModel.Helpers
             index = grp.SortName.IndexOf(filterText, 0, StringComparison.InvariantCultureIgnoreCase);
             if (index > -1) return true;
 
+            // search the titles (romaji name, english names) etc from anidb
+            if (grp.Stat_AllTitles != null && grp.Stat_AllTitles.Count > 0)
+            {
+                if (grp.Stat_AllTitles.SubContains(filterText))
+                    return true;
+
+                foreach (string title in grp.Stat_AllTitles)
+                {
+                    if (string.IsNullOrEmpty(title)) continue;
+                    if (!Misc.FuzzyMatches(title, filterText)) continue;
+                    return true;
+                }
+            }
+
             // check the tags
             if (grp.Stat_AllTags != null && grp.Stat_AllTags.Count > 0)
             {
@@ -41,13 +56,6 @@ namespace Shoko.Desktop.ViewModel.Helpers
                 if (grp.Stat_AllCustomTags.Contains(filterText, StringComparer.InvariantCultureIgnoreCase))
                     return true;
             }
-
-            // search the titles (romaji name, english names) etc from anidb
-            if (grp.Stat_AllTitles != null && grp.Stat_AllTitles.Count > 0)
-            {
-                if (grp.Stat_AllTitles.SubContains(filterText))
-                    return true;
-			}
 
             return false;
         }
@@ -80,6 +88,15 @@ namespace Shoko.Desktop.ViewModel.Helpers
             if (anime.GetAllTitles().SubContains(filterText))
                 return true;
 
+            if (anime.GetAllTitles() != null)
+            {
+                foreach (string title in anime.GetAllTitles())
+                {
+                    if (string.IsNullOrEmpty(title)) continue;
+                    if (!Misc.FuzzyMatches(title, filterText)) continue;
+                    return true;
+                }
+            }
 
             if (searchType == SeriesSearchType.Everything)
             {
