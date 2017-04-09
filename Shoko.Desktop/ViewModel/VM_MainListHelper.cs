@@ -325,26 +325,29 @@ namespace Shoko.Desktop.ViewModel
 
         public void UpdateAnime(int animeID)
         {
-            try
+            Application.Current?.Dispatcher.Invoke( () =>
             {
-                VM_AniDB_Anime anime = (VM_AniDB_Anime)VM_ShokoServer.Instance.ShokoServices.GetAnime(animeID);
-                if (anime != null)
+                try
                 {
-                    AllAnimeDictionary[anime.AnimeID] = anime;
-
-                    // update the series
-                    VM_AnimeSeries_User ser = AllSeriesDictionary.Values.FirstOrDefault(a => a.AniDB_ID == anime.AnimeID);
-                    if (ser != null)
+                    VM_AniDB_Anime anime = (VM_AniDB_Anime)VM_ShokoServer.Instance.ShokoServices.GetAnime(animeID);
+                    if (anime != null)
                     {
-                        VM_MainListHelper.Instance.UpdateAll();
-                        AllSeriesDictionary[ser.AnimeSeriesID] = ser;
+                        AllAnimeDictionary[anime.AnimeID] = anime;
+
+                        // update the series
+                        VM_AnimeSeries_User ser = AllSeriesDictionary.Values.FirstOrDefault(a => a.AniDB_ID == anime.AnimeID);
+                        if (ser != null)
+                        {
+                            VM_MainListHelper.Instance.UpdateAll();
+                            AllSeriesDictionary[ser.AnimeSeriesID] = ser;
+                        }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
+                catch (Exception ex)
+                {
+                    Utils.ShowErrorMessage(ex);
+                }
+            });
         }
 
         public void MoveBackUpHeirarchy()
