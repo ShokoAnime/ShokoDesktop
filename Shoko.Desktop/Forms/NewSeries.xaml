@@ -18,7 +18,7 @@
 
                 <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
-                <RoutedUICommand x:Key="UseThisCommand" Text="UseThisCommand" />
+                <RoutedUICommand x:Key="UseThisCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=UseThisCommand}" />
 
                 <!-- SearchResultTemplate -->
                 <DataTemplate x:Key="SearchResultTemplate">
@@ -131,7 +131,7 @@
                          Visibility="{Binding Path=IsAnimeNotSelected, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:NewSeries}}, Converter={StaticResource BooleanToVisibilityConverter}}"
                         HorizontalAlignment="Stretch" VerticalAlignment="Top"  ItemTemplate="{StaticResource SearchResultTemplate}" 
                         ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                         ItemContainerStyle="{DynamicResource ListBoxItemStyle}"
+                         ItemContainerStyle="{DynamicResource ListBoxItemStyleSeries}"
                        ItemsSource="{Binding Path=ViewSearchResults, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:NewSeries}}}"
                         >
 
