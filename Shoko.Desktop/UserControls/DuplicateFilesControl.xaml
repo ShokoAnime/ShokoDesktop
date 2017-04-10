@@ -11,13 +11,13 @@
 
         <ResourceDictionary>
 
-            <RoutedUICommand x:Key="OpenFolder1Command" Text="OpenFolder1Command" />
-            <RoutedUICommand x:Key="OpenFolder2Command" Text="OpenFolder2Command" />
-            <RoutedUICommand x:Key="DeleteFile1Command" Text="DeleteFile1Command" />
-            <RoutedUICommand x:Key="DeleteFile2Command" Text="DeleteFile2Command" />
-            <RoutedUICommand x:Key="DeleteFileDBCommand" Text="DeleteFileDBCommand" />
-            <RoutedUICommand x:Key="PlayVideo1Command" Text="PlayVideo1Command" />
-            <RoutedUICommand x:Key="PlayVideo2Command" Text="PlayVideo2Command" />
+            <RoutedUICommand x:Key="OpenFolder1Command" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=OpenFolder1Command}" />
+            <RoutedUICommand x:Key="OpenFolder2Command" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=OpenFolder2Command}" />
+            <RoutedUICommand x:Key="DeleteFile1Command" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteFile1Command}" />
+            <RoutedUICommand x:Key="DeleteFile2Command" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteFile2Command}" />
+            <RoutedUICommand x:Key="DeleteFileDBCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteFileDBCommand}" />
+            <RoutedUICommand x:Key="PlayVideo1Command" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=PlayVideo1Command}" />
+            <RoutedUICommand x:Key="PlayVideo2Command" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=PlayVideo2Command}" />
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 

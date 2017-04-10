@@ -15,9 +15,9 @@
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
-            <RoutedUICommand x:Key="AddSubGroupSearchCommand" Text="AddSubGroupSearchCommand" />
-            <RoutedUICommand x:Key="AddSubGroupFilterCommand" Text="AddSubGroupFilterCommand" />
-            <RoutedUICommand x:Key="ToggleSourceCommand" Text="ToggleSourceCommand" />
+            <RoutedUICommand x:Key="AddSubGroupSearchCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AddSubGroupSearchCommand}" />
+            <RoutedUICommand x:Key="AddSubGroupFilterCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AddSubGroupFilterCommand}" />
+            <RoutedUICommand x:Key="ToggleSourceCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ToggleSourceCommand}" />
 
             <!-- subGroupsTemplate -->
             <DataTemplate x:Key="subGroupsTemplate">

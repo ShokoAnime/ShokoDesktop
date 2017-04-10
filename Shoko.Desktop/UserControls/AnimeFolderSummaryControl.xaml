@@ -16,7 +16,7 @@
                 <ResourceDictionary Source="/ShokoDesktop;component/Resources/MainListContent.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <RoutedUICommand x:Key="OpenFolderCommand" Text="OpenFolderCommand" />
+            <RoutedUICommand x:Key="OpenFolderCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=OpenFolderCommand}" />
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 

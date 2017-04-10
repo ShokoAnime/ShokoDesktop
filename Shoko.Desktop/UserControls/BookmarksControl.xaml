@@ -141,10 +141,10 @@
                 </Grid>
             </DataTemplate>
 
-            <RoutedUICommand x:Key="ToggleDownloadingCommand" Text="ToggleDownloadingCommand" />
-            <RoutedUICommand x:Key="DeleteBookmarkCommand" Text="DeleteBookmarkCommand" />
-            <RoutedUICommand x:Key="EditPriorityCommand" Text="EditPriorityCommand" />
-            <RoutedUICommand x:Key="EditNotesCommand" Text="EditNotesCommand" />
+            <RoutedUICommand x:Key="ToggleDownloadingCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ToggleDownloadingCommand}" />
+            <RoutedUICommand x:Key="DeleteBookmarkCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteBookmarkCommand}" />
+            <RoutedUICommand x:Key="EditPriorityCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=EditPriorityCommand}" />
+            <RoutedUICommand x:Key="EditNotesCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=EditNotesCommand}" />
             
 
         </ResourceDictionary>

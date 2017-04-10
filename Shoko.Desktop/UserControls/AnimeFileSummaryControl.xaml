@@ -18,7 +18,7 @@
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
-            <RoutedUICommand x:Key="DeleteAllFilesCommand" Text="DeleteAllFilesCommand" />
+            <RoutedUICommand x:Key="DeleteAllFilesCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteAllFilesCommand}" />
 
             <!-- groupVidQualityTemplate-->
             <DataTemplate x:Key="groupVidQualityTemplate">

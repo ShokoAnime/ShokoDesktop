@@ -32,10 +32,10 @@
             <wpfHelpers:ImageSourceConverter x:Key="ImageSourceConverter" />
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
-            <RoutedUICommand x:Key="MoveUpSectionCommand" Text="MoveUpSectionCommand" />
-            <RoutedUICommand x:Key="MoveDownSectionCommand" Text="MoveDownSectionCommand" />
-            <RoutedUICommand x:Key="EnableSectionCommand" Text="EnableSectionCommand" />
-            <RoutedUICommand x:Key="DisableSectionCommand" Text="DisableSectionCommand" />
+            <RoutedUICommand x:Key="MoveUpSectionCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MoveUpSectionCommand}" />
+            <RoutedUICommand x:Key="MoveDownSectionCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MoveDownSectionCommand}" />
+            <RoutedUICommand x:Key="EnableSectionCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=EnableSectionCommand}" />
+            <RoutedUICommand x:Key="DisableSectionCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DisableSectionCommand}" />
 
             
 

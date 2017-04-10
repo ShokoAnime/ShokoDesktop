@@ -16,7 +16,7 @@
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
-            <RoutedUICommand x:Key="IgnoreAnimeDownloadCommand" Text="IgnoreAnimeDownloadCommand" />
+            <RoutedUICommand x:Key="IgnoreAnimeDownloadCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=IgnoreAnimeDownloadCommand}" />
 
             <!-- RecDownloadTemplate -->
             <DataTemplate x:Key="RecDownloadTemplate">

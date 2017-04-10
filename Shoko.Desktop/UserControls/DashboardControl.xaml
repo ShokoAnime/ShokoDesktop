@@ -29,18 +29,18 @@
             <dataTemplateSelectors:RecDownloadTemplateSelector x:Key="RecDownloadTemplateSelector"/>
             <dataTemplateSelectors:DashRecentAdditionsTemplateSelector x:Key="DashRecentAdditionsTemplateSelector"/>
 
-            <RoutedUICommand x:Key="PlayEpisodeCommand" Text="PlayEpisodeCommand" />
-            <RoutedUICommand x:Key="PlayAllUnwatchedEpisodeCommand" Text="PlayAllUnwatchedEpisodeCommand" />
-            <RoutedUICommand x:Key="ToggleWatchedStatusCommand" Text="ToggleWatchedStatusCommand" />
-            <RoutedUICommand x:Key="IgnoreAnimeWatchCommand" Text="IgnoreAnimeWatchCommand" />
-            <RoutedUICommand x:Key="IgnoreAnimeDownloadCommand" Text="IgnoreAnimeDownloadCommand" />
+            <RoutedUICommand x:Key="PlayEpisodeCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=PlayEpisodeCommand}" />
+            <RoutedUICommand x:Key="PlayAllUnwatchedEpisodeCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=PlayAllUnwatchedEpisodeCommand}" />
+            <RoutedUICommand x:Key="ToggleWatchedStatusCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ToggleWatchedStatusCommand}" />
+            <RoutedUICommand x:Key="IgnoreAnimeWatchCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=IgnoreAnimeWatchCommand}" />
+            <RoutedUICommand x:Key="IgnoreAnimeDownloadCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=IgnoreAnimeDownloadCommand}" />
 
-            <RoutedUICommand x:Key="MoveUpWidgetCommand" Text="MoveUpWidgetCommand" />
-            <RoutedUICommand x:Key="MoveDownWidgetCommand" Text="MoveDownWidgetCommand" />
+            <RoutedUICommand x:Key="MoveUpWidgetCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MoveUpWidgetCommand}" />
+            <RoutedUICommand x:Key="MoveDownWidgetCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MoveDownWidgetCommand}" />
 
-            <RoutedUICommand x:Key="SyncVotesCommand" Text="SyncVotesCommand" />
-            <RoutedUICommand x:Key="FriendRequestApproveCommand" Text="FriendRequestApproveCommand" />
-            <RoutedUICommand x:Key="FriendRequestDenyCommand" Text="FriendRequestDenyCommand" />
+            <RoutedUICommand x:Key="SyncVotesCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SyncVotesCommand}" />
+            <RoutedUICommand x:Key="FriendRequestApproveCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=FriendRequestApproveCommand}" />
+            <RoutedUICommand x:Key="FriendRequestDenyCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=FriendRequestDenyCommand}" />
 
             <!-- WatchNextTemplate -->
             <DataTemplate x:Key="WatchNextTemplate">

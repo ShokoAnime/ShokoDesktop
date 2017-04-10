@@ -12,7 +12,7 @@
 
             <ResourceDictionary>
 
-                <RoutedUICommand x:Key="PlayVideoCommand" Text="PlayVideoCommand" />
+                <RoutedUICommand x:Key="PlayVideoCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=PlayVideoCommand}" />
 
                 <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 

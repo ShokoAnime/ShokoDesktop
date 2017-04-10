@@ -11,7 +11,7 @@
 
         <ResourceDictionary>
 
-            <RoutedUICommand x:Key="DeleteIgnoredAnimeCommand" Text="DeleteIgnoredAnimeCommand" />
+            <RoutedUICommand x:Key="DeleteIgnoredAnimeCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteIgnoredAnimeCommand}" />
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 

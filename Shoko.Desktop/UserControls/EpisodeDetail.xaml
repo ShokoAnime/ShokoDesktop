@@ -12,16 +12,16 @@
     <UserControl.Resources>
         <ResourceDictionary>
 
-            <RoutedUICommand x:Key="OpenFolderCommand" Text="OpenFolderCommand" />
-            <RoutedUICommand x:Key="PlayVideoCommand" Text="PlayVideoCommand" />
-            <RoutedUICommand x:Key="PlayEpisodeCommand" Text="PlayEpisodeCommand" />
-            <RoutedUICommand x:Key="DeleteLinkCommand" Text="DeleteLinkCommand" />
-            <RoutedUICommand x:Key="DeleteFileCommand" Text="DeleteFileCommand" />
-            <RoutedUICommand x:Key="ForceAddMyListCommand" Text="ForceAddMyListCommand" />
-            <RoutedUICommand x:Key="ForceUpdateCommand" Text="ForceUpdateCommand" />
-            <RoutedUICommand x:Key="ToggleFileDetailsCommand" Text="ToggleFileDetailsCommand" />
-            <RoutedUICommand x:Key="RehashFileCommand" Text="RehashFileCommand" />
-            <RoutedUICommand x:Key="ToggleVariationCommand" Text="ToggleVariationCommand" />
+            <RoutedUICommand x:Key="OpenFolderCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=OpenFolderCommand}" />
+            <RoutedUICommand x:Key="PlayVideoCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=PlayVideoCommand}" />
+            <RoutedUICommand x:Key="PlayEpisodeCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=PlayEpisodeCommand}" />
+            <RoutedUICommand x:Key="DeleteLinkCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteLinkCommand}" />
+            <RoutedUICommand x:Key="DeleteFileCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteFileCommand}" />
+            <RoutedUICommand x:Key="ForceAddMyListCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ForceAddMyListCommand}" />
+            <RoutedUICommand x:Key="ForceUpdateCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ForceUpdateCommand}" />
+            <RoutedUICommand x:Key="ToggleFileDetailsCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ToggleFileDetailsCommand}" />
+            <RoutedUICommand x:Key="RehashFileCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=RehashFileCommand}" />
+            <RoutedUICommand x:Key="ToggleVariationCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ToggleVariationCommand}" />
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 

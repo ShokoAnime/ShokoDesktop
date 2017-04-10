@@ -9,10 +9,10 @@
 
     <UserControl.Resources>
         <ResourceDictionary>
-            <RoutedUICommand x:Key="DeleteLinkCommand" Text="DeleteLinkCommand" />
-            <RoutedUICommand x:Key="AvdumpFileCommand" Text="AvdumpFileCommand" />
-            <RoutedUICommand x:Key="PlayVideoCommand" Text="PlayVideoCommand" />
-            <RoutedUICommand x:Key="RescanFileCommand" Text="RescanFileCommand" />
+            <RoutedUICommand x:Key="DeleteLinkCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteLinkCommand}" />
+            <RoutedUICommand x:Key="AvdumpFileCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AvdumpFileCommand}" />
+            <RoutedUICommand x:Key="PlayVideoCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=PlayVideoCommand}" />
+            <RoutedUICommand x:Key="RescanFileCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=RescanFileCommand}" />
             
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
