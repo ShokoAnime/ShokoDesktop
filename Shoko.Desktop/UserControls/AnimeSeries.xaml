@@ -12,18 +12,18 @@
 
     <UserControl.Resources>
         <ResourceDictionary>
-            <RoutedUICommand x:Key="ViewImageCommand" Text="ViewImageCommand" />
-            <RoutedUICommand x:Key="DisableImageCommand" Text="DisableImageCommand" />
-            <RoutedUICommand x:Key="EnableImageCommand" Text="EnableImageCommand" />
-            <RoutedUICommand x:Key="SetDefaultImageONCommand" Text="SetDefaultImageONCommand" />
-            <RoutedUICommand x:Key="SetDefaultImageOFFCommand" Text="SetDefaultImageOFFCommand" />
-            <RoutedUICommand x:Key="ToggleWatchedStatusCommand" Text="ToggleWatchedStatusCommand" />
+            <RoutedUICommand x:Key="ViewImageCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ViewImageCommand}" />
+            <RoutedUICommand x:Key="DisableImageCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DisableImageCommand}" />
+            <RoutedUICommand x:Key="EnableImageCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=EnableImageCommand}" />
+            <RoutedUICommand x:Key="SetDefaultImageONCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SetDefaultImageONCommand}" />
+            <RoutedUICommand x:Key="SetDefaultImageOFFCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SetDefaultImageOFFCommand}" />
+            <RoutedUICommand x:Key="ToggleWatchedStatusCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ToggleWatchedStatusCommand}" />
 
-            <RoutedUICommand x:Key="MoveUpWidgetCommand" Text="MoveUpWidgetCommand" />
-            <RoutedUICommand x:Key="MoveDownWidgetCommand" Text="MoveDownWidgetCommand" />
+            <RoutedUICommand x:Key="MoveUpWidgetCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MoveUpWidgetCommand}" />
+            <RoutedUICommand x:Key="MoveDownWidgetCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MoveDownWidgetCommand}" />
 
-            <RoutedUICommand x:Key="RefreshSeriesCommand" Text="RefreshSeriesCommand" />
-            <RoutedUICommand x:Key="DeleteCustomTagCommand" Text="DeleteCustomTagCommand" />
+            <RoutedUICommand x:Key="RefreshSeriesCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=RefreshSeriesCommand}" />
+            <RoutedUICommand x:Key="DeleteCustomTagCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteCustomTagCommand}" />
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 

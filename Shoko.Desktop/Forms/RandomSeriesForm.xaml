@@ -19,7 +19,7 @@
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
             <wpfHelpers:UriToImageConverter x:Key="LocalUriToImageConverter"/>
 
-            <RoutedUICommand x:Key="RevokeVoteCommand" Text="RevokeVoteCommand" />
+            <RoutedUICommand x:Key="RevokeVoteCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=RevokeVoteCommand}" />
         </ResourceDictionary>
     </Window.Resources>
 

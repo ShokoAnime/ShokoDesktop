@@ -21,7 +21,7 @@
                 <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
 
-                <RoutedUICommand x:Key="DeleteUserCommand" Text="DeleteUserCommand" />
+                <RoutedUICommand x:Key="DeleteUserCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteUserCommand}" />
 
                 <!-- UserTemplate -->
                 <DataTemplate x:Key="UserTemplate">

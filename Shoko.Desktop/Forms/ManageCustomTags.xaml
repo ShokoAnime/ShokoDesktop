@@ -18,7 +18,7 @@
 
                 <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
-                <RoutedUICommand x:Key="DeleteCustomTagCommand" Text="DeleteCustomTagCommand" />
+                <RoutedUICommand x:Key="DeleteCustomTagCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteCustomTagCommand}" />
 
                 <!-- CustomTagTemplate -->
                 <DataTemplate x:Key="CustomTagTemplate">

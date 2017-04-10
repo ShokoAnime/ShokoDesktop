@@ -32,15 +32,15 @@
             
             
 
-            <RoutedUICommand x:Key="PlayEpisodeCommand" Text="PlayEpisodeCommand" />
-            <RoutedUICommand x:Key="PlayAllUnwatchedEpisodeCommand" Text="PlayAllUnwatchedEpisodeCommand" />
-            <RoutedUICommand x:Key="ToggleWatchedStatusCommand" Text="ToggleWatchedStatusCommand" />
+            <RoutedUICommand x:Key="PlayEpisodeCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=PlayEpisodeCommand}" />
+            <RoutedUICommand x:Key="PlayAllUnwatchedEpisodeCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=PlayAllUnwatchedEpisodeCommand}" />
+            <RoutedUICommand x:Key="ToggleWatchedStatusCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ToggleWatchedStatusCommand}" />
 
-            <RoutedUICommand x:Key="VoteUpCommand" Text="VoteUpCommand" />
-            <RoutedUICommand x:Key="VoteDownCommand" Text="VoteDownCommand" />
-            <RoutedUICommand x:Key="RecDetailsCommand" Text="RecDetailsCommand" />
+            <RoutedUICommand x:Key="VoteUpCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VoteUpCommand}" />
+            <RoutedUICommand x:Key="VoteDownCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=VoteDownCommand}" />
+            <RoutedUICommand x:Key="RecDetailsCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=RecDetailsCommand}" />
 
-            <RoutedUICommand x:Key="ViewCommentCommand" Text="ViewCommentCommand" />
+            <RoutedUICommand x:Key="ViewCommentCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ViewCommentCommand}" />
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 

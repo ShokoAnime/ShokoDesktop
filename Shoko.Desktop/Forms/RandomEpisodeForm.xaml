@@ -18,8 +18,8 @@
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
             <wpfHelpers:UriToImageConverter x:Key="LocalUriToImageConverter"/>
 
-            <RoutedUICommand x:Key="RevokeVoteCommand" Text="RevokeVoteCommand" />
-            <RoutedUICommand x:Key="ToggleWatchedStatusCommand" Text="ToggleWatchedStatusCommand" />
+            <RoutedUICommand x:Key="RevokeVoteCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=RevokeVoteCommand}" />
+            <RoutedUICommand x:Key="ToggleWatchedStatusCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ToggleWatchedStatusCommand}" />
         </ResourceDictionary>
     </Window.Resources>
 

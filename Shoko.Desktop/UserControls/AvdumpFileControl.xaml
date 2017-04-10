@@ -22,8 +22,8 @@
 
                     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
-                    <RoutedUICommand x:Key="OpenFolderCommand" Text="OpenFolderCommand" />
-                    <RoutedUICommand x:Key="AvdumpFileNowCommand" Text="AvdumpFileNowCommand" />
+                    <RoutedUICommand x:Key="OpenFolderCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=OpenFolderCommand}" />
+                    <RoutedUICommand x:Key="AvdumpFileNowCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AvdumpFileNowCommand}" />
                 </ResourceDictionary>
 
 

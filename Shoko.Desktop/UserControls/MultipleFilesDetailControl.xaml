@@ -9,8 +9,8 @@
     <UserControl.Resources>
         <ResourceDictionary>
 
-            <RoutedUICommand x:Key="DeleteFileCommand" Text="DeleteFileCommand" />
-            <RoutedUICommand x:Key="ToggleVariationCommand" Text="ToggleVariationCommand" />
+            <RoutedUICommand x:Key="DeleteFileCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteFileCommand}" />
+            <RoutedUICommand x:Key="ToggleVariationCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ToggleVariationCommand}" />
             
             
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>

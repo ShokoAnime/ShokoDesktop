@@ -12,8 +12,8 @@
 
         <ResourceDictionary>
 
-            <RoutedUICommand x:Key="ApproveCommand" Text="ApproveCommand" />
-            <RoutedUICommand x:Key="RevokeCommand" Text="RevokeCommand" />
+            <RoutedUICommand x:Key="ApproveCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ApproveCommand}" />
+            <RoutedUICommand x:Key="RevokeCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=RevokeCommand}" />
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 

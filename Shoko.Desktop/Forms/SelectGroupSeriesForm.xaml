@@ -82,7 +82,7 @@
                     </Grid>
                 </DataTemplate>
 
-                <RoutedUICommand x:Key="UseThisCommand" Text="UseThisCommand" />
+                <RoutedUICommand x:Key="UseThisCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=UseThisCommand}" />
             </ResourceDictionary>
 
 

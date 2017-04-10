@@ -24,80 +24,80 @@
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
-            <RoutedUICommand x:Key="WindowFullScreenCommand" Text="WindowFullScreenCommand" />
-            <RoutedUICommand x:Key="WindowNormalCommand" Text="WindowNormalCommand" />
-            <RoutedUICommand x:Key="WindowCloseCommand" Text="WindowCloseCommand" />
-            <RoutedUICommand x:Key="WindowMinimizeCommand" Text="WindowMinimizeCommand" />
+            <RoutedUICommand x:Key="WindowFullScreenCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=WindowFullScreenCommand}" />
+            <RoutedUICommand x:Key="WindowNormalCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=WindowNormalCommand}" />
+            <RoutedUICommand x:Key="WindowCloseCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=WindowCloseCommand}" />
+            <RoutedUICommand x:Key="WindowMinimizeCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=WindowMinimizeCommand}" />
 
-            <RoutedUICommand x:Key="RevokeVoteCommand" Text="RevokeVoteCommand" />
-            <RoutedUICommand x:Key="ShowPinnedSeriesCommand" Text="ShowPinnedSeriesCommand" />
-            <RoutedUICommand x:Key="ShowTorrentSearchCommand" Text="ShowTorrentSearchCommand" />
-            <RoutedUICommand x:Key="EditTraktCredentialsCommand" Text="EditTraktCredentialsCommand" />
-            <RoutedUICommand x:Key="AvdumpFileCommand" Text="AvdumpFileCommand" />
-            <RoutedUICommand x:Key="CreateSeriesFromAnimeCommand" Text="CreateSeriesFromAnimeCommand" />
-            <RoutedUICommand x:Key="AddPlaylistCommand" Text="AddPlaylistCommand" />
-            <RoutedUICommand x:Key="DeletePlaylistCommand" Text="DeletePlaylistCommand" />
-            <RoutedUICommand x:Key="RefreshPlaylistCommand" Text="RefreshPlaylistCommand" />
-            <RoutedUICommand x:Key="DeletePlaylistItemCommand" Text="DeletePlaylistItemCommand" />
-            <RoutedUICommand x:Key="ShowWebCacheAdminCommand" Text="ShowWebCacheAdminCommand" />
-
-
+            <RoutedUICommand x:Key="RevokeVoteCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=RevokeVoteCommand}" />
+            <RoutedUICommand x:Key="ShowPinnedSeriesCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ShowPinnedSeriesCommand}" />
+            <RoutedUICommand x:Key="ShowTorrentSearchCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ShowTorrentSearchCommand}" />
+            <RoutedUICommand x:Key="EditTraktCredentialsCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=EditTraktCredentialsCommand}" />
+            <RoutedUICommand x:Key="AvdumpFileCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AvdumpFileCommand}" />
+            <RoutedUICommand x:Key="CreateSeriesFromAnimeCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CreateSeriesFromAnimeCommand}" />
+            <RoutedUICommand x:Key="AddPlaylistCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AddPlaylistCommand}" />
+            <RoutedUICommand x:Key="DeletePlaylistCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeletePlaylistCommand}" />
+            <RoutedUICommand x:Key="RefreshPlaylistCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=RefreshPlaylistCommand}" />
+            <RoutedUICommand x:Key="DeletePlaylistItemCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeletePlaylistItemCommand}" />
+            <RoutedUICommand x:Key="ShowWebCacheAdminCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ShowWebCacheAdminCommand}" />
 
 
-            <RoutedUICommand x:Key="RefreshCommand" Text="RefreshCommand" />
-            <RoutedUICommand x:Key="SearchCommand" Text="SearchCommand" />
-            <RoutedUICommand x:Key="BackCommand" Text="BackCommand" />
-            <RoutedUICommand x:Key="ClearSearchCommand" Text="ClearSearchCommand" />
-            <RoutedUICommand x:Key="BreadCrumbCommand" Text="BreadCrumbCommand" />
-
-            <RoutedUICommand x:Key="SaveCommand" Text="SaveCommand" />
-            <RoutedUICommand x:Key="EditCommand" Text="EditCommand" />
-            <RoutedUICommand x:Key="CancelCommand" Text="CancelCommand" />
-            <RoutedUICommand x:Key="DeleteCommand" Text="DeleteCommand" />
-
-            <RoutedUICommand x:Key="ToggleFaveCommand" Text="ToggleFaveCommand" />
-            <RoutedUICommand x:Key="RunImportCommand" Text="RunImportCommand" />
-            <RoutedUICommand x:Key="RemoveMissingFilesCommand" Text="RemoveMissingFilesCommand" />
-            <RoutedUICommand x:Key="SyncMyListCommand" Text="SyncMyListCommand" />
-            <RoutedUICommand x:Key="SyncVotesCommand" Text="SyncVotesCommand" />
-            <RoutedUICommand x:Key="ScanFolderCommand" Text="ScanFolderCommand" />
-            <RoutedUICommand x:Key="SyncMALUpCommand" Text="SyncMALUpCommand" />
-            <RoutedUICommand x:Key="SyncMALDownCommand" Text="SyncMALDownCommand" />
-
-            <RoutedUICommand x:Key="ToggleExpandTagsCommand" Text="ToggleExpandTagsCommand" />
-            <RoutedUICommand x:Key="ToggleExpandTitlesCommand" Text="ToggleExpandTitlesCommand" />
-            <RoutedUICommand x:Key="ToggleWatchedStatusCommand" Text="ToggleWatchedStatusCommand" />
-
-            <RoutedUICommand x:Key="NewGroupFilterCommand" Text="NewGroupFilterCommand" />
-            <RoutedUICommand x:Key="DeleteFilterConditionCommand" Text="DeleteFilterConditionCommand" />
-            <RoutedUICommand x:Key="NewFilterConditionCommand" Text="NewFilterConditionCommand" />
-
-            <RoutedUICommand x:Key="NewFilterSortingCommand" Text="NewFilterSortingCommand" />
-            <RoutedUICommand x:Key="DeleteFilterSortCommand" Text="DeleteFilterSortCommand" />
-            <RoutedUICommand x:Key="MoveUpFilterSortCommand" Text="MoveUpFilterSortCommand" />
-            <RoutedUICommand x:Key="MoveDownFilterSortCommand" Text="MoveDownFilterSortCommand" />
-
-            <RoutedUICommand x:Key="NewGroupCommand" Text="NewGroupCommand" />
-            <RoutedUICommand x:Key="ViewGroupCommand" Text="NewGroupCommand" />
-            <RoutedUICommand x:Key="DeleteGroupCommand" Text="DeleteGroupCommand" />
-            <RoutedUICommand x:Key="AddSubGroupCommand" Text="AddSubGroupCommand" />
-            <RoutedUICommand x:Key="NewSeriesCommand" Text="NewSeriesCommand" />
-            <RoutedUICommand x:Key="DeleteSeriesCommand" Text="DeleteSeriesCommand" />
-            <RoutedUICommand x:Key="MoveSeriesCommand" Text="MoveSeriesCommand" />
-
-            <RoutedUICommand x:Key="BookmarkAnimeCommand" Text="BookmarkAnimeCommand" />
-            <RoutedUICommand x:Key="RefreshBookmarksCommand" Text="RefreshBookmarksCommand" />
 
 
-            <RoutedUICommand x:Key="HasherQueuePauseCommand" Text="HasherQueuePauseCommand" />
-            <RoutedUICommand x:Key="HasherQueueResumeCommand" Text="HasherQueueResumeCommand" />
-            <RoutedUICommand x:Key="GeneralQueuePauseCommand" Text="GeneralQueuePauseCommand" />
-            <RoutedUICommand x:Key="GeneralQueueResumeCommand" Text="GeneralQueueResumeCommand" />
-            <RoutedUICommand x:Key="ServerImageQueuePauseCommand" Text="ServerImageQueuePauseCommand" />
-            <RoutedUICommand x:Key="ServerImageQueueResumeCommand" Text="ServerImageQueueResumeCommand" />
+            <RoutedUICommand x:Key="RefreshCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=RefreshCommand}" />
+            <RoutedUICommand x:Key="SearchCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SearchCommand}" />
+            <RoutedUICommand x:Key="BackCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=BackCommand}" />
+            <RoutedUICommand x:Key="ClearSearchCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ClearSearchCommand}" />
+            <RoutedUICommand x:Key="BreadCrumbCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=BreadCrumbCommand}" />
 
-            <RoutedUICommand x:Key="IncrementSeriesImageSizeCommand" Text="IncrementSeriesImageSizeCommand" />
-            <RoutedUICommand x:Key="DecrementSeriesImageSizeCommand" Text="DecrementSeriesImageSizeCommand" />
+            <RoutedUICommand x:Key="SaveCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SaveCommand}" />
+            <RoutedUICommand x:Key="EditCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=EditCommand}" />
+            <RoutedUICommand x:Key="CancelCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CancelCommand}" />
+            <RoutedUICommand x:Key="DeleteCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteCommand}" />
+
+            <RoutedUICommand x:Key="ToggleFaveCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ToggleFaveCommand}" />
+            <RoutedUICommand x:Key="RunImportCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=RunImportCommand}" />
+            <RoutedUICommand x:Key="RemoveMissingFilesCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=RemoveMissingFilesCommand}" />
+            <RoutedUICommand x:Key="SyncMyListCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SyncMyListCommand}" />
+            <RoutedUICommand x:Key="SyncVotesCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SyncVotesCommand}" />
+            <RoutedUICommand x:Key="ScanFolderCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ScanFolderCommand}" />
+            <RoutedUICommand x:Key="SyncMALUpCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SyncMALUpCommand}" />
+            <RoutedUICommand x:Key="SyncMALDownCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SyncMALDownCommand}" />
+
+            <RoutedUICommand x:Key="ToggleExpandTagsCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ToggleExpandTagsCommand}" />
+            <RoutedUICommand x:Key="ToggleExpandTitlesCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ToggleExpandTitlesCommand}" />
+            <RoutedUICommand x:Key="ToggleWatchedStatusCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ToggleWatchedStatusCommand}" />
+
+            <RoutedUICommand x:Key="NewGroupFilterCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=NewGroupFilterCommand}" />
+            <RoutedUICommand x:Key="DeleteFilterConditionCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteFilterConditionCommand}" />
+            <RoutedUICommand x:Key="NewFilterConditionCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=NewFilterConditionCommand}" />
+
+            <RoutedUICommand x:Key="NewFilterSortingCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=NewFilterSortingCommand}" />
+            <RoutedUICommand x:Key="DeleteFilterSortCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteFilterSortCommand}" />
+            <RoutedUICommand x:Key="MoveUpFilterSortCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MoveUpFilterSortCommand}" />
+            <RoutedUICommand x:Key="MoveDownFilterSortCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MoveDownFilterSortCommand}" />
+
+            <RoutedUICommand x:Key="NewGroupCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=NewGroupCommand}" />
+            <RoutedUICommand x:Key="ViewGroupCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=NewGroupCommand}" />
+            <RoutedUICommand x:Key="DeleteGroupCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteGroupCommand}" />
+            <RoutedUICommand x:Key="AddSubGroupCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AddSubGroupCommand}" />
+            <RoutedUICommand x:Key="NewSeriesCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=NewSeriesCommand}" />
+            <RoutedUICommand x:Key="DeleteSeriesCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteSeriesCommand}" />
+            <RoutedUICommand x:Key="MoveSeriesCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MoveSeriesCommand}" />
+
+            <RoutedUICommand x:Key="BookmarkAnimeCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=BookmarkAnimeCommand}" />
+            <RoutedUICommand x:Key="RefreshBookmarksCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=RefreshBookmarksCommand}" />
+
+
+            <RoutedUICommand x:Key="HasherQueuePauseCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=HasherQueuePauseCommand}" />
+            <RoutedUICommand x:Key="HasherQueueResumeCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=HasherQueueResumeCommand}" />
+            <RoutedUICommand x:Key="GeneralQueuePauseCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=GeneralQueuePauseCommand}" />
+            <RoutedUICommand x:Key="GeneralQueueResumeCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=GeneralQueueResumeCommand}" />
+            <RoutedUICommand x:Key="ServerImageQueuePauseCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ServerImageQueuePauseCommand}" />
+            <RoutedUICommand x:Key="ServerImageQueueResumeCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ServerImageQueueResumeCommand}" />
+
+            <RoutedUICommand x:Key="IncrementSeriesImageSizeCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=IncrementSeriesImageSizeCommand}" />
+            <RoutedUICommand x:Key="DecrementSeriesImageSizeCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DecrementSeriesImageSizeCommand}" />
 
             <!-- groupTemplate-->
             <DataTemplate x:Key="groupTemplate">

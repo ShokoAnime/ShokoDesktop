@@ -15,7 +15,7 @@
         <ResourceDictionary>
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
-            <RoutedUICommand x:Key="RefreshSeriesCommand" Text="RefreshSeriesCommand" />
+            <RoutedUICommand x:Key="RefreshSeriesCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=RefreshSeriesCommand}" />
         </ResourceDictionary>
     </UserControl.Resources>
 

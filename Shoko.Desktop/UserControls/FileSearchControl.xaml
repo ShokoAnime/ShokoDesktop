@@ -13,9 +13,9 @@
         <ResourceDictionary>
 
 
-            <RoutedUICommand x:Key="OpenFolderCommand" Text="OpenFolderCommand" />
-            <RoutedUICommand x:Key="RehashFileCommand" Text="RehashFileCommand" />
-            <RoutedUICommand x:Key="RescanFileCommand" Text="RescanFileCommand" />
+            <RoutedUICommand x:Key="OpenFolderCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=OpenFolderCommand}" />
+            <RoutedUICommand x:Key="RehashFileCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=RehashFileCommand}" />
+            <RoutedUICommand x:Key="RescanFileCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=RescanFileCommand}" />
 
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>

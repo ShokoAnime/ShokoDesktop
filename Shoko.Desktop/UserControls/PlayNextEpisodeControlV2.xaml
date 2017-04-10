@@ -18,7 +18,7 @@
             </ResourceDictionary.MergedDictionaries>
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-            <RoutedUICommand x:Key="PlayEpisodeCommand" Text="PlayEpisodeCommand" />
+            <RoutedUICommand x:Key="PlayEpisodeCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=PlayEpisodeCommand}" />
 
             <Style TargetType="{x:Type TextBlock}" x:Key="ClickableTextBlockStyle">
                 <Setter Property="Cursor" Value="Hand" />

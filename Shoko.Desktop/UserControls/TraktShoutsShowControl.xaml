@@ -21,7 +21,7 @@
                 <ResourceDictionary Source="/ShokoDesktop;component/Resources/MainListContent.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <RoutedUICommand x:Key="ViewCommentCommand" Text="ViewCommentCommand" />
+            <RoutedUICommand x:Key="ViewCommentCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ViewCommentCommand}" />
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
             <dataTemplateSelectors:PeopleSayingTemplateSelector x:Key="PeopleSayingTemplateSelector"/>

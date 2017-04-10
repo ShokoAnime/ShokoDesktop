@@ -15,8 +15,8 @@
         <ResourceDictionary>
 
 
-            <RoutedUICommand x:Key="OpenFolderCommand" Text="OpenFolderCommand" />
-            <RoutedUICommand x:Key="RemoveFileCommand" Text="RemoveFileCommand" />
+            <RoutedUICommand x:Key="OpenFolderCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=OpenFolderCommand}" />
+            <RoutedUICommand x:Key="RemoveFileCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=RemoveFileCommand}" />
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 

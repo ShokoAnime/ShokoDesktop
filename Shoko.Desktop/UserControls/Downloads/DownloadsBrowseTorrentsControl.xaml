@@ -16,7 +16,7 @@
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
-            <RoutedUICommand x:Key="BrowseTorrentsCommand" Text="BrowseTorrentsCommand" />
+            <RoutedUICommand x:Key="BrowseTorrentsCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=BrowseTorrentsCommand}" />
 
             <!-- torrentLoadTemplate -->
             <DataTemplate x:Key="torrentLoadTemplate">

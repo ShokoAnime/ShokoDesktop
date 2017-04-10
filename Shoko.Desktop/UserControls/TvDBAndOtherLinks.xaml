@@ -19,27 +19,27 @@
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
-            <RoutedUICommand x:Key="DeleteAllFilesCommand" Text="DeleteAllFilesCommand" />
-            <RoutedUICommand x:Key="DeleteMALLinkCommand" Text="DeleteMALLinkCommand" />
-            <RoutedUICommand x:Key="EditMALLinkCommand" Text="EditMALLinkCommand" />
-            <RoutedUICommand x:Key="ToggleAutoLinkTvDBCommand" Text="ToggleAutoLinkTvDBCommand" />
-            <RoutedUICommand x:Key="ToggleAutoLinkMovieDBCommand" Text="ToggleAutoLinkMovieDBCommand" />
-            <RoutedUICommand x:Key="ToggleAutoLinkTraktCommand" Text="ToggleAutoLinkTraktCommand" />
-            <RoutedUICommand x:Key="ToggleAutoLinkMALCommand" Text="ToggleAutoLinkMALCommand" />
+            <RoutedUICommand x:Key="DeleteAllFilesCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteAllFilesCommand}" />
+            <RoutedUICommand x:Key="DeleteMALLinkCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteMALLinkCommand}" />
+            <RoutedUICommand x:Key="EditMALLinkCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=EditMALLinkCommand}" />
+            <RoutedUICommand x:Key="ToggleAutoLinkTvDBCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ToggleAutoLinkTvDBCommand}" />
+            <RoutedUICommand x:Key="ToggleAutoLinkMovieDBCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ToggleAutoLinkMovieDBCommand}" />
+            <RoutedUICommand x:Key="ToggleAutoLinkTraktCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ToggleAutoLinkTraktCommand}" />
+            <RoutedUICommand x:Key="ToggleAutoLinkMALCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ToggleAutoLinkMALCommand}" />
 
-            <RoutedUICommand x:Key="ReportTvDBLinkCommand" Text="ReportTvDBLinkCommand" />
-            <RoutedUICommand x:Key="DeleteTvDBLinkCommand" Text="DeleteTvDBLinkCommand" />
-            <RoutedUICommand x:Key="EditTvDBLinkCommand" Text="EditTvDBLinkCommand" />
-            <RoutedUICommand x:Key="UpdateTvDBLinkCommand" Text="UpdateTvDBLinkCommand" />
+            <RoutedUICommand x:Key="ReportTvDBLinkCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ReportTvDBLinkCommand}" />
+            <RoutedUICommand x:Key="DeleteTvDBLinkCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteTvDBLinkCommand}" />
+            <RoutedUICommand x:Key="EditTvDBLinkCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=EditTvDBLinkCommand}" />
+            <RoutedUICommand x:Key="UpdateTvDBLinkCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=UpdateTvDBLinkCommand}" />
 
-            <RoutedUICommand x:Key="ReportTraktLinkCommand" Text="ReportTraktLinkCommand" />
-            <RoutedUICommand x:Key="DeleteTraktLinkCommand" Text="DeleteTraktLinkCommand" />
-            <RoutedUICommand x:Key="EditTraktLinkCommand" Text="EditTraktLinkCommand" />
-            <RoutedUICommand x:Key="UpdateTraktLinkCommand" Text="UpdateTraktLinkCommand" />
-            <RoutedUICommand x:Key="SyncTraktLinkCommand" Text="SyncTraktLinkCommand" />
+            <RoutedUICommand x:Key="ReportTraktLinkCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ReportTraktLinkCommand}" />
+            <RoutedUICommand x:Key="DeleteTraktLinkCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteTraktLinkCommand}" />
+            <RoutedUICommand x:Key="EditTraktLinkCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=EditTraktLinkCommand}" />
+            <RoutedUICommand x:Key="UpdateTraktLinkCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=UpdateTraktLinkCommand}" />
+            <RoutedUICommand x:Key="SyncTraktLinkCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SyncTraktLinkCommand}" />
 
-            <RoutedUICommand x:Key="DeleteMovieDBLinkCommand" Text="DeleteMovieDBLinkCommand" />
-            <RoutedUICommand x:Key="UpdateMovieDBLinkCommand" Text="UpdateMovieDBLinkCommand" />
+            <RoutedUICommand x:Key="DeleteMovieDBLinkCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteMovieDBLinkCommand}" />
+            <RoutedUICommand x:Key="UpdateMovieDBLinkCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=UpdateMovieDBLinkCommand}" />
 
             <!-- MALLinkTemplate -->
             <DataTemplate x:Key="MALLinkTemplate">
