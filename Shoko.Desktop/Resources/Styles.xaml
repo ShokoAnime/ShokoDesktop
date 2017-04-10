@@ -721,6 +721,16 @@
         <Setter Property="BorderThickness" Value="0,0,0,1" />
     </Style>
 
+    <!-- ListBoxItemStyleSeries -->
+    <Style x:Key="ListBoxItemStyleSeries" TargetType="ListBoxItem">
+        <Setter Property="Background" Value="#FBFBFB" />
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="BorderBrush" Value="DarkGray" />
+        <Setter Property="BorderThickness" Value="0,0,0,1" />
+    </Style>
+    
     <!-- ListBoxItemStyleFiles -->
     <Style x:Key="ListBoxItemStyleFiles" TargetType="ListBoxItem">
         <Setter Property="Background" Value="FloralWhite" />
