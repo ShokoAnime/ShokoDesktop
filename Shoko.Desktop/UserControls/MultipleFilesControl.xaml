@@ -75,7 +75,8 @@
                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Anime_Episodes}" Margin="10,0,0,0" Foreground="DarkGray"/>
                     <CheckBox Name="chkOnlyFinished" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFiles_Finished}" VerticalAlignment="Center" Margin="15,0,0,0"/>
                     <CheckBox Name="chkIgnoreVariations" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFiles_Ignore}" VerticalAlignment="Center" Margin="15,0,0,0"/>
-                    
+                    <Button x:Name="btnDeleteFilesWithPreferences" Content="{Resx Key=DeleteMultipleFilesWithPreferences_Name ,ResxName=Shoko.Commons.Properties.Resources}" ToolTip="{Resx Key=DeleteMultipleFilesWithPreferences_Tooltip ,ResxName=Shoko.Commons.Properties.Resources}" Width="Auto" Margin="15,2,15,2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Style="{DynamicResource FlatButtonStyle}"
+                            Visibility="{Binding Path=IsNotLoading, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MultipleFilesControl}}, Converter={StaticResource BooleanToVisibilityConverter}}" Click="btnDeleteFilesWithPreferences_Click" />
 
                 </StackPanel>
 

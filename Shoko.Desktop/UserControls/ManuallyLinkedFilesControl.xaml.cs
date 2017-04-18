@@ -11,6 +11,7 @@ using Shoko.Desktop.Utilities;
 using Shoko.Desktop.ViewModel;
 using Shoko.Desktop.ViewModel.Server;
 using Shoko.Models.Client;
+using System.Linq;
 
 namespace Shoko.Desktop.UserControls
 {
@@ -94,6 +95,7 @@ namespace Shoko.Desktop.UserControls
                 List<VM_VideoLocal> vids = VM_ShokoServer.Instance.ShokoServices.GetAllManuallyLinkedFiles(VM_ShokoServer.Instance.CurrentUser.JMMUserID).CastList<VM_VideoLocal>();
                 FileCount = vids.Count;
 
+                vids = vids.OrderByNatural(a => a.FileName).ToList();
                 foreach (VM_VideoLocal vid in vids)
                 {
                     ManuallyLinkedFiles.Add(vid);

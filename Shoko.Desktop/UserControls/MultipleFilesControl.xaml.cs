@@ -222,8 +222,12 @@ namespace Shoko.Desktop.UserControls
             }
         }
 
-
-
+        private void btnDeleteFilesWithPreferences_Click(object sender, RoutedEventArgs e)
+        {
+            var list = VM_ShokoServer.Instance.ShokoServices.PreviewDeleteMultipleFilesWithPreferences(VM_ShokoServer.Instance.CurrentUser.JMMUserID);
+            PreviewDeleteByFileQuality form = new PreviewDeleteByFileQuality(list);
+            form.ShowDialog();
+        }
     }
 
     public class MultipleFilesRefreshOptions
