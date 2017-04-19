@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -333,6 +333,8 @@ namespace Shoko.Desktop.ViewModel
             AutoGroupSeries = contract.AutoGroupSeries;
             AutoGroupSeriesUseScoreAlgorithm = contract.AutoGroupSeriesUseScoreAlgorithm;
             AutoGroupSeriesRelationExclusions = contract.AutoGroupSeriesRelationExclusions;
+            FileQualityFilterEnabled = contract.FileQualityFilterEnabled;
+            FileQualityPreferences = contract.FileQualityFilterPreferences;
             UseEpisodeStatus = contract.Import_UseExistingFileWatchedStatus;
             RunImportOnStart = contract.RunImportOnStart;
             ScanDropFoldersOnStart = contract.ScanDropFoldersOnStart;
@@ -454,10 +456,12 @@ namespace Shoko.Desktop.ViewModel
                 // Import settings
                 contract.VideoExtensions = VideoExtensions;
                 contract.Import_UseExistingFileWatchedStatus = UseEpisodeStatus;
+                contract.RunImportOnStart = RunImportOnStart;
                 contract.AutoGroupSeries = AutoGroupSeries;
                 contract.AutoGroupSeriesUseScoreAlgorithm = AutoGroupSeriesUseScoreAlgorithm;
-                contract.RunImportOnStart = RunImportOnStart;
                 contract.AutoGroupSeriesRelationExclusions = AutoGroupSeriesRelationExclusions;
+                contract.FileQualityFilterEnabled = FileQualityFilterEnabled;
+                contract.FileQualityFilterPreferences = FileQualityPreferences;
                 contract.ScanDropFoldersOnStart = ScanDropFoldersOnStart;
                 contract.Hash_CRC32 = Hash_CRC32;
                 contract.Hash_MD5 = Hash_MD5;
@@ -1579,6 +1583,30 @@ namespace Shoko.Desktop.ViewModel
             set
             {
                 setRelationinExclusion("other", value);
+            }
+        }
+
+        private bool _fileQualityFilterEnabled;
+        public bool FileQualityFilterEnabled
+        {
+            get { return _fileQualityFilterEnabled; }
+            set
+            {
+                this.SetField(()=>_fileQualityFilterEnabled,value);
+            }
+        }
+
+        // The actual server setting
+        private string _fileQualityPreferences = "";
+        private string FileQualityPreferences
+        {
+            get
+            {
+                return _fileQualityPreferences;
+            }
+            set
+            {
+                this.SetField(()=>_fileQualityPreferences,value);
             }
         }
 
