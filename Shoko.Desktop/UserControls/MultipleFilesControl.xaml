@@ -36,9 +36,6 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-
-
-
         <!-- episode list -->
         <Border Grid.Row="1" Grid.Column="0" Margin="0,0,0,0" Background="White" BorderBrush="LightGray" BorderThickness="1">
 
@@ -75,9 +72,7 @@
                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Anime_Episodes}" Margin="10,0,0,0" Foreground="DarkGray"/>
                     <CheckBox Name="chkOnlyFinished" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFiles_Finished}" VerticalAlignment="Center" Margin="15,0,0,0"/>
                     <CheckBox Name="chkIgnoreVariations" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFiles_Ignore}" VerticalAlignment="Center" Margin="15,0,0,0"/>
-                    <Button x:Name="btnDeleteFilesWithPreferences" Content="{Resx Key=DeleteMultipleFilesWithPreferences_Name ,ResxName=Shoko.Commons.Properties.Resources}" ToolTip="{Resx Key=DeleteMultipleFilesWithPreferences_Tooltip ,ResxName=Shoko.Commons.Properties.Resources}" Width="Auto" Margin="15,2,15,2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Style="{DynamicResource FlatButtonStyle}"
-                            Visibility="{Binding Path=IsNotLoading, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MultipleFilesControl}}, Converter={StaticResource BooleanToVisibilityConverter}}" Click="btnDeleteFilesWithPreferences_Click" />
-
+                    
                 </StackPanel>
 
                 <!-- Help -->
@@ -97,23 +92,98 @@
                     </Grid>
                 </Border>
 
+                <Grid>
 
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="400"/>
+                    </Grid.ColumnDefinitions>
 
-                <TreeView Grid.Row="2" BorderThickness="0" Grid.Column="0" HorizontalAlignment="Stretch"  Margin="0"  ScrollViewer.CanContentScroll="True"
+                    <TreeView Grid.Row="2" BorderThickness="0" Grid.Column="0" HorizontalAlignment="Stretch"  Margin="0"  ScrollViewer.CanContentScroll="True"
                     ItemsSource="{Binding Path=ViewEpisodes, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MultipleFilesControl}}}" 
                     Background="Transparent" ItemContainerStyle="{DynamicResource TreeViewItemStyleSimple}" VerticalAlignment="Stretch"
-                    VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" x:Name="lbMultipleFiles" >
-                    <TreeView.ItemTemplate>
-                        <DataTemplate>
-                            <usercontrols:MultipleFilesDetailControl/>
-                        </DataTemplate>
-                    </TreeView.ItemTemplate>
-                    <TreeView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <VirtualizingStackPanel/>
-                        </ItemsPanelTemplate>
-                    </TreeView.ItemsPanel>
-                </TreeView>
+                    VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" x:Name="lbMultipleFiles">
+                        <TreeView.ItemTemplate>
+                            <DataTemplate>
+                                <usercontrols:MultipleFilesDetailControl/>
+                            </DataTemplate>
+                        </TreeView.ItemTemplate>
+                        <TreeView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel/>
+                            </ItemsPanelTemplate>
+                        </TreeView.ItemsPanel>
+                    </TreeView>
+
+                    <!-- Multiple Files Settings -->
+
+                    <Border Style="{DynamicResource ToolbarBorderControlStyle}" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1" Grid.Column="1" Grid.Row="2" Padding="0">
+                        <StackPanel Orientation="Vertical">
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Text="Mass Delete Multiple File Settings" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+
+                                <!-- Delete Multiple Buttons -->
+                                <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" Margin="0,5,0,0">
+                                    <Button x:Name="btnDeleteFilesWithPreferences" Margin="2,2,2,2" Width="Auto" Style="{DynamicResource FlatButtonStyle}" Visibility="{Binding Path=IsNotLoading, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MultipleFilesControl}}, Converter={StaticResource BooleanToVisibilityConverter}}" Click="btnDeleteFilesWithPreferences_Click" ToolTip="{Resx Key=DeleteMultipleFilesWithPreferences_Tooltip ,ResxName=Shoko.Commons.Properties.Resources}">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <Image Height="16" Width="16" Source="/Images/16_multiplefiles.png" Margin="0,0,5,0"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteMultipleFilesWithPreferences_Name}" Margin="0,0,5,0"/>
+                                    </StackPanel>
+                                    </Button>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="0" Grid.Row="2" Margin="0,30,0,10">
+                                    <TextBlock Text="Video Codec" Margin="15,0,15,5"/>
+                                    <Button Name="btnMoveUp" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Up}" Width="60" Margin="0,0,0,5" />
+                                    <Button Name="btnMoveDown" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Down}" Width="60" Margin="0,0,0,5" />
+                                </StackPanel>
+
+                                <ListBox Grid.Column="1" Grid.Row="2" Margin="0,5,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbUnselectedLanguages"
+                         ItemsSource="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=UnselectedLanguages}" Height="120">
+                                </ListBox>
+
+                                <StackPanel Grid.Column="0" Grid.Row="3" Margin="0,30,0,10">
+                                    <TextBlock Text="Video Codec" Margin="15,0,15,5"/>
+                                    <Button Name="btnMoveUp1" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Up}" Width="60" Margin="0,0,0,5" />
+                                    <Button Name="btnMoveDown1" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Down}" Width="60" Margin="0,0,0,5" />
+                                </StackPanel>
+
+                                <ListBox Grid.Column="1" Grid.Row="3" Margin="0,10,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbUnselectedLanguages1"
+                         ItemsSource="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=UnselectedLanguages}" Height="120">
+                                </ListBox>
+
+                                <StackPanel Grid.Column="0" Grid.Row="4" Margin="0,30,0,10">
+                                    <TextBlock Text="Video Codec" Margin="15,0,15,5"/>
+                                    <Button Name="btnMoveUp2" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Up}" Width="60" Margin="0,0,0,5" />
+                                    <Button Name="btnMoveDown2" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Down}" Width="60" Margin="0,0,0,5" />
+                                </StackPanel>
+
+                                <ListBox Grid.Column="1" Grid.Row="4" Margin="0,10,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbUnselectedLanguages2"
+                         ItemsSource="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=UnselectedLanguages}" Height="120">
+                                </ListBox>
+
+                            </Grid>
+
+
+                        </StackPanel>
+                        
+                    </Border>
+
+                </Grid>
 
             </DockPanel>
 
