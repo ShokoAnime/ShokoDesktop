@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,6 +17,7 @@ using Shoko.Desktop.Forms;
 using Shoko.Desktop.Utilities;
 using Shoko.Desktop.ViewModel;
 using Shoko.Desktop.ViewModel.Server;
+using Shoko.Models.Client;
 
 namespace Shoko.Desktop.UserControls
 {
@@ -224,7 +226,10 @@ namespace Shoko.Desktop.UserControls
 
         private void btnDeleteFilesWithPreferences_Click(object sender, RoutedEventArgs e)
         {
-            var list = VM_ShokoServer.Instance.ShokoServices.PreviewDeleteMultipleFilesWithPreferences(VM_ShokoServer.Instance.CurrentUser.JMMUserID);
+            List<CL_VideoLocal> list =
+                VM_ShokoServer.Instance.ShokoServices.PreviewDeleteMultipleFilesWithPreferences(VM_ShokoServer.Instance
+                    .CurrentUser.JMMUserID);
+            list = list.DistinctBy(a => a.Places.FirstOrDefault(b => !string.IsNullOrEmpty(b.FilePath))?.FilePath).ToList();
             PreviewDeleteByFileQuality form = new PreviewDeleteByFileQuality(list);
             form.ShowDialog();
         }
