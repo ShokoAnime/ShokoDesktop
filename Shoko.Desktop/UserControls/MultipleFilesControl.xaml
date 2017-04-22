@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:Shoko.Desktop.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    
+
     <UserControl.Resources>
 
         <ResourceDictionary>
@@ -72,7 +72,7 @@
                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Anime_Episodes}" Margin="10,0,0,0" Foreground="DarkGray"/>
                     <CheckBox Name="chkOnlyFinished" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFiles_Finished}" VerticalAlignment="Center" Margin="15,0,0,0"/>
                     <CheckBox Name="chkIgnoreVariations" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFiles_Ignore}" VerticalAlignment="Center" Margin="15,0,0,0"/>
-                    
+
                 </StackPanel>
 
                 <!-- Help -->
@@ -124,9 +124,7 @@
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"></RowDefinition>
                                     <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
                                 </Grid.RowDefinitions>
 
                                 <Grid.ColumnDefinitions>
@@ -134,53 +132,144 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Text="Mass Delete Multiple File Settings" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Title}" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
 
                                 <!-- Delete Multiple Buttons -->
                                 <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" Margin="0,5,0,0">
                                     <Button x:Name="btnDeleteFilesWithPreferences" Margin="2,2,2,2" Width="Auto" Style="{DynamicResource FlatButtonStyle}" Visibility="{Binding Path=IsNotLoading, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MultipleFilesControl}}, Converter={StaticResource BooleanToVisibilityConverter}}" Click="btnDeleteFilesWithPreferences_Click" ToolTip="{Resx Key=DeleteMultipleFilesWithPreferences_Tooltip ,ResxName=Shoko.Commons.Properties.Resources}">
-                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                        <Image Height="16" Width="16" Source="/Images/16_multiplefiles.png" Margin="0,0,5,0"/>
-                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteMultipleFilesWithPreferences_Name}" Margin="0,0,5,0"/>
-                                    </StackPanel>
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                            <Image Height="16" Width="16" Source="/Images/16_multiplefiles.png" Margin="0,0,5,0"/>
+                                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteMultipleFilesWithPreferences_Name}" Margin="0,0,5,0"/>
+                                        </StackPanel>
                                     </Button>
                                 </StackPanel>
 
-                                <StackPanel Grid.Column="0" Grid.Row="2" Margin="0,30,0,10">
-                                    <TextBlock Text="Video Codec" Margin="15,0,15,5"/>
-                                    <Button Name="btnMoveUp" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Up}" Width="60" Margin="0,0,0,5" />
-                                    <Button Name="btnMoveDown" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Down}" Width="60" Margin="0,0,0,5" />
-                                </StackPanel>
+                                <TabControl Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="2" Margin="5,5,5,5">
+                                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Preferences}">
+                                        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1">
+                                            <SelectiveScrollingGrid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"></RowDefinition>
+                                                    <RowDefinition Height="Auto"></RowDefinition>
+                                                    <RowDefinition Height="Auto"></RowDefinition>
+                                                    <RowDefinition Height="Auto"></RowDefinition>
+                                                    <RowDefinition Height="*"></RowDefinition>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="100"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
 
-                                <ListBox Grid.Column="1" Grid.Row="2" Margin="0,5,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbUnselectedLanguages"
-                         ItemsSource="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=UnselectedLanguages}" Height="120">
-                                </ListBox>
+                                                <!-- Sources -->
+                                                <StackPanel Grid.Column="0" Grid.Row="0" Margin="0,30,0,10">
+                                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties, Key=MultipleFilesTab_Sources}" Margin="15,0,15,5"/>
+                                                    <Button Name="btnPreferred_Sources_Up" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Up}" Width="60" Margin="0,0,0,5" />
+                                                    <Button Name="btnPreferred_Sources_Down" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Down}" Width="60" Margin="0,0,0,5" />
+                                                </StackPanel>
 
-                                <StackPanel Grid.Column="0" Grid.Row="3" Margin="0,30,0,10">
-                                    <TextBlock Text="Video Codec" Margin="15,0,15,5"/>
-                                    <Button Name="btnMoveUp1" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Up}" Width="60" Margin="0,0,0,5" />
-                                    <Button Name="btnMoveDown1" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Down}" Width="60" Margin="0,0,0,5" />
-                                </StackPanel>
+                                                <ListBox Grid.Column="1" Grid.Row="0" Margin="0,5,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbPreferred_Sources"
+                             ItemsSource="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=PreferredSources}" Height="120">
+                                                </ListBox>
 
-                                <ListBox Grid.Column="1" Grid.Row="3" Margin="0,10,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbUnselectedLanguages1"
-                         ItemsSource="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=UnselectedLanguages}" Height="120">
-                                </ListBox>
+                                                <!-- Resolutions -->
+                                                <StackPanel Grid.Column="0" Grid.Row="1" Margin="0,30,0,10">
+                                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties, Key=MultipleFilesTab_Resolutions}" Margin="15,0,15,5"/>
+                                                    <Button Name="btnPreferred_Resolutions_Up" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Up}" Width="60" Margin="0,0,0,5" />
+                                                    <Button Name="btnPreferred_Resolutions_Down" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Down}" Width="60" Margin="0,0,0,5" />
+                                                </StackPanel>
 
-                                <StackPanel Grid.Column="0" Grid.Row="4" Margin="0,30,0,10">
-                                    <TextBlock Text="Video Codec" Margin="15,0,15,5"/>
-                                    <Button Name="btnMoveUp2" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Up}" Width="60" Margin="0,0,0,5" />
-                                    <Button Name="btnMoveDown2" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Down}" Width="60" Margin="0,0,0,5" />
-                                </StackPanel>
+                                                <ListBox Grid.Column="1" Grid.Row="1" Margin="0,10,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbPreferred_Resolutions"
+                             ItemsSource="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=PreferredResolutions}" Height="120">
+                                                </ListBox>
 
-                                <ListBox Grid.Column="1" Grid.Row="4" Margin="0,10,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbUnselectedLanguages2"
-                         ItemsSource="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=UnselectedLanguages}" Height="120">
-                                </ListBox>
+                                                <!-- Sub Groups -->
+                                                <!-- TODO MAKE THIS -->
+                                                <StackPanel Grid.Column="0" Grid.Row="2" Margin="0,30,0,10">
+                                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties, Key=MultipleFilesTab_SubGroups}" Margin="15,0,15,5"/>
+                                                    <Button Name="btnPreferred_SubGroups_Up" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Up}" Width="60" Margin="0,0,0,5" />
+                                                    <Button Name="btnPreferred_SubGroups_Down" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Down}" Width="60" Margin="0,0,0,5" />
+                                                    <Button Name="btnPreferred_SubGroups_Remove" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Remove}" Width="60" Margin="0,0,0,5" />
+                                                </StackPanel>
 
+                                                <ListBox Grid.Column="1" Grid.Row="2" Margin="0,10,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbUnselectedLanguages2"
+                             ItemsSource="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=UnselectedLanguages}" Height="120">
+                                                </ListBox>
+
+                                                <!-- Audio Codecs -->
+                                                <StackPanel Grid.Column="0" Grid.Row="2" Margin="0,30,0,10">
+                                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties, Key=MultipleFilesTab_Resolutions}" Margin="15,0,15,5"/>
+                                                    <Button Name="btnPreferred_AudioCodecs_Up" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Up}" Width="60" Margin="0,0,0,5" />
+                                                    <Button Name="btnPreferred_AudioCodecs_Down" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Down}" Width="60" Margin="0,0,0,5" />
+                                                </StackPanel>
+
+                                                <ListBox Grid.Column="1" Grid.Row="2" Margin="0,10,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbPreferred_AudioCodecs"
+                             ItemsSource="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=PreferredAudioCodecs}" Height="120">
+                                                </ListBox>
+
+                                                <!-- Video Codecs -->
+                                                <StackPanel Grid.Column="0" Grid.Row="3" Margin="0,30,0,10">
+                                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties, Key=MultipleFilesTab_Resolutions}" Margin="15,0,15,5"/>
+                                                    <Button Name="btnPreferred_VideoCodecs_Up" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Up}" Width="60" Margin="0,0,0,5" />
+                                                    <Button Name="btnPreferred_VideoCodecs_Down" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Down}" Width="60" Margin="0,0,0,5" />
+                                                </StackPanel>
+
+                                                <ListBox Grid.Column="1" Grid.Row="3" Margin="0,10,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbPreferred_VideoCodecs"
+                             ItemsSource="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=PreferredVideoCodecs}" Height="120">
+                                                </ListBox>
+                                            </SelectiveScrollingGrid>
+                                        </Border>
+                                    </TabItem>
+                                    <TabItem Header="{Resx Key=MultipleFilesTab_Requirements, ResxName=Shoko.Commons.Properties.Resources}">
+                                        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1">
+                                            <SelectiveScrollingGrid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"></RowDefinition>
+                                                    <RowDefinition Height="Auto"></RowDefinition>
+                                                    <RowDefinition Height="*"></RowDefinition>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="100"/>
+                                                    <ColumnDefinition Width="13*"/>
+                                                    <ColumnDefinition Width="10*"/>
+                                                    <ColumnDefinition Width="117*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <StackPanel Grid.Column="0" Grid.Row="0" Margin="0,30,0,10">
+                                                    <TextBlock Text="Video Codec" Margin="15,0,15,5"/>
+                                                    <Button Name="btnMoveUp12" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Up}" Width="60" Margin="0,0,0,5" />
+                                                    <Button Name="btnMoveDown12" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Down}" Width="60" Margin="0,0,0,5" />
+                                                </StackPanel>
+
+                                                <ListBox Grid.Column="1" Grid.Row="0" Margin="0,5,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbUnselectedLanguages12"
+                             ItemsSource="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=UnselectedLanguages}" Height="120" Grid.ColumnSpan="3">
+                                                </ListBox>
+
+                                                <StackPanel Grid.Column="0" Grid.Row="1" Margin="0,30,0,10">
+                                                    <TextBlock Text="Video Codec" Margin="15,0,15,5"/>
+                                                    <Button Name="btnMoveUp13" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Up}" Width="60" Margin="0,0,0,5" />
+                                                    <Button Name="btnMoveDown13" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Down}" Width="60" Margin="0,0,0,5" />
+                                                </StackPanel>
+
+                                                <ListBox Grid.Column="1" Grid.Row="1" Margin="0,10,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbUnselectedLanguages13"
+                             ItemsSource="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=UnselectedLanguages}" Height="120" Grid.ColumnSpan="3">
+                                                </ListBox>
+
+                                                <StackPanel Grid.Column="0" Grid.Row="2" Margin="0,30,0,10">
+                                                    <TextBlock Text="Video Codec" Margin="15,0,15,5"/>
+                                                    <Button Name="btnMoveUp14" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Up}" Width="60" Margin="0,0,0,5" />
+                                                    <Button Name="btnMoveDown14" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Down}" Width="60" Margin="0,0,0,5" />
+                                                </StackPanel>
+
+                                                <ListBox Grid.Column="1" Grid.Row="2" Margin="0,10,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbUnselectedLanguages14"
+                             ItemsSource="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=UnselectedLanguages}" Height="120" Grid.ColumnSpan="3">
+                                                </ListBox>
+                                            </SelectiveScrollingGrid>
+                                        </Border>
+                                    </TabItem>
+                                </TabControl>
                             </Grid>
-
-
                         </StackPanel>
-                        
+
                     </Border>
 
                 </Grid>

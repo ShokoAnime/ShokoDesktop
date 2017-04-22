@@ -27,7 +27,7 @@
                 
                 <Label Grid.Row="0" x:Name="lblInfo" Content="" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                 <Border Grid.Row="1" Margin="10,5,10,5" Background="White" BorderBrush="LightGray" BorderThickness="1">
-                    <SelectiveScrollingGrid Margin="5,5,5,5" VerticalAlignment="Stretch">
+                    <SelectiveScrollingGrid Margin="5,5,5,5">
                         <ListBox x:Name="lstPreviewResults" Focusable="False"  MinHeight="30" VerticalContentAlignment="Top" Background="{DynamicResource TabItemSelectedBackground}"/>
                     </SelectiveScrollingGrid>
                 </Border>

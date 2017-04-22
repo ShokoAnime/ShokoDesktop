@@ -74,6 +74,12 @@ namespace Shoko.Desktop.UserControls
 
         private List<VM_AnimeEpisode_User> contracts = new List<VM_AnimeEpisode_User>();
 
+        public ICollectionView PreferredSources { get; set; }
+        public ICollectionView PreferredResolutions { get; set; }
+        public ICollectionView PreferredSubGroups { get; set; }
+        public ICollectionView PreferredAudioCodecs { get; set; }
+        public ICollectionView PreferredVideoCodecs { get; set; }
+
         public MultipleFilesControl()
         {
             InitializeComponent();
