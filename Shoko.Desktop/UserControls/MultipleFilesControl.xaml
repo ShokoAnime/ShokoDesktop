@@ -191,29 +191,29 @@
                                                     <Button Name="btnPreferred_SubGroups_Remove" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Remove}" Width="60" Margin="0,0,0,5" />
                                                 </StackPanel>
 
-                                                <ListBox Grid.Column="1" Grid.Row="2" Margin="0,10,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbUnselectedLanguages2"
-                             ItemsSource="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=UnselectedLanguages}" Height="120">
+                                                <ListBox Grid.Column="1" Grid.Row="2" Margin="0,10,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbPreferred_SubGroups"
+                             ItemsSource="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=PreferredSubGroups}" Height="120">
                                                 </ListBox>
 
                                                 <!-- Audio Codecs -->
-                                                <StackPanel Grid.Column="0" Grid.Row="2" Margin="0,30,0,10">
-                                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties, Key=MultipleFilesTab_Resolutions}" Margin="15,0,15,5"/>
+                                                <StackPanel Grid.Column="0" Grid.Row="3" Margin="0,30,0,10">
+                                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties, Key=MultipleFilesTab_AudioCodecs}" Margin="15,0,15,5"/>
                                                     <Button Name="btnPreferred_AudioCodecs_Up" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Up}" Width="60" Margin="0,0,0,5" />
                                                     <Button Name="btnPreferred_AudioCodecs_Down" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Down}" Width="60" Margin="0,0,0,5" />
                                                 </StackPanel>
 
-                                                <ListBox Grid.Column="1" Grid.Row="2" Margin="0,10,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbPreferred_AudioCodecs"
+                                                <ListBox Grid.Column="1" Grid.Row="3" Margin="0,10,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbPreferred_AudioCodecs"
                              ItemsSource="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=PreferredAudioCodecs}" Height="120">
                                                 </ListBox>
 
                                                 <!-- Video Codecs -->
-                                                <StackPanel Grid.Column="0" Grid.Row="3" Margin="0,30,0,10">
-                                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties, Key=MultipleFilesTab_Resolutions}" Margin="15,0,15,5"/>
+                                                <StackPanel Grid.Column="0" Grid.Row="4" Margin="0,30,0,10">
+                                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties, Key=MultipleFilesTab_VideoCodecs}" Margin="15,0,15,5"/>
                                                     <Button Name="btnPreferred_VideoCodecs_Up" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Up}" Width="60" Margin="0,0,0,5" />
                                                     <Button Name="btnPreferred_VideoCodecs_Down" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Down}" Width="60" Margin="0,0,0,5" />
                                                 </StackPanel>
 
-                                                <ListBox Grid.Column="1" Grid.Row="3" Margin="0,10,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbPreferred_VideoCodecs"
+                                                <ListBox Grid.Column="1" Grid.Row="4" Margin="0,10,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbPreferred_VideoCodecs"
                              ItemsSource="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=PreferredVideoCodecs}" Height="120">
                                                 </ListBox>
                                             </SelectiveScrollingGrid>
