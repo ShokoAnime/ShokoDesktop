@@ -1598,7 +1598,7 @@ namespace Shoko.Desktop.ViewModel
 
         // The actual server setting
         private string _fileQualityPreferences = "";
-        private string FileQualityPreferences
+        public string FileQualityPreferences
         {
             get
             {

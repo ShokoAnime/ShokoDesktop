@@ -27,17 +27,8 @@
     </UserControl.CommandBindings>
 
     <Grid>
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-
         <!-- episode list -->
-        <Border Grid.Row="1" Grid.Column="0" Margin="0,0,0,0" Background="White" BorderBrush="LightGray" BorderThickness="1">
+        <Border Grid.Row="0" Grid.Column="0" Margin="0,0,0,0" Background="White" BorderBrush="LightGray" BorderThickness="1">
 
             <DockPanel>
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Background="#F1F1F1">
@@ -78,10 +69,6 @@
                 <!-- Help -->
                 <Border Style="{DynamicResource ToolbarBorderControlStyle}" Background="FloralWhite" Margin="0,0,0,0" Padding="5" DockPanel.Dock="Top" BorderThickness="0,1,0,1">
                     <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                        </Grid.RowDefinitions>
-
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="25"/>
                             <ColumnDefinition Width="*"/>
@@ -93,13 +80,12 @@
                 </Border>
 
                 <Grid>
-
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="400"/>
                     </Grid.ColumnDefinitions>
 
-                    <TreeView Grid.Row="2" BorderThickness="0" Grid.Column="0" HorizontalAlignment="Stretch"  Margin="0"  ScrollViewer.CanContentScroll="True"
+                    <TreeView BorderThickness="0" Grid.Column="0" HorizontalAlignment="Stretch"  Margin="0"  ScrollViewer.CanContentScroll="True"
                     ItemsSource="{Binding Path=ViewEpisodes, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MultipleFilesControl}}}" 
                     Background="Transparent" ItemContainerStyle="{DynamicResource TreeViewItemStyleSimple}" VerticalAlignment="Stretch"
                     VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" x:Name="lbMultipleFiles">
@@ -117,26 +103,20 @@
 
                     <!-- Multiple Files Settings -->
 
-                    <Border Style="{DynamicResource ToolbarBorderControlStyle}" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1" Grid.Column="1" Grid.Row="2" Padding="0">
+                    <Border Style="{DynamicResource ToolbarBorderControlStyle}" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1" Grid.Column="1" Padding="0">
                         <StackPanel Orientation="Vertical">
-
                             <Grid>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
 
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="100"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Title}" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                <TextBlock Grid.Row="0" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Title}" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
 
                                 <!-- Delete Multiple Buttons -->
-                                <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" Margin="0,5,0,0">
-                                    <Button x:Name="btnDeleteFilesWithPreferences" Margin="2,2,2,2" Width="Auto" Style="{DynamicResource FlatButtonStyle}" Visibility="{Binding Path=IsNotLoading, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MultipleFilesControl}}, Converter={StaticResource BooleanToVisibilityConverter}}" Click="btnDeleteFilesWithPreferences_Click" ToolTip="{Resx Key=DeleteMultipleFilesWithPreferences_Tooltip ,ResxName=Shoko.Commons.Properties.Resources}">
+                                <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center" Grid.Row="1" Margin="0,5,0,0">
+                                    <Button x:Name="btnDeleteFilesWithPreferences" Margin="2,2,2,2" Width="Auto" Style="{DynamicResource RoundButtonStyle}" Visibility="{Binding Path=IsNotLoading, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MultipleFilesControl}}, Converter={StaticResource BooleanToVisibilityConverter}}" Click="btnDeleteFilesWithPreferences_Click" ToolTip="{Resx Key=DeleteMultipleFilesWithPreferences_Tooltip ,ResxName=Shoko.Commons.Properties.Resources}">
                                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                             <Image Height="16" Width="16" Source="/Images/16_multiplefiles.png" Margin="0,0,5,0"/>
                                             <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteMultipleFilesWithPreferences_Name}" Margin="0,0,5,0"/>
@@ -144,11 +124,12 @@
                                     </Button>
                                 </StackPanel>
 
-                                <TabControl Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="2" Margin="5,5,5,5">
+                                <TabControl Grid.Row="2" Margin="5,5,5,5">
                                     <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Preferences}">
                                         <Border Style="{DynamicResource ToolbarBorderControlStyle}" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1">
                                             <SelectiveScrollingGrid>
                                                 <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"></RowDefinition>
                                                     <RowDefinition Height="Auto"></RowDefinition>
                                                     <RowDefinition Height="Auto"></RowDefinition>
                                                     <RowDefinition Height="Auto"></RowDefinition>
@@ -160,61 +141,73 @@
                                                     <ColumnDefinition Width="*"/>
                                                 </Grid.ColumnDefinitions>
 
-                                                <!-- Sources -->
+                                                <!-- Types -->
                                                 <StackPanel Grid.Column="0" Grid.Row="0" Margin="0,30,0,10">
-                                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties, Key=MultipleFilesTab_Sources}" Margin="15,0,15,5"/>
+                                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Types}" Margin="15,0,15,5"/>
+                                                    <Button Name="btnPreferred_Types_Up" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Up}" Width="60" Margin="0,0,0,5" />
+                                                    <Button Name="btnPreferred_Types_Down" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Down}" Width="60" Margin="0,0,0,5" />
+                                                </StackPanel>
+
+                                                <ListBox Grid.Column="1" Grid.Row="0" Margin="0,5,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbPreferred_Types" Height="120">
+                                                </ListBox>
+
+                                                <!-- Sources -->
+                                                <StackPanel Grid.Column="0" Grid.Row="1" Margin="0,30,0,10">
+                                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Sources}" Margin="15,0,15,5"/>
                                                     <Button Name="btnPreferred_Sources_Up" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Up}" Width="60" Margin="0,0,0,5" />
                                                     <Button Name="btnPreferred_Sources_Down" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Down}" Width="60" Margin="0,0,0,5" />
                                                 </StackPanel>
 
-                                                <ListBox Grid.Column="1" Grid.Row="0" Margin="0,5,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbPreferred_Sources"
-                             ItemsSource="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=PreferredSources}" Height="120">
+                                                <ListBox Grid.Column="1" Grid.Row="1" Margin="0,5,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbPreferred_Sources" Height="120">
                                                 </ListBox>
 
                                                 <!-- Resolutions -->
-                                                <StackPanel Grid.Column="0" Grid.Row="1" Margin="0,30,0,10">
-                                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties, Key=MultipleFilesTab_Resolutions}" Margin="15,0,15,5"/>
+                                                <StackPanel Grid.Column="0" Grid.Row="2" Margin="0,30,0,10">
+                                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Resolutions}" Margin="15,0,15,5"/>
                                                     <Button Name="btnPreferred_Resolutions_Up" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Up}" Width="60" Margin="0,0,0,5" />
                                                     <Button Name="btnPreferred_Resolutions_Down" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Down}" Width="60" Margin="0,0,0,5" />
                                                 </StackPanel>
 
-                                                <ListBox Grid.Column="1" Grid.Row="1" Margin="0,10,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbPreferred_Resolutions"
-                             ItemsSource="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=PreferredResolutions}" Height="120">
+                                                <ListBox Grid.Column="1" Grid.Row="2" Margin="0,10,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbPreferred_Resolutions" Height="120">
                                                 </ListBox>
 
                                                 <!-- Sub Groups -->
                                                 <!-- TODO MAKE THIS -->
-                                                <StackPanel Grid.Column="0" Grid.Row="2" Margin="0,30,0,10">
-                                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties, Key=MultipleFilesTab_SubGroups}" Margin="15,0,15,5"/>
+                                                <StackPanel Grid.Column="0" Grid.Row="3" Margin="0,30,0,10">
+                                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_SubGroups}" Margin="15,0,15,5"/>
                                                     <Button Name="btnPreferred_SubGroups_Up" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Up}" Width="60" Margin="0,0,0,5" />
                                                     <Button Name="btnPreferred_SubGroups_Down" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Down}" Width="60" Margin="0,0,0,5" />
                                                     <Button Name="btnPreferred_SubGroups_Remove" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Remove}" Width="60" Margin="0,0,0,5" />
                                                 </StackPanel>
 
-                                                <ListBox Grid.Column="1" Grid.Row="2" Margin="0,10,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbPreferred_SubGroups"
-                             ItemsSource="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=PreferredSubGroups}" Height="120">
-                                                </ListBox>
+                                                <StackPanel Grid.Column="1" Grid.Row="3" Margin="0,10,10,10" HorizontalAlignment="Stretch">
+                                                    <Grid>
+                                                        <ComboBox Name="cmbPreferred_Subgroups_Available" ItemsSource="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=AvailableSubGroups}" Margin="5,5,45,5" HorizontalContentAlignment="Stretch" >
+                                                        </ComboBox>
+                                                        <Button Name="btnPreferred_SubGroups_Add" HorizontalAlignment="Right" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Add}" Width="40" Margin="0,5,5,5" DockPanel.Dock="Right" />
+                                                    </Grid>
+                                                    <ListBox BorderThickness="1" HorizontalAlignment="Stretch" Name="lbPreferred_SubGroups" Height="120">
+                                                    </ListBox>
+                                                </StackPanel>
 
                                                 <!-- Audio Codecs -->
-                                                <StackPanel Grid.Column="0" Grid.Row="3" Margin="0,30,0,10">
-                                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties, Key=MultipleFilesTab_AudioCodecs}" Margin="15,0,15,5"/>
+                                                <StackPanel Grid.Column="0" Grid.Row="4" Margin="0,30,0,10">
+                                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_AudioCodecs}" Margin="15,0,15,5"/>
                                                     <Button Name="btnPreferred_AudioCodecs_Up" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Up}" Width="60" Margin="0,0,0,5" />
                                                     <Button Name="btnPreferred_AudioCodecs_Down" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Down}" Width="60" Margin="0,0,0,5" />
                                                 </StackPanel>
 
-                                                <ListBox Grid.Column="1" Grid.Row="3" Margin="0,10,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbPreferred_AudioCodecs"
-                             ItemsSource="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=PreferredAudioCodecs}" Height="120">
+                                                <ListBox Grid.Column="1" Grid.Row="4" Margin="0,10,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbPreferred_AudioCodecs" Height="120">
                                                 </ListBox>
 
                                                 <!-- Video Codecs -->
-                                                <StackPanel Grid.Column="0" Grid.Row="4" Margin="0,30,0,10">
-                                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties, Key=MultipleFilesTab_VideoCodecs}" Margin="15,0,15,5"/>
+                                                <StackPanel Grid.Column="0" Grid.Row="5" Margin="0,30,0,10">
+                                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_VideoCodecs}" Margin="15,0,15,5"/>
                                                     <Button Name="btnPreferred_VideoCodecs_Up" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Up}" Width="60" Margin="0,0,0,5" />
                                                     <Button Name="btnPreferred_VideoCodecs_Down" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Down}" Width="60" Margin="0,0,0,5" />
                                                 </StackPanel>
 
-                                                <ListBox Grid.Column="1" Grid.Row="4" Margin="0,10,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbPreferred_VideoCodecs"
-                             ItemsSource="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=PreferredVideoCodecs}" Height="120">
+                                                <ListBox Grid.Column="1" Grid.Row="5" Margin="0,10,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbPreferred_VideoCodecs" Height="120">
                                                 </ListBox>
                                             </SelectiveScrollingGrid>
                                         </Border>
@@ -269,21 +262,9 @@
                                 </TabControl>
                             </Grid>
                         </StackPanel>
-
                     </Border>
-
                 </Grid>
-
             </DockPanel>
-
-
-
-
         </Border>
-
-
-
-
-
     </Grid>
 </UserControl>

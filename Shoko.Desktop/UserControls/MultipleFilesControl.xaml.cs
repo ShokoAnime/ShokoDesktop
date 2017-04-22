@@ -18,6 +18,10 @@ using Shoko.Desktop.Utilities;
 using Shoko.Desktop.ViewModel;
 using Shoko.Desktop.ViewModel.Server;
 using Shoko.Models.Client;
+using Shoko.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using static Shoko.Models.FileQualityFilter;
 
 namespace Shoko.Desktop.UserControls
 {
@@ -74,17 +78,48 @@ namespace Shoko.Desktop.UserControls
 
         private List<VM_AnimeEpisode_User> contracts = new List<VM_AnimeEpisode_User>();
 
-        public ICollectionView PreferredSources { get; set; }
-        public ICollectionView PreferredResolutions { get; set; }
-        public ICollectionView PreferredSubGroups { get; set; }
-        public ICollectionView PreferredAudioCodecs { get; set; }
-        public ICollectionView PreferredVideoCodecs { get; set; }
+        private List<string> availableSubGroups = new List<string>();
+        private List<FileQualityFilterType> preferredTypes = new List<FileQualityFilterType>();
+        private List<string> preferredSubGroups = new List<string>();
+        private List<string> preferredSources = new List<string>();
+        private List<string> preferredResolutions = new List<string>();
+        private List<string> preferredAudioCodecs = new List<string>();
+        private List<string> preferredVideoCodecs = new List<string>();
 
         public MultipleFilesControl()
         {
             InitializeComponent();
 
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
+
+            FileQualityPreferences prefs = null;
+            try
+            {
+                prefs = JsonConvert.DeserializeObject<FileQualityPreferences>(VM_ShokoServer.Instance.FileQualityPreferences, new[] { new StringEnumConverter() });
+            }
+            catch (Exception e)
+            {
+
+            }
+            if (prefs != null)
+            {
+                preferredTypes = prefs.TypePreferences;
+                preferredSources = prefs.SourcePreferences;
+                preferredResolutions = prefs.ResolutionPreferences;
+                preferredAudioCodecs = prefs.AudioCodecPreferences;
+                preferredVideoCodecs = prefs.VideoCodecPreferences;
+                preferredSubGroups = prefs.SubGroupPreferences;
+
+                lbPreferred_Types.ItemsSource = preferredTypes;
+                lbPreferred_Sources.ItemsSource = preferredSources;
+                lbPreferred_Resolutions.ItemsSource = preferredResolutions;
+                lbPreferred_AudioCodecs.ItemsSource = preferredAudioCodecs;
+                lbPreferred_VideoCodecs.ItemsSource = preferredVideoCodecs;
+                lbPreferred_SubGroups.ItemsSource = preferredSubGroups;
+
+                availableSubGroups = VM_ShokoServer.Instance.ShokoServices.GetAllReleaseGroups();
+                cmbPreferred_Subgroups_Available.ItemsSource = availableSubGroups;
+            }
 
             IsLoading = false;
 
