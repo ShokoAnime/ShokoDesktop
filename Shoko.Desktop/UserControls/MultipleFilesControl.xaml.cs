@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Globalization;
 using System.IO;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
 using Shoko.Commons.Extensions;
@@ -30,6 +32,12 @@ namespace Shoko.Desktop.UserControls
     /// </summary>
     public partial class MultipleFilesControl : UserControl
     {
+        public enum MoveDirection
+        {
+            Up,
+            Down
+        }
+
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         BackgroundWorker workerFiles = new BackgroundWorker();
@@ -78,14 +86,133 @@ namespace Shoko.Desktop.UserControls
 
         private List<VM_AnimeEpisode_User> contracts = new List<VM_AnimeEpisode_User>();
 
-        private List<string> availableSubGroups = new List<string>();
-        private List<FileQualityFilterType> preferredTypes = new List<FileQualityFilterType>();
-        private List<string> preferredSubGroups = new List<string>();
-        private List<string> preferredSources = new List<string>();
-        private List<string> preferredResolutions = new List<string>();
-        private List<string> preferredAudioCodecs = new List<string>();
-        private List<string> preferredVideoCodecs = new List<string>();
+        private List<string> AvailableSubGroups = new List<string>();
+        private ObservableCollection<FileQualityFilterType> PreferredTypes = new ObservableCollection<FileQualityFilterType>();
+        private ObservableCollection<string> PreferredSubGroups = new ObservableCollection<string>();
+        private ObservableCollection<string> PreferredSources = new ObservableCollection<string>();
+        private ObservableCollection<string> PreferredResolutions = new ObservableCollection<string>();
+        private ObservableCollection<string> PreferredAudioCodecs = new ObservableCollection<string>();
+        private ObservableCollection<string> PreferredVideoCodecs = new ObservableCollection<string>();
+        
+        private ObservableCollection<FileQualityFilterType> RequiredTypes = new ObservableCollection<FileQualityFilterType>();
+        private ObservableCollection<string> RequiredSubGroups = new ObservableCollection<string>();
+        private ObservableCollection<string> RequiredSources = new ObservableCollection<string>();
+        private ObservableCollection<string> RequiredResolutions = new ObservableCollection<string>();
+        private ObservableCollection<string> RequiredAudioCodecs = new ObservableCollection<string>();
+        private ObservableCollection<string> RequiredVideoCodecs = new ObservableCollection<string>();
+        
+        public static readonly DependencyProperty EnableDeleteOnImportProperty = DependencyProperty.Register("EnableDeleteOnImport",
+            typeof(bool), typeof(MultipleFilesControl), new UIPropertyMetadata(false, null));
+        public bool EnableDeleteOnImport
+        {
+            get => (bool) GetValue(EnableDeleteOnImportProperty);
+            set => SetValue(EnableDeleteOnImportProperty, value);
+        }
+        
+        public static readonly DependencyProperty AllowDeletionOfImportingFilesProperty = DependencyProperty.Register("AllowDeletionOfImportingFiles",
+            typeof(bool), typeof(MultipleFilesControl), new UIPropertyMetadata(false, null));
+        public bool AllowDeletionOfImportingFiles
+        {
+            get => (bool) GetValue(AllowDeletionOfImportingFilesProperty);
+            set => SetValue(AllowDeletionOfImportingFilesProperty, value);
+        }
 
+        public static readonly DependencyProperty Prefer8BitProperty = DependencyProperty.Register("Prefer8Bit",
+            typeof(bool), typeof(MultipleFilesControl), new UIPropertyMetadata(false, null));
+        public bool Prefer8Bit
+        {
+            get => (bool) GetValue(Prefer8BitProperty);
+            set => SetValue(Prefer8BitProperty, value);
+        }
+
+        public static readonly DependencyProperty Require10BitProperty = DependencyProperty.Register("Require10Bit",
+            typeof(bool), typeof(MultipleFilesControl), new UIPropertyMetadata(false, null));
+        public bool Require10Bit
+        {
+            get => (bool) GetValue(Require10BitProperty);
+            set => SetValue(Require10BitProperty, value);
+        }
+        
+        public static readonly DependencyProperty MaxNumberOfFilesProperty = DependencyProperty.Register("MaxNumberOfFiles",
+            typeof(int), typeof(MultipleFilesControl), new UIPropertyMetadata(1, null));
+        public int MaxNumberOfFiles
+        {
+            get => (int) GetValue(MaxNumberOfFilesProperty);
+            set => SetValue(MaxNumberOfFilesProperty, value);
+        }
+        
+        public static readonly DependencyProperty RequiredSubStreamCountProperty = DependencyProperty.Register("RequiredSubStreamCount",
+            typeof(int), typeof(MultipleFilesControl), new UIPropertyMetadata(0, null));
+        public int RequiredSubStreamCount
+        {
+            get => (int) GetValue(RequiredSubStreamCountProperty);
+            set => SetValue(RequiredSubStreamCountProperty, value);
+        }
+        
+        public static readonly DependencyProperty RequiredAudioStreamCountProperty = DependencyProperty.Register("RequiredAudioStreamCount",
+            typeof(int), typeof(MultipleFilesControl), new UIPropertyMetadata(0, null));
+        public int RequiredAudioStreamCount
+        {
+            get => (int) GetValue(RequiredAudioStreamCountProperty);
+            set => SetValue(RequiredAudioStreamCountProperty, value);
+        }
+        
+        public static readonly DependencyProperty RequiredSourcesProperty = DependencyProperty.Register("RequiredSourcesOperator",
+            typeof(string), typeof(MultipleFilesControl), new UIPropertyMetadata("IN", null));
+        public string RequiredSourcesOperator
+        {
+            get => (string) GetValue(RequiredSourcesProperty);
+            set => SetValue(RequiredSourcesProperty, value);
+        }
+        
+        public static readonly DependencyProperty RequiredResolutionsProperty = DependencyProperty.Register("RequiredResolutionsOperator",
+            typeof(string), typeof(MultipleFilesControl), new UIPropertyMetadata("IN", null));
+        public string RequiredResolutionsOperator
+        {
+            get => (string) GetValue(RequiredResolutionsProperty);
+            set => SetValue(RequiredResolutionsProperty, value);
+        }
+        
+        public static readonly DependencyProperty RequiredAudioCodecsProperty = DependencyProperty.Register("RequiredAudioCodecsOperator",
+            typeof(string), typeof(MultipleFilesControl), new UIPropertyMetadata("IN", null));
+        public string RequiredAudioCodecsOperator
+        {
+            get => (string) GetValue(RequiredAudioCodecsProperty);
+            set => SetValue(RequiredAudioCodecsProperty, value);
+        }
+        
+        public static readonly DependencyProperty RequiredVideoCodecsProperty = DependencyProperty.Register("RequiredVideoCodecsOperator",
+            typeof(string), typeof(MultipleFilesControl), new UIPropertyMetadata("IN", null));
+        public string RequiredVideoCodecsOperator
+        {
+            get => (string) GetValue(RequiredVideoCodecsProperty);
+            set => SetValue(RequiredVideoCodecsProperty, value);
+        }
+        
+        public static readonly DependencyProperty RequiredSubGroupsProperty = DependencyProperty.Register("RequiredSubGroupsOperator",
+            typeof(string), typeof(MultipleFilesControl), new UIPropertyMetadata("IN", null));
+        public string RequiredSubGroupsOperator
+        {
+            get => (string) GetValue(RequiredSubGroupsProperty);
+            set => SetValue(RequiredSubGroupsProperty, value);
+        }
+
+        public static readonly DependencyProperty RequiredSubStreamCountOperatorProperty = DependencyProperty.Register("RequiredSubStreamCountOperator",
+            typeof(string), typeof(MultipleFilesControl), new UIPropertyMetadata("IN", null));
+        public string RequiredSubStreamCountOperator
+        {
+            get => (string) GetValue(RequiredSubStreamCountOperatorProperty);
+            set => SetValue(RequiredSubStreamCountOperatorProperty, value);
+        }
+
+        public static readonly DependencyProperty RequiredAudioStreamCountOperatorProperty = DependencyProperty.Register("RequiredAudioStreamCountOperator",
+            typeof(string), typeof(MultipleFilesControl), new UIPropertyMetadata("IN", null));
+        public string RequiredAudioStreamCountOperator
+        {
+            get => (string) GetValue(RequiredAudioStreamCountOperatorProperty);
+            set => SetValue(RequiredAudioStreamCountOperatorProperty, value);
+        }
+        
         public MultipleFilesControl()
         {
             InitializeComponent();
@@ -103,23 +230,99 @@ namespace Shoko.Desktop.UserControls
             }
             if (prefs != null)
             {
-                preferredTypes = prefs.TypePreferences;
-                preferredSources = prefs.SourcePreferences;
-                preferredResolutions = prefs.ResolutionPreferences;
-                preferredAudioCodecs = prefs.AudioCodecPreferences;
-                preferredVideoCodecs = prefs.VideoCodecPreferences;
-                preferredSubGroups = prefs.SubGroupPreferences;
+                PreferredTypes = new ObservableCollection<FileQualityFilterType>(prefs.TypePreferences);
+                PreferredSources = new ObservableCollection<string>(prefs.SourcePreferences);
+                PreferredResolutions = new ObservableCollection<string>(prefs.ResolutionPreferences);
+                PreferredAudioCodecs = new ObservableCollection<string>(prefs.AudioCodecPreferences);
+                PreferredVideoCodecs = new ObservableCollection<string>(prefs.VideoCodecPreferences);
+                PreferredSubGroups = new ObservableCollection<string>(prefs.SubGroupPreferences);
+                
+                RequiredTypes = new ObservableCollection<FileQualityFilterType>(prefs.RequiredTypes);
+                RequiredSources = new ObservableCollection<string>(prefs.RequiredSources);
+                RequiredResolutions = new ObservableCollection<string>(prefs.RequiredResolutions);
+                RequiredAudioCodecs = new ObservableCollection<string>(prefs.RequiredAudioCodecs);
+                RequiredVideoCodecs = new ObservableCollection<string>(prefs.RequiredVideoCodecs);
+                RequiredSubGroups = new ObservableCollection<string>(prefs.RequiredSubGroups);
 
-                lbPreferred_Types.ItemsSource = preferredTypes;
-                lbPreferred_Sources.ItemsSource = preferredSources;
-                lbPreferred_Resolutions.ItemsSource = preferredResolutions;
-                lbPreferred_AudioCodecs.ItemsSource = preferredAudioCodecs;
-                lbPreferred_VideoCodecs.ItemsSource = preferredVideoCodecs;
-                lbPreferred_SubGroups.ItemsSource = preferredSubGroups;
+                RequiredSourcesOperator = prefs.RequiredSourceOperator.ToString();
+                RequiredResolutionsOperator = prefs.RequiredResolutionOperator.ToString();
+                RequiredAudioCodecsOperator = prefs.RequiredAudioCodecOperator.ToString();
+                RequiredVideoCodecsOperator = prefs.RequiredVideoCodecOperator.ToString();
+                RequiredSubGroupsOperator = prefs.RequiredSubGroupOperator.ToString();
 
-                availableSubGroups = VM_ShokoServer.Instance.ShokoServices.GetAllReleaseGroups();
-                cmbPreferred_Subgroups_Available.ItemsSource = availableSubGroups;
+                RequiredAudioStreamCountOperator = prefs.RequiredAudioStreamCountOperator.ToString();
+                RequiredSubStreamCountOperator = prefs.RequiredSubStreamCountOperator.ToString();
+
+                EnableDeleteOnImport = VM_ShokoServer.Instance.FileQualityFilterEnabled;
+                AllowDeletionOfImportingFiles = prefs.AllowDeletionOfImportedFiles;
+                Prefer8Bit = prefs.Prefer8BitVideo;
+                Require10Bit = prefs.Require10BitVideo;
+                MaxNumberOfFiles = prefs.MaxNumberOfFilesToKeep;
+                RequiredAudioStreamCount = prefs.RequiredAudioStreamCount;
+                RequiredSubStreamCount = prefs.RequiredSubStreamCount;
+
+                lbPreferred_Types.ItemsSource = PreferredTypes;
+                lbPreferred_Sources.ItemsSource = PreferredSources;
+                lbPreferred_Resolutions.ItemsSource = PreferredResolutions;
+                lbPreferred_AudioCodecs.ItemsSource = PreferredAudioCodecs;
+                lbPreferred_VideoCodecs.ItemsSource = PreferredVideoCodecs;
+                lbPreferred_SubGroups.ItemsSource = PreferredSubGroups;
+                
+                lbRequired_Types.ItemsSource = RequiredTypes;
+                lbRequired_Sources.ItemsSource = RequiredSources;
+                lbRequired_Resolutions.ItemsSource = RequiredResolutions;
+                lbRequired_AudioCodecs.ItemsSource = RequiredAudioCodecs;
+                lbRequired_VideoCodecs.ItemsSource = RequiredVideoCodecs;
+                lbRequired_SubGroups.ItemsSource = RequiredSubGroups;
+
+                cmbRequired_Sources_Operator.ItemsSource = new[] {"IN", "NOTIN"};
+                cmbRequired_Resolutions_Operator.ItemsSource = new[] {"GREATER_EQ", "LESS_EQ", "EQUALS", "IN", "NOTIN"};
+                cmbRequired_AudioCodecs_Operator.ItemsSource = new[] {"IN", "NOTIN"};
+                cmbRequired_VideoCodecs_Operator.ItemsSource = new[] {"IN", "NOTIN"};
+                cmbRequired_SubGroups_Operator.ItemsSource = new[] {"IN", "NOTIN"};
+
+                cmbRequired_Sources_Operator.SelectionChanged += SaveSettings;
+                cmbRequired_Resolutions_Operator.SelectionChanged += SaveSettings;
+                cmbRequired_AudioCodecs_Operator.SelectionChanged += SaveSettings;
+                cmbRequired_VideoCodecs_Operator.SelectionChanged += SaveSettings;
+                cmbRequired_SubGroups_Operator.SelectionChanged += SaveSettings;
+
+                cmbAudioStreamCount_Operator.SelectionChanged += SaveSettings;
+                cmbSubStreamCount_Operator.SelectionChanged += SaveSettings;
+
+                chkEnableDeleteOnImport.Checked += SaveSettings;
+                chkPrefer8bit.Checked += SaveSettings;
+                chkRequire10bit.Checked += SaveSettings;
+                chkAllowDeletionOfImportingFiles.Checked += SaveSettings;
+
+                chkEnableDeleteOnImport.Unchecked += SaveSettings;
+                chkPrefer8bit.Unchecked += SaveSettings;
+                chkRequire10bit.Unchecked += SaveSettings;
+                chkAllowDeletionOfImportingFiles.Unchecked += SaveSettings;
+
+                numMaxFilesToKeep.ValueChanged += SaveSettings;
+                numMinAudioStreamCount.ValueChanged += SaveSettings;
+                numMinSubStreamCount.ValueChanged += SaveSettings;
+
+                cmbTypes_Available.ItemsSource = new[]
+                {
+                    FileQualityFilterType.RESOLUTION, FileQualityFilterType.SOURCE, FileQualityFilterType.VERSION,
+                    FileQualityFilterType.AUDIOSTREAMCOUNT, FileQualityFilterType.VIDEOCODEC,
+                    FileQualityFilterType.AUDIOCODEC, FileQualityFilterType.SUBGROUP,
+                    FileQualityFilterType.SUBSTREAMCOUNT
+                };
+
+                AvailableSubGroups = VM_ShokoServer.Instance.ShokoServices.GetAllReleaseGroups();
+                cmbPreferred_Subgroups_Available.ItemsSource = AvailableSubGroups;
+                cmbRequired_Subgroups_Available.ItemsSource = AvailableSubGroups;
             }
+
+            PreferredTypes.CollectionChanged += SaveSettings;
+            PreferredSources.CollectionChanged += SaveSettings;
+            PreferredResolutions.CollectionChanged += SaveSettings;
+            PreferredSubGroups.CollectionChanged += SaveSettings;
+            PreferredVideoCodecs.CollectionChanged += SaveSettings;
+            PreferredAudioCodecs.CollectionChanged += SaveSettings;
 
             IsLoading = false;
 
@@ -136,6 +339,86 @@ namespace Shoko.Desktop.UserControls
             chkOnlyFinished.IsChecked = AppSettings.MultipleFilesOnlyFinished;
 
             chkOnlyFinished.Checked += new RoutedEventHandler(chkOnlyFinished_Checked);
+        }
+
+        private void SaveSettings(object sender, RoutedEventArgs e)
+        {
+            SaveSettings();
+        }
+
+        private void SaveSettings(object sender, SelectionChangedEventArgs e)
+        {
+            SaveSettings();
+        }
+
+        private void SaveSettings(object o, NotifyCollectionChangedEventArgs args)
+        {
+            SaveSettings();
+        }
+
+        private void SaveSettings()
+        {
+            FileQualityPreferences prefs = new FileQualityPreferences();
+            prefs.AllowDeletionOfImportedFiles = AllowDeletionOfImportingFiles;
+            prefs.AudioCodecPreferences = PreferredAudioCodecs.ToList();
+            prefs.MaxNumberOfFilesToKeep = MaxNumberOfFiles;
+            prefs.Prefer8BitVideo = Prefer8Bit;
+            prefs.Require10BitVideo = Require10Bit;
+
+            FileQualityFilterOperationType operatorType;
+            if (Enum.TryParse(RequiredAudioCodecsOperator, out operatorType))
+                prefs.RequiredAudioCodecOperator = operatorType;
+
+            prefs.RequiredAudioCodecs = RequiredAudioCodecs.ToList();
+            prefs.RequiredAudioStreamCount = RequiredAudioStreamCount;
+
+            if (Enum.TryParse(RequiredAudioStreamCountOperator, out operatorType))
+                prefs.RequiredAudioStreamCountOperator = operatorType;
+
+            if (Enum.TryParse(RequiredResolutionsOperator, out operatorType))
+                prefs.RequiredResolutionOperator = operatorType;
+
+            prefs.RequiredResolutions = RequiredResolutions.ToList();
+
+            if (Enum.TryParse(RequiredSourcesOperator, out operatorType))
+                prefs.RequiredSourceOperator = operatorType;
+
+            prefs.RequiredSources = RequiredSources.ToList();
+
+            if (Enum.TryParse(RequiredSubGroupsOperator, out operatorType))
+                prefs.RequiredSubGroupOperator = operatorType;
+
+            prefs.RequiredSubGroups = RequiredSubGroups.ToList();
+
+            prefs.RequiredSubStreamCount = RequiredSubStreamCount;
+
+            if (Enum.TryParse(RequiredSubStreamCountOperator, out operatorType))
+                prefs.RequiredSubStreamCountOperator = operatorType;
+
+            prefs.RequiredTypes = RequiredTypes.ToList();
+
+            if (Enum.TryParse(RequiredVideoCodecsOperator, out operatorType))
+                prefs.RequiredVideoCodecOperator = operatorType;
+
+            prefs.RequiredVideoCodecs = RequiredVideoCodecs.ToList();
+
+            prefs.ResolutionPreferences = PreferredResolutions.ToList();
+            prefs.SourcePreferences = PreferredSources.ToList();
+            prefs.SubGroupPreferences = PreferredSubGroups.ToList();
+            prefs.TypePreferences = PreferredTypes.ToList();
+            prefs.VideoCodecPreferences = PreferredVideoCodecs.ToList();
+
+            string settings = null;
+            try
+            {
+                settings = JsonConvert.SerializeObject(prefs, Formatting.None, new StringEnumConverter());
+                VM_ShokoServer.Instance.FileQualityPreferences = settings;
+                VM_ShokoServer.Instance.SaveServerSettingsAsync();
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+            }
         }
 
         void chkOnlyFinished_Checked(object sender, RoutedEventArgs e)
@@ -273,6 +556,205 @@ namespace Shoko.Desktop.UserControls
             list = list.DistinctBy(a => a.Places.FirstOrDefault(b => !string.IsNullOrEmpty(b.FilePath))?.FilePath).ToList();
             PreviewDeleteByFileQuality form = new PreviewDeleteByFileQuality(list);
             form.ShowDialog();
+        }
+
+        private static void Move<T>(IList<T> list, Selector box, MoveDirection direction)
+        {
+            int index = box.SelectedIndex;
+            if (direction == MoveDirection.Up)
+            {
+                if (index <= 0) return;
+                T old = list[index - 1];
+                list[index - 1] = list[index];
+                list[index] = old;
+                box.SelectedIndex = index - 1;
+            }
+            else
+            {
+                if (index >= list.Count) return;
+                T old = list[index + 1];
+                list[index + 1] = list[index];
+                list[index] = old;
+                box.SelectedIndex = index + 1;
+            }
+        }
+
+        private void btnPreferred_Types_Up_Click(object sender, RoutedEventArgs e)
+        {
+            Move(PreferredTypes, lbPreferred_Types, MoveDirection.Up);
+        }
+
+        private void btnPreferred_Types_Down_Click(object sender, RoutedEventArgs e)
+        {
+            Move(PreferredTypes, lbPreferred_Types, MoveDirection.Down);
+        }
+
+        private void btnPreferred_Sources_Up_Click(object sender, RoutedEventArgs e)
+        {
+            Move(PreferredSources, lbPreferred_Sources, MoveDirection.Up);
+        }
+
+        private void btnPreferred_Sources_Down_Click(object sender, RoutedEventArgs e)
+        {
+            Move(PreferredSources, lbPreferred_Sources, MoveDirection.Down);
+        }
+
+        private void btnPreferred_Resolutions_Up_Click(object sender, RoutedEventArgs e)
+        {
+            Move(PreferredResolutions, lbPreferred_Resolutions, MoveDirection.Up);
+        }
+
+        private void btnPreferred_Resolutions_Down_Click(object sender, RoutedEventArgs e)
+        {
+            Move(PreferredResolutions, lbPreferred_Resolutions, MoveDirection.Down);
+        }
+
+        private void btnPreferred_SubGroups_Up_Click(object sender, RoutedEventArgs e)
+        {
+            Move(PreferredSubGroups, lbPreferred_SubGroups, MoveDirection.Up);
+        }
+
+        private void btnPreferred_SubGroups_Down_Click(object sender, RoutedEventArgs e)
+        {
+            Move(PreferredSubGroups, lbPreferred_SubGroups, MoveDirection.Down);
+        }
+
+        private void btnPreferred_SubGroups_Remove_Click(object sender, RoutedEventArgs e)
+        {
+            int i = lbPreferred_SubGroups.SelectedIndex;
+            try
+            {
+                PreferredSubGroups.RemoveAt(i);
+            }
+            catch (Exception exception)
+            {
+            }
+        }
+
+        private void btnPreferred_SubGroups_Add_Click(object sender, RoutedEventArgs e)
+        {
+            string item = cmbPreferred_Subgroups_Available.SelectedItem as string;
+            if (item == null || PreferredSubGroups.Contains(item.ToLowerInvariant())) return;
+            PreferredSubGroups.Add(item.ToLowerInvariant());
+        }
+
+        private void btnPreferred_VideoCodecs_Up_Click(object sender, RoutedEventArgs e)
+        {
+            Move(PreferredVideoCodecs, lbPreferred_VideoCodecs, MoveDirection.Up);
+        }
+
+        private void btnPreferred_VideoCodecs_Down_Click(object sender, RoutedEventArgs e)
+        {
+            Move(PreferredVideoCodecs, lbPreferred_VideoCodecs, MoveDirection.Down);
+        }
+
+        private void btnPreferred_AudioCodecs_Up_Click(object sender, RoutedEventArgs e)
+        {
+            Move(PreferredAudioCodecs, lbPreferred_AudioCodecs, MoveDirection.Up);
+        }
+
+        private void btnPreferred_AudioCodecs_Down_Click(object sender, RoutedEventArgs e)
+        {
+            Move(PreferredAudioCodecs, lbPreferred_AudioCodecs, MoveDirection.Down);
+        }
+        
+        private void btnRequired_Types_Up_Click(object sender, RoutedEventArgs e)
+        {
+            Move(RequiredTypes, lbRequired_Types, MoveDirection.Up);
+        }
+
+        private void btnRequired_Types_Down_Click(object sender, RoutedEventArgs e)
+        {
+            Move(RequiredTypes, lbRequired_Types, MoveDirection.Down);
+        }
+
+        private void btnRequired_Types_Remove_Click(object sender, RoutedEventArgs e)
+        {
+            int i = lbRequired_Types.SelectedIndex;
+            try
+            {
+                RequiredTypes.RemoveAt(i);
+            }
+            catch (Exception exception)
+            {
+            }
+        }
+
+        private void btnRequired_Types_Add_Click(object sender, RoutedEventArgs e)
+        {
+            if(!(cmbTypes_Available.SelectedItem is FileQualityFilterType)) return;
+            FileQualityFilterType item = (FileQualityFilterType) cmbTypes_Available.SelectedItem;
+            if (RequiredTypes.Contains(item)) return;
+            RequiredTypes.Add(item);
+        }
+
+        private void btnRequired_Sources_Up_Click(object sender, RoutedEventArgs e)
+        {
+            Move(RequiredSources, lbRequired_Sources, MoveDirection.Up);
+        }
+
+        private void btnRequired_Sources_Down_Click(object sender, RoutedEventArgs e)
+        {
+            Move(RequiredSources, lbRequired_Sources, MoveDirection.Down);
+        }
+
+        private void btnRequired_Resolutions_Up_Click(object sender, RoutedEventArgs e)
+        {
+            Move(RequiredResolutions, lbRequired_Resolutions, MoveDirection.Up);
+        }
+
+        private void btnRequired_Resolutions_Down_Click(object sender, RoutedEventArgs e)
+        {
+            Move(RequiredResolutions, lbRequired_Resolutions, MoveDirection.Down);
+        }
+
+        private void btnRequired_SubGroups_Up_Click(object sender, RoutedEventArgs e)
+        {
+            Move(RequiredSubGroups, lbRequired_SubGroups, MoveDirection.Up);
+        }
+
+        private void btnRequired_SubGroups_Down_Click(object sender, RoutedEventArgs e)
+        {
+            Move(RequiredSubGroups, lbRequired_SubGroups, MoveDirection.Down);
+        }
+
+        private void btnRequired_SubGroups_Remove_Click(object sender, RoutedEventArgs e)
+        {
+            int i = lbRequired_SubGroups.SelectedIndex;
+            try
+            {
+                RequiredSubGroups.RemoveAt(i);
+            }
+            catch (Exception exception)
+            {
+            }
+        }
+
+        private void btnRequired_SubGroups_Add_Click(object sender, RoutedEventArgs e)
+        {
+            string item = cmbRequired_Subgroups_Available.SelectedItem as string;
+            if (item == null || RequiredSubGroups.Contains(item)) return;
+            RequiredSubGroups.Add(item);
+        }
+
+        private void btnRequired_VideoCodecs_Up_Click(object sender, RoutedEventArgs e)
+        {
+            Move(RequiredVideoCodecs, lbRequired_VideoCodecs, MoveDirection.Up);
+        }
+
+        private void btnRequired_VideoCodecs_Down_Click(object sender, RoutedEventArgs e)
+        {
+            Move(RequiredVideoCodecs, lbRequired_VideoCodecs, MoveDirection.Down);
+        }
+
+        private void btnRequired_AudioCodecs_Up_Click(object sender, RoutedEventArgs e)
+        {
+            Move(RequiredAudioCodecs, lbRequired_AudioCodecs, MoveDirection.Up);
+        }
+
+        private void btnRequired_AudioCodecs_Down_Click(object sender, RoutedEventArgs e)
+        {
+            Move(RequiredAudioCodecs, lbRequired_AudioCodecs, MoveDirection.Down);
         }
     }
 

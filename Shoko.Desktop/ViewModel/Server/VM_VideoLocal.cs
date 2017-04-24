@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Shoko.Commons.Extensions;
 using Shoko.Desktop.Utilities;
 using Shoko.Models.Client;
@@ -21,6 +22,11 @@ namespace Shoko.Desktop.ViewModel.Server
         // ReSharper disable once EmptyConstructor
         public VM_VideoLocal()
         {
+        }
+
+        public string FullPath
+        {
+            get => Places.FirstOrDefault(a => !string.IsNullOrEmpty(a.GetFullPath())).GetFullPath();
         }
 
 
