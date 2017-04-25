@@ -289,7 +289,7 @@ namespace Shoko.Desktop.UserControls
                     frm.Owner = wdw;
                     frm.Init(anime.AnimeID, gvq);
                     bool? result = frm.ShowDialog();
-                    if (result.Value)
+                    if (result != null && result.Value)
                     {
                         // refresh
                         RefreshRecords();
@@ -307,7 +307,7 @@ namespace Shoko.Desktop.UserControls
                     frm.Owner = wdw;
                     frm.Init(anime.AnimeID, gfs);
                     bool? result = frm.ShowDialog();
-                    if (result.Value)
+                    if (result != null && result.Value)
                     {
                         // refresh
                         RefreshRecords();
