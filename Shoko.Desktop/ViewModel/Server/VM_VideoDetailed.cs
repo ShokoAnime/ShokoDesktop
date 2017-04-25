@@ -56,6 +56,8 @@ namespace Shoko.Desktop.ViewModel.Server
         public bool IsHi10P => this.IsHi10P();
         public bool IsHi12P => this.IsHi12P();
         public int BitDepth => this.GetBitDepth();
+        public bool IsDualAudio => this.IsDualAudio();
+        public bool IsMultiAudio => this.IsMultiAudio();
 
         #endregion
 

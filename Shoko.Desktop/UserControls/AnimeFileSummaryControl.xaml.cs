@@ -277,12 +277,11 @@ namespace Shoko.Desktop.UserControls
             try
             {
                 VM_AniDB_Anime anime = DataContext as VM_AniDB_Anime;
-                if (anime == null) return;
 
                 Window wdw = Window.GetWindow(this);
-                if (obj.GetType() == typeof(CL_GroupVideoQuality))
+                if (obj.GetType() == typeof(VM_GroupVideoQuality))
                 {
-                    CL_GroupVideoQuality gvq = (CL_GroupVideoQuality)obj;
+                    VM_GroupVideoQuality gvq = (VM_GroupVideoQuality)obj;
 
                     Cursor = Cursors.Wait;
                     DeleteFilesForm frm = new DeleteFilesForm();
@@ -318,6 +317,7 @@ namespace Shoko.Desktop.UserControls
             }
             catch (Exception ex)
             {
+                logger.Error(ex, "Unable to Delete All Files");
                 Utils.ShowErrorMessage(ex);
             }
         }
