@@ -204,19 +204,19 @@ namespace Shoko.Desktop.Utilities
 
         public static void ShowErrorMessage(string msg, Exception ex)
         {
-            System.Windows.Forms.MessageBox.Show(msg, Shoko.Commons.Properties.Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            FlexibleMessageBox.Show(msg, Shoko.Commons.Properties.Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
             logger.Error(ex, ex.ToString());
         }
 
         public static void ShowErrorMessage(Exception ex)
         {
-            System.Windows.Forms.MessageBox.Show(ex.Message, Shoko.Commons.Properties.Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            FlexibleMessageBox.Show(ex.Message, Shoko.Commons.Properties.Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
             logger.Error(ex, ex.ToString());
         }
 
         public static void ShowErrorMessage(string msg)
         {
-            System.Windows.Forms.MessageBox.Show(msg, Shoko.Commons.Properties.Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            FlexibleMessageBox.Show(msg, Shoko.Commons.Properties.Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
             logger.Error(msg);
         }
 
