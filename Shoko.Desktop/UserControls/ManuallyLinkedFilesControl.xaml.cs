@@ -12,6 +12,7 @@ using Shoko.Desktop.ViewModel;
 using Shoko.Desktop.ViewModel.Server;
 using Shoko.Models.Client;
 using System.Linq;
+using Shoko.Commons.Utils;
 
 namespace Shoko.Desktop.UserControls
 {
@@ -38,7 +39,7 @@ namespace Shoko.Desktop.UserControls
 
             ManuallyLinkedFiles = new ObservableCollection<VM_VideoLocal>();
             ViewFiles = CollectionViewSource.GetDefaultView(ManuallyLinkedFiles);
-            ViewFiles.SortDescriptions.Add(new SortDescription("FullPath", ListSortDirection.Ascending));
+            ((ListCollectionView)ViewFiles).CustomSort = Comparer<VM_VideoLocal>.Create((x, y) => NaturalSortComparer.CompareNatural(x.FullPath, y.FullPath));
             ViewFiles.Filter = FileSearchFilter;
 
             btnClearSearch.Click += new RoutedEventHandler(btnClearSearch_Click);
