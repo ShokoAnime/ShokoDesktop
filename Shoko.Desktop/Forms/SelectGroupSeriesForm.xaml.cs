@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -103,14 +104,18 @@ namespace Shoko.Desktop.Forms
                 ViewSeries = CollectionViewSource.GetDefaultView(AllSeries);
                 ViewSeries.SortDescriptions.Add(new SortDescription("SeriesName", ListSortDirection.Ascending));
 
-                List<VM_AnimeGroup_User> grpsRaw = VM_ShokoServer.Instance.ShokoServices.GetAllGroups(VM_ShokoServer.Instance.CurrentUser.JMMUserID).CastList<VM_AnimeGroup_User>();
+                List<VM_AnimeGroup_User> grpsRaw = VM_MainListHelper.Instance.AllGroupsDictionary.Values
+                    .OrderBy(a => a.SortName)
+                    .ToList();
 
                 foreach (VM_AnimeGroup_User grpNew in grpsRaw)
                 {
                     AllGroups.Add(grpNew);
                 }
 
-                List<VM_AnimeSeries_User> sersRaw = VM_ShokoServer.Instance.ShokoServices.GetAllSeries(VM_ShokoServer.Instance.CurrentUser.JMMUserID).CastList<VM_AnimeSeries_User>();
+                List<VM_AnimeSeries_User> sersRaw = VM_MainListHelper.Instance.AllSeriesDictionary.Values
+                    .OrderBy(a => a.SortName)
+                    .ToList();
                 foreach (VM_AnimeSeries_User serNew in sersRaw)
                 {
                     AllSeries.Add(serNew);
