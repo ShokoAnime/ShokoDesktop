@@ -204,10 +204,10 @@ namespace Shoko.Desktop.ViewModel
                         {
                             ep.RefreshAnime();
 
-                            if (ep.AniDB_Anime == null)
+                            if (ep.AniDBAnime == null)
                                 ep.RefreshAnime(true); // this might be a new series
 
-                            if (ep.AniDB_Anime != null)
+                            if (ep.AniDBAnime != null)
                             {
                                 ep.SetTvDBInfo();
                                 RecentAdditions.Add(ep);
@@ -388,7 +388,7 @@ namespace Shoko.Desktop.ViewModel
                 foreach (VM_AnimeEpisode_User ep in epContracts)
                 {
                     
-                    if (ep.AniDB_Anime == null)
+                    if (ep.AniDBAnime == null)
                         ep.RefreshAnime(true); // this might be a new series
 
                     ts = DateTime.Now - start;
@@ -442,9 +442,9 @@ namespace Shoko.Desktop.ViewModel
                     foreach (VM_AnimeEpisode_User ep in epContracts)
                     {
                         ep.RefreshAnime();
-                        if (ep.AniDB_Anime == null)
+                        if (ep.AniDBAnime == null)
                             ep.RefreshAnime(true); // this might be a new series
-                        if (ep.AniDB_Anime != null && VM_ShokoServer.Instance.CurrentUser.EvaluateAnime(ep.AniDB_Anime))
+                        if (ep.AniDBAnime != null && VM_ShokoServer.Instance.CurrentUser.EvaluateAnime(ep.AniDBAnime))
                         {
                             ep.SetTvDBInfo();
                             EpsWatchedRecently.Add(ep);

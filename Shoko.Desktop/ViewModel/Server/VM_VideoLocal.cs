@@ -41,7 +41,7 @@ namespace Shoko.Desktop.ViewModel.Server
                 if (eps.Count > 0)
                 {
                     eps[0].RefreshAnime();
-                    return eps[0].AniDB_Anime.MainTitle;
+                    return eps[0].AniDBAnime.MainTitle;
                 }
 
                 string match = Path.GetFileNameWithoutExtension(FileName);

@@ -405,7 +405,7 @@ namespace Shoko.Desktop.ViewModel.Server
             //logger.Trace("SetTvDBInfo: RefreshAnime start: {0} - {1}", this.AnimeSeries.SeriesName, this.EpisodeNumberAndName);
             RefreshAnime();
 
-            VM_TvDBSummary tvSummary = AniDB_Anime.TvSummary;
+            VM_TvDBSummary tvSummary = AniDBAnime.TvSummary;
 
             SetTvDBInfo(tvSummary);
         }
@@ -610,7 +610,7 @@ namespace Shoko.Desktop.ViewModel.Server
         {
             //this.RefreshAnime();
 
-            VM_TraktSummary tvSummary = AniDB_Anime.traktSummary;
+            VM_TraktSummary tvSummary = AniDBAnime.traktSummary;
 
             SetTraktInfo(tvSummary);
         }
@@ -831,7 +831,7 @@ namespace Shoko.Desktop.ViewModel.Server
 
 
         private VM_AniDB_Anime aniDB_Anime;
-        public VM_AniDB_Anime AniDB_Anime => aniDB_Anime;
+        public VM_AniDB_Anime AniDBAnime => aniDB_Anime;
 
         public void RefreshAnime()
         {
@@ -1040,8 +1040,8 @@ namespace Shoko.Desktop.ViewModel.Server
         public List<string> ToSearchParameters()
         {
             List<string> parms = new List<string>();
-            if (AniDB_Anime == null) RefreshAnime();
-            VM_AniDB_Anime anime = AniDB_Anime;
+            if (AniDBAnime == null) RefreshAnime();
+            VM_AniDB_Anime anime = AniDBAnime;
             if (anime == null) return parms;
 
             // only use the first 2 words of the anime's title

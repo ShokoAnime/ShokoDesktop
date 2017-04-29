@@ -36,10 +36,10 @@ namespace Shoko.Desktop.ViewModel.Server
                 }
                 else
                 {
-                    Recommended_DisplayName = Recommended_AniDB_Anime.FormattedTitle;
+                    Recommended_DisplayName = value.FormattedTitle;
                     Recommended_AnimeInfoExists = true;
-                    Recommended_PosterPath = Recommended_AniDB_Anime.PosterPath;
-                    Recommended_Description = Recommended_AniDB_Anime.Description;
+                    Recommended_PosterPath = value.PosterPath;
+                    Recommended_Description = value.Description;
                 }
                 Recommended_ShowCreateSeriesButton = (!Recommended_LocalSeriesExists && Recommended_AnimeInfoExists);
             }

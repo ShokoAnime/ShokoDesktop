@@ -149,7 +149,7 @@ namespace Shoko.Desktop.UserControls
                     ep.RefreshFilesForEpisode();
                     ep.RefreshAnime();
                     fileSummary.DataContext = null;
-                    fileSummary.DataContext = ep.AniDB_Anime;
+                    fileSummary.DataContext = ep.AniDBAnime;
 
                     lbFiles.ItemsSource = ep.FilesForEpisode;
 
