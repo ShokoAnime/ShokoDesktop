@@ -74,7 +74,7 @@ namespace Shoko.Desktop.UserControls
             {
                 ImportFolder frm = new ImportFolder();
                 frm.Owner = GetTopParent();
-                frm.Init(new VM_ImportFolder());
+                frm.Init(null);
                 bool? result = frm.ShowDialog();
 
                 VM_ShokoServer.Instance.RefreshImportFolders();
