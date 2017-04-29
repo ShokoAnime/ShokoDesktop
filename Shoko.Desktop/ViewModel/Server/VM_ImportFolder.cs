@@ -45,7 +45,7 @@ namespace Shoko.Desktop.ViewModel.Server
         {
             try
             {
-                CL_Response<ImportFolder> response = VM_ShokoServer.Instance.ShokoServices.SaveImportFolder(this);
+                CL_Response<ImportFolder> response = VM_ShokoServer.Instance.ShokoServices.SaveImportFolder(this.ToContract());
                 if (!string.IsNullOrEmpty(response.ErrorMessage))
                 {
                     MessageBox.Show(response.ErrorMessage);
@@ -77,6 +77,22 @@ namespace Shoko.Desktop.ViewModel.Server
             {
                 Utils.ShowErrorMessage(ex);
             }
+        }
+
+        public ImportFolder ToContract()
+        {
+            var result = new ImportFolder
+            {
+                ImportFolderID = ImportFolderID,
+                CloudID = CloudID,
+                ImportFolderLocation = ImportFolderLocation,
+                ImportFolderName = ImportFolderName,
+                ImportFolderType = ImportFolderType,
+                IsDropDestination = IsDropDestination,
+                IsDropSource = IsDropSource,
+                IsWatched = IsWatched
+            };
+            return result;
         }
     }
 }

@@ -45,8 +45,6 @@
         <Setter Property="Background" Value="AliceBlue" />
     </Style>
 
-    
-
     <Style x:Key="LinkButton" TargetType="Button">
         <Setter Property="Template">
             <Setter.Value>
@@ -73,6 +71,21 @@
     <SolidColorBrush x:Key="DefaultBrush" Color="{StaticResource DefaultColor}" />
     <SolidColorBrush x:Key="HighlightBrush" Color="{StaticResource HighlightColor}" />
     <SolidColorBrush x:Key="PressedBrush" Color="{StaticResource PressedColor}" />
+
+    <Style x:Key="RoundBorderStyle" TargetType="{x:Type Border}">
+        <Setter Property="Background" Value="White" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="DarkGray" />
+        <Setter Property="Padding" Value="3,3,3,3" />
+        <Setter Property="CornerRadius" Value="4" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource HighlightBrush}" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="BorderBrush" Value="Black" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 
     <!-- FlatButtonStyle -->
     <Style TargetType="Button" x:Key="FlatButtonStyle">

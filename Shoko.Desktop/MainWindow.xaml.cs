@@ -944,7 +944,7 @@ namespace Shoko.Desktop
 
                 if (isLanguageChanged)
                 {
-                    result = System.Windows.Forms.MessageBox.Show(Shoko.Commons.Properties.Resources.Language_Info, Shoko.Commons.Properties.Resources.Language_Switch, System.Windows.Forms.MessageBoxButtons.OKCancel, System.Windows.Forms.MessageBoxIcon.Information);
+                    result = FlexibleMessageBox.Show(Shoko.Commons.Properties.Resources.Language_Info, Shoko.Commons.Properties.Resources.Language_Switch, System.Windows.Forms.MessageBoxButtons.OKCancel, System.Windows.Forms.MessageBoxIcon.Information);
                     if (result == System.Windows.Forms.DialogResult.OK)
                     {
                         System.Windows.Forms.Application.Restart();

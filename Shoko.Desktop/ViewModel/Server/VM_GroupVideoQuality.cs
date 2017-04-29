@@ -21,5 +21,7 @@ namespace Shoko.Desktop.ViewModel.Server
         public bool IsHi08P => this.IsHi08P();
         public bool IsHi10P => this.IsHi10P();
         public bool IsHi12P => this.IsHi12P();
+        public bool IsDualAudio => this.IsDualAudio();
+        public bool IsMultiAudio => this.IsMultiAudio();
     }
 }

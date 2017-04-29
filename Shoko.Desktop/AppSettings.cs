@@ -312,7 +312,7 @@ namespace Shoko.Desktop
                         message = "Failed to set folder permissions, do you want to try and reset folder permissions?";
 
                     DialogResult dr =
-                        System.Windows.Forms.MessageBox.Show(message, "Failed to set folder permissions",
+                        FlexibleMessageBox.Show(message, "Failed to set folder permissions",
                             MessageBoxButtons.YesNo);
 
                     switch (dr)

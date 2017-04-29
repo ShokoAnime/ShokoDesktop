@@ -142,12 +142,16 @@ namespace Shoko.Desktop.UserControls
                 FileSearchCriteria searchType = FileSearchCriteria.Name;
                 if (cboSearchType.SelectedItem.ToString() == SearchTypeHash) searchType = FileSearchCriteria.ED2KHash;
                 if (cboSearchType.SelectedItem.ToString() == SearchTypeTopOneHundred) searchType = FileSearchCriteria.LastOneHundred;
-
-                if (txtFileSearch.Text.Trim().Length == 0 && searchType != FileSearchCriteria.LastOneHundred)
+                string searchText = txtFileSearch.Text.Trim();
+                if (searchText.Length == 0 && searchType != FileSearchCriteria.LastOneHundred)
                 {
                     MessageBox.Show(Shoko.Commons.Properties.Resources.Seach_Criteria, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     txtFileSearch.Focus();
                     return;
+                }
+                else
+                {
+                    searchText = "null";
                 }
 
                 FileResults.Clear();
@@ -158,7 +162,7 @@ namespace Shoko.Desktop.UserControls
                 EnableDisableControls(false);
 
                 List<VM_VideoLocal> rawVids = VM_ShokoServer.Instance.ShokoServices.SearchForFiles(
-                    (int)searchType, txtFileSearch.Text, VM_ShokoServer.Instance.CurrentUser.JMMUserID).OrderByNatural(a => a.Places.First().FilePath).CastList<VM_VideoLocal>();
+                    (int)searchType, searchText, VM_ShokoServer.Instance.CurrentUser.JMMUserID).OrderByNatural(a => a.Places.First().FilePath).CastList<VM_VideoLocal>();
 
                 foreach (VM_VideoLocal raw in rawVids)
                     FileResults.Add(raw);

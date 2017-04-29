@@ -152,6 +152,10 @@
                                Visibility="{Binding Path=IsHi10P, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         <Label Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Video_Hi12P}" Style="{DynamicResource VideoDefStyle_Hi12P}" VerticalAlignment="Center" Margin="0,0,10,0"
                                Visibility="{Binding Path=IsHi12P, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <Label Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Audio_Dual}" Style="{DynamicResource VideoDefStyle}" VerticalAlignment="Center" Margin="0,0,10,0"
+                               Visibility="{Binding Path=IsDualAudio, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <Label Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Audio_Multi}" Style="{DynamicResource VideoDefStyle}" VerticalAlignment="Center" Margin="0,0,10,0"
+                               Visibility="{Binding Path=IsMultiAudio, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                         <usercontrols:HyperLinkStandard Margin="0,0,10,0" VerticalAlignment="Center" DisplayText="{Binding Path=ReleaseGroupName}" URL="{Binding Path=ReleaseGroupAniDBURL}" 
                                 Visibility="{Binding Path=HasReleaseGroup, Converter={StaticResource BooleanToVisibilityConverter}}"/>

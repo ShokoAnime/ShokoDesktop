@@ -2,8 +2,9 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:usercontrols="clr-namespace:Shoko.Desktop.UserControls"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:local="clr-namespace:Shoko.Desktop.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -82,7 +83,7 @@
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="400"/>
+                        <ColumnDefinition Width="425"/>
                     </Grid.ColumnDefinitions>
 
                     <TreeView BorderThickness="0" Grid.Column="0" HorizontalAlignment="Stretch"  Margin="0"  ScrollViewer.CanContentScroll="True"
@@ -108,6 +109,7 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
 
@@ -121,17 +123,28 @@
                                 </StackPanel>
                             </Button>
 
-                            <TabControl Grid.Row="2" Margin="5,5,5,5">
+                            <!-- Enable Delete on Import -->
+                            <Border Style="{DynamicResource RoundBorderStyle}" HorizontalAlignment="Center" Grid.Row="2" Margin="2,2,2,2" Width="Auto" Visibility="{Binding Path=IsNotLoading, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MultipleFilesControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <CheckBox x:Name="chkEnableDeleteOnImport" IsChecked="{Binding EnableDeleteOnImport, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}">
+                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_EnableDeleteOnImport}" ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_EnableDeleteOnImport_Tooltip}" Margin="0,0,5,0"/>
+                                </CheckBox>
+                            </Border>
+
+                            <TabControl Grid.Row="3" Margin="5,5,5,5">
                                 <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Preferences}">
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto"/>
                                             <RowDefinition/>
                                         </Grid.RowDefinitions>
-                                        <StackPanel Orientation="Horizontal" Grid.Row="0">
+                                        <Grid Grid.Row="0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
                                             <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="10,10,0,5" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                                            <TextBlock TextWrapping="WrapWithOverflow" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Preferences_Info}" Margin="10,10,10,10"/>
-                                        </StackPanel>
+                                            <TextBlock Grid.Column="1" TextWrapping="WrapWithOverflow" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Preferences_Info}" Margin="10,10,10,10"/>
+                                        </Grid>
                                         <Border Grid.Row="1" Style="{DynamicResource ToolbarBorderControlStyle}" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1">
                                             <ScrollViewer VerticalScrollBarVisibility="Auto">
                                                 <Grid>
@@ -147,18 +160,23 @@
                                                         <RowDefinition Height="Auto"></RowDefinition>
                                                         <RowDefinition Height="Auto"></RowDefinition>
                                                         <RowDefinition Height="Auto"></RowDefinition>
-                                                        <RowDefinition Height="*"></RowDefinition>
+                                                        <RowDefinition Height="Auto"></RowDefinition>
+                                                        <RowDefinition Height="Auto"></RowDefinition>
                                                     </Grid.RowDefinitions>
                                                     <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="100"/>
+                                                        <ColumnDefinition Width="Auto"/>
                                                         <ColumnDefinition Width="*"/>
                                                     </Grid.ColumnDefinitions>
 
                                                     <!-- Types -->
                                                     <TextBlock TextAlignment="Center" Grid.ColumnSpan="2" Grid.Row="0" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Types}" FontSize="14" FontWeight="Bold"/>
-                                                    <StackPanel Grid.Column="0" Grid.Row="1" Margin="0,30,0,10">
-                                                        <Button Name="btnPreferred_Types_Up" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Up}" Width="60" Margin="0,0,0,5" />
-                                                        <Button Name="btnPreferred_Types_Down" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Down}" Width="60" Margin="0,0,0,5" />
+                                                    <StackPanel Grid.Column="0" Grid.Row="1" VerticalAlignment="Center">
+                                                        <Button Name="btnPreferred_Types_Up" IsEnabled="{Binding ElementName=lbPreferred_Types, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnPreferred_Types_Up_Click" >
+                                                            <Image Height="16" Width="16" Source="/Images/16_up.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                                        </Button>
+                                                        <Button Name="btnPreferred_Types_Down" IsEnabled="{Binding ElementName=lbPreferred_Types, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnPreferred_Types_Down_Click">
+                                                            <Image Height="16" Width="16" Source="/Images/16_down.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                                        </Button>
                                                     </StackPanel>
 
                                                     <ListBox Grid.Column="1" Grid.Row="1" Margin="0,5,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbPreferred_Types" Height="120">
@@ -166,9 +184,13 @@
 
                                                     <!-- Sources -->
                                                     <TextBlock TextAlignment="Center" Grid.ColumnSpan="2" Grid.Row="2" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Sources}" FontSize="14" FontWeight="Bold"/>
-                                                    <StackPanel Grid.Column="0" Grid.Row="3" Margin="0,30,0,10">
-                                                        <Button Name="btnPreferred_Sources_Up" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Up}" Width="60" Margin="0,0,0,5" />
-                                                        <Button Name="btnPreferred_Sources_Down" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Down}" Width="60" Margin="0,0,0,5" />
+                                                    <StackPanel Grid.Column="0" Grid.Row="3" VerticalAlignment="Center">
+                                                        <Button Name="btnPreferred_Sources_Up" IsEnabled="{Binding ElementName=lbPreferred_Sources, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnPreferred_Sources_Up_Click">
+                                                            <Image Height="16" Width="16" Source="/Images/16_up.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                                        </Button>
+                                                        <Button Name="btnPreferred_Sources_Down" IsEnabled="{Binding ElementName=lbPreferred_Sources, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnPreferred_Sources_Down_Click">
+                                                            <Image Height="16" Width="16" Source="/Images/16_down.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                                        </Button>
                                                     </StackPanel>
 
                                                     <ListBox Grid.Column="1" Grid.Row="3" Margin="0,5,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbPreferred_Sources" Height="120">
@@ -176,39 +198,76 @@
 
                                                     <!-- Resolutions -->
                                                     <TextBlock TextAlignment="Center" Grid.ColumnSpan="2" Grid.Row="4" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Resolutions}" FontSize="14" FontWeight="Bold"/>
-                                                    <StackPanel Grid.Column="0" Grid.Row="5" Margin="0,30,0,10">
-                                                        <Button Name="btnPreferred_Resolutions_Up" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Up}" Width="60" Margin="0,0,0,5" />
-                                                        <Button Name="btnPreferred_Resolutions_Down" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Down}" Width="60" Margin="0,0,0,5" />
+                                                    <StackPanel Grid.Column="0" Grid.Row="5" VerticalAlignment="Center">
+                                                        <Button Name="btnPreferred_Resolutions_Up" IsEnabled="{Binding ElementName=lbPreferred_Resolutions, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnPreferred_Resolutions_Up_Click">
+                                                            <Image Height="16" Width="16" Source="/Images/16_Up.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                                        </Button>
+                                                        <Button Name="btnPreferred_Resolutions_Down" IsEnabled="{Binding ElementName=lbPreferred_Resolutions, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnPreferred_Resolutions_Down_Click">
+                                                            <Image Height="16" Width="16" Source="/Images/16_Down.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                                        </Button>
                                                     </StackPanel>
 
                                                     <ListBox Grid.Column="1" Grid.Row="5" Margin="0,10,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbPreferred_Resolutions" Height="120">
                                                     </ListBox>
 
                                                     <!-- Sub Groups -->
-                                                    <!-- TODO MAKE THIS -->
                                                     <TextBlock TextAlignment="Center" Grid.ColumnSpan="2" Grid.Row="6" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_SubGroups}" FontSize="14" FontWeight="Bold"/>
-                                                    <StackPanel Grid.Column="0" Grid.Row="7" Margin="0,30,0,10">
+                                                    <StackPanel Grid.Column="0" Grid.Row="7" VerticalAlignment="Center">
                                                         
-                                                        <Button Name="btnPreferred_SubGroups_Up" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Up}" Width="60" Margin="0,0,0,5" />
-                                                        <Button Name="btnPreferred_SubGroups_Down" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Down}" Width="60" Margin="0,0,0,5" />
-                                                        <Button Name="btnPreferred_SubGroups_Remove" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Remove}" Width="60" Margin="0,0,0,5" />
+                                                        <Button Name="btnPreferred_SubGroups_Up" IsEnabled="{Binding ElementName=lbPreferred_SubGroups, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnPreferred_SubGroups_Up_Click">
+                                                            <Image Height="16" Width="16" Source="/Images/16_Up.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                                        </Button>
+                                                        <Button Name="btnPreferred_SubGroups_Down" IsEnabled="{Binding ElementName=lbPreferred_SubGroups, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnPreferred_SubGroups_Down_Click">
+                                                            <Image Height="16" Width="16" Source="/Images/16_Down.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                                        </Button>
+                                                        <Button Name="btnPreferred_SubGroups_Remove" IsEnabled="{Binding ElementName=lbPreferred_SubGroups, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnPreferred_SubGroups_Remove_Click">
+                                                            <Image Height="16" Width="16" Source="/Images/16_Cancel.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                                        </Button>
                                                     </StackPanel>
 
-                                                    <StackPanel Grid.Column="1" Grid.Row="7" Margin="0,10,10,10" HorizontalAlignment="Stretch">
+                                                    <StackPanel Grid.Column="1" Grid.Row="7" HorizontalAlignment="Stretch">
                                                         <Grid>
-                                                            <ComboBox Name="cmbPreferred_Subgroups_Available" ItemsSource="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=AvailableSubGroups}" Margin="5,5,45,5" HorizontalContentAlignment="Stretch" >
+                                                            <ComboBox Name="cmbPreferred_Subgroups_Available" ItemsSource="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=AvailableSubGroups}" Margin="0,10,34,0" HorizontalContentAlignment="Stretch" Height="24" >
                                                             </ComboBox>
-                                                            <Button Name="btnPreferred_SubGroups_Add" HorizontalAlignment="Right" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Add}" Width="40" Margin="0,5,5,5" DockPanel.Dock="Right" />
+                                                            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_SubGroups_Add}" FontSize="13" IsHitTestVisible="False" Margin="0,13,34,0" HorizontalAlignment="Center">
+                                                                <TextBlock.Style>
+                                                                    <Style TargetType="TextBlock">
+                                                                        <Setter Property="Visibility" Value="Hidden"/>
+                                                                        <Style.Triggers>
+                                                                            <DataTrigger Binding="{Binding ElementName=cmbPreferred_Subgroups_Available, Path=SelectedItem}" Value="{x:Null}">
+                                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                                            </DataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </TextBlock.Style>
+                                                            </TextBlock>
+                                                            <Button Name="btnPreferred_SubGroups_Add" Width="24" Height="24" Margin="0,10,10,0" HorizontalAlignment="Right" Click="btnPreferred_SubGroups_Add_Click">
+                                                                <Button.Style>
+                                                                    <Style TargetType="Button">
+                                                                        <Setter Property="IsEnabled" Value="True" />
+                                                                        <Style.Triggers>
+                                                                            <DataTrigger Binding="{Binding SelectedIndex, ElementName=cmbPreferred_Subgroups_Available}" Value="-1">
+                                                                                <Setter Property="IsEnabled" Value="False" />
+                                                                            </DataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </Button.Style>
+                                                                <Image Height="16" Width="16" Source="/Images/16_Add.png" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                            </Button>
                                                         </Grid>
-                                                        <ListBox BorderThickness="1" HorizontalAlignment="Stretch" Name="lbPreferred_SubGroups" Height="120">
+                                                        <ListBox Margin="0,0,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbPreferred_SubGroups" Height="120">
                                                         </ListBox>
                                                     </StackPanel>
 
                                                     <!-- Audio Codecs -->
                                                     <TextBlock TextAlignment="Center" Grid.ColumnSpan="2" Grid.Row="8" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_AudioCodecs}" FontSize="14" FontWeight="Bold"/>
-                                                    <StackPanel Grid.Column="0" Grid.Row="9" Margin="0,30,0,10">
-                                                        <Button Name="btnPreferred_AudioCodecs_Up" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Up}" Width="60" Margin="0,0,0,5" />
-                                                        <Button Name="btnPreferred_AudioCodecs_Down" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Down}" Width="60" Margin="0,0,0,5" />
+                                                    <StackPanel Grid.Column="0" Grid.Row="9" VerticalAlignment="Center">
+                                                        <Button Name="btnPreferred_AudioCodecs_Up" IsEnabled="{Binding ElementName=lbPreferred_AudioCodecs, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnPreferred_AudioCodecs_Up_Click">
+                                                            <Image Height="16" Width="16" Source="/Images/16_Up.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                                        </Button>
+                                                        <Button Name="btnPreferred_AudioCodecs_Down" IsEnabled="{Binding ElementName=lbPreferred_AudioCodecs, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnPreferred_AudioCodecs_Down_Click">
+                                                            <Image Height="16" Width="16" Source="/Images/16_Down.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                                        </Button>
                                                     </StackPanel>
 
                                                     <ListBox Grid.Column="1" Grid.Row="9" Margin="0,10,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbPreferred_AudioCodecs" Height="120">
@@ -216,72 +275,289 @@
 
                                                     <!-- Video Codecs -->
                                                     <TextBlock TextAlignment="Center" Grid.ColumnSpan="2" Grid.Row="10" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_VideoCodecs}" FontSize="14" FontWeight="Bold"/>
-                                                    <StackPanel Grid.Column="0" Grid.Row="11" Margin="0,30,0,10">
-                                                        <Button Name="btnPreferred_VideoCodecs_Up" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Up}" Width="60" Margin="0,0,0,5" />
-                                                        <Button Name="btnPreferred_VideoCodecs_Down" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Down}" Width="60" Margin="0,0,0,5" />
+                                                    <StackPanel Grid.Column="0" Grid.Row="11" VerticalAlignment="Center">
+                                                        <Button Name="btnPreferred_VideoCodecs_Up" IsEnabled="{Binding ElementName=lbPreferred_VideoCodecs, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnPreferred_VideoCodecs_Up_Click">
+                                                            <Image Height="16" Width="16" Source="/Images/16_Up.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                                        </Button>
+                                                        <Button Name="btnPreferred_VideoCodecs_Down" IsEnabled="{Binding ElementName=lbPreferred_VideoCodecs, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnPreferred_VideoCodecs_Down_Click">
+                                                            <Image Height="16" Width="16" Source="/Images/16_Down.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                                        </Button>
                                                     </StackPanel>
 
                                                     <ListBox Grid.Column="1" Grid.Row="11" Margin="0,10,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbPreferred_VideoCodecs" Height="120">
                                                     </ListBox>
+                                                    <!-- Prefer 8bit -->
+                                                    <Border Style="{DynamicResource RoundBorderStyle}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="12" Margin="2,2,2,2" Width="Auto" Visibility="{Binding Path=IsNotLoading, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MultipleFilesControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                        <CheckBox x:Name="chkPrefer8bit" IsChecked="{Binding Prefer8Bit, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}">
+                                                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Preferences_Prefer8bit}" ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_EnableDeleteOnImport_Tooltip}" Margin="0,0,5,0"/>
+                                                        </CheckBox>
+                                                    </Border>
                                                 </Grid>
                                             </ScrollViewer>
                                         </Border>
                                     </Grid>
                                 </TabItem>
                                 <TabItem Header="{Resx Key=MultipleFilesTab_Requirements, ResxName=Shoko.Commons.Properties.Resources}">
-                                    <StackPanel Orientation="Vertical">
-                                        <StackPanel Orientation="Horizontal">
-                                            <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="10,10,0,5" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                                            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Preferences_Info}" Margin="10,10,10,10"/>
-                                        </StackPanel>
-                                        <Border Style="{DynamicResource ToolbarBorderControlStyle}" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid Grid.Row="0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Image Grid.Column="0" Height="16" Width="16" Source="/Images/32_info.png" Margin="10,10,0,5" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                            <TextBlock Grid.Column="1" TextWrapping="WrapWithOverflow" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Requirements_Info}" Margin="10,10,10,10"/>
+                                            <!-- Allow Deletion of Importing Files -->
+                                            <Border Style="{DynamicResource RoundBorderStyle}" HorizontalAlignment="Left" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Margin="6,0,10,10" Width="Auto" Visibility="{Binding Path=IsNotLoading, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MultipleFilesControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                <CheckBox x:Name="chkAllowDeletionOfImportingFiles" IsChecked="{Binding AllowDeletionOfImportingFiles, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}">
+                                                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Requirements_DeleteImportedFiles}" ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Requirements_DeleteImportedFiles_Tooltip}" Margin="0,0,5,0"/>
+                                                </CheckBox>
+                                            </Border>
+                                            <!-- Max Files -->
+                                            <Border Style="{DynamicResource RoundBorderStyle}" HorizontalAlignment="Left" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Margin="6,0,10,10" Width="Auto" Visibility="{Binding Path=IsNotLoading, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MultipleFilesControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition />
+                                                    </Grid.ColumnDefinitions>
+                                                    <xctk:IntegerUpDown Name="numMaxFilesToKeep" Value="{Binding MaxNumberOfFiles, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}"/>
+                                                    <TextBlock VerticalAlignment="Center" Grid.Column="1" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Requirements_NumberOfFilesToKeep}" Margin="5,0,5,0"/>
+                                                </Grid>
+                                            </Border>
+                                        </Grid>
+                                        <Border Grid.Row="1" Style="{DynamicResource ToolbarBorderControlStyle}" Background="FloralWhite" BorderBrush="LightGray" BorderThickness="1">
                                             <ScrollViewer VerticalScrollBarVisibility="Auto">
                                                 <Grid>
                                                     <Grid.RowDefinitions>
                                                         <RowDefinition Height="Auto"></RowDefinition>
                                                         <RowDefinition Height="Auto"></RowDefinition>
+                                                        <RowDefinition Height="Auto"></RowDefinition>
+                                                        <RowDefinition Height="Auto"></RowDefinition>
+                                                        <RowDefinition Height="Auto"></RowDefinition>
+                                                        <RowDefinition Height="Auto"></RowDefinition>
+                                                        <RowDefinition Height="Auto"></RowDefinition>
+                                                        <RowDefinition Height="Auto"></RowDefinition>
+                                                        <RowDefinition Height="Auto"></RowDefinition>
+                                                        <RowDefinition Height="Auto"></RowDefinition>
+                                                        <RowDefinition Height="Auto"></RowDefinition>
+                                                        <RowDefinition Height="Auto"></RowDefinition>
+                                                        <RowDefinition Height="Auto"></RowDefinition>
                                                         <RowDefinition Height="*"></RowDefinition>
                                                     </Grid.RowDefinitions>
                                                     <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="100"/>
-                                                        <ColumnDefinition Width="13*"/>
-                                                        <ColumnDefinition Width="10*"/>
-                                                        <ColumnDefinition Width="117*"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="*"/>
                                                     </Grid.ColumnDefinitions>
 
-                                                    <StackPanel Grid.Column="0" Grid.Row="0" Margin="0,30,0,10">
-                                                        <TextBlock Text="Video Codec" Margin="15,0,15,5"/>
-                                                        <Button Name="btnMoveUp12" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Up}" Width="60" Margin="0,0,0,5" />
-                                                        <Button Name="btnMoveDown12" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Down}" Width="60" Margin="0,0,0,5" />
+                                                    <!-- Types -->
+                                                    <TextBlock TextAlignment="Center" Grid.ColumnSpan="2" Grid.Row="0" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Types}" FontSize="14" FontWeight="Bold"/>
+                                                    <StackPanel Grid.Column="0" Grid.Row="1" VerticalAlignment="Center">
+                                                        <Button Name="btnRequired_Types_Up" IsEnabled="{Binding ElementName=lbRequired_Types, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnRequired_Types_Up_Click" >
+                                                            <Image Height="16" Width="16" Source="/Images/16_up.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                                        </Button>
+                                                        <Button Name="btnRequired_Types_Down" IsEnabled="{Binding ElementName=lbRequired_Types, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnRequired_Types_Down_Click">
+                                                            <Image Height="16" Width="16" Source="/Images/16_down.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                                        </Button>
+                                                        <Button Name="btnRequired_Types_Remove" IsEnabled="{Binding ElementName=lbRequired_Types, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnRequired_Types_Remove_Click">
+                                                            <Image Height="16" Width="16" Source="/Images/16_Cancel.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                                        </Button>
+                                                    </StackPanel>
+                                                    <StackPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch">
+                                                        <Grid>
+                                                            <ComboBox Name="cmbTypes_Available" Margin="0,10,34,0" HorizontalContentAlignment="Stretch" Height="24" >
+                                                            </ComboBox>
+                                                            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Types_Add}" FontSize="13" IsHitTestVisible="False" Margin="0,13,34,0" HorizontalAlignment="Center">
+                                                                <TextBlock.Style>
+                                                                    <Style TargetType="TextBlock">
+                                                                        <Setter Property="Visibility" Value="Hidden"/>
+                                                                        <Style.Triggers>
+                                                                            <DataTrigger Binding="{Binding ElementName=cmbTypes_Available, Path=SelectedItem}" Value="{x:Null}">
+                                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                                            </DataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </TextBlock.Style>
+                                                            </TextBlock>
+                                                            <Button Name="btnRequired_Types_Add" Width="24" Height="24" Margin="0,10,10,0" HorizontalAlignment="Right" Click="btnRequired_Types_Add_Click">
+                                                                <Button.Style>
+                                                                    <Style TargetType="Button">
+                                                                        <Setter Property="IsEnabled" Value="True" />
+                                                                        <Style.Triggers>
+                                                                            <DataTrigger Binding="{Binding SelectedIndex, ElementName=cmbTypes_Available}" Value="-1">
+                                                                                <Setter Property="IsEnabled" Value="False" />
+                                                                            </DataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </Button.Style>
+                                                                <Image Height="16" Width="16" Source="/Images/16_Add.png" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                            </Button>
+                                                        </Grid>
+                                                        <ListBox Margin="0,0,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbRequired_Types" Height="120">
+                                                        </ListBox>
                                                     </StackPanel>
 
-                                                    <ListBox Grid.Column="1" Grid.Row="0" Margin="0,5,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbUnselectedLanguages12"
-                                ItemsSource="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=UnselectedLanguages}" Height="120" Grid.ColumnSpan="3">
-                                                    </ListBox>
-
-                                                    <StackPanel Grid.Column="0" Grid.Row="1" Margin="0,30,0,10">
-                                                        <TextBlock Text="Video Codec" Margin="15,0,15,5"/>
-                                                        <Button Name="btnMoveUp13" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Up}" Width="60" Margin="0,0,0,5" />
-                                                        <Button Name="btnMoveDown13" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Down}" Width="60" Margin="0,0,0,5" />
+                                                    <!-- Sources -->
+                                                    <TextBlock TextAlignment="Center" Grid.ColumnSpan="2" Grid.Row="2" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Sources}" FontSize="14" FontWeight="Bold"/>
+                                                    <ComboBox Name="cmbRequired_Sources_Operator" Grid.Column="1" Grid.Row="2" HorizontalContentAlignment="Stretch" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,-5" Width="80" SelectedIndex="0" SelectedItem="{Binding RequiredSourcesOperator, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}"/>
+                                                    <StackPanel Grid.Column="0" Grid.Row="3" VerticalAlignment="Center">
+                                                        <Button Name="btnRequired_Sources_Up" IsEnabled="{Binding ElementName=lbRequired_Sources, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnRequired_Sources_Up_Click">
+                                                            <Image Height="16" Width="16" Source="/Images/16_up.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                                        </Button>
+                                                        <Button Name="btnRequired_Sources_Down" IsEnabled="{Binding ElementName=lbRequired_Sources, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnRequired_Sources_Down_Click">
+                                                            <Image Height="16" Width="16" Source="/Images/16_down.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                                        </Button>
                                                     </StackPanel>
 
-                                                    <ListBox Grid.Column="1" Grid.Row="1" Margin="0,10,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbUnselectedLanguages13"
-                                ItemsSource="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=UnselectedLanguages}" Height="120" Grid.ColumnSpan="3">
+                                                    <ListBox Grid.Column="1" Grid.Row="3" Margin="0,5,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbRequired_Sources" Height="120">
                                                     </ListBox>
 
-                                                    <StackPanel Grid.Column="0" Grid.Row="2" Margin="0,30,0,10">
-                                                        <TextBlock Text="Video Codec" Margin="15,0,15,5"/>
-                                                        <Button Name="btnMoveUp14" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Up}" Width="60" Margin="0,0,0,5" />
-                                                        <Button Name="btnMoveDown14" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Down}" Width="60" Margin="0,0,0,5" />
+                                                    <!-- Resolutions -->
+                                                    <TextBlock TextAlignment="Center" Grid.ColumnSpan="2" Grid.Row="4" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Resolutions}" FontSize="14" FontWeight="Bold"/>
+                                                    <ComboBox Name="cmbRequired_Resolutions_Operator" Grid.Column="1" Grid.Row="4" HorizontalContentAlignment="Stretch" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,-5" Width="80" SelectedItem="{Binding RequiredResolutionsOperator, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}"/>
+                                                    <StackPanel Grid.Column="0" Grid.Row="5" VerticalAlignment="Center">
+                                                        <Button Name="btnRequired_Resolutions_Up" IsEnabled="{Binding ElementName=lbRequired_Resolutions, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnRequired_Resolutions_Up_Click">
+                                                            <Image Height="16" Width="16" Source="/Images/16_Up.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                                        </Button>
+                                                        <Button Name="btnRequired_Resolutions_Down" IsEnabled="{Binding ElementName=lbRequired_Resolutions, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnRequired_Resolutions_Down_Click">
+                                                            <Image Height="16" Width="16" Source="/Images/16_Down.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                                        </Button>
                                                     </StackPanel>
 
-                                                    <ListBox Grid.Column="1" Grid.Row="2" Margin="0,10,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbUnselectedLanguages14"
-                                ItemsSource="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=UnselectedLanguages}" Height="120" Grid.ColumnSpan="3">
+                                                    <ListBox Grid.Column="1" Grid.Row="5" Margin="0,5,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbRequired_Resolutions" Height="120">
                                                     </ListBox>
+
+                                                    <!-- Sub Groups -->
+                                                    <TextBlock TextAlignment="Center" Grid.ColumnSpan="2" Grid.Row="6" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_SubGroups}" FontSize="14" FontWeight="Bold"/>
+                                                    <ComboBox Name="cmbRequired_SubGroups_Operator" Grid.Column="1" Grid.Row="6" HorizontalContentAlignment="Stretch" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,-5" Width="80" SelectedItem="{Binding RequiredSubGroupsOperator, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}"/>
+                                                    <StackPanel Grid.Column="0" Grid.Row="7" VerticalAlignment="Center">
+                                                        
+                                                        <Button Name="btnRequired_SubGroups_Up" IsEnabled="{Binding ElementName=lbRequired_SubGroups, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnRequired_SubGroups_Up_Click">
+                                                            <Image Height="16" Width="16" Source="/Images/16_Up.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                                        </Button>
+                                                        <Button Name="btnRequired_SubGroups_Down" IsEnabled="{Binding ElementName=lbRequired_SubGroups, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnRequired_SubGroups_Down_Click">
+                                                            <Image Height="16" Width="16" Source="/Images/16_Down.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                                        </Button>
+                                                        <Button Name="btnRequired_SubGroups_Remove" IsEnabled="{Binding ElementName=lbRequired_SubGroups, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnRequired_SubGroups_Remove_Click">
+                                                            <Image Height="16" Width="16" Source="/Images/16_Cancel.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                                        </Button>
+                                                    </StackPanel>
+
+                                                    <StackPanel Grid.Column="1" Grid.Row="7" HorizontalAlignment="Stretch">
+                                                        <Grid>
+                                                            <ComboBox Name="cmbRequired_Subgroups_Available" Margin="0,5,34,0" HorizontalContentAlignment="Stretch" Height="24" >
+                                                            </ComboBox>
+                                                            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_SubGroups_Add}" FontSize="13" IsHitTestVisible="False" Margin="0,11,34,0" HorizontalAlignment="Center">
+                                                                <TextBlock.Style>
+                                                                    <Style TargetType="TextBlock">
+                                                                        <Setter Property="Visibility" Value="Hidden"/>
+                                                                        <Style.Triggers>
+                                                                            <DataTrigger Binding="{Binding ElementName=cmbRequired_Subgroups_Available, Path=SelectedItem}" Value="{x:Null}">
+                                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                                            </DataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </TextBlock.Style>
+                                                            </TextBlock>
+                                                            <Button Name="btnRequired_SubGroups_Add" Width="24" Height="24" Margin="0,5,10,0" HorizontalAlignment="Right" Click="btnRequired_SubGroups_Add_Click">
+                                                                <Button.Style>
+                                                                    <Style TargetType="Button">
+                                                                        <Setter Property="IsEnabled" Value="True" />
+                                                                        <Style.Triggers>
+                                                                            <DataTrigger Binding="{Binding SelectedIndex, ElementName=cmbRequired_Subgroups_Available}" Value="-1">
+                                                                                <Setter Property="IsEnabled" Value="False" />
+                                                                            </DataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </Button.Style>
+                                                                <Image Height="16" Width="16" Source="/Images/16_Add.png" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                            </Button>
+                                                        </Grid>
+                                                        <ListBox Margin="0,0,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbRequired_SubGroups" Height="120">
+                                                        </ListBox>
+                                                    </StackPanel>
+
+                                                    <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="8" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="Auto" />
+                                                            <RowDefinition Height="Auto" />
+                                                        </Grid.RowDefinitions>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <!-- Min Audio Streams -->
+                                                        <Border Style="{DynamicResource RoundBorderStyle}" HorizontalAlignment="Left" Grid.Row="0" Margin="5,0,5,5" Width="Auto" Visibility="{Binding Path=IsNotLoading, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MultipleFilesControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                            <Grid>
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="Auto" />
+                                                                    <ColumnDefinition Width="Auto" />
+                                                                </Grid.ColumnDefinitions>
+                                                                <xctk:IntegerUpDown Name="numMinAudioStreamCount" Margin="2,0,0,0" Width="55" Value="{Binding RequiredAudioStreamCount, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}"/>
+                                                                <TextBlock VerticalAlignment="Center" Grid.Column="1" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Requirements_MinimumAudioStreamCount}" Margin="5,0,5,0"/>
+                                                            </Grid>
+                                                        </Border>
+                                                        <ComboBox Name="cmbAudioStreamCount_Operator" Grid.Column="1" Grid.Row="0" HorizontalContentAlignment="Stretch" HorizontalAlignment="Right" Margin="5,0,5,10" Width="80" SelectedItem="{Binding RequiredAudioStreamCountOperator, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}"/>
+                                                        <!-- Min Sub Streams -->
+                                                        <Border Style="{DynamicResource RoundBorderStyle}" HorizontalAlignment="Left" Grid.Row="1" Margin="5,0,5,10" Width="Auto" Visibility="{Binding Path=IsNotLoading, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MultipleFilesControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                            <Grid>
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="Auto" />
+                                                                    <ColumnDefinition Width="Auto" />
+                                                                </Grid.ColumnDefinitions>
+                                                                <xctk:IntegerUpDown Name="numMinSubStreamCount" Margin="2,0,0,0" Width="55" Value="{Binding RequiredSubStreamCount, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}"/>
+                                                                <TextBlock VerticalAlignment="Center" Grid.Column="1" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Requirements_MinimumSubStreamCount}" Margin="5,0,5,0"/>
+                                                            </Grid>
+                                                        </Border>
+                                                        <ComboBox Name="cmbSubStreamCount_Operator" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Stretch" HorizontalAlignment="Right" Margin="5,0,5,10" Width="80" SelectedItem="{Binding RequiredSubStreamCountOperator, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}"/>
+                                                    </Grid>
+                                                    
+                                                    <!-- Audio Codecs -->
+                                                    <TextBlock TextAlignment="Center" Grid.ColumnSpan="2" Grid.Row="9" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_AudioCodecs}" FontSize="14" FontWeight="Bold"/>
+                                                    <ComboBox Name="cmbRequired_AudioCodecs_Operator" Grid.Column="1" Grid.Row="9" HorizontalContentAlignment="Stretch" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,-5" Width="80" SelectedItem="{Binding RequiredAudioCodecsOperator, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}"/>
+                                                    <StackPanel Grid.Column="0" Grid.Row="10" VerticalAlignment="Center">
+                                                        <Button Name="btnRequired_AudioCodecs_Up" IsEnabled="{Binding ElementName=lbRequired_AudioCodecs, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnRequired_AudioCodecs_Up_Click">
+                                                            <Image Height="16" Width="16" Source="/Images/16_Up.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                                        </Button>
+                                                        <Button Name="btnRequired_AudioCodecs_Down" IsEnabled="{Binding ElementName=lbRequired_AudioCodecs, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnRequired_AudioCodecs_Down_Click">
+                                                            <Image Height="16" Width="16" Source="/Images/16_Down.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                                        </Button>
+                                                    </StackPanel>
+
+                                                    <ListBox Grid.Column="1" Grid.Row="10" Margin="0,5,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbRequired_AudioCodecs" Height="120">
+                                                    </ListBox>
+
+                                                    <!-- Video Codecs -->
+                                                    <TextBlock TextAlignment="Center" Grid.ColumnSpan="2" Grid.Row="11" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_VideoCodecs}" FontSize="14" FontWeight="Bold"/>
+                                                    <ComboBox Name="cmbRequired_VideoCodecs_Operator" Grid.Column="1" Grid.Row="11" HorizontalContentAlignment="Stretch" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,-5" Width="80" SelectedItem="{Binding RequiredVideoCodecsOperator, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}"/>
+                                                    <StackPanel Grid.Column="0" Grid.Row="12" VerticalAlignment="Center">
+                                                        <Button Name="btnRequired_VideoCodecs_Up" IsEnabled="{Binding ElementName=lbRequired_VideoCodecs, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnRequired_VideoCodecs_Up_Click">
+                                                            <Image Height="16" Width="16" Source="/Images/16_Up.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                                        </Button>
+                                                        <Button Name="btnRequired_VideoCodecs_Down" IsEnabled="{Binding ElementName=lbRequired_VideoCodecs, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnRequired_VideoCodecs_Down_Click">
+                                                            <Image Height="16" Width="16" Source="/Images/16_Down.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                                        </Button>
+                                                    </StackPanel>
+
+                                                    <ListBox Grid.Column="1" Grid.Row="12" Margin="0,5,10,10" BorderThickness="1" HorizontalAlignment="Stretch" Name="lbRequired_VideoCodecs" Height="120">
+                                                    </ListBox>
+                                                    <!-- Require 10bit-->
+                                                    <Border Style="{DynamicResource RoundBorderStyle}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="13" Margin="2,2,2,2" Width="Auto" Visibility="{Binding Path=IsNotLoading, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MultipleFilesControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                        <CheckBox x:Name="chkRequire10bit" IsChecked="{Binding Require10Bit, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}">
+                                                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Requirements_Require10bit}" ToolTip="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_EnableDeleteOnImport_Tooltip}" Margin="0,0,5,0"/>
+                                                        </CheckBox>
+                                                    </Border>
                                                 </Grid>
                                             </ScrollViewer>
                                         </Border>
-                                    </StackPanel>
+                                    </Grid>
                                 </TabItem>
                             </TabControl>
                         </Grid>
