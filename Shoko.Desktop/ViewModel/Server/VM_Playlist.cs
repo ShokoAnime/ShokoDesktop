@@ -354,7 +354,7 @@ namespace Shoko.Desktop.ViewModel.Server
             {
                 NextEpisode.SetTvDBInfo();
                 NextEpisode.RefreshAnime();
-                AniDB_Anime = NextEpisode.AniDB_Anime;
+                AniDB_Anime = NextEpisode.AniDBAnime;
 
                 if (VM_MainListHelper.Instance.AllSeriesDictionary.ContainsKey(NextEpisode.AnimeSeriesID))
                     Series = VM_MainListHelper.Instance.AllSeriesDictionary[NextEpisode.AnimeSeriesID];

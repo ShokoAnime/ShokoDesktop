@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using Shoko.Desktop.ViewModel;
 using Shoko.Desktop.ViewModel.Server;
+using Shoko.Desktop.Utilities;
 
 namespace Shoko.Desktop.Forms
 {
@@ -43,13 +44,21 @@ namespace Shoko.Desktop.Forms
 
         private List<string> GetFromDirectory(string path)
         {
-
-            return VM_ShokoServer.Instance.ShokoServices.DirectoriesFromImportFolderPath(account.CloudID, path);
+            try
+            {
+                return VM_ShokoServer.Instance.ShokoServices.DirectoriesFromImportFolderPath(account.CloudID, path);
+            }
+            catch (Exception e)
+            {
+                Utils.ShowErrorMessage("Unable to get directories from server", e);
+                return null;
+            }
         }
 
         public void Init(VM_CloudAccount cl, string initialpath)
         {
             account = cl;
+            if (string.IsNullOrEmpty(initialpath)) initialpath = "null";
             PopulateMainDir(initialpath);
         }
 
@@ -60,10 +69,10 @@ namespace Shoko.Desktop.Forms
                 return;
             foreach (string k in s)
             {
-                int idx = k.LastIndexOf("\\");
+                int idx = k.LastIndexOf('\\');
                 string n = (idx >= 0) ? k.Substring(idx + 1) : k;
                 if (path.EndsWith(":"))
-                    path += "\\";
+                    path += '\\';
                 string combined = Path.Combine(path, n);
                 TreeViewItem item = GenerateFromDirectory(n,combined);
                 if (parts.Length > pos)
@@ -82,11 +91,11 @@ namespace Shoko.Desktop.Forms
         public void PopulateMainDir(string initialpath)
         {
             Cursor = Cursors.Wait;
-            initialpath = initialpath.Replace("/", "\\");
+            initialpath = initialpath.Replace('/', '\\');
             while (initialpath.StartsWith("\\"))
                 initialpath = initialpath.Substring(1);
             string[] pars = initialpath.Split(new char[] { '\\' }, StringSplitOptions.RemoveEmptyEntries);
-            RecursiveAddFromDirectory(TrView.Items, account.CloudID == 0 ? "" : account.Name, pars, (account.CloudID)==0 ? 0 : 1);
+            RecursiveAddFromDirectory(TrView.Items, initialpath, pars, (account.CloudID)==0 ? 0 : 1);
             Cursor = Cursors.Arrow;
         }
 
@@ -114,15 +123,14 @@ namespace Shoko.Desktop.Forms
                 {
 
                     string path = (string) item.Tag;
+                    if (path.EndsWith(":")) path += '\\';
                     List<string> ss = GetFromDirectory(path);
                     if (ss == null)
                         return;
                     foreach (string k in ss)
                     {
-                        int idx = k.LastIndexOf("\\");
+                        int idx = k.LastIndexOf('\\');
                         string n = (idx >= 0) ? k.Substring(idx + 1) : k;
-                        if (path.EndsWith(":"))
-                            path += "\\";
                         
                         item.Items.Add(GenerateFromDirectory(n, Path.Combine(path,n)));
                     }

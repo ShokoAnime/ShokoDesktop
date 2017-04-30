@@ -182,7 +182,7 @@ namespace Shoko.Desktop.ViewModel
                 foreach (VM_AnimeEpisode_User ep in epContracts)
                 {
                     ep.RefreshAnime();
-                    if (ep.AniDB_Anime == null)
+                    if (ep.AniDBAnime == null)
                         ep.RefreshAnime(true); // this might be a new series
                     epList.Add(ep);
                 }
@@ -193,7 +193,7 @@ namespace Shoko.Desktop.ViewModel
                 {
                     foreach (VM_AnimeEpisode_User ep in epList)
                     {
-                        var imageName = AppSettings.DashMetroImageType == DashboardMetroImageType.Fanart ? ep.AniDB_Anime.FanartPath : ep.AniDB_Anime.PosterPathWithRandoms;
+                        var imageName = AppSettings.DashMetroImageType == DashboardMetroImageType.Fanart ? ep.AniDBAnime.FanartPath : ep.AniDBAnime.PosterPathWithRandoms;
 
                         ContinueWatching.Add(new ContinueWatchingTile()
                         {
@@ -300,9 +300,9 @@ namespace Shoko.Desktop.ViewModel
                 foreach (VM_AnimeEpisode_User ep in epContracts)
                 {
                     ep.RefreshAnime();
-                    if (ep.AniDB_Anime == null)
+                    if (ep.AniDBAnime == null)
                         ep.RefreshAnime(true); // this might be a new series
-                    if (ep.AniDB_Anime != null)
+                    if (ep.AniDBAnime != null)
                     {
                         //ep.SetTvDBInfo();
 

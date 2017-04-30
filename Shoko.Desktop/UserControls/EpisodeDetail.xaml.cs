@@ -229,8 +229,8 @@ namespace Shoko.Desktop.UserControls
                 // get the current tvdb link
                 VM_AnimeEpisode_User ep = DataContext as VM_AnimeEpisode_User;
                 ep.RefreshAnime();
-                if (ep.AniDB_Anime == null || ep.AniDB_Anime.TvSummary == null || ep.AniDB_Anime.TvSummary.CrossRefTvDBV2 == null ||
-                    ep.AniDB_Anime.TvSummary.CrossRefTvDBV2.Count == 0)
+                if (ep.AniDBAnime == null || ep.AniDBAnime.TvSummary == null || ep.AniDBAnime.TvSummary.CrossRefTvDBV2 == null ||
+                    ep.AniDBAnime.TvSummary.CrossRefTvDBV2.Count == 0)
                 {
                     Utils.ShowErrorMessage(Shoko.Commons.Properties.Resources.EpisodeDetail_TvDBLink);
                     return;
@@ -241,7 +241,7 @@ namespace Shoko.Desktop.UserControls
                 Cursor = Cursors.Wait;
                 SelectTvDBEpisodeForm frm = new SelectTvDBEpisodeForm();
                 frm.Owner = wdw;
-                frm.Init(ep, ep.AniDB_Anime);
+                frm.Init(ep, ep.AniDBAnime);
                 bool? result = frm.ShowDialog();
                 if (result.Value)
                 {

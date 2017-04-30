@@ -1883,7 +1883,7 @@ namespace Shoko.Desktop
                 if (obj.GetType() == typeof(VM_AnimeEpisode_User))
                 {
                     VM_AnimeEpisode_User ep = (VM_AnimeEpisode_User)obj;
-                    DownloadSearchCriteria crit = new DownloadSearchCriteria(DownloadSearchType.Episode, ep.ToSearchParameters(), ep.AniDB_Anime, ep);
+                    DownloadSearchCriteria crit = new DownloadSearchCriteria(DownloadSearchType.Episode, ep.ToSearchParameters(), ep.AniDBAnime, ep);
                     ShowTorrentSearch(crit);
                 }
 
@@ -1896,7 +1896,7 @@ namespace Shoko.Desktop
                         VM_ShokoServer.Instance.CurrentUser.JMMUserID);
                     if (contract != null)
                     {
-                        DownloadSearchCriteria crit = new DownloadSearchCriteria(DownloadSearchType.Episode, contract.ToSearchParameters(), contract.AniDB_Anime, contract);
+                        DownloadSearchCriteria crit = new DownloadSearchCriteria(DownloadSearchType.Episode, contract.ToSearchParameters(), contract.AniDBAnime, contract);
                         ShowTorrentSearch(crit);
                     }
                 }
@@ -3175,7 +3175,7 @@ namespace Shoko.Desktop
 
                 // refresh the data
                 //ser.RefreshBase();
-                //ser.AniDB_Anime.Detail.RefreshBase();
+                //ser.AniDBAnime.Detail.RefreshBase();
 
                 VM_MainListHelper.Instance.UpdateHeirarchy(ser);
 

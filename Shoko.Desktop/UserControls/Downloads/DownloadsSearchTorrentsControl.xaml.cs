@@ -193,11 +193,11 @@ namespace Shoko.Desktop.UserControls.Downloads
                 if (CurrentSearchCriteria.SearchType == DownloadSearchType.Episode)
                 {
                     VM_AnimeEpisode_User ep = CurrentSearchCriteria.Episode as VM_AnimeEpisode_User;
-                    if (ep.AniDB_Anime == null) ep.RefreshAnime();
-                    if (ep.AniDB_Anime != null)
+                    if (ep.AniDBAnime == null) ep.RefreshAnime();
+                    if (ep.AniDBAnime != null)
                     {
 
-                        List<CL_GroupVideoQuality> summ = VM_ShokoServer.Instance.ShokoServices.GetGroupVideoQualitySummary(ep.AniDB_Anime.AnimeID).CastList<CL_GroupVideoQuality>();
+                        List<CL_GroupVideoQuality> summ = VM_ShokoServer.Instance.ShokoServices.GetGroupVideoQualitySummary(ep.AniDBAnime.AnimeID).CastList<CL_GroupVideoQuality>();
                         foreach (CL_GroupVideoQuality vidQual in summ)
                         {
                             vidQualListTemp.Add(vidQual);

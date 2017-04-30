@@ -46,7 +46,7 @@ namespace Shoko.Desktop.Forms
             if (comboProvider.SelectedItem == null)
                 return;
             VM_CloudAccount cl = (VM_CloudAccount)comboProvider.SelectedItem;
-            FolderBrowser fld=new FolderBrowser();
+            FolderBrowser fld = new FolderBrowser();
             fld.Init(cl, txtImportFolderLocation.Text);
             fld.Owner = this;
             bool? result = fld.ShowDialog();
@@ -167,17 +167,26 @@ namespace Shoko.Desktop.Forms
         {
             try
             {
-                importFldr = ifldr;
+                // prevent overwriting of UI values
+                if (ifldr != null)
+                {
+                    importFldr = ifldr;
 
-                txtImportFolderLocation.Text = importFldr.ImportFolderLocation;
-                txtLocalPath.Text = importFldr.LocalPath;
-                chkDropDestination.IsChecked = importFldr.IsDropDestination == 1;
-                chkDropSource.IsChecked = importFldr.IsDropSource == 1;
-                chkIsWatched.IsChecked = importFldr.IsWatched == 1;
-                if ((ifldr.CloudID ?? 0)==0)
-                    comboProvider.SelectedIndex = 0;
+                    txtImportFolderLocation.Text = importFldr.ImportFolderLocation;
+                    txtLocalPath.Text = importFldr.LocalPath;
+                    chkDropDestination.IsChecked = importFldr.IsDropDestination == 1;
+                    chkDropSource.IsChecked = importFldr.IsDropSource == 1;
+                    chkIsWatched.IsChecked = importFldr.IsWatched == 1;
+
+                    if ((ifldr.CloudID ?? 0) == 0)
+                        comboProvider.SelectedIndex = 0;
+                    else
+                        comboProvider.SelectedItem = VM_ShokoServer.Instance.FolderProviders.FirstOrDefault(a => a.CloudID == ifldr.CloudID.Value);
+                }
                 else
-                    comboProvider.SelectedItem = VM_ShokoServer.Instance.FolderProviders.FirstOrDefault(a => a.CloudID == ifldr.CloudID.Value);
+                {
+                    importFldr = new VM_ImportFolder();
+                }
                 txtImportFolderLocation.Focus();
             }
             catch (Exception ex)

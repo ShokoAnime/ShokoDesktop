@@ -238,11 +238,11 @@ namespace Shoko.Desktop.UserControls
 					i++;
 					AnimeRanking ranking = new AnimeRanking()
 					{
-						AnimeName = anime.AniDB_Anime.MainTitle,
+						AnimeName = anime.AniDBAnime.MainTitle,
 						Ranking = 1,
-						Rating = String.Format("{0:0.00}", anime.AniDB_Anime.AniDBRating),
+						Rating = String.Format("{0:0.00}", anime.AniDBAnime.AniDBRating),
 						UserRating = anime.UserRating,
-						Year = anime.AniDB_Anime.BeginYear,
+						Year = anime.AniDBAnime.BeginYear,
 						AnimeDetailed = anime
 					};
 					AllRankings.Add(ranking);
