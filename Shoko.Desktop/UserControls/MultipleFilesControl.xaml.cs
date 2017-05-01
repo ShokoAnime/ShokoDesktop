@@ -309,7 +309,7 @@ namespace Shoko.Desktop.UserControls
                     FileQualityFilterType.RESOLUTION, FileQualityFilterType.SOURCE, FileQualityFilterType.VERSION,
                     FileQualityFilterType.AUDIOSTREAMCOUNT, FileQualityFilterType.VIDEOCODEC,
                     FileQualityFilterType.AUDIOCODEC, FileQualityFilterType.SUBGROUP,
-                    FileQualityFilterType.SUBSTREAMCOUNT
+                    FileQualityFilterType.SUBSTREAMCOUNT, FileQualityFilterType.CHAPTER
                 };
 
                 AvailableSubGroups = VM_ShokoServer.Instance.ShokoServices.GetAllReleaseGroups();
