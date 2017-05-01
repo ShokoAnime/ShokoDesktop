@@ -58,6 +58,7 @@ namespace Shoko.Desktop.ViewModel.Server
         public int BitDepth => this.GetBitDepth();
         public bool IsDualAudio => this.IsDualAudio();
         public bool IsMultiAudio => this.IsMultiAudio();
+        public bool IsChaptered => AniDB_File_IsChaptered == 1;
 
         #endregion
 
@@ -203,6 +204,9 @@ namespace Shoko.Desktop.ViewModel.Server
             AniDB_MD5 = contract.AniDB_MD5;
             AniDB_SHA1 = contract.AniDB_SHA1;
             AniDB_File_FileVersion = contract.AniDB_File_FileVersion;
+            AniDB_File_IsChaptered = contract.AniDB_File_IsChaptered;
+            AniDB_File_IsCensored = contract.AniDB_File_IsCensored;
+            AniDB_File_IsDeprecated = contract.AniDB_File_IsDeprecated;
             LanguagesAudio = contract.LanguagesAudio;
             LanguagesSubtitle = contract.LanguagesSubtitle;
             Media = contract.Media;

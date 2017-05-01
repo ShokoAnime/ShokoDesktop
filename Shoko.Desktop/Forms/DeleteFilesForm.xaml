@@ -51,6 +51,12 @@
                                    Visibility="{Binding Path=IsDualAudio, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                             <Label Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Audio_Multi}" Style="{DynamicResource VideoDefStyle}" VerticalAlignment="Center" Margin="0,0,10,0"
                                    Visibility="{Binding Path=IsMultiAudio, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                            <Border BorderThickness="1"
+                                    BorderBrush="Navy"
+                                    Background="{StaticResource BlueGradientBrush}"
+                                    CornerRadius="4" Margin="0,0,10,0" Visibility="{Binding Path=IsChaptered, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <Image Source="/Images/chapter.png" Width="16" Height="16" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3,3,3,3"/>
+                            </Border>
 
                             <usercontrols:HyperLinkStandard Margin="0,0,10,0" VerticalAlignment="Center" DisplayText="{Binding Path=ReleaseGroupName}" URL="{Binding Path=ReleaseGroupAniDBURL}" 
                                 Visibility="{Binding Path=HasReleaseGroup, Converter={StaticResource BooleanToVisibilityConverter}}"/>
