@@ -281,6 +281,9 @@ namespace Shoko.Desktop.UserControls
                 cmbRequired_VideoCodecs_Operator.ItemsSource = new[] {"IN", "NOTIN"};
                 cmbRequired_SubGroups_Operator.ItemsSource = new[] {"IN", "NOTIN"};
 
+                cmbAudioStreamCount_Operator.ItemsSource = new[] {"GREATER_EQ", "LESS_EQ", "EQUALS"};
+                cmbSubStreamCount_Operator.ItemsSource = new[] {"GREATER_EQ", "LESS_EQ", "EQUALS"};
+
                 cmbRequired_Sources_Operator.SelectionChanged += SaveSettings;
                 cmbRequired_Resolutions_Operator.SelectionChanged += SaveSettings;
                 cmbRequired_AudioCodecs_Operator.SelectionChanged += SaveSettings;

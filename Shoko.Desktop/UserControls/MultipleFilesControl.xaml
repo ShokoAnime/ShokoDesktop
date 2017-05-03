@@ -183,7 +183,8 @@
                                                     </ListBox>
 
                                                     <!-- Sources -->
-                                                    <TextBlock TextAlignment="Center" Grid.ColumnSpan="2" Grid.Row="2" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Sources}" FontSize="14" FontWeight="Bold"/>
+                                                    <TextBlock TextAlignment="Center" Grid.ColumnSpan="2" Grid.Column="0"
+                                                               Grid.Row="2" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Sources}" FontSize="14" FontWeight="Bold"/>
                                                     <StackPanel Grid.Column="0" Grid.Row="3" VerticalAlignment="Center">
                                                         <Button Name="btnPreferred_Sources_Up" IsEnabled="{Binding ElementName=lbPreferred_Sources, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnPreferred_Sources_Up_Click">
                                                             <Image Height="16" Width="16" Source="/Images/16_up.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
@@ -197,7 +198,8 @@
                                                     </ListBox>
 
                                                     <!-- Resolutions -->
-                                                    <TextBlock TextAlignment="Center" Grid.ColumnSpan="2" Grid.Row="4" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Resolutions}" FontSize="14" FontWeight="Bold"/>
+                                                    <TextBlock TextAlignment="Center" Grid.ColumnSpan="2" Grid.Column="0"
+                                                               Grid.Row="4" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Resolutions}" FontSize="14" FontWeight="Bold"/>
                                                     <StackPanel Grid.Column="0" Grid.Row="5" VerticalAlignment="Center">
                                                         <Button Name="btnPreferred_Resolutions_Up" IsEnabled="{Binding ElementName=lbPreferred_Resolutions, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnPreferred_Resolutions_Up_Click">
                                                             <Image Height="16" Width="16" Source="/Images/16_Up.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
@@ -211,7 +213,8 @@
                                                     </ListBox>
 
                                                     <!-- Sub Groups -->
-                                                    <TextBlock TextAlignment="Center" Grid.ColumnSpan="2" Grid.Row="6" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_SubGroups}" FontSize="14" FontWeight="Bold"/>
+                                                    <TextBlock TextAlignment="Center" Grid.ColumnSpan="2" Grid.Column="0"
+                                                               Grid.Row="6" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_SubGroups}" FontSize="14" FontWeight="Bold"/>
                                                     <StackPanel Grid.Column="0" Grid.Row="7" VerticalAlignment="Center">
                                                         
                                                         <Button Name="btnPreferred_SubGroups_Up" IsEnabled="{Binding ElementName=lbPreferred_SubGroups, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnPreferred_SubGroups_Up_Click">
@@ -260,7 +263,8 @@
                                                     </StackPanel>
 
                                                     <!-- Audio Codecs -->
-                                                    <TextBlock TextAlignment="Center" Grid.ColumnSpan="2" Grid.Row="8" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_AudioCodecs}" FontSize="14" FontWeight="Bold"/>
+                                                    <TextBlock TextAlignment="Center" Grid.ColumnSpan="2" Grid.Column="0"
+                                                               Grid.Row="8" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_AudioCodecs}" FontSize="14" FontWeight="Bold"/>
                                                     <StackPanel Grid.Column="0" Grid.Row="9" VerticalAlignment="Center">
                                                         <Button Name="btnPreferred_AudioCodecs_Up" IsEnabled="{Binding ElementName=lbPreferred_AudioCodecs, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnPreferred_AudioCodecs_Up_Click">
                                                             <Image Height="16" Width="16" Source="/Images/16_Up.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
@@ -274,7 +278,8 @@
                                                     </ListBox>
 
                                                     <!-- Video Codecs -->
-                                                    <TextBlock TextAlignment="Center" Grid.ColumnSpan="2" Grid.Row="10" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_VideoCodecs}" FontSize="14" FontWeight="Bold"/>
+                                                    <TextBlock TextAlignment="Center" Grid.ColumnSpan="2" Grid.Column="0"
+                                                               Grid.Row="10" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_VideoCodecs}" FontSize="14" FontWeight="Bold"/>
                                                     <StackPanel Grid.Column="0" Grid.Row="11" VerticalAlignment="Center">
                                                         <Button Name="btnPreferred_VideoCodecs_Up" IsEnabled="{Binding ElementName=lbPreferred_VideoCodecs, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnPreferred_VideoCodecs_Up_Click">
                                                             <Image Height="16" Width="16" Source="/Images/16_Up.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
@@ -314,7 +319,7 @@
                                                 <RowDefinition Height="Auto"/>
                                             </Grid.RowDefinitions>
                                             <Image Grid.Column="0" Height="16" Width="16" Source="/Images/32_info.png" Margin="10,10,0,5" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                                            <TextBlock Grid.Column="1" TextWrapping="WrapWithOverflow" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Requirements_Info}" Margin="10,10,10,10"/>
+                                            <TextBlock Grid.Row="0" Grid.Column="1" TextWrapping="WrapWithOverflow" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Requirements_Info}" Margin="10,10,10,10"/>
                                             <!-- Allow Deletion of Importing Files -->
                                             <Border Style="{DynamicResource RoundBorderStyle}" HorizontalAlignment="Left" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Margin="6,0,10,10" Width="Auto" Visibility="{Binding Path=IsNotLoading, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MultipleFilesControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                                 <CheckBox x:Name="chkAllowDeletionOfImportingFiles" IsChecked="{Binding AllowDeletionOfImportingFiles, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}">
@@ -405,7 +410,8 @@
                                                     </StackPanel>
 
                                                     <!-- Sources -->
-                                                    <TextBlock TextAlignment="Center" Grid.ColumnSpan="2" Grid.Row="2" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Sources}" FontSize="14" FontWeight="Bold"/>
+                                                    <TextBlock TextAlignment="Center" Grid.ColumnSpan="2" Grid.Column="0"
+                                                               Grid.Row="2" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Sources}" FontSize="14" FontWeight="Bold"/>
                                                     <ComboBox Name="cmbRequired_Sources_Operator" Grid.Column="1" Grid.Row="2" HorizontalContentAlignment="Stretch" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,-5" Width="80" SelectedIndex="0" SelectedItem="{Binding RequiredSourcesOperator, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}"/>
                                                     <StackPanel Grid.Column="0" Grid.Row="3" VerticalAlignment="Center">
                                                         <Button Name="btnRequired_Sources_Up" IsEnabled="{Binding ElementName=lbRequired_Sources, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnRequired_Sources_Up_Click">
@@ -420,7 +426,8 @@
                                                     </ListBox>
 
                                                     <!-- Resolutions -->
-                                                    <TextBlock TextAlignment="Center" Grid.ColumnSpan="2" Grid.Row="4" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Resolutions}" FontSize="14" FontWeight="Bold"/>
+                                                    <TextBlock TextAlignment="Center" Grid.ColumnSpan="2" Grid.Column="0"
+                                                               Grid.Row="4" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Resolutions}" FontSize="14" FontWeight="Bold"/>
                                                     <ComboBox Name="cmbRequired_Resolutions_Operator" Grid.Column="1" Grid.Row="4" HorizontalContentAlignment="Stretch" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,-5" Width="80" SelectedItem="{Binding RequiredResolutionsOperator, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}"/>
                                                     <StackPanel Grid.Column="0" Grid.Row="5" VerticalAlignment="Center">
                                                         <Button Name="btnRequired_Resolutions_Up" IsEnabled="{Binding ElementName=lbRequired_Resolutions, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnRequired_Resolutions_Up_Click">
@@ -435,7 +442,8 @@
                                                     </ListBox>
 
                                                     <!-- Sub Groups -->
-                                                    <TextBlock TextAlignment="Center" Grid.ColumnSpan="2" Grid.Row="6" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_SubGroups}" FontSize="14" FontWeight="Bold"/>
+                                                    <TextBlock TextAlignment="Center" Grid.ColumnSpan="2" Grid.Column="0"
+                                                               Grid.Row="6" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_SubGroups}" FontSize="14" FontWeight="Bold"/>
                                                     <ComboBox Name="cmbRequired_SubGroups_Operator" Grid.Column="1" Grid.Row="6" HorizontalContentAlignment="Stretch" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,-5" Width="80" SelectedItem="{Binding RequiredSubGroupsOperator, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}"/>
                                                     <StackPanel Grid.Column="0" Grid.Row="7" VerticalAlignment="Center">
                                                         
@@ -494,7 +502,7 @@
                                                             <ColumnDefinition Width="Auto"/>
                                                         </Grid.ColumnDefinitions>
                                                         <!-- Min Audio Streams -->
-                                                        <Border Style="{DynamicResource RoundBorderStyle}" HorizontalAlignment="Left" Grid.Row="0" Margin="5,0,5,5" Width="Auto" Visibility="{Binding Path=IsNotLoading, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MultipleFilesControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                        <Border Style="{DynamicResource RoundBorderStyle}" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0" Margin="5,0,5,5" Width="Auto" Visibility="{Binding Path=IsNotLoading, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MultipleFilesControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                                             <Grid>
                                                                 <Grid.ColumnDefinitions>
                                                                     <ColumnDefinition Width="Auto" />
@@ -504,9 +512,9 @@
                                                                 <TextBlock VerticalAlignment="Center" Grid.Column="1" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Requirements_MinimumAudioStreamCount}" Margin="5,0,5,0"/>
                                                             </Grid>
                                                         </Border>
-                                                        <ComboBox Name="cmbAudioStreamCount_Operator" Grid.Column="1" Grid.Row="0" HorizontalContentAlignment="Stretch" HorizontalAlignment="Right" Margin="5,0,5,10" Width="80" SelectedItem="{Binding RequiredAudioStreamCountOperator, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}"/>
+                                                        <ComboBox Name="cmbAudioStreamCount_Operator" Grid.Column="1" Grid.Row="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" HorizontalAlignment="Right" Margin="5,0,5,5" Width="80" SelectedItem="{Binding RequiredAudioStreamCountOperator, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}"/>
                                                         <!-- Min Sub Streams -->
-                                                        <Border Style="{DynamicResource RoundBorderStyle}" HorizontalAlignment="Left" Grid.Row="1" Margin="5,0,5,10" Width="Auto" Visibility="{Binding Path=IsNotLoading, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MultipleFilesControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                        <Border Style="{DynamicResource RoundBorderStyle}" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="0" Margin="5,0,5,10" Width="Auto" Visibility="{Binding Path=IsNotLoading, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:MultipleFilesControl}}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                                             <Grid>
                                                                 <Grid.ColumnDefinitions>
                                                                     <ColumnDefinition Width="Auto" />
@@ -516,11 +524,12 @@
                                                                 <TextBlock VerticalAlignment="Center" Grid.Column="1" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_Requirements_MinimumSubStreamCount}" Margin="5,0,5,0"/>
                                                             </Grid>
                                                         </Border>
-                                                        <ComboBox Name="cmbSubStreamCount_Operator" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Stretch" HorizontalAlignment="Right" Margin="5,0,5,10" Width="80" SelectedItem="{Binding RequiredSubStreamCountOperator, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}"/>
+                                                        <ComboBox Name="cmbSubStreamCount_Operator" Grid.Column="1" Grid.Row="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" HorizontalAlignment="Right" Margin="5,0,5,10" Width="80" SelectedItem="{Binding RequiredSubStreamCountOperator, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}"/>
                                                     </Grid>
                                                     
                                                     <!-- Audio Codecs -->
-                                                    <TextBlock TextAlignment="Center" Grid.ColumnSpan="2" Grid.Row="9" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_AudioCodecs}" FontSize="14" FontWeight="Bold"/>
+                                                    <TextBlock TextAlignment="Center" Grid.ColumnSpan="2" Grid.Column="0"
+                                                               Grid.Row="9" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_AudioCodecs}" FontSize="14" FontWeight="Bold"/>
                                                     <ComboBox Name="cmbRequired_AudioCodecs_Operator" Grid.Column="1" Grid.Row="9" HorizontalContentAlignment="Stretch" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,-5" Width="80" SelectedItem="{Binding RequiredAudioCodecsOperator, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}"/>
                                                     <StackPanel Grid.Column="0" Grid.Row="10" VerticalAlignment="Center">
                                                         <Button Name="btnRequired_AudioCodecs_Up" IsEnabled="{Binding ElementName=lbRequired_AudioCodecs, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnRequired_AudioCodecs_Up_Click">
@@ -535,7 +544,8 @@
                                                     </ListBox>
 
                                                     <!-- Video Codecs -->
-                                                    <TextBlock TextAlignment="Center" Grid.ColumnSpan="2" Grid.Row="11" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_VideoCodecs}" FontSize="14" FontWeight="Bold"/>
+                                                    <TextBlock TextAlignment="Center" Grid.ColumnSpan="2" Grid.Column="0"
+                                                               Grid.Row="11" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_VideoCodecs}" FontSize="14" FontWeight="Bold"/>
                                                     <ComboBox Name="cmbRequired_VideoCodecs_Operator" Grid.Column="1" Grid.Row="11" HorizontalContentAlignment="Stretch" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,-5" Width="80" SelectedItem="{Binding RequiredVideoCodecsOperator, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=usercontrols:MultipleFilesControl, AncestorLevel=1}, Mode=TwoWay}"/>
                                                     <StackPanel Grid.Column="0" Grid.Row="12" VerticalAlignment="Center">
                                                         <Button Name="btnRequired_VideoCodecs_Up" IsEnabled="{Binding ElementName=lbRequired_VideoCodecs, Path=SelectedItems.Count}" Width="24" Height="24" Margin="10,5,10,5" Click="btnRequired_VideoCodecs_Up_Click">
