@@ -342,6 +342,8 @@ namespace Shoko.Desktop.UserControls
             chkOnlyFinished.IsChecked = AppSettings.MultipleFilesOnlyFinished;
 
             chkOnlyFinished.Checked += new RoutedEventHandler(chkOnlyFinished_Checked);
+
+            RefreshMultipleFiles();
         }
 
         private void SaveSettings(object sender, RoutedEventArgs e)
