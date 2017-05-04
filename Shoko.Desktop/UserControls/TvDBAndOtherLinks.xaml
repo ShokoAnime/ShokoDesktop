@@ -22,10 +22,6 @@
             <RoutedUICommand x:Key="DeleteAllFilesCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteAllFilesCommand}" />
             <RoutedUICommand x:Key="DeleteMALLinkCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteMALLinkCommand}" />
             <RoutedUICommand x:Key="EditMALLinkCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=EditMALLinkCommand}" />
-            <RoutedUICommand x:Key="ToggleAutoLinkTvDBCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ToggleAutoLinkTvDBCommand}" />
-            <RoutedUICommand x:Key="ToggleAutoLinkMovieDBCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ToggleAutoLinkMovieDBCommand}" />
-            <RoutedUICommand x:Key="ToggleAutoLinkTraktCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ToggleAutoLinkTraktCommand}" />
-            <RoutedUICommand x:Key="ToggleAutoLinkMALCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ToggleAutoLinkMALCommand}" />
 
             <RoutedUICommand x:Key="ReportTvDBLinkCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ReportTvDBLinkCommand}" />
             <RoutedUICommand x:Key="DeleteTvDBLinkCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteTvDBLinkCommand}" />
@@ -234,10 +230,6 @@
     <UserControl.CommandBindings>
         <CommandBinding Command="{StaticResource DeleteMALLinkCommand}" Executed="CommandBinding_DeleteMALLink" />
         <CommandBinding Command="{StaticResource EditMALLinkCommand}" Executed="CommandBinding_EditMALLink" />
-        <CommandBinding Command="{StaticResource ToggleAutoLinkTvDBCommand}" Executed="CommandBinding_ToggleAutoLinkTvDB" />
-        <CommandBinding Command="{StaticResource ToggleAutoLinkMovieDBCommand}" Executed="CommandBinding_ToggleAutoLinkMovieDB" />
-        <CommandBinding Command="{StaticResource ToggleAutoLinkTraktCommand}" Executed="CommandBinding_ToggleAutoLinkTrakt" />
-        <CommandBinding Command="{StaticResource ToggleAutoLinkMALCommand}" Executed="CommandBinding_ToggleAutoLinkMAL" />
 
         <CommandBinding Command="{StaticResource ReportTvDBLinkCommand}" Executed="CommandBinding_ReportTvDBLink" />
         <CommandBinding Command="{StaticResource DeleteTvDBLinkCommand}" Executed="CommandBinding_DeleteTvDBLink" />
@@ -294,30 +286,6 @@
                         </StackPanel>
                     </Button>
 
-                    <!-- Enable Auto TvDB Info links -->
-                    <Button Name="btnTvDBAutoLinkEnable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
-                            Command="{StaticResource ToggleAutoLinkTvDBCommand}" CommandParameter="{Binding}"
-                            Visibility="{Binding Path=IsTvDBLinkEnabled, Converter={StaticResource InverseBooleanToVisibilityConverter}}" 
-                            ToolTip="{usercontrols:Info Title=Tooltip_AutoLinkDisabledTitle, 
-                            Body=Tooltip_AutoLinkDisabledTvDB}">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                            <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
-                        </StackPanel>
-                    </Button>
-
-                    <!-- Disable Auto TvDB Info links -->
-                    <Button Name="btnTvDBAutoLinkDisable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
-                            Command="{StaticResource ToggleAutoLinkTvDBCommand}" CommandParameter="{Binding}"
-                            Visibility="{Binding Path=IsTvDBLinkEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-                            ToolTip="{usercontrols:Info Title=Tooltip_AutoLinkEnabledTitle, 
-                            Body=Tooltip_AutoLinkEnabledTvDB}">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                            <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
-                        </StackPanel>
-                    </Button>
-
                     <!-- TvDB Comm Links -->
                     <Button Name="btnTvDBCommLinks2" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                             Visibility="{Binding Source={x:Static viewModel:VM_ShokoServer.Instance}, Path=ShowCommunity, Converter={StaticResource BooleanToVisibilityConverter}}">
@@ -355,30 +323,6 @@
                 </StackPanel>
             </Button>
 
-            <!-- Enable Auto TvDB Info links -->
-            <Button Name="btnTvDBAutoLinkEnable2" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
-                            Command="{StaticResource ToggleAutoLinkTvDBCommand}" CommandParameter="{Binding}"
-                            Visibility="{Binding Path=IsTvDBLinkEnabled, Converter={StaticResource InverseBooleanToVisibilityConverter}}" 
-                            ToolTip="{usercontrols:Info Title=Tooltip_AutoLinkDisabledTitle, 
-                            Body=Tooltip_AutoLinkDisabledTvDB}">
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                    <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
-                </StackPanel>
-            </Button>
-
-            <!-- Disable Auto TvDB Info links -->
-            <Button Name="btnTvDBAutoLinkDisable2" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
-                            Command="{StaticResource ToggleAutoLinkTvDBCommand}" CommandParameter="{Binding}"
-                            Visibility="{Binding Path=IsTvDBLinkEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-                            ToolTip="{usercontrols:Info Title=Tooltip_AutoLinkEnabledTitle, 
-                            Body=Tooltip_AutoLinkEnabledTvDB}">
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                    <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
-                </StackPanel>
-            </Button>
-
             <!-- TvDB Comm Links -->
             <Button Name="btnTvDBCommLinks1" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                     Visibility="{Binding Source={x:Static viewModel:VM_ShokoServer.Instance}, Path=ShowCommunity, Converter={StaticResource BooleanToVisibilityConverter}}">
@@ -408,30 +352,6 @@
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/32_search.png" Margin="0,0,5,0"/>
                             <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
-                        </StackPanel>
-                    </Button>
-
-                    <!-- Enable Auto Trakt Info links -->
-                    <Button Name="btnTraktAutoLinkEnable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
-                                    Command="{StaticResource ToggleAutoLinkTraktCommand}" CommandParameter="{Binding}"
-                                    Visibility="{Binding Path=IsTraktLinkEnabled, Converter={StaticResource InverseBooleanToVisibilityConverter}}" 
-                                    ToolTip="{usercontrols:Info Title=Tooltip_AutoLinkDisabledTitle, 
-                                    Body=Tooltip_AutoLinkDisabledTrakt}">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                            <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
-                        </StackPanel>
-                    </Button>
-
-                    <!-- Disable Auto Trakt Info links -->
-                    <Button Name="btnTraktAutoLinkDisable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
-                                    Command="{StaticResource ToggleAutoLinkTraktCommand}" CommandParameter="{Binding}"
-                                    Visibility="{Binding Path=IsTraktLinkEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                    ToolTip="{usercontrols:Info Title=Tooltip_AutoLinkEnabledTitle, 
-                                    Body=Tooltip_AutoLinkEnabledTrakt}">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                            <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
@@ -472,30 +392,6 @@
                 </StackPanel>
             </Button>
 
-            <!-- Enable Auto Trakt Info links -->
-            <Button Name="btnTraktAutoLinkEnable2" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
-                            Command="{StaticResource ToggleAutoLinkTraktCommand}" CommandParameter="{Binding}"
-                            Visibility="{Binding Path=IsTraktLinkEnabled, Converter={StaticResource InverseBooleanToVisibilityConverter}}" 
-                            ToolTip="{usercontrols:Info Title=Tooltip_AutoLinkDisabledTitle, 
-                            Body=Tooltip_AutoLinkDisabledTrakt}">
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                    <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
-                </StackPanel>
-            </Button>
-
-            <!-- Disable Auto Trakt Info links -->
-            <Button Name="btnTraktAutoLinkDisable2" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
-                            Command="{StaticResource ToggleAutoLinkTraktCommand}" CommandParameter="{Binding}"
-                            Visibility="{Binding Path=IsTraktLinkEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-                            ToolTip="{usercontrols:Info Title=Tooltip_AutoLinkEnabledTitle, 
-                            Body=Tooltip_AutoLinkEnabledTrakt}">
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                    <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
-                </StackPanel>
-            </Button>
-
             <!-- Trakt Comm Links -->
             <Button Name="btnTraktCommLinks2" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
                     Visibility="{Binding Source={x:Static viewModel:VM_ShokoServer.Instance}, Path=ShowCommunity, Converter={StaticResource BooleanToVisibilityConverter}}">
@@ -524,30 +420,6 @@
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/32_search.png" Margin="0,0,5,0"/>
                             <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
-                        </StackPanel>
-                    </Button>
-
-                    <!-- Enable Auto MAL Info links -->
-                    <Button Name="btnMALAutoLinkEnable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
-                            Command="{StaticResource ToggleAutoLinkMALCommand}" CommandParameter="{Binding}"
-                            Visibility="{Binding Path=IsMALLinkEnabled, Converter={StaticResource InverseBooleanToVisibilityConverter}}" 
-                            ToolTip="{usercontrols:Info Title=Tooltip_AutoLinkDisabledTitle, 
-                            Body=Tooltip_AutoLinkDisabledMAL}">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                            <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
-                        </StackPanel>
-                    </Button>
-
-                    <!-- Disable Auto MAL Info links -->
-                    <Button Name="btnMALAutoLinkDisable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
-                            Command="{StaticResource ToggleAutoLinkMALCommand}" CommandParameter="{Binding}"
-                            Visibility="{Binding Path=IsMALLinkEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-                            ToolTip="{usercontrols:Info Title=Tooltip_AutoLinkEnabledTitle, 
-                            Body=Tooltip_AutoLinkEnabledMAL}">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                            <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
@@ -598,28 +470,6 @@
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Height="16" Width="16" Source="/Images/32_search.png" Margin="0,0,5,0"/>
                             <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
-                        </StackPanel>
-                    </Button>
-
-                    <!-- Enable Auto MovieDB Info links -->
-                    <Button Name="btnMovieDBAutoLinkEnable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
-                            Command="{StaticResource ToggleAutoLinkMovieDBCommand}" CommandParameter="{Binding}"
-                            Visibility="{Binding Path=IsMovieDBLinkEnabled, Converter={StaticResource InverseBooleanToVisibilityConverter}}" 
-                            ToolTip="{usercontrols:Info Title=Tooltip_AutoLinkDisabledTitle, Body=Tooltip_AutoLinkDisabledTMDb}">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                            <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
-                        </StackPanel>
-                    </Button>
-
-                    <!-- Disable Auto MovieDB Info links -->
-                    <Button Name="btnMovieDBAutoLinkDisable" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
-                            Command="{StaticResource ToggleAutoLinkMovieDBCommand}" CommandParameter="{Binding}"
-                            Visibility="{Binding Path=IsMovieDBLinkEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-                            ToolTip="{usercontrols:Info Title=Tooltip_AutoLinkEnabledTitle, Body=Tooltip_AutoLinkEnabledTMDb}">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                            <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
-                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
                         </StackPanel>
                     </Button>
 
@@ -674,30 +524,6 @@
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Source="/Images/32_search.png" Margin="0,0,5,0"/>
                     <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Search}" Margin="0,0,5,0"/>
-                </StackPanel>
-            </Button>
-
-            <!-- Enable Auto MovieDB Info links -->
-            <Button Name="btnMovieDBAutoLinkEnable2" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
-                            Command="{StaticResource ToggleAutoLinkMovieDBCommand}" CommandParameter="{Binding}"
-                            Visibility="{Binding Path=IsMovieDBLinkEnabled, Converter={StaticResource InverseBooleanToVisibilityConverter}}" 
-                            ToolTip="{usercontrols:Info Title=Tooltip_AutoLinkDisabledTitle, 
-                            Body=Tooltip_AutoLinkDisabledTMDb}">
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                    <Image Height="16" Width="16" Source="/Images/16_cancel.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
-                </StackPanel>
-            </Button>
-
-            <!-- Disable Auto MovieDB Info links -->
-            <Button Name="btnMovieDBAutoLinkDisable2" Margin="5,0,2,2" Style="{DynamicResource FlatButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"
-                            Command="{StaticResource ToggleAutoLinkMovieDBCommand}" CommandParameter="{Binding}"
-                            Visibility="{Binding Path=IsMovieDBLinkEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-                            ToolTip="{usercontrols:Info Title=Tooltip_AutoLinkEnabledTitle, 
-                            Body=Tooltip_AutoLinkEnabledTMDb}">
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                    <Image Height="16" Width="16" Source="/Images/16_Tick.png" Margin="0,0,5,0"/>
-                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CommunityLinks_AutoLink}" Margin="0,0,5,0"/>
                 </StackPanel>
             </Button>
 
