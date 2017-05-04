@@ -30,6 +30,7 @@ namespace Shoko.Desktop.UserControls.Settings
 
             cboUpdateFrequency.SelectionChanged += new SelectionChangedEventHandler(cboUpdateFrequency_SelectionChanged);
 
+            chkAutoLink.Click += new RoutedEventHandler(chkNeverDecrease_Click);
             btnTest.Click += new RoutedEventHandler(btnTest_Click);
             chkNeverDecrease.Click += new RoutedEventHandler(chkNeverDecrease_Click);
         }
