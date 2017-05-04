@@ -200,8 +200,8 @@ namespace Shoko.Desktop.ViewModel
             }
             catch (Exception ex)
             {
-                logger.Trace("Unable to connect to JMM Server. Internal exception given: " + ex.Message);
-                Utils.ShowErrorMessage(ex);
+                logger.Error("Unable to connect to Shoko Server");
+                Utils.ShowErrorMessage("Unable to connect to server.");
                 return false;
             }
 
