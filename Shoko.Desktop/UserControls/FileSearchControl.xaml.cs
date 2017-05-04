@@ -149,7 +149,7 @@ namespace Shoko.Desktop.UserControls
                     txtFileSearch.Focus();
                     return;
                 }
-                else
+                else if(searchType == FileSearchCriteria.LastOneHundred)
                 {
                     searchText = "null";
                 }
@@ -162,7 +162,16 @@ namespace Shoko.Desktop.UserControls
                 EnableDisableControls(false);
 
                 List<VM_VideoLocal> rawVids = VM_ShokoServer.Instance.ShokoServices.SearchForFiles(
-                    (int)searchType, searchText, VM_ShokoServer.Instance.CurrentUser.JMMUserID).OrderByNatural(a => a.Places.First().FilePath).CastList<VM_VideoLocal>();
+                    (int)searchType, searchText, VM_ShokoServer.Instance.CurrentUser.JMMUserID).CastList<VM_VideoLocal>();
+
+                if (searchType == FileSearchCriteria.LastOneHundred)
+                {
+                    rawVids = rawVids.OrderByDescending(a => a.DateTimeCreated).ToList();
+                }
+                else
+                {
+                    rawVids = rawVids.OrderByNatural(a => a.Places.First().FilePath).ToList();
+                }
 
                 foreach (VM_VideoLocal raw in rawVids)
                     FileResults.Add(raw);

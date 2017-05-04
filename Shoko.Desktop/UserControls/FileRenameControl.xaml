@@ -179,7 +179,7 @@
 
 
                     <xctk:IntegerUpDown Name="udRandomFiles" Minimum="1" Maximum="99999" DefaultValue="100" Value="100" VerticalAlignment="Center"
-                                              Visibility="{Binding Path=LoadTypeIsRandom, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:FileRenameControl}}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                              Visibility="{Binding Path=LoadTypeHasNumber, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:FileRenameControl}}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                     <!-- Add Files -->
                     <Button Name="btnLoadFiles" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}">

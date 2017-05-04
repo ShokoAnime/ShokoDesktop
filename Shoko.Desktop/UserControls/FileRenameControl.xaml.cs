@@ -15,6 +15,7 @@ using Shoko.Desktop.Utilities;
 using Shoko.Desktop.ViewModel;
 using Shoko.Desktop.ViewModel.Server;
 using Shoko.Models.Client;
+using Shoko.Models.Enums;
 using Shoko.Models.Server;
 
 namespace Shoko.Desktop.UserControls
@@ -85,6 +86,24 @@ namespace Shoko.Desktop.UserControls
             set { SetValue(LoadTypeIsAllProperty, value); }
         }
 
+        public static readonly DependencyProperty LoadTypeIsLastProperty = DependencyProperty.Register("LoadTypeIsLast",
+            typeof(bool), typeof(FileRenameControl), new UIPropertyMetadata(false, null));
+
+        public bool LoadTypeIsLast
+        {
+            get { return (bool)GetValue(LoadTypeIsLastProperty); }
+            set { SetValue(LoadTypeIsLastProperty, value); }
+        }
+
+        public static readonly DependencyProperty LoadTypeHasNumberProperty = DependencyProperty.Register("LoadTypeHasNumber",
+            typeof(bool), typeof(FileRenameControl), new UIPropertyMetadata(false, null));
+
+        public bool LoadTypeHasNumber
+        {
+            get { return (bool)GetValue(LoadTypeHasNumberProperty); }
+            set { SetValue(LoadTypeHasNumberProperty, value); }
+        }
+
         public static readonly DependencyProperty WorkerRunningProperty = DependencyProperty.Register("WorkerRunning",
             typeof(bool), typeof(FileRenameControl), new UIPropertyMetadata(false, null));
 
@@ -115,6 +134,7 @@ namespace Shoko.Desktop.UserControls
         private readonly string LoadTypeRandom = Shoko.Commons.Properties.Resources.Rename_Random;
         private readonly string LoadTypeSeries = Shoko.Commons.Properties.Resources.Rename_Series;
         private readonly string LoadTypeAll = Shoko.Commons.Properties.Resources.Rename_All;
+        private readonly string LoadTypeLast = Shoko.Commons.Properties.Resources.Rename_Last;
 
         private readonly string FilterTypeAll = Shoko.Commons.Properties.Resources.Random_All;
         private readonly string FilterTypeFailed = Shoko.Commons.Properties.Resources.Rename_Failed;
@@ -146,34 +166,7 @@ namespace Shoko.Desktop.UserControls
             cboTestType.SelectedIndex = 0;
 
             RenameScripts = new ObservableCollection<VM_RenameScript>();
-            //ViewScripts = CollectionViewSource.GetDefaultView(RenameScripts);
 
-
-            /*string testScript = "IF A(69),A(1),A(2) DO FAIL" + Environment.NewLine + //Do not rename file if it is Naruto
-				//// Group Name
-				"DO ADD '[%grp] '" + Environment.NewLine + //sub group name short
-				//// Anime Name
-				"IF I(eng) DO ADD '%eng - '" + Environment.NewLine + // if the anime has an official/main title english add it to the string
-				"IF I(ann);I(!eng) DO ADD '%ann - '" + Environment.NewLine + //If the anime has a romaji title but not an english title add the romaji anime title
-				//// Episode Number
-				"DO ADD '%enr - '" + Environment.NewLine + //Add the base, same for all files
-				//// FILE Version
-				"IF F(!1) DO ADD ' [v%ver]'" + Environment.NewLine + //If the episode has an english title add to string
-				//// Episode Title
-				"IF I(epr) DO ADD '%epr'" + Environment.NewLine + //If the episode has an english title add to string
-				"IF I(epn);I(!epr) DO ADD '%epn'" + Environment.NewLine + //If the episode has an romaji title but not an english title add the romaji episode title
-				//// Codecs
-				"DO ADD ' [%vid/%aud]'" + Environment.NewLine +
-				//// video depth
-				"IF Z(10) DO ADD '[%bitbit]'" + Environment.NewLine +
-				//// Blu-ray and DVD
-				"IF R(Blu-ray),R(DVD) DO ADD '[%src]'" + Environment.NewLine +
-				//// CRC
-				"DO ADD '[%CRC]'" + Environment.NewLine;
-				
-
-
-			txtRenameScript.Text = testScript;*/
 
             btnLoadFiles.Click += new RoutedEventHandler(btnLoadFiles_Click);
             btnPreviewFiles.Click += new RoutedEventHandler(btnPreviewFiles_Click);
@@ -190,9 +183,10 @@ namespace Shoko.Desktop.UserControls
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
             cboLoadType.Items.Clear();
-            cboLoadType.Items.Add(Shoko.Commons.Properties.Resources.Rename_Random);
-            cboLoadType.Items.Add(Shoko.Commons.Properties.Resources.Rename_Series);
-            cboLoadType.Items.Add(Shoko.Commons.Properties.Resources.Rename_All);
+            cboLoadType.Items.Add(LoadTypeRandom);
+            cboLoadType.Items.Add(LoadTypeSeries);
+            cboLoadType.Items.Add(LoadTypeLast);
+            cboLoadType.Items.Add(LoadTypeAll);
             cboLoadType.SelectedIndex = 0;
 
             cboLoadType.SelectionChanged += new SelectionChangedEventHandler(cboLoadType_SelectionChanged);
@@ -237,7 +231,8 @@ namespace Shoko.Desktop.UserControls
                 VM_RenameScript script = cboScript.SelectedItem as VM_RenameScript;
 
                 string msg = string.Format(Shoko.Commons.Properties.Resources.Rename_DeleteScript, script.ScriptName);
-                MessageBoxResult res = MessageBox.Show(msg, Shoko.Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                MessageBoxResult res = MessageBox.Show(msg, Shoko.Commons.Properties.Resources.Confirm,
+                    MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
                 if (res == MessageBoxResult.Yes)
                 {
@@ -342,7 +337,10 @@ namespace Shoko.Desktop.UserControls
             {
                 RenameScripts.Clear();
 
-                List<VM_RenameScript> scripts = VM_ShokoServer.Instance.ShokoServices.GetAllRenameScripts().Cast<VM_RenameScript>().OrderBy(a=>a.ScriptName).ToList();
+                List<VM_RenameScript> scripts = VM_ShokoServer.Instance.ShokoServices.GetAllRenameScripts()
+                    .Cast<VM_RenameScript>()
+                    .OrderBy(a => a.ScriptName)
+                    .ToList();
 
                 if (scripts.Count > 0)
                 {
@@ -446,7 +444,8 @@ namespace Shoko.Desktop.UserControls
         {
             ViewFiles.Refresh();
             WorkerStatusContainer status = e.UserState as WorkerStatusContainer;
-            WorkerStatus = string.Format(Shoko.Commons.Properties.Resources.Rename_Changed, status.CurrentFile, status.TotalFileCount);
+            WorkerStatus = string.Format(Shoko.Commons.Properties.Resources.Rename_Changed, status.CurrentFile,
+                status.TotalFileCount);
         }
 
         void renameWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -478,7 +477,9 @@ namespace Shoko.Desktop.UserControls
                 curFile++;
                 delay++;
 
-                VM_VideoLocal_Renamed raw = (VM_VideoLocal_Renamed)VM_ShokoServer.Instance.ShokoServices.RenameFile(ren.VideoLocalID, job.RenameScript);
+                VM_VideoLocal_Renamed raw =
+                    (VM_VideoLocal_Renamed) VM_ShokoServer.Instance.ShokoServices.RenameFile(ren.VideoLocalID,
+                        job.RenameScript);
 
                 ren.NewFileName = raw.NewFileName;
                 ren.Success = raw.Success;
@@ -495,7 +496,8 @@ namespace Shoko.Desktop.UserControls
         void btnRenameFiles_Click(object sender, RoutedEventArgs e)
         {
             string msg = string.Format(Shoko.Commons.Properties.Resources.Rename_Confirm);
-            MessageBoxResult res = MessageBox.Show(msg, Shoko.Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            MessageBoxResult res = MessageBox.Show(msg, Shoko.Commons.Properties.Resources.Confirm,
+                MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
             if (res != MessageBoxResult.Yes) return;
 
@@ -585,6 +587,9 @@ namespace Shoko.Desktop.UserControls
             LoadTypeIsRandom = (cboLoadType.SelectedItem.ToString() == LoadTypeRandom);
             LoadTypeIsSeries = (cboLoadType.SelectedItem.ToString() == LoadTypeSeries);
             LoadTypeIsAll = (cboLoadType.SelectedItem.ToString() == LoadTypeAll);
+            LoadTypeIsLast = (cboLoadType.SelectedItem.ToString() == LoadTypeLast);
+
+            LoadTypeHasNumber = LoadTypeIsLast || LoadTypeIsRandom;
         }
 
         void btnLoadFiles_Click(object sender, RoutedEventArgs e)
@@ -601,35 +606,18 @@ namespace Shoko.Desktop.UserControls
 
                 if (LoadTypeIsRandom)
                 {
-                    rawVids = VM_ShokoServer.Instance.ShokoServices.RandomFileRenamePreview(udRandomFiles.Value.Value, VM_ShokoServer.Instance.CurrentUser.JMMUserID).OrderByNatural(a => a.Places.First().FilePath).CastList<VM_VideoLocal>();
-
-                    /*List<int> testIDs = new List<int>();
-
-					testIDs.Add(6041); // Gekijouban Bleach: Fade to Black Kimi no Na o Yobu
-					testIDs.Add(6784); // Fate/Stay Night: Unlimited Blade Works
-					testIDs.Add(5975); // Toaru Majutsu no Index
-					testIDs.Add(7599); // Toaru Majutsu no Index II
-					testIDs.Add(8694); // Gekijouban Toaru Majutsu no Index (movie)
-					testIDs.Add(6071); // Quiz Magic Academy: The Original Animation
-					testIDs.Add(4145); // Amaenaide yo!! Katsu!!
-					testIDs.Add(2369); // Bleach
-					testIDs.Add(69); // One Piece
-					foreach (int animeID in testIDs)
-					{
-						List<JMMServerBinary.Contract_VideoLocal> raws = VM_ShokoServer.Instance.clientBinaryHTTP.GetVideoLocalsForAnime(animeID,
-							VM_ShokoServer.Instance.CurrentUser.JMMUserID.Value);
-
-						rawVids.AddRange(raws);
-					}*/
+                    rawVids = VM_ShokoServer.Instance.ShokoServices
+                        .RandomFileRenamePreview(udRandomFiles.Value.Value,
+                            VM_ShokoServer.Instance.CurrentUser.JMMUserID)
+                        .CastList<VM_VideoLocal>();
                 }
-
-                if (LoadTypeIsAll)
+                else if (LoadTypeIsAll)
                 {
-                    rawVids = VM_ShokoServer.Instance.ShokoServices.RandomFileRenamePreview(int.MaxValue, VM_ShokoServer.Instance.CurrentUser.JMMUserID).CastList<VM_VideoLocal>();
+                    rawVids = VM_ShokoServer.Instance.ShokoServices
+                        .RandomFileRenamePreview(int.MaxValue, VM_ShokoServer.Instance.CurrentUser.JMMUserID)
+                        .CastList<VM_VideoLocal>();
                 }
-
-
-                if (LoadTypeIsSeries)
+                else if (LoadTypeIsSeries)
                 {
                     Window wdw = Window.GetWindow(this);
                     SelectGroupSeriesForm frm = new SelectGroupSeriesForm();
@@ -644,17 +632,28 @@ namespace Shoko.Desktop.UserControls
                             VM_AnimeGroup_User grp = frm.SelectedObject as VM_AnimeGroup_User;
                             foreach (VM_AnimeSeries_User ser in grp.AllAnimeSeries)
                             {
-                                rawVids.AddRange(VM_ShokoServer.Instance.ShokoServices.GetVideoLocalsForAnime(ser.AniDB_ID,
-                                VM_ShokoServer.Instance.CurrentUser.JMMUserID).OrderByNatural(a => a.Places.First().FilePath).Cast<VM_VideoLocal>());
+                                rawVids.AddRange(VM_ShokoServer.Instance.ShokoServices
+                                    .GetVideoLocalsForAnime(ser.AniDB_ID, VM_ShokoServer.Instance.CurrentUser.JMMUserID)
+                                    .Cast<VM_VideoLocal>());
                             }
                         }
                         if (frm.SelectedObject.GetType() == typeof(VM_AnimeSeries_User))
                         {
                             VM_AnimeSeries_User ser = frm.SelectedObject as VM_AnimeSeries_User;
-                            rawVids.AddRange(VM_ShokoServer.Instance.ShokoServices.GetVideoLocalsForAnime(ser.AniDB_ID,
-                                VM_ShokoServer.Instance.CurrentUser.JMMUserID).OrderByNatural(a => a.Places.First().FilePath).Cast<VM_VideoLocal>());
+                            rawVids.AddRange(VM_ShokoServer.Instance.ShokoServices
+                                .GetVideoLocalsForAnime(ser.AniDB_ID, VM_ShokoServer.Instance.CurrentUser.JMMUserID)
+                                .Cast<VM_VideoLocal>());
                         }
                     }
+                }
+                else if (LoadTypeIsLast)
+                {
+                    int number = udRandomFiles.Value.Value;
+                    rawVids = VM_ShokoServer.Instance.ShokoServices
+                        .SearchForFiles((int) FileSearchCriteria.LastOneHundred, number.ToString(),
+                            VM_ShokoServer.Instance.CurrentUser.JMMUserID)
+                        .OrderByDescending(a => a.DateTimeCreated)
+                        .CastList<VM_VideoLocal>();
                 }
 
                 foreach (VM_VideoLocal vid in rawVids)
