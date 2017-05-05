@@ -461,6 +461,7 @@ namespace Shoko.Desktop.UserControls
             catch (Exception ex)
             {
                 Utils.ShowErrorMessage(ex);
+                IsLoading = false;
             }
         }
 
