@@ -44,6 +44,12 @@
                                Visibility="{Binding Path=IsDualAudio, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         <Label Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Audio_Multi}" Style="{DynamicResource VideoDefStyle}" VerticalAlignment="Center" Margin="0,0,10,0"
                                Visibility="{Binding Path=IsMultiAudio, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <Border BorderThickness="1"
+                                BorderBrush="Navy"
+                                Background="{StaticResource BlueGradientBrush}"
+                                CornerRadius="4" Margin="0,0,10,0" Visibility="{Binding Path=IsChaptered, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Image Source="/Images/chapter.png" Width="16" Height="16" VerticalAlignment="Center" Margin="3,3,3,3"/>
+                        </Border>
 
                         <TextBlock Margin="10,0,0,0" Text="{Binding Path=VideoSource}" VerticalAlignment="Center"/>
                         <TextBlock Margin="10,0,10,0" Text="{Binding Path=Resolution}" VerticalAlignment="Center"/>
