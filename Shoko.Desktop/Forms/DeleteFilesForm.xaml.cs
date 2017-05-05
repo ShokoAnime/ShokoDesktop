@@ -150,7 +150,6 @@ namespace Shoko.Desktop.Forms
 
         void deleteFilesWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            List<VM_VideoDetailed> vids = e.Argument as List<VM_VideoDetailed>;
             if (vids == null) return;
 
             int i = 0;
@@ -234,7 +233,7 @@ namespace Shoko.Desktop.Forms
                 chks = new Dictionary<string, bool>();
                 Dictionary<string, BitmapImage> types=new Dictionary<string, BitmapImage>();
 
-                List <VM_VideoDetailed> vids = VM_ShokoServer.Instance.ShokoServices.GetFilesByGroupAndResolution(AnimeID,
+                vids = VM_ShokoServer.Instance.ShokoServices.GetFilesByGroupAndResolution(AnimeID,
                     GroupVideoQuality.GroupName, GroupVideoQuality.Resolution, GroupVideoQuality.VideoSource, GroupVideoQuality.VideoBitDepth, VM_ShokoServer.Instance.CurrentUser.JMMUserID).CastList<VM_VideoDetailed>();
                 foreach (VM_VideoDetailed vid in vids)
                 {
@@ -282,7 +281,7 @@ namespace Shoko.Desktop.Forms
                 Dictionary<string, BitmapImage> types = new Dictionary<string, BitmapImage>();
 
 
-                List<VM_VideoDetailed> vids = VM_ShokoServer.Instance.ShokoServices.GetFilesByGroup(AnimeID,
+                vids = VM_ShokoServer.Instance.ShokoServices.GetFilesByGroup(AnimeID,
                     GroupFileSummary.GroupName, VM_ShokoServer.Instance.CurrentUser.JMMUserID).CastList<VM_VideoDetailed>();
                 foreach (VM_VideoDetailed vid in vids)
                 {

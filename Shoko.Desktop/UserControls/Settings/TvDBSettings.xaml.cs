@@ -25,6 +25,7 @@ namespace Shoko.Desktop.UserControls.Settings
 
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
+	        chkAutoLink.Click += new RoutedEventHandler(settingChanged);
             chkTvDB_FanartAutoDownload.Click += new RoutedEventHandler(settingChanged);
             chkTvDB_PosterAutoDownload.Click += new RoutedEventHandler(settingChanged);
             chkTvDB_WideBannerAutoDownload.Click += new RoutedEventHandler(settingChanged);

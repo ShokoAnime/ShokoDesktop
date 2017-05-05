@@ -569,60 +569,6 @@ namespace Shoko.Desktop.UserControls
             }
         }
 
-
-
-
-
-        private void CommandBinding_ToggleAutoLinkMovieDB(object sender, ExecutedRoutedEventArgs e)
-        {
-            object obj = e.Parameter;
-            if (obj == null) return;
-
-            try
-            {
-                VM_AniDB_Anime anime = DataContext as VM_AniDB_Anime;
-                if (anime == null) return;
-
-                Cursor = Cursors.Wait;
-
-                anime.IsMovieDBLinkEnabled = !anime.IsMovieDBLinkEnabled;
-                anime.UpdateDisableExternalLinksFlag();
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
-            finally
-            {
-                Cursor = Cursors.Arrow;
-            }
-        }
-
-        private void CommandBinding_ToggleAutoLinkMAL(object sender, ExecutedRoutedEventArgs e)
-        {
-            object obj = e.Parameter;
-            if (obj == null) return;
-
-            try
-            {
-                VM_AniDB_Anime anime = DataContext as VM_AniDB_Anime;
-                if (anime == null) return;
-
-                Cursor = Cursors.Wait;
-
-                anime.IsMALLinkEnabled = !anime.IsMALLinkEnabled;
-                anime.UpdateDisableExternalLinksFlag();
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
-            finally
-            {
-                Cursor = Cursors.Arrow;
-            }
-        }
-
         #endregion
 
         #region Trakt
@@ -814,31 +760,6 @@ namespace Shoko.Desktop.UserControls
             }
         }
 
-        private void CommandBinding_ToggleAutoLinkTrakt(object sender, ExecutedRoutedEventArgs e)
-        {
-            object obj = e.Parameter;
-            if (obj == null) return;
-
-            try
-            {
-                VM_AniDB_Anime anime = DataContext as VM_AniDB_Anime;
-                if (anime == null) return;
-
-                Cursor = Cursors.Wait;
-
-                anime.IsTraktLinkEnabled = !anime.IsTraktLinkEnabled;
-                anime.UpdateDisableExternalLinksFlag();
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
-            finally
-            {
-                Cursor = Cursors.Arrow;
-            }
-        }
-
         void btnSearchTrakt_Click(object sender, RoutedEventArgs e)
         {
             SearchTrakt("");
@@ -916,31 +837,6 @@ namespace Shoko.Desktop.UserControls
             catch (Exception ex)
             {
                 Utils.ShowErrorMessage(ex);
-            }
-        }
-
-        private void CommandBinding_ToggleAutoLinkTvDB(object sender, ExecutedRoutedEventArgs e)
-        {
-            object obj = e.Parameter;
-            if (obj == null) return;
-
-            try
-            {
-                VM_AniDB_Anime anime = DataContext as VM_AniDB_Anime;
-                if (anime == null) return;
-
-                Cursor = Cursors.Wait;
-
-                anime.IsTvDBLinkEnabled = !anime.IsTvDBLinkEnabled;
-                anime.UpdateDisableExternalLinksFlag();
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
-            finally
-            {
-                Cursor = Cursors.Arrow;
             }
         }
 

@@ -200,8 +200,8 @@ namespace Shoko.Desktop.ViewModel
             }
             catch (Exception ex)
             {
-                logger.Trace("Unable to connect to JMM Server. Internal exception given: " + ex.Message);
-                Utils.ShowErrorMessage(ex);
+                logger.Error("Unable to connect to Shoko Server");
+                Utils.ShowErrorMessage("Unable to connect to server.");
                 return false;
             }
 
@@ -313,6 +313,7 @@ namespace Shoko.Desktop.ViewModel
             WebCache_UserInfo = contract.WebCache_UserInfo;
 
             // TvDB
+            TvDB_AutoLink = contract.TvDB_AutoLink;
             TvDB_AutoFanart = contract.TvDB_AutoFanart;
             TvDB_AutoFanartAmount = contract.TvDB_AutoFanartAmount;
             TvDB_AutoWideBanners = contract.TvDB_AutoWideBanners;
@@ -361,6 +362,7 @@ namespace Shoko.Desktop.ViewModel
             Trakt_DownloadEpisodes = contract.Trakt_DownloadEpisodes;
 
             // MAL
+            MAL_AutoLink = contract.MAL_AutoLink;
             MAL_Username = contract.MAL_Username;
             MAL_Password = contract.MAL_Password;
             MAL_UpdateFrequency = (ScheduledUpdateFrequency)contract.MAL_UpdateFrequency;
@@ -438,6 +440,7 @@ namespace Shoko.Desktop.ViewModel
                 contract.WebCache_UserInfo = WebCache_UserInfo;
 
                 // TvDB
+                contract.TvDB_AutoLink = TvDB_AutoLink;
                 contract.TvDB_AutoFanart = TvDB_AutoFanart;
                 contract.TvDB_AutoFanartAmount = TvDB_AutoFanartAmount;
                 contract.TvDB_AutoWideBanners = TvDB_AutoWideBanners;
@@ -486,6 +489,7 @@ namespace Shoko.Desktop.ViewModel
                 contract.Trakt_DownloadEpisodes = Trakt_DownloadEpisodes;
 
                 // MAL
+                contract.MAL_AutoLink = MAL_AutoLink;
                 contract.MAL_Username = MAL_Username;
                 contract.MAL_Password = MAL_Password;
                 contract.MAL_UpdateFrequency = (int)MAL_UpdateFrequency;
@@ -1222,6 +1226,15 @@ namespace Shoko.Desktop.ViewModel
             }
         }
 
+        private bool tvDB_AutoLink;
+        public bool TvDB_AutoLink
+        {
+            get { return tvDB_AutoLink; }
+            set
+            {
+                this.SetField(()=>tvDB_AutoLink,value);
+            }
+        }
 
         private bool tvDB_AutoFanart;
         public bool TvDB_AutoFanart
@@ -1788,6 +1801,16 @@ namespace Shoko.Desktop.ViewModel
             set
             {
                 this.SetField(()=>trakt_DownloadEpisodes,value);
+            }
+        }
+
+        private bool mal_AutoLink;
+        public bool MAL_AutoLink
+        {
+            get { return mal_AutoLink; }
+            set
+            {
+                this.SetField(()=>mal_AutoLink,value);
             }
         }
 
