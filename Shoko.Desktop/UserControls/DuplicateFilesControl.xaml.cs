@@ -13,6 +13,7 @@ using System.Windows.Input;
 using Shoko.Commons.Extensions;
 using Shoko.Desktop.Utilities;
 using Shoko.Desktop.ViewModel;
+using Shoko.Desktop.ViewModel.Server;
 using Shoko.Models.Client;
 
 namespace Shoko.Desktop.UserControls
@@ -23,7 +24,7 @@ namespace Shoko.Desktop.UserControls
     public partial class DuplicateFilesControl : UserControl
     {
         public ICollectionView ViewFiles { get; set; }
-        public ObservableCollection<CL_DuplicateFile> DuplicateFilesCollection { get; set; }
+        public ObservableCollection<VM_DuplicateFile> DuplicateFilesCollection { get; set; }
 
         public static readonly DependencyProperty FileCountProperty = DependencyProperty.Register("FileCount",
             typeof(int), typeof(DuplicateFilesControl), new UIPropertyMetadata(0, null));
@@ -42,7 +43,7 @@ namespace Shoko.Desktop.UserControls
 
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
-            DuplicateFilesCollection = new ObservableCollection<CL_DuplicateFile>();
+            DuplicateFilesCollection = new ObservableCollection<VM_DuplicateFile>();
             ViewFiles = CollectionViewSource.GetDefaultView(DuplicateFilesCollection);
             ViewFiles.SortDescriptions.Add(new SortDescription("AnimeName", ListSortDirection.Ascending));
             ViewFiles.SortDescriptions.Add(new SortDescription("EpisodeNumber", ListSortDirection.Ascending));
@@ -89,11 +90,13 @@ namespace Shoko.Desktop.UserControls
                 Cursor = Cursors.Wait;
                 DuplicateFilesCollection.Clear();
 
-                List<CL_DuplicateFile> dfs = VM_ShokoServer.Instance.ShokoServices.GetAllDuplicateFiles().CastList<CL_DuplicateFile>();
+                List<VM_DuplicateFile> dfs = VM_ShokoServer.Instance.ShokoServices.GetAllDuplicateFiles().CastList<VM_DuplicateFile>();
                 FileCount = dfs.Count;
 
-                foreach (CL_DuplicateFile df in dfs)
+                foreach (VM_DuplicateFile df in dfs)
+                {
                     DuplicateFilesCollection.Add(df);
+                }
 
                 // move to the next item
                 if (lastSelIndex <= lbDuplicateFiles.Items.Count)
@@ -130,9 +133,9 @@ namespace Shoko.Desktop.UserControls
 
             try
             {
-                if (obj.GetType() == typeof(CL_DuplicateFile))
+                if (obj.GetType() == typeof(VM_DuplicateFile))
                 {
-                    CL_DuplicateFile df = obj as CL_DuplicateFile;
+                    VM_DuplicateFile df = obj as VM_DuplicateFile;
                     if (File.Exists(df.GetLocalFilePath1()))
                         Utils.OpenFolderAndSelectFile(df.GetLocalFilePath1());
                     else
@@ -153,9 +156,9 @@ namespace Shoko.Desktop.UserControls
 
             try
             {
-                if (obj.GetType() == typeof(CL_DuplicateFile))
+                if (obj.GetType() == typeof(VM_DuplicateFile))
                 {
-                    CL_DuplicateFile df = obj as CL_DuplicateFile;
+                    VM_DuplicateFile df = obj as VM_DuplicateFile;
                     if (File.Exists(df.GetLocalFilePath2()))
                         Utils.OpenFolderAndSelectFile(df.GetLocalFilePath2());
                     else
@@ -176,9 +179,9 @@ namespace Shoko.Desktop.UserControls
 
             try
             {
-                if (obj.GetType() == typeof(CL_DuplicateFile))
+                if (obj.GetType() == typeof(VM_DuplicateFile))
                 {
-                    CL_DuplicateFile df = obj as CL_DuplicateFile;
+                    VM_DuplicateFile df = obj as VM_DuplicateFile;
                     Process.Start(new ProcessStartInfo(df.GetLocalFilePath1()));
                 }
             }
@@ -199,9 +202,9 @@ namespace Shoko.Desktop.UserControls
 
             try
             {
-                if (obj.GetType() == typeof(CL_DuplicateFile))
+                if (obj.GetType() == typeof(VM_DuplicateFile))
                 {
-                    CL_DuplicateFile df = obj as CL_DuplicateFile;
+                    VM_DuplicateFile df = obj as VM_DuplicateFile;
                     Process.Start(new ProcessStartInfo(df.GetLocalFilePath2()));
                 }
             }
@@ -222,9 +225,9 @@ namespace Shoko.Desktop.UserControls
 
             try
             {
-                if (obj.GetType() == typeof(CL_DuplicateFile))
+                if (obj.GetType() == typeof(VM_DuplicateFile))
                 {
-                    CL_DuplicateFile df = obj as CL_DuplicateFile;
+                    VM_DuplicateFile df = obj as VM_DuplicateFile;
 
                     MessageBoxResult res = MessageBox.Show(string.Format(Shoko.Commons.Properties.Resources.DuplicateFiles_ConfirmDelete),
                         Shoko.Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
@@ -262,9 +265,9 @@ namespace Shoko.Desktop.UserControls
 
             try
             {
-                if (obj.GetType() == typeof(CL_DuplicateFile))
+                if (obj.GetType() == typeof(VM_DuplicateFile))
                 {
-                    CL_DuplicateFile df = obj as CL_DuplicateFile;
+                    VM_DuplicateFile df = obj as VM_DuplicateFile;
 
                     MessageBoxResult res = MessageBox.Show(string.Format(Shoko.Commons.Properties.Resources.DuplicateFiles_ConfirmDelete),
                         Shoko.Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Warning);
@@ -302,9 +305,9 @@ namespace Shoko.Desktop.UserControls
 
             try
             {
-                if (obj.GetType() == typeof(CL_DuplicateFile))
+                if (obj.GetType() == typeof(VM_DuplicateFile))
                 {
-                    CL_DuplicateFile df = obj as CL_DuplicateFile;
+                    VM_DuplicateFile df = obj as VM_DuplicateFile;
 
                     MessageBoxResult res = MessageBox.Show(string.Format(Shoko.Commons.Properties.Resources.DuplicateFiles_DeleteEntry),
                         Shoko.Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
