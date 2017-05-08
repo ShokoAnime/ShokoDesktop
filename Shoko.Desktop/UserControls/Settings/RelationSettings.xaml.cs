@@ -65,6 +65,14 @@ namespace Shoko.Desktop.UserControls.Settings
             catch (Exception ex)
             {
                 Utils.ShowErrorMessage(ex);
+                try
+                {
+                    Window parentWindow = Window.GetWindow(this);
+                    parentWindow.Cursor = Cursors.Arrow;
+                }
+                catch (Exception exc)
+                {
+                }
             }
         }
 
