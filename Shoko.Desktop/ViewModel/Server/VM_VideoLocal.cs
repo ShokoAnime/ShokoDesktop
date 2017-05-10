@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using DevExpress.Xpf.Editors.Helpers;
 using Shoko.Commons.Extensions;
 using Shoko.Desktop.Utilities;
 using Shoko.Models.Client;
@@ -15,7 +16,14 @@ namespace Shoko.Desktop.ViewModel.Server
         public int ObjectType { get; } = 5;
         public bool IsEditable { get; } = false;
         public bool IsLocalFile => this.IsLocalFile();
-        public string FileDirectory => this.GetFileDirectories();
+        public string FileDirectory => string.Join(",", Places.Select(place => place.GetLocalFileSystemFullPath()));
+
+        public string ServerPath => string.Join(",",
+            Places.Select(
+                place => place.ImportFolder?.ImportFolderLocation == null || place.FilePath == null
+                    ? ""
+                    : $"{place.ImportFolder.ImportFolderLocation}{place.FilePath}"));
+
         public bool IsHashed => this.IsHashed();
         public string FormattedFileSize => this.GetFormattedFileSize();
 

@@ -125,6 +125,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -214,31 +215,36 @@
                     </StackPanel> 
 
                     <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
-                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Utilities_Folder}" Margin="3" FontWeight="DemiBold" />
+                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Utilities_FolderLocal}" Margin="3" FontWeight="DemiBold" />
                         <TextBlock Text="{Binding Path=FileDirectory}" Margin="3" />
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">
+                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Utilities_FolderRemote}" Margin="3" FontWeight="DemiBold" />
+                        <TextBlock Text="{Binding Path=ServerPath}" Margin="3" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2">
                         <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Utilities_Size}" Margin="3" FontWeight="DemiBold" />
                         <TextBlock Text="{Binding Path=FormattedFileSize}" Margin="3" />
                     </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2">
+                    <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2">
                         <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Hash}" Margin="3" FontWeight="DemiBold" />
                         <TextBox Text="{Binding Path=Hash}" Margin="3" Background="Transparent" BorderThickness="0" IsReadOnly="True" />
                     </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2">
+                    <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2">
                         <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CRC32}" Margin="3" FontWeight="DemiBold" />
                         <TextBox Text="{Binding Path=CRC32}" Margin="3" Background="Transparent" BorderThickness="0" IsReadOnly="True" />
                     </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2">
+                    <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2">
                         <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=SHA1}" Margin="3" FontWeight="DemiBold" />
                         <TextBox Text="{Binding Path=SHA1}" Margin="3" Background="Transparent" BorderThickness="0" IsReadOnly="True" />
                     </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2">
+                    <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2">
                         <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MD5}" Margin="3" FontWeight="DemiBold" />
                         <TextBox Text="{Binding Path=MD5}" Margin="3" Background="Transparent" BorderThickness="0" IsReadOnly="True" />
                     </StackPanel>
