@@ -501,11 +501,14 @@ namespace Shoko.Desktop.ViewModel
 
                 CL_Response response = Instance.ShokoServices.SaveServerSettings(contract);
                 if (response.ErrorMessage.Length > 0)
+                {
+                    logger.Info("Error saving server settings:\n" + response.ErrorMessage);
                     Utils.ShowErrorMessage(response.ErrorMessage);
+                }
             }
             catch (Exception ex)
             {
-                logger.Trace("Error saving server JMM Server Settings. Internal exception given: " + ex.Message);
+                logger.Info(ex, "Error saving server settings:\n " + ex.ToString());
                 //Utils.ShowErrorMessage(ex);
             }
         }
