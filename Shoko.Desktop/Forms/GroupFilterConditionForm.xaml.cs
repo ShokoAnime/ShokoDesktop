@@ -670,7 +670,7 @@ namespace Shoko.Desktop.Forms
             AllGroups = new ObservableCollection<VM_AnimeGroup_User>();
 
             ViewGroups = CollectionViewSource.GetDefaultView(AllGroups);
-            ViewGroups.SortDescriptions.Add(new SortDescription("SortName", ListSortDirection.Ascending));
+            ViewGroups.SortDescriptions.Add(GroupFilterSorting.SortName.GetSortDescription(GroupFilterSortDirection.Asc));
 
             List<VM_AnimeGroup_User> grpsRaw = VM_ShokoServer.Instance.ShokoServices.GetAllGroups(VM_ShokoServer.Instance.CurrentUser.JMMUserID).CastList<VM_AnimeGroup_User>();
 

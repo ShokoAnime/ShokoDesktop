@@ -399,7 +399,7 @@ namespace Shoko.Desktop.ViewModel
             if (CurrentWrapper is VM_GroupFilter)
             {
                 VM_GroupFilter gf = (VM_GroupFilter) CurrentWrapper;
-                ViewGroups.SortDescriptions.Clear();              
+                ViewGroups.SortDescriptions.Clear();
                 List<SortDescription> sortlist = gf.GetSortDescriptions();
                 foreach (SortDescription sd in sortlist)
                     ViewGroups.SortDescriptions.Add(sd);
@@ -415,7 +415,6 @@ namespace Shoko.Desktop.ViewModel
             ViewGroupsForms.SortDescriptions.Clear();
             if (gf != null)
             {
-
                 List<SortDescription> sortlist = gf.GetSortDescriptions();
                 foreach (SortDescription sd in sortlist)
                     ViewGroupsForms.SortDescriptions.Add(sd);

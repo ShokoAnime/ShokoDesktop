@@ -681,7 +681,7 @@ namespace Shoko.Desktop.ImageDownload
                     {
                         try
                         {
-                            DownloadImage(req);                        
+                            DownloadImage(req);
                         }
                         catch (Exception ex)
                         {

@@ -74,6 +74,8 @@ namespace Shoko.Desktop.Utilities
             {
                 sortlist.Add(gfsc.SortType.GetSortDescription(gfsc.SortDirection));
             }
+            if (sortlist.Count == 0)
+                sortlist.Add(GroupFilterSorting.SortName.GetSortDescription(GroupFilterSortDirection.Asc));
             return sortlist;
         }
 
