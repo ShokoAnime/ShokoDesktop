@@ -481,8 +481,6 @@ namespace Shoko.Desktop
                 VM_ShokoServer.Instance.ApplicationVersion = Utils.GetApplicationVersion(a);
             }
 
-            VM_UTorrentHelper.Instance.ValidateCredentials();
-
             postStartTimer.Start();
 
             CheckForUpdatesNew(false);
@@ -494,8 +492,6 @@ namespace Shoko.Desktop
         void postStartTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             postStartTimer.Stop();
-
-            VM_UTorrentHelper.Instance.Init();
 
             if (VM_ShokoServer.Instance.ServerOnline)
                 DownloadAllImages();
@@ -804,16 +800,6 @@ namespace Shoko.Desktop
                     lock (lockPinnedTab)
                     {
                         if (VM_ShokoServer.Instance.AllCustomTags.Count == 0) VM_ShokoServer.Instance.RefreshAllCustomTags();
-                    }
-                }
-
-                if (tabIndex == TAB_MAIN_Downloads)
-                {
-                    lock (lockDownloadsTab)
-                    {
-                        if (VM_UserSettings.Instance.SelectedTorrentSources.Count == 0 ||
-                            VM_UserSettings.Instance.UnselectedTorrentSources.Count == 0)
-                            VM_UserSettings.Instance.RefreshTorrentSources();
                     }
                 }
             }
@@ -1854,104 +1840,6 @@ namespace Shoko.Desktop
             try
             {
                 VM_MainListHelper.Instance.RefreshBookmarkedAnime();
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
-        }
-
-        public void ShowTorrentSearch(DownloadSearchCriteria crit)
-        {
-            Cursor = Cursors.Wait;
-
-            tabControl1.SelectedIndex = TAB_MAIN_Downloads;
-            tabcDownloads.SelectedIndex = 1;
-            ucTorrentSearch.PerformSearch(crit);
-
-            Cursor = Cursors.Arrow;
-        }
-
-        private void CommandBinding_ShowTorrentSearch(object sender, ExecutedRoutedEventArgs e)
-        {
-            //object obj = lbGroupsSeries.SelectedItem;
-            object obj = e.Parameter;
-            if (obj == null) return;
-
-            try
-            {
-                if (obj.GetType() == typeof(VM_AnimeEpisode_User))
-                {
-                    VM_AnimeEpisode_User ep = (VM_AnimeEpisode_User)obj;
-                    DownloadSearchCriteria crit = new DownloadSearchCriteria(DownloadSearchType.Episode, ep.ToSearchParameters(), ep.AniDBAnime, ep);
-                    ShowTorrentSearch(crit);
-                }
-
-                if (obj.GetType() == typeof(VM_MissingEpisode))
-                {
-                    VM_MissingEpisode rec = obj as VM_MissingEpisode;
-                    if (rec == null) return;
-
-                    VM_AnimeEpisode_User contract = (VM_AnimeEpisode_User)VM_ShokoServer.Instance.ShokoServices.GetEpisodeByAniDBEpisodeID(rec.EpisodeID,
-                        VM_ShokoServer.Instance.CurrentUser.JMMUserID);
-                    if (contract != null)
-                    {
-                        DownloadSearchCriteria crit = new DownloadSearchCriteria(DownloadSearchType.Episode, contract.ToSearchParameters(), contract.AniDBAnime, contract);
-                        ShowTorrentSearch(crit);
-                    }
-                }
-
-                /*if (obj.GetType() == typeof(MissingFileVM))
-				{
-					MissingFileVM mis = (MissingFileVM)obj;
-					ShowPinnedSeries(mis.AnimeSeries);
-				}*/
-
-
-                if (obj.GetType() == typeof(VM_Recommendation))
-                {
-                    VM_Recommendation rec = obj as VM_Recommendation;
-                    if (rec == null) return;
-
-                    DownloadSearchCriteria crit = new DownloadSearchCriteria(DownloadSearchType.Series, rec.Recommended_AniDB_Anime.ToSearchParameters(),rec.Recommended_AniDB_Anime,null);
-                    ShowTorrentSearch(crit);
-                }
-
-                if (obj.GetType() == typeof(VM_AniDB_Anime))
-                {
-                    VM_AniDB_Anime anime = (VM_AniDB_Anime)obj;
-                    DownloadSearchCriteria crit = new DownloadSearchCriteria(DownloadSearchType.Series, anime.ToSearchParameters(),anime, null);
-                    ShowTorrentSearch(crit);
-                }
-
-                if (obj.GetType() == typeof(VM_AnimeSeries_User))
-                {
-                    VM_AnimeSeries_User ser = (VM_AnimeSeries_User)obj;
-                    DownloadSearchCriteria crit = new DownloadSearchCriteria(DownloadSearchType.Series, ser.AniDBAnime.AniDBAnime.ToSearchParameters(), ser.AniDBAnime.AniDBAnime, null);
-                    ShowTorrentSearch(crit);
-                }
-
-                if (obj.GetType() == typeof(VM_AniDB_Anime_Similar))
-                {
-                    VM_AniDB_Anime_Similar sim = (VM_AniDB_Anime_Similar)obj;
-                    DownloadSearchCriteria crit = new DownloadSearchCriteria(DownloadSearchType.Series, sim.AniDB_Anime.ToSearchParameters(), sim.AniDB_Anime,null);
-                    ShowTorrentSearch(crit);
-                }
-
-                if (obj.GetType() == typeof(VM_AniDB_Anime_Relation))
-                {
-                    VM_AniDB_Anime_Relation rel = (VM_AniDB_Anime_Relation)obj;
-                    DownloadSearchCriteria crit = new DownloadSearchCriteria(DownloadSearchType.Series, rel.AniDB_Anime.ToSearchParameters(),rel.AniDB_Anime,null);
-                    ShowTorrentSearch(crit);
-                }
-
-                if (obj.GetType() == typeof(VM_BookmarkedAnime))
-                {
-                    VM_BookmarkedAnime ba = (VM_BookmarkedAnime)obj;
-                    DownloadSearchCriteria crit = new DownloadSearchCriteria(DownloadSearchType.Series, ba.Anime.ToSearchParameters(), ba.Anime,null);
-                    ShowTorrentSearch(crit);
-                }
-
             }
             catch (Exception ex)
             {

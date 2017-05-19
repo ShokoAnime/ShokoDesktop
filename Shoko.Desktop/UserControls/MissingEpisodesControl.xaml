@@ -59,19 +59,6 @@
                         </StackPanel>
                     </Button>
 
-                    <!-- download button -->
-                    <Button Grid.Column="3"  Margin="5,0,2,0" Style="{DynamicResource FlatButtonStyle}" VerticalAlignment="Center" Name="btnSearchDownloads"
-                    Command="{DynamicResource ShowTorrentSearchCommand}" CommandParameter="{Binding}">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                            <Image Height="16" Width="16" Source="/Images/24_download.png" Margin="1,0,1,0">
-                                <Image.ToolTip>
-                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Episode_DownloadSearch}"/>
-                                </Image.ToolTip>
-                            </Image>
-
-                        </StackPanel>
-                    </Button>
-
                     <usercontrols:HyperLinkStandard Grid.Column="4" VerticalAlignment="Center" DisplayText="{Binding Path=EpisodeNumberAndID}" URL="{Binding Path=Episode_SiteURL}" Margin="20,0,0,0"/>
                     
 

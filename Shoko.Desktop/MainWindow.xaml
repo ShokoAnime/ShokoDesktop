@@ -30,7 +30,6 @@
 
             <RoutedUICommand x:Key="RevokeVoteCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=RevokeVoteCommand}" />
             <RoutedUICommand x:Key="ShowPinnedSeriesCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ShowPinnedSeriesCommand}" />
-            <RoutedUICommand x:Key="ShowTorrentSearchCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=ShowTorrentSearchCommand}" />
             <RoutedUICommand x:Key="EditTraktCredentialsCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=EditTraktCredentialsCommand}" />
             <RoutedUICommand x:Key="AvdumpFileCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AvdumpFileCommand}" />
             <RoutedUICommand x:Key="CreateSeriesFromAnimeCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=CreateSeriesFromAnimeCommand}" />
@@ -207,7 +206,6 @@
         <CommandBinding Command="{StaticResource ServerImageQueuePauseCommand}" Executed="CommandBinding_ServerImageQueuePause" />
         <CommandBinding Command="{StaticResource ServerImageQueueResumeCommand}" Executed="CommandBinding_ServerImageQueueResume" />
 
-        <CommandBinding Command="{StaticResource ShowTorrentSearchCommand}" Executed="CommandBinding_ShowTorrentSearch" />
         <CommandBinding Command="{StaticResource ShowWebCacheAdminCommand}" Executed="CommandBinding_ShowWebCacheAdmin" />
     </Window.CommandBindings>
 
@@ -369,7 +367,7 @@
                                     ContentTemplateSelector="{StaticResource myDataTemplateSelector}" >
                     </ContentControl>-->
 
-                    <DockPanel Grid.Row="1" Grid.RowSpan="3">
+                    <DockPanel Grid.Row="1" Grid.Column="0">
                         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Background="#F1F1F1"
                                     Visibility="{Binding Source={x:Static local:VM_MainListHelper.Instance}, Path=CurrentListWrapperIsGroup, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <!-- add sub group -->
@@ -1446,165 +1444,14 @@
                         </Style>
                     </TabControl.Resources>
 
-
-
-                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_uTorrent}" Name="tabuTorrent">
-                        <downloads1:DownloadsTorrentMonitorControl/>
-
-                    </TabItem>
-
-                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_SearchTorrents}" Name="tabSearchTorrents">
-                        <downloads1:DownloadsSearchTorrentsControl x:Name="ucTorrentSearch"/>
-
-                    </TabItem>
-
-                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_BrowseTorrents}" Name="tabBrowseTorrents">
-                        <downloads1:DownloadsBrowseTorrentsControl/>
-
-                    </TabItem>
-
                     <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_MissingEpisodes}" Name="tabDownloadsMissingEpisodes">
                         <usercontrols:MissingEpisodesControl/>
-
                     </TabItem>
 
                     <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_Recommendations}" Name="tabRecommendations">
                         <downloads1:DownloadRecommendationsControl/>
-
                     </TabItem>
-
-                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_Settings}" Name="tabDownloadSettings">
-
-                        <ScrollViewer>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-
-                                <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="0"  Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                        </Grid.RowDefinitions>
-
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="25"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0" VerticalAlignment="Top"/>
-                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Info_Downloads}" Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1"/>
-
-                                        <usercontrols:HyperLinkStandard Margin="0,0,0,0" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=LearnMore_Downloads}" 
-                                                                        URL="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Link_Downloads}"/>
-                                    </Grid>
-                                </Border>
-
-                                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="1" Background="#FFE9ECEF" Margin="0,0,0,5">
-                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Downloads_uTorrentWebUI}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
-                                </Border>
-
-                                <downloads1:DownloadsSettingsControl Grid.Column="0" Grid.Row="2" Margin="5,0,0,10"/>
-
-                                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="3" Background="#FFE9ECEF" Margin="0,0,0,5">
-                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Downloads_TorrentBlackHole}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
-                                </Border>
-
-                                <downloads1:DownloadsTorrentBlackHole Grid.Column="0" Grid.Row="4" Margin="5,0,0,10"/>
-
-                                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="5" Background="#FFE9ECEF" Margin="0,0,0,5">
-                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Downloads_TorrentDefault}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
-                                </Border>
-
-                                <downloads1:DownloadSettingsTorSources Grid.Column="0" Grid.Row="6" Margin="5,0,0,10"/>
-
-                                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="7" Background="#FFE9ECEF" Margin="0,0,0,5">
-                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Downloads_BakaBT}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
-                                </Border>
-
-                                <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="8"  Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"></RowDefinition>
-                                        </Grid.RowDefinitions>
-
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="25"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0" VerticalAlignment="Top"/>
-                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Downloads_BakaBTInfo}" Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1"/>
-
-                                        <usercontrols:HyperLinkStandard Margin="5,0,20,0" VerticalAlignment="Center" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Downloads_GoTo}"  Grid.Column="2"
-                                                                        URL="http://bakabt.me"/>
-                                    </Grid>
-                                </Border>
-
-                                <downloads1:DownloadSettingsBakaBT Grid.Column="0" Grid.Row="9" Margin="5,0,0,10"/>
-
-                                <Border BorderBrush="LightGray" BorderThickness="1" Grid.Column="0" Grid.Row="10" Background="#FFE9ECEF" Margin="0,0,0,5">
-                                    <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Downloads_AnimeBytes}" Margin="5,0,0,0" Padding="3" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
-                                </Border>
-
-                                <Border Style="{DynamicResource ToolbarBorderControlStyle}" Grid.Column="0" Grid.Row="11"  Background="#F1F1F1" Margin="0,0,0,5" Padding="5">
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"></RowDefinition>
-                                        </Grid.RowDefinitions>
-
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="25"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <Image Height="16" Width="16" Source="/Images/32_info.png" Margin="5,2,4,0" Grid.Column="0" VerticalAlignment="Top"/>
-                                        <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Downloads_AnimeBytesInfo}" Margin="0,0,5,0" TextWrapping="Wrap" Grid.Column="1"/>
-
-                                        <usercontrols:HyperLinkStandard Margin="5,0,20,0" VerticalAlignment="Center" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Downloads_GoTo}"  Grid.Column="2"
-                                                                        URL="http://animebytes.tv"/>
-                                    </Grid>
-                                </Border>
-
-                                <downloads1:DownloadSettingsAnimeBytes Grid.Column="0" Grid.Row="12" Margin="5,0,0,10"/>
-
-                            </Grid>
-                        </ScrollViewer>
-
-
-                    </TabItem>
-
                 </TabControl>
-
-
-
             </TabItem>
 
             <!-- Search tab-->

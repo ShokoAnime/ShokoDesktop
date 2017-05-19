@@ -285,7 +285,6 @@
     <Compile Include="UserControls\Settings\PlexSettings.xaml.cs">
       <DependentUpon>PlexSettings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\VM_TorrentSource.cs" />
     <Compile Include="Enums\DashboardMetroImageType.cs" />
     <Compile Include="Enums\DashboardMetroProcessType.cs" />
     <Compile Include="Enums\DashboardType.cs" />
@@ -340,9 +339,6 @@
     </Compile>
     <Compile Include="UserControls\Custom ToolTips\EpisodeDetailsToolTip.xaml.cs">
       <DependentUpon>EpisodeDetailsToolTip.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\Downloads\DownloadsTorrentBlackHole.xaml.cs">
-      <DependentUpon>DownloadsTorrentBlackHole.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\PlayNextEpisodeControlV2.xaml.cs">
       <DependentUpon>PlayNextEpisodeControlV2.xaml</DependentUpon>
@@ -531,27 +527,6 @@
     </Compile>
     <Compile Include="UserControls\Downloads\DownloadRecommendationsControl.xaml.cs">
       <DependentUpon>DownloadRecommendationsControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\Downloads\DownloadsBrowseTorrentsControl.xaml.cs">
-      <DependentUpon>DownloadsBrowseTorrentsControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\Downloads\DownloadSettingsAnimeBytes.xaml.cs">
-      <DependentUpon>DownloadSettingsAnimeBytes.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\Downloads\DownloadSettingsBakaBT.xaml.cs">
-      <DependentUpon>DownloadSettingsBakaBT.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\Downloads\DownloadSettingsTorSources.xaml.cs">
-      <DependentUpon>DownloadSettingsTorSources.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\Downloads\DownloadsSearchTorrentsControl.xaml.cs">
-      <DependentUpon>DownloadsSearchTorrentsControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\Downloads\DownloadsSettingsControl.xaml.cs">
-      <DependentUpon>DownloadsSettingsControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\Downloads\DownloadsTorrentMonitorControl.xaml.cs">
-      <DependentUpon>DownloadsTorrentMonitorControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\DuplicateFileDetailControl.xaml.cs">
       <DependentUpon>DuplicateFileDetailControl.xaml</DependentUpon>
@@ -792,7 +767,6 @@
     <Compile Include="ViewModel\Server\VM_TvDB_ImageWideBanner.cs" />
     <Compile Include="ViewModel\Server\VM_TvDB_Series.cs" />
     <Compile Include="ViewModel\VM_UserSettings.cs" />
-    <Compile Include="ViewModel\VM_UTorrentHelper.cs" />
     <Compile Include="ViewModel\Server\VM_VideoDetailed.cs" />
     <Compile Include="ViewModel\Server\VM_GroupFilter.cs" />
     <Compile Include="DataTemplateSelectors\GroupsSeriesDataTemplateSelector.cs" />
@@ -1071,38 +1045,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Downloads\DownloadRecommendationsControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\Downloads\DownloadsBrowseTorrentsControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\Downloads\DownloadSettingsAnimeBytes.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\Downloads\DownloadSettingsBakaBT.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\Downloads\DownloadSettingsTorSources.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\Downloads\DownloadsSearchTorrentsControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\Downloads\DownloadsSettingsControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\Downloads\DownloadsTorrentBlackHole.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\Downloads\DownloadsTorrentMonitorControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1604,21 +1546,6 @@
     <Resource Include="Images\16_columns.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Torrents\tor_downloading.png" />
-    <Resource Include="Images\Torrents\tor_queued.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Torrents\tor_paused.png" />
-    <Resource Include="Images\Torrents\tor_seeding.png" />
-    <Resource Include="Images\Torrents\tor_stopped.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Torrents\tor_finished.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Torrents\tor_queuedseed.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="PostBuild.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -1749,7 +1676,6 @@
     <Resource Include="Images\Sources.txt" />
     <Resource Include="Images\16_add.png" />
     <Resource Include="Images\24_calendar.png" />
-    <Resource Include="Images\24_download.png" />
     <Resource Include="Images\24_folder_filter.png" />
     <Resource Include="Images\24_folder_group.png" />
     <Resource Include="Images\16_cancel.png" />

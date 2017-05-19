@@ -47,7 +47,7 @@
         </Grid.ColumnDefinitions>
 
 
-        <TabControl Grid.Row="0" Grid.Column="0" Margin="0" Name="tabTorrentDetails" TabStripPlacement="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+        <TabControl Grid.Row="0" Grid.Column="0" Margin="0" Name="tabFileRename" TabStripPlacement="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
 
 
             <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Rename_Title}">
@@ -140,10 +140,6 @@
                         </StackPanel>
                         <CheckBox Name="chkIsUsedForImports" Margin="5" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Rename_ImportRun}" Grid.Column="0" Grid.Row="2"/>
                         <TextBox Name="txtRenameScript" MinWidth="400" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="3" Margin="5" Grid.RowSpan="3" AcceptsReturn="True" FontFamily="Courier New" />
-                        
-
-
-
 
                     </Grid>
                 </ScrollViewer>
@@ -225,7 +221,7 @@
 
 
             <!-- grid for file rename preview -->
-            <DataGrid Name="dgTorrents" ItemsSource="{Binding Path=ViewFiles, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:FileRenameControl}}}" DockPanel.Dock="Top"
+            <DataGrid Name="dgFileRename" ItemsSource="{Binding Path=ViewFiles, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:FileRenameControl}}}" DockPanel.Dock="Top"
                   AutoGenerateColumns="False" CanUserReorderColumns="True" CanUserResizeColumns="True" CanUserResizeRows="False" CanUserSortColumns="True" 
                                   AlternatingRowBackground="Cornsilk"  AlternationCount="2" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="LightGray" 
                                   AreRowDetailsFrozen="False" CanUserAddRows="False" CanUserDeleteRows="False">

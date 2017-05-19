@@ -60,18 +60,6 @@
                                                 Body=Tooltip_HideEpisodeOverviewWhenUnwatched}"/>
         </StackPanel>
 
-        <!-- Episode Download button - hide -->
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="3" Margin="0,5,15,0">
-            <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Settings_HideDownloadButton}"  VerticalAlignment="Top"></TextBlock>
-        </StackPanel>
-
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3" Margin="0,5,5,0">
-            <CheckBox Name="chkHideEpisodeDownload" IsChecked="{Binding Source={x:Static local:VM_UserSettings.Instance},Path=HideDownloadButtonWhenFilesExist}" VerticalAlignment="Center"
-                      />
-        </StackPanel>
-
-
-
         <!-- Prompt to rate series on completion -->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="4" Margin="0,5,15,0">
             <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=PromptRateSeries}"  VerticalAlignment="Top"></TextBlock>
