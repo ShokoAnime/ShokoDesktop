@@ -45,7 +45,11 @@ namespace Shoko.Desktop.Forms
 
         private void btnYes_Click(object sender, RoutedEventArgs e)
         {
-            if (VM_ShokoServer.Instance.ServerOnline) VM_ShokoServer.Instance.ShokoServices.DeleteMultipleFilesWithPreferences(VM_ShokoServer.Instance.CurrentUser.JMMUserID);
+            if (VM_ShokoServer.Instance.ServerOnline)
+            {
+                if (VM_ShokoServer.Instance.ShokoServices.DeleteMultipleFilesWithPreferences(VM_ShokoServer.Instance.CurrentUser.JMMUserID))
+                    Close();
+            }
         }
     }
 }
