@@ -162,7 +162,7 @@ namespace Shoko.Desktop.Forms
                 foreach (CL_VideoLocal_Place n in vid.Places)
                 {
                     string g = dict[n.ImportFolder.CloudID ?? 0].Item1;
-                    if (chks[g])
+                    if (!chks.ContainsKey(g) || chks[g])
                     {
                         string result = VM_ShokoServer.Instance.ShokoServices.DeleteVideoLocalPlaceAndFile(n.VideoLocal_Place_ID);
                         if (result.Length > 0)
@@ -289,7 +289,10 @@ namespace Shoko.Desktop.Forms
                     {
                         Tuple<string, BitmapImage> tup = dict[vv.ImportFolder.CloudID ?? 0];
                         if (!types.ContainsKey(tup.Item1))
+                        {
+                            chks[tup.Item1] = true;
                             types.Add(tup.Item1, tup.Item2);
+                        }
                     }
                 }
                 FileCount = vids.Count;
@@ -311,6 +314,45 @@ namespace Shoko.Desktop.Forms
 
         }
 
+        public void Init(List<VM_VideoDetailed> videos)
+        {
+            Cursor = Cursors.Wait;
 
+            // get the videos
+            try
+            {
+                VM_ShokoServer.Instance.RefreshCloudAccounts();
+                dict = VM_ShokoServer.Instance.FolderProviders.ToDictionary(a => a.CloudID, a => new Tuple<string, BitmapImage>(a.Provider, a.Bitmap));
+                chks = new Dictionary<string, bool>();
+                Dictionary<string, BitmapImage> types = new Dictionary<string, BitmapImage>();
+
+
+                vids = videos;
+                foreach (VM_VideoDetailed vid in vids)
+                {
+                    foreach (CL_VideoLocal_Place vv in vid.Places)
+                    {
+                        Tuple<string, BitmapImage> tup = dict[vv.ImportFolder.CloudID ?? 0];
+                        if (!types.ContainsKey(tup.Item1))
+                            types.Add(tup.Item1, tup.Item2);
+                    }
+                }
+                FileCount = vids.Count;
+                lbFiles.ItemsSource = vids;
+
+                SummaryText = "";
+                InitImportFolders(types);
+
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
+            finally
+            {
+                Cursor = Cursors.Arrow;
+            }
+
+        }
     }
 }

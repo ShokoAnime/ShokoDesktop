@@ -1523,7 +1523,7 @@
             <DockPanel>
                 <StackPanel Orientation="Horizontal" Background="#F1F1F1" DockPanel.Dock="Left" >
                     <StackPanel.ToolTip>
-                        <ToolTip Placement="Top" VerticalOffset="-2">
+                        <ToolTip Placement="Top" VerticalOffset="-2" ToolTipService.ShowDuration="6000">
                             <Border Background="SteelBlue" MinWidth="250" MaxWidth="600">
                                 <Grid>
                                     <Grid.ColumnDefinitions>

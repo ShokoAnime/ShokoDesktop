@@ -554,11 +554,13 @@ namespace Shoko.Desktop.UserControls
 
         private void btnDeleteFilesWithPreferences_Click(object sender, RoutedEventArgs e)
         {
-            List<CL_VideoLocal> list =
-                VM_ShokoServer.Instance.ShokoServices.PreviewDeleteMultipleFilesWithPreferences(VM_ShokoServer.Instance
-                    .CurrentUser.JMMUserID);
+            List<VM_VideoDetailed> list =
+                VM_ShokoServer.Instance.ShokoServices.GetMultipleFilesForDeletionByPreferences(VM_ShokoServer.Instance
+                    .CurrentUser.JMMUserID).CastList<VM_VideoDetailed>();
             list = list.DistinctBy(a => a.Places.FirstOrDefault(b => !string.IsNullOrEmpty(b.FilePath))?.FilePath).ToList();
-            PreviewDeleteByFileQuality form = new PreviewDeleteByFileQuality(list);
+            DeleteFilesForm form = new DeleteFilesForm();
+            form.Owner = Window.GetWindow(this);
+            form.Init(list);
             form.ShowDialog();
         }
 
