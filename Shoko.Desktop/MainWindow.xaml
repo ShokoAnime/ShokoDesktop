@@ -7,6 +7,7 @@
         xmlns:settings="clr-namespace:Shoko.Desktop.UserControls.Settings"
         xmlns:downloads1="clr-namespace:Shoko.Desktop.UserControls.Downloads"
         xmlns:dataTemplateSelectors="clr-namespace:Shoko.Desktop.DataTemplateSelectors"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
         WindowStartupLocation="CenterScreen" UseLayoutRounding="True"
         Title="Shoko Desktop" Height="700" Width="1350" x:Name="mainWindow" Icon="/ShokoDesktop;component/Images/db.ico" >
 
@@ -1521,9 +1522,9 @@
         <!-- bottom status bar container -->
         <Border Style="{DynamicResource ToolbarBorderControlStyle}" Height="30" Grid.Row="1" Background="#F1F1F1">
             <DockPanel>
-                <StackPanel Orientation="Horizontal" Background="#F1F1F1" DockPanel.Dock="Left" >
+                <StackPanel Orientation="Horizontal" Background="#F1F1F1" DockPanel.Dock="Left" ToolTipService.ShowDuration="{x:Static Member=System:Int32.MaxValue}">
                     <StackPanel.ToolTip>
-                        <ToolTip Placement="Top" VerticalOffset="-2" ToolTipService.ShowDuration="6000">
+                        <ToolTip Placement="Top" VerticalOffset="-2">
                             <Border Background="SteelBlue" MinWidth="250" MaxWidth="600">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
