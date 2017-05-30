@@ -751,88 +751,74 @@
                     <TabControl.Resources>
                         <Style TargetType="{x:Type TabItem}">
                             <Setter Property="Padding" Value="6" />
-
                         </Style>
                     </TabControl.Resources>
 
                     <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_UnrecognisedFiles}" Name="tabUnrecognisedFiles">
-
                         <usercontrols:UnrecognisedVideos x:Name="unRecVids"/>
                     </TabItem>
 
                     <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_IgnoredFiles}" Name="tabIgnoredFiles">
-
                         <usercontrols:IgnoredFiles x:Name="ignoredFiles"/>
                     </TabItem>
 
                     <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_ManuallyLinked}" Name="tabManuallyLinked">
-
                         <usercontrols:ManuallyLinkedFilesControl x:Name="linkedFiles"/>
                     </TabItem>
 
                     <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_DuplicateFiles}" Name="tabDuplicateFiles">
-
                         <usercontrols:DuplicateFilesControl x:Name="duplicateFiles"/>
                     </TabItem>
 
                     <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_MultipleFiles}" Name="tabMultipleFiles">
-
                         <usercontrols:MultipleFilesControl x:Name="multipleFiles"/>
                     </TabItem>
 
                     <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_MissingFiles}" Name="tabMissingFiles">
-
                         <usercontrols:MissingMyListFilesControl x:Name="missingFiles"/>
                     </TabItem>
 
                     <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_SeriesWithoutFiles}" Name="tabSeriesWithoutFiles">
-
                         <usercontrols:SeriesWithoutFilesControl x:Name="SeriesWithoutFiles"/>
                     </TabItem>
 
                     <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_MissingEpisodes}" Name="tabMissingEpisodes">
-
                         <usercontrols:MissingEpisodesControl x:Name="missingEpisodes"/>
                     </TabItem>
 
+                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_Recommendations}" Name="tabRecommendations">
+                        <downloads1:DownloadRecommendationsControl/>
+                    </TabItem>
+                    
                     <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_IgnoredAnime}" Name="tabIgnoredAnime">
-
                         <usercontrols:IgnoredAnimeControl x:Name="ignoredAnime"/>
                     </TabItem>
 
                     <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_AniDBAVDump}" Name="tabAvdump">
-
                         <usercontrols:AvdumpBatchControl x:Name="avdumpBatch"/>
                     </TabItem>
 
                     <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_FileSearch}" Name="tabFileSearch">
-
                         <usercontrols:FileSearchControl x:Name="fileSearch"/>
                     </TabItem>
 
                     <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_FileRename}" Name="tabFileRenaming">
-
                         <usercontrols:FileRenameControl x:Name="fileRenaming"/>
                     </TabItem>
 
                     <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_UpdateAniDB}" Name="tabUpdateAniDBData">
-
                         <usercontrols:UpdateAniDBDataControl x:Name="updateAniDBData"/>
                     </TabItem>
 
                     <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_CommunityData}" Name="tabCommMaint">
-
                         <community:CommunityMaint x:Name="commMaint"/>
                     </TabItem>
 
                     <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_MyVotes}" Name="tabRankings">
-
                         <usercontrols:RankingsControl x:Name="rankings"/>
                     </TabItem>
 
                 </TabControl>
-
-
 
             </TabItem>
 
@@ -1424,35 +1410,6 @@
                 <TabControl Name="tabPinned" VerticalAlignment="Stretch" TabStripPlacement="Left"
                                 Width="{Binding Source={x:Static local:VM_MainListHelper.Instance},Path=FullScrollerWidth}" Margin="5,5,5,5"  />
 
-            </TabItem>
-
-            <!-- Downloads tab -->
-            <TabItem Name="tabDownloads" Style="{DynamicResource tabMainItem}"
-                     Visibility="{Binding Source={x:Static local:VM_ShokoServer.Instance}, Path=ShowServerSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
-
-                <TabItem.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_Downloads}" Margin="2,0,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"/>
-                    </StackPanel>
-                </TabItem.Header>
-
-                <TabControl Name="tabcDownloads" TabStripPlacement="Left" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,10,5,5">
-
-                    <TabControl.Resources>
-                        <Style TargetType="{x:Type TabItem}">
-                            <Setter Property="Padding" Value="6" />
-
-                        </Style>
-                    </TabControl.Resources>
-
-                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=TAB_MissingEpisodes}" Name="tabDownloadsMissingEpisodes">
-                        <usercontrols:MissingEpisodesControl/>
-                    </TabItem>
-
-                    <TabItem Header="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Tab_Recommendations}" Name="tabRecommendations">
-                        <downloads1:DownloadRecommendationsControl/>
-                    </TabItem>
-                </TabControl>
             </TabItem>
 
             <!-- Search tab-->

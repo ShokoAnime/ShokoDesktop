@@ -571,7 +571,6 @@ namespace Shoko.Desktop
                 if (tempWidth > 0)
                     VM_MainListHelper.Instance.PlaylistWidth = tempWidth;
 
-                tempWidth = tabcDownloads.ActualWidth - 130;
                 if (tempWidth > 0)
                     VM_MainListHelper.Instance.DownloadRecScrollerWidth = tempWidth;
             }
