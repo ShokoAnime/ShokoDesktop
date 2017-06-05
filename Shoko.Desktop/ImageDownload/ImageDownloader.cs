@@ -19,6 +19,7 @@ namespace Shoko.Desktop.ImageDownload
         //private BlockingList<ImageDownloadRequest> imagesToDownload = new BlockingList<ImageDownloadRequest>();
         private BackgroundWorker workerImages = new BackgroundWorker();
         private static object downloadsLock = new object();
+        public static bool Stopping = false;
 
         public int QueueCount => imagesToDownload.Count;
 
@@ -672,7 +673,7 @@ namespace Shoko.Desktop.ImageDownload
 
         private void ProcessImages(object sender, DoWorkEventArgs args)
         {
-            while (true)
+            while (!Stopping)
             {
                 while (!imagesToDownload.IsEmpty)
                 {

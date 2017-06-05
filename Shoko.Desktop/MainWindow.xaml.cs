@@ -42,37 +42,43 @@ namespace Shoko.Desktop
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        public static readonly int TAB_MAIN_Dashboard = 0;
-        public static readonly int TAB_MAIN_Collection = 1;
-        public static readonly int TAB_MAIN_Playlists = 2;
-        public static readonly int TAB_MAIN_Bookmarks = 3;
-        public static readonly int TAB_MAIN_Server = 4;
-        public static readonly int TAB_MAIN_FileManger = 5;
-        public static readonly int TAB_MAIN_Settings = 6;
-        public static readonly int TAB_MAIN_Pinned = 7;
-        public static readonly int TAB_MAIN_Downloads = 8;
-        public static readonly int TAB_MAIN_Search = 9;
-        public static readonly int TAB_MAIN_Help = 10;
-        public static readonly int TAB_MAIN_Community = 11;
+        public enum TAB_MAIN
+        {
+            Dashboard = 0,
+            Collection,
+            Playlists,
+            Bookmarks,
+            Server,
+            FileManger,
+            Settings,
+            Pinned,
+            Search,
+            Help,
+            Community
+        }
 
-        public static int CurrentMainTabIndex = TAB_MAIN_Dashboard;
+        public static int CurrentMainTabIndex = (int) TAB_MAIN.Dashboard;
 
-        private static readonly int TAB_FileManger_Unrecognised = 0;
-        private static readonly int TAB_FileManger_Ignored = 1;
-        private static readonly int TAB_FileManger_ManuallyLinked = 2;
-        private static readonly int TAB_FileManger_DuplicateFiles = 3;
-        private static readonly int TAB_FileManger_MultipleFiles = 4;
-        private static readonly int TAB_FileManger_MissingMyList = 5;
-        private static readonly int TAB_FileManger_SeriesNoFiles = 6;
-        private static readonly int TAB_FileManger_MissingEps = 7;
-        private static readonly int TAB_FileManger_IgnoredAnime = 8;
-        private static readonly int TAB_FileManger_Avdump = 9;
-        private static readonly int TAB_FileManger_FileSearch = 10;
-        private static readonly int TAB_FileManger_Rename = 11;
-        private static readonly int TAB_FileManger_UpdateData = 12;
-        private static readonly int TAB_FileManger_Rankings = 13;
+        private enum TAB_UTILITY
+        {
+            Unrecognised = 0,
+            Ignored,
+            ManuallyLinked,
+            DuplicateFiles,
+            MultipleFiles,
+            MissingMyList,
+            SeriesNoFiles,
+            MissingEps,
+            Recommendations,
+            IgnoredAnime,
+            Avdump,
+            FileSearch,
+            Rename,
+            UpdateData,
+            Rankings
+        };
 
-        public static readonly int TAB_Settings_Essential = 0;
+    public static readonly int TAB_Settings_Essential = 0;
         public static readonly int TAB_Settings_AniDB = 1;
         public static readonly int TAB_Settings_TvDB = 2;
         public static readonly int TAB_Settings_WebCache = 3;
@@ -80,7 +86,7 @@ namespace Shoko.Desktop
 
         private static System.Timers.Timer postStartTimer = null;
 
-        private int lastFileManagerTab = TAB_FileManger_Unrecognised;
+        private int lastFileManagerTab = (int) TAB_UTILITY.Unrecognised;
 
         public static VM_GroupFilter groupFilterVM = null;
         public static List<UserCulture> userLanguages = new List<UserCulture>();
@@ -136,6 +142,8 @@ namespace Shoko.Desktop
 
                 if (AppSettings.AutoStartLocalJMMServer)
                     Utils.StartJMMServer();
+
+                Closing += (o, args) => ImageDownloader.Stopping = true;
 
                 lbGroupsSeries.MouseDoubleClick += new MouseButtonEventHandler(lbGroupsSeries_MouseDoubleClick);
                 lbGroupsSeries.SelectionChanged += new SelectionChangedEventHandler(lbGroupsSeries_SelectionChanged);
@@ -302,14 +310,14 @@ namespace Shoko.Desktop
                else
                   logger.Error("Failed to start showDashboardWorker for btnSwitchUser");
 
-                tabControl1.SelectedIndex = TAB_MAIN_Dashboard;
+                tabControl1.SelectedIndex = (int) TAB_MAIN.Dashboard;
              }
           }
        }
 
        void videoHandler_VideoWatchedEvent(VideoWatchedEventArgs ev)
         {
-            if (tabControl1.SelectedIndex == TAB_MAIN_Collection || tabControl1.SelectedIndex == TAB_MAIN_Pinned)
+            if (tabControl1.SelectedIndex == (int) TAB_MAIN.Collection || tabControl1.SelectedIndex == (int) TAB_MAIN.Pinned)
             {
 
 
@@ -467,12 +475,12 @@ namespace Shoko.Desktop
 
             if (VM_ShokoServer.Instance.ServerOnline)
             {
-                tabControl1.SelectedIndex = TAB_MAIN_Dashboard;
-                DisplayMainTab(TAB_MAIN_Dashboard);
+                tabControl1.SelectedIndex = (int) TAB_MAIN.Dashboard;
+                DisplayMainTab((int) TAB_MAIN.Dashboard);
                 DownloadAllImages();
             }
             else
-                tabControl1.SelectedIndex = TAB_MAIN_Settings;
+                tabControl1.SelectedIndex = (int) TAB_MAIN.Settings;
 
 
             System.Reflection.Assembly a = System.Reflection.Assembly.GetExecutingAssembly();
@@ -588,46 +596,46 @@ namespace Shoko.Desktop
                 {
                     TabControl tab = e.Source as TabControl;
                     Cursor = Cursors.Wait;
-                    if (tab.SelectedIndex == TAB_FileManger_Unrecognised)
+                    if (tab.SelectedIndex == (int) TAB_UTILITY.Unrecognised)
                     {
                         if (unRecVids.UnrecognisedFiles.Count == 0) unRecVids.RefreshUnrecognisedFiles();
                         if (unRecVids.AllSeries.Count == 0) unRecVids.RefreshSeries();
-                        lastFileManagerTab = TAB_FileManger_Unrecognised;
+                        lastFileManagerTab = (int) TAB_UTILITY.Unrecognised;
                     }
 
-                    if (tab.SelectedIndex == TAB_FileManger_Ignored)
+                    if (tab.SelectedIndex == (int) TAB_UTILITY.Ignored)
                     {
                         if (ignoredFiles.IgnoredFilesCollection.Count == 0) ignoredFiles.RefreshIgnoredFiles();
-                        lastFileManagerTab = TAB_FileManger_Ignored;
+                        lastFileManagerTab = (int) TAB_UTILITY.Ignored;
                     }
 
-                    if (tab.SelectedIndex == TAB_FileManger_ManuallyLinked)
+                    if (tab.SelectedIndex == (int) TAB_UTILITY.ManuallyLinked)
                     {
                         if (linkedFiles.ManuallyLinkedFiles.Count == 0) linkedFiles.RefreshLinkedFiles();
-                        lastFileManagerTab = TAB_FileManger_ManuallyLinked;
+                        lastFileManagerTab = (int) TAB_UTILITY.ManuallyLinked;
                     }
 
-                    if (tab.SelectedIndex == TAB_FileManger_DuplicateFiles)
+                    if (tab.SelectedIndex == (int) TAB_UTILITY.DuplicateFiles)
                     {
                         if (duplicateFiles.DuplicateFilesCollection.Count == 0) duplicateFiles.RefreshDuplicateFiles();
-                        lastFileManagerTab = TAB_FileManger_DuplicateFiles;
+                        lastFileManagerTab = (int) TAB_UTILITY.DuplicateFiles;
                     }
-                    if (tab.SelectedIndex == TAB_FileManger_MultipleFiles)
+                    if (tab.SelectedIndex == (int) TAB_UTILITY.MultipleFiles)
                     {
                         //if (multipleFiles.CurrentEpisodes.Count == 0) multipleFiles.RefreshMultipleFiles();
-                        lastFileManagerTab = TAB_FileManger_MultipleFiles;
+                        lastFileManagerTab = (int) TAB_UTILITY.MultipleFiles;
                     }
 
-                    if (tab.SelectedIndex == TAB_FileManger_Rename)
+                    if (tab.SelectedIndex == (int) TAB_UTILITY.Rename)
                     {
                         if (fileRenaming.RenameScripts.Count == 0) fileRenaming.RefreshScripts();
-                        lastFileManagerTab = TAB_FileManger_Rename;
+                        lastFileManagerTab = (int) TAB_UTILITY.Rename;
                     }
 
-                    if (tab.SelectedIndex == TAB_FileManger_Rankings)
+                    if (tab.SelectedIndex == (int) TAB_UTILITY.Rankings)
                     {
                         if (rankings.AllAnime.Count == 0) rankings.Init();
-                        lastFileManagerTab = TAB_FileManger_Rankings;
+                        lastFileManagerTab = (int) TAB_UTILITY.Rankings;
                     }
                     Cursor = Cursors.Arrow;
                 }
@@ -659,7 +667,7 @@ namespace Shoko.Desktop
             {
                 CurrentMainTabIndex = tabIndex;
 
-                if (tabIndex == TAB_MAIN_Dashboard)
+                if (tabIndex == (int) TAB_MAIN.Dashboard)
                 {
                     lock (lockDashBoardTab)
                     {
@@ -693,7 +701,7 @@ namespace Shoko.Desktop
                                 if (!showDashboardWorker.IsBusy)
                                     showDashboardWorker.RunWorkerAsync(opt);
                                 else
-                                    logger.Error("Failed to start showDashboardWorker for TAB_MAIN_Dashboard");
+                                    logger.Error("Failed to start showDashboardWorker for TAB_MAIN.Dashboard");
                             }
                         }
                         else
@@ -706,7 +714,7 @@ namespace Shoko.Desktop
                     }
                 }
 
-                if (tabIndex == TAB_MAIN_Collection)
+                if (tabIndex == (int) TAB_MAIN.Collection)
                 {
                     lock (lockCollectionsTab)
                     {
@@ -727,13 +735,13 @@ namespace Shoko.Desktop
                 }
 
 
-                if (tabIndex == TAB_MAIN_FileManger)
+                if (tabIndex == (int) TAB_MAIN.FileManger)
                 {
                     if (unRecVids.UnrecognisedFiles.Count == 0) unRecVids.RefreshUnrecognisedFiles();
                     if (VM_ShokoServer.Instance.AllCustomTags.Count == 0) VM_ShokoServer.Instance.RefreshAllCustomTags();
                 }
 
-                if (tabIndex == TAB_MAIN_Playlists)
+                if (tabIndex == (int) TAB_MAIN.Playlists)
                 {
                     lock (lockPlaylistsTab)
                     {
@@ -745,7 +753,7 @@ namespace Shoko.Desktop
 
                 }
 
-                if (tabIndex == TAB_MAIN_Bookmarks)
+                if (tabIndex == (int) TAB_MAIN.Bookmarks)
                 {
                     lock (lockBookmarksTab)
                     {
@@ -759,7 +767,7 @@ namespace Shoko.Desktop
 
                 }
 
-                if (tabIndex == TAB_MAIN_Search)
+                if (tabIndex == (int) TAB_MAIN.Search)
                 {
                     lock (lockSearchTab)
                     {
@@ -769,7 +777,7 @@ namespace Shoko.Desktop
                     }
                 }
 
-                if (tabIndex == TAB_MAIN_Server)
+                if (tabIndex == (int) TAB_MAIN.Server)
                 {
                     lock (lockServerTab)
                     {
@@ -779,7 +787,7 @@ namespace Shoko.Desktop
                     }
                 }
 
-                if (tabIndex == TAB_MAIN_Settings)
+                if (tabIndex == (int) TAB_MAIN.Settings)
                 {
                     lock (lockSettingsTab)
                     {
@@ -794,7 +802,7 @@ namespace Shoko.Desktop
                     }
                 }
 
-                if (tabIndex == TAB_MAIN_Pinned)
+                if (tabIndex == (int) TAB_MAIN.Pinned)
                 {
                     lock (lockPinnedTab)
                     {
@@ -1143,27 +1151,27 @@ namespace Shoko.Desktop
                 // update all the attached groups
 
                 /*Dictionary<int, JMMServerBinary.Contract_AnimeGroup> grpsDict = new Dictionary<int, JMMServerBinary.Contract_AnimeGroup>();
-				List<JMMServerBinary.Contract_AnimeGroup> grps = VM_ShokoServer.Instance.clientBinaryHTTP.GetAllGroupsAboveGroupInclusive(request.UpdatedSeries.AnimeGroupID,
-					VM_ShokoServer.Instance.CurrentUser.JMMUserID.Value);
-				List<JMMServerBinary.Contract_AnimeGroup> grpsOld = VM_ShokoServer.Instance.clientBinaryHTTP.GetAllGroupsAboveGroupInclusive(request.OldAnimeGroupID,
-					VM_ShokoServer.Instance.CurrentUser.JMMUserID.Value);
+                List<JMMServerBinary.Contract_AnimeGroup> grps = VM_ShokoServer.Instance.clientBinaryHTTP.GetAllGroupsAboveGroupInclusive(request.UpdatedSeries.AnimeGroupID,
+                    VM_ShokoServer.Instance.CurrentUser.JMMUserID.Value);
+                List<JMMServerBinary.Contract_AnimeGroup> grpsOld = VM_ShokoServer.Instance.clientBinaryHTTP.GetAllGroupsAboveGroupInclusive(request.OldAnimeGroupID,
+                    VM_ShokoServer.Instance.CurrentUser.JMMUserID.Value);
 
-				foreach (JMMServerBinary.Contract_AnimeGroup tempGrp in grps)
-					grpsDict[tempGrp.AnimeGroupID] = tempGrp;
+                foreach (JMMServerBinary.Contract_AnimeGroup tempGrp in grps)
+                    grpsDict[tempGrp.AnimeGroupID] = tempGrp;
 
-				foreach (JMMServerBinary.Contract_AnimeGroup tempGrp in grpsOld)
-					grpsDict[tempGrp.AnimeGroupID] = tempGrp;
-				
-				foreach (VM_AnimeGroup_User grp in VM_MainListHelper.Instance.AllGroups)
-				{
-					if (grpsDict.ContainsKey(grp.AnimeGroupID.Value))
-					{
-						grp.Populate(grpsDict[grp.AnimeGroupID.Value]);
-					}
+                foreach (JMMServerBinary.Contract_AnimeGroup tempGrp in grpsOld)
+                    grpsDict[tempGrp.AnimeGroupID] = tempGrp;
+                
+                foreach (VM_AnimeGroup_User grp in VM_MainListHelper.Instance.AllGroups)
+                {
+                    if (grpsDict.ContainsKey(grp.AnimeGroupID.Value))
+                    {
+                        grp.Populate(grpsDict[grp.AnimeGroupID.Value]);
+                    }
 
-				}
-				TimeSpan ts = DateTime.Now - start;
-				Console.Write(ts.TotalMilliseconds);*/
+                }
+                TimeSpan ts = DateTime.Now - start;
+                Console.Write(ts.TotalMilliseconds);*/
 
 
 
@@ -1177,7 +1185,7 @@ namespace Shoko.Desktop
         private void DownloadAllImages()
         {
             //if (!downloadImagesWorker.IsBusy)
-            //	downloadImagesWorker.RunWorkerAsync();
+            //  downloadImagesWorker.RunWorkerAsync();
         }
 
         void downloadImagesWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -1337,7 +1345,7 @@ namespace Shoko.Desktop
 
         private void CommandBinding_EditTraktCredentials(object sender, ExecutedRoutedEventArgs e)
         {
-            tabControl1.SelectedIndex = TAB_MAIN_Settings;
+            tabControl1.SelectedIndex = (int) TAB_MAIN.Settings;
             tabSettingsChild.SelectedIndex = TAB_Settings_TvDB;
         }
 
@@ -1353,8 +1361,8 @@ namespace Shoko.Desktop
                 VM_AVDump dump = new VM_AVDump(vid);
                 VM_MainListHelper.Instance.AVDumpFiles.Add(dump);
 
-                tabControl1.SelectedIndex = TAB_MAIN_FileManger;
-                tabFileManager.SelectedIndex = TAB_FileManger_Avdump;
+                tabControl1.SelectedIndex = (int) TAB_MAIN.FileManger;
+                tabFileManager.SelectedIndex = (int) TAB_UTILITY.Avdump;
 
             }
             catch (Exception ex)
@@ -1386,7 +1394,7 @@ namespace Shoko.Desktop
 
                 if (ser.AnimeSeriesID == series.AnimeSeriesID)
                 {
-                    tabControl1.SelectedIndex = TAB_MAIN_Pinned;
+                    tabControl1.SelectedIndex = (int) TAB_MAIN.Pinned;
                     tabPinned.SelectedIndex = curTab;
                     Cursor = Cursors.Arrow;
                     return;
@@ -1405,7 +1413,7 @@ namespace Shoko.Desktop
 
             tabPinned.Items.Add(cti);
 
-            tabControl1.SelectedIndex = TAB_MAIN_Pinned;
+            tabControl1.SelectedIndex = (int) TAB_MAIN.Pinned;
             tabPinned.SelectedIndex = tabPinned.Items.Count - 1;
 
             Cursor = Cursors.Arrow;
@@ -1455,7 +1463,7 @@ namespace Shoko.Desktop
 
                 if (ser.AnimeSeriesID == series.AnimeSeriesID)
                 {
-                    tabControl1.SelectedIndex = TAB_MAIN_Pinned;
+                    tabControl1.SelectedIndex = (int) TAB_MAIN.Pinned;
                     tabPinned.SelectedIndex = curTab;
                     Cursor = Cursors.Arrow;
                     return;
@@ -1494,7 +1502,7 @@ namespace Shoko.Desktop
                 tabPinned.Items.Add(cti);
             }
 
-            tabControl1.SelectedIndex = TAB_MAIN_Pinned;
+            tabControl1.SelectedIndex = (int) TAB_MAIN.Pinned;
             tabPinned.SelectedIndex = tabPinned.Items.Count - 1;
 
             Cursor = Cursors.Arrow;
@@ -1588,7 +1596,7 @@ namespace Shoko.Desktop
 
         private void SetColours()
         {
-            if (tabControl1.SelectedIndex == TAB_MAIN_Dashboard)
+            if (tabControl1.SelectedIndex == (int) TAB_MAIN.Dashboard)
             {
                 if (dash.Visibility == Visibility.Visible)
                 {
@@ -1615,12 +1623,12 @@ namespace Shoko.Desktop
             {
                 case MetroViews.MainNormal:
                     dash.Visibility = Visibility.Visible;
-                    DisplayMainTab(TAB_MAIN_Dashboard);
+                    DisplayMainTab((int) TAB_MAIN.Dashboard);
                     AppSettings.DashboardType = DashboardType.Normal;
                     break;
                 case MetroViews.MainMetro:
                     dashMetro.Visibility = Visibility.Visible;
-                    DisplayMainTab(TAB_MAIN_Dashboard);
+                    DisplayMainTab((int) TAB_MAIN.Dashboard);
                     AppSettings.DashboardType = DashboardType.Metro;
                     break;
                 case MetroViews.ContinueWatching:
@@ -1737,8 +1745,8 @@ namespace Shoko.Desktop
                     }
                 }
 
-                tabControl1.SelectedIndex = TAB_MAIN_FileManger;
-                tabFileManager.SelectedIndex = TAB_FileManger_Avdump;
+                tabControl1.SelectedIndex = (int) TAB_MAIN.FileManger;
+                tabFileManager.SelectedIndex = (int) TAB_UTILITY.Avdump;
 
             }
             catch (Exception ex)
@@ -1856,7 +1864,7 @@ namespace Shoko.Desktop
                 crit.ExtraInfo = string.Empty;
                 crit.AnimeID = anime.AnimeID;
 
-                tabControl1.SelectedIndex = TAB_MAIN_Community;
+                tabControl1.SelectedIndex = (int) TAB_MAIN.Community;
                 tabcCommunity.SelectedIndex = 0;
 
                 ucComLinks.PerformTvDBSearch(crit);
@@ -1888,7 +1896,7 @@ namespace Shoko.Desktop
 
                 if (crit != null)
                 {
-                    tabControl1.SelectedIndex = TAB_MAIN_Community;
+                    tabControl1.SelectedIndex = (int) TAB_MAIN.Community;
                     tabcCommunity.SelectedIndex = 0;
 
                     ucComLinks.PerformTvDBSearch(crit);
@@ -2025,7 +2033,7 @@ namespace Shoko.Desktop
                     txtGroupSearch.Text = obj.TagName;
                 }
 
-                tabControl1.SelectedIndex = TAB_MAIN_Collection;
+                tabControl1.SelectedIndex = (int) TAB_MAIN.Collection;
                 HighlightMainListItem();
 
 
@@ -2174,26 +2182,26 @@ namespace Shoko.Desktop
 
 
                     bool isnew = gf.GroupFilterID == 0;
-					if (gf.Validate())
-					{
-					    gf.Locked = 0;
+                    if (gf.Validate())
+                    {
+                        gf.Locked = 0;
                         gf.IsBeingEdited = false;
-						if (gf.Save() && isnew)
-						{
-						    VM_MainListHelper.Instance.AllGroupFiltersDictionary.Remove(0);
-						    VM_MainListHelper.Instance.AllGroupFiltersDictionary.Add(gf.GroupFilterID, gf);
+                        if (gf.Save() && isnew)
+                        {
+                            VM_MainListHelper.Instance.AllGroupFiltersDictionary.Remove(0);
+                            VM_MainListHelper.Instance.AllGroupFiltersDictionary.Add(gf.GroupFilterID, gf);
                             gf.GetDirectChildren();
-							//VM_MainListHelper.Instance.LastGroupFilterID = gf.GroupFilterID.Value;
-							showChildWrappersWorker.RunWorkerAsync(null);
-						}
-						//showChildWrappersWorker.RunWorkerAsync(null);
-					}
-				}
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowErrorMessage(ex);
-			}
+                            //VM_MainListHelper.Instance.LastGroupFilterID = gf.GroupFilterID.Value;
+                            showChildWrappersWorker.RunWorkerAsync(null);
+                        }
+                        //showChildWrappersWorker.RunWorkerAsync(null);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+            }
 
             EnableDisableGroupControls(true);
         }
@@ -2278,15 +2286,15 @@ namespace Shoko.Desktop
                             i++;
                         }
 
-						// remove from group filter list
+                        // remove from group filter list
                         if (gf.GroupFilterID!=0 && VM_MainListHelper.Instance.AllGroupFiltersDictionary.ContainsKey(gf.GroupFilterID))
                             VM_MainListHelper.Instance.AllGroupFiltersDictionary.Remove(gf.GroupFilterID);
                         // remove from current wrapper list
                         if (pos >= 0)
-						{
-							VM_MainListHelper.Instance.CurrentWrapperList.RemoveAt(pos);
-							//VM_MainListHelper.Instance.ViewGroups.Refresh();
-						}
+                        {
+                            VM_MainListHelper.Instance.CurrentWrapperList.RemoveAt(pos);
+                            //VM_MainListHelper.Instance.ViewGroups.Refresh();
+                        }
 
                     }
                 }
@@ -2398,6 +2406,7 @@ namespace Shoko.Desktop
             {
                 VM_GroupFilter gfNew = new VM_GroupFilter();
                 gfNew.Locked = 0;
+                gfNew.IsBeingEdited = true;
 
                 gfNew.GroupFilterName = Shoko.Commons.Properties.Resources.Filter_New;
                 gfNew.ApplyToSeries = 0;
@@ -2457,6 +2466,9 @@ namespace Shoko.Desktop
                                 if (pos >= 0)
                                     gf.Obs_FilterConditions.RemoveAt(pos);
 
+                                CL_GroupFilter tempGF = VM_ShokoServer.Instance.ShokoServices.EvaluateGroupFilter(gf);
+                                gf.Groups = tempGF.Groups;
+                                gf.Series = tempGF.Series;
                                 groupFilterVM = gf;
                                 VM_MainListHelper.Instance.ViewGroupsForms.Filter = GroupFilter_GroupSearch;
                                 VM_MainListHelper.Instance.SetGroupFilterSortingOnForms(gf);
@@ -2487,13 +2499,17 @@ namespace Shoko.Desktop
                 frm.Owner = this;
                 frm.Init(gf, gfc);
                 bool? result = frm.ShowDialog();
-                if (result.HasValue && result.Value == true)
+                if (result.HasValue && result.Value)
                 {
                     gf.Obs_FilterConditions.Add(gfc);
 
+                    CL_GroupFilter tempGF = VM_ShokoServer.Instance.ShokoServices.EvaluateGroupFilter(gf);
+                    gf.Groups = tempGF.Groups;
+                    gf.Series = tempGF.Series;
                     groupFilterVM = gf;
                     VM_MainListHelper.Instance.ViewGroupsForms.Filter = GroupFilter_GroupSearch;
                     VM_MainListHelper.Instance.SetGroupFilterSortingOnForms(gf);
+                    SetDetailBinding(gf);
                 }
             }
             catch (Exception ex)
@@ -2523,6 +2539,7 @@ namespace Shoko.Desktop
                     groupFilterVM = gf;
                     VM_MainListHelper.Instance.ViewGroupsForms.Filter = GroupFilter_GroupSearch;
                     VM_MainListHelper.Instance.SetGroupFilterSortingOnForms(gf);
+                    SetDetailBinding(gf);
                 }
             }
             catch (Exception ex)
@@ -2726,8 +2743,8 @@ namespace Shoko.Desktop
 
                 SetDetailBinding(grp);
 
-                //DisplayMainTab(TAB_MAIN_Collection);
-                tabControl1.SelectedIndex = TAB_MAIN_Collection;
+                //DisplayMainTab((int) TAB_MAIN.Collection);
+                tabControl1.SelectedIndex = (int) TAB_MAIN.Collection;
 
 
             }

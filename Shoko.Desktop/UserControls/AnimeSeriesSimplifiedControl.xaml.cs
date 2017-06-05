@@ -458,7 +458,7 @@ namespace Shoko.Desktop.UserControls
             {
                 MainWindow mainwdw = (MainWindow)Window.GetWindow(this);
 
-                if (MainWindow.CurrentMainTabIndex == MainWindow.TAB_MAIN_Dashboard && mainwdw.tileContinueWatching.Visibility == Visibility.Visible)
+                if (MainWindow.CurrentMainTabIndex == (int) MainWindow.TAB_MAIN.Dashboard && mainwdw.tileContinueWatching.Visibility == Visibility.Visible)
                     RefreshData();
             }
             catch { }

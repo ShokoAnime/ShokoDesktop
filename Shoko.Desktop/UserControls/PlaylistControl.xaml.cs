@@ -83,7 +83,7 @@ namespace Shoko.Desktop.UserControls
 
         void videoHandler_VideoWatchedEvent(VideoPlayers.VideoWatchedEventArgs ev)
         {
-            if (MainWindow.CurrentMainTabIndex == MainWindow.TAB_MAIN_Playlists)
+            if (MainWindow.CurrentMainTabIndex == (int) MainWindow.TAB_MAIN.Playlists)
             {
                 VM_Playlist pl = DataContext as VM_Playlist;
                 if (pl == null) return;

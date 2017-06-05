@@ -1482,7 +1482,7 @@
                 <StackPanel Orientation="Horizontal" Background="#F1F1F1" DockPanel.Dock="Left" ToolTipService.ShowDuration="{x:Static Member=System:Int32.MaxValue}">
                     <StackPanel.ToolTip>
                         <ToolTip Placement="Top" VerticalOffset="-2">
-                            <Border Background="SteelBlue" MinWidth="250" MaxWidth="600">
+                            <Border Background="SteelBlue" MinWidth="250" MaxWidth="900">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"/>

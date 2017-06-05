@@ -239,7 +239,7 @@ namespace Shoko.Desktop.UserControls
 
         void videoHandler_VideoWatchedEvent(VideoPlayers.VideoWatchedEventArgs ev)
         {
-            if (MainWindow.CurrentMainTabIndex == MainWindow.TAB_MAIN_Collection || MainWindow.CurrentMainTabIndex == MainWindow.TAB_MAIN_Pinned)
+            if (MainWindow.CurrentMainTabIndex == (int) MainWindow.TAB_MAIN.Collection || MainWindow.CurrentMainTabIndex == (int) MainWindow.TAB_MAIN.Pinned)
                 ShowNextEpisode();
         }
 

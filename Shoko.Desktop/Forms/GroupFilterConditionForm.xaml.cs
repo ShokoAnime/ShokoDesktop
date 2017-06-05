@@ -24,8 +24,8 @@ namespace Shoko.Desktop.Forms
     /// </summary>
     public partial class GroupFilterConditionForm : Window
     {
-        public VM_GroupFilter groupFilter = null;
-        public VM_GroupFilterCondition groupFilterCondition = null;
+        public VM_GroupFilter groupFilter;
+        public VM_GroupFilterCondition groupFilterCondition;
         public ICollectionView ViewGroups { get; set; }
         public ObservableCollection<VM_AnimeGroup_User> AllGroups { get; set; }
 
@@ -45,8 +45,8 @@ namespace Shoko.Desktop.Forms
 
         public bool IsParameterDate
         {
-            get { return (bool)GetValue(IsParameterDateProperty); }
-            set { SetValue(IsParameterDateProperty, value); }
+            get => (bool)GetValue(IsParameterDateProperty);
+            set => SetValue(IsParameterDateProperty, value);
         }
 
         public static readonly DependencyProperty IsParameterAnimeGroupProperty = DependencyProperty.Register("IsParameterAnimeGroup",
@@ -54,8 +54,8 @@ namespace Shoko.Desktop.Forms
 
         public bool IsParameterAnimeGroup
         {
-            get { return (bool)GetValue(IsParameterAnimeGroupProperty); }
-            set { SetValue(IsParameterAnimeGroupProperty, value); }
+            get => (bool)GetValue(IsParameterAnimeGroupProperty);
+            set => SetValue(IsParameterAnimeGroupProperty, value);
         }
 
         public static readonly DependencyProperty IsParameterAnimeTypeProperty = DependencyProperty.Register("IsParameterAnimeType",
@@ -63,8 +63,8 @@ namespace Shoko.Desktop.Forms
 
         public bool IsParameterAnimeType
         {
-            get { return (bool)GetValue(IsParameterAnimeTypeProperty); }
-            set { SetValue(IsParameterAnimeTypeProperty, value); }
+            get => (bool)GetValue(IsParameterAnimeTypeProperty);
+            set => SetValue(IsParameterAnimeTypeProperty, value);
         }
 
         public static readonly DependencyProperty IsParameterTextProperty = DependencyProperty.Register("IsParameterText",
@@ -72,8 +72,8 @@ namespace Shoko.Desktop.Forms
 
         public bool IsParameterText
         {
-            get { return (bool)GetValue(IsParameterTextProperty); }
-            set { SetValue(IsParameterTextProperty, value); }
+            get => (bool)GetValue(IsParameterTextProperty);
+            set => SetValue(IsParameterTextProperty, value);
         }
 
         public static readonly DependencyProperty IsParameterInNotInProperty = DependencyProperty.Register("IsParameterInNotIn",
@@ -81,8 +81,8 @@ namespace Shoko.Desktop.Forms
 
         public bool IsParameterInNotIn
         {
-            get { return (bool)GetValue(IsParameterInNotInProperty); }
-            set { SetValue(IsParameterInNotInProperty, value); }
+            get => (bool)GetValue(IsParameterInNotInProperty);
+            set => SetValue(IsParameterInNotInProperty, value);
         }
 
         public static readonly DependencyProperty IsParameterTagProperty = DependencyProperty.Register("IsParameterTag",
@@ -90,8 +90,8 @@ namespace Shoko.Desktop.Forms
 
         public bool IsParameterTag
         {
-            get { return (bool)GetValue(IsParameterTagProperty); }
-            set { SetValue(IsParameterTagProperty, value); }
+            get => (bool)GetValue(IsParameterTagProperty);
+            set => SetValue(IsParameterTagProperty, value);
         }
 
         public static readonly DependencyProperty IsParameterCustomTagProperty = DependencyProperty.Register("IsParameterCustomTag",
@@ -99,8 +99,8 @@ namespace Shoko.Desktop.Forms
 
         public bool IsParameterCustomTag
         {
-            get { return (bool)GetValue(IsParameterCustomTagProperty); }
-            set { SetValue(IsParameterCustomTagProperty, value); }
+            get => (bool)GetValue(IsParameterCustomTagProperty);
+            set => SetValue(IsParameterCustomTagProperty, value);
         }
 
         public static readonly DependencyProperty IsParameterVideoQualityProperty = DependencyProperty.Register("IsParameterVideoQuality",
@@ -108,8 +108,8 @@ namespace Shoko.Desktop.Forms
 
         public bool IsParameterVideoQuality
         {
-            get { return (bool)GetValue(IsParameterVideoQualityProperty); }
-            set { SetValue(IsParameterVideoQualityProperty, value); }
+            get => (bool)GetValue(IsParameterVideoQualityProperty);
+            set => SetValue(IsParameterVideoQualityProperty, value);
         }
 
         public static readonly DependencyProperty IsParameterAudioLanguageProperty = DependencyProperty.Register("IsParameterAudioLanguage",
@@ -117,8 +117,8 @@ namespace Shoko.Desktop.Forms
 
         public bool IsParameterAudioLanguage
         {
-            get { return (bool)GetValue(IsParameterAudioLanguageProperty); }
-            set { SetValue(IsParameterAudioLanguageProperty, value); }
+            get => (bool)GetValue(IsParameterAudioLanguageProperty);
+            set => SetValue(IsParameterAudioLanguageProperty, value);
         }
 
         public static readonly DependencyProperty IsParameterSubtitleLanguageProperty = DependencyProperty.Register("IsParameterSubtitleLanguage",
@@ -126,8 +126,8 @@ namespace Shoko.Desktop.Forms
 
         public bool IsParameterSubtitleLanguage
         {
-            get { return (bool)GetValue(IsParameterSubtitleLanguageProperty); }
-            set { SetValue(IsParameterSubtitleLanguageProperty, value); }
+            get => (bool)GetValue(IsParameterSubtitleLanguageProperty);
+            set => SetValue(IsParameterSubtitleLanguageProperty, value);
         }
 
 
@@ -136,8 +136,8 @@ namespace Shoko.Desktop.Forms
 
         public bool IsParameterRating
         {
-            get { return (bool)GetValue(IsParameterRatingProperty); }
-            set { SetValue(IsParameterRatingProperty, value); }
+            get => (bool)GetValue(IsParameterRatingProperty);
+            set => SetValue(IsParameterRatingProperty, value);
         }
 
         public static readonly DependencyProperty IsParameterIntegerProperty = DependencyProperty.Register("IsParameterInteger",
@@ -145,8 +145,8 @@ namespace Shoko.Desktop.Forms
 
         public bool IsParameterInteger
         {
-            get { return (bool)GetValue(IsParameterIntegerProperty); }
-            set { SetValue(IsParameterIntegerProperty, value); }
+            get => (bool)GetValue(IsParameterIntegerProperty);
+            set => SetValue(IsParameterIntegerProperty, value);
         }
 
         public static readonly DependencyProperty IsParameterLastXDaysProperty = DependencyProperty.Register("IsParameterLastXDays",
@@ -154,8 +154,8 @@ namespace Shoko.Desktop.Forms
 
         public bool IsParameterLastXDays
         {
-            get { return (bool)GetValue(IsParameterLastXDaysProperty); }
-            set { SetValue(IsParameterLastXDaysProperty, value); }
+            get => (bool)GetValue(IsParameterLastXDaysProperty);
+            set => SetValue(IsParameterLastXDaysProperty, value);
         }
 
         public GroupFilterConditionForm()
@@ -164,20 +164,20 @@ namespace Shoko.Desktop.Forms
 
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
-            txtGroupSearch.TextChanged += new TextChangedEventHandler(txtGroupSearch_TextChanged);
-            btnClearGroupSearch.Click += new RoutedEventHandler(btnClearGroupSearch_Click);
+            txtGroupSearch.TextChanged += txtGroupSearch_TextChanged;
+            btnClearGroupSearch.Click += btnClearGroupSearch_Click;
 
-            txtTagSearch.TextChanged += new TextChangedEventHandler(txtTagSearch_TextChanged);
-            btnClearTagSearch.Click += new RoutedEventHandler(btnClearTagSearch_Click);
+            txtTagSearch.TextChanged += txtTagSearch_TextChanged;
+            btnClearTagSearch.Click += btnClearTagSearch_Click;
 
-            btnCancel.Click += new RoutedEventHandler(btnCancel_Click);
-            btnConfirm.Click += new RoutedEventHandler(btnConfirm_Click);
+            btnCancel.Click += btnCancel_Click;
+            btnConfirm.Click += btnConfirm_Click;
 
-            lbTags.MouseDoubleClick += new MouseButtonEventHandler(lbTags_MouseDoubleClick);
-            lbVideoQuality.MouseDoubleClick += new MouseButtonEventHandler(lbVideoQuality_MouseDoubleClick);
-            lbAnimeTypes.MouseDoubleClick += new MouseButtonEventHandler(lbAnimeTypes_MouseDoubleClick);
-            lbAudioLanguages.MouseDoubleClick += new MouseButtonEventHandler(lbAudioLanguages_MouseDoubleClick);
-            lbSubtitleLanguages.MouseDoubleClick += new MouseButtonEventHandler(lbSubtitleLanguages_MouseDoubleClick);
+            lbTags.MouseDoubleClick += lbTags_MouseDoubleClick;
+            lbVideoQuality.MouseDoubleClick += lbVideoQuality_MouseDoubleClick;
+            lbAnimeTypes.MouseDoubleClick += lbAnimeTypes_MouseDoubleClick;
+            lbAudioLanguages.MouseDoubleClick += lbAudioLanguages_MouseDoubleClick;
+            lbSubtitleLanguages.MouseDoubleClick += lbSubtitleLanguages_MouseDoubleClick;
 
             btnClearCustomTagSearch.Click += btnClearCustomTagSearch_Click;
             txtCustomTagSearch.TextChanged += txtCustomTagSearch_TextChanged;
@@ -193,8 +193,8 @@ namespace Shoko.Desktop.Forms
         void btnConfirm_Click(object sender, RoutedEventArgs e)
         {
             // get the details from the form
-            groupFilterCondition.ConditionType = (int)Commons.Extensions.Models.GetEnumForText_ConditionType(cboConditionType.SelectedItem.ToString());
-            groupFilterCondition.ConditionOperator = (int)Commons.Extensions.Models.GetEnumForText_Operator(cboConditionOperator.SelectedItem.ToString());
+            groupFilterCondition.ConditionType = (int)cboConditionType.SelectedItem.ToString().GetEnumForText_ConditionType();
+            groupFilterCondition.ConditionOperator = (int)cboConditionOperator.SelectedItem.ToString().GetEnumForText_Operator();
 
             NumberStyles style = NumberStyles.Number;
             CultureInfo culture = CultureInfo.CreateSpecificCulture("en-GB");
@@ -205,86 +205,70 @@ namespace Shoko.Desktop.Forms
             {
                 if (dpDate.SelectedDate == null)
                 {
-                    MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_SelectDate, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Commons.Properties.Resources.MSG_ERR_SelectDate, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     dpDate.Focus();
                     return;
                 }
-                else
-                {
-                    groupFilterCondition.ConditionParameter = Commons.Extensions.Models.GetDateAsString(dpDate.SelectedDate.Value);
-                }
-
+                groupFilterCondition.ConditionParameter = dpDate.SelectedDate.Value.GetDateAsString();
             }
 
             if (IsParameterRating)
             {
                 if (txtParameter.Text.Trim().Length == 0)
                 {
-                    MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_EnterValue, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Commons.Properties.Resources.MSG_ERR_EnterValue, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     txtParameter.Focus();
                     return;
                 }
-                else
+                decimal dRating = -1;
+                decimal.TryParse(txtParameter.Text, style, culture, out dRating);
+                if (dRating <= 0 || dRating > 10)
                 {
-                    decimal dRating = -1;
-                    decimal.TryParse(txtParameter.Text, style, culture, out dRating);
-                    if (dRating <= 0 || dRating > 10)
-                    {
-                        MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_RatingValue, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
-                        txtParameter.Focus();
-                        return;
-                    }
-
-                    groupFilterCondition.ConditionParameter = txtParameter.Text.Trim();
+                    MessageBox.Show(Commons.Properties.Resources.MSG_ERR_RatingValue, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    txtParameter.Focus();
+                    return;
                 }
 
+                groupFilterCondition.ConditionParameter = txtParameter.Text.Trim();
             }
 
             if (IsParameterInteger)
             {
                 if (txtParameter.Text.Trim().Length == 0)
                 {
-                    MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_EnterValue, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Commons.Properties.Resources.MSG_ERR_EnterValue, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     txtParameter.Focus();
                     return;
                 }
-                else
+                int parmInt = -1;
+                if (!int.TryParse(txtParameter.Text, out parmInt))
                 {
-                    int parmInt = -1;
-                    if (!int.TryParse(txtParameter.Text, out parmInt))
-                    {
-                        MessageBox.Show(Shoko.Commons.Properties.Resources.GroupFilter_IntegerOnly, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
-                        txtParameter.Focus();
-                        return;
-                    }
-
-                    groupFilterCondition.ConditionParameter = parmInt.ToString();
+                    MessageBox.Show(Commons.Properties.Resources.GroupFilter_IntegerOnly, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    txtParameter.Focus();
+                    return;
                 }
 
+                groupFilterCondition.ConditionParameter = parmInt.ToString();
             }
 
             if (IsParameterLastXDays)
             {
                 if (txtParameter.Text.Trim().Length == 0)
                 {
-                    MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_EnterValue, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Commons.Properties.Resources.MSG_ERR_EnterValue, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     txtParameter.Focus();
                     return;
                 }
-                else
+                int days = -1;
+                int.TryParse(txtParameter.Text, out days);
+                if (days < 1 || days > int.MaxValue)
                 {
-                    int days = -1;
-                    int.TryParse(txtParameter.Text, out days);
-                    if (days < 1 || days > int.MaxValue)
-                    {
-                        MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_DaysValue, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
-                        txtParameter.Focus();
-                        return;
-                    }
-
-                    groupFilterCondition.ConditionParameter = txtParameter.Text.Trim();
+                    MessageBox.Show(Commons.Properties.Resources.MSG_ERR_DaysValue, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    txtParameter.Focus();
+                    return;
                 }
 
+                groupFilterCondition.ConditionParameter = txtParameter.Text.Trim();
             }
 
 
@@ -292,52 +276,42 @@ namespace Shoko.Desktop.Forms
             {
                 if (txtSelectedTags.Text.Trim().Length == 0)
                 {
-                    MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_EnterValue, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Commons.Properties.Resources.MSG_ERR_EnterValue, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     txtParameter.Focus();
                     return;
                 }
-                else
+                // validate
+                string[] cats = txtSelectedTags.Text.Trim().Split(',');
+                groupFilterCondition.ConditionParameter = "";
+                foreach (string cat in cats)
                 {
-                    // validate
-                    string[] cats = txtSelectedTags.Text.Trim().Split(',');
-                    groupFilterCondition.ConditionParameter = "";
-                    foreach (string cat in cats)
-                    {
-                        if (cat.Trim().Length == 0) continue;
-                        if (cat.Trim() == ", ") continue;
+                    if (cat.Trim().Length == 0) continue;
+                    if (cat.Trim() == ", ") continue;
 
-                        if (groupFilterCondition.ConditionParameter.Length > 0) groupFilterCondition.ConditionParameter += ", ";
-                        groupFilterCondition.ConditionParameter += cat;
-                    }
-
+                    if (groupFilterCondition.ConditionParameter.Length > 0) groupFilterCondition.ConditionParameter += ", ";
+                    groupFilterCondition.ConditionParameter += cat;
                 }
-
             }
 
             if (IsParameterCustomTag)
             {
                 if (txtSelectedCustomTags.Text.Trim().Length == 0)
                 {
-                    MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_EnterValue, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Commons.Properties.Resources.MSG_ERR_EnterValue, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     txtSelectedCustomTags.Focus();
                     return;
                 }
-                else
+                // validate
+                string[] tags = txtSelectedCustomTags.Text.Trim().Split(',');
+                groupFilterCondition.ConditionParameter = "";
+                foreach (string tag in tags)
                 {
-                    // validate
-                    string[] tags = txtSelectedCustomTags.Text.Trim().Split(',');
-                    groupFilterCondition.ConditionParameter = "";
-                    foreach (string tag in tags)
-                    {
-                        if (tag.Trim().Length == 0) continue;
-                        if (tag.Trim() == ", ") continue;
+                    if (tag.Trim().Length == 0) continue;
+                    if (tag.Trim() == ", ") continue;
 
-                        if (groupFilterCondition.ConditionParameter.Length > 0) groupFilterCondition.ConditionParameter += ", ";
-                        groupFilterCondition.ConditionParameter += tag;
-                    }
-
+                    if (groupFilterCondition.ConditionParameter.Length > 0) groupFilterCondition.ConditionParameter += ", ";
+                    groupFilterCondition.ConditionParameter += tag;
                 }
-
             }
 
             if (IsParameterVideoQuality)
@@ -345,26 +319,21 @@ namespace Shoko.Desktop.Forms
 
                 if (txtSelectedVideoQuality.Text.Trim().Length == 0)
                 {
-                    MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_EnterValue, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Commons.Properties.Resources.MSG_ERR_EnterValue, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     txtParameter.Focus();
                     return;
                 }
-                else
+                // validate
+                string[] vidQuals = txtSelectedVideoQuality.Text.Trim().Split(',');
+                groupFilterCondition.ConditionParameter = "";
+                foreach (string vidq in vidQuals)
                 {
-                    // validate
-                    string[] vidQuals = txtSelectedVideoQuality.Text.Trim().Split(',');
-                    groupFilterCondition.ConditionParameter = "";
-                    foreach (string vidq in vidQuals)
-                    {
-                        if (vidq.Trim().Length == 0) continue;
-                        if (vidq.Trim() == ", ") continue;
+                    if (vidq.Trim().Length == 0) continue;
+                    if (vidq.Trim() == ", ") continue;
 
-                        if (groupFilterCondition.ConditionParameter.Length > 0) groupFilterCondition.ConditionParameter += ", ";
-                        groupFilterCondition.ConditionParameter += vidq;
-                    }
-
+                    if (groupFilterCondition.ConditionParameter.Length > 0) groupFilterCondition.ConditionParameter += ", ";
+                    groupFilterCondition.ConditionParameter += vidq;
                 }
-
             }
 
             if (IsParameterAudioLanguage)
@@ -372,26 +341,21 @@ namespace Shoko.Desktop.Forms
 
                 if (txtSelectedAudioLanguages.Text.Trim().Length == 0)
                 {
-                    MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_EnterValue, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Commons.Properties.Resources.MSG_ERR_EnterValue, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     txtParameter.Focus();
                     return;
                 }
-                else
+                // validate
+                string[] languages = txtSelectedAudioLanguages.Text.Trim().Split(',');
+                groupFilterCondition.ConditionParameter = "";
+                foreach (string lanName in languages)
                 {
-                    // validate
-                    string[] languages = txtSelectedAudioLanguages.Text.Trim().Split(',');
-                    groupFilterCondition.ConditionParameter = "";
-                    foreach (string lanName in languages)
-                    {
-                        if (lanName.Trim().Length == 0) continue;
-                        if (lanName.Trim() == ", ") continue;
+                    if (lanName.Trim().Length == 0) continue;
+                    if (lanName.Trim() == ", ") continue;
 
-                        if (groupFilterCondition.ConditionParameter.Length > 0) groupFilterCondition.ConditionParameter += ", ";
-                        groupFilterCondition.ConditionParameter += lanName;
-                    }
-
+                    if (groupFilterCondition.ConditionParameter.Length > 0) groupFilterCondition.ConditionParameter += ", ";
+                    groupFilterCondition.ConditionParameter += lanName;
                 }
-
             }
 
             if (IsParameterSubtitleLanguage)
@@ -399,26 +363,21 @@ namespace Shoko.Desktop.Forms
 
                 if (txtSelectedSubtitleLanguages.Text.Trim().Length == 0)
                 {
-                    MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_EnterValue, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Commons.Properties.Resources.MSG_ERR_EnterValue, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     txtParameter.Focus();
                     return;
                 }
-                else
+                // validate
+                string[] languages = txtSelectedSubtitleLanguages.Text.Trim().Split(',');
+                groupFilterCondition.ConditionParameter = "";
+                foreach (string lanName in languages)
                 {
-                    // validate
-                    string[] languages = txtSelectedSubtitleLanguages.Text.Trim().Split(',');
-                    groupFilterCondition.ConditionParameter = "";
-                    foreach (string lanName in languages)
-                    {
-                        if (lanName.Trim().Length == 0) continue;
-                        if (lanName.Trim() == ", ") continue;
+                    if (lanName.Trim().Length == 0) continue;
+                    if (lanName.Trim() == ", ") continue;
 
-                        if (groupFilterCondition.ConditionParameter.Length > 0) groupFilterCondition.ConditionParameter += ", ";
-                        groupFilterCondition.ConditionParameter += lanName;
-                    }
-
+                    if (groupFilterCondition.ConditionParameter.Length > 0) groupFilterCondition.ConditionParameter += ", ";
+                    groupFilterCondition.ConditionParameter += lanName;
                 }
-
             }
 
             if (IsParameterAnimeType)
@@ -427,56 +386,44 @@ namespace Shoko.Desktop.Forms
 
                 if (txtSelectedAnimeTypes.Text.Trim().Length == 0)
                 {
-                    MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_EnterValue, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Commons.Properties.Resources.MSG_ERR_EnterValue, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     txtParameter.Focus();
                     return;
                 }
-                else
+                // validate
+                string[] aTypes = txtSelectedAnimeTypes.Text.Trim().Split(',');
+                groupFilterCondition.ConditionParameter = "";
+                foreach (string aType in aTypes)
                 {
-                    // validate
-                    string[] aTypes = txtSelectedAnimeTypes.Text.Trim().Split(',');
-                    groupFilterCondition.ConditionParameter = "";
-                    foreach (string aType in aTypes)
-                    {
-                        if (aType.Trim().Length == 0) continue;
-                        if (aType.Trim() == ", ") continue;
+                    if (aType.Trim().Length == 0) continue;
+                    if (aType.Trim() == ", ") continue;
 
-                        if (groupFilterCondition.ConditionParameter.Length > 0) groupFilterCondition.ConditionParameter += ", ";
-                        groupFilterCondition.ConditionParameter += aType;
-                    }
-
+                    if (groupFilterCondition.ConditionParameter.Length > 0) groupFilterCondition.ConditionParameter += ", ";
+                    groupFilterCondition.ConditionParameter += aType;
                 }
-
             }
 
             if (IsParameterAnimeGroup)
             {
                 if (lbGroups.SelectedItem == null)
                 {
-                    MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_GroupSelectionRequired, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Commons.Properties.Resources.MSG_ERR_GroupSelectionRequired, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     lbGroups.Focus();
                     return;
                 }
-                else
-                {
-                    VM_AnimeGroup_User grp = lbGroups.SelectedItem as VM_AnimeGroup_User;
-                    groupFilterCondition.ConditionParameter = grp.AnimeGroupID.ToString();
-                }
+                VM_AnimeGroup_User grp = lbGroups.SelectedItem as VM_AnimeGroup_User;
+                groupFilterCondition.ConditionParameter = grp.AnimeGroupID.ToString();
             }
 
             if (IsParameterText)
             {
                 if (txtParameter.Text.Trim().Length == 0)
                 {
-                    MessageBox.Show(Shoko.Commons.Properties.Resources.MSG_ERR_EnterValue, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Commons.Properties.Resources.MSG_ERR_EnterValue, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                     txtParameter.Focus();
                     return;
                 }
-                else
-                {
-                    groupFilterCondition.ConditionParameter = txtParameter.Text.Trim();
-                }
-
+                groupFilterCondition.ConditionParameter = txtParameter.Text.Trim();
             }
 
             DialogResult = true;
@@ -493,8 +440,8 @@ namespace Shoko.Desktop.Forms
         {
             if (cboConditionType.SelectedItem == null || cboConditionOperator.SelectedItem == null) return;
 
-            GroupFilterConditionType conditionType = Commons.Extensions.Models.GetEnumForText_ConditionType(cboConditionType.SelectedItem.ToString());
-            GroupFilterOperator opType = Commons.Extensions.Models.GetEnumForText_Operator(cboConditionOperator.SelectedItem.ToString());
+            GroupFilterConditionType conditionType = cboConditionType.SelectedItem.ToString().GetEnumForText_ConditionType();
+            GroupFilterOperator opType = cboConditionOperator.SelectedItem.ToString().GetEnumForText_Operator();
 
             IsParameterDate = false;
             IsParameterAnimeGroup = false;
@@ -510,21 +457,21 @@ namespace Shoko.Desktop.Forms
             IsParameterSubtitleLanguage = false;
             IsParameterInteger = false;
 
-			switch (conditionType)
-			{
-				case GroupFilterConditionType.AirDate:
-				case GroupFilterConditionType.SeriesCreatedDate:
-				case GroupFilterConditionType.EpisodeAddedDate:
-				case GroupFilterConditionType.EpisodeWatchedDate:
+            switch (conditionType)
+            {
+                case GroupFilterConditionType.AirDate:
+                case GroupFilterConditionType.SeriesCreatedDate:
+                case GroupFilterConditionType.EpisodeAddedDate:
+                case GroupFilterConditionType.EpisodeWatchedDate:
                 case GroupFilterConditionType.LatestEpisodeAirDate:
-					if (opType == GroupFilterOperator.LastXDays)
-					{
-						IsParameterLastXDays = true;
-						IsParameterText = true;
-					}
-					else
-						IsParameterDate = true; 
-					break;
+                    if (opType == GroupFilterOperator.LastXDays)
+                    {
+                        IsParameterLastXDays = true;
+                        IsParameterText = true;
+                    }
+                    else
+                        IsParameterDate = true; 
+                    break;
 
                 case GroupFilterConditionType.AnimeGroup:
                     IsParameterAnimeGroup = true;
@@ -560,9 +507,9 @@ namespace Shoko.Desktop.Forms
                     break;
 
                 case GroupFilterConditionType.VideoQuality:
-					IsParameterInNotIn = true;
-					IsParameterVideoQuality = true;
-					break;
+                    IsParameterInNotIn = true;
+                    IsParameterVideoQuality = true;
+                    break;
 
                 case GroupFilterConditionType.AniDBRating:
                 case GroupFilterConditionType.UserRating:
@@ -585,7 +532,7 @@ namespace Shoko.Desktop.Forms
 
         void cboConditionType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            GroupFilterConditionType conditionType = Commons.Extensions.Models.GetEnumForText_ConditionType(cboConditionType.SelectedItem.ToString());
+            GroupFilterConditionType conditionType = cboConditionType.SelectedItem.ToString().GetEnumForText_ConditionType();
 
             cboConditionOperator.Items.Clear();
             foreach (string op in conditionType.GetAllowedOperators())
@@ -615,7 +562,6 @@ namespace Shoko.Desktop.Forms
 
             ViewCustomTagNames = CollectionViewSource.GetDefaultView(AllCustomTagNames);
 
-            
             foreach (CustomTag tag in VM_ShokoServer.Instance.AllCustomTags.OrderBy(a => a.TagName.ToLower(CultureInfo.InvariantCulture)))
                 AllCustomTagNames.Add(tag.TagName);
 
@@ -657,12 +603,12 @@ namespace Shoko.Desktop.Forms
         private void PopulateAnimeTypes()
         {
             AllAnimeTypes = new ObservableCollection<string>();
-            AllAnimeTypes.Add(Shoko.Commons.Properties.Resources.AnimeType_Movie);
-            AllAnimeTypes.Add(Shoko.Commons.Properties.Resources.AnimeType_Other);
-            AllAnimeTypes.Add(Shoko.Commons.Properties.Resources.AnimeType_OVA);
-            AllAnimeTypes.Add(Shoko.Commons.Properties.Resources.AnimeType_TVSeries);
-            AllAnimeTypes.Add(Shoko.Commons.Properties.Resources.AnimeType_TVSpecial);
-            AllAnimeTypes.Add(Shoko.Commons.Properties.Resources.AnimeType_Web);
+            AllAnimeTypes.Add(Commons.Properties.Resources.AnimeType_Movie);
+            AllAnimeTypes.Add(Commons.Properties.Resources.AnimeType_Other);
+            AllAnimeTypes.Add(Commons.Properties.Resources.AnimeType_OVA);
+            AllAnimeTypes.Add(Commons.Properties.Resources.AnimeType_TVSeries);
+            AllAnimeTypes.Add(Commons.Properties.Resources.AnimeType_TVSpecial);
+            AllAnimeTypes.Add(Commons.Properties.Resources.AnimeType_Web);
         }
 
         private void PopulateAnimeGroups()
@@ -705,7 +651,7 @@ namespace Shoko.Desktop.Forms
                 int idx = 0;
                 for (int i = 0; i < cboConditionType.Items.Count; i++)
                 {
-                    GroupFilterConditionType conditionTypeTemp = Commons.Extensions.Models.GetEnumForText_ConditionType(cboConditionType.Items[i].ToString());
+                    GroupFilterConditionType conditionTypeTemp = cboConditionType.Items[i].ToString().GetEnumForText_ConditionType();
                     if (conditionTypeTemp == gfc.ConditionTypeEnum)
                     {
                         idx = i;
@@ -713,20 +659,20 @@ namespace Shoko.Desktop.Forms
                     }
                 }
                 cboConditionType.SelectedIndex = idx;
-                GroupFilterConditionType conditionType = Commons.Extensions.Models.GetEnumForText_ConditionType(cboConditionType.SelectedItem.ToString());
+                GroupFilterConditionType conditionType = cboConditionType.SelectedItem.ToString().GetEnumForText_ConditionType();
 
                 cboConditionOperator.Items.Clear();
                 foreach (string op in conditionType.GetAllowedOperators())
                     cboConditionOperator.Items.Add(op);
 
-                cboConditionType.SelectionChanged += new SelectionChangedEventHandler(cboConditionType_SelectionChanged);
-                cboConditionOperator.SelectionChanged += new SelectionChangedEventHandler(cboConditionOperator_SelectionChanged);
+                cboConditionType.SelectionChanged += cboConditionType_SelectionChanged;
+                cboConditionOperator.SelectionChanged += cboConditionOperator_SelectionChanged;
 
                 // find the right operator
                 idx = 0;
                 for (int i = 0; i < cboConditionOperator.Items.Count; i++)
                 {
-                    GroupFilterOperator opTypeTemp = Commons.Extensions.Models.GetEnumForText_Operator(cboConditionOperator.Items[i].ToString());
+                    GroupFilterOperator opTypeTemp = cboConditionOperator.Items[i].ToString().GetEnumForText_Operator();
                     if (opTypeTemp == gfc.ConditionOperatorEnum)
                     {
                         idx = i;
@@ -734,15 +680,15 @@ namespace Shoko.Desktop.Forms
                     }
                 }
                 cboConditionOperator.SelectedIndex = idx;
-                GroupFilterOperator opType = Commons.Extensions.Models.GetEnumForText_Operator(cboConditionOperator.Items[idx].ToString());
+                GroupFilterOperator opType = cboConditionOperator.Items[idx].ToString().GetEnumForText_Operator();
 
-				// display the selected filter value
-				switch (conditionType)
-				{
-					case GroupFilterConditionType.AirDate:
-					case GroupFilterConditionType.SeriesCreatedDate:
-					case GroupFilterConditionType.EpisodeAddedDate:
-					case GroupFilterConditionType.EpisodeWatchedDate:
+                // display the selected filter value
+                switch (conditionType)
+                {
+                    case GroupFilterConditionType.AirDate:
+                    case GroupFilterConditionType.SeriesCreatedDate:
+                    case GroupFilterConditionType.EpisodeAddedDate:
+                    case GroupFilterConditionType.EpisodeWatchedDate:
                     case GroupFilterConditionType.LatestEpisodeAirDate:
 
                         if (opType == GroupFilterOperator.LastXDays)
@@ -763,15 +709,15 @@ namespace Shoko.Desktop.Forms
                     case GroupFilterConditionType.Tag:
                     case GroupFilterConditionType.CustomTags:
 
-					case GroupFilterConditionType.VideoQuality:
-					case GroupFilterConditionType.AniDBRating:
-					case GroupFilterConditionType.UserRating:
-					case GroupFilterConditionType.AudioLanguage:
-					case GroupFilterConditionType.SubtitleLanguage:
+                    case GroupFilterConditionType.VideoQuality:
+                    case GroupFilterConditionType.AniDBRating:
+                    case GroupFilterConditionType.UserRating:
+                    case GroupFilterConditionType.AudioLanguage:
+                    case GroupFilterConditionType.SubtitleLanguage:
                     case GroupFilterConditionType.Year:
-						txtParameter.Text = gfc.ConditionParameter;
-						break;
-				}
+                        txtParameter.Text = gfc.ConditionParameter;
+                        break;
+                }
 
             }
             catch (Exception ex)
@@ -847,16 +793,19 @@ namespace Shoko.Desktop.Forms
             if (obj == null) return;
 
             string lanName = obj.ToString();
-            string currentList = txtSelectedSubtitleLanguages.Text.Trim();
+            List<string> currentList = txtSelectedSubtitleLanguages.Text.Trim().Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList();
 
             // add to the selected list
-            int index = currentList.IndexOf(lanName, 0, StringComparison.InvariantCultureIgnoreCase);
-            if (index > -1) return;
+            if (currentList.Contains(lanName))
+            {
+                currentList.Remove(lanName);
+            }
+            else
+            {
+                currentList.Add(lanName);
+            }
 
-            if (currentList.Length > 0) currentList += ", ";
-            currentList += lanName;
-
-            txtSelectedSubtitleLanguages.Text = currentList;
+            txtSelectedSubtitleLanguages.Text = string.Join(", ", currentList);
         }
 
         void lbAudioLanguages_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -866,16 +815,19 @@ namespace Shoko.Desktop.Forms
             if (obj == null) return;
 
             string lanName = obj.ToString();
-            string currentList = txtSelectedAudioLanguages.Text.Trim();
+            List<string> currentList = txtSelectedAudioLanguages.Text.Trim().Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList();
 
             // add to the selected list
-            int index = currentList.IndexOf(lanName, 0, StringComparison.InvariantCultureIgnoreCase);
-            if (index > -1) return;
+            if (currentList.Contains(lanName))
+            {
+                currentList.Remove(lanName);
+            }
+            else
+            {
+                currentList.Add(lanName);
+            }
 
-            if (currentList.Length > 0) currentList += ", ";
-            currentList += lanName;
-
-            txtSelectedAudioLanguages.Text = currentList;
+            txtSelectedAudioLanguages.Text = string.Join(", ", currentList);
         }
 
         void lbVideoQuality_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -884,16 +836,19 @@ namespace Shoko.Desktop.Forms
             if (obj == null) return;
 
             string vidQual = obj.ToString();
-            string currentList = txtSelectedVideoQuality.Text.Trim();
+            List<string> currentList = txtSelectedVideoQuality.Text.Trim().Split(new[] {',', ' '}, StringSplitOptions.RemoveEmptyEntries).ToList();
 
             // add to the selected list
-            int index = currentList.IndexOf(vidQual, 0, StringComparison.InvariantCultureIgnoreCase);
-            if (index > -1) return;
+            if (currentList.Contains(vidQual))
+            {
+                currentList.Remove(vidQual);
+            }
+            else
+            {
+                currentList.Add(vidQual);
+            }
 
-            if (currentList.Length > 0) currentList += ", ";
-            currentList += vidQual;
-
-            txtSelectedVideoQuality.Text = currentList;
+            txtSelectedVideoQuality.Text = string.Join(", ", currentList);
         }
 
         void lbAnimeTypes_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -902,16 +857,19 @@ namespace Shoko.Desktop.Forms
             if (obj == null) return;
 
             string aType = obj.ToString();
-            string currentList = txtSelectedAnimeTypes.Text.Trim();
+            List<string> currentList = txtSelectedAnimeTypes.Text.Trim().Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList();
 
             // add to the selected list
-            int index = currentList.IndexOf(aType, 0, StringComparison.InvariantCultureIgnoreCase);
-            if (index > -1) return;
+            if (currentList.Contains(aType))
+            {
+                currentList.Remove(aType);
+            }
+            else
+            {
+                currentList.Add(aType);
+            }
 
-            if (currentList.Length > 0) currentList += ", ";
-            currentList += aType;
-
-            txtSelectedAnimeTypes.Text = currentList;
+            txtSelectedAnimeTypes.Text = string.Join(", ", currentList);
         }
 
         void lbTags_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -920,16 +878,19 @@ namespace Shoko.Desktop.Forms
             if (obj == null) return;
 
             string catName = obj.ToString();
-            string currentList = txtSelectedTags.Text.Trim();
+            List<string> currentList = txtSelectedTags.Text.Trim().Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList();
 
             // add to the selected list
-            int index = currentList.IndexOf(catName, 0, StringComparison.InvariantCultureIgnoreCase);
-            if (index > -1) return;
+            if (currentList.Contains(catName))
+            {
+                currentList.Remove(catName);
+            }
+            else
+            {
+                currentList.Add(catName);
+            }
 
-            if (currentList.Length > 0) currentList += ", ";
-            currentList += catName;
-
-            txtSelectedTags.Text = currentList;
+            txtSelectedTags.Text = string.Join(", ", currentList);
         }
 
         void lbCustomTags_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -939,16 +900,19 @@ namespace Shoko.Desktop.Forms
 
 
             string tagName = obj.ToString();
-            string currentList = txtSelectedCustomTags.Text.Trim();
+            List<string> currentList = txtSelectedCustomTags.Text.Trim().Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList();
 
             // add to the selected list
-            int index = currentList.IndexOf(tagName, 0, StringComparison.InvariantCultureIgnoreCase);
-            if (index > -1) return;
+            if (currentList.Contains(tagName))
+            {
+                currentList.Remove(tagName);
+            }
+            else
+            {
+                currentList.Add(tagName);
+            }
 
-            if (currentList.Length > 0) currentList += ", ";
-            currentList += tagName;
-
-            txtSelectedCustomTags.Text = currentList;
+            txtSelectedCustomTags.Text = string.Join(", ", currentList);
         }
     }
 }
