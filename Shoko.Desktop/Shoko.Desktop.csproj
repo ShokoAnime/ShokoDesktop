@@ -279,9 +279,6 @@
     <Compile Include="Forms\LinkPlexForm.xaml.cs">
       <DependentUpon>LinkPlexForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Forms\PreviewDeleteByFileQuality.xaml.cs">
-      <DependentUpon>PreviewDeleteByFileQuality.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\Settings\PlexSettings.xaml.cs">
       <DependentUpon>PlexSettings.xaml</DependentUpon>
     </Compile>
@@ -857,10 +854,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\PlayVideosForEpisodeForm.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Forms\PreviewDeleteByFileQuality.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
