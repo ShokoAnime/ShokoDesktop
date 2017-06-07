@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Web.Script.Serialization;
+using System.Xml.Serialization;
 using DevExpress.Xpf.Editors.Helpers;
+using Newtonsoft.Json;
 using Shoko.Commons.Extensions;
 using Shoko.Desktop.Utilities;
 using Shoko.Models.Client;
@@ -13,18 +16,25 @@ namespace Shoko.Desktop.ViewModel.Server
 {
     public class VM_VideoLocal : CL_VideoLocal, IListWrapper
     {
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public int ObjectType { get; } = 5;
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool IsEditable { get; } = false;
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool IsLocalFile => this.IsLocalFile();
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string FileDirectory => string.Join(",", Places.Select(place => place.GetLocalFileSystemFullPath()));
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string ServerPath => string.Join(",",
             Places.Select(
                 place => place.ImportFolder?.ImportFolderLocation == null || place.FilePath == null
                     ? ""
                     : $"{place.ImportFolder.ImportFolderLocation}{place.FilePath}"));
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool IsHashed => this.IsHashed();
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string FormattedFileSize => this.GetFormattedFileSize();
 
         // ReSharper disable once EmptyConstructor
@@ -32,12 +42,13 @@ namespace Shoko.Desktop.ViewModel.Server
         {
         }
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string FullPath
         {
             get => Places.FirstOrDefault(a => !string.IsNullOrEmpty(a.GetFullPath())).GetFullPath();
         }
 
-
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string ClosestAnimeMatchString
         {
             get

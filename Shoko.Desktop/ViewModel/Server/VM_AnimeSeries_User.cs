@@ -5,7 +5,10 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Web.Script.Serialization;
 using System.Windows;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
 using NLog;
 using Shoko.Commons.Extensions;
 using Shoko.Commons.Notification;
@@ -31,7 +34,9 @@ namespace Shoko.Desktop.ViewModel.Server
 
 
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public int ObjectType => 2;
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool IsEditable => true;
 
 
@@ -40,16 +45,19 @@ namespace Shoko.Desktop.ViewModel.Server
         #region Sorting properties
 
         // These properties are used when sorting group filters, and must match the names on the VM_AnimeGroup_User
-
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public decimal AniDBRating => AniDBAnime?.AniDBAnime?.AniDBRating ?? 0;
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public DateTime? Stat_AirDate_Min => AniDBAnime?.AniDBAnime?.AirDate;
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public DateTime? Stat_AirDate_Max => AniDBAnime?.AniDBAnime?.AirDate;
 
-
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string SortName => SeriesName;
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string DateTimeCreatedAsString => DateTimeCreated.ToString("dd MMM yyyy - HH:mm", Commons.Culture.Global);
 
         public new int MissingEpisodeCount
@@ -57,9 +65,11 @@ namespace Shoko.Desktop.ViewModel.Server
             get { return base.MissingEpisodeCount; }
             set { this.SetField(()=>base.MissingEpisodeCount,(r)=> base.MissingEpisodeCount = r, value, () => MissingEpisodeCount, () => HasMissingEpisodesAny, () => HasMissingEpisodesAllDifferentToGroups); }
         }
-        
+
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public DateTime? Stat_SeriesCreatedDate => DateTimeCreated;
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public decimal? Stat_UserVoteOverall => AniDBAnime.UserRating;
 
 
@@ -110,21 +120,24 @@ namespace Shoko.Desktop.ViewModel.Server
 
         #region Editable members
 
-        private Boolean isReadOnly = true;
-        public Boolean IsReadOnly
+        private bool isReadOnly = true;
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        public bool IsReadOnly
         {
             get { return isReadOnly; }
             set { this.SetField(()=>isReadOnly, value); }
         }
 
-        private Boolean isBeingEdited;
-        public Boolean IsBeingEdited
+        private bool isBeingEdited;
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        public bool IsBeingEdited
         {
             get { return isBeingEdited; }
             set { this.SetField(()=>isBeingEdited,value); }
         }
 
-        public Boolean IsSeriesNameOverridden => !string.IsNullOrEmpty(SeriesNameOverride);
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        public bool IsSeriesNameOverridden => !string.IsNullOrEmpty(SeriesNameOverride);
 
 
 
@@ -148,6 +161,7 @@ namespace Shoko.Desktop.ViewModel.Server
             set { this.SetField(()=>base.WatchedCount,(r)=> base.WatchedCount = r, value); }
         }
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool IsFave
         {
             get
@@ -159,10 +173,13 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool HasMissingEpisodesAny => (MissingEpisodeCount > 0 || MissingEpisodeCountGroups > 0);
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool HasMissingEpisodesAllDifferentToGroups => (MissingEpisodeCount > 0 && MissingEpisodeCount != MissingEpisodeCountGroups);
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool HasMissingEpisodesGroups => MissingEpisodeCountGroups > 0;
 
 
@@ -173,6 +190,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private string posterPath;
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string PosterPath
         {
             get { return posterPath ?? AniDBAnime.AniDBAnime.DefaultPosterPath; }
@@ -182,6 +200,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string SeriesName
         {
             get
@@ -197,6 +216,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string SeriesNameTruncated
         {
             get
@@ -208,6 +228,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string GroupName
         {
             get
@@ -250,8 +271,10 @@ namespace Shoko.Desktop.ViewModel.Server
         #endregion
 
         public enum SortMethod { SortName = 0, AirDate = 1 };
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public static SortMethod SortType { get; set; }
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool IsComplete
         {
             get
@@ -263,6 +286,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool FinishedAiring
         {
             get
@@ -274,21 +298,22 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool UserHasVotedPerm => AniDBAnime?.UserVote?.VoteType == (int)AniDBVoteType.Anime;
-
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool UserHasVotedAny => AniDBAnime?.UserVote != null;
-
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public HashSet<string> AllTags => AniDBAnime.AniDBAnime.GetAllTags();
-        
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public HashSet<string> CustomTags => new HashSet<string>(AniDBAnime.CustomTags.Select(a => a.TagName));
-
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool HasUnwatchedFiles => UnwatchedEpisodeCount > 0;
-
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool AllFilesWatched => UnwatchedEpisodeCount == 0;
-
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool AnyFilesWatched => WatchedEpisodeCount > 0;
 
-
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string Description
         {
             get
@@ -302,6 +327,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string DescriptionTruncated
         {
             get
@@ -314,6 +340,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string LastWatchedDescription
         {
             get
@@ -335,7 +362,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string EpisodeCountFormatted
         {
             get
@@ -371,6 +398,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string EpisodeCountFormattedShort
         {
             get
@@ -385,6 +413,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string NamesSummary
         {
             get
@@ -399,6 +428,7 @@ namespace Shoko.Desktop.ViewModel.Server
 
 
         private List<VM_AnimeEpisode_User> allEpisodes;
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public List<VM_AnimeEpisode_User> AllEpisodes
         {
             get
@@ -411,6 +441,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public List<VM_VideoLocal> AllVideoLocals
         {
             get
@@ -468,6 +499,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public int LatestRegularEpisodeNumber
         {
             get
@@ -496,7 +528,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public List<VM_AnimeEpisodeType> EpisodeTypes
         {
             get
@@ -620,6 +652,7 @@ namespace Shoko.Desktop.ViewModel.Server
 			return eps;
 		}*/
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public VM_AnimeGroup_User TopLevelAnimeGroup
         {
             get
@@ -661,6 +694,7 @@ namespace Shoko.Desktop.ViewModel.Server
             return eps;
         }
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public List<VM_AnimeGroup_User> Heirarchy
         {
             get

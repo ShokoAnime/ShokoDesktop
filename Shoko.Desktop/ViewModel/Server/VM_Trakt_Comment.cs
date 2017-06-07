@@ -1,5 +1,8 @@
 ﻿using System;
 using System.IO;
+using System.Web.Script.Serialization;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
 using Shoko.Commons.Extensions;
 using Shoko.Desktop.Utilities;
 using Shoko.Models.Client;
@@ -13,10 +16,13 @@ namespace Shoko.Desktop.ViewModel.Server
         public new CL_TraktTVShowResponse TraktShow { get { return base.TraktShow; } set { base.TraktShow = value; } }
         public new VM_AniDB_Anime Anime { get { return (VM_AniDB_Anime) base.Anime; } set { base.Anime = value; } }
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool HasAnimeSeries => AnimeSeriesID.HasValue;
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string EpisodeDescription => $"{Episode_Season}x{Episode_Number} - {Episode_Title}";
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string ImagePathForDisplay
         {
             get
@@ -31,8 +37,10 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string OnlineImagePath => string.IsNullOrEmpty(Episode_Screenshot) ? "" : Episode_Screenshot;
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string FullImagePath
         {
             get
@@ -63,8 +71,10 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string ShowTitle => Anime != null ? Anime.FormattedTitle : TraktShow.title;
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string CommentDateString
         {
             get

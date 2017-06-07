@@ -1,4 +1,7 @@
 ﻿using System.ComponentModel;
+using System.Web.Script.Serialization;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
 using Shoko.Commons.Notification;
 using Shoko.Desktop.ViewModel.Helpers;
 using Shoko.Models.Client;
@@ -15,12 +18,24 @@ namespace Shoko.Desktop.ViewModel.Server
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propname));
         }
 
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public string AnimeName => AnimeDetailed.AniDBAnime.MainTitle;
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public string Rating => $"{AnimeDetailed.AniDBAnime.AniDBRating:0.00}";
 
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public int Year => AnimeDetailed.AniDBAnime.BeginYear;
 
         private decimal userRating = -1;
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public decimal UserRating
         {
             get

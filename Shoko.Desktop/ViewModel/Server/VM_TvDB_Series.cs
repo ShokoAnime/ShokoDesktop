@@ -1,4 +1,7 @@
 ﻿using System.ComponentModel;
+using System.Web.Script.Serialization;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
 using Shoko.Commons.Notification;
 using Shoko.Desktop.ViewModel.Helpers;
 using Shoko.Models.Server;
@@ -26,6 +29,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string SeriesURL => string.Format(Models.Constants.URLS.TvDB_Series, SeriesID);
 
         public new int SeriesID

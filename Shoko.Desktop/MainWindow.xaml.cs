@@ -2467,8 +2467,7 @@ namespace Shoko.Desktop
                                     gf.Obs_FilterConditions.RemoveAt(pos);
 
                                 CL_GroupFilter tempGF = VM_ShokoServer.Instance.ShokoServices.EvaluateGroupFilter(gf);
-                                gf.Groups = tempGF.Groups;
-                                gf.Series = tempGF.Series;
+                                gf.Populate(tempGF);
                                 groupFilterVM = gf;
                                 VM_MainListHelper.Instance.ViewGroupsForms.Filter = GroupFilter_GroupSearch;
                                 VM_MainListHelper.Instance.SetGroupFilterSortingOnForms(gf);
@@ -2504,8 +2503,7 @@ namespace Shoko.Desktop
                     gf.Obs_FilterConditions.Add(gfc);
 
                     CL_GroupFilter tempGF = VM_ShokoServer.Instance.ShokoServices.EvaluateGroupFilter(gf);
-                    gf.Groups = tempGF.Groups;
-                    gf.Series = tempGF.Series;
+                    gf.Populate(tempGF);
                     groupFilterVM = gf;
                     VM_MainListHelper.Instance.ViewGroupsForms.Filter = GroupFilter_GroupSearch;
                     VM_MainListHelper.Instance.SetGroupFilterSortingOnForms(gf);

@@ -2,12 +2,15 @@
 using System.Globalization;
 using System.Reflection;
 using System.Threading;
+using System.Web.Script.Serialization;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
 using Shoko.Commons.Notification;
 using Shoko.Commons.Properties;
-using Shoko.Commons.Utils;
 using Shoko.Desktop.Properties;
 using Shoko.Desktop.ViewModel.Helpers;
 using Shoko.Models.Client;
+using Formatting = Shoko.Commons.Utils.Formatting;
 
 // ReSharper disable InconsistentNaming
 
@@ -55,6 +58,9 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private string displayName = "";
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public string DisplayName
         {
             get { return displayName; }
@@ -74,6 +80,9 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public string ApprovalRating
         {
             get
@@ -84,8 +93,9 @@ namespace Shoko.Desktop.ViewModel.Server
 
         }
 
-
-
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public double ApprovalPercentage
         {
             get
@@ -102,11 +112,18 @@ namespace Shoko.Desktop.ViewModel.Server
         {
             get { return base.SimilarAnimeID; }
             set { this.SetField(()=>base.SimilarAnimeID,(r)=> base.SimilarAnimeID = r, value, () => AniDB_SiteURL); }
-            
+
         }
+
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public string AniDB_SiteURL => string.Format(Models.Constants.URLS.AniDB_Series, SimilarAnimeID);
 
         private bool localSeriesExists;
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public bool LocalSeriesExists
         {
             get { return localSeriesExists; }
@@ -117,6 +134,9 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private bool animeInfoExists;
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public bool AnimeInfoExists
         {
             get { return animeInfoExists; }
@@ -128,6 +148,9 @@ namespace Shoko.Desktop.ViewModel.Server
 
 
         private bool showCreateSeriesButton;
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public bool ShowCreateSeriesButton
         {
             get { return showCreateSeriesButton; }
@@ -138,6 +161,9 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private string posterPath = "";
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public string PosterPath
         {
             get { return posterPath; }

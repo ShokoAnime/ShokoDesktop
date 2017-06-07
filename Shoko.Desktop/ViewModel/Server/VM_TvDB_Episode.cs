@@ -1,4 +1,7 @@
 ﻿using System.IO;
+using System.Web.Script.Serialization;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
 using Shoko.Models.Enums;
 using Shoko.Desktop.ImageDownload;
 using Shoko.Desktop.Utilities;
@@ -10,6 +13,7 @@ namespace Shoko.Desktop.ViewModel.Server
 {
     public class VM_TvDB_Episode : TvDB_Episode
     {
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string ImagePath
         {
             get
@@ -22,8 +26,10 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string FullImagePathPlain => string.IsNullOrEmpty(Filename) ? "" : Path.Combine(Utils.GetTvDBImagePath(), Filename.Replace("/", @"\"));
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string FullImagePath
         {
             get
@@ -41,6 +47,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string OnlineImagePath => string.IsNullOrEmpty(Filename) ? "" : string.Format(Models.Constants.URLS.TvDB_Images, Filename);
     }
 }

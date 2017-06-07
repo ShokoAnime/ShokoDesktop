@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.Web.Script.Serialization;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
 using Shoko.Commons.Notification;
 using Shoko.Desktop.ViewModel.Helpers;
 using Shoko.Models.Client;
@@ -42,9 +45,14 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
 
-
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public string AnimeID_Friendly => $"AniDB: {AnimeID}";
 
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public string AniDB_SiteURL => string.Format(Models.Constants.URLS.AniDB_Series, AnimeID);
 
 

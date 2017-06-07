@@ -1,6 +1,9 @@
 ﻿using System.IO;
+using System.Web.Script.Serialization;
 using System.Windows;
 using System.Windows.Media.Imaging;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
 using Shoko.Models.Client;
 // ReSharper disable InconsistentNaming
 
@@ -11,7 +14,9 @@ namespace Shoko.Desktop.ViewModel.Server
 
 
         private BitmapImage _bitmap;
-
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public BitmapImage Bitmap
         {
             get

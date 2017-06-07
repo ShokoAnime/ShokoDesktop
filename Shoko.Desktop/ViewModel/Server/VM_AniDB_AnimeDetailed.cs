@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Web.Script.Serialization;
 using System.Windows.Data;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
 using Shoko.Commons.Extensions;
 using Shoko.Commons.Notification;
 using Shoko.Commons.Properties;
-using Shoko.Commons.Utils;
 using Shoko.Desktop.Properties;
 using Shoko.Desktop.ViewModel.Helpers;
 using Shoko.Models;
 using Shoko.Models.Client;
 using Shoko.Models.Server;
+using Formatting = Shoko.Commons.Utils.Formatting;
 
 // ReSharper disable InconsistentNaming
 
@@ -48,6 +51,9 @@ namespace Shoko.Desktop.ViewModel.Server
             set { base.Tags = value.OrderByDescending(a => a.Weight).ToList(); }
         }
 
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public List<CL_AnimeTag> TagsSummary => Tags.Take(5).ToList();
 
         public new List<CustomTag> CustomTags
@@ -60,12 +66,30 @@ namespace Shoko.Desktop.ViewModel.Server
                 ViewCustomTags.Refresh();
             }
         }
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public ICollectionView ViewCustomTags { get; set; }
 
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public List<VM_AnimeTitle> AnimeTitlesSummary { get; set; }
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public List<VM_AnimeTitle> AnimeTitlesMain { get; set; }
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public List<VM_AnimeTitle> AnimeTitlesOfficial { get; set; }
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public List<VM_AnimeTitle> AnimeTitlesSynonym { get; set; }
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public List<VM_AnimeTitle> AnimeTitlesShort { get; set; }
 
 
@@ -87,10 +111,19 @@ namespace Shoko.Desktop.ViewModel.Server
             set { this.SetField(()=>base.UserVote,(r)=> base.UserVote = r, value, () => UserHasVoted, () => UserHasNotVoted, ()=>UserRating, ()=>UserRatingFormatted); }
         }
 
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public bool UserHasVoted => UserVote!=null;
 
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public bool UserHasNotVoted => UserVote==null;
 
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public decimal UserRating
         {
             get
@@ -107,6 +140,9 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public string UserRatingFormatted
         {
             get

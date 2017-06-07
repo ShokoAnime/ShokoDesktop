@@ -1,4 +1,7 @@
 ﻿using System.ComponentModel;
+using System.Web.Script.Serialization;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
 using Shoko.Commons.Notification;
 using Shoko.Desktop.ViewModel.Helpers;
 using Shoko.Models.Client;
@@ -16,18 +19,25 @@ namespace Shoko.Desktop.ViewModel.Server
             set { this.SetField(()=>base.AnimeSeries,(r)=> base.AnimeSeries = r, value, ()=>HasSeriesData); }
         }
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string AniDB_SiteURL => string.Format(Models.Constants.URLS.AniDB_Series, AnimeID);
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string Episode_SiteURL => string.Format(Models.Constants.URLS.AniDB_Episode, EpisodeID);
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string File_SiteURL => string.Format(Models.Constants.URLS.AniDB_File, FileID);
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string AnimeTitleAndID => $"{AnimeTitle} ({AnimeID})";
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string EpisodeNumberAndID => $"Episode {EpisodeTypeAndNumber} ({EpisodeID})";
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string FileDescAndID => $"File {FileID}";
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public enEpisodeType EpisodeTypeEnum => (enEpisodeType)EpisodeType;
 
         public new int EpisodeType
@@ -49,8 +59,10 @@ namespace Shoko.Desktop.ViewModel.Server
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propname));
         }
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool HasSeriesData => AnimeSeries!=null;
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string EpisodeTypeAndNumber
         {
             get

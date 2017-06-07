@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Web.Script.Serialization;
 using System.Windows;
+using System.Xml.Serialization;
 using GongSolutions.Wpf.DragDrop;
+using Newtonsoft.Json;
 using Shoko.Commons.Notification;
 using Shoko.Desktop.Utilities;
 using Shoko.Desktop.ViewModel.Helpers;
@@ -27,9 +30,11 @@ namespace Shoko.Desktop.ViewModel.Server
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propname));
         }
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public ObservableCollection<VM_PlaylistItem> PlaylistObjects { get; set; }
 
         private VM_AniDB_Anime aniDB_Anime;
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public VM_AniDB_Anime AniDB_Anime
         {
             get { return aniDB_Anime; }
@@ -40,6 +45,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private VM_AnimeSeries_User series;
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public VM_AnimeSeries_User Series
         {
             get { return series; }
@@ -50,6 +56,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private VM_AnimeEpisode_User nextEpisode;
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public VM_AnimeEpisode_User NextEpisode
         {
             get { return nextEpisode; }
@@ -60,6 +67,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private Boolean isReadOnly = true;
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public Boolean IsReadOnly
         {
             get { return isReadOnly; }
@@ -70,6 +78,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private Boolean isBeingEdited;
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public Boolean IsBeingEdited
         {
             get { return isBeingEdited; }
@@ -88,6 +97,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool PlayWatchedBool => PlayWatched==1;
 
         public new int PlayWatched
@@ -106,6 +116,7 @@ namespace Shoko.Desktop.ViewModel.Server
                 this.SetField(()=>base.PlayUnwatched,(r)=> base.PlayUnwatched = r, value, ()=>PlayUnwatched, ()=>PlayUnwatchedBool);
             }
         }
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool PlayUnwatchedBool => PlayUnwatched==1;
 
         public void SetDependendProperties()
@@ -116,6 +127,7 @@ namespace Shoko.Desktop.ViewModel.Server
             SetNextEpisode();
         }
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public PlaylistPlayOrder DefaultPlayOrderEnum => (PlaylistPlayOrder)DefaultPlayOrder;
 
 

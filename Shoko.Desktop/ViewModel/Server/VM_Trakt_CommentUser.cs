@@ -1,4 +1,7 @@
 ﻿using System.ComponentModel;
+using System.Web.Script.Serialization;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
 using Shoko.Commons.Notification;
 using Shoko.Desktop.ViewModel.Helpers;
 using Shoko.Models.Client;
@@ -18,6 +21,7 @@ namespace Shoko.Desktop.ViewModel.Server
 
 
         private bool isCommentExpanded;
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool IsCommentExpanded
         {
             get { return isCommentExpanded; }
@@ -27,6 +31,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string CommentTruncated
         {
             get

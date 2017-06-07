@@ -1,4 +1,7 @@
 ﻿using System.IO;
+using System.Web.Script.Serialization;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
 using Shoko.Models.Enums;
 using Shoko.Models.Client;
 
@@ -50,7 +53,9 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
 
-
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public string FullImagePath
         {
             get
@@ -102,6 +107,9 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public string FullImagePathOnlyExisting
         {
             get
@@ -155,6 +163,9 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public string FullThumbnailPath
         {
             get

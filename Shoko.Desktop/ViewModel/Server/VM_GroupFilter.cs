@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Web.Script.Serialization;
 using System.Windows;
+using System.Xml.Serialization;
 using ImpromptuInterface;
+using Newtonsoft.Json;
 using Shoko.Commons.Extensions;
 using Shoko.Commons.Notification;
 using Shoko.Commons.Properties;
@@ -24,23 +27,36 @@ namespace Shoko.Desktop.ViewModel.Server
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propname));
         }
 
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public bool IsEditable => false;
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public int ObjectType => 0;
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public bool AllowEditing => !IsLocked;
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public bool AllowDeletion => !IsLocked;
 
-        private new List<GroupFilterCondition> FilterConditions
+        public new List<GroupFilterCondition> FilterConditions
         {
             // ReSharper disable once UnusedMember.Local
             get => _filterConditions.CastList<GroupFilterCondition>();
             set
             {
+                if (value == null || value.Count <= 0) return;
                 _filterConditions.ReplaceRange(value.CastList<VM_GroupFilterCondition>());
                 this.OnPropertyChanged(() => Obs_FilterConditions);
             }
         }
 
-        private new string SortingCriteria
+        public new string SortingCriteria
         {
             // ReSharper disable once UnusedMember.Local
             get
@@ -90,9 +106,15 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private readonly TrulyObservableCollection<VM_GroupFilterCondition> _filterConditions;
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public TrulyObservableCollection<VM_GroupFilterCondition> Obs_FilterConditions => _filterConditions;
 
         private readonly TrulyObservableCollection<VM_GroupFilterSortingCriteria> _sortingCriteriaList;
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public TrulyObservableCollection<VM_GroupFilterSortingCriteria> SortCriteriaList => _sortingCriteriaList;
 
         public new int? Locked
@@ -104,9 +126,15 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public bool IsLocked => base.Locked.HasValue && base.Locked == 1;
 
         private bool isBeingEdited;
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public bool IsBeingEdited
         {
             get => isBeingEdited;
@@ -145,6 +173,9 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public bool IsApplyToSeries
         {
             get => ApplyToSeries == 1;
@@ -178,6 +209,9 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public string Summary
         {
             get
@@ -193,6 +227,9 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private int _groupsCount ;
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public int GroupsCount
         {
             get => _groupsCount;
@@ -208,7 +245,7 @@ namespace Shoko.Desktop.ViewModel.Server
             FilterType = (int)GroupFilterType.UserDefined;
 
             _filterConditions = new TrulyObservableCollection<VM_GroupFilterCondition>();
-            _sortingCriteriaList=new TrulyObservableCollection<VM_GroupFilterSortingCriteria>();
+            _sortingCriteriaList = new TrulyObservableCollection<VM_GroupFilterSortingCriteria>();
             _filterConditions.CollectionChanged += (a, b) =>
             {
                 collectionChanged = true;
@@ -296,13 +333,14 @@ namespace Shoko.Desktop.ViewModel.Server
             SortingCriteria = contract.SortingCriteria;
             FilterConditions = contract.FilterConditions;
 #pragma warning restore 618
+
+            collectionChanged = false;
         }
 
         public bool Save()
         {
             try
             {
-                if (GroupFilterID != 0 && !collectionChanged) return false;
                 CL_Response<CL_GroupFilter> response = VM_ShokoServer.Instance.ShokoServices.SaveGroupFilter(this);
                 if (!string.IsNullOrEmpty(response.ErrorMessage))
                 {

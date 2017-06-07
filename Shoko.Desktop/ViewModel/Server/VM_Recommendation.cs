@@ -1,6 +1,9 @@
 ﻿using System.ComponentModel;
 using System.Globalization;
 using System.Threading;
+using System.Web.Script.Serialization;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
 using Shoko.Commons.Notification;
 using Shoko.Desktop.ViewModel.Helpers;
 using Shoko.Models.Client;
@@ -80,6 +83,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private string recommended_DisplayName = "";
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string Recommended_DisplayName
         {
             get { return recommended_DisplayName; }
@@ -90,6 +94,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private string basedOn_DisplayName = "";
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string BasedOn_DisplayName
         {
             get { return basedOn_DisplayName; }
@@ -100,6 +105,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private string recommended_Description = "";
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string Recommended_Description
         {
             get { return recommended_Description; }
@@ -111,6 +117,7 @@ namespace Shoko.Desktop.ViewModel.Server
 
 
         private string recommended_AniDB_SiteURL = "";
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string Recommended_AniDB_SiteURL
         {
             get { return recommended_AniDB_SiteURL; }
@@ -121,6 +128,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private string basedOn_AniDB_SiteURL = "";
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string BasedOn_AniDB_SiteURL
         {
             get { return basedOn_AniDB_SiteURL; }
@@ -131,6 +139,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private bool recommended_LocalSeriesExists;
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool Recommended_LocalSeriesExists
         {
             get { return recommended_LocalSeriesExists; }
@@ -141,6 +150,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private bool recommended_AnimeInfoExists;
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool Recommended_AnimeInfoExists
         {
             get { return recommended_AnimeInfoExists; }
@@ -153,6 +163,7 @@ namespace Shoko.Desktop.ViewModel.Server
 
 
         private bool recommended_ShowCreateSeriesButton;
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool Recommended_ShowCreateSeriesButton
         {
             get { return recommended_ShowCreateSeriesButton; }
@@ -163,6 +174,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private string recommended_PosterPath = "";
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string Recommended_PosterPath
         {
             get { return recommended_PosterPath; }
@@ -173,6 +185,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private string basedOn_PosterPath = "";
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string BasedOn_PosterPath
         {
             get { return basedOn_PosterPath; }
@@ -183,6 +196,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private string recommended_ApprovalRating = "";
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string Recommended_ApprovalRating
         {
             get { return recommended_ApprovalRating; }
@@ -193,6 +207,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private string basedOnVoteValueFormatted = "";
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string BasedOnVoteValueFormatted
         {
             get { return basedOnVoteValueFormatted; }

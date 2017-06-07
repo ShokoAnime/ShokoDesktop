@@ -1,4 +1,7 @@
 ﻿using System.IO;
+using System.Web.Script.Serialization;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
 using Shoko.Models.Enums;
 using Shoko.Desktop.ImageDownload;
 using Shoko.Desktop.Utilities;
@@ -11,8 +14,14 @@ namespace Shoko.Desktop.ViewModel.Server
     public class VM_AniDB_Seiyuu : AniDB_Seiyuu
     {
 
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public string ImagePathPlain => string.IsNullOrEmpty(PicName) ? "" : Path.Combine(Utils.GetAniDBCreatorImagePath(SeiyuuID), PicName);
 
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
         public string ImagePath
         {
             get

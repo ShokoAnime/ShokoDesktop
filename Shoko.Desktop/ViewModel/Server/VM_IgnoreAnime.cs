@@ -1,4 +1,7 @@
-﻿using Shoko.Models.Enums;
+﻿using System.Web.Script.Serialization;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
+using Shoko.Models.Enums;
 using Shoko.Models.Client;
 
 // ReSharper disable InconsistentNaming
@@ -15,7 +18,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
 
-
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string IgnoreTypeAsString
         {
             get
@@ -32,6 +35,7 @@ namespace Shoko.Desktop.ViewModel.Server
 
         }
 
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string DisplayName => Anime != null ? Anime.FormattedTitle : $"Anime ID: {AnimeID}";
     }
 }
