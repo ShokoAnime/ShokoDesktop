@@ -19,7 +19,7 @@ using Shoko.Models.Server;
 
 namespace Shoko.Desktop.ViewModel.Server
 {
-    public class VM_GroupFilter : CL_GroupFilter, IListWrapper, INotifyPropertyChangedExt
+    public class VM_GroupFilter : CL_GroupFilter, IListWrapper, INotifyPropertyChanged, INotifyPropertyChangedExt
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propname)
@@ -250,6 +250,11 @@ namespace Shoko.Desktop.ViewModel.Server
 
         public bool EvaluateGroupFilter(VM_AnimeGroup_User grp)
         {
+            if (IsBeingEdited && collectionChanged)
+            {
+                Populate(VM_ShokoServer.Instance.ShokoServices.EvaluateGroupFilter(this));
+                collectionChanged = false;
+            }
             if (Groups == null || !Groups.ContainsKey(VM_ShokoServer.Instance.CurrentUser.JMMUserID))
                 return false;
             if (grp.AnimeGroupID != 0)
@@ -323,8 +328,6 @@ namespace Shoko.Desktop.ViewModel.Server
             SortingCriteria = contract.SortingCriteria;
             FilterConditions = contract.FilterConditions;
 #pragma warning restore 618
-
-            collectionChanged = false;
         }
 
         public bool Save()
