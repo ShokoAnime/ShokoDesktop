@@ -353,7 +353,12 @@ namespace Shoko.Desktop.ViewModel.Server
         [XmlIgnore]
         public string EpisodeOverviewLoading
         {
-            get { return episodeOverviewLoading; }
+            get
+            {
+                if (string.IsNullOrEmpty(episodeOverviewLoading))
+                    EpisodeOverviewLoading = Shoko.Commons.Properties.Resources.AnimeEpisode_NoOverview;
+                return episodeOverviewLoading;
+            }
             set
             {
                 this.SetField(()=>episodeOverviewLoading,value);
@@ -385,7 +390,12 @@ namespace Shoko.Desktop.ViewModel.Server
         [XmlIgnore]
         public string EpisodeImageLoading
         {
-            get { return episodeImageLoading; }
+            get
+            {
+                if (string.IsNullOrEmpty(episodeImageLoading))
+                    episodeImageLoading = @"/Images/EpisodeThumb_NotFound.png";
+                return episodeImageLoading;
+            }
             set
             {
                 this.SetField(()=>episodeImageLoading,value);
@@ -717,6 +727,8 @@ namespace Shoko.Desktop.ViewModel.Server
                 }
             }
             #endregion
+
+            if (EpisodeImageLoading == @"/Images/EpisodeThumb_NotFound.png") ShowEpisodeImageInDashboard = false;
 
         }
 
