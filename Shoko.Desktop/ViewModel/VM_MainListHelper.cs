@@ -400,6 +400,7 @@ namespace Shoko.Desktop.ViewModel
             {
                 VM_GroupFilter gf = (VM_GroupFilter) CurrentWrapper;
                 ViewGroups.SortDescriptions.Clear();
+                if (gf.IsDirectoryFilter) return;
                 List<SortDescription> sortlist = gf.GetSortDescriptions();
                 foreach (SortDescription sd in sortlist)
                     ViewGroups.SortDescriptions.Add(sd);
@@ -413,12 +414,11 @@ namespace Shoko.Desktop.ViewModel
         public void SetGroupFilterSortingOnForms(VM_GroupFilter gf)
         {
             ViewGroupsForms.SortDescriptions.Clear();
-            if (gf != null)
-            {
-                List<SortDescription> sortlist = gf.GetSortDescriptions();
-                foreach (SortDescription sd in sortlist)
-                    ViewGroupsForms.SortDescriptions.Add(sd);
-            }
+            if (gf?.IsDirectoryFilter != true) return;
+
+            List<SortDescription> sortlist = gf.GetSortDescriptions();
+            foreach (SortDescription sd in sortlist)
+                ViewGroupsForms.SortDescriptions.Add(sd);
         }
 
 

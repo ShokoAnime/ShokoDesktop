@@ -44,13 +44,23 @@ namespace Shoko.Desktop.ViewModel.Server
         [XmlIgnore]
         public bool AllowDeletion => !IsLocked;
 
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
+        public string SortName => GroupFilterName;
+
         public new List<GroupFilterCondition> FilterConditions
         {
             // ReSharper disable once UnusedMember.Local
             get => _filterConditions.CastList<GroupFilterCondition>();
             set
             {
-                if (value == null || value.Count <= 0) return;
+                if (value == null || value.Count <= 0)
+                {
+                    _filterConditions.Clear();
+                    this.OnPropertyChanged(() => Obs_FilterConditions);
+                    return;
+                }
                 _filterConditions.ReplaceRange(value.CastList<VM_GroupFilterCondition>());
                 this.OnPropertyChanged(() => Obs_FilterConditions);
             }
@@ -238,6 +248,12 @@ namespace Shoko.Desktop.ViewModel.Server
                 this.SetField(()=>_groupsCount, value);
             }
         }
+
+        [ScriptIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
+        public bool IsDirectoryFilter => (FilterType & (int) GroupFilterType.Directory) ==
+                                         (int) GroupFilterType.Directory;
 
         public VM_GroupFilter()
         {
