@@ -45,14 +45,10 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
 
-        [ScriptIgnore]
-        [JsonIgnore]
-        [XmlIgnore]
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string AnimeID_Friendly => $"AniDB: {AnimeID}";
 
-        [ScriptIgnore]
-        [JsonIgnore]
-        [XmlIgnore]
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string AniDB_SiteURL => string.Format(Models.Constants.URLS.AniDB_Series, AnimeID);
 
 

@@ -9,13 +9,9 @@ namespace Shoko.Desktop.ViewModel.Server
 {
     public class VM_AnimeTitle : CL_AnimeTitle
     {
-        [ScriptIgnore]
-        [JsonIgnore]
-        [XmlIgnore]
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string FlagImage => this.GetFlagImage();
-        [ScriptIgnore]
-        [JsonIgnore]
-        [XmlIgnore]
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string LanguageDescription => this.GetLanguageDescription();
     }
 }

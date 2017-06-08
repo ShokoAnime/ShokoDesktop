@@ -64,9 +64,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore]
-        [JsonIgnore]
-        [XmlIgnore]
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool DownloadingBool => Downloading==1;
 
 

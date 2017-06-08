@@ -9,13 +9,9 @@ namespace Shoko.Desktop.ViewModel.Server
 {
     public class VM_CrossRef_AniDB_MAL : CrossRef_AniDB_MAL
     {
-        [ScriptIgnore]
-        [JsonIgnore]
-        [XmlIgnore]
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string SiteURL => this.GetSiteURL();
-        [ScriptIgnore]
-        [JsonIgnore]
-        [XmlIgnore]
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string StartEpisodeTypeString => this.GetStartEpisodeTypeString();
 
 

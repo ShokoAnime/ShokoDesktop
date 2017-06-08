@@ -14,9 +14,7 @@ namespace Shoko.Desktop.ViewModel.Server
 
 
         private BitmapImage _bitmap;
-        [ScriptIgnore]
-        [JsonIgnore]
-        [XmlIgnore]
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public BitmapImage Bitmap
         {
             get

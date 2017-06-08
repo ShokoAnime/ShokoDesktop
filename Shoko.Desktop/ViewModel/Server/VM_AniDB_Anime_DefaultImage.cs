@@ -53,9 +53,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
 
-        [ScriptIgnore]
-        [JsonIgnore]
-        [XmlIgnore]
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string FullImagePath
         {
             get
@@ -107,9 +105,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore]
-        [JsonIgnore]
-        [XmlIgnore]
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string FullImagePathOnlyExisting
         {
             get
@@ -163,9 +159,7 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        [ScriptIgnore]
-        [JsonIgnore]
-        [XmlIgnore]
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string FullThumbnailPath
         {
             get

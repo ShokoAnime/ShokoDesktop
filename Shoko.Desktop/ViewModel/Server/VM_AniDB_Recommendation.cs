@@ -10,22 +10,14 @@ namespace Shoko.Desktop.ViewModel.Server
 {
     public class VM_AniDB_Recommendation : AniDB_Recommendation
     {
-        [ScriptIgnore]
-        [JsonIgnore]
-        [XmlIgnore]
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string CommentTruncated => this.GetCommentTruncated();
-        [ScriptIgnore]
-        [JsonIgnore]
-        [XmlIgnore]
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string Comment => this.GetComment();
-        [ScriptIgnore]
-        [JsonIgnore]
-        [XmlIgnore]
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public AniDBRecommendationType RecommendationTypeEnum => this.GetRecommendationTypeEnum();
 
-        [ScriptIgnore]
-        [JsonIgnore]
-        [XmlIgnore]
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string RecommendationTypeText => this.GetRecommendationTypeText();
     }
 }

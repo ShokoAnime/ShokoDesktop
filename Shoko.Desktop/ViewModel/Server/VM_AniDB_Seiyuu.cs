@@ -14,14 +14,10 @@ namespace Shoko.Desktop.ViewModel.Server
     public class VM_AniDB_Seiyuu : AniDB_Seiyuu
     {
 
-        [ScriptIgnore]
-        [JsonIgnore]
-        [XmlIgnore]
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string ImagePathPlain => string.IsNullOrEmpty(PicName) ? "" : Path.Combine(Utils.GetAniDBCreatorImagePath(SeiyuuID), PicName);
 
-        [ScriptIgnore]
-        [JsonIgnore]
-        [XmlIgnore]
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string ImagePath
         {
             get

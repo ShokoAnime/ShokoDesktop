@@ -55,9 +55,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private string displayName = "";
-        [ScriptIgnore]
-        [JsonIgnore]
-        [XmlIgnore]
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string DisplayName
         {
             get { return displayName; }
@@ -82,15 +80,11 @@ namespace Shoko.Desktop.ViewModel.Server
             set { this.SetField(()=>base.RelatedAnimeID,(r)=> base.RelatedAnimeID = r, value, () => AniDB_SiteURL); }
         }
 
-        [ScriptIgnore]
-        [JsonIgnore]
-        [XmlIgnore]
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string AniDB_SiteURL => string.Format(Models.Constants.URLS.AniDB_Series, RelatedAnimeID);
 
         private bool localSeriesExists;
-        [ScriptIgnore]
-        [JsonIgnore]
-        [XmlIgnore]
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool LocalSeriesExists
         {
             get { return localSeriesExists; }
@@ -101,9 +95,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private bool animeInfoExists;
-        [ScriptIgnore]
-        [JsonIgnore]
-        [XmlIgnore]
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool AnimeInfoExists
         {
             get { return animeInfoExists; }
@@ -114,9 +106,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private bool showCreateSeriesButton;
-        [ScriptIgnore]
-        [JsonIgnore]
-        [XmlIgnore]
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool ShowCreateSeriesButton
         {
             get { return showCreateSeriesButton; }
@@ -127,9 +117,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private string posterPath = "";
-        [ScriptIgnore]
-        [JsonIgnore]
-        [XmlIgnore]
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string PosterPath
         {
             get { return posterPath; }
@@ -140,9 +128,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         private int sortPriority = int.MaxValue;
-        [ScriptIgnore]
-        [JsonIgnore]
-        [XmlIgnore]
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public int SortPriority
         {
             get { return sortPriority; }

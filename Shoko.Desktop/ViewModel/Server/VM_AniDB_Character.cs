@@ -31,19 +31,13 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
 
-        [ScriptIgnore]
-        [JsonIgnore]
-        [XmlIgnore]
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string ImagePathPlain => Path.Combine(Utils.GetAniDBCharacterImagePath(CharID), PicName);
 
-        [ScriptIgnore]
-        [JsonIgnore]
-        [XmlIgnore]
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string CharNameShort => CharName.Length <= 25 ? CharName : CharName.Substring(0, 24) + "...";
 
-        [ScriptIgnore]
-        [JsonIgnore]
-        [XmlIgnore]
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string ImagePath
         {
             get

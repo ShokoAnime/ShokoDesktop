@@ -9,9 +9,7 @@ namespace Shoko.Desktop.ViewModel.Server
 {
     public class VM_AniDB_Episode : AniDB_Episode
     {
-        [ScriptIgnore]
-        [JsonIgnore]
-        [XmlIgnore]
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string EpisodeName => this.GetEpisodeName();
     }
 }
