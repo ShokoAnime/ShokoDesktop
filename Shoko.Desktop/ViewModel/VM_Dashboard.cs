@@ -33,10 +33,10 @@ namespace Shoko.Desktop.ViewModel
         public ObservableCollection<VM_AniDB_Anime> MiniCalendar { get; set; }
         public ICollectionView ViewMiniCalendar { get; set; }
 
-        public ObservableCollection<object> RecommendationsWatch { get; set; }
+        public ObservableCollection<VM_Recommendation> RecommendationsWatch { get; set; }
         public ICollectionView ViewRecommendationsWatch { get; set; }
 
-        public ObservableCollection<object> RecommendationsDownload { get; set; }
+        public ObservableCollection<VM_Recommendation> RecommendationsDownload { get; set; }
         public ICollectionView ViewRecommendationsDownload { get; set; }
 
         public ObservableCollection<object> RecentAdditions { get; set; }
@@ -97,10 +97,10 @@ namespace Shoko.Desktop.ViewModel
             MiniCalendar = new ObservableCollection<VM_AniDB_Anime>();
             ViewMiniCalendar = CollectionViewSource.GetDefaultView(MiniCalendar);
 
-            RecommendationsWatch = new ObservableCollection<object>();
+            RecommendationsWatch = new ObservableCollection<VM_Recommendation>();
             ViewRecommendationsWatch = CollectionViewSource.GetDefaultView(RecommendationsWatch);
 
-            RecommendationsDownload = new ObservableCollection<object>();
+            RecommendationsDownload = new ObservableCollection<VM_Recommendation>();
             ViewRecommendationsDownload = CollectionViewSource.GetDefaultView(RecommendationsDownload);
 
             RecentAdditions = new ObservableCollection<object>();
@@ -257,11 +257,6 @@ namespace Shoko.Desktop.ViewModel
                         RecommendationsWatch.Add(contract);
                     }
 
-                    // add a dummy object so that we can display a prompt
-                    // for the user to sync thier votes
-                    if (RecommendationsWatch.Count == 0)
-                        RecommendationsWatch.Add(new SyncVotesDummy());
-
                     ViewRecommendationsWatch.Refresh();
                 });
             }
@@ -290,11 +285,6 @@ namespace Shoko.Desktop.ViewModel
 
                         RecommendationsDownload.Add(contract);
                     }
-
-                    // add a dummy object so that we can display a prompt
-                    // for the user to sync thier votes
-                    if (RecommendationsDownload.Count == 0)
-                        RecommendationsDownload.Add(new SyncVotesDummy());
 
                     ViewRecommendationsDownload.Refresh();
                 });

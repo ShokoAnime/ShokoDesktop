@@ -32,7 +32,15 @@ namespace Shoko.Desktop.ViewModel.Server
         [ScriptIgnore]
         [JsonIgnore]
         [XmlIgnore]
-		public string DescriptionTruncated { get; set; }
+        public string DescriptionFormatted
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(Description))
+                    return Shoko.Commons.Properties.Resources.Recommendation_NoOverview;
+                return Description;
+            }
+        }
 
 
         [ScriptIgnore]
@@ -731,27 +739,27 @@ namespace Shoko.Desktop.ViewModel.Server
 
 
         /*public string FanartPath
-		{
-			get
-			{
-				string packUriBlank = string.Format("pack://application:,,,/{0};component/Images/blankposter.png", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+        {
+            get
+            {
+                string packUriBlank = string.Format("pack://application:,,,/{0};component/Images/blankposter.png", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
 
-				// this should be randomised or use the default 
-				if (DefaultFanart != null)
-					return DefaultFanart.FullImagePath;
+                // this should be randomised or use the default 
+                if (DefaultFanart != null)
+                    return DefaultFanart.FullImagePath;
 
-				if (AniDB_AnimeCrossRefs == null)
-					return packUriBlank;
+                if (AniDB_AnimeCrossRefs == null)
+                    return packUriBlank;
 
-				if (AniDB_AnimeCrossRefs.AllFanarts.Count == 0)
-					return packUriBlank;
+                if (AniDB_AnimeCrossRefs.AllFanarts.Count == 0)
+                    return packUriBlank;
 
-				if (File.Exists(AniDB_AnimeCrossRefs.AllFanarts[0].FullImagePath))
-					return AniDB_AnimeCrossRefs.AllFanarts[0].FullImagePath;
+                if (File.Exists(AniDB_AnimeCrossRefs.AllFanarts[0].FullImagePath))
+                    return AniDB_AnimeCrossRefs.AllFanarts[0].FullImagePath;
 
-				return packUriBlank;
-			}
-		}*/
+                return packUriBlank;
+            }
+        }*/
 
         [ScriptIgnore]
         [JsonIgnore]
@@ -929,227 +937,227 @@ namespace Shoko.Desktop.ViewModel.Server
         #region OldTvDBCode
 
         /*private List<CrossRef_AniDB_TvDBVMV2> crossRefTvDBV2 = null;
-		public List<CrossRef_AniDB_TvDBVMV2> CrossRefTvDBV2
-		{
-			get
-			{
-				if (crossRefTvDBV2 == null)
-				{
-					try
-					{
-						//TODO
-						List<JMMServerBinary.Contract_CrossRef_AniDB_TvDBV2> contract = VM_ShokoServer.Instance.clientBinaryHTTP.GetTVDBCrossRefV2(this.AnimeID);
-						if (contract != null)
-						{
-							crossRefTvDBV2 = new List<CrossRef_AniDB_TvDBVMV2>();
-							foreach (JMMServerBinary.Contract_CrossRef_AniDB_TvDBV2 x in contract)
-								crossRefTvDBV2.Add(new CrossRef_AniDB_TvDBVMV2(x));
-						}
-					}
-					catch (Exception ex)
-					{
-						Utils.ShowErrorMessage(ex);
-					}
-				}
-				return crossRefTvDBV2;
-			}
-		}
+        public List<CrossRef_AniDB_TvDBVMV2> CrossRefTvDBV2
+        {
+            get
+            {
+                if (crossRefTvDBV2 == null)
+                {
+                    try
+                    {
+                        //TODO
+                        List<JMMServerBinary.Contract_CrossRef_AniDB_TvDBV2> contract = VM_ShokoServer.Instance.clientBinaryHTTP.GetTVDBCrossRefV2(this.AnimeID);
+                        if (contract != null)
+                        {
+                            crossRefTvDBV2 = new List<CrossRef_AniDB_TvDBVMV2>();
+                            foreach (JMMServerBinary.Contract_CrossRef_AniDB_TvDBV2 x in contract)
+                                crossRefTvDBV2.Add(new CrossRef_AniDB_TvDBVMV2(x));
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Utils.ShowErrorMessage(ex);
+                    }
+                }
+                return crossRefTvDBV2;
+            }
+        }
 
-		private List<CrossRef_AniDB_TvDBEpisodeVM> crossRefTvDBEpisodes = null;
-		public List<CrossRef_AniDB_TvDBEpisodeVM> CrossRefTvDBEpisodes
-		{
-			get
-			{
-				if (crossRefTvDBEpisodes == null)
-				{
-					try
-					{
-						crossRefTvDBEpisodes = new List<CrossRef_AniDB_TvDBEpisodeVM>();
-						List<JMMServerBinary.Contract_CrossRef_AniDB_TvDB_Episode> contracts = VM_ShokoServer.Instance.clientBinaryHTTP.GetTVDBCrossRefEpisode(this.AnimeID);
-						if (contracts != null)
-						{
-							foreach (JMMServerBinary.Contract_CrossRef_AniDB_TvDB_Episode contract in contracts)
-								crossRefTvDBEpisodes.Add(new CrossRef_AniDB_TvDBEpisodeVM(contract));
-						}
-					}
-					catch (Exception ex)
-					{
-						Utils.ShowErrorMessage(ex);
-					}
-				}
-				return crossRefTvDBEpisodes;
-			}
-		}
+        private List<CrossRef_AniDB_TvDBEpisodeVM> crossRefTvDBEpisodes = null;
+        public List<CrossRef_AniDB_TvDBEpisodeVM> CrossRefTvDBEpisodes
+        {
+            get
+            {
+                if (crossRefTvDBEpisodes == null)
+                {
+                    try
+                    {
+                        crossRefTvDBEpisodes = new List<CrossRef_AniDB_TvDBEpisodeVM>();
+                        List<JMMServerBinary.Contract_CrossRef_AniDB_TvDB_Episode> contracts = VM_ShokoServer.Instance.clientBinaryHTTP.GetTVDBCrossRefEpisode(this.AnimeID);
+                        if (contracts != null)
+                        {
+                            foreach (JMMServerBinary.Contract_CrossRef_AniDB_TvDB_Episode contract in contracts)
+                                crossRefTvDBEpisodes.Add(new CrossRef_AniDB_TvDBEpisodeVM(contract));
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Utils.ShowErrorMessage(ex);
+                    }
+                }
+                return crossRefTvDBEpisodes;
+            }
+        }
 
-		private Dictionary<int, TvDB_EpisodeVM> dictTvDBEpisodes = null;
-		public Dictionary<int, TvDB_EpisodeVM> DictTvDBEpisodes
-		{
-			get
-			{
-				if (dictTvDBEpisodes == null)
-				{
-					try
-					{
-						if (TvDBEpisodes != null)
-						{
-							DateTime start = DateTime.Now;
+        private Dictionary<int, TvDB_EpisodeVM> dictTvDBEpisodes = null;
+        public Dictionary<int, TvDB_EpisodeVM> DictTvDBEpisodes
+        {
+            get
+            {
+                if (dictTvDBEpisodes == null)
+                {
+                    try
+                    {
+                        if (TvDBEpisodes != null)
+                        {
+                            DateTime start = DateTime.Now;
 
-							dictTvDBEpisodes = new Dictionary<int,TvDB_EpisodeVM>();
-							// create a dictionary of absolute episode numbers for tvdb episodes
-							// sort by season and episode number
-							// ignore season 0, which is used for specials
-							List<TvDB_EpisodeVM> eps = TvDBEpisodes;
-							
+                            dictTvDBEpisodes = new Dictionary<int,TvDB_EpisodeVM>();
+                            // create a dictionary of absolute episode numbers for tvdb episodes
+                            // sort by season and episode number
+                            // ignore season 0, which is used for specials
+                            List<TvDB_EpisodeVM> eps = TvDBEpisodes;
+                            
 
-							int i = 1;
-							foreach (TvDB_EpisodeVM ep in eps)
-							{
-								//if (ep.SeasonNumber > 0)
-								//{
-									dictTvDBEpisodes[i] = ep;
-									i++;
-								//}
+                            int i = 1;
+                            foreach (TvDB_EpisodeVM ep in eps)
+                            {
+                                //if (ep.SeasonNumber > 0)
+                                //{
+                                    dictTvDBEpisodes[i] = ep;
+                                    i++;
+                                //}
 
-							}
-							TimeSpan ts = DateTime.Now - start;
-							//logger.Trace("Got TvDB Episodes in {0} ms", ts.TotalMilliseconds);
-						}
-					}
-					catch (Exception ex)
-					{
-						Utils.ShowErrorMessage(ex);
-					}
-				}
-				return dictTvDBEpisodes;
-			}
-		}
+                            }
+                            TimeSpan ts = DateTime.Now - start;
+                            //logger.Trace("Got TvDB Episodes in {0} ms", ts.TotalMilliseconds);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Utils.ShowErrorMessage(ex);
+                    }
+                }
+                return dictTvDBEpisodes;
+            }
+        }
 
-		private Dictionary<int, int> dictTvDBSeasons = null;
-		public Dictionary<int, int> DictTvDBSeasons
-		{
-			get
-			{
-				if (dictTvDBSeasons == null)
-				{
-					try
-					{
-						if (TvDBEpisodes != null)
-						{
-							DateTime start = DateTime.Now;
+        private Dictionary<int, int> dictTvDBSeasons = null;
+        public Dictionary<int, int> DictTvDBSeasons
+        {
+            get
+            {
+                if (dictTvDBSeasons == null)
+                {
+                    try
+                    {
+                        if (TvDBEpisodes != null)
+                        {
+                            DateTime start = DateTime.Now;
 
-							dictTvDBSeasons = new Dictionary<int,int>();
-							// create a dictionary of season numbers and the first episode for that season
-							
-							List<TvDB_EpisodeVM> eps = TvDBEpisodes;
-							int i = 1;
-							int lastSeason = -999;
-							foreach (TvDB_EpisodeVM ep in eps)
-							{
-								if (ep.SeasonNumber != lastSeason)
-									dictTvDBSeasons[ep.SeasonNumber] = i;
+                            dictTvDBSeasons = new Dictionary<int,int>();
+                            // create a dictionary of season numbers and the first episode for that season
+                            
+                            List<TvDB_EpisodeVM> eps = TvDBEpisodes;
+                            int i = 1;
+                            int lastSeason = -999;
+                            foreach (TvDB_EpisodeVM ep in eps)
+                            {
+                                if (ep.SeasonNumber != lastSeason)
+                                    dictTvDBSeasons[ep.SeasonNumber] = i;
 
-								lastSeason = ep.SeasonNumber;
-								i++;
+                                lastSeason = ep.SeasonNumber;
+                                i++;
 
-							}
-							TimeSpan ts = DateTime.Now - start;
-							//logger.Trace("Got TvDB Seasons in {0} ms", ts.TotalMilliseconds);
-						}
-					}
-					catch (Exception ex)
-					{
-						Utils.ShowErrorMessage(ex);
-					}
-				}
-				return dictTvDBSeasons;
-			}
-		}
+                            }
+                            TimeSpan ts = DateTime.Now - start;
+                            //logger.Trace("Got TvDB Seasons in {0} ms", ts.TotalMilliseconds);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Utils.ShowErrorMessage(ex);
+                    }
+                }
+                return dictTvDBSeasons;
+            }
+        }
 
-		private Dictionary<int, int> dictTvDBSeasonsSpecials = null;
-		public Dictionary<int, int> DictTvDBSeasonsSpecials
-		{
-			get
-			{
-				if (dictTvDBSeasonsSpecials == null)
-				{
-					try
-					{
-						if (TvDBEpisodes != null)
-						{
-							DateTime start = DateTime.Now;
+        private Dictionary<int, int> dictTvDBSeasonsSpecials = null;
+        public Dictionary<int, int> DictTvDBSeasonsSpecials
+        {
+            get
+            {
+                if (dictTvDBSeasonsSpecials == null)
+                {
+                    try
+                    {
+                        if (TvDBEpisodes != null)
+                        {
+                            DateTime start = DateTime.Now;
 
-							dictTvDBSeasonsSpecials = new Dictionary<int, int>();
-							// create a dictionary of season numbers and the first episode for that season
+                            dictTvDBSeasonsSpecials = new Dictionary<int, int>();
+                            // create a dictionary of season numbers and the first episode for that season
 
-							List<TvDB_EpisodeVM> eps = TvDBEpisodes;
-							int i = 1;
-							int lastSeason = -999;
-							foreach (TvDB_EpisodeVM ep in eps)
-							{
-								if (ep.SeasonNumber > 0) continue;
+                            List<TvDB_EpisodeVM> eps = TvDBEpisodes;
+                            int i = 1;
+                            int lastSeason = -999;
+                            foreach (TvDB_EpisodeVM ep in eps)
+                            {
+                                if (ep.SeasonNumber > 0) continue;
 
-								int thisSeason = 0;
-								if (ep.AirsBeforeSeason.HasValue) thisSeason = ep.AirsBeforeSeason.Value;
-								if (ep.AirsAfterSeason.HasValue) thisSeason = ep.AirsAfterSeason.Value;
+                                int thisSeason = 0;
+                                if (ep.AirsBeforeSeason.HasValue) thisSeason = ep.AirsBeforeSeason.Value;
+                                if (ep.AirsAfterSeason.HasValue) thisSeason = ep.AirsAfterSeason.Value;
 
-								if (thisSeason != lastSeason)
-									dictTvDBSeasonsSpecials[thisSeason] = i;
+                                if (thisSeason != lastSeason)
+                                    dictTvDBSeasonsSpecials[thisSeason] = i;
 
-								lastSeason = thisSeason;
-								i++;
+                                lastSeason = thisSeason;
+                                i++;
 
-							}
-							TimeSpan ts = DateTime.Now - start;
-							//logger.Trace("Got TvDB Seasons in {0} ms", ts.TotalMilliseconds);
-						}
-					}
-					catch (Exception ex)
-					{
-						Utils.ShowErrorMessage(ex);
-					}
-				}
-				return dictTvDBSeasonsSpecials;
-			}
-		}
+                            }
+                            TimeSpan ts = DateTime.Now - start;
+                            //logger.Trace("Got TvDB Seasons in {0} ms", ts.TotalMilliseconds);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Utils.ShowErrorMessage(ex);
+                    }
+                }
+                return dictTvDBSeasonsSpecials;
+            }
+        }
 
-		private List<TvDB_EpisodeVM> tvDBEpisodes = null;
-		public List<TvDB_EpisodeVM> TvDBEpisodes
-		{
-			get
-			{
-				if (tvDBEpisodes == null)
-				{
-					try
-					{
-						if (CrossRefTvDBV2 != null)
-						{
-							tvDBEpisodes = new List<TvDB_EpisodeVM>();
-							foreach (CrossRef_AniDB_TvDBVMV2 xref in CrossRefTvDBV2)
-							{
-								List<JMMServerBinary.Contract_TvDB_Episode> eps = VM_ShokoServer.Instance.clientBinaryHTTP.GetAllTvDBEpisodes(xref.TvDBID);
-								
-								foreach (JMMServerBinary.Contract_TvDB_Episode episode in eps)
-									tvDBEpisodes.Add(new TvDB_EpisodeVM(episode));
-							}
+        private List<TvDB_EpisodeVM> tvDBEpisodes = null;
+        public List<TvDB_EpisodeVM> TvDBEpisodes
+        {
+            get
+            {
+                if (tvDBEpisodes == null)
+                {
+                    try
+                    {
+                        if (CrossRefTvDBV2 != null)
+                        {
+                            tvDBEpisodes = new List<TvDB_EpisodeVM>();
+                            foreach (CrossRef_AniDB_TvDBVMV2 xref in CrossRefTvDBV2)
+                            {
+                                List<JMMServerBinary.Contract_TvDB_Episode> eps = VM_ShokoServer.Instance.clientBinaryHTTP.GetAllTvDBEpisodes(xref.TvDBID);
+                                
+                                foreach (JMMServerBinary.Contract_TvDB_Episode episode in eps)
+                                    tvDBEpisodes.Add(new TvDB_EpisodeVM(episode));
+                            }
 
-							if (tvDBEpisodes.Count > 0)
-							{
-								List<SortPropOrFieldAndDirection> sortCriteria = new List<SortPropOrFieldAndDirection>();
-								sortCriteria.Add(new SortPropOrFieldAndDirection("SeasonNumber", false, SortType.eInteger));
-								sortCriteria.Add(new SortPropOrFieldAndDirection("EpisodeNumber", false, SortType.eInteger));
-								tvDBEpisodes = Sorting.MultiSort<TvDB_EpisodeVM>(tvDBEpisodes, sortCriteria);
-							}
-						}
-					}
-					catch (Exception ex)
-					{
-						Utils.ShowErrorMessage(ex);
-					}
-				}
-				return tvDBEpisodes;
-			}
-		}
-		*/
+                            if (tvDBEpisodes.Count > 0)
+                            {
+                                List<SortPropOrFieldAndDirection> sortCriteria = new List<SortPropOrFieldAndDirection>();
+                                sortCriteria.Add(new SortPropOrFieldAndDirection("SeasonNumber", false, SortType.eInteger));
+                                sortCriteria.Add(new SortPropOrFieldAndDirection("EpisodeNumber", false, SortType.eInteger));
+                                tvDBEpisodes = Sorting.MultiSort<TvDB_EpisodeVM>(tvDBEpisodes, sortCriteria);
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Utils.ShowErrorMessage(ex);
+                    }
+                }
+                return tvDBEpisodes;
+            }
+        }
+        */
 
         #endregion
 
@@ -1278,11 +1286,11 @@ namespace Shoko.Desktop.ViewModel.Server
         {
             int lowestLD = int.MaxValue;
 
-			foreach (string nm in this.GetAllTitles())
-			{
-				int ld = Utils.LevenshteinDistance(input, nm);
-				if (ld < lowestLD) lowestLD = ld;
-			}
+            foreach (string nm in this.GetAllTitles())
+            {
+                int ld = Utils.LevenshteinDistance(input, nm);
+                if (ld < lowestLD) lowestLD = ld;
+            }
 
             return lowestLD;
         }

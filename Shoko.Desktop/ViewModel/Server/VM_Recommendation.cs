@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Globalization;
 using System.Threading;
 using System.Web.Script.Serialization;
@@ -41,8 +42,8 @@ namespace Shoko.Desktop.ViewModel.Server
                 {
                     Recommended_DisplayName = value.FormattedTitle;
                     Recommended_AnimeInfoExists = true;
-                    Recommended_PosterPath = value.PosterPath;
-                    Recommended_Description = value.Description;
+                    Recommended_PosterPath = value.PosterPath ?? $"pack://application:,,,/{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name};component/Images/blankposter.png";
+                    Recommended_Description = value.Description ?? Shoko.Commons.Properties.Resources.Recommendation_Overview;
                 }
                 Recommended_ShowCreateSeriesButton = (!Recommended_LocalSeriesExists && Recommended_AnimeInfoExists);
             }
@@ -104,11 +105,38 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
+        private string basedOn_Description = "";
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        public string BasedOn_Description
+        {
+            get
+            {
+                if (basedOn_Description == "")
+                {
+                    basedOn_Description = BasedOn_AniDB_Anime?.Description ??
+                                          Shoko.Commons.Properties.Resources.Recommendation_Overview;
+                }
+                return basedOn_Description;
+            }
+            set
+            {
+                this.SetField(()=>basedOn_Description,value);
+            }
+        }
+
         private string recommended_Description = "";
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string Recommended_Description
         {
-            get { return recommended_Description; }
+            get
+            {
+                if (recommended_Description == "")
+                {
+                    recommended_Description = Recommended_AniDB_Anime?.Description ??
+                                          Shoko.Commons.Properties.Resources.Recommendation_Overview;
+                }
+                return recommended_Description;
+            }
             set
             {
                 this.SetField(()=>recommended_Description,value);
@@ -120,7 +148,14 @@ namespace Shoko.Desktop.ViewModel.Server
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string Recommended_AniDB_SiteURL
         {
-            get { return recommended_AniDB_SiteURL; }
+            get
+            {
+                if (recommended_AniDB_SiteURL == "")
+                {
+                    recommended_AniDB_SiteURL = Recommended_AniDB_Anime?.AniDB_SiteURL ?? "";
+                }
+                return recommended_AniDB_SiteURL;
+            }
             set
             {
                 this.SetField(()=>recommended_AniDB_SiteURL,value);
@@ -131,7 +166,14 @@ namespace Shoko.Desktop.ViewModel.Server
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string BasedOn_AniDB_SiteURL
         {
-            get { return basedOn_AniDB_SiteURL; }
+            get
+            {
+                if (basedOn_AniDB_SiteURL == "")
+                {
+                    basedOn_AniDB_SiteURL = BasedOn_AniDB_Anime?.AniDB_SiteURL ?? "";
+                }
+                return basedOn_AniDB_SiteURL;
+            }
             set
             {
                 this.SetField(()=>BasedOn_AniDB_SiteURL,(r)=> BasedOn_AniDB_SiteURL = r, value);
@@ -195,26 +237,19 @@ namespace Shoko.Desktop.ViewModel.Server
             }
         }
 
-        private string recommended_ApprovalRating = "";
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string Recommended_ApprovalRating
         {
-            get { return recommended_ApprovalRating; }
-            set
+            get
             {
-                this.SetField(()=>recommended_ApprovalRating,value);
+                return $"{Math.Round(RecommendedApproval)}%";
             }
         }
 
-        private string basedOnVoteValueFormatted = "";
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string BasedOnVoteValueFormatted
         {
-            get { return basedOnVoteValueFormatted; }
-            set
-            {
-                this.SetField(()=>basedOnVoteValueFormatted,(r)=> basedOnVoteValueFormatted = r, value);
-            }
+            get { return (BasedOnVoteValue / 100D).ToString(CultureInfo.CurrentCulture); }
         }
     }
 }
