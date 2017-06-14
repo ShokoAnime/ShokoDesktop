@@ -45,14 +45,14 @@ namespace Shoko.Desktop.ViewModel.Server
 
             }
         }
-        public new List<CL_AnimeTag> Tags
+        public new List<VM_AnimeTag> Tags
         {
-            get { return base.Tags; }
-            set { base.Tags = value.OrderByDescending(a => a.Weight).ToList(); }
+            get { return base.Tags.CastList<VM_AnimeTag>(); }
+            set { base.Tags = value.OrderByDescending(a => a.Weight).ToList().CastList<CL_AnimeTag>(); }
         }
 
         [ScriptIgnore, JsonIgnore, XmlIgnore]
-        public List<CL_AnimeTag> TagsSummary => Tags.Take(5).ToList();
+        public List<VM_AnimeTag> TagsSummary => Tags.Take(5).ToList();
 
         public new List<CustomTag> CustomTags
         {
@@ -143,10 +143,10 @@ namespace Shoko.Desktop.ViewModel.Server
         {
             AniDBAnime = contract.AniDBAnime;
             UserVote = contract.UserVote;
-			Stat_AllVideoQuality =contract.Stat_AllVideoQuality;
-			Stat_AllVideoQuality_Episodes = contract.Stat_AllVideoQuality_Episodes;
-			Stat_AudioLanguages = contract.Stat_AudioLanguages;
-			Stat_SubtitleLanguages = contract.Stat_SubtitleLanguages;
+            Stat_AllVideoQuality =contract.Stat_AllVideoQuality;
+            Stat_AllVideoQuality_Episodes = contract.Stat_AllVideoQuality_Episodes;
+            Stat_AudioLanguages = contract.Stat_AudioLanguages;
+            Stat_SubtitleLanguages = contract.Stat_SubtitleLanguages;
             Tags = contract.Tags;
             CustomTags = contract.CustomTags;
             AnimeTitles = contract.AnimeTitles;

@@ -22,7 +22,7 @@ namespace Shoko.Desktop.ViewModel.Server
         private VM_AniDB_Anime anime;
         public new int AnimeID
         {
-            get { return base.AnimeID; }
+            get => base.AnimeID;
             set
             {
                 base.AnimeID = value;
@@ -45,14 +45,14 @@ namespace Shoko.Desktop.ViewModel.Server
         #region TvDB
 
         [ScriptIgnore, JsonIgnore, XmlIgnore]
-        public bool TvDBCrossRefExists => !(Obs_CrossRef_AniDB_TvDB.Count == 0);
+        public bool TvDBCrossRefExists => Obs_CrossRef_AniDB_TvDB.Count != 0;
 
         [ScriptIgnore, JsonIgnore, XmlIgnore]
-        public bool TvDBCrossRefMissing => (Obs_CrossRef_AniDB_TvDB.Count == 0);
+        public bool TvDBCrossRefMissing => Obs_CrossRef_AniDB_TvDB.Count == 0;
 
         public new List<VM_TvDB_Series> TvDBSeries
         {
-            get { return base.TvDBSeries.CastList<VM_TvDB_Series>(); }
+            get => base.TvDBSeries.CastList<VM_TvDB_Series>();
             set
             {
                 this.SetField(()=>base.TvDBSeries, (r)=>base.TvDBSeries=r, value.CastList<TvDB_Series>(), () => TvDBSeries, () => TvDBCrossRefExists, () => TvDBCrossRefMissing);
@@ -85,12 +85,12 @@ namespace Shoko.Desktop.ViewModel.Server
 
         public new List<VM_TvDB_Episode> TvDBEpisodes
         {
-            get { return base.TvDBEpisodes.CastList<VM_TvDB_Episode>(); }
+            get => base.TvDBEpisodes.CastList<VM_TvDB_Episode>();
             set { this.SetField(()=>base.TvDBEpisodes, (r)=>base.TvDBEpisodes=r, value.CastList<TvDB_Episode>(),()=>TvDBEpisodes); }
         }
         public new List<VM_TvDB_ImageFanart> TvDBImageFanarts
         {
-            get { return base.TvDBImageFanarts.CastList<VM_TvDB_ImageFanart>(); }
+            get => base.TvDBImageFanarts.CastList<VM_TvDB_ImageFanart>();
             set
             {
                 foreach (VM_TvDB_ImageFanart contract in value)
@@ -104,7 +104,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
         public new List<VM_TvDB_ImagePoster> TvDBImagePosters
         {
-            get { return base.TvDBImagePosters.CastList<VM_TvDB_ImagePoster>(); }
+            get => base.TvDBImagePosters.CastList<VM_TvDB_ImagePoster>();
             set
             {
                 foreach (VM_TvDB_ImagePoster contract in value)
@@ -118,7 +118,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
         public new List<VM_TvDB_ImageWideBanner> TvDBImageWideBanners
         {
-            get { return base.TvDBImageWideBanners.CastList<VM_TvDB_ImageWideBanner>(); }
+            get => base.TvDBImageWideBanners.CastList<VM_TvDB_ImageWideBanner>();
             set
             {
                 foreach (VM_TvDB_ImageWideBanner contract in value)
@@ -143,7 +143,7 @@ namespace Shoko.Desktop.ViewModel.Server
 
         public new VM_MovieDB_Movie MovieDBMovie
         {
-            get { return (VM_MovieDB_Movie)base.MovieDBMovie; }
+            get => (VM_MovieDB_Movie)base.MovieDBMovie;
             set
             {
                 this.SetField(()=>base.MovieDBMovie, (r)=>base.MovieDBMovie=r, value, ()=>MovieDBMovie, () => MovieDBCrossRefExists, () => MovieDBCrossRefMissing);
@@ -152,7 +152,7 @@ namespace Shoko.Desktop.ViewModel.Server
 
         public new CrossRef_AniDB_Other CrossRef_AniDB_MovieDB
         {
-            get { return base.CrossRef_AniDB_MovieDB; }
+            get => base.CrossRef_AniDB_MovieDB;
             set
             {
                 this.SetField(()=>base.CrossRef_AniDB_MovieDB,(r)=> base.CrossRef_AniDB_MovieDB = r, value, () => CrossRef_AniDB_MovieDB, () => MovieDBCrossRefExists, ()=>MovieDBCrossRefMissing);
@@ -161,7 +161,7 @@ namespace Shoko.Desktop.ViewModel.Server
 
         public new List<VM_MovieDB_Fanart> MovieDBFanarts
         {
-            get { return base.MovieDBFanarts.CastList<VM_MovieDB_Fanart>(); }
+            get => base.MovieDBFanarts.CastList<VM_MovieDB_Fanart>();
             set
             {
                 foreach (VM_MovieDB_Fanart contract in value)
@@ -175,7 +175,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
         public new List<VM_MovieDB_Poster> MovieDBPosters
         {
-            get { return base.MovieDBPosters.CastList<VM_MovieDB_Poster>(); }
+            get => base.MovieDBPosters.CastList<VM_MovieDB_Poster>();
             set
             {
                 foreach (VM_MovieDB_Poster contract in value)
@@ -196,7 +196,7 @@ namespace Shoko.Desktop.ViewModel.Server
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public List<VM_PosterContainer> AllPosters
         {
-            get { return allPosters; }
+            get => allPosters;
             set
             {
                 this.SetField(()=>allPosters, value);
@@ -207,7 +207,7 @@ namespace Shoko.Desktop.ViewModel.Server
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public List<VM_FanartContainer> AllFanarts
         {
-            get { return allFanarts; }
+            get => allFanarts;
             set
             {
                 this.SetField(()=>allFanarts, value);
@@ -222,7 +222,7 @@ namespace Shoko.Desktop.ViewModel.Server
 
         public new List<VM_Trakt_Show> TraktShows
         {
-            get { return base.TraktShows.CastList<VM_Trakt_Show>(); }
+            get => base.TraktShows.CastList<VM_Trakt_Show>();
             set
             {
                 this.SetField(()=>base.TraktShows,(r)=>base.TraktShows=r, value.CastList<CL_Trakt_Show>(), ()=>TraktShows, () => TraktCrossRefExists, () => TraktCrossRefMissing);
@@ -231,7 +231,7 @@ namespace Shoko.Desktop.ViewModel.Server
 
         public new List<VM_Trakt_ImageFanart> TraktImageFanarts
         {
-            get { return base.TraktImageFanarts.CastList<VM_Trakt_ImageFanart>(); }
+            get => base.TraktImageFanarts.CastList<VM_Trakt_ImageFanart>();
             set
             {
                 foreach (VM_Trakt_ImageFanart contract in value)
@@ -246,7 +246,7 @@ namespace Shoko.Desktop.ViewModel.Server
 
         public new List<VM_Trakt_ImagePoster> TraktImagePosters
         {
-            get { return base.TraktImagePosters.CastList<VM_Trakt_ImagePoster>(); }
+            get => base.TraktImagePosters.CastList<VM_Trakt_ImagePoster>();
             set
             {
                 foreach (VM_Trakt_ImagePoster contract in value)

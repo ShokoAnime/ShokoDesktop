@@ -35,11 +35,9 @@ namespace Shoko.Desktop.ViewModel
                             // create a dictionary of absolute episode numbers for tvdb episodes
                             // sort by season and episode number
                             // ignore season 0, which is used for specials
-                            List<VM_TvDB_Episode> eps = TvDBEpisodes;
-
 
                             int i = 1;
-                            foreach (VM_TvDB_Episode ep in eps)
+                            foreach (VM_TvDB_Episode ep in TvDBEpisodes)
                             {
                                 dictTvDBEpisodes[i] = ep;
                                 i++;
@@ -72,10 +70,9 @@ namespace Shoko.Desktop.ViewModel
                             dictTvDBSeasons = new Dictionary<int, int>();
                             // create a dictionary of season numbers and the first episode for that season
 
-                            List<VM_TvDB_Episode> eps = TvDBEpisodes;
                             int i = 1;
                             int lastSeason = -999;
-                            foreach (VM_TvDB_Episode ep in eps)
+                            foreach (VM_TvDB_Episode ep in TvDBEpisodes)
                             {
                                 if (ep.SeasonNumber != lastSeason)
                                     dictTvDBSeasons[ep.SeasonNumber] = i;
@@ -112,11 +109,9 @@ namespace Shoko.Desktop.ViewModel
 
                             dictTvDBSeasonsSpecials = new Dictionary<int, int>();
                             // create a dictionary of season numbers and the first episode for that season
-
-                            List<VM_TvDB_Episode> eps = TvDBEpisodes;
                             int i = 1;
                             int lastSeason = -999;
-                            foreach (VM_TvDB_Episode ep in eps)
+                            foreach (VM_TvDB_Episode ep in TvDBEpisodes)
                             {
                                 if (ep.SeasonNumber > 0) continue;
 

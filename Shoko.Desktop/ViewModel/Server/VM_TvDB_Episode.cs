@@ -13,12 +13,30 @@ namespace Shoko.Desktop.ViewModel.Server
 {
     public class VM_TvDB_Episode : TvDB_Episode
     {
+        public new string EpisodeName
+        {
+            get => base.EpisodeName == null ? null : string.Intern(base.EpisodeName);
+            set => base.EpisodeName = value == null ? null : string.Intern(value);
+        }
+
+        public new string Overview
+        {
+            get => base.Overview == null ? null : string.Intern(base.Overview);
+            set => base.Overview = value == null ? null : string.Intern(value);
+        }
+
+        public new string Filename
+        {
+            get => base.Filename == null ? null : string.Intern(base.Filename);
+            set => base.Filename = value == null ? null : string.Intern(value);
+        }
+
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string ImagePath
         {
             get
             {
-                if (string.IsNullOrEmpty(Filename)) return @"/Images/EpisodeThumb_NotFound.png";
+                if (string.IsNullOrEmpty(Filename)) return string.Intern("/Images/EpisodeThumb_NotFound.png");
 
                 if (File.Exists(FullImagePath)) return FullImagePath;
 
@@ -27,7 +45,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         [ScriptIgnore, JsonIgnore, XmlIgnore]
-        public string FullImagePathPlain => string.IsNullOrEmpty(Filename) ? "" : Path.Combine(Utils.GetTvDBImagePath(), Filename.Replace("/", @"\"));
+        public string FullImagePathPlain => string.IsNullOrEmpty(Filename) ? string.Intern("") : string.Intern(Path.Combine(Utils.GetTvDBImagePath(), Filename.Replace("/", @"\")));
 
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string FullImagePath
@@ -48,6 +66,6 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         [ScriptIgnore, JsonIgnore, XmlIgnore]
-        public string OnlineImagePath => string.IsNullOrEmpty(Filename) ? "" : string.Format(Models.Constants.URLS.TvDB_Images, Filename);
+        public string OnlineImagePath => string.IsNullOrEmpty(Filename) ? string.Intern("") : string.Intern(string.Format(Models.Constants.URLS.TvDB_Images, Filename));
     }
 }

@@ -78,11 +78,14 @@ namespace Shoko.Desktop
             Rankings
         };
 
-    public static readonly int TAB_Settings_Essential = 0;
-        public static readonly int TAB_Settings_AniDB = 1;
-        public static readonly int TAB_Settings_TvDB = 2;
-        public static readonly int TAB_Settings_WebCache = 3;
-        public static readonly int TAB_Settings_Display = 4;
+        public enum TAB_Settings
+        {
+            Essential = 0,
+            AniDB,
+            TvDB,
+            WebCache,
+            Display
+        }
 
         private static System.Timers.Timer postStartTimer = null;
 
@@ -849,7 +852,7 @@ namespace Shoko.Desktop
                 if (e.Source is TabControl)
                 {
                     TabControl tab = e.Source as TabControl;
-                    if (tab.SelectedIndex == TAB_Settings_Display)
+                    if (tab.SelectedIndex == (int) TAB_Settings.Display)
                     {
                         if (VM_ShokoServer.Instance.SelectedLanguages.Count == 0) VM_ShokoServer.Instance.RefreshNamingLanguages();
                     }
@@ -1346,7 +1349,7 @@ namespace Shoko.Desktop
         private void CommandBinding_EditTraktCredentials(object sender, ExecutedRoutedEventArgs e)
         {
             tabControl1.SelectedIndex = (int) TAB_MAIN.Settings;
-            tabSettingsChild.SelectedIndex = TAB_Settings_TvDB;
+            tabSettingsChild.SelectedIndex = (int) TAB_Settings.TvDB;
         }
 
         public void ShowPinnedFileAvDump(VM_VideoLocal vid)
@@ -2027,9 +2030,9 @@ namespace Shoko.Desktop
                 // move to all groups
                 VM_MainListHelper.Instance.ShowAllGroups();
 
-                if (e.Parameter is CL_AnimeTag)
+                if (e.Parameter is VM_AnimeTag)
                 {
-                    CL_AnimeTag obj = e.Parameter as CL_AnimeTag;
+                    VM_AnimeTag obj = e.Parameter as VM_AnimeTag;
                     txtGroupSearch.Text = obj.TagName;
                 }
 

@@ -25,7 +25,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         [ScriptIgnore, JsonIgnore, XmlIgnore]
-        public string FullImagePathPlain => Path.Combine(Utils.GetTvDBImagePath(), BannerPath.Replace("/", @"\"));
+        public string FullImagePathPlain => string.Intern(Path.Combine(Utils.GetTvDBImagePath(), BannerPath.Replace("/", @"\")));
 
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string FullImagePath
@@ -62,6 +62,30 @@ namespace Shoko.Desktop.ViewModel.Server
         {
             get { return isImageDefault; }
             set { this.SetField(()=>isImageDefault,value); }
+        }
+
+        public new string BannerPath
+        {
+            get => base.BannerPath == null ? null : string.Intern(base.BannerPath);
+            set => base.BannerPath = value == null ? null : string.Intern(value);
+        }
+
+        public new string BannerType
+        {
+            get => base.BannerType == null ? null : string.Intern(base.BannerType);
+            set => base.BannerType = value == null ? null : string.Intern(value);
+        }
+
+        public new string BannerType2
+        {
+            get => base.BannerType2 == null ? null : string.Intern(base.BannerType2);
+            set => base.BannerType2 = value == null ? null : string.Intern(value);
+        }
+
+        public new string Language
+        {
+            get => base.Language == null ? null : string.Intern(base.Language);
+            set => base.Language = value == null ? null : string.Intern(value);
         }
 
     }

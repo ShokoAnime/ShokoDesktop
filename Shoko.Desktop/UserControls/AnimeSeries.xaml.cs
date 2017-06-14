@@ -1,5 +1,4 @@
-﻿using NLog;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
@@ -9,17 +8,16 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using NLog;
 using Shoko.Commons.Extensions;
 using Shoko.Desktop.Forms;
 using Shoko.Desktop.Utilities;
+using Shoko.Desktop.VideoPlayers;
 using Shoko.Desktop.ViewModel;
 using Shoko.Desktop.ViewModel.Server;
 using Shoko.Models.Client;
 using Shoko.Models.Enums;
 using Shoko.Models.Server;
-using CustomTagCrossRefType = Shoko.Models.Enums.CustomTagCrossRefType;
-using ImageEntityType = Shoko.Models.Enums.ImageEntityType;
-using ImageSizeType = Shoko.Models.Enums.ImageSizeType;
 
 namespace Shoko.Desktop.UserControls
 {
@@ -77,7 +75,7 @@ namespace Shoko.Desktop.UserControls
         }
 
         public static readonly DependencyProperty SeriesPos_TvDBLinksProperty = DependencyProperty.Register("SeriesPos_TvDBLinks",
-            typeof(int), typeof(AnimeSeries), new UIPropertyMetadata((int)6, null));
+            typeof(int), typeof(AnimeSeries), new UIPropertyMetadata(6, null));
 
         public int SeriesPos_TvDBLinks
         {
@@ -86,7 +84,7 @@ namespace Shoko.Desktop.UserControls
         }
 
         public static readonly DependencyProperty SeriesPos_PlayNextEpisodeProperty = DependencyProperty.Register("SeriesPos_PlayNextEpisode",
-            typeof(int), typeof(AnimeSeries), new UIPropertyMetadata((int)6, null));
+            typeof(int), typeof(AnimeSeries), new UIPropertyMetadata(6, null));
 
         public int SeriesPos_PlayNextEpisode
         {
@@ -95,7 +93,7 @@ namespace Shoko.Desktop.UserControls
         }
 
         public static readonly DependencyProperty SeriesPos_TitlesProperty = DependencyProperty.Register("SeriesPos_Titles",
-            typeof(int), typeof(AnimeSeries), new UIPropertyMetadata((int)6, null));
+            typeof(int), typeof(AnimeSeries), new UIPropertyMetadata(6, null));
 
         public int SeriesPos_Titles
         {
@@ -104,7 +102,7 @@ namespace Shoko.Desktop.UserControls
         }
 
         public static readonly DependencyProperty SeriesPos_TagsProperty = DependencyProperty.Register("SeriesPos_Tags",
-            typeof(int), typeof(AnimeSeries), new UIPropertyMetadata((int)6, null));
+            typeof(int), typeof(AnimeSeries), new UIPropertyMetadata(6, null));
 
         public int SeriesPos_Tags
         {
@@ -113,7 +111,7 @@ namespace Shoko.Desktop.UserControls
         }
 
         public static readonly DependencyProperty SeriesPos_CustomTagsProperty = DependencyProperty.Register("SeriesPos_CustomTags",
-            typeof(int), typeof(AnimeSeries), new UIPropertyMetadata((int)7, null));
+            typeof(int), typeof(AnimeSeries), new UIPropertyMetadata(7, null));
 
         public int SeriesPos_CustomTags
         {
@@ -156,40 +154,42 @@ namespace Shoko.Desktop.UserControls
 
             playlistMenu = new ContextMenu();
 
-            cRating.OnRatingValueChangedEvent += new RatingControl.RatingValueChangedHandler(cRating_OnRatingValueChangedEvent);
+            cRating.OnRatingValueChangedEvent += cRating_OnRatingValueChangedEvent;
 
-            Loaded += new RoutedEventHandler(AnimeSeries_Loaded);
-            btnAnimeGroupShow.Click += new RoutedEventHandler(btnAnimeGroupShow_Click);
-            btnTvDBLinks.Click += new RoutedEventHandler(btnTvDBLinks_Click);
+            Loaded += AnimeSeries_Loaded;
+            btnAnimeGroupShow.Click += btnAnimeGroupShow_Click;
+            btnTvDBLinks.Click += btnTvDBLinks_Click;
             //btnPlayNextEpisode.Click += new RoutedEventHandler(btnPlayNextEpisode_Click);
-            
+
             btnSwitchView.Click += BtnSwitchView_Click;
 
-            DataContextChanged += new DependencyPropertyChangedEventHandler(AnimeSeries_DataContextChanged);
+            DataContextChanged += AnimeSeries_DataContextChanged;
 
-            tabContainer.SelectionChanged += new SelectionChangedEventHandler(tabContainer_SelectionChanged);
+            tabContainer.SelectionChanged += tabContainer_SelectionChanged;
 
-            btnUpdateAniDBInfo.Click += new RoutedEventHandler(btnUpdateAniDBInfo_Click);
-            LayoutUpdated += new EventHandler(AnimeSeries_LayoutUpdated);
+            btnUpdateAniDBInfo.Click += btnUpdateAniDBInfo_Click;
+            LayoutUpdated += AnimeSeries_LayoutUpdated;
 
-            btnEditSeries.Click += new RoutedEventHandler(btnEditSeries_Click);
-            btnEditSeriesFinish.Click += new RoutedEventHandler(btnEditSeriesFinish_Click);
+            btnEditSeries.Click += btnEditSeries_Click;
+            btnEditSeriesFinish.Click += btnEditSeriesFinish_Click;
 
-            btnAnimeTitles.Click += new RoutedEventHandler(btnAnimeTitles_Click);
-            btnAnimeTags.Click += new RoutedEventHandler(btnAnimeTags_Click);
-            btnCustomTags.Click += new RoutedEventHandler(btnCustomTags_Click);
-            btnAddCustomTag.Click += new RoutedEventHandler(btnAddCustomTag_Click);
-            btnManageTags.Click += new RoutedEventHandler(btnManageTags_Click);
+            btnAnimeTitles.Click += btnAnimeTitles_Click;
+            btnAnimeTags.Click += btnAnimeTags_Click;
+            btnCustomTags.Click += btnCustomTags_Click;
+            btnAddCustomTag.Click += btnAddCustomTag_Click;
+            btnManageTags.Click += btnManageTags_Click;
 
             btnPlaylistAdd.ContextMenu = playlistMenu;
-            btnPlaylistAdd.Click += new RoutedEventHandler(btnPlaylistAdd_Click);
+            btnPlaylistAdd.Click += btnPlaylistAdd_Click;
 
-            btnRandomEpisode.Click += new RoutedEventHandler(btnRandomEpisode_Click);
+            btnRandomEpisode.Click += btnRandomEpisode_Click;
 
-            chkSerNameOverride.Click += new RoutedEventHandler(chkSerNameOverride_Click);
-            btnSelectOverrideName.Click += new RoutedEventHandler(btnSelectOverrideName_Click);
+            chkSerNameOverride.Click += chkSerNameOverride_Click;
+            btnSelectOverrideName.Click += btnSelectOverrideName_Click;
 
-            MainWindow.videoHandler.VideoWatchedEvent += new VideoPlayers.VideoHandler.VideoWatchedEventHandler(videoHandler_VideoWatchedEvent);
+            MainWindow.videoHandler.VideoWatchedEvent += videoHandler_VideoWatchedEvent;
+
+            Unloaded += (sender, e) => MainWindow.videoHandler.VideoWatchedEvent -= videoHandler_VideoWatchedEvent;
 
             SetSeriesWidgetOrder();
 
@@ -237,7 +237,7 @@ namespace Shoko.Desktop.UserControls
             catch { }
         }
 
-        void videoHandler_VideoWatchedEvent(VideoPlayers.VideoWatchedEventArgs ev)
+        void videoHandler_VideoWatchedEvent(VideoWatchedEventArgs ev)
         {
             if (MainWindow.CurrentMainTabIndex == (int) MainWindow.TAB_MAIN.Collection || MainWindow.CurrentMainTabIndex == (int) MainWindow.TAB_MAIN.Pinned)
                 ShowNextEpisode();
@@ -328,15 +328,15 @@ namespace Shoko.Desktop.UserControls
                 playlistMenu.Items.Clear();
 
                 MenuItem itemSeries = new MenuItem();
-                itemSeries.Header = Shoko.Commons.Properties.Resources.Anime_AddSeries;
-                itemSeries.Click += new RoutedEventHandler(playlistMenuItem_Click);
+                itemSeries.Header = Commons.Properties.Resources.Anime_AddSeries;
+                itemSeries.Click += playlistMenuItem_Click;
                 playlistMenu.Items.Add(itemSeries);
 
                 Separator sep = new Separator();
 
                 MenuItem itemSeriesNew = new MenuItem();
-                itemSeriesNew.Header = Shoko.Commons.Properties.Resources.Anime_NewPlaylists;
-                itemSeriesNew.Click += new RoutedEventHandler(playlistMenuItem_Click);
+                itemSeriesNew.Header = Commons.Properties.Resources.Anime_NewPlaylists;
+                itemSeriesNew.Click += playlistMenuItem_Click;
                 cmd = new PlaylistMenuCommand(PlaylistItemType.Series, -1); // new playlist
                 itemSeriesNew.CommandParameter = cmd;
                 itemSeries.Items.Add(itemSeriesNew);
@@ -346,21 +346,21 @@ namespace Shoko.Desktop.UserControls
                 {
                     MenuItem itemSeriesPL = new MenuItem();
                     itemSeriesPL.Header = contract.PlaylistName;
-                    itemSeriesPL.Click += new RoutedEventHandler(playlistMenuItem_Click);
+                    itemSeriesPL.Click += playlistMenuItem_Click;
                     cmd = new PlaylistMenuCommand(PlaylistItemType.Series, contract.PlaylistID);
                     itemSeriesPL.CommandParameter = cmd;
                     itemSeries.Items.Add(itemSeriesPL);
                 }
 
                 MenuItem itemAllEpisodes = new MenuItem();
-                itemAllEpisodes.Header = Shoko.Commons.Properties.Resources.Anime_AddAllEpisodes;
+                itemAllEpisodes.Header = Commons.Properties.Resources.Anime_AddAllEpisodes;
                 playlistMenu.Items.Add(itemAllEpisodes);
 
                 Separator sep2 = new Separator();
 
                 MenuItem itemAllEpisodesNew = new MenuItem();
-                itemAllEpisodesNew.Header = Shoko.Commons.Properties.Resources.Anime_NewPlaylists;
-                itemAllEpisodesNew.Click += new RoutedEventHandler(playlistMenuItem_Click);
+                itemAllEpisodesNew.Header = Commons.Properties.Resources.Anime_NewPlaylists;
+                itemAllEpisodesNew.Click += playlistMenuItem_Click;
                 cmd = new PlaylistMenuCommand(PlaylistItemType.AllEpisodes, -1); // new playlist
                 itemAllEpisodesNew.CommandParameter = cmd;
                 itemAllEpisodes.Items.Add(itemAllEpisodesNew);
@@ -370,7 +370,7 @@ namespace Shoko.Desktop.UserControls
                 {
                     MenuItem itemSeriesPL = new MenuItem();
                     itemSeriesPL.Header = contract.PlaylistName;
-                    itemSeriesPL.Click += new RoutedEventHandler(playlistMenuItem_Click);
+                    itemSeriesPL.Click += playlistMenuItem_Click;
                     cmd = new PlaylistMenuCommand(PlaylistItemType.AllEpisodes, contract.PlaylistID);
                     itemSeriesPL.CommandParameter = cmd;
                     itemAllEpisodes.Items.Add(itemSeriesPL);
@@ -378,14 +378,14 @@ namespace Shoko.Desktop.UserControls
 
 
                 MenuItem itemUnwatchedEpisodes = new MenuItem();
-                itemUnwatchedEpisodes.Header = Shoko.Commons.Properties.Resources.Anime_AddUnwatched;
+                itemUnwatchedEpisodes.Header = Commons.Properties.Resources.Anime_AddUnwatched;
                 playlistMenu.Items.Add(itemUnwatchedEpisodes);
 
                 Separator sep3 = new Separator();
 
                 MenuItem itemUnwatchedEpisodesNew = new MenuItem();
-                itemUnwatchedEpisodesNew.Header = Shoko.Commons.Properties.Resources.Anime_NewPlaylists;
-                itemUnwatchedEpisodesNew.Click += new RoutedEventHandler(playlistMenuItem_Click);
+                itemUnwatchedEpisodesNew.Header = Commons.Properties.Resources.Anime_NewPlaylists;
+                itemUnwatchedEpisodesNew.Click += playlistMenuItem_Click;
                 cmd = new PlaylistMenuCommand(PlaylistItemType.UnwatchedEpisodes, -1); // new playlist
                 itemUnwatchedEpisodesNew.CommandParameter = cmd;
                 itemUnwatchedEpisodes.Items.Add(itemUnwatchedEpisodesNew);
@@ -395,7 +395,7 @@ namespace Shoko.Desktop.UserControls
                 {
                     MenuItem itemSeriesPL = new MenuItem();
                     itemSeriesPL.Header = contract.PlaylistName;
-                    itemSeriesPL.Click += new RoutedEventHandler(playlistMenuItem_Click);
+                    itemSeriesPL.Click += playlistMenuItem_Click;
                     cmd = new PlaylistMenuCommand(PlaylistItemType.UnwatchedEpisodes, contract.PlaylistID);
                     itemSeriesPL.CommandParameter = cmd;
                     itemUnwatchedEpisodes.Items.Add(itemSeriesPL);
@@ -425,7 +425,7 @@ namespace Shoko.Desktop.UserControls
                 if (item != null && item.CommandParameter != null)
                 {
                     PlaylistMenuCommand cmd = item.CommandParameter as PlaylistMenuCommand;
-                    Debug.Write(Shoko.Commons.Properties.Resources.Anime_PlaylistMenu + " " + cmd.ToString() + Environment.NewLine);
+                    Debug.Write(Commons.Properties.Resources.Anime_PlaylistMenu + " " + cmd + Environment.NewLine);
 
                     VM_AnimeSeries_User ser = DataContext as VM_AnimeSeries_User;
                     if (ser == null) return;
@@ -442,7 +442,7 @@ namespace Shoko.Desktop.UserControls
                         pl = (VM_Playlist)VM_ShokoServer.Instance.ShokoServices.GetPlaylist(cmd.PlaylistID);
                         if (pl == null)
                         {
-                            MessageBox.Show(Shoko.Commons.Properties.Resources.Anime_PlaylistMissing, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(Commons.Properties.Resources.Anime_PlaylistMissing, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                             return;
                         }                       
                     }
@@ -530,8 +530,8 @@ namespace Shoko.Desktop.UserControls
 		        ser.Save();
 
 		        // prompt to change parent group name
-		        MessageBoxResult res = MessageBox.Show(Shoko.Commons.Properties.Resources.Anime_RenameParent,
-                    Shoko.Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
+		        MessageBoxResult res = MessageBox.Show(Commons.Properties.Resources.Anime_RenameParent,
+                    Commons.Properties.Resources.Confirm, MessageBoxButton.YesNo, MessageBoxImage.Question);
 		        if (res == MessageBoxResult.Yes)
 		        {
 			        VM_AnimeGroup_User thisGrp = VM_MainListHelper.Instance.AllGroupsDictionary[ser.AnimeGroupID];
@@ -759,7 +759,7 @@ namespace Shoko.Desktop.UserControls
 
                 if (res.Length > 0)
                 {
-                    MessageBox.Show(res, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(res, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
                 {
@@ -808,7 +808,7 @@ namespace Shoko.Desktop.UserControls
                 Cursor = Cursors.Wait;
                 string res = "";
 
-                string disabledMessage = Shoko.Commons.Properties.Resources.Anime_DisabledImage;
+                string disabledMessage = Commons.Properties.Resources.Anime_DisabledImage;
 
                 if (img.GetType() == typeof(VM_PosterContainer))
                 {
@@ -816,7 +816,7 @@ namespace Shoko.Desktop.UserControls
 
                     if (isDefault && !poster.IsImageEnabled)
                     {
-                        MessageBox.Show(disabledMessage, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(disabledMessage, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
                     }
 
@@ -859,7 +859,7 @@ namespace Shoko.Desktop.UserControls
 
                     if (isDefault && !fanart.IsImageEnabled)
                     {
-                        MessageBox.Show(disabledMessage, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(disabledMessage, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
                     }
 
@@ -898,7 +898,7 @@ namespace Shoko.Desktop.UserControls
 
                     if (isDefault && !banner.IsImageEnabled)
                     {
-                        MessageBox.Show(disabledMessage, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(disabledMessage, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
                     }
 
@@ -911,7 +911,7 @@ namespace Shoko.Desktop.UserControls
 
                 if (res.Length > 0)
                 {
-                    MessageBox.Show(res, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(res, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
                 {
@@ -1098,7 +1098,6 @@ namespace Shoko.Desktop.UserControls
                 if (!string.IsNullOrEmpty(resp.ErrorMessage))
                 {
                     Utils.ShowErrorMessage(resp.ErrorMessage);
-                    return;
                 }
                 else
                 {
@@ -1137,7 +1136,7 @@ namespace Shoko.Desktop.UserControls
 
                 if (res.Length > 0)
                 {
-                    MessageBox.Show(res, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(res, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
                 {
@@ -1239,9 +1238,9 @@ namespace Shoko.Desktop.UserControls
             }
 
             cboVoteType.Items.Clear();
-            cboVoteType.Items.Add(Shoko.Commons.Properties.Resources.VoteTypeAnimeTemporary);
+            cboVoteType.Items.Add(Commons.Properties.Resources.VoteTypeAnimeTemporary);
             if (ser.AniDBAnime.AniDBAnime.FinishedAiring)
-                cboVoteType.Items.Add(Shoko.Commons.Properties.Resources.VoteTypeAnimePermanent);
+                cboVoteType.Items.Add(Commons.Properties.Resources.VoteTypeAnimePermanent);
 
             if (ser.AniDBAnime.AniDBAnime.FinishedAiring && ser.AllFilesWatched)
                 cboVoteType.SelectedIndex = 1;
@@ -1324,8 +1323,8 @@ namespace Shoko.Desktop.UserControls
                 decimal rating = (decimal)ev.RatingValue;
 
                 int voteType = 1;
-                if (cboVoteType.SelectedItem.ToString() == Shoko.Commons.Properties.Resources.VoteTypeAnimeTemporary) voteType = 2;
-                if (cboVoteType.SelectedItem.ToString() == Shoko.Commons.Properties.Resources.VoteTypeAnimePermanent) voteType = 1;
+                if (cboVoteType.SelectedItem.ToString() == Commons.Properties.Resources.VoteTypeAnimeTemporary) voteType = 2;
+                if (cboVoteType.SelectedItem.ToString() == Commons.Properties.Resources.VoteTypeAnimePermanent) voteType = 1;
 
                 VM_ShokoServer.Instance.VoteAnime(ser.AniDB_ID, rating, voteType);
 
@@ -1377,7 +1376,7 @@ namespace Shoko.Desktop.UserControls
                         newStatus, VM_ShokoServer.Instance.CurrentUser.JMMUserID);
                     if (!string.IsNullOrEmpty(response.ErrorMessage))
                     {
-                        MessageBox.Show(response.ErrorMessage, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(response.ErrorMessage, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
                     }
 
@@ -1388,7 +1387,7 @@ namespace Shoko.Desktop.UserControls
 
                 ShowNextEpisode();
 
-                if (newStatus == true && serTemp != null)
+                if (newStatus && serTemp != null)
                 {
                     Utils.PromptToRateSeries(serTemp, parentWindow);
                 }

@@ -98,10 +98,8 @@ namespace Shoko.Desktop.ViewModel
                         // create a dictionary of absolute episode numbers for tvdb episodes
                         // sort by season and episode number
                         // ignore season 0, which is used for specials
-                        List<VM_TvDB_Episode> eps = det.TvDBEpisodes;
-
                         int i = 1;
-                        foreach (VM_TvDB_Episode ep in eps)
+                        foreach (VM_TvDB_Episode ep in det.TvDBEpisodes)
                         {
                             dictTvDBEpisodes[i] = ep;
                             i++;

@@ -36,7 +36,7 @@ namespace Shoko.Desktop.ViewModel.Server
             {
                 if (string.IsNullOrEmpty(Description))
                     return Shoko.Commons.Properties.Resources.Recommendation_NoOverview;
-                return Description;
+                return string.Intern(Description);
             }
         }
 

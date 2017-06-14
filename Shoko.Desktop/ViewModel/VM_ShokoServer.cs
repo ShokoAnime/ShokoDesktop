@@ -143,6 +143,7 @@ namespace Shoko.Desktop.ViewModel
                 mappings.Add(typeof(AniDB_Episode), typeof(VM_AniDB_Episode));
                 mappings.Add(typeof(AniDB_Recommendation), typeof(VM_AniDB_Recommendation));
                 mappings.Add(typeof(AniDB_Seiyuu), typeof(VM_AniDB_Seiyuu));
+                mappings.Add(typeof(CL_AnimeTag), typeof(VM_AnimeTag));
                 mappings.Add(typeof(CL_AnimeEpisode_User), typeof(VM_AnimeEpisode_User));
                 mappings.Add(typeof(CL_AnimeGroup_User), typeof(VM_AnimeGroup_User));
                 mappings.Add(typeof(CL_AnimeRating), typeof(VM_AnimeRating));
