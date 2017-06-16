@@ -789,6 +789,8 @@ namespace Shoko.Desktop.ViewModel
                     v.GetDirectChildren();
                 }
                 LastChange = changes.LastChange;
+
+                GC.Collect();
             }
             catch (Exception ex)
             {
@@ -823,6 +825,7 @@ namespace Shoko.Desktop.ViewModel
             {
                 v.PopulateSerieInfo(AllGroupsDictionary, AllSeriesDictionary);
             }
+            GC.Collect();
         }
 
         public void InitGroupsSeriesData()
