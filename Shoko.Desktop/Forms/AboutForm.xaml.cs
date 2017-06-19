@@ -24,7 +24,7 @@ namespace Shoko.Desktop.Forms
             if (mdw == null) return;
 
             Close();
-            mdw.CheckForUpdatesNew(true);
+            mdw.CheckForUpdates(true);
         }
 
         private void cbUpdateChannel_DropDownClosed(object sender, System.EventArgs e)

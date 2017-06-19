@@ -494,7 +494,7 @@ namespace Shoko.Desktop
 
             postStartTimer.Start();
 
-            CheckForUpdatesNew(false);
+            CheckForUpdates(false);
 
             var collView = CollectionViewSource.GetDefaultView(tabControl1.Items);
             collView.CurrentChanging += CollView_CurrentChanging;
@@ -508,7 +508,7 @@ namespace Shoko.Desktop
                 DownloadAllImages();
         }
 
-        public void CheckForUpdatesNew(bool forceShowForm)
+        public void CheckForUpdates(bool forceShowForm)
         {
             try
             {
@@ -527,7 +527,7 @@ namespace Shoko.Desktop
                 verNew =
                         ShokoAutoUpdatesHelper.ConvertToAbsoluteVersion(
                             ShokoAutoUpdatesHelper.GetLatestVersionNumber(AppSettings.UpdateChannel));
-
+                
                 //verNew = verInfo.versions.DesktopVersionAbs;
                 verCurrent = (an.Version.Revision * 100) +
                     (an.Version.Build * 100 * 100) +
