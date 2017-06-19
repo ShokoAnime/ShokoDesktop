@@ -1545,7 +1545,7 @@
                         <TextBlock VerticalAlignment="Center" Margin="0,0,0,0" Text=")" FontWeight="Bold"/>
                         <TextBlock VerticalAlignment="Center" Margin="10,0,0,0" Text="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=BanReason}"/>
                         <usercontrols:HyperLinkStandard VerticalAlignment="Center" Margin="10,0,0,0" DisplayText="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=WhatDoesThisMean}" Grid.Column="1"
-                                                                        URL="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Link_AniDBBanned}"/>
+                                                                        URL="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Link_AniDBBan}"/>
                     </StackPanel>
 
 
