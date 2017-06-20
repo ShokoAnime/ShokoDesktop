@@ -201,7 +201,7 @@ namespace Shoko.Desktop.ViewModel
                     proxy = new WebProxy(address.Host, address.Port);
                 }
 
-                _shokoservices = ClientFactory.Create<IShokoServer>($"http://{AppSettings.JMMServer_Address}:{AppSettings.JMMServer_Port}/",mappings,proxy:proxy);
+                _shokoservices = ClientFactory.Create<IShokoServer>($"http://{AppSettings.JMMServer_Address}:{AppSettings.JMMServer_Port}/"); //,mappings,proxy:proxy);
                 // try connecting to see if the server is responding
                 Instance.ShokoServices.GetServerStatus();
                 ServerOnline = true;
