@@ -24,9 +24,9 @@ using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
 
 namespace Shoko.Desktop
 {
-    public class AppSettings
+    public static class AppSettings
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         private static Dictionary<string, string> appSettings = new Dictionary<string, string>();
 
@@ -40,11 +40,9 @@ namespace Shoko.Desktop
         private static void Set(string key, string value)
         {
             string orig = Get(key);
-            if (value != orig)
-            {
-                appSettings[key] = value;
-                SaveSettings();
-            }
+            if (value == orig) return;
+            appSettings[key] = value;
+            SaveSettings();
         }
 
 
@@ -52,12 +50,13 @@ namespace Shoko.Desktop
             System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
 
         public static string ApplicationPath
-            => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), DefaultInstance)
-            ;
+            => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData),
+                DefaultInstance);
 
         public static string JMMServerPath
             =>
-            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), JMMServerInstance);
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData),
+                    JMMServerInstance);
 
         public static string DefaultImagePath => Path.Combine(ApplicationPath, "images");
 
@@ -65,14 +64,13 @@ namespace Shoko.Desktop
         {
             get
             {
-                if (Directory.Exists(JMMServerPath) && File.Exists(Path.Combine(JMMServerPath, "settings.json")))
-                {
-                    Dictionary<string, string> serverSettings =
-                        JsonConvert.DeserializeObject<Dictionary<string, string>>(
-                            File.ReadAllText(Path.Combine(JMMServerPath, "settings.json")));
-                    if (serverSettings.ContainsKey("ImagesPath"))
-                        return serverSettings["ImagesPath"];
-                }
+                if (!Directory.Exists(JMMServerPath) || !File.Exists(Path.Combine(JMMServerPath, "settings.json")))
+                    return null;
+                Dictionary<string, string> serverSettings =
+                    JsonConvert.DeserializeObject<Dictionary<string, string>>(
+                        File.ReadAllText(Path.Combine(JMMServerPath, "settings.json")));
+                if (serverSettings.ContainsKey("ImagesPath"))
+                    return serverSettings["ImagesPath"];
                 return null;
 
             }
@@ -90,7 +88,7 @@ namespace Shoko.Desktop
                     return; //Somehow debugging may fuck up the settings so this shit will eject
 
                 string path = Path.Combine(ApplicationPath, "settings.json");
-                File.WriteAllText(path, JsonConvert.SerializeObject(appSettings));
+                File.WriteAllText(path, JsonConvert.SerializeObject(appSettings, Formatting.Indented));
             }
         }
 
