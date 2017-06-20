@@ -21,6 +21,7 @@ namespace Shoko.Desktop.UserControls.Settings
             txtServer.Text = AppSettings.JMMServer_Address;
             txtPort.Text = AppSettings.JMMServer_Port;
             //txtFilePort.Text = AppSettings.JMMServer_FilePort;
+            txtProxy.Text = AppSettings.ProxyAddress;
             btnAutoStartLocalJMMServer.IsChecked = AppSettings.AutoStartLocalJMMServer;
 
 
@@ -33,6 +34,17 @@ namespace Shoko.Desktop.UserControls.Settings
             {
                 AppSettings.JMMServer_Address = txtServer.Text.Trim();
                 AppSettings.JMMServer_Port = txtPort.Text.Trim();
+
+                string proxyAddress = txtProxy.Text.Trim();
+                if (!string.IsNullOrEmpty(proxyAddress))
+                {
+                    if (!Uri.IsWellFormedUriString(proxyAddress, UriKind.Absolute))
+                    {
+                        MessageBox.Show("The proxy address is not a valid URI", Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+                    AppSettings.ProxyAddress = proxyAddress;
+                }
                 //AppSettings.JMMServer_FilePort = txtFilePort.Text.Trim();
 
                 if (VM_ShokoServer.Instance.SetupClient())
@@ -40,15 +52,13 @@ namespace Shoko.Desktop.UserControls.Settings
                     // authenticate user
                     if (!VM_ShokoServer.Instance.AuthenticateUser())
                     {
-                        Window maniWindow = Window.GetWindow(this);
-                        maniWindow.Close();
+                        Window mainWindow = Window.GetWindow(this);
+                        mainWindow?.Close();
                         return;
                     }
-                    else
-                    {
-                        VM_MainListHelper.Instance.ClearData();
-                        VM_MainListHelper.Instance.RefreshGroupsSeriesData();
-                    }
+
+                    VM_MainListHelper.Instance.ClearData();
+                    VM_MainListHelper.Instance.RefreshGroupsSeriesData();
                     //MessageBox.Show(Shoko.Commons.Properties.Resources.Success, "", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }

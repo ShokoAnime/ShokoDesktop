@@ -4,7 +4,8 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
-using System.Reflection;
+ using System.Net;
+ using System.Reflection;
 using System.Threading;
 using System.Timers;
 using System.Windows;
@@ -192,7 +193,15 @@ namespace Shoko.Desktop.ViewModel
                 mappings.Add(typeof(CrossRef_AniDB_TraktV2), typeof(VM_CrossRef_AniDB_TraktV2));
                 mappings.Add(typeof(CrossRef_AniDB_TvDBV2), typeof(VM_CrossRef_AniDB_TvDBV2));
                 mappings.Add(typeof(CL_GroupVideoQuality), typeof(VM_GroupVideoQuality));
-                _shokoservices = ClientFactory.Create<IShokoServer>($"http://{AppSettings.JMMServer_Address}:{AppSettings.JMMServer_Port}/",mappings);
+
+                WebProxy proxy = null;
+                if (!string.IsNullOrEmpty(AppSettings.ProxyAddress))
+                {
+                    Uri address = new Uri(AppSettings.ProxyAddress);
+                    proxy = new WebProxy(address.Host, address.Port);
+                }
+
+                _shokoservices = ClientFactory.Create<IShokoServer>($"http://{AppSettings.JMMServer_Address}:{AppSettings.JMMServer_Port}/",mappings,proxy:proxy);
                 // try connecting to see if the server is responding
                 Instance.ShokoServices.GetServerStatus();
                 ServerOnline = true;
@@ -583,7 +592,7 @@ namespace Shoko.Desktop.ViewModel
         private bool isBanned;
         public bool IsBanned
         {
-            get { return isBanned; }
+            get => isBanned;
             set
             {
                 this.SetField(()=>isBanned,value);
@@ -593,7 +602,7 @@ namespace Shoko.Desktop.ViewModel
         private bool adminMessagesAvailable;
         public bool AdminMessagesAvailable
         {
-            get { return adminMessagesAvailable; }
+            get => adminMessagesAvailable;
             set
             {
                 this.SetField(()=>adminMessagesAvailable,value);
@@ -603,7 +612,7 @@ namespace Shoko.Desktop.ViewModel
         private bool isAdminUser;
         public bool IsAdminUser
         {
-            get { return isAdminUser; }
+            get => isAdminUser;
             set
             {
                 this.SetField(()=>isAdminUser,value);
@@ -613,7 +622,7 @@ namespace Shoko.Desktop.ViewModel
         private string banReason = "";
         public string BanReason
         {
-            get { return banReason; }
+            get => banReason;
             set
             {
                 this.SetField(()=>banReason,value);
@@ -623,7 +632,7 @@ namespace Shoko.Desktop.ViewModel
         private string banOrigin = "";
         public string BanOrigin
         {
-            get { return banOrigin; }
+            get => banOrigin;
             set
             {
                 this.SetField(()=>banOrigin,value);
@@ -633,7 +642,7 @@ namespace Shoko.Desktop.ViewModel
         private string baseImagePath = "";
         public string BaseImagePath
         {
-            get { return baseImagePath; }
+            get => baseImagePath;
             set
             {
                 this.SetField(()=>baseImagePath,value);
@@ -643,7 +652,7 @@ namespace Shoko.Desktop.ViewModel
         private bool baseImagesPathIsDefault = true;
         public bool BaseImagesPathIsDefault
         {
-            get { return baseImagesPathIsDefault; }
+            get => baseImagesPathIsDefault;
             set
             {
                 this.SetField(()=>baseImagesPathIsDefault,value);
@@ -653,7 +662,7 @@ namespace Shoko.Desktop.ViewModel
         private string username = "";
         public string Username
         {
-            get { return username; }
+            get => username;
             set
             {
                 this.SetField(()=>username,value);
@@ -663,7 +672,7 @@ namespace Shoko.Desktop.ViewModel
         private int hasherQueueCount;
         public int HasherQueueCount
         {
-            get { return hasherQueueCount; }
+            get => hasherQueueCount;
             set
             {
                 this.SetField(()=>hasherQueueCount,value);
@@ -673,7 +682,7 @@ namespace Shoko.Desktop.ViewModel
         private string hasherQueueState = "";
         public string HasherQueueState
         {
-            get { return hasherQueueState; }
+            get => hasherQueueState;
             set
             {
                 this.SetField(()=>hasherQueueState,value);
@@ -683,7 +692,7 @@ namespace Shoko.Desktop.ViewModel
         private int serverImageQueueCount;
         public int ServerImageQueueCount
         {
-            get { return serverImageQueueCount; }
+            get => serverImageQueueCount;
             set
             {
                 this.SetField(()=>serverImageQueueCount,value);
@@ -693,7 +702,7 @@ namespace Shoko.Desktop.ViewModel
         private string serverImageQueueState = "";
         public string ServerImageQueueState
         {
-            get { return serverImageQueueState; }
+            get => serverImageQueueState;
             set
             {
                 this.SetField(()=>serverImageQueueState,value);
@@ -703,7 +712,7 @@ namespace Shoko.Desktop.ViewModel
         private int generalQueueCount;
         public int GeneralQueueCount
         {
-            get { return generalQueueCount; }
+            get => generalQueueCount;
             set
             {
                 this.SetField(()=>generalQueueCount,value);
@@ -713,7 +722,7 @@ namespace Shoko.Desktop.ViewModel
         private string generalQueueState = "";
         public string GeneralQueueState
         {
-            get { return generalQueueState; }
+            get => generalQueueState;
             set
             {
                 this.SetField(()=>generalQueueState,value);
@@ -723,7 +732,7 @@ namespace Shoko.Desktop.ViewModel
         private bool hasherQueuePaused;
         public bool HasherQueuePaused
         {
-            get { return hasherQueuePaused; }
+            get => hasherQueuePaused;
             set
             {
                 this.SetField(()=>hasherQueuePaused,value);
@@ -733,7 +742,7 @@ namespace Shoko.Desktop.ViewModel
         private bool hasherQueueRunning = true;
         public bool HasherQueueRunning
         {
-            get { return hasherQueueRunning; }
+            get => hasherQueueRunning;
             set
             {
                 this.SetField(()=>hasherQueueRunning,value);
@@ -743,7 +752,7 @@ namespace Shoko.Desktop.ViewModel
         private bool serverImageQueuePaused;
         public bool ServerImageQueuePaused
         {
-            get { return serverImageQueuePaused; }
+            get => serverImageQueuePaused;
             set
             {
                 this.SetField(()=>serverImageQueuePaused,value);
@@ -753,7 +762,7 @@ namespace Shoko.Desktop.ViewModel
         private bool serverImageQueueRunning = true;
         public bool ServerImageQueueRunning
         {
-            get { return serverImageQueueRunning; }
+            get => serverImageQueueRunning;
             set
             {
                 this.SetField(()=>serverImageQueueRunning,value);
@@ -763,7 +772,7 @@ namespace Shoko.Desktop.ViewModel
         private bool generalQueuePaused;
         public bool GeneralQueuePaused
         {
-            get { return generalQueuePaused; }
+            get => generalQueuePaused;
             set
             {
                 this.SetField(()=>generalQueuePaused,value);
@@ -773,7 +782,7 @@ namespace Shoko.Desktop.ViewModel
         private bool generalQueueRunning;
         public bool GeneralQueueRunning
         {
-            get { return generalQueueRunning; }
+            get => generalQueueRunning;
             set
             {
                 this.SetField(()=>generalQueueRunning,value);
@@ -783,10 +792,7 @@ namespace Shoko.Desktop.ViewModel
         private bool serverOnline = true;
         public bool ServerOnline
         {
-            get
-            {
-                return serverOnline;
-            }
+            get => serverOnline;
             set
             {
                 this.SetField(()=>serverOnline,value);
@@ -797,7 +803,7 @@ namespace Shoko.Desktop.ViewModel
         private bool showCommunity;
         public bool ShowCommunity
         {
-            get { return showCommunity; }
+            get => showCommunity;
             set
             {
                 this.SetField(()=>showCommunity,value);
@@ -807,7 +813,7 @@ namespace Shoko.Desktop.ViewModel
         private bool showServerSettings;
         public bool ShowServerSettings
         {
-            get { return showServerSettings; }
+            get => showServerSettings;
             set
             {
                 this.SetField(()=>showServerSettings,value);
@@ -817,7 +823,7 @@ namespace Shoko.Desktop.ViewModel
         private bool newVersionAvailable;
         public bool NewVersionAvailable
         {
-            get { return newVersionAvailable; }
+            get => newVersionAvailable;
             set
             {
                 this.SetField(()=>newVersionAvailable,value);
@@ -827,7 +833,7 @@ namespace Shoko.Desktop.ViewModel
         private string newVersionNumber = "";
         public string NewVersionNumber
         {
-            get { return newVersionNumber; }
+            get => newVersionNumber;
             set
             {
                 this.SetField(()=>newVersionNumber,value);
@@ -837,7 +843,7 @@ namespace Shoko.Desktop.ViewModel
         private string newVersionDownloadLink = "";
         public string NewVersionDownloadLink
         {
-            get { return newVersionDownloadLink; }
+            get => newVersionDownloadLink;
             set
             {
                 this.SetField(()=>newVersionDownloadLink,value);
@@ -847,7 +853,7 @@ namespace Shoko.Desktop.ViewModel
         private string applicationVersion = "";
         public string ApplicationVersion
         {
-            get { return applicationVersion; }
+            get => applicationVersion;
             set
             {
                 this.SetField(()=>applicationVersion,value);
@@ -857,7 +863,7 @@ namespace Shoko.Desktop.ViewModel
         private string applicationVersionLatest = "";
         public string ApplicationVersionLatest
         {
-            get { return applicationVersionLatest; }
+            get => applicationVersionLatest;
             set
             {
                 this.SetField(()=>applicationVersionLatest,value);
@@ -872,7 +878,7 @@ namespace Shoko.Desktop.ViewModel
         private string aniDB_Username = "";
         public string AniDB_Username
         {
-            get { return aniDB_Username; }
+            get => aniDB_Username;
             set
             {
                 this.SetField(()=>aniDB_Username,value);
@@ -882,7 +888,7 @@ namespace Shoko.Desktop.ViewModel
         private string aniDB_Password = "";
         public string AniDB_Password
         {
-            get { return aniDB_Password; }
+            get => aniDB_Password;
             set
             {
                 this.SetField(()=>aniDB_Password,value);
@@ -892,7 +898,7 @@ namespace Shoko.Desktop.ViewModel
         private string aniDB_ServerAddress = "";
         public string AniDB_ServerAddress
         {
-            get { return aniDB_ServerAddress; }
+            get => aniDB_ServerAddress;
             set
             {
                 this.SetField(()=>aniDB_ServerAddress,value);
@@ -902,7 +908,7 @@ namespace Shoko.Desktop.ViewModel
         private string aniDB_ServerPort = "";
         public string AniDB_ServerPort
         {
-            get { return aniDB_ServerPort; }
+            get => aniDB_ServerPort;
             set
             {
                 this.SetField(()=>aniDB_ServerPort,value);
@@ -912,7 +918,7 @@ namespace Shoko.Desktop.ViewModel
         private string aniDB_ClientPort = "";
         public string AniDB_ClientPort
         {
-            get { return aniDB_ClientPort; }
+            get => aniDB_ClientPort;
             set
             {
                 this.SetField(()=>aniDB_ClientPort,value);
@@ -922,7 +928,7 @@ namespace Shoko.Desktop.ViewModel
         private string aniDB_AVDumpClientPort = "";
         public string AniDB_AVDumpClientPort
         {
-            get { return aniDB_AVDumpClientPort; }
+            get => aniDB_AVDumpClientPort;
             set
             {
                 this.SetField(()=>aniDB_AVDumpClientPort,value);
@@ -932,7 +938,7 @@ namespace Shoko.Desktop.ViewModel
         private string aniDB_AVDumpKey = "";
         public string AniDB_AVDumpKey
         {
-            get { return aniDB_AVDumpKey; }
+            get => aniDB_AVDumpKey;
             set
             {
                 this.SetField(()=>aniDB_AVDumpKey,value);
@@ -942,7 +948,7 @@ namespace Shoko.Desktop.ViewModel
         private bool aniDB_DownloadRelatedAnime;
         public bool AniDB_DownloadRelatedAnime
         {
-            get { return aniDB_DownloadRelatedAnime; }
+            get => aniDB_DownloadRelatedAnime;
             set
             {
                 this.SetField(()=>aniDB_DownloadRelatedAnime,value);
@@ -952,7 +958,7 @@ namespace Shoko.Desktop.ViewModel
         private bool aniDB_DownloadSimilarAnime;
         public bool AniDB_DownloadSimilarAnime
         {
-            get { return aniDB_DownloadSimilarAnime; }
+            get => aniDB_DownloadSimilarAnime;
             set
             {
                 this.SetField(()=>aniDB_DownloadSimilarAnime,value);
@@ -962,7 +968,7 @@ namespace Shoko.Desktop.ViewModel
         private bool aniDB_DownloadReviews;
         public bool AniDB_DownloadReviews
         {
-            get { return aniDB_DownloadReviews; }
+            get => aniDB_DownloadReviews;
             set
             {
                 this.SetField(()=>aniDB_DownloadReviews,value);
@@ -972,7 +978,7 @@ namespace Shoko.Desktop.ViewModel
         private bool aniDB_DownloadReleaseGroups;
         public bool AniDB_DownloadReleaseGroups
         {
-            get { return aniDB_DownloadReleaseGroups; }
+            get => aniDB_DownloadReleaseGroups;
             set
             {
                 this.SetField(()=>aniDB_DownloadReleaseGroups,value);
@@ -982,7 +988,7 @@ namespace Shoko.Desktop.ViewModel
         private bool aniDB_MyList_AddFiles;
         public bool AniDB_MyList_AddFiles
         {
-            get { return aniDB_MyList_AddFiles; }
+            get => aniDB_MyList_AddFiles;
             set
             {
                 this.SetField(()=>aniDB_MyList_AddFiles,value);
@@ -992,7 +998,7 @@ namespace Shoko.Desktop.ViewModel
         private int aniDB_MyList_StorageState = 1;
         public int AniDB_MyList_StorageState
         {
-            get { return aniDB_MyList_StorageState; }
+            get => aniDB_MyList_StorageState;
             set
             {
                 this.SetField(()=>aniDB_MyList_StorageState,value);
@@ -1002,7 +1008,7 @@ namespace Shoko.Desktop.ViewModel
         private AniDBFileDeleteType aniDB_MyList_DeleteType = AniDBFileDeleteType.Delete;
         public AniDBFileDeleteType AniDB_MyList_DeleteType
         {
-            get { return aniDB_MyList_DeleteType; }
+            get => aniDB_MyList_DeleteType;
             set
             {
                 this.SetField(()=>aniDB_MyList_DeleteType,value);
@@ -1012,7 +1018,7 @@ namespace Shoko.Desktop.ViewModel
         private bool aniDB_MyList_ReadWatched;
         public bool AniDB_MyList_ReadWatched
         {
-            get { return aniDB_MyList_ReadWatched; }
+            get => aniDB_MyList_ReadWatched;
             set
             {
                 this.SetField(()=>aniDB_MyList_ReadWatched,value);
@@ -1022,7 +1028,7 @@ namespace Shoko.Desktop.ViewModel
         private bool aniDB_MyList_ReadUnwatched;
         public bool AniDB_MyList_ReadUnwatched
         {
-            get { return aniDB_MyList_ReadUnwatched; }
+            get => aniDB_MyList_ReadUnwatched;
             set
             {
                 this.SetField(()=>aniDB_MyList_ReadUnwatched,value);
@@ -1032,7 +1038,7 @@ namespace Shoko.Desktop.ViewModel
         private bool aniDB_MyList_SetWatched;
         public bool AniDB_MyList_SetWatched
         {
-            get { return aniDB_MyList_SetWatched; }
+            get => aniDB_MyList_SetWatched;
             set
             {
                 this.SetField(()=>aniDB_MyList_SetWatched,value);
@@ -1042,7 +1048,7 @@ namespace Shoko.Desktop.ViewModel
         private bool aniDB_MyList_SetUnwatched;
         public bool AniDB_MyList_SetUnwatched
         {
-            get { return aniDB_MyList_SetUnwatched; }
+            get => aniDB_MyList_SetUnwatched;
             set
             {
                 this.SetField(()=>aniDB_MyList_SetUnwatched,value);
@@ -1052,7 +1058,7 @@ namespace Shoko.Desktop.ViewModel
         private ScheduledUpdateFrequency aniDB_MyList_UpdateFrequency = ScheduledUpdateFrequency.HoursTwelve;
         public ScheduledUpdateFrequency AniDB_MyList_UpdateFrequency
         {
-            get { return aniDB_MyList_UpdateFrequency; }
+            get => aniDB_MyList_UpdateFrequency;
             set
             {
                 this.SetField(()=>aniDB_MyList_UpdateFrequency,value);
@@ -1062,7 +1068,7 @@ namespace Shoko.Desktop.ViewModel
         private ScheduledUpdateFrequency aniDB_MyListStats_UpdateFrequency = ScheduledUpdateFrequency.Never;
         public ScheduledUpdateFrequency AniDB_MyListStats_UpdateFrequency
         {
-            get { return aniDB_MyListStats_UpdateFrequency; }
+            get => aniDB_MyListStats_UpdateFrequency;
             set
             {
                 this.SetField(()=>aniDB_MyListStats_UpdateFrequency,value);
@@ -1072,7 +1078,7 @@ namespace Shoko.Desktop.ViewModel
         private ScheduledUpdateFrequency aniDB_Calendar_UpdateFrequency = ScheduledUpdateFrequency.HoursTwelve;
         public ScheduledUpdateFrequency AniDB_Calendar_UpdateFrequency
         {
-            get { return aniDB_Calendar_UpdateFrequency; }
+            get => aniDB_Calendar_UpdateFrequency;
             set
             {
                 this.SetField(()=>aniDB_Calendar_UpdateFrequency,value);
@@ -1082,7 +1088,7 @@ namespace Shoko.Desktop.ViewModel
         private ScheduledUpdateFrequency aniDB_Anime_UpdateFrequency = ScheduledUpdateFrequency.HoursTwelve;
         public ScheduledUpdateFrequency AniDB_Anime_UpdateFrequency
         {
-            get { return aniDB_Anime_UpdateFrequency; }
+            get => aniDB_Anime_UpdateFrequency;
             set
             {
                 this.SetField(()=>aniDB_Anime_UpdateFrequency,value);
@@ -1092,7 +1098,7 @@ namespace Shoko.Desktop.ViewModel
         private ScheduledUpdateFrequency aniDB_File_UpdateFrequency = ScheduledUpdateFrequency.Daily;
         public ScheduledUpdateFrequency AniDB_File_UpdateFrequency
         {
-            get { return aniDB_File_UpdateFrequency; }
+            get => aniDB_File_UpdateFrequency;
             set
             {
                 this.SetField(()=>aniDB_File_UpdateFrequency,value);
@@ -1102,7 +1108,7 @@ namespace Shoko.Desktop.ViewModel
         private bool aniDB_DownloadCharacters;
         public bool AniDB_DownloadCharacters
         {
-            get { return aniDB_DownloadCharacters; }
+            get => aniDB_DownloadCharacters;
             set
             {
                 this.SetField(()=>aniDB_DownloadCharacters,value);
@@ -1112,7 +1118,7 @@ namespace Shoko.Desktop.ViewModel
         private bool aniDB_DownloadCreators;
         public bool AniDB_DownloadCreators
         {
-            get { return aniDB_DownloadCreators; }
+            get => aniDB_DownloadCreators;
             set
             {
                 this.SetField(()=>aniDB_DownloadCreators,value);
@@ -1122,7 +1128,7 @@ namespace Shoko.Desktop.ViewModel
         private string webCache_Address = "";
         public string WebCache_Address
         {
-            get { return webCache_Address; }
+            get => webCache_Address;
             set
             {
                 this.SetField(()=>webCache_Address,value);
@@ -1132,7 +1138,7 @@ namespace Shoko.Desktop.ViewModel
         private bool webCache_Anonymous;
         public bool WebCache_Anonymous
         {
-            get { return webCache_Anonymous; }
+            get => webCache_Anonymous;
             set
             {
                 this.SetField(()=>webCache_Anonymous,value);
@@ -1142,7 +1148,7 @@ namespace Shoko.Desktop.ViewModel
         private bool webCache_XRefFileEpisode_Get;
         public bool WebCache_XRefFileEpisode_Get
         {
-            get { return webCache_XRefFileEpisode_Get; }
+            get => webCache_XRefFileEpisode_Get;
             set
             {
                 this.SetField(()=>webCache_XRefFileEpisode_Get,value);
@@ -1152,7 +1158,7 @@ namespace Shoko.Desktop.ViewModel
         private bool webCache_XRefFileEpisode_Send;
         public bool WebCache_XRefFileEpisode_Send
         {
-            get { return webCache_XRefFileEpisode_Send; }
+            get => webCache_XRefFileEpisode_Send;
             set
             {
                 this.SetField(()=>webCache_XRefFileEpisode_Send,value);
@@ -1162,7 +1168,7 @@ namespace Shoko.Desktop.ViewModel
         private bool webCache_TvDB_Get;
         public bool WebCache_TvDB_Get
         {
-            get { return webCache_TvDB_Get; }
+            get => webCache_TvDB_Get;
             set
             {
                 this.SetField(()=>webCache_TvDB_Get,value);
@@ -1172,7 +1178,7 @@ namespace Shoko.Desktop.ViewModel
         private bool webCache_TvDB_Send;
         public bool WebCache_TvDB_Send
         {
-            get { return webCache_TvDB_Send; }
+            get => webCache_TvDB_Send;
             set
             {
                 this.SetField(()=>webCache_TvDB_Send,value);
@@ -1182,7 +1188,7 @@ namespace Shoko.Desktop.ViewModel
         private bool webCache_Trakt_Get;
         public bool WebCache_Trakt_Get
         {
-            get { return webCache_Trakt_Get; }
+            get => webCache_Trakt_Get;
             set
             {
                 this.SetField(()=>webCache_Trakt_Get,value);
@@ -1192,7 +1198,7 @@ namespace Shoko.Desktop.ViewModel
         private bool webCache_Trakt_Send;
         public bool WebCache_Trakt_Send
         {
-            get { return webCache_Trakt_Send; }
+            get => webCache_Trakt_Send;
             set
             {
                 this.SetField(()=>webCache_Trakt_Send,value);
@@ -1203,7 +1209,7 @@ namespace Shoko.Desktop.ViewModel
         private bool webCache_MAL_Get;
         public bool WebCache_MAL_Get
         {
-            get { return webCache_MAL_Get; }
+            get => webCache_MAL_Get;
             set
             {
                 this.SetField(()=>webCache_MAL_Get,value);
@@ -1213,7 +1219,7 @@ namespace Shoko.Desktop.ViewModel
         private bool webCache_MAL_Send;
         public bool WebCache_MAL_Send
         {
-            get { return webCache_MAL_Send; }
+            get => webCache_MAL_Send;
             set
             {
                 this.SetField(()=>webCache_MAL_Send,value);
@@ -1223,7 +1229,7 @@ namespace Shoko.Desktop.ViewModel
         private bool webCache_UserInfo;
         public bool WebCache_UserInfo
         {
-            get { return webCache_UserInfo; }
+            get => webCache_UserInfo;
             set
             {
                 this.SetField(()=>webCache_UserInfo,value);
@@ -1233,7 +1239,7 @@ namespace Shoko.Desktop.ViewModel
         private bool tvDB_AutoLink;
         public bool TvDB_AutoLink
         {
-            get { return tvDB_AutoLink; }
+            get => tvDB_AutoLink;
             set
             {
                 this.SetField(()=>tvDB_AutoLink,value);
@@ -1243,7 +1249,7 @@ namespace Shoko.Desktop.ViewModel
         private bool tvDB_AutoFanart;
         public bool TvDB_AutoFanart
         {
-            get { return tvDB_AutoFanart; }
+            get => tvDB_AutoFanart;
             set
             {
                 this.SetField(()=>tvDB_AutoFanart,value);
@@ -1253,7 +1259,7 @@ namespace Shoko.Desktop.ViewModel
         private int tvDB_AutoFanartAmount = 10;
         public int TvDB_AutoFanartAmount
         {
-            get { return tvDB_AutoFanartAmount; }
+            get => tvDB_AutoFanartAmount;
             set
             {
                 this.SetField(()=>tvDB_AutoFanartAmount,value);
@@ -1263,7 +1269,7 @@ namespace Shoko.Desktop.ViewModel
         private bool tvDB_AutoWideBanners;
         public bool TvDB_AutoWideBanners
         {
-            get { return tvDB_AutoWideBanners; }
+            get => tvDB_AutoWideBanners;
             set
             {
                 this.SetField(()=>tvDB_AutoWideBanners,value);
@@ -1273,7 +1279,7 @@ namespace Shoko.Desktop.ViewModel
         private int tvDB_AutoWideBannersAmount = 10;
         public int TvDB_AutoWideBannersAmount
         {
-            get { return tvDB_AutoWideBannersAmount; }
+            get => tvDB_AutoWideBannersAmount;
             set
             {
                 this.SetField(()=>tvDB_AutoWideBannersAmount,value);
@@ -1283,7 +1289,7 @@ namespace Shoko.Desktop.ViewModel
         private bool tvDB_AutoPosters;
         public bool TvDB_AutoPosters
         {
-            get { return tvDB_AutoPosters; }
+            get => tvDB_AutoPosters;
             set
             {
                 this.SetField(()=>tvDB_AutoPosters,value);
@@ -1293,7 +1299,7 @@ namespace Shoko.Desktop.ViewModel
         private int tvDB_AutoPostersAmount = 10;
         public int TvDB_AutoPostersAmount
         {
-            get { return tvDB_AutoPostersAmount; }
+            get => tvDB_AutoPostersAmount;
             set
             {
                 this.SetField(()=>tvDB_AutoPostersAmount,value);
@@ -1303,7 +1309,7 @@ namespace Shoko.Desktop.ViewModel
         private string tvDB_Language = "";
         public string TvDB_Language
         {
-            get { return tvDB_Language; }
+            get => tvDB_Language;
             set
             {
                 this.SetField(()=>tvDB_Language,value);
@@ -1313,7 +1319,7 @@ namespace Shoko.Desktop.ViewModel
         private ScheduledUpdateFrequency tvDB_UpdateFrequency = ScheduledUpdateFrequency.HoursTwelve;
         public ScheduledUpdateFrequency TvDB_UpdateFrequency
         {
-            get { return tvDB_UpdateFrequency; }
+            get => tvDB_UpdateFrequency;
             set
             {
                 this.SetField(()=>tvDB_UpdateFrequency,value);
@@ -1324,7 +1330,7 @@ namespace Shoko.Desktop.ViewModel
         private bool movieDB_AutoFanart;
         public bool MovieDB_AutoFanart
         {
-            get { return movieDB_AutoFanart; }
+            get => movieDB_AutoFanart;
             set
             {
                 this.SetField(()=>movieDB_AutoFanart,value);
@@ -1334,7 +1340,7 @@ namespace Shoko.Desktop.ViewModel
         private int movieDB_AutoFanartAmount = 10;
         public int MovieDB_AutoFanartAmount
         {
-            get { return movieDB_AutoFanartAmount; }
+            get => movieDB_AutoFanartAmount;
             set
             {
                 this.SetField(()=>movieDB_AutoFanartAmount,value);
@@ -1344,7 +1350,7 @@ namespace Shoko.Desktop.ViewModel
         private bool movieDB_AutoPosters;
         public bool MovieDB_AutoPosters
         {
-            get { return movieDB_AutoPosters; }
+            get => movieDB_AutoPosters;
             set
             {
                 this.SetField(()=>movieDB_AutoPosters,value);
@@ -1354,7 +1360,7 @@ namespace Shoko.Desktop.ViewModel
         private int movieDB_AutoPostersAmount = 10;
         public int MovieDB_AutoPostersAmount
         {
-            get { return movieDB_AutoPostersAmount; }
+            get => movieDB_AutoPostersAmount;
             set
             {
                 this.SetField(()=>movieDB_AutoPostersAmount,value);
@@ -1364,7 +1370,7 @@ namespace Shoko.Desktop.ViewModel
         private string videoExtensions = "";
         public string VideoExtensions
         {
-            get { return videoExtensions; }
+            get => videoExtensions;
             set
             {
                 this.SetField(()=>videoExtensions,value);
@@ -1374,7 +1380,7 @@ namespace Shoko.Desktop.ViewModel
         private bool autoGroupSeries;
         public bool AutoGroupSeries
         {
-            get { return autoGroupSeries; }
+            get => autoGroupSeries;
             set
             {
                 this.SetField(()=>autoGroupSeries,value);
@@ -1384,8 +1390,8 @@ namespace Shoko.Desktop.ViewModel
 	    private bool autoGroupSeriesUseScoreAlgorithm;
 	    public bool AutoGroupSeriesUseScoreAlgorithm
 	    {
-		    get { return autoGroupSeriesUseScoreAlgorithm; }
-		    set
+		    get => autoGroupSeriesUseScoreAlgorithm;
+	        set
 		    {
 			    this.SetField(()=>autoGroupSeriesUseScoreAlgorithm,value);
 		    }
@@ -1395,10 +1401,7 @@ namespace Shoko.Desktop.ViewModel
         private string autoGroupSeriesRelationExclusions = "";
         private string AutoGroupSeriesRelationExclusions
         {
-            get
-            {
-                return autoGroupSeriesRelationExclusions;
-            }
+            get => autoGroupSeriesRelationExclusions;
             set
             {
                 this.SetField(()=>autoGroupSeriesRelationExclusions,value);
@@ -1461,152 +1464,80 @@ namespace Shoko.Desktop.ViewModel
 
 	    public bool RelationAllowDissimilarTitleExclusion
 	    {
-		    get
-		    {
-			    return isRelationInExclusion("AllowDissimilarTitleExclusion");
-		    }
-		    set
-		    {
-			    setRelationinExclusion("AllowDissimilarTitleExclusion", value);
-		    }
+		    get => isRelationInExclusion("AllowDissimilarTitleExclusion");
+	        set => setRelationinExclusion("AllowDissimilarTitleExclusion", value);
 	    }
 
 	    public bool RelationExcludeOVA
         {
-            get
-            {
-                return isRelationInExclusion("ova");
-            }
-            set
-            {
-                setRelationinExclusion("ova", value);
-            }
-        }
+            get => isRelationInExclusion("ova");
+	        set => setRelationinExclusion("ova", value);
+	    }
 
         public bool RelationExcludeMovie
         {
-            get
-            {
-                return isRelationInExclusion("movie");
-            }
-            set
-            {
-                setRelationinExclusion("movie", value);
-            }
+            get => isRelationInExclusion("movie");
+            set => setRelationinExclusion("movie", value);
         }
 
         public bool RelationExcludeSameSetting
         {
-            get
-            {
-                return isRelationInExclusion("same setting");
-            }
-            set
-            {
-                setRelationinExclusion("same setting", value);
-            }
+            get => isRelationInExclusion("same setting");
+            set => setRelationinExclusion("same setting", value);
         }
 
         public bool RelationExcludeAltSetting
         {
-            get
-            {
-                return isRelationInExclusion("alternate setting");
-            }
-            set
-            {
-                setRelationinExclusion("alternate setting", value);
-            }
+            get => isRelationInExclusion("alternate setting");
+            set => setRelationinExclusion("alternate setting", value);
         }
 
         public bool RelationExcludeAltVersion
         {
-            get
-            {
-                return isRelationInExclusion("alternate version");
-            }
-            set
-            {
-                setRelationinExclusion("alternate version", value);
-            }
+            get => isRelationInExclusion("alternate version");
+            set => setRelationinExclusion("alternate version", value);
         }
 
         public bool RelationExcludeCharacter
         {
-            get
-            {
-                return isRelationInExclusion("character");
-            }
-            set
-            {
-                setRelationinExclusion("character", value);
-            }
+            get => isRelationInExclusion("character");
+            set => setRelationinExclusion("character", value);
         }
 
         public bool RelationExcludeSideStory
         {
-            get
-            {
-                return isRelationInExclusion("side story");
-            }
-            set
-            {
-                setRelationinExclusion("side story", value);
-            }
+            get => isRelationInExclusion("side story");
+            set => setRelationinExclusion("side story", value);
         }
 
         public bool RelationExcludeParentStory
         {
-            get
-            {
-                return isRelationInExclusion("parent story");
-            }
-            set
-            {
-                setRelationinExclusion("parent story", value);
-            }
+            get => isRelationInExclusion("parent story");
+            set => setRelationinExclusion("parent story", value);
         }
 
         public bool RelationExcludeSummary
         {
-            get
-            {
-                return isRelationInExclusion("summary");
-            }
-            set
-            {
-                setRelationinExclusion("summary", value);
-            }
+            get => isRelationInExclusion("summary");
+            set => setRelationinExclusion("summary", value);
         }
 
         public bool RelationExcludeFullStory
         {
-            get
-            {
-                return isRelationInExclusion("full story");
-            }
-            set
-            {
-                setRelationinExclusion("full story", value);
-            }
+            get => isRelationInExclusion("full story");
+            set => setRelationinExclusion("full story", value);
         }
 
         public bool RelationExcludeOther
         {
-            get
-            {
-                return isRelationInExclusion("other");
-            }
-            set
-            {
-                setRelationinExclusion("other", value);
-            }
+            get => isRelationInExclusion("other");
+            set => setRelationinExclusion("other", value);
         }
 
         private bool _fileQualityFilterEnabled;
         public bool FileQualityFilterEnabled
         {
-            get { return _fileQualityFilterEnabled; }
+            get => _fileQualityFilterEnabled;
             set
             {
                 this.SetField(()=>_fileQualityFilterEnabled,value);
@@ -1617,10 +1548,7 @@ namespace Shoko.Desktop.ViewModel
         private string _fileQualityPreferences = "";
         public string FileQualityPreferences
         {
-            get
-            {
-                return _fileQualityPreferences;
-            }
+            get => _fileQualityPreferences;
             set
             {
                 this.SetField(()=>_fileQualityPreferences,value);
@@ -1630,7 +1558,7 @@ namespace Shoko.Desktop.ViewModel
         private bool useEpisodeStatus;
         public bool UseEpisodeStatus
         {
-            get { return useEpisodeStatus; }
+            get => useEpisodeStatus;
             set
             {
                 this.SetField(()=>useEpisodeStatus,value);
@@ -1640,7 +1568,7 @@ namespace Shoko.Desktop.ViewModel
         private bool runImportOnStart;
         public bool RunImportOnStart
         {
-            get { return runImportOnStart; }
+            get => runImportOnStart;
             set
             {
                 this.SetField(()=>runImportOnStart,value);
@@ -1650,7 +1578,7 @@ namespace Shoko.Desktop.ViewModel
         private bool scanDropFoldersOnStart;
         public bool ScanDropFoldersOnStart
         {
-            get { return scanDropFoldersOnStart; }
+            get => scanDropFoldersOnStart;
             set
             {
                 this.SetField(()=>scanDropFoldersOnStart,value);
@@ -1661,7 +1589,7 @@ namespace Shoko.Desktop.ViewModel
         private bool hash_CRC32;
         public bool Hash_CRC32
         {
-            get { return hash_CRC32; }
+            get => hash_CRC32;
             set
             {
                 this.SetField(()=>hash_CRC32,value);
@@ -1671,7 +1599,7 @@ namespace Shoko.Desktop.ViewModel
         private bool hash_MD5;
         public bool Hash_MD5
         {
-            get { return hash_MD5; }
+            get => hash_MD5;
             set
             {
                 this.SetField(()=>hash_MD5,value);
@@ -1681,7 +1609,7 @@ namespace Shoko.Desktop.ViewModel
         private bool hash_SHA1;
         public bool Hash_SHA1
         {
-            get { return hash_SHA1; }
+            get => hash_SHA1;
             set
             {
                 this.SetField(()=>hash_SHA1,value);
@@ -1691,7 +1619,7 @@ namespace Shoko.Desktop.ViewModel
         private string languagePreference = "en,x-jat";
         public string LanguagePreference
         {
-            get { return languagePreference; }
+            get => languagePreference;
             set
             {
                 this.SetField(()=>languagePreference,value);
@@ -1701,7 +1629,7 @@ namespace Shoko.Desktop.ViewModel
         private bool languageUseSynonyms;
         public bool LanguageUseSynonyms
         {
-            get { return languageUseSynonyms; }
+            get => languageUseSynonyms;
             set
             {
                 this.SetField(()=>languageUseSynonyms,value);
@@ -1711,7 +1639,7 @@ namespace Shoko.Desktop.ViewModel
         private DataSourceType episodeTitleSource = DataSourceType.AniDB;
         public DataSourceType EpisodeTitleSource
         {
-            get { return episodeTitleSource; }
+            get => episodeTitleSource;
             set
             {
                 this.SetField(()=>episodeTitleSource,value);
@@ -1721,7 +1649,7 @@ namespace Shoko.Desktop.ViewModel
         private DataSourceType seriesDescriptionSource = DataSourceType.AniDB;
         public DataSourceType SeriesDescriptionSource
         {
-            get { return seriesDescriptionSource; }
+            get => seriesDescriptionSource;
             set
             {
                 this.SetField(()=>seriesDescriptionSource,value);
@@ -1731,7 +1659,7 @@ namespace Shoko.Desktop.ViewModel
         private DataSourceType seriesNameSource = DataSourceType.AniDB;
         public DataSourceType SeriesNameSource
         {
-            get { return seriesNameSource; }
+            get => seriesNameSource;
             set
             {
                 this.SetField(()=>seriesNameSource,value);
@@ -1741,7 +1669,7 @@ namespace Shoko.Desktop.ViewModel
         private bool trakt_IsEnabled = true;
         public bool Trakt_IsEnabled
         {
-            get { return trakt_IsEnabled; }
+            get => trakt_IsEnabled;
             set
             {
                 this.SetField(()=>trakt_IsEnabled,value);
@@ -1751,7 +1679,7 @@ namespace Shoko.Desktop.ViewModel
         private string trakt_AuthToken = "";
         public string Trakt_AuthToken
         {
-            get { return trakt_AuthToken; }
+            get => trakt_AuthToken;
             set
             {
                 this.SetField(()=>trakt_AuthToken,value);
@@ -1761,7 +1689,7 @@ namespace Shoko.Desktop.ViewModel
         private string trakt_RefreshToken = "";
         public string Trakt_RefreshToken
         {
-            get { return trakt_RefreshToken; }
+            get => trakt_RefreshToken;
             set
             {
                 this.SetField(()=>trakt_RefreshToken,value);
@@ -1771,7 +1699,7 @@ namespace Shoko.Desktop.ViewModel
         private string trakt_TokenExpirationDate = "";
         public string Trakt_TokenExpirationDate
         {
-            get { return trakt_TokenExpirationDate; }
+            get => trakt_TokenExpirationDate;
             set
             {
                 this.SetField(()=>trakt_TokenExpirationDate,value);
@@ -1781,7 +1709,7 @@ namespace Shoko.Desktop.ViewModel
         private bool trakt_DownloadFanart = true;
         public bool Trakt_DownloadFanart
         {
-            get { return trakt_DownloadFanart; }
+            get => trakt_DownloadFanart;
             set
             {
                 this.SetField(()=>trakt_DownloadFanart,value);
@@ -1791,7 +1719,7 @@ namespace Shoko.Desktop.ViewModel
         private bool trakt_DownloadPosters = true;
         public bool Trakt_DownloadPosters
         {
-            get { return trakt_DownloadPosters; }
+            get => trakt_DownloadPosters;
             set
             {
                 this.SetField(()=>trakt_DownloadPosters,value);
@@ -1801,7 +1729,7 @@ namespace Shoko.Desktop.ViewModel
         private bool trakt_DownloadEpisodes = true;
         public bool Trakt_DownloadEpisodes
         {
-            get { return trakt_DownloadEpisodes; }
+            get => trakt_DownloadEpisodes;
             set
             {
                 this.SetField(()=>trakt_DownloadEpisodes,value);
@@ -1811,7 +1739,7 @@ namespace Shoko.Desktop.ViewModel
         private bool mal_AutoLink;
         public bool MAL_AutoLink
         {
-            get { return mal_AutoLink; }
+            get => mal_AutoLink;
             set
             {
                 this.SetField(()=>mal_AutoLink,value);
@@ -1821,7 +1749,7 @@ namespace Shoko.Desktop.ViewModel
         private string mAL_Username = "";
         public string MAL_Username
         {
-            get { return mAL_Username; }
+            get => mAL_Username;
             set
             {
                 this.SetField(()=>mAL_Username,value);
@@ -1831,7 +1759,7 @@ namespace Shoko.Desktop.ViewModel
         private string mAL_Password = "";
         public string MAL_Password
         {
-            get { return mAL_Password; }
+            get => mAL_Password;
             set
             {
                 this.SetField(()=>mAL_Password,value);
@@ -1841,7 +1769,7 @@ namespace Shoko.Desktop.ViewModel
         private ScheduledUpdateFrequency mAL_UpdateFrequency = ScheduledUpdateFrequency.Daily;
         public ScheduledUpdateFrequency MAL_UpdateFrequency
         {
-            get { return mAL_UpdateFrequency; }
+            get => mAL_UpdateFrequency;
             set
             {
                 this.SetField(()=>mAL_UpdateFrequency,value);
@@ -1851,7 +1779,7 @@ namespace Shoko.Desktop.ViewModel
         private bool mAL_NeverDecreaseWatchedNums;
         public bool MAL_NeverDecreaseWatchedNums
         {
-            get { return mAL_NeverDecreaseWatchedNums; }
+            get => mAL_NeverDecreaseWatchedNums;
             set
             {
                 this.SetField(()=>mAL_NeverDecreaseWatchedNums,value);
@@ -1861,7 +1789,7 @@ namespace Shoko.Desktop.ViewModel
         private ScheduledUpdateFrequency trakt_UpdateFrequency = ScheduledUpdateFrequency.Daily;
         public ScheduledUpdateFrequency Trakt_UpdateFrequency
         {
-            get { return trakt_UpdateFrequency; }
+            get => trakt_UpdateFrequency;
             set
             {
                 this.SetField(()=>trakt_UpdateFrequency,value);
@@ -1871,7 +1799,7 @@ namespace Shoko.Desktop.ViewModel
         private ScheduledUpdateFrequency trakt_SyncFrequency = ScheduledUpdateFrequency.Daily;
         public ScheduledUpdateFrequency Trakt_SyncFrequency
         {
-            get { return trakt_SyncFrequency; }
+            get => trakt_SyncFrequency;
             set
             {
                 this.SetField(()=>trakt_SyncFrequency,value);
@@ -1881,14 +1809,14 @@ namespace Shoko.Desktop.ViewModel
         private string plex_ServerHost = "";
         public string Plex_ServerHost
         {
-            get { return plex_ServerHost; }
+            get => plex_ServerHost;
             set { this.SetField(() => plex_ServerHost, value); }
         }
 
         private ObservableCollection<int> plex_Sections = new ObservableCollection<int>();
         public ObservableCollection<int> Plex_Sections
         {
-            get { return plex_Sections; }
+            get => plex_Sections;
             set { this.SetField(() => plex_Sections, value); }
         }
 

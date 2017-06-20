@@ -634,8 +634,6 @@ namespace Shoko.Desktop
         {
             get
             {
-                
-
                 string val = Get("ShokoServer_Address");
                 if (string.IsNullOrEmpty(val))
                 {
@@ -655,8 +653,6 @@ namespace Shoko.Desktop
         {
             get
             {
-                
-
                 string val = Get("ShokoServer_Port");
                 if (string.IsNullOrEmpty(val))
                 {
@@ -676,8 +672,6 @@ namespace Shoko.Desktop
         {
             get
             {
-                
-
                 string val = Get("ShokoServer_FilePort");
                 if (string.IsNullOrEmpty(val))
                 {
@@ -690,6 +684,25 @@ namespace Shoko.Desktop
             set
             {
                 Set("ShokoServer_FilePort", value);
+            }
+        }
+
+        public static string ProxyAddress
+        {
+            get
+            {
+                string val = Get("ProxyAddress");
+                if (string.IsNullOrEmpty(val))
+                {
+                    // default value
+                    val = "";
+                    Set("ProxyAddress", val);
+                }
+                return val;
+            }
+            set
+            {
+                Set("ProxyAddress", value);
             }
         }
 
