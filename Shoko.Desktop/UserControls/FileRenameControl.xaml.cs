@@ -259,10 +259,15 @@ namespace Shoko.Desktop.UserControls
 
         void btnSaveScript_Click(object sender, RoutedEventArgs e)
         {
+            SaveScript();
+        }
+
+        private bool SaveScript()
+        {
             try
             {
-                if (cboScript.Items.Count == 0) return;
-                if (cboScript.SelectedItem == null) return;
+                if (cboScript.Items.Count == 0) return false;
+                if (cboScript.SelectedItem == null) return false;
 
                 VM_RenameScript script = cboScript.SelectedItem as VM_RenameScript;
                 script.IsEnabledOnImport = chkIsUsedForImports.IsChecked.Value ? 1 : 0;
@@ -273,6 +278,7 @@ namespace Shoko.Desktop.UserControls
 
                     // refresh data
                     RefreshScripts();
+                    return true;
                 }
 
             }
@@ -280,6 +286,7 @@ namespace Shoko.Desktop.UserControls
             {
                 Utils.ShowErrorMessage(ex);
             }
+            return false;
         }
 
         void btnNewScript_Click(object sender, RoutedEventArgs e)
@@ -503,13 +510,22 @@ namespace Shoko.Desktop.UserControls
 
             EnableDisableControls(false);
 
+            if (!SaveScript()) return;
+
             WorkerRunning = true;
             WorkerNotRunning = false;
             stopWorker = false;
 
             WorkerJob job = new WorkerJob();
-            job.RenameScript = txtRenameScript.Text;
+            job.RenameScript = (cboScript.SelectedItem as VM_RenameScript)?.ScriptName;
             job.FileResults = FileResults;
+
+            if (job.RenameScript == null)
+            {
+                MessageBox.Show("The Selected Item is NULL", Shoko.Commons.Properties.Resources.Error,
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
 
             renameWorker.RunWorkerAsync(job);
         }
@@ -552,7 +568,7 @@ namespace Shoko.Desktop.UserControls
                 delay++;
 
                 VM_VideoLocal_Renamed raw = (VM_VideoLocal_Renamed)VM_ShokoServer.Instance.ShokoServices.RenameFilePreview(
-                    ren.VideoLocalID, job.RenameScript);
+                    ren.VideoLocalID);
 
                 ren.NewFileName = raw.NewFileName;
                 ren.Success = raw.Success;
@@ -574,8 +590,14 @@ namespace Shoko.Desktop.UserControls
             WorkerNotRunning = false;
             stopWorker = false;
 
+            VM_RenameScript script = new VM_RenameScript();
+            script.IsEnabledOnImport = 0;
+            script.Script = txtRenameScript.Text;
+            script.ScriptName = "AAA_WORKINGFILE_TEMP_AAA";
+            if (!script.Save()) return;
+
             WorkerJob job = new WorkerJob();
-            job.RenameScript = txtRenameScript.Text;
+            job.RenameScript = "NULL";
             job.FileResults = FileResults;
 
             previewWorker.RunWorkerAsync(job);
