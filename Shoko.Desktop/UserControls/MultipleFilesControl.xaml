@@ -230,7 +230,7 @@
 
                                                     <StackPanel Grid.Column="1" Grid.Row="7" HorizontalAlignment="Stretch">
                                                         <Grid>
-                                                            <ComboBox Name="cmbPreferred_Subgroups_Available" ItemsSource="{Binding Source={x:Static local:VM_ShokoServer.Instance},Path=AvailableSubGroups}" Margin="0,10,34,0" HorizontalContentAlignment="Stretch" Height="24" >
+                                                            <ComboBox Name="cmbPreferred_Subgroups_Available" Margin="0,10,34,0" HorizontalContentAlignment="Stretch" Height="24" >
                                                             </ComboBox>
                                                             <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=MultipleFilesTab_SubGroups_Add}" FontSize="13" IsHitTestVisible="False" Margin="0,13,34,0" HorizontalAlignment="Center">
                                                                 <TextBlock.Style>

@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿﻿﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -233,8 +233,7 @@ namespace Shoko.Desktop.ViewModel
             if (string.IsNullOrEmpty(AppSettings.LastLoginUsername)) return false;
 
             VM_JMMUser retUser = (VM_JMMUser)Instance.ShokoServices.AuthenticateUser(AppSettings.LastLoginUsername, "");
-            if (retUser != null)
-            {
+            if (retUser == null) return false;
                 CurrentUser = retUser;
                 Username = CurrentUser.Username;
                 IsAdminUser = CurrentUser.IsAdmin == 1;
@@ -243,9 +242,6 @@ namespace Shoko.Desktop.ViewModel
 
                 return true;
             }
-
-            return false;
-        }
 
         public bool AuthenticateUser()
         {
