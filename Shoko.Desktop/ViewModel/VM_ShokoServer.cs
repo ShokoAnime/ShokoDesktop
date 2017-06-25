@@ -201,7 +201,9 @@ namespace Shoko.Desktop.ViewModel
                     proxy = new WebProxy(address.Host, address.Port);
                 }
 
-                _shokoservices = ClientFactory.Create<IShokoServer>($"http://{AppSettings.JMMServer_Address}:{AppSettings.JMMServer_Port}/"); //,mappings,proxy:proxy);
+                _shokoservices =
+                    ClientFactory.Create<IShokoServer>(
+                        $"http://{AppSettings.JMMServer_Address}:{AppSettings.JMMServer_Port}/", mappings);//,proxy:proxy);
                 // try connecting to see if the server is responding
                 Instance.ShokoServices.GetServerStatus();
                 ServerOnline = true;
@@ -234,14 +236,14 @@ namespace Shoko.Desktop.ViewModel
 
             VM_JMMUser retUser = (VM_JMMUser)Instance.ShokoServices.AuthenticateUser(AppSettings.LastLoginUsername, "");
             if (retUser == null) return false;
-                CurrentUser = retUser;
-                Username = CurrentUser.Username;
-                IsAdminUser = CurrentUser.IsAdmin == 1;
-                UserAuthenticated = true;
-                SetShowServerSettings();
+            CurrentUser = retUser;
+            Username = CurrentUser.Username;
+            IsAdminUser = CurrentUser.IsAdmin == 1;
+            UserAuthenticated = true;
+            SetShowServerSettings();
 
-                return true;
-            }
+            return true;
+        }
 
         public bool AuthenticateUser()
         {
