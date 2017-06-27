@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime;
 using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
@@ -790,6 +791,7 @@ namespace Shoko.Desktop.ViewModel
                 }
                 LastChange = changes.LastChange;
 
+                GCSettings.LargeObjectHeapCompactionMode = GCLargeObjectHeapCompactionMode.CompactOnce;
                 GC.Collect();
             }
             catch (Exception ex)
@@ -825,6 +827,8 @@ namespace Shoko.Desktop.ViewModel
             {
                 v.PopulateSerieInfo(AllGroupsDictionary, AllSeriesDictionary);
             }
+
+            GCSettings.LargeObjectHeapCompactionMode = GCLargeObjectHeapCompactionMode.CompactOnce;
             GC.Collect();
         }
 
