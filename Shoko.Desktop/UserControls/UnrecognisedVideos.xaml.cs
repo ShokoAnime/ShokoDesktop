@@ -632,77 +632,77 @@ namespace Shoko.Desktop.UserControls
 
         private void CommandBinding_DeleteFile(object sender, ExecutedRoutedEventArgs e)
         {
-	        try
-	        {
-		        Window parentWindow = Window.GetWindow(this);
+            try
+            {
+                Window parentWindow = Window.GetWindow(this);
 
-		        object obj = e.Parameter;
-		        if (obj == null) return;
+                object obj = e.Parameter;
+                if (obj == null) return;
 
-		        if (obj.GetType() == typeof(VM_VideoLocal))
-		        {
-			        VM_VideoLocal vid = obj as VM_VideoLocal;
+                if (obj.GetType() == typeof(VM_VideoLocal))
+                {
+                    VM_VideoLocal vid = obj as VM_VideoLocal;
 
-			        AskDeleteFile dlg = new AskDeleteFile(string.Format(Shoko.Commons.Properties.Resources.DeleteFile_Title, vid.FileName),
+                    AskDeleteFile dlg = new AskDeleteFile(string.Format(Shoko.Commons.Properties.Resources.DeleteFile_Title, vid.FileName),
                         Shoko.Commons.Properties.Resources.Unrecognized_ConfirmDelete + "\r\n\r\n" + Shoko.Commons.Properties.Resources.DeleteFile_Confirm,
-				        vid.Places);
-			        dlg.Owner = Window.GetWindow(this);
-			        bool? res = dlg.ShowDialog();
-			        if (res.HasValue && res.Value)
-			        {
-				        string tresult = string.Empty;
-				        Cursor = Cursors.Wait;
-				        foreach (CL_VideoLocal_Place lv in dlg.Selected)
-				        {
-					        string result =
-						        VM_ShokoServer.Instance.ShokoServices.DeleteVideoLocalPlaceAndFile(
-							        lv.VideoLocal_Place_ID);
-					        if (result.Length > 0)
-						        tresult += result + "\r\n";
-				        }
-				        if (!string.IsNullOrEmpty(tresult))
-					        MessageBox.Show(tresult, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK,
-						        MessageBoxImage.Error);
-				        RefreshUnrecognisedFiles();
-			        }
+                        vid.Places);
+                    dlg.Owner = Window.GetWindow(this);
+                    bool? res = dlg.ShowDialog();
+                    if (res.HasValue && res.Value)
+                    {
+                        string tresult = string.Empty;
+                        Cursor = Cursors.Wait;
+                        foreach (CL_VideoLocal_Place lv in dlg.Selected)
+                        {
+                            string result =
+                                VM_ShokoServer.Instance.ShokoServices.DeleteVideoLocalPlaceAndFile(
+                                    lv.VideoLocal_Place_ID);
+                            if (result.Length > 0)
+                                tresult += result + "\r\n";
+                        }
+                        if (!string.IsNullOrEmpty(tresult))
+                            MessageBox.Show(tresult, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK,
+                                MessageBoxImage.Error);
+                        RefreshUnrecognisedFiles();
+                    }
 
 
-		        }
-		        if (obj.GetType() == typeof(MultipleVideos))
-		        {
-			        MultipleVideos mv = obj as MultipleVideos;
-			        AskDeleteFile dlg = new AskDeleteFile(Shoko.Commons.Properties.Resources.DeleteFile_Multiple,
+                }
+                if (obj.GetType() == typeof(MultipleVideos))
+                {
+                    MultipleVideos mv = obj as MultipleVideos;
+                    AskDeleteFile dlg = new AskDeleteFile(Shoko.Commons.Properties.Resources.DeleteFile_Multiple,
                         Shoko.Commons.Properties.Resources.Unrecognized_DeleteSelected + "\r\n\r\n" + Shoko.Commons.Properties.Resources.DeleteFile_Confirm,
-				        mv.VideoLocals.SelectMany(a => a.Places).ToList());
-			        dlg.Owner = Window.GetWindow(this);
-			        bool? res = dlg.ShowDialog();
-			        if (res.HasValue && res.Value)
-			        {
-				        string tresult = string.Empty;
-				        Cursor = Cursors.Wait;
-				        foreach (CL_VideoLocal_Place lv in dlg.Selected)
-				        {
-					        string result = VM_ShokoServer.Instance.ShokoServices.DeleteVideoLocalPlaceAndFile(lv.VideoLocal_Place_ID);
-					        if (result.Length > 0)
-						        tresult += result + "\r\n";
-				        }
-				        if (!string.IsNullOrEmpty(tresult))
-					        MessageBox.Show(tresult, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
-				        RefreshUnrecognisedFiles();
-			        }
-		        }
+                        mv.VideoLocals.SelectMany(a => a.Places).ToList());
+                    dlg.Owner = Window.GetWindow(this);
+                    bool? res = dlg.ShowDialog();
+                    if (res.HasValue && res.Value)
+                    {
+                        string tresult = string.Empty;
+                        Cursor = Cursors.Wait;
+                        foreach (CL_VideoLocal_Place lv in dlg.Selected)
+                        {
+                            string result = VM_ShokoServer.Instance.ShokoServices.DeleteVideoLocalPlaceAndFile(lv.VideoLocal_Place_ID);
+                            if (result.Length > 0)
+                                tresult += result + "\r\n";
+                        }
+                        if (!string.IsNullOrEmpty(tresult))
+                            MessageBox.Show(tresult, Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        RefreshUnrecognisedFiles();
+                    }
+                }
 
 
-	        }
-	        catch (Exception ex)
-	        {
-		        Utils.ShowErrorMessage(ex);
-		        RefreshUnrecognisedFiles();
-	        }
-	        finally
-	        {
-		        Cursor = Cursors.Arrow;
-	        }
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowErrorMessage(ex);
+                RefreshUnrecognisedFiles();
+            }
+            finally
+            {
+                Cursor = Cursors.Arrow;
+            }
         }
 
         private void CommandBinding_RehashFile(object sender, ExecutedRoutedEventArgs e)
