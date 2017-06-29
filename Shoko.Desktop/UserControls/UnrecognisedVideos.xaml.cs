@@ -644,7 +644,7 @@ namespace Shoko.Desktop.UserControls
                     VM_VideoLocal vid = obj as VM_VideoLocal;
 
                     AskDeleteFile dlg = new AskDeleteFile(string.Format(Shoko.Commons.Properties.Resources.DeleteFile_Title, vid.FileName),
-                        Shoko.Commons.Properties.Resources.Unrecognized_ConfirmDelete + "\r\n\r\n" + Shoko.Commons.Properties.Resources.DeleteFile_Confirm,
+                        string.Format(Shoko.Commons.Properties.Resources.Unrecognized_ConfirmDelete, vid.FileName) + "\r\n\r\n" + Shoko.Commons.Properties.Resources.DeleteFile_Confirm,
                         vid.Places);
                     dlg.Owner = Window.GetWindow(this);
                     bool? res = dlg.ShowDialog();
