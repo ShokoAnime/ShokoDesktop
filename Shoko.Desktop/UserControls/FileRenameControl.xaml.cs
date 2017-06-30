@@ -14,6 +14,7 @@ using Shoko.Desktop.Forms;
 using Shoko.Desktop.Utilities;
 using Shoko.Desktop.ViewModel;
 using Shoko.Desktop.ViewModel.Server;
+using Shoko.Models;
 using Shoko.Models.Client;
 using Shoko.Models.Enums;
 using Shoko.Models.Server;
@@ -593,7 +594,7 @@ namespace Shoko.Desktop.UserControls
             VM_RenameScript script = new VM_RenameScript();
             script.IsEnabledOnImport = 0;
             script.Script = txtRenameScript.Text;
-            script.ScriptName = "AAA_WORKINGFILE_TEMP_AAA";
+            script.ScriptName = Constants.Renamer.TempFileName;
             if (!script.Save()) return;
 
             WorkerJob job = new WorkerJob();

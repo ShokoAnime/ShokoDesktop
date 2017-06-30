@@ -188,52 +188,52 @@ namespace Shoko.Desktop.ViewModel.Server
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool IsTvDBLinkEnabled
         {
-            get { return (DisableExternalLinksFlag & Constants.FlagLinkTvDB) == 0; }
+            get { return (DisableExternalLinksFlag & Constants.LinkFlags.FlagLinkTvDB) == 0; }
             set
             {
                 if (value)
-                    DisableExternalLinksFlag &= Constants.FlagLinkTvDB;
+                    DisableExternalLinksFlag &= Constants.LinkFlags.FlagLinkTvDB;
                 else
-                    DisableExternalLinksFlag |= Constants.FlagLinkTvDB;
+                    DisableExternalLinksFlag |= Constants.LinkFlags.FlagLinkTvDB;
             }
         }
 
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool IsTraktLinkEnabled
         {
-            get { return (DisableExternalLinksFlag & Constants.FlagLinkTrakt) == 0; }
+            get { return (DisableExternalLinksFlag & Constants.LinkFlags.FlagLinkTrakt) == 0; }
             set
             {
                 if (value)
-                    DisableExternalLinksFlag &= Constants.FlagLinkTrakt;
+                    DisableExternalLinksFlag &= Constants.LinkFlags.FlagLinkTrakt;
                 else
-                    DisableExternalLinksFlag |= Constants.FlagLinkTrakt;
+                    DisableExternalLinksFlag |= Constants.LinkFlags.FlagLinkTrakt;
             }
         }
 
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool IsMALLinkEnabled
         {
-            get { return (DisableExternalLinksFlag & Constants.FlagLinkMAL) == 0; }
+            get { return (DisableExternalLinksFlag & Constants.LinkFlags.FlagLinkMAL) == 0; }
             set
             {
                 if (value)
-                    DisableExternalLinksFlag &= Constants.FlagLinkMAL;
+                    DisableExternalLinksFlag &= Constants.LinkFlags.FlagLinkMAL;
                 else
-                    DisableExternalLinksFlag |= Constants.FlagLinkMAL;
+                    DisableExternalLinksFlag |= Constants.LinkFlags.FlagLinkMAL;
             }
         }
 
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool IsMovieDBLinkEnabled
         {
-            get { return (DisableExternalLinksFlag & Constants.FlagLinkMovieDB) == 0; }
+            get { return (DisableExternalLinksFlag & Constants.LinkFlags.FlagLinkMovieDB) == 0; }
             set
             {
                 if (value)
-                    DisableExternalLinksFlag &= Constants.FlagLinkMovieDB;
+                    DisableExternalLinksFlag &= Constants.LinkFlags.FlagLinkMovieDB;
                 else
-                    DisableExternalLinksFlag |= Constants.FlagLinkMovieDB;
+                    DisableExternalLinksFlag |= Constants.LinkFlags.FlagLinkMovieDB;
             }
         }
 
