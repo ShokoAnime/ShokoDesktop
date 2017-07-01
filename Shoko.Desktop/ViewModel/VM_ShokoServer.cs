@@ -203,7 +203,7 @@ namespace Shoko.Desktop.ViewModel
 
                 _shokoservices =
                     ClientFactory.Create<IShokoServer>(
-                        $"http://{AppSettings.JMMServer_Address}:{AppSettings.JMMServer_Port}/", mappings);//,proxy:proxy);
+                        $"http://{AppSettings.JMMServer_Address}:{AppSettings.JMMServer_Port}/", mappings, proxy:proxy);
                 // try connecting to see if the server is responding
                 Instance.ShokoServices.GetServerStatus();
                 ServerOnline = true;
