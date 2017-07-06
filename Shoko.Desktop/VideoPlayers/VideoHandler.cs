@@ -304,6 +304,7 @@ namespace Shoko.Desktop.VideoPlayers
                         VM_MainListHelper.Instance.GetSeriesForVideo(v.VideoLocalId);
 
                         //kvp.Value.VideoLocal_IsWatched = 1;
+                        v.WasWatched = true;
                         OnVideoWatchedEvent(new VideoWatchedEventArgs(v.VideoLocalId, v.VideoDetailed));
                     }
                     Debug.WriteLine("complete");
