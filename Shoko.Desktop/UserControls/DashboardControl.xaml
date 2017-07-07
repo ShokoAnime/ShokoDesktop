@@ -793,7 +793,7 @@
                                     Height="{Binding Source={x:Static viewModel:VM_UserSettings.Instance},Path=Dash_RecentAdditions_Height}">
                             <!-- Anime image -->
                             <Border BorderThickness="1" BorderBrush="DarkGray" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                <Image Source="{Binding Path=AniDBAnime.PosterPathWithRandoms}" Style="{StaticResource DashAnimePoster}"
+                                <Image Source="{Binding Path=AniDBAnime.AniDBAnime.PosterPathWithRandoms}" Style="{StaticResource DashAnimePoster}"
                                        MaxWidth="{Binding Source={x:Static viewModel:VM_UserSettings.Instance}, Path=Dash_RecentAdditions_Height}"/>
                             </Border>
 
