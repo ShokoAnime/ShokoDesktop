@@ -14,7 +14,7 @@ namespace Shoko.Desktop.ViewModel.Server
     public class VM_GroupVideoQuality : CL_GroupVideoQuality
     {
         [ScriptIgnore, JsonIgnore, XmlIgnore]
-        public bool HasAnySpecials => this.GetHasAnySpecials();
+        public bool HasAnySpecials => this.HasAnySpecials();
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string TotalFileSizeFormatted => this.GetTotalFileSizeFormatted();
         [ScriptIgnore, JsonIgnore, XmlIgnore]
