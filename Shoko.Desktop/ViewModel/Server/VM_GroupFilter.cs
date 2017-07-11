@@ -39,12 +39,14 @@ namespace Shoko.Desktop.ViewModel.Server
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string SortName => GroupFilterName;
 
-        public new List<GroupFilterCondition> FilterConditions
+
+        public new List<VM_GroupFilterCondition> FilterConditions
         {
             // ReSharper disable once UnusedMember.Local
-            get => _filterConditions.CastList<GroupFilterCondition>();
+            get => base.FilterConditions.CastList<VM_GroupFilterCondition>();
             set
             {
+                
                 if (value == null || value.Count <= 0)
                 {
                     _filterConditions.Clear();
@@ -53,24 +55,17 @@ namespace Shoko.Desktop.ViewModel.Server
                 }
                 _filterConditions.ReplaceRange(value.CastList<VM_GroupFilterCondition>());
                 this.OnPropertyChanged(() => Obs_FilterConditions);
+                base.FilterConditions = value.CastList<GroupFilterCondition>();
             }
         }
 
         public new string SortingCriteria
         {
             // ReSharper disable once UnusedMember.Local
-            get
-            {
-                string sortingCriteria = "";
-                foreach (VM_GroupFilterSortingCriteria gfsc in SortCriteriaList)
-                {
-                    if (sortingCriteria.Length > 0) sortingCriteria += "|";
-                    sortingCriteria += ((int)gfsc.SortType).ToString();
-                    sortingCriteria += ";";
-                    sortingCriteria += ((int)gfsc.SortDirection).ToString();
-                }
-                return sortingCriteria;
-            }
+            get => base.SortingCriteria;
+            /*
+
+            */
             set
             {
                 List<VM_GroupFilterSortingCriteria> ls = new List<VM_GroupFilterSortingCriteria>();
@@ -102,6 +97,7 @@ namespace Shoko.Desktop.ViewModel.Server
                 }
                 _sortingCriteriaList.ReplaceRange(ls);
                 this.OnPropertyChanged(() => SortCriteriaList);
+                base.SortingCriteria = value;
             }
         }
 
@@ -233,15 +229,24 @@ namespace Shoko.Desktop.ViewModel.Server
         {
             GroupFilterID = 0;
             FilterType = (int)GroupFilterType.UserDefined;
-
             _filterConditions = new TrulyObservableCollection<VM_GroupFilterCondition>();
             _sortingCriteriaList = new TrulyObservableCollection<VM_GroupFilterSortingCriteria>();
             _filterConditions.CollectionChanged += (a, b) =>
             {
+                base.FilterConditions = _filterConditions.CastList<GroupFilterCondition>();
                 collectionChanged = true;
             };
             _sortingCriteriaList.CollectionChanged += (a, b) =>
             {
+                string sortingCriteria = "";
+                foreach (VM_GroupFilterSortingCriteria gfsc in SortCriteriaList)
+                {
+                    if (sortingCriteria.Length > 0) sortingCriteria += "|";
+                    sortingCriteria += ((int)gfsc.SortType).ToString();
+                    sortingCriteria += ";";
+                    sortingCriteria += ((int)gfsc.SortDirection).ToString();
+                }
+                base.SortingCriteria = sortingCriteria;
                 collectionChanged = true;
             };
         }
@@ -252,7 +257,7 @@ namespace Shoko.Desktop.ViewModel.Server
         {
             if (IsBeingEdited && collectionChanged)
             {
-                Populate(VM_ShokoServer.Instance.ShokoServices.EvaluateGroupFilter(this));
+                Populate((VM_GroupFilter)VM_ShokoServer.Instance.ShokoServices.EvaluateGroupFilter(this));
                 collectionChanged = false;
             }
             if (Groups == null || !Groups.ContainsKey(VM_ShokoServer.Instance.CurrentUser.JMMUserID))
@@ -311,7 +316,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
 
-        public void Populate(CL_GroupFilter contract)
+        public void Populate(VM_GroupFilter contract)
         {
             GroupFilterID = contract.GroupFilterID;
             GroupFilterName = contract.GroupFilterName;
@@ -340,7 +345,7 @@ namespace Shoko.Desktop.ViewModel.Server
                     MessageBox.Show(response.ErrorMessage);
                     return false;
                 }
-                Populate(response.Result);
+                Populate((VM_GroupFilter)response.Result);
 
                 return true;
             }
