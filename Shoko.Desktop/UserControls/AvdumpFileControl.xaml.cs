@@ -358,46 +358,7 @@ namespace Shoko.Desktop.UserControls
         {
             VM_VideoLocal vid = e.Argument as VM_VideoLocal;
 
-            //Create process
-            Process pProcess = new Process();
-
-            //strCommand is path and file name of command to run
-            string appPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            string filePath = Path.Combine(appPath, "AVDump2CL.exe");
-
-            if (!File.Exists(filePath))
-            {
-                e.Result = "Could not find AvDump2 CLI: " + filePath;
-                return;
-            }
-            if (string.IsNullOrEmpty(vid.GetLocalFileSystemFullPath()))
-            {
-                e.Result = "Unable to map video file : " + vid.FileName;
-                return;
-            }
-            if (!File.Exists(vid.GetLocalFileSystemFullPath()))
-            {
-                e.Result = "Could not find Video File: " + vid.GetLocalFileSystemFullPath();
-                return;
-            }
-
-            pProcess.StartInfo.FileName = filePath;
-
-            //strCommandParameters are parameters to pass to program
-            string fileName = (char)34 + vid.GetLocalFileSystemFullPath() + (char)34;
-
-            pProcess.StartInfo.Arguments =
-                $@" --Auth={VM_ShokoServer.Instance.AniDB_Username}:{VM_ShokoServer.Instance.AniDB_AVDumpKey} --LPort={VM_ShokoServer.Instance.AniDB_AVDumpClientPort} --PrintEd2kLink -t {fileName}";
-
-            pProcess.StartInfo.UseShellExecute = false;
-            pProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-            pProcess.StartInfo.RedirectStandardOutput = true;
-            pProcess.StartInfo.CreateNoWindow = true;
-            pProcess.Start();
-            string strOutput = pProcess.StandardOutput.ReadToEnd();
-
-            //Wait for process to finish
-            pProcess.WaitForExit();
+            string strOutput = VM_ShokoServer.Instance.ShokoServices.AVDumpFile(vid.VideoLocalID);
 
             e.Result = strOutput;
         }

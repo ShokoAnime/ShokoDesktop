@@ -141,65 +141,16 @@ namespace Shoko.Desktop.UserControls
                     tempDump.IsBeingDumped = true;
                     tempDump.DumpStatus = Shoko.Commons.Properties.Resources.AVDump_Processing;
 
-                    //Create process
-                    System.Diagnostics.Process pProcess = new System.Diagnostics.Process();
-
-                    //strCommand is path and file name of command to run
-                    string appPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-                    string filePath = Path.Combine(appPath, "AVDump2CL.exe");
-
-                    if (!File.Exists(filePath))
-                    {
-                        tempDump.AVDumpFullResult = Shoko.Commons.Properties.Resources.AVDump_Missing + " " + filePath;
-                        tempDump.ED2KDump = Utils.GetED2KDump(tempDump.AVDumpFullResult);
-                        tempDump.IsBeingDumped = false;
-                        tempDump.DumpStatus = Shoko.Commons.Properties.Resources.AVDump_Error;
-                        tempDump.HasBeenDumped = false;
-
-                        continue;
-                    }
-
-                    if (string.IsNullOrEmpty(Commons.Extensions.Models.GetLocalFileSystemFullPath(dump.VideoLocal)) || (!File.Exists(Commons.Extensions.Models.GetLocalFileSystemFullPath(dump.VideoLocal))))
-                    {
-                        tempDump.AVDumpFullResult = Shoko.Commons.Properties.Resources.AVDump_VideoMissing + " " + Commons.Extensions.Models.GetLocalFileSystemFullPath(dump.VideoLocal) ?? string.Empty;
-                        tempDump.ED2KDump = Utils.GetED2KDump(tempDump.AVDumpFullResult);
-                        tempDump.IsBeingDumped = false;
-                        tempDump.DumpStatus = Shoko.Commons.Properties.Resources.AVDump_Error;
-                        tempDump.HasBeenDumped = false;
-
-                        return;
-                    }
-
-                    pProcess.StartInfo.FileName = filePath;
-
-                    //strCommandParameters are parameters to pass to program
-                    string fileName = (char)34 + Commons.Extensions.Models.GetLocalFileSystemFullPath(dump.VideoLocal) + (char)34;
-
-                    pProcess.StartInfo.Arguments =
-                        $@" --Auth={VM_ShokoServer.Instance.AniDB_Username}:{VM_ShokoServer.Instance.AniDB_AVDumpKey} --LPort={VM_ShokoServer.Instance.AniDB_AVDumpClientPort} --PrintEd2kLink -t {fileName}";
-
-                    pProcess.StartInfo.UseShellExecute = false;
-                    pProcess.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
-                    pProcess.StartInfo.RedirectStandardOutput = true;
-                    pProcess.StartInfo.CreateNoWindow = true;
-                    pProcess.Start();
-                    string strOutput = pProcess.StandardOutput.ReadToEnd();
-
-                    //Wait for process to finish
-                    pProcess.WaitForExit();
-
-                    tempDump.AVDumpFullResult = strOutput;
+                    tempDump.AVDumpFullResult = VM_ShokoServer.Instance.ShokoServices.AVDumpFile(tempDump.VideoLocal.VideoLocalID);
                     tempDump.ED2KDump = Utils.GetED2KDump(tempDump.AVDumpFullResult);
-
+                    tempDump.IsBeingDumped = false;
                     if (string.IsNullOrEmpty(tempDump.ED2KDump))
                     {
-                        tempDump.IsBeingDumped = false;
                         tempDump.DumpStatus = Shoko.Commons.Properties.Resources.AVDump_Error;
                         tempDump.HasBeenDumped = false;
                     }
                     else
                     {
-                        tempDump.IsBeingDumped = false;
                         tempDump.DumpStatus = Shoko.Commons.Properties.Resources.AVDump_Complete;
                         tempDump.HasBeenDumped = true;
                     }
