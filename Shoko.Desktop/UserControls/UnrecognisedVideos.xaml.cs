@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -12,6 +13,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using Shoko.Commons.Extensions;
+using Shoko.Commons.Utils;
 using Shoko.Desktop.Enums;
 using Shoko.Desktop.Forms;
 using Shoko.Desktop.Utilities;
@@ -27,7 +29,8 @@ namespace Shoko.Desktop.UserControls
     /// </summary>
     public partial class UnrecognisedVideos : UserControl
     {
-
+        private readonly BackgroundWorker workerAnimeMatch = new BackgroundWorker();
+        private List<VM_AnimeSeries_User> tempAnime { get; set; }
 
         public ICollectionView ViewFiles { get; set; }
         public ObservableCollection<VM_VideoLocal> UnrecognisedFiles { get; set; }
@@ -120,9 +123,13 @@ namespace Shoko.Desktop.UserControls
 
             AllSeries = new ObservableCollection<VM_AnimeSeries_User>();
             ViewSeries = CollectionViewSource.GetDefaultView(AllSeries);
-            ViewSeries.SortDescriptions.Add(new SortDescription("SeriesName", ListSortDirection.Ascending));
             ViewSeries.Filter = SeriesSearchFilter;
 
+            workerAnimeMatch.WorkerSupportsCancellation = true;
+            workerAnimeMatch.WorkerReportsProgress = true;
+            workerAnimeMatch.DoWork += workerAnimeMatch_DoWork;
+            workerAnimeMatch.RunWorkerCompleted += workerAnimeMatch_RunWorkerCompleted;
+            workerAnimeMatch.ProgressChanged += workerAnimeMatch_ReportProgress;
 
             btnRefresh.Click += new RoutedEventHandler(btnRefresh_Click);
             btnConfirm.Click += new RoutedEventHandler(btnConfirm_Click);
@@ -155,6 +162,7 @@ namespace Shoko.Desktop.UserControls
             btnLogs.Click += new RoutedEventHandler(btnLogs_Click);
 
             btnRefreshSeriesList.Click += new RoutedEventHandler(btnRefreshSeriesList_Click);
+            RefreshSeries();
         }
 
 
@@ -204,6 +212,7 @@ namespace Shoko.Desktop.UserControls
                 }
                 SetConfirmDetails();
                 Confirm1.Visibility = Confirm2.Visibility = visible;
+                RefreshSeries();
             }
             catch (Exception ex)
             {
@@ -896,6 +905,7 @@ namespace Shoko.Desktop.UserControls
                 {
                     UnrecognisedFiles.Add(vid);
                 }
+                RefreshSeries();
             }
             catch (Exception ex)
             {
@@ -910,14 +920,111 @@ namespace Shoko.Desktop.UserControls
                 VM_MainListHelper.Instance.AllAnimeDetailedDictionary = null;
                 AllSeries.Clear();
                 if (!VM_ShokoServer.Instance.ServerOnline) return;
-                foreach (VM_AnimeSeries_User ser in VM_ShokoServer.Instance.ShokoServices.GetAllSeries(VM_ShokoServer.Instance.CurrentUser.JMMUserID).Cast<VM_AnimeSeries_User>())
+                if (AnyVideosSelected)
                 {
-                    AllSeries.Add(ser);
+                    if (workerAnimeMatch.IsBusy)
+                    {
+                        workerAnimeMatch.CancelAsync();
+                        while (workerAnimeMatch.IsBusy)
+                            Thread.Sleep(100);
+                    }
+                    workerAnimeMatch.RunWorkerAsync(dgVideos.SelectedItems[0]);
                 }
             }
             catch (Exception ex)
             {
                 Utils.ShowErrorMessage(ex);
+            }
+        }
+
+        void workerAnimeMatch_DoWork(object sender, DoWorkEventArgs e)
+        {
+            var worker = sender as BackgroundWorker;
+
+            worker.ReportProgress(0);
+
+            SearchAnime(worker, e);
+
+            worker.ReportProgress(100);
+        }
+
+        private void SearchAnime(BackgroundWorker worker, DoWorkEventArgs e)
+        {
+            VM_VideoLocal vidLocal = e.Argument as VM_VideoLocal;
+
+            if (vidLocal == null) return;
+
+            tempAnime = new List<VM_AnimeSeries_User>();
+
+            var series = VM_ShokoServer.Instance.ShokoServices
+                .SearchSeriesWithFilename(VM_ShokoServer.Instance.CurrentUser.JMMUserID,
+                    vidLocal.ClosestAnimeMatchString).CastList<VM_AnimeSeries_User>();
+
+            foreach (VM_AnimeSeries_User anime in series)
+            {
+                if (worker.CancellationPending)
+                {
+                    e.Cancel = true;
+                    return;
+                }
+                tempAnime.Add(anime);
+            }
+
+            if (tempAnime.Count > 0) return;
+            if (worker.CancellationPending)
+            {
+                e.Cancel = true;
+                return;
+            }
+
+            foreach (var anime in VM_ShokoServer.Instance.ShokoServices
+                .GetAllSeries(VM_ShokoServer.Instance.CurrentUser.JMMUserID).Cast<VM_AnimeSeries_User>())
+            {
+                if (worker.CancellationPending)
+                {
+                    e.Cancel = true;
+                    return;
+                }
+                tempAnime.Add(anime);
+            }
+        }
+
+        void workerAnimeMatch_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (AllSeries.Count > 0) AllSeries.Clear();
+            if (e.Cancelled)
+            {
+                tempAnime = null;
+                return;
+            }
+            if (tempAnime == null || tempAnime.Count <= 0) return;
+            tempAnime.ForEach(a => AllSeries.Add(a));
+
+            if (AllSeries.Count >= 1)
+                lbSeries.SelectedIndex = 0;
+
+            tempAnime = null;
+        }
+
+        void workerAnimeMatch_ReportProgress(object sender, ProgressChangedEventArgs e)
+        {
+            if (e.ProgressPercentage == 0)
+            {
+                txtSeriesSearch.Text = string.Intern("Loading...");
+                txtSeriesSearch.IsEnabled = false;
+                txtSeriesSearch.IsReadOnly = true;
+                txtSeriesSearch.Focusable = false;
+
+                lbSeries.IsEnabled = false;
+            }
+            else
+            {
+                txtSeriesSearch.IsReadOnly = false;
+                txtSeriesSearch.Focusable = true;
+                txtSeriesSearch.Text = string.Empty;
+                txtSeriesSearch.IsEnabled = true;
+
+                lbSeries.IsEnabled = true;
             }
         }
 

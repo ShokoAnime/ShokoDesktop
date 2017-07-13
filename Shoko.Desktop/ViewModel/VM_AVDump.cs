@@ -18,6 +18,7 @@ namespace Shoko.Desktop.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propname));
         }
 
+        public int ObjectType => 5;
 
         private string fullPath = "";
         public string FullPath

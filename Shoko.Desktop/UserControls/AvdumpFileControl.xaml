@@ -167,7 +167,7 @@
                         </Grid.ColumnDefinitions>
 
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,5,0,0" Grid.Column="0" Grid.Row="0">
-                            <TextBlock Text="{Binding Path=SelectedCount}" VerticalAlignment="Center" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding Path=SelectedCount, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:AvdumpFileControl}}}" VerticalAlignment="Center" FontWeight="Bold"/>
                             <TextBlock Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Files}" Margin="5,0,0,0" VerticalAlignment="Center" FontWeight="Bold"/>
                         </StackPanel>
 

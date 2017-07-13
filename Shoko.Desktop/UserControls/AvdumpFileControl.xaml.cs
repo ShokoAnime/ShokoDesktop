@@ -1,16 +1,23 @@
 ﻿using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using Shoko.Commons.Extensions;
+using Shoko.Commons.Utils;
 using Shoko.Desktop.Utilities;
 using Shoko.Desktop.ViewModel;
 using Shoko.Desktop.ViewModel.Helpers;
 using Shoko.Desktop.ViewModel.Server;
+using Shoko.Models;
 
 namespace Shoko.Desktop.UserControls
 {
@@ -19,7 +26,9 @@ namespace Shoko.Desktop.UserControls
     /// </summary>
     public partial class AvdumpFileControl : UserControl
     {
-        BackgroundWorker workerAvdump = new BackgroundWorker();
+        private readonly BackgroundWorker workerAvdump = new BackgroundWorker();
+        private readonly BackgroundWorker workerAnimeMatch = new BackgroundWorker();
+        private List<VM_AniDB_Anime> tempAnime { get; set; }
 
         public VM_AniDB_Anime SelectedAnime { get; set; }
 
@@ -31,8 +40,8 @@ namespace Shoko.Desktop.UserControls
 
         public bool IsAnimeNotPopulated
         {
-            get { return (bool)GetValue(IsAnimeNotPopulatedProperty); }
-            set { SetValue(IsAnimeNotPopulatedProperty, value); }
+            get => (bool)GetValue(IsAnimeNotPopulatedProperty);
+            set => SetValue(IsAnimeNotPopulatedProperty, value);
         }
 
         public static readonly DependencyProperty IsAnimePopulatedProperty = DependencyProperty.Register("IsAnimePopulated",
@@ -41,8 +50,8 @@ namespace Shoko.Desktop.UserControls
 
         public bool IsAnimePopulated
         {
-            get { return (bool)GetValue(IsAnimePopulatedProperty); }
-            set { SetValue(IsAnimePopulatedProperty, value); }
+            get => (bool)GetValue(IsAnimePopulatedProperty);
+            set => SetValue(IsAnimePopulatedProperty, value);
         }
 
         public static readonly DependencyProperty AnimeURLProperty = DependencyProperty.Register("AnimeURL",
@@ -51,8 +60,8 @@ namespace Shoko.Desktop.UserControls
 
         public string AnimeURL
         {
-            get { return (string)GetValue(AnimeURLProperty); }
-            set { SetValue(AnimeURLProperty, value); }
+            get => (string)GetValue(AnimeURLProperty);
+            set => SetValue(AnimeURLProperty, value);
         }
 
         public static readonly DependencyProperty AvdumpDetailsNotValidProperty = DependencyProperty.Register("AvdumpDetailsNotValid",
@@ -61,8 +70,8 @@ namespace Shoko.Desktop.UserControls
 
         public bool AvdumpDetailsNotValid
         {
-            get { return (bool)GetValue(AvdumpDetailsNotValidProperty); }
-            set { SetValue(AvdumpDetailsNotValidProperty, value); }
+            get => (bool)GetValue(AvdumpDetailsNotValidProperty);
+            set => SetValue(AvdumpDetailsNotValidProperty, value);
         }
 
         public static readonly DependencyProperty ValidED2KDumpProperty = DependencyProperty.Register("ValidED2KDump",
@@ -71,8 +80,8 @@ namespace Shoko.Desktop.UserControls
 
         public bool ValidED2KDump
         {
-            get { return (bool)GetValue(ValidED2KDumpProperty); }
-            set { SetValue(ValidED2KDumpProperty, value); }
+            get => (bool)GetValue(ValidED2KDumpProperty);
+            set => SetValue(ValidED2KDumpProperty, value);
         }
 
         public static readonly DependencyProperty DumpSingleProperty = DependencyProperty.Register("DumpSingle",
@@ -81,8 +90,8 @@ namespace Shoko.Desktop.UserControls
 
         public bool DumpSingle
         {
-            get { return (bool)GetValue(DumpSingleProperty); }
-            set { SetValue(DumpSingleProperty, value); }
+            get => (bool)GetValue(DumpSingleProperty);
+            set => SetValue(DumpSingleProperty, value);
         }
 
         public static readonly DependencyProperty DumpMultipleProperty = DependencyProperty.Register("DumpMultiple",
@@ -91,8 +100,8 @@ namespace Shoko.Desktop.UserControls
 
         public bool DumpMultiple
         {
-            get { return (bool)GetValue(DumpMultipleProperty); }
-            set { SetValue(DumpMultipleProperty, value); }
+            get => (bool)GetValue(DumpMultipleProperty);
+            set => SetValue(DumpMultipleProperty, value);
         }
 
         public static readonly DependencyProperty AvDumpTextProperty = DependencyProperty.Register("AvDumpText",
@@ -101,8 +110,19 @@ namespace Shoko.Desktop.UserControls
 
         public string AvDumpText
         {
-            get { return (string)GetValue(AvDumpTextProperty); }
-            set { SetValue(AvDumpTextProperty, value); }
+            get => (string)GetValue(AvDumpTextProperty);
+            set => SetValue(AvDumpTextProperty, value);
+        }
+
+        public string SelectedCount
+        {
+            get
+            {
+                var dumpList = DataContext as MultipleAvdumps;
+                if (dumpList != null) return dumpList.SelectedCount.ToString();
+                if (DataContext is VM_AVDump) return string.Intern("1");
+                return string.Intern("0");
+            }
         }
 
         public AvdumpFileControl()
@@ -113,16 +133,22 @@ namespace Shoko.Desktop.UserControls
 
             AllAnime = new ObservableCollection<VM_AniDB_Anime>();
 
-            btnClearAnimeSearch.Click += new RoutedEventHandler(btnClearAnimeSearch_Click);
-            txtAnimeSearch.TextChanged += new TextChangedEventHandler(txtAnimeSearch_TextChanged);
-            lbAnime.SelectionChanged += new SelectionChangedEventHandler(lbAnime_SelectionChanged);
-            hlURL.Click += new RoutedEventHandler(hlURL_Click);
-            btnClipboard.Click += new RoutedEventHandler(btnClipboard_Click);
+            btnClearAnimeSearch.Click += btnClearAnimeSearch_Click;
+            txtAnimeSearch.TextChanged += txtAnimeSearch_TextChanged;
+            lbAnime.SelectionChanged += lbAnime_SelectionChanged;
+            hlURL.Click += hlURL_Click;
+            btnClipboard.Click += btnClipboard_Click;
 
-            workerAvdump.DoWork += new DoWorkEventHandler(workerAvdump_DoWork);
-            workerAvdump.RunWorkerCompleted += new RunWorkerCompletedEventHandler(workerAvdump_RunWorkerCompleted);
+            workerAvdump.DoWork += workerAvdump_DoWork;
+            workerAvdump.RunWorkerCompleted += workerAvdump_RunWorkerCompleted;
 
-            DataContextChanged += new DependencyPropertyChangedEventHandler(AvdumpFileControl_DataContextChanged);
+            workerAnimeMatch.WorkerSupportsCancellation = true;
+            workerAnimeMatch.WorkerReportsProgress = true;
+            workerAnimeMatch.DoWork += workerAnimeMatch_DoWork;
+            workerAnimeMatch.RunWorkerCompleted += workerAnimeMatch_RunWorkerCompleted;
+            workerAnimeMatch.ProgressChanged += workerAnimeMatch_ReportProgress;
+
+            DataContextChanged += AvdumpFileControl_DataContextChanged;
             AvdumpDetailsNotValid = string.IsNullOrEmpty(VM_ShokoServer.Instance.AniDB_AVDumpClientPort) || string.IsNullOrEmpty(VM_ShokoServer.Instance.AniDB_AVDumpKey);
 
             try
@@ -145,6 +171,12 @@ namespace Shoko.Desktop.UserControls
                 DumpMultiple = false;
 
                 if (DataContext == null) return;
+                if (workerAnimeMatch.IsBusy)
+                {
+                    workerAnimeMatch.CancelAsync();
+                    while (workerAnimeMatch.IsBusy)
+                        Thread.Sleep(100);
+                }
 
                 if (DataContext.GetType() == typeof(VM_AVDump))
                 {
@@ -152,12 +184,7 @@ namespace Shoko.Desktop.UserControls
                     if (dump != null)
                     {
                         AllAnime.Clear();
-                        foreach (VM_AniDB_Anime anime in VM_AniDB_Anime.BestLevenshteinDistanceMatches(dump.VideoLocal.ClosestAnimeMatchString, 10))
-                        {
-                            AllAnime.Add(anime);
-                        }
-                        if (AllAnime.Count > 0)
-                            lbAnime.SelectedIndex = 0;
+                        workerAnimeMatch.RunWorkerAsync(dump);
 
                         if (string.IsNullOrEmpty(dump.AVDumpFullResult))
                         {
@@ -175,21 +202,15 @@ namespace Shoko.Desktop.UserControls
                     }
                     DumpSingle = true;
                 }
-
-                if (DataContext.GetType() == typeof(MultipleAvdumps))
+                else if (DataContext.GetType() == typeof(MultipleAvdumps))
                 {
                     MultipleAvdumps dumpList = DataContext as MultipleAvdumps;
                     AllAnime.Clear();
 
-                    foreach (VM_AniDB_Anime anime in VM_AniDB_Anime.BestLevenshteinDistanceMatches(dumpList.AVDumps[0].VideoLocal.ClosestAnimeMatchString, 10))
-                        AllAnime.Add(anime);
-
-                    if (AllAnime.Count > 0)
-                        lbAnime.SelectedIndex = 0;
-
                     string massAvDump = "";
-                    if (dumpList != null)
+                    if (dumpList != null && dumpList.AVDumps.Count >= 1)
                     {
+                        workerAnimeMatch.RunWorkerAsync(dumpList.AVDumps[0]);
 
                         foreach (VM_AVDump dump in dumpList.AVDumps)
                         {
@@ -215,9 +236,6 @@ namespace Shoko.Desktop.UserControls
             {
                 Utils.ShowErrorMessage(ex);
             }
-
-
-
         }
 
         void btnClipboard_Click(object sender, RoutedEventArgs e)
@@ -247,6 +265,99 @@ namespace Shoko.Desktop.UserControls
             workerAvdump.RunWorkerAsync(DataContext as VM_VideoLocal);
         }
 
+        void workerAnimeMatch_DoWork(object sender, DoWorkEventArgs e)
+        {
+            var worker = sender as BackgroundWorker;
+
+            worker.ReportProgress(0);
+
+            SearchAnime(worker, e);
+
+            worker.ReportProgress(100);
+        }
+
+        private void SearchAnime(BackgroundWorker worker, DoWorkEventArgs e)
+        {
+            VM_AVDump avdump = e.Argument as VM_AVDump ?? (e.Argument as MultipleAvdumps)?.AVDumps[0];
+
+            if (avdump == null) return;
+
+            tempAnime = new List<VM_AniDB_Anime>();
+
+            foreach (VM_AniDB_Anime anime in VM_ShokoServer.Instance.ShokoServices
+                .SearchAnimeWithFilename(VM_ShokoServer.Instance.CurrentUser.JMMUserID,
+                    avdump.VideoLocal.ClosestAnimeMatchString).CastList<VM_AniDB_Anime>())
+            {
+                if (worker.CancellationPending)
+                {
+                    e.Cancel = true;
+                    return;
+                }
+                tempAnime.Add(anime);
+            }
+
+            if (tempAnime.Count > 0) return;
+            if (worker.CancellationPending)
+            {
+                e.Cancel = true;
+                return;
+            }
+
+            foreach (VM_AniDB_Anime anime in VM_ShokoServer.Instance.ShokoServices.GetAllAnime()
+                .CastList<VM_AniDB_Anime>())
+            {
+                if (worker.CancellationPending)
+                {
+                    e.Cancel = true;
+                    return;
+                }
+                tempAnime.Add(anime);
+            }
+        }
+
+        void workerAnimeMatch_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (AllAnime.Count > 0) AllAnime.Clear();
+            if (e.Cancelled)
+            {
+                tempAnime = null;
+                return;
+            }
+            if (tempAnime == null || tempAnime.Count <= 0) return;
+            tempAnime.ForEach(a => AllAnime.Add(a));
+
+            if (AllAnime.Count >= 1)
+                lbAnime.SelectedIndex = 0;
+
+            tempAnime = null;
+        }
+
+        void workerAnimeMatch_ReportProgress(object sender, ProgressChangedEventArgs e)
+        {
+            if (e.ProgressPercentage == 0)
+            {
+                txtAnimeSearch.Text = string.Intern("Loading...");
+                txtAnimeSearch.IsEnabled = false;
+                txtAnimeSearch.IsReadOnly = true;
+                txtAnimeSearch.Focusable = false;
+
+                lbAnime.IsEnabled = false;
+
+                btnClearAnimeSearch.IsEnabled = false;
+            }
+            else
+            {
+                txtAnimeSearch.IsReadOnly = false;
+                txtAnimeSearch.Focusable = true;
+                txtAnimeSearch.Text = string.Empty;
+                txtAnimeSearch.IsEnabled = true;
+
+                lbAnime.IsEnabled = true;
+
+                btnClearAnimeSearch.IsEnabled = true;
+            }
+        }
+
         void workerAvdump_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
 
@@ -266,7 +377,7 @@ namespace Shoko.Desktop.UserControls
             Process pProcess = new Process();
 
             //strCommand is path and file name of command to run
-            string appPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            string appPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             string filePath = Path.Combine(appPath, "AVDump2CL.exe");
 
             if (!File.Exists(filePath))
@@ -308,7 +419,7 @@ namespace Shoko.Desktop.UserControls
 
         void hlURL_Click(object sender, RoutedEventArgs e)
         {
-            Uri uri = new Uri(string.Format(Models.Constants.URLS.AniDB_Series_NewRelease, SelectedAnime.AnimeID));
+            Uri uri = new Uri(string.Format(Constants.URLS.AniDB_Series_NewRelease, SelectedAnime.AnimeID));
             Process.Start(new ProcessStartInfo(uri.AbsoluteUri));
         }
 

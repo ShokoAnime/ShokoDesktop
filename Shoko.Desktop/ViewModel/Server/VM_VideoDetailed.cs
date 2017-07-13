@@ -30,11 +30,8 @@ namespace Shoko.Desktop.ViewModel.Server
 
         public new int CrossRefSource
         {
-            get { return base.CrossRefSource; }
-            set
-            {
-                this.SetField(()=>base.CrossRefSource,(r)=> base.CrossRefSource = r, value, () => CrossRefSource, () => IsAutoAssociation);
-            }
+            get => base.CrossRefSource;
+            set => this.SetField(()=>base.CrossRefSource,(r)=> base.CrossRefSource = r, value, () => CrossRefSource, () => IsAutoAssociation);
         }
 
         [ScriptIgnore, JsonIgnore, XmlIgnore]
@@ -100,20 +97,14 @@ namespace Shoko.Desktop.ViewModel.Server
 
         public new int VideoLocal_IsWatched
         {
-            get { return base.VideoLocal_IsWatched; }
-            set
-            {
-                this.SetField(()=>base.VideoLocal_IsWatched,(r)=> base.VideoLocal_IsWatched = r, value, ()=>VideoLocal_IsWatched, ()=>Watched);
-            }
+            get => base.VideoLocal_IsWatched;
+            set => this.SetField(()=>base.VideoLocal_IsWatched,(r)=> base.VideoLocal_IsWatched = r, value, ()=>VideoLocal_IsWatched, ()=>Watched);
         }
 
         public new int VideoLocal_IsIgnored
         {
-            get { return base.VideoLocal_IsIgnored; }
-            set
-            {
-                this.SetField(()=>base.VideoLocal_IsIgnored,(r)=> base.VideoLocal_IsIgnored = r, value, () => VideoLocal_IsIgnored, () => Ignored);
-            }
+            get => base.VideoLocal_IsIgnored;
+            set => this.SetField(()=>base.VideoLocal_IsIgnored,(r)=> base.VideoLocal_IsIgnored = r, value, () => VideoLocal_IsIgnored, () => Ignored);
         }
 
       
@@ -121,11 +112,8 @@ namespace Shoko.Desktop.ViewModel.Server
 
         public new int VideoLocal_IsVariation
         {
-            get { return base.VideoLocal_IsVariation; }
-            set
-            {
-                this.SetField(()=>base.VideoLocal_IsVariation,(r)=> base.VideoLocal_IsVariation = r, value, ()=>VideoLocal_IsVariation, ()=>Variation);
-            }
+            get => base.VideoLocal_IsVariation;
+            set => this.SetField(()=>base.VideoLocal_IsVariation,(r)=> base.VideoLocal_IsVariation = r, value, ()=>VideoLocal_IsVariation, ()=>Variation);
         }
 
         [ScriptIgnore, JsonIgnore, XmlIgnore]
@@ -136,20 +124,14 @@ namespace Shoko.Desktop.ViewModel.Server
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool ShowMoreDetails
         {
-            get { return showMoreDetails; }
-            set
-            {
-                this.SetField(()=>showMoreDetails,value);
-            }
+            get => showMoreDetails;
+            set => this.SetField(()=>showMoreDetails,value);
         }
 
         public new DateTime? VideoLocal_WatchedDate
         {
-            get
-            {
-                return base.VideoLocal_WatchedDate;
-            }
-            set { this.SetField(()=>base.VideoLocal_WatchedDate,(r)=> base.VideoLocal_WatchedDate = r, value); }
+            get => base.VideoLocal_WatchedDate;
+            set => this.SetField(()=>base.VideoLocal_WatchedDate,(r)=> base.VideoLocal_WatchedDate = r, value);
         }
 
         [ScriptIgnore, JsonIgnore, XmlIgnore]
@@ -252,8 +234,8 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         [ScriptIgnore, JsonIgnore, XmlIgnore]
-        public int ObjectType { get; } = 5;
+        public int ObjectType => 5;
         [ScriptIgnore, JsonIgnore, XmlIgnore]
-        public bool IsEditable { get; } = false;
+        public bool IsEditable => false;
     }
 }

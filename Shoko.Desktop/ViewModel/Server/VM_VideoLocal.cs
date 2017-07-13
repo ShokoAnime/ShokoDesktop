@@ -17,9 +17,9 @@ namespace Shoko.Desktop.ViewModel.Server
     public class VM_VideoLocal : CL_VideoLocal, IListWrapper
     {
         [ScriptIgnore, JsonIgnore, XmlIgnore]
-        public int ObjectType { get; } = 5;
+        public int ObjectType => 5;
         [ScriptIgnore, JsonIgnore, XmlIgnore]
-        public bool IsEditable { get; } = false;
+        public bool IsEditable => false;
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool IsLocalFile => this.IsLocalFile();
         [ScriptIgnore, JsonIgnore, XmlIgnore]
@@ -43,10 +43,7 @@ namespace Shoko.Desktop.ViewModel.Server
         }
 
         [ScriptIgnore, JsonIgnore, XmlIgnore]
-        public string FullPath
-        {
-            get => Places.FirstOrDefault(a => !string.IsNullOrEmpty(a.GetFullPath())).GetFullPath();
-        }
+        public string FullPath => Places.FirstOrDefault(a => !string.IsNullOrEmpty(a.GetFullPath())).GetFullPath();
 
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string ClosestAnimeMatchString
