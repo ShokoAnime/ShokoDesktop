@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -27,8 +28,7 @@ namespace Shoko.Desktop.UserControls
     public partial class AvdumpFileControl : UserControl
     {
         private readonly BackgroundWorker workerAvdump = new BackgroundWorker();
-        private readonly BackgroundWorker workerAnimeMatch = new BackgroundWorker();
-        private List<VM_AniDB_Anime> tempAnime { get; set; }
+        private List<CancellationTokenSource> runningTasks = new List<CancellationTokenSource>();
 
         public VM_AniDB_Anime SelectedAnime { get; set; }
 
@@ -142,12 +142,6 @@ namespace Shoko.Desktop.UserControls
             workerAvdump.DoWork += workerAvdump_DoWork;
             workerAvdump.RunWorkerCompleted += workerAvdump_RunWorkerCompleted;
 
-            workerAnimeMatch.WorkerSupportsCancellation = true;
-            workerAnimeMatch.WorkerReportsProgress = true;
-            workerAnimeMatch.DoWork += workerAnimeMatch_DoWork;
-            workerAnimeMatch.RunWorkerCompleted += workerAnimeMatch_RunWorkerCompleted;
-            workerAnimeMatch.ProgressChanged += workerAnimeMatch_ReportProgress;
-
             DataContextChanged += AvdumpFileControl_DataContextChanged;
             AvdumpDetailsNotValid = string.IsNullOrEmpty(VM_ShokoServer.Instance.AniDB_AVDumpClientPort) || string.IsNullOrEmpty(VM_ShokoServer.Instance.AniDB_AVDumpKey);
 
@@ -171,12 +165,7 @@ namespace Shoko.Desktop.UserControls
                 DumpMultiple = false;
 
                 if (DataContext == null) return;
-                if (workerAnimeMatch.IsBusy)
-                {
-                    workerAnimeMatch.CancelAsync();
-                    while (workerAnimeMatch.IsBusy)
-                        Thread.Sleep(100);
-                }
+                
 
                 if (DataContext.GetType() == typeof(VM_AVDump))
                 {
@@ -184,7 +173,7 @@ namespace Shoko.Desktop.UserControls
                     if (dump != null)
                     {
                         AllAnime.Clear();
-                        workerAnimeMatch.RunWorkerAsync(dump);
+                        SearchAnime(dump);
 
                         if (string.IsNullOrEmpty(dump.AVDumpFullResult))
                         {
@@ -210,7 +199,7 @@ namespace Shoko.Desktop.UserControls
                     string massAvDump = "";
                     if (dumpList != null && dumpList.AVDumps.Count >= 1)
                     {
-                        workerAnimeMatch.RunWorkerAsync(dumpList.AVDumps[0]);
+                        SearchAnime(dumpList.AVDumps[0]);
 
                         foreach (VM_AVDump dump in dumpList.AVDumps)
                         {
@@ -265,76 +254,72 @@ namespace Shoko.Desktop.UserControls
             workerAvdump.RunWorkerAsync(DataContext as VM_VideoLocal);
         }
 
-        void workerAnimeMatch_DoWork(object sender, DoWorkEventArgs e)
+        public async void SearchAnime(object argument)
         {
-            var worker = sender as BackgroundWorker;
+            if (runningTasks.Count > 0)
+            {
+                foreach (CancellationTokenSource runningTask in runningTasks)
+                    runningTask.Cancel();
+            }
+            CancellationTokenSource tokenSource = new CancellationTokenSource();
+            var token = tokenSource.Token;
+            runningTasks.Add(tokenSource);
 
-            worker.ReportProgress(0);
+            Progress<int> progress = new Progress<int>(ReportProgress);
 
-            SearchAnime(worker, e);
-
-            worker.ReportProgress(100);
+            var series = await Task.Run(() => SearchAnime(token, argument, progress), token);
+            AllAnime.Clear();
+            series.ForEach(a => AllAnime.Add(a));
+            if (AllAnime.Count >= 1)
+                lbAnime.SelectedIndex = 0;
         }
 
-        private void SearchAnime(BackgroundWorker worker, DoWorkEventArgs e)
+        private List<VM_AniDB_Anime> SearchAnime(CancellationToken token, object argument, IProgress<int> progress)
         {
-            VM_AVDump avdump = e.Argument as VM_AVDump ?? (e.Argument as MultipleAvdumps)?.AVDumps[0];
+            progress.Report(0);
+            List<VM_AniDB_Anime> tempAnime = new List<VM_AniDB_Anime>();
+            SearchAnime(token, argument, tempAnime);
+            progress.Report(100);
+            return tempAnime;
+        }
+
+        private void SearchAnime(CancellationToken token, object argument, List<VM_AniDB_Anime> tempAnime)
+        {
+            VM_AVDump avdump = argument as VM_AVDump ?? (argument as MultipleAvdumps)?.AVDumps[0];
 
             if (avdump == null) return;
-
-            tempAnime = new List<VM_AniDB_Anime>();
 
             foreach (VM_AniDB_Anime anime in VM_ShokoServer.Instance.ShokoServices
                 .SearchAnimeWithFilename(VM_ShokoServer.Instance.CurrentUser.JMMUserID,
                     avdump.VideoLocal.ClosestAnimeMatchString).CastList<VM_AniDB_Anime>())
             {
-                if (worker.CancellationPending)
+                if (token.IsCancellationRequested)
                 {
-                    e.Cancel = true;
                     return;
                 }
                 tempAnime.Add(anime);
             }
 
             if (tempAnime.Count > 0) return;
-            if (worker.CancellationPending)
+            if (token.IsCancellationRequested)
             {
-                e.Cancel = true;
                 return;
             }
 
             foreach (VM_AniDB_Anime anime in VM_ShokoServer.Instance.ShokoServices.GetAllAnime()
                 .CastList<VM_AniDB_Anime>())
             {
-                if (worker.CancellationPending)
+                if (token.IsCancellationRequested)
                 {
-                    e.Cancel = true;
                     return;
                 }
                 tempAnime.Add(anime);
             }
         }
 
-        void workerAnimeMatch_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        public void ReportProgress(int progress)
         {
-            if (AllAnime.Count > 0) AllAnime.Clear();
-            if (e.Cancelled)
-            {
-                tempAnime = null;
-                return;
-            }
-            if (tempAnime == null || tempAnime.Count <= 0) return;
-            tempAnime.ForEach(a => AllAnime.Add(a));
-
-            if (AllAnime.Count >= 1)
-                lbAnime.SelectedIndex = 0;
-
-            tempAnime = null;
-        }
-
-        void workerAnimeMatch_ReportProgress(object sender, ProgressChangedEventArgs e)
-        {
-            if (e.ProgressPercentage == 0)
+            if (progress == 0)
             {
                 txtAnimeSearch.Text = string.Intern("Loading...");
                 txtAnimeSearch.IsEnabled = false;

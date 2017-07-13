@@ -8,6 +8,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -29,8 +30,7 @@ namespace Shoko.Desktop.UserControls
     /// </summary>
     public partial class UnrecognisedVideos : UserControl
     {
-        private readonly BackgroundWorker workerAnimeMatch = new BackgroundWorker();
-        private List<VM_AnimeSeries_User> tempAnime { get; set; }
+        private List<CancellationTokenSource> runningTasks = new List<CancellationTokenSource>();
 
         public ICollectionView ViewFiles { get; set; }
         public ObservableCollection<VM_VideoLocal> UnrecognisedFiles { get; set; }
@@ -124,12 +124,6 @@ namespace Shoko.Desktop.UserControls
             AllSeries = new ObservableCollection<VM_AnimeSeries_User>();
             ViewSeries = CollectionViewSource.GetDefaultView(AllSeries);
             ViewSeries.Filter = SeriesSearchFilter;
-
-            workerAnimeMatch.WorkerSupportsCancellation = true;
-            workerAnimeMatch.WorkerReportsProgress = true;
-            workerAnimeMatch.DoWork += workerAnimeMatch_DoWork;
-            workerAnimeMatch.RunWorkerCompleted += workerAnimeMatch_RunWorkerCompleted;
-            workerAnimeMatch.ProgressChanged += workerAnimeMatch_ReportProgress;
 
             btnRefresh.Click += new RoutedEventHandler(btnRefresh_Click);
             btnConfirm.Click += new RoutedEventHandler(btnConfirm_Click);
@@ -922,13 +916,7 @@ namespace Shoko.Desktop.UserControls
                 if (!VM_ShokoServer.Instance.ServerOnline) return;
                 if (AnyVideosSelected)
                 {
-                    if (workerAnimeMatch.IsBusy)
-                    {
-                        workerAnimeMatch.CancelAsync();
-                        while (workerAnimeMatch.IsBusy)
-                            Thread.Sleep(100);
-                    }
-                    workerAnimeMatch.RunWorkerAsync(dgVideos.SelectedItems[0]);
+                    SearchAnime(dgVideos.SelectedItems[0]);
                 }
             }
             catch (Exception ex)
@@ -937,78 +925,74 @@ namespace Shoko.Desktop.UserControls
             }
         }
 
-        void workerAnimeMatch_DoWork(object sender, DoWorkEventArgs e)
+        public async void SearchAnime(object argument)
         {
-            var worker = sender as BackgroundWorker;
+            if (runningTasks.Count > 0)
+            {
+                foreach (CancellationTokenSource runningTask in runningTasks)
+                    runningTask.Cancel();
+            }
+            CancellationTokenSource tokenSource = new CancellationTokenSource();
+            var token = tokenSource.Token;
+            runningTasks.Add(tokenSource);
 
-            worker.ReportProgress(0);
+            Progress<int> progress = new Progress<int>(ReportProgress);
 
-            SearchAnime(worker, e);
-
-            worker.ReportProgress(100);
+            AllSeries.Clear();
+            var series =  await Task.Run(() => SearchAnime(token, argument, progress), token);
+            AllSeries.Clear();
+            series.ForEach(a => AllSeries.Add(a));
+            if (AllSeries.Count >= 1)
+                lbSeries.SelectedIndex = 0;
         }
 
-        private void SearchAnime(BackgroundWorker worker, DoWorkEventArgs e)
+        private List<VM_AnimeSeries_User> SearchAnime(CancellationToken token, object argument, IProgress<int> progress)
         {
-            VM_VideoLocal vidLocal = e.Argument as VM_VideoLocal;
+            progress.Report(0);
+            List<VM_AnimeSeries_User> tempAnime = new List<VM_AnimeSeries_User>();
+            SearchAnime(token, argument, tempAnime);
+            progress.Report(100);
+            return tempAnime;
+        }
+
+        private void SearchAnime(CancellationToken token, object argument, List<VM_AnimeSeries_User> tempAnime)
+        {
+            VM_VideoLocal vidLocal = argument as VM_VideoLocal;
 
             if (vidLocal == null) return;
 
-            tempAnime = new List<VM_AnimeSeries_User>();
-
-            var series = VM_ShokoServer.Instance.ShokoServices
+            foreach (VM_AnimeSeries_User anime in VM_ShokoServer.Instance.ShokoServices
                 .SearchSeriesWithFilename(VM_ShokoServer.Instance.CurrentUser.JMMUserID,
-                    vidLocal.ClosestAnimeMatchString).CastList<VM_AnimeSeries_User>();
-
-            foreach (VM_AnimeSeries_User anime in series)
+                    vidLocal.ClosestAnimeMatchString).CastList<VM_AnimeSeries_User>())
             {
-                if (worker.CancellationPending)
+                if (token.IsCancellationRequested)
                 {
-                    e.Cancel = true;
                     return;
                 }
                 tempAnime.Add(anime);
             }
 
             if (tempAnime.Count > 0) return;
-            if (worker.CancellationPending)
+            if (token.IsCancellationRequested)
             {
-                e.Cancel = true;
                 return;
             }
 
-            foreach (var anime in VM_ShokoServer.Instance.ShokoServices
-                .GetAllSeries(VM_ShokoServer.Instance.CurrentUser.JMMUserID).Cast<VM_AnimeSeries_User>())
+            foreach (VM_AnimeSeries_User anime in VM_ShokoServer.Instance.ShokoServices
+                .GetAllSeries(VM_ShokoServer.Instance.CurrentUser.JMMUserID)
+                .CastList<VM_AnimeSeries_User>())
             {
-                if (worker.CancellationPending)
+                if (token.IsCancellationRequested)
                 {
-                    e.Cancel = true;
                     return;
                 }
                 tempAnime.Add(anime);
             }
         }
 
-        void workerAnimeMatch_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        public void ReportProgress(int progress)
         {
-            if (AllSeries.Count > 0) AllSeries.Clear();
-            if (e.Cancelled)
-            {
-                tempAnime = null;
-                return;
-            }
-            if (tempAnime == null || tempAnime.Count <= 0) return;
-            tempAnime.ForEach(a => AllSeries.Add(a));
-
-            if (AllSeries.Count >= 1)
-                lbSeries.SelectedIndex = 0;
-
-            tempAnime = null;
-        }
-
-        void workerAnimeMatch_ReportProgress(object sender, ProgressChangedEventArgs e)
-        {
-            if (e.ProgressPercentage == 0)
+            if (progress == 0)
             {
                 txtSeriesSearch.Text = string.Intern("Loading...");
                 txtSeriesSearch.IsEnabled = false;
