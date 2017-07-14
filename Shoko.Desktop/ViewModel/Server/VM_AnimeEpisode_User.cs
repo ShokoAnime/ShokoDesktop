@@ -195,7 +195,7 @@ namespace Shoko.Desktop.ViewModel.Server
         public string EpisodeNumberAndNameWithTypeTruncated
         {
             get { return episodeNumberAndNameWithTypeTruncated; }
-            set { this.SetField(()=>episodeNumberAndNameWithType,value); }
+            set { this.SetField(()=>episodeNumberAndNameWithTypeTruncated,value); }
         }
 
         private string episodeTypeAndNumber = "";
