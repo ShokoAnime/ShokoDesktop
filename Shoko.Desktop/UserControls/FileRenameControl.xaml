@@ -80,6 +80,18 @@
                                       ItemTemplate="{StaticResource SimpleScriptTemplate}"
                                       ItemsSource="{Binding Path=RenameScripts, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:FileRenameControl}}}"/>
 
+                                    <ComboBox Name="cboController" Margin="3,3,5,3" Height="24" VerticalAlignment="Center"
+                                      ItemsSource="{Binding Path=ScriptProcessors, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:FileRenameControl}}}">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding Path=Description}"/>
+                                                    <TextBlock Text="{Binding Path=RenamerType, StringFormat='({})'}"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
+
                                     <!-- Save Script -->
                                     <Button Name="btnSaveScript" Margin="2,2,2,2" Style="{DynamicResource FlatButtonStyle}">
                                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >

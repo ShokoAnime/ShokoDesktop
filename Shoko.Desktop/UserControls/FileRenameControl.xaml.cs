@@ -37,6 +37,8 @@ namespace Shoko.Desktop.UserControls
 
         //public ICollectionView ViewScripts { get; set; }
         public ObservableCollection<VM_RenameScript> RenameScripts { get; set; }
+        
+        public ObservableCollection<Controller> ScriptProcessors { get; set; }
 
         public static readonly DependencyProperty FileCountProperty = DependencyProperty.Register("FileCount",
             typeof(int), typeof(FileRenameControl), new UIPropertyMetadata(0, null));
@@ -167,6 +169,7 @@ namespace Shoko.Desktop.UserControls
             cboTestType.SelectedIndex = 0;
 
             RenameScripts = new ObservableCollection<VM_RenameScript>();
+            ScriptProcessors = new ObservableCollection<Controller>();
 
 
             btnLoadFiles.Click += new RoutedEventHandler(btnLoadFiles_Click);
@@ -273,6 +276,10 @@ namespace Shoko.Desktop.UserControls
                 VM_RenameScript script = cboScript.SelectedItem as VM_RenameScript;
                 script.IsEnabledOnImport = chkIsUsedForImports.IsChecked.Value ? 1 : 0;
                 script.Script = txtRenameScript.Text;
+
+                Controller controller = cboController.SelectedItem as Controller;
+                script.RenamerType = controller.RenamerType;
+
                 if (script.Save())
                 {
                     defaultScriptID = script.RenameScriptID;
@@ -310,6 +317,7 @@ namespace Shoko.Desktop.UserControls
                     script.IsEnabledOnImport = 0;
                     script.Script = "";
                     script.ScriptName = dlg.EnteredText;
+                    script.RenamerType = "Legacy";
                     CL_Response<RenameScript> resp = VM_ShokoServer.Instance.ShokoServices.SaveRenameScript(script);
 
                     if (!string.IsNullOrEmpty(resp.ErrorMessage))
@@ -337,6 +345,14 @@ namespace Shoko.Desktop.UserControls
             VM_RenameScript script = cboScript.SelectedItem as VM_RenameScript;
             txtRenameScript.Text = script.Script;
             chkIsUsedForImports.IsChecked = script.IsEnabledOnImportBool;
+
+            int idxi = 0;
+            foreach (var controller in ScriptProcessors)
+            {
+                if (controller.RenamerType == (cboScript.SelectedValue as VM_RenameScript)?.RenamerType)
+                    cboController.SelectedIndex = idxi;
+                idxi++;
+            }
         }
 
         public void RefreshScripts()
@@ -370,7 +386,16 @@ namespace Shoko.Desktop.UserControls
                 else
                     defaultScriptID = null;
 
-
+                var scriptControllers = VM_ShokoServer.Instance.ShokoServices.GetScriptTypes();
+                int idxi = 0;
+                foreach (var controller in scriptControllers)
+                {
+                    ScriptProcessors.Add(new Controller { RenamerType = controller.Key, Description = controller.Value });
+                    if (controller.Key == (cboScript.SelectedValue as VM_RenameScript)?.RenamerType)
+                        cboController.SelectedIndex = idxi;
+                    idxi++;
+                }
+                
 
             }
             catch (Exception ex)
@@ -740,5 +765,11 @@ namespace Shoko.Desktop.UserControls
             TotalFileCount = totalFileCount;
             CurrentFile = currentFile;
         }
+    }
+
+    public class Controller
+    {
+        public string RenamerType { get; set; }
+        public string Description { get; set; }
     }
 }
