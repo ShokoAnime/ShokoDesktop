@@ -386,6 +386,7 @@ namespace Shoko.Desktop.UserControls
                 else
                     defaultScriptID = null;
 
+                ScriptProcessors.Clear();
                 var scriptControllers = VM_ShokoServer.Instance.ShokoServices.GetScriptTypes();
                 int idxi = 0;
                 foreach (var controller in scriptControllers)
@@ -620,6 +621,10 @@ namespace Shoko.Desktop.UserControls
             script.IsEnabledOnImport = 0;
             script.Script = txtRenameScript.Text;
             script.ScriptName = Constants.Renamer.TempFileName;
+
+            Controller controller = cboController.SelectedItem as Controller;
+            script.RenamerType = controller.RenamerType;
+
             if (!script.Save()) return;
 
             WorkerJob job = new WorkerJob();
