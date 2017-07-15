@@ -16,6 +16,7 @@ using Shoko.Desktop.Utilities;
 using Shoko.Models.Enums;
 using Shoko.Desktop.ViewModel.Helpers;
 using Shoko.Desktop.ViewModel.Server;
+using Shoko.Models;
 using Shoko.Models.Client;
 
 // ReSharper disable InconsistentNaming
@@ -401,7 +402,6 @@ namespace Shoko.Desktop.ViewModel
             {
                 VM_GroupFilter gf = (VM_GroupFilter) CurrentWrapper;
                 ViewGroups.SortDescriptions.Clear();
-                if (gf.IsDirectoryFilter) return;
                 List<SortDescription> sortlist = gf.GetSortDescriptions();
                 foreach (SortDescription sd in sortlist)
                     ViewGroups.SortDescriptions.Add(sd);

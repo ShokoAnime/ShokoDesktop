@@ -115,7 +115,7 @@ namespace Shoko.Desktop.Utilities
                         sortColumn = "Stat_AirDate_Max";
                     break;
                 case GroupFilterSorting.GroupFilterName:
-                    sortColumn = "FilterName"; break;
+                    sortColumn = "GroupName"; break;
                 default:
                     sortColumn = "GroupName"; break;
             }

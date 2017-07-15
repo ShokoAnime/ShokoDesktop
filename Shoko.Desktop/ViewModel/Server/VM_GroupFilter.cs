@@ -37,7 +37,53 @@ namespace Shoko.Desktop.ViewModel.Server
         public bool AllowDeletion => !IsLocked;
 
         [ScriptIgnore, JsonIgnore, XmlIgnore]
-        public string SortName => GroupFilterName;
+        public string SortName
+        {
+            get
+            {
+                if (FilterType == ((int) GroupFilterType.Season))
+                {
+                    string[] split = GroupFilterName.Split(' ');
+                    if (split.Length == 2)
+                    {
+                        string part2;
+                        switch (split[0])
+                        {
+                            case "Winter":
+                            {
+                                part2 = string.Intern("1 Winter");
+                                break;
+                            }
+                            case "Spring":
+                            {
+                                part2 = string.Intern("2 Spring");
+                                break;
+                            }
+                            case "Summer":
+                            {
+                                part2 = string.Intern("3 Summer");
+                                break;
+                            }
+                            case "Fall":
+                            {
+                                part2 = string.Intern("4 Fall");
+                                break;
+                            }
+                            default:
+                            {
+                                part2 = string.Empty;
+                                break;
+                            }
+                        }
+                        return split[1] + part2;
+                    }
+                }
+                return GroupFilterName;
+            }
+        }
+
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
+        public string GroupName => SortName;
 
 
         public new List<VM_GroupFilterCondition> FilterConditions
@@ -46,7 +92,6 @@ namespace Shoko.Desktop.ViewModel.Server
             get => base.FilterConditions.CastList<VM_GroupFilterCondition>();
             set
             {
-                
                 if (value == null || value.Count <= 0)
                 {
                     _filterConditions.Clear();
