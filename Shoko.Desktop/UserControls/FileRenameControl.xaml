@@ -86,7 +86,9 @@
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
                                                     <TextBlock Text="{Binding Path=Description}"/>
-                                                    <TextBlock Text="{Binding Path=RenamerType, StringFormat='({})'}"/>
+                                                    <TextBlock Text=" ("/>
+                                                    <TextBlock Text='{Binding Path=RenamerType}'/>
+                                                    <TextBlock Text=")"/>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ComboBox.ItemTemplate>
