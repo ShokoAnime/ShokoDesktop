@@ -447,14 +447,14 @@
         <!-- episode image overview in summary -->
         <Image Grid.Column="1" Grid.Row="2" Width="{Binding Source={x:Static viewModel:VM_UserSettings.Instance},Path=DisplayWidth_EpisodeImage}" Source="{Binding EpisodeImageLoading}" 
                     Visibility="{Binding Path=ShowEpisodeImageInSummary, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:EpisodeDetail}}, Converter={StaticResource BooleanToVisibilityConverter}}"
-                    Margin="0,5,0,5" VerticalAlignment="Top">
+                    Margin="0,5,0,15" VerticalAlignment="Top">
             <Image.ToolTip>
                 <Image Stretch="Fill" HorizontalAlignment="Center" Width="400" Source="{Binding EpisodeImageLoading}">
                 </Image>
             </Image.ToolTip>
         </Image>
 
-        <TextBlock Grid.Column="2" Grid.Row="2" Text="{Binding EpisodeOverviewLoading}" HorizontalAlignment="Stretch" Margin="10,5,0,5" VerticalAlignment="Top"  TextWrapping="Wrap"
+        <TextBlock Grid.Column="2" Grid.Row="2" Text="{Binding EpisodeOverviewLoading}" HorizontalAlignment="Stretch" Margin="10,0,0,15" VerticalAlignment="Top"  TextWrapping="Wrap"
                        Visibility="{Binding Path=ShowEpisodeOverviewInSummary, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:EpisodeDetail}}, Converter={StaticResource BooleanToVisibilityConverter}}">
         </TextBlock>
 
@@ -468,7 +468,7 @@
             </Image.ToolTip>
         </Image>
 
-        <TextBlock Grid.Column="2" Grid.Row="2" Text="{Binding EpisodeOverviewLoading}" HorizontalAlignment="Stretch" Margin="10,5,0,5" VerticalAlignment="Top"  TextWrapping="Wrap"
+        <TextBlock Grid.Column="2" Grid.Row="2" Text="{Binding EpisodeOverviewLoading}" HorizontalAlignment="Stretch" Margin="10,0,0,0" VerticalAlignment="Top"  TextWrapping="Wrap"
                        Visibility="{Binding Path=ShowEpisodeOverviewInExpanded, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:EpisodeDetail}}, Converter={StaticResource BooleanToVisibilityConverter}}">
         </TextBlock>
 
@@ -476,7 +476,7 @@
 
 
         <ListBox Name="lbFiles" BorderThickness="0" BorderBrush="DarkGray" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch"  Margin="0,0,0,10" Padding="0"
-                ItemTemplate="{DynamicResource VideoDetailedTemplate}"
+                ItemTemplate="{DynamicResource VideoDetailedTemplate}" 
                 Visibility="{Binding Path=IsExpanded, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type usercontrols:EpisodeDetail}}, Converter={StaticResource BooleanToVisibilityConverter}}"
                 Background="Transparent" ItemContainerStyle="{DynamicResource ListBoxItemStyleMultipleFiles}"  VerticalAlignment="Stretch" >
             <ListBox.Template>
