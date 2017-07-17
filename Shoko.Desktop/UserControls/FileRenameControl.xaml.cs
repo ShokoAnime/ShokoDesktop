@@ -623,7 +623,7 @@ namespace Shoko.Desktop.UserControls
             script.ScriptName = Constants.Renamer.TempFileName;
 
             Controller controller = cboController.SelectedItem as Controller;
-            script.RenamerType = controller.RenamerType;
+            script.RenamerType = controller?.RenamerType; //prevent null reference  
 
             if (!script.Save()) return;
 
