@@ -15,25 +15,34 @@
                 <ResourceDictionary Source="/ShokoDesktop;component/Resources/MainListStyles.xaml" />
                 <ResourceDictionary Source="/ShokoDesktop;component/Resources/MainListContent.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            
+            <RoutedUICommand x:Key="SelectCommand" Text="" />
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
             <!-- animeTitleTemplate-->
             <DataTemplate x:Key="animeTitleTemplate">
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
-                    <Image Height="16" Width="16" Source="{Binding Path=FlagImage}" Margin="0,0,5,0">
-                        <Image.ToolTip>
-                            <TextBlock Text="{Binding Path=LanguageDescription}"></TextBlock>
-                        </Image.ToolTip>
-                    </Image>
-
-                    <TextBlock Margin="0,0,0,0" Text="{Binding Path=Title}" />
-                </StackPanel>
+                <Button Command="{DynamicResource SelectCommand}" Margin="0,0,0,0" Background="Transparent" BorderThickness="0"
+                        CommandParameter="{Binding ElementName=TitleBox, Path=Text}">
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,0" Background="Transparent" Focusable="False">
+                        <Image Height="16" Width="16" Source="{Binding Path=FlagImage}" Margin="0,0,5,0">
+                            <Image.ToolTip>
+                                <TextBlock Text="{Binding Path=LanguageDescription}"></TextBlock>
+                            </Image.ToolTip>
+                        </Image>
+    
+                        <TextBox Name="TitleBox" Margin="0,0,0,0" Background="Transparent"
+                                 BorderThickness="0" Focusable="False" IsReadOnly="True" Text="{Binding Path=Title}" />
+                    </StackPanel>
+                </Button>
             </DataTemplate>
 
         </ResourceDictionary>
 
     </UserControl.Resources>
+    <UserControl.CommandBindings>
+        <CommandBinding Command="{StaticResource SelectCommand}" Executed="CommandBinding_SelectTextAndCopy" />
+    </UserControl.CommandBindings>
 
     <Grid Margin="3">
 
@@ -44,6 +53,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition />
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
@@ -67,9 +77,25 @@
 
         </ListBox>
 
+        <!-- main titles -->
+        <TextBlock Grid.Row="2" Grid.Column="1" Padding="5" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AnimeTitlesMain}" Visibility="{Binding Source={x:Static local:VM_UserSettings.Instance}, Path=TitlesExpanded, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="33,-3,0,0"/>
+        <ListBox Grid.Row="2" Grid.Column="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Visibility="{Binding Source={x:Static local:VM_UserSettings.Instance}, Path=TitlesExpanded, Converter={StaticResource BooleanToVisibilityConverter}}" Background="Transparent" Padding="0" BorderThickness="0" VerticalAlignment="Center" ItemTemplate="{StaticResource animeTitleTemplate}" ItemsSource="{Binding Path=AnimeTitlesMain}">
+            <ListBox.Template>
+                <ControlTemplate>
+                    <ItemsPresenter />
+                </ControlTemplate>
+            </ListBox.Template>
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel  Focusable="False"  Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+
+        </ListBox>
+
         <!-- synonym titles -->
-        <TextBlock Grid.Row="2" Grid.Column="1" Padding="5" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AnimeTitlesSynonym}" Visibility="{Binding Source={x:Static local:VM_UserSettings.Instance}, Path=TitlesExpanded, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="33,0,0,0"/>
-        <ListBox Grid.Row="2" Grid.Column="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Visibility="{Binding Source={x:Static local:VM_UserSettings.Instance}, Path=TitlesExpanded, Converter={StaticResource BooleanToVisibilityConverter}}" Background="Transparent" Padding="0" BorderThickness="0" VerticalAlignment="Center"  ItemTemplate="{StaticResource animeTitleTemplate}" ItemsSource="{Binding Path=AnimeTitlesSynonym}" Margin="0,5,0,5">
+        <TextBlock Grid.Row="3" Grid.Column="1" Padding="5" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AnimeTitlesSynonym}" Visibility="{Binding Source={x:Static local:VM_UserSettings.Instance}, Path=TitlesExpanded, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="33,0,0,0"/>
+        <ListBox Grid.Row="3" Grid.Column="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Visibility="{Binding Source={x:Static local:VM_UserSettings.Instance}, Path=TitlesExpanded, Converter={StaticResource BooleanToVisibilityConverter}}" Background="Transparent" Padding="0" BorderThickness="0" VerticalAlignment="Center"  ItemTemplate="{StaticResource animeTitleTemplate}" ItemsSource="{Binding Path=AnimeTitlesSynonym}" Margin="0,5,0,5">
             <ListBox.Template>
                 <ControlTemplate>
                     <ItemsPresenter />
@@ -84,8 +110,8 @@
         </ListBox>
 
         <!-- short titles -->
-        <TextBlock Grid.Row="3" Grid.Column="1" Padding="5" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AnimeTitlesShort}"  Visibility="{Binding Source={x:Static local:VM_UserSettings.Instance}, Path=TitlesExpanded, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="33,0,0,0"/>
-        <ListBox Grid.Row="3" Grid.Column="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  Visibility="{Binding Source={x:Static local:VM_UserSettings.Instance}, Path=TitlesExpanded, Converter={StaticResource BooleanToVisibilityConverter}}" Background="Transparent" Padding="0" BorderThickness="0" VerticalAlignment="Center" ItemTemplate="{StaticResource animeTitleTemplate}" ItemsSource="{Binding Path=AnimeTitlesShort}">
+        <TextBlock Grid.Row="4" Grid.Column="1" Padding="5" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=AnimeTitlesShort}"  Visibility="{Binding Source={x:Static local:VM_UserSettings.Instance}, Path=TitlesExpanded, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="33,0,0,0"/>
+        <ListBox Grid.Row="4" Grid.Column="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  Visibility="{Binding Source={x:Static local:VM_UserSettings.Instance}, Path=TitlesExpanded, Converter={StaticResource BooleanToVisibilityConverter}}" Background="Transparent" Padding="0" BorderThickness="0" VerticalAlignment="Center" ItemTemplate="{StaticResource animeTitleTemplate}" ItemsSource="{Binding Path=AnimeTitlesShort}">
             <ListBox.Template>
                 <ControlTemplate>
                     <ItemsPresenter />

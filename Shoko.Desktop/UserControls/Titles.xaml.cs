@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Shoko.Desktop.UserControls
 {
@@ -10,6 +12,13 @@ namespace Shoko.Desktop.UserControls
         public Titles()
         {
             InitializeComponent();
+        }
+
+        private void CommandBinding_SelectTextAndCopy(object sender, ExecutedRoutedEventArgs e)
+        {
+            string obj = e.Parameter as string;
+            if (obj == null) return;
+            Clipboard.SetText(obj);
         }
     }
 }

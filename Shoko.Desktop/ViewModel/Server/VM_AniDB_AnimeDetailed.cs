@@ -150,6 +150,13 @@ namespace Shoko.Desktop.ViewModel.Server
             Tags = contract.Tags;
             CustomTags = contract.CustomTags;
             AnimeTitles = contract.AnimeTitles;
+            AnimeTitles.Add(new VM_AnimeTitle()
+            {
+                AnimeID = AnimeID,
+                Language = Constants.AniDBLanguageType.Romaji,
+                Title = AniDBAnime.MainTitle,
+                TitleType = Constants.AnimeTitleType.Main
+            });
         }
 
     }
