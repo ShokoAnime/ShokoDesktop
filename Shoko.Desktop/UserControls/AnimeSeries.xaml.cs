@@ -277,8 +277,6 @@ namespace Shoko.Desktop.UserControls
             VM_AnimeSeries_User ser = DataContext as VM_AnimeSeries_User;
             if (ser == null) return;
 
-           
-
             EvaluateEditing();
         }
 
@@ -287,7 +285,7 @@ namespace Shoko.Desktop.UserControls
             VM_AnimeSeries_User ser = DataContext as VM_AnimeSeries_User;
             if (ser == null) return;
 
-            if (ser.IsSeriesNameOverridden)
+            if ((bool)chkSerNameOverride.IsChecked)
             {
                 txtSeriesName.Text = ser.SeriesNameOverride;
                 txtSeriesName.IsEnabled = true;
@@ -301,7 +299,6 @@ namespace Shoko.Desktop.UserControls
                 chkSerNameOverride.IsChecked = false;
                 btnSelectOverrideName.IsEnabled = false;
             }
-
         }
 
         void btnRandomEpisode_Click(object sender, RoutedEventArgs e)
@@ -519,7 +516,7 @@ namespace Shoko.Desktop.UserControls
                 oldName = ser.SeriesNameOverride;
 
             string newName = txtSeriesName.Text.Trim();
-            if (!ser.IsSeriesNameOverridden)
+            if (chkSerNameOverride.IsChecked != null && (bool) !chkSerNameOverride.IsChecked)
                 newName = "";
 
 	        if (!oldName.Equals(newName))

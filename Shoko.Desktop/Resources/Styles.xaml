@@ -612,10 +612,10 @@
                         <Trigger Property="ItemsControl.HasItems" Value="False">
                             <Setter TargetName="Expander" Property="UIElement.Visibility" Value="Hidden" />
                         </Trigger>
-                        <Trigger Property="TreeViewItem.IsSelected" Value="True">
+                        <!--<Trigger Property="TreeViewItem.IsSelected" Value="True">
                             <Setter TargetName="Bd" Property="Panel.Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
                             <Setter Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                        </Trigger>
+                        </Trigger>-->
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="TreeViewItem.IsSelected" Value="True" />
