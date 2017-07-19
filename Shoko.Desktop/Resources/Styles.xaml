@@ -612,10 +612,9 @@
                         <Trigger Property="ItemsControl.HasItems" Value="False">
                             <Setter TargetName="Expander" Property="UIElement.Visibility" Value="Hidden" />
                         </Trigger>
-                        <!--<Trigger Property="TreeViewItem.IsSelected" Value="True">
-                            <Setter TargetName="Bd" Property="Panel.Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                            <Setter Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                        </Trigger>-->
+                        <Trigger Property="TreeViewItem.IsSelected" Value="True">
+                            <Setter TargetName="Bd" Property="Panel.Background" Value="CornflowerBlue" />
+                        </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="TreeViewItem.IsSelected" Value="True" />
@@ -752,6 +751,11 @@
         <Setter Property="FontSize" Value="12" />
         <Setter Property="BorderBrush" Value="DarkGray" />
         <Setter Property="BorderThickness"  Value="0,0,0,1" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="FloralWhite"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <!-- ListBoxItemStyleRecDownloads -->
@@ -772,6 +776,11 @@
         <Setter Property="BorderBrush" Value="DarkGray" />
         <Setter Property="BorderThickness"  Value="1,1,1,1" />
         <Setter Property="Focusable"  Value="False" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="FloralWhite"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <!-- ListBoxItemStylePlain -->
