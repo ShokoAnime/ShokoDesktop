@@ -771,6 +771,7 @@
         <Setter Property="FontSize" Value="12" />
         <Setter Property="BorderBrush" Value="DarkGray" />
         <Setter Property="BorderThickness"  Value="1,1,1,1" />
+        <Setter Property="Focusable"  Value="False" />
     </Style>
 
     <!-- ListBoxItemStylePlain -->

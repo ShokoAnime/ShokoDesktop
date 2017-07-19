@@ -252,6 +252,11 @@ namespace Shoko.Desktop.Forms
                 {
                     VM_ShokoServer.Instance.ShokoServices.UpdateTvDBData(tvDBID);
                     TvDetails = new VM_TvDBDetails(tvDBID);
+                    if (TvDetails.TvDBEpisodes == null || TvDetails.TvDBEpisodes.Count <= 0)
+                    {
+                        Utils.ShowErrorMessage("The series data is being downloaded, try again in a few seconds.");
+                        Close();
+                    }
                     seasons = TvDetails.DictTvDBSeasons.Keys.ToList();
                     //seasons = VM_ShokoServer.Instance.clientBinaryHTTP.GetSeasonNumbersForSeries(tvDBID);
                 }
