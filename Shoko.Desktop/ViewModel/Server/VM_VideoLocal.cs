@@ -23,6 +23,8 @@ namespace Shoko.Desktop.ViewModel.Server
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public bool IsLocalFile => this.IsLocalFile();
         [ScriptIgnore, JsonIgnore, XmlIgnore]
+        public bool IsAccessibleFromServer => Places.Any(a => a.ImportFolder?.IsNotCloud() ?? false);
+        [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string FileDirectory => string.Join(",", Places.Select(place => place.GetLocalFileSystemFullPath()));
 
         [ScriptIgnore, JsonIgnore, XmlIgnore]

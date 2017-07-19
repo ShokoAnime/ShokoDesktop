@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using Shoko.Commons.Extensions;
 using Shoko.Desktop.ViewModel.Server;
+using Shoko.Models.Enums;
 
 namespace Shoko.Desktop.UserControls
 {
@@ -14,8 +17,21 @@ namespace Shoko.Desktop.UserControls
             get
             {
                 foreach(VM_VideoLocal vidLocal in VideoLocals)
-                { 
-                    if (!string.IsNullOrEmpty(Commons.Extensions.Models.GetLocalFileSystemFullPath(vidLocal)))                        
+                {
+                    if (!string.IsNullOrEmpty(Commons.Extensions.Models.GetLocalFileSystemFullPath(vidLocal)))
+                        return true;
+                }
+                return false;
+            }
+        }
+
+        public bool SomeAreNotCloud
+        {
+            get
+            {
+                foreach(VM_VideoLocal vidLocal in VideoLocals)
+                {
+                    if (vidLocal.Places.Any(a => a.ImportFolder?.IsNotCloud() ?? false))
                         return true;
                 }
                 return false;
