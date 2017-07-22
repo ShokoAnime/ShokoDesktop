@@ -35,6 +35,12 @@ namespace Shoko.Desktop.Forms
         public ICollectionView ViewCustomTagNames { get; set; }
         public ObservableCollection<string> AllCustomTagNames { get; set; }
 
+        public ICollectionView ViewYears { get; set; }
+        public ObservableCollection<string> AllYears { get; set; }
+
+        public ICollectionView ViewSeasons { get; set; }
+        public ObservableCollection<string> AllSeasons { get; set; }
+
         public ObservableCollection<string> AllVideoQuality { get; set; }
         public ObservableCollection<string> AllAnimeTypes { get; set; }
         public ObservableCollection<string> AllAudioLanguages { get; set; }
@@ -158,6 +164,24 @@ namespace Shoko.Desktop.Forms
             set => SetValue(IsParameterLastXDaysProperty, value);
         }
 
+        public static readonly DependencyProperty IsParameterYearProperty = DependencyProperty.Register("IsParameterYear",
+            typeof(bool), typeof(GroupFilterConditionForm), new UIPropertyMetadata(false, null));
+
+        public bool IsParameterYear
+        {
+            get => (bool)GetValue(IsParameterYearProperty);
+            set => SetValue(IsParameterYearProperty, value);
+        }
+
+        public static readonly DependencyProperty IsParameterSeasonProperty = DependencyProperty.Register("IsParameterSeason",
+            typeof(bool), typeof(GroupFilterConditionForm), new UIPropertyMetadata(false, null));
+
+        public bool IsParameterSeason
+        {
+            get => (bool)GetValue(IsParameterSeasonProperty);
+            set => SetValue(IsParameterSeasonProperty, value);
+        }
+
         public GroupFilterConditionForm()
         {
             InitializeComponent();
@@ -178,17 +202,13 @@ namespace Shoko.Desktop.Forms
             lbAnimeTypes.MouseDoubleClick += lbAnimeTypes_MouseDoubleClick;
             lbAudioLanguages.MouseDoubleClick += lbAudioLanguages_MouseDoubleClick;
             lbSubtitleLanguages.MouseDoubleClick += lbSubtitleLanguages_MouseDoubleClick;
+            lbYears.MouseDoubleClick += lbYears_MouseDoubleClick;
+            lbSeasons.MouseDoubleClick += lbSeasons_MouseDoubleClick;
 
             btnClearCustomTagSearch.Click += btnClearCustomTagSearch_Click;
             txtCustomTagSearch.TextChanged += txtCustomTagSearch_TextChanged;
             lbCustomTags.MouseDoubleClick += lbCustomTags_MouseDoubleClick;
         }
-
-
-
-
-
-
 
         void btnConfirm_Click(object sender, RoutedEventArgs e)
         {
@@ -380,6 +400,50 @@ namespace Shoko.Desktop.Forms
                 }
             }
 
+            if (IsParameterYear)
+            {
+
+                if (txtSelectedYears.Text.Trim().Length == 0)
+                {
+                    MessageBox.Show(Commons.Properties.Resources.MSG_ERR_EnterValue, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    txtParameter.Focus();
+                    return;
+                }
+                // validate
+                string[] years = txtSelectedYears.Text.Trim().Split(',');
+                groupFilterCondition.ConditionParameter = "";
+                foreach (string year in years)
+                {
+                    if (year.Trim().Length == 0) continue;
+                    if (year.Trim() == ", ") continue;
+
+                    if (groupFilterCondition.ConditionParameter.Length > 0) groupFilterCondition.ConditionParameter += ", ";
+                    groupFilterCondition.ConditionParameter += year;
+                }
+            }
+
+            if (IsParameterSeason)
+            {
+
+                if (txtSelectedSeasons.Text.Trim().Length == 0)
+                {
+                    MessageBox.Show(Commons.Properties.Resources.MSG_ERR_EnterValue, Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                    txtParameter.Focus();
+                    return;
+                }
+                // validate
+                string[] seasons = txtSelectedSeasons.Text.Trim().Split(',');
+                groupFilterCondition.ConditionParameter = "";
+                foreach (string season in seasons)
+                {
+                    if (season.Trim().Length == 0) continue;
+                    if (season.Trim() == ", ") continue;
+
+                    if (groupFilterCondition.ConditionParameter.Length > 0) groupFilterCondition.ConditionParameter += ", ";
+                    groupFilterCondition.ConditionParameter += season;
+                }
+            }
+
             if (IsParameterAnimeType)
             {
 
@@ -470,7 +534,7 @@ namespace Shoko.Desktop.Forms
                         IsParameterText = true;
                     }
                     else
-                        IsParameterDate = true; 
+                        IsParameterDate = true;
                     break;
 
                 case GroupFilterConditionType.AnimeGroup:
@@ -478,9 +542,8 @@ namespace Shoko.Desktop.Forms
                     break;
 
                 case GroupFilterConditionType.AnimeType:
-                    IsParameterAnimeType = true; break;
-
-
+                    IsParameterAnimeType = true;
+                    break;
 
                 case GroupFilterConditionType.Tag:
                     IsParameterInNotIn = true;
@@ -504,6 +567,12 @@ namespace Shoko.Desktop.Forms
 
                 case GroupFilterConditionType.Year:
                     IsParameterInNotIn = true;
+                    IsParameterYear = true;
+                    break;
+
+                case GroupFilterConditionType.Season:
+                    IsParameterInNotIn = true;
+                    IsParameterSeason = true;
                     break;
 
                 case GroupFilterConditionType.VideoQuality:
@@ -568,6 +637,28 @@ namespace Shoko.Desktop.Forms
 
             ViewCustomTagNames.Filter = CustomTagFilter;
             ViewCustomTagNames.Refresh();
+        }
+
+        private void PopulateYears()
+        {
+            AllYears = new ObservableCollection<string>();
+
+            ViewYears = CollectionViewSource.GetDefaultView(AllYears);
+            List<string> years = VM_ShokoServer.Instance.ShokoServices.GetAllYears();
+
+            foreach (string year in years)
+                AllYears.Add(year);
+        }
+
+        private void PopulateSeasons()
+        {
+            AllSeasons = new ObservableCollection<string>();
+
+            ViewSeasons = CollectionViewSource.GetDefaultView(AllSeasons);
+            List<string> seasons = VM_ShokoServer.Instance.ShokoServices.GetAllSeasons();
+
+            foreach (string season in seasons)
+                AllSeasons.Add(season);
         }
 
         private void PopulateVideoQuality()
@@ -646,6 +737,8 @@ namespace Shoko.Desktop.Forms
                 PopulateVideoQuality();
                 PopulateAnimeTypes();
                 PopulateLanguages();
+                PopulateYears();
+                PopulateSeasons();
 
                 // find the right condition
                 int idx = 0;
@@ -715,6 +808,7 @@ namespace Shoko.Desktop.Forms
                     case GroupFilterConditionType.AudioLanguage:
                     case GroupFilterConditionType.SubtitleLanguage:
                     case GroupFilterConditionType.Year:
+                    case GroupFilterConditionType.Season:
                         txtParameter.Text = gfc.ConditionParameter;
                         break;
                 }
@@ -878,7 +972,7 @@ namespace Shoko.Desktop.Forms
             if (obj == null) return;
 
             string catName = obj.ToString();
-            List<string> currentList = txtSelectedTags.Text.Trim().Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            List<string> currentList = txtSelectedTags.Text.Trim().Split(new[] { ','}, StringSplitOptions.RemoveEmptyEntries).Select(a => a.Trim()).ToList();
 
             // add to the selected list
             if (currentList.Contains(catName))
@@ -898,9 +992,8 @@ namespace Shoko.Desktop.Forms
             object obj = lbCustomTags.SelectedItem;
             if (obj == null) return;
 
-
             string tagName = obj.ToString();
-            List<string> currentList = txtSelectedCustomTags.Text.Trim().Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            List<string> currentList = txtSelectedCustomTags.Text.Trim().Split(new[] { ','}, StringSplitOptions.RemoveEmptyEntries).Select(a => a.Trim()).ToList();
 
             // add to the selected list
             if (currentList.Contains(tagName))
@@ -913,6 +1006,48 @@ namespace Shoko.Desktop.Forms
             }
 
             txtSelectedCustomTags.Text = string.Join(", ", currentList);
+        }
+
+        void lbYears_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            object obj = lbYears.SelectedItem;
+            if (obj == null) return;
+
+            string year = obj.ToString();
+            List<string> currentList = txtSelectedYears.Text.Trim().Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+
+            // add to the selected list
+            if (currentList.Contains(year))
+            {
+                currentList.Remove(year);
+            }
+            else
+            {
+                currentList.Add(year);
+            }
+
+            txtSelectedYears.Text = string.Join(", ", currentList);
+        }
+
+        void lbSeasons_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            object obj = lbSeasons.SelectedItem;
+            if (obj == null) return;
+
+            string season = obj.ToString();
+            List<string> currentList = txtSelectedSeasons.Text.Trim().Split(new[] { ','}, StringSplitOptions.RemoveEmptyEntries).Select(a => a.Trim()).ToList();
+
+            // add to the selected list
+            if (currentList.Contains(season))
+            {
+                currentList.Remove(season);
+            }
+            else
+            {
+                currentList.Add(season);
+            }
+
+            txtSelectedSeasons.Text = string.Join(", ", currentList);
         }
     }
 }

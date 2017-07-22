@@ -108,6 +108,7 @@ namespace Shoko.Desktop.ViewModel.Server
                     case GroupFilterConditionType.AudioLanguage:
                     case GroupFilterConditionType.SubtitleLanguage:
                     case GroupFilterConditionType.Year:
+                    case GroupFilterConditionType.Season:
                         par += ConditionParameter;
                         break;
                 }

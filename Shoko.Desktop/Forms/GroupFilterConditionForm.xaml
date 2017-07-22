@@ -255,9 +255,57 @@
                         />
 
             </DockPanel>
+        </Border>
 
+        <!-- Years Parameter -->
+        <Border Grid.Row="7" Grid.Column="0" Margin="5,5,5,5" Padding="5" Background="#F1F1F1" BorderBrush="LightGray" BorderThickness="1"
+                Visibility="{Binding Path=IsParameterYear, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:GroupFilterConditionForm}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <DockPanel>
 
+                <StackPanel Orientation="Horizontal"  Margin="0,0,0,5" DockPanel.Dock="Top">
+                    <Image Height="16" Width="16" Source="/Images/24_folder.png" Margin="5,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=GroupFilter_VideoQuality_Help}" Margin="0,0,0,0"/>
+                </StackPanel>
 
+                <StackPanel Orientation="Vertical"  DockPanel.Dock="Top">
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox Name="txtSelectedYears" Width="450" Margin="5,2,2,0" BorderThickness="1" />
+                    </StackPanel>
+                </StackPanel>
+
+                <ListBox Name="lbYears" BorderThickness="1" BorderBrush="LightGray" Background="White" Margin="5,0,5,5" Height="130" DockPanel.Dock="Top" Width="450"
+                         HorizontalAlignment="Left" VerticalAlignment="Top"
+                         ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                         ItemsSource="{Binding Path=AllYears, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:GroupFilterConditionForm}}}"
+                />
+
+            </DockPanel>
+        </Border>
+
+        <!-- Seasons Parameter -->
+        <Border Grid.Row="7" Grid.Column="0" Margin="5,5,5,5" Padding="5" Background="#F1F1F1" BorderBrush="LightGray" BorderThickness="1"
+                Visibility="{Binding Path=IsParameterSeason, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:GroupFilterConditionForm}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <DockPanel>
+
+                <StackPanel Orientation="Horizontal"  Margin="0,0,0,5" DockPanel.Dock="Top">
+                    <Image Height="16" Width="16" Source="/Images/24_folder.png" Margin="5,0,5,0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=GroupFilter_VideoQuality_Help}" Margin="0,0,0,0"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical"  DockPanel.Dock="Top">
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox Name="txtSelectedSeasons" Width="450" Margin="5,2,2,0" BorderThickness="1" />
+                    </StackPanel>
+                </StackPanel>
+
+                <ListBox Name="lbSeasons" BorderThickness="1" BorderBrush="LightGray" Background="White" Margin="5,0,5,5" Height="130" DockPanel.Dock="Top" Width="450"
+                         HorizontalAlignment="Left" VerticalAlignment="Top"
+                         ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                         ItemsSource="{Binding Path=AllSeasons, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type forms:GroupFilterConditionForm}}}"
+                />
+            </DockPanel>
         </Border>
 
         <!-- Audio Language Parameter -->
