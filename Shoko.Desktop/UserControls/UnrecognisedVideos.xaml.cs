@@ -206,7 +206,7 @@ namespace Shoko.Desktop.UserControls
                 }
                 SetConfirmDetails();
                 Confirm1.Visibility = Confirm2.Visibility = visible;
-                RefreshSeries();
+                if (string.IsNullOrEmpty(txtSeriesSearch.Text)) RefreshSeries();
             }
             catch (Exception ex)
             {
@@ -918,6 +918,10 @@ namespace Shoko.Desktop.UserControls
                 {
                     SearchAnime(dgVideos.SelectedItems[0]);
                 }
+                else
+                {
+                    SearchAnime(null);
+                }
             }
             catch (Exception ex)
             {
@@ -948,8 +952,10 @@ namespace Shoko.Desktop.UserControls
 
         private List<VM_AnimeSeries_User> SearchAnime(CancellationToken token, object argument, IProgress<int> progress)
         {
-            progress.Report(0);
             List<VM_AnimeSeries_User> tempAnime = new List<VM_AnimeSeries_User>();
+            if (token.IsCancellationRequested)
+                return tempAnime;
+            progress.Report(0);
             SearchAnime(token, argument, tempAnime);
             progress.Report(100);
             return tempAnime;
@@ -957,19 +963,30 @@ namespace Shoko.Desktop.UserControls
 
         private void SearchAnime(CancellationToken token, object argument, List<VM_AnimeSeries_User> tempAnime)
         {
+            if (token.IsCancellationRequested)
+                return;
             VM_VideoLocal vidLocal = argument as VM_VideoLocal;
 
-            if (vidLocal == null) return;
-
-            foreach (VM_AnimeSeries_User anime in VM_ShokoServer.Instance.ShokoServices
-                .SearchSeriesWithFilename(VM_ShokoServer.Instance.CurrentUser.JMMUserID,
-                    vidLocal.ClosestAnimeMatchString).CastList<VM_AnimeSeries_User>())
+            if (vidLocal == null)
             {
-                if (token.IsCancellationRequested)
+                foreach (VM_AnimeSeries_User anime in VM_ShokoServer.Instance.ShokoServices
+                    .GetAllSeries(VM_ShokoServer.Instance.CurrentUser.JMMUserID).CastList<VM_AnimeSeries_User>())
                 {
-                    return;
+                    if (token.IsCancellationRequested)
+                        return;
+                    tempAnime.Add(anime);
                 }
-                tempAnime.Add(anime);
+            }
+            else
+            {
+                foreach (VM_AnimeSeries_User anime in VM_ShokoServer.Instance.ShokoServices
+                    .SearchSeriesWithFilename(VM_ShokoServer.Instance.CurrentUser.JMMUserID,
+                        vidLocal.ClosestAnimeMatchString).CastList<VM_AnimeSeries_User>())
+                {
+                    if (token.IsCancellationRequested)
+                        return;
+                    tempAnime.Add(anime);
+                }
             }
 
             if (tempAnime.Count > 0) return;
