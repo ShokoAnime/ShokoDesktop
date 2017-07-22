@@ -16,7 +16,7 @@ namespace Shoko.Desktop.ViewModel
         public enum SortMethod { EpisodeTypeDescription = 0, EpisodeType };
         public static SortMethod SortType { get; set; }
 
-        public enEpisodeType EpisodeType { get; set; }
+        public EpisodeType EpisodeType { get; set; }
         public string EpisodeTypeDescription { get; set; }
         VM_AnimeSeries_User AnimeSeries { get;  }
 
@@ -30,7 +30,7 @@ namespace Shoko.Desktop.ViewModel
         public VM_AnimeEpisodeType(VM_AnimeSeries_User series, VM_AnimeEpisode_User ep)
         {
             AnimeSeries = series;
-            EpisodeType = (enEpisodeType)ep.EpisodeType;
+            EpisodeType = (EpisodeType)ep.EpisodeType;
             EpisodeTypeDescription = EpisodeType.EpisodeTypeTranslated();
         }
 

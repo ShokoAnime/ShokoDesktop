@@ -671,7 +671,7 @@ namespace Shoko.Desktop.UserControls
                     Cursor = Cursors.Wait;
                     SelectTraktSeasonForm frm = new SelectTraktSeasonForm();
                     frm.Owner = wdw;
-                    frm.Init(anime.AnimeID, anime.FormattedTitle, (enEpisodeType)link.AniDBStartEpisodeType, link.AniDBStartEpisodeNumber, link.TraktID,
+                    frm.Init(anime.AnimeID, anime.FormattedTitle, (EpisodeType)link.AniDBStartEpisodeType, link.AniDBStartEpisodeNumber, link.TraktID,
                         link.TraktSeasonNumber, link.TraktStartEpisodeNumber, link.TraktTitle, anime, link.CrossRef_AniDB_TraktV2ID);
                     bool? result = frm.ShowDialog();
                     if (result.Value)
@@ -889,7 +889,7 @@ namespace Shoko.Desktop.UserControls
                     SelectTvDBSeasonForm frm = new SelectTvDBSeasonForm();
                     frm.Owner = wdw;
                     //TODO
-                    frm.Init(anime.AnimeID, anime.FormattedTitle, (enEpisodeType)link.AniDBStartEpisodeType, link.AniDBStartEpisodeNumber, link.TvDBID,
+                    frm.Init(anime.AnimeID, anime.FormattedTitle, (EpisodeType)link.AniDBStartEpisodeType, link.AniDBStartEpisodeNumber, link.TvDBID,
                         link.TvDBSeasonNumber, link.TvDBStartEpisodeNumber, link.TvDBTitle, anime, link.CrossRef_AniDB_TvDBV2ID);
                     bool? result = frm.ShowDialog();
                     if (result.Value)

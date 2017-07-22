@@ -310,7 +310,7 @@ namespace Shoko.Desktop.Forms
                             if (ep.LocalFileCount == 0)
                                 useEp = false;
 
-                            if (ep.EpisodeTypeEnum != enEpisodeType.Episode && ep.EpisodeTypeEnum != enEpisodeType.Special)
+                            if (ep.EpisodeTypeEnum != EpisodeType.Episode && ep.EpisodeTypeEnum != EpisodeType.Special)
                                 useEp = false;
 
                             if (useEp) epList.Add(ep);

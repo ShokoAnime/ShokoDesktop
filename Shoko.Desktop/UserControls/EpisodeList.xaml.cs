@@ -51,7 +51,7 @@ namespace Shoko.Desktop.UserControls
         public ObservableCollection<VM_AnimeEpisode_User> CurrentEpisodes { get; set; }
         public ObservableCollection<VM_AnimeEpisodeType> CurrentEpisodeTypes { get; set; }
 
-        private enEpisodeType episodeType = enEpisodeType.Episode;
+        private EpisodeType episodeType = EpisodeType.Episode;
 
         public EpisodeList()
         {
@@ -123,7 +123,7 @@ namespace Shoko.Desktop.UserControls
                     VM_AnimeEpisode_User ep = lbEpisodes.SelectedItem as VM_AnimeEpisode_User;
                     VM_MainListHelper.Instance.LastEpisodeForSeries[ep.AnimeSeriesID] = ep.AnimeEpisodeID;
 
-                    if (ep.EpisodeTypeEnum == enEpisodeType.Episode)
+                    if (ep.EpisodeTypeEnum == EpisodeType.Episode)
                     {
                         IsEpisodeSelected = true;
                         CurrentEpisodeNumber = ep.EpisodeNumber;
@@ -289,7 +289,7 @@ namespace Shoko.Desktop.UserControls
                     VM_AnimeEpisode_User ep = lbEpisodes.SelectedItem as VM_AnimeEpisode_User;
                     VM_MainListHelper.Instance.LastEpisodeForSeries[ep.AnimeSeriesID] = ep.AnimeEpisodeID;
 
-                    if (ep.EpisodeTypeEnum == enEpisodeType.Episode)
+                    if (ep.EpisodeTypeEnum == EpisodeType.Episode)
                     {
                         IsEpisodeSelected = true;
                         CurrentEpisodeNumber = ep.EpisodeNumber;
@@ -411,7 +411,7 @@ namespace Shoko.Desktop.UserControls
                 for (int i = 0; i < cboEpisodeTypeFilter.Items.Count; i++)
                 {
                     VM_AnimeEpisodeType epType = cboEpisodeTypeFilter.Items[i] as VM_AnimeEpisodeType;
-                    if (epType.EpisodeType == enEpisodeType.Episode)
+                    if (epType.EpisodeType == EpisodeType.Episode)
                     {
                         idx = i;
                         break;
@@ -611,7 +611,7 @@ namespace Shoko.Desktop.UserControls
                         visible = false;
                     else
                     {
-                        if (ep.EpisodeTypeEnum == enEpisodeType.Episode)
+                        if (ep.EpisodeTypeEnum == EpisodeType.Episode)
                             visible = ser.AllEpisodes.Any(x => !x.Watched && x.EpisodeTypeEnum == selType.EpisodeType && x.HasFiles && x.EpisodeNumber <= ep.EpisodeNumber);
                         else
                             visible = false;

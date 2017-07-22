@@ -164,8 +164,8 @@ namespace Shoko.Desktop.Forms
                 }
                 TvDBEpisodeNumber = tvep.EpisodeNumber;
 
-                int aniEpType = (int)enEpisodeType.Episode;
-                if (cboEpisodeType.SelectedIndex == 1) aniEpType = (int)enEpisodeType.Special;
+                int aniEpType = (int)EpisodeType.Episode;
+                if (cboEpisodeType.SelectedIndex == 1) aniEpType = (int)EpisodeType.Special;
 
                 AnimeEpisodeType = aniEpType;
                 TvDBSeason = int.Parse(cboSeasonNumber.SelectedItem.ToString());
@@ -198,7 +198,7 @@ namespace Shoko.Desktop.Forms
             Close();
         }
 
-        public void Init(int animeID, string animeName, enEpisodeType aniEpType, int aniEpNumber, int tvDBID, int tvSeason, int tvEpNumber, string tvSeriesName,
+        public void Init(int animeID, string animeName, EpisodeType aniEpType, int aniEpNumber, int tvDBID, int tvSeason, int tvEpNumber, string tvSeriesName,
             VM_AniDB_Anime anime, int? crossRef_AniDB_TvDBV2ID)
         {
             Anime = anime;
@@ -220,7 +220,7 @@ namespace Shoko.Desktop.Forms
             foreach (VM_AniDB_Episode contract in VM_ShokoServer.Instance.ShokoServices.GetAniDBEpisodesForAnime(AnimeID).Cast<VM_AniDB_Episode>())
             {
                 AniDBEpisodes.Add(contract);
-                if (contract.EpisodeType == (int)enEpisodeType.Special) hasSpecials = true;
+                if (contract.EpisodeType == (int)EpisodeType.Special) hasSpecials = true;
             }
 
             cboEpisodeType.Items.Clear();
@@ -229,7 +229,7 @@ namespace Shoko.Desktop.Forms
 
             cboEpisodeType.SelectionChanged += new SelectionChangedEventHandler(cboEpisodeType_SelectionChanged);
 
-            if (aniEpType == enEpisodeType.Episode)
+            if (aniEpType == EpisodeType.Episode)
                 cboEpisodeType.SelectedIndex = 0;
             else
                 cboEpisodeType.SelectedIndex = 1;
@@ -290,7 +290,7 @@ namespace Shoko.Desktop.Forms
 
                 int i = 0;
                 int idx = 0;
-                int epType = cboEpisodeType.SelectedIndex == 0 ? (int)enEpisodeType.Episode : (int)enEpisodeType.Special;
+                int epType = cboEpisodeType.SelectedIndex == 0 ? (int)EpisodeType.Episode : (int)EpisodeType.Special;
 
 
                 foreach (VM_AniDB_Episode ep in AniDBEpisodes)

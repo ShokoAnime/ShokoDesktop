@@ -514,7 +514,7 @@ namespace Shoko.Desktop.ViewModel.Server
 
                     foreach (CL_AnimeEpisode_User ep in eps)
                     {
-                        if ((enEpisodeType)ep.EpisodeType == enEpisodeType.Episode)
+                        if ((EpisodeType)ep.EpisodeType == EpisodeType.Episode)
                         {
                             if (ep.EpisodeNumber > latestEpNo) latestEpNo = ep.EpisodeNumber;
                         }

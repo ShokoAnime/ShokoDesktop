@@ -125,7 +125,7 @@ namespace Shoko.Desktop.Forms
                 Cursor = Cursors.Wait;
                 SelectTvDBSeasonForm frm = new SelectTvDBSeasonForm();
                 frm.Owner = wdw;
-                frm.Init(AnimeID, AnimeName, enEpisodeType.Episode, 1, id, 1, 1, AnimeName, Anime, null);
+                frm.Init(AnimeID, AnimeName, EpisodeType.Episode, 1, id, 1, 1, AnimeName, Anime, null);
                 bool? result = frm.ShowDialog();
                 if (result.Value)
                 {
@@ -216,7 +216,7 @@ namespace Shoko.Desktop.Forms
                     Cursor = Cursors.Wait;
                     SelectTvDBSeasonForm frm = new SelectTvDBSeasonForm();
                     frm.Owner = wdw;
-                    frm.Init(AnimeID, AnimeName, enEpisodeType.Episode, 1, searchResult.SeriesID, 1, 1, searchResult.SeriesName, Anime, null);
+                    frm.Init(AnimeID, AnimeName, EpisodeType.Episode, 1, searchResult.SeriesID, 1, 1, searchResult.SeriesName, Anime, null);
                     bool? result = frm.ShowDialog();
                     if (result.Value)
                     {

@@ -758,7 +758,7 @@ namespace Shoko.Desktop.ViewModel.Server
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string AnimeID_Friendly => $"AniDB: {AnimeID}";
 
-        public enAnimeType AnimeTypeEnum => AnimeType > 5 ? enAnimeType.Other : (enAnimeType) AnimeType;
+        public AnimeType AnimeTypeEnum => AnimeType > 5 ? Models.Enums.AnimeType.Other : (AnimeType) AnimeType;
 
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string AnimeTypeDescription
@@ -767,12 +767,12 @@ namespace Shoko.Desktop.ViewModel.Server
             {
                 switch (AnimeTypeEnum)
                 {
-                    case enAnimeType.Movie: return Shoko.Commons.Properties.Resources.AnimeType_Movie;
-                    case enAnimeType.Other: return Shoko.Commons.Properties.Resources.AnimeType_Other;
-                    case enAnimeType.OVA: return Shoko.Commons.Properties.Resources.AnimeType_OVA;
-                    case enAnimeType.TVSeries: return Shoko.Commons.Properties.Resources.AnimeType_TVSeries;
-                    case enAnimeType.TVSpecial: return Shoko.Commons.Properties.Resources.AnimeType_TVSpecial;
-                    case enAnimeType.Web: return Shoko.Commons.Properties.Resources.AnimeType_Web;
+                    case Models.Enums.AnimeType.Movie: return Shoko.Commons.Properties.Resources.AnimeType_Movie;
+                    case Models.Enums.AnimeType.Other: return Shoko.Commons.Properties.Resources.AnimeType_Other;
+                    case Models.Enums.AnimeType.OVA: return Shoko.Commons.Properties.Resources.AnimeType_OVA;
+                    case Models.Enums.AnimeType.TVSeries: return Shoko.Commons.Properties.Resources.AnimeType_TVSeries;
+                    case Models.Enums.AnimeType.TVSpecial: return Shoko.Commons.Properties.Resources.AnimeType_TVSpecial;
+                    case Models.Enums.AnimeType.Web: return Shoko.Commons.Properties.Resources.AnimeType_Web;
                     default: return Shoko.Commons.Properties.Resources.AnimeType_Other;
 
                 }

@@ -38,7 +38,7 @@ namespace Shoko.Desktop.ViewModel.Server
         public string FileDescAndID => $"File {FileID}";
 
         [ScriptIgnore, JsonIgnore, XmlIgnore]
-        public enEpisodeType EpisodeTypeEnum => (enEpisodeType)EpisodeType;
+        public EpisodeType EpisodeTypeEnum => (EpisodeType)EpisodeType;
 
         public new int EpisodeType
         {
@@ -70,12 +70,12 @@ namespace Shoko.Desktop.ViewModel.Server
                 string shortType = "";
                 switch (EpisodeTypeEnum)
                 {
-                    case enEpisodeType.Credits: shortType = "C"; break;
-                    case enEpisodeType.Episode: shortType = ""; break;
-                    case enEpisodeType.Other: shortType = "O"; break;
-                    case enEpisodeType.Parody: shortType = "P"; break;
-                    case enEpisodeType.Special: shortType = "S"; break;
-                    case enEpisodeType.Trailer: shortType = "T"; break;
+                    case Models.Enums.EpisodeType.Credits: shortType = "C"; break;
+                    case Models.Enums.EpisodeType.Episode: shortType = ""; break;
+                    case Models.Enums.EpisodeType.Other: shortType = "O"; break;
+                    case Models.Enums.EpisodeType.Parody: shortType = "P"; break;
+                    case Models.Enums.EpisodeType.Special: shortType = "S"; break;
+                    case Models.Enums.EpisodeType.Trailer: shortType = "T"; break;
                 }
                 return $"{shortType}{EpisodeNumber}";
             }

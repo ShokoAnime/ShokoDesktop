@@ -153,8 +153,8 @@ namespace Shoko.Desktop.Forms
             {
                 cboEpisodeType.Items.Clear();
 
-                cboEpisodeType.Items.Add(EnumTranslator.EpisodeTypeTranslated(enEpisodeType.Episode));
-                cboEpisodeType.Items.Add(EnumTranslator.EpisodeTypeTranslated(enEpisodeType.Special));
+                cboEpisodeType.Items.Add(EnumTranslator.EpisodeTypeTranslated(EpisodeType.Episode));
+                cboEpisodeType.Items.Add(EnumTranslator.EpisodeTypeTranslated(EpisodeType.Special));
 
                 cboEpisodeType.SelectedIndex = 0;
             }

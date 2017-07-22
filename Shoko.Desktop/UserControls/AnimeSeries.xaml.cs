@@ -460,7 +460,7 @@ namespace Shoko.Desktop.UserControls
 
                             foreach (VM_AnimeEpisode_User ep in eps)
                             {
-                                if (ep.EpisodeTypeEnum == enEpisodeType.Episode || ep.EpisodeTypeEnum == enEpisodeType.Special)
+                                if (ep.EpisodeTypeEnum == EpisodeType.Episode || ep.EpisodeTypeEnum == EpisodeType.Special)
                                     pl.AddEpisode(ep.AnimeEpisodeID);
                             }
                         }
@@ -469,7 +469,7 @@ namespace Shoko.Desktop.UserControls
                         {
                             foreach (VM_AnimeEpisode_User ep in eps)
                             {
-                                if (!ep.Watched && (ep.EpisodeTypeEnum == enEpisodeType.Episode || ep.EpisodeTypeEnum == enEpisodeType.Special))
+                                if (!ep.Watched && (ep.EpisodeTypeEnum == EpisodeType.Episode || ep.EpisodeTypeEnum == EpisodeType.Special))
                                     pl.AddEpisode(ep.AnimeEpisodeID);
                             }
                         }

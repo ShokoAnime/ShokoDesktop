@@ -39,7 +39,7 @@ namespace Shoko.Desktop.ViewModel.Server
         public string EpisodeNumberAndID => $"Episode {EpisodeTypeAndNumber} ({EpisodeID})";
 
         [ScriptIgnore, JsonIgnore, XmlIgnore]
-        public enEpisodeType EpisodeTypeEnum => (enEpisodeType)EpisodeType;
+        public EpisodeType EpisodeTypeEnum => (EpisodeType)EpisodeType;
 
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public Boolean HasSeriesData => base.AnimeSeries!=null;
@@ -64,12 +64,12 @@ namespace Shoko.Desktop.ViewModel.Server
                 string shortType = "";
                 switch (EpisodeTypeEnum)
                 {
-                    case enEpisodeType.Credits: shortType = "C"; break;
-                    case enEpisodeType.Episode: shortType = ""; break;
-                    case enEpisodeType.Other: shortType = "O"; break;
-                    case enEpisodeType.Parody: shortType = "P"; break;
-                    case enEpisodeType.Special: shortType = "S"; break;
-                    case enEpisodeType.Trailer: shortType = "T"; break;
+                    case Models.Enums.EpisodeType.Credits: shortType = "C"; break;
+                    case Models.Enums.EpisodeType.Episode: shortType = ""; break;
+                    case Models.Enums.EpisodeType.Other: shortType = "O"; break;
+                    case Models.Enums.EpisodeType.Parody: shortType = "P"; break;
+                    case Models.Enums.EpisodeType.Special: shortType = "S"; break;
+                    case Models.Enums.EpisodeType.Trailer: shortType = "T"; break;
                 }
                 return $"{shortType}{EpisodeNumber}";
             }

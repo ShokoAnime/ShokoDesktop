@@ -501,7 +501,7 @@ namespace Shoko.Desktop.ViewModel.Server
 
             #region normal episodes
             // now do stuff to improve performance
-            if (EpisodeTypeEnum == enEpisodeType.Episode)
+            if (EpisodeTypeEnum == Models.Enums.EpisodeType.Episode)
             {
                 if (tvSummary.CrossRefTvDBV2 != null && tvSummary.CrossRefTvDBV2.Count > 0)
                 {
@@ -517,7 +517,7 @@ namespace Shoko.Desktop.ViewModel.Server
                     VM_CrossRef_AniDB_TvDBV2 xrefBase = null;
                     foreach (VM_CrossRef_AniDB_TvDBV2 xrefTV in tvDBCrossRef)
                     {
-                        if (xrefTV.AniDBStartEpisodeType != (int)enEpisodeType.Episode) continue;
+                        if (xrefTV.AniDBStartEpisodeType != (int)Models.Enums.EpisodeType.Episode) continue;
                         if (EpisodeNumber >= xrefTV.AniDBStartEpisodeNumber)
                         {
                             foundStartingPoint = true;
@@ -588,7 +588,7 @@ namespace Shoko.Desktop.ViewModel.Server
             //logger.Trace("SetTvDBInfo: normal episodes finish");
 
             #region special episodes
-            if (EpisodeTypeEnum == enEpisodeType.Special)
+            if (EpisodeTypeEnum == Models.Enums.EpisodeType.Special)
             {
                 // find the xref that is right
                 // relies on the xref's being sorted by season number and then episode number (desc)
@@ -598,7 +598,7 @@ namespace Shoko.Desktop.ViewModel.Server
                 VM_CrossRef_AniDB_TvDBV2 xrefBase = null;
                 foreach (VM_CrossRef_AniDB_TvDBV2 xrefTV in tvDBCrossRef)
                 {
-                    if (xrefTV.AniDBStartEpisodeType != (int)enEpisodeType.Special) continue;
+                    if (xrefTV.AniDBStartEpisodeType != (int)Models.Enums.EpisodeType.Special) continue;
                     if (EpisodeNumber >= xrefTV.AniDBStartEpisodeNumber)
                     {
                         foundStartingPoint = true;
@@ -710,7 +710,7 @@ namespace Shoko.Desktop.ViewModel.Server
 
             #region normal episodes
             // now do stuff to improve performance
-            if (EpisodeTypeEnum == enEpisodeType.Episode)
+            if (EpisodeTypeEnum == Models.Enums.EpisodeType.Episode)
             {
                 if (traktSummary?.CrossRefTraktV2 != null && traktSummary.CrossRefTraktV2.Count > 0)
                 {
@@ -726,7 +726,7 @@ namespace Shoko.Desktop.ViewModel.Server
                     VM_CrossRef_AniDB_TraktV2 xrefBase = null;
                     foreach (VM_CrossRef_AniDB_TraktV2 xrefTV in traktCrossRefs)
                     {
-                        if (xrefTV.AniDBStartEpisodeType != (int)enEpisodeType.Episode) continue;
+                        if (xrefTV.AniDBStartEpisodeType != (int)Models.Enums.EpisodeType.Episode) continue;
                         if (EpisodeNumber >= xrefTV.AniDBStartEpisodeNumber)
                         {
                             foundStartingPoint = true;
@@ -784,7 +784,7 @@ namespace Shoko.Desktop.ViewModel.Server
             //logger.Trace("SetTvDBInfo: normal episodes finish");
 
             #region special episodes
-            if (EpisodeTypeEnum == enEpisodeType.Special)
+            if (EpisodeTypeEnum == Models.Enums.EpisodeType.Special)
             {
                 // find the xref that is right
                 // relies on the xref's being sorted by season number and then episode number (desc)
@@ -796,7 +796,7 @@ namespace Shoko.Desktop.ViewModel.Server
                     VM_CrossRef_AniDB_TraktV2 xrefBase = null;
                     foreach (VM_CrossRef_AniDB_TraktV2 xrefTrakt in traktCrossRef)
                     {
-                        if (xrefTrakt.AniDBStartEpisodeType != (int)enEpisodeType.Special) continue;
+                        if (xrefTrakt.AniDBStartEpisodeType != (int)Models.Enums.EpisodeType.Special) continue;
                         if (EpisodeNumber >= xrefTrakt.AniDBStartEpisodeNumber)
                         {
                             foundStartingPoint = true;
@@ -938,7 +938,7 @@ namespace Shoko.Desktop.ViewModel.Server
         public string RunTime => Formatting.FormatSecondsToDisplayTime(AniDB_LengthSeconds);
 
         [ScriptIgnore, JsonIgnore, XmlIgnore]
-        public enEpisodeType EpisodeTypeEnum => (enEpisodeType)EpisodeType;
+        public EpisodeType EpisodeTypeEnum => (EpisodeType)EpisodeType;
 
 
 
@@ -949,12 +949,12 @@ namespace Shoko.Desktop.ViewModel.Server
             string shortType = "";
             switch (EpisodeTypeEnum)
             {
-                case enEpisodeType.Credits: shortType = "C"; break;
-                case enEpisodeType.Episode: shortType = ""; break;
-                case enEpisodeType.Other: shortType = "O"; break;
-                case enEpisodeType.Parody: shortType = "P"; break;
-                case enEpisodeType.Special: shortType = "S"; break;
-                case enEpisodeType.Trailer: shortType = "T"; break;
+                case Models.Enums.EpisodeType.Credits: shortType = "C"; break;
+                case Models.Enums.EpisodeType.Episode: shortType = ""; break;
+                case Models.Enums.EpisodeType.Other: shortType = "O"; break;
+                case Models.Enums.EpisodeType.Parody: shortType = "P"; break;
+                case Models.Enums.EpisodeType.Special: shortType = "S"; break;
+                case Models.Enums.EpisodeType.Trailer: shortType = "T"; break;
             }
             EpisodeNumberAndNameWithType = $"{shortType}{EpisodeNumber} - {EpisodeName}";
             EpisodeNumberWithType = $"{EpisodeTypeEnum.ToString()} {EpisodeNumber}";

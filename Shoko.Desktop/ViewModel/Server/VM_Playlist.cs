@@ -305,7 +305,7 @@ namespace Shoko.Desktop.ViewModel.Server
                             bool foundEp = false;
                             foreach (VM_AnimeEpisode_User epTemp in eps)
                             {
-                                if (epTemp.EpisodeTypeEnum == enEpisodeType.Episode || epTemp.EpisodeTypeEnum == enEpisodeType.Special)
+                                if (epTemp.EpisodeTypeEnum == EpisodeType.Episode || epTemp.EpisodeTypeEnum == EpisodeType.Special)
                                 {
                                     if (CanUseEpisode(this, epTemp))
                                     {
@@ -345,7 +345,7 @@ namespace Shoko.Desktop.ViewModel.Server
 
                         foreach (VM_AnimeEpisode_User epTemp in eps)
                         {
-                            if (epTemp.EpisodeTypeEnum == enEpisodeType.Episode || epTemp.EpisodeTypeEnum == enEpisodeType.Special)
+                            if (epTemp.EpisodeTypeEnum == EpisodeType.Episode || epTemp.EpisodeTypeEnum == EpisodeType.Special)
                             {
                                 if (CanUseEpisode(this, epTemp)) canidateEps.Add(epTemp);
                             }
@@ -402,7 +402,7 @@ namespace Shoko.Desktop.ViewModel.Server
 
                         foreach (VM_AnimeEpisode_User epTemp in eps)
                         {
-                            if (epTemp.EpisodeTypeEnum == enEpisodeType.Episode || epTemp.EpisodeTypeEnum == enEpisodeType.Special)
+                            if (epTemp.EpisodeTypeEnum == EpisodeType.Episode || epTemp.EpisodeTypeEnum == EpisodeType.Special)
                             {
                                 if (CanUseEpisode(this, epTemp))
                                 {
@@ -434,7 +434,7 @@ namespace Shoko.Desktop.ViewModel.Server
 
                         foreach (VM_AnimeEpisode_User epTemp in eps)
                         {
-                            if (epTemp.EpisodeTypeEnum == enEpisodeType.Episode || epTemp.EpisodeTypeEnum == enEpisodeType.Special)
+                            if (epTemp.EpisodeTypeEnum == EpisodeType.Episode || epTemp.EpisodeTypeEnum == EpisodeType.Special)
                             {
                                 if (CanUseEpisode(this, epTemp)) allEps.Add(epTemp);
                             }

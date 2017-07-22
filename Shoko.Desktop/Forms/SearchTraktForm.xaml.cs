@@ -115,7 +115,7 @@ namespace Shoko.Desktop.Forms
                 Cursor = Cursors.Wait;
                 SelectTraktSeasonForm frm = new SelectTraktSeasonForm();
                 frm.Owner = wdw;
-                frm.Init(AnimeID, AnimeName, enEpisodeType.Episode, 1, txtSeriesID.Text.Trim(), 1, 1, AnimeName, Anime, null);
+                frm.Init(AnimeID, AnimeName, EpisodeType.Episode, 1, txtSeriesID.Text.Trim(), 1, 1, AnimeName, Anime, null);
                 bool? result = frm.ShowDialog();
                 if (result.Value)
                 {
@@ -206,7 +206,7 @@ namespace Shoko.Desktop.Forms
                     Cursor = Cursors.Wait;
                     SelectTraktSeasonForm frm = new SelectTraktSeasonForm();
                     frm.Owner = wdw;
-                    frm.Init(AnimeID, AnimeName, enEpisodeType.Episode, 1, searchResult.GetTraktID(), 1, 1, AnimeName, Anime, null);
+                    frm.Init(AnimeID, AnimeName, EpisodeType.Episode, 1, searchResult.GetTraktID(), 1, 1, AnimeName, Anime, null);
                     bool? result = frm.ShowDialog();
                     if (result.Value)
                     {
