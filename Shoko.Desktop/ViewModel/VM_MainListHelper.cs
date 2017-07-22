@@ -513,7 +513,8 @@ namespace Shoko.Desktop.ViewModel
                     }
 
 
-                    BreadCrumbs.Add(wrapper);
+                    if (wrapper != null)
+                        BreadCrumbs.Add(wrapper);
 
                     if (wrapper is VM_GroupFilter)
                     {
@@ -529,7 +530,8 @@ namespace Shoko.Desktop.ViewModel
                     if (wrapper == null)
                     {
                         CurrentWrapperList.Clear();
-                        foreach (VM_GroupFilter grpFilter in AllGroupFiltersDictionary.Values.Where(a => !a.ParentGroupFilterID.HasValue).OrderBy(a => a.GroupFilterName))
+                        foreach (VM_GroupFilter grpFilter in AllGroupFiltersDictionary.Values
+                            .Where(a => a != null && !a.ParentGroupFilterID.HasValue).OrderBy(a => a.GroupFilterName))
                         {
                             CurrentWrapperList.Add(grpFilter);
                         }
