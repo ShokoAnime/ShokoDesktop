@@ -256,10 +256,10 @@
                             <TextBlock Margin="5,0,10,0" Text="{Binding PlaylistName}" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" />
 
                         <CheckBox Name="chkPlayWatchedLocked" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Playlist_PlayWatched}" VerticalAlignment="Center" Margin="10,0,0,0" IsEnabled="False"
-                                      IsChecked="{Binding Path=PlayWatchedBool}"/>
+                                      IsChecked="{Binding Path=PlayWatchedBool, Mode=OneWay}"/>
 
                         <CheckBox Name="chkPlayUnwatchedLocked" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Playlist_PlayUnwatched}" VerticalAlignment="Center" Margin="10,0,0,0" IsEnabled="False"
-                                      IsChecked="{Binding Path=PlayUnwatchedBool}"/>
+                                      IsChecked="{Binding Path=PlayUnwatchedBool, Mode=OneWay}"/>
 
                         <TextBlock Margin="10,0,0,0" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Playlist_Default}" VerticalAlignment="Center" IsEnabled="False" Foreground="DarkGray"/>
 
@@ -275,10 +275,10 @@
                             <TextBox Margin="5,0,10,0" Text="{Binding PlaylistName}" FontSize="16"  MinWidth="200" FontWeight="Bold" Name="txtPlaylistName" VerticalAlignment="Center"/>
 
                         <CheckBox Name="chkPlayWatchedEdit" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Playlist_PlayWatched}" VerticalAlignment="Center" Margin="10,0,0,0"
-                                      IsChecked="{Binding Path=PlayWatchedBool}"/>
+                                      IsChecked="{Binding Path=PlayWatchedBool, Mode=OneWay}"/>
 
                         <CheckBox Name="chkPlayUnwatchedEdit" Content="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Playlist_PlayUnwatched}" VerticalAlignment="Center" Margin="10,0,0,0"
-                                      IsChecked="{Binding Path=PlayUnwatchedBool}"/>
+                                      IsChecked="{Binding Path=PlayUnwatchedBool, Mode=OneWay}"/>
 
                         <TextBlock Margin="10,0,0,2" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Playlist_Default}" VerticalAlignment="Center" />
 
