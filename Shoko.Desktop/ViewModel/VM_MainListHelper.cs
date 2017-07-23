@@ -470,31 +470,32 @@ namespace Shoko.Desktop.ViewModel
                     {
                         for (int i = 0; i < BreadCrumbs.Count; i++)
                         {
+                            if (BreadCrumbs[i] == null) continue;
                             if (wrapper is VM_GroupFilter && BreadCrumbs[i] is VM_GroupFilter)
                             {
                                 VM_GroupFilter wrapObj = (VM_GroupFilter) wrapper;
                                 VM_GroupFilter bcObj = (VM_GroupFilter) BreadCrumbs[i];
                                 if (wrapObj.GroupFilterName == bcObj.GroupFilterName) pos = i;
                             }
-                            if (wrapper is VM_AnimeGroup_User && BreadCrumbs[i] is VM_AnimeGroup_User)
+                            else if (wrapper is VM_AnimeGroup_User && BreadCrumbs[i] is VM_AnimeGroup_User)
                             {
                                 VM_AnimeGroup_User wrapObj = (VM_AnimeGroup_User) wrapper;
                                 VM_AnimeGroup_User bcObj = (VM_AnimeGroup_User) BreadCrumbs[i];
                                 if (wrapObj.AnimeGroupID == bcObj.AnimeGroupID) pos = i;
                             }
-                            if (wrapper is VM_AnimeSeries_User && BreadCrumbs[i] is VM_AnimeSeries_User)
+                            else if (wrapper is VM_AnimeSeries_User && BreadCrumbs[i] is VM_AnimeSeries_User)
                             {
                                 VM_AnimeSeries_User wrapObj = (VM_AnimeSeries_User) wrapper;
                                 VM_AnimeSeries_User bcObj = (VM_AnimeSeries_User) BreadCrumbs[i];
                                 if (wrapObj.AnimeSeriesID == bcObj.AnimeSeriesID) pos = i;
                             }
-                            if (wrapper is VM_AnimeEpisodeType && BreadCrumbs[i] is VM_AnimeEpisodeType)
+                            else if (wrapper is VM_AnimeEpisodeType && BreadCrumbs[i] is VM_AnimeEpisodeType)
                             {
                                 VM_AnimeEpisodeType wrapObj = (VM_AnimeEpisodeType) wrapper;
                                 VM_AnimeEpisodeType bcObj = (VM_AnimeEpisodeType) BreadCrumbs[i];
                                 if (wrapObj.EpisodeTypeDescription == bcObj.EpisodeTypeDescription) pos = i;
                             }
-                            if (wrapper is VM_AnimeEpisode_User && BreadCrumbs[i] is VM_AnimeEpisode_User)
+                            else if (wrapper is VM_AnimeEpisode_User && BreadCrumbs[i] is VM_AnimeEpisode_User)
                             {
                                 VM_AnimeEpisode_User wrapObj = (VM_AnimeEpisode_User) wrapper;
                                 VM_AnimeEpisode_User bcObj = (VM_AnimeEpisode_User) BreadCrumbs[i];
@@ -504,17 +505,17 @@ namespace Shoko.Desktop.ViewModel
                     }
                     else pos = 0;
 
-                    if (pos >= 0)
+                    if (pos > 0)
                     {
                         for (int i = BreadCrumbs.Count - 1; i >= 0; i--)
                         {
                             if (i >= pos) BreadCrumbs.RemoveAt(i);
                         }
                     }
+                    else if(pos == 0) BreadCrumbs.Clear();
 
 
-                    if (wrapper != null)
-                        BreadCrumbs.Add(wrapper);
+                    BreadCrumbs.Add(wrapper);
 
                     if (wrapper is VM_GroupFilter)
                     {
