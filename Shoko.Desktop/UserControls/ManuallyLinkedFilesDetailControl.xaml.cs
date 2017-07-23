@@ -117,16 +117,16 @@ namespace Shoko.Desktop.UserControls
         {
             try
             {
-                MainWindow MainWindow = (MainWindow)Window.GetWindow(this);
+                MainWindow mainWindow = (MainWindow)Window.GetWindow(this);
 
                 object obj = e.Parameter;
-                if (obj == null) return;
+                if (obj == null || mainWindow == null) return;
 
                 if (obj.GetType() == typeof(VM_AnimeEpisode_User))
                 {
                     VM_AnimeEpisode_User ep = obj as VM_AnimeEpisode_User;
                     VM_VideoLocal vid = DataContext as VM_VideoLocal;
-                    MainWindow.ShowPinnedFileAvDump(vid);
+                    mainWindow.ShowPinnedFileAvDump(vid);
                 }
 
             }
@@ -206,6 +206,11 @@ namespace Shoko.Desktop.UserControls
                 {
                     VM_AnimeEpisode_User ep = obj as VM_AnimeEpisode_User;
                     VM_VideoLocal vid = DataContext as VM_VideoLocal;
+                    if (ep == null || vid == null)
+                    {
+                        MessageBox.Show("ep or vid is null. This is not okay, so report it.", Shoko.Commons.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
 
                     string res = VM_ShokoServer.Instance.ShokoServices.RemoveAssociationOnFile(vid.VideoLocalID, ep.AniDB_EpisodeID);
                     if (res.Length > 0)
@@ -214,11 +219,8 @@ namespace Shoko.Desktop.UserControls
                     }
                     else
                     {
-                        if (ep != null)
-                        {
-                            VM_MainListHelper.Instance.UpdateHeirarchy(ep);
-                            DisplayEpisodes();
-                        }
+                        VM_MainListHelper.Instance.UpdateHeirarchy(ep);
+                        DisplayEpisodes();
                     }
                 }
             }
