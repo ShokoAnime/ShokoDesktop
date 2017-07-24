@@ -18,7 +18,7 @@ namespace Shoko.Desktop.UserControls
         {
             string obj = e.Parameter as string;
             if (obj == null) return;
-            Clipboard.SetText(obj);
+            Clipboard.SetText(obj.Replace('`', '\''));
         }
     }
 }

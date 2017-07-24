@@ -24,6 +24,7 @@
 
             <RoutedUICommand x:Key="RefreshSeriesCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=RefreshSeriesCommand}" />
             <RoutedUICommand x:Key="DeleteCustomTagCommand" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=DeleteCustomTagCommand}" />
+            <RoutedUICommand x:Key="TitleSelectCommand" Text="" />
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
@@ -217,7 +218,7 @@
 
             <!-- animeTitleTemplate-->
             <DataTemplate x:Key="animeTitleTemplate">
-                <Button Command="{DynamicResource SelectCommand}" Margin="0,0,0,0" Background="Transparent" BorderThickness="0"
+                <Button Command="{DynamicResource TitleSelectCommand}" Margin="0,0,0,0" Background="Transparent" BorderThickness="0"
                         CommandParameter="{Binding ElementName=TitleBox, Path=Text}">
                     <Button.Style>
                         <Style TargetType="{x:Type Button}">
@@ -357,6 +358,7 @@
         <CommandBinding Command="{StaticResource MoveDownWidgetCommand}" Executed="CommandBinding_MoveDownWidget" />
         <CommandBinding Command="{StaticResource RefreshSeriesCommand}" Executed="CommandBinding_RefreshSeries" />
         <CommandBinding Command="{StaticResource DeleteCustomTagCommand}" Executed="CommandBinding_DeleteCustomTag" />
+        <CommandBinding Command="{StaticResource TitleSelectCommand}" Executed="CommandBinding_SelectTitleTextAndCopy" />
     </UserControl.CommandBindings>
 
     <TabControl Grid.Column="0" Grid.Row="1" x:Name="tabContainer" Padding="0" Margin="2,0,2,0" SelectedIndex="0">

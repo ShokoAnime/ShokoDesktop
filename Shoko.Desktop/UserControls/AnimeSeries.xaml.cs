@@ -662,6 +662,13 @@ namespace Shoko.Desktop.UserControls
             EnableDisableImage(true, obj);
         }
 
+        private void CommandBinding_SelectTitleTextAndCopy(object sender, ExecutedRoutedEventArgs e)
+        {
+            string obj = e.Parameter as string;
+            if (obj == null) return;
+            Clipboard.SetText(obj.Replace('`', '\''));
+        }
+
         private void EnableDisableImage(bool enabled, object img)
         {
             if (!VM_ShokoServer.Instance.ServerOnline) return;
