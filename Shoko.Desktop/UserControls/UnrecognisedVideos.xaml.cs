@@ -147,19 +147,23 @@ namespace Shoko.Desktop.UserControls
 
             cboMultiType.SelectionChanged += new SelectionChangedEventHandler(cboMultiType_SelectionChanged);
 
-            SetConfirmDetails();
-
-            OneVideoSelected = dgVideos.SelectedItems.Count == 1;
-            MultipleVideosSelected = dgVideos.SelectedItems.Count > 1;
-
             btnClearSearch.Click += new RoutedEventHandler(btnClearSearch_Click);
             txtFileSearch.TextChanged += new TextChangedEventHandler(txtFileSearch_TextChanged);
             btnLogs.Click += new RoutedEventHandler(btnLogs_Click);
 
             btnRefreshSeriesList.Click += new RoutedEventHandler(btnRefreshSeriesList_Click);
-            RefreshSeries();
+
+            Loaded += Window_Loaded;
         }
 
+        public void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            SetConfirmDetails();
+
+            OneVideoSelected = dgVideos.SelectedItems.Count == 1;
+            MultipleVideosSelected = dgVideos.SelectedItems.Count > 1;
+            RefreshSeries();
+        }
 
         private void DgVideos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
