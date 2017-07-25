@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -965,7 +966,17 @@ namespace Shoko.Desktop.UserControls
         {
             if (token.IsCancellationRequested)
                 return;
-            List<VM_VideoLocal> vidLocals = argument as List<VM_VideoLocal>;
+            List<VM_VideoLocal> vidLocals = null;
+            if (argument != null && ((IList) argument).Count > 0)
+            {
+                vidLocals = new List<VM_VideoLocal>();
+                foreach (object item in (IList) argument)
+                {
+                    var vid = item as VM_VideoLocal;
+                    if (vid == null) continue;
+                    vidLocals.Add(vid);
+                }
+            }
 
             if (vidLocals == null)
             {
