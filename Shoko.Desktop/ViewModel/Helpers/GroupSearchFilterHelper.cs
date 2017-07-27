@@ -5,6 +5,7 @@ using Shoko.Desktop.Utilities;
 using Shoko.Models.Enums;
 using Shoko.Desktop.ViewModel.Server;
 using Shoko.Commons.Utils;
+using Shoko.Models.Client;
 
 namespace Shoko.Desktop.ViewModel.Helpers
 {
@@ -71,12 +72,47 @@ namespace Shoko.Desktop.ViewModel.Helpers
                 if (index > -1) return true;
             }
 
-            return EvaluateAnimeTextSearch(series.AniDBAnime.AniDBAnime, filterText, searchType);
+            return EvaluateAnimeTextSearch(series.AniDBAnime, filterText, searchType);
         }
 
         public static bool EvaluateSeriesTextSearch(VM_AnimeSeries_User series, string filterText)
         {
             return EvaluateSeriesTextSearch(series, filterText, SeriesSearchType.Everything);
+        }
+
+        public static bool EvaluateAnimeTextSearch(CL_AniDB_AnimeDetailed anime, string filterText, SeriesSearchType searchType)
+        {
+            if (string.IsNullOrEmpty(filterText) || anime == null)
+                return true;
+
+            // search the romaji name, english names etc from anidb
+            if (anime.AnimeTitles.Any(a =>
+                (a.Language.Equals("en") || a.Language.Equals("x-jat") ||
+                 a.Language.Equals(VM_ShokoServer.Instance.LanguagePreference)) && a.Title.Contains(filterText)))
+                return true;
+
+            foreach (string title in anime.AnimeTitles.Where(a =>
+                a.Language.Equals("en") || a.Language.Equals("x-jat") ||
+                a.Language.Equals(VM_ShokoServer.Instance.LanguagePreference)).Select(a => a.Title))
+            {
+                if (string.IsNullOrEmpty(title)) continue;
+                if (!Misc.FuzzyMatches(title, filterText)) continue;
+                return true;
+            }
+
+            if (searchType == SeriesSearchType.Everything)
+            {
+                // check the tags
+                if (anime.Tags.Select(a => a.TagName).Contains(filterText, StringComparer.InvariantCultureIgnoreCase))
+                    return true;
+            }
+
+            return false;
+        }
+
+        public static bool EvaluateAnimeTextSearch(CL_AniDB_AnimeDetailed anime, string filterText)
+        {
+            return EvaluateAnimeTextSearch(anime, filterText, SeriesSearchType.Everything);
         }
 
         public static bool EvaluateAnimeTextSearch(VM_AniDB_Anime anime, string filterText, SeriesSearchType searchType)
