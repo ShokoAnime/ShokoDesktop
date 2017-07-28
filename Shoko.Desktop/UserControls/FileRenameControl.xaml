@@ -207,6 +207,13 @@
                         </StackPanel>
                     </Button>
 
+                    <!-- Rename if neeeded -->
+                    <CheckBox Name="chkMoveIfNeeded" Margin="2,2,2,2" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                            <TextBlock VerticalAlignment="Center" Text="{Resx ResxName=Shoko.Commons.Properties.Resources, Key=Rename_MoveIfNeeded}" Margin="0,0,5,0"/>
+                        </StackPanel>
+                    </CheckBox>
+
                     <!-- Rename Files -->
                     <Button Name="btnRenameFiles" Margin="0,2,5,2" Style="{DynamicResource FlatButtonStyle}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >

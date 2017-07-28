@@ -511,9 +511,10 @@ namespace Shoko.Desktop.UserControls
                 curFile++;
                 delay++;
 
+
                 VM_VideoLocal_Renamed raw =
-                    (VM_VideoLocal_Renamed) VM_ShokoServer.Instance.ShokoServices.RenameFile(ren.VideoLocalID,
-                        job.RenameScript);
+                    (VM_VideoLocal_Renamed) VM_ShokoServer.Instance.ShokoServices.RenameAndMoveFile(ren.VideoLocalID,
+                        job.RenameScript, job.Move);
 
                 ren.NewFileName = raw.NewFileName;
                 ren.Success = raw.Success;
@@ -546,6 +547,7 @@ namespace Shoko.Desktop.UserControls
             WorkerJob job = new WorkerJob();
             job.RenameScript = (cboScript.SelectedItem as VM_RenameScript)?.ScriptName;
             job.FileResults = FileResults;
+            job.Move = chkMoveIfNeeded.IsChecked ?? false;
 
             if (job.RenameScript == null)
             {
@@ -739,6 +741,7 @@ namespace Shoko.Desktop.UserControls
             btnLoadFiles.IsEnabled = val;
             btnPreviewFiles.IsEnabled = val;
             cboLoadType.IsEnabled = val;
+            btnRenameFiles.IsEnabled = val;
         }
 
         private void HideShowControls(Visibility val)
@@ -754,6 +757,7 @@ namespace Shoko.Desktop.UserControls
         public string RenameScript { get; set; }
         public int MaxFiles { get; set; }
         public ObservableCollection<VM_VideoLocal_Renamed> FileResults { get; set; }
+        public bool Move { get; set; }
     }
 
     public class WorkerStatusContainer
