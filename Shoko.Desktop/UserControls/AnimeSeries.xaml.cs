@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -666,7 +667,22 @@ namespace Shoko.Desktop.UserControls
         {
             string obj = e.Parameter as string;
             if (obj == null) return;
-            Clipboard.SetText(obj.Replace('`', '\''));
+            obj = obj.Replace('`', '\'');
+            try
+            {
+                Clipboard.SetDataObject(obj);
+            }
+            catch (COMException ex)
+            {
+                try
+                {
+                    Clipboard.SetText(obj);
+                }
+                catch (COMException exception)
+                {
+                    LogManager.GetCurrentClassLogger().Error($"There was an error copying to the clipboard: {exception}");
+                }
+            }
         }
 
         private void EnableDisableImage(bool enabled, object img)

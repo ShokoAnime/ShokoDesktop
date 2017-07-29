@@ -7,11 +7,13 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using NLog;
 using Shoko.Commons.Extensions;
 using Shoko.Commons.Utils;
 using Shoko.Desktop.Utilities;
@@ -236,12 +238,25 @@ namespace Shoko.Desktop.UserControls
         {
             ValidED2KDump = false;
             Clipboard.Clear();
-            Clipboard.SetDataObject("");
             AvDumpText = "";
 
             if (string.IsNullOrEmpty(result)) return;
 
-            Clipboard.SetDataObject(result);
+            try
+            {
+                Clipboard.SetDataObject(result);
+            }
+            catch (COMException e)
+            {
+                try
+                {
+                    Clipboard.SetText(result);
+                }
+                catch (COMException exception)
+                {
+                    LogManager.GetCurrentClassLogger().Error($"There was an error copying to the clipboard: {exception}");
+                }
+            }
             ValidED2KDump = true;
             AvDumpText = result;
         }
