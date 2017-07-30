@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using NLog;
+using Shoko.Desktop.Utilities;
 
 namespace Shoko.Desktop.UserControls
 {
@@ -19,23 +20,7 @@ namespace Shoko.Desktop.UserControls
         private void CommandBinding_SelectTextAndCopy(object sender, ExecutedRoutedEventArgs e)
         {
             string obj = e.Parameter as string;
-            if (obj == null) return;
-            obj = obj.Replace('`', '\'');
-            try
-            {
-                Clipboard.SetDataObject(obj);
-            }
-            catch (COMException ex)
-            {
-                try
-                {
-                    Clipboard.SetText(obj);
-                }
-                catch (COMException exception)
-                {
-                    LogManager.GetCurrentClassLogger().Error($"There was an error copying to the clipboard: {exception}");
-                }
-            }
+            Utils.CopyToClipboard(obj);
         }
     }
 }

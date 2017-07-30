@@ -237,26 +237,11 @@ namespace Shoko.Desktop.UserControls
         private void SetED2KDump(string result)
         {
             ValidED2KDump = false;
-            Clipboard.Clear();
             AvDumpText = "";
 
             if (string.IsNullOrEmpty(result)) return;
 
-            try
-            {
-                Clipboard.SetDataObject(result);
-            }
-            catch (COMException e)
-            {
-                try
-                {
-                    Clipboard.SetText(result);
-                }
-                catch (COMException exception)
-                {
-                    LogManager.GetCurrentClassLogger().Error($"There was an error copying to the clipboard: {exception}");
-                }
-            }
+            Utils.CopyToClipboard(result);
             ValidED2KDump = true;
             AvDumpText = result;
         }

@@ -666,23 +666,7 @@ namespace Shoko.Desktop.UserControls
         private void CommandBinding_SelectTitleTextAndCopy(object sender, ExecutedRoutedEventArgs e)
         {
             string obj = e.Parameter as string;
-            if (obj == null) return;
-            obj = obj.Replace('`', '\'');
-            try
-            {
-                Clipboard.SetDataObject(obj);
-            }
-            catch (COMException ex)
-            {
-                try
-                {
-                    Clipboard.SetText(obj);
-                }
-                catch (COMException exception)
-                {
-                    LogManager.GetCurrentClassLogger().Error($"There was an error copying to the clipboard: {exception}");
-                }
-            }
+            Utils.CopyToClipboard(obj);
         }
 
         private void EnableDisableImage(bool enabled, object img)

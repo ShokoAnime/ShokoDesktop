@@ -18,6 +18,7 @@ using NLog;
 using Shoko.Desktop.Forms;
 using Shoko.Desktop.ViewModel.Server;
 using Shoko.Models.Enums;
+using Clipboard = System.Windows.Clipboard;
 using Path = Pri.LongPath.Path;
 using Directory = Pri.LongPath.Directory;
 using File = Pri.LongPath.File;
@@ -127,6 +128,31 @@ namespace Shoko.Desktop.Utilities
             }
 
             return "";
+        }
+
+        public static void CopyToClipboard(string obj)
+        {
+            CopyToClipboardRecursiveRetry(obj, 0, 5);
+        }
+
+        private static void CopyToClipboardRecursiveRetry(string obj, int retryCount, int maxRetryCount)
+        {
+            if (obj == null) return;
+            obj = obj.Replace('`', '\'');
+            try
+            {
+                Clipboard.Clear();
+                Thread.Sleep(50);
+                Clipboard.SetDataObject(obj);
+            }
+            catch (COMException ex)
+            {
+                if (retryCount < maxRetryCount)
+                {
+                    Thread.Sleep(200);
+                    CopyToClipboardRecursiveRetry(obj, retryCount + 1, maxRetryCount);
+                }
+            }
         }
 
         /// <summary>
