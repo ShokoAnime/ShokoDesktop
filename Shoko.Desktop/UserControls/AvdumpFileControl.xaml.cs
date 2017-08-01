@@ -30,7 +30,7 @@ namespace Shoko.Desktop.UserControls
     public partial class AvdumpFileControl : UserControl
     {
         private readonly BackgroundWorker workerAvdump = new BackgroundWorker();
-        private List<CancellationTokenSource> runningTasks = new List<CancellationTokenSource>();
+        private readonly ConcurrentBag<CancellationTokenSource> runningTasks = new ConcurrentBag<CancellationTokenSource>();
 
         public VM_AniDB_Anime SelectedAnime { get; set; }
 
@@ -276,9 +276,12 @@ namespace Shoko.Desktop.UserControls
 
         private List<VM_AniDB_Anime> SearchAnime(CancellationToken token, object argument, IProgress<int> progress)
         {
-            progress.Report(0);
             List<VM_AniDB_Anime> tempAnime = new List<VM_AniDB_Anime>();
+            if (token.IsCancellationRequested) return tempAnime;
+            progress.Report(0);
+            if (token.IsCancellationRequested) return tempAnime;
             SearchAnime(token, argument, tempAnime);
+            if (token.IsCancellationRequested) return tempAnime;
             progress.Report(100);
             return tempAnime;
         }

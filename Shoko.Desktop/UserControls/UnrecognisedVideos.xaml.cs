@@ -31,7 +31,7 @@ namespace Shoko.Desktop.UserControls
     /// </summary>
     public partial class UnrecognisedVideos : UserControl
     {
-        private List<CancellationTokenSource> runningTasks = new List<CancellationTokenSource>();
+        private readonly ConcurrentBag<CancellationTokenSource> runningTasks = new ConcurrentBag<CancellationTokenSource>();
 
         public ICollectionView ViewFiles { get; set; }
         public ObservableCollection<VM_VideoLocal> UnrecognisedFiles { get; set; }
@@ -958,10 +958,11 @@ namespace Shoko.Desktop.UserControls
         private List<VM_AnimeSeries_User> SearchAnime(CancellationToken token, object argument, IProgress<int> progress)
         {
             List<VM_AnimeSeries_User> tempAnime = new List<VM_AnimeSeries_User>();
-            if (token.IsCancellationRequested)
-                return tempAnime;
+            if (token.IsCancellationRequested) return tempAnime;
             progress.Report(0);
+            if (token.IsCancellationRequested) return tempAnime;
             SearchAnime(token, argument, tempAnime);
+            if (token.IsCancellationRequested) return tempAnime;
             progress.Report(100);
             return tempAnime;
         }
