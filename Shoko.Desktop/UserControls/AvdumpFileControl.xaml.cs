@@ -30,7 +30,7 @@ namespace Shoko.Desktop.UserControls
     public partial class AvdumpFileControl : UserControl
     {
         private readonly BackgroundWorker workerAvdump = new BackgroundWorker();
-        private readonly ConcurrentBag<CancellationTokenSource> runningTasks = new ConcurrentBag<CancellationTokenSource>();
+        private readonly List<CancellationTokenSource> runningTasks = new List<CancellationTokenSource>();
 
         public VM_AniDB_Anime SelectedAnime { get; set; }
 
@@ -167,7 +167,6 @@ namespace Shoko.Desktop.UserControls
                 DumpMultiple = false;
 
                 if (DataContext == null) return;
-                
 
                 if (DataContext.GetType() == typeof(VM_AVDump))
                 {
@@ -256,34 +255,43 @@ namespace Shoko.Desktop.UserControls
 
         public async void SearchAnime(object argument)
         {
-            if (runningTasks.Count > 0)
+            lock (runningTasks)
             {
-                foreach (CancellationTokenSource runningTask in runningTasks)
-                    runningTask.Cancel();
+                if (runningTasks.Count > 0)
+                {
+                    foreach (CancellationTokenSource runningTask in runningTasks)
+                        runningTask.Cancel();
+                }
             }
             CancellationTokenSource tokenSource = new CancellationTokenSource();
             var token = tokenSource.Token;
-            runningTasks.Add(tokenSource);
+            lock (runningTasks)
+            {
+                runningTasks.Add(tokenSource);
+            }
 
-            Progress<int> progress = new Progress<int>(ReportProgress);
+            Progress<List<VM_AniDB_Anime>> progress = new Progress<List<VM_AniDB_Anime>>(ReportProgress);
 
-            var series = await Task.Run(() => SearchAnime(token, argument, progress), token);
-            AllAnime.Clear();
-            series.ForEach(a => AllAnime.Add(a));
-            if (AllAnime.Count >= 1)
-                lbAnime.SelectedIndex = 0;
+            await Task.Run(() =>
+            {
+                SearchAnime(token, argument, progress);
+                lock (runningTasks)
+                {
+                    runningTasks.Remove(tokenSource);
+                }
+            }, token);
         }
 
-        private List<VM_AniDB_Anime> SearchAnime(CancellationToken token, object argument, IProgress<int> progress)
+        private void SearchAnime(CancellationToken token, object argument, IProgress<List<VM_AniDB_Anime>> progress)
         {
             List<VM_AniDB_Anime> tempAnime = new List<VM_AniDB_Anime>();
-            if (token.IsCancellationRequested) return tempAnime;
-            progress.Report(0);
-            if (token.IsCancellationRequested) return tempAnime;
+            if (token.IsCancellationRequested) return;
+            progress.Report(tempAnime);
+            if (token.IsCancellationRequested) return;
             SearchAnime(token, argument, tempAnime);
-            if (token.IsCancellationRequested) return tempAnime;
-            progress.Report(100);
-            return tempAnime;
+            if (token.IsCancellationRequested) return;
+            progress.Report(tempAnime);
+            return;
         }
 
         private void SearchAnime(CancellationToken token, object argument, List<VM_AniDB_Anime> tempAnime)
@@ -320,10 +328,11 @@ namespace Shoko.Desktop.UserControls
             }
         }
 
-        public void ReportProgress(int progress)
+        public void ReportProgress(List<VM_AniDB_Anime> series)
         {
-            if (progress == 0)
+            if (series == null || series.Count == 0)
             {
+                AllAnime.Clear();
                 txtAnimeSearch.Text = string.Intern("Loading...");
                 txtAnimeSearch.IsEnabled = false;
                 txtAnimeSearch.IsReadOnly = true;
@@ -335,6 +344,12 @@ namespace Shoko.Desktop.UserControls
             }
             else
             {
+                AllAnime.Clear();
+                series.ForEach(a => AllAnime.Add(a));
+
+                if (AllAnime.Count >= 1)
+                    lbAnime.SelectedIndex = 0;
+
                 txtAnimeSearch.IsReadOnly = false;
                 txtAnimeSearch.Focusable = true;
                 txtAnimeSearch.Text = string.Empty;

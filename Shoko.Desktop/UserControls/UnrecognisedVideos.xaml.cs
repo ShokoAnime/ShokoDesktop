@@ -31,7 +31,7 @@ namespace Shoko.Desktop.UserControls
     /// </summary>
     public partial class UnrecognisedVideos : UserControl
     {
-        private readonly ConcurrentBag<CancellationTokenSource> runningTasks = new ConcurrentBag<CancellationTokenSource>();
+        private readonly List<CancellationTokenSource> runningTasks = new List<CancellationTokenSource>();
 
         public ICollectionView ViewFiles { get; set; }
         public ObservableCollection<VM_VideoLocal> UnrecognisedFiles { get; set; }
@@ -186,7 +186,7 @@ namespace Shoko.Desktop.UserControls
                 {
                     VM_VideoLocal vid = dgVideos.SelectedItem as VM_VideoLocal;
                     ccDetail.Content = vid;
-                    if (vid!=null && !Commons.Extensions.Models.IsHashed(vid))
+                    if (vid!=null && !vid.IsHashed())
                         visible = Visibility.Hidden;
                 }
 
@@ -264,7 +264,7 @@ namespace Shoko.Desktop.UserControls
                 if (!VM_ShokoServer.Instance.ServerOnline) return;
 
                 Cursor = Cursors.Wait;
-                foreach (VM_VideoLocal vid in UnrecognisedFiles.Where(a=>Commons.Extensions.Models.IsHashed(a)))
+                foreach (VM_VideoLocal vid in UnrecognisedFiles.Where(a=>a.IsHashed()))
                 {
                     VM_ShokoServer.Instance.ShokoServices.RehashFile(vid.VideoLocalID);
                 }
@@ -553,7 +553,7 @@ namespace Shoko.Desktop.UserControls
             {
                 VM_VideoLocal vid = obj as VM_VideoLocal;
 
-                if (Commons.Extensions.Models.IsLocalFile(vid) && File.Exists(vid.GetLocalFileSystemFullPath()))
+                if (vid.IsLocalFile() && File.Exists(vid.GetLocalFileSystemFullPath()))
                 {
                     Utils.OpenFolderAndSelectFile(vid.GetLocalFileSystemFullPath());
                 }
@@ -725,7 +725,7 @@ namespace Shoko.Desktop.UserControls
                 if (obj.GetType() == typeof(VM_VideoLocal))
                 {
                     VM_VideoLocal vid = obj as VM_VideoLocal;
-                    if (Commons.Extensions.Models.IsLocalFile(vid))
+                    if (vid.IsLocalFile())
                     {
                         EnableDisableControls(false);
 
@@ -737,7 +737,7 @@ namespace Shoko.Desktop.UserControls
                     MultipleVideos mv = obj as MultipleVideos;
                     foreach(VM_VideoLocal v in mv.VideoLocals)
                     {
-                        if (Commons.Extensions.Models.IsLocalFile(v))
+                        if (v.IsLocalFile())
                             VM_ShokoServer.Instance.ShokoServices.RehashFile(v.VideoLocalID);
                     }
                 }
@@ -765,7 +765,7 @@ namespace Shoko.Desktop.UserControls
                 {
                     VM_VideoLocal vid = obj as VM_VideoLocal;
                     EnableDisableControls(false);
-                    if (Commons.Extensions.Models.IsHashed(vid))
+                    if (vid.IsHashed())
                         VM_ShokoServer.Instance.ShokoServices.RescanFile(vid.VideoLocalID);
                 }
                 if (obj.GetType() == typeof(MultipleVideos))
@@ -773,7 +773,7 @@ namespace Shoko.Desktop.UserControls
                     MultipleVideos mv = obj as MultipleVideos;
                     foreach (VM_VideoLocal v in mv.VideoLocals)
                     {
-                        if (Commons.Extensions.Models.IsHashed(v))
+                        if (v.IsHashed())
                             VM_ShokoServer.Instance.ShokoServices.RescanFile(v.VideoLocalID);
                     }
                 }
@@ -936,35 +936,43 @@ namespace Shoko.Desktop.UserControls
 
         public async void SearchAnime(object argument)
         {
-            if (runningTasks.Count > 0)
+            lock (runningTasks)
             {
-                foreach (CancellationTokenSource runningTask in runningTasks)
-                    runningTask.Cancel();
+                if (runningTasks.Count > 0)
+                {
+                    foreach (CancellationTokenSource runningTask in runningTasks)
+                        runningTask.Cancel();
+                }
             }
             CancellationTokenSource tokenSource = new CancellationTokenSource();
             var token = tokenSource.Token;
-            runningTasks.Add(tokenSource);
+            lock (runningTasks)
+            {
+                runningTasks.Add(tokenSource);
+            }
 
-            Progress<int> progress = new Progress<int>(ReportProgress);
+            Progress<List<VM_AnimeSeries_User>> progress = new Progress<List<VM_AnimeSeries_User>>(ReportProgress);
 
             AllSeries.Clear();
-            var series =  await Task.Run(() => SearchAnime(token, argument, progress), token);
-            AllSeries.Clear();
-            series.ForEach(a => AllSeries.Add(a));
-            if (AllSeries.Count >= 1)
-                lbSeries.SelectedIndex = 0;
+            await Task.Run(() =>
+            {
+                SearchAnime(token, argument, progress);
+                lock (runningTasks)
+                {
+                    runningTasks.Remove(tokenSource);
+                }
+            }, token);
         }
 
-        private List<VM_AnimeSeries_User> SearchAnime(CancellationToken token, object argument, IProgress<int> progress)
+        private void SearchAnime(CancellationToken token, object argument, IProgress<List<VM_AnimeSeries_User>> progress)
         {
             List<VM_AnimeSeries_User> tempAnime = new List<VM_AnimeSeries_User>();
-            if (token.IsCancellationRequested) return tempAnime;
-            progress.Report(0);
-            if (token.IsCancellationRequested) return tempAnime;
+            if (token.IsCancellationRequested) return;
+            progress.Report(tempAnime);
+            if (token.IsCancellationRequested) return;
             SearchAnime(token, argument, tempAnime);
-            if (token.IsCancellationRequested) return tempAnime;
-            progress.Report(100);
-            return tempAnime;
+            if (token.IsCancellationRequested) return;
+            progress.Report(tempAnime);
         }
 
         private void SearchAnime(CancellationToken token, object argument, List<VM_AnimeSeries_User> tempAnime)
@@ -1043,9 +1051,9 @@ namespace Shoko.Desktop.UserControls
             }
         }
 
-        public void ReportProgress(int progress)
+        public void ReportProgress(List<VM_AnimeSeries_User> series)
         {
-            if (progress == 0)
+            if (series == null || series.Count <= 0)
             {
                 txtSeriesSearch.Text = string.Intern("Loading...");
                 txtSeriesSearch.IsEnabled = false;
@@ -1053,9 +1061,15 @@ namespace Shoko.Desktop.UserControls
                 txtSeriesSearch.Focusable = false;
 
                 lbSeries.IsEnabled = false;
+                AllSeries.Clear();
             }
             else
             {
+                AllSeries.Clear();
+                series.ForEach(a => AllSeries.Add(a));
+
+                if (AllSeries.Count >= 1)
+                    lbSeries.SelectedIndex = 0;
                 txtSeriesSearch.IsReadOnly = false;
                 txtSeriesSearch.Focusable = true;
                 txtSeriesSearch.Text = string.Empty;
