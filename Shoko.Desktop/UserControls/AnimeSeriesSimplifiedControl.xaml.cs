@@ -130,7 +130,8 @@ namespace Shoko.Desktop.UserControls
             refreshCommentsRecsWorker.DoWork += new DoWorkEventHandler(refreshCommentsRecsWorker_DoWork);
             refreshCommentsRecsWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(refreshCommentsRecsWorker_RunWorkerCompleted);
 
-            MainWindow.videoHandler.VideoWatchedEvent += new VideoPlayers.VideoHandler.VideoWatchedEventHandler(videoHandler_VideoWatchedEvent);
+            MainWindow.videoHandler.VideoWatchedEvent += videoHandler_VideoWatchedEvent;
+            Unloaded += (sender, e) => MainWindow.videoHandler.VideoWatchedEvent -= videoHandler_VideoWatchedEvent;
 
             txtCommentNew.GotFocus += new RoutedEventHandler(txtCommentNew_GotFocus);
             txtCommentNew.LostFocus += new RoutedEventHandler(txtCommentNew_LostFocus);
@@ -202,7 +203,7 @@ namespace Shoko.Desktop.UserControls
             try
             {
                 foreach (ScrollViewer sv in Utils.GetScrollViewers(this))
-                    sv.ScrollToVerticalOffset(sv.VerticalOffset - e.Delta / 3);
+                    sv.ScrollToVerticalOffset(sv.VerticalOffset - e.Delta / 3D);
             }
             catch { }
 
@@ -218,7 +219,7 @@ namespace Shoko.Desktop.UserControls
             try
             {
                 foreach (ScrollViewer sv in Utils.GetScrollViewers(this))
-                    sv.ScrollToVerticalOffset(sv.VerticalOffset - e.Delta / 3);
+                    sv.ScrollToVerticalOffset(sv.VerticalOffset - e.Delta / 3D);
             }
             catch { }
 
@@ -234,7 +235,7 @@ namespace Shoko.Desktop.UserControls
             try
             {
                 foreach (ScrollViewer sv in Utils.GetScrollViewers(this))
-                    sv.ScrollToVerticalOffset(sv.VerticalOffset - e.Delta / 3);
+                    sv.ScrollToVerticalOffset(sv.VerticalOffset - e.Delta / 3D);
             }
             catch { }
 

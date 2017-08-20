@@ -233,7 +233,7 @@ namespace Shoko.Desktop.UserControls
             try
             {
                 foreach (ScrollViewer sv in Utils.GetScrollViewers(this))
-                    sv.ScrollToVerticalOffset(sv.VerticalOffset - e.Delta / 3);
+                    sv.ScrollToVerticalOffset(sv.VerticalOffset - e.Delta / 3D);
             }
             catch { }
         }
