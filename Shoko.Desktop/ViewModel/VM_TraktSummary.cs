@@ -71,8 +71,8 @@ namespace Shoko.Desktop.ViewModel
         }
 
         // All the episodes regardless of which cross ref they come from 
-        private Dictionary<int, VM_Trakt_Episode> dictTraktEpisodes;
-        public Dictionary<int, VM_Trakt_Episode> DictTraktEpisodes
+        private Dictionary<int, Trakt_Episode> dictTraktEpisodes;
+        public Dictionary<int, Trakt_Episode> DictTraktEpisodes
         {
             get
             {
@@ -88,7 +88,7 @@ namespace Shoko.Desktop.ViewModel
         {
             try
             {
-                dictTraktEpisodes = new Dictionary<int, VM_Trakt_Episode>();
+                dictTraktEpisodes = new Dictionary<int, Trakt_Episode>();
                 foreach (VM_TraktDetails det in traktDetails.Values)
                 {
                     if (det != null)
@@ -97,10 +97,10 @@ namespace Shoko.Desktop.ViewModel
                         // create a dictionary of absolute episode numbers for Trakt episodes
                         // sort by season and episode number
                         // ignore season 0, which is used for specials
-                        List<VM_Trakt_Episode> eps = det.TraktEpisodes;
+                        List<Trakt_Episode> eps = det.TraktEpisodes;
 
                         int i = 1;
-                        foreach (VM_Trakt_Episode ep in eps)
+                        foreach (Trakt_Episode ep in eps)
                         {
                             dictTraktEpisodes[i] = ep;
                             i++;

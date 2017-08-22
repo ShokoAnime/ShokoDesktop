@@ -216,10 +216,6 @@ namespace Shoko.Desktop.ViewModel.Server
 
         #region Trakt
 
-
-
-
-
         public new List<VM_Trakt_Show> TraktShows
         {
             get => base.TraktShows.CastList<VM_Trakt_Show>();
@@ -228,38 +224,6 @@ namespace Shoko.Desktop.ViewModel.Server
                 this.SetField(()=>base.TraktShows,(r)=>base.TraktShows=r, value.CastList<CL_Trakt_Show>(), ()=>TraktShows, () => TraktCrossRefExists, () => TraktCrossRefMissing);
             }
         }
-
-        public new List<VM_Trakt_ImageFanart> TraktImageFanarts
-        {
-            get => base.TraktImageFanarts.CastList<VM_Trakt_ImageFanart>();
-            set
-            {
-                foreach (VM_Trakt_ImageFanart contract in value)
-                {
-                    bool isDefault = anime?.DefaultImageFanart != null && anime.DefaultImageFanart.ImageParentType == (int) ImageEntityType.Trakt_Fanart && anime.DefaultImageFanart.ImageParentID == contract.Trakt_ImageFanartID;
-                    contract.IsImageDefault = isDefault;
-                    AllFanarts.Add(new VM_FanartContainer(ImageEntityType.Trakt_Fanart, contract));
-                }
-                this.SetField(()=>base.TraktImageFanarts,(r)=> base.TraktImageFanarts = r, value.CastList<Trakt_ImageFanart>());
-            }
-        }
-
-        public new List<VM_Trakt_ImagePoster> TraktImagePosters
-        {
-            get => base.TraktImagePosters.CastList<VM_Trakt_ImagePoster>();
-            set
-            {
-                foreach (VM_Trakt_ImagePoster contract in value)
-                {
-                    bool isDefault = anime?.DefaultImageFanart != null && anime.DefaultImageFanart.ImageParentType == (int)ImageEntityType.Trakt_Poster && anime.DefaultImageFanart.ImageParentID == contract.Trakt_ImagePosterID;
-                    contract.IsImageDefault = isDefault;
-                    AllPosters.Add(new VM_PosterContainer(ImageEntityType.Trakt_Poster, contract));
-                }
-                this.SetField(()=>base.TraktImagePosters,(r)=> base.TraktImagePosters = r, value.CastList<Trakt_ImagePoster>());
-            }
-        }
-
-
 
         private ObservableCollectionEx<VM_CrossRef_AniDB_TraktV2> crossRef_AniDB_Trakt;
         [ScriptIgnore, JsonIgnore, XmlIgnore]
@@ -332,9 +296,7 @@ namespace Shoko.Desktop.ViewModel.Server
             CrossRef_AniDB_MAL = details.CrossRef_AniDB_MAL;
             CrossRef_AniDB_Trakt = details.CrossRef_AniDB_Trakt;
             TraktShows = details.TraktShows;
-            TraktImageFanarts = details.TraktImageFanarts;
-            TraktImagePosters = details.TraktImagePosters;
-            CrossRef_AniDB_Trakt = details.CrossRef_AniDB_Trakt; 
+            CrossRef_AniDB_Trakt = details.CrossRef_AniDB_Trakt;
             TvDBSeries = details.TvDBSeries;
             TvDBEpisodes = details.TvDBEpisodes;
             TvDBImageFanarts = details.TvDBImageFanarts;

@@ -12,6 +12,7 @@ using Shoko.Desktop.Utilities;
 using Shoko.Desktop.ViewModel.Helpers;
 using Shoko.Models.Client;
 using Shoko.Models.Enums;
+using Shoko.Models.Server;
 using Formatting = Shoko.Commons.Utils.Formatting;
 
 // ReSharper disable InconsistentNaming
@@ -745,7 +746,7 @@ namespace Shoko.Desktop.ViewModel.Server
                         //logger.Trace("SetTvDBInfo: creating dictionary");
 
                         Dictionary<int, int> dictTraktSeasons = null;
-                        Dictionary<int, VM_Trakt_Episode> dictTraktEpisodes = null;
+                        Dictionary<int, Trakt_Episode> dictTraktEpisodes = null;
                         foreach (VM_TraktDetails det in traktSummary.traktDetails.Values)
                         {
                             if (det.TraktID.Equals(xrefBase.TraktID, StringComparison.InvariantCultureIgnoreCase))
@@ -765,7 +766,7 @@ namespace Shoko.Desktop.ViewModel.Server
                             {
 
                                 //logger.Trace("SetTvDBInfo: loading episode overview");
-                                VM_Trakt_Episode traktEp = dictTraktEpisodes[episodeNumber];
+                                Trakt_Episode traktEp = dictTraktEpisodes[episodeNumber];
                                 TraktLinkExists = true;
                                 TraktLinkMissing = false;
 
@@ -813,7 +814,7 @@ namespace Shoko.Desktop.ViewModel.Server
                         {
 
                             Dictionary<int, int> dictTraktSeasons = null;
-                            Dictionary<int, VM_Trakt_Episode> dictTraktEpisodes = null;
+                            Dictionary<int, Trakt_Episode> dictTraktEpisodes = null;
                             foreach (VM_TraktDetails det in traktSummary.traktDetails.Values)
                             {
                                 if (det.TraktID.Equals(xrefBase.TraktID, StringComparison.InvariantCultureIgnoreCase))
@@ -829,7 +830,7 @@ namespace Shoko.Desktop.ViewModel.Server
                                 int episodeNumber = dictTraktSeasons[xrefBase.TraktSeasonNumber] + (EpisodeNumber + xrefBase.TraktStartEpisodeNumber - 2) - (xrefBase.AniDBStartEpisodeNumber - 1);
                                 if (dictTraktEpisodes.ContainsKey(episodeNumber))
                                 {
-                                    VM_Trakt_Episode traktEp = dictTraktEpisodes[episodeNumber];
+                                    Trakt_Episode traktEp = dictTraktEpisodes[episodeNumber];
                                     TraktLinkExists = true;
                                     TraktLinkMissing = false;
 

@@ -12,6 +12,7 @@ using Shoko.Desktop.ViewModel;
 using Shoko.Desktop.ViewModel.Server;
 using Shoko.Models;
 using Shoko.Models.Enums;
+using Shoko.Models.Server;
 
 namespace Shoko.Desktop.Forms
 {
@@ -118,11 +119,11 @@ namespace Shoko.Desktop.Forms
         }
 
         public static readonly DependencyProperty SelectedEpisodeProperty = DependencyProperty.Register("SelectedEpisode",
-            typeof(VM_Trakt_Episode), typeof(SelectTraktSeasonForm), new UIPropertyMetadata(null, null));
+            typeof(Trakt_Episode), typeof(SelectTraktSeasonForm), new UIPropertyMetadata(null, null));
 
-        public VM_Trakt_Episode SelectedEpisode
+        public Trakt_Episode SelectedEpisode
         {
-            get { return (VM_Trakt_Episode)GetValue(SelectedEpisodeProperty); }
+            get { return (Trakt_Episode)GetValue(SelectedEpisodeProperty); }
             set { SetValue(SelectedEpisodeProperty, value); }
         }
 
@@ -149,7 +150,7 @@ namespace Shoko.Desktop.Forms
                 VM_AniDB_Episode aniEp = cboAniDBEpisodeNumber.SelectedItem as VM_AniDB_Episode;
                 AnimeEpisodeNumber = aniEp.EpisodeNumber;
 
-                VM_Trakt_Episode traktep = cboEpisodeNumber.SelectedItem as VM_Trakt_Episode;
+                Trakt_Episode traktep = cboEpisodeNumber.SelectedItem as Trakt_Episode;
                 TraktEpisodeNumber = traktep.EpisodeNumber;
 
                 int aniEpType = (int)EpisodeType.Episode;
@@ -307,7 +308,7 @@ namespace Shoko.Desktop.Forms
 
         void cboEpisodeNumber_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SelectedEpisode = cboEpisodeNumber.SelectedItem as VM_Trakt_Episode;
+            SelectedEpisode = cboEpisodeNumber.SelectedItem as Trakt_Episode;
         }
 
         void cboSeasonNumber_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -317,7 +318,7 @@ namespace Shoko.Desktop.Forms
             cboEpisodeNumber.Items.Clear();
             if (traktDetails != null)
             {
-                foreach (VM_Trakt_Episode ep in traktDetails.DictTraktEpisodes.Values)
+                foreach (Trakt_Episode ep in traktDetails.DictTraktEpisodes.Values)
                 {
                     if (ep.Season == int.Parse(cboSeasonNumber.SelectedItem.ToString()))
                     {

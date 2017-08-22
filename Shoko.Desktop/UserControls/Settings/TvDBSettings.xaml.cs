@@ -25,7 +25,7 @@ namespace Shoko.Desktop.UserControls.Settings
 
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(AppSettings.Culture);
 
-	        chkAutoLink.Click += new RoutedEventHandler(settingChanged);
+            chkAutoLink.Click += new RoutedEventHandler(settingChanged);
             chkTvDB_FanartAutoDownload.Click += new RoutedEventHandler(settingChanged);
             chkTvDB_PosterAutoDownload.Click += new RoutedEventHandler(settingChanged);
             chkTvDB_WideBannerAutoDownload.Click += new RoutedEventHandler(settingChanged);
@@ -87,88 +87,56 @@ namespace Shoko.Desktop.UserControls.Settings
             }
         }
 
-		void btnUpdateImages_Click(object sender, RoutedEventArgs e)
-		{
-			Window wdw = Window.GetWindow(this);
+        void btnUpdateImages_Click(object sender, RoutedEventArgs e)
+        {
+            Window wdw = Window.GetWindow(this);
 
-			wdw.Cursor = Cursors.Wait;
-			ImageDownload.ImageDownloader imageHelper = MainWindow.imageHelper;
+            wdw.Cursor = Cursors.Wait;
+            ImageDownload.ImageDownloader imageHelper = MainWindow.imageHelper;
 
-			// Download posters from TvDB
-			List<VM_TvDB_ImagePoster> posters = VM_ShokoServer.Instance.ShokoServices.GetAllTvDBPosters(null).CastList<VM_TvDB_ImagePoster>();
-			foreach (VM_TvDB_ImagePoster poster in posters)
-			{
-				imageHelper.DownloadTvDBPoster(poster, true);
-			}
+            // Download posters from TvDB
+            List<VM_TvDB_ImagePoster> posters = VM_ShokoServer.Instance.ShokoServices.GetAllTvDBPosters(null).CastList<VM_TvDB_ImagePoster>();
+            foreach (VM_TvDB_ImagePoster poster in posters)
+            {
+                imageHelper.DownloadTvDBPoster(poster, true);
+            }
 
-			// Download posters from MovieDB
-			List<VM_MovieDB_Poster> moviePosters = VM_ShokoServer.Instance.ShokoServices.GetAllMovieDBPosters(null).CastList<VM_MovieDB_Poster>();
-			foreach (VM_MovieDB_Poster poster in moviePosters)
-			{
-				imageHelper.DownloadMovieDBPoster(poster, true);
-			}
+            // Download posters from MovieDB
+            List<VM_MovieDB_Poster> moviePosters = VM_ShokoServer.Instance.ShokoServices.GetAllMovieDBPosters(null).CastList<VM_MovieDB_Poster>();
+            foreach (VM_MovieDB_Poster poster in moviePosters)
+            {
+                imageHelper.DownloadMovieDBPoster(poster, true);
+            }
 
-			// Download wide banners from TvDB
-			List<VM_TvDB_ImageWideBanner> banners = VM_ShokoServer.Instance.ShokoServices.GetAllTvDBWideBanners(null).CastList<VM_TvDB_ImageWideBanner>();
-			foreach (VM_TvDB_ImageWideBanner banner in banners)
-			{
-				imageHelper.DownloadTvDBWideBanner(banner, true);
-			}
+            // Download wide banners from TvDB
+            List<VM_TvDB_ImageWideBanner> banners = VM_ShokoServer.Instance.ShokoServices.GetAllTvDBWideBanners(null).CastList<VM_TvDB_ImageWideBanner>();
+            foreach (VM_TvDB_ImageWideBanner banner in banners)
+            {
+                imageHelper.DownloadTvDBWideBanner(banner, true);
+            }
 
-			// Download fanart from TvDB
-			List<VM_TvDB_ImageFanart> fanarts = VM_ShokoServer.Instance.ShokoServices.GetAllTvDBFanart(null).CastList<VM_TvDB_ImageFanart>();
-			foreach (VM_TvDB_ImageFanart fanart in fanarts)
-			{
-				imageHelper.DownloadTvDBFanart(fanart, true);
-			}
+            // Download fanart from TvDB
+            List<VM_TvDB_ImageFanart> fanarts = VM_ShokoServer.Instance.ShokoServices.GetAllTvDBFanart(null).CastList<VM_TvDB_ImageFanart>();
+            foreach (VM_TvDB_ImageFanart fanart in fanarts)
+            {
+                imageHelper.DownloadTvDBFanart(fanart, true);
+            }
 
-			// Download fanart from MovieDB
-			List<VM_MovieDB_Fanart> movieFanarts = VM_ShokoServer.Instance.ShokoServices.GetAllMovieDBFanart(null).CastList<VM_MovieDB_Fanart>();
-			foreach (VM_MovieDB_Fanart fanart in movieFanarts)
-			{
-				imageHelper.DownloadMovieDBFanart(fanart, true);
-			}
+            // Download fanart from MovieDB
+            List<VM_MovieDB_Fanart> movieFanarts = VM_ShokoServer.Instance.ShokoServices.GetAllMovieDBFanart(null).CastList<VM_MovieDB_Fanart>();
+            foreach (VM_MovieDB_Fanart fanart in movieFanarts)
+            {
+                imageHelper.DownloadMovieDBFanart(fanart, true);
+            }
 
-			// Download episode images from TvDB
-			List<VM_TvDB_Episode> eps = VM_ShokoServer.Instance.ShokoServices.GetAllTvDBEpisodes(null).CastList<VM_TvDB_Episode>();
-			foreach (VM_TvDB_Episode episode in eps)
-			{
-				imageHelper.DownloadTvDBEpisode(episode, true);
-			}
-
-			// Download posters from Trakt
-			List<VM_Trakt_ImagePoster> traktPosters = VM_ShokoServer.Instance.ShokoServices.GetAllTraktPosters(null).CastList<VM_Trakt_ImagePoster>();
-			foreach (VM_Trakt_ImagePoster traktposter in traktPosters)
-			{
-				if (string.IsNullOrEmpty(traktposter.ImageURL)) continue;
-				imageHelper.DownloadTraktPoster(traktposter, true);
-			}
-
-			// Download fanart from Trakt
-			List<VM_Trakt_ImageFanart> traktFanarts = VM_ShokoServer.Instance.ShokoServices.GetAllTraktFanart(null).CastList<VM_Trakt_ImageFanart>();
-			foreach (VM_Trakt_ImageFanart traktFanart in traktFanarts)
-			{
-				if (string.IsNullOrEmpty(traktFanart.ImageURL)) continue;
-				imageHelper.DownloadTraktFanart(traktFanart, true);
-			}
-
-			// Download episode images from Trakt
-			List<VM_Trakt_Episode> traktEpisodes = VM_ShokoServer.Instance.ShokoServices.GetAllTraktEpisodes(null).CastList<VM_Trakt_Episode>();
-			foreach (VM_Trakt_Episode traktEp in traktEpisodes)
-			{
-				if (string.IsNullOrEmpty(traktEp.EpisodeImage)) continue;
-
-				// special case for trak episodes
-				// Trakt will return the fanart image when no episode image exists, but we don't want this
-				int pos = traktEp.EpisodeImage.IndexOf(@"episodes/");
-				if (pos <= 0) continue;
-
-				//logger.Trace("Episode image: {0} - {1}/{2}", traktEp.Trakt_ShowID, traktEp.Season, traktEp.EpisodeNumber);
-
-				imageHelper.DownloadTraktEpisode(traktEp, true);
-			}
-			wdw.Cursor = Cursors.Arrow;
-		}
+            // Download episode images from TvDB
+            List<VM_TvDB_Episode> eps = VM_ShokoServer.Instance.ShokoServices.GetAllTvDBEpisodes(null).CastList<VM_TvDB_Episode>();
+            foreach (VM_TvDB_Episode episode in eps)
+            {
+                imageHelper.DownloadTvDBEpisode(episode, true);
+            }
+            wdw.Cursor = Cursors.Arrow;
+        }
 
         void cboUpdateFrequency_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

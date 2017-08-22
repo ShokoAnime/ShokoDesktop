@@ -761,9 +761,6 @@
     <Compile Include="ViewModel\Server\VM_Playlist.cs" />
     <Compile Include="ViewModel\Server\VM_Recommendation.cs" />
     <Compile Include="ViewModel\Server\VM_RenameScript.cs" />
-    <Compile Include="ViewModel\Server\VM_Trakt_Episode.cs" />
-    <Compile Include="ViewModel\Server\VM_Trakt_ImageFanart.cs" />
-    <Compile Include="ViewModel\Server\VM_Trakt_ImagePoster.cs" />
     <Compile Include="ViewModel\VM_Trakt_CommentPost.cs" />
     <Compile Include="ViewModel\Server\VM_Trakt_CommentUser.cs" />
     <Compile Include="ViewModel\Server\VM_Trakt_Comment.cs" />

@@ -347,11 +347,6 @@ namespace Shoko.Desktop.ViewModel.Server
                             return DefaultImagePoster.TVPoster.FullImagePath;
                         return PosterPath;
 
-                    case ImageEntityType.Trakt_Poster:
-                        if (DefaultImagePoster.TraktPoster != null)
-                            return DefaultImagePoster.TraktPoster.FullImagePath;
-                        return PosterPath;
-
                     case ImageEntityType.MovieDB_Poster:
                         if (DefaultImagePoster.MoviePoster != null)
                             return DefaultImagePoster.MoviePoster.FullImagePath;
@@ -379,11 +374,6 @@ namespace Shoko.Desktop.ViewModel.Server
                     case ImageEntityType.TvDB_Cover:
                         if (DefaultImagePoster.TVPoster != null)
                             return DefaultImagePoster.TVPoster.FullImagePath;
-                        return PosterPath;
-
-                    case ImageEntityType.Trakt_Poster:
-                        if (DefaultImagePoster.TraktPoster != null)
-                            return DefaultImagePoster.TraktPoster.FullImagePath;
                         return PosterPath;
 
                     case ImageEntityType.MovieDB_Poster:

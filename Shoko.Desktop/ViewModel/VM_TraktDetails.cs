@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Shoko.Desktop.Utilities;
 using Shoko.Desktop.ViewModel.Server;
+using Shoko.Models.Server;
+
 // ReSharper disable InconsistentNaming
 
 namespace Shoko.Desktop.ViewModel
@@ -18,8 +20,8 @@ namespace Shoko.Desktop.ViewModel
             PopulateTraktEpisodes();
         }
 
-        private Dictionary<int, VM_Trakt_Episode> dictTraktEpisodes;
-        public Dictionary<int, VM_Trakt_Episode> DictTraktEpisodes
+        private Dictionary<int, Trakt_Episode> dictTraktEpisodes;
+        public Dictionary<int, Trakt_Episode> DictTraktEpisodes
         {
             get
             {
@@ -31,15 +33,15 @@ namespace Shoko.Desktop.ViewModel
                         {
       
 
-                            dictTraktEpisodes = new Dictionary<int, VM_Trakt_Episode>();
+                            dictTraktEpisodes = new Dictionary<int, Trakt_Episode>();
                             // create a dictionary of absolute episode numbers for Trakt episodes
                             // sort by season and episode number
                             // ignore season 0, which is used for specials
-                            List<VM_Trakt_Episode> eps = TraktEpisodes;
+                            List<Trakt_Episode> eps = TraktEpisodes;
 
 
                             int i = 1;
-                            foreach (VM_Trakt_Episode ep in eps)
+                            foreach (Trakt_Episode ep in eps)
                             {
                                 dictTraktEpisodes[i] = ep;
                                 i++;
@@ -73,10 +75,10 @@ namespace Shoko.Desktop.ViewModel
                             dictTraktSeasons = new Dictionary<int, int>();
                             // create a dictionary of season numbers and the first episode for that season
 
-                            List<VM_Trakt_Episode> eps = TraktEpisodes;
+                            List<Trakt_Episode> eps = TraktEpisodes;
                             int i = 1;
                             int lastSeason = -999;
-                            foreach (VM_Trakt_Episode ep in eps)
+                            foreach (Trakt_Episode ep in eps)
                             {
                                 if (ep.Season != lastSeason)
                                     dictTraktSeasons[ep.Season] = i;
@@ -114,10 +116,10 @@ namespace Shoko.Desktop.ViewModel
                             dictTraktSeasonsSpecials = new Dictionary<int, int>();
                             // create a dictionary of season numbers and the first episode for that season
 
-                            List<VM_Trakt_Episode> eps = TraktEpisodes;
+                            List<Trakt_Episode> eps = TraktEpisodes;
                             int i = 1;
                             int lastSeason = -999;
-                            foreach (VM_Trakt_Episode ep in eps)
+                            foreach (Trakt_Episode ep in eps)
                             {
                                 if (ep.Season > 0) continue;
 
@@ -154,7 +156,7 @@ namespace Shoko.Desktop.ViewModel
             try
             {
 
-                traktEpisodes = VM_ShokoServer.Instance.ShokoServices.GetAllTraktEpisodesByTraktID(TraktID).Cast<VM_Trakt_Episode>().OrderBy(a => a.Season).ThenBy(a => a.EpisodeNumber).ToList();
+                traktEpisodes = VM_ShokoServer.Instance.ShokoServices.GetAllTraktEpisodesByTraktID(TraktID).OrderBy(a => a.Season).ThenBy(a => a.EpisodeNumber).ToList();
             }
             catch (Exception ex)
             {
@@ -162,8 +164,8 @@ namespace Shoko.Desktop.ViewModel
             }
         }
 
-        private List<VM_Trakt_Episode> traktEpisodes;
-        public List<VM_Trakt_Episode> TraktEpisodes
+        private List<Trakt_Episode> traktEpisodes;
+        public List<Trakt_Episode> TraktEpisodes
         {
             get
             {

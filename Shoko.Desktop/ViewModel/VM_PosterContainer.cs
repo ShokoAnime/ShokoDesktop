@@ -39,13 +39,6 @@ namespace Shoko.Desktop.ViewModel
                     IsImageDefault = moviePoster.IsImageDefault;
                     PosterSource = "MovieDB";
                     break;
-
-                case ImageEntityType.Trakt_Poster:
-                    VM_Trakt_ImagePoster traktPoster = (VM_Trakt_ImagePoster) PosterObject;
-                    IsImageEnabled = traktPoster.IsImageEnabled;
-                    IsImageDefault = traktPoster.IsImageDefault;
-                    PosterSource = "Trakt";
-                    break;
             }
         }
 
@@ -72,10 +65,6 @@ namespace Shoko.Desktop.ViewModel
                     case ImageEntityType.MovieDB_Poster:
                         VM_MovieDB_Poster moviePoster = (VM_MovieDB_Poster) PosterObject;
                         return moviePoster.FullImagePath;
-
-                    case ImageEntityType.Trakt_Poster:
-                        VM_Trakt_ImagePoster traktPoster = (VM_Trakt_ImagePoster) PosterObject;
-                        return traktPoster.FullImagePath;
                 }
 
                 return "";

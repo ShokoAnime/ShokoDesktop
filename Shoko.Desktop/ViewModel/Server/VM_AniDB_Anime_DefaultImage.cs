@@ -41,17 +41,6 @@ namespace Shoko.Desktop.ViewModel.Server
             set { base.TVWideBanner = value; }
         }
 
-        public new VM_Trakt_ImagePoster TraktPoster
-        {
-            get { return (VM_Trakt_ImagePoster)base.TraktPoster; }
-            set { base.TraktPoster = value; }
-        }
-        public new VM_Trakt_ImageFanart TraktFanart
-        {
-            get { return (VM_Trakt_ImageFanart)base.TraktFanart; }
-            set { base.TraktFanart = value; }
-        }
-
 
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string FullImagePath
@@ -88,14 +77,6 @@ namespace Shoko.Desktop.ViewModel.Server
 
                     case ImageEntityType.TvDB_Banner:
                         fileName = TVWideBanner.FullImagePath;
-                        break;
-
-                    case ImageEntityType.Trakt_Poster:
-                        fileName = TraktPoster.FullImagePath;
-                        break;
-
-                    case ImageEntityType.Trakt_Fanart:
-                        fileName = TraktFanart.FullImagePath;
                         break;
                 }
 
@@ -140,14 +121,6 @@ namespace Shoko.Desktop.ViewModel.Server
 
                     case ImageEntityType.TvDB_Banner:
                         fileName = TVWideBanner.FullImagePath;
-                        break;
-
-                    case ImageEntityType.Trakt_Poster:
-                        fileName = TraktPoster.FullImagePath;
-                        break;
-
-                    case ImageEntityType.Trakt_Fanart:
-                        fileName = TraktFanart.FullImagePath;
                         break;
                 }
 
@@ -194,14 +167,6 @@ namespace Shoko.Desktop.ViewModel.Server
 
                     case ImageEntityType.TvDB_Banner:
                         fileName = TVWideBanner.FullImagePath;
-                        break;
-
-                    case ImageEntityType.Trakt_Poster:
-                        fileName = TraktPoster.FullImagePath;
-                        break;
-
-                    case ImageEntityType.Trakt_Fanart:
-                        fileName = TraktFanart.FullImagePath;
                         break;
                 }
 

@@ -176,9 +176,6 @@ namespace Shoko.Desktop.ViewModel
                 mappings.Add(typeof(RenameScript), typeof(VM_RenameScript));
                 mappings.Add(typeof(CL_Trakt_Comment), typeof(VM_Trakt_Comment));
                 mappings.Add(typeof(CL_Trakt_CommentUser), typeof(VM_Trakt_CommentUser));
-                mappings.Add(typeof(Trakt_Episode), typeof(VM_Trakt_Episode));
-                mappings.Add(typeof(Trakt_ImageFanart), typeof(VM_Trakt_ImageFanart));
-                mappings.Add(typeof(Trakt_ImagePoster), typeof(VM_Trakt_ImagePoster));
                 mappings.Add(typeof(CL_Trakt_Show), typeof(VM_Trakt_Show));
                 mappings.Add(typeof(TvDB_Episode), typeof(VM_TvDB_Episode));
                 mappings.Add(typeof(TvDB_ImageFanart), typeof(VM_TvDB_ImageFanart));
@@ -365,9 +362,6 @@ namespace Shoko.Desktop.ViewModel
             Trakt_TokenExpirationDate = contract.Trakt_TokenExpirationDate;
             Trakt_UpdateFrequency = (ScheduledUpdateFrequency)contract.Trakt_UpdateFrequency;
             Trakt_SyncFrequency = (ScheduledUpdateFrequency)contract.Trakt_SyncFrequency;
-            Trakt_DownloadFanart = contract.Trakt_DownloadFanart;
-            Trakt_DownloadPosters = contract.Trakt_DownloadPosters;
-            Trakt_DownloadEpisodes = contract.Trakt_DownloadEpisodes;
 
             // MAL
             MAL_AutoLink = contract.MAL_AutoLink;
@@ -492,9 +486,6 @@ namespace Shoko.Desktop.ViewModel
                 contract.Trakt_TokenExpirationDate = Trakt_TokenExpirationDate;
                 contract.Trakt_UpdateFrequency = (int)Trakt_UpdateFrequency;
                 contract.Trakt_SyncFrequency = (int)Trakt_SyncFrequency;
-                contract.Trakt_DownloadFanart = Trakt_DownloadFanart;
-                contract.Trakt_DownloadPosters = Trakt_DownloadPosters;
-                contract.Trakt_DownloadEpisodes = Trakt_DownloadEpisodes;
 
                 // MAL
                 contract.MAL_AutoLink = MAL_AutoLink;
@@ -1701,26 +1692,6 @@ namespace Shoko.Desktop.ViewModel
             set
             {
                 this.SetField(()=>trakt_TokenExpirationDate,value);
-            }
-        }
-
-        private bool trakt_DownloadFanart = true;
-        public bool Trakt_DownloadFanart
-        {
-            get => trakt_DownloadFanart;
-            set
-            {
-                this.SetField(()=>trakt_DownloadFanart,value);
-            }
-        }
-
-        private bool trakt_DownloadPosters = true;
-        public bool Trakt_DownloadPosters
-        {
-            get => trakt_DownloadPosters;
-            set
-            {
-                this.SetField(()=>trakt_DownloadPosters,value);
             }
         }
 

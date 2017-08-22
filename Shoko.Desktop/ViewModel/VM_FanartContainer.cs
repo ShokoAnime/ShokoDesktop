@@ -39,13 +39,6 @@ namespace Shoko.Desktop.ViewModel
                     IsImageDefault = movieFanart.IsImageDefault;
                     FanartSource = "MovieDB";
                     break;
-
-                case ImageEntityType.Trakt_Fanart:
-                    VM_Trakt_ImageFanart traktFanart = (VM_Trakt_ImageFanart) FanartObject;
-                    IsImageEnabled = traktFanart.IsImageEnabled;
-                    IsImageDefault = traktFanart.IsImageDefault;
-                    FanartSource = "Trakt";
-                    break;
             }
 
 
@@ -65,10 +58,6 @@ namespace Shoko.Desktop.ViewModel
                     case ImageEntityType.MovieDB_FanArt:
                         VM_MovieDB_Fanart movieFanart = (VM_MovieDB_Fanart) FanartObject;
                         return movieFanart.FullImagePath;
-
-                    case ImageEntityType.Trakt_Fanart:
-                        VM_Trakt_ImageFanart traktFanart = (VM_Trakt_ImageFanart) FanartObject;
-                        return traktFanart.FullImagePath;
                 }
 
                 return "";
@@ -89,10 +78,6 @@ namespace Shoko.Desktop.ViewModel
                     case ImageEntityType.MovieDB_FanArt:
                         VM_MovieDB_Fanart movieFanart = (VM_MovieDB_Fanart) FanartObject;
                         return movieFanart.FullImagePath;
-
-                    case ImageEntityType.Trakt_Fanart:
-                        VM_Trakt_ImageFanart traktFanart = (VM_Trakt_ImageFanart) FanartObject;
-                        return traktFanart.FullImagePath;
                 }
 
                 return "";

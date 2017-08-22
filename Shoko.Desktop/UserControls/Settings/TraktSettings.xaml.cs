@@ -28,8 +28,6 @@ namespace Shoko.Desktop.UserControls.Settings
             btnTest.Click += new RoutedEventHandler(btnTest_Click);
 
             chkTrakt_EpisodeAutoDownload.Click += new RoutedEventHandler(settingChanged);
-            chkTrakt_FanartAutoDownload.Click += new RoutedEventHandler(settingChanged);
-            chkTrakt_PostersAutoDownload.Click += new RoutedEventHandler(settingChanged);
             chkTrakt_Enabled.Click += chkTrakt_Enabled_Click;
         }
 
@@ -80,12 +78,6 @@ namespace Shoko.Desktop.UserControls.Settings
 
             spUpdatesLabel.Visibility = vis;
             spUpdatesData.Visibility = vis;
-
-            spFanartLabel.Visibility = vis;
-            spFanartData.Visibility = vis;
-
-            spPostersLabel.Visibility = vis;
-            spPostersData.Visibility = vis;
 
             spEpisodeLabel.Visibility = vis;
             spEpisodeData.Visibility = vis;

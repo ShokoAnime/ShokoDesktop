@@ -303,111 +303,6 @@ namespace Shoko.Desktop.ImageDownload
             }
         }
 
-        public void DownloadTraktPoster(VM_Trakt_ImagePoster poster, bool forceDownload)
-        {
-            if (string.IsNullOrEmpty(poster.ImageURL)) return;
-
-            try
-            {
-                string url = poster.ImageURL;
-                string filename = poster.FullImagePath;
-
-                ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.Trakt_Poster, poster, forceDownload);
-
-                // check if this file has already been downloaded and exists
-                if (!req.ForceDownload)
-                {
-                    // check to make sure the file actually exists
-                    if (!File.Exists(poster.FullImagePath))
-                    {
-                        imagesToDownload.Enqueue(req);
-                        OnQueueUpdateEvent(new QueueUpdateEventArgs(QueueCount));
-                        return;
-                    }
-
-                    // the file exists so don't download it again
-                    return;
-                }
-
-                imagesToDownload.Enqueue(req);
-                OnQueueUpdateEvent(new QueueUpdateEventArgs(QueueCount));
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
-        }
-
-        public void DownloadTraktFanart(VM_Trakt_ImageFanart fanart, bool forceDownload)
-        {
-            if (string.IsNullOrEmpty(fanart.ImageURL)) return;
-
-            try
-            {
-                string url = fanart.ImageURL;
-                string filename = fanart.FullImagePath;
-
-                ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.Trakt_Fanart, fanart, forceDownload);
-
-                // check if this file has already been downloaded and exists
-                if (!req.ForceDownload)
-                {
-                    // check to make sure the file actually exists
-                    if (!File.Exists(fanart.FullImagePath))
-                    {
-                        imagesToDownload.Enqueue(req);
-                        OnQueueUpdateEvent(new QueueUpdateEventArgs(QueueCount));
-                        return;
-                    }
-
-                    // the file exists so don't download it again
-                    return;
-                }
-
-                imagesToDownload.Enqueue(req);
-                OnQueueUpdateEvent(new QueueUpdateEventArgs(QueueCount));
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
-        }
-
-        public void DownloadTraktEpisode(VM_Trakt_Episode episode, bool forceDownload)
-        {
-            if (string.IsNullOrEmpty(episode.EpisodeImage)) return;
-
-            try
-            {
-                string url = episode.EpisodeImage;
-                string filename = episode.FullImagePath;
-
-                ImageDownloadRequest req = new ImageDownloadRequest(ImageEntityType.Trakt_Episode, episode, forceDownload);
-
-                // check if this file has already been downloaded and exists
-                if (!req.ForceDownload)
-                {
-                    // check to make sure the file actually exists
-                    if (!File.Exists(episode.FullImagePath))
-                    {
-                        imagesToDownload.Enqueue(req);
-                        OnQueueUpdateEvent(new QueueUpdateEventArgs(QueueCount));
-                        return;
-                    }
-
-                    // the file exists so don't download it again
-                    return;
-                }
-
-                imagesToDownload.Enqueue(req);
-                OnQueueUpdateEvent(new QueueUpdateEventArgs(QueueCount));
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowErrorMessage(ex);
-            }
-        }
-
         private string GetFileName(ImageDownloadRequest req, bool thumbNailOnly)
         {
             switch (req.ImageType)
@@ -450,21 +345,6 @@ namespace Shoko.Desktop.ImageDownload
 
                     VM_MovieDB_Fanart movieFanart = req.ImageData as VM_MovieDB_Fanart;
                     return movieFanart.FullImagePathPlain;
-
-                case ImageEntityType.Trakt_Poster:
-
-                    VM_Trakt_ImagePoster traktPoster = req.ImageData as VM_Trakt_ImagePoster;
-                    return traktPoster.FullImagePathPlain;
-
-                case ImageEntityType.Trakt_Fanart:
-
-                    VM_Trakt_ImageFanart trakFanart = req.ImageData as VM_Trakt_ImageFanart;
-                    return trakFanart.FullImagePathPlain;
-
-                case ImageEntityType.Trakt_Episode:
-
-                    VM_Trakt_Episode trakEp = req.ImageData as VM_Trakt_Episode;
-                    return trakEp.FullImagePathPlain;
 
                 case ImageEntityType.AniDB_Character:
 
@@ -520,26 +400,6 @@ namespace Shoko.Desktop.ImageDownload
 
                     VM_MovieDB_Fanart movieFanart = req.ImageData as VM_MovieDB_Fanart;
                     return movieFanart.MovieDB_FanartID.ToString();
-
-                case ImageEntityType.Trakt_Poster:
-
-                    VM_Trakt_ImagePoster traktPoster = req.ImageData as VM_Trakt_ImagePoster;
-                    return traktPoster.Trakt_ImagePosterID.ToString();
-
-                case ImageEntityType.Trakt_Fanart:
-
-                    VM_Trakt_ImageFanart trakFanart = req.ImageData as VM_Trakt_ImageFanart;
-                    return trakFanart.Trakt_ImageFanartID.ToString();
-
-                case ImageEntityType.Trakt_CommentUser:
-
-                    VM_Trakt_CommentUser traktShoutUser = req.ImageData as VM_Trakt_CommentUser;
-                    return traktShoutUser.User.Trakt_FriendID.ToString();
-
-                case ImageEntityType.Trakt_Episode:
-
-                    VM_Trakt_Episode trakEp = req.ImageData as VM_Trakt_Episode;
-                    return trakEp.Trakt_EpisodeID.ToString();
 
                 case ImageEntityType.AniDB_Character:
 

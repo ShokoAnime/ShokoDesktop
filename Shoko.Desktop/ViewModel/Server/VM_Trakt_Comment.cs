@@ -23,53 +23,7 @@ namespace Shoko.Desktop.ViewModel.Server
         public string EpisodeDescription => $"{Episode_Season}x{Episode_Number} - {Episode_Title}";
 
         [ScriptIgnore, JsonIgnore, XmlIgnore]
-        public string ImagePathForDisplay
-        {
-            get
-            {
-                if (!string.IsNullOrEmpty(FullImagePath) && File.Exists(FullImagePath)) return FullImagePath;
-
-                // use fanart instead
-                if (!string.IsNullOrEmpty(Anime?.FanartPathOnlyExisting))
-                    return Anime.FanartPathOnlyExisting;
-
-                return @"/Images/EpisodeThumb_NotFound.png";
-            }
-        }
-
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
-        public string OnlineImagePath => string.IsNullOrEmpty(Episode_Screenshot) ? "" : Episode_Screenshot;
-
-        [ScriptIgnore, JsonIgnore, XmlIgnore]
-        public string FullImagePath
-        {
-            get
-            {
-                // typical EpisodeImage url
-                // http://vicmackey.trakt.tv/images/episodes/3228-1-1.jpg
-
-                // get the TraktID from the URL
-                // http://trakt.tv/show/11eyes/season/1/episode/1 (11 eyes)
-
-                if (string.IsNullOrEmpty(Episode_Screenshot)) return "";
-
-                // on Trakt, if the episode doesn't have a proper screenshot, they will return the
-                // fanart instead, we will ignore this
-                int pos = Episode_Screenshot.IndexOf(@"episodes/", StringComparison.Ordinal);
-                if (pos <= 0) return "";
-
-                string traktID = TraktShow.GetTraktID();
-                traktID = traktID.Replace("/", @"\");
-
-                string imageName = Episode_Screenshot.Substring(pos + 9, Episode_Screenshot.Length - pos - 9);
-                imageName = imageName.Replace("/", @"\");
-
-                string relativePath = Path.Combine("episodes", traktID);
-                relativePath = Path.Combine(relativePath, imageName);
-
-                return Path.Combine(Utils.GetTraktImagePath(), relativePath);
-            }
-        }
+        public string ImagePathForDisplay => @"/Images/EpisodeThumb_NotFound.png";
 
         [ScriptIgnore, JsonIgnore, XmlIgnore]
         public string ShowTitle => Anime != null ? Anime.FormattedTitle : TraktShow.title;

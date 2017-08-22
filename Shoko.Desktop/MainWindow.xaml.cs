@@ -1253,41 +1253,6 @@ namespace Shoko.Desktop
                 //Thread.Sleep(5); // don't use too many resources
                 imageHelper.DownloadTvDBEpisode(episode, false);
             }
-
-            // 6. Download posters from Trakt
-            List<VM_Trakt_ImagePoster> traktPosters = VM_ShokoServer.Instance.ShokoServices.GetAllTraktPosters(null).CastList<VM_Trakt_ImagePoster>();
-            foreach (VM_Trakt_ImagePoster traktposter in traktPosters)
-            {
-                //Thread.Sleep(5); // don't use too many resources
-                if (string.IsNullOrEmpty(traktposter.ImageURL)) continue;
-                imageHelper.DownloadTraktPoster(traktposter, false);
-            }
-
-            // 7. Download fanart from Trakt
-            List<VM_Trakt_ImageFanart> traktFanarts = VM_ShokoServer.Instance.ShokoServices.GetAllTraktFanart(null).CastList<VM_Trakt_ImageFanart>();
-            foreach (VM_Trakt_ImageFanart traktFanart in traktFanarts)
-            {
-                //Thread.Sleep(5); // don't use too many resources
-                if (string.IsNullOrEmpty(traktFanart.ImageURL)) continue;
-                imageHelper.DownloadTraktFanart(traktFanart, false);
-            }
-
-            // 8. Download episode images from Trakt
-            List<VM_Trakt_Episode> traktEpisodes = VM_ShokoServer.Instance.ShokoServices.GetAllTraktEpisodes(null).CastList<VM_Trakt_Episode>();
-            foreach (VM_Trakt_Episode traktEp in traktEpisodes)
-            {
-                //Thread.Sleep(5); // don't use too many resources
-                if (string.IsNullOrEmpty(traktEp.EpisodeImage)) continue;
-
-                // special case for trak episodes
-                // Trakt will return the fanart image when no episode image exists, but we don't want this
-                int pos = traktEp.EpisodeImage.IndexOf(@"episodes/");
-                if (pos <= 0) continue;
-
-                //logger.Trace("Episode image: {0} - {1}/{2}", traktEp.Trakt_ShowID, traktEp.Season, traktEp.EpisodeNumber);
-
-                imageHelper.DownloadTraktEpisode(traktEp, false);
-            }
         }
 
         private void RefreshView()
