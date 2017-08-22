@@ -117,10 +117,10 @@ namespace Shoko.Desktop.Utilities
         public static string GetED2KDump(string result)
         {
             // try and get the ed2k dump from the keyboard
-            string[] lines = result.Split('\r');
+            string[] lines = result.Split('\n');
             foreach (string line in lines)
             {
-                string editedLine = line.Replace('\n', ' ');
+                string editedLine = line.Replace('\r', ' ');
                 editedLine = editedLine.Trim();
 
                 if (editedLine.StartsWith(@"ed2k://"))
