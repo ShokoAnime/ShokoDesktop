@@ -8,28 +8,29 @@ namespace Shoko.Desktop.WPFHelpers
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            if (value == null)
-            {
-                return null;
-            }
-
             if (value is string)
             {
                 value = new Uri((string)value);
             }
 
-            if (value is Uri)
+            if (!(value is Uri)) return null;
+
+            BitmapImage bi = new BitmapImage();
+            try
             {
-                BitmapImage bi = new BitmapImage();
                 bi.BeginInit();
                 bi.DecodePixelWidth = 200;
-                //bi.DecodePixelHeight = 60;                
                 bi.UriSource = (Uri)value;
                 bi.EndInit();
-                return bi;
             }
-
-            return null;
+            catch (Exception e)
+            {
+                bi.BeginInit();
+                bi.DecodePixelWidth = 200;
+                bi.UriSource = new Uri("/Images/LoadingError.png");
+                bi.EndInit();
+            }
+            return bi;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
